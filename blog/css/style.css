@@ -1,3 +1,26 @@
+h1 {
+
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 300%;
+
+}
+
+
+.QA {
+
+   font-family: 'Proza Libre', sans-serif;
+
+}
 ul {
-    list-style-type: none;
+  list-style-type: none;
+  margin: 10px 10px;
+}
+
+nav ul {
+  margin: 0;
+}
+
+nav ul li {
+  display: inline-block;
+  list-style-type: none;
 }
