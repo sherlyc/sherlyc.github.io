@@ -70,12 +70,18 @@ hr {
    text-decoration: none;
  }
 
+.pfooter {
+  margin: 40px 20px;
+}
+
  footer {
    max-width: 1100px;
    margin: 0 auto;
    background: #6600cc;
    color: white;
  }
+
+
 
  .social {
    text-align: right;
