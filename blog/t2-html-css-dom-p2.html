@@ -4,50 +4,75 @@
   <head>
     <title>HTML, CSS, Dom Reflection : Part 2 </title>
     <meta charset="UTF-8">
-    <link href="../styles/main.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Proza+Libre" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Libre+Franklin" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../styles/main.css">
 
   </head>
 
-  <body>
+  <body style="background-color: rgb(9, 169, 198);">
     <header>
-      <nav>
-        <ul>
-          <li><a href="../index.html">Sherly Chan</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropbtn">Blog</a>
-              <div class="dropdown-content">
-                <a href="c1-reflection-blog.html">S1: Reflection</a>
-                <a href="c1-time-and-habits-blog.html">S1: Time & Habits</a>
-                <a href="t2-html-css-dom-p1.html">S2: HTML,CSS,DOM Pt.1</a>
-                <a href="t2-html-css-dom-p2.html">S2: HTML,CSS,DOM Pt.2</a>
-                <a href="c2-emotional-intelligence.html">S2: Emotional Intelligence</a>
-              </div>
-          </li>
-        </ul>
-      </nav>
+      <div class="container">
+        <div class="wrapper">
+            <div class="row">
+                <div class="three columns">
+                  <div class="brand"><a href="http://sherlyc.github.io">sherlyc</a></div>
+                </div>
+                <div class="nine columns">
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Blogs</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></a></li>
+                    </ul>
+                </nav>
+                </div>
+            </div>
+        </div>
     </header>
 
-      <div class="content">
-            <h1><i class="fa fa-university" aria-hidden="true"></i> HTML, CSS, DOM #2</h1>
-                <h3>What is Grid Based Design?</h3>
-                <p>A grid-based design is one that works in and around the constraints of a row-and-column-based grid system to help keep web content nicely aligned.</p>
-                <p>The human eye 'sees' a web page a certain way, roughly from the top left to the bottom right, the grid will guide the user eyes to see elements in a pleasing and distinctive way. </p>
+    <div class="row">
+        <div class="twelve columns">
+            <div class="wrapper blogs">
+                  <div class="intro">
+                    <h1>HTML, CSS, DOM #2</h1>
+                    <p></p>
+                  </div>
 
-                <h3>What's all the hype about responsive webpages?</h3>
-                <p>With the increased users on smart phones and tablets, this is a logical solution for those who do not want to invest in various versions of a website for all those different devices.</p>
-                <p>A responsive website is designed based on a flexible grid and it would scale automatically to fit accordingly to any screen resolution.</p>
-                <p>Depending on the screen resolution, some contents can be positioned accordingly for easier navigation.</p>
+                  <h3>What is Grid Based Design?</h3>
+                  <p>A grid-based design is one that works in and around the constraints of a row-and-column-based grid system to help keep web content nicely aligned.</p>
+                  <p>The human eye 'sees' a web page a certain way, roughly from the top left to the bottom right, the grid will guide the user eyes to see elements in a pleasing and distinctive way. </p>
 
-                <h3>What is semantic structure?</h3>
-                <p>Semantic structure means writing your website in a clean and descriptive html markup tags.</p>
-                <p>Many visual impaired people rely on text to speech program to read webpages back to them, semantic code aids accessibility.</p>
-                <p>It also helps to improves the ranking of a website in a search engine as it is easier for the "search engine spiders" to understand your contents.
+                  <h3>What's all the hype about responsive webpages?</h3>
+                  <p>With the increased users on smart phones and tablets, this is a logical solution for those who do not want to invest in various versions of a website for all those different devices.</p>
+                  <p>A responsive website is designed based on a flexible grid and it would scale automatically to fit accordingly to any screen resolution.</p>
+                  <p>Depending on the screen resolution, some contents can be positioned accordingly for easier navigation.</p>
 
-                <h3>Any other points you found interesting and want to reflect on.</h3>
-                <p>After completing the 2 lessons on Udacity, I have a better understanding in how to break down a design mockup into page elements and turn them into html and css codes.</p>
-                <p>I also learned the importance of grid based and responsive designs, hopefully I would be able to redesign my homepage with these concepts.</p>
-      </div>
-  </body>
+                  <h3>What is semantic structure?</h3>
+                  <p>Semantic structure means writing your website in a clean and descriptive html markup tags.</p>
+                  <p>Many visual impaired people rely on text to speech program to read webpages back to them, semantic code aids accessibility.</p>
+                  <p>It also helps to improves the ranking of a website in a search engine as it is easier for the "search engine spiders" to understand your contents.
+
+                  <h3>Any other points you found interesting and want to reflect on.</h3>
+                  <p>After completing the 2 lessons on Udacity, I have a better understanding in how to break down a design mockup into page elements and turn them into html and css codes.</p>
+                  <p>I also learned the importance of grid based and responsive designs, hopefully I would be able to redesign my homepage with these concepts.</p>
+            </div>
+        </div>
+    </div>
+
+  <p class="pfooter"></p>
+
+  <footer>
+    <div class="row footer">
+        <div class="six columns">
+        Copyright Sherly Chan Ltd
+        </div>
+        <div class="six columns">
+          <div class="social">SOCIAL MEDIA ICONS</div>
+        </div>
+    </div>
+  </footer>
+</body>
 </html>
