@@ -43,6 +43,10 @@ body {
   opacity: 0.8;
 }
 
+.blogs a {
+  color: white;
+}
+
 .archive a {
   font-size: 1.5em;
   color: white;
