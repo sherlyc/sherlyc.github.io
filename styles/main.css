@@ -47,6 +47,20 @@ body {
   color: white;
 }
 
+.wireframe img {
+  width: 250px;
+  height: 125px;
+  margin-top: 100px;
+
+}
+/*to rotate images 90 degress */
+.rotate90 {
+  -ms-transform: rotate(90deg); /* IE 9 */
+  -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+  transform: rotate(90deg);
+
+}
+
 .archive a {
   font-size: 1.5em;
   color: white;
