@@ -35,6 +35,19 @@ body {
 
  }
 
+ span {
+   opacity: 0.8;
+ }
+
+.blkCode {
+  border-radius: 25px;
+  border: 2px solid #d9d9d9;
+  display: block;
+  white-space: pre-line;
+  max-width: 500px;
+  flex-wrap: wrap;
+  padding: 15px 15px;
+}
 .blogs {
   color: white;
 }
