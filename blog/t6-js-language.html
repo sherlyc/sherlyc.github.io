@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sprint 6: Javascript Language</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Libre+Franklin" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../styles/main.css">
+  </head>
+
+  <body style="background-color: rgb(9, 169, 198);">
+    <header>
+      <div class="container">
+        <div class="wrapper">
+            <div class="row">
+                <div class="three columns">
+                  <div class="brand"><a href="http://sherlyc.github.io">sherlyc</a></div>
+                </div>
+                <div class="nine columns">
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Blog</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></a></li>
+                    </ul>
+                </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+            <div class="row">
+                <div class="twelve columns">
+                  <div class="wrapper blogs">
+                      <div class="intro">
+                        <h1>JavaScript Language</h1>
+                      </div>
+                       <h3>parentheses ()</h3>
+                       <p>Parenthesis () in JavaScript are used for function calls, to surround conditional statements, or for grouping to enforce Order of Operations.</p>
+                       <div class="smblkCode">
+                           function calSomething() {
+                                if (condition1) {
+
+                                }
+                                if ( (1 + 3) * 2) {
+                                    // returns 8
+                                }
+                            }
+                       </div>
+                       <br>
+                       <h3>braces {}</h3>
+                       <p>Braces {} are used during the declaration of Object Literals, or to enclose blocks of code (function definitions, conditional blocks, loops, etc).</p>
+                       <div class="smblkCode">
+                           var objPet = {
+                               name: “Ginger”,
+                               species: “dog”
+                           };
+
+                       </div>
+                       <br>
+                       <h3>brackets []</h3>
+                       <p>Brackets [] are typically mostly used for accessing the properties of an Object (or the elements of an Array), so mylist[3] fetches the fourth element in the Array.</p>
+                       <div class="smblkCode">
+                           var mylist = [1,2,3,4];
+                           alert(mylist[2])
+                       </div>
+                       <br>
+                       <h3>Single Quotes vs Double Quotes</h3>
+                       <p>Single quotes and double quotes are used to enclosed a string. Double quotes eliminate to escape apostrophes.</p>
+                       <div class="smblkCode">
+                           var stringOne = 'It\'s a girl!';
+                           var stringTwo = "It's a girl!";
+                       </div>
+                </div>
+            </div>
+         </div>
+      </div>
+
+
+  <p class="pfooter"></p>
+
+  <footer>
+    <div class="row footer">
+        <div class="six columns">
+        Copyright Sherly Chan Ltd
+        </div>
+        <div class="six columns">
+          <div class="social">SOCIAL MEDIA ICONS</div>
+        </div>
+    </div>
+  </footer>
+
+</body>
+</html>
