@@ -1,4 +1,3 @@
 # sherlyc.github.io
 Sherly's Blog
-# sprint-2
-# sprint-2
+Update : to be rework 15/08/17
