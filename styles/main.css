@@ -2,7 +2,7 @@ aside {
   font-size: 2em;
   color: #ff3333;
   flex: 1;
-  background-image: url('/images/wireframe-blog-page-desktop.jpg');
+  background-image: url('../images/wireframe-blog-page-desktop.jpg');
 }
 
 main {
