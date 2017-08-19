@@ -40,22 +40,22 @@ main {
 
 h1 {
   text-align: center;
-  margin-top: 40%;
+  margin-top: 45%;
   color: #ffffff;
 }
 
 h3 {
   text-align: center;
   padding: 1em;
-  margin-top: 10%;
+  margin-top: 20%;
   color: #ffffff;
 }
 
 .list-unstyled {
   padding-left: 0;
   list-style: none;
-  margin-bottom: 10%;
 }
+
 .list-inline li {
   display: inline-block;
   padding-right: 5px;
