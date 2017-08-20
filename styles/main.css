@@ -18,9 +18,23 @@ aside {
   background-position: center;
 }
 
+aside h1 {
+  text-align: center;
+  margin-top: 25%;
+  color: #ffffff;
+}
+
+aside h3 {
+  text-align: center;
+  padding: 1em;
+  margin-top: 20%;
+  color: #ffffff;
+}
+
 main {
   font-size: 1em;
   flex: 1;
+  margin-top: 12%;
   font-family: 'Ubuntu', sans-serif;
 }
 
@@ -33,10 +47,22 @@ main {
 
 .intro {
   text-align: left;
-  padding: 0 1em;
-  font-size: 1em;
-  line-height: 2em;
+  padding: 0 1.2em;
+  font-size: 1.5em;
+  line-height: 1.5em;
   color: #333;
+}
+
+.title {
+  text-align: left;
+  padding: 0 1.2em;
+}
+
+.skillList {
+  text-align: left;
+  padding: 0 1.2em;
+  font-size: 1.5em;
+  line-height: 1.5em;
 }
 
 .container {
@@ -50,19 +76,6 @@ main {
     flex-direction: row;
     flex: 1;
   }
-}
-
-h1 {
-  text-align: center;
-  margin-top: 45%;
-  color: #ffffff;
-}
-
-h3 {
-  text-align: center;
-  padding: 1em;
-  margin-top: 20%;
-  color: #ffffff;
 }
 
 .list-unstyled {
