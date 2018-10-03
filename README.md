@@ -120,6 +120,22 @@ It will generate folder called "documentation" in the app-root which can be view
 ```
 npm install husky --save-dev
 ```
+
+Next we have to add the configuration in package.json
+```
+//root/package.json
+{
+  "private": true,
+  "devDependencies": {
+    ...
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "ng lint && ng test --watch=false && ng e2e --watch=false"
+    }
+  }
+}
+```
 <!-- ## Running the tests
 
 Explain how to run the automated tests for this system
