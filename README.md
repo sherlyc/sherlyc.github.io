@@ -97,7 +97,11 @@ ng serve --o
 > git commit -m "Your Message"
 > git push -u origin master
 ```
-
+## Git pre-commit hook setup for linting and testing
+We are going to use husky for that
+```
+npm install husky --save-dev
+```
 ### Compodoc
 Compodoc is a documentation tool for Angular applications. It generates a static documentation of your application. Compodoc helps Angular developers providing a clear and helpful documentation of their application. Others developers of your team can easily understand the features of your application or library.
 
@@ -114,7 +118,7 @@ npm run compodoc
 ```
 It will generate folder called "documentation" in the app-root which can be viewed at 
 ```
-http://127.0.0.1:8080/overview.html
+npm install husky --save-dev
 ```
 <!-- ## Running the tests
 
@@ -140,11 +144,7 @@ Give an example
 
 Add additional notes about how to deploy this on a live system
 
-## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
 ## Contributing
 
