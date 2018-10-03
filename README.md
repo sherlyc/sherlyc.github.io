@@ -35,8 +35,8 @@ Below are the front end toolset and framework we will be using to start with and
 12. [benchpress.js]() (Performance Testing)
 13. [OWASP ZAP]() (Security Testing)
 14. [Jenkins]() (Continuous Integration)
-15. [Bitbucket]() (Code repository / versioning)
-16. [Husky]() (git hooks)
+15. [Bitbucket](https://bitbucket.org) (Code repository / versioning)
+16. [Husky](https://github.com/typicode/husky) (git hooks)
 
 
 ### Installing
@@ -83,11 +83,11 @@ Then import the Angular Material modules after Angular's BrowserModule, as the i
 
 Next we need to add the Angular Flex Layout for the responsive layout implementation in mind. Refer to the [documentation](https://github.com/angular/flex-layout/wiki/Declarative-API-Overview) for implementation guidelines.
 ```
-npm install @angular/flex-layout --save
+$ npm install @angular/flex-layout --save
 ```
 This is what we need to install till now for the angular project to work for the development to start. We will try to run the project using 
 ```
-ng serve --o
+$ ng serve --o
 ```
 ### Git setup
 ```
@@ -97,28 +97,10 @@ ng serve --o
 > git commit -m "Your Message"
 > git push -u origin master
 ```
-## Git pre-commit hook setup for linting and testing
+### Git pre-commit hook setup for linting and testing
 We are going to use husky for that
 ```
-npm install husky --save-dev
-```
-### Compodoc
-Compodoc is a documentation tool for Angular applications. It generates a static documentation of your application. Compodoc helps Angular developers providing a clear and helpful documentation of their application. Others developers of your team can easily understand the features of your application or library.
-
-```
-npm install --save-dev @compodoc/compodoc
-```
-Once installed define a script task for it in your package.json "scripts".
-```
-"compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json -w -s"
-```
-To run the compodoc and generate documentation
-```
-npm run compodoc
-```
-It will generate folder called "documentation" in the app-root which can be viewed at 
-```
-npm install husky --save-dev
+$ npm install husky --save-dev
 ```
 
 Next we have to add the configuration in package.json
@@ -131,11 +113,70 @@ Next we have to add the configuration in package.json
   },
   "husky": {
     "hooks": {
-      "pre-commit": "ng lint && ng test --watch=false && ng e2e --watch=false"
+      "pre-commit": "ng lint && ng test --watch=false && ng e2e"
     }
   }
 }
 ```
+### Compodoc
+Compodoc is a documentation tool for Angular applications. It generates a static documentation of your application. Compodoc helps Angular developers providing a clear and helpful documentation of their application. Others developers of your team can easily understand the features of your application or library.
+
+```
+$ npm install --save-dev @compodoc/compodoc
+```
+Once installed define a script task for it in your package.json "scripts".
+```
+"compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json -w -s"
+```
+To run the compodoc and generate documentation
+```
+$ npm run compodoc
+```
+It will generate folder called "documentation" in the app-root.
+
+## Defining a custom theme for material components
+---
+When you want more customization than a pre-built theme offers, you can create your own theme file.
+
+### A custom theme file does two things:
+
+* Imports the mat-core() sass mixin. This includes all common styles that are used by multiple components. This should only be included once in your application. If this mixin is included multiple times, your application will end up with multiple copies of these common styles.
+
+* Defines a theme data structure as the composition of multiple palettes. This object can be created with either the mat-light-theme function or the mat-dark-theme function. The output of this function is then passed to the angular-material-theme mixin, which will output all of the corresponding styles for the theme.
+
+A typical theme file will look something like this:
+
+```
+@import '~@angular/material/theming';
+
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+$stuff-app-primary: mat-palette($mat-indigo);
+$stuff-app-accent:  mat-palette($mat-pink, A200, A100, A400);
+
+$stuff-app-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$stuff-app-theme: mat-light-theme($stuff-app-primary, $stuff-app-accent, $stuff-app-warn);
+
+// Include theme styles for core and each component used in your app.
+@include angular-material-theme($stuff-app-theme);
+
+```
+Create that file under "src" and add that to the angular cli in the angular.json file.
+```
+"styles": [
+  {
+    "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+  },
+  "src/stuff-app-theme.scss",
+  "src/styles.scss"
+],
+```
+
+
+
 <!-- ## Running the tests
 
 Explain how to run the automated tests for this system
@@ -207,9 +248,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 
 
-# StuffRefFrontendArchitecture
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.3.
 
 ## Development server
 
