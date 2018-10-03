@@ -98,7 +98,24 @@ ng serve --o
 > git push -u origin master
 ```
 
+### Compodoc
+Compodoc is a documentation tool for Angular applications. It generates a static documentation of your application. Compodoc helps Angular developers providing a clear and helpful documentation of their application. Others developers of your team can easily understand the features of your application or library.
 
+```
+npm install --save-dev @compodoc/compodoc
+```
+Once installed define a script task for it in your package.json "scripts".
+```
+"compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json -w -s"
+```
+To run the compodoc and generate documentation
+```
+npm run compodoc
+```
+It will generate folder called "documentation" in the app-root which can be viewed at 
+```
+http://127.0.0.1:8080/overview.html
+```
 <!-- ## Running the tests
 
 Explain how to run the automated tests for this system
