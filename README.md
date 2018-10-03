@@ -1,6 +1,6 @@
 # Stuff Frontend Reference Architecture (Web)
 
-The key priciple of this implementation is to provide a simple, standardized implementation strategies. The approach is to make the foundation robust and future complexity proof with scalability as one our main concern. The architecture is focused to implement CI/CD for faster development and deployment cycle with automated testing.
+The key principle of this implementation is to provide a simple, standardised implementation strategies. The approach is to make the foundation robust and future complexity proof with scalability as one our main concern. The architecture is focused to implement CI/CD for faster development and deployment cycle with automated testing.
 
 ## Getting Started
 
@@ -89,11 +89,17 @@ This is what we need to install till now for the angular project to work for the
 ```
 ng serve --o
 ```
+### Git setup
+```
+> git remote add origin git@bitbucket.org:fairfax/stuff-ref-frontend-architecture.git
+
+> git add .
+> git commit -m "Your Message"
+> git push -u origin master
+```
 
 
----
-
-## Running the tests
+<!-- ## Running the tests
 
 Explain how to run the automated tests for this system
 
@@ -194,4 +200,4 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md). -->
