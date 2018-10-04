@@ -1,0 +1,37 @@
+.app-header-color {
+    background: #0037c5;
+    color: #ffffff;
+}
+.logo {
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    font-weight: 100;
+    font-size: 1.1em;
+}
+.user-icon {
+    font-size: 32px;
+    top: -3px;
+    position: relative;
+}
+.user-account {
+    display: flex;
+    .user-info {
+        display: flex;
+        flex-direction: column;
+        line-height: 0.8em;
+        margin-left: 15px;
+    }
+    .username {
+        font-size: .7em;
+    }
+    .user-role {
+        font-size: .6em;
+    }
+}
+.example-icon {
+    padding: 0 14px;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }

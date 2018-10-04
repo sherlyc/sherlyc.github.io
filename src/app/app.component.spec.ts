@@ -1,7 +1,8 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
 import { StuffCustomMaterialModule } from './stuff-custom-material/stuff-custom-material.module';
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -11,7 +12,7 @@ describe('AppComponent', () => {
         StuffCustomMaterialModule
       ],
       declarations: [
-        AppComponent
+        AppComponent, HeaderComponent
       ],
     }).compileComponents();
   }));
@@ -25,10 +26,10 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('stuff-ref-frontend-architecture');
   }));
-  it('should render app name in span with class logo', async(() => {
+  it('should check app header is present', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('span.logo').textContent).toContain('Composer');
+    expect(compiled.querySelector('app-header')).toBeTruthy();
   }));
 });

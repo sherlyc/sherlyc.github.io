@@ -65,8 +65,8 @@
 <li><a href="">benchpress.js</a> (Performance Testing)</li>
 <li><a href="">OWASP ZAP</a> (Security Testing)</li>
 <li><a href="">Jenkins</a> (Continuous Integration)</li>
-<li><a href="">Bitbucket</a> (Code repository / versioning)</li>
-<li><a href="">Husky</a> (git hooks)</li>
+<li><a href="https://bitbucket.org">Bitbucket</a> (Code repository / versioning)</li>
+<li><a href="https://github.com/typicode/husky">Husky</a> (git hooks)</li>
 </ol>
 <h3 id="installing">Installing</h3>
 <hr>
@@ -86,18 +86,65 @@
 
 export class StuffCustomMaterialModule { }</code></pre></div><p>Then import the Angular Material modules after Angular&#39;s BrowserModule, as the import order matters for NgModules.</p>
 <p>Next we need to add the Angular Flex Layout for the responsive layout implementation in mind. Refer to the <a href="https://github.com/angular/flex-layout/wiki/Declarative-API-Overview">documentation</a> for implementation guidelines.</p>
-<div><pre class="line-numbers"><code class="language-none">npm install &#64;angular/flex-layout --save</code></pre></div><p>This is what we need to install till now for the angular project to work for the development to start. We will try to run the project using </p>
-<div><pre class="line-numbers"><code class="language-none">ng serve --o</code></pre></div><h3 id="git-setup">Git setup</h3>
+<div><pre class="line-numbers"><code class="language-none">$ npm install &#64;angular/flex-layout --save</code></pre></div><p>This is what we need to install till now for the angular project to work for the development to start. We will try to run the project using </p>
+<div><pre class="line-numbers"><code class="language-none">$ ng serve --o</code></pre></div><h3 id="git-setup">Git setup</h3>
 <div><pre class="line-numbers"><code class="language-none">&gt; git remote add origin git&#64;bitbucket.org:fairfax/stuff-ref-frontend-architecture.git
 
 &gt; git add .
 &gt; git commit -m &quot;Your Message&quot;
-&gt; git push -u origin master</code></pre></div><h3 id="compodoc">Compodoc</h3>
+&gt; git push -u origin master</code></pre></div><h3 id="git-pre-commit-hook-setup-for-linting-and-testing">Git pre-commit hook setup for linting and testing</h3>
+<p>We are going to use husky for that</p>
+<div><pre class="line-numbers"><code class="language-none">$ npm install husky --save-dev</code></pre></div><p>Next we have to add the configuration in package.json</p>
+<div><pre class="line-numbers"><code class="language-none">//root/package.json
+{
+  &quot;private&quot;: true,
+  &quot;devDependencies&quot;: {
+    ...
+  },
+  &quot;husky&quot;: {
+    &quot;hooks&quot;: {
+      &quot;pre-commit&quot;: &quot;ng lint &amp;&amp; ng test --watch=false &amp;&amp; ng e2e&quot;
+    }
+  }
+}</code></pre></div><h3 id="compodoc">Compodoc</h3>
 <p>Compodoc is a documentation tool for Angular applications. It generates a static documentation of your application. Compodoc helps Angular developers providing a clear and helpful documentation of their application. Others developers of your team can easily understand the features of your application or library.</p>
-<div><pre class="line-numbers"><code class="language-none">npm install --save-dev &#64;compodoc/compodoc</code></pre></div><p>Once installed define a script task for it in your package.json &quot;scripts&quot;.</p>
+<div><pre class="line-numbers"><code class="language-none">$ npm install --save-dev &#64;compodoc/compodoc</code></pre></div><p>Once installed define a script task for it in your package.json &quot;scripts&quot;.</p>
 <div><pre class="line-numbers"><code class="language-none">&quot;compodoc&quot;: &quot;./node_modules/.bin/compodoc -p src/tsconfig.app.json -w -s&quot;</code></pre></div><p>To run the compodoc and generate documentation</p>
-<div><pre class="line-numbers"><code class="language-none">npm run compodoc</code></pre></div><p>It will generate folder called &quot;documentation&quot; in the app-root which can be viewed at </p>
-<div><pre class="line-numbers"><code class="language-none">http://127.0.0.1:8080/overview.html</code></pre></div><!-- ## Running the tests
+<div><pre class="line-numbers"><code class="language-none">$ npm run compodoc</code></pre></div><p>It will generate folder called &quot;documentation&quot; in the app-root.</p>
+<h2 id="defining-a-custom-theme-for-material-components">Defining a custom theme for material components</h2>
+<hr>
+<p>When you want more customization than a pre-built theme offers, you can create your own theme file.</p>
+<h3 id="a-custom-theme-file-does-two-things-">A custom theme file does two things:</h3>
+<ul>
+<li><p>Imports the mat-core() sass mixin. This includes all common styles that are used by multiple components. This should only be included once in your application. If this mixin is included multiple times, your application will end up with multiple copies of these common styles.</p>
+</li>
+<li><p>Defines a theme data structure as the composition of multiple palettes. This object can be created with either the mat-light-theme function or the mat-dark-theme function. The output of this function is then passed to the angular-material-theme mixin, which will output all of the corresponding styles for the theme.</p>
+</li>
+</ul>
+<p>A typical theme file will look something like this:</p>
+<div><pre class="line-numbers"><code class="language-none">&#64;import &#39;~&#64;angular/material/theming&#39;;
+
+// Be sure that you only ever include this mixin once!
+&#64;include mat-core();
+
+$stuff-app-primary: mat-palette($mat-indigo);
+$stuff-app-accent:  mat-palette($mat-pink, A200, A100, A400);
+
+$stuff-app-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$stuff-app-theme: mat-light-theme($stuff-app-primary, $stuff-app-accent, $stuff-app-warn);
+
+// Include theme styles for core and each component used in your app.
+&#64;include angular-material-theme($stuff-app-theme);
+</code></pre></div><p>Create that file under &quot;src&quot; and add that to the angular cli in the angular.json file.</p>
+<div><pre class="line-numbers"><code class="language-none">&quot;styles&quot;: [
+  {
+    &quot;input&quot;: &quot;node_modules/&#64;angular/material/prebuilt-themes/indigo-pink.css&quot;
+  },
+  &quot;src/stuff-app-theme.scss&quot;,
+  &quot;src/styles.scss&quot;
+],</code></pre></div><!-- ## Running the tests
 
 Explain how to run the automated tests for this system
 
@@ -121,11 +168,7 @@ Give an example
 
 Add additional notes about how to deploy this on a live system
 
-## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
 ## Contributing
 
@@ -172,9 +215,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 
 
-# StuffRefFrontendArchitecture
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.3.
 
 ## Development server
 
