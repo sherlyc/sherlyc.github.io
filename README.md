@@ -174,24 +174,37 @@ Create that file under "src" and add that to the angular cli in the angular.json
   "src/styles.scss"
 ],
 ```
+## Test driven development
+---
+### Running unit tests
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
+### Running end-to-end tests
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
+### Running code-coverage
+Run `ng test --watch=false --code-coverage` to execute code coverage tool. Further reading on [code coverage](https://en.wikipedia.org/wiki/Code_coverage) for why it is important in development.
 
-<!-- ## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
+### Pre Commit hook
+---
+When doing commit the hooks will run all the tests given below to ensure quality of code.
+1. `ng lint` (Check the code style usign Codelyzer and tslint)
+2. `ng test --watch=false` to ensure unit test are successful and which will also check the test coverage of 80%
 ```
-Give an example
+thresholds: {
+    statements: 80,
+    lines: 80,
+    branches: 80,
+    functions: 80
+  }
+  // Commented in the codebase presently
 ```
+3. `ng e2e` to test the end to end testing.
+
 
 ### And coding style tests
 
-Explain what these tests test and why
+TBD: Explain what these tests test and why
 
 ```
 Give an example
@@ -199,56 +212,22 @@ Give an example
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+TBD: Add additional notes about how to deploy this on a live system
 
 
 
 ## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+[Frontend Ref Architecture slides](https://docs.google.com/presentation/d/1Ui8dTFkxaFZP09skZkHKwa5tX6EasZbUnsEa1lwpbQs/edit#slide=id.g420ba61905_1_63)
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+Version 0.0.1 -- Implementation of the first draft with Stuff Composer in mind
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Angular CLI commands 
+---
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -272,3 +251,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md). -->
+
+## Authors
+
+* **Abhisek Roy** 

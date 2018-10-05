@@ -21,15 +21,30 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
+
   it(`should have as title 'stuff-ref-frontend-architecture'`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('stuff-ref-frontend-architecture');
   }));
+
+  it(`should not have as title other than 'stuff-ref-frontend-architecture'`, async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app.title).not.toEqual('stuff-ref-frontend');
+  }));
+
   it('should check app header is present', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('app-header')).toBeTruthy();
+  }));
+
+  it('should check router outlet is present', async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('router-outlet')).toBeTruthy();
   }));
 });

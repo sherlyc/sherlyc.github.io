@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class AuthoringComponent implements OnInit {
 
   constructor() { }
-
+  headline: string;
   ngOnInit() {
   }
 

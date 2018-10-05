@@ -9,33 +9,36 @@
     </div>
   </div>
 </div>
+<!-- <mat-progress-bar mode="indeterminate" class="save-indicator"></mat-progress-bar> -->
 <div class="container" fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
   <mat-tab-group dynamicHeight fxFill>
     <mat-tab label="Article body">
-      <div class="mat-elevation-z4 tab-body-gutter" fxLayout="column" fxLayoutAlign="center">
+      <form>
+        <div class="tab-body-gutter" fxLayout="column" fxLayoutAlign="center">
 
-        <mat-form-field class="form-field">
-          <input matInput #headline maxlength="80" placeholder="Headline" class="title">
-          <mat-hint align="end">{{headline.value.length}} / 80</mat-hint>
-        </mat-form-field>
-        
-        <mat-form-field class="form-field article-body">
-          <textarea matInput placeholder="Body text" rows="8"></textarea>
-          <mat-hint>Mandatory</mat-hint>
-        </mat-form-field>
+          <mat-form-field class="form-field">
+            <input matInput #headline maxlength="80" placeholder="Headline" class="title">
+            <mat-hint align="end">{{headline.value.length}} / 80</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field class="form-field article-body">
+            <textarea matInput placeholder="Body text" rows="8"></textarea>
+            <mat-hint>Mandatory</mat-hint>
+          </mat-form-field>
 
 
-      </div>
+        </div>
+      </form>
     </mat-tab>
     <mat-tab label="Packaging">
-      <div class="mat-elevation-z4">
-
+        <div class="tab-body-gutter" fxLayout="column" fxLayoutAlign="center">
+          <h1 class="mat-display-1">{{headline.value}}</h1>
       </div>
     </mat-tab>
     <mat-tab label="Properties">
-      <div class="mat-elevation-z4">
-
-      </div>
+        <div class="tab-body-gutter" fxLayout="column" fxLayoutAlign="center">
+            <h1 class="mat-display-1">{{headline.value}}</h1>
+        </div>
     </mat-tab>
   </mat-tab-group>
 </div>
