@@ -201,6 +201,28 @@ thresholds: {
 ```
 3. `ng e2e` to test the end to end testing.
 
+## Angular Universal
+---
+```
+npm install --save @angular/platform-server @nguniversal/module-map-ngfactory-loader ts-loader @nguniversal/express-engine
+```
+### Build Angular universal
+The Angular CLI compiles and bundles the universal app into two different folders, browser and server. Webpack transpiles the server.ts file into Javascript.
+```
+npm run build:ssr
+```
+### Serve the angular universal application
+After building the application, start the server.
+```
+npm run serve:ssr
+```
+Because a Universal platform-server app doesn't execute in the browser, you may have to work around some of the browser APIs and capabilities that are missing on the server.
+
+You won't be able reference browser-only native objects such as window, document, navigator or location. If you don't need them on the server-rendered page, side-step them with conditional logic.
+
+Alternatively, look for an injectable Angular abstraction over the object you need such as Location or Document; it may substitute adequately for the specific API that you're calling. If Angular doesn't provide it, you may be able to write your own abstraction that delegates to the browser API while in the browser and to a satisfactory alternative implementation while on the server.
+
+
 
 ### And coding style tests
 

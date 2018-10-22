@@ -20,7 +20,7 @@ import { HomeComponent } from './home/home.component';
     HomeComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'stuff-ref-frontend-architecture' }),
     AppRoutingModule,
     BrowserAnimationsModule,
     StuffCustomMaterialModule,
