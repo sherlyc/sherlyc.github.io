@@ -10,6 +10,7 @@ export class AuthoringComponent implements OnInit {
   constructor() { }
   headline: string;
   ngOnInit() {
+    // throw new Error('I am a bug... 🐛');
   }
 
 }

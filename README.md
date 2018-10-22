@@ -222,6 +222,28 @@ You won't be able reference browser-only native objects such as window, document
 
 Alternatively, look for an injectable Angular abstraction over the object you need such as Location or Document; it may substitute adequately for the specific API that you're calling. If Angular doesn't provide it, you may be able to write your own abstraction that delegates to the browser API while in the browser and to a satisfactory alternative implementation while on the server.
 
+## Sentry integration
+```
+npm install raven-js --save
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ### And coding style tests

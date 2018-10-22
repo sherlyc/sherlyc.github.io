@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler, Injectable  } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +11,20 @@ import { HeaderComponent } from './header/header.component';
 import { AuthoringComponent } from './authoring/authoring.component';
 import { HomeComponent } from './home/home.component';
 
+import * as Sentry from '@sentry/browser';
+
+Sentry.init({
+  dsn: 'https://30f2a44af0d04b55875db5eb17b68a63@sentry.io/1306325'
+});
+
+@Injectable()
+export class SentryErrorHandler implements ErrorHandler {
+  constructor() {}
+  handleError(error) {
+    Sentry.captureException(error.originalError || error);
+    throw error;
+  }
+}
 
 @NgModule({
   declarations: [
@@ -27,7 +41,7 @@ import { HomeComponent } from './home/home.component';
     FlexLayoutModule,
     FormsModule
   ],
-  providers: [],
+  providers: [{ provide: ErrorHandler, useClass: SentryErrorHandler }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
