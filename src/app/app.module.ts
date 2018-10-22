@@ -9,13 +9,15 @@ import { StuffCustomMaterialModule } from './stuff-custom-material/stuff-custom-
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HeaderComponent } from './header/header.component';
 import { AuthoringComponent } from './authoring/authoring.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    AuthoringComponent
+    AuthoringComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
