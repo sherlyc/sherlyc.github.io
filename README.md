@@ -212,7 +212,7 @@ The Angular CLI compiles and bundles the universal app into two different folder
 npm run build:ssr
 ```
 ### Serve the angular universal application
-After building the application, start the server.
+After building the application, start the server. 
 ```
 npm run serve:ssr
 ```

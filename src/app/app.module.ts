@@ -11,10 +11,13 @@ import { HeaderComponent } from './header/header.component';
 import { AuthoringComponent } from './authoring/authoring.component';
 import { HomeComponent } from './home/home.component';
 
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
 import * as Sentry from '@sentry/browser';
 
 Sentry.init({
-  dsn: 'https://30f2a44af0d04b55875db5eb17b68a63@sentry.io/1306325'
+  // dsn: 'https://30f2a44af0d04b55875db5eb17b68a63@sentry.io/1306325'
+  dsn: 'https://48f99cea317a4f9d9c015be25e9943f2@sentry.io/1308464'
 });
 
 @Injectable()
@@ -31,7 +34,8 @@ export class SentryErrorHandler implements ErrorHandler {
     AppComponent,
     HeaderComponent,
     AuthoringComponent,
-    HomeComponent
+    HomeComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'stuff-ref-frontend-architecture' }),
