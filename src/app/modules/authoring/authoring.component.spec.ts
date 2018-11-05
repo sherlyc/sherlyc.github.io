@@ -1,12 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { StuffCustomMaterialModule } from '../../shared/stuff-custom-material/stuff-custom-material.module';
-import { HomeComponent } from './home.component';
-import { AuthoringComponent } from './../authoring/authoring.component';
+import { AuthoringComponent } from './authoring.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+describe('AuthoringComponent', () => {
+  let component: AuthoringComponent;
+  let fixture: ComponentFixture<AuthoringComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -14,13 +13,13 @@ describe('HomeComponent', () => {
         StuffCustomMaterialModule,
         BrowserAnimationsModule
       ],
-      declarations: [ HomeComponent, AuthoringComponent ]
+      declarations: [ AuthoringComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(AuthoringComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
