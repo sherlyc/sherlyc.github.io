@@ -57,21 +57,24 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
                             <li class="chapter inner">
                                 <div class="simple menu-toggler" data-toggle="collapse"
-                                    ${ isNormalMode ? 'data-target="#components-links-module-AppModule-b302afa79592f9609721f93383241b4a"' : 'data-target="#xs-components-links-module-AppModule-b302afa79592f9609721f93383241b4a"' }>
+                                    ${ isNormalMode ? 'data-target="#components-links-module-AppModule-124973d8c176bbb49b54483b55771829"' : 'data-target="#xs-components-links-module-AppModule-124973d8c176bbb49b54483b55771829"' }>
                                     <span class="icon ion-md-cog"></span>
                                     <span>Components</span>
                                     <span class="icon ion-ios-arrow-down"></span>
                                 </div>
                                 <ul class="links collapse"
-                                    ${ isNormalMode ? 'id="components-links-module-AppModule-b302afa79592f9609721f93383241b4a"' : 'id="xs-components-links-module-AppModule-b302afa79592f9609721f93383241b4a"' }>
+                                    ${ isNormalMode ? 'id="components-links-module-AppModule-124973d8c176bbb49b54483b55771829"' : 'id="xs-components-links-module-AppModule-124973d8c176bbb49b54483b55771829"' }>
                                         <li class="link">
                                             <a href="components/AppComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppComponent</a>
                                         </li>
                                         <li class="link">
-                                            <a href="components/AuthoringComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">AuthoringComponent</a>
+                                            <a href="components/HeaderComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">HeaderComponent</a>
                                         </li>
                                         <li class="link">
-                                            <a href="components/HeaderComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">HeaderComponent</a>
+                                            <a href="components/HomeComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">HomeComponent</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="components/PageNotFoundComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">PageNotFoundComponent</a>
                                         </li>
                                 </ul>
                             </li>
@@ -80,10 +83,41 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         <a href="modules/AppRoutingModule.html" data-type="entity-link">AppRoutingModule</a>
                     </li>
                     <li class="link">
+                        <a href="modules/AppServerModule.html" data-type="entity-link">AppServerModule</a>
+                            <li class="chapter inner">
+                                <div class="simple menu-toggler" data-toggle="collapse"
+                                    ${ isNormalMode ? 'data-target="#components-links-module-AppServerModule-8296ccff982fddad6b9c3e4fe647b26d"' : 'data-target="#xs-components-links-module-AppServerModule-8296ccff982fddad6b9c3e4fe647b26d"' }>
+                                    <span class="icon ion-md-cog"></span>
+                                    <span>Components</span>
+                                    <span class="icon ion-ios-arrow-down"></span>
+                                </div>
+                                <ul class="links collapse"
+                                    ${ isNormalMode ? 'id="components-links-module-AppServerModule-8296ccff982fddad6b9c3e4fe647b26d"' : 'id="xs-components-links-module-AppServerModule-8296ccff982fddad6b9c3e4fe647b26d"' }>
+                                        <li class="link">
+                                            <a href="components/AppComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppComponent</a>
+                                        </li>
+                                </ul>
+                            </li>
+                    </li>
+                    <li class="link">
                         <a href="modules/StuffCustomMaterialModule.html" data-type="entity-link">StuffCustomMaterialModule</a>
                     </li>
             </ul>
         </li>
+                <li class="chapter">
+                    <div class="simple menu-toggler" data-toggle="collapse"
+                        ${ isNormalMode ? 'data-target="#injectables-links"' : 'data-target="#xs-injectables-links"' }>
+                        <span class="icon ion-md-arrow-round-down"></span>
+                        <span>Injectables</span>
+                        <span class="icon ion-ios-arrow-down"></span>
+                    </div>
+                    <ul class="links collapse"
+                    ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
+                            <li class="link">
+                                <a href="injectables/SentryErrorHandler.html" data-type="entity-link">SentryErrorHandler</a>
+                            </li>
+                    </ul>
+                </li>
         <li class="chapter">
             <div class="simple menu-toggler" data-toggle="collapse"
             ${ isNormalMode ? 'data-target="#miscellaneous-links"' : 'data-target="#xs-miscellaneous-links"' }>
@@ -98,9 +132,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                     </li>
             </ul>
         </li>
-            <li class="chapter">
-                <a data-type="chapter-link" href="routes.html"><span class="icon ion-ios-git-branch"></span>Routes</a>
-            </li>
         <li class="chapter">
             <a data-type="chapter-link" href="coverage.html"><span class="icon ion-ios-stats"></span>Documentation coverage</a>
         </li>

@@ -30,9 +30,4 @@ describe('HeaderComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('span.logo').textContent).toContain('Composer');
   }));
-
-  it('should have user information section', async(() => {
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('div.user-account')).toBeTruthy();
-  }));
 });

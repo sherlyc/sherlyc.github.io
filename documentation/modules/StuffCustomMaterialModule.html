@@ -72,14 +72,34 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
-import { MatToolbarModule, MatIconModule, MatButtonModule, MatTabsModule, MatInputModule } from &#x27;@angular/material&#x27;;
+import {
+  MatToolbarModule,
+  MatIconModule,
+  MatButtonModule,
+  MatTabsModule,
+  MatInputModule,
+  MatProgressBarModule
+} from &#x27;@angular/material&#x27;;
 
 @NgModule({
-  imports: [MatToolbarModule, MatIconModule, MatButtonModule, MatTabsModule, MatInputModule],
-  exports: [MatToolbarModule, MatIconModule, MatButtonModule, MatTabsModule, MatInputModule],
+  imports: [
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatTabsModule,
+    MatInputModule,
+    MatProgressBarModule
+  ],
+  exports: [
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatTabsModule,
+    MatInputModule,
+    MatProgressBarModule
+  ]
 })
-export class StuffCustomMaterialModule { }
-
+export class StuffCustomMaterialModule {}
 </code></pre>
     </div>
 </div>

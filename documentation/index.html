@@ -144,101 +144,64 @@ $stuff-app-theme: mat-light-theme($stuff-app-primary, $stuff-app-accent, $stuff-
   },
   &quot;src/stuff-app-theme.scss&quot;,
   &quot;src/styles.scss&quot;
-],</code></pre></div><!-- ## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md). -->
+],</code></pre></div><h2 id="test-driven-development">Test driven development</h2>
+<hr>
+<h3 id="running-unit-tests">Running unit tests</h3>
+<p>Run <code>ng test</code> to execute the unit tests via <a href="https://karma-runner.github.io">Karma</a>.</p>
+<h3 id="running-end-to-end-tests">Running end-to-end tests</h3>
+<p>Run <code>ng e2e</code> to execute the end-to-end tests via <a href="http://www.protractortest.org/">Protractor</a>.</p>
+<h3 id="running-code-coverage">Running code-coverage</h3>
+<p>Run <code>ng test --watch=false --code-coverage</code> to execute code coverage tool. Further reading on <a href="https://en.wikipedia.org/wiki/Code_coverage">code coverage</a> for why it is important in development.</p>
+<h3 id="pre-commit-hook">Pre Commit hook</h3>
+<hr>
+<p>When doing commit the hooks will run all the tests given below to ensure quality of code.</p>
+<ol>
+<li><code>ng lint</code> (Check the code style usign Codelyzer and tslint)</li>
+<li><code>ng test --watch=false</code> to ensure unit test are successful and which will also check the test coverage of 80%<div><pre class="line-numbers"><code class="language-none">thresholds: {
+ statements: 80,
+ lines: 80,
+ branches: 80,
+ functions: 80
+}
+// Commented in the codebase presently</code></pre></div></li>
+<li><code>ng e2e</code> to test the end to end testing.</li>
+</ol>
+<h2 id="angular-universal">Angular Universal</h2>
+<hr>
+<div><pre class="line-numbers"><code class="language-none">npm install --save &#64;angular/platform-server &#64;nguniversal/module-map-ngfactory-loader ts-loader &#64;nguniversal/express-engine</code></pre></div><h3 id="build-angular-universal">Build Angular universal</h3>
+<p>The Angular CLI compiles and bundles the universal app into two different folders, browser and server. Webpack transpiles the server.ts file into Javascript.</p>
+<div><pre class="line-numbers"><code class="language-none">npm run build:ssr</code></pre></div><h3 id="serve-the-angular-universal-application">Serve the angular universal application</h3>
+<p>After building the application, start the server. </p>
+<div><pre class="line-numbers"><code class="language-none">npm run serve:ssr</code></pre></div><p>Because a Universal platform-server app doesn&#39;t execute in the browser, you may have to work around some of the browser APIs and capabilities that are missing on the server.</p>
+<p>You won&#39;t be able reference browser-only native objects such as window, document, navigator or location. If you don&#39;t need them on the server-rendered page, side-step them with conditional logic.</p>
+<p>Alternatively, look for an injectable Angular abstraction over the object you need such as Location or Document; it may substitute adequately for the specific API that you&#39;re calling. If Angular doesn&#39;t provide it, you may be able to write your own abstraction that delegates to the browser API while in the browser and to a satisfactory alternative implementation while on the server.</p>
+<h2 id="sentry-integration">Sentry integration</h2>
+<div><pre class="line-numbers"><code class="language-none">npm install raven-js --save</code></pre></div><h3 id="and-coding-style-tests">And coding style tests</h3>
+<p>TBD: Explain what these tests test and why</p>
+<div><pre class="line-numbers"><code class="language-none">Give an example</code></pre></div><h2 id="deployment">Deployment</h2>
+<p>TBD: Add additional notes about how to deploy this on a live system</p>
+<h2 id="contributing">Contributing</h2>
+<p><a href="https://docs.google.com/presentation/d/1Ui8dTFkxaFZP09skZkHKwa5tX6EasZbUnsEa1lwpbQs/edit#slide=id.g420ba61905_1_63">Frontend Ref Architecture slides</a></p>
+<h2 id="versioning">Versioning</h2>
+<p>Version 0.0.1 -- Implementation of the first draft with Stuff Composer in mind</p>
+<h2 id="angular-cli-commands">Angular CLI commands</h2>
+<hr>
+<h2 id="development-server">Development server</h2>
+<p>Run <code>ng serve</code> for a dev server. Navigate to <code>http://localhost:4200/</code>. The app will automatically reload if you change any of the source files.</p>
+<h2 id="code-scaffolding">Code scaffolding</h2>
+<p>Run <code>ng generate component component-name</code> to generate a new component. You can also use <code>ng generate directive|pipe|service|class|guard|interface|enum|module</code>.</p>
+<h2 id="build">Build</h2>
+<p>Run <code>ng build</code> to build the project. The build artifacts will be stored in the <code>dist/</code> directory. Use the <code>--prod</code> flag for a production build.</p>
+<h2 id="running-unit-tests">Running unit tests</h2>
+<p>Run <code>ng test</code> to execute the unit tests via <a href="https://karma-runner.github.io">Karma</a>.</p>
+<h2 id="running-end-to-end-tests">Running end-to-end tests</h2>
+<p>Run <code>ng e2e</code> to execute the end-to-end tests via <a href="http://www.protractortest.org/">Protractor</a>.</p>
+<h2 id="further-help">Further help</h2>
+<p>To get more help on the Angular CLI use <code>ng help</code> or go check out the <a href="https://github.com/angular/angular-cli/blob/master/README.md">Angular CLI README</a>. --&gt;</p>
+<h2 id="authors">Authors</h2>
+<ul>
+<li><strong>Abhisek Roy</strong> </li>
+</ul>
 
 
 
