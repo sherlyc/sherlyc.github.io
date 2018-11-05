@@ -5,12 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { StuffCustomMaterialModule } from './stuff-custom-material/stuff-custom-material.module';
+import { StuffCustomMaterialModule } from './shared/stuff-custom-material/stuff-custom-material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { HomeComponent } from './modules/home/home.component';
 
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.component';
 
 import * as Sentry from '@sentry/browser';
 

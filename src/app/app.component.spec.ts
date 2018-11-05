@@ -1,8 +1,8 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { StuffCustomMaterialModule } from './stuff-custom-material/stuff-custom-material.module';
+import { StuffCustomMaterialModule } from './shared/stuff-custom-material/stuff-custom-material.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './shared/header/header.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
