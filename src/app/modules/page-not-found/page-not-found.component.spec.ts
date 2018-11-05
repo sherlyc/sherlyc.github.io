@@ -22,4 +22,8 @@ describe('PageNotFoundComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have title ', () => {
+    expect(component.pageTitle).toEqual('Page Not Found');
+  });
 });

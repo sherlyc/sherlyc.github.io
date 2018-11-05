@@ -23,12 +23,12 @@ module.exports = function (config) {
     coverageIstanbulReporter: {
       reports: [ 'html', 'lcovonly' ],
       fixWebpackSourcePaths: true,
-      /* thresholds: {
+      thresholds: {
         statements: 80,
         lines: 80,
-        branches: 80,
+        branches: 40,
         functions: 80
-      } */
+      }
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
