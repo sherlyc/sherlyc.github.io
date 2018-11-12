@@ -9,6 +9,7 @@ import { StuffCustomMaterialModule } from './shared/stuff-custom-material/stuff-
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HeaderComponent } from './shared/header/header.component';
 import { HomeComponent } from './modules/home/home.component';
+import { AuthoringComponent } from './modules/authoring/authoring.component';
 
 import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.component';
 
@@ -33,6 +34,7 @@ export class SentryErrorHandler implements ErrorHandler {
     AppComponent,
     HeaderComponent,
     HomeComponent,
+    AuthoringComponent,
     PageNotFoundComponent
   ],
   imports: [
