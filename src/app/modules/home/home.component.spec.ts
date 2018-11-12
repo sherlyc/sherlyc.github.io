@@ -1,8 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { StuffCustomMaterialModule } from '../../shared/stuff-custom-material/stuff-custom-material.module';
 import { HomeComponent } from './home.component';
-import { AuthoringComponent } from './../authoring/authoring.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -11,10 +9,9 @@ describe('HomeComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        StuffCustomMaterialModule,
-        BrowserAnimationsModule
+        StuffCustomMaterialModule
       ],
-      declarations: [ HomeComponent, AuthoringComponent ]
+      declarations: [ HomeComponent ]
     })
     .compileComponents();
   }));

@@ -19,24 +19,7 @@ body { margin: 0; font-family: 'Roboto', sans-serif; }
     }
 }
 .page-header {
-    padding: 10px 0;
-    margin-bottom: 10px;
-
     h1 {
         font-weight: 300;
-    }
-
-    @media (min-width: 768px) {
-        padding: 20px 0;
-        margin-bottom: 30px;
-    }
-    h2 {
-        font-weight: 300;
-        margin: 0;
-        line-height: 36px;
-    }
-    .saved-status {
-        font-size: 0.8em;
-        color : #999999;
     }
 }
