@@ -1,6 +1,7 @@
 ### Dependencies base stage ###
 # Use Docker layer caching
-FROM 513548267075.dkr.ecr.ap-southeast-2.amazonaws.com/kiwiops/stuff-chrome-e2e-support AS build
+FROM mhart/alpine-node AS build
+
 # Define our app home directories
 ENV APP_HOME /app
 # Add our Timezone
@@ -24,7 +25,7 @@ RUN npm run lint
 RUN npm run build:ssr
 
 ### Release stage ###
-FROM 513548267075.dkr.ecr.ap-southeast-2.amazonaws.com/kiwiops/runtime-tools:nodejs8-latest AS release
+FROM mhart/alpine-node AS release
 
 # Define our app home directories
 ENV APP_HOME /app
