@@ -1,6 +1,6 @@
 ### Dependencies base stage ###
 # Use Docker layer caching
-FROM 513548267075.dkr.ecr.ap-southeast-2.amazonaws.com/kiwiops/runtime-tools:nodejs8-latest AS build
+FROM mhart/alpine-node AS build
 # Define our app home directories
 ENV APP_HOME /app
 # Add our Timezone
@@ -16,14 +16,14 @@ RUN npm install
 COPY src .
 COPY server.ts .
 
-RUN ng lint
-RUN ng test --watch=false
-RUN ng e2e
+RUN npm run lint
+RUN npm test --watch=false
+RUN npm run e2e
 
 RUN npm run build:ssr
 
 ### Release stage ###
-FROM 513548267075.dkr.ecr.ap-southeast-2.amazonaws.com/kiwiops/runtime-tools:nodejs8-latest AS release
+FROM mhart/alpine-node AS release
 
 # Define our app home directories
 ENV APP_HOME /app
