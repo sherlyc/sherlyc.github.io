@@ -13,7 +13,8 @@ COPY package*.json ./
 RUN npm install
 
 # Copy all app and server source
-COPY . .
+COPY src .
+COPY server.ts .
 
 RUN ng lint
 RUN ng test --watch=false
