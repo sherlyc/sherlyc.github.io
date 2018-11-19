@@ -20,7 +20,7 @@ pipeline {
           steps {
               container('gradle') {
                 sh '''
-                        docker build -t ${IMAGE}:${VERSION} --file application/Dockerfile application/
+                        docker build -t ${IMAGE}:${VERSION} .
                         docker login -u _json_key -p "$(cat ${DOCKER_LOGIN})" https://gcr.io
                         docker push ${IMAGE}:${VERSION}
                     '''
