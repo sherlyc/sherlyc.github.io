@@ -15,7 +15,7 @@ spec:
     image: docker
     env:
     - name: DOCKER_HOST
-      value: 'tcp://docker:2375'
+      value: 'tcp://localhost:2375'
     command:
     - cat
     tty: true
@@ -29,7 +29,6 @@ spec:
   }
 
   environment {
-        DOCKER_LOGIN = credentials('gcr-service-account')
         PROJECT = "shared-218200"
         ARTIFACT_NAME = 'stuff-reference-frontend'
         IMAGE = "gcr.io/${PROJECT}/${ARTIFACT_NAME}"
@@ -38,22 +37,22 @@ spec:
   stages {
 
      stage('Build and Publish Image') {
-          when {
-              anyOf {
-                  branch 'CON-93-ci-cd'
-              }
+      when {
+        anyOf {
+          branch 'CON-93-ci-cd'
+        }
+      }
+      steps {
+        container('docker-client') {
+          withCredentials([[$class: 'FileBinding', credentialsId: "gcr-service-account", variable: 'DOCKER_LOGIN']]) {
+            sh '''
+            docker build -t ${IMAGE}:${VERSION} .
+            docker login -u _json_key -p "$(cat ${DOCKER_LOGIN})" https://gcr.io
+            docker push ${IMAGE}:${VERSION}
+            '''
           }
-          steps {
-              container('docker-client') {
-                sh '''
-                        docker build -t ${IMAGE}:${VERSION} .
-                        docker login -u _json_key -p "$(cat ${DOCKER_LOGIN})" https://gcr.io
-                        docker push ${IMAGE}:${VERSION}
-                    '''
-              }
-          }
-     }
-   }
+        }
+      }
+    }
+  }
 }
-
-def label = "${UUID.randomUUID().toString()}"
