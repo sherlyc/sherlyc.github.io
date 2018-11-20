@@ -28,14 +28,19 @@ spec:
     }
   }
 
-  environment {
-        PROJECT = "shared-218200"
-        ARTIFACT_NAME = 'stuff-reference-frontend'
-        IMAGE = "gcr.io/${PROJECT}/${ARTIFACT_NAME}"
-        VERSION = "0.${env.BUILD_ID}"
-    }
-  stages {
+  options {
+    timestamps()
+    buildDiscarder(logRotator(numToKeepStr: '1'))
+  }
 
+  environment {
+    PROJECT = "shared-218200"
+    ARTIFACT_NAME = 'stuff-reference-frontend'
+    IMAGE = "gcr.io/${PROJECT}/${ARTIFACT_NAME}"
+    VERSION = "0.${env.BUILD_ID}"
+  }
+
+  stages {
      stage('Build and Publish Image') {
       when {
         anyOf {
