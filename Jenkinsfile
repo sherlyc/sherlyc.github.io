@@ -1,5 +1,32 @@
 pipeline {
-  agent any
+  agent {
+    kubernetes {
+      label 'mypod'
+      defaultContainer 'gradle'
+      yaml """
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    some-label: some-label-value
+spec:
+  containers:
+  - name: docker-client
+    image: docker
+    env:
+    - name: DOCKER_HOST
+      value: 'tcp://docker:2375'
+    command:
+    - cat
+    tty: true
+  - name: docker
+    image: docker:dind
+    tty: true
+    securityContext:
+      privileged: true
+"""
+    }
+  }
 
   environment {
         DOCKER_LOGIN = credentials('gcr-service-account')
@@ -8,7 +35,6 @@ pipeline {
         IMAGE = "gcr.io/${PROJECT}/${ARTIFACT_NAME}"
         VERSION = "0.${env.BUILD_ID}"
     }
-
   stages {
 
      stage('Build and Publish Image') {
@@ -18,7 +44,7 @@ pipeline {
               }
           }
           steps {
-              container('gradle') {
+              container('docker-client') {
                 sh '''
                         docker build -t ${IMAGE}:${VERSION} .
                         docker login -u _json_key -p "$(cat ${DOCKER_LOGIN})" https://gcr.io
@@ -29,3 +55,5 @@ pipeline {
      }
    }
 }
+
+def label = "${UUID.randomUUID().toString()}"
