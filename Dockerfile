@@ -36,7 +36,9 @@ WORKDIR $APP_HOME
 # Copy compiled resources and runtime dependencies
 COPY --from=build /$APP_HOME/dist dist
 # change permission on all files
-RUN chown -R app:app ./
+RUN addgroup app && \
+    adduser -D -G app -h /app -s /bin/sh app && \
+    chown -R app:app ./
 # Change to app user for runtime
 USER app
 # Expose port and define CMD
