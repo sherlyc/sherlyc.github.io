@@ -40,11 +40,15 @@ spec:
     VERSION = "0.${env.BUILD_ID}"
   }
 
+  triggers {
+    pollSCM '*/1 * * * *'
+  }
+
   stages {
      stage('Build and Publish Image') {
       when {
         anyOf {
-          branch 'develop'
+          branch 'feature/*'
           branch 'master'
         }
       }
