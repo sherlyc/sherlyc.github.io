@@ -22,13 +22,13 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   }));
 
-  it(`should have as title 'Stuff Frontend Reference Architecture'`, async(() => {
+  it(`should have as title 'Stuff Homepage and Section Pages Hello World'`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('Stuff Frontend Reference Architecture');
+    expect(app.title).toEqual('Stuff Homepage and Section Pages Hello World');
   }));
 
-  it(`should not have as title other than 'Stuff Frontend Reference Architecture'`, async(() => {
+  it(`should not have as title other than 'Stuff Homepage and Section Pages Hello World'`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.title).not.toEqual('stuff-ref-frontend');
