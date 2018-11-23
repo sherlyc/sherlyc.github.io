@@ -56,7 +56,7 @@ spec:
         container('docker-client') {
           withCredentials([[$class: 'FileBinding', credentialsId: "gcr-service-account", variable: 'DOCKER_LOGIN']]) {
             sh '''
-            sed -i "" ""s/stuff-app-version/${VERSION}/" src/app/app.component.html
+            sed -i "" "s/stuff-app-version/${VERSION}/" src/app/app.component.html
             docker build -t ${IMAGE}:${VERSION} .
             docker login -u _json_key -p "$(cat ${DOCKER_LOGIN})" https://gcr.io
             docker push ${IMAGE}:${VERSION}
