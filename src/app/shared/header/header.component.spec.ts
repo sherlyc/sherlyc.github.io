@@ -26,8 +26,8 @@ describe('HeaderComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render app name in span with class logo', async(() => {
+  it('should render app name in header', async(() => {
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('span.logo').textContent).toContain('Composer');
+    expect(compiled.querySelector('.app-header__title').textContent).toContain('Stuff');
   }));
 });
