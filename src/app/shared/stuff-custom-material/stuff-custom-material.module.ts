@@ -1,29 +1,14 @@
 import { NgModule } from '@angular/core';
 import {
-  MatToolbarModule,
-  MatIconModule,
-  MatButtonModule,
-  MatTabsModule,
-  MatInputModule,
-  MatProgressBarModule
+  MatToolbarModule
 } from '@angular/material';
 
 @NgModule({
   imports: [
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatTabsModule,
-    MatInputModule,
-    MatProgressBarModule
+    MatToolbarModule
   ],
   exports: [
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatTabsModule,
-    MatInputModule,
-    MatProgressBarModule
+    MatToolbarModule
   ]
 })
 export class StuffCustomMaterialModule {}
