@@ -1,10 +1,5 @@
-pipeline {
-  agent {
-    kubernetes {
-      cloud 'Practiv BUILD'
-      label 'mypod'
-      defaultContainer 'jnlp'
-      yaml """
+GString yamlString() {
+  return """
 apiVersion: v1
 kind: Pod
 metadata:
@@ -26,6 +21,14 @@ spec:
     securityContext:
       privileged: true
 """
+}
+pipeline {
+  agent {
+    kubernetes {
+      cloud 'Practiv BUILD'
+      label 'mypod'
+      defaultContainer 'jnlp'
+      yaml yamlString()
     }
   }
 
