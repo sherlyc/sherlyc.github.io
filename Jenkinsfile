@@ -31,7 +31,7 @@ spec:
 
   options {
     timestamps()
-    buildDiscarder(logRotator(numToKeepStr: '1'))
+    buildDiscarder(logRotator(numToKeepStr: '10'))
   }
 
   environment {
