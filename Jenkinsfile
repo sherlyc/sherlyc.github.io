@@ -1,6 +1,6 @@
 pipeline {
   agent {
-    'Practiv BUILD' {
+    kubernetes {
       label 'mypod'
       defaultContainer 'jnlp'
       yaml """
