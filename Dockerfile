@@ -1,6 +1,6 @@
 ### Dependencies base stage ###
 # Use Docker layer caching
-FROM mhart/alpine-node AS build
+FROM 513548267075.dkr.ecr.ap-southeast-2.amazonaws.com/kiwiops/stuff-chrome-e2e-support AS build
 
 # Define our app home directories
 ENV APP_HOME /app
@@ -19,13 +19,19 @@ COPY src src
 COPY e2e e2e
 
 RUN npm run lint
-#RUN npm test --watch=false
-#RUN npm run e2e
+RUN npm test --watch=false
+
+# Update the chrome binary
+RUN apt-get update && \
+    apt-get install -y \
+    unzip \
+    google-chrome-stable
+RUN npm run e2e
 
 RUN npm run build:ssr
 
 ### Release stage ###
-FROM mhart/alpine-node AS release
+FROM 513548267075.dkr.ecr.ap-southeast-2.amazonaws.com/kiwiops/runtime-tools:nodejs8-latest AS release
 
 # Define our app home directories
 ENV APP_HOME /app
@@ -36,11 +42,9 @@ WORKDIR $APP_HOME
 # Copy compiled resources and runtime dependencies
 COPY --from=build /$APP_HOME/dist dist
 # change permission on all files
-RUN addgroup app && \
-    adduser -D -G app -h /app -s /bin/sh app && \
-    chown -R app:app ./
+RUN chown -R app:app ./
 # Change to app user for runtime
 USER app
 # Expose port and define CMD
 EXPOSE 4200
-CMD ["sh", "-c", "node dist/server.js"]
+CMD ["node", "dist/server.js"]
