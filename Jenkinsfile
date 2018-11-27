@@ -54,11 +54,20 @@ spec:
       }
       steps {
         container('docker-client') {
-          withCredentials([[$class: 'FileBinding', credentialsId: "gcr-service-account", variable: 'DOCKER_LOGIN']]) {
+          withCredentials([
+            [$class: 'FileBinding', credentialsId: "gcr-service-account", variable: 'GCR_DOCKER_LOGIN'],
+            string(credentialsId: 'kiwiops-ecr-token', variable: 'ECR_DOCKER_LOGIN')
+          ]) {
             sh '''
+            set +x
             sed -i "s,stuff-app-version,${VERSION}," src/app/app.component.html
+
+            # login to ECR
+            docker login -u AWS -p "${ECR_DOCKER_LOGIN}" https://513548267075.dkr.ecr.ap-southeast-2.amazonaws.com
             docker build -t ${IMAGE}:${VERSION} .
-            docker login -u _json_key -p "$(cat ${DOCKER_LOGIN})" https://gcr.io
+
+            # login to GCR
+            docker login -u _json_key -p "$(cat ${GCR_DOCKER_LOGIN})" https://gcr.io
             docker push ${IMAGE}:${VERSION}
             '''
           }
