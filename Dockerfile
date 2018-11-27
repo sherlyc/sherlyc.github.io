@@ -21,11 +21,6 @@ COPY e2e e2e
 RUN npm run lint
 RUN npm test --watch=false
 
-# Update the chrome binary
-RUN apt-get update && \
-    apt-get install -y \
-    unzip \
-    google-chrome-stable
 RUN npm run e2e
 
 RUN npm run build:ssr
@@ -46,5 +41,5 @@ RUN chown -R app:app ./
 # Change to app user for runtime
 USER app
 # Expose port and define CMD
-EXPOSE 4200
+EXPOSE 4000
 CMD ["node", "dist/server.js"]
