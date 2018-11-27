@@ -9,6 +9,6 @@ describe('workspace-project App', () => {
 
   it('should display application name', () => {
     page.navigateTo();
-    expect(page.getLogoText()).toEqual('COMPOSER');
+    expect(page.getLogoText()).toEqual('Welcome to Stuff Homepage and Section page');
   });
 });
