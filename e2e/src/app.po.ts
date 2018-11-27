@@ -6,6 +6,6 @@ export class AppPage {
   }
 
   getLogoText() {
-    return element(by.css('app-root span.logo')).getText();
+    return element(by.css('app-root span.app-header__title')).getText();
   }
 }
