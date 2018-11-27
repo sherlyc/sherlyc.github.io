@@ -5,6 +5,7 @@ FROM 513548267075.dkr.ecr.ap-southeast-2.amazonaws.com/kiwiops/stuff-chrome-e2e-
 # Define our app home directories
 ENV APP_HOME /app
 # Add our Timezone
+ENV TZ Pacific/Auckland
 # Set working directory for app
 WORKDIR $APP_HOME
 # Copy app npm package files
