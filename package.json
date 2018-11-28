@@ -1,6 +1,6 @@
 {
-  "name": "stuff-experience-frontend-arch",
-  "version": "0.0.0",
+  "name": "stuff-experience-frontend",
+  "version": "0.999.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
