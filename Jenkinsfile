@@ -1,4 +1,2 @@
-openPipeline {
-  stageBuildImage()
-}
+frontendPipeline()
 buildCascade(["stuff-raster-shift21"])
