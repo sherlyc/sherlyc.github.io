@@ -36,7 +36,7 @@ export class SentryErrorHandler implements ErrorHandler {
     PageNotFoundComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'stuff-ref-frontend-architecture' }),
+    BrowserModule.withServerTransition({ appId: 'stuff-experience-frontend' }),
     AppRoutingModule,
     BrowserAnimationsModule,
     StuffCustomMaterialModule,

@@ -91,7 +91,7 @@ $ ng serve --o
 ```
 ### Git setup
 ```
-> git remote add origin git@bitbucket.org:fairfax/stuff-ref-frontend-architecture.git
+> git remote add origin git@bitbucket.org:fairfax/stuff-experience-frontend.git
 
 > git add .
 > git commit -m "Your Message"
