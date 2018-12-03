@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>nz.stuff.stable.yokohama</groupId>
+    <artifactId>yokohama-parent</artifactId>
+    <version>1.1</version>
+  </parent>
+
+  <groupId>nz.stuff.stable.experience</groupId>
+  <artifactId>stuff-experience-frontend</artifactId>
+  <version>0.999-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>${project.artifactId}</name>
+  <description>Kubernetes configuration to deploy this application</description>
+
+  <properties>
+    <microserviceGroup>experience</microserviceGroup>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>io.repaint.maven</groupId>
+        <artifactId>tiles-maven-plugin</artifactId>
+        <version>2.11</version>
+        <extensions>true</extensions>
+        <configuration>
+          <tiles>
+            <tile>nz.stuff.stable.yokohama:yokohama-tile-distribution:[1,2)</tile>
+            <tile>io.practiv.stable.tile:practiv-tile-buildinfo:[2,3)</tile>
+            <tile>io.practiv.stable.tile:practiv-tile-release:[2,3)</tile>
+            <tile>io.practiv.stable.tile:practiv-tile-kubernetes-application:[2,3)</tile>
+          </tiles>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

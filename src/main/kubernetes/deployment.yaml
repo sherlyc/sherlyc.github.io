@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${project.artifactId}
+spec:
+  replicas: ${environmentScale}
+  strategy:
+    rollingUpdate:
+      maxSurge: ${environmentScale}
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: ${project.artifactId}
+  template:
+    metadata:
+      labels:
+        app: ${project.artifactId}
+    spec:
+      imagePullSecrets:
+      - name: gcr.io-shared-218200
+      containers:
+      - name: stuff-experience-frontend
+        image: gcr.io/shared-218200/${project.artifactId}:${project.version}
+        ports:
+        - containerPort: 4000
+        resources:
+          limits:
+            cpu: ${quota-limits.smallCpu}
+            memory: ${quota-limits.smallMemory}
+          requests:
+            cpu: ${quota-requests.smallCpu}
+            memory: ${quota-requests.smallMemory}
+        volumeMounts:
+        - mountPath: /etc/${project.artifactId}/
+          name: config-v${parsedVersion.majorVersion}
+          readOnly: true
+      volumes:
+      - name: config-v${parsedVersion.majorVersion}
+        configMap:
+          name: ${project.artifactId}-config-v${parsedVersion.majorVersion}
