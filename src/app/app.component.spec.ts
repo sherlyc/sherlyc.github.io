@@ -28,12 +28,6 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('Stuff Homepage and Section Pages Hello World');
   }));
 
-  it(`should not have as title other than 'Stuff Homepage and Section Pages Hello World'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).not.toEqual('stuff-ref-frontend');
-  }));
-
   it('should check app header is present', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();

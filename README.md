@@ -1,6 +1,5 @@
-# Stuff Frontend Reference Architecture (Web)
-
-The key principle of this implementation is to provide a simple, standardised implementation strategies. The approach is to make the foundation robust and future complexity proof with scalability as one our main concern. The architecture is focused to implement CI/CD for faster development and deployment cycle with automated testing.
+# Stuff Experience Reference (Web)
+Forked from https://bitbucket.org/fairfax/stuff-ref-frontend-architecture
 
 ## Getting Started
 
@@ -91,7 +90,7 @@ $ ng serve --o
 ```
 ### Git setup
 ```
-> git remote add origin git@bitbucket.org:fairfax/stuff-ref-frontend-architecture.git
+> git remote add origin git@bitbucket.org:fairfax/stuff-experience-frontend.git
 
 > git add .
 > git commit -m "Your Message"
@@ -227,25 +226,6 @@ Alternatively, look for an injectable Angular abstraction over the object you ne
 npm install raven-js --save
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### And coding style tests
 
 TBD: Explain what these tests test and why
@@ -259,15 +239,14 @@ Give an example
 TBD: Add additional notes about how to deploy this on a live system
 
 
-
 ## Contributing
 [Frontend Ref Architecture slides](https://docs.google.com/presentation/d/1Ui8dTFkxaFZP09skZkHKwa5tX6EasZbUnsEa1lwpbQs/edit#slide=id.g420ba61905_1_63)
 
 ## Versioning
-
-Version 0.0.1 -- Implementation of the first draft with Stuff Composer in mind
-
-
+__Automated:__ 
+Our Build process in our pipeline is responsible to git tag the minor version and push tags to remote. 
+__Manually:__
+ Do increase the version whenever you consider your code is a significant/breaking change. Use `npm version major -m "Upgrade to %s for reasons"`. 
 
 
 ## Angular CLI commands 
@@ -295,7 +274,3 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md). -->
-
-## Authors
-
-* **Abhisek Roy** 
