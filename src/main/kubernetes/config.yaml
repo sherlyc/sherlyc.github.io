@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  application.yaml: |
+    # nothing to see here
+kind: ConfigMap
+metadata:
+  name: ${project.artifactId}-config-v${parsedVersion.majorVersion}
+  namespace: ${environment}
