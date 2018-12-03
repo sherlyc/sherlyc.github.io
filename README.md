@@ -25,9 +25,9 @@ Below are the front end toolset and framework we will be using to start with and
 2. [SCSS](https://sass-lang.com/) for Styling (CSS Preprocessor)
 3. [Angular Material](https://material.angular.io/) (Google Material Design Principle)
 4. [Angular Flexlayout](https://github.com/angular/flex-layout/wiki) (Flexbox layout based grid)
-5. [Jasmine]() (Unit testing)
+5. [Jest](https://jestjs.io) (Unit testing)
 6. [Protractor](http://www.protractortest.org/) (e2e Testing)
-7. [Karma](https://karma-runner.github.io) (Test runner)
+7. [Jest](https://jestjs.io) (Test runner)
 8. [Webpack]() (Static Module Bundler)
 9. [Node/npm]() (Build / Project dependency)
 10. [Codelyzer](), [tslint](), [SonarQube](), [Prettier]() (Code style checker)
@@ -177,7 +177,7 @@ Create that file under "src" and add that to the angular cli in the angular.json
 ## Test driven development
 ---
 ### Running unit tests
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test` to execute the unit tests via [Jest](https://jestjs.io).
 
 ### Running end-to-end tests
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
@@ -286,7 +286,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test` to execute the unit tests via [Jest](https://jestjs.io).
 
 ## Running end-to-end tests
 
