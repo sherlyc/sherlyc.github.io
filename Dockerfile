@@ -27,7 +27,7 @@ RUN npm run e2e
 RUN npm run build:ssr
 
 ### Release stage ###
-FROM 513548267075.dkr.ecr.ap-southeast-2.amazonaws.com/kiwiops/runtime-tools:nodejs8-latest AS release
+FROM 513548267075.dkr.ecr.ap-southeast-2.amazonaws.com/kiwiops/runtime-tools:nodejs8-latest
 
 # Define our app home directories
 ENV APP_HOME /app
