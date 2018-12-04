@@ -24,6 +24,9 @@ spec:
         image: gcr.io/shared-218200/${organisation.domain}/${organisation.group}/${project.artifactId}:${project.version}
         ports:
         - containerPort: 4000
+        env:
+        - name: SKIP_SECRETS
+          value: 'true'
         resources:
           limits:
             cpu: ${quota-limits.smallCpu}
