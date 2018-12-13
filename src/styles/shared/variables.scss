@@ -107,6 +107,9 @@ $eta: 12px;
 $theta: 11px;
 $iota: 10px;
 
+$delta-medium: 17px;
+$delta-large: 18px;
+$delta-xlarge: 20px;
 
 /*------------------------------------*\
     $LINKS
@@ -177,3 +180,9 @@ $xlarge-only: '#{$screen} and (min-width:#{lower-bound($xlarge-range)}) and (max
 
 $xxlarge-up: '#{$screen} and (min-width:#{lower-bound($xxlarge-range)})';
 $xxlarge-only: '#{$screen} and (min-width:#{lower-bound($xxlarge-range)}) and (max-width:#{upper-bound($xxlarge-range)})';
+
+//------------------------------------
+// Borders
+//------------------------------------
+
+$color-border-subtle: #ebeef0;

@@ -1,19 +1,24 @@
+@import '../../../styles/shared/shared.scss';
+
 .footer {
   bottom: 0;
   width: 100%;
   text-align: center;
   margin-top: 30px;
+  @include font-size-adapt($delta, $delta-medium, $delta-large, $delta-xlarge);
+  $delta : 14.5px;
+  position: absolute;
 
   &__top {
     position: relative;
-    padding-bottom: .7em;
+    padding-bottom: em(10, strip-unit($delta));
   }
 
   &__links {
-    //max-width: 67.64706em;
-    padding: 0 1em;
+    max-width: em(1150, strip-unit($delta));
+    padding: 0 em(17, strip-unit($delta));
     text-align: center;
-    margin: 1.17647em auto;
+    margin: em(20, strip-unit($delta)) auto;
 
     a {
       color: #0e7bc2;
@@ -28,11 +33,11 @@
   }
 
   &__link {
-    font-weight: 300;
-    font-size: 1em;
+    font-weight: $base-font-weight;
+    font-size: em(14, strip-unit($delta));
     margin-bottom: 1em;
     display: inline;
-    line-height: 1.52941em;
+    line-height: em(26, strip-unit($delta));
 
     &:not(:first-child)::before {
       content: ' | ';
@@ -40,10 +45,10 @@
       margin: 0 .5em;
     }
 
-    @media (max-width: 1295px) {
+    @media (max-width: $xxlarge-start) {
       &--no-line:not(:first-child)::before {
         content: ' ';
-        color: #fff;
+        color: $color-white;
         margin-left: 0;
         margin-right: 0;
         display: block;
@@ -52,16 +57,16 @@
   }
 
   &__secondary {
-    line-height: 1.29412em;
-    font-size: 1em;
-    font-weight: 300;
+    line-height: em(22, strip-unit($delta));
+    font-size: em(14, strip-unit($delta));
+    font-weight: $base-font-weight;
     float: left;
     width: 100%;
     margin: 0;
-    color: #748d9b;
+    color: $color-text-footer;
 
     &-inner {
-      max-width: 67.64706em;
+      max-width: em(1150, strip-unit($delta));
       margin-right: auto;
       margin-left: auto;
     }
@@ -73,30 +78,28 @@
       padding-left: 0;
       padding-right: 0;
       margin: 0;
-      padding-bottom: 1.17647em;
       float: left;
       height: auto;
     }
 
     &-breakingnews, &-social {
-      @media only screen and (min-width: 1295px) {
-        font-size: 1em;
+      @include media-query(xxlarge-up) {
+        font-size: em(14, strip-unit($delta));
         box-sizing: border-box;
-        height: 5.58824em;
       }
     }
 
     &-breakingnews {
-      @media only screen and (min-width: 1295px) {
+      @include media-query(xxlarge-up) {
         width: 50%;
-        border-right: 1px solid #ebeef0;
+        border-right: 1px solid $color-border-subtle;
         text-align: right;
-        padding-right: 1.17647em;
+        padding-right: em(20, strip-unit($delta));
       }
 
       h4 {
-        font-family: Merriweather Sans, Open Sans, Helvetica, Arial, sans-serif;
-        font-weight: 700;
+        font-family: $base-font-family;
+        font-weight: $bold-font-weight;
         font-size: 1rem;
         margin-top: 0;
       }
@@ -105,7 +108,7 @@
     &-social {
       &--icon {
         border: none;
-        margin: auto .47059em;
+        margin: auto em(8, strip-unit($delta));
         opacity: 1;
         transition: opacity .25s ease-in-out;
 
@@ -135,26 +138,34 @@
         }
       }
 
-      @media only screen and (min-width: 1295px) {
+      @include media-query(xxlarge-up) {
         width: 14%;
         text-align: center;
-        padding-top: .82353em;
+        padding-top: em(14, strip-unit($delta));
       }
     }
 
     &-copyright {
-      @media only screen and (min-width: 1295px) {
+      @include media-query(xxlarge-up) {
         width: 100%;
         text-align: center;
-        font-size: .70588em;
+        font-size: em(12, strip-unit($delta));
         box-sizing: border-box;
-        padding: 1.17647em 0 0 1.17647em;
-        color: #b0bec5;
+        padding: em(20, strip-unit($delta)) 0 0 em(20, strip-unit($delta));
+        color: $color-text-byline;
+      }
+
+      &__stuff--notice {
+        margin: 0;
+        padding-bottom: 1em;
+        font-size: em(12, strip-unit($delta));
+        font-weight: $base-font-weight;
+        color: $color-text-byline;
       }
     }
 
-    @media only screen and (min-width: 1295px) {
-      margin: auto auto .58824em;
+    @include media-query(xxlarge-up) {
+      margin: auto auto em(10, strip-unit($delta));
     }
   }
 }
