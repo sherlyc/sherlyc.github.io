@@ -3,6 +3,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { StuffCustomMaterialModule } from './shared/stuff-custom-material/stuff-custom-material.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
+import {FooterComponent} from './shared/footer/footer.component';
+import {ColorBarComponent} from './shared/color-bar/color-bar.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -12,7 +14,7 @@ describe('AppComponent', () => {
         StuffCustomMaterialModule
       ],
       declarations: [
-        AppComponent, HeaderComponent
+        AppComponent, HeaderComponent, FooterComponent, ColorBarComponent
       ],
     }).compileComponents();
   }));
