@@ -152,17 +152,6 @@ $gutter: 17px;
       color: $color-section-default;
     }
 
-    &__section:not(:first-child):before {
-      content: '\003e';
-      padding: 0 .5em;
-      color: $color-text-byline;
-      font-weight: $base-font-weight;
-    }
-    &__section:first-child {
-      border: none;
-      padding: 0;
-    }
-
     &__link {
       text-transform: lowercase;
       letter-spacing: em(2, strip-unit($delta));
@@ -240,12 +229,6 @@ $gutter: 17px;
           background: $color-section-default;
         }
       }
-    }
-
-    &__heading-link + &__list {
-      border-left: 1px solid $color-light-grey;
-      padding: 0 0 0 em(20, strip-unit($delta));
-      margin: 0 0 0 em(20, strip-unit($delta));
     }
   }
 
