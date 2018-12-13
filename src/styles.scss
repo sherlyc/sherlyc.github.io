@@ -1,103 +1,59 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body {
+/*------------------------------------*\
+    BASE.CSS
+\*------------------------------------*/
+
+@import "~normalize.css/normalize.css";
+@import 'styles/shared/shared.scss';
+@import 'styles/base/typography.scss';
+@import 'styles/base/links.scss';
+@import 'styles/fonts/merriweather.scss';
+
+
+/**
+ * HTML
+ */
+
+html {
+  box-sizing: border-box;
+  font-family: $base-font-family;
+  font-weight: $base-font-weight;
+  font-size:   $base-font-size;
+  min-height: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-align: #{$dir-default};
+  color: $base-color;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: $color-white;
+  color: $color-neutral-primary;
   height: 100%;
-  font-family: Merriweather Sans,Open Sans,Helvetica,Arial,sans-serif;
-}
-body { margin: 0;}
-
-.container {
-    padding: 0 15px;
-    margin: 0 auto;
-    @media (min-width: 768px) {
-        
-    }
-    @media (min-width: 992px) {
-        width: 900px;
-        
-    }
-    @media (min-width: 1200px) {
-        width: 1170px;
-        
-    }
-}
-.page-header {
-    h1 {
-        font-weight: 300;
-    }
+  margin: 0;
 }
 
-
-/* MERRIWEATHER SANS */
-
-/* Light */
-@font-face {
-  font-family: "Merriweather Sans";
-  src: url('/assets/fonts/webfontkit-20170919-000243/merriweathersans-light.woff2') format('woff2'),
-  url('/assets/fonts/webfontkit-20170919-000243/merriweathersans-light.woff') format('woff');
-  font-weight: 300;
-  font-style: normal;
+ins {
+  border-bottom: none;
 }
 
-@font-face {
-  font-family: "Merriweather Sans";
-  src: url('/assets/fonts/webfontkit-20170919-000243/merriweathersans-lightitalic.woff2') format('woff2'),
-  url('/assets/fonts/webfontkit-20170919-000243/merriweathersans-lightitalic.woff') format('woff');
-  font-weight: 300;
-  font-style: italic;
+p {
+  margin: 0 0 0.7rem;
+  padding: 0;
 }
 
-/* Bold */
-@font-face {
-  font-family: "Merriweather Sans";
-  src: url('/assets/fonts/webfontkit-20170919-000243/merriweathersans-bold.woff2') format('woff2'),
-  url('/assets/fonts/webfontkit-20170919-000243/merriweathersans-bold.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
+button {
+  cursor: pointer;
+  outline: none;
 }
 
-@font-face {
-  font-family: "Merriweather Sans";
-  src: url('/assets/fonts/webfontkit-20170919-000243/merriweathersans-bolditalic.woff2') format('woff2'),
-  url('/assets/fonts/webfontkit-20170919-000243/merriweathersans-bolditalic.woff') format('woff');
-  font-weight: 700;
-  font-style: italic;
+button, input, select, textarea {
+  font-family: $base-font-family;
 }
-
-
-/* MERRIWEATHER SERIF */
-
-/* Light */
-@font-face {
-  font-family: "Merriweather";
-  src: url('/assets/fonts/webfontkit-20170919-002446/merriweather_light.woff2') format('woff2'),
-  url('/assets/fonts/webfontkit-20170919-002446/merriweather_light.woff') format('woff');
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Merriweather";
-  src: url('/assets/fonts/webfontkit-20170919-002446/merriweather-lightit.woff2') format('woff2'),
-  url('/assets/fonts/webfontkit-20170919-002446/merriweather-lightit.woff') format('woff');
-  font-weight: 300;
-  font-style: italic;
-}
-
-/* Regular */
-@font-face {
-  font-family: "Merriweather";
-  src: url('/assets/fonts/webfontkit-20170919-002446/merriweather-regular.woff2') format('woff2'),
-  url('/assets/fonts/webfontkit-20170919-002446/merriweather-regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Merriweather";
-  src: url('/assets/fonts/webfontkit-20170919-002446/merriweather-italic.woff2') format('woff2'),
-  url('/assets/fonts/webfontkit-20170919-002446/merriweather-italic.woff') format('woff');
-  font-weight: 400;
-  font-style: italic;
-}
-
