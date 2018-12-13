@@ -1,0 +1,29 @@
+<footer>
+  <div class="footer__top">
+    <app-color-bar></app-color-bar>
+  </div>
+
+  <div class="footer__links">
+    <span class="footer__link" *ngFor="let link of footerLinks">
+      <a href="{{link.url}}" target="{{link.target}}" rel="noopener">{{link.title}}</a>
+    </span>
+  </div>
+
+  <div class="footer__secondary">
+    <div class="footer__secondary-inner">
+      <div class="footer__secondary-breakingnews">
+        <h4>Breaking news?</h4>
+        Send your photos, videos and tip-offs to <br/>
+        <a href="mailto:newstips@stuff.co.nz">newstips@stuff.co.nz</a>, or call us on 0800 697 8833
+      </div>
+    </div>
+    <div class="footer__secondary-social">
+      <span class="footer__secondary-social--icon {{icon.iconName}}" *ngFor="let icon of FooterIcons">
+        <a class="" href="{{icon.href}}" target="_blank" rel="noopener"></a>
+      </span>
+    </div>
+  </div>
+  <div class="footer__secondary-copyright">
+    <p class="footer__secondary-copyright__stuff--notice">&#169; {{today | date:'y'}} Stuff Limited</p>
+  </div>
+</footer>
