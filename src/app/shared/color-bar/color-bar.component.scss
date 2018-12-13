@@ -1,0 +1,13 @@
+/*------------------------------------*\
+    COLORBAR.CSS
+\*------------------------------------*/
+.color-bar {
+  background: transparent linear-gradient(90deg, #ff4e00 13%, #fcd300 33%, #00c580 50%, #00a2fc 67%, #8130e4 87%)
+  no-repeat scroll center bottom / 100% 3px;
+  display: block;
+  margin: 0;
+  padding: 0;
+  height: 3px;
+  width: 100%;
+  background-color: #fff;
+}
