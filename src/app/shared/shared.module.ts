@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ColorBarComponent } from './color-bar.component';
+import { ColorBarComponent } from './color-bar/color-bar.component';
 
 @NgModule({
-  declarations: [ColorBarComponent],
   imports: [
     CommonModule
+  ],
+  declarations: [
+    ColorBarComponent
   ],
   exports: [
     ColorBarComponent
   ]
 })
-export class ColorBarModule { }
+export class SharedModule { }
