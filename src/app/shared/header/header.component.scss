@@ -223,7 +223,7 @@ $gutter: 17px;
       display: flex;
       align-items: center;
       align-self: stretch;
-      flex-shrink: 0; // This is to address a flex bug with iPhone 6
+      flex-shrink: 0;
       position: relative;
 
       &:hover, &:focus, &--selected {
@@ -250,5 +250,3 @@ $gutter: 17px;
   }
 
 }
-
-

@@ -8,10 +8,10 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   @Input()
-  mainNavLink: Link;
+  mainNavLink: NavLink;
 
   @Input()
-  subNavLink: Link;
+  subNavLink: NavLink;
 
   constructor() { }
 
@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
 
 }
 
-interface Link {
+interface NavLink {
   text: string;
   href: string;
 }
