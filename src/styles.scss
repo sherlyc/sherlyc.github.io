@@ -1,25 +1,59 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: 'Roboto', sans-serif; }
+/*------------------------------------*\
+    BASE.CSS
+\*------------------------------------*/
 
-.container {
-    padding: 0 15px;
-    margin: 0 auto;
-    @media (min-width: 768px) {
-        
-    }
-    @media (min-width: 992px) {
-        width: 900px;
-        
-    }
-    @media (min-width: 1200px) {
-        width: 1170px;
-        
-    }
+@import "~normalize.css/normalize.css";
+@import 'styles/shared/shared.scss';
+@import 'styles/base/typography.scss';
+@import 'styles/base/links.scss';
+@import 'styles/fonts/merriweather.scss';
+
+
+/**
+ * HTML
+ */
+
+html {
+  box-sizing: border-box;
+  font-family: $base-font-family;
+  font-weight: $base-font-weight;
+  font-size:   $base-font-size;
+  min-height: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-align: #{$dir-default};
+  color: $base-color;
 }
-.page-header {
-    h1 {
-        font-weight: 300;
-    }
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: $color-white;
+  color: $color-neutral-primary;
+  height: 100%;
+  margin: 0;
+}
+
+ins {
+  border-bottom: none;
+}
+
+p {
+  margin: 0 0 0.7rem;
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+}
+
+button, input, select, textarea {
+  font-family: $base-font-family;
 }
