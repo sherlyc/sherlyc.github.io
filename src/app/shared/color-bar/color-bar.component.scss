@@ -1,0 +1,28 @@
+@import '../../../styles/shared/shared.scss';
+
+/*------------------------------------*\
+    COLORBAR.CSS
+\*------------------------------------*/
+
+$color-bar-international-orange: #ff4e00;
+$color-bar-gold: #fcd300;
+$color-bar-caribbean-green: #00c580;
+$color-bar-deep-sky-blue: #00a2fc;
+$color-bar-blue-violet: #8130e4;
+$color-bar-height: 3px;
+
+.color-bar {
+  display: block;
+  width: 100%;
+  height: $color-bar-height;
+  background-size: 100% $color-bar-height;
+  @include linear-gradient(
+    to right,
+    $color-bar-international-orange 13%,
+    $color-bar-gold 33%,
+    $color-bar-caribbean-green 50%,
+    $color-bar-deep-sky-blue 67%,
+    $color-bar-blue-violet 87%,
+    $fallback: transparent
+  );
+}
