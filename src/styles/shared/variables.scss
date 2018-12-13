@@ -1,33 +1,4 @@
 /*------------------------------------*\
-    $DEBUG
-\*------------------------------------*/
-/**
- * Debug mode will visually highlight any potential markup/accessibility quirks
- * in the browser. Set to `true` or `false`.
- */
-
-$debug-mode: false;
-
-/*------------------------------------*\
-    $BORDER-BOX
-\*------------------------------------*/
-/**
- * Do you want all elements to adopt `box-sizing:border-box;` as per
- * paulirish.com/2012/box-sizing-border-box-ftw ?
- */
-$global-border-box: true !default;
-
-/*------------------------------------*\
-    $OBJECTS AND ABSTRACTIONS FROM INUIT CSS
-\*------------------------------------*/
-/**
- * Which objects and abstractions would you like to use?
- */
-
-$use-beautons: true;
-$use-rules: false;
-
-/*------------------------------------*\
     $BASE
 \*------------------------------------*/
 
@@ -40,16 +11,6 @@ $base-line-height: 24.65px;
 $base-spacing-unit: $base-line-height;
 $base-radius: 2px;
 $base-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-
-/*------------------------------------*\
-    $UI ELEMENTS
-\*------------------------------------*/
-
-$ui-radius: 2px;
-
-$separator-height-main: 4px;
-$separator-height-border: 1px;
-$separator-height: $separator-height-main + $separator-height-border;
 
 /*------------------------------------*\
     $TEXT DIRECTION
@@ -90,32 +51,6 @@ $color-neutral-quaternary: #9f9f9f;
 $color-neutral-quinary: #eee;
 $color-neutral-senary: #f2f2f2;
 
-// and then septenary, octonary, nonary, and denary etc
-// http://www.english-for-students.com/Primary-1.html
-
-//------------------------------------
-// Bluetrals
-//------------------------------------
-// Like neutrals, but blueish
-
-$color-bleutral-primary   : #1c2327;
-$color-bleutral-secondary : lighten($color-bleutral-primary, 20%);
-$color-bleutral-tertiary  : lighten($color-bleutral-primary, 40%);
-$color-bleutral-quaternary: lighten($color-bleutral-primary, 60%);
-$color-bleutral-quinary   : lighten($color-bleutral-primary, 80%);
-
-//------------------------------------
-// Content flag backgrounds
-//------------------------------------
-$content-flag-bg: #ccc;
-
-//------------------------------------
-// Borders
-//------------------------------------
-
-$color-border-subtle: #ebeef0;
-$color-border-iron: #d1d6da;
-
 //------------------------------------
 // Text
 //------------------------------------
@@ -132,46 +67,10 @@ $color-text-warning: #ff0000;
 $color-text-footer: $color-medium-grey;
 
 //------------------------------------
-// Accents
-//------------------------------------
-
-$color-accent-dark: #1a1e20;
-$color-accent-dark--darken: darken($color-accent-dark, 10%);
-
-$color-accent-light: #f2f2f2;
-$color-accent-light--darken: darken($color-accent-light, 10%);
-
-//------------------------------------
 // Section
 //------------------------------------
 
 $color-section-default: #0e468e;
-$color-section-national: #0e468e;
-$color-section-world: #0080fd;
-$color-section-business: #2f67dc;
-$color-section-farming: #ff6700;
-$color-section-technology: #00c480;
-$color-section-regions: #263238;
-$color-section-sport: #ff3000;
-$color-section-entertainment: #8130e4;
-$color-section-lifestyle: #e42d53;
-$color-section-wellgood: #ffc42a;
-$color-section-foodwine: #b21f3b;
-$color-section-parenting: #ff3a63;
-$color-section-puzzles: #025798;
-$color-section-homeproperty: #88cc3a;
-$color-section-travel: #fcac00;
-$color-section-motoring: #fd9200;
-$color-section-stuffnation: #2bb192;
-$color-section-oddstuff: #bccf20;
-$color-section-good-reads: #624bea;
-$color-section-kiwitraveller: #00b6af;
-$color-section-video: #ff4e00;
-$color-section-maoritelevision: #c84e24;
-$color-section-circuit: #000;
-$color-section-homed: #41ad95;
-$color-section-opinion: #597149;
-$color-section-rugby: #333;
 
 //------------------------------------
 // Alerts and message statuses
@@ -181,60 +80,6 @@ $color-success: #00824A;
 $color-warning: #f36f21;
 $color-error: #d12421;
 $color-info: #0083D7;
-
-//------------------------------------
-// Colour bar
-//------------------------------------
-
-$color-bar-international-orange: #ff4e00;
-$color-bar-gold: #fcd300;
-$color-bar-caribbean-green: #00c580;
-$color-bar-deep-sky-blue: #00a2fc;
-$color-bar-blue-violet: #8130e4;
-
-//------------------------------------
-// Social
-//------------------------------------
-
-$color-social-email: #00824a;
-$color-social-facebook: #3b5998;
-$color-social-twitter: #55acee;
-$color-social-more: $color-neutral-senary;
-$color-social-close-round: $color-neutral-senary;
-$color-social-comment: #9c1a87;
-$color-social-googleplus: #dd4b39;
-$color-social-linkedin: #007bb6;
-$color-social-whatsapp: #43d854;
-$color-social-reddit: #ff5700;
-$color-social-star: $color-neutral-senary;
-
-//------------------------------------
-// Video playlist
-//------------------------------------
-
-$video-playlist-default: #bdbdbd;
-$video-playlist-hover: #dedede;
-$video-playlist-next-default: $video-playlist-default;
-$video-playlist-next-hover: $color-white;
-
-/*------------------------------------*\
-    $GRID SETTINGS
-\*------------------------------------*/
-
-$grid-columns: 12;
-$grid-spacing: 30px;
-$site-width: 960px;
-
-$max-content-width: 768px;
-$max-mobile-page-width: 840px;
-$min-desktop-page-width: 841px;
-$max-page-width: 1150px;
-$lock-content-width: 1240px;
-
-$right-hand-column-width: 300px;
-$right-hand-column-margin: 68px;
-$story-margin: 34px;
-$story-width: $max-page-width - $right-hand-column-width - ($right-hand-column-margin + $story-margin);
 
 /*------------------------------------*\
     $TYPOGRAPHY
@@ -274,121 +119,6 @@ $link-visited-color: $color-primary-strong;
 $link-focus-color: $link-color;
 $link-underline: false;
 $link-underline-on-hover: true;
-
-/*------------------------------------*\
-    $FORMS
-\*------------------------------------*/
-
-$input-border-color: $color-neutral-tertiary;
-$input-background: #fafafa;
-$input-padding: 0.6em 1em;
-$input-padding-medium: 0.8em 1em;
-$input-padding-large: 1em 1em;
-$input-border-radius: $base-radius;
-
-/*------------------------------------*\
-    $BUTTONS
-\*------------------------------------*/
-
-$button-padding: 0.85em;
-$button-border-radius: $base-radius;
-
-/*------------------------------------*\
-    $STUFF NATION
-\*------------------------------------*/
-
-$stuffnation-contribution-box: #161a1c;
-
-/*------------------------------------*\
-    $ICONS (DOUBLE-HEIGHT)
-\*------------------------------------*/
-
-$icon-sm-height: 22px;
-$icon-sm-width: 22px;
-$icon-sm-offset: 7px;
-$icon-sm-containerheight: 32px;
-$icon-sm-containerwidth: 32px;
-$icon-sm-containerpadding: 5px;
-
-$icon-md-height: 24px;
-$icon-md-width: 26px;
-$icon-md-offset: 10px;
-$icon-md-containerheight: 48px;
-$icon-md-containerwidth: 48px;
-$icon-md-containerpadding: 12px;
-
-$icon-lg-height: 32px;
-$icon-lg-width: 32px;
-$icon-lg-offset: 10px;
-$icon-lg-containerheight: 48px;
-$icon-lg-containerwidth: 48px;
-$icon-lg-containerpadding: 8px;
-
-/*------------------------------------*\
-    $ICONS (SINGLE-HEIGHT)
-\*------------------------------------*/
-
-$icon-single-sm-height: 24px;
-$icon-single-sm-width: 24px;
-$icon-single-sm-offset: 7px;
-$icon-single-sm-containerheight: 32px;
-$icon-single-sm-containerwidth: 32px;
-$icon-single-sm-containerpadding: 5px;
-
-$icon-single-md-height: 24px;
-$icon-single-md-width: 24px;
-$icon-single-md-offset: 10px;
-$icon-single-md-containerheight: 48px;
-$icon-single-md-containerwidth: 48px;
-$icon-single-md-containerpadding: 12px;
-
-$icon-single-lg-height: 24px;
-$icon-single-lg-width: 24px;
-$icon-single-lg-offset: 10px;
-$icon-single-lg-containerheight: 48px;
-$icon-single-lg-containerwidth: 48px;
-$icon-single-lg-containerpadding: 8px;
-
-/*------------------------------------*\
-    $LAYOUT
-\*------------------------------------*/
-
-$navigation-primary-height: 48px;
-$navigation-secondary-height: 45px;
-$navigation-primary-and-secondary-height: $navigation-primary-height + $navigation-secondary-height;
-$navigation-social-height-mobile: 62px;
-$navigation-social-height-desktop: 48px;
-$nav-header-colour-bar-height: 3px;
-
-/* We have to beat the z-index of any non-overlay ads: Scroll down and click on Z-Index
-** https://web.archive.org/web/20140621154105/http://www.iab.net/displayguidelines*/
-$ad-trump-zindex: 2000000;
-$ad-trump-floating-zindex: 3000000;
-
-/*------------------------------------*\
-    $FRAMEWORK
-\*------------------------------------*/
-/**
- * inuit.css will work these next ones out for use within the framework.
- *
- * Assign our `$base-line-height` to a new spacing var for more transparency.
- */
-$base-spacing-unit: $base-line-height !default;
-$half-spacing-unit: $base-spacing-unit / 2 !default;
-$line-height-ratio: $base-line-height / $base-font-size;
-
-//------------------------------------
-// Spacing
-//------------------------------------
-// Inside a component, spacing should be expressed in ems, allowing the component
-// to responsively adjust when the font-size of the component container changes.
-$spacing-regular--inner: 1em;
-
-// Outside a component, spacing should be expressed in rems, allowing the spacing
-// between components to be governed by the font-size of the page.
-$spacing-regular--outer: 1rem;
-
-$spacing-minor: 3px;
 
 
 /*------------------------------------*\
