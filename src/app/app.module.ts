@@ -12,7 +12,7 @@ import { HomeComponent } from './modules/home/home.component';
 import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.component';
 
 import * as Sentry from '@sentry/browser';
-import {SharedModule} from './shared/shared.module';
+import { SharedModule } from './shared/shared.module';
 
 Sentry.init({
   // dsn: 'https://30f2a44af0d04b55875db5eb17b68a63@sentry.io/1306325'
