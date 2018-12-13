@@ -67,6 +67,13 @@ $color-text-warning: #ff0000;
 $color-text-footer: $color-medium-grey;
 
 //------------------------------------
+// Borders
+//------------------------------------
+
+$color-border-subtle: #ebeef0;
+$color-border-iron: #d1d6da;
+
+//------------------------------------
 // Section
 //------------------------------------
 
@@ -80,6 +87,12 @@ $color-success: #00824A;
 $color-warning: #f36f21;
 $color-error: #d12421;
 $color-info: #0083D7;
+
+/*------------------------------------*\
+    $GRID SETTINGS
+\*------------------------------------*/
+
+$max-page-width: 1150px;
 
 /*------------------------------------*\
     $TYPOGRAPHY

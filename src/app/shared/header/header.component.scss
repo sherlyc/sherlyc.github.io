@@ -1,16 +1,254 @@
-.app-header {
-  background: rgba(255, 252, 249, 0.29);
-  color: #000000;
-  text-align: center;
+@import '../../../styles/shared/shared.scss';
 
-  &__logo {
-    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgogICAgd2lkdGg9IjY3OHB4IiBoZWlnaHQ9IjI1N3B4IiB2aWV3Qm94PSIwIDExLjE2NyA2NzggMjU3IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMTEuMTY3IDY3OCAyNTciIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8Zz4KICAgIDxwYXRoIGQ9Ik0xMzIuNjU5LDIzNS4xMzVjLTExLjI0Nyw4Ljc0OC0yNi41NTcsMTMuNDM0LTQ3LjE3NywxMy40MzRjLTIzLjEyLDAtNDcuNDg4LTcuMTg2LTY0Ljk4My0yMy43NDRsMTguNzQ2LTI5LjY4CiAgICAgICAgYzEyLjQ5NywxMC42MjMsMzMuMTE2LDE4Ljc0Niw0NS42MTMsMTguNzQ2czIxLjI0NS0zLjEyNSwyMS4yNDUtMTMuMTIycy0yMi40OTQtMTQuOTk2LTI4LjExOC0xNi44NzEKICAgICAgICBjLTUuOTM2LTEuNTYyLTE0LjY4NC00LjA2Mi0yMS44NjktNy4xODdjLTcuMTg3LTMuMTIzLTI2LjI0NC0xMi44MDktMjYuMjQ0LTQwLjMwMmMwLTI5Ljk5MywyNi4yNDQtNDguNDI1LDU4LjQyMy00OC40MjUKICAgICAgICBzNTAuMywxMS44NzIsNTkuMDQ4LDE5LjA1OGwtMTYuMjQ2LDI5LjM2OGMtOC43NDgtNi44NzMtMjYuMjQ0LTE0Ljk5Ni0zOC43NDEtMTQuOTk2Yy0xMS44NzIsMC0xOC40MzMsMy4xMjQtMTguNDMzLDExLjI0NwogICAgICAgIGMwLDguMTIzLDExLjg3MiwxMS44NzIsMjIuNDk1LDE0Ljk5N2MxMC42MjMsMy4xMjQsMTUuMzA5LDQuNjg3LDIxLjg3LDcuMTg3YzYuODc0LDIuNSwxNC42ODQsNi41NjEsMTkuOTk1LDExLjU2CiAgICAgICAgYzQuOTk4LDQuOTk5LDEyLjQ5NiwxNC45OTcsMTIuNDk2LDMxLjI0M0MxNTAuNzc5LDIxMy41NzksMTQzLjkwNiwyMjYuMDc1LDEzMi42NTksMjM1LjEzNXoiLz4KICAgIDxwYXRoIGQ9Ik0yNjYuMDYyLDEyOS4yMjRoLTM0LjA1NHY1NS4yOTljMCwxMy4xMjIsMS44NzUsMTYuMjQ2LDQuMzc0LDE5LjA1OGMyLjE4NywyLjUsNS4zMTEsMy43NSwxMS44NzIsMy43NQogICAgICAgIGM3LjgxMSwwLDE0Ljk5Ni0yLjgxMiwxNC45OTYtMi44MTJsMi41LDM5LjA1M2MtMy43NDksMC45MzgtMTcuNDk2LDQuOTk5LTM1LjYxNiw0Ljk5OWMtMTcuODA4LDAtMjkuNjgtNS4zMTItMzcuNDkxLTE0LjM3MgogICAgICAgIGMtNy44MTEtOS4wNi0xMC45MzUtMjEuODY5LTEwLjkzNS00NS4zMDF2LTU5LjY3M2gtMjEuODdWOTEuNDJoMjEuODdWNDkuNTU2aDUwLjNWOTEuNDJoMzQuMDU0VjEyOS4yMjR6Ii8+CiAgICA8cGF0aCBkPSJNNDI4LjIwNywyNDUuMTMzaC00OC4xMTJsLTAuMzEyLTE3LjQ5NmMtNi41NjEsOS4zNzMtMjIuODA3LDIwLjkzMi00NC45ODgsMjAuOTMyYy0yMi4xODMsMC0zNi4yNDEtNy44MTEtNDQuMDUyLTE4LjEyMQogICAgICAgIGMtNy40OTktMTAuNjIxLTExLjI0OC0yNC4wNTctMTEuMjQ4LTQ2LjIzOFY5MS4xMDhoNDkuOTg3djg2LjIyOWMwLDE3LjgwOSw0Ljk5OSwyOS45OTQsMjIuODA3LDI5Ljk5NAogICAgICAgIGMxNy44MDksMCwyNS45MzItMTQuMDYsMjUuOTMyLTM0LjM2N1Y5MS4xMDhoNDkuOTg3VjI0NS4xMzN6Ii8+CiAgICA8cGF0aCBkPSJNNTQ5LjQzLDY0LjIzOWMwLDAtOS42ODYtMi44MTItMTguNDM0LTIuODEyYy0xNC42ODQsMC0xOC40MzMsOC40MzYtMTguNDMzLDE5Ljk5NXY5Ljk5OGgzMy4xMTZ2MzcuODAzaC0zMy4xMTZ2MTE1LjkwOAogICAgICAgIGgtNTAuMzAxVjEyOS4yMjRoLTE5LjY4NFY5MS40MmgxOS42ODR2LTguNDM2YzAtMTcuMTgzLDMuNDM3LTMyLjE4LDEyLjQ5Ny00MS41NTJjOS4wNjEtOS42ODUsMjMuNzQ0LTE1LjkzNCw0My4xMTMtMTUuOTM0CiAgICAgICAgYzE5LjY4NCwwLDM0LjA1Niw0LjA2MiwzNC4wNTYsNC4wNjJMNTQ5LjQzLDY0LjIzOXoiLz4KICAgIDxwYXRoIGQ9Ik02NTAuNjUzLDY0LjIzOWMwLDAtOS42ODUtMi44MTItMTguNDMzLTIuODEyYy0xNC42ODUsMC0xOC40MzQsOC40MzYtMTguNDM0LDE5Ljk5NXY5Ljk5OGgzMy4xMTZ2MzcuODAzaC0zMy4xMTZ2MTE1LjkwOAogICAgICAgIGgtNTAuMzAxVjEyOS4yMjRoLTE5LjY4M1Y5MS40MmgxOS42ODN2LTguNDM2YzAtMTcuMTgzLDMuNDM4LTMyLjE4LDEyLjQ5Ny00MS41NTJjOS4wNjItOS42ODUsMjMuNzQ0LTE1LjkzNCw0My4xMTQtMTUuOTM0CiAgICAgICAgYzE5LjY4MywwLDM0LjA1NSw0LjA2MiwzNC4wNTUsNC4wNjJMNjUwLjY1Myw2NC4yMzl6Ii8+CjwvZz4KPC9zdmc+Cg==) no-repeat center center / cover;
-    height: 1.5625em;
-    width: 4.375em;
+//------------------------------------*\
+//   $ HEADER
+//------------------------------------*/
+
+$navigation-primary-height: 48px;
+$navigation-secondary-height: 45px;
+$navigation-primary-and-secondary-height: $navigation-primary-height + $navigation-secondary-height;
+$sub-nav-zindex: 2000000;
+$gutter: 17px;
+
+.header {
+  height: $navigation-primary-and-secondary-height;
+
+  &__main-menu-toggle {
+    display: block;
+    position: relative;
+    width: 45px;
+    height: 28px;
+    outline: none;
+    cursor: pointer;
+
+    span {
+      left: 15px;
+      top: 12.5px;
+    }
+
+    span,
+    span:before,
+    span:after {
+      position: absolute;
+      display: block;
+      cursor: pointer;
+      height: 2px;
+      width: 15px;
+      background: $color-text-heading;
+      content: '';
+    }
+
+    span:before {
+      top: -6px;
+    }
+
+    span:after {
+      top: 6px;
+    }
+
+    span:hover {
+      cursor: pointer;
+    }
+
+    span,
+    span:before,
+    span:after {
+      transition: all 200ms ease-in-out;
+    }
   }
 
-  &__title {
-    margin:auto;
+  hr {
+    margin-bottom: 0;
   }
+
+  &__profile {
+    font-size: $theta;
+    font-family: $base-font-family;
+
+    &:focus { outline: 0; }
+
+    &:active { opacity: 0.6; }
+
+    &:before {
+      margin-right: 0;
+    }
+  }
+
+  &__profile--login {
+    background-color: transparent;
+    color: $link-color;
+    border: 0;
+    height: em(36, strip-unit($theta));
+    padding: 5px;
+
+    &:hover {
+      opacity: 0.7;
+      cursor: pointer;
+      transition: .5s;
+    }
+
+  }
+
+  &__body {
+    display: flex;
+    min-height: $navigation-secondary-height;
+    max-width: em(1150, strip-unit($delta));
+    padding: 0 $gutter;
+    margin: 0 auto;
+  }
+
+  &__left  {
+    display: flex;
+    align-items: center;
+    min-width: em(66, strip-unit($delta));
+    padding-right: em(3, strip-unit($delta));
+  }
+
+  &__center {
+    display: flex;
+    align-items: center;
+    flex: auto;
+    justify-content: center;
+    border-left: solid 1px $color-border-iron;
+    border-right: solid 1px $color-border-iron;
+    padding: em(5, strip-unit($delta)) em(10, strip-unit($delta));
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: em(66, strip-unit($delta));
+    padding-left: em(3, strip-unit($delta));
+  }
+
+  @include media-query(large-up) {
+    &__left,
+    &__right {
+      min-width: em(120, strip-unit($delta));
+    }
+  }
+
+
+  //------------------------------------*\
+  //   $ MAIN NAV
+  //------------------------------------*/
+
+  &__main-navigation {
+    &__top-list {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    &__section {
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    &__section,
+    &__link {
+      color: $color-section-default;
+    }
+
+    &__section:not(:first-child):before {
+      content: '\003e';
+      padding: 0 .5em;
+      color: $color-text-byline;
+      font-weight: $base-font-weight;
+    }
+    &__section:first-child {
+      border: none;
+      padding: 0;
+    }
+
+    &__link {
+      text-transform: lowercase;
+      letter-spacing: em(2, strip-unit($delta));
+
+      &:hover {
+        opacity: 0.8;
+        text-decoration: none;
+        color: darken($color-section-default, 10%);
+      }
+
+      &:active {
+        opacity: 0.7;
+        text-decoration: none;
+        color: darken($color-section-default, 10%);
+      }
+    }
+  }
+
+
+  //------------------------------------*\
+  //   $ SUB NAV
+  //------------------------------------*/
+
+  &__sub-nav {
+    width: 100%;
+    height: $navigation-secondary-height;
+    border-bottom: 1px solid $color-neutral-primary;
+    overflow: hidden;
+    background: white;
+    z-index: $sub-nav-zindex;
+
+    &__content-wrapper {
+      position: relative;
+      margin: 0 auto;
+      max-width: $max-page-width;
+    }
+
+    &__content {
+      display: flex;
+      padding: 0 $gutter;
+      justify-content: center;
+      align-items: center;
+      overflow-x: auto;
+      overflow-y: hidden;
+      text-transform: lowercase;
+    }
+
+    &__heading {
+      font: $bold-font-weight em(17, strip-unit($delta)) $base-font-family;
+      color: $color-section-default;
+      margin: 0;
+      line-height: 1;
+      padding: em(13, strip-unit($delta)) 0 em(14, strip-unit($delta)) 0;
+      letter-spacing: em(2, strip-unit($delta));
+    }
+
+    &__heading-link {
+      display: flex;
+      align-items: center;
+      align-self: stretch;
+      flex-shrink: 0; // This is to address a flex bug with iPhone 6
+      position: relative;
+
+      &:hover, &:focus, &--selected {
+        color: inherit;
+        text-decoration: none;
+
+        &:after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: em(2, strip-unit($epsilon));
+          background: $color-section-default;
+        }
+      }
+    }
+
+    &__heading-link + &__list {
+      border-left: 1px solid $color-light-grey;
+      padding: 0 0 0 em(20, strip-unit($delta));
+      margin: 0 0 0 em(20, strip-unit($delta));
+    }
+  }
+
 }
+
 
