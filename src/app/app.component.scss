@@ -1,6 +1,5 @@
 @import '/../styles/shared/shared.scss';
 
 .main-content {
-  width: $navigation-primary-height;
   min-height: calc(100% - #{$navigation-primary-height} - 12em);
 }
