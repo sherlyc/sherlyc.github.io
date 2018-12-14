@@ -12,6 +12,10 @@ $gutter: 17px;
 .header {
   height: $navigation-primary-and-secondary-height;
 
+  &:not(&__sub-nav) {
+    height: $navigation-secondary-height;
+  }
+
   &__main-menu-toggle {
     display: block;
     position: relative;
