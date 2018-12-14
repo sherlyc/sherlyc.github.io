@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { StuffCustomMaterialModule } from '../../shared/stuff-custom-material/stuff-custom-material.module';
 import { HeaderComponent } from './header.component';
+import { LogoComponent } from '../logo/logo.component';
+import { ColorBarComponent } from '../color-bar/color-bar.component';
+import {SharedModule} from '../shared.module';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -9,9 +12,10 @@ describe('HeaderComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        StuffCustomMaterialModule
+        StuffCustomMaterialModule,
+        SharedModule
       ],
-      declarations: [ HeaderComponent ]
+      declarations: []
     })
     .compileComponents();
   }));
@@ -26,8 +30,35 @@ describe('HeaderComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render app name in header', async(() => {
+  it('should render main-nav and sub-nav in header', () => {
+    // given
+    component.mainNavLink = {text: 'national', href: '/national'};
+    component.subNavLink = {text: 'politics', href: '/national/politics'};
+    // when
+    fixture.detectChanges();
+    // then
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.app-header__title').textContent).toContain('Stuff');
-  }));
+    expect(compiled.querySelector('.header__main-navigation__link').textContent).toContain(component.mainNavLink.text);
+    expect(compiled.querySelector('.header__sub-nav__heading').textContent).toContain(component.subNavLink.text);
+  });
+
+  it('should not render main-nav not given main-nav link', () => {
+    // given
+    component.mainNavLink = undefined;
+    // when
+    fixture.detectChanges();
+    // then
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.header__main-navigation')).toBeNull();
+  });
+
+  it('should not render sub-nav not given sub-nav link', () => {
+    // given
+    component.subNavLink = undefined;
+    // when
+    fixture.detectChanges();
+    // then
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.header__sub-nav')).toBeNull();
+  });
 });
