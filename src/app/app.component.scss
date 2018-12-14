@@ -1,5 +1,7 @@
 @import '/../styles/shared/shared.scss';
 
 .main-content {
-  min-height: calc(100% - #{$navigation-primary-height} - 12em);
+  min-height: 100%;
+  margin: 0 auto -#{$footer-height};
+  padding:  #{$navigation-primary-height} 0 #{$footer-height} 0;
 }
