@@ -7,14 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { StuffCustomMaterialModule } from './shared/stuff-custom-material/stuff-custom-material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ColorBarComponent } from './shared/color-bar/color-bar.component';
-import { HeaderComponent } from './shared/header/header.component';
 import { HomeComponent } from './modules/home/home.component';
-import { FooterComponent } from './shared/footer/footer.component';
 
 import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.component';
 
 import * as Sentry from '@sentry/browser';
+import { SharedModule } from './shared/shared.module';
 
 Sentry.init({
   // dsn: 'https://30f2a44af0d04b55875db5eb17b68a63@sentry.io/1306325'
@@ -33,9 +31,6 @@ export class SentryErrorHandler implements ErrorHandler {
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    ColorBarComponent,
-    FooterComponent,
     HomeComponent,
     PageNotFoundComponent
   ],
@@ -45,7 +40,8 @@ export class SentryErrorHandler implements ErrorHandler {
     BrowserAnimationsModule,
     StuffCustomMaterialModule,
     FlexLayoutModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   providers: [{ provide: ErrorHandler, useClass: SentryErrorHandler }],
   bootstrap: [AppComponent]
