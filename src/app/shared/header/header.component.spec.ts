@@ -1,8 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { StuffCustomMaterialModule } from '../../shared/stuff-custom-material/stuff-custom-material.module';
 import { HeaderComponent } from './header.component';
-import { LogoComponent } from '../logo/logo.component';
-import { ColorBarComponent } from '../color-bar/color-bar.component';
 import {SharedModule} from '../shared.module';
 
 describe('HeaderComponent', () => {
