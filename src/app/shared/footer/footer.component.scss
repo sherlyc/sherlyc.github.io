@@ -6,7 +6,6 @@
 
 .footer {
   text-align: center;
-  position: relative;
   width: 100%;
   bottom: 0;
   height: $footer-height;
@@ -160,8 +159,6 @@
       }
 
       &__stuff--notice {
-        margin: 0;
-        padding-bottom: 1em;
         font-size: em(12, strip-unit($delta));
         font-weight: $base-font-weight;
         color: $color-text-byline;
