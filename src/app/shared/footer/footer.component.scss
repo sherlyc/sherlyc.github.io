@@ -1,13 +1,12 @@
 @import '../../../styles/shared/shared.scss';
 
 .footer {
-  bottom: 0;
-  width: 100%;
   text-align: center;
-  margin-top: 30px;
+  position: relative;
+  width: 100%;
+  bottom: 0;
+
   @include font-size-adapt($delta, $delta-medium, $delta-large, $delta-xlarge);
-  $delta : 14.5px;
-  position: absolute;
 
   &__top {
     position: relative;
