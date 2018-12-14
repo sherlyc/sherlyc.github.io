@@ -17,6 +17,7 @@
 
 html {
   box-sizing: border-box;
+  height: 100%;
   font-family: $base-font-family;
   font-weight: $base-font-weight;
   font-size:   $base-font-size;
@@ -38,6 +39,7 @@ body {
   color: $color-neutral-primary;
   height: 100%;
   margin: 0;
+  min-height: 100%;
 }
 
 ins {
