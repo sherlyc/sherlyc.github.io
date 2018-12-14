@@ -13,6 +13,19 @@ $base-radius: 2px;
 $base-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 
 /*------------------------------------*\
+    $HEADER
+\*------------------------------------*/
+
+$navigation-primary-height: 48px;
+$navigation-secondary-height: 45px;
+
+/*------------------------------------*\
+    $FOOTER
+\*------------------------------------*/
+
+$footer-height: 12em;
+
+/*------------------------------------*\
     $TEXT DIRECTION
 \*------------------------------------*/
 
@@ -67,6 +80,13 @@ $color-text-warning: #ff0000;
 $color-text-footer: $color-medium-grey;
 
 //------------------------------------
+// Borders
+//------------------------------------
+
+$color-border-subtle: #ebeef0;
+$color-border-iron: #d1d6da;
+
+//------------------------------------
 // Section
 //------------------------------------
 
@@ -80,6 +100,12 @@ $color-success: #00824A;
 $color-warning: #f36f21;
 $color-error: #d12421;
 $color-info: #0083D7;
+
+/*------------------------------------*\
+    $GRID SETTINGS
+\*------------------------------------*/
+
+$max-page-width: 1150px;
 
 /*------------------------------------*\
     $TYPOGRAPHY
@@ -181,8 +207,3 @@ $xlarge-only: '#{$screen} and (min-width:#{lower-bound($xlarge-range)}) and (max
 $xxlarge-up: '#{$screen} and (min-width:#{lower-bound($xxlarge-range)})';
 $xxlarge-only: '#{$screen} and (min-width:#{lower-bound($xxlarge-range)}) and (max-width:#{upper-bound($xxlarge-range)})';
 
-//------------------------------------
-// Borders
-//------------------------------------
-
-$color-border-subtle: #ebeef0;
