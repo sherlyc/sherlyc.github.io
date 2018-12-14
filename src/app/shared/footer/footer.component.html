@@ -19,11 +19,11 @@
     </div>
     <div class="footer__secondary-social">
       <span class="footer__secondary-social--icon {{icon.iconName}}" *ngFor="let icon of FooterIcons">
-        <a class="" href="{{icon.href}}" target="_blank" rel="noopener"></a>
+        <a href="{{icon.href}}" target="_blank" rel="noopener"></a>
       </span>
     </div>
   </div>
   <div class="footer__secondary-copyright">
-    <p class="footer__secondary-copyright__stuff--notice">&#169; {{today | date:'y'}} Stuff Limited</p>
+    <p>&#169; {{today | date:'y'}} Stuff Limited</p>
   </div>
 </footer>
