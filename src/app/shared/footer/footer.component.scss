@@ -149,16 +149,17 @@
     }
 
     &-copyright {
+      padding: em(20, strip-unit($delta)) 0 0 em(20, strip-unit($delta));
+
       @include media-query(xxlarge-up) {
         width: 100%;
         text-align: center;
         font-size: em(12, strip-unit($delta));
         box-sizing: border-box;
-        padding: em(20, strip-unit($delta)) 0 0 em(20, strip-unit($delta));
         color: $color-text-byline;
       }
 
-      &__stuff--notice {
+      p {
         font-size: em(12, strip-unit($delta));
         font-weight: $base-font-weight;
         color: $color-text-byline;
