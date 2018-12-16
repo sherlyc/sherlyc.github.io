@@ -24,9 +24,6 @@
 
 .logo {
   @extend ._logo__base-styles;
-
-  background-size: 100% auto;
-
   background-image: url('assets/logo--mobile.svg');
   height: 1.2625em;
   width: 2.1875em;
