@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FooterComponent } from './footer.component';
-import {ColorBarComponent} from '../color-bar/color-bar.component';
+import { ColorBarComponent } from '../color-bar/color-bar.component';
 
 describe('FooterComponent', () => {
   let component: FooterComponent;
