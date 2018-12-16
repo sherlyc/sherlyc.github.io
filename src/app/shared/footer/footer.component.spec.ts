@@ -11,7 +11,7 @@ describe('FooterComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         FooterComponent,
-      ColorBarComponent
+        ColorBarComponent
       ]
     })
     .compileComponents();
@@ -26,4 +26,6 @@ describe('FooterComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
 });
