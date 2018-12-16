@@ -20,7 +20,7 @@ export class FooterComponent {
     { title: 'Contact Us', url: 'https://stuff.co.nz/about-stuff/33785/Contact-Us', target: '_self'}
   ];
 
-  FooterIcons: FooterIcon[] = [
+  footerIcons: FooterIcon[] = [
     { iconName: 'facebook-footer', href: 'https://www.facebook.com/Stuff.co.nz', title: 'Facebook'},
     { iconName: 'twitter-footer', href: 'https://twitter.com/NZStuff', title: 'Twitter'},
     { iconName: 'snapchat-footer',
