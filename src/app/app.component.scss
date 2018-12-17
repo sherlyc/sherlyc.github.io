@@ -1,5 +1,7 @@
-footer {
-  color: green;
-  position: fixed;
-  bottom: 0;
+@import '/../styles/shared/shared.scss';
+
+.main-content {
+  min-height: 100%;
+  margin: 0 auto -#{$footer-height};
+  padding:  #{$navigation-primary-height} 0 #{$footer-height} 0;
 }

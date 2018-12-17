@@ -4,7 +4,7 @@ import { ModuleMapLoaderModule } from '@nguniversal/module-map-ngfactory-loader'
 
 import { AppModule } from './app.module';
 import { AppComponent } from './app.component';
-import {FlexLayoutServerModule} from '@angular/flex-layout/server';
+import { FlexLayoutServerModule } from '@angular/flex-layout/server';
 
 @NgModule({
   imports: [
@@ -19,4 +19,4 @@ import {FlexLayoutServerModule} from '@angular/flex-layout/server';
   ],
   bootstrap: [ AppComponent ],
 })
-export class AppServerModule {}
+export class AppServerModule { }
