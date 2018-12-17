@@ -9,6 +9,8 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "importHelpers": true,
+    "noEmitHelpers": true,
     "target": "es5",
     "types": ["jest"],
     "typeRoots": [
