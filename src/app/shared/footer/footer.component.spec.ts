@@ -52,10 +52,10 @@ describe('FooterComponent', () => {
       .toBe(component.footerIcons.length);
 
     const footerIconNodes = Array.from(compiled.querySelectorAll('.footer__secondary-social--icon a'));
-    const footerIconsUrls = footerIconNodes.map((el: any) => el.getAttribute('href'));
+    const footerIconsHrefs = footerIconNodes.map((el: any) => el.getAttribute('href'));
 
     component.footerIcons.forEach(icon => {
-      expect(footerIconsUrls).toContain(icon.href);
+      expect(footerIconsHrefs).toContain(icon.href);
     });
   });
 
