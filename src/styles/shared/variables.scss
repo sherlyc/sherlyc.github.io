@@ -13,6 +13,19 @@ $base-radius: 2px;
 $base-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 
 /*------------------------------------*\
+    $HEADER
+\*------------------------------------*/
+
+$navigation-primary-height: 48px;
+$navigation-secondary-height: 45px;
+
+/*------------------------------------*\
+    $FOOTER
+\*------------------------------------*/
+
+$footer-height: 220px;
+
+/*------------------------------------*\
     $TEXT DIRECTION
 \*------------------------------------*/
 
@@ -120,6 +133,9 @@ $eta: 12px;
 $theta: 11px;
 $iota: 10px;
 
+$delta-medium: 17px;
+$delta-large: 18px;
+$delta-xlarge: 20px;
 
 /*------------------------------------*\
     $LINKS
@@ -190,3 +206,4 @@ $xlarge-only: '#{$screen} and (min-width:#{lower-bound($xlarge-range)}) and (max
 
 $xxlarge-up: '#{$screen} and (min-width:#{lower-bound($xxlarge-range)})';
 $xxlarge-only: '#{$screen} and (min-width:#{lower-bound($xxlarge-range)}) and (max-width:#{upper-bound($xxlarge-range)})';
+

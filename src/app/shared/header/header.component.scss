@@ -4,14 +4,21 @@
 //   $ HEADER
 //------------------------------------*/
 
-$navigation-primary-height: 48px;
-$navigation-secondary-height: 45px;
+
 $navigation-primary-and-secondary-height: $navigation-primary-height + $navigation-secondary-height;
 $sub-nav-zindex: 2000000;
 $gutter: 17px;
 
 .header {
   height: $navigation-primary-and-secondary-height;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background-color: #fff;
+
+  &:not(&__sub-nav) {
+    height: $navigation-secondary-height;
+  }
 
   &__main-menu-toggle {
     display: block;

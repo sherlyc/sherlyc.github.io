@@ -1,5 +1,9 @@
 <app-header
-  [mainNavLink]="{text: 'national', href: '/national'}"
-  [subNavLink]="{text: 'politics', href: '/national/politics'}"></app-header>
-<router-outlet></router-outlet>
-<footer>stuff-app-version</footer>
+  [mainNavLink]="{text: 'national', href: '/national'}"></app-header>
+
+<div class="main-content">
+  <router-outlet></router-outlet>
+  <p>v: stuff-app-version</p>
+</div>
+
+<app-footer></app-footer>
