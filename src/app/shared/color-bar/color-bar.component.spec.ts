@@ -8,9 +8,8 @@ describe('ColorBarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ColorBarComponent ]
-    })
-    .compileComponents();
+      declarations: [ColorBarComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

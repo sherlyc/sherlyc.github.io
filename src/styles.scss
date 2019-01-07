@@ -4,12 +4,11 @@
     BASE.CSS
 \*------------------------------------*/
 
-@import "~normalize.css/normalize.css";
+@import '~normalize.css/normalize.css';
 @import 'styles/shared/shared.scss';
 @import 'styles/base/typography.scss';
 @import 'styles/base/links.scss';
 @import 'styles/fonts/merriweather.scss';
-
 
 /**
  * HTML
@@ -20,7 +19,7 @@ html {
   height: 100%;
   font-family: $base-font-family;
   font-weight: $base-font-weight;
-  font-size:   $base-font-size;
+  font-size: $base-font-size;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   text-align: #{$dir-default};
@@ -54,6 +53,9 @@ button {
   outline: none;
 }
 
-button, input, select, textarea {
+button,
+input,
+select,
+textarea {
   font-family: $base-font-family;
 }

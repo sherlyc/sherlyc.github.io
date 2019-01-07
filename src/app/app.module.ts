@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ErrorHandler, Injectable  } from '@angular/core';
+import { NgModule, ErrorHandler, Injectable } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,11 +29,7 @@ export class SentryErrorHandler implements ErrorHandler {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    PageNotFoundComponent
-  ],
+  declarations: [AppComponent, HomeComponent, PageNotFoundComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'stuff-experience-frontend' }),
     AppRoutingModule,
@@ -46,4 +42,4 @@ export class SentryErrorHandler implements ErrorHandler {
   providers: [{ provide: ErrorHandler, useClass: SentryErrorHandler }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
