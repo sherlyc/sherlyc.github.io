@@ -95,6 +95,9 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist/server",
+            "sourceMap": false,
+            "optimization": true,
+            "outputHashing": "media",
             "main": "src/main.server.ts",
             "tsConfig": "src/tsconfig.server.json"
           }
