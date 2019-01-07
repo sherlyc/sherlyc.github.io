@@ -10,21 +10,23 @@
  */
 
 .text--body {
-    font-family: $base-font-family;
+  font-family: $base-font-family;
 }
 
 .text--display {
-    font-family: $heading-font-family;
+  font-family: $heading-font-family;
 }
 
 /**
  * Font sizes
  */
 
-p, span, li,
+p,
+span,
+li,
 .ad {
-    font-size: $delta;
-    line-height: $line-height-delta;
+  font-size: $delta;
+  line-height: $line-height-delta;
 }
 
 h1,
@@ -33,19 +35,19 @@ h3,
 h4,
 h5,
 h6 {
-    @include rem(margin-bottom, 0.5);
-    font-family: $heading-font-family;
-    font-weight: normal;
-    line-height: 1.25;
+  @include rem(margin-bottom, 0.5);
+  font-family: $heading-font-family;
+  font-weight: normal;
+  line-height: 1.25;
 }
-
 
 /**
  * Strong styles
  */
 
-strong, b {
-    font-weight: 600;
+strong,
+b {
+  font-weight: 600;
 }
 
 /**
@@ -53,9 +55,9 @@ strong, b {
  */
 
 .text--sub {
-    vertical-align: sub;
-    font-weight: 300;
-    @include font-size-adapt(9px, 10px);
+  vertical-align: sub;
+  font-weight: 300;
+  @include font-size-adapt(9px, 10px);
 }
 
 // Display bold, red text that can stand out to the user
@@ -69,8 +71,7 @@ strong, b {
  */
 
 blockquote {
-    @include font-size-adapt(16px, 20px);
-    font-style: italic;
-    padding: 1em;
+  @include font-size-adapt(16px, 20px);
+  font-style: italic;
+  padding: 1em;
 }
-

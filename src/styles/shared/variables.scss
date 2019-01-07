@@ -3,7 +3,8 @@
 \*------------------------------------*/
 
 $base-color: #444;
-$base-font-family: 'Merriweather Sans', 'Open Sans', Helvetica, Arial, sans-serif;
+$base-font-family: 'Merriweather Sans', 'Open Sans', Helvetica, Arial,
+  sans-serif;
 $base-font-weight: 300;
 $bold-font-weight: 700;
 $base-font-size: 17px;
@@ -34,8 +35,8 @@ $dir-reverse: 'right';
 $direction: 'LTR';
 
 @if $direction == 'RTL' {
-    $dir-default: 'right';
-    $dir-reverse: 'left';
+  $dir-default: 'right';
+  $dir-reverse: 'left';
 }
 
 /*------------------------------------*\
@@ -96,10 +97,10 @@ $color-section-default: #0e468e;
 // Alerts and message statuses
 //------------------------------------
 
-$color-success: #00824A;
+$color-success: #00824a;
 $color-warning: #f36f21;
 $color-error: #d12421;
-$color-info: #0083D7;
+$color-info: #0083d7;
 
 /*------------------------------------*\
     $GRID SETTINGS
@@ -111,7 +112,8 @@ $max-page-width: 1150px;
     $TYPOGRAPHY
 \*------------------------------------*/
 
-$heading-font-family: 'Merriweather', 'Lucida Bright', Lucidabright, 'Lucida Serif', Lucida, Georgia, serif;
+$heading-font-family: 'Merriweather', 'Lucida Bright', Lucidabright,
+  'Lucida Serif', Lucida, Georgia, serif;
 
 $line-height-alpha: 1.3;
 $line-height-beta: 1.35;
@@ -148,7 +150,6 @@ $link-visited-color: $color-primary-strong;
 $link-focus-color: $link-color;
 $link-underline: false;
 $link-underline-on-hover: true;
-
 
 /*------------------------------------*\
     $BREAKPOINTS
@@ -206,4 +207,3 @@ $xlarge-only: '#{$screen} and (min-width:#{lower-bound($xlarge-range)}) and (max
 
 $xxlarge-up: '#{$screen} and (min-width:#{lower-bound($xxlarge-range)})';
 $xxlarge-only: '#{$screen} and (min-width:#{lower-bound($xxlarge-range)}) and (max-width:#{upper-bound($xxlarge-range)})';
-
