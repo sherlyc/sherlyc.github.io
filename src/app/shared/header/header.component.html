@@ -3,38 +3,46 @@
     <div class="header__body">
       <div class="header__left">
         <div class="header__logo">
-          <a href="/" title="Stuff - stuff.co.nz">
-            <app-logo></app-logo>
-          </a>
+          <a href="/" title="Stuff - stuff.co.nz"> <app-logo></app-logo> </a>
         </div>
-        <a class="header__main-menu-toggle">
-          <span></span>
-        </a>
+        <a class="header__main-menu-toggle"> <span></span> </a>
       </div>
       <div class="header__center">
-        <nav aria-label="Top section main navigation" class="header__main-navigation" *ngIf="mainNavLink">
+        <nav
+          aria-label="Top section main navigation"
+          class="header__main-navigation"
+          *ngIf="mainNavLink"
+        >
           <ol class="header__main-navigation__top-list">
             <li class="header__main-navigation__section">
-              <a class="header__main-navigation__link" [href]="mainNavLink.href">
-                {{mainNavLink.text}}
+              <a
+                class="header__main-navigation__link"
+                [href]="mainNavLink.href"
+              >
+                {{ mainNavLink.text }}
               </a>
             </li>
           </ol>
         </nav>
       </div>
       <div class="header__right">
-        <button class="header__profile header__profile--login">
-        Log in
-        </button>
+        <button class="header__profile header__profile--login">Log in</button>
       </div>
     </div>
   </div>
   <app-color-bar></app-color-bar>
-  <nav class="header__sub-nav sub-nav--down" aria-label="Sub section navigation" *ngIf="subNavLink">
+  <nav
+    class="header__sub-nav sub-nav--down"
+    aria-label="Sub section navigation"
+    *ngIf="subNavLink"
+  >
     <div class="header__sub-nav__content-wrapper">
       <div class="header__sub-nav__content">
-        <a class="header__sub-nav__heading-link header__sub-nav__heading-link--selected" [href]="subNavLink.href">
-          <h2 class="header__sub-nav__heading">{{subNavLink.text}}</h2>
+        <a
+          class="header__sub-nav__heading-link header__sub-nav__heading-link--selected"
+          [href]="subNavLink.href"
+        >
+          <h2 class="header__sub-nav__heading">{{ subNavLink.text }}</h2>
         </a>
       </div>
     </div>

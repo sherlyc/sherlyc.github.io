@@ -4,8 +4,8 @@
 //   $ HEADER
 //------------------------------------*/
 
-
-$navigation-primary-and-secondary-height: $navigation-primary-height + $navigation-secondary-height;
+$navigation-primary-and-secondary-height: $navigation-primary-height +
+  $navigation-secondary-height;
 $sub-nav-zindex: 2000000;
 $gutter: 17px;
 
@@ -72,9 +72,13 @@ $gutter: 17px;
     font-size: $theta;
     font-family: $base-font-family;
 
-    &:focus { outline: 0; }
+    &:focus {
+      outline: 0;
+    }
 
-    &:active { opacity: 0.6; }
+    &:active {
+      opacity: 0.6;
+    }
 
     &:before {
       margin-right: 0;
@@ -91,9 +95,8 @@ $gutter: 17px;
     &:hover {
       opacity: 0.7;
       cursor: pointer;
-      transition: .5s;
+      transition: 0.5s;
     }
-
   }
 
   &__body {
@@ -104,7 +107,7 @@ $gutter: 17px;
     margin: 0 auto;
   }
 
-  &__left  {
+  &__left {
     display: flex;
     align-items: center;
     min-width: em(66, strip-unit($delta));
@@ -135,7 +138,6 @@ $gutter: 17px;
       min-width: em(120, strip-unit($delta));
     }
   }
-
 
   //------------------------------------*\
   //   $ MAIN NAV
@@ -176,7 +178,6 @@ $gutter: 17px;
       }
     }
   }
-
 
   //------------------------------------*\
   //   $ SUB NAV
@@ -222,7 +223,9 @@ $gutter: 17px;
       flex-shrink: 0;
       position: relative;
 
-      &:hover, &:focus, &--selected {
+      &:hover,
+      &:focus,
+      &--selected {
         color: inherit;
         text-decoration: none;
 
@@ -238,5 +241,4 @@ $gutter: 17px;
       }
     }
   }
-
 }
