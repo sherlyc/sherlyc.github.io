@@ -9,13 +9,9 @@ describe('HeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        StuffCustomMaterialModule,
-        SharedModule
-      ],
+      imports: [StuffCustomMaterialModule, SharedModule],
       declarations: []
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -30,14 +26,18 @@ describe('HeaderComponent', () => {
 
   it('should render main-nav and sub-nav in header', () => {
     // given
-    component.mainNavLink = {text: 'national', href: '/national'};
-    component.subNavLink = {text: 'politics', href: '/national/politics'};
+    component.mainNavLink = { text: 'national', href: '/national' };
+    component.subNavLink = { text: 'politics', href: '/national/politics' };
     // when
     fixture.detectChanges();
     // then
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.header__main-navigation__link').textContent).toContain(component.mainNavLink.text);
-    expect(compiled.querySelector('.header__sub-nav__heading').textContent).toContain(component.subNavLink.text);
+    expect(
+      compiled.querySelector('.header__main-navigation__link').textContent
+    ).toContain(component.mainNavLink.text);
+    expect(
+      compiled.querySelector('.header__sub-nav__heading').textContent
+    ).toContain(component.subNavLink.text);
   });
 
   it('should not render main-nav not given main-nav link', () => {

@@ -6,17 +6,22 @@
 \*------------------------------------*/
 
 a {
-    @include link-colors($link-color, $link-hover-color, $link-active-color, $link-visited-color, $link-focus-color);
-    text-decoration: none;
+  @include link-colors(
+    $link-color,
+    $link-hover-color,
+    $link-active-color,
+    $link-visited-color,
+    $link-focus-color
+  );
+  text-decoration: none;
 
-    @if $link-underline {
-        text-decoration: underline;
-    }
+  @if $link-underline {
+    text-decoration: underline;
+  }
 
-    @if $link-underline-on-hover {
-        &:hover {
-            text-decoration: underline;
-        }
+  @if $link-underline-on-hover {
+    &:hover {
+      text-decoration: underline;
     }
+  }
 }
-

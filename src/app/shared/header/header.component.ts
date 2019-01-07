@@ -6,18 +6,15 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
   @Input()
   mainNavLink: NavLink;
 
   @Input()
   subNavLink: NavLink;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
 
 interface NavLink {

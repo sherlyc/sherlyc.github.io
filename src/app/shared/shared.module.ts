@@ -6,20 +6,13 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   declarations: [
     ColorBarComponent,
     LogoComponent,
     HeaderComponent,
     FooterComponent
   ],
-  exports: [
-    ColorBarComponent,
-    LogoComponent,
-    HeaderComponent,
-    FooterComponent
-  ]
+  exports: [ColorBarComponent, LogoComponent, HeaderComponent, FooterComponent]
 })
-export class SharedModule { }
+export class SharedModule {}

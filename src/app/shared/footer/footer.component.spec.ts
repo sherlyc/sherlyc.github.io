@@ -9,12 +9,8 @@ describe('FooterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        FooterComponent,
-        ColorBarComponent
-      ]
-    })
-    .compileComponents();
+      declarations: [FooterComponent, ColorBarComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -31,30 +27,42 @@ describe('FooterComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     fixture.detectChanges();
 
-    expect(compiled.querySelectorAll('.footer__link').length).toBe(component.footerLinks.length);
+    expect(compiled.querySelectorAll('.footer__link').length).toBe(
+      component.footerLinks.length
+    );
 
-    const footerLinksNodes = Array.from(compiled.querySelectorAll('.footer__link a'));
-    const footerLinksText = footerLinksNodes.map((el: any) => el.textContent.trim());
-    const footerLinksHrefs = footerLinksNodes.map((el: any) => el.getAttribute('href'));
+    const footerLinksNodes = Array.from(
+      compiled.querySelectorAll('.footer__link a')
+    );
+    const footerLinksText = footerLinksNodes.map((el: any) =>
+      el.textContent.trim()
+    );
+    const footerLinksHrefs = footerLinksNodes.map((el: any) =>
+      el.getAttribute('href')
+    );
 
-    component.footerLinks.forEach(link => {
+    component.footerLinks.forEach((link) => {
       expect(footerLinksText).toContain(link.title);
       expect(footerLinksHrefs).toContain(link.url);
     });
   });
 
-
   it('should render footer icons correctly', () => {
     const compiled = fixture.debugElement.nativeElement;
     fixture.detectChanges();
 
-    expect(compiled.querySelectorAll('.footer__secondary-social--icon').length)
-      .toBe(component.footerIcons.length);
+    expect(
+      compiled.querySelectorAll('.footer__secondary-social--icon').length
+    ).toBe(component.footerIcons.length);
 
-    const footerIconNodes = Array.from(compiled.querySelectorAll('.footer__secondary-social--icon a'));
-    const footerIconsHrefs = footerIconNodes.map((el: any) => el.getAttribute('href'));
+    const footerIconNodes = Array.from(
+      compiled.querySelectorAll('.footer__secondary-social--icon a')
+    );
+    const footerIconsHrefs = footerIconNodes.map((el: any) =>
+      el.getAttribute('href')
+    );
 
-    component.footerIcons.forEach(icon => {
+    component.footerIcons.forEach((icon) => {
       expect(footerIconsHrefs).toContain(icon.href);
     });
   });
@@ -64,7 +72,10 @@ describe('FooterComponent', () => {
     fixture.detectChanges();
 
     const currentYear = new Date().getFullYear();
-    expect(compiled.querySelector('.footer__secondary-copyright p').textContent.trim())
-      .toContain(currentYear);
+    expect(
+      compiled
+        .querySelector('.footer__secondary-copyright p')
+        .textContent.trim()
+    ).toContain(currentYear);
   });
 });
