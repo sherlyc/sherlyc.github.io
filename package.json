@@ -8,6 +8,7 @@
     "test": "ng test --verbose",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "format": "prettier --write 'src/**/*.{js,json,css,md}' && prettier --parser=typescript --write 'src/**/*.ts'",
     "compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json -w -s",
     "build:ssr": "npm run build:client-and-server-bundles && npm run webpack:server",
     "serve:ssr": "node dist/server",
@@ -56,8 +57,10 @@
     "jasmine-spec-reporter": "^4.2.1",
     "jest": "^23.6.0",
     "jest-preset-angular": "^6.0.1",
+    "lint-staged": "^8.1.0",
     "node-sass": "^4.10.0",
     "normalize.css": "^8.0.1",
+    "prettier": "1.15.3",
     "protractor": "^5.4.1",
     "rxjs-tslint": "^0.1.5",
     "ts-node": "~7.0.0",
@@ -68,8 +71,12 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "ng lint && ng test --watch=false",
+      "pre-commit": "lint-staged && ng lint && ng test --watch=false",
       "pre-push": "ng e2e --port 4300"
     }
+  },
+  "lint-staged": {
+    "src/**/*.{js,json,css,md}": ["prettier --write", "git add"],
+    "src/**/*.ts": ["prettier --parser=typescript --write", "git add"]
   }
 }
