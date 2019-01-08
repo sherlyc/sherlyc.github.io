@@ -19,12 +19,12 @@ export default {
     // Temporary Fix for issue: https://github.com/angular/angular/issues/11580
     // for 'WARNING Critical dependency: the request of a dependency is an expression'
     new ContextReplacementPlugin(
-      /(.+)?angular(\\|\/)core(.+)?/,
+      /(.+)?angular([\\/])core(.+)?/,
       join(__dirname, 'src'), // location of your src
       {} // a map of your routes
     ),
     new ContextReplacementPlugin(
-      /(.+)?express(\\|\/)(.+)?/,
+      /(.+)?express([\\/])(.+)?/,
       join(__dirname, 'src'),
       {}
     )
