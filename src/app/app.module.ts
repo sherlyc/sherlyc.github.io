@@ -22,7 +22,7 @@ Sentry.init({
 @Injectable()
 export class SentryErrorHandler implements ErrorHandler {
   constructor() {}
-  handleError(error) {
+  handleError(error: any) {
     Sentry.captureException(error.originalError || error);
     throw error;
   }
