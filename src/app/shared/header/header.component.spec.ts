@@ -42,7 +42,7 @@ describe('HeaderComponent', () => {
 
   it('should not render main-nav not given main-nav link', () => {
     // given
-    component.mainNavLink = undefined;
+    component.mainNavLink = undefined as any;
     // when
     fixture.detectChanges();
     // then
@@ -52,7 +52,7 @@ describe('HeaderComponent', () => {
 
   it('should not render sub-nav not given sub-nav link', () => {
     // given
-    component.subNavLink = undefined;
+    component.subNavLink = undefined as any;
     // when
     fixture.detectChanges();
     // then

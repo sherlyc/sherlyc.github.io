@@ -15,7 +15,7 @@ COPY package*.json ./
 RUN npm install
 
 # Copy all app and server source
-COPY server.ts *.json *.js ./
+COPY *.ts *.json *.js ./
 COPY src src
 COPY e2e e2e
 
