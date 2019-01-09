@@ -7,10 +7,10 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   @Input()
-  mainNavLink: NavLink;
+  mainNavLink!: NavLink;
 
   @Input()
-  subNavLink: NavLink;
+  subNavLink!: NavLink;
 
   constructor() {}
 

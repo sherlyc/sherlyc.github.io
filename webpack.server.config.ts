@@ -1,7 +1,7 @@
-const path = require('path');
-const webpack = require('webpack');
+import { join } from 'path';
+import { ContextReplacementPlugin } from 'webpack';
 
-module.exports = {
+export default {
   entry: { server: './server.ts' },
   resolve: { extensions: ['.js', '.ts'] },
   target: 'node',
@@ -9,7 +9,7 @@ module.exports = {
   // this makes sure we include node_modules and other 3rd party libraries
   externals: [/node_modules/],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: join(__dirname, 'dist'),
     filename: '[name].js'
   },
   module: {
@@ -18,14 +18,14 @@ module.exports = {
   plugins: [
     // Temporary Fix for issue: https://github.com/angular/angular/issues/11580
     // for 'WARNING Critical dependency: the request of a dependency is an expression'
-    new webpack.ContextReplacementPlugin(
-      /(.+)?angular(\\|\/)core(.+)?/,
-      path.join(__dirname, 'src'), // location of your src
+    new ContextReplacementPlugin(
+      /(.+)?angular([\\/])core(.+)?/,
+      join(__dirname, 'src'), // location of your src
       {} // a map of your routes
     ),
-    new webpack.ContextReplacementPlugin(
-      /(.+)?express(\\|\/)(.+)?/,
-      path.join(__dirname, 'src'),
+    new ContextReplacementPlugin(
+      /(.+)?express([\\/])(.+)?/,
+      join(__dirname, 'src'),
       {}
     )
   ]
