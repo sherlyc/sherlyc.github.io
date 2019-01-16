@@ -1,4 +1,4 @@
-export interface RawArticle {
+export interface IRawArticle {
   id: string;
   indexHeadline: string;
   introText: string;
