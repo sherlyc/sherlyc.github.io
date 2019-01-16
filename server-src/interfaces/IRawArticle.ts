@@ -3,6 +3,6 @@ export interface IRawArticle {
   indexHeadline: string;
   introText: string;
   linkUrl: string;
-  imageSrc: string;
+  imageSrc: string | null;
   displayTime: string;
 }
