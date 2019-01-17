@@ -6,7 +6,7 @@ import { cloneDeep } from 'lodash';
 import { IRawArticleList } from '../interfaces/IRawArticleList';
 import { IRawArticle } from '../interfaces/IRawArticle';
 
-describe('JsonFeed', () => {
+describe('JsonFeed Mapper', () => {
   it('should map jsonfeed to standard json format', () => {
     const data: IJsonFeedArticleList = cloneDeep(jsonfeed);
     expect(map(data)).toEqual(standard);
