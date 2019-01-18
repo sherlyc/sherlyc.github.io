@@ -19,4 +19,12 @@ describe('JsonFeed Retriever', () => {
     (axios.get as any).mockRejectedValue(new Error('AJAX error'));
     await expect(retrieve()).rejects.toThrow('AJAX error');
   });
+
+  it('should retry the api call', async () => {
+    (axios.get as any)
+      .mockResolvedValueOnce({ status: 500 })
+      .mockResolvedValue({ data: jsonfeed });
+
+    expect(await retrieve()).toEqual(jsonfeed);
+  });
 });
