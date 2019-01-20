@@ -13,7 +13,7 @@ describe('JsonFeed Retriever', () => {
 
   it('should not retrieve the article list when jsonfeed responds with 500', async () => {
     (axios.get as any).mockRejectedValue(
-      toAXiosError(new Error('Internal Server Error'), '500')
+      toAxiosError(new Error('Internal Server Error'), '500')
     );
     await expect(retrieve(false)).rejects.toEqual(
       toIHttpError(new Error('Internal Server Error'), '500')
@@ -21,18 +21,16 @@ describe('JsonFeed Retriever', () => {
   });
 
   it('should not retrieve the article list when jsonfeed request fails', async () => {
-    (axios.get as any).mockRejectedValue(
-      toAXiosError(new Error('AJAX error'), '400')
-    );
+    (axios.get as any).mockRejectedValue(toAxiosError(new Error('AJAX error')));
     await expect(retrieve(false)).rejects.toEqual(
-      toIHttpError(new Error('AJAX error'), '400')
+      toIHttpError(new Error('AJAX error'))
     );
   });
 
   it('should retry the api call', async () => {
     (axios.get as any)
       .mockRejectedValueOnce(
-        toAXiosError(new Error('Internal Server Error'), '500')
+        toAxiosError(new Error('Internal Server Error'), '500')
       )
       .mockResolvedValue({ data: jsonfeed });
 
@@ -40,13 +38,13 @@ describe('JsonFeed Retriever', () => {
   });
 });
 
-const toAXiosError = (error: Error, code: string): AxiosError => {
+const toAxiosError = (error: Error, code?: string): AxiosError => {
   const axiosError: AxiosError = error as AxiosError;
   axiosError.code = code;
   return axiosError;
 };
 
-const toIHttpError = (error: Error, code: string): IHttpError => {
+const toIHttpError = (error: Error, code?: string): IHttpError => {
   const httpError: IHttpError = error as IHttpError;
   httpError.code = code;
   return httpError;
