@@ -1,6 +1,6 @@
 import { IJsonFeedArticleList } from '../interfaces/IJsonFeedArticleList';
 import config from './config';
-import { FailedAttemptError } from 'p-retry';
+import logger from './logger';
 import axios from 'axios';
 import * as pRetry from 'p-retry';
 
@@ -20,10 +20,11 @@ export default () => {
     retries: 3,
     factor: 1,
     minTimeout: config.retryTimeout,
-    onFailedAttempt: (error: FailedAttemptError) => {
-      console.warn(
+    onFailedAttempt: (error: any) => {
+      console.log(JSON.stringify(error));
+      logger.warn(
         `Attempt ${error.attemptNumber} failing when calling. There are ${
-          error.attemptsLeft
+          error.retriesLeft
         } retries left.`
       );
     }

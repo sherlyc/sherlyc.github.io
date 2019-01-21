@@ -2,21 +2,37 @@
   "production": {
     "retryTimeout": 1000,
     "requestTimeout": 10000,
-    "jsonFeedAPI": "https://www.stuff.co.nz/_json2"
+    "jsonFeedAPI": "https://www.stuff.co.nz/_json2",
+    "loggerOptions": {
+      "level": "info",
+      "format": "json"
+    }
   },
   "staging": {
     "retryTimeout": 1000,
     "requestTimeout": 10000,
-    "jsonFeedAPI": "https://www-preprod.stuff.co.nz/_json2"
+    "jsonFeedAPI": "https://www-preprod.stuff.co.nz/_json2",
+    "loggerOptions": {
+      "level": "info",
+      "format": "json"
+    }
   },
   "development": {
     "retryTimeout": 500,
     "requestTimeout": 10000,
-    "jsonFeedAPI": "https://www-preprod.stuff.co.nz/_json2"
+    "jsonFeedAPI": "https://www-preprod.stuff.co.nz/_json2",
+    "loggerOptions": {
+      "level": "debug",
+      "format": "text"
+    }
   },
   "test": {
     "retryTimeout": 1,
     "requestTimeout": 10000,
-    "jsonFeedAPI": "https://www-preprod.stuff.co.nz/_json2"
+    "jsonFeedAPI": "https://www-preprod.stuff.co.nz/_json2",
+    "loggerOptions": {
+      "level": "debug",
+      "format": "text"
+    }
   }
 }
