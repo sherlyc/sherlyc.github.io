@@ -1,7 +1,6 @@
 import retrieve from '../jsonFeed.retriever';
 import * as jsonfeed from './fixtures/jsonfeed.json';
-import axios, { AxiosError } from 'axios';
-import { IHttpError } from '../../interfaces/HttpError';
+import axios from 'axios';
 
 jest.mock('axios');
 
@@ -12,40 +11,22 @@ describe('JsonFeed Retriever', () => {
   });
 
   it('should not retrieve the article list when jsonfeed responds with 500', async () => {
-    (axios.get as any).mockRejectedValue(
-      toAxiosError(new Error('Internal Server Error'), '500')
-    );
+    (axios.get as any).mockRejectedValue(new Error('Internal Server Error'));
     await expect(retrieve(false)).rejects.toEqual(
-      toIHttpError(new Error('Internal Server Error'), '500')
+      new Error('Internal Server Error')
     );
   });
 
   it('should not retrieve the article list when jsonfeed request fails', async () => {
-    (axios.get as any).mockRejectedValue(toAxiosError(new Error('AJAX error')));
-    await expect(retrieve(false)).rejects.toEqual(
-      toIHttpError(new Error('AJAX error'))
-    );
+    (axios.get as any).mockRejectedValue(new Error('AJAX error'));
+    await expect(retrieve(false)).rejects.toEqual(new Error('AJAX error'));
   });
 
   it('should retry the api call', async () => {
     (axios.get as any)
-      .mockRejectedValueOnce(
-        toAxiosError(new Error('Internal Server Error'), '500')
-      )
+      .mockRejectedValueOnce(new Error('Internal Server Error'))
       .mockResolvedValue({ data: jsonfeed });
 
     expect(await retrieve()).toEqual(jsonfeed);
   });
 });
-
-const toAxiosError = (error: Error, code?: string): AxiosError => {
-  const axiosError: AxiosError = error as AxiosError;
-  axiosError.code = code;
-  return axiosError;
-};
-
-const toIHttpError = (error: Error, code?: string): IHttpError => {
-  const httpError: IHttpError = error as IHttpError;
-  httpError.code = code;
-  return httpError;
-};
