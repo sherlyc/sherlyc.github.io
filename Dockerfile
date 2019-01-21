@@ -17,6 +17,7 @@ RUN npm install
 # Copy all app and server source
 COPY *.ts *.json *.js ./
 COPY src src
+COPY server-src server-src
 COPY e2e e2e
 
 RUN npm run lint
