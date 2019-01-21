@@ -1,5 +1,22 @@
 {
-  "retryTimeout": 1000,
-  "requestTimeout": 10000,
-  "jsonFeedAPI": "https://www.stuff.co.nz/_json2"
+  "production": {
+    "retryTimeout": 1000,
+    "requestTimeout": 10000,
+    "jsonFeedAPI": "https://www.stuff.co.nz/_json2"
+  },
+  "staging": {
+    "retryTimeout": 1000,
+    "requestTimeout": 10000,
+    "jsonFeedAPI": "https://www-preprod.stuff.co.nz/_json2"
+  },
+  "development": {
+    "retryTimeout": 1000,
+    "requestTimeout": 10000,
+    "jsonFeedAPI": "https://www-preprod.stuff.co.nz/_json2"
+  },
+  "test": {
+    "retryTimeout": 1,
+    "requestTimeout": 10000,
+    "jsonFeedAPI": "https://www-preprod.stuff.co.nz/_json2"
+  }
 }

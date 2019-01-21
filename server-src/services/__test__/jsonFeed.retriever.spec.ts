@@ -4,9 +4,8 @@ import axios from 'axios';
 import * as config from '../config.json';
 
 jest.mock('axios');
-jest.mock('../config.json', () => ({
-  ...config,
-  retryTimeout: 1
+jest.mock('../config', () => ({
+  ...config.test
 }));
 
 describe('JsonFeed Retriever', () => {
