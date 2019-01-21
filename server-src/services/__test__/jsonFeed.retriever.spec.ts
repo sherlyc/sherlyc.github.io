@@ -1,10 +1,12 @@
 import retrieve from '../jsonFeed.retriever';
 import * as jsonfeed from './fixtures/jsonfeed.json';
 import axios from 'axios';
+import * as config from '../config.json';
 
 jest.mock('axios');
 jest.mock('../config.json', () => ({
-  retryTimeOut: 1
+  ...config,
+  retryTimeout: 1
 }));
 
 describe('JsonFeed Retriever', () => {

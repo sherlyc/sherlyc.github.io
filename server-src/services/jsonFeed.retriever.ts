@@ -1,17 +1,15 @@
 import { IJsonFeedArticleList } from '../interfaces/IJsonFeedArticleList';
+import { retryTimeout, requestTimeout, jsonFeedAPI } from './config.json';
+import { FailedAttemptError } from 'p-retry';
 import axios from 'axios';
 import * as pRetry from 'p-retry';
-import * as config from './config.json';
-import { FailedAttemptError } from 'p-retry';
-
-const JSON_FEED_API = 'https://www.stuff.co.nz/_json2';
 
 async function apiCall(): Promise<IJsonFeedArticleList> {
-  const response = await axios.get<IJsonFeedArticleList>(JSON_FEED_API, {
+  const response = await axios.get<IJsonFeedArticleList>(jsonFeedAPI, {
     validateStatus: (status: number) => {
       return status >= 200 && status < 400;
     },
-    timeout: 10 * 1000
+    timeout: requestTimeout
   });
 
   return response.data;
@@ -21,10 +19,10 @@ export default () => {
   return pRetry(apiCall, {
     retries: 3,
     factor: 1,
-    minTimeout: config.retryTimeOut,
+    minTimeout: retryTimeout,
     onFailedAttempt: (error: FailedAttemptError) => {
-      console.log(
-        `Attempt ${error.attemptNumber} failing when calling . There are ${
+      console.warn(
+        `Attempt ${error.attemptNumber} failing when calling. There are ${
           error.attemptsLeft
         } retries left.`
       );
