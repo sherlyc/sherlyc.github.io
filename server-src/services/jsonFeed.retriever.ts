@@ -1,6 +1,8 @@
 import { IJsonFeedArticleList } from '../interfaces/IJsonFeedArticleList';
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 import * as pRetry from 'p-retry';
+import * as config from './config.json';
+import { FailedAttemptError } from 'p-retry';
 
 const JSON_FEED_API = 'https://www.stuff.co.nz/_json2';
 
@@ -15,10 +17,17 @@ async function apiCall(): Promise<IJsonFeedArticleList> {
   return response.data;
 }
 
-export default (withRetry: boolean = true) => {
-  if (withRetry) {
-    return pRetry(apiCall, { retries: 3, factor: 1 });
-  } else {
-    return apiCall();
-  }
+export default () => {
+  return pRetry(apiCall, {
+    retries: 3,
+    factor: 1,
+    minTimeout: config.retryTimeOut,
+    onFailedAttempt: (error: FailedAttemptError) => {
+      console.log(
+        `Attempt ${error.attemptNumber} failing when calling . There are ${
+          error.attemptsLeft
+        } retries left.`
+      );
+    }
+  });
 };
