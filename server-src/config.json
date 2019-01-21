@@ -10,7 +10,7 @@
     "jsonFeedAPI": "https://www-preprod.stuff.co.nz/_json2"
   },
   "development": {
-    "retryTimeout": 1000,
+    "retryTimeout": 500,
     "requestTimeout": 10000,
     "jsonFeedAPI": "https://www-preprod.stuff.co.nz/_json2"
   },

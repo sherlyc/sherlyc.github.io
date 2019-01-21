@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test --verbose",
-    "test:server": "jest --config ./server-src/jest.config.json",
+    "test:server": "SPADE_ENV=test jest --config ./server-src/jest.config.json",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "format": "prettier --write '**/*.{js,json,css,scss,md,html,yaml,ts}' '!dist/**' '!documentation/**' '!coverage/**'",

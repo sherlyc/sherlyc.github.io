@@ -1,12 +1,8 @@
 import retrieve from '../jsonFeed.retriever';
 import * as jsonfeed from './fixtures/jsonfeed.json';
 import axios from 'axios';
-import * as config from '../config.json';
 
 jest.mock('axios');
-jest.mock('../config', () => ({
-  ...config.test
-}));
 
 describe('JsonFeed Retriever', () => {
   it('should respond with the article list', async () => {
