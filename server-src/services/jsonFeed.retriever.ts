@@ -21,7 +21,6 @@ export default () => {
     factor: 1,
     minTimeout: config.retryTimeout,
     onFailedAttempt: (error: any) => {
-      console.log(JSON.stringify(error));
       logger.warn(
         `Attempt ${error.attemptNumber} failing when calling. There are ${
           error.retriesLeft
