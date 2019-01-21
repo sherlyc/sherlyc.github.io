@@ -18,7 +18,7 @@ async function apiCall(): Promise<IJsonFeedArticleList> {
 export default (withRetry: boolean = true) => {
   if (withRetry) {
     return pRetry(apiCall, { retries: 3, factor: 1 });
+  } else {
+    return apiCall();
   }
-
-  return apiCall();
 };

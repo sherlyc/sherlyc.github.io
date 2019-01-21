@@ -11,15 +11,15 @@ describe('JsonFeed Retriever', () => {
   });
 
   it('should not retrieve the article list when jsonfeed responds with 500', async () => {
-    (axios.get as any).mockRejectedValue(new Error('Internal Server Error'));
-    await expect(retrieve(false)).rejects.toEqual(
-      new Error('Internal Server Error')
-    );
+    const error = new Error('Internal Server Error');
+    (axios.get as any).mockRejectedValue(error);
+    await expect(retrieve(false)).rejects.toEqual(error);
   });
 
   it('should not retrieve the article list when jsonfeed request fails', async () => {
-    (axios.get as any).mockRejectedValue(new Error('AJAX error'));
-    await expect(retrieve(false)).rejects.toEqual(new Error('AJAX error'));
+    const error = new Error('AJAX error');
+    (axios.get as any).mockRejectedValue(error);
+    await expect(retrieve(false)).rejects.toEqual(error);
   });
 
   it('should retry the api call', async () => {
