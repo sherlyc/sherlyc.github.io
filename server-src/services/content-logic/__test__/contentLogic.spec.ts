@@ -3,11 +3,14 @@ import { IRawArticle } from '../../../interfaces/IRawArticle';
 import * as articleList from '../../__test__/fixtures/standard.json';
 import * as olderToNewest from '../../__test__/fixtures/olderToNewest.json';
 import applyRules from '../../content-logic/contentLogic';
+import { IContentRuleList } from '../../../interfaces/IContentRuleList';
 
 const mockRule: IContentRule = jest.fn((articles: IRawArticle[]) => articles);
 jest.mock('../../content-logic/rulesLoader', () => ({
   __esModule: true,
-  default: (): Map<string, IContentRule> => new Map([['dummy', mockRule]])
+  default: (): IContentRuleList => {
+    return { dummy: mockRule };
+  }
 }));
 
 describe('Content Logic', () => {

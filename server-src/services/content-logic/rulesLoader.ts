@@ -1,9 +1,9 @@
-import { IContentRule } from '../../interfaces/IContentRule';
 import olderToNewest from './rules/olderToNewest.rule';
+import { IContentRuleList } from '../../interfaces/IContentRuleList';
 
-const availableRules: Map<string, IContentRule> = new Map();
+const availableRules: IContentRuleList = {};
 
-export default (): Map<string, IContentRule> => {
-  availableRules.set('olderToNewest', olderToNewest);
+export default (): IContentRuleList => {
+  availableRules['olderToNewest'] = olderToNewest;
   return availableRules;
 };

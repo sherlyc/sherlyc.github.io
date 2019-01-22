@@ -5,7 +5,7 @@ import loadRules from './rulesLoader';
 
 export default (articleList: IRawArticleList): IRawArticle[] => {
   let articles: IRawArticle[] = Object.values(articleList);
-  loadRules().forEach((rule: IContentRule) => {
+  Object.values(loadRules()).forEach((rule: IContentRule) => {
     articles = rule(articles);
   });
 
