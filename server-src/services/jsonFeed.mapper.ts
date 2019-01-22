@@ -12,7 +12,7 @@ export default (jsonfeed: IJsonFeedArticleList): IRawArticleList => {
         introText: item.alt_intro,
         linkUrl: item.path,
         imageSrc: getImageSrc(item),
-        displayTime: moment(item.datetime_iso8601).unix()
+        timestamp: moment(item.datetime_iso8601).unix()
       };
       return final;
     },
