@@ -4,5 +4,5 @@ export interface IRawArticle {
   introText: string;
   linkUrl: string;
   imageSrc: string | null;
-  displayTime: string;
+  timestamp: number;
 }

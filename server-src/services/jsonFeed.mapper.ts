@@ -1,6 +1,7 @@
 import { IJsonFeedArticleList } from '../interfaces/IJsonFeedArticleList';
 import { IRawArticleList } from '../interfaces/IRawArticleList';
 import { IJsonFeedArticle } from '../interfaces/IJsonFeedArticle';
+import * as moment from 'moment';
 
 export default (jsonfeed: IJsonFeedArticleList): IRawArticleList => {
   return jsonfeed.stories.reduce(
@@ -11,7 +12,7 @@ export default (jsonfeed: IJsonFeedArticleList): IRawArticleList => {
         introText: item.alt_intro,
         linkUrl: item.path,
         imageSrc: getImageSrc(item),
-        displayTime: item.datetime_iso8601
+        timestamp: moment(item.datetime_iso8601).unix()
       };
       return final;
     },
