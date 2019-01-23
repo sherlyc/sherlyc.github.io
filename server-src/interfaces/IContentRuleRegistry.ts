@@ -1,5 +1,5 @@
 import { IContentRule } from './IContentRule';
 
-export interface IContentRuleList {
+export interface IContentRuleRegistry {
   [key: string]: IContentRule;
 }

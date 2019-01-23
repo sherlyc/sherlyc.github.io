@@ -1,9 +1,9 @@
 import olderToNewest from './rules/olderToNewest.rule';
-import { IContentRuleList } from '../../interfaces/IContentRuleList';
+import { IContentRuleRegistry } from '../../interfaces/IContentRuleRegistry';
 
-const availableRules: IContentRuleList = {};
+const availableRules: IContentRuleRegistry = {};
 
-export default (): IContentRuleList => {
+export default (): IContentRuleRegistry => {
   availableRules['olderToNewest'] = olderToNewest;
   return availableRules;
 };

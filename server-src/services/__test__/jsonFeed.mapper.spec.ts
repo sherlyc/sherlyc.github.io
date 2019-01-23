@@ -3,7 +3,6 @@ import * as standard from './fixtures/standard.json';
 import map from '../jsonFeed.mapper';
 import { IJsonFeedArticleList } from '../../interfaces/IJsonFeedArticleList';
 import { cloneDeep } from 'lodash';
-import { IRawArticleList } from '../../interfaces/IRawArticleList';
 import { IRawArticle } from '../../interfaces/IRawArticle';
 
 describe('JsonFeed Mapper', () => {
@@ -18,7 +17,7 @@ describe('JsonFeed Mapper', () => {
       story.images = [];
     });
 
-    const expected: IRawArticleList = cloneDeep(standard);
+    const expected: IRawArticle[] = cloneDeep(standard);
     Object.values(expected).forEach((article: IRawArticle) => {
       article.imageSrc = null;
     });
