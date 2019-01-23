@@ -1,4 +1,4 @@
-import olderToNewest from './rules/olderToNewest.rule';
+import olderToNewest from './olderToNewestRule';
 import { IContentRuleRegistry } from '../../interfaces/IContentRuleRegistry';
 
 const ruleRegistry: IContentRuleRegistry = {};

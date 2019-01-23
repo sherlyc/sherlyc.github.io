@@ -1,7 +1,7 @@
-import * as articleList from '../../../__test__/fixtures/standard.json';
-import * as olderToNewestExpected from '../../../__test__/fixtures/olderToNewest.json';
-import olderToNewest from '../olderToNewest.rule';
-import { IRawArticle } from '../../../../interfaces/IRawArticle';
+import * as articleList from '../../__test__/fixtures/standard.json';
+import * as olderToNewestExpected from '../../__test__/fixtures/olderToNewest.json';
+import olderToNewest from '../olderToNewestRule';
+import { IRawArticle } from '../../../interfaces/IRawArticle';
 
 describe('Older to newest rule', () => {
   it('should sort a provided standard article list from older to newest', () => {
