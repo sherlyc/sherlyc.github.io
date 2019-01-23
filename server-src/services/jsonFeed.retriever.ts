@@ -20,7 +20,7 @@ export default () => {
     retries: 3,
     factor: 1,
     minTimeout: config.retryTimeout,
-    onFailedAttempt: (error: any) => {
+    onFailedAttempt: (error: pRetry.FailedAttemptError & any) => {
       logger.warn(
         `Attempt ${error.attemptNumber} failing when calling. There are ${
           error.retriesLeft
