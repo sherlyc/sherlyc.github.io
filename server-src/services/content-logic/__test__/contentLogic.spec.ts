@@ -1,22 +1,20 @@
 import { IContentRule } from '../../../interfaces/IContentRule';
 import { IRawArticle } from '../../../interfaces/IRawArticle';
 import * as articleList from '../../__test__/fixtures/standard.json';
-import * as olderToNewest from '../../__test__/fixtures/olderToNewest.json';
+import ruleRegistry from '../ruleRegistry';
 import applyRules from '../../content-logic/contentLogic';
-import { IContentRuleList } from '../../../interfaces/IContentRuleList';
 
-const mockRule: IContentRule = jest.fn((articles: IRawArticle[]) => articles);
-jest.mock('../../content-logic/rulesLoader', () => ({
+jest.mock('../../content-logic/ruleRegistry', () => ({
   __esModule: true,
-  default: (): IContentRuleList => {
-    return { dummy: mockRule };
-  }
+  default: { dummy: jest.fn((articles: IRawArticle[]) => articles.reverse()) }
 }));
 
 describe('Content Logic', () => {
   it('should apply all the rules provided a list of article', () => {
-    const expectedArticleList: IRawArticle[] = olderToNewest;
+    const expectedArticleList: IRawArticle[] = articleList.reverse();
     expect(applyRules(articleList)).toEqual(expectedArticleList);
-    expect((mockRule as jest.Mock<IContentRule>).mock.calls.length).toEqual(1);
+    Object.values(ruleRegistry).forEach((rule: IContentRule) => {
+      expect((rule as jest.Mock<IContentRule>).mock.calls.length).toEqual(1);
+    });
   });
 });

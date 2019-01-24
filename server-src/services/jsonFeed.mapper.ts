@@ -1,22 +1,22 @@
 import { IJsonFeedArticleList } from '../interfaces/IJsonFeedArticleList';
-import { IRawArticleList } from '../interfaces/IRawArticleList';
 import { IJsonFeedArticle } from '../interfaces/IJsonFeedArticle';
 import * as moment from 'moment';
+import { IRawArticle } from '../interfaces/IRawArticle';
 
-export default (jsonfeed: IJsonFeedArticleList): IRawArticleList => {
+export default (jsonfeed: IJsonFeedArticleList): IRawArticle[] => {
   return jsonfeed.stories.reduce(
     (final, item) => {
-      final[item.id] = {
+      final.push({
         id: String(item.id),
         indexHeadline: item.alt_headline,
         introText: item.alt_intro,
         linkUrl: item.path,
         imageSrc: getImageSrc(item),
-        timestamp: moment(item.datetime_iso8601).unix()
-      };
+        lastPublishedTime: moment(item.datetime_iso8601).unix()
+      });
       return final;
     },
-    {} as IRawArticleList
+    [] as IRawArticle[]
   );
 };
 

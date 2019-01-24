@@ -1,11 +1,10 @@
-import { IRawArticleList } from '../../interfaces/IRawArticleList';
 import { IRawArticle } from '../../interfaces/IRawArticle';
 import { IContentRule } from '../../interfaces/IContentRule';
-import loadRules from './rulesLoader';
+import ruleRegistry from './ruleRegistry';
 
-export default (articleList: IRawArticleList): IRawArticle[] => {
-  let articles: IRawArticle[] = Object.values(articleList);
-  Object.values(loadRules()).forEach((rule: IContentRule) => {
+export default (articleList: IRawArticle[]): IRawArticle[] => {
+  let articles: IRawArticle[] = articleList;
+  Object.values(ruleRegistry).forEach((rule: IContentRule) => {
     articles = rule(articles);
   });
 
