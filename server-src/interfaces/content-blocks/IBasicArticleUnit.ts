@@ -5,5 +5,5 @@ export interface IBasicArticleUnit {
   linkUrl: string;
   imageSrc: string | null;
   lastPublishedTime: number;
-  headlineFlag: string[];
+  headlineFlags: string[];
 }

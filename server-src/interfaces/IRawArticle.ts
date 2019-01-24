@@ -5,4 +5,5 @@ export interface IRawArticle {
   linkUrl: string;
   imageSrc: string | null;
   lastPublishedTime: number;
+  headlineFlags: string[];
 }

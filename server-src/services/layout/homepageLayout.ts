@@ -9,7 +9,6 @@ export default (articleList: IRawArticle[]): IContentBlock[] => {
     imageSrc: article.imageSrc,
     linkUrl: article.linkUrl,
     lastPublishedTime: article.lastPublishedTime,
-    // TODO: add article.headlineFlags
-    headlineFlag: []
+    headlineFlags: article.headlineFlags
   }));
 };

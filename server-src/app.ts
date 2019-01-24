@@ -23,12 +23,7 @@ app.set('view engine', 'html');
 app.set('views', join(DIST_FOLDER, 'browser'));
 
 app.get('/api/*', async (req, res, next) => {
-  try {
-    //TODO: handle error inside orchestrator, return error content block on error
-    res.json(await orchestrate());
-  } catch (e) {
-    next(e);
-  }
+  res.json(await orchestrate());
 });
 
 app.get('*.*', express.static(join(DIST_FOLDER, 'browser')));

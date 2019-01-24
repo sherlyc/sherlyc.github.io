@@ -1,20 +1,20 @@
 import orchestrate from '../orchestrator';
 import * as homepage from './fixtures/homepage.json';
-import * as jsonfeed from './fixtures/jsonfeed.json';
-import axios from 'axios';
+import * as standard from './fixtures/standard.json';
+import getRawArticleList from '../content-source/jsonFeed';
 
-jest.mock('axios');
+jest.mock('../content-source/jsonFeed');
 
-describe('Orchestrator', () => {
-  // TODO : refactor
+describe.only('Orchestrator', () => {
   it('should provide homepage content blocks', async () => {
-    (axios.get as jest.Mock).mockResolvedValue({ status: 200, data: jsonfeed });
+    (getRawArticleList as jest.Mock).mockResolvedValue(standard);
     await expect(orchestrate()).resolves.toEqual(homepage);
   });
 
-  it('should throw an error when jsonfeed retriever fails', async () => {
-    const error = new Error('Http error');
-    (axios.get as jest.Mock).mockRejectedValue(error);
-    await expect(orchestrate()).rejects.toEqual(error);
+  it('should provide an error content block when jsonfeed retriever fails', async () => {
+    (getRawArticleList as jest.Mock).mockRejectedValue(new Error('Http error'));
+    await expect(orchestrate()).resolves.toEqual([
+      { type: 'ErrorBlock', message: 'Http error' }
+    ]);
   });
 });

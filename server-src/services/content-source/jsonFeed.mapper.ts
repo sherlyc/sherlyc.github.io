@@ -12,7 +12,8 @@ export default (jsonfeed: IJsonFeedArticleList): IRawArticle[] => {
         introText: item.alt_intro,
         linkUrl: item.path,
         imageSrc: getImageSrc(item),
-        lastPublishedTime: moment(item.datetime_iso8601).unix()
+        lastPublishedTime: moment(item.datetime_iso8601).unix(),
+        headlineFlags: []
       });
       return final;
     },
