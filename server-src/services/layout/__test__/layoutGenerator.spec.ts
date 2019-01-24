@@ -1,6 +1,6 @@
-import * as articleList from '../../__test__/fixtures/standard.json';
+import * as articleList from './fixtures/standard.json';
 import generate from '../layoutGenerator';
-import * as homepageLayout from './fixtures/homepageLayout.json';
+import * as homepageLayout from './fixtures/homepage.json';
 import { IRawArticle } from '../../../interfaces/IRawArticle';
 import { IContentBlock } from '../../../interfaces/content-blocks/IContentBlock';
 import layoutRegistry from '../layoutRegistry';

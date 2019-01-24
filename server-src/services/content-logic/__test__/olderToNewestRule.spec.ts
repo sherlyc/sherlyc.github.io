@@ -1,5 +1,5 @@
-import * as articleList from '../../__test__/fixtures/standard.json';
-import * as olderToNewestExpected from '../../__test__/fixtures/olderToNewest.json';
+import * as articleList from './fixtures/standard.json';
+import * as olderToNewestExpected from './fixtures/olderToNewest.json';
 import olderToNewest from '../olderToNewestRule';
 import { IRawArticle } from '../../../interfaces/IRawArticle';
 

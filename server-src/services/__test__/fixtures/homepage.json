@@ -1,0 +1,47 @@
+[
+  {
+    "type": "BasicArticleUnit",
+    "indexHeadline": "Sacked for discussing salary amount",
+    "introText": "Builder's employee awarded $30k after being fired for talking pay rates with a co-worker.",
+    "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/k/k/1/1/image.related.StuffBigHeadline.418x220.1tkfoo.png/1548291456213.jpg",
+    "linkUrl": "/business/110128488/era-awards-nearly-30000-for-unjustified-dismissal-and-loss-of-dignity",
+    "lastPublishedTime": 1548288510,
+    "headlineFlag": []
+  },
+  {
+    "type": "BasicArticleUnit",
+    "indexHeadline": "The moment a cliff collapsed",
+    "introText": "Series of images captures the moment cliff collapsed, injuring two people.",
+    "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/k/m/5/j/image.related.StuffBigHeadline.418x220.1tkkoa.png/1548293522614.jpg",
+    "linkUrl": "/environment/110134954/images-of-cape-kidnappers-rock-fall-emerge",
+    "lastPublishedTime": 1548289909,
+    "headlineFlag": []
+  },
+  {
+    "type": "BasicArticleUnit",
+    "indexHeadline": "Actor dies training in NZ",
+    "introText": "Police are investigating the death of a Singaporean actor who died after an accident during a military training exercise in New Zealand.",
+    "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/k/4/k/f/image.related.StuffBigHeadline.418x220.1tkcox.png/1548293095736.jpg",
+    "linkUrl": "/entertainment/film/110124609/singaporean-actor-dies-during-military-training-exercise-in-new-zealand",
+    "lastPublishedTime": 1548293034,
+    "headlineFlag": []
+  },
+  {
+    "type": "BasicArticleUnit",
+    "indexHeadline": "Kiwi dies on Death Road in Bolivia",
+    "introText": "The man was in a cycling accident on one of the world's most dangerous roads when he slipped over the edge.",
+    "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/k/k/h/g/image.related.StuffBigHeadline.418x220.1tkdyt.png/1548293750758.jpg",
+    "linkUrl": "/national/110126261/new-zealander-killed-in-cycling-accident-on-death-road-in-bolivia",
+    "lastPublishedTime": 1548293748,
+    "headlineFlag": []
+  },
+  {
+    "type": "BasicArticleUnit",
+    "indexHeadline": "Charges after beach incident",
+    "introText": "Man charged with assaulting woman with car has name kept secret.",
+    "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/n/h/i/n/f/image.related.StuffBigHeadline.418x220.1tkice.png/1548296709367.jpg",
+    "linkUrl": "/auckland/110131934/man-charged-after-takapuna-beach-incident",
+    "lastPublishedTime": 1548296707,
+    "headlineFlag": []
+  }
+]

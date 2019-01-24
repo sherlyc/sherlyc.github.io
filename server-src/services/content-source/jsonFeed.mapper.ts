@@ -1,7 +1,7 @@
-import { IJsonFeedArticleList } from '../interfaces/IJsonFeedArticleList';
-import { IJsonFeedArticle } from '../interfaces/IJsonFeedArticle';
+import { IJsonFeedArticleList } from '../../interfaces/IJsonFeedArticleList';
+import { IJsonFeedArticle } from '../../interfaces/IJsonFeedArticle';
 import * as moment from 'moment';
-import { IRawArticle } from '../interfaces/IRawArticle';
+import { IRawArticle } from '../../interfaces/IRawArticle';
 
 export default (jsonfeed: IJsonFeedArticleList): IRawArticle[] => {
   return jsonfeed.stories.reduce(

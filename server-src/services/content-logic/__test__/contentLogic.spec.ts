@@ -1,6 +1,6 @@
 import { IContentRule } from '../../../interfaces/IContentRule';
 import { IRawArticle } from '../../../interfaces/IRawArticle';
-import * as articleList from '../../__test__/fixtures/standard.json';
+import * as articleList from './fixtures/standard.json';
 import ruleRegistry from '../ruleRegistry';
 import applyRules from '../../content-logic/contentLogic';
 
