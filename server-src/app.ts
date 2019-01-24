@@ -22,8 +22,10 @@ app.engine(
 app.set('view engine', 'html');
 app.set('views', join(DIST_FOLDER, 'browser'));
 
-app.get('/api/*', async (req, res) => {
-  res.json(await orchestrate());
+app.get('/api/*', (req, res, next) => {
+  orchestrate()
+    .then((contentBlocks) => res.json(contentBlocks))
+    .catch(next);
 });
 
 app.get('*.*', express.static(join(DIST_FOLDER, 'browser')));
