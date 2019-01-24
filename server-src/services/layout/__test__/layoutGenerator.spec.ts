@@ -17,8 +17,6 @@ jest.mock('../layoutRegistry', () => ({
 describe('Layout Generator', () => {
   it('should apply the homepage layout', () => {
     expect(generate(articleList)).toEqual(homepageLayout);
-    expect((layoutRegistry['homepage'] as jest.Mock).mock.calls.length).toEqual(
-      1
-    );
+    expect(layoutRegistry['homepage'] as jest.Mock).toBeCalledTimes(1);
   });
 });

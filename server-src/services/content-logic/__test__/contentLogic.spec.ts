@@ -14,7 +14,7 @@ describe('Content Logic', () => {
     const expectedArticleList: IRawArticle[] = articleList.reverse();
     expect(applyRules(articleList)).toEqual(expectedArticleList);
     Object.values(ruleRegistry).forEach((rule: IContentRule) => {
-      expect((rule as jest.Mock<IContentRule>).mock.calls.length).toEqual(1);
+      expect(rule as jest.Mock<IContentRule>).toBeCalledTimes(1);
     });
   });
 });

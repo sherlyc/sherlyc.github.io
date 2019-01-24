@@ -6,6 +6,7 @@ import axios from 'axios';
 jest.mock('axios');
 
 describe('Orchestrator', () => {
+  // TODO : refactor
   it('should provide homepage content blocks', async () => {
     (axios.get as jest.Mock).mockResolvedValue({ status: 200, data: jsonfeed });
     await expect(orchestrate()).resolves.toEqual(homepage);
