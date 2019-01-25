@@ -1,4 +1,4 @@
-import { IRawArticle } from '../../interfaces/IRawArticle';
+import { IRawArticle } from '../__types__/IRawArticle';
 import ruleRegistry from './ruleRegistry';
 
 export default (articleList: IRawArticle[]): IRawArticle[] =>

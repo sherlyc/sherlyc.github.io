@@ -1,5 +1,5 @@
 import olderToNewest from './olderToNewestRule';
-import { IContentRuleRegistry } from '../../interfaces/IContentRuleRegistry';
+import { IContentRuleRegistry } from './__types__/IContentRuleRegistry';
 
 const ruleRegistry: IContentRuleRegistry = {};
 

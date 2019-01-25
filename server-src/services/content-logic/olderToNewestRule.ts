@@ -1,4 +1,4 @@
-import { IRawArticle } from '../../interfaces/IRawArticle';
+import { IRawArticle } from '../__types__/IRawArticle';
 
 export default (articleList: IRawArticle[]): IRawArticle[] => {
   return articleList

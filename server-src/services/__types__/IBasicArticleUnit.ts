@@ -1,5 +1,5 @@
 export interface IBasicArticleUnit {
-  type: 'BasicArticleUnit';
+  type: string;
   indexHeadline: string;
   introText: string;
   linkUrl: string;

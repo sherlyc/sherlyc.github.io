@@ -1,8 +1,8 @@
 import * as articleList from './fixtures/standard.json';
 import generate from '../layoutGenerator';
 import * as homepageLayout from './fixtures/homepage.json';
-import { IRawArticle } from '../../../interfaces/IRawArticle';
-import { IContentBlock } from '../../../interfaces/content-blocks/IContentBlock';
+import { IRawArticle } from '../../__types__/IRawArticle';
+import { IContentBlock } from '../../__types__/IContentBlock';
 import layoutRegistry from '../layoutRegistry';
 
 jest.mock('../layoutRegistry', () => ({

@@ -1,9 +1,9 @@
-import { IContentBlock } from '../interfaces/content-blocks/IContentBlock';
+import { IContentBlock } from './__types__/IContentBlock';
 import getRawArticleList from './content-source/jsonFeed';
 import contentLogic from './content-logic/contentLogic';
 import generate from './layout/layoutGenerator';
-import { IRawArticle } from '../interfaces/IRawArticle';
-import { IErrorBlock } from '../interfaces/content-blocks/IErrorBlock';
+import { IRawArticle } from './__types__/IRawArticle';
+import { IErrorBlock } from './__types__/IErrorBlock';
 
 export default async (): Promise<IContentBlock[]> => {
   try {
