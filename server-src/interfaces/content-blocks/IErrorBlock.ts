@@ -1,5 +1,5 @@
 export interface IErrorBlock {
-  type: string;
+  type: 'ErrorBlock';
   message: string;
   debugMessage?: string;
 }
