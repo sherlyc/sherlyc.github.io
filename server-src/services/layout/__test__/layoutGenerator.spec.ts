@@ -1,8 +1,8 @@
-import * as articleList from '../../__test__/fixtures/standard.json';
+import * as articleList from './fixtures/standard.json';
 import generate from '../layoutGenerator';
-import * as homepageLayout from './fixtures/homepageLayout.json';
-import { IRawArticle } from '../../../interfaces/IRawArticle';
-import { IContentBlock } from '../../../interfaces/content-blocks/IContentBlock';
+import * as homepageLayout from './fixtures/homepage.json';
+import { IRawArticle } from '../../__types__/IRawArticle';
+import { IContentBlock } from '../../__types__/IContentBlock';
 import layoutRegistry from '../layoutRegistry';
 
 jest.mock('../layoutRegistry', () => ({
@@ -17,8 +17,6 @@ jest.mock('../layoutRegistry', () => ({
 describe('Layout Generator', () => {
   it('should apply the homepage layout', () => {
     expect(generate(articleList)).toEqual(homepageLayout);
-    expect((layoutRegistry['homepage'] as jest.Mock).mock.calls.length).toEqual(
-      1
-    );
+    expect(layoutRegistry['homepage'] as jest.Mock).toBeCalledTimes(1);
   });
 });

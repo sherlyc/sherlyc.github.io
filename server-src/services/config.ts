@@ -1,4 +1,4 @@
-import { IEnvironmentDefinition } from '../interfaces/IEnvironmentDefinition';
+import { IEnvironmentDefinition } from './__types__/IEnvironmentDefinition';
 import * as config from '../config.json';
 
 const defaultEnvironmentName = 'development';

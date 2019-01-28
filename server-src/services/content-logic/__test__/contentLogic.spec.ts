@@ -1,6 +1,6 @@
-import { IContentRule } from '../../../interfaces/IContentRule';
-import { IRawArticle } from '../../../interfaces/IRawArticle';
-import * as articleList from '../../__test__/fixtures/standard.json';
+import { IContentRule } from '../__types__/IContentRule';
+import { IRawArticle } from '../../__types__/IRawArticle';
+import * as articleList from './fixtures/standard.json';
 import ruleRegistry from '../ruleRegistry';
 import applyRules from '../../content-logic/contentLogic';
 
@@ -14,7 +14,7 @@ describe('Content Logic', () => {
     const expectedArticleList: IRawArticle[] = articleList.reverse();
     expect(applyRules(articleList)).toEqual(expectedArticleList);
     Object.values(ruleRegistry).forEach((rule: IContentRule) => {
-      expect((rule as jest.Mock<IContentRule>).mock.calls.length).toEqual(1);
+      expect(rule as jest.Mock<IContentRule>).toBeCalledTimes(1);
     });
   });
 });

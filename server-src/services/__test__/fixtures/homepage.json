@@ -1,6 +1,6 @@
 [
   {
-    "id": "110128488",
+    "type": "BasicArticleUnit",
     "indexHeadline": "Sacked for discussing salary amount",
     "introText": "Builder's employee awarded $30k after being fired for talking pay rates with a co-worker.",
     "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/k/k/1/1/image.related.StuffBigHeadline.418x220.1tkfoo.png/1548291456213.jpg",
@@ -9,7 +9,7 @@
     "headlineFlags": []
   },
   {
-    "id": "110134954",
+    "type": "BasicArticleUnit",
     "indexHeadline": "The moment a cliff collapsed",
     "introText": "Series of images captures the moment cliff collapsed, injuring two people.",
     "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/k/m/5/j/image.related.StuffBigHeadline.418x220.1tkkoa.png/1548293522614.jpg",
@@ -18,7 +18,7 @@
     "headlineFlags": []
   },
   {
-    "id": "110124609",
+    "type": "BasicArticleUnit",
     "indexHeadline": "Actor dies training in NZ",
     "introText": "Police are investigating the death of a Singaporean actor who died after an accident during a military training exercise in New Zealand.",
     "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/k/4/k/f/image.related.StuffBigHeadline.418x220.1tkcox.png/1548293095736.jpg",
@@ -27,7 +27,7 @@
     "headlineFlags": []
   },
   {
-    "id": "110126261",
+    "type": "BasicArticleUnit",
     "indexHeadline": "Kiwi dies on Death Road in Bolivia",
     "introText": "The man was in a cycling accident on one of the world's most dangerous roads when he slipped over the edge.",
     "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/k/k/h/g/image.related.StuffBigHeadline.418x220.1tkdyt.png/1548293750758.jpg",
@@ -36,7 +36,7 @@
     "headlineFlags": []
   },
   {
-    "id": "110131934",
+    "type": "BasicArticleUnit",
     "indexHeadline": "Charges after beach incident",
     "introText": "Man charged with assaulting woman with car has name kept secret.",
     "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/n/h/i/n/f/image.related.StuffBigHeadline.418x220.1tkice.png/1548296709367.jpg",

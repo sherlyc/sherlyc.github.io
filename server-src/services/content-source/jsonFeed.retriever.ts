@@ -1,6 +1,6 @@
-import { IJsonFeedArticleList } from '../interfaces/IJsonFeedArticleList';
-import config from './config';
-import logger from './logger';
+import { IJsonFeedArticleList } from './__types__/IJsonFeedArticleList';
+import config from '../config';
+import logger from '../logger';
 import axios from 'axios';
 import * as pRetry from 'p-retry';
 

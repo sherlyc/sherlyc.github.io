@@ -1,5 +1,5 @@
 import homepageLayout from './homepageLayout';
-import { ILayoutRegistry } from '../../interfaces/content-blocks/ILayoutRegistry';
+import { ILayoutRegistry } from './__types__/ILayoutRegistry';
 
 const layoutRegistry: ILayoutRegistry = {};
 

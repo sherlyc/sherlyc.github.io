@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent {
-  footerLinks: FooterLink[] = [
+  footerLinks: IFooterLink[] = [
     {
       title: 'Stuff Fibre',
       url: 'https://stuff-fibre.co.nz',
@@ -47,7 +47,7 @@ export class FooterComponent {
     }
   ];
 
-  footerIcons: FooterIcon[] = [
+  footerIcons: IFooterIcon[] = [
     {
       iconName: 'facebook-footer',
       href: 'https://www.facebook.com/Stuff.co.nz',
@@ -69,13 +69,13 @@ export class FooterComponent {
   currentYear: number = Date.now();
 }
 
-interface FooterLink {
+interface IFooterLink {
   title: string;
   url: string;
   target: string;
 }
 
-interface FooterIcon {
+interface IFooterIcon {
   iconName: string;
   href: string;
   title: string;

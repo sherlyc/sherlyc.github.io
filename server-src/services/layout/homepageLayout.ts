@@ -1,5 +1,5 @@
-import { IRawArticle } from '../../interfaces/IRawArticle';
-import { IContentBlock } from '../../interfaces/content-blocks/IContentBlock';
+import { IRawArticle } from '../__types__/IRawArticle';
+import { IContentBlock } from '../__types__/IContentBlock';
 
 export default (articleList: IRawArticle[]): IContentBlock[] => {
   return articleList.map((article) => ({
@@ -9,6 +9,6 @@ export default (articleList: IRawArticle[]): IContentBlock[] => {
     imageSrc: article.imageSrc,
     linkUrl: article.linkUrl,
     lastPublishedTime: article.lastPublishedTime,
-    headlineFlag: []
+    headlineFlags: article.headlineFlags
   }));
 };

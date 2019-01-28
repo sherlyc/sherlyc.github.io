@@ -5,6 +5,7 @@ import { join } from 'path';
 import { AppServerModuleNgFactory, LAZY_MODULE_MAP } from '../dist/server/main';
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import { provideModuleMap as provideModuleMapForLazyLoading } from '@nguniversal/module-map-ngfactory-loader';
+import orchestrate from './services/orchestrator';
 
 enableProdMode();
 const app = express();
@@ -21,8 +22,8 @@ app.engine(
 app.set('view engine', 'html');
 app.set('views', join(DIST_FOLDER, 'browser'));
 
-app.get('/api/*', (req, res) => {
-  res.status(404).send('data requests are not supported');
+app.get('/api/*', async (req, res, next) => {
+  res.json(await orchestrate());
 });
 
 app.get('*.*', express.static(join(DIST_FOLDER, 'browser')));
