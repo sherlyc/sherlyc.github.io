@@ -18,12 +18,12 @@ RUN npm install
 COPY *.ts *.json *.js ./
 COPY src src
 COPY server-src server-src
-# COPY e2e e2e
+COPY e2e e2e
 
 RUN npm run lint
 RUN npm test --watch=false
 
-RUN npm run e2e
+# RUN npm run e2e
 
 RUN npm run build:ssr
 
