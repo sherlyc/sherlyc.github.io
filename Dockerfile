@@ -23,11 +23,11 @@ COPY e2e e2e
 RUN npm run lint
 RUN npm test --watch=false
 RUN npm run test:server
-RUN npm run test:api
 
 # RUN npm run e2e
 
 RUN npm run build:ssr
+RUN npm run test:api
 
 ### Release stage ###
 FROM 513548267075.dkr.ecr.ap-southeast-2.amazonaws.com/kiwiops/runtime-tools:nodejs8-latest
