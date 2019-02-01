@@ -2,7 +2,7 @@ import * as supertest from 'supertest';
 
 describe('dummy api test', () => {
   it('should respond with a json payload', async () => {
-    const app = require('../server-src/app').default;
+    const app = require('../app').default;
     const response: supertest.Response = await supertest(app)
       .get('/api/')
       .set('Accept', 'application/json');

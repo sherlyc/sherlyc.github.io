@@ -22,6 +22,8 @@ COPY e2e e2e
 
 RUN npm run lint
 RUN npm test --watch=false
+RUN npm run test:server
+RUN npm run test:api
 
 # RUN npm run e2e
 
