@@ -9,7 +9,7 @@
     "test:server": "SPADE_ENV=test jest --config ./server-src/jest.config.json",
     "e2e:server": "SPADE_ENV=test jest --config ./server-e2e/jest.config.json",
     "lint": "ng lint",
-    "e2e": "ng e2e",
+    "e2e": "jest --config ./e2e/jest.config.json",
     "format": "prettier --write '**/*.{js,json,css,scss,md,html,yaml,ts}' '!dist/**' '!documentation/**' '!coverage/**'",
     "compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json -w -s",
     "build:ssr": "npm run build:client-and-server-bundles && npm run webpack:server",
@@ -62,13 +62,14 @@
     "@types/moment": "^2.13.0",
     "@types/node": "^10.12.9",
     "@types/p-retry": "^2.0.0",
+    "@types/selenium-webdriver": "^3.0.14",
     "@types/supertest": "^2.0.7",
     "@types/webpack": "^4.4.22",
     "@types/winston": "^2.4.4",
     "bourbon": "4.2.7",
+    "chromedriver": "^2.45.0",
     "codelyzer": "^4.5.0",
     "husky": "^1.1.0",
-    "jasmine-core": "^3.3.0",
     "jasmine-spec-reporter": "^4.2.1",
     "jest": "^23.6.0",
     "jest-preset-angular": "^6.0.1",
@@ -77,8 +78,8 @@
     "node-sass": "^4.10.0",
     "normalize.css": "^8.0.1",
     "prettier": "1.15.3",
-    "protractor": "^5.4.1",
     "rxjs-tslint": "^0.1.5",
+    "selenium-webdriver": "^4.0.0-alpha.1",
     "supertest": "^3.4.2",
     "ts-jest": "^23.10.5",
     "ts-node": "~7.0.0",
@@ -90,7 +91,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged && ng lint && ng test --watch=false",
-      "pre-push": "ng e2e --port 4300"
+      "pre-push": "npm run e2e"
     }
   },
   "lint-staged": {
