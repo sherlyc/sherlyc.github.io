@@ -23,7 +23,7 @@ COPY e2e e2e
 RUN npm run lint
 RUN npm test --watch=false
 
-RUN npm run e2e
+# RUN npm run e2e
 
 RUN npm run build:ssr
 
