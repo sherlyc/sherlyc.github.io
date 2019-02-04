@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StuffCustomMaterialModule } from './shared/stuff-custom-material/stuff-custom-material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HomeComponent } from './modules/home/home.component';
-
+import { HttpClientModule } from '@angular/common/http';
 import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.component';
 
 import * as Sentry from '@sentry/browser';
@@ -37,6 +37,7 @@ export class SentryErrorHandler implements ErrorHandler {
     StuffCustomMaterialModule,
     FlexLayoutModule,
     FormsModule,
+    HttpClientModule,
     SharedModule
   ],
   providers: [{ provide: ErrorHandler, useClass: SentryErrorHandler }],

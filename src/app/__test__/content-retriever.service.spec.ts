@@ -1,22 +1,53 @@
-import { TestBed } from '@angular/core/testing';
-
+import { getTestBed, TestBed } from '@angular/core/testing';
 import { ContentRetrieverService } from '../content-retriever.service';
-import axios from 'axios';
 import * as jsonfeed from './fixtures/contentBlockArticles.json';
-jest.mock('axios');
+import {
+  HttpClientTestingModule,
+  HttpTestingController
+} from '@angular/common/http/testing';
 
 describe('ContentRetrieverService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  let injector: TestBed;
+  let contentRetrieverService: ContentRetrieverService;
+  let httpMock: HttpTestingController;
 
-  it('should fetch article data', () => {
-    (axios.get as jest.Mock).mockResolvedValue({ data: jsonfeed });
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule]
+    });
 
-    const service: ContentRetrieverService = TestBed.get(
-      ContentRetrieverService
+    injector = getTestBed();
+    contentRetrieverService = injector.get(ContentRetrieverService);
+    httpMock = injector.get(HttpTestingController);
+  });
+
+  it('should fetch article data correctly', (done) => {
+    contentRetrieverService.getContent().subscribe((response) => {
+      expect(response).toEqual(jsonfeed);
+      done();
+    });
+
+    const req = httpMock.expectOne('http://localhost:4000/api/');
+    expect(req.request.method).toBe('GET');
+    req.flush(jsonfeed);
+  });
+
+  it('should handle errors correctly', (done) => {
+    contentRetrieverService.getContent().subscribe(
+      (response) => {
+        fail();
+      },
+      (err) => {
+        expect(err).toEqual('Something bad happened; please try again later.');
+        done();
+      }
     );
 
-    service.getContent().subscribe((response) => {
-      expect(response).toEqual(jsonfeed);
-    });
+    const req = httpMock.expectOne('http://localhost:4000/api/');
+    expect(req.request.method).toBe('GET');
+    req.flush(
+      { data: 'something went wrong' },
+      { status: 500, statusText: 'Server error' }
+    );
   });
 });
