@@ -1,1 +1,7 @@
+.prettierignore
+.gitignore
 Dockerfile
+/server-src/coverage
+/dist
+/documentation
+/coverage
