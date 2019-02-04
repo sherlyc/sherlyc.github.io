@@ -19,6 +19,7 @@ COPY *.ts *.json *.js ./
 COPY src src
 COPY server-src server-src
 COPY e2e e2e
+COPY common common
 
 RUN npm run lint
 RUN npm test --watch=false
