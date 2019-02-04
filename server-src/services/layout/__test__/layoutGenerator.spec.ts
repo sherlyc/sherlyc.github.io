@@ -2,7 +2,7 @@ import * as articleList from './fixtures/standard.json';
 import generate from '../layoutGenerator';
 import * as homepageLayout from './fixtures/homepage.json';
 import { IRawArticle } from '../../__types__/IRawArticle';
-import { IContentBlock } from '../../__types__/IContentBlock';
+import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 import layoutRegistry from '../layoutRegistry';
 
 jest.mock('../layoutRegistry', () => ({
