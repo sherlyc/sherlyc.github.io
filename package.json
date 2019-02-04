@@ -10,7 +10,7 @@
     "test:api": "jest --config ./server-src/test-api/jest.config.json",
     "lint": "ng lint",
     "e2e": "jest --config ./e2e/jest.config.json",
-    "format": "prettier --write '**/*.{js,json,css,scss,md,html,yaml,ts}' '!dist/**' '!documentation/**' '!coverage/**'",
+    "format": "prettier --write '**/*.{js,json,css,scss,md,html,yaml,ts}'",
     "compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json -w -s",
     "build:ssr": "npm run build:client-and-server-bundles && npm run webpack:server",
     "serve:ssr": "node dist/server",
@@ -90,17 +90,13 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && ng lint && ng test --watch=false",
+      "pre-commit": "lint-staged && ng lint && ng test --watch=false && npm run test:server",
       "pre-push": "npm run e2e"
     }
   },
   "lint-staged": {
-    "**/*.{js,json,css,scss,md,html,yaml}": [
+    "**/*.{js,json,css,scss,md,html,yaml,ts}": [
       "prettier --write",
-      "git add"
-    ],
-    "**/*.ts": [
-      "prettier --parser=typescript --write",
       "git add"
     ]
   }
