@@ -13,6 +13,7 @@ import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.c
 
 import * as Sentry from '@sentry/browser';
 import { SharedModule } from './shared/shared.module';
+import { BasicArticleUnitComponent } from './content-blocks/basic-article-unit/basic-article-unit.component';
 
 Sentry.init({
   // dsn: 'https://30f2a44af0d04b55875db5eb17b68a63@sentry.io/1306325'
@@ -29,7 +30,12 @@ export class SentryErrorHandler implements ErrorHandler {
 }
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, PageNotFoundComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    PageNotFoundComponent,
+    BasicArticleUnitComponent
+  ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'stuff-experience-frontend' }),
     AppRoutingModule,
