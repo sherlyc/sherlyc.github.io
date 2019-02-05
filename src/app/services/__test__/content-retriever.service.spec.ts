@@ -5,7 +5,7 @@ import {
   HttpClientTestingModule,
   HttpTestingController
 } from '@angular/common/http/testing';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 describe('ContentRetrieverService', () => {
   let injector: TestBed;
