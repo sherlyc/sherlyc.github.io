@@ -13,17 +13,17 @@ export class PageComponent implements OnInit {
   constructor(
     private router: Router,
     private contentRetriever: ContentRetrieverService
-  ) {
+  ) {}
+
+  contentBlocks: IContentBlock[] = [];
+
+  ngOnInit() {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationStart))
       .subscribe(() => {
         this.getData();
       });
   }
-
-  contentBlocks: IContentBlock[] = [];
-
-  ngOnInit() {}
 
   getData() {
     this.contentRetriever.getContent().subscribe(

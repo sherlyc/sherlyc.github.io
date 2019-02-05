@@ -1,8 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PageComponent } from './page.component';
 import { ContentBlockComponent } from '../../content-blocks/content-block/content-block.component';
 import { ContentRetrieverService } from '../../services/content-retriever.service';
 import { Observable, of, Subscriber, throwError } from 'rxjs';
+import { publish } from 'rxjs/operators';
 import * as contentBlockArticles from './fixtures/contentBlockArticles.json';
 import { By } from '@angular/platform-browser';
 import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
@@ -13,19 +14,24 @@ describe('PageComponent', () => {
   let component: PageComponent;
   let fixture: ComponentFixture<PageComponent>;
 
-  const contentRetrieverMock = {
-    getContent: jest.fn()
-  };
+  let contentRetrieverMock: any;
+  let routerEventEmitter: Subscriber<RouterEvent>;
+  let routerMock: any;
 
-  let routerEventSubscriber: Subscriber<RouterEvent>;
-  const routerMock = {
-    events: new Observable((subscriber) => {
-      routerEventSubscriber = subscriber;
-    })
-  };
+  beforeAll(() => {
+    contentRetrieverMock = {
+      getContent: jest.fn()
+    };
+    routerMock = {
+      events: Observable.create((e: Subscriber<RouterEvent>) => {
+        routerEventEmitter = e;
+      }).pipe(publish())
+    };
+    routerMock.events.connect();
+  });
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [PageComponent, ContentBlockComponent]
     })
@@ -41,12 +47,8 @@ describe('PageComponent', () => {
         }
       })
       .compileComponents();
-  }));
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(PageComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   afterEach(() => {
@@ -66,6 +68,8 @@ describe('PageComponent', () => {
     contentRetrieverMock.getContent.mockReturnValue(of(contentBlockArticles));
 
     component.getData();
+
+    fixture.detectChanges(); // input updated
     assertsForSuccessfulRetrieval();
   });
 
@@ -73,10 +77,15 @@ describe('PageComponent', () => {
     contentRetrieverMock.getContent.mockReturnValue(of(contentBlockArticles));
     const getDataSpy = jest.spyOn(component, 'getData');
 
-    routerEventSubscriber.next(new NavigationStart(0, '/'));
+    routerEventEmitter.next(new NavigationStart(0, '/')); // emit events before subscription
+    expect(getDataSpy).not.toHaveBeenCalled();
 
-    expect(getDataSpy).toBeCalled();
-    expect(contentRetrieverMock.getContent).toBeCalled();
+    fixture.detectChanges(); // ngOnInit() and subscribe
+    routerEventEmitter.next(new NavigationStart(0, '/'));
+    expect(getDataSpy).toHaveBeenCalled();
+    expect(contentRetrieverMock.getContent).toHaveBeenCalled();
+
+    fixture.detectChanges(); // input updated
     assertsForSuccessfulRetrieval();
   });
 
@@ -95,15 +104,17 @@ describe('PageComponent', () => {
     );
     const getDataSpy = jest.spyOn(component, 'getData');
 
-    routerEventSubscriber.next(new NavigationStart(0, '/'));
+    routerEventEmitter.next(new NavigationStart(0, '/')); // emit events before subscription
+    expect(getDataSpy).not.toHaveBeenCalled();
 
+    fixture.detectChanges(); // ngOnInit() and subscribe
+    routerEventEmitter.next(new NavigationStart(0, '/'));
     expect(getDataSpy).toBeCalled();
     expect(contentRetrieverMock.getContent).toBeCalled();
     assertsForFailedRetrieval();
   });
 
   function assertsForSuccessfulRetrieval() {
-    fixture.detectChanges();
     expect(component.contentBlocks).toHaveLength(contentBlockArticles.length);
     (component.contentBlocks as IBasicArticleUnit[]).forEach((contentBlock) => {
       expect(contentBlock.type).toEqual('BasicArticleUnit');
@@ -120,7 +131,6 @@ describe('PageComponent', () => {
   }
 
   function assertsForFailedRetrieval() {
-    fixture.detectChanges();
     expect(component.contentBlocks).toHaveLength(0);
 
     expect(
