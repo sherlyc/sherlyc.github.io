@@ -9,7 +9,7 @@ import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUni
 export class BasicArticleUnitComponent implements OnInit {
   static key = 'BasicArticleUnit';
 
-  @Input() input: IBasicArticleUnit;
+  @Input() input!: IBasicArticleUnit;
 
   constructor() {}
 
