@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler, Injectable } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -38,6 +39,7 @@ export class SentryErrorHandler implements ErrorHandler {
     StuffCustomMaterialModule,
     FlexLayoutModule,
     FormsModule,
+    HttpClientModule,
     SharedModule,
     ContentBlocksModule
   ],

@@ -4,7 +4,7 @@ describe('dummy api test', () => {
   it('should respond with a json payload', async () => {
     const app = require('../app').default;
     const response: supertest.Response = await supertest(app)
-      .get('/api/')
+      .get('/api/content')
       .set('Accept', 'application/json');
 
     expect(response.ok).toBeTruthy();
