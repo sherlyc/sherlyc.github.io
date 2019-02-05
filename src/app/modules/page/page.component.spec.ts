@@ -109,8 +109,8 @@ describe('PageComponent', () => {
 
     fixture.detectChanges(); // ngOnInit() and subscribe
     routerEventEmitter.next(new NavigationStart(0, '/'));
-    expect(getDataSpy).toBeCalled();
-    expect(contentRetrieverMock.getContent).toBeCalled();
+    expect(getDataSpy).toHaveBeenCalled();
+    expect(contentRetrieverMock.getContent).toHaveBeenCalled();
     assertsForFailedRetrieval();
   });
 
