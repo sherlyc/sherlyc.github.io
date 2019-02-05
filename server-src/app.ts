@@ -31,7 +31,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get('/api/*', async (req, res, next) => {
+app.get('/api/content', async (req, res, next) => {
   res.json(await orchestrate());
 });
 
