@@ -26,10 +26,13 @@ export class PageComponent implements OnInit {
   ngOnInit() {}
 
   getData() {
-    this.contentRetriever
-      .getContent()
-      .subscribe((contentBlocks: IContentBlock[]) => {
+    this.contentRetriever.getContent().subscribe(
+      (contentBlocks: IContentBlock[]) => {
         this.contentBlocks = contentBlocks;
-      });
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 }

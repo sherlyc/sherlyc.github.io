@@ -2,31 +2,41 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { PageComponent } from './page.component';
 import { ContentBlockComponent } from '../../content-blocks/content-block/content-block.component';
 import { ContentRetrieverService } from '../../services/content-retriever.service';
-import { of, throwError } from 'rxjs';
+import { Observable, of, Subscriber, throwError } from 'rxjs';
 import * as contentBlockArticles from './fixtures/contentBlockArticles.json';
 import { By } from '@angular/platform-browser';
 import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
 import { RouterTestingModule } from '@angular/router/testing';
-
-const contentRetrieverSpy = {
-  getContent: jest.fn()
-};
+import { NavigationStart, Router, RouterEvent } from '@angular/router';
 
 describe('PageComponent', () => {
   let component: PageComponent;
   let fixture: ComponentFixture<PageComponent>;
 
+  const contentRetrieverMock = {
+    getContent: jest.fn()
+  };
+
+  let routerEventSubscriber: Subscriber<RouterEvent>;
+  const routerMock = {
+    events: new Observable((subscriber) => {
+      routerEventSubscriber = subscriber;
+    })
+  };
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule.withRoutes([{ path: '', component: PageComponent }])
-      ],
+      imports: [RouterTestingModule],
       declarations: [PageComponent, ContentBlockComponent]
     })
       .overrideComponent(PageComponent, {
         set: {
           providers: [
-            { provide: ContentRetrieverService, useValue: contentRetrieverSpy }
+            {
+              provide: ContentRetrieverService,
+              useValue: contentRetrieverMock
+            },
+            { provide: Router, useValue: routerMock }
           ]
         }
       })
@@ -53,9 +63,46 @@ describe('PageComponent', () => {
   });
 
   it('should render a list of content block', () => {
-    contentRetrieverSpy.getContent.mockReturnValue(of(contentBlockArticles));
+    contentRetrieverMock.getContent.mockReturnValue(of(contentBlockArticles));
 
     component.getData();
+    assertsForFixture();
+  });
+
+  it('should render a list of content block when router navigates to "/"', () => {
+    contentRetrieverMock.getContent.mockReturnValue(of(contentBlockArticles));
+    const getDataSpy = jest.spyOn(component, 'getData');
+
+    routerEventSubscriber.next(new NavigationStart(0, '/'));
+
+    expect(getDataSpy).toBeCalled();
+    expect(contentRetrieverMock.getContent).toBeCalled();
+    assertsForFixture();
+  });
+
+  it('should not render any content block when the retriever fails to get content', () => {
+    contentRetrieverMock.getContent.mockReturnValue(
+      throwError('Something wrong when retrieving the content')
+    );
+
+    component.getData();
+    assertsForFailureRetrieval();
+  });
+
+  it('should not render any content block when router navigates to "/" but the retriever fails to get content', () => {
+    contentRetrieverMock.getContent.mockReturnValue(
+      throwError('Something wrong when retrieving the content')
+    );
+    const getDataSpy = jest.spyOn(component, 'getData');
+
+    routerEventSubscriber.next(new NavigationStart(0, '/'));
+
+    expect(getDataSpy).toBeCalled();
+    expect(contentRetrieverMock.getContent).toBeCalled();
+    assertsForFailureRetrieval();
+  });
+
+  function assertsForFixture() {
     fixture.detectChanges();
     expect(component.contentBlocks).toHaveLength(contentBlockArticles.length);
     (component.contentBlocks as IBasicArticleUnit[]).forEach((contentBlock) => {
@@ -70,19 +117,14 @@ describe('PageComponent', () => {
     expect(
       fixture.debugElement.queryAll(By.directive(ContentBlockComponent))
     ).toHaveLength(contentBlockArticles.length);
-  });
+  }
 
-  it('should not render any content block when retriever fails to get content', () => {
-    contentRetrieverSpy.getContent.mockReturnValue(
-      throwError('Something wrong')
-    );
-
-    component.getData();
+  function assertsForFailureRetrieval() {
     fixture.detectChanges();
     expect(component.contentBlocks).toHaveLength(0);
 
     expect(
       fixture.debugElement.queryAll(By.directive(ContentBlockComponent))
     ).toHaveLength(0);
-  });
+  }
 });
