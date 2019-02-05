@@ -5,6 +5,7 @@ import {
   HttpClientTestingModule,
   HttpTestingController
 } from '@angular/common/http/testing';
+import { environment } from '../../environments/environment';
 
 describe('ContentRetrieverService', () => {
   let injector: TestBed;
@@ -27,7 +28,7 @@ describe('ContentRetrieverService', () => {
       done();
     });
 
-    const req = httpMock.expectOne('http://localhost:4000/api/');
+    const req = httpMock.expectOne(environment.backendUrl);
     expect(req.request.method).toBe('GET');
     req.flush(jsonfeed);
   });
@@ -43,7 +44,7 @@ describe('ContentRetrieverService', () => {
       }
     );
 
-    const req = httpMock.expectOne('http://localhost:4000/api/');
+    const req = httpMock.expectOne(environment.backendUrl);
     expect(req.request.method).toBe('GET');
     req.flush(
       { data: 'something went wrong' },
