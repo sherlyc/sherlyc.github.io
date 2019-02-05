@@ -66,7 +66,7 @@ describe('PageComponent', () => {
     contentRetrieverMock.getContent.mockReturnValue(of(contentBlockArticles));
 
     component.getData();
-    assertsForFixture();
+    assertsForSuccessfulRetrieval();
   });
 
   it('should render a list of content block when router navigates to "/"', () => {
@@ -77,7 +77,7 @@ describe('PageComponent', () => {
 
     expect(getDataSpy).toBeCalled();
     expect(contentRetrieverMock.getContent).toBeCalled();
-    assertsForFixture();
+    assertsForSuccessfulRetrieval();
   });
 
   it('should not render any content block when the retriever fails to get content', () => {
@@ -86,7 +86,7 @@ describe('PageComponent', () => {
     );
 
     component.getData();
-    assertsForFailureRetrieval();
+    assertsForFailedRetrieval();
   });
 
   it('should not render any content block when router navigates to "/" but the retriever fails to get content', () => {
@@ -99,10 +99,10 @@ describe('PageComponent', () => {
 
     expect(getDataSpy).toBeCalled();
     expect(contentRetrieverMock.getContent).toBeCalled();
-    assertsForFailureRetrieval();
+    assertsForFailedRetrieval();
   });
 
-  function assertsForFixture() {
+  function assertsForSuccessfulRetrieval() {
     fixture.detectChanges();
     expect(component.contentBlocks).toHaveLength(contentBlockArticles.length);
     (component.contentBlocks as IBasicArticleUnit[]).forEach((contentBlock) => {
@@ -119,7 +119,7 @@ describe('PageComponent', () => {
     ).toHaveLength(contentBlockArticles.length);
   }
 
-  function assertsForFailureRetrieval() {
+  function assertsForFailedRetrieval() {
     fixture.detectChanges();
     expect(component.contentBlocks).toHaveLength(0);
 
