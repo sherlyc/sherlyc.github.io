@@ -14,6 +14,7 @@ import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.c
 import * as Sentry from '@sentry/browser';
 import { SharedModule } from './shared/shared.module';
 import { BasicArticleUnitComponent } from './content-blocks/basic-article-unit/basic-article-unit.component';
+import { TimeAgoPipe } from 'time-ago-pipe';
 
 Sentry.init({
   // dsn: 'https://30f2a44af0d04b55875db5eb17b68a63@sentry.io/1306325'
@@ -34,7 +35,8 @@ export class SentryErrorHandler implements ErrorHandler {
     AppComponent,
     HomeComponent,
     PageNotFoundComponent,
-    BasicArticleUnitComponent
+    BasicArticleUnitComponent,
+    TimeAgoPipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'stuff-experience-frontend' }),
