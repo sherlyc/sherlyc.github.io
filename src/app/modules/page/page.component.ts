@@ -18,6 +18,7 @@ export class PageComponent implements OnInit {
   contentBlocks: IContentBlock[] = [];
 
   ngOnInit() {
+    this.getData();
     this.router.events
       .pipe(filter((event) => event instanceof NavigationStart))
       .subscribe(() => {
