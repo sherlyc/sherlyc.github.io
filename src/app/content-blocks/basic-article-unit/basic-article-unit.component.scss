@@ -1,0 +1,26 @@
+a {
+  clear: both;
+
+  h3 {
+    font-size: 1em;
+    color: rgb(43, 164, 235);
+  }
+
+  p {
+    color: black;
+    float: left;
+
+    :hover {
+      text-decoration: none;
+    }
+    span {
+      color: red;
+    }
+  }
+}
+
+img {
+  float: left;
+  margin-right: 0.5em;
+  width: 110px;
+}
