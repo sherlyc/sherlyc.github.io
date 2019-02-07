@@ -18,7 +18,8 @@ describe('PageComponent', () => {
   let routerEventEmitter: Subscriber<RouterEvent>;
   let routerMock: any;
 
-  beforeAll(() => {
+  beforeEach(async () => {
+    // set up mocks for dependency injection
     contentRetrieverMock = {
       getContent: jest.fn()
     };
@@ -28,9 +29,7 @@ describe('PageComponent', () => {
       }).pipe(publish())
     };
     routerMock.events.connect();
-  });
 
-  beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [PageComponent, ContentBlockComponent]
@@ -52,7 +51,7 @@ describe('PageComponent', () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    jest.resetAllMocks();
   });
 
   it('should create', () => {
@@ -77,14 +76,16 @@ describe('PageComponent', () => {
     contentRetrieverMock.getContent.mockReturnValue(of(contentBlockArticles));
     const getDataSpy = jest.spyOn(component, 'getData');
 
-    routerEventEmitter.next(new NavigationStart(0, '/')); // emit events before subscription
+    routerEventEmitter.next(new NavigationStart(0, '/')); // emit an event before subscription
     expect(getDataSpy).not.toHaveBeenCalled();
 
     fixture.detectChanges(); // ngOnInit() and subscribe
-    routerEventEmitter.next(new NavigationStart(0, '/'));
-    expect(getDataSpy).toHaveBeenCalled();
-    expect(contentRetrieverMock.getContent).toHaveBeenCalled();
+    expect(getDataSpy).toBeCalledTimes(1);
+    expect(contentRetrieverMock.getContent).toBeCalledTimes(1);
 
+    routerEventEmitter.next(new NavigationStart(0, '/')); // emit an event
+    expect(getDataSpy).toBeCalledTimes(2);
+    expect(contentRetrieverMock.getContent).toBeCalledTimes(2);
     fixture.detectChanges(); // input updated
     assertsForSuccessfulRetrieval();
   });
@@ -104,13 +105,14 @@ describe('PageComponent', () => {
     );
     const getDataSpy = jest.spyOn(component, 'getData');
 
-    routerEventEmitter.next(new NavigationStart(0, '/')); // emit events before subscription
+    routerEventEmitter.next(new NavigationStart(0, '/')); // emit an event before subscription
     expect(getDataSpy).not.toHaveBeenCalled();
 
     fixture.detectChanges(); // ngOnInit() and subscribe
-    routerEventEmitter.next(new NavigationStart(0, '/'));
     expect(getDataSpy).toHaveBeenCalled();
     expect(contentRetrieverMock.getContent).toHaveBeenCalled();
+
+    routerEventEmitter.next(new NavigationStart(0, '/')); // emit an event
     assertsForFailedRetrieval();
   });
 
