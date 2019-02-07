@@ -37,6 +37,7 @@ describe('BasicArticleUnitComponent', () => {
 
   it('should create', () => {
     component.input = articleData;
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 

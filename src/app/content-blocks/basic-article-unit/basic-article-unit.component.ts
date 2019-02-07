@@ -6,12 +6,10 @@ import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUni
   templateUrl: './basic-article-unit.component.html',
   styleUrls: ['./basic-article-unit.component.scss']
 })
-export class BasicArticleUnitComponent implements OnInit {
+export class BasicArticleUnitComponent {
   static key = 'BasicArticleUnit';
 
   @Input() input!: IBasicArticleUnit;
 
   constructor() {}
-
-  ngOnInit() {}
 }
