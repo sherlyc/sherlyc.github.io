@@ -1,18 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler, Injectable } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { StuffCustomMaterialModule } from './shared/stuff-custom-material/stuff-custom-material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { HomeComponent } from './modules/home/home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { PageComponent } from './modules/page/page.component';
+
 import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.component';
 
 import * as Sentry from '@sentry/browser';
 import { SharedModule } from './shared/shared.module';
+import { ContentBlocksModule } from './content-blocks/content-blocks.module';
 import { BasicArticleUnitComponent } from './content-blocks/basic-article-unit/basic-article-unit.component';
 import { TimeAgoPipe } from 'time-ago-pipe';
 
@@ -33,7 +35,7 @@ export class SentryErrorHandler implements ErrorHandler {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    PageComponent,
     PageNotFoundComponent,
     BasicArticleUnitComponent,
     TimeAgoPipe
@@ -46,7 +48,8 @@ export class SentryErrorHandler implements ErrorHandler {
     FlexLayoutModule,
     FormsModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    ContentBlocksModule
   ],
   providers: [{ provide: ErrorHandler, useClass: SentryErrorHandler }],
   bootstrap: [AppComponent]
