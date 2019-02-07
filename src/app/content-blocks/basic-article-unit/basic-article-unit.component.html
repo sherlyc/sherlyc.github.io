@@ -1,9 +1,10 @@
-<article>
+<article *ngIf="input">
   <a href="{{ input.linkUrl }}">
     <h3>{{ input.indexHeadline }}</h3>
     <img src="{{ input.imageSrc }}" alt="{{ input.indexHeadline }}" />
     <p>
-      <span>{{ input.lastPublishedTime }}</span> | {{ input.introText }}
+      <span>{{ input.lastPublishedTime * 1000 | timeAgo }}</span> |
+      {{ input.introText }}
     </p>
   </a>
 </article>

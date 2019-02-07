@@ -9,7 +9,8 @@ jest.mock('../layoutRegistry', () => ({
   __esModule: true,
   default: {
     homepage: jest.fn(
-      (articles: IRawArticle[]): IContentBlock[] => homepageLayout
+      (articles: IRawArticle[]): IContentBlock[] =>
+        homepageLayout as IContentBlock[]
     )
   }
 }));
