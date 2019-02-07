@@ -51,4 +51,23 @@ describe('ContentRetrieverService', () => {
       { status: 500, statusText: 'Server error' }
     );
   });
+
+  it('should return an error content block when fails', (done) => {
+    contentRetrieverService.getContent().subscribe(
+      (response) => {
+        // expect(response).toContain(jest)
+        fail();
+      },
+      (err) => {
+        fail(err);
+      }
+    );
+
+    const req = httpMock.expectOne(environment.backendUrl);
+    expect(req.request.method).toBe('GET');
+    req.flush(
+      { data: 'something went wrong' },
+      { status: 500, statusText: 'Server error' }
+    );
+  });
 });
