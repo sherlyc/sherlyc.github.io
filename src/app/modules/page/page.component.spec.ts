@@ -2,21 +2,28 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PageComponent } from './page.component';
 import { ContentBlockComponent } from '../../content-blocks/content-block/content-block.component';
 import { ContentRetrieverService } from '../../services/content-retriever.service';
-import { Observable, of, Subscriber, throwError } from 'rxjs';
+import {
+  ConnectableObservable,
+  Observable,
+  of,
+  Subscriber,
+  throwError
+} from 'rxjs';
 import { publish } from 'rxjs/operators';
 import * as contentBlockArticles from './fixtures/contentBlockArticles.json';
 import { By } from '@angular/platform-browser';
 import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NavigationStart, Router, RouterEvent } from '@angular/router';
+import Mock = jest.Mock;
 
 describe('PageComponent', () => {
   let component: PageComponent;
   let fixture: ComponentFixture<PageComponent>;
 
-  let contentRetrieverMock: any;
+  let contentRetrieverMock: Pick<ContentRetrieverService, 'getContent'>;
   let routerEventEmitter: Subscriber<RouterEvent>;
-  let routerMock: any;
+  let routerMock: Pick<Router, 'events'>;
 
   beforeEach(async () => {
     // set up mocks for dependency injection
@@ -28,7 +35,7 @@ describe('PageComponent', () => {
         routerEventEmitter = e;
       }).pipe(publish())
     };
-    routerMock.events.connect();
+    (routerMock.events as ConnectableObservable<RouterEvent>).connect();
 
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
@@ -64,7 +71,9 @@ describe('PageComponent', () => {
   });
 
   it('should render a list of content block', () => {
-    contentRetrieverMock.getContent.mockReturnValue(of(contentBlockArticles));
+    (contentRetrieverMock.getContent as Mock).mockReturnValue(
+      of(contentBlockArticles)
+    );
 
     component.getData();
 
@@ -73,7 +82,9 @@ describe('PageComponent', () => {
   });
 
   it('should render a list of content block when router navigates to "/"', () => {
-    contentRetrieverMock.getContent.mockReturnValue(of(contentBlockArticles));
+    (contentRetrieverMock.getContent as Mock).mockReturnValue(
+      of(contentBlockArticles)
+    );
     const getDataSpy = jest.spyOn(component, 'getData');
 
     routerEventEmitter.next(new NavigationStart(0, '/')); // emit an event before subscription
@@ -91,7 +102,7 @@ describe('PageComponent', () => {
   });
 
   it('should not render any content block when the retriever fails to get content', () => {
-    contentRetrieverMock.getContent.mockReturnValue(
+    (contentRetrieverMock.getContent as Mock).mockReturnValue(
       throwError('Something wrong when retrieving the content')
     );
 
@@ -100,7 +111,7 @@ describe('PageComponent', () => {
   });
 
   it('should not render any content block when router navigates to "/" but the retriever fails to get content', () => {
-    contentRetrieverMock.getContent.mockReturnValue(
+    (contentRetrieverMock.getContent as Mock).mockReturnValue(
       throwError('Something wrong when retrieving the content')
     );
     const getDataSpy = jest.spyOn(component, 'getData');
