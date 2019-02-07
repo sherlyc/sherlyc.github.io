@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 
 @Component({
@@ -6,11 +6,9 @@ import { IContentBlock } from '../../../../common/__types__/IContentBlock';
   templateUrl: './content-block.component.html',
   styleUrls: ['./content-block.component.scss']
 })
-export class ContentBlockComponent implements OnInit {
+export class ContentBlockComponent {
   @Input()
-  input: IContentBlock | undefined;
+  input!: IContentBlock;
 
   constructor() {}
-
-  ngOnInit() {}
 }
