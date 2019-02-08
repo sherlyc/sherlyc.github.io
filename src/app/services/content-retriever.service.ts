@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { IContentBlock } from '../../../common/__types__/IContentBlock';
 import { environment } from '../../environments/environment';
+import { IErrorBlock } from '../../../common/__types__/IErrorBlock';
 
 @Injectable({
   providedIn: 'root'
@@ -18,14 +19,13 @@ export class ContentRetrieverService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      console.error('An error occurred:', error.error.message);
-    } else {
-      console.error(
-        `Backend returned code ${error.status}, ` +
-          `body was: ${error.error.message}`
-      );
-    }
-    return throwError('Something bad happened; please try again later.');
+    console.error(error);
+
+    return of([
+      {
+        type: 'ErrorBlock',
+        message: 'Something bad happened; please try again later.'
+      } as IErrorBlock
+    ]);
   }
 }

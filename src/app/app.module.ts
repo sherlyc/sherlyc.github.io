@@ -10,13 +10,9 @@ import { StuffCustomMaterialModule } from './shared/stuff-custom-material/stuff-
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { PageComponent } from './modules/page/page.component';
 
-import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.component';
-
 import * as Sentry from '@sentry/browser';
 import { SharedModule } from './shared/shared.module';
 import { ContentBlocksModule } from './content-blocks/content-blocks.module';
-import { BasicArticleUnitComponent } from './content-blocks/basic-article-unit/basic-article-unit.component';
-import { TimeAgoPipe } from 'time-ago-pipe';
 
 Sentry.init({
   // dsn: 'https://30f2a44af0d04b55875db5eb17b68a63@sentry.io/1306325'
@@ -33,13 +29,7 @@ export class SentryErrorHandler implements ErrorHandler {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PageComponent,
-    PageNotFoundComponent,
-    BasicArticleUnitComponent,
-    TimeAgoPipe
-  ],
+  declarations: [AppComponent, PageComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'stuff-experience-frontend' }),
     AppRoutingModule,

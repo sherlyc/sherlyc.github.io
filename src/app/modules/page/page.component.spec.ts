@@ -10,12 +10,14 @@ import {
   throwError
 } from 'rxjs';
 import { publish } from 'rxjs/operators';
-import * as contentBlockArticles from './fixtures/contentBlockArticles.json';
+import * as contentBlocks from './fixtures/contentBlocks.json';
 import { By } from '@angular/platform-browser';
-import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NavigationStart, Router, RouterEvent } from '@angular/router';
 import Mock = jest.Mock;
+import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
+import registry from '../../content-blocks/content-blocks-registry';
+import { FakeContentBlockComponent } from '../../content-blocks/fake-content-block.component';
 
 describe('PageComponent', () => {
   let component: PageComponent;
@@ -37,9 +39,19 @@ describe('PageComponent', () => {
     };
     (routerMock.events as ConnectableObservable<RouterEvent>).connect();
 
+    // setup registry
+    Object.keys(registry).forEach((prop) => {
+      delete registry[prop];
+    });
+    registry['FakeContentBlockComponent'] = FakeContentBlockComponent;
+
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [PageComponent, ContentBlockComponent]
+      declarations: [
+        PageComponent,
+        ContentBlockComponent,
+        FakeContentBlockComponent
+      ]
     })
       .overrideComponent(PageComponent, {
         set: {
@@ -50,6 +62,11 @@ describe('PageComponent', () => {
             },
             { provide: Router, useValue: routerMock }
           ]
+        }
+      })
+      .overrideModule(BrowserDynamicTestingModule, {
+        set: {
+          entryComponents: Object.values(registry)
         }
       })
       .compileComponents();
@@ -72,7 +89,7 @@ describe('PageComponent', () => {
 
   it('should render a list of content block', () => {
     (contentRetrieverMock.getContent as Mock).mockReturnValue(
-      of(contentBlockArticles)
+      of(contentBlocks)
     );
 
     component.getData();
@@ -83,7 +100,7 @@ describe('PageComponent', () => {
 
   it('should render a list of content block when router navigates to "/"', () => {
     (contentRetrieverMock.getContent as Mock).mockReturnValue(
-      of(contentBlockArticles)
+      of(contentBlocks)
     );
     const getDataSpy = jest.spyOn(component, 'getData');
 
@@ -128,19 +145,16 @@ describe('PageComponent', () => {
   });
 
   function assertsForSuccessfulRetrieval() {
-    expect(component.contentBlocks).toHaveLength(contentBlockArticles.length);
-    (component.contentBlocks as IBasicArticleUnit[]).forEach((contentBlock) => {
-      expect(contentBlock.type).toEqual('BasicArticleUnit');
-      expect(contentBlock.indexHeadline).toBeTruthy();
-      expect(contentBlock.introText).toBeTruthy();
-      expect(contentBlock.linkUrl).toBeTruthy();
-      expect(contentBlock.imageSrc).toBeTruthy();
-      expect(contentBlock.headlineFlags).toHaveLength(0);
-    });
+    expect(component.contentBlocks).toHaveLength(contentBlocks.length);
+    (component.contentBlocks as Array<{ type: string }>).forEach(
+      (contentBlock) => {
+        expect(contentBlock.type).toEqual('FakeContentBlock');
+      }
+    );
 
     expect(
       fixture.debugElement.queryAll(By.directive(ContentBlockComponent))
-    ).toHaveLength(contentBlockArticles.length);
+    ).toHaveLength(contentBlocks.length);
   }
 
   function assertsForFailedRetrieval() {

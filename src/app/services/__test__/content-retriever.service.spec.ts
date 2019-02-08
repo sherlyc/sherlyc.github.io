@@ -33,30 +33,12 @@ describe('ContentRetrieverService', () => {
     req.flush(jsonfeed);
   });
 
-  it('should handle errors correctly', (done) => {
+  it('should return an error content block when the request fails', (done) => {
     contentRetrieverService.getContent().subscribe(
       (response) => {
-        fail();
-      },
-      (err) => {
-        expect(err).toEqual('Something bad happened; please try again later.');
+        expect(response).toHaveLength(1);
+        expect(response[0].type).toEqual('ErrorBlock');
         done();
-      }
-    );
-
-    const req = httpMock.expectOne(environment.backendUrl);
-    expect(req.request.method).toBe('GET');
-    req.flush(
-      { data: 'something went wrong' },
-      { status: 500, statusText: 'Server error' }
-    );
-  });
-
-  it('should return an error content block when fails', (done) => {
-    contentRetrieverService.getContent().subscribe(
-      (response) => {
-        // expect(response).toContain(jest)
-        fail();
       },
       (err) => {
         fail(err);
