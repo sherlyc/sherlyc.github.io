@@ -46,7 +46,6 @@ describe('ContentBlockComponent', () => {
     };
 
     fixture.detectChanges();
-    console.warn(fixture.debugElement.nativeElement);
     expect(
       fixture.debugElement.query(By.directive(FakeContentBlockComponent))
     ).toBeTruthy();
