@@ -1,26 +1,45 @@
-a {
-  clear: both;
+//------------------------------------*\
+//   $ BASIC ARTICLE UNIT
+//------------------------------------*/
 
-  h3 {
+.article-unit {
+  &__title {
+    margin-bottom: 0.5em;
     font-size: 1em;
     color: rgb(43, 164, 235);
   }
+}
 
-  p {
-    color: black;
-    float: left;
+.image-and-intro {
+  padding-bottom: 0.9em;
+  border-bottom: 1px solid #edeef1;
 
-    :hover {
-      text-decoration: none;
-    }
-    span {
-      color: red;
-    }
+  img {
+    margin-right: 0.5em;
+    width: 110px;
+    height: 73px;
   }
 }
 
-img {
-  float: left;
-  margin-right: 0.5em;
-  width: 110px;
+.intro-text {
+  display: inline-block;
+  vertical-align: top;
+
+  p {
+    color: black;
+    :hover {
+      text-decoration: none;
+    }
+  }
+
+  &__time-ago {
+    vertical-align: middle;
+    color: #d12421;
+    font-size: 10px;
+  }
+
+  &__separator {
+    color: #afbec6;
+    font-size: 10px;
+  }
 }

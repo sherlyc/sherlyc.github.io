@@ -1,10 +1,16 @@
 <article *ngIf="input">
-  <a href="{{ input.linkUrl }}">
-    <h3>{{ input.indexHeadline }}</h3>
-    <img src="{{ input.imageSrc }}" alt="{{ input.indexHeadline }}" />
-    <p>
-      <span>{{ input.lastPublishedTime * 1000 | timeAgo }}</span> |
-      {{ input.introText }}
-    </p>
+  <a class="article-unit" href="{{ input.linkUrl }}">
+    <h3 class="article-unit__title">{{ input.indexHeadline }}</h3>
+    <div class="image-and-intro">
+      <img src="{{ input.imageSrc }}" alt="{{ input.indexHeadline }}" />
+      <div class="intro-text">
+        <p>
+          <span class="intro-text__time-ago">{{
+            input.lastPublishedTime * 1000 | timeAgo
+          }}</span>
+          <span class="intro-text__separator"> |</span> {{ input.introText }}
+        </p>
+      </div>
+    </div>
   </a>
 </article>
