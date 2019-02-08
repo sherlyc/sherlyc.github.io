@@ -50,4 +50,14 @@ describe('ContentBlockComponent', () => {
       fixture.debugElement.query(By.directive(FakeContentBlockComponent))
     ).toBeTruthy();
   });
+
+  it('should not render any content block when no registered component is found', () => {
+    component.input = {
+      // @ts-ignore
+      type: 'UnregisteredContentBlock'
+    };
+
+    fixture.detectChanges();
+    expect(fixture.debugElement.nativeElement.textContent).toEqual('');
+  });
 });
