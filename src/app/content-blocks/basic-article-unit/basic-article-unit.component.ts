@@ -7,8 +7,6 @@ import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUni
   styleUrls: ['./basic-article-unit.component.scss']
 })
 export class BasicArticleUnitComponent {
-  static key = 'BasicArticleUnit';
-
   @Input() input!: IBasicArticleUnit;
 
   constructor() {}
