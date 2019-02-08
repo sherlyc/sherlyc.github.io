@@ -37,7 +37,15 @@ app.get('/api/content', async (req, res, next) => {
 
 app.get('*.*', express.static(join(DIST_FOLDER, 'browser')));
 app.get('*', (req, res) => {
-  res.render('index', { req });
+  res.render('index', {
+    req,
+    providers: [
+      {
+        provide: 'SERVER_BASE_URL',
+        useValue: `${req.protocol}://${req.get('host')}`
+      }
+    ]
+  });
 });
 
 export default app;
