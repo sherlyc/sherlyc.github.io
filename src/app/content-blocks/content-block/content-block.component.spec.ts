@@ -16,6 +16,7 @@ describe('ContentBlockComponent', () => {
   let fixture: ComponentFixture<ContentBlockComponent>;
 
   beforeEach(async () => {
+    // @ts-ignore
     registry['FakeContentBlock'] = FakeContentBlockComponent;
 
     await TestBed.configureTestingModule({

@@ -8,13 +8,14 @@ import {
 } from '@angular/core';
 import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 import registry from '../content-blocks.registry';
+import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
 
 @Component({
   selector: 'app-content-block',
   templateUrl: './content-block.component.html',
   styleUrls: ['./content-block.component.scss']
 })
-export class ContentBlockComponent implements OnInit {
+export class ContentBlockComponent implements IContentBlockComponent, OnInit {
   @Input()
   input!: IContentBlock;
 
@@ -24,14 +25,14 @@ export class ContentBlockComponent implements OnInit {
   constructor(private resolver: ComponentFactoryResolver) {}
 
   ngOnInit(): void {
-    const componentFactory = registry[`${this.input.type}`];
+    const componentFactory = registry[this.input.type];
     if (componentFactory) {
       const factory = this.resolver.resolveComponentFactory<
-        ContentBlockComponent
+        IContentBlockComponent
       >(componentFactory);
       this.viewContainerRef.clear();
       const componentRef = this.viewContainerRef.createComponent<
-        ContentBlockComponent
+        IContentBlockComponent
       >(factory);
       componentRef.instance.input = this.input;
     } else {

@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PageComponent } from './page.component';
 import { ContentRetrieverService } from '../../services/content-retriever.service';
@@ -12,8 +13,6 @@ import { publish } from 'rxjs/operators';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NavigationStart, Router, RouterEvent } from '@angular/router';
-import Mock = jest.Mock;
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('PageComponent', () => {
   let component: PageComponent;
@@ -83,7 +82,7 @@ describe('PageComponent', () => {
   });
 
   it('should render a list of content block', () => {
-    (contentRetrieverMock.getContent as Mock).mockReturnValue(
+    (contentRetrieverMock.getContent as jest.Mock).mockReturnValue(
       of(mockContentBlocks)
     );
 
@@ -94,7 +93,7 @@ describe('PageComponent', () => {
   });
 
   it('should render a list of content block when router navigates to "/"', () => {
-    (contentRetrieverMock.getContent as Mock).mockReturnValue(
+    (contentRetrieverMock.getContent as jest.Mock).mockReturnValue(
       of(mockContentBlocks)
     );
     const getDataSpy = jest.spyOn(component, 'getData');
@@ -114,7 +113,7 @@ describe('PageComponent', () => {
   });
 
   it('should not render any content block when the retriever fails to get content', () => {
-    (contentRetrieverMock.getContent as Mock).mockReturnValue(
+    (contentRetrieverMock.getContent as jest.Mock).mockReturnValue(
       throwError('Something wrong when retrieving the content')
     );
 
@@ -123,7 +122,7 @@ describe('PageComponent', () => {
   });
 
   it('should not render any content block when router navigates to "/" but the retriever fails to get content', () => {
-    (contentRetrieverMock.getContent as Mock).mockReturnValue(
+    (contentRetrieverMock.getContent as jest.Mock).mockReturnValue(
       throwError('Something wrong when retrieving the content')
     );
     const getDataSpy = jest.spyOn(component, 'getData');
