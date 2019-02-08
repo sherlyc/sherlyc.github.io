@@ -16,9 +16,6 @@ describe('ContentBlockComponent', () => {
   let fixture: ComponentFixture<ContentBlockComponent>;
 
   beforeEach(async () => {
-    Object.keys(registry).forEach((prop) => {
-      delete registry[prop];
-    });
     registry['FakeContentBlock'] = FakeContentBlockComponent;
 
     await TestBed.configureTestingModule({
@@ -26,7 +23,7 @@ describe('ContentBlockComponent', () => {
     })
       .overrideModule(BrowserDynamicTestingModule, {
         set: {
-          entryComponents: Object.values(registry)
+          entryComponents: [FakeContentBlockComponent]
         }
       })
       .compileComponents();
