@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { ContentBlockComponent } from './content-block.component';
-import registry from '../content-blocks-registry';
+import registry from '../content-blocks.registry';
 import { Component } from '@angular/core';
 
 @Component({
@@ -19,7 +19,7 @@ describe('ContentBlockComponent', () => {
     Object.keys(registry).forEach((prop) => {
       delete registry[prop];
     });
-    registry['FakeContentBlockComponent'] = FakeContentBlockComponent;
+    registry['FakeContentBlock'] = FakeContentBlockComponent;
 
     await TestBed.configureTestingModule({
       declarations: [ContentBlockComponent, FakeContentBlockComponent]

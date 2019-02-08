@@ -7,7 +7,7 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { IContentBlock } from '../../../../common/__types__/IContentBlock';
-import registry from '../content-blocks-registry';
+import registry from '../content-blocks.registry';
 
 @Component({
   selector: 'app-content-block',
@@ -24,7 +24,7 @@ export class ContentBlockComponent implements OnInit {
   constructor(private resolver: ComponentFactoryResolver) {}
 
   ngOnInit(): void {
-    const componentFactory = registry[`${this.input.type}Component`];
+    const componentFactory = registry[`${this.input.type}`];
     if (componentFactory) {
       const factory = this.resolver.resolveComponentFactory<
         ContentBlockComponent
@@ -35,7 +35,7 @@ export class ContentBlockComponent implements OnInit {
       >(factory);
       componentRef.instance.input = this.input;
     } else {
-      console.error(`Component ${this.input.type} not found`);
+      console.error(`No Component found for ${this.input.type} type`);
     }
   }
 }

@@ -16,7 +16,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { NavigationStart, Router, RouterEvent } from '@angular/router';
 import Mock = jest.Mock;
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import registry from '../../content-blocks/content-blocks-registry';
+import registry from '../../content-blocks/content-blocks.registry';
 import { Component } from '@angular/core';
 
 @Component({
