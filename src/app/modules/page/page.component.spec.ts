@@ -17,7 +17,13 @@ import { NavigationStart, Router, RouterEvent } from '@angular/router';
 import Mock = jest.Mock;
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import registry from '../../content-blocks/content-blocks-registry';
-import { FakeContentBlockComponent } from '../../content-blocks/fake-content-block.component';
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-fake-content-block',
+  template: ''
+})
+class FakeContentBlockComponent {}
 
 describe('PageComponent', () => {
   let component: PageComponent;
