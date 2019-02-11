@@ -12,17 +12,17 @@ export class LoggerService implements ErrorHandler {
     throw error;
   }
 
-  log(value: any, ...rest: any[]) {
+  log(...messages: any[]) {
     if (!environment.production) {
-      console.log(value, ...rest);
+      console.log(...messages);
     }
   }
 
-  error(error: Error) {
-    console.error(error);
+  error(error: Error, ...rest: any[]) {
+    console.error(error, ...rest);
   }
 
-  warn(value: any, ...rest: any[]) {
-    console.warn(value, ...rest);
+  warn(...messages: any[]) {
+    console.warn(...messages);
   }
 }
