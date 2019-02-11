@@ -17,7 +17,7 @@ describe('ContentBlockComponent', () => {
 
   beforeEach(async () => {
     // @ts-ignore
-    registry['FakeContentBlock'] = FakeContentBlockComponent;
+    registry['FakeContentBlockComponent'] = FakeContentBlockComponent;
 
     await TestBed.configureTestingModule({
       declarations: [ContentBlockComponent, FakeContentBlockComponent]

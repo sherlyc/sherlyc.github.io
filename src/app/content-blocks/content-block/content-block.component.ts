@@ -25,7 +25,7 @@ export class ContentBlockComponent implements IContentBlockComponent, OnInit {
   constructor(private resolver: ComponentFactoryResolver) {}
 
   ngOnInit(): void {
-    const componentFactory = registry[this.input.type];
+    const componentFactory = registry[`${this.input.type}Component`];
     if (componentFactory) {
       const factory = this.resolver.resolveComponentFactory<
         IContentBlockComponent

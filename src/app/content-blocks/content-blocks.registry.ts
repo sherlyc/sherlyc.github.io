@@ -9,8 +9,8 @@ export const contentBlockComponents = [
 ];
 
 const registry: { [key: string]: Type<IContentBlockComponent> } = {
-  BasicArticleUnit: BasicArticleUnitComponent,
-  ErrorBlock: ErrorBlockComponent
+  BasicArticleUnitComponent,
+  ErrorBlockComponent
 };
 
 export default registry;
