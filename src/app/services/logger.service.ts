@@ -1,7 +1,7 @@
 import { ErrorHandler, Injectable } from '@angular/core';
 import { ConfigService } from './config.service';
 
-interface SpadeConsole extends Console {
+interface ISpadeConsole extends Console {
   [key: string]: Function;
 }
 
@@ -24,7 +24,7 @@ export class LoggerService implements ErrorHandler {
 
     const loggingIndex = this.logLevels.indexOf(logLevel);
     if (loggingIndex >= logLevelIndex) {
-      (console as SpadeConsole)[logLevel].call(console, ...rest);
+      (console as ISpadeConsole)[logLevel].call(console, ...rest);
     }
   }
 
