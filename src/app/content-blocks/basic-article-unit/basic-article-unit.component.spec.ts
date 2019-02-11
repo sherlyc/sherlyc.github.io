@@ -32,7 +32,6 @@ describe('BasicArticleUnitComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BasicArticleUnitComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

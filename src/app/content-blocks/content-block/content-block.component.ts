@@ -1,16 +1,42 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  ComponentFactoryResolver,
+  Input,
+  OnInit,
+  ViewChild,
+  ViewContainerRef
+} from '@angular/core';
 import { IContentBlock } from '../../../../common/__types__/IContentBlock';
+import registry from '../content-blocks.registry';
+import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
 
 @Component({
   selector: 'app-content-block',
   templateUrl: './content-block.component.html',
   styleUrls: ['./content-block.component.scss']
 })
-export class ContentBlockComponent implements OnInit {
+export class ContentBlockComponent implements IContentBlockComponent, OnInit {
   @Input()
-  input: IContentBlock | undefined;
+  input!: IContentBlock;
 
-  constructor() {}
+  @ViewChild('viewContainer', { read: ViewContainerRef })
+  viewContainerRef!: ViewContainerRef;
 
-  ngOnInit() {}
+  constructor(private resolver: ComponentFactoryResolver) {}
+
+  ngOnInit(): void {
+    const componentFactory = registry[`${this.input.type}Component`];
+    if (componentFactory) {
+      const factory = this.resolver.resolveComponentFactory<
+        IContentBlockComponent
+      >(componentFactory);
+      this.viewContainerRef.clear();
+      const componentRef = this.viewContainerRef.createComponent<
+        IContentBlockComponent
+      >(factory);
+      componentRef.instance.input = this.input;
+    } else {
+      console.error(`No Component found for ${this.input.type} type`);
+    }
+  }
 }

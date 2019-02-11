@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  serverBase: 'http://localhost:4000',
   backendUrl: '/api/content'
 };
 
