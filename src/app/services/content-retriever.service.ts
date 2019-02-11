@@ -5,23 +5,27 @@ import { catchError } from 'rxjs/operators';
 import { IContentBlock } from '../../../common/__types__/IContentBlock';
 import { environment } from '../../environments/environment';
 import { IErrorBlock } from '../../../common/__types__/IErrorBlock';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContentRetrieverService {
+  isBrowser: boolean;
   constructor(
     private http: HttpClient,
-    @Optional() @Inject('SERVER_BASE_URL') private serverBaseUrl: string
-  ) {}
+    @Inject(PLATFORM_ID) platformId: Object
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
   getContent(): Observable<IContentBlock[]> {
-    const url = this.serverBaseUrl
-      ? `${this.serverBaseUrl}${environment.backendUrl}`
-      : environment.backendUrl;
-
     return this.http
-      .get<IContentBlock[]>(url)
+      .get<IContentBlock[]>(
+        this.isBrowser
+          ? environment.backendUrl
+          : `${environment.serverBase}${environment.backendUrl}`
+      )
       .pipe(catchError(this.handleError));
   }
 
