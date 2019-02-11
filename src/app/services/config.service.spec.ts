@@ -6,7 +6,10 @@ import { TransferState } from '@angular/platform-browser';
 
 describe('Config Service', () => {
   let configService: ConfigService;
-  const state = new Map();
+  const transferStateMock = {
+    get: jest.fn(),
+    set: jest.fn()
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -18,11 +21,7 @@ describe('Config Service', () => {
         },
         {
           provide: TransferState,
-          useValue: {
-            get: (key: any, defaultValue: any) =>
-              state.get(key) || defaultValue,
-            set: (key: any, value: any) => state.set(key, value)
-          }
+          useValue: transferStateMock
         }
       ]
     });
@@ -31,39 +30,55 @@ describe('Config Service', () => {
   });
 
   afterEach(() => {
-    state.clear();
     delete process.env.SPADE_ENV;
     jest.resetModules();
   });
 
-  it('should load config based on environment variable', () => {
+  it('should load config based on environment variable when running in SSR', () => {
     process.env.SPADE_ENV = 'staging';
     configService.isServer = true;
-    expect(configService.getEnvironmentName()).toEqual('staging');
-    expect(configService.getConfig()).toEqual(configJson['staging']);
+    transferStateMock.get.mockReturnValue(null);
 
-    configService.isServer = false;
     expect(configService.getEnvironmentName()).toEqual('staging');
     expect(configService.getConfig()).toEqual(configJson['staging']);
+    expect(transferStateMock.set).toHaveBeenCalled();
   });
 
-  it('should fall back to production configuration when environment variable is not present', () => {
+  it('should fall back to production configuration when running in SSR and environment variable is not present', () => {
     configService.isServer = true;
-    expect(configService.getEnvironmentName()).toEqual('production');
-    expect(configService.getConfig()).toEqual(configJson['production']);
+    (transferStateMock.get as jest.Mock).mockReturnValue(null);
 
-    configService.isServer = false;
     expect(configService.getEnvironmentName()).toEqual('production');
     expect(configService.getConfig()).toEqual(configJson['production']);
   });
 
-  it('should fall back to production configuration when environment variable is not recognized', () => {
+  it('should fall back to production configuration when running in SSR and environment variable is not recognized', () => {
     process.env.SPADE_ENV = 'something_else';
     configService.isServer = true;
     expect(configService.getEnvironmentName()).toEqual('something_else');
     expect(configService.getConfig()).toEqual(configJson['production']);
+  });
 
+  it('should load config based on retrieved transfer state when running in browser', () => {
     configService.isServer = false;
+    (transferStateMock.get as jest.Mock).mockReturnValue('staging');
+
+    expect(configService.getEnvironmentName()).toEqual('staging');
+    expect(configService.getConfig()).toEqual(configJson['staging']);
+  });
+
+  it('should fallback to production configuration when running in browser and transfer state is not retrieved', () => {
+    configService.isServer = false;
+    (transferStateMock.get as jest.Mock).mockReturnValue(null);
+
+    expect(configService.getEnvironmentName()).toEqual('production');
+    expect(configService.getConfig()).toEqual(configJson['production']);
+  });
+
+  it('should fallback to production configuration when running in browser and transfer state is not recognised', () => {
+    configService.isServer = false;
+    (transferStateMock.get as jest.Mock).mockReturnValue('something_else');
+
     expect(configService.getEnvironmentName()).toEqual('something_else');
     expect(configService.getConfig()).toEqual(configJson['production']);
   });
