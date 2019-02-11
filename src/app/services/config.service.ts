@@ -30,7 +30,7 @@ export class ConfigService {
       return stateConfig;
     } else {
       const environmentName = this.isServer
-        ? process.env.SPADE_ENV
+        ? process.env.SPADE_ENV || 'production'
         : 'production';
       this.state.set(STATE_KEY, environmentName);
       return environmentName;

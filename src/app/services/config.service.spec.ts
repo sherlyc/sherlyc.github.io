@@ -39,29 +39,32 @@ describe('Config Service', () => {
   it('should load config based on environment variable', () => {
     process.env.SPADE_ENV = 'staging';
     configService.isServer = true;
-    const config = configService.getConfig();
-    expect(config).toEqual(configJson['staging']);
+    expect(configService.getEnvironmentName()).toEqual('staging');
+    expect(configService.getConfig()).toEqual(configJson['staging']);
 
     configService.isServer = false;
-    expect(config).toEqual(configJson['staging']);
+    expect(configService.getEnvironmentName()).toEqual('staging');
+    expect(configService.getConfig()).toEqual(configJson['staging']);
   });
 
   it('should fall back to production configuration when environment variable is not present', () => {
     configService.isServer = true;
-    const config = configService.getConfig();
-    expect(config).toEqual(configJson['production']);
+    expect(configService.getEnvironmentName()).toEqual('production');
+    expect(configService.getConfig()).toEqual(configJson['production']);
 
     configService.isServer = false;
-    expect(config).toEqual(configJson['production']);
+    expect(configService.getEnvironmentName()).toEqual('production');
+    expect(configService.getConfig()).toEqual(configJson['production']);
   });
 
   it('should fall back to production configuration when environment variable is not recognized', () => {
     process.env.SPADE_ENV = 'something_else';
     configService.isServer = true;
-    const config = configService.getConfig();
-    expect(config).toEqual(configJson['production']);
+    expect(configService.getEnvironmentName()).toEqual('something_else');
+    expect(configService.getConfig()).toEqual(configJson['production']);
 
     configService.isServer = false;
-    expect(config).toEqual(configJson['production']);
+    expect(configService.getEnvironmentName()).toEqual('something_else');
+    expect(configService.getConfig()).toEqual(configJson['production']);
   });
 });
