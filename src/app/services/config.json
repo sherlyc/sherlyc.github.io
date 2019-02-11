@@ -1,0 +1,38 @@
+{
+  "production": {
+    "retryTimeout": 1000,
+    "requestTimeout": 10000,
+    "spadeAPI": "https://experience.live.shift21.ffx.nz/api/content",
+    "loggerOptions": {
+      "level": "info",
+      "format": "json"
+    }
+  },
+  "staging": {
+    "retryTimeout": 1000,
+    "requestTimeout": 10000,
+    "spadeAPI": "https://experience.devint.shift21.ffx.nz/api/content",
+    "loggerOptions": {
+      "level": "info",
+      "format": "json"
+    }
+  },
+  "development": {
+    "retryTimeout": 500,
+    "requestTimeout": 10000,
+    "spadeAPI": "http://localhost:4000/api/content",
+    "loggerOptions": {
+      "level": "debug",
+      "format": "text"
+    }
+  },
+  "test": {
+    "retryTimeout": 1,
+    "requestTimeout": 10000,
+    "spadeAPI": "http://localhost:4000/api/content",
+    "loggerOptions": {
+      "level": "debug",
+      "format": "text"
+    }
+  }
+}
