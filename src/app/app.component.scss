@@ -3,5 +3,11 @@
 .main-content {
   min-height: 100%;
   margin: 0 auto -#{$footer-height};
-  padding: #{$navigation-primary-height} 1em #{$footer-height} 1em;
+  padding: #{$navigation-primary-height} 12em #{$footer-height} 12em;
+}
+
+@media only screen and (max-width: 768px) {
+  .main-content {
+    padding: #{$navigation-primary-height} 1em #{$footer-height} 1em;
+  }
 }
