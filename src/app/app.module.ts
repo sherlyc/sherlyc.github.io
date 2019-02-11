@@ -12,17 +12,10 @@ import { PageComponent } from './modules/page/page.component';
 
 import { SharedModule } from './shared/shared.module';
 import { ContentBlocksModule } from './content-blocks/content-blocks.module';
-import { BasicArticleUnitComponent } from './content-blocks/basic-article-unit/basic-article-unit.component';
-import { TimeAgoPipe } from 'time-ago-pipe';
 import { LoggerService } from './services/logger.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PageComponent,
-    BasicArticleUnitComponent,
-    TimeAgoPipe
-  ],
+  declarations: [AppComponent, PageComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'stuff-experience-frontend' }),
     AppRoutingModule,
