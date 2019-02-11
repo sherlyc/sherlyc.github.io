@@ -1,9 +1,7 @@
-.article-unit {
-  &__title {
-    margin-bottom: 0.5em;
-    font-size: 1em;
-    color: rgb(43, 164, 235);
-  }
+.title {
+  margin-bottom: 0.5em;
+  font-size: 1em;
+  color: rgb(43, 164, 235);
 }
 
 .image-and-intro {
@@ -23,19 +21,20 @@
 
   p {
     color: black;
+
     :hover {
       text-decoration: none;
     }
   }
+}
 
-  &__time-ago {
-    vertical-align: middle;
-    color: #d12421;
-    font-size: 10px;
-  }
+.time-ago {
+  vertical-align: middle;
+  color: #d12421;
+  font-size: 10px;
+}
 
-  &__separator {
-    color: #afbec6;
-    font-size: 10px;
-  }
+.separator {
+  color: #afbec6;
+  font-size: 10px;
 }
