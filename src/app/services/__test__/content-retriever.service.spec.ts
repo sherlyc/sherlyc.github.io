@@ -33,14 +33,15 @@ describe('ContentRetrieverService', () => {
     req.flush(jsonfeed);
   });
 
-  it('should handle errors correctly', (done) => {
+  it('should return an error content block when the request fails', (done) => {
     contentRetrieverService.getContent().subscribe(
       (response) => {
-        fail();
+        expect(response).toHaveLength(1);
+        expect(response[0].type).toEqual('ErrorBlock');
+        done();
       },
       (err) => {
-        expect(err).toEqual('Something bad happened; please try again later.');
-        done();
+        fail(err);
       }
     );
 
