@@ -4,6 +4,7 @@ import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/t
 import { ContentBlockComponent } from './content-block.component';
 import registry from '../content-blocks.registry';
 import { Component } from '@angular/core';
+import { LoggerService } from '../../services/logger.service';
 
 @Component({
   selector: 'app-fake-content-block',
@@ -20,7 +21,8 @@ describe('ContentBlockComponent', () => {
     registry['FakeContentBlockComponent'] = FakeContentBlockComponent;
 
     await TestBed.configureTestingModule({
-      declarations: [ContentBlockComponent, FakeContentBlockComponent]
+      declarations: [ContentBlockComponent, FakeContentBlockComponent],
+      providers: [LoggerService]
     })
       .overrideModule(BrowserDynamicTestingModule, {
         set: {
