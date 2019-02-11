@@ -23,7 +23,7 @@ export class ConfigService {
   }
 
   getEnvironmentName() {
-    const STATE_KEY = makeStateKey(`SPADE_ENV`);
+    const STATE_KEY = makeStateKey('SPADE_ENV');
     const stateConfig = this.state.get(STATE_KEY, null);
 
     if (stateConfig) {
