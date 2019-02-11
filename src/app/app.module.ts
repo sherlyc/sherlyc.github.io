@@ -9,7 +9,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { StuffCustomMaterialModule } from './shared/stuff-custom-material/stuff-custom-material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { PageComponent } from './modules/page/page.component';
 
@@ -37,7 +36,6 @@ export class SentryErrorHandler implements ErrorHandler {
     BrowserModule.withServerTransition({ appId: 'stuff-experience-frontend' }),
     AppRoutingModule,
     BrowserAnimationsModule,
-    StuffCustomMaterialModule,
     BrowserTransferStateModule,
     FlexLayoutModule,
     FormsModule,

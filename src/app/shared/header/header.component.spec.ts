@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { StuffCustomMaterialModule } from '../../shared/stuff-custom-material/stuff-custom-material.module';
 import { HeaderComponent } from './header.component';
 import { SharedModule } from '../shared.module';
 
@@ -9,7 +8,7 @@ describe('HeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [StuffCustomMaterialModule, SharedModule],
+      imports: [SharedModule],
       declarations: []
     }).compileComponents();
   }));

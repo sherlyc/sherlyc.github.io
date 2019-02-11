@@ -1,9 +1,4 @@
-@import '../../../styles/shared/shared.scss';
-
-//------------------------------------*\
-//   $ HEADER
-//------------------------------------*/
-
+/*
 $navigation-primary-and-secondary-height: $navigation-primary-height +
   $navigation-secondary-height;
 $sub-nav-zindex: 2000000;
@@ -139,10 +134,6 @@ $gutter: 17px;
     }
   }
 
-  //------------------------------------*\
-  //   $ MAIN NAV
-  //------------------------------------*/
-
   &__main-navigation {
     &__top-list {
       list-style-type: none;
@@ -179,9 +170,6 @@ $gutter: 17px;
     }
   }
 
-  //------------------------------------*\
-  //   $ SUB NAV
-  //------------------------------------*/
 
   &__sub-nav {
     width: 100%;
@@ -242,3 +230,4 @@ $gutter: 17px;
     }
   }
 }
+*/
