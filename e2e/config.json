@@ -1,0 +1,8 @@
+{
+  "development": {
+    "url": "http://localhost:4000/"
+  },
+  "staging": {
+    "url": "https://experience.devint.shift21.ffx.nz"
+  }
+}
