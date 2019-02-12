@@ -2,7 +2,7 @@ import { getDriver } from './driver';
 import { By, until, WebDriver } from 'selenium-webdriver';
 import config from './spaceConfig';
 
-describe('do something dummy', () => {
+describe('Homepage test', () => {
   let driver: WebDriver;
   beforeAll(async () => {
     driver = await getDriver();
