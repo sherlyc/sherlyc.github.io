@@ -1,11 +1,9 @@
-import { Inject, Injectable, Optional, PLATFORM_ID } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { IContentBlock } from '../../../common/__types__/IContentBlock';
-import { environment } from '../../environments/environment';
 import { IErrorBlock } from '../../../common/__types__/IErrorBlock';
-import { isPlatformBrowser } from '@angular/common';
 import { LoggerService } from './logger.service';
 import { ConfigService } from './config.service';
 
