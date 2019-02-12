@@ -6,7 +6,7 @@ import * as pRetry from 'p-retry';
 
 async function apiCall(): Promise<IJsonFeedArticleList> {
   const response = await axios.get<IJsonFeedArticleList>(
-    `${config.jsonFeedAPI}?limit=50`,
+    `${config.jsonFeedAPI}?limit=${config.maxArticlesToRetrieve}`,
     {
       validateStatus: (status: number) => {
         return status >= 200 && status < 400;

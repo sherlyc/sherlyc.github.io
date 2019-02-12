@@ -12,6 +12,7 @@
     "retryTimeout": 1000,
     "requestTimeout": 10000,
     "jsonFeedAPI": "https://www.stuff.co.nz/_json2",
+    "maxArticlesToRetrieve": 50,
     "loggerOptions": {
       "level": "info",
       "format": "json"
@@ -21,6 +22,7 @@
     "retryTimeout": 500,
     "requestTimeout": 10000,
     "jsonFeedAPI": "https://www.stuff.co.nz/_json2",
+    "maxArticlesToRetrieve": 50,
     "loggerOptions": {
       "level": "debug",
       "format": "text"
@@ -30,6 +32,7 @@
     "retryTimeout": 1,
     "requestTimeout": 10000,
     "jsonFeedAPI": "https://www-preprod.stuff.co.nz/_json2",
+    "maxArticlesToRetrieve": 50,
     "loggerOptions": {
       "level": "debug",
       "format": "text"
