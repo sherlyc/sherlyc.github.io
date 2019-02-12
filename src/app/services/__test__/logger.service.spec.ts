@@ -39,9 +39,7 @@ describe('LoggerService', () => {
 
     service.debug('This should not be logged as debug');
 
-    expect(console['debug']).not.toHaveBeenCalledWith(
-      'This should not be logged as debug'
-    );
+    expect(console['debug']).not.toHaveBeenCalled();
   });
 
   it('should log error when configured log level is error', () => {
