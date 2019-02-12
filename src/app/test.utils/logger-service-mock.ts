@@ -4,11 +4,11 @@ import { Injectable } from '@angular/core';
 export class LoggerServiceMock {
   constructor() {}
 
-  debug(...messages: any[]) {}
+  debug = jest.fn();
 
-  info(...messages: any[]) {}
+  info = jest.fn();
 
-  error(error: Error, ...rest: any[]) {}
+  error = jest.fn();
 
-  warn(...messages: any[]) {}
+  warn = jest.fn();
 }
