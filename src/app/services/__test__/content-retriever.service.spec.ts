@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http/testing';
 import { environment } from '../../../environments/environment';
 import { LoggerService } from '../logger.service';
-import { LoggerServiceMock } from '../../test.utils/logger-service-mock';
+import { LoggerServiceMock } from '../logger-service.mock';
 
 describe('ContentRetrieverService', () => {
   let injector: TestBed;

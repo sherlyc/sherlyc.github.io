@@ -24,7 +24,7 @@ describe('LoggerService', () => {
 
     service.debug('This should be logged as debug');
 
-    expect(console.debug).toHaveBeenCalledWith(
+    expect(console['debug']).toHaveBeenCalledWith(
       'This should be logged as debug'
     );
   });
@@ -39,7 +39,7 @@ describe('LoggerService', () => {
 
     service.debug('This should not be logged as debug');
 
-    expect(console.debug).not.toHaveBeenCalledWith(
+    expect(console['debug']).not.toHaveBeenCalledWith(
       'This should not be logged as debug'
     );
   });
