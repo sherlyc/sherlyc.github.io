@@ -3,5 +3,9 @@ import { IContentBlock } from '../../../common/__types__/IContentBlock';
 import layoutRegistry from './layoutRegistry';
 
 export default (articleList: IRawArticle[]): IContentBlock[] => {
-  return layoutRegistry['homepage'](articleList);
+  return [
+    { type: 'Header' },
+    { type: 'Container', items: layoutRegistry['homepage'](articleList) },
+    { type: 'Footer' }
+  ];
 };

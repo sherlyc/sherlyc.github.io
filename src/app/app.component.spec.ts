@@ -22,13 +22,6 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('Stuff Homepage and Section Pages Hello World');
   }));
 
-  it('should check app header is present', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('app-header')).toBeTruthy();
-  }));
-
   it('should check router outlet is present', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
