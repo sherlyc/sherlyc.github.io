@@ -1,4 +1,4 @@
-import generate from './layoutGenerator';
+import generate from './layout-generator';
 import * as articleList from './__fixtures__/standard.json';
 import * as homepage from './__fixtures__/homepage.json';
 

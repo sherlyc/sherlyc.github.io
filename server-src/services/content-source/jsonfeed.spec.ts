@@ -1,4 +1,4 @@
-import getRawArticleList from './jsonFeed';
+import getRawArticleList from './jsonfeed';
 import * as standard from './__fixtures__/standard.json';
 import axios from 'axios';
 import * as jsonfeed from './__fixtures__/jsonfeed.json';

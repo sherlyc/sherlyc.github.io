@@ -1,4 +1,4 @@
-import homepageLayout from './homepageLayout';
+import homepageLayout from './homepage-layout';
 import { ILayoutRegistry } from './__types__/ILayoutRegistry';
 
 const layoutRegistry: ILayoutRegistry = {};

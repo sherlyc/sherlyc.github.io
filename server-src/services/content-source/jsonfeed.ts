@@ -1,5 +1,5 @@
-import retrieveJsonFeed from './jsonFeed.retriever';
-import mapToIRawArticleList from './jsonFeed.mapper';
+import retrieveJsonFeed from './jsonfeed-retriever';
+import mapToIRawArticleList from './jsonfeed-mapper';
 import { IJsonFeedArticleList } from './__types__/IJsonFeedArticleList';
 import { IRawArticle } from '../__types__/IRawArticle';
 

@@ -1,4 +1,4 @@
-import retrieve from './jsonFeed.retriever';
+import retrieve from './jsonfeed-retriever';
 import * as jsonfeed from './__fixtures__/jsonfeed.json';
 import axios from 'axios';
 
