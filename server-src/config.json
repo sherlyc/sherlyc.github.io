@@ -3,6 +3,7 @@
     "retryTimeout": 1000,
     "requestTimeout": 10000,
     "jsonFeedAPI": "https://www.stuff.co.nz/_json2",
+    "maxArticlesToRetrieve": 50,
     "loggerOptions": {
       "level": "info",
       "format": "json"
