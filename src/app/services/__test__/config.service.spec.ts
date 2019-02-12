@@ -1,6 +1,6 @@
-import * as configJson from './config.json';
+import * as configJson from '../config.json';
 import { TestBed } from '@angular/core/testing';
-import { ConfigService } from './config.service';
+import { ConfigService } from '../config.service';
 import { PLATFORM_ID } from '@angular/core';
 import { TransferState } from '@angular/platform-browser';
 

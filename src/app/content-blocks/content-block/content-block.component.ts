@@ -9,6 +9,7 @@ import {
 import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 import registry from '../content-blocks.registry';
 import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
+import { LoggerService } from '../../services/logger.service';
 
 @Component({
   selector: 'app-content-block',
@@ -22,7 +23,10 @@ export class ContentBlockComponent implements IContentBlockComponent, OnInit {
   @ViewChild('viewContainer', { read: ViewContainerRef })
   viewContainerRef!: ViewContainerRef;
 
-  constructor(private resolver: ComponentFactoryResolver) {}
+  constructor(
+    private resolver: ComponentFactoryResolver,
+    private logger: LoggerService
+  ) {}
 
   ngOnInit(): void {
     const componentFactory = registry[`${this.input.type}Component`];
@@ -36,7 +40,9 @@ export class ContentBlockComponent implements IContentBlockComponent, OnInit {
       >(factory);
       componentRef.instance.input = this.input;
     } else {
-      console.error(`No Component found for ${this.input.type} type`);
+      this.logger.error(
+        new Error(`No Component found for ${this.input.type} type`)
+      );
     }
   }
 }

@@ -6,6 +6,7 @@ import { IContentBlock } from '../../../common/__types__/IContentBlock';
 import { environment } from '../../environments/environment';
 import { IErrorBlock } from '../../../common/__types__/IErrorBlock';
 import { isPlatformBrowser } from '@angular/common';
+import { LoggerService } from './logger.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class ContentRetrieverService {
   isBrowser: boolean;
   constructor(
     private http: HttpClient,
+    private logger: LoggerService,
     @Inject(PLATFORM_ID) platformId: Object
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
@@ -26,11 +28,11 @@ export class ContentRetrieverService {
           ? environment.backendUrl
           : `${environment.serverBase}${environment.backendUrl}`
       )
-      .pipe(catchError(this.handleError));
+      .pipe(catchError(this.handleError.bind(this)));
   }
 
   private handleError(error: HttpErrorResponse) {
-    console.error(error);
+    this.logger.error(error);
 
     return of([
       {

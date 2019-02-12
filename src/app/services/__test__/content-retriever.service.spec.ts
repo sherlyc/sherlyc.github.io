@@ -6,6 +6,8 @@ import {
   HttpTestingController
 } from '@angular/common/http/testing';
 import { environment } from '../../../environments/environment';
+import { LoggerService } from '../logger.service';
+import { LoggerServiceMock } from '../logger-service.mock';
 
 describe('ContentRetrieverService', () => {
   let injector: TestBed;
@@ -14,7 +16,8 @@ describe('ContentRetrieverService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule]
+      imports: [HttpClientTestingModule],
+      providers: [{ provide: LoggerService, useClass: LoggerServiceMock }]
     });
 
     injector = getTestBed();
