@@ -14,16 +14,16 @@ export class LoggerService implements ErrorHandler {
   logLevels = ['debug', 'info', 'warn', 'error'];
 
   private log(logLevel: string, ...rest: any[]) {
-    let logLevelIndex = this.logLevels.indexOf(
+    let currentLogLevelIndex = this.logLevels.indexOf(
       this.config.getConfig().loggerOptions.level
     );
 
-    if (logLevelIndex < 0) {
-      logLevelIndex = 2;
+    if (currentLogLevelIndex < 0) {
+      currentLogLevelIndex = 2;
     }
 
     const loggingIndex = this.logLevels.indexOf(logLevel);
-    if (loggingIndex >= logLevelIndex) {
+    if (loggingIndex >= currentLogLevelIndex) {
       (console as ISpadeConsole)[logLevel].call(console, ...rest);
     }
   }
