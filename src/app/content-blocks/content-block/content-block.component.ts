@@ -9,7 +9,7 @@ import {
 import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 import registry from '../content-blocks.registry';
 import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
-import { LoggerService } from '../../services/logger.service';
+import { LoggerService } from '../../services/logger/logger.service';
 
 @Component({
   selector: 'app-content-block',

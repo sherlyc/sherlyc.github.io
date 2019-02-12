@@ -15,7 +15,7 @@ import { PageComponent } from './modules/page/page.component';
 
 import { SharedModule } from './shared/shared.module';
 import { ContentBlocksModule } from './content-blocks/content-blocks.module';
-import { LoggerService } from './services/logger.service';
+import { LoggerService } from './services/logger/logger.service';
 
 @NgModule({
   declarations: [AppComponent, PageComponent],

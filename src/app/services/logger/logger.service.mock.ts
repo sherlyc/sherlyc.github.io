@@ -1,4 +1,4 @@
-import { IEnvironmentDefinition } from './__types__/IEnvironmentDefinition';
+import { IEnvironmentDefinition } from '../config/__types__/IEnvironmentDefinition';
 
 export class LoggerServiceMock {
   constructor() {}

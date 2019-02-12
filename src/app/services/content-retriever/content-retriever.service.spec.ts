@@ -1,14 +1,14 @@
 import { TestBed } from '@angular/core/testing';
-import { ContentRetrieverService } from '../content-retriever.service';
-import * as jsonfeed from './fixtures/contentBlockArticles.json';
+import { ContentRetrieverService } from './content-retriever.service';
+import * as jsonfeed from './__fixtures__/contentBlockArticles.json';
 import {
   HttpClientTestingModule,
   HttpTestingController
 } from '@angular/common/http/testing';
-import { ConfigService } from '../config.service';
-import { ConfigServiceMock } from '../config.service.mock';
-import { LoggerService } from '../logger.service';
-import { LoggerServiceMock } from '../logger.service.mock';
+import { ConfigService } from '../config/config.service';
+import { ConfigServiceMock } from '../config/config.service.mock';
+import { LoggerService } from '../logger/logger.service';
+import { LoggerServiceMock } from '../logger/logger.service.mock';
 
 describe('ContentRetrieverService', () => {
   let contentRetrieverService: ContentRetrieverService;

@@ -1,7 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PageComponent } from './page.component';
-import { ContentRetrieverService } from '../../services/content-retriever.service';
+import { ContentRetrieverService } from '../../services/content-retriever/content-retriever.service';
 import {
   ConnectableObservable,
   Observable,

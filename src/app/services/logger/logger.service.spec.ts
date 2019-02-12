@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LoggerService } from '../logger.service';
-import { ConfigService } from '../config.service';
-import { ConfigServiceMock } from '../config.service.mock';
+import { LoggerService } from './logger.service';
+import { ConfigService } from '../config/config.service';
+import { ConfigServiceMock } from '../config/config.service.mock';
 
 let configService: ConfigServiceMock;
 

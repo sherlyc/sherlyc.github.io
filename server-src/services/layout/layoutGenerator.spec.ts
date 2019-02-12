@@ -1,11 +1,11 @@
-import * as articleList from './fixtures/standard.json';
-import generate from '../layoutGenerator';
-import * as homepageLayout from './fixtures/homepage.json';
-import { IRawArticle } from '../../__types__/IRawArticle';
-import { IContentBlock } from '../../../../common/__types__/IContentBlock';
-import layoutRegistry from '../layoutRegistry';
+import * as articleList from './__fixtures__/standard.json';
+import generate from './layoutGenerator';
+import * as homepageLayout from './__fixtures__/homepage.json';
+import { IRawArticle } from '../__types__/IRawArticle';
+import { IContentBlock } from '../../../common/__types__/IContentBlock';
+import layoutRegistry from './layoutRegistry';
 
-jest.mock('../layoutRegistry', () => ({
+jest.mock('./layoutRegistry', () => ({
   __esModule: true,
   default: {
     homepage: jest.fn(

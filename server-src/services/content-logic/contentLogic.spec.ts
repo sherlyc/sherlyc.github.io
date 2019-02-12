@@ -1,10 +1,10 @@
-import { IContentRule } from '../__types__/IContentRule';
-import { IRawArticle } from '../../__types__/IRawArticle';
-import * as articleList from './fixtures/standard.json';
-import ruleRegistry from '../ruleRegistry';
-import applyRules from '../../content-logic/contentLogic';
+import { IContentRule } from './__types__/IContentRule';
+import { IRawArticle } from '../__types__/IRawArticle';
+import * as articleList from './__fixtures__/standard.json';
+import ruleRegistry from './ruleRegistry';
+import applyRules from './contentLogic';
 
-jest.mock('../../content-logic/ruleRegistry', () => ({
+jest.mock('./ruleRegistry', () => ({
   __esModule: true,
   default: { dummy: jest.fn((articles: IRawArticle[]) => articles.reverse()) }
 }));
