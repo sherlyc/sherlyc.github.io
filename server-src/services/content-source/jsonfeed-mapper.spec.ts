@@ -1,6 +1,6 @@
 import * as jsonfeed from './__fixtures__/jsonfeed.json';
 import * as standard from './__fixtures__/standard.json';
-import map from './jsonFeed.mapper';
+import map from './jsonfeed-mapper';
 import { IJsonFeedArticleList } from './__types__/IJsonFeedArticleList';
 import { cloneDeep } from 'lodash';
 import { IRawArticle } from '../__types__/IRawArticle';

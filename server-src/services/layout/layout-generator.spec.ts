@@ -1,11 +1,11 @@
 import * as articleList from './__fixtures__/standard.json';
-import generate from './layoutGenerator';
+import generate from './layout-generator';
 import * as homepageLayout from './__fixtures__/homepage.json';
 import { IRawArticle } from '../__types__/IRawArticle';
 import { IContentBlock } from '../../../common/__types__/IContentBlock';
-import layoutRegistry from './layoutRegistry';
+import layoutRegistry from './layout-registry';
 
-jest.mock('./layoutRegistry', () => ({
+jest.mock('./layout-registry', () => ({
   __esModule: true,
   default: {
     homepage: jest.fn(
