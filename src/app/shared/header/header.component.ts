@@ -1,23 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
-  @Input()
-  mainNavLink!: INavLink;
-
-  @Input()
-  subNavLink!: INavLink;
-
+export class HeaderComponent {
   constructor() {}
-
-  ngOnInit() {}
-}
-
-interface INavLink {
-  text: string;
-  href: string;
 }
