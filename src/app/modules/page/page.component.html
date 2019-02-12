@@ -1,4 +1,5 @@
 <app-content-block
+  class="{{ contentBlock.type.toLocaleLowerCase() }}"
   *ngFor="let contentBlock of contentBlocks"
   [input]="contentBlock"
 ></app-content-block>
