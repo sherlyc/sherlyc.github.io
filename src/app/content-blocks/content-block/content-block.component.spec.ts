@@ -4,8 +4,8 @@ import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/t
 import { ContentBlockComponent } from './content-block.component';
 import registry from '../content-blocks.registry';
 import { Component } from '@angular/core';
-import { LoggerService } from '../../services/logger.service';
-import { LoggerServiceMock } from '../../services/logger.service.mock';
+import { LoggerService } from '../../services/logger/logger.service';
+import { LoggerServiceMock } from '../../services/logger/logger.service.mock';
 
 @Component({
   selector: 'app-fake-content-block',

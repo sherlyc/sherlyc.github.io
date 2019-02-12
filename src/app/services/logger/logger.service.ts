@@ -1,5 +1,5 @@
 import { ErrorHandler, Injectable } from '@angular/core';
-import { ConfigService } from './config.service';
+import { ConfigService } from '../config/config.service';
 
 interface ISpadeConsole extends Console {
   [key: string]: Function;

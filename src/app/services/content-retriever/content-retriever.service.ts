@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
-import { IContentBlock } from '../../../common/__types__/IContentBlock';
-import { IErrorBlock } from '../../../common/__types__/IErrorBlock';
-import { LoggerService } from './logger.service';
-import { ConfigService } from './config.service';
+import { IContentBlock } from '../../../../common/__types__/IContentBlock';
+import { IErrorBlock } from '../../../../common/__types__/IErrorBlock';
+import { LoggerService } from '../logger/logger.service';
+import { ConfigService } from '../config/config.service';
 
 @Injectable({
   providedIn: 'root'
