@@ -7,27 +7,21 @@ import { environment } from '../../environments/environment';
 import { IErrorBlock } from '../../../common/__types__/IErrorBlock';
 import { isPlatformBrowser } from '@angular/common';
 import { LoggerService } from './logger.service';
+import { ConfigService } from './config.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContentRetrieverService {
-  isBrowser: boolean;
   constructor(
     private http: HttpClient,
     private logger: LoggerService,
-    @Inject(PLATFORM_ID) platformId: Object
-  ) {
-    this.isBrowser = isPlatformBrowser(platformId);
-  }
+    private config: ConfigService
+  ) {}
 
   getContent(): Observable<IContentBlock[]> {
     return this.http
-      .get<IContentBlock[]>(
-        this.isBrowser
-          ? environment.backendUrl
-          : `${environment.serverBase}${environment.backendUrl}`
-      )
+      .get<IContentBlock[]>(this.config.getConfig().spadeAPI)
       .pipe(catchError(this.handleError.bind(this)));
   }
 

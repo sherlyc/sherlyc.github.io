@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { LoggerService } from '../logger.service';
 import { ConfigService } from '../config.service';
-import { ConfigServiceMock } from '../config-service.mock';
+import { ConfigServiceMock } from '../config.service.mock';
 
 let configService: ConfigServiceMock;
 
