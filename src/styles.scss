@@ -6,4 +6,17 @@ html,
 body {
   height: 100%;
   width: 100%;
+  font-family: 'Merriweather Sans', serif;
+}
+
+.color-bar {
+  height: 3px;
+  background-image: linear-gradient(
+    90deg,
+    #ff4e00 13%,
+    #fcd300 33%,
+    #00c580 50%,
+    #00a2fc 67%,
+    #8130e4 87%
+  );
 }

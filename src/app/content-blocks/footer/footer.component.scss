@@ -1,4 +1,18 @@
 :host {
-  border-top: 1px solid #ccc;
   display: block;
+}
+
+.links {
+  margin: 20px;
+  div {
+    ::after {
+      margin: 0 10px;
+      content: ' | ';
+      color: #999;
+    }
+  }
+}
+.contact {
+  margin: 20px;
+  text-align: right;
 }
