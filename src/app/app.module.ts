@@ -8,11 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { PageComponent } from './modules/page/page.component';
-
-import { SharedModule } from './shared/shared.module';
 import { ContentBlocksModule } from './content-blocks/content-blocks.module';
 import { LoggerService } from './services/logger/logger.service';
 
@@ -26,7 +23,6 @@ import { LoggerService } from './services/logger/logger.service';
     FlexLayoutModule,
     FormsModule,
     HttpClientModule,
-    SharedModule,
     ContentBlocksModule
   ],
   providers: [{ provide: ErrorHandler, useClass: LoggerService }],
