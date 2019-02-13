@@ -1,10 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
-
-/*------------------------------------*\
-    BASE.CSS
-\*------------------------------------*/
-
 @import '~normalize.css/normalize.css';
+@import '~flexboxgrid';
 @import 'styles/shared/shared.scss';
 @import 'styles/base/typography.scss';
 @import 'styles/base/links.scss';
