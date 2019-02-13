@@ -24,6 +24,12 @@ What things you need to install the software and how to install them
 
 `npm run test:server`
 
+Before you start the application, set `SPADE_ENV` environment variable first. If not, the default value is `producton`.
+
+- either export environment variable `export SPADE_ENV=development`
+
+- or `SPADE_ENV=development npm run serve:ssr`
+
 ### Running unit tests for the frontend - Angular
 
 `npm run test`

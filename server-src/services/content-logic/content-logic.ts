@@ -1,5 +1,5 @@
 import { IRawArticle } from '../__types__/IRawArticle';
-import ruleRegistry from './ruleRegistry';
+import ruleRegistry from './rule-registry';
 
 export default (articleList: IRawArticle[]): IRawArticle[] =>
   Object.values(ruleRegistry).reduce(

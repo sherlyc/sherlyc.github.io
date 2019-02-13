@@ -1,7 +1,7 @@
 import { IContentBlock } from '../../common/__types__/IContentBlock';
-import getRawArticleList from './content-source/jsonFeed';
-import contentLogic from './content-logic/contentLogic';
-import generate from './layout/layoutGenerator';
+import getRawArticleList from './content-source/jsonfeed';
+import contentLogic from './content-logic/content-logic';
+import generate from './layout/layout-generator';
 import { IRawArticle } from './__types__/IRawArticle';
 import { IErrorBlock } from '../../common/__types__/IErrorBlock';
 

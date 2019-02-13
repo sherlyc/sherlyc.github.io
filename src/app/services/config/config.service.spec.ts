@@ -6,7 +6,10 @@ import { TransferState } from '@angular/platform-browser';
 
 describe('Config Service', () => {
   let configService: ConfigService;
-  const transferStateMock = {
+  const transferStateMock: {
+    get: jest.Mock;
+    set: jest.Mock;
+  } = {
     get: jest.fn(),
     set: jest.fn()
   };
@@ -46,7 +49,7 @@ describe('Config Service', () => {
 
   it('should fall back to production configuration when running in SSR and environment variable is not present', () => {
     configService.isServer = true;
-    (transferStateMock.get as jest.Mock).mockReturnValue(null);
+    transferStateMock.get.mockReturnValue(null);
 
     expect(configService.getEnvironmentName()).toEqual('production');
     expect(configService.getConfig()).toEqual(configJson['production']);
@@ -61,7 +64,7 @@ describe('Config Service', () => {
 
   it('should load config based on retrieved transfer state when running in browser', () => {
     configService.isServer = false;
-    (transferStateMock.get as jest.Mock).mockReturnValue('staging');
+    transferStateMock.get.mockReturnValue('staging');
 
     expect(configService.getEnvironmentName()).toEqual('staging');
     expect(configService.getConfig()).toEqual(configJson['staging']);
@@ -69,7 +72,7 @@ describe('Config Service', () => {
 
   it('should fallback to production configuration when running in browser and transfer state is not retrieved', () => {
     configService.isServer = false;
-    (transferStateMock.get as jest.Mock).mockReturnValue(null);
+    transferStateMock.get.mockReturnValue(null);
 
     expect(configService.getEnvironmentName()).toEqual('production');
     expect(configService.getConfig()).toEqual(configJson['production']);
@@ -77,7 +80,7 @@ describe('Config Service', () => {
 
   it('should fallback to production configuration when running in browser and transfer state is not recognised', () => {
     configService.isServer = false;
-    (transferStateMock.get as jest.Mock).mockReturnValue('something_else');
+    transferStateMock.get.mockReturnValue('something_else');
 
     expect(configService.getEnvironmentName()).toEqual('something_else');
     expect(configService.getConfig()).toEqual(configJson['production']);

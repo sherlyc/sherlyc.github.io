@@ -1,6 +1,6 @@
-import * as articleList from './fixtures/standard.json';
-import * as olderToNewestExpected from './fixtures/olderToNewest.json';
-import olderToNewest from '../olderToNewestRule';
+import * as articleList from './__fixtures__/standard.json';
+import * as olderToNewestExpected from './__fixtures__/olderToNewest.json';
+import olderToNewest from './older-to-newest-rule';
 
 describe('Older to newest rule', () => {
   it('should sort a provided standard article list from older to newest', () => {

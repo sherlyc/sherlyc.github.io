@@ -2,7 +2,7 @@ import {
   BrowserModule,
   BrowserTransferStateModule
 } from '@angular/platform-browser';
-import { NgModule, ErrorHandler, Injectable } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -12,23 +12,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { PageComponent } from './modules/page/page.component';
 
-import * as Sentry from '@sentry/browser';
 import { SharedModule } from './shared/shared.module';
 import { ContentBlocksModule } from './content-blocks/content-blocks.module';
-
-Sentry.init({
-  // dsn: 'https://30f2a44af0d04b55875db5eb17b68a63@sentry.io/1306325'
-  dsn: 'https://48f99cea317a4f9d9c015be25e9943f2@sentry.io/1308464'
-});
-
-@Injectable()
-export class SentryErrorHandler implements ErrorHandler {
-  constructor() {}
-  handleError(error: any) {
-    Sentry.captureException(error.originalError || error);
-    throw error;
-  }
-}
+import { LoggerService } from './services/logger/logger.service';
 
 @NgModule({
   declarations: [AppComponent, PageComponent],
@@ -43,7 +29,7 @@ export class SentryErrorHandler implements ErrorHandler {
     SharedModule,
     ContentBlocksModule
   ],
-  providers: [{ provide: ErrorHandler, useClass: SentryErrorHandler }],
+  providers: [{ provide: ErrorHandler, useClass: LoggerService }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

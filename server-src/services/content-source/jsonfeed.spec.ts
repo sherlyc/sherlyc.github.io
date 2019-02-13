@@ -1,7 +1,7 @@
-import getRawArticleList from '../jsonFeed';
-import * as standard from './fixtures/standard.json';
+import getRawArticleList from './jsonfeed';
+import * as standard from './__fixtures__/standard.json';
 import axios from 'axios';
-import * as jsonfeed from './fixtures/jsonfeed.json';
+import * as jsonfeed from './__fixtures__/jsonfeed.json';
 
 jest.mock('axios');
 

@@ -1,12 +1,12 @@
-import orchestrate from '../orchestrator';
-import * as homepage from './fixtures/homepage.json';
-import getRawArticleList from '../content-source/jsonFeed';
-import contentLogic from '../content-logic/contentLogic';
-import generate from '../layout/layoutGenerator';
+import orchestrate from './orchestrator';
+import * as homepage from './__fixtures__/homepage.json';
+import getRawArticleList from './content-source/jsonfeed';
+import contentLogic from './content-logic/content-logic';
+import generate from './layout/layout-generator';
 
-jest.mock('../content-source/jsonFeed');
-jest.mock('../content-logic/contentLogic');
-jest.mock('../layout/layoutGenerator');
+jest.mock('./content-source/jsonfeed');
+jest.mock('./content-logic/content-logic');
+jest.mock('./layout/layout-generator');
 
 describe.only('Orchestrator', () => {
   beforeEach(() => {

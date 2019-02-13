@@ -1,5 +1,5 @@
-import retrieve from '../jsonFeed.retriever';
-import * as jsonfeed from './fixtures/jsonfeed.json';
+import retrieve from './jsonfeed-retriever';
+import * as jsonfeed from './__fixtures__/jsonfeed.json';
 import axios from 'axios';
 
 jest.mock('axios');

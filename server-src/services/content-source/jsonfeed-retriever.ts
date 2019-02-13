@@ -5,12 +5,15 @@ import axios from 'axios';
 import * as pRetry from 'p-retry';
 
 async function apiCall(): Promise<IJsonFeedArticleList> {
-  const response = await axios.get<IJsonFeedArticleList>(config.jsonFeedAPI, {
-    validateStatus: (status: number) => {
-      return status >= 200 && status < 400;
-    },
-    timeout: config.requestTimeout
-  });
+  const response = await axios.get<IJsonFeedArticleList>(
+    `${config.jsonFeedAPI}?limit=${config.maxArticlesToRetrieve}`,
+    {
+      validateStatus: (status: number) => {
+        return status >= 200 && status < 400;
+      },
+      timeout: config.requestTimeout
+    }
+  );
 
   return response.data;
 }
