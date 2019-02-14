@@ -1,0 +1,22 @@
+:host {
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: block;
+}
+
+.menu {
+  margin: 8px;
+  div {
+    width: 15px;
+    height: 2px;
+    background-color: black;
+    margin: 4px 0;
+  }
+}
+
+.user {
+  font-size: 12px;
+  color: #2ba4eb;
+}

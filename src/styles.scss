@@ -1,61 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
-
-/*------------------------------------*\
-    BASE.CSS
-\*------------------------------------*/
-
 @import '~normalize.css/normalize.css';
-@import 'styles/shared/shared.scss';
-@import 'styles/base/typography.scss';
-@import 'styles/base/links.scss';
+@import '~flexboxgrid';
 @import 'styles/fonts/merriweather.scss';
 
-/**
- * HTML
- */
-
-html {
-  box-sizing: border-box;
-  height: 100%;
-  font-family: $base-font-family;
-  font-weight: $base-font-weight;
-  font-size: $base-font-size;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  text-align: #{$dir-default};
-  color: $base-color;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
+html,
 body {
-  background-color: $color-white;
-  color: $color-neutral-primary;
   height: 100%;
-  margin: 0;
+  width: 100%;
+  font-family: 'Merriweather Sans', serif;
 }
 
-ins {
-  border-bottom: none;
-}
-
-p {
-  margin: 0 0 0.7rem;
-  padding: 0;
-}
-
-button {
-  cursor: pointer;
-  outline: none;
-}
-
-button,
-input,
-select,
-textarea {
-  font-family: $base-font-family;
+.color-bar {
+  height: 3px;
+  background-image: linear-gradient(
+    90deg,
+    #ff4e00 13%,
+    #fcd300 33%,
+    #00c580 50%,
+    #00a2fc 67%,
+    #8130e4 87%
+  );
 }
