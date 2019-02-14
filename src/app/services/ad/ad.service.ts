@@ -19,9 +19,8 @@ export class AdService {
       const script = this.document.createElement('script');
       script.id = 'aad-sdk';
       script.src = this.config.getConfig().aadSdkUrl;
-      script.async = true;
-      if (this.document.head) {
-        this.document.head.appendChild(script);
+      if (this.document.body) {
+        this.document.body.appendChild(script);
       }
     }
     this.router.events

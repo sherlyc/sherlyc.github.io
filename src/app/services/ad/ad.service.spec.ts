@@ -51,7 +51,6 @@ describe('AdService', () => {
     const aadSdkScriptElement = aadSdkElements[0] as HTMLScriptElement;
     expect(aadSdkScriptElement.id).toEqual('aad-sdk');
     expect(aadSdkScriptElement.src).toEqual(aadSdkUrl);
-    expect(aadSdkScriptElement.async).toEqual(true);
   });
 
   it('should dispatch DOM NavigationEnd when router navigation ends', (done) => {
