@@ -2,6 +2,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { AdService } from './services/ad/ad.service';
+import { AdServiceMock } from './services/ad/ad.service.mock';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -11,9 +12,7 @@ describe('AppComponent', () => {
       providers: [
         {
           provide: AdService,
-          useValue: {
-            setupAds: jest.fn()
-          }
+          useClass: AdServiceMock
         }
       ]
     }).compileComponents();
