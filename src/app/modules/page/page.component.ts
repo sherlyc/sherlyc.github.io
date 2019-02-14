@@ -3,6 +3,7 @@ import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 import { NavigationStart, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { ContentRetrieverService } from '../../services/content-retriever/content-retriever.service';
+import { ClassNameService } from '../../services/class-name/class-name.service';
 
 @Component({
   selector: 'app-page',
@@ -12,7 +13,8 @@ import { ContentRetrieverService } from '../../services/content-retriever/conten
 export class PageComponent implements OnInit {
   constructor(
     private router: Router,
-    private contentRetriever: ContentRetrieverService
+    private contentRetriever: ContentRetrieverService,
+    private classNameService: ClassNameService
   ) {}
 
   contentBlocks: IContentBlock[] = [];
@@ -24,6 +26,10 @@ export class PageComponent implements OnInit {
       .subscribe(() => {
         this.getData();
       });
+  }
+
+  getClassName(contentBlockType: string) {
+    return this.classNameService.generateClassName(contentBlockType);
   }
 
   getData() {

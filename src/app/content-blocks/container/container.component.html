@@ -1,7 +1,7 @@
 <div class="content">
   <div class="container">
     <app-content-block
-      class="{{ contentBlock.type.toLocaleLowerCase() }}"
+      class="{{ getClassName(contentBlock.type) }}"
       *ngFor="let contentBlock of input.items; trackBy: trackByFn"
       [input]="contentBlock"
     ></app-content-block>
