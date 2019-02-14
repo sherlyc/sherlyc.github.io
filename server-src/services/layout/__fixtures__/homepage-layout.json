@@ -4,6 +4,9 @@
     "type": "Container",
     "items": [
       {
+        "type": "BasicAdUnit"
+      },
+      {
         "type": "BasicArticleUnit",
         "indexHeadline": "Not even Christmas is safe",
         "introText": "Unruly travelling family hit an Auckland Caltex four times. They even took the Christmas tree.",

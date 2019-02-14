@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AdService } from './services/ad/ad.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Stuff Homepage and Section Pages Hello World';
+
+  constructor(private router: Router, private adService: AdService) {
+    this.adService.setupAds();
+  }
 }

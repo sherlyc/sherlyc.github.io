@@ -20,5 +20,11 @@ export default (articleList: IRawArticle[]): IContentBlock[] =>
         type: 'BasicAdUnit'
       } as IBasicAdUnit
     ],
-    [] as IContentBlock[]
+    articleList.length > 0
+      ? ([
+          {
+            type: 'BasicAdUnit'
+          } as IBasicAdUnit
+        ] as IContentBlock[])
+      : ([] as IContentBlock[])
   );
