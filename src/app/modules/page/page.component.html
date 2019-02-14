@@ -1,5 +1,5 @@
 <app-content-block
   class="{{ contentBlock.type.toLocaleLowerCase() }}"
-  *ngFor="let contentBlock of contentBlocks"
+  *ngFor="let contentBlock of contentBlocks; trackBy: trackByFn"
   [input]="contentBlock"
 ></app-content-block>
