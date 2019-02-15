@@ -26,7 +26,9 @@ export class AdService {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
-        this.document.dispatchEvent(new Event('NavigationEnd'));
+        setTimeout(() => {
+          this.document.dispatchEvent(new Event('NavigationEnd'));
+        }, 0);
       });
   }
 }

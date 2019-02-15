@@ -61,7 +61,8 @@ describe('AdService', () => {
 
     const document: Document = TestBed.get(DOCUMENT);
 
-    document.addEventListener('NavigationEnd', () => {
+    document.addEventListener('NavigationEnd', (e: Event) => {
+      expect(e.type).toEqual('NavigationEnd');
       done();
     });
 
