@@ -39,7 +39,7 @@ describe('AdService', () => {
     expect(adService).toBeTruthy();
   });
 
-  it('should create <script> tag in head', () => {
+  it('should create <script tag at the bottom of body', () => {
     const aadSdkUrl = 'http://whatever_url/';
     configMock.getConfig.mockReturnValue({ aadSdkUrl });
     adService.setupAds();
@@ -49,6 +49,7 @@ describe('AdService', () => {
     const aadSdkElements = document.querySelectorAll('#aad-sdk');
     expect(aadSdkElements).toHaveLength(1);
     const aadSdkScriptElement = aadSdkElements[0] as HTMLScriptElement;
+    expect(aadSdkScriptElement).toEqual(document.body.lastElementChild);
     expect(aadSdkScriptElement.id).toEqual('aad-sdk');
     expect(aadSdkScriptElement.src).toEqual(aadSdkUrl);
   });
