@@ -5,14 +5,6 @@ export class RuntimeServiceMock {
 
   isRunInServer: jest.Mock<() => boolean> = jest.fn();
 
-  runInServerOnly: jest.Mock<
-    Pick<RuntimeService, 'runInServerOnly'>
-  > = jest.fn();
-
-  runInBrowserOnly: jest.Mock<
-    Pick<RuntimeService, 'runInBrowserOnly'>
-  > = jest.fn();
-
   getTransferState: jest.Mock<
     Pick<RuntimeService, 'getTransferState'>
   > = jest.fn();
