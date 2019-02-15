@@ -5,4 +5,5 @@ export interface IEnvironmentDefinition {
   requestTimeout: number;
   spadeAPI: string;
   loggerOptions: ILoggerOptions;
+  aadSdkUrl: string;
 }

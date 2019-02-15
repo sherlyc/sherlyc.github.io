@@ -6,7 +6,8 @@
     "loggerOptions": {
       "level": "info",
       "format": "json"
-    }
+    },
+    "aadSdkUrl": "/adnostic/index.min.js"
   },
   "staging": {
     "retryTimeout": 1000,
@@ -15,7 +16,8 @@
     "loggerOptions": {
       "level": "info",
       "format": "json"
-    }
+    },
+    "aadSdkUrl": "/adnostic/index.min.js"
   },
   "development": {
     "retryTimeout": 500,
@@ -24,7 +26,8 @@
     "loggerOptions": {
       "level": "debug",
       "format": "text"
-    }
+    },
+    "aadSdkUrl": "/assets/test-aad-sdk.js"
   },
   "test": {
     "retryTimeout": 1,
@@ -33,6 +36,7 @@
     "loggerOptions": {
       "level": "debug",
       "format": "text"
-    }
+    },
+    "aadSdkUrl": "/adnostic/index.min.js"
   }
 }

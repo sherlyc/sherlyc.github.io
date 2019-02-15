@@ -1,5 +1,8 @@
 [
   {
+    "type": "BasicAdUnit"
+  },
+  {
     "type": "BasicArticleUnit",
     "indexHeadline": "Not even Christmas is safe",
     "introText": "Unruly travelling family hit an Auckland Caltex four times. They even took the Christmas tree.",
@@ -9,6 +12,9 @@
     "headlineFlags": []
   },
   {
+    "type": "BasicAdUnit"
+  },
+  {
     "type": "BasicArticleUnit",
     "indexHeadline": "Wanted: Tree planters for $400 a day",
     "introText": "Is this the biggest hurdle for Government's one billion trees campaign?",
@@ -16,5 +22,8 @@
     "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/f/z/u/4/image.related.StuffBigHeadline.418x220.1tdmj0.png/1547601996972.jpg",
     "lastPublishedTime": 1547601993,
     "headlineFlags": []
+  },
+  {
+    "type": "BasicAdUnit"
   }
 ]
