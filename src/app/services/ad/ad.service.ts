@@ -15,9 +15,10 @@ export class AdService {
   ) {}
 
   setupAds() {
-    if (!this.document.querySelector('#ads-sdk')) {
+    const scriptId = 'aad-sdk';
+    if (!this.document.querySelector(`#${scriptId}`)) {
       const script = this.document.createElement('script');
-      script.id = 'aad-sdk';
+      script.id = scriptId;
       script.src = this.config.getConfig().aadSdkUrl;
       if (this.document.body) {
         this.document.body.appendChild(script);
