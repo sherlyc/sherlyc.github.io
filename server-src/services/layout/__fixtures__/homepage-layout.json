@@ -16,6 +16,9 @@
         "headlineFlags": []
       },
       {
+        "type": "BasicArticleSection"
+      },
+      {
         "type": "BasicAdUnit"
       },
       {
@@ -26,6 +29,9 @@
         "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/f/z/u/4/image.related.StuffBigHeadline.418x220.1tdmj0.png/1547601996972.jpg",
         "lastPublishedTime": 1547601993,
         "headlineFlags": []
+      },
+      {
+        "type": "BasicArticleSection"
       },
       {
         "type": "BasicAdUnit"
