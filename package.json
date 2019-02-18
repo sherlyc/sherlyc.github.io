@@ -9,6 +9,7 @@
     "test:server": "SPADE_ENV=test jest --config ./server-src/jest.config.json",
     "test:api": "jest --config ./server-src/test-api/jest.config.json",
     "lint": "ng lint",
+    "bundle-report": "ng build --prod --stats-json && webpack-bundle-analyzer ./dist/browser/stats.json -m 'static' -O -r './dist/report.html'",
     "e2e": "jest --config ./e2e/jest.config.json",
     "format": "prettier --write '**/*.{js,json,css,scss,md,html,yaml,ts}'",
     "compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json -w -s",
@@ -87,6 +88,7 @@
     "tslint": "^5.11.0",
     "typescript": "~3.1.6",
     "webpack": "^4.26.0",
+    "webpack-bundle-analyzer": "^3.0.4",
     "webpack-cli": "^3.1.2"
   },
   "husky": {
