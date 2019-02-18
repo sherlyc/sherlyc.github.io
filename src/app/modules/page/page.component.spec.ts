@@ -2,21 +2,19 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PageComponent } from './page.component';
 import { ContentRetrieverService } from '../../services/content-retriever/content-retriever.service';
-import {
-  ConnectableObservable,
-  Observable,
-  of,
-  Subscriber,
-  throwError
-} from 'rxjs';
-import { publish } from 'rxjs/operators';
+import { of, throwError } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
-import { NavigationStart, Router, RouterEvent } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
+import { ContentRetrieverServiceMock } from '../../services/content-retriever/content-retriever.service.mock';
+import { RouterMock } from '../../services/mocks/router.mock';
 
 describe('PageComponent', () => {
   let component: PageComponent;
   let fixture: ComponentFixture<PageComponent>;
+
+  let contentRetrieverMock: ContentRetrieverServiceMock;
+  let routerMock: RouterMock;
 
   const mockContentBlocks: Array<{ type: string }> = [
     {
@@ -36,36 +34,23 @@ describe('PageComponent', () => {
     }
   ];
 
-  let contentRetrieverMock: Pick<ContentRetrieverService, 'getContent'>;
-  let routerEventEmitter: Subscriber<RouterEvent>;
-  let routerMock: Pick<Router, 'events'>;
-
   beforeEach(async () => {
-    // set up mocks for dependency injection
-    contentRetrieverMock = {
-      getContent: jest.fn()
-    };
-    routerMock = {
-      events: Observable.create((e: Subscriber<RouterEvent>) => {
-        routerEventEmitter = e;
-      }).pipe(publish())
-    };
-    (routerMock.events as ConnectableObservable<RouterEvent>).connect();
-
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [PageComponent],
       providers: [
         {
           provide: ContentRetrieverService,
-          useValue: contentRetrieverMock
+          useClass: ContentRetrieverServiceMock
         },
-        { provide: Router, useValue: routerMock }
+        { provide: Router, useClass: RouterMock }
       ],
       schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
     fixture = TestBed.createComponent(PageComponent);
     component = fixture.componentInstance;
+    contentRetrieverMock = TestBed.get(ContentRetrieverService);
+    routerMock = TestBed.get(Router);
   });
 
   afterEach(() => {
@@ -82,9 +67,7 @@ describe('PageComponent', () => {
   });
 
   it('should render a list of content block', () => {
-    (contentRetrieverMock.getContent as jest.Mock).mockReturnValue(
-      of(mockContentBlocks)
-    );
+    contentRetrieverMock.getContent.mockReturnValue(of(mockContentBlocks));
 
     component.getData();
 
@@ -93,19 +76,17 @@ describe('PageComponent', () => {
   });
 
   it('should render a list of content block when router navigates to "/"', () => {
-    (contentRetrieverMock.getContent as jest.Mock).mockReturnValue(
-      of(mockContentBlocks)
-    );
+    contentRetrieverMock.getContent.mockReturnValue(of(mockContentBlocks));
     const getDataSpy = jest.spyOn(component, 'getData');
 
-    routerEventEmitter.next(new NavigationStart(0, '/')); // emit an event before subscription
+    routerMock.eventEmitter.next(new NavigationStart(0, '/')); // emit an event before subscription
     expect(getDataSpy).not.toHaveBeenCalled();
 
     fixture.detectChanges(); // ngOnInit() and subscribe
     expect(getDataSpy).toBeCalledTimes(1);
     expect(contentRetrieverMock.getContent).toBeCalledTimes(1);
 
-    routerEventEmitter.next(new NavigationStart(0, '/')); // emit an event
+    routerMock.eventEmitter.next(new NavigationStart(0, '/')); // emit an event
     expect(getDataSpy).toBeCalledTimes(2);
     expect(contentRetrieverMock.getContent).toBeCalledTimes(2);
     fixture.detectChanges(); // input updated
@@ -113,7 +94,7 @@ describe('PageComponent', () => {
   });
 
   it('should not render any content block when the retriever fails to get content', () => {
-    (contentRetrieverMock.getContent as jest.Mock).mockReturnValue(
+    contentRetrieverMock.getContent.mockReturnValue(
       throwError('Something wrong when retrieving the content')
     );
 
@@ -122,19 +103,19 @@ describe('PageComponent', () => {
   });
 
   it('should not render any content block when router navigates to "/" but the retriever fails to get content', () => {
-    (contentRetrieverMock.getContent as jest.Mock).mockReturnValue(
+    contentRetrieverMock.getContent.mockReturnValue(
       throwError('Something wrong when retrieving the content')
     );
     const getDataSpy = jest.spyOn(component, 'getData');
 
-    routerEventEmitter.next(new NavigationStart(0, '/')); // emit an event before subscription
+    routerMock.eventEmitter.next(new NavigationStart(0, '/')); // emit an event before subscription
     expect(getDataSpy).not.toHaveBeenCalled();
 
     fixture.detectChanges(); // ngOnInit() and subscribe
     expect(getDataSpy).toHaveBeenCalled();
     expect(contentRetrieverMock.getContent).toHaveBeenCalled();
 
-    routerEventEmitter.next(new NavigationStart(0, '/')); // emit an event
+    routerMock.eventEmitter.next(new NavigationStart(0, '/')); // emit an event
     assertsForFailedRetrieval();
   });
 
