@@ -9,11 +9,17 @@ import { ConfigService } from '../config/config.service';
 import { ConfigServiceMock } from '../config/config.service.mock';
 import { LoggerService } from '../logger/logger.service';
 import { LoggerServiceMock } from '../logger/logger.service.mock';
+import { RuntimeService } from '../runtime/runtime.service';
+import { RuntimeServiceMock } from '../runtime/runtime.service.mock';
+import { TransferState } from '@angular/platform-browser';
+import { TransferStateMock } from '../mocks/transfer-state.mock';
 
 describe('ContentRetrieverService', () => {
   let contentRetrieverService: ContentRetrieverService;
   let httpMock: HttpTestingController;
   let configServiceMock: ConfigServiceMock;
+  let runtimeMock: RuntimeServiceMock;
+  let transferStateMock: TransferStateMock;
 
   const spadeAPI = 'http://localhost';
 
@@ -28,6 +34,14 @@ describe('ContentRetrieverService', () => {
         {
           provide: ConfigService,
           useClass: ConfigServiceMock
+        },
+        {
+          provide: RuntimeService,
+          useClass: RuntimeServiceMock
+        },
+        {
+          provide: TransferState,
+          useClass: TransferStateMock
         }
       ]
     });
@@ -35,40 +49,119 @@ describe('ContentRetrieverService', () => {
     contentRetrieverService = TestBed.get(ContentRetrieverService);
     httpMock = TestBed.get(HttpTestingController);
     configServiceMock = TestBed.get(ConfigService);
+    runtimeMock = TestBed.get(RuntimeService);
+    transferStateMock = TestBed.get(TransferState);
   });
 
-  it('should fetch article data correctly', (done) => {
-    configServiceMock.getConfig.mockReturnValue({ spadeAPI });
-
-    contentRetrieverService.getContent().subscribe((response) => {
-      expect(response).toEqual(jsonfeed);
-      done();
+  describe('in browser', () => {
+    beforeEach(() => {
+      configServiceMock.getConfig.mockReturnValue({ spadeAPI });
+      runtimeMock.isServer.mockResolvedValue(false);
+      runtimeMock.isBrowser.mockResolvedValue(true);
     });
 
-    const req = httpMock.expectOne(spadeAPI);
-    expect(req.request.method).toBe('GET');
-    req.flush(jsonfeed);
+    it('should return data from transfer-state if available', (done) => {
+      transferStateMock.get.mockReturnValue(jsonfeed);
+      contentRetrieverService.getContent().subscribe((response) => {
+        expect(response).toEqual(jsonfeed);
+        done();
+      });
+    });
+
+    it('should fetch article data if not available in state', (done) => {
+      transferStateMock.get.mockReturnValue(null);
+      contentRetrieverService.getContent().subscribe((response) => {
+        expect(response).toEqual(jsonfeed);
+        done();
+      });
+
+      const req = httpMock.expectOne(spadeAPI);
+      expect(req.request.method).toBe('GET');
+      req.flush(jsonfeed);
+    });
+
+    it('should return an error content block when the request fails', (done) => {
+      contentRetrieverService.getContent().subscribe(
+        (response) => {
+          expect(response).toHaveLength(3);
+          expect(response[0].type).toEqual('Header');
+          expect(response[1].type).toEqual('ErrorBlock');
+          expect(response[2].type).toEqual('Footer');
+          done();
+        },
+        (err) => {
+          fail(err);
+        }
+      );
+
+      const req = httpMock.expectOne(spadeAPI);
+      expect(req.request.method).toBe('GET');
+      req.flush(
+        { data: 'something went wrong' },
+        { status: 500, statusText: 'Server error' }
+      );
+    });
   });
 
-  it('should return an error content block when the request fails', (done) => {
-    configServiceMock.getConfig.mockReturnValue({ spadeAPI });
+  describe('in server', () => {
+    beforeEach(() => {
+      configServiceMock.getConfig.mockReturnValue({ spadeAPI });
+      runtimeMock.isServer.mockResolvedValue(true);
+      runtimeMock.isBrowser.mockResolvedValue(false);
+    });
 
-    contentRetrieverService.getContent().subscribe(
-      (response) => {
-        expect(response).toHaveLength(1);
-        expect(response[0].type).toEqual('ErrorBlock');
+    it('should add result to transfer-state', (done) => {
+      transferStateMock.get.mockReturnValue(null);
+      contentRetrieverService.getContent().subscribe((response) => {
+        expect(transferStateMock.set).toHaveBeenCalledWith('KEY', jsonfeed);
         done();
-      },
-      (err) => {
-        fail(err);
-      }
-    );
+      });
 
-    const req = httpMock.expectOne(spadeAPI);
-    expect(req.request.method).toBe('GET');
-    req.flush(
-      { data: 'something went wrong' },
-      { status: 500, statusText: 'Server error' }
-    );
+      const req = httpMock.expectOne(spadeAPI);
+      expect(req.request.method).toBe('GET');
+      req.flush(jsonfeed);
+    });
+
+    it('should return data from transfer-state if available', (done) => {
+      transferStateMock.get.mockReturnValue(jsonfeed);
+      contentRetrieverService.getContent().subscribe((response) => {
+        expect(response).toEqual(jsonfeed);
+        done();
+      });
+    });
+
+    it('should fetch article data if not available in state', (done) => {
+      transferStateMock.get.mockReturnValue(null);
+      contentRetrieverService.getContent().subscribe((response) => {
+        expect(response).toEqual(jsonfeed);
+        done();
+      });
+
+      const req = httpMock.expectOne(spadeAPI);
+      expect(req.request.method).toBe('GET');
+      req.flush(jsonfeed);
+    });
+
+    it('should return an error content block when the request fails', (done) => {
+      contentRetrieverService.getContent().subscribe(
+        (response) => {
+          expect(response).toHaveLength(3);
+          expect(response[0].type).toEqual('Header');
+          expect(response[1].type).toEqual('ErrorBlock');
+          expect(response[2].type).toEqual('Footer');
+          done();
+        },
+        (err) => {
+          fail(err);
+        }
+      );
+
+      const req = httpMock.expectOne(spadeAPI);
+      expect(req.request.method).toBe('GET');
+      req.flush(
+        { data: 'something went wrong' },
+        { status: 500, statusText: 'Server error' }
+      );
+    });
   });
 });
