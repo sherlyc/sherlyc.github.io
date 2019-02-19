@@ -1,14 +1,14 @@
 import * as jsonfeed from './__fixtures__/jsonfeed.json';
-import * as standard from './__fixtures__/standard.json';
+import * as rawArticle from './__fixtures__/raw-article.json';
 import map from './jsonfeed-mapper';
 import { IJsonFeedArticleList } from './__types__/IJsonFeedArticleList';
 import { cloneDeep } from 'lodash';
-import { IRawArticle } from '../__types__/IRawArticle';
+import { IRawArticle } from './__types__/IRawArticle';
 
 describe('JsonFeed Mapper', () => {
-  it('should map jsonfeed to standard json format', () => {
+  it('should map jsonfeed to rawArticle json format', () => {
     const data: IJsonFeedArticleList = cloneDeep(jsonfeed);
-    expect(map(data)).toEqual(standard);
+    expect(map(data)).toEqual(rawArticle);
   });
 
   it('should handle empty image value', () => {
@@ -17,7 +17,7 @@ describe('JsonFeed Mapper', () => {
       story.images = [];
     });
 
-    const expected: IRawArticle[] = cloneDeep(standard);
+    const expected: IRawArticle[] = cloneDeep(rawArticle);
     Object.values(expected).forEach((article: IRawArticle) => {
       article.imageSrc = null;
     });
