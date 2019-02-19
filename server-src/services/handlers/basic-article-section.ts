@@ -26,7 +26,7 @@ export default async function({
         displayName,
         displayNameColor,
         linkUrl,
-        articleList: await handlerRunner({
+        items: await handlerRunner({
           type: 'ArticleList',
           sectionId,
           totalArticles
