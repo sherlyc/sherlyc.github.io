@@ -8,6 +8,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { NavigationStart, Router } from '@angular/router';
 import { ContentRetrieverServiceMock } from '../../services/content-retriever/content-retriever.service.mock';
 import { RouterMock } from '../../services/mocks/router.mock';
+import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 
 describe('PageComponent', () => {
   let component: PageComponent;
@@ -16,7 +17,7 @@ describe('PageComponent', () => {
   let contentRetrieverMock: ContentRetrieverServiceMock;
   let routerMock: RouterMock;
 
-  const mockContentBlocks: Array<{ type: string }> = [
+  const mockContentBlocks: IContentBlock[] = ([
     {
       type: 'FakeContentBlock'
     },
@@ -32,7 +33,7 @@ describe('PageComponent', () => {
     {
       type: 'FakeContentBlock'
     }
-  ];
+  ] as any) as IContentBlock[];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

@@ -16,7 +16,7 @@ describe('LoggerService', () => {
 
   it('should log debug when configured log level is debug', () => {
     configService.getConfig.mockReturnValue({
-      loggerOptions: { level: 'debug' }
+      loggerOptions: { level: 'debug', format: 'json' }
     });
 
     const service: LoggerService = TestBed.get(LoggerService);
@@ -31,7 +31,7 @@ describe('LoggerService', () => {
 
   it('should not log debug when configured log level is higher than debug', () => {
     configService.getConfig.mockReturnValue({
-      loggerOptions: { level: 'info' }
+      loggerOptions: { level: 'info', format: 'json' }
     });
 
     const service: LoggerService = TestBed.get(LoggerService);
@@ -44,7 +44,7 @@ describe('LoggerService', () => {
 
   it('should log error when configured log level is error', () => {
     configService.getConfig.mockReturnValue({
-      loggerOptions: { level: 'error' }
+      loggerOptions: { level: 'error', format: 'json' }
     });
 
     const service: LoggerService = TestBed.get(LoggerService);
@@ -59,7 +59,7 @@ describe('LoggerService', () => {
 
   it('should log warn when configured log level does not exist', () => {
     configService.getConfig.mockReturnValue({
-      loggerOptions: { level: 'non-existing-level' }
+      loggerOptions: { level: 'non-existing-level', format: 'json' }
     });
 
     const service: LoggerService = TestBed.get(LoggerService);
