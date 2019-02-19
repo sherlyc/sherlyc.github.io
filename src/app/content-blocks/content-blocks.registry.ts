@@ -12,6 +12,7 @@ export const contentBlockComponents = [
   BasicArticleUnitComponent,
   BasicArticleSectionComponent,
   BasicAdUnitComponent,
+  BasicArticleSectionComponent,
   ContainerComponent,
   ErrorBlockComponent,
   HeaderComponent,

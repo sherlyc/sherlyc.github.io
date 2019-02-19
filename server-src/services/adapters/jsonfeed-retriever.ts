@@ -3,7 +3,7 @@ import config from '../config';
 import logger from '../logger';
 import axios from 'axios';
 import * as pRetry from 'p-retry';
-import { Section } from './section';
+import { Section } from '../section';
 
 async function apiCall(
   section: Section,

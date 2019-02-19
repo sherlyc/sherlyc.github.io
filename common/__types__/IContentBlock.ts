@@ -8,6 +8,7 @@ import { IBasicArticleSection } from './IBasicArticleSection';
 
 export type IContentBlock =
   | IBasicArticleUnit
+  | IBasicArticleSection
   | IBasicAdUnit
   | IBasicArticleSection
   | IErrorBlock

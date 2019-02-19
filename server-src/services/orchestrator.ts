@@ -1,15 +1,19 @@
 import { IContentBlock } from '../../common/__types__/IContentBlock';
-import getRawArticleList from './content-source/jsonfeed';
-import contentLogic from './content-logic/content-logic';
-import generate from './layout/layout-generator';
-import { IRawArticle } from './__types__/IRawArticle';
 import { IErrorBlock } from '../../common/__types__/IErrorBlock';
+import handlerRunner, { HandlerType } from './handlers/runner';
+import { sections } from './section';
+import { IPageHandlerInput } from './handlers/page';
 
 export default async (): Promise<IContentBlock[]> => {
   try {
-    const articleList: IRawArticle[] = await getRawArticleList();
-    return generate(contentLogic(articleList));
+    return await handlerRunner(HandlerType.Page, {
+      sections
+    } as IPageHandlerInput);
   } catch (e) {
-    return [{ type: 'ErrorBlock', message: e.message } as IErrorBlock];
+    return [
+      { type: 'Header' },
+      { type: 'ErrorBlock', message: e.message } as IErrorBlock,
+      { type: 'Footer' }
+    ];
   }
 };
