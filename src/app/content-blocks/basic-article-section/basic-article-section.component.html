@@ -4,7 +4,7 @@
   </a>
   <app-content-block
     class="{{ getClassName(item.type) }}"
-    *ngFor="let item of input.items; trackBy: trackByFn"
+    *ngFor="let item of input.articleList; trackBy: trackByFn"
     [input]="item"
   ></app-content-block>
   <a class="more" href="{{ input.linkUrl }}">More {{ input.displayName }}</a>

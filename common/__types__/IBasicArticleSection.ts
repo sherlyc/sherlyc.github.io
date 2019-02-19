@@ -5,5 +5,5 @@ export interface IBasicArticleSection {
   displayName: string;
   displayNameColor: string;
   linkUrl: string;
-  items: IContentBlock[];
+  articleList: IContentBlock[];
 }

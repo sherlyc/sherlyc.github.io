@@ -1,27 +1,23 @@
+import handlerRunner from './runner';
 import { IContentBlock } from '../../../common/__types__/IContentBlock';
-import getRawArticleList from '../adapters/jsonfeed';
-import handlerRunner, { HandlerType } from './runner';
-import { IBasicArticleUnit } from '../../../common/__types__/IBasicArticleUnit';
 import { ContentBlockType } from '../../../common/__types__/ContentBlockType';
-import { Section } from '../section';
-import { IBasicArticleSection } from '../../../common/__types__/IBasicArticleSection';
+import { IBasicArticleListHandlerInput } from './basic-article-list';
+
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
 export interface IBasicArticleSectionHandlerInput {
+  type: 'ArticleSection';
   displayName: string;
   displayNameColor: string;
   linkUrl: string;
-  sectionId: Section;
-  revert: boolean;
-  totalArticles: number;
+  articleList: Omit<IBasicArticleListHandlerInput, 'type'>;
 }
 
 export default async function({
   displayName,
   displayNameColor,
   linkUrl,
-  sectionId,
-  revert,
-  totalArticles
+  articleList: { sectionId, totalArticles }
 }: IBasicArticleSectionHandlerInput): Promise<IContentBlock[]> {
   try {
     return [
@@ -30,13 +26,12 @@ export default async function({
         displayName,
         displayNameColor,
         linkUrl,
-        items: (await handlerRunner(HandlerType.ArticleList, {
-          rawArticles: (await getRawArticleList(
-            sectionId,
-            totalArticles
-          )).splice(0, totalArticles)
-        })) as IBasicArticleUnit[]
-      } as IBasicArticleSection
+        articleList: await handlerRunner({
+          type: 'ArticleList',
+          sectionId,
+          totalArticles
+        })
+      }
     ];
   } catch (e) {
     return [];
