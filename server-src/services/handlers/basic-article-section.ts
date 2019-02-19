@@ -3,36 +3,40 @@ import getRawArticleList from '../adapters/jsonfeed';
 import handlerRunner, { HandlerType } from './runner';
 import { IBasicArticleUnit } from '../../../common/__types__/IBasicArticleUnit';
 import { ContentBlockType } from '../../../common/__types__/ContentBlockType';
+import { Section } from '../section';
+import { IBasicArticleSection } from '../../../common/__types__/IBasicArticleSection';
 
 export interface IBasicArticleSectionHandlerInput {
-  type: HandlerType.ArticleSection;
-  name: string;
+  displayName: string;
+  displayNameColor: string;
   linkUrl: string;
-  sectionId: string;
+  sectionId: Section;
   revert: boolean;
   totalArticles: number;
 }
 
 export default async function({
-  name,
+  displayName,
+  displayNameColor,
   linkUrl,
   sectionId,
+  revert,
   totalArticles
 }: IBasicArticleSectionHandlerInput): Promise<IContentBlock[]> {
   try {
     return [
       {
         type: ContentBlockType.BasicArticleSection,
-        name,
+        displayName,
+        displayNameColor,
         linkUrl,
-        articles: (await handlerRunner({
-          type: HandlerType.ArticleList,
+        items: (await handlerRunner(HandlerType.ArticleList, {
           rawArticles: (await getRawArticleList(
-            totalArticles,
-            sectionId
+            sectionId,
+            totalArticles
           )).splice(0, totalArticles)
         })) as IBasicArticleUnit[]
-      }
+      } as IBasicArticleSection
     ];
   } catch (e) {
     return [];

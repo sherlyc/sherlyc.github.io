@@ -6,7 +6,6 @@ import { ContentBlockType } from '../../../common/__types__/ContentBlockType';
 import { IBasicAdUnit } from '../../../common/__types__/IBasicAdUnit';
 
 export interface IBasicArticleListHandlerInput {
-  type: HandlerType.ArticleList;
   rawArticles: IRawArticle[];
 }
 

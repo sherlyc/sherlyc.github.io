@@ -1,8 +1,9 @@
-import { IBasicArticleUnit } from './IBasicArticleUnit';
+import { IContentBlock } from './IContentBlock';
 
 export interface IBasicArticleSection {
   type: 'BasicArticleSection';
-  name: string;
+  displayName: string;
+  displayNameColor: string;
   linkUrl: string;
-  articles: IBasicArticleUnit[];
+  items: IContentBlock[];
 }

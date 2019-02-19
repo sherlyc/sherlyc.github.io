@@ -1,8 +1,12 @@
 .prettierignore
 .gitignore
+*.map
+.gitkeep
+*.ico
+*.svg
 Dockerfile
-/server-src/coverage
-/dist
-/documentation
-/coverage
-/node_modules
+/server-src/coverage/*
+/dist/*
+/documentation/*
+/coverage/*
+/node_modules/*

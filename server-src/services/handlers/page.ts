@@ -1,31 +1,23 @@
 import { IContentBlock } from '../../../common/__types__/IContentBlock';
 import handlerRunner, { HandlerType } from './runner';
 import { ContentBlockType } from '../../../common/__types__/ContentBlockType';
+import { IBasicArticleSectionHandlerInput } from './basic-article-section';
 
 export interface IPageHandlerInput {
-  type: HandlerType.Page;
   totalArticlesPerSection: number;
-  sections: string[];
+  sections: IBasicArticleSectionHandlerInput[];
 }
 
 export default async function({
-  sections,
-  totalArticlesPerSection
+  sections
 }: IPageHandlerInput): Promise<IContentBlock[]> {
   return [
     { type: ContentBlockType.Header },
     {
       type: ContentBlockType.Container,
       items: (await Promise.all(
-        sections.map((sectionName) =>
-          handlerRunner({
-            type: HandlerType.ArticleSection,
-            name: sectionName,
-            sectionId: sectionName,
-            revert: false,
-            linkUrl: '/' + sectionName,
-            totalArticles: totalArticlesPerSection
-          })
+        sections.map((section) =>
+          handlerRunner(HandlerType.ArticleSection, section)
         )
       )).reduce((final, item) => [...final, ...item], [])
     },

@@ -10,6 +10,7 @@ import { BasicArticleSectionComponent } from './basic-article-section/basic-arti
 
 export const contentBlockComponents = [
   BasicArticleUnitComponent,
+  BasicArticleSectionComponent,
   BasicAdUnitComponent,
   BasicArticleSectionComponent,
   ContainerComponent,
@@ -20,6 +21,7 @@ export const contentBlockComponents = [
 
 const registry: { [key: string]: Type<IContentBlockComponent> } = {
   BasicArticleUnitComponent,
+  BasicArticleSectionComponent,
   BasicAdUnitComponent,
   ContainerComponent,
   ErrorBlockComponent,

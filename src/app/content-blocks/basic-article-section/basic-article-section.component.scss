@@ -1,21 +1,62 @@
 :host {
   display: block;
   margin-top: 20px;
+  color: #000;
 }
+
 h3 {
-  border-bottom: 1px solid #ccc;
+  font-weight: 700;
+  font-size: 20px;
   text-transform: lowercase;
-  padding-bottom: 12px;
-  font-size: 21px;
+  border-bottom: 1px solid #000;
+  color: #000;
+  letter-spacing: 2px;
+  padding-bottom: 4px;
 }
+
 a {
+  display: block;
+  text-decoration: none;
+  :hover {
+    text-decoration: none;
+  }
+}
+
+.more {
+  color: rgb(43, 163, 235);
+  border: 1px solid rgb(43, 163, 235);
   text-transform: uppercase;
   background-color: #fff;
-  border: 1px solid #ccc;
   border-radius: 4px;
-  display: inline-block;
-  margin: 7px 0;
-  padding: 10px;
-  text-decoration: none;
-  color: #ccc;
+  margin: 20px 0 0 0;
+  padding: 10px 25px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.blue {
+  h3 {
+    color: blue;
+    border-bottom-color: blue;
+  }
+}
+
+.red {
+  h3 {
+    color: red;
+    border-bottom-color: red;
+  }
+}
+
+.cyan {
+  h3 {
+    color: cyan;
+    border-bottom-color: cyan;
+  }
+}
+
+@media only screen and (min-width: 48em) {
+  .more {
+    display: inline-block;
+  }
 }

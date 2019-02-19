@@ -10,6 +10,7 @@ export type IContentBlock =
   | IBasicArticleUnit
   | IBasicArticleSection
   | IBasicAdUnit
+  | IBasicArticleSection
   | IErrorBlock
   | IContainer
   | IFooter

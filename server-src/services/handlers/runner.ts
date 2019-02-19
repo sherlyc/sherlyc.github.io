@@ -25,7 +25,8 @@ const handlerRegistry: { [key in HandlerType]: handlerFunction } = {
 };
 
 export default async function(
+  type: HandlerType,
   handlerInput: HandlerInput
 ): Promise<IContentBlock[]> {
-  return await handlerRegistry[handlerInput.type](handlerInput);
+  return await handlerRegistry[type](handlerInput);
 }

@@ -1,9 +1,11 @@
-<h3>{{ input.name }}</h3>
-<div>
+<div class="{{ input.displayNameColor }}">
+  <a href="{{ input.linkUrl }}">
+    <h3>{{ input.displayName }}</h3>
+  </a>
   <app-content-block
-    class="{{ getClassName(article.type) }}"
-    *ngFor="let article of input.articles; trackBy: trackByFn"
-    [input]="article"
+    class="{{ getClassName(item.type) }}"
+    *ngFor="let item of input.items; trackBy: trackByFn"
+    [input]="item"
   ></app-content-block>
+  <a class="more" href="{{ input.linkUrl }}">More {{ input.displayName }}</a>
 </div>
-<a href="{{ input.linkUrl }}">More {{ input.name }}</a>
