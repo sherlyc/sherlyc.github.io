@@ -1,5 +1,5 @@
 import * as jsonfeed from './__fixtures__/jsonfeed.json';
-import * as rawArticle from './__fixtures__/raw-article.json';
+import * as rawArticle from './__fixtures__/raw-article-list.json';
 import map from './jsonfeed-mapper';
 import { IJsonFeedArticleList } from './__types__/IJsonFeedArticleList';
 import { cloneDeep } from 'lodash';
