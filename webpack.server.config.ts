@@ -1,5 +1,5 @@
 import { join } from 'path';
-import { ContextReplacementPlugin } from 'webpack';
+import { ContextReplacementPlugin, Configuration } from 'webpack';
 
 export default {
   entry: { server: './server.ts' },
@@ -13,7 +13,7 @@ export default {
     filename: '[name].js'
   },
   module: {
-    rules: [{ test: /\.ts$/, loader: 'ts-loader' }]
+    rules: [{ test: /\.ts$/, loader: 'ts-loader', exclude: /\spec.ts$/ }]
   },
   plugins: [
     // Temporary Fix for issue: https://github.com/angular/angular/issues/11580
@@ -29,4 +29,4 @@ export default {
       {}
     )
   ]
-};
+} as Configuration;

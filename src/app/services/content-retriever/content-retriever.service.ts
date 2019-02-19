@@ -24,7 +24,6 @@ export class ContentRetrieverService {
     return new Observable<IContentBlock[]>((subscriber) => {
       const KEY = makeStateKey('KEY');
       const stateContent = this.transferState.get(KEY, null);
-      console.log('stateContent', stateContent);
       this.transferState.remove(KEY);
       if (stateContent) {
         subscriber.next(stateContent);

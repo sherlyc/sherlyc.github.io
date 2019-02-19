@@ -20,7 +20,7 @@ describe('JsonFeed Retriever', () => {
   it('should retry the api call', async () => {
     (axios.get as jest.Mock)
       .mockRejectedValueOnce(new Error('Internal Server Error'))
-      .mockResolvedValue({ data: jsonfeed });
+      .mockReturnValue(Promise.resolve({ data: jsonfeed }));
     expect(await retrieve(Section.latest, 6)).toEqual(jsonfeed);
   });
 });
