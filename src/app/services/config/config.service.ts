@@ -2,7 +2,7 @@ import * as config from './config.json';
 import { Injectable } from '@angular/core';
 import { IEnvironmentDefinition } from './__types__/IEnvironmentDefinition';
 import { RuntimeService } from '../runtime/runtime.service';
-import { defaults } from 'lodash';
+import { defaultsDeep } from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +19,10 @@ export class ConfigService {
     let environment =
       environments[environmentName] || environments['production'];
     if (this.runtime.isServer() && environment.serverOverrides) {
-      environment = defaults(environment.serverOverrides, environment);
+      environment = defaultsDeep(environment.serverOverrides, environment);
     }
     if (this.runtime.isBrowser() && environment.browserOverrides) {
-      environment = defaults(environment.browserOverrides, environment);
+      environment = defaultsDeep(environment.browserOverrides, environment);
     }
     delete environment.browserOverrides;
     delete environment.serverOverrides;

@@ -6,12 +6,10 @@ export interface IEnvironmentDefinition {
   spadeAPI: string;
   loggerOptions: ILoggerOptions;
   aadSdkUrl: string;
-  serverOverrides?: Omit<
-    IEnvironmentDefinition,
-    'serverOverrides' | 'browserOverrides'
+  serverOverrides?: Partial<
+    Omit<IEnvironmentDefinition, 'serverOverrides' | 'browserOverrides'>
   >;
-  browserOverrides?: Omit<
-    IEnvironmentDefinition,
-    'serverOverrides' | 'browserOverrides'
+  browserOverrides?: Partial<
+    Omit<IEnvironmentDefinition, 'serverOverrides' | 'browserOverrides'>
   >;
 }
