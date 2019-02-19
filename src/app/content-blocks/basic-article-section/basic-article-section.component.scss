@@ -1,0 +1,21 @@
+:host {
+  display: block;
+  margin-top: 20px;
+}
+h3 {
+  border-bottom: 1px solid #ccc;
+  text-transform: lowercase;
+  padding-bottom: 12px;
+  font-size: 21px;
+}
+a {
+  text-transform: uppercase;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  display: inline-block;
+  margin: 7px 0;
+  padding: 10px;
+  text-decoration: none;
+  color: #ccc;
+}

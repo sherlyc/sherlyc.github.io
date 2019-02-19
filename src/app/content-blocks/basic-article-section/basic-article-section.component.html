@@ -1,0 +1,9 @@
+<h3>{{ input.name }}</h3>
+<div>
+  <app-content-block
+    class="{{ getClassName(article.type) }}"
+    *ngFor="let article of input.articles; trackBy: trackByFn"
+    [input]="article"
+  ></app-content-block>
+</div>
+<a href="{{ input.linkUrl }}">More {{ input.name }}</a>
