@@ -48,10 +48,15 @@ export class ContentRetrieverService {
     return of([
       { type: 'Header' },
       {
-        type: 'ErrorBlock',
-        message: 'Something bad happened; please try again later.'
+        type: 'Container',
+        items: [
+          {
+            type: 'ErrorBlock',
+            message: 'Something bad happened; please try again later.'
+          }
+        ]
       },
       { type: 'Footer' }
-    ]);
+    ] as IContentBlock[]);
   }
 }
