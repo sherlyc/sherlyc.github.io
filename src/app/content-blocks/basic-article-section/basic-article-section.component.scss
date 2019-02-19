@@ -23,8 +23,8 @@ a {
 }
 
 .more {
-  color: rgb(43, 163, 235);
-  border: 1px solid rgb(43, 163, 235);
+  color: #4fb7ec;
+  border: 1px solid #4fb7ec;
   text-transform: uppercase;
   background-color: #fff;
   border-radius: 4px;
@@ -32,6 +32,11 @@ a {
   padding: 10px 25px;
   text-align: center;
   font-size: 14px;
+
+  &:hover {
+    background-color: #4fb7ec;
+    color: #fff;
+  }
 }
 
 .blue {
