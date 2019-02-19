@@ -1,0 +1,48 @@
+:host {
+  display: block;
+  margin-top: 20px;
+  color: #000;
+}
+
+h3 {
+  font-weight: 700;
+  font-size: 20px;
+  text-transform: lowercase;
+  border-bottom: 1px solid #000;
+  color: #000;
+  letter-spacing: 2px;
+  padding-bottom: 4px;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  :hover {
+    text-decoration: none;
+  }
+}
+
+.more {
+  color: rgb(43, 163, 235);
+  border: 1px solid rgb(43, 163, 235);
+  text-transform: uppercase;
+  background-color: #fff;
+  border-radius: 4px;
+  margin: 20px 0 0 0;
+  padding: 10px 25px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.blue {
+  h3 {
+    color: blue;
+    border-bottom-color: blue;
+  }
+}
+
+@media only screen and (min-width: 48em) {
+  .more {
+    display: inline-block;
+  }
+}
