@@ -2,22 +2,28 @@
   "production": {
     "retryTimeout": 1000,
     "requestTimeout": 10000,
-    "spadeAPI": "https://experience.live.shift21.ffx.nz/api/content",
+    "spadeAPI": "http://localhost:4000/api/content",
     "loggerOptions": {
       "level": "info",
       "format": "json"
     },
-    "aadSdkUrl": "/adnostic/index.min.js"
+    "aadSdkUrl": "/adnostic/index.min.js",
+    "browserOverrides": {
+      "spadeAPI": "https://experience.live.shift21.ffx.nz/api/content"
+    }
   },
   "staging": {
     "retryTimeout": 1000,
     "requestTimeout": 10000,
-    "spadeAPI": "https://experience.devint.shift21.ffx.nz/api/content",
+    "spadeAPI": "http://localhost:4000/api/content",
     "loggerOptions": {
       "level": "info",
       "format": "json"
     },
-    "aadSdkUrl": "/adnostic/index.min.js"
+    "aadSdkUrl": "/adnostic/index.min.js",
+    "browserOverrides": {
+      "spadeAPI": "https://experience.staging.shift21.ffx.nz/api/content"
+    }
   },
   "development": {
     "retryTimeout": 500,

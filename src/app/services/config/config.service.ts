@@ -1,7 +1,8 @@
 import * as config from './config.json';
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { IEnvironmentDefinition } from './__types__/IEnvironmentDefinition';
 import { RuntimeService } from '../runtime/runtime.service';
+import { defaultsDeep } from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +12,21 @@ export class ConfigService {
 
   getConfig(): IEnvironmentDefinition {
     const environments: { [key: string]: IEnvironmentDefinition } = config;
-    return (
-      environments[
-        this.runtime.getEnvironmentVariable('SPADE_ENV', 'production')
-      ] || environments['production']
+    const environmentName = this.runtime.getEnvironmentVariable(
+      'SPADE_ENV',
+      'production'
     );
+    let environment =
+      environments[environmentName] || environments['production'];
+    if (this.runtime.isServer() && environment.serverOverrides) {
+      environment = defaultsDeep(environment.serverOverrides, environment);
+    }
+    if (this.runtime.isBrowser() && environment.browserOverrides) {
+      environment = defaultsDeep(environment.browserOverrides, environment);
+    }
+    delete environment.browserOverrides;
+    delete environment.serverOverrides;
+
+    return environment;
   }
 }

@@ -83,10 +83,16 @@ describe('ContentRetrieverService', () => {
     it('should return an error content block when the request fails', (done) => {
       contentRetrieverService.getContent().subscribe(
         (response) => {
-          expect(response).toHaveLength(3);
-          expect(response[0].type).toEqual('Header');
-          expect(response[1].type).toEqual('ErrorBlock');
-          expect(response[2].type).toEqual('Footer');
+          expect(response).toEqual(
+            expect.arrayContaining([
+              { type: 'Header' },
+              {
+                type: 'Container',
+                items: [expect.objectContaining({ type: 'ErrorBlock' })]
+              },
+              { type: 'Footer' }
+            ])
+          );
           done();
         },
         (err) => {
@@ -145,10 +151,16 @@ describe('ContentRetrieverService', () => {
     it('should return an error content block when the request fails', (done) => {
       contentRetrieverService.getContent().subscribe(
         (response) => {
-          expect(response).toHaveLength(3);
-          expect(response[0].type).toEqual('Header');
-          expect(response[1].type).toEqual('ErrorBlock');
-          expect(response[2].type).toEqual('Footer');
+          expect(response).toEqual(
+            expect.arrayContaining([
+              { type: 'Header' },
+              {
+                type: 'Container',
+                items: [expect.objectContaining({ type: 'ErrorBlock' })]
+              },
+              { type: 'Footer' }
+            ])
+          );
           done();
         },
         (err) => {
