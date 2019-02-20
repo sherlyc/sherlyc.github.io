@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TimeAgoPipe } from 'time-ago-pipe';
 import { ContentBlockComponent } from './content-block/content-block.component';
 import { contentBlockComponents } from './content-blocks.registry';
+import { MomentModule } from 'ngx-moment';
 
 @NgModule({
-  declarations: [TimeAgoPipe, ContentBlockComponent, ...contentBlockComponents],
-  imports: [CommonModule],
+  declarations: [ContentBlockComponent, ...contentBlockComponents],
+  imports: [CommonModule, MomentModule],
   exports: [ContentBlockComponent],
   entryComponents: contentBlockComponents
 })

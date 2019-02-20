@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BasicArticleUnitComponent } from './basic-article-unit.component';
 import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
 import { FormsModule } from '@angular/forms';
-import { TimeAgoPipe } from 'time-ago-pipe';
+import { MomentModule } from 'ngx-moment';
 
 describe('BasicArticleUnitComponent', () => {
   let component: BasicArticleUnitComponent;
@@ -24,8 +24,8 @@ describe('BasicArticleUnitComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule],
-      declarations: [BasicArticleUnitComponent, TimeAgoPipe]
+      imports: [FormsModule, MomentModule],
+      declarations: [BasicArticleUnitComponent]
     }).compileComponents();
   }));
 
