@@ -12,6 +12,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { PageComponent } from './modules/page/page.component';
 import { ContentBlocksModule } from './content-blocks/content-blocks.module';
 import { LoggerService } from './services/logger/logger.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent, PageComponent],
@@ -23,7 +25,10 @@ import { LoggerService } from './services/logger/logger.service';
     FlexLayoutModule,
     FormsModule,
     HttpClientModule,
-    ContentBlocksModule
+    ContentBlocksModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production
+    })
   ],
   providers: [{ provide: ErrorHandler, useClass: LoggerService }],
   bootstrap: [AppComponent]
