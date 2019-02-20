@@ -19,7 +19,10 @@ export default async function({
     type: ContentBlockType.BasicAdUnit
   };
 
-  const rawArticles = await getRawArticleList(sectionId, totalArticles);
+  const rawArticles = (await getRawArticleList(sectionId, totalArticles)).slice(
+    0,
+    totalArticles
+  );
 
   return rawArticles.reduce(
     (final, article) => [
