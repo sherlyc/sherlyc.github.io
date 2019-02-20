@@ -1,0 +1,146 @@
+[
+  {
+    "type": "Header"
+  },
+  {
+    "type": "Container",
+    "items": [
+      {
+        "type": "BasicAdUnit"
+      },
+      {
+        "type": "BasicArticleUnit",
+        "indexHeadline": "Fake rape claim 'vindictive' ",
+        "introText": "Judge names woman to help relieve \"the hardship\" of the innocent man she accused.",
+        "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/x/o/b/8/image.related.StuffBigHeadline.418x220.1twzel.png/1550635530517.jpg",
+        "linkUrl": "/national/crime/110713917/woman-who-lied-about-rape-showed-vindictiveness-i-cant-even-fathom-says-judge",
+        "lastPublishedTime": 1550635530,
+        "headlineFlags": []
+      },
+      {
+        "type": "BasicAdUnit"
+      },
+      {
+        "type": "BasicArticleUnit",
+        "indexHeadline": "'Swamp house' couple gagged",
+        "introText": "'Swamp house' couple silenced by Government department charged with being their advocate.",
+        "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/r/p/t/x/p/image.related.StuffBigHeadline.418x220.1ttos9.png/1550634644116.jpg",
+        "linkUrl": "/auckland/110560185/government-department-gags-auckland-swamp-house-couple-over-tenancy-dispute",
+        "lastPublishedTime": 1550634642,
+        "headlineFlags": []
+      },
+      {
+        "type": "BasicAdUnit"
+      },
+      {
+        "type": "BasicArticleUnit",
+        "indexHeadline": "Live: Black Caps v Bangladesh",
+        "introText": "Bangladesh reach 100 but are five wickets down, chasing 331 to beat Black Caps.",
+        "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/x/m/u/6/image.related.StuffLandscapeThreeByTwo.300x200.1twep8.png/1550635398420.jpg",
+        "linkUrl": "/sport/cricket/110687084/black-caps-v-bangladesh-live--third-odi",
+        "lastPublishedTime": 1550611800,
+        "headlineFlags": []
+      },
+      {
+        "type": "BasicAdUnit"
+      },
+      {
+        "type": "BasicArticleSection",
+        "displayName": "Sport",
+        "displayNameColor": "blue",
+        "linkUrl": "/sport",
+        "items": [
+          {
+            "type": "BasicAdUnit"
+          },
+          {
+            "type": "BasicArticleUnit",
+            "indexHeadline": "Live: Black Caps v Bangladesh",
+            "introText": "Black Caps set Bangladesh an imposing 331 to avoid an ODI series clean sweep in Dunedin",
+            "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/x/h/r/q/image.related.StuffBigHeadline.418x220.1twep8.png/1550627015413.jpg",
+            "linkUrl": "/sport/cricket/110687084/black-caps-v-bangladesh-live--third-odi",
+            "lastPublishedTime": 1550611800,
+            "headlineFlags": []
+          },
+          {
+            "type": "BasicAdUnit"
+          },
+          {
+            "type": "BasicArticleUnit",
+            "indexHeadline": "Black Cap's failed audition",
+            "introText": "Colin Munro's final audition to open the batting for the Black Caps at the World Cup ends in disappointment.",
+            "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/x/c/b/f/image.related.StuffBigHeadline.418x220.1txayl.png/1550626636042.jpg",
+            "linkUrl": "/sport/cricket/110728893/black-caps-opener-colin-munro-fails-in-world-cup-audition-against-bangladesh",
+            "lastPublishedTime": 1550626636,
+            "headlineFlags": []
+          },
+          {
+            "type": "BasicAdUnit"
+          },
+          {
+            "type": "BasicArticleUnit",
+            "indexHeadline": "Taylor creates history ",
+            "introText": "Ross Taylor overtakes Stephen Fleming to become New Zealand's leading ODI run scorer.",
+            "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/x/h/m/w/image.related.StuffBigHeadline.418x220.1txdz0.png/1550625776909.jpg",
+            "linkUrl": "/sport/cricket/110732796/ross-taylor-overtakes-stephen-fleming-to-become-leading-black-cap-odi-run-scorer",
+            "lastPublishedTime": 1550625706,
+            "headlineFlags": []
+          },
+          {
+            "type": "BasicAdUnit"
+          }
+        ]
+      },
+      {
+        "type": "BasicArticleSection",
+        "displayName": "National",
+        "displayNameColor": "red",
+        "linkUrl": "/national",
+        "items": [
+          {
+            "type": "BasicAdUnit"
+          },
+          {
+            "type": "BasicArticleUnit",
+            "indexHeadline": "Nick Smith says PM is lying",
+            "introText": "The MP was kicked out of the House after he interrupted the PM as she discussed affordable housing.",
+            "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/5/w/6/v/image.related.StuffBigHeadline.418x220.1txide.png/1550633307643.jpg",
+            "linkUrl": "/national/politics/110738498/nick-smith-says-prime-minister-jacinda-ardern-is-lying",
+            "lastPublishedTime": 1550632258,
+            "headlineFlags": []
+          },
+          {
+            "type": "BasicAdUnit"
+          },
+          {
+            "type": "BasicArticleUnit",
+            "indexHeadline": "Tributes for Taranaki crash tragedy teen ",
+            "introText": "He'd promised to take her out and spoil her, but Waisea Naumotu will now never get to spend that special time with his mum.",
+            "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/x/g/n/g/image.related.StuffBigHeadline.418x220.1twitr.png/1550634328114.jpg",
+            "linkUrl": "/taranaki-daily-news/news/110692431/teen-killed-in-taranaki-car-crash-had-planned-to-take-his-mum-out-for-valentines-day",
+            "lastPublishedTime": 1550634326,
+            "headlineFlags": []
+          },
+          {
+            "type": "BasicAdUnit"
+          },
+          {
+            "type": "BasicArticleUnit",
+            "indexHeadline": "Manslaughter verdict in murder trial",
+            "introText": "Unanimous verdicts in the case of woman who stabbed through her partner's jugular vein and carotid artery.",
+            "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/t/m/r/i/image.related.StuffBigHeadline.418x220.1tx6nt.png/1550632504084.jpg",
+            "linkUrl": "/national/crime/110723321/manslaughter-verdict-in-murder-trial-of-woman-who-stabbed-partner-brings-no-healing",
+            "lastPublishedTime": 1550632502,
+            "headlineFlags": []
+          },
+          {
+            "type": "BasicAdUnit"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Footer"
+  }
+]
