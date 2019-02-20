@@ -1,17 +1,16 @@
 import 'zone.js/dist/zone-node';
 import 'reflect-metadata';
 import * as express from 'express';
-import apiApp from './server-src/app';
-import ngApp from './src/app';
+import apiApp from './app';
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 const server = express();
 
-server.use(apiApp, ngApp);
+server.use(apiApp);
 
 server.listen(PORT, () => {
   console.log(
-    `Node server listening on http://localhost:${PORT}`,
+    `API Node server listening on http://localhost:${PORT}`,
     process.env.SPADE_ENV || 'production'
   );
 });

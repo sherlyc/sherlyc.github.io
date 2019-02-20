@@ -6,8 +6,8 @@ import { enableProdMode } from '@angular/core';
 import * as express from 'express';
 import { ngExpressEngine, NgSetupOptions } from '@nguniversal/express-engine';
 import { MODULE_MAP } from '@nguniversal/module-map-ngfactory-loader';
-import apiApp from './server-src/app';
 import { join } from 'path';
+import apiApp from 'server-src/app';
 
 export { AppServerModule } from './src/app/app.server.module';
 
@@ -30,7 +30,6 @@ export function createApp(ngSetupOptions: NgSetupOptions) {
 }
 
 export function getNgRenderMiddlewareOptions(): NgSetupOptions {
-  console.log(exports);
   return {
     bootstrap: exports.AppServerModuleNgFactory,
     providers: [

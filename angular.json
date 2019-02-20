@@ -71,19 +71,12 @@
         "dev-server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/",
-            "sourceMap": true,
+            "outputPath": "dist/server",
+            "sourceMap": false,
             "optimization": false,
             "outputHashing": "media",
             "main": "dev-server.ts",
             "tsConfig": "tsconfig.dev-server.json"
-          }
-        },
-        "udk": {
-          "builder": "udk:udk-builder",
-          "options": {
-            "browserTarget": "stuff-experience-frontend:build",
-            "serverTarget": "stuff-experience-frontend:dev-server"
           }
         },
         "extract-i18n": {
