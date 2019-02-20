@@ -1,0 +1,41 @@
+[
+  {
+    "type": "BasicAdUnit"
+  },
+  {
+    "type": "BasicArticleUnit",
+    "indexHeadline": "Fake rape claim 'vindictive' ",
+    "introText": "Judge names woman to help relieve \"the hardship\" of the innocent man she accused.",
+    "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/x/o/b/8/image.related.StuffBigHeadline.418x220.1twzel.png/1550635530517.jpg",
+    "linkUrl": "/national/crime/110713917/woman-who-lied-about-rape-showed-vindictiveness-i-cant-even-fathom-says-judge",
+    "lastPublishedTime": 1550635530,
+    "headlineFlags": []
+  },
+  {
+    "type": "BasicAdUnit"
+  },
+  {
+    "type": "BasicArticleUnit",
+    "indexHeadline": "'Swamp house' couple gagged",
+    "introText": "'Swamp house' couple silenced by Government department charged with being their advocate.",
+    "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/r/p/t/x/p/image.related.StuffBigHeadline.418x220.1ttos9.png/1550634644116.jpg",
+    "linkUrl": "/auckland/110560185/government-department-gags-auckland-swamp-house-couple-over-tenancy-dispute",
+    "lastPublishedTime": 1550634642,
+    "headlineFlags": []
+  },
+  {
+    "type": "BasicAdUnit"
+  },
+  {
+    "type": "BasicArticleUnit",
+    "indexHeadline": "Live: Black Caps v Bangladesh",
+    "introText": "Bangladesh reach 100 but are five wickets down, chasing 331 to beat Black Caps.",
+    "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/x/m/u/6/image.related.StuffLandscapeThreeByTwo.300x200.1twep8.png/1550635398420.jpg",
+    "linkUrl": "/sport/cricket/110687084/black-caps-v-bangladesh-live--third-odi",
+    "lastPublishedTime": 1550611800,
+    "headlineFlags": []
+  },
+  {
+    "type": "BasicAdUnit"
+  }
+]

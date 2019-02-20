@@ -1,0 +1,49 @@
+[
+  {
+    "type": "BasicArticleSection",
+    "displayName": "National",
+    "displayNameColor": "red",
+    "linkUrl": "/national",
+    "items": [
+      {
+        "type": "BasicAdUnit"
+      },
+      {
+        "type": "BasicArticleUnit",
+        "indexHeadline": "Nick Smith says PM is lying",
+        "introText": "The MP was kicked out of the House after he interrupted the PM as she discussed affordable housing.",
+        "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/5/w/6/v/image.related.StuffBigHeadline.418x220.1txide.png/1550633307643.jpg",
+        "linkUrl": "/national/politics/110738498/nick-smith-says-prime-minister-jacinda-ardern-is-lying",
+        "lastPublishedTime": 1550632258,
+        "headlineFlags": []
+      },
+      {
+        "type": "BasicAdUnit"
+      },
+      {
+        "type": "BasicArticleUnit",
+        "indexHeadline": "Tributes for Taranaki crash tragedy teen ",
+        "introText": "He'd promised to take her out and spoil her, but Waisea Naumotu will now never get to spend that special time with his mum.",
+        "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/x/g/n/g/image.related.StuffBigHeadline.418x220.1twitr.png/1550634328114.jpg",
+        "linkUrl": "/taranaki-daily-news/news/110692431/teen-killed-in-taranaki-car-crash-had-planned-to-take-his-mum-out-for-valentines-day",
+        "lastPublishedTime": 1550634326,
+        "headlineFlags": []
+      },
+      {
+        "type": "BasicAdUnit"
+      },
+      {
+        "type": "BasicArticleUnit",
+        "indexHeadline": "Manslaughter verdict in murder trial",
+        "introText": "Unanimous verdicts in the case of woman who stabbed through her partner's jugular vein and carotid artery.",
+        "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/t/m/r/i/image.related.StuffBigHeadline.418x220.1tx6nt.png/1550632504084.jpg",
+        "linkUrl": "/national/crime/110723321/manslaughter-verdict-in-murder-trial-of-woman-who-stabbed-partner-brings-no-healing",
+        "lastPublishedTime": 1550632502,
+        "headlineFlags": []
+      },
+      {
+        "type": "BasicAdUnit"
+      }
+    ]
+  }
+]
