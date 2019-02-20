@@ -40,7 +40,9 @@ USER root
 # Set working directory for app
 WORKDIR $APP_HOME
 # Copy compiled resources and runtime dependencies
+COPY --from=build package*.json ./
 COPY --from=build /$APP_HOME/dist dist
+RUN npm install --production
 # change permission on all files
 RUN chown -R app:app ./
 # Change to app user for runtime
