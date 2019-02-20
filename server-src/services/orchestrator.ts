@@ -22,21 +22,21 @@ export default async (): Promise<IContentBlock[]> => {
         {
           type: 'ArticleSection',
           displayName: 'National',
-          displayNameColor: 'blue',
+          displayNameColor: 'red',
           linkUrl: '/' + Section.National,
           articleList: { sectionId: Section.National, totalArticles: 3 }
         },
         {
           type: 'ArticleSection',
           displayName: 'World',
-          displayNameColor: 'blue',
+          displayNameColor: 'cyan',
           linkUrl: '/' + Section.World,
           articleList: { sectionId: Section.World, totalArticles: 3 }
         },
         {
           type: 'ArticleSection',
           displayName: 'Business',
-          displayNameColor: 'blue',
+          displayNameColor: 'black',
           linkUrl: '/' + Section.Business,
           articleList: { sectionId: Section.Business, totalArticles: 3 }
         },
@@ -50,21 +50,21 @@ export default async (): Promise<IContentBlock[]> => {
         {
           type: 'ArticleSection',
           displayName: 'Technology',
-          displayNameColor: 'blue',
+          displayNameColor: 'red',
           linkUrl: '/' + Section.Technology,
           articleList: { sectionId: Section.Technology, totalArticles: 3 }
         },
         {
           type: 'ArticleSection',
           displayName: 'Homed',
-          displayNameColor: 'blue',
+          displayNameColor: 'cyan',
           linkUrl: '/' + Section.Homed,
           articleList: { sectionId: Section.Homed, totalArticles: 3 }
         },
         {
           type: 'ArticleSection',
           displayName: 'LifeStyle',
-          displayNameColor: 'blue',
+          displayNameColor: 'black',
           linkUrl: '/' + Section.LifeStyle,
           articleList: { sectionId: Section.LifeStyle, totalArticles: 3 }
         },
@@ -81,21 +81,21 @@ export default async (): Promise<IContentBlock[]> => {
         {
           type: 'ArticleSection',
           displayName: 'Travel',
-          displayNameColor: 'blue',
+          displayNameColor: 'red',
           linkUrl: '/' + Section.Travel,
           articleList: { sectionId: Section.Travel, totalArticles: 3 }
         },
         {
           type: 'ArticleSection',
           displayName: 'Motoring',
-          displayNameColor: 'blue',
+          displayNameColor: 'cyan',
           linkUrl: '/' + Section.Motoring,
           articleList: { sectionId: Section.Motoring, totalArticles: 3 }
         },
         {
           type: 'ArticleSection',
           displayName: 'StuffNation',
-          displayNameColor: 'blue',
+          displayNameColor: 'black',
           linkUrl: '/' + Section.StuffNation,
           articleList: { sectionId: Section.StuffNation, totalArticles: 3 }
         },
@@ -112,7 +112,7 @@ export default async (): Promise<IContentBlock[]> => {
         {
           type: 'ArticleSection',
           displayName: 'Well Good',
-          displayNameColor: 'blue',
+          displayNameColor: 'red',
           linkUrl: '/' + Section.WellGood,
           articleList: { sectionId: Section.WellGood, totalArticles: 3 }
         }
