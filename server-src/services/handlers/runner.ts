@@ -6,27 +6,21 @@ import ArticleSection from './basic-article-section';
 import Page from './page';
 import { IPageHandlerInput } from './page';
 
-type HandlerInput =
+export type HandlerInput =
   | IBasicArticleListHandlerInput
   | IBasicArticleSectionHandlerInput
   | IPageHandlerInput;
+
 type handlerFunction = (input: any) => Promise<IContentBlock[]>;
 
-export enum HandlerType {
-  ArticleList = 'ArticleList',
-  ArticleSection = 'ArticleSection',
-  Page = 'Page'
-}
-
-const handlerRegistry: { [key in HandlerType]: handlerFunction } = {
+const handlerRegistry: { [key: string]: handlerFunction } = {
   ArticleList,
   ArticleSection,
   Page
 };
 
 export default async function(
-  type: HandlerType,
   handlerInput: HandlerInput
 ): Promise<IContentBlock[]> {
-  return await handlerRegistry[type](handlerInput);
+  return await handlerRegistry[handlerInput.type](handlerInput);
 }

@@ -1,20 +1,26 @@
 import { IContentBlock } from '../../../common/__types__/IContentBlock';
-import { IRawArticle } from '../adapters/__types__/IRawArticle';
 import { IBasicArticleUnit } from '../../../common/__types__/IBasicArticleUnit';
-import { HandlerType } from './runner';
 import { ContentBlockType } from '../../../common/__types__/ContentBlockType';
 import { IBasicAdUnit } from '../../../common/__types__/IBasicAdUnit';
+import { Section } from '../section';
+import getRawArticleList from '../adapters/jsonfeed';
 
 export interface IBasicArticleListHandlerInput {
-  rawArticles: IRawArticle[];
+  type: 'ArticleList';
+  sectionId: Section;
+  totalArticles: number;
 }
 
 export default async function({
-  rawArticles
+  sectionId,
+  totalArticles
 }: IBasicArticleListHandlerInput): Promise<IContentBlock[]> {
   const basicAdUnit: IBasicAdUnit = {
     type: ContentBlockType.BasicAdUnit
   };
+
+  const rawArticles = await getRawArticleList(sectionId, totalArticles);
+
   return rawArticles.reduce(
     (final, article) => [
       ...final,
