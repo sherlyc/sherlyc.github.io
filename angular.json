@@ -57,6 +57,35 @@
             }
           }
         },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/server",
+            "sourceMap": false,
+            "optimization": true,
+            "outputHashing": "media",
+            "main": "src/main.server.ts",
+            "tsConfig": "src/tsconfig.server.json"
+          }
+        },
+        "dev-server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/",
+            "sourceMap": true,
+            "optimization": false,
+            "outputHashing": "media",
+            "main": "dev-server.ts",
+            "tsConfig": "tsconfig.dev-server.json"
+          }
+        },
+        "udk": {
+          "builder": "udk:udk-builder",
+          "options": {
+            "browserTarget": "stuff-experience-frontend:build",
+            "serverTarget": "stuff-experience-frontend:dev-server"
+          }
+        },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
@@ -75,17 +104,6 @@
           "options": {
             "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**", "**/*.json"]
-          }
-        },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "dist/server",
-            "sourceMap": false,
-            "optimization": true,
-            "outputHashing": "media",
-            "main": "src/main.server.ts",
-            "tsConfig": "src/tsconfig.server.json"
           }
         }
       }
