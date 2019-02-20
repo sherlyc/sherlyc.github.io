@@ -2,14 +2,8 @@ import { IContentBlock } from '../../../common/__types__/IContentBlock';
 import { IBasicArticleUnit } from '../../../common/__types__/IBasicArticleUnit';
 import { ContentBlockType } from '../../../common/__types__/ContentBlockType';
 import { IBasicAdUnit } from '../../../common/__types__/IBasicAdUnit';
-import { Section } from '../section';
 import getRawArticleList from '../adapters/jsonfeed';
-
-export interface IBasicArticleListHandlerInput {
-  type: 'ArticleList';
-  sectionId: Section;
-  totalArticles: number;
-}
+import { IBasicArticleListHandlerInput } from './__types__/IBasicArticleListHandlerInput';
 
 export default async function({
   sectionId,

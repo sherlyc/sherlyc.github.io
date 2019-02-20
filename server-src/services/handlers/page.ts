@@ -1,11 +1,7 @@
 import { IContentBlock } from '../../../common/__types__/IContentBlock';
-import handlerRunner, { HandlerInput } from './runner';
+import handlerRunner from './runner';
 import { ContentBlockType } from '../../../common/__types__/ContentBlockType';
-
-export interface IPageHandlerInput {
-  type: 'Page';
-  items: HandlerInput[];
-}
+import { IPageHandlerInput } from './__types__/IPageHandlerInput';
 
 export default async function({
   items
