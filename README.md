@@ -89,7 +89,7 @@ The following commands can be used as well:
 
 - `npm run dev:build` build universal application in development mode
 - `npm run dev:build:browser` _watch_ build browser Angular application only
-- `npm run dev:build:server` _watch_ build browser Server application only
+- `npm run dev:build:server` _watch_ build server (Angular SSR + API) only
 - `npm run dev:serve` _watch_ serve the universal application
 
 ## Deployment
