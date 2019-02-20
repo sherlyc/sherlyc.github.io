@@ -1,6 +1,6 @@
 document.addEventListener('NavigationEnd', () => {
   setTimeout(() => {
-    document.querySelectorAll('.basic-ad-unit').forEach((node, index) => {
+    document.querySelectorAll('app-basic-ad-unit').forEach((node, index) => {
       if (index % 5 === 0) {
         node.innerHTML = 'Ad content dynamic';
       }
