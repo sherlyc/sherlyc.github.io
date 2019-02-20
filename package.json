@@ -2,9 +2,8 @@
   "name": "stuff-experience-frontend",
   "version": "0.999.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "node dist/server/main.js",
+    "build": "ng run stuff-experience-frontend:build:production && ng run stuff-experience-frontend:server:production",
     "test": "npm run test:app && npm run test:server && npm run test:api",
     "test:server": "jest --config ./server-src/jest.config.json",
     "test:api": "jest --config ./server-src/test-api/jest.config.json",
@@ -14,14 +13,11 @@
     "e2e": "jest --config ./e2e/jest.config.json",
     "format": "prettier --write '**/*.{js,json,css,scss,md,html,yaml,ts}'",
     "compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json -w -s",
-    "build:ssr": "npm run build:client-and-server-bundles && npm run webpack:server",
-    "serve:ssr": "node dist/server",
-    "build:client-and-server-bundles": "ng build --prod && ng run stuff-experience-frontend:server",
-    "webpack:server": "webpack --config webpack.server.config.ts --progress --colors",
     "dev": "concurrently -c red,green,magenta,cyan,blue npm:dev:build:browser npm:dev:build:server npm:dev:serve",
+    "dev:build": "ng run stuff-experience-frontend:build && ng run stuff-experience-frontend:server",
     "dev:build:browser": "ng run stuff-experience-frontend:build --watch",
-    "dev:build:server": "ng run stuff-experience-frontend:dev-server --watch",
-    "dev:serve": "NODE_ENV=development nodemon --watch dist/server/main.js dist/server/main.js"
+    "dev:build:server": "ng run stuff-experience-frontend:server --watch",
+    "dev:serve": "NODE_ENV=development nodemon --delay 2.5 --watch dist dist/server/main.js"
   },
   "private": true,
   "dependencies": {
@@ -94,7 +90,6 @@
     "ts-node": "~7.0.0",
     "tslint": "^5.11.0",
     "typescript": "~3.1.6",
-    "udk": "^1.0.2",
     "webpack": "^4.26.0",
     "webpack-bundle-analyzer": "^3.0.4",
     "webpack-cli": "^3.1.2"

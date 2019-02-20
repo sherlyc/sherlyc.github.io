@@ -61,22 +61,15 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist/server",
-            "sourceMap": false,
-            "optimization": true,
-            "outputHashing": "media",
             "main": "src/main.server.ts",
             "tsConfig": "src/tsconfig.server.json"
-          }
-        },
-        "dev-server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "dist/server",
-            "sourceMap": false,
-            "optimization": false,
-            "outputHashing": "media",
-            "main": "dev-server.ts",
-            "tsConfig": "tsconfig.dev-server.json"
+          },
+          "configurations": {
+            "production": {
+              "sourceMap": false,
+              "optimization": true,
+              "outputHashing": "media"
+            }
           }
         },
         "extract-i18n": {

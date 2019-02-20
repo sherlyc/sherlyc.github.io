@@ -27,7 +27,7 @@ RUN npm run test:server
 
 # RUN npm run e2e
 
-RUN npm run build:ssr
+RUN npm run build
 RUN npm run test:api
 
 ### Release stage ###
@@ -47,4 +47,4 @@ RUN chown -R app:app ./
 USER app
 # Expose port and define CMD
 EXPOSE 4000
-CMD ["node", "dist/server.js"]
+CMD ["node", "dist/server/main.js"]

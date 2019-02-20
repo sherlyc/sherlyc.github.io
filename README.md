@@ -20,45 +20,53 @@ What things you need to install the software and how to install them
 
 [Follow these guidelines when writing your tests](https://stuffnz.atlassian.net/wiki/spaces/DE/pages/659619848/SPADE+-+Test+pyramid)
 
-### Running unit tests for the backend - Node/ExpressJs
+---
+
+### Running Tests
+
+It is strongly recommended to use Intellij Jest testing feature to keep these tests continuously running.
+
+- Running angular unit test, api unit tests and api tests
+
+`npm test` or `npm run test`
+
+- Running unit tests for the frontend - Angular
+
+`npm run test:app`
+
+- Running unit tests for the backend - Node/ExpressJs
 
 `npm run test:server`
 
-Before you start the application, set `SPADE_ENV` environment variable first. If not, the default value is `producton`.
+- Running api tests for the backend
 
-- either export environment variable `export SPADE_ENV=development`
+`npm run test:api`
 
-- or `SPADE_ENV=development npm run serve:ssr`
-
-### Running unit tests for the frontend - Angular
-
-`npm run test`
-
-### Running end-to-end tests
+- Running end-to-end tests with Selenium
 
 `npm run e2e`
 
 ### Pre Commit hook
 
----
-
 When committing changes the hooks some test will run to ensure quality of code.
 E2e test are run when pushing changes to remote as part of a commit hook.
 
-### Build Angular universal
+## Production Build and Running
 
-The Angular CLI compiles and bundles the universal app into two different folders, browser and server. Webpack transpiles the server.ts file into Javascript.
+- Build Angular universal in production mode
+
+The Angular CLI compiles and bundles the universal app into two different folders, browser and server.
 
 ```
-npm run build:ssr
+npm run build
 ```
 
-### Serve the angular universal application
+- Serve the angular universal application in production mode
 
 After building the application, start the server.
 
 ```
-npm run serve:ssr
+npm run start
 ```
 
 Because a Universal platform-server app doesn't execute in the browser, you may have to work around some of the browser APIs and capabilities that are missing on the server.
@@ -66,6 +74,23 @@ Because a Universal platform-server app doesn't execute in the browser, you may 
 You won't be able reference browser-only native objects such as window, document, navigator or location. If you don't need them on the server-rendered page, side-step them with conditional logic.
 
 Alternatively, look for an injectable Angular abstraction over the object you need such as Location or Document; it may substitute adequately for the specific API that you're calling. If Angular doesn't provide it, you may be able to write your own abstraction that delegates to the browser API while in the browser and to a satisfactory alternative implementation while on the server.
+
+## Development Build and Running
+
+- Serve the angular universal application in development mode
+
+```
+npm run dev
+```
+
+This command should be ok for daily development.
+
+The following commands can be used as well:
+
+- `npm run dev:build` build universal application in development mode
+- `npm run dev:build:browser` _watch_ build browser Angular application only
+- `npm run dev:build:server` _watch_ build browser Server application only
+- `npm run dev:serve` _watch_ serve the universal application
 
 ## Deployment
 
