@@ -66,9 +66,10 @@
           },
           "configurations": {
             "production": {
+              "bundleDependencies": "all",
               "sourceMap": false,
               "optimization": true,
-              "outputHashing": "media"
+              "outputHashing": "none"
             }
           }
         },
