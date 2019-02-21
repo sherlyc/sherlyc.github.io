@@ -1,10 +1,8 @@
-import basicArticleSectionHandler, {
-  IBasicArticleSectionHandlerInput
-} from './basic-article-section';
+import basicArticleSectionHandler from './basic-article-section';
 import { Section } from '../section';
-import handlerRunner from './runner';
 import * as basicArticleListHandlerOutput from './__fixtures__/basic-article-list-handler-output.json';
 import * as basicArticleSectionHandlerOutput from './__fixtures__/basic-article-section-handler-output.json';
+import { IBasicArticleSectionHandlerInput } from './__types__/IBasicArticleSectionHandlerInput';
 
 jest.mock('./runner');
 
@@ -20,10 +18,16 @@ describe('BasicArticleSectionHandler', () => {
         totalArticles: 5
       }
     } as IBasicArticleSectionHandlerInput;
-    (handlerRunner as jest.Mock).mockResolvedValue(
-      basicArticleListHandlerOutput
+
+    const handlerRunnerMock = jest.fn();
+
+    handlerRunnerMock.mockResolvedValue(basicArticleListHandlerOutput);
+
+    const contentBlocks = await basicArticleSectionHandler(
+      handlerRunnerMock,
+      handlerInput
     );
-    const contentBlocks = await basicArticleSectionHandler(handlerInput);
     expect(contentBlocks).toEqual(basicArticleSectionHandlerOutput);
+    expect(handlerRunnerMock).toHaveBeenCalled();
   });
 });
