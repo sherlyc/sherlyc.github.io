@@ -2,7 +2,7 @@ import * as config from './config.json';
 import { Injectable } from '@angular/core';
 import { IEnvironmentDefinition } from './__types__/IEnvironmentDefinition';
 import { RuntimeService } from '../runtime/runtime.service';
-import { defaultsDeep } from 'lodash';
+const defaultsDeep = require('lodash/defaultsDeep');
 
 @Injectable({
   providedIn: 'root'
