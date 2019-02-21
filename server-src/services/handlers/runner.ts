@@ -1,26 +1,13 @@
-import { IBasicArticleListHandlerInput } from './basic-article-list';
-import { IBasicArticleSectionHandlerInput } from './basic-article-section';
 import { IContentBlock } from '../../../common/__types__/IContentBlock';
-import ArticleList from './basic-article-list';
-import ArticleSection from './basic-article-section';
-import Page from './page';
-import { IPageHandlerInput } from './page';
+import { HandlerInput } from './__types__/HandlerInput';
+import handlerRegistry from './registry';
 
-export type HandlerInput =
-  | IBasicArticleListHandlerInput
-  | IBasicArticleSectionHandlerInput
-  | IPageHandlerInput;
+export type handlerRunnerFunction = (
+  handlerInput: HandlerInput
+) => Promise<IContentBlock[]>;
 
-type handlerFunction = (input: any) => Promise<IContentBlock[]>;
-
-const handlerRegistry: { [key: string]: handlerFunction } = {
-  ArticleList,
-  ArticleSection,
-  Page
-};
-
-export default async function(
+export default async function handlerRunner(
   handlerInput: HandlerInput
 ): Promise<IContentBlock[]> {
-  return await handlerRegistry[handlerInput.type](handlerInput);
+  return await handlerRegistry[handlerInput.type](handlerRunner, handlerInput);
 }

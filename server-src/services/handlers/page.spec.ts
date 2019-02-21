@@ -1,10 +1,10 @@
 import { Section } from '../section';
-import pageHandler, { IPageHandlerInput } from './page';
-import handlerRunner from './runner';
+import pageHandler from './page';
 import * as latestArticles from './__fixtures__/latest-articles.json';
 import * as sportSection from './__fixtures__/sport-section.json';
 import * as nationalSection from './__fixtures__/national-section.json';
 import * as pageHandlerOutput from './__fixtures__/page-handler-output.json';
+import { IPageHandlerInput } from './__types__/IPageHandlerInput';
 
 jest.mock('./runner');
 describe('PageHandler', () => {
@@ -34,11 +34,16 @@ describe('PageHandler', () => {
       ]
     } as IPageHandlerInput;
 
-    (handlerRunner as jest.Mock).mockResolvedValueOnce(latestArticles);
-    (handlerRunner as jest.Mock).mockResolvedValueOnce(sportSection);
-    (handlerRunner as jest.Mock).mockResolvedValueOnce(nationalSection);
+    const handlerRunnerMock = jest.fn();
 
-    const contentBlocks = await pageHandler(pageHandlerInput);
+    handlerRunnerMock.mockResolvedValueOnce(latestArticles);
+    handlerRunnerMock.mockResolvedValueOnce(sportSection);
+    handlerRunnerMock.mockResolvedValueOnce(nationalSection);
+
+    const contentBlocks = await pageHandler(
+      handlerRunnerMock,
+      pageHandlerInput
+    );
     expect(contentBlocks).toEqual(pageHandlerOutput);
   });
 });
