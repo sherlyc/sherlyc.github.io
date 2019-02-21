@@ -1,4 +1,6 @@
 {
   "preset": "ts-jest",
-  "testPathIgnorePatterns": ["/test-api/"]
+  "testPathIgnorePatterns": ["/test-api/"],
+  "coverageDirectory": "./coverage",
+  "collectCoverageFrom": ["**/*.ts"]
 }
