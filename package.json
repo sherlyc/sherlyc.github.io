@@ -3,7 +3,7 @@
   "version": "0.999.0",
   "scripts": {
     "start": "node dist/server/main.js",
-    "build": "tsc extra-webpack.config.ts --skipLibCheck && npm run build:browser && npm run build:server && rm extra-webpack.config.js ",
+    "build": "npm run build:browser && npm run build:server",
     "build:browser": "ng run stuff-experience-frontend:build:production --stats-json",
     "build:server": "ng run stuff-experience-frontend:server:production --stats-json",
     "test": "npm run test:app && npm run test:server && npm run test:api",
