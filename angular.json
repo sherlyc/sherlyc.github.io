@@ -68,7 +68,7 @@
             "production": {
               "bundleDependencies": "all",
               "sourceMap": false,
-              "optimization": true,
+              "optimization": false,
               "outputHashing": "none"
             }
           }
