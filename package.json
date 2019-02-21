@@ -3,13 +3,17 @@
   "version": "0.999.0",
   "scripts": {
     "start": "node dist/server/main.js",
-    "build": "ng run stuff-experience-frontend:build:production && ng run stuff-experience-frontend:server:production",
+    "build": "tsc extra-webpack.config.ts --skipLibCheck && npm run build:browser && npm run build:server && rm extra-webpack.config.js ",
+    "build:browser": "ng run stuff-experience-frontend:build:production --stats-json",
+    "build:server": "ng run stuff-experience-frontend:server:production --stats-json",
     "test": "npm run test:app && npm run test:server && npm run test:api",
     "test:server": "jest --config ./server-src/jest.config.json --coverage",
     "test:app": "jest --config ./src/jest.config.json --coverage",
     "test:api": "jest --config ./server-src/test-api/jest.config.json",
     "lint": "ng lint",
-    "bundle-report": "ng build --prod --stats-json && webpack-bundle-analyzer ./dist/browser/stats.json -m 'static' -O -r './dist/report.html'",
+    "bundle-report": "npm run build && npm run bundle-report:browser && npm run bundle-report:server",
+    "bundle-report:browser": "webpack-bundle-analyzer ./dist/browser/stats.json -m 'static' -O -r './dist/browser.html'",
+    "bundle-report:server": "webpack-bundle-analyzer ./dist/server/stats.json -m 'static' -O -r './dist/server.html'",
     "e2e": "jest --config ./e2e/jest.config.json",
     "format": "prettier --write '**/*.{js,json,css,scss,md,html,yaml,ts}'",
     "compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json -w -s",
@@ -54,6 +58,7 @@
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
+    "@angular-builders/custom-webpack": "^7.3.1",
     "@angular-builders/jest": "^7.0.0",
     "@angular-devkit/build-angular": "^0.12.1",
     "@angular/cli": "~7.0.6",
