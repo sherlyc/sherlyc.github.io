@@ -16,7 +16,9 @@ describe('BasicArticleListHandler', () => {
     const totalArticles = 5;
     (jsonfeed as jest.Mock).mockResolvedValue(rawArticleList);
 
-    const contentBlocks = await basicArticleListHandler({
+    const handlerRunnerMock = jest.fn();
+
+    const contentBlocks = await basicArticleListHandler(handlerRunnerMock, {
       type: 'ArticleList',
       sectionId,
       totalArticles
@@ -31,7 +33,9 @@ describe('BasicArticleListHandler', () => {
     const totalArticles = 2;
     (jsonfeed as jest.Mock).mockResolvedValue(rawArticleList);
 
-    const contentBlocks = await basicArticleListHandler({
+    const handlerRunnerMock = jest.fn();
+
+    const contentBlocks = await basicArticleListHandler(handlerRunnerMock, {
       type: 'ArticleList',
       sectionId,
       totalArticles
