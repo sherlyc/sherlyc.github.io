@@ -7,6 +7,7 @@ import { renderModuleFactory } from '@angular/platform-server';
 import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 
 import * as express from 'express';
+import * as cors from 'cors';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import api from '../server-src/app';
@@ -18,6 +19,7 @@ enableProdMode();
 
 // Express server
 const app = express();
+app.use(cors());
 
 app.use(api);
 
