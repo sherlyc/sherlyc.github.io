@@ -3,12 +3,16 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PageComponent } from './page.component';
 import { ContentRetrieverService } from '../../services/content-retriever/content-retriever.service';
 import { of, throwError } from 'rxjs';
-import { By } from '@angular/platform-browser';
+import { By, TransferState } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NavigationStart, Router } from '@angular/router';
 import { ContentRetrieverServiceMock } from '../../services/content-retriever/content-retriever.service.mock';
 import { RouterMock } from '../../services/mocks/router.mock';
 import { IContentBlock } from '../../../../common/__types__/IContentBlock';
+import { TransferStateMock } from '../../services/mocks/transfer-state.mock';
+import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
+import { FakeContentBlockComponent } from '../../content-blocks/fake-content-block/fake-content-block.component';
+import { ContentBlockDirective } from '../../content-blocks/content-block/content-block.directive';
 
 describe('PageComponent', () => {
   let component: PageComponent;
@@ -38,16 +42,27 @@ describe('PageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [PageComponent],
+      declarations: [
+        PageComponent,
+        ContentBlockDirective,
+        FakeContentBlockComponent
+      ],
       providers: [
         {
           provide: ContentRetrieverService,
           useClass: ContentRetrieverServiceMock
         },
-        { provide: Router, useClass: RouterMock }
+        { provide: Router, useClass: RouterMock },
+        { provide: TransferState, useClass: TransferStateMock }
       ],
       schemas: [NO_ERRORS_SCHEMA]
-    }).compileComponents();
+    })
+      .overrideModule(BrowserDynamicTestingModule, {
+        set: {
+          entryComponents: [FakeContentBlockComponent]
+        }
+      })
+      .compileComponents();
     fixture = TestBed.createComponent(PageComponent);
     component = fixture.componentInstance;
     contentRetrieverMock = TestBed.get(ContentRetrieverService);
@@ -63,7 +78,7 @@ describe('PageComponent', () => {
     // initial state
     expect(component.contentBlocks).toHaveLength(0);
     expect(
-      fixture.debugElement.queryAll(By.css('app-content-block'))
+      fixture.debugElement.queryAll(By.css('app-fake-content-block'))
     ).toHaveLength(0);
   });
 
@@ -129,7 +144,7 @@ describe('PageComponent', () => {
     );
 
     expect(
-      fixture.debugElement.queryAll(By.css('app-content-block'))
+      fixture.debugElement.queryAll(By.css('app-fake-content-block'))
     ).toHaveLength(mockContentBlocks.length);
   }
 
@@ -137,7 +152,7 @@ describe('PageComponent', () => {
     expect(component.contentBlocks).toHaveLength(0);
 
     expect(
-      fixture.debugElement.queryAll(By.css('app-content-block'))
+      fixture.debugElement.queryAll(By.css('app-fake-content-block'))
     ).toHaveLength(0);
   }
 });

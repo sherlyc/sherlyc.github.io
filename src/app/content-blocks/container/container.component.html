@@ -1,9 +1,7 @@
 <div class="content">
   <div class="container">
-    <app-content-block
-      class="{{ getClassName(contentBlock.type) }}"
-      *ngFor="let contentBlock of input.items; trackBy: trackByFn"
-      [input]="contentBlock"
-    ></app-content-block>
+    <ng-container *ngFor="let item of input.items">
+      <ng-container *appContentBlock="item"></ng-container>
+    </ng-container>
   </div>
 </div>
