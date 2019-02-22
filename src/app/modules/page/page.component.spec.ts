@@ -10,9 +10,6 @@ import { ContentRetrieverServiceMock } from '../../services/content-retriever/co
 import { RouterMock } from '../../services/mocks/router.mock';
 import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 import { TransferStateMock } from '../../services/mocks/transfer-state.mock';
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { FakeContentBlockComponent } from '../../content-blocks/fake-content-block/fake-content-block.component';
-import { ContentBlockDirective } from '../../content-blocks/content-block/content-block.directive';
 
 describe('PageComponent', () => {
   let component: PageComponent;
@@ -42,11 +39,7 @@ describe('PageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [
-        PageComponent,
-        ContentBlockDirective,
-        FakeContentBlockComponent
-      ],
+      declarations: [PageComponent],
       providers: [
         {
           provide: ContentRetrieverService,
@@ -57,9 +50,12 @@ describe('PageComponent', () => {
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })
-      .overrideModule(BrowserDynamicTestingModule, {
+      .overrideComponent(PageComponent, {
         set: {
-          entryComponents: [FakeContentBlockComponent]
+          template: `
+            <ng-container *ngFor="let contentBlock of contentBlocks; trackBy: trackByFn">
+            <p class="app-fake-content-block"></p>
+            </ng-container>`
         }
       })
       .compileComponents();
@@ -78,7 +74,7 @@ describe('PageComponent', () => {
     // initial state
     expect(component.contentBlocks).toHaveLength(0);
     expect(
-      fixture.debugElement.queryAll(By.css('app-fake-content-block'))
+      fixture.debugElement.queryAll(By.css('.app-fake-content-block'))
     ).toHaveLength(0);
   });
 
@@ -144,7 +140,7 @@ describe('PageComponent', () => {
     );
 
     expect(
-      fixture.debugElement.queryAll(By.css('app-fake-content-block'))
+      fixture.debugElement.queryAll(By.css('.app-fake-content-block'))
     ).toHaveLength(mockContentBlocks.length);
   }
 
@@ -152,7 +148,7 @@ describe('PageComponent', () => {
     expect(component.contentBlocks).toHaveLength(0);
 
     expect(
-      fixture.debugElement.queryAll(By.css('app-fake-content-block'))
+      fixture.debugElement.queryAll(By.css('.app-fake-content-block'))
     ).toHaveLength(0);
   }
 });
