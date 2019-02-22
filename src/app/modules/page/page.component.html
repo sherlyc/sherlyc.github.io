@@ -1,3 +1,4 @@
-<ng-container *ngFor="let contentBlock of contentBlocks; trackBy: trackByFn">
-  <ng-container *appContentBlock="contentBlock"></ng-container>
-</ng-container>
+<ng-container
+  [appContentBlock]="contentBlock"
+  *ngFor="let contentBlock of contentBlocks; trackBy: trackByFn"
+></ng-container>

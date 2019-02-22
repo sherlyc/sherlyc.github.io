@@ -2,9 +2,10 @@
   <a href="{{ input.linkUrl }}">
     <h3>{{ input.displayName }}</h3>
   </a>
-  <ng-container *ngFor="let item of input.items; trackBy: trackByFn">
-    <ng-container *appContentBlock="item"></ng-container>
-  </ng-container>
+  <ng-container
+    [appContentBlock]="item"
+    *ngFor="let item of input.items; trackBy: trackByFn"
+  ></ng-container>
 
   <div>
     <a class="more" href="{{ input.linkUrl }}">More {{ input.displayName }}</a>
