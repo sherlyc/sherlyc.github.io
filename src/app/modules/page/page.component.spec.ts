@@ -47,7 +47,16 @@ describe('PageComponent', () => {
         { provide: Router, useClass: RouterMock }
       ],
       schemas: [NO_ERRORS_SCHEMA]
-    }).compileComponents();
+    })
+      .overrideComponent(PageComponent, {
+        set: {
+          template: `
+            <ng-container *ngFor="let contentBlock of contentBlocks; trackBy: trackByFn">
+            <p class="app-fake-content-block"></p>
+            </ng-container>`
+        }
+      })
+      .compileComponents();
     fixture = TestBed.createComponent(PageComponent);
     component = fixture.componentInstance;
     contentRetrieverMock = TestBed.get(ContentRetrieverService);
@@ -63,7 +72,7 @@ describe('PageComponent', () => {
     // initial state
     expect(component.contentBlocks).toHaveLength(0);
     expect(
-      fixture.debugElement.queryAll(By.css('app-content-block'))
+      fixture.debugElement.queryAll(By.css('.app-fake-content-block'))
     ).toHaveLength(0);
   });
 
@@ -129,7 +138,7 @@ describe('PageComponent', () => {
     );
 
     expect(
-      fixture.debugElement.queryAll(By.css('app-content-block'))
+      fixture.debugElement.queryAll(By.css('.app-fake-content-block'))
     ).toHaveLength(mockContentBlocks.length);
   }
 
@@ -137,7 +146,7 @@ describe('PageComponent', () => {
     expect(component.contentBlocks).toHaveLength(0);
 
     expect(
-      fixture.debugElement.queryAll(By.css('app-content-block'))
+      fixture.debugElement.queryAll(By.css('.app-fake-content-block'))
     ).toHaveLength(0);
   }
 });

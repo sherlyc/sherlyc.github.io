@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ContentBlockComponent } from './content-block/content-block.component';
 import { contentBlockComponents } from './content-blocks.registry';
 import { MomentModule } from 'ngx-moment';
+import { ContentBlockDirective } from './content-block/content-block.directive';
 
 @NgModule({
-  declarations: [ContentBlockComponent, ...contentBlockComponents],
+  declarations: [...contentBlockComponents, ContentBlockDirective],
   imports: [CommonModule, MomentModule],
-  exports: [ContentBlockComponent],
+  exports: [ContentBlockDirective],
   entryComponents: contentBlockComponents
 })
 export class ContentBlocksModule {}
