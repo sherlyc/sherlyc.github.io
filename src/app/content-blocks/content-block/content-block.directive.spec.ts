@@ -67,7 +67,6 @@ describe('ContentBlockDirective', () => {
   });
 
   it('should not render any content block when no registered component is found', () => {
-    component = fixture.componentInstance;
     // @ts-ignore
     component.input = {
       type: 'UnregisteredContentBlock'
