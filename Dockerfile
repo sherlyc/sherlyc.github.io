@@ -12,7 +12,7 @@ WORKDIR $APP_HOME
 COPY package*.json ./
 
 # Install ALL 'dependencies', including 'devDependencies'
-RUN npm install
+RUN npm install --no-optional
 
 # Copy all app and server source
 COPY *.ts *.json *.js ./
