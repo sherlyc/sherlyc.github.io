@@ -3,13 +3,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PageComponent } from './page.component';
 import { ContentRetrieverService } from '../../services/content-retriever/content-retriever.service';
 import { of, throwError } from 'rxjs';
-import { By, TransferState } from '@angular/platform-browser';
+import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NavigationStart, Router } from '@angular/router';
 import { ContentRetrieverServiceMock } from '../../services/content-retriever/content-retriever.service.mock';
 import { RouterMock } from '../../services/mocks/router.mock';
 import { IContentBlock } from '../../../../common/__types__/IContentBlock';
-import { TransferStateMock } from '../../services/mocks/transfer-state.mock';
 
 describe('PageComponent', () => {
   let component: PageComponent;
@@ -45,8 +44,7 @@ describe('PageComponent', () => {
           provide: ContentRetrieverService,
           useClass: ContentRetrieverServiceMock
         },
-        { provide: Router, useClass: RouterMock },
-        { provide: TransferState, useClass: TransferStateMock }
+        { provide: Router, useClass: RouterMock }
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })
