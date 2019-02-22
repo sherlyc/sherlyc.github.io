@@ -16,7 +16,7 @@ class FakeContentBlockComponent {}
 
 @Component({
   selector: 'app-test-directive',
-  template: '<ng-container *appContentBlock="input"></ng-container>'
+  template: '<ng-container [appContentBlock]="input"></ng-container>'
 })
 class TestDirectiveComponent {
   input!: IContentBlock;
