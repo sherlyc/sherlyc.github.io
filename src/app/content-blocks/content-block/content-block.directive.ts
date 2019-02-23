@@ -43,9 +43,6 @@ export class ContentBlockDirective implements OnInit {
         IContentBlockComponent
       >(factory);
       componentRef.instance.input = this.input;
-      componentRef.location.nativeElement.classList.add(
-        this.className.generateClassName(this.input.type)
-      );
     } else {
       this.logger.error(
         new Error(`No Component found for ${this.input.type} type`)
