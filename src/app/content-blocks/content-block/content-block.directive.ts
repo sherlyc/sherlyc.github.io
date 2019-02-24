@@ -9,7 +9,6 @@ import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 import registry from '../content-blocks.registry';
 import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
 import { LoggerService } from '../../services/logger/logger.service';
-import { ClassNameService } from '../../services/class-name/class-name.service';
 
 @Directive({
   selector: '[appContentBlock]'
@@ -24,8 +23,7 @@ export class ContentBlockDirective implements OnInit {
   constructor(
     private viewContainerRef: ViewContainerRef,
     private resolver: ComponentFactoryResolver,
-    private logger: LoggerService,
-    private className: ClassNameService
+    private logger: LoggerService
   ) {}
 
   ngOnInit(): void {
@@ -43,9 +41,6 @@ export class ContentBlockDirective implements OnInit {
         IContentBlockComponent
       >(factory);
       componentRef.instance.input = this.input;
-      componentRef.location.nativeElement.classList.add(
-        this.className.generateClassName(this.input.type)
-      );
     } else {
       this.logger.error(
         new Error(`No Component found for ${this.input.type} type`)

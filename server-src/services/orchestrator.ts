@@ -63,7 +63,7 @@ export default async (): Promise<IContentBlock[]> => {
         },
         {
           type: 'ArticleSection',
-          displayName: 'LifeStyle',
+          displayName: 'Life Style',
           displayNameColor: 'black',
           linkUrl: '/' + Section.LifeStyle,
           articleList: { sectionId: Section.LifeStyle, totalArticles: 3 }
@@ -94,7 +94,7 @@ export default async (): Promise<IContentBlock[]> => {
         },
         {
           type: 'ArticleSection',
-          displayName: 'StuffNation',
+          displayName: 'Stuff Nation',
           displayNameColor: 'black',
           linkUrl: '/' + Section.StuffNation,
           articleList: { sectionId: Section.StuffNation, totalArticles: 3 }

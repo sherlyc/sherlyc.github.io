@@ -2,6 +2,10 @@
 @import '~flexboxgrid';
 @import 'styles/fonts/merriweather.scss';
 
+html {
+  overflow: overlay;
+}
+
 html,
 body {
   height: 100%;
@@ -19,4 +23,20 @@ body {
     #00a2fc 67%,
     #8130e4 87%
   );
+}
+@media only screen and (min-width: 48em) {
+  .container {
+    width: 47rem;
+  }
+}
+
+@media only screen and (min-width: 64em) {
+  .container {
+    width: 63rem;
+  }
+}
+@media only screen and (min-width: 75em) {
+  .container {
+    width: 74rem;
+  }
 }
