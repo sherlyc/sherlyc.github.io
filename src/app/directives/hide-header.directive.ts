@@ -4,7 +4,7 @@ import { RuntimeService } from '../services/runtime/runtime.service';
 @Directive({
   selector: '[appHideHeader]'
 })
-export class StickyHideDirective {
+export class HideHeaderDirective {
   private windowScrollBefore = 0;
   private elementTop = 0;
   private readonly isBrowser: boolean;
@@ -25,11 +25,6 @@ export class StickyHideDirective {
 
   @HostListener('window:scroll') public windowScrolled() {
     if (this.isBrowser) {
-      this.windowScrollBefore =
-        this.windowScrollBefore === 0
-          ? window.pageYOffset
-          : this.windowScrollBefore;
-
       const elementHeight = this.element.offsetHeight;
       const windowScrollCurrent = window.pageYOffset;
       const windowScrollDiff = this.windowScrollBefore - windowScrollCurrent;

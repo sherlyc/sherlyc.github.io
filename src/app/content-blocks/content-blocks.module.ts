@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { contentBlockComponents } from './content-blocks.registry';
 import { MomentModule } from 'ngx-moment';
 import { ContentBlockDirective } from './content-block/content-block.directive';
-import { StickyHideDirective } from '../directives/hide-header.directive';
+import { HideHeaderDirective } from '../directives/hide-header.directive';
 
 @NgModule({
   declarations: [
     ...contentBlockComponents,
-    StickyHideDirective,
+    HideHeaderDirective,
     ContentBlockDirective
   ],
   imports: [CommonModule, MomentModule],

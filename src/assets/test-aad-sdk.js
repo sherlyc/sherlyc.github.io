@@ -5,5 +5,5 @@ document.addEventListener('NavigationEnd', () => {
         node.innerHTML = 'Ad content dynamic';
       }
     });
-  }, 1000);
+  }, 100);
 });
