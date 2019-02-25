@@ -13,6 +13,21 @@ export class HeaderComponent implements IContentBlockComponent {
 
   navigationVisible = false;
 
+  sections = [
+    {
+      theme: 'light',
+      items: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+    },
+    {
+      theme: 'dark',
+      items: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+    },
+    {
+      theme: 'light',
+      items: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+    }
+  ];
+
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2
