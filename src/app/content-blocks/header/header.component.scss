@@ -1,5 +1,9 @@
 header {
   background-color: #fff;
+  .color-bar {
+    position: relative;
+    top: 3px;
+  }
 }
 .header-bar {
   height: 40px;
@@ -14,11 +18,6 @@ header {
   }
 }
 
-.color-bar {
-  position: relative;
-  top: 3px;
-}
-
 .user {
   text-decoration: none;
   margin: 9px;
@@ -28,11 +27,11 @@ header {
 
 .navigation {
   position: fixed;
+  padding-top: 46px;
   top: 0;
-  padding-top: 60px;
-  height: 100%;
   left: 0;
-  width: 100%;
+  right: 0;
+  bottom: 0;
   background-color: #fff;
   z-index: 99;
   overflow: auto;
@@ -45,16 +44,47 @@ header {
   }
   a {
     display: block;
-    padding: 30px;
+    padding: 40px 30px;
     text-decoration: none;
     border-bottom: 1px solid #ccc;
+    margin: 0 5px;
   }
 
+  .light {
+    background-color: #fff;
+    a {
+      color: #333;
+      border-bottom-color: #ccc;
+    }
+  }
   .dark {
     background-color: #1a1e20;
     a {
       color: #fff;
       border-bottom-color: #000;
     }
+  }
+  .grey {
+    background-color: #ebeef0;
+    a {
+      color: #748d9b;
+      border-bottom-color: #ccc;
+    }
+  }
+  .color-bar {
+    position: relative;
+    top: -1px;
+  }
+}
+
+@media only screen and (min-width: 64em) {
+  .content {
+    background: linear-gradient(
+      to right,
+      #fff 0,
+      #fff 50%,
+      #ebeef0 50%,
+      #ebeef0 100%
+    );
   }
 }

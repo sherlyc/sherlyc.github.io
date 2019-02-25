@@ -16,15 +16,46 @@ export class HeaderComponent implements IContentBlockComponent {
   sections = [
     {
       theme: 'light',
-      items: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+      items: [
+        { label: 'National', link: '/national' },
+        { label: 'Sport', link: '/sport' },
+        { label: 'Life & Style', link: '/life-style' },
+        { label: 'World', link: '/world' },
+        { label: 'Entertainment', link: '/entertainment' },
+        { label: 'Business', link: '/business' },
+        { label: 'Homed', link: '/life-style/homed' },
+        { label: 'Opinion', link: '/opinion' },
+        { label: 'Travel', link: '/travel' },
+        { label: 'Technology', link: '/technology' },
+        { label: 'Stuff Nation', link: '/stuff-nation' },
+        { label: 'Motoring', link: '/motoring' }
+      ]
     },
     {
       theme: 'dark',
-      items: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+      items: [
+        { label: 'Auckland', link: '/auckland' },
+        { label: 'Wellington', link: '/dominion-post' },
+        { label: 'Canterbury', link: '/the-press' },
+        { label: 'Waikato', link: '/waikato-times' },
+        { label: 'Bay of Plenty', link: '/bay-of-plenty' },
+        { label: 'Taranaki', link: '/taranaki-daily-news' },
+        { label: 'Manawatu', link: '/manawatu-standard' },
+        { label: 'Nelson', link: '/nelson-mail' },
+        { label: 'Marlborough', link: '/marlborough-express' },
+        { label: 'Timaru', link: '/timaru-herald' },
+        { label: 'Otago', link: '/otago' },
+        { label: 'Southland', link: '/southland-times' }
+      ]
     },
     {
-      theme: 'light',
-      items: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+      theme: 'grey',
+      items: [
+        { label: 'Careers', link: 'https://careers.stuff.co.nz' },
+        { label: 'Advertising', link: 'https://advertise.stuff.co.nz' },
+        { label: 'Contact', link: '/about-stuff/94800421/contact-us' },
+        { label: 'Privacy', link: '/about-stuff/100909861/privacy-policy' }
+      ]
     }
   ];
 

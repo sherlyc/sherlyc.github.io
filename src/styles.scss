@@ -6,6 +6,9 @@ body {
   overflow: overlay;
   &.noScroll {
     overflow: hidden;
+    [apphideheader] {
+      transform: translateY(0) !important;
+    }
   }
 }
 
