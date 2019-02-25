@@ -2,8 +2,14 @@
 @import '~flexboxgrid';
 @import 'styles/fonts/merriweather.scss';
 
-html {
+body {
   overflow: overlay;
+  &.noScroll {
+    overflow: hidden;
+    [apphideheader] {
+      transform: translateY(0) !important;
+    }
+  }
 }
 
 html,
