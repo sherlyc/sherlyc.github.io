@@ -4,6 +4,7 @@
       <a
         href="javascript:void(0)"
         (click)="toggleMenu()"
+        aria-label="Menu"
         class="menu"
         [ngClass]="{ navigationVisible: navigationVisible }"
       >
@@ -24,7 +25,11 @@
           ></path>
         </svg>
       </div>
-      <a href="https://my.stuff.co.nz/login" target="_blank" class="user"
+      <a
+        href="https://my.stuff.co.nz/login"
+        target="_blank"
+        class="user"
+        rel="noopener"
         >Login</a
       >
     </div>
