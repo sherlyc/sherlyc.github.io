@@ -6,9 +6,8 @@
         (click)="toggleMenu()"
         aria-label="Menu"
         class="menu"
+        [ngClass]="{ navigationVisible: navigationVisible }"
       >
-        <div></div>
-        <div></div>
         <div></div>
       </a>
       <div class="title">
