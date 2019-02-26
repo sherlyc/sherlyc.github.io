@@ -1,5 +1,5 @@
 import { Directive, ElementRef, HostListener } from '@angular/core';
-import { RuntimeService } from '../services/runtime/runtime.service';
+import { RuntimeService } from '../../services/runtime/runtime.service';
 
 @Directive({
   selector: '[appHideHeader]'

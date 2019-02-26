@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import registry from '../content-blocks.registry';
 import { Component } from '@angular/core';
 import { LoggerService } from '../../services/logger/logger.service';
 import { LoggerServiceMock } from '../../services/logger/logger.service.mock';
 import { ContentBlockDirective } from './content-block.directive';
 import { IContentBlock } from '../../../../common/__types__/IContentBlock';
+import registry from '../../content-blocks/content-blocks.registry';
 
 @Component({
   selector: 'app-fake-content-block',
