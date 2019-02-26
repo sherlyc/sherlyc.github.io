@@ -1,8 +1,7 @@
 <div class="content">
   <div class="container">
-    <ng-container
-      [appContentBlock]="item"
-      *ngFor="let item of input.items"
-    ></ng-container>
+    <app-content-block-list
+      [contentBlocks]="input.items"
+    ></app-content-block-list>
   </div>
 </div>

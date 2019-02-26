@@ -9,10 +9,4 @@ import { IBasicArticleSection } from '../../../../common/__types__/IBasicArticle
 })
 export class BasicArticleSectionComponent implements IContentBlockComponent {
   @Input() input!: IBasicArticleSection;
-
-  constructor() {}
-
-  trackByFn(index: number, item: IContentBlockComponent) {
-    return index;
-  }
 }
