@@ -4,15 +4,17 @@ import { contentBlockComponents } from './content-blocks.registry';
 import { MomentModule } from 'ngx-moment';
 import { ContentBlockDirective } from '../directives/content-block/content-block.directive';
 import { HideHeaderDirective } from '../directives/hide-header/hide-header.directive';
+import { ContentBlockListComponent } from './content-block-list/content-block-list.component';
 
 @NgModule({
   declarations: [
     ...contentBlockComponents,
     HideHeaderDirective,
-    ContentBlockDirective
+    ContentBlockDirective,
+    ContentBlockListComponent
   ],
   imports: [CommonModule, MomentModule],
-  exports: [ContentBlockDirective],
+  exports: [ContentBlockDirective, ContentBlockListComponent],
   entryComponents: contentBlockComponents
 })
 export class ContentBlocksModule {}

@@ -36,8 +36,4 @@ export class PageComponent implements OnInit {
       }
     );
   }
-
-  trackByFn(index: number, item: IContentBlock) {
-    return index;
-  }
 }
