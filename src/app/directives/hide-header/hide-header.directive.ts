@@ -21,7 +21,6 @@ export class HideHeaderDirective {
     style.top = '0';
     style.left = '0';
     style.zIndex = 100;
-    style.transition = 'transform 10ms linear';
   }
 
   @HostListener('window:scroll') public windowScrolled() {

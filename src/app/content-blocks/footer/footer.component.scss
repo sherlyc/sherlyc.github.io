@@ -2,18 +2,47 @@
   display: block;
   padding-bottom: 10px;
 }
+svg {
+  width: 40px;
+  height: 40px;
+  margin: 0 8px;
+}
 
 .links {
   margin: 20px;
-  div {
-    ::after {
-      margin: 0 10px;
-      content: ' | ';
-      color: #999;
-    }
+  line-height: 25px;
+  a {
+    color: #0e7bc2;
+    text-decoration: none;
+  }
+  .separator {
+    color: #ebeef0;
+    font-size: 16px;
+    margin: 0 5px;
   }
 }
+
+.social {
+  margin-bottom: 20px;
+}
+.copyright {
+  font-size: 14px;
+  color: #b0bec5;
+}
 .contact {
+  color: #748d9b;
   margin: 20px;
-  text-align: right;
+  text-align: center;
+  a {
+    color: #0e7bc2;
+    text-decoration: none;
+  }
+}
+
+@media only screen and (min-width: 64em) {
+  .contact {
+    text-align: right;
+    border-right: 1px solid #ccc;
+    padding-right: 20px;
+  }
 }
