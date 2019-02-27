@@ -8,13 +8,48 @@ header {
 .header-bar {
   height: 40px;
 }
+
 .menu {
-  margin: 8px;
-  div {
-    width: 15px;
+  padding: 10px;
+  position: relative;
+  height: 18px;
+  width: 18px;
+
+  &.navigationVisible {
+    div {
+      background-color: transparent;
+      &::before {
+        transform: rotate(-45deg);
+        top: 0;
+      }
+      &::after {
+        transform: rotate(45deg);
+        top: 0;
+      }
+    }
+  }
+
+  div,
+  div::after,
+  div::before {
+    position: absolute;
+    width: 18px;
     height: 2px;
     background-color: black;
-    margin: 4px 0;
+    transition: all 200ms ease-in-out;
+  }
+
+  div {
+    top: 20px;
+
+    &::after {
+      content: '';
+      top: 7px;
+    }
+    &::before {
+      content: '';
+      top: -7px;
+    }
   }
 }
 

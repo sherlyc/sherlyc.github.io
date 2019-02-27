@@ -1,9 +1,13 @@
 <header appHideHeader>
   <div class="container col-xs">
     <div class="row between-xs middle-xs header-bar">
-      <a href="javascript:void(0)" (click)="toggleMenu()" class="menu">
-        <div></div>
-        <div></div>
+      <a
+        href="javascript:void(0)"
+        (click)="toggleMenu()"
+        aria-label="Menu"
+        class="menu"
+        [ngClass]="{ navigationVisible: navigationVisible }"
+      >
         <div></div>
       </a>
       <div class="title">
@@ -21,7 +25,11 @@
           ></path>
         </svg>
       </div>
-      <a href="https://my.stuff.co.nz/login" target="_blank" class="user"
+      <a
+        href="https://my.stuff.co.nz/login"
+        target="_blank"
+        class="user"
+        rel="noopener"
         >Login</a
       >
     </div>
