@@ -17,9 +17,6 @@
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",
           "options": {
-            "customWebpackConfig": {
-              "path": "extra-webpack.config.js"
-            },
             "outputPath": "dist/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -36,6 +33,10 @@
           },
           "configurations": {
             "production": {
+              "customWebpackConfig": {
+                "path": "extra-webpack.config.js",
+                "mergeStrategies": { "devtool": "replace" }
+              },
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -44,7 +45,7 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
+              "sourceMap": true,
               "extractCss": true,
               "namedChunks": false,
               "aot": true,
@@ -75,7 +76,7 @@
           "configurations": {
             "production": {
               "bundleDependencies": "all",
-              "sourceMap": false,
+              "sourceMap": true,
               "optimization": false,
               "outputHashing": "none"
             }
