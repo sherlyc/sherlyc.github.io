@@ -12,6 +12,7 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 import 'source-map-support/register';
 import api from '../server-src/app';
+import * as helmet from 'helmet';
 
 export { AppServerModule } from './app/app.server.module';
 
@@ -20,6 +21,7 @@ enableProdMode();
 
 // Express server
 const app = express();
+app.use(helmet());
 app.use(cors());
 
 app.use(api);
