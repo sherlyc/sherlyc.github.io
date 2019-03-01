@@ -24,7 +24,8 @@ export default async function(
           sectionId,
           totalArticles
         })
-      }
+      },
+      { type: ContentBlockType.BasicAdUnit }
     ];
   } catch (e) {
     return [];
