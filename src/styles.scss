@@ -1,6 +1,6 @@
 @import '~normalize.css/normalize.css';
 @import '~flexboxgrid';
-@import 'styles/fonts/merriweather.scss';
+@import 'assets/fonts/merriweather.scss';
 
 body {
   overflow: overlay;
@@ -16,7 +16,7 @@ html,
 body {
   height: 100%;
   width: 100%;
-  font-family: 'Merriweather Sans', serif;
+  font-family: 'Merriweather Sans', sans-serif;
 }
 
 .color-bar {
