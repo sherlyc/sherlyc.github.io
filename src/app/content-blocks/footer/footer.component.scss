@@ -16,9 +16,11 @@ svg {
     text-decoration: none;
   }
   .separator {
-    color: #ebeef0;
-    font-size: 16px;
     margin: 0 5px;
+    background-color: #ebeef0;
+    display: inline-block;
+    width: 2px;
+    height: 24px;
   }
 }
 
