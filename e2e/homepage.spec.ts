@@ -16,15 +16,13 @@ describe('Homepage test', () => {
 
   it('should display basic article units', async () => {
     await driver.get(config.url);
-    await driver.wait(until.elementLocated(By.css('app-content-block')));
-    const contentBlocks = await driver.findElements(
-      By.css('app-content-block')
+    await driver.wait(until.elementLocated(By.css('app-basic-article-unit')));
+    const articles = await driver.findElements(
+      By.css('app-basic-article-unit')
     );
-    expect(contentBlocks.length).toBeGreaterThan(0);
-    for (const contentBlock of contentBlocks) {
-      const article = await contentBlock.findElement(
-        By.css('app-basic-article-unit')
-      );
+    expect(articles.length).toBeGreaterThan(0);
+
+    for (const article of articles) {
       expect(article).toBeTruthy();
 
       const content = await article.getText();
@@ -33,19 +31,17 @@ describe('Homepage test', () => {
       const image = await article.findElement(By.css('img'));
       expect(image).toBeTruthy();
     }
-  });
+  }, 60000);
 
   it('should navigate to article page when articles are clicked', async () => {
     await driver.get(config.url);
-    await driver.wait(until.elementLocated(By.css('app-content-block')));
-    const firstContentBlock = await driver.findElement(
-      By.css('app-content-block')
-    );
-    const link = await firstContentBlock.findElement(By.css('a'));
+    await driver.wait(until.elementLocated(By.css('app-basic-article-unit')));
+    const article = await driver.findElement(By.css('app-basic-article-unit'));
+    const link = await article.findElement(By.css('a'));
     const href = await link.getAttribute('href');
 
     link.click();
-    await driver.wait(until.elementLocated(By.css('app-content-block')));
+    await driver.wait(until.elementLocated(By.css('app-basic-article-unit')));
     expect(await driver.getCurrentUrl()).toBe(href);
-  });
+  }, 60000);
 });
