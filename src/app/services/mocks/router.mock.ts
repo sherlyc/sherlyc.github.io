@@ -1,16 +1,10 @@
-import { ConnectableObservable, Observable, Subscriber } from 'rxjs';
+import { Subject } from 'rxjs';
 import { RouterEvent } from '@angular/router';
-import { publish } from 'rxjs/operators';
 
 export class RouterMock {
-  eventEmitter!: Subscriber<RouterEvent>;
-
-  events: ConnectableObservable<Event>;
+  events: Subject<RouterEvent>;
 
   constructor() {
-    this.events = Observable.create((e: Subscriber<RouterEvent>) => {
-      this.eventEmitter = e;
-    }).pipe(publish());
-    this.events.connect();
+    this.events = new Subject();
   }
 }

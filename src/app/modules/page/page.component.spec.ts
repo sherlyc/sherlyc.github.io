@@ -89,14 +89,14 @@ describe('PageComponent', () => {
     contentRetrieverMock.getContent.mockReturnValue(of(mockContentBlocks));
     const getDataSpy = jest.spyOn(component, 'getData');
 
-    routerMock.eventEmitter.next(new NavigationStart(0, '/')); // emit an event before subscription
+    routerMock.events.next(new NavigationStart(0, '/')); // emit an event before subscription
     expect(getDataSpy).not.toHaveBeenCalled();
 
     fixture.detectChanges(); // ngOnInit() and subscribe
     expect(getDataSpy).toBeCalledTimes(1);
     expect(contentRetrieverMock.getContent).toBeCalledTimes(1);
 
-    routerMock.eventEmitter.next(new NavigationStart(0, '/')); // emit an event
+    routerMock.events.next(new NavigationStart(0, '/')); // emit an event
     expect(getDataSpy).toBeCalledTimes(2);
     expect(contentRetrieverMock.getContent).toBeCalledTimes(2);
     fixture.detectChanges(); // input updated
@@ -118,14 +118,14 @@ describe('PageComponent', () => {
     );
     const getDataSpy = jest.spyOn(component, 'getData');
 
-    routerMock.eventEmitter.next(new NavigationStart(0, '/')); // emit an event before subscription
+    routerMock.events.next(new NavigationStart(0, '/')); // emit an event before subscription
     expect(getDataSpy).not.toHaveBeenCalled();
 
     fixture.detectChanges(); // ngOnInit() and subscribe
     expect(getDataSpy).toHaveBeenCalled();
     expect(contentRetrieverMock.getContent).toHaveBeenCalled();
 
-    routerMock.eventEmitter.next(new NavigationStart(0, '/')); // emit an event
+    routerMock.events.next(new NavigationStart(0, '/')); // emit an event
     assertsForFailedRetrieval();
   });
 
