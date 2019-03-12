@@ -1,4 +1,4 @@
-import { PageComponent } from './modules/page/page.component';
+import { PageComponent } from './components/page/page.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HeaderComponent } from './header.component';
 import { By } from '@angular/platform-browser';
-import { CopyrightComponent } from '../copyright/copyright.component';
+import { CopyrightComponent } from '../../components/copyright/copyright.component';
 
 describe('Header', () => {
   let fixture: ComponentFixture<HeaderComponent>;
