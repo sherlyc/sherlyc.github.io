@@ -16,7 +16,7 @@ describe('AdService', () => {
 
   beforeEach(() => {
     routerMock = {
-      events: Observable.create((e: Subscriber<RouterEvent>) => {
+      events: new Observable((e: Subscriber<RouterEvent>) => {
         routerEventEmitter = e;
       }).pipe(publish())
     };
