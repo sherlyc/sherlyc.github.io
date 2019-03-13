@@ -1,3 +1,5 @@
+import { IBreakingNews } from './IBreakingNews';
+
 export enum ContentBlockType {
   BasicArticleUnit = 'BasicArticleUnit',
   BasicAdUnit = 'BasicAdUnit',
@@ -5,5 +7,6 @@ export enum ContentBlockType {
   Container = 'Container',
   Footer = 'Footer',
   BasicArticleSection = 'BasicArticleSection',
-  Header = 'Header'
+  Header = 'Header',
+  IBreakingNews = 'BreakingNews'
 }

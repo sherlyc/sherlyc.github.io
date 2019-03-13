@@ -3,6 +3,7 @@
     "retryTimeout": 1000,
     "requestTimeout": 10000,
     "jsonFeedAPI": "https://www.stuff.co.nz/_json2",
+    "contentAPI": "http://content-api-gateway-production.fairfaxmedia.co.nz/services/content/v1",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
       "level": "info",
@@ -13,6 +14,7 @@
     "retryTimeout": 1000,
     "requestTimeout": 10000,
     "jsonFeedAPI": "https://www.stuff.co.nz/_json2",
+    "contentAPI": "http://content-api-gateway-staging.fairfaxmedia.co.nz/services/content/v1",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
       "level": "info",
@@ -23,6 +25,7 @@
     "retryTimeout": 500,
     "requestTimeout": 10000,
     "jsonFeedAPI": "https://www.stuff.co.nz/_json2",
+    "contentAPI": "http://demo6901953.mockable.io/services/content/v1",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
       "level": "debug",
@@ -33,6 +36,7 @@
     "retryTimeout": 1,
     "requestTimeout": 10000,
     "jsonFeedAPI": "https://www-preprod.stuff.co.nz/_json2",
+    "contentAPI": "http://content-api-gateway-staging.fairfaxmedia.co.nz/services/content/v1",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
       "level": "debug",

@@ -4,6 +4,7 @@ export interface IEnvironmentDefinition {
   retryTimeout: number;
   requestTimeout: number;
   jsonFeedAPI: string;
+  contentAPI: string;
   maxArticlesToRetrieve: number;
   loggerOptions: ILoggerOptions;
 }
