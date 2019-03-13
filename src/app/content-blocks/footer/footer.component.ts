@@ -8,6 +8,5 @@ import { IFooter } from '../../../../common/__types__/IFooter';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements IContentBlockComponent {
-  currentDate: number = Date.now();
   @Input() input!: IFooter;
 }

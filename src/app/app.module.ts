@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PageComponent } from './modules/page/page.component';
+import { PageComponent } from './components/page/page.component';
 import { ContentBlocksModule } from './content-blocks/content-blocks.module';
 import { LoggerService } from './services/logger/logger.service';
 import { ServiceWorkerModule } from '@angular/service-worker';

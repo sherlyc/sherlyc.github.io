@@ -1,13 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HeaderComponent } from './header.component';
 import { By } from '@angular/platform-browser';
+import { CopyrightComponent } from '../../components/copyright/copyright.component';
 
 describe('Header', () => {
   let fixture: ComponentFixture<HeaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HeaderComponent]
+      declarations: [HeaderComponent, CopyrightComponent]
     }).compileComponents();
     fixture = TestBed.createComponent(HeaderComponent);
   });
