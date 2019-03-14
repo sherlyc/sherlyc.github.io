@@ -1,7 +1,7 @@
-<div>
-  <h1>Breaking news</h1>
-  <div>
-    <a [href]="input.link">{{ input.text }}</a>
-  </div>
-  <a class="close" (click)="onClose()"></a>
+<div class="breaking-news" *ngIf="isShow">
+  <a class="link" [href]="input.link" (click)="onClickOrDismiss()">
+    <h1 class="title">Breaking news</h1>
+    <p>{{ input.text }}</p>
+  </a>
+  <a class="dismiss" (click)="onClickOrDismiss()"></a>
 </div>

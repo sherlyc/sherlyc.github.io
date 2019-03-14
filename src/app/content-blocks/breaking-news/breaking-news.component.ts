@@ -8,11 +8,12 @@ import { IBreakingNews } from '../../../../common/__types__/IBreakingNews';
   styleUrls: ['./breaking-news.component.scss']
 })
 export class BreakingNewsComponent implements IContentBlockComponent {
+  input!: IBreakingNews;
+  isShow = true;
+
   constructor() {}
 
-  input!: IBreakingNews;
-
-  onClose() {
-    // TODO: write cookie
+  onClickOrDismiss() {
+    this.isShow = false;
   }
 }
