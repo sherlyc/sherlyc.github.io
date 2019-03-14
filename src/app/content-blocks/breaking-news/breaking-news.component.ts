@@ -9,11 +9,11 @@ import { IBreakingNews } from '../../../../common/__types__/IBreakingNews';
 })
 export class BreakingNewsComponent implements IContentBlockComponent {
   input!: IBreakingNews;
-  isShow = true;
+  shouldIgnore = false;
 
   constructor() {}
 
   onClickOrDismiss() {
-    this.isShow = false;
+    this.shouldIgnore = true;
   }
 }

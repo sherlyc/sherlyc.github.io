@@ -1,4 +1,4 @@
-<div class="breaking-news" *ngIf="isShow">
+<div class="breaking-news" *ngIf="!shouldIgnore">
   <a class="link" [href]="input.link" (click)="onClickOrDismiss()">
     <h1 class="title">Breaking news</h1>
     <p>{{ input.text }}</p>
