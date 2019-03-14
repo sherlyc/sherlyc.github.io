@@ -8,6 +8,10 @@ if (environment.production) {
   enableProdMode();
 }
 
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+});
+
 document.addEventListener('DOMContentLoaded', () =>
   platformBrowserDynamic()
     .bootstrapModule(AppModule)
