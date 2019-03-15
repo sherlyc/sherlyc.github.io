@@ -21,7 +21,8 @@ export { AppServerModule } from './app/app.server.module';
 // @ts-ignore
 import * as xhr2 from 'xhr2';
 // we need to this hacking so that we can set cookie in the request by
-// Angular Http client, see also HttpInterceptorService
+// Angular Http client, see also HttpInterceptorService and
+// https://github.com/angular/angular/issues/15730
 xhr2.prototype._restrictedHeaders['cookie'] = false;
 
 // Faster server renders w/ Prod mode (dev mode never needed)
