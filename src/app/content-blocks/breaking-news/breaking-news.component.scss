@@ -26,19 +26,20 @@
   }
 
   .dismiss {
+    cursor: pointer;
     color: #fff;
     position: absolute;
     top: 0;
     right: 0px;
-    width: 2em;
-    height: 2em;
+    width: 35px;
+    height: 35px;
     z-index: 1;
     outline: none;
     text-align: center;
     vertical-align: middle;
     &:before {
       content: '\00d7';
-      font-size: 2em;
+      font-size: 35px;
     }
   }
 }
