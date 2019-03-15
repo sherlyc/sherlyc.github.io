@@ -1,8 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
 import { Request, Response } from 'express';
-import { parseCookie } from './cookie.helper';
-import { ICookieOptions } from './__types__/ICookieOptions';
+import { parse, CookieSerializeOptions } from 'cookie';
 
 @Injectable()
 export class ServerCookieService {
@@ -15,11 +14,11 @@ export class ServerCookieService {
     return this.getAll()[name];
   }
 
-  set(name: string, value: string, options: ICookieOptions = {}) {
+  set(name: string, value: string, options: CookieSerializeOptions = {}) {
     this.response.cookie(name, value, options);
   }
 
   getAll(): { [key: string]: string } {
-    return parseCookie(this.request.headers.cookie || '');
+    return parse(this.request.headers.cookie || '');
   }
 }

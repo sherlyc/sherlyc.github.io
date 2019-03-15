@@ -1,7 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { buildCookie, parseCookie } from './cookie.helper';
-import { ICookieOptions } from './__types__/ICookieOptions';
+import { parse, serialize, CookieSerializeOptions } from 'cookie';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +12,11 @@ export class CookieService {
     return this.getAll()[name];
   }
 
-  set(name: string, value: string, options: ICookieOptions = {}) {
-    this.document.cookie = buildCookie(name, value, options);
+  set(name: string, value: string, options: CookieSerializeOptions = {}) {
+    this.document.cookie = serialize(name, value, options);
   }
 
   getAll(): { [key: string]: string } {
-    return parseCookie(this.document.cookie);
+    return parse(this.document.cookie);
   }
 }

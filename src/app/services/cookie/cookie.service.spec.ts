@@ -46,6 +46,6 @@ describe('CookieService', () => {
     cookieService.set('cookie-name', 'cookie-value', {
       secure: true
     });
-    expect(documentMock.cookie).toEqual('cookie-name=cookie-value;secure');
+    expect(documentMock.cookie).toEqual('cookie-name=cookie-value; Secure');
   });
 });
