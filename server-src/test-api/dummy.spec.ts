@@ -1,9 +1,6 @@
 import * as supertest from 'supertest';
 
 describe('dummy api test', () => {
-  beforeAll(() => {
-    process.env.SPADE_ENV = 'test';
-  });
   it('should respond with a json payload', async () => {
     const app = require('../app').default;
     const response: supertest.Response = await supertest(app)
