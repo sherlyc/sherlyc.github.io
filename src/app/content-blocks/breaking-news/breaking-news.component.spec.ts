@@ -3,13 +3,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BreakingNewsComponent } from './breaking-news.component';
 import { By } from '@angular/platform-browser';
 import { CookieService } from '../../services/cookie/cookie.service';
+import { CookieServiceMock } from '../../services/cookie/cookie.service.mock';
 
 describe('BreakingNewsComponent', () => {
   let component: BreakingNewsComponent;
   let fixture: ComponentFixture<BreakingNewsComponent>;
-  const cookieServiceMock = {
-    set: jest.fn()
-  };
+  let cookieServiceMock: CookieServiceMock;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -17,10 +16,11 @@ describe('BreakingNewsComponent', () => {
       providers: [
         {
           provide: CookieService,
-          useValue: cookieServiceMock
+          useClass: CookieServiceMock
         }
       ]
     }).compileComponents();
+    cookieServiceMock = TestBed.get(CookieService);
   });
 
   beforeEach(() => {

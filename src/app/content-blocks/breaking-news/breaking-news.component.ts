@@ -16,10 +16,7 @@ export class BreakingNewsComponent implements IContentBlockComponent {
   constructor(private cookieService: CookieService) {}
 
   onClickOrDismiss() {
-    this.cookieService.set(
-      CookieNames.IGNORE_BREAKING_NEWS_COOKIE,
-      this.input.id
-    );
+    this.cookieService.set(CookieNames.IGNORE_BREAKING_NEWS, this.input.id);
     this.shouldIgnore = true;
   }
 }

@@ -4,6 +4,6 @@ import { CookieNames } from '../../common/__types__/CookieNames';
 
 export default (req: Request): IParams => {
   return {
-    ignoreBreakingNews: req.cookies[CookieNames.IGNORE_BREAKING_NEWS_COOKIE]
+    ignoreBreakingNews: req.cookies[CookieNames.IGNORE_BREAKING_NEWS]
   };
 };
