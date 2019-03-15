@@ -1,0 +1,46 @@
+.breaking-news {
+  color: #ffffff;
+  background-color: #d12421;
+  transition: opacity 0.25s ease-in-out, max-height 0.25s ease-in-out;
+  position: relative;
+  margin-bottom: 17px;
+
+  a {
+    text-decoration: none;
+    &:active,
+    &:hover,
+    &:link,
+    &:visited {
+      color: #ffffff;
+    }
+  }
+
+  .link {
+    display: block;
+    padding: 17px;
+
+    .title {
+      font-size: 17px;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+  }
+
+  .dismiss {
+    cursor: pointer;
+    color: #fff;
+    position: absolute;
+    top: 0;
+    right: 0px;
+    width: 35px;
+    height: 35px;
+    z-index: 1;
+    outline: none;
+    text-align: center;
+    vertical-align: middle;
+    &:before {
+      content: '\00d7';
+      font-size: 35px;
+    }
+  }
+}

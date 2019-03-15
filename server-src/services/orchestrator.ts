@@ -8,6 +8,9 @@ export default async (): Promise<IContentBlock[]> => {
       type: 'Page',
       items: [
         {
+          type: 'BreakingNews'
+        },
+        {
           type: 'ArticleList',
           sectionId: Section.Latest,
           totalArticles: 6

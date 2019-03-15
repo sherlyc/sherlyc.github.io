@@ -7,12 +7,13 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BasicAdUnitComponent } from './basic-ad-unit/basic-ad-unit.component';
 import { BasicArticleSectionComponent } from './basic-article-section/basic-article-section.component';
+import { BreakingNewsComponent } from './breaking-news/breaking-news.component';
 
 export const contentBlockComponents = [
   BasicArticleUnitComponent,
   BasicArticleSectionComponent,
   BasicAdUnitComponent,
-  BasicArticleSectionComponent,
+  BreakingNewsComponent,
   ContainerComponent,
   ErrorBlockComponent,
   HeaderComponent,
@@ -23,6 +24,7 @@ const registry: { [key: string]: Type<IContentBlockComponent> } = {
   BasicArticleUnitComponent,
   BasicArticleSectionComponent,
   BasicAdUnitComponent,
+  BreakingNewsComponent,
   ContainerComponent,
   ErrorBlockComponent,
   HeaderComponent,

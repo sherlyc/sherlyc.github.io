@@ -5,5 +5,6 @@ export enum ContentBlockType {
   Container = 'Container',
   Footer = 'Footer',
   BasicArticleSection = 'BasicArticleSection',
-  Header = 'Header'
+  Header = 'Header',
+  BreakingNews = 'BreakingNews'
 }

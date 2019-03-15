@@ -5,6 +5,7 @@ import { IFooter } from './IFooter';
 import { IHeader } from './IHeader';
 import { IBasicAdUnit } from './IBasicAdUnit';
 import { IBasicArticleSection } from './IBasicArticleSection';
+import { IBreakingNews } from './IBreakingNews';
 
 export type IContentBlock =
   | IBasicArticleUnit
@@ -12,5 +13,6 @@ export type IContentBlock =
   | IBasicAdUnit
   | IErrorBlock
   | IContainer
+  | IBreakingNews
   | IFooter
   | IHeader;
