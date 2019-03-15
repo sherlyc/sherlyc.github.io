@@ -1,14 +1,16 @@
 import { IContentBlock } from '../../common/__types__/IContentBlock';
 import handlerRunner from './handlers/runner';
 import { Section } from './section';
+import { IParams } from './__types__/IParams';
 
-export default async (): Promise<IContentBlock[]> => {
+export default async (params: IParams): Promise<IContentBlock[]> => {
   try {
     return await handlerRunner({
       type: 'Page',
       items: [
         {
-          type: 'BreakingNews'
+          type: 'BreakingNews',
+          ignoreBreakingNews: params.ignoreBreakingNews
         },
         {
           type: 'ArticleList',

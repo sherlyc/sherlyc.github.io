@@ -7,17 +7,18 @@ import { IRawBreakingNews } from '../adapters/__types__/IRawBreakingNews';
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  {  }: IBreakingNewsHandlerInput
+  { ignoreBreakingNews }: IBreakingNewsHandlerInput
 ): Promise<IContentBlock[]> {
   const { id, text, link, enabled }: IRawBreakingNews = await getBreakingNews();
-  return enabled
-    ? [
+  const shouldIgnore = !enabled || ignoreBreakingNews === id;
+  return shouldIgnore
+    ? []
+    : [
         {
           type: 'BreakingNews',
           id,
           text,
           link
         } as IBreakingNews
-      ]
-    : [];
+      ];
 }
