@@ -30,6 +30,7 @@ export class HttpInterceptorService implements HttpInterceptor {
 
   populateServerCookies(req: HttpRequest<any>): HttpRequest<any> {
     const allCookies = this.cookieService.getAll();
+    // only populate cookies we define as enum
     const cookieString = Object.values(CookieNames)
       .filter((name) => allCookies[name])
       .map((name) => `${name}=${allCookies[name]}`)
