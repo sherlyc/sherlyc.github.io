@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ContentBlockListComponent } from './content-block-list.component';
 import { ContentBlockDirective } from '../../directives/content-block/content-block.directive';
-import { LoggerService } from '../../services/logger/logger.service';
-import { LoggerServiceMock } from '../../services/logger/logger.service.mock';
+import { LoggerService } from '../../../services/logger/logger.service';
+import { LoggerServiceMock } from '../../../services/logger/logger.service.mock';
 
 describe('Content block list', () => {
   let component: ContentBlockListComponent;

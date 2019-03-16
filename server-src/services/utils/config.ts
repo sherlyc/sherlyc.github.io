@@ -1,4 +1,4 @@
-import * as config from '../config.json';
+import * as config from '../../config.json';
 import { IEnvironmentDefinition } from './__types__/IEnvironmentDefinition';
 
 const defaultEnvironmentName = 'production';

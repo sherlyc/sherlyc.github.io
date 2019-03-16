@@ -1,33 +1,13 @@
-import config from '../config';
-import logger from '../logger';
-import axios from 'axios';
-import * as pRetry from 'p-retry';
+import config from '../utils/config';
 import { IRawBreakingNews } from './__types__/IRawBreakingNews';
+import retry from '../utils/retry';
+import http from '../utils/http';
 
 async function apiCall(): Promise<IRawBreakingNews> {
-  const response = await axios.get<IRawBreakingNews>(
-    `${config.contentAPI}/breakingnews`,
-    {
-      validateStatus: (status: number) => {
-        return status >= 200 && status < 400;
-      },
-      timeout: config.requestTimeout
-    }
+  const response = await http.get<IRawBreakingNews>(
+    `${config.contentAPI}/breakingnews`
   );
   return response.data;
 }
 
-export default () => {
-  return pRetry(() => apiCall(), {
-    retries: 3,
-    factor: 1,
-    minTimeout: config.retryTimeout,
-    onFailedAttempt: (error: pRetry.FailedAttemptError & any) => {
-      logger.warn(
-        `Attempt ${error.attemptNumber} failing when calling. There are ${
-          error.retriesLeft
-        } retries left.`
-      );
-    }
-  });
-};
+export default () => retry(() => apiCall());

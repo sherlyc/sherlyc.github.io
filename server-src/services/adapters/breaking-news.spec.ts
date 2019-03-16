@@ -1,7 +1,7 @@
 import getBreakingNews from './breaking-news';
-import axios from 'axios';
+import http from '../utils/http';
 
-jest.mock('axios');
+jest.mock('../utils/http');
 
 describe('Breaking news service', () => {
   it('should get a breaking news', async () => {
@@ -11,7 +11,7 @@ describe('Breaking news service', () => {
       text: 'breaking_news_text',
       link: 'http://example.com'
     };
-    (axios.get as jest.Mock).mockResolvedValue({
+    (http.get as jest.Mock).mockResolvedValue({
       data: breakingNews
     });
     expect(await getBreakingNews()).toEqual(breakingNews);
@@ -19,7 +19,7 @@ describe('Breaking news service', () => {
 
   it('should not get a breaking news when content-api request fails', async () => {
     const error = new Error('AJAX error');
-    (axios.get as jest.Mock).mockRejectedValue(error);
+    (http.get as jest.Mock).mockRejectedValue(error);
     await expect(getBreakingNews()).rejects.toEqual(error);
   });
 });
