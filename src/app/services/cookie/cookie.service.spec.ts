@@ -44,8 +44,12 @@ describe('CookieService', () => {
 
   it('should set a cookie', () => {
     cookieService.set('cookie-name', 'cookie-value', {
+      domain: 'localhost',
+      path: '/',
       secure: true
     });
-    expect(documentMock.cookie).toEqual('cookie-name=cookie-value; Secure');
+    expect(documentMock.cookie).toEqual(
+      'cookie-name=cookie-value; Domain=localhost; Path=/; Secure'
+    );
   });
 });
