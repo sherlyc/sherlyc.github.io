@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
 import { IBreakingNews } from '../../../../common/__types__/IBreakingNews';
 import { CookieNames } from '../../../../common/__types__/CookieNames';
