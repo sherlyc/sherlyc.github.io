@@ -5,8 +5,8 @@ import { MomentModule } from 'ngx-moment';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [...contentBlockComponents],
   imports: [CommonModule, MomentModule, SharedModule],
+  declarations: contentBlockComponents,
   entryComponents: contentBlockComponents
 })
 export class ContentBlocksModule {}
