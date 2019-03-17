@@ -18,4 +18,4 @@ const defaultOptions = {
 export default <T>(
   input: (attemptCount: number) => PromiseLike<T> | T,
   options: pRetry.Options = defaultOptions
-): Promise<T> => pRetry(input, options);
+): Promise<T> => pRetry(input, Object.assign(defaultOptions, options));
