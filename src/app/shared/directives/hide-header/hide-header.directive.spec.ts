@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HideHeaderDirective } from './hide-header.directive';
 import { By } from '@angular/platform-browser';
-import { RuntimeService } from '../../services/runtime/runtime.service';
-import { RuntimeServiceMock } from '../../services/runtime/runtime.service.mock';
+import { RuntimeService } from '../../../services/runtime/runtime.service';
+import { RuntimeServiceMock } from '../../../services/runtime/runtime.service.mock';
 
 @Component({
   selector: 'app-fake-header',

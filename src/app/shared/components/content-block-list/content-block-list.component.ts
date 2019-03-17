@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IContentBlock } from '../../../../common/__types__/IContentBlock';
+import { IContentBlock } from '../../../../../common/__types__/IContentBlock';
 
 @Component({
   selector: 'app-content-block-list',

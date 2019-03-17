@@ -1,4 +1,4 @@
-import * as configJson from '../config.json';
+import * as configJson from '../../config.json';
 
 describe('Config Service', () => {
   it('should load config based on environment variable', () => {
