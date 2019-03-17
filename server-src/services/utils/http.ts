@@ -1,4 +1,9 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, {
+  AxiosError,
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse
+} from 'axios';
 import { performance } from 'perf_hooks';
 import config from './config';
 import logger from './logger';
@@ -22,6 +27,14 @@ httpClient.interceptors.response.use(
       } in ${elapsedTime.toFixed(2)}ms`
     );
     return response;
+  },
+  (error: AxiosError) => {
+    logger.warn(
+      `${error.config.method!.toUpperCase()} ${
+        error.config.url
+      } ==> Failed with error: ${error.message}`
+    );
+    return Promise.reject(error);
   }
 );
 
