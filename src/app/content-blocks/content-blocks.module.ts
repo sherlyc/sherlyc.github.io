@@ -2,21 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { contentBlockComponents } from './content-blocks.registry';
 import { MomentModule } from 'ngx-moment';
-import { ContentBlockDirective } from '../directives/content-block/content-block.directive';
-import { HideHeaderDirective } from '../directives/hide-header/hide-header.directive';
-import { ContentBlockListComponent } from './content-block-list/content-block-list.component';
-import { CopyrightComponent } from '../components/copyright/copyright.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [
-    ...contentBlockComponents,
-    HideHeaderDirective,
-    ContentBlockDirective,
-    ContentBlockListComponent,
-    CopyrightComponent
-  ],
-  imports: [CommonModule, MomentModule],
-  exports: [ContentBlockDirective, ContentBlockListComponent],
+  imports: [CommonModule, MomentModule, SharedModule],
+  declarations: contentBlockComponents,
   entryComponents: contentBlockComponents
 })
 export class ContentBlocksModule {}

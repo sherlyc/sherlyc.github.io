@@ -1,14 +1,14 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PageComponent } from './page.component';
-import { ContentRetrieverService } from '../../services/content-retriever/content-retriever.service';
+import { ContentRetrieverService } from '../../../services/content-retriever/content-retriever.service';
 import { of, throwError } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NavigationStart, Router } from '@angular/router';
-import { ContentRetrieverServiceMock } from '../../services/content-retriever/content-retriever.service.mock';
-import { RouterMock } from '../../services/mocks/router.mock';
-import { IContentBlock } from '../../../../common/__types__/IContentBlock';
+import { ContentRetrieverServiceMock } from '../../../services/content-retriever/content-retriever.service.mock';
+import { RouterMock } from '../../../services/mocks/router.mock';
+import { IContentBlock } from '../../../../../common/__types__/IContentBlock';
 
 describe('PageComponent', () => {
   let component: PageComponent;

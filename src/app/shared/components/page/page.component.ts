@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { IContentBlock } from '../../../../common/__types__/IContentBlock';
+import { IContentBlock } from '../../../../../common/__types__/IContentBlock';
 import { NavigationStart, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { ContentRetrieverService } from '../../services/content-retriever/content-retriever.service';
+import { ContentRetrieverService } from '../../../services/content-retriever/content-retriever.service';
 
 @Component({
   selector: 'app-page',

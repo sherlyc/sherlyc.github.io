@@ -76,7 +76,7 @@
     "@types/lodash": "^4.14.123",
     "@types/moment": "^2.13.0",
     "@types/node": "^10.12.30",
-    "@types/p-retry": "^2.0.0",
+    "@types/p-retry": "^3.0.0",
     "@types/selenium-webdriver": "^3.0.15",
     "@types/source-map-support": "^0.4.2",
     "@types/supertest": "^2.0.7",
