@@ -7,6 +7,8 @@ import { ModuleMapLoaderModule } from '@nguniversal/module-map-ngfactory-loader'
 
 import { AppModule } from './app.module';
 import { AppComponent } from './app.component';
+import { CookieService } from './services/cookie/cookie.service';
+import { ServerCookieService } from './services/cookie/server-cookie.service';
 
 @NgModule({
   imports: [
@@ -17,6 +19,7 @@ import { AppComponent } from './app.component';
   ],
   providers: [
     // Add universal-only providers here
+    { provide: CookieService, useClass: ServerCookieService }
   ],
   bootstrap: [AppComponent]
 })

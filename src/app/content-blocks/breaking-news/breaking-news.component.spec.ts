@@ -1,16 +1,26 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BreakingNewsComponent } from './breaking-news.component';
 import { By } from '@angular/platform-browser';
+import { CookieService } from '../../services/cookie/cookie.service';
+import { CookieServiceMock } from '../../services/cookie/cookie.service.mock';
 
 describe('BreakingNewsComponent', () => {
   let component: BreakingNewsComponent;
   let fixture: ComponentFixture<BreakingNewsComponent>;
+  let cookieServiceMock: CookieServiceMock;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [BreakingNewsComponent]
+      declarations: [BreakingNewsComponent],
+      providers: [
+        {
+          provide: CookieService,
+          useClass: CookieServiceMock
+        }
+      ]
     }).compileComponents();
+    cookieServiceMock = TestBed.get(CookieService);
   });
 
   beforeEach(() => {
@@ -39,6 +49,7 @@ describe('BreakingNewsComponent', () => {
     fixture.debugElement.query(By.css('.dismiss')).nativeElement.click();
     fixture.detectChanges();
     expect(component.onClickOrDismiss).toHaveBeenCalled();
+    expect(cookieServiceMock.set).toHaveBeenCalled();
     expect(fixture.debugElement.query(By.css('.breaking-news'))).toBeFalsy();
   });
 
@@ -46,6 +57,7 @@ describe('BreakingNewsComponent', () => {
     fixture.debugElement.query(By.css('.link')).nativeElement.click();
     fixture.detectChanges();
     expect(component.onClickOrDismiss).toHaveBeenCalled();
+    expect(cookieServiceMock.set).toHaveBeenCalled();
     expect(fixture.debugElement.query(By.css('.breaking-news'))).toBeFalsy();
   });
 });

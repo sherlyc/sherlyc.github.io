@@ -8,13 +8,22 @@ import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 
 import * as express from 'express';
 import * as cors from 'cors';
+import * as cookieParser from 'cookie-parser';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import 'source-map-support/register';
 import api from '../server-src/app';
 import * as helmet from 'helmet';
+import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
 
 export { AppServerModule } from './app/app.server.module';
+
+// @ts-ignore
+import * as xhr2 from 'xhr2';
+// we need to this hacking so that we can set cookie in the request by
+// Angular Http client, see also HttpInterceptorService and
+// https://github.com/angular/angular/issues/15730
+xhr2.prototype._restrictedHeaders['cookie'] = false;
 
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();
@@ -23,6 +32,7 @@ enableProdMode();
 const app = express();
 app.use(helmet());
 app.use(cors());
+app.use(cookieParser());
 
 app.use(api);
 
@@ -50,7 +60,17 @@ app.engine('html', (_, options, callback) => {
     document: template,
     url: options.req.url,
     // DI so that we can get lazy-loading to work differently (since we need it to just instantly render it)
-    extraProviders: [provideModuleMap(LAZY_MODULE_MAP)]
+    extraProviders: [
+      provideModuleMap(LAZY_MODULE_MAP),
+      {
+        provide: REQUEST,
+        useValue: options.req
+      },
+      {
+        provide: RESPONSE,
+        useValue: options.res
+      }
+    ]
   }).then((html) => {
     callback(null, html);
   });
