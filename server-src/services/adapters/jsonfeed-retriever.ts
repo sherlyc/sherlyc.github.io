@@ -3,6 +3,7 @@ import config from '../utils/config';
 import retry from '../utils/retry';
 import http from '../utils/http';
 import { Section } from '../section';
+import { URL } from 'url';
 
 async function apiCall(
   section: Section,
