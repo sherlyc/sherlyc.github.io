@@ -69,7 +69,8 @@ header {
   bottom: 0;
   background-color: #fff;
   z-index: 99;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   ul,
   li {
