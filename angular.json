@@ -45,7 +45,10 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": true,
+              "sourceMap": {
+                "scripts": true,
+                "styles": false
+              },
               "extractCss": true,
               "namedChunks": false,
               "aot": true,
@@ -76,7 +79,10 @@
           "configurations": {
             "production": {
               "bundleDependencies": "all",
-              "sourceMap": true,
+              "sourceMap": {
+                "scripts": true,
+                "styles": false
+              },
               "optimization": false,
               "outputHashing": "none"
             }
