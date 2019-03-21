@@ -1,4 +1,6 @@
 import * as https from 'https';
+import * as http from 'http';
+import * as net from 'net';
 import { URL } from 'url';
 import * as httpProxy from 'http-proxy';
 import * as minimatch from 'minimatch';
@@ -76,11 +78,47 @@ UOF3jFQrgDw64531
 `
 };
 
-const port = 4443;
+const HTTPS_PAYLOAD_MSB = 22;
+const SOCKET_SERVER_PORT = 3000;
+const PROXY_HTTPS_SERVER_PORT = 3001;
+const REDIRECTION_HTTP_SERVER_PORT = 3002;
 
+// raw socket server
+net
+  .createServer((conn) => {
+    conn.on('error', () => {
+      conn.end();
+    });
+    conn.once('data', (buf) => {
+      const connection = net.createConnection(
+        buf[0] === HTTPS_PAYLOAD_MSB
+          ? PROXY_HTTPS_SERVER_PORT
+          : REDIRECTION_HTTP_SERVER_PORT,
+        '0.0.0.0',
+        () => {
+          connection.write(buf);
+          conn.pipe(connection).pipe(conn);
+        }
+      );
+    });
+  })
+  .listen(SOCKET_SERVER_PORT);
+
+// http server to redirect to https
+http
+  .createServer((req, res) => {
+    const redirect = { Location: `https://${req.headers.host}${req.url}` };
+    res.writeHead(301, redirect);
+    res.end();
+  })
+  .listen(REDIRECTION_HTTP_SERVER_PORT);
+
+// https server to proxy SPADE and SICS / CQ
 https
   .createServer(options, (req: IncomingMessage, res: ServerResponse) => {
-    const url = new URL(`https://localhost:${port}${req.url}`);
+    const url = new URL(
+      `https://localhost:${PROXY_HTTPS_SERVER_PORT}${req.url}`
+    );
 
     const patternLocal = spade.find((pattern) =>
       minimatch(url.pathname || '', pattern)
@@ -104,6 +142,6 @@ https
       }
     });
   })
-  .listen(port);
+  .listen(PROXY_HTTPS_SERVER_PORT);
 
-console.log(`Listen on https://localhost:${port}`);
+console.log(`Listen on https://localhost:${PROXY_HTTPS_SERVER_PORT}`);
