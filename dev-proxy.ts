@@ -1,6 +1,9 @@
-import * as http from 'http';
+import * as https from 'https';
+import * as fs from 'fs';
+import { URL } from 'url';
 import * as httpProxy from 'http-proxy';
 import * as minimatch from 'minimatch';
+import { IncomingMessage, ServerResponse } from 'http';
 
 const proxy = httpProxy.createServer();
 
@@ -17,16 +20,23 @@ const spade = [
 
 const proxyPatterns = ['/sics-assets/**', '/static/**'];
 
-http
-  .createServer((req, res) => {
-    const url = new URL('https://example.org' + req.url);
+const options: https.ServerOptions = {
+  key: fs.readFileSync('privateKey.key'),
+  cert: fs.readFileSync('certificate.crt')
+};
+
+const port = 4443;
+
+https
+  .createServer(options, (req: IncomingMessage, res: ServerResponse) => {
+    const path = req.url;
 
     const patternLocal = spade.find((pattern) =>
-      minimatch(url.pathname || '', pattern)
+      minimatch(path || '', pattern)
     );
 
     const patternRemote = proxyPatterns.find((pattern) =>
-      minimatch(url.pathname || '', pattern)
+      minimatch(path || '', pattern)
     );
 
     const target =
@@ -34,7 +44,7 @@ http
         ? 'http://localhost:4000'
         : 'https://i.stuff.co.nz';
 
-    console.log(url.pathname, target);
+    console.log(path, target);
 
     proxy.web(req, res, {
       target,
@@ -43,4 +53,6 @@ http
       }
     });
   })
-  .listen(5000);
+  .listen(port);
+
+console.log(`Listen on https://localhost:${port}`);
