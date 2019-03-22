@@ -9,7 +9,7 @@
     },
     "aadSdkUrl": "/adnostic/index.min.js",
     "browserOverrides": {
-      "spadeAPI": "https://experience.live.shift21.ffx.nz/api/content"
+      "spadeAPI": "/api/content"
     }
   },
   "staging": {
@@ -22,7 +22,7 @@
     },
     "aadSdkUrl": "/adnostic/index.min.js",
     "browserOverrides": {
-      "spadeAPI": "https://experience.staging.shift21.ffx.nz/api/content"
+      "spadeAPI": "/api/content"
     }
   },
   "development": {
@@ -33,7 +33,10 @@
       "level": "debug",
       "format": "text"
     },
-    "aadSdkUrl": "/assets/test-aad-sdk.js"
+    "aadSdkUrl": "/assets/test-aad-sdk.js",
+    "browserOverrides": {
+      "spadeAPI": "/api/content"
+    }
   },
   "test": {
     "retryTimeout": 1,
@@ -43,6 +46,9 @@
       "level": "debug",
       "format": "text"
     },
-    "aadSdkUrl": "/adnostic/index.min.js"
+    "aadSdkUrl": "/adnostic/index.min.js",
+    "browserOverrides": {
+      "spadeAPI": "/api/content"
+    }
   }
 }
