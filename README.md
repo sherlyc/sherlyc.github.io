@@ -83,14 +83,15 @@ Alternatively, look for an injectable Angular abstraction over the object you ne
 npm run dev
 ```
 
-This command should be ok for daily development.
+This command should be ok for daily development, then you can access http://localhost:4000 or proxy https://localhost:3000.
 
 The following commands can be used as well:
 
 - `npm run dev:build` build universal application in development mode
 - `npm run dev:build:browser` _watch_ build browser Angular application only
 - `npm run dev:build:server` _watch_ build server (Angular SSR + API) only
-- `npm run dev:serve` _watch_ serve the universal application
+- `npm run dev:serve` _watch_ serve the universal application listening on 4000
+- `npm run dev:proxy` proxy SPADE and SICS/CQ listening on 3000
 
 ## Deployment
 
