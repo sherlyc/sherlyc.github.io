@@ -77,7 +77,9 @@ describe('PageComponent', () => {
   });
 
   it('should render a list of content block', () => {
-    contentRetrieverMock.getContent.mockReturnValue(of(mockContentBlocks));
+    contentRetrieverMock.getContent.mockReturnValue(
+      of({ content: mockContentBlocks })
+    );
 
     component.getData();
 
@@ -86,7 +88,9 @@ describe('PageComponent', () => {
   });
 
   it('should render a list of content block when router navigates to "/"', () => {
-    contentRetrieverMock.getContent.mockReturnValue(of(mockContentBlocks));
+    contentRetrieverMock.getContent.mockReturnValue(
+      of({ content: mockContentBlocks })
+    );
     const getDataSpy = jest.spyOn(component, 'getData');
 
     routerMock.events.next(new NavigationStart(0, '/')); // emit an event before subscription

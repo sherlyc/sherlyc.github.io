@@ -9,6 +9,6 @@ describe('dummy api test', () => {
 
     expect(response.ok).toBeTruthy();
     expect(response.header['content-type']).toMatch(/application\/json/);
-    expect((response.body as any[]).length).toBeGreaterThan(0);
+    expect((response.body.content as any[]).length).toBeGreaterThan(0);
   });
 });
