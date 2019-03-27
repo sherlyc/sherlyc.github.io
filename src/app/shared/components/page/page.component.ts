@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IContentBlock } from '../../../../../common/__types__/IContentBlock';
+import { IPage } from '../../../../../common/__types__/IPage';
 import { NavigationStart, Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import { filter } from 'rxjs/operators';
 import { ContentRetrieverService } from '../../../services/content-retriever/content-retriever.service';
 
@@ -12,7 +14,8 @@ import { ContentRetrieverService } from '../../../services/content-retriever/con
 export class PageComponent implements OnInit {
   constructor(
     private router: Router,
-    private contentRetriever: ContentRetrieverService
+    private contentRetriever: ContentRetrieverService,
+    private title: Title
   ) {}
 
   contentBlocks: IContentBlock[] = [];
@@ -27,13 +30,9 @@ export class PageComponent implements OnInit {
   }
 
   getData() {
-    this.contentRetriever.getContent().subscribe(
-      (contentBlocks: IContentBlock[]) => {
-        this.contentBlocks = contentBlocks;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+    this.contentRetriever.getContent().subscribe((page: IPage) => {
+      this.title.setTitle(page.title);
+      this.contentBlocks = page.content;
+    });
   }
 }

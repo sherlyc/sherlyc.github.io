@@ -84,14 +84,16 @@ describe('ContentRetrieverService', () => {
       contentRetrieverService.getContent().subscribe(
         (response) => {
           expect(response).toEqual(
-            expect.arrayContaining([
-              { type: 'Header' },
-              {
-                type: 'Container',
-                items: [expect.objectContaining({ type: 'ErrorBlock' })]
-              },
-              { type: 'Footer' }
-            ])
+            expect.objectContaining({
+              content: expect.arrayContaining([
+                { type: 'Header' },
+                {
+                  type: 'Container',
+                  items: [expect.objectContaining({ type: 'ErrorBlock' })]
+                },
+                { type: 'Footer' }
+              ])
+            })
           );
           done();
         },
@@ -152,14 +154,16 @@ describe('ContentRetrieverService', () => {
       contentRetrieverService.getContent().subscribe(
         (response) => {
           expect(response).toEqual(
-            expect.arrayContaining([
-              { type: 'Header' },
-              {
-                type: 'Container',
-                items: [expect.objectContaining({ type: 'ErrorBlock' })]
-              },
-              { type: 'Footer' }
-            ])
+            expect.objectContaining({
+              content: expect.arrayContaining([
+                { type: 'Header' },
+                {
+                  type: 'Container',
+                  items: [expect.objectContaining({ type: 'ErrorBlock' })]
+                },
+                { type: 'Footer' }
+              ])
+            })
           );
           done();
         },
