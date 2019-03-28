@@ -6,10 +6,12 @@ import { IHeader } from './IHeader';
 import { IBasicAdUnit } from './IBasicAdUnit';
 import { IBasicArticleSection } from './IBasicArticleSection';
 import { IBreakingNews } from './IBreakingNews';
+import { IImageLinkUnit } from './IImageLinkUnit';
 
 export type IContentBlock =
   | IBasicArticleUnit
   | IBasicArticleSection
+  | IImageLinkUnit
   | IBasicAdUnit
   | IErrorBlock
   | IContainer
