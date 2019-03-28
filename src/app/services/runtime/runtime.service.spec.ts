@@ -5,6 +5,12 @@ import { TransferState } from '@angular/platform-browser';
 import { TransferStateMock } from '../mocks/transfer-state.mock';
 import { PLATFORM_ID } from '@angular/core';
 
+declare const window: {
+  location: {
+    hostname?: string;
+  };
+};
+
 describe('RuntimeService', () => {
   let runtimeService: RuntimeService;
   let transferStateMock: TransferStateMock;
@@ -29,11 +35,11 @@ describe('RuntimeService', () => {
 
   afterEach(() => {
     process.env = {};
+    window.location = {};
   });
 
-  it('should get env variable in server when transfer state already had a value', () => {
-    transferStateMock.hasKey.mockReturnValue(true);
-    transferStateMock.get.mockReturnValue('whatever');
+  it('should get env variable in server when env var is set', () => {
+    process.env = { SPADE_ENV: 'whatever' };
 
     const isServerSpy = jest.spyOn(runtimeService, 'isServer');
     isServerSpy.mockReturnValue(true);
@@ -46,9 +52,14 @@ describe('RuntimeService', () => {
     expect(envVar).toEqual('whatever');
   });
 
-  it('should get env variable in browser when transfer state already had a value', () => {
-    transferStateMock.hasKey.mockReturnValue(true);
-    transferStateMock.get.mockReturnValue('whatever');
+  it('should get env variable in browser when the domain matches', () => {
+    runtimeService.domainsByEnvironment = {
+      whatever: ['localhost']
+    };
+    Object.defineProperty(window.location, 'hostname', {
+      writable: true,
+      value: 'localhost'
+    });
 
     const isServerSpy = jest.spyOn(runtimeService, 'isServer');
     isServerSpy.mockReturnValue(false);
@@ -61,45 +72,26 @@ describe('RuntimeService', () => {
     expect(envVar).toEqual('whatever');
   });
 
-  it('should get env variable in server when transfer state not existing and env var found', () => {
-    transferStateMock.hasKey.mockReturnValue(false);
-
+  it('should get default env variable in server when env var is not set', () => {
     const isServerSpy = jest.spyOn(runtimeService, 'isServer');
     isServerSpy.mockReturnValue(true);
 
-    process.env.SPADE_ENV = 'whatever';
     const envVar = runtimeService.getEnvironmentVariable(
       'SPADE_ENV',
       'defaultValue'
     );
 
-    expect(isServerSpy).toHaveBeenCalled();
-    expect(envVar).toEqual('whatever');
+    expect(envVar).toEqual('defaultValue');
   });
 
-  it(
-    'should get env variable with a default value in server with a default value ' +
-      'when transfer state not existing and env var not found',
-    () => {
-      transferStateMock.hasKey.mockReturnValue(false);
-
-      const isServerSpy = jest.spyOn(runtimeService, 'isServer');
-      isServerSpy.mockReturnValue(true);
-
-      delete process.env.SPADE_ENV;
-
-      const envVar = runtimeService.getEnvironmentVariable(
-        'SPADE_ENV',
-        'defaultValue'
-      );
-
-      expect(isServerSpy).toHaveBeenCalled();
-      expect(envVar).toEqual('defaultValue');
-    }
-  );
-
-  it('should get env variable  with a default value in browser when transfer state not existing', () => {
-    transferStateMock.hasKey.mockReturnValue(false);
+  it('should get env variable in browser when the domain does not match any environment', () => {
+    runtimeService.domainsByEnvironment = {
+      whatever: []
+    };
+    Object.defineProperty(window.location, 'hostname', {
+      writable: true,
+      value: 'localhost'
+    });
 
     const isServerSpy = jest.spyOn(runtimeService, 'isServer');
     isServerSpy.mockReturnValue(false);
@@ -109,7 +101,6 @@ describe('RuntimeService', () => {
       'defaultValue'
     );
 
-    expect(isServerSpy).toHaveBeenCalled();
     expect(envVar).toEqual('defaultValue');
   });
 });

@@ -8,6 +8,12 @@ declare const process: {
   env: { [key in EnvironmentName]: string };
 };
 
+declare const window: {
+  location: {
+    hostname: string;
+  };
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,6 +22,14 @@ export class RuntimeService {
     @Inject(PLATFORM_ID) private platformId: Object,
     private transferState: TransferState
   ) {}
+
+  domainsByEnvironment: {
+    [key: string]: string[];
+  } = {
+    production: ['i.stuff.co.nz', 'experience.live.shift21.ffx.nz'],
+    staging: ['i-preprod.stuff.co.nz', 'experience.staging.shift21.ffx.nz'],
+    development: ['localhost', '127.0.0.1']
+  };
 
   isBrowser(): boolean {
     return isPlatformBrowser(this.platformId);
@@ -44,10 +58,17 @@ export class RuntimeService {
   }
 
   getEnvironmentVariable(name: EnvironmentName, defaultValue: string): string {
-    return this.getTransferState<string>(
-      name,
-      defaultValue,
-      () => process.env[name]
+    if (this.isServer()) {
+      return process.env.SPADE_ENV || defaultValue;
+    }
+    return (
+      this.findEnvironmentByDomain(window.location.hostname) || defaultValue
+    );
+  }
+
+  private findEnvironmentByDomain(domain: string): string | undefined {
+    return Object.keys(this.domainsByEnvironment).find((environment) =>
+      this.domainsByEnvironment[environment].includes(domain)
     );
   }
 }
