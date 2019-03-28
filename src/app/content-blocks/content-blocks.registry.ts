@@ -9,6 +9,7 @@ import { BasicAdUnitComponent } from './basic-ad-unit/basic-ad-unit.component';
 import { BasicArticleSectionComponent } from './basic-article-section/basic-article-section.component';
 import { BreakingNewsComponent } from './breaking-news/breaking-news.component';
 import { ImageLinkUnitComponent } from './image-link-unit/image-link-unit.component';
+import { ColumnContainerComponent } from './column-container/column-container.component';
 
 export const contentBlockComponents = [
   BasicArticleUnitComponent,
@@ -17,6 +18,7 @@ export const contentBlockComponents = [
   BasicAdUnitComponent,
   BreakingNewsComponent,
   ContainerComponent,
+  ColumnContainerComponent,
   ErrorBlockComponent,
   HeaderComponent,
   FooterComponent
@@ -29,6 +31,7 @@ const registry: { [key: string]: Type<IContentBlockComponent> } = {
   BasicAdUnitComponent,
   BreakingNewsComponent,
   ContainerComponent,
+  ColumnContainerComponent,
   ErrorBlockComponent,
   HeaderComponent,
   FooterComponent

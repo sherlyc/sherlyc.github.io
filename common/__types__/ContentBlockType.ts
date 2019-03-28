@@ -4,6 +4,7 @@ export enum ContentBlockType {
   BasicAdUnit = 'BasicAdUnit',
   ErrorBlock = 'ErrorBlock',
   Container = 'Container',
+  ColumnContainer = 'ColumnContainer',
   Footer = 'Footer',
   BasicArticleSection = 'BasicArticleSection',
   Header = 'Header',

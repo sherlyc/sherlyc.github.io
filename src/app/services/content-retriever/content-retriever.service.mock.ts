@@ -1,6 +1,6 @@
-import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 import { Observable } from 'rxjs';
+import { IPage } from '../../../../common/__types__/IPage';
 
 export class ContentRetrieverServiceMock {
-  getContent: jest.Mock<Observable<IContentBlock[]>> = jest.fn();
+  getContent: jest.Mock<Observable<IPage>> = jest.fn();
 }

@@ -1,0 +1,9 @@
+:host {
+  display: block;
+}
+@media only screen and (min-width: 23em) {
+  .column {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+}
