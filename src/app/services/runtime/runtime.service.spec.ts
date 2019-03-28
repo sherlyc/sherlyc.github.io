@@ -5,12 +5,6 @@ import { TransferState } from '@angular/platform-browser';
 import { TransferStateMock } from '../mocks/transfer-state.mock';
 import { PLATFORM_ID } from '@angular/core';
 
-declare const window: {
-  location: {
-    hostname?: string;
-  };
-};
-
 describe('RuntimeService', () => {
   let runtimeService: RuntimeService;
   let transferStateMock: TransferStateMock;
@@ -35,7 +29,10 @@ describe('RuntimeService', () => {
 
   afterEach(() => {
     process.env = {};
-    window.location = {};
+    Object.defineProperty(window.location, 'hostname', {
+      writable: true,
+      value: ''
+    });
   });
 
   it('should get env variable in server when env var is set', () => {

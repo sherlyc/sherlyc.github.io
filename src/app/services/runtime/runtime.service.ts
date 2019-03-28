@@ -8,12 +8,6 @@ declare const process: {
   env: { [key in EnvironmentName]: string };
 };
 
-declare const window: {
-  location: {
-    hostname: string;
-  };
-};
-
 @Injectable({
   providedIn: 'root'
 })
