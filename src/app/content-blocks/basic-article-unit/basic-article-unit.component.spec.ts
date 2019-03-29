@@ -42,7 +42,6 @@ describe('BasicArticleUnitComponent', () => {
   it('should render input data', async () => {
     component.input = articleData;
 
-    await fixture.whenStable();
     fixture.detectChanges();
 
     const componentElement: HTMLElement = fixture.debugElement.nativeElement;
