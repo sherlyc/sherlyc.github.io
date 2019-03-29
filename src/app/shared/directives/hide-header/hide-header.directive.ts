@@ -27,6 +27,9 @@ export class HideHeaderDirective {
     if (this.isBrowser) {
       const elementHeight = this.element.offsetHeight;
       const windowScrollCurrent = window.pageYOffset;
+      if (windowScrollCurrent < 0) {
+        return;
+      }
       const windowScrollDiff = this.windowScrollBefore - windowScrollCurrent;
       const newElementTop = this.elementTop + windowScrollDiff;
       if (windowScrollDiff > 0) {
