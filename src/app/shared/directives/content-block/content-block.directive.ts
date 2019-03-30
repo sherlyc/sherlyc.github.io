@@ -14,9 +14,9 @@ import { IContentBlockComponent } from '../../../content-blocks/__types__/IConte
   selector: '[appContentBlock]'
 })
 export class ContentBlockDirective implements OnInit {
-  input!: IContentBlock;
+  input!: IContentBlock | IContentBlock[];
 
-  @Input() set appContentBlock(input: IContentBlock) {
+  @Input() set appContentBlock(input: IContentBlock | IContentBlock[]) {
     this.input = input;
   }
 
@@ -28,11 +28,12 @@ export class ContentBlockDirective implements OnInit {
 
   ngOnInit(): void {
     this.viewContainerRef.clear();
-    this.render();
+    const inputs = Array.isArray(this.input) ? this.input : [this.input];
+    inputs.forEach((input) => this.render(input));
   }
 
-  render() {
-    const componentFactory = registry[`${this.input.type}Component`];
+  render(input: IContentBlock) {
+    const componentFactory = registry[`${input.type}Component`];
     if (componentFactory) {
       const factory = this.resolver.resolveComponentFactory<
         IContentBlockComponent
@@ -40,11 +41,9 @@ export class ContentBlockDirective implements OnInit {
       const componentRef = this.viewContainerRef.createComponent<
         IContentBlockComponent
       >(factory);
-      componentRef.instance.input = this.input;
+      componentRef.instance.input = input;
     } else {
-      this.logger.error(
-        new Error(`No Component found for ${this.input.type} type`)
-      );
+      this.logger.error(new Error(`No Component found for ${input.type} type`));
     }
   }
 }
