@@ -2,9 +2,10 @@ import { Inject, Injectable } from '@angular/core';
 import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
 import { Request, Response } from 'express';
 import { parse, CookieSerializeOptions } from 'cookie';
+import { ICookieService } from './__types__/ICookieService';
 
 @Injectable()
-export class ServerCookieService {
+export class ServerCookieService implements ICookieService {
   constructor(
     @Inject(REQUEST) private request: Request,
     @Inject(RESPONSE) private response: Response

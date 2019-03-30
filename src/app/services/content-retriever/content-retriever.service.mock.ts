@@ -1,6 +1,7 @@
-import { IContentBlock } from '../../../../common/__types__/IContentBlock';
-import { Observable } from 'rxjs';
+import { AutoMock, AutoMocked } from '../../../../common/__types__/types';
+import { ContentRetrieverService } from './content-retriever.service';
 
-export class ContentRetrieverServiceMock {
-  getContent: jest.Mock<Observable<IContentBlock[]>> = jest.fn();
+export class ContentRetrieverServiceMock
+  implements AutoMock<ContentRetrieverService> {
+  getContent: AutoMocked<ContentRetrieverService['getContent']> = jest.fn();
 }

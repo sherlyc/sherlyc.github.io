@@ -1,6 +1,6 @@
-import { IEnvironmentDefinition } from './__types__/IEnvironmentDefinition';
+import { ConfigService } from './config.service';
+import { AutoMock, AutoMocked } from '../../../../common/__types__/types';
 
-export class ConfigServiceMock {
-  constructor() {}
-  getConfig: jest.Mock<Partial<IEnvironmentDefinition>> = jest.fn();
+export class ConfigServiceMock implements AutoMock<ConfigService> {
+  getConfig: AutoMocked<ConfigService['getConfig']> = jest.fn();
 }
