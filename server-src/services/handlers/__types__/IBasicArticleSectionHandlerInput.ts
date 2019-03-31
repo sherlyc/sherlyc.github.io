@@ -1,5 +1,5 @@
 import { IBasicArticleListHandlerInput } from './IBasicArticleListHandlerInput';
-import { Omit } from '../../../../common/__types__/types';
+import { Omit } from 'utility-types';
 
 export interface IBasicArticleSectionHandlerInput {
   type: 'ArticleSection';

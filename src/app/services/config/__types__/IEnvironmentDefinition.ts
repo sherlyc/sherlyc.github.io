@@ -1,5 +1,6 @@
 import { ILoggerOptions } from '../../../../../common/__types__/ILoggerOptions';
-export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+import { Omit } from 'utility-types';
+
 export interface IEnvironmentDefinition {
   retryTimeout: number;
   requestTimeout: number;
