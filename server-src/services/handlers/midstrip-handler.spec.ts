@@ -48,7 +48,6 @@ describe('MidStripHandler', () => {
     const imageLinkUnits = columnContainer[0].items;
 
     expect(imageLinkUnits.length).toBe(1);
-
     expect(columnContainer).toEqual(midstripHandlerOutput.OneImageLink);
   });
 });
