@@ -2,7 +2,8 @@ import {
   ComponentFactoryResolver,
   Directive,
   Input,
-  OnInit,
+  OnChanges,
+  SimpleChanges,
   ViewContainerRef
 } from '@angular/core';
 import { IContentBlock } from '../../../../../common/__types__/IContentBlock';
@@ -13,12 +14,9 @@ import { IContentBlockComponent } from '../../../content-blocks/__types__/IConte
 @Directive({
   selector: '[appContentBlock]'
 })
-export class ContentBlockDirective implements OnInit {
+export class ContentBlockDirective implements OnChanges {
+  @Input('appContentBlock')
   input!: IContentBlock | IContentBlock[];
-
-  @Input() set appContentBlock(input: IContentBlock | IContentBlock[]) {
-    this.input = input;
-  }
 
   constructor(
     private viewContainerRef: ViewContainerRef,
@@ -26,10 +24,14 @@ export class ContentBlockDirective implements OnInit {
     private logger: LoggerService
   ) {}
 
-  ngOnInit(): void {
-    this.viewContainerRef.clear();
-    const inputs = Array.isArray(this.input) ? this.input : [this.input];
-    inputs.forEach((input) => this.render(input));
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.hasOwnProperty('input')) {
+      this.viewContainerRef.clear();
+      const inputs = Array.isArray(this.input) ? this.input : [this.input];
+      if (inputs.length > 0) {
+        inputs.forEach((input) => this.render(input));
+      }
+    }
   }
 
   render(input: IContentBlock) {
