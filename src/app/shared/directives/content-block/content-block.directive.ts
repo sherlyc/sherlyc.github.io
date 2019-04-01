@@ -15,11 +15,8 @@ import { IContentBlockComponent } from '../../../content-blocks/__types__/IConte
   selector: '[appContentBlock]'
 })
 export class ContentBlockDirective implements OnChanges {
+  @Input('appContentBlock')
   input!: IContentBlock | IContentBlock[];
-
-  @Input() set appContentBlock(input: IContentBlock | IContentBlock[]) {
-    this.input = input;
-  }
 
   constructor(
     private viewContainerRef: ViewContainerRef,
@@ -28,7 +25,7 @@ export class ContentBlockDirective implements OnChanges {
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.hasOwnProperty('appContentBlock')) {
+    if (changes.hasOwnProperty('input')) {
       this.viewContainerRef.clear();
       const inputs = Array.isArray(this.input) ? this.input : [this.input];
       if (inputs.length > 0) {
