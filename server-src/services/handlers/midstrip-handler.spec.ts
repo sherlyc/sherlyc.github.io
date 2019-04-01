@@ -3,47 +3,52 @@ import { Section } from '../section';
 import * as rawArticleList from './__fixtures__/raw-article-list.json';
 import * as midstripHandlerOutput from './__fixtures__/midstrip-handler-output.json';
 import jsonfeed from '../adapters/jsonfeed';
+import { IColumnContainer } from 'common/__types__/IColumnContainer';
 
 jest.mock('../adapters/jsonfeed');
 
-describe('BasicArticleListHandler', () => {
+describe('MidStripHandler', () => {
   beforeEach(() => {
     jest.resetModules();
   });
 
   it('should get a list of Image Links', async () => {
     const sectionId = Section.Business;
-    const totalArticles = 5;
+    const totalArticles = 2;
+
     (jsonfeed as jest.Mock).mockResolvedValue(rawArticleList);
 
     const handlerRunnerMock = jest.fn();
 
-    const contentBlocks = await midstripHandler(handlerRunnerMock, {
+    const columnContainer = (await midstripHandler(handlerRunnerMock, {
       type: 'MidStrip',
       sectionId,
       totalArticles
-    });
+    })) as IColumnContainer[];
 
-    expect(contentBlocks.length).toBeLessThanOrEqual(totalArticles);
-    expect(contentBlocks).toEqual(midstripHandlerOutput);
+    const imageLinkUnits = columnContainer[0].items;
+
+    expect(imageLinkUnits.length).toBe(2);
+    expect(columnContainer).toEqual(midstripHandlerOutput.TwoImageLink);
   });
 
-  it('should get a list of Image links exceeding the maximum length', async () => {
+  it('should get a list of Image links not exceeding number of requested item', async () => {
     const sectionId = Section.Business;
-    const totalArticles = 2;
+    const totalArticles = 1;
     (jsonfeed as jest.Mock).mockResolvedValue(rawArticleList);
 
     const handlerRunnerMock = jest.fn();
 
-    const contentBlocks = await midstripHandler(handlerRunnerMock, {
+    const columnContainer = (await midstripHandler(handlerRunnerMock, {
       type: 'MidStrip',
       sectionId,
       totalArticles
-    });
+    })) as IColumnContainer[];
 
-    expect(contentBlocks.length).toBeLessThanOrEqual(totalArticles * 2 + 1);
-    expect(contentBlocks).toEqual(
-      midstripHandlerOutput.slice(0, totalArticles * 2 + 1)
-    );
+    const imageLinkUnits = columnContainer[0].items;
+
+    expect(imageLinkUnits.length).toBe(1);
+
+    expect(columnContainer).toEqual(midstripHandlerOutput.OneImageLink);
   });
 });
