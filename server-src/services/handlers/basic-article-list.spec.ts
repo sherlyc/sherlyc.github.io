@@ -27,7 +27,7 @@ describe('BasicArticleListHandler', () => {
 
     expect(contentBlocks.length).toBe(totalArticles + totalAdUnits);
     expect(contentBlocks).toEqual(
-      basicArticleListHandlerOutput.slice(0, totalArticles + totalAdUnits)
+      basicArticleListHandlerOutput.OneArticleTwoAd
     );
   });
 
@@ -45,9 +45,9 @@ describe('BasicArticleListHandler', () => {
       totalArticles
     });
 
-    expect(contentBlocks.length).toBeLessThanOrEqual(
-      totalArticles + totalAdUnits
+    expect(contentBlocks.length).toBe(totalArticles + totalAdUnits);
+    expect(contentBlocks).toEqual(
+      basicArticleListHandlerOutput.TwoArticleThreeAd
     );
-    expect(contentBlocks).toEqual(basicArticleListHandlerOutput);
   });
 });
