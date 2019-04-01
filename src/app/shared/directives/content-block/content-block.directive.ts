@@ -31,10 +31,9 @@ export class ContentBlockDirective implements OnChanges {
     if (changes.hasOwnProperty('appContentBlock')) {
       this.viewContainerRef.clear();
       const inputs = Array.isArray(this.input) ? this.input : [this.input];
-      if (inputs.length === 0) {
-        return;
+      if (inputs.length > 0) {
+        inputs.forEach((input) => this.render(input));
       }
-      inputs.forEach((input) => this.render(input));
     }
   }
 
