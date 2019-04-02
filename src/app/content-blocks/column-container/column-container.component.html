@@ -1,0 +1,8 @@
+<div class="row">
+  <div
+    class="col-lg-2 col-md-2 col-sm-4 col-xs-6 column"
+    *ngFor="let contentBlock of input.items; trackBy: trackByFn"
+  >
+    <ng-container [appContentBlock]="contentBlock"></ng-container>
+  </div>
+</div>

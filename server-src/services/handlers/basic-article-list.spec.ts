@@ -13,7 +13,8 @@ describe('BasicArticleListHandler', () => {
 
   it('should get a list of basic article units and ad units', async () => {
     const sectionId = Section.Business;
-    const totalArticles = 5;
+    const totalArticles = 1;
+    const totalAdUnits = 2;
     (jsonfeed as jest.Mock).mockResolvedValue(rawArticleList);
 
     const handlerRunnerMock = jest.fn();
@@ -24,13 +25,16 @@ describe('BasicArticleListHandler', () => {
       totalArticles
     });
 
-    expect(contentBlocks.length).toBeLessThanOrEqual(totalArticles);
-    expect(contentBlocks).toEqual(basicArticleListHandlerOutput);
+    expect(contentBlocks.length).toBe(totalArticles + totalAdUnits);
+    expect(contentBlocks).toEqual(
+      basicArticleListHandlerOutput.OneArticleTwoAd
+    );
   });
 
   it('should get a list of basic article units and ad units not exceeding the maximum length', async () => {
     const sectionId = Section.Business;
     const totalArticles = 2;
+    const totalAdUnits = 3;
     (jsonfeed as jest.Mock).mockResolvedValue(rawArticleList);
 
     const handlerRunnerMock = jest.fn();
@@ -41,9 +45,9 @@ describe('BasicArticleListHandler', () => {
       totalArticles
     });
 
-    expect(contentBlocks.length).toBeLessThanOrEqual(totalArticles * 2 + 1);
+    expect(contentBlocks.length).toBe(totalArticles + totalAdUnits);
     expect(contentBlocks).toEqual(
-      basicArticleListHandlerOutput.slice(0, totalArticles * 2 + 1)
+      basicArticleListHandlerOutput.TwoArticleThreeAd
     );
   });
 });

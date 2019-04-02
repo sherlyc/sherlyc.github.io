@@ -21,7 +21,9 @@ describe('BasicArticleSectionHandler', () => {
 
     const handlerRunnerMock = jest.fn();
 
-    handlerRunnerMock.mockResolvedValue(basicArticleListHandlerOutput);
+    handlerRunnerMock.mockResolvedValue(
+      basicArticleListHandlerOutput.TwoArticleThreeAd
+    );
 
     const contentBlocks = await basicArticleSectionHandler(
       handlerRunnerMock,
