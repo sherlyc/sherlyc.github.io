@@ -6,13 +6,17 @@ import { IHeader } from './IHeader';
 import { IBasicAdUnit } from './IBasicAdUnit';
 import { IBasicArticleSection } from './IBasicArticleSection';
 import { IBreakingNews } from './IBreakingNews';
+import { IImageLinkUnit } from './IImageLinkUnit';
+import { IColumnContainer } from './IColumnContainer';
 
 export type IContentBlock =
   | IBasicArticleUnit
   | IBasicArticleSection
+  | IImageLinkUnit
   | IBasicAdUnit
   | IErrorBlock
   | IContainer
+  | IColumnContainer
   | IBreakingNews
   | IFooter
   | IHeader;

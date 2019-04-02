@@ -1,35 +1,28 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ImageLinkUnitComponent } from './image-link-unit.component';
+import { IImageLinkUnit } from '../../../../common/__types__/IImageLinkUnit';
 
-import { BasicArticleUnitComponent } from './basic-article-unit.component';
-import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
-import { MomentModule } from 'ngx-moment';
+describe('ImageLinkUnitComponent', () => {
+  let component: ImageLinkUnitComponent;
+  let fixture: ComponentFixture<ImageLinkUnitComponent>;
 
-describe('BasicArticleUnitComponent', () => {
-  let component: BasicArticleUnitComponent;
-  let fixture: ComponentFixture<BasicArticleUnitComponent>;
-
-  const twoDaysAgoDateInSeconds =
-    new Date().setDate(new Date().getDate() - 2) / 1000;
-
-  const articleData: IBasicArticleUnit = {
-    type: 'BasicArticleUnit',
+  const articleData: IImageLinkUnit = {
+    type: 'ImageLinkUnit',
     indexHeadline: 'Dummy Headline',
-    introText: 'Dummy intro text',
     linkUrl: 'https://dummyurl.com',
     imageSrc: 'https://dummyimagesrc.com',
-    lastPublishedTime: twoDaysAgoDateInSeconds,
     headlineFlags: []
   };
 
-  beforeEach(async(() => {
+  beforeEach(async () =>
     TestBed.configureTestingModule({
-      imports: [MomentModule],
-      declarations: [BasicArticleUnitComponent]
-    }).compileComponents();
-  }));
+      imports: [],
+      declarations: [ImageLinkUnitComponent]
+    }).compileComponents()
+  );
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BasicArticleUnitComponent);
+    fixture = TestBed.createComponent(ImageLinkUnitComponent);
     component = fixture.componentInstance;
   });
 
@@ -55,8 +48,5 @@ describe('BasicArticleUnitComponent', () => {
     const img = componentElement.querySelector('img');
     expect(img!.getAttribute('src')).toEqual(articleData.imageSrc);
     expect(img!.getAttribute('alt')).toEqual(articleData.indexHeadline);
-
-    const span = componentElement.querySelector('p span');
-    expect(span!.textContent).toEqual('2 days ago');
   });
 });

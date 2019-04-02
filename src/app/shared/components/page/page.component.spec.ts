@@ -78,7 +78,7 @@ describe('PageComponent', () => {
 
   it('should render a list of content block', () => {
     contentRetrieverMock.getContent.mockReturnValue(
-      of({ content: mockContentBlocks })
+      of({ title: '', content: mockContentBlocks })
     );
 
     component.getData();
@@ -89,7 +89,7 @@ describe('PageComponent', () => {
 
   it('should render a list of content block when router navigates to "/"', () => {
     contentRetrieverMock.getContent.mockReturnValue(
-      of({ content: mockContentBlocks })
+      of({ title: '', content: mockContentBlocks })
     );
     const getDataSpy = jest.spyOn(component, 'getData');
 

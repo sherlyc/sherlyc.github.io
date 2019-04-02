@@ -1,7 +1,5 @@
 <div class="content">
   <div class="container">
-    <app-content-block-list
-      [contentBlocks]="input.items"
-    ></app-content-block-list>
+    <ng-container [appContentBlock]="input.items"></ng-container>
   </div>
 </div>
