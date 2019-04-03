@@ -42,6 +42,10 @@ It is strongly recommended to use Intellij Jest testing feature to keep these te
 
 `npm run test:api`
 
+- Running performance tests - first `docker login docker.ci.shift21.ffx.nz` and then
+
+`npm run test:performance` -  [performance tool used](https://bitbucket.org/fairfax/stuff-yokohama-autocannon/src/master/) 
+
 - Running end-to-end tests with Selenium
 
 `npm run e2e`
