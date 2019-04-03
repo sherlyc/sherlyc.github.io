@@ -1,2 +1,2 @@
-frontendPipelineV2()
+buildImage()
 buildCascade(["stuff-raster-shift21"])

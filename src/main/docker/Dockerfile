@@ -8,5 +8,5 @@ WORKDIR /srv/${project.artifactId}
 # Copy app npm package files
 COPY maven /
 
-
+CMD ["node", "dist/server/main.js"]
 
