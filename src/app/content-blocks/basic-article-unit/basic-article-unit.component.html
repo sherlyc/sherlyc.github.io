@@ -1,15 +1,15 @@
 <article>
-  <a href="{{ input.linkUrl }}" class="col-xs">
+  <a href="{{ input.linkUrl }}">
     <div class="row">
-      <h3>{{ input.indexHeadline }}</h3>
+      <h3 class="col-xs">{{ input.indexHeadline }}</h3>
     </div>
     <div class="row">
-      <div>
+      <div class="col-md-2 col-sm-4 col-xs-6 column">
         <div class="image">
           <img src="{{ input.imageSrc }}" alt="{{ input.indexHeadline }}" />
         </div>
       </div>
-      <div class="intro">
+      <div class="col-md-10 col-sm-8 col-xs-6 column">
         <p>
           <span class="time-ago">{{
             input.lastPublishedTime * 1000 | amTimeAgo

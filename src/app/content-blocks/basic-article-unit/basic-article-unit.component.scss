@@ -14,7 +14,7 @@ a {
 
 h3 {
   font-family: 'Merriweather', serif;
-  font-size: 18px;
+  font-size: 19px;
   color: rgb(43, 164, 235);
   margin: 10px 0;
   &:hover {
@@ -26,12 +26,12 @@ img {
   object-fit: cover;
   width: 100%;
   height: 100%;
+  margin: -10px 0;
 }
 
 .image {
-  width: 138px;
-  height: 73px;
   border: 1px solid #999;
+  overflow: hidden;
 }
 
 .separator {
@@ -51,10 +51,9 @@ p {
   margin: 0;
 }
 
-.row {
-  flex-wrap: nowrap;
-}
-
-.intro {
-  margin-left: 10px;
+@media only screen and (max-width: 23em) {
+  .column {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
 }
