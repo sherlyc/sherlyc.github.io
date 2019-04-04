@@ -5,7 +5,7 @@ ENV TZ Pacific/Auckland
 
 WORKDIR /srv/${project.artifactId}
 
-# Copy app npm package files
+# Copy dist folder
 COPY maven /
 
 CMD ["node", "dist/server/main.js"]
