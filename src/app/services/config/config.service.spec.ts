@@ -2,11 +2,11 @@ import * as configJson from './config.json';
 import { TestBed } from '@angular/core/testing';
 import { ConfigService } from './config.service';
 import { RuntimeService } from '../runtime/runtime.service';
-import { RuntimeServiceMock } from '../runtime/runtime.service.mock';
+import { mockService, ServiceMock } from '../mocks/MockService';
 
 describe('Config Service', () => {
   let configService: ConfigService;
-  let runtimeServiceMock: RuntimeServiceMock;
+  let runtimeServiceMock: ServiceMock<RuntimeService>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -14,7 +14,7 @@ describe('Config Service', () => {
         ConfigService,
         {
           provide: RuntimeService,
-          useClass: RuntimeServiceMock
+          useClass: mockService(RuntimeService)
         }
       ]
     });

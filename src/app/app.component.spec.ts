@@ -2,7 +2,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { AdService } from './services/ad/ad.service';
-import { AdServiceMock } from './services/ad/ad.service.mock';
+import { mockService } from './services/mocks/MockService';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -12,7 +12,7 @@ describe('AppComponent', () => {
       providers: [
         {
           provide: AdService,
-          useClass: AdServiceMock
+          useClass: mockService(AdService)
         }
       ]
     }).compileComponents();

@@ -1,20 +1,19 @@
 import { TestBed } from '@angular/core/testing';
-
 import { RuntimeService } from './runtime.service';
 import { TransferState } from '@angular/platform-browser';
-import { TransferStateMock } from '../mocks/transfer-state.mock';
 import { PLATFORM_ID } from '@angular/core';
+import { mockService, ServiceMock } from '../mocks/MockService';
 
 describe('RuntimeService', () => {
   let runtimeService: RuntimeService;
-  let transferStateMock: TransferStateMock;
+  let transferStateMock: ServiceMock<TransferState>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         {
           provide: TransferState,
-          useClass: TransferStateMock
+          useClass: mockService(TransferState)
         },
         {
           provide: PLATFORM_ID,

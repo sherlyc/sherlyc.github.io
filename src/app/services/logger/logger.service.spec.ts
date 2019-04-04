@@ -1,15 +1,16 @@
 import { TestBed } from '@angular/core/testing';
-
 import { LoggerService } from './logger.service';
 import { ConfigService } from '../config/config.service';
-import { ConfigServiceMock } from '../config/config.service.mock';
-
-let configService: ConfigServiceMock;
+import { mockService, ServiceMock } from '../mocks/MockService';
 
 describe('LoggerService', () => {
+  let configService: ServiceMock<ConfigService>;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [{ provide: ConfigService, useClass: ConfigServiceMock }]
+      providers: [
+        { provide: ConfigService, useClass: mockService(ConfigService) }
+      ]
     });
     configService = TestBed.get(ConfigService);
   });
