@@ -18,10 +18,10 @@ spec:
         app: ${project.artifactId}
     spec:
       imagePullSecrets:
-        - name: gcr.io-shared-218200
+        - name: ${environmentDockerRegistry}
       containers:
         - name: stuff-experience-frontend
-          image: gcr.io/shared-218200/${organisation.domain}/${organisation.group}/${project.artifactId}:${project.version}
+          image: ${environmentDockerRegistry}/${organisation.domain}/${organisation.group}/${project.artifactId}:${project.version}
           ports:
             - containerPort: 4000
           env:
