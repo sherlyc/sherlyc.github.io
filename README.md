@@ -55,13 +55,21 @@ It is strongly recommended to use Intellij Jest testing feature to keep these te
 If there is a problem with the autocannon test in the pipeline. Run these set of tools to get further diagnostic reports.
 
 [Doctor](https://clinicjs.org/doctor/)
-`npm run doctor` -
+
+`npm run doctor`
+
 `npm run doctor:backend`
+
 [Flame](https://clinicjs.org/flame/)
+
 `npm run flame`
+
 `npm run flame:backend`
+
 [Bubbleprof](https://clinicjs.org/bubbleprof/)
+
 `npm run bubbleprof`
+
 `npm run bubbleprof:backend`
 
 ### Pre Commit hook
