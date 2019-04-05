@@ -9,7 +9,7 @@
   </parent>
 
   <groupId>nz.stuff.stable.experience</groupId>
-  <artifactId>stuff-experience-frontend</artifactId>
+  <artifactId>experience-frontend</artifactId>
   <version>0.999-SNAPSHOT</version>
   <packaging>jar</packaging>
 
