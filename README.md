@@ -50,27 +50,27 @@ It is strongly recommended to use Intellij Jest testing feature to keep these te
 
 `npm run e2e`
 
-### Performance Insight Tool
+### CLINIC - Performance Insight Tools
 
-If there is a problem with the autocannon test in the pipeline. Run these set of tools to get further diagnostic reports.
+If there is a problem with the autocannon test in the pipeline. Run these set of Clinic tools to get further diagnostic reports.
 
 [Doctor](https://clinicjs.org/doctor/)
 
-`npm run doctor`
+`npm run clinic:doctor`
 
-`npm run doctor:backend`
+`npm run clinic:doctor:backend`
 
 [Flame](https://clinicjs.org/flame/)
 
-`npm run flame`
+`npm run clinic:flame`
 
-`npm run flame:backend`
+`npm run clinic:flame:backend`
 
 [Bubbleprof](https://clinicjs.org/bubbleprof/)
 
-`npm run bubbleprof`
+`npm run clinic:bubbleprof`
 
-`npm run bubbleprof:backend`
+`npm run clinic:bubbleprof:backend`
 
 ### Pre Commit hook
 
