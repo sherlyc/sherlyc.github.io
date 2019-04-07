@@ -44,11 +44,33 @@ It is strongly recommended to use Intellij Jest testing feature to keep these te
 
 - Running performance tests - login into our GCP Nexus `docker login docker.ci.shift21.ffx.nz` and then
 
-`npm run test:performance` -  [performance tool used](https://bitbucket.org/fairfax/stuff-yokohama-autocannon/src/master/) 
+`npm run test:performance` - [performance tool used](https://bitbucket.org/fairfax/stuff-yokohama-autocannon/src/master/)
 
 - Running end-to-end tests with Selenium
 
 `npm run e2e`
+
+### CLINIC - Performance Insight Tools
+
+If there is a problem with the autocannon test in the pipeline. Run these set of Clinic tools to get further diagnostic reports.
+
+[Doctor](https://clinicjs.org/doctor/)
+
+`npm run clinic:doctor`
+
+`npm run clinic:doctor:backend`
+
+[Flame](https://clinicjs.org/flame/)
+
+`npm run clinic:flame`
+
+`npm run clinic:flame:backend`
+
+[Bubbleprof](https://clinicjs.org/bubbleprof/)
+
+`npm run clinic:bubbleprof`
+
+`npm run clinic:bubbleprof:backend`
 
 ### Pre Commit hook
 
