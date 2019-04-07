@@ -6,20 +6,17 @@ import {
   HttpTestingController
 } from '@angular/common/http/testing';
 import { ConfigService } from '../config/config.service';
-import { ConfigServiceMock } from '../config/config.service.mock';
 import { LoggerService } from '../logger/logger.service';
-import { LoggerServiceMock } from '../logger/logger.service.mock';
 import { RuntimeService } from '../runtime/runtime.service';
-import { RuntimeServiceMock } from '../runtime/runtime.service.mock';
 import { TransferState } from '@angular/platform-browser';
-import { TransferStateMock } from '../mocks/transfer-state.mock';
+import { mockService, ServiceMock } from '../mocks/MockService';
 
 describe('ContentRetrieverService', () => {
   let contentRetrieverService: ContentRetrieverService;
   let httpMock: HttpTestingController;
-  let configServiceMock: ConfigServiceMock;
-  let runtimeMock: RuntimeServiceMock;
-  let transferStateMock: TransferStateMock;
+  let configServiceMock: ServiceMock<ConfigService>;
+  let runtimeMock: ServiceMock<RuntimeService>;
+  let transferStateMock: ServiceMock<TransferState>;
 
   const spadeAPI = 'http://localhost';
 
@@ -29,19 +26,19 @@ describe('ContentRetrieverService', () => {
       providers: [
         {
           provide: LoggerService,
-          useClass: LoggerServiceMock
+          useClass: mockService(LoggerService)
         },
         {
           provide: ConfigService,
-          useClass: ConfigServiceMock
+          useClass: mockService(ConfigService)
         },
         {
           provide: RuntimeService,
-          useClass: RuntimeServiceMock
+          useClass: mockService(RuntimeService)
         },
         {
           provide: TransferState,
-          useClass: TransferStateMock
+          useClass: mockService(TransferState)
         }
       ]
     });

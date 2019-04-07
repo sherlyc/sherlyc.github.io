@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HideHeaderDirective } from './hide-header.directive';
 import { By } from '@angular/platform-browser';
 import { RuntimeService } from '../../../services/runtime/runtime.service';
-import { RuntimeServiceMock } from '../../../services/runtime/runtime.service.mock';
+import { mockService } from '../../../services/mocks/MockService';
 
 @Component({
   selector: 'app-fake-header',
@@ -19,7 +19,9 @@ describe('Hide Header', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [FakeHeaderComponent, HideHeaderDirective],
-      providers: [{ provide: RuntimeService, useClass: RuntimeServiceMock }]
+      providers: [
+        { provide: RuntimeService, useClass: mockService(RuntimeService) }
+      ]
     }).compileComponents();
     fixture = TestBed.createComponent(FakeHeaderComponent);
     component = fixture.componentInstance;

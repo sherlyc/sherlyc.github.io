@@ -1,10 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-
 import { HttpInterceptorService } from './http-interceptor.service';
 import { CookieService } from '../cookie/cookie.service';
 import { RuntimeService } from '../runtime/runtime.service';
-import { RuntimeServiceMock } from '../runtime/runtime.service.mock';
-import { CookieServiceMock } from '../cookie/cookie.service.mock';
+import { mockService } from '../mocks/MockService';
 
 describe('HttpInterceptorService', () => {
   beforeEach(() =>
@@ -13,11 +11,11 @@ describe('HttpInterceptorService', () => {
         HttpInterceptorService,
         {
           provide: RuntimeService,
-          useClass: RuntimeServiceMock
+          useClass: mockService(RuntimeService)
         },
         {
           provide: CookieService,
-          useClass: CookieServiceMock
+          useClass: mockService(CookieService)
         }
       ]
     })

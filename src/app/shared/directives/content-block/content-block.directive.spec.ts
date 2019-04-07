@@ -3,10 +3,10 @@ import { By } from '@angular/platform-browser';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { Component } from '@angular/core';
 import { LoggerService } from '../../../services/logger/logger.service';
-import { LoggerServiceMock } from '../../../services/logger/logger.service.mock';
 import { ContentBlockDirective } from './content-block.directive';
 import { IContentBlock } from '../../../../../common/__types__/IContentBlock';
 import registry from '../../../content-blocks/content-blocks.registry';
+import { mockService } from '../../../services/mocks/MockService';
 
 @Component({
   selector: 'app-fake-content-block',
@@ -36,7 +36,9 @@ describe('ContentBlockDirective', () => {
         TestDirectiveComponent,
         FakeContentBlockComponent
       ],
-      providers: [{ provide: LoggerService, useClass: LoggerServiceMock }]
+      providers: [
+        { provide: LoggerService, useClass: mockService(LoggerService) }
+      ]
     })
       .overrideModule(BrowserDynamicTestingModule, {
         set: {

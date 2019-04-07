@@ -6,15 +6,15 @@ import { of, throwError } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NavigationStart, Router } from '@angular/router';
-import { ContentRetrieverServiceMock } from '../../../services/content-retriever/content-retriever.service.mock';
 import { RouterMock } from '../../../services/mocks/router.mock';
 import { IContentBlock } from '../../../../../common/__types__/IContentBlock';
+import { mockService, ServiceMock } from '../../../services/mocks/MockService';
 
 describe('PageComponent', () => {
   let component: PageComponent;
   let fixture: ComponentFixture<PageComponent>;
 
-  let contentRetrieverMock: ContentRetrieverServiceMock;
+  let contentRetrieverMock: ServiceMock<ContentRetrieverService>;
   let routerMock: RouterMock;
 
   const mockContentBlocks: IContentBlock[] = ([
@@ -42,7 +42,7 @@ describe('PageComponent', () => {
       providers: [
         {
           provide: ContentRetrieverService,
-          useClass: ContentRetrieverServiceMock
+          useClass: mockService(ContentRetrieverService)
         },
         { provide: Router, useClass: RouterMock }
       ],

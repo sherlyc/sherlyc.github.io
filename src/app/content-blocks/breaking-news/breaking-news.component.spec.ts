@@ -1,14 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BreakingNewsComponent } from './breaking-news.component';
 import { By } from '@angular/platform-browser';
 import { CookieService } from '../../services/cookie/cookie.service';
-import { CookieServiceMock } from '../../services/cookie/cookie.service.mock';
+import { mockService, ServiceMock } from '../../services/mocks/MockService';
 
 describe('BreakingNewsComponent', () => {
   let component: BreakingNewsComponent;
   let fixture: ComponentFixture<BreakingNewsComponent>;
-  let cookieServiceMock: CookieServiceMock;
+  let cookieServiceMock: ServiceMock<CookieService>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -16,7 +15,7 @@ describe('BreakingNewsComponent', () => {
       providers: [
         {
           provide: CookieService,
-          useClass: CookieServiceMock
+          useClass: mockService(CookieService)
         }
       ]
     }).compileComponents();

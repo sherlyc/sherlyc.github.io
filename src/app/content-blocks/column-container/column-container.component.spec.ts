@@ -4,11 +4,11 @@ import { IColumnContainer } from '../../../../common/__types__/IColumnContainer'
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 import { ContentBlockDirective } from '../../shared/directives/content-block/content-block.directive';
 import { By, TransferState } from '@angular/platform-browser';
-import { TransferStateMock } from '../../services/mocks/transfer-state.mock';
 import { Component } from '@angular/core';
 import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 import registry from '../content-blocks.registry';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
+import { mockService } from '../../services/mocks/MockService';
 
 describe('ColumnContainerComponent', () => {
   let component: ColumnContainerComponent;
@@ -43,7 +43,7 @@ describe('ColumnContainerComponent', () => {
       providers: [
         {
           provide: TransferState,
-          useClass: TransferStateMock
+          useClass: mockService(TransferState)
         }
       ]
     })

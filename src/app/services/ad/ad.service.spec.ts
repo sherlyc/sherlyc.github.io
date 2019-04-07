@@ -5,13 +5,13 @@ import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { ConnectableObservable, Observable, Subscriber } from 'rxjs';
 import { publish } from 'rxjs/operators';
 import { ConfigService } from '../config/config.service';
-import { ConfigServiceMock } from '../config/config.service.mock';
 import { DOCUMENT } from '@angular/common';
+import { mockService, ServiceMock } from '../mocks/MockService';
 
 describe('AdService', () => {
   let routerEventEmitter: Subscriber<RouterEvent>;
   let routerMock: Pick<Router, 'events'>;
-  let configMock: ConfigServiceMock;
+  let configMock: ServiceMock<ConfigService>;
   let adService: AdService;
 
   beforeEach(() => {
@@ -27,7 +27,7 @@ describe('AdService', () => {
         { provide: Router, useValue: routerMock },
         {
           provide: ConfigService,
-          useClass: ConfigServiceMock
+          useClass: mockService(ConfigService)
         }
       ]
     });
