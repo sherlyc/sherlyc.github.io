@@ -177,7 +177,7 @@
             </goals>
             <configuration>
               <coordinates>
-                <basalt-nodejs.version>docker.ci.shift21.ffx.nz/nz.stuff/yokohama/yokohama-nodejs:${tile-deploy.nodeVersionRange}</basalt-nodejs.version>
+                <basalt-nodejs.version>nz.stuff.stable.yokohama:yokohama-nodejs:${tile-deploy.nodeVersionRange}</basalt-nodejs.version>
               </coordinates>
             </configuration>
           </execution>
