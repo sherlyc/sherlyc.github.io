@@ -8,6 +8,16 @@ describe('RuntimeService', () => {
   let runtimeService: RuntimeService;
   let transferStateMock: ServiceMock<TransferState>;
 
+  beforeAll(() => {
+    // A workaround for an issue JSDOM window.location used by Jest cannot be writable
+    // See also https://github.com/facebook/jest/issues/5124
+    const windowLocation = JSON.stringify(window.location);
+    delete window.location;
+    Object.defineProperty(window, 'location', {
+      value: JSON.parse(windowLocation)
+    });
+  });
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
@@ -28,10 +38,7 @@ describe('RuntimeService', () => {
 
   afterEach(() => {
     process.env = {};
-    Object.defineProperty(window.location, 'hostname', {
-      writable: true,
-      value: ''
-    });
+    window.location.hostname = '';
   });
 
   it('should get env variable in server when env var is set', () => {
@@ -50,12 +57,9 @@ describe('RuntimeService', () => {
 
   it('should get env variable in browser when the domain matches', () => {
     runtimeService.domainsByEnvironment = {
-      whatever: ['localhost']
+      whatever: ['example.com']
     };
-    Object.defineProperty(window.location, 'hostname', {
-      writable: true,
-      value: 'localhost'
-    });
+    window.location.hostname = 'example.com';
 
     const isServerSpy = jest.spyOn(runtimeService, 'isServer');
     isServerSpy.mockReturnValue(false);
@@ -84,10 +88,7 @@ describe('RuntimeService', () => {
     runtimeService.domainsByEnvironment = {
       whatever: []
     };
-    Object.defineProperty(window.location, 'hostname', {
-      writable: true,
-      value: 'localhost'
-    });
+    window.location.hostname = 'example.com';
 
     const isServerSpy = jest.spyOn(runtimeService, 'isServer');
     isServerSpy.mockReturnValue(false);
