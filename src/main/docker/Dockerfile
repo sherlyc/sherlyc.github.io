@@ -1,4 +1,4 @@
-FROM docker.ci.shift21.ffx.nz/io.practiv/basalt/basalt-nodejs:${basalt-nodejs.version}
+FROM docker.ci.shift21.ffx.nz/nz.stuff/yokohama/yokohama-nodejs:${basalt-nodejs.version}
 
 ENV APP_HOME /srv/${project.artifactId}
 ENV TZ Pacific/Auckland
