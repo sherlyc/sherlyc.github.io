@@ -1,6 +1,6 @@
 {
   "name": "stuff-experience-frontend",
-  "version": "0.999.0",
+  "version": "1.999.0",
   "scripts": {
     "start": "node dist/server/main.js",
     "build": "npm run build:browser && npm run build:server",
