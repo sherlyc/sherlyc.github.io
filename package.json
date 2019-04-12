@@ -46,7 +46,7 @@
     "@angular/service-worker": "^7.2.8",
     "@nguniversal/express-engine": "^7.1.1",
     "@nguniversal/module-map-ngfactory-loader": "^7.1.1",
-    "@sentry/browser": "^4.6.4",
+    "@sentry/browser": "^5.0.7",
     "axios": "^0.18.0",
     "classlist.js": "^1.1.20150312",
     "cookie": "^0.3.1",

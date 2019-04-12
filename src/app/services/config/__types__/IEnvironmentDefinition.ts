@@ -7,6 +7,7 @@ export interface IEnvironmentDefinition {
   spadeAPI: string;
   loggerOptions: ILoggerOptions;
   aadSdkUrl: string;
+  sentryIO: { dsn: string; sampleRate: number; environment: string };
   serverOverrides?: Partial<
     Omit<IEnvironmentDefinition, 'serverOverrides' | 'browserOverrides'>
   >;

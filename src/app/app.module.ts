@@ -2,7 +2,7 @@ import {
   BrowserModule,
   BrowserTransferStateModule
 } from '@angular/platform-browser';
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler, APP_INITIALIZER } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,7 +14,12 @@ import { environment } from '../environments/environment';
 import { HttpInterceptorService } from './services/http-interceptor/http-interceptor.service';
 import { CookieService } from './services/cookie/cookie.service';
 import { SharedModule } from './shared/shared.module';
+import { ConfigService } from './services/config/config.service';
+import * as Sentry from '@sentry/browser';
 
+export function init_sentry(configService: ConfigService) {
+  return () => Sentry.init(configService.getConfig().sentryIO);
+}
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -30,6 +35,12 @@ import { SharedModule } from './shared/shared.module';
     })
   ],
   providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: init_sentry,
+      deps: [ConfigService],
+      multi: true
+    },
     { provide: ErrorHandler, useClass: LoggerService },
     {
       provide: HTTP_INTERCEPTORS,
