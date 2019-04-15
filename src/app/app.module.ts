@@ -2,7 +2,12 @@ import {
   BrowserModule,
   BrowserTransferStateModule
 } from '@angular/platform-browser';
-import { NgModule, ErrorHandler, APP_INITIALIZER } from '@angular/core';
+import {
+  NgModule,
+  ErrorHandler,
+  APP_INITIALIZER,
+  Injectable
+} from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
