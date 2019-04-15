@@ -1,6 +1,6 @@
 import { ErrorHandler, Injectable } from '@angular/core';
 import { ConfigService } from '../config/config.service';
-
+import * as Sentry from '@sentry/browser';
 interface ISpadeConsole extends Console {
   [key: string]: Function;
 }
@@ -30,7 +30,7 @@ export class LoggerService implements ErrorHandler {
 
   handleError(error: any) {
     this.error(error);
-    throw error;
+    Sentry.captureException(error);
   }
 
   debug(...messages: any[]) {
