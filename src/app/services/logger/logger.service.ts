@@ -30,7 +30,6 @@ export class LoggerService implements ErrorHandler {
 
   handleError(error: any) {
     this.error(error);
-    Sentry.captureException(error);
   }
 
   debug(...messages: any[]) {
@@ -42,6 +41,7 @@ export class LoggerService implements ErrorHandler {
   }
 
   error(error: Error, ...rest: any[]) {
+    Sentry.captureException(error);
     this.log('error', error, ...rest);
   }
 
