@@ -8,8 +8,6 @@ import { AdService } from './services/ad/ad.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Stuff Homepage and Section Pages Hello World';
-
   constructor(private router: Router, private adService: AdService) {
     this.adService.setupAds();
   }

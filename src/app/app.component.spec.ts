@@ -23,12 +23,6 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   }));
 
-  it(`should have as title 'Stuff Homepage and Section Pages Hello World'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('Stuff Homepage and Section Pages Hello World');
-  }));
-
   it('should check router outlet is present', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();

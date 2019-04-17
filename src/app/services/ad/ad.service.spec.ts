@@ -53,19 +53,4 @@ describe('AdService', () => {
     expect(aadSdkScriptElement.id).toEqual('aad-sdk');
     expect(aadSdkScriptElement.src).toEqual(aadSdkUrl);
   });
-
-  it('should dispatch DOM NavigationEnd when router navigation ends', (done) => {
-    const aadSdkUrl = 'http://whatever_url/';
-    configMock.getConfig.mockReturnValue({ aadSdkUrl });
-    adService.setupAds();
-
-    const document: Document = TestBed.get(DOCUMENT);
-
-    document.addEventListener('NavigationEnd', (e: Event) => {
-      expect(e.type).toEqual('NavigationEnd');
-      done();
-    });
-
-    routerEventEmitter.next(new NavigationEnd(0, '/', ''));
-  });
 });
