@@ -27,6 +27,32 @@ spec:
           env:
             - name: SKIP_SECRETS
               value: 'true'
+            - name: NEW_RELIC_APP_NAME
+              value: 'stuff-experience-frontend'
+            - name: NR_NATIVE_METRICS_NO_BUILD
+              value: 'true'
+            - name: NEW_RELIC_NO_CONFIG_FILE
+              value: 'true'
+            - name: NEW_RELIC_LABELS
+              value: 'Team: experience'
+            - name: NEW_RELIC_LOG_LEVEL
+              value: info
+            - name: NEW_RELIC_LICENSE_KEY
+              value: ''
+            - name: NEW_RELIC_ATTRIBUTES_EXCLUDE
+              value: >
+                [
+                  'request.headers.cookie',
+                  'request.headers.authorization',
+                  'request.headers.proxyAuthorization',
+                  'request.headers.setCookie*',
+                  'request.headers.x*',
+                  'response.headers.cookie',
+                  'response.headers.authorization',
+                  'response.headers.proxyAuthorization',
+                  'response.headers.setCookie*',
+                  'response.headers.x*',
+                ]
           resources:
             limits:
               cpu: ${quota-limits.smallCpu}

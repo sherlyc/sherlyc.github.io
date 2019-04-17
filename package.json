@@ -2,10 +2,10 @@
   "name": "stuff-experience-frontend",
   "version": "1.999.0",
   "scripts": {
-    "start": "node dist/server/main.js",
+    "start": "node dist/server/serverWithNewRelic.js",
     "build": "npm run build:browser && npm run build:server",
     "build:browser": "ng run stuff-experience-frontend:build:production --stats-json",
-    "build:server": "ng run stuff-experience-frontend:server:production --stats-json",
+    "build:server": "ng run stuff-experience-frontend:server:production --stats-json && cp ./server-src/serverWithNewRelic.js ./dist/server",
     "test": "npm run lint && npm run test:app && npm run test:server",
     "integration-test": "npm run test:api",
     "test:server": "jest --config ./server-src/jest.config.json --coverage",
