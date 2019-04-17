@@ -10,6 +10,11 @@
     "aadSdkUrl": "/adnostic/index.min.js",
     "browserOverrides": {
       "spadeAPI": "/api/content"
+    },
+    "sentryIO": {
+      "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
+      "sampleRate": 1.0,
+      "environment": "production"
     }
   },
   "staging": {
@@ -23,6 +28,11 @@
     "aadSdkUrl": "/adnostic/index.min.js",
     "browserOverrides": {
       "spadeAPI": "/api/content"
+    },
+    "sentryIO": {
+      "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
+      "sampleRate": 1.0,
+      "environment": "staging"
     }
   },
   "development": {
@@ -36,6 +46,11 @@
     "aadSdkUrl": "/assets/test-aad-sdk.js",
     "browserOverrides": {
       "spadeAPI": "/api/content"
+    },
+    "sentryIO": {
+      "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
+      "sampleRate": 1.0,
+      "environment": "development"
     }
   },
   "test": {
@@ -49,6 +64,11 @@
     "aadSdkUrl": "/adnostic/index.min.js",
     "browserOverrides": {
       "spadeAPI": "/api/content"
+    },
+    "sentryIO": {
+      "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
+      "sampleRate": 1.0,
+      "environment": "test"
     }
   }
 }
