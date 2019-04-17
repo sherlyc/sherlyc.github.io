@@ -9,12 +9,14 @@ import { NavigationStart, Router } from '@angular/router';
 import { RouterMock } from '../../../services/mocks/router.mock';
 import { IContentBlock } from '../../../../../common/__types__/IContentBlock';
 import { mockService, ServiceMock } from '../../../services/mocks/MockService';
+import { AdService } from '../../../services/ad/ad.service';
 
 describe('PageComponent', () => {
   let component: PageComponent;
   let fixture: ComponentFixture<PageComponent>;
 
   let contentRetrieverMock: ServiceMock<ContentRetrieverService>;
+  let adServiceMock: ServiceMock<AdService>;
   let routerMock: RouterMock;
 
   const mockContentBlocks: IContentBlock[] = ([
@@ -44,6 +46,10 @@ describe('PageComponent', () => {
           provide: ContentRetrieverService,
           useClass: mockService(ContentRetrieverService)
         },
+        {
+          provide: AdService,
+          useClass: mockService(AdService)
+        },
         { provide: Router, useClass: RouterMock }
       ],
       schemas: [NO_ERRORS_SCHEMA]
@@ -60,6 +66,7 @@ describe('PageComponent', () => {
     fixture = TestBed.createComponent(PageComponent);
     component = fixture.componentInstance;
     contentRetrieverMock = TestBed.get(ContentRetrieverService);
+    adServiceMock = TestBed.get(AdService);
     routerMock = TestBed.get(Router);
   });
 
@@ -131,6 +138,15 @@ describe('PageComponent', () => {
 
     routerMock.events.next(new NavigationStart(0, '/')); // emit an event
     assertsForFailedRetrieval();
+  });
+
+  it('should dispatch DOM NavigationEnd when page finish render', () => {
+    contentRetrieverMock.getContent.mockReturnValue(
+      of({ title: '', content: mockContentBlocks })
+    );
+    component.getData();
+    fixture.detectChanges(); // input updated
+    expect(adServiceMock.notify).toHaveBeenCalled();
   });
 
   function assertsForSuccessfulRetrieval() {
