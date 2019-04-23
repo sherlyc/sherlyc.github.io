@@ -11,7 +11,7 @@ export class StoreService implements IStoreService {
     this.store = namespace('stuff-experience');
   }
 
-  get<T>(key: string): T {
+  get<T>(key: string): T | null {
     return this.store.get(key);
   }
 
