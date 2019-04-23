@@ -6,8 +6,8 @@ jest.mock('store');
 
 describe('Store Service should', () => {
   let storeService: StoreService;
-  let storeGetMock = jest.fn();
-  let storeSetMock = jest.fn();
+  const storeGetMock = jest.fn();
+  const storeSetMock = jest.fn();
   beforeEach(() => {
     jest.clearAllMocks();
     (store.namespace as jest.Mock).mockReturnValue({
