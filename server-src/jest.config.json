@@ -1,6 +1,10 @@
 {
   "preset": "ts-jest",
   "testPathIgnorePatterns": ["/test-api/"],
-  "coverageDirectory": "./coverage",
-  "collectCoverageFrom": ["**/*.ts"]
+  "coverageDirectory": "<rootDir>/server-src/coverage",
+  "collectCoverageFrom": ["**/*.ts"],
+  "rootDir": "../",
+  "roots": ["server-src"],
+  "testEnvironment": "node",
+  "setupTestFrameworkScriptFile": "<rootDir>/server-src/setupJest.ts"
 }

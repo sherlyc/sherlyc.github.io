@@ -2,11 +2,11 @@ import { IPage } from '../../common/__types__/IPage';
 import handlerRunner from './handlers/runner';
 import { Section } from './section';
 import { IParams } from './__types__/IParams';
-import { ContentBlockType } from '../../common/__types__/ContentBlockType';
 
 export default async (params: IParams): Promise<IPage> => {
   try {
     return {
+      apiRequestId: params.apiRequestId,
       title: 'Stuff',
       content: await handlerRunner({
         type: 'Page',
@@ -134,6 +134,7 @@ export default async (params: IParams): Promise<IPage> => {
     };
   } catch (e) {
     return {
+      apiRequestId: params.apiRequestId,
       title: 'Stuff',
       content: [
         { type: 'Header' },

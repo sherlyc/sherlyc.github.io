@@ -1,12 +1,22 @@
 import * as winston from 'winston';
-import { Logger } from 'winston';
+import { Logger, format } from 'winston';
 import * as logform from 'logform';
 import config from './config';
 
-function getFormat(format: string): logform.Format {
-  return format === 'json'
-    ? winston.format.combine(winston.format.timestamp(), winston.format.json())
+const correlationFormat = format((info, opts) => {
+  info.message = `${Zone.current.get('apiRequestId')} / ${info.message}`;
+  return info;
+});
+
+function getFormat(name: string): logform.Format {
+  return name === 'json'
+    ? winston.format.combine(
+        correlationFormat(),
+        winston.format.timestamp(),
+        winston.format.json()
+      )
     : winston.format.combine(
+        correlationFormat(),
         winston.format.colorize(),
         winston.format.simple()
       );
