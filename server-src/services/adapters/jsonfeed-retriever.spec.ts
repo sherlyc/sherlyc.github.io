@@ -16,7 +16,7 @@ describe('JsonFeed Retriever', () => {
     });
   });
 
-  it.only('should respond with the article list', async () => {
+  it('should respond with the article list', async () => {
     (http(params).get as jest.Mock).mockResolvedValue({ data: jsonfeed });
     expect(await retrieve(Section.Latest, 6, params)).toEqual(jsonfeed);
   });

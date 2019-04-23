@@ -4,10 +4,12 @@ import * as rawArticleList from './__fixtures__/raw-article-list.json';
 import * as midstripHandlerOutput from './__fixtures__/midstrip-handler-output.json';
 import jsonfeed from '../adapters/jsonfeed';
 import { IColumnContainer } from 'common/__types__/IColumnContainer';
+import { IParams } from '../__types__/IParams';
 
 jest.mock('../adapters/jsonfeed');
 
 describe('MidStripHandler', () => {
+  const params: IParams = { apiRequestId: 'request-id-for-testing' };
   beforeEach(() => {
     jest.resetModules();
   });
@@ -20,11 +22,15 @@ describe('MidStripHandler', () => {
 
     const handlerRunnerMock = jest.fn();
 
-    const columnContainer = (await midstripHandler(handlerRunnerMock, {
-      type: 'MidStrip',
-      sectionId,
-      totalArticles
-    })) as IColumnContainer[];
+    const columnContainer = (await midstripHandler(
+      handlerRunnerMock,
+      {
+        type: 'MidStrip',
+        sectionId,
+        totalArticles
+      },
+      params
+    )) as IColumnContainer[];
 
     const imageLinkUnits = columnContainer[0].items;
 
@@ -39,11 +45,15 @@ describe('MidStripHandler', () => {
 
     const handlerRunnerMock = jest.fn();
 
-    const columnContainer = (await midstripHandler(handlerRunnerMock, {
-      type: 'MidStrip',
-      sectionId,
-      totalArticles
-    })) as IColumnContainer[];
+    const columnContainer = (await midstripHandler(
+      handlerRunnerMock,
+      {
+        type: 'MidStrip',
+        sectionId,
+        totalArticles
+      },
+      params
+    )) as IColumnContainer[];
 
     const imageLinkUnits = columnContainer[0].items;
 
