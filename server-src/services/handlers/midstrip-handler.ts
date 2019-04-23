@@ -4,15 +4,18 @@ import getRawArticleList from '../adapters/jsonfeed';
 import { IMidStripHandlerInput } from './__types__/IMidStripHandlerInput';
 import { handlerRunnerFunction } from './runner';
 import { IImageLinkUnit } from '../../../common/__types__/IImageLinkUnit';
+import { IParams } from '../__types__/IParams';
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  { sectionId, totalArticles }: IMidStripHandlerInput
+  { sectionId, totalArticles }: IMidStripHandlerInput,
+  params: IParams
 ): Promise<IContentBlock[]> {
-  const rawArticles = (await getRawArticleList(sectionId, totalArticles)).slice(
-    0,
-    totalArticles
-  );
+  const rawArticles = (await getRawArticleList(
+    sectionId,
+    totalArticles,
+    params
+  )).slice(0, totalArticles);
 
   return [
     {

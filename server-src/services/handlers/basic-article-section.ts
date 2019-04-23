@@ -2,6 +2,7 @@ import { IContentBlock } from '../../../common/__types__/IContentBlock';
 import { ContentBlockType } from '../../../common/__types__/ContentBlockType';
 import { IBasicArticleSectionHandlerInput } from './__types__/IBasicArticleSectionHandlerInput';
 import { handlerRunnerFunction } from './runner';
+import { IParams } from '../__types__/IParams';
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -10,7 +11,8 @@ export default async function(
     displayNameColor,
     linkUrl,
     articleList: { sectionId, totalArticles }
-  }: IBasicArticleSectionHandlerInput
+  }: IBasicArticleSectionHandlerInput,
+  params: IParams
 ): Promise<IContentBlock[]> {
   try {
     return [
@@ -19,11 +21,14 @@ export default async function(
         displayName,
         displayNameColor,
         linkUrl,
-        items: await handlerRunner({
-          type: 'ArticleList',
-          sectionId,
-          totalArticles
-        })
+        items: await handlerRunner(
+          {
+            type: 'ArticleList',
+            sectionId,
+            totalArticles
+          },
+          params
+        )
       },
       { type: ContentBlockType.BasicAdUnit }
     ];

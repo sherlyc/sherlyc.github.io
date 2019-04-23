@@ -3,10 +3,12 @@ import { Section } from '../section';
 import * as rawArticleList from './__fixtures__/raw-article-list.json';
 import * as basicArticleListHandlerOutput from './__fixtures__/basic-article-list-handler-output.json';
 import jsonfeed from '../adapters/jsonfeed';
+import { IParams } from '../__types__/IParams';
 
 jest.mock('../adapters/jsonfeed');
 
 describe('BasicArticleListHandler', () => {
+  const params: IParams = { apiRequestId: 'request-id-for-testing' };
   beforeEach(() => {
     jest.resetModules();
   });
@@ -19,11 +21,15 @@ describe('BasicArticleListHandler', () => {
 
     const handlerRunnerMock = jest.fn();
 
-    const contentBlocks = await basicArticleListHandler(handlerRunnerMock, {
-      type: 'ArticleList',
-      sectionId,
-      totalArticles
-    });
+    const contentBlocks = await basicArticleListHandler(
+      handlerRunnerMock,
+      {
+        type: 'ArticleList',
+        sectionId,
+        totalArticles
+      },
+      params
+    );
 
     expect(contentBlocks.length).toBe(totalArticles + totalAdUnits);
     expect(contentBlocks).toEqual(
@@ -39,11 +45,15 @@ describe('BasicArticleListHandler', () => {
 
     const handlerRunnerMock = jest.fn();
 
-    const contentBlocks = await basicArticleListHandler(handlerRunnerMock, {
-      type: 'ArticleList',
-      sectionId,
-      totalArticles
-    });
+    const contentBlocks = await basicArticleListHandler(
+      handlerRunnerMock,
+      {
+        type: 'ArticleList',
+        sectionId,
+        totalArticles
+      },
+      params
+    );
 
     expect(contentBlocks.length).toBe(totalArticles + totalAdUnits);
     expect(contentBlocks).toEqual(

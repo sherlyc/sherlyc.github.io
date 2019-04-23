@@ -5,9 +5,11 @@ import * as sportSection from './__fixtures__/sport-section.json';
 import * as nationalSection from './__fixtures__/national-section.json';
 import * as pageHandlerOutput from './__fixtures__/page-handler-output.json';
 import { IPageHandlerInput } from './__types__/IPageHandlerInput';
+import { IParams } from '../__types__/IParams';
 
 jest.mock('./runner');
 describe('PageHandler', () => {
+  const params: IParams = { apiRequestId: 'request-id-for-testing' };
   it('should get a page content block', async () => {
     const pageHandlerInput = {
       type: 'Page',
@@ -42,7 +44,8 @@ describe('PageHandler', () => {
 
     const contentBlocks = await pageHandler(
       handlerRunnerMock,
-      pageHandlerInput
+      pageHandlerInput,
+      params
     );
     expect(contentBlocks).toEqual(pageHandlerOutput);
   });
