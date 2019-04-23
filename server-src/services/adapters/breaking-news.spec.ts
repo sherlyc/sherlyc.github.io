@@ -42,7 +42,8 @@ describe('Breaking news service', () => {
     config.contentAPI = 'MOCKED';
     expect(await getBreakingNews(params)).toEqual({
       id: '123',
-      text: 'Buyer made $700k overnight',
+      text:
+        '$1 billion budget blowout in Aucklands City Rail Link, officials admit... read more',
       link:
         'https://www.stuff.co.nz/business/111688527/vendors-claim-real-estate-agent-acted-inappropriately-in-helping-buyer-flip-house',
       enabled: true
