@@ -28,63 +28,63 @@ export default async (params: IParams): Promise<IPage> => {
           {
             type: 'ArticleSection',
             displayName: 'Sport',
-            displayNameColor: 'blue',
+            displayNameColor: 'scarlet',
             linkUrl: '/' + Section.Sport,
             articleList: { sectionId: Section.Sport, totalArticles: 3 }
           },
           {
             type: 'ArticleSection',
             displayName: 'National',
-            displayNameColor: 'red',
+            displayNameColor: 'toreabay',
             linkUrl: '/' + Section.National,
             articleList: { sectionId: Section.National, totalArticles: 3 }
           },
           {
             type: 'ArticleSection',
             displayName: 'World',
-            displayNameColor: 'cyan',
+            displayNameColor: 'azureblue',
             linkUrl: '/' + Section.World,
             articleList: { sectionId: Section.World, totalArticles: 3 }
           },
           {
             type: 'ArticleSection',
             displayName: 'Business',
-            displayNameColor: 'black',
+            displayNameColor: 'royalblue',
             linkUrl: '/' + Section.Business,
             articleList: { sectionId: Section.Business, totalArticles: 3 }
           },
           {
             type: 'ArticleSection',
             displayName: 'Opinion',
-            displayNameColor: 'blue',
+            displayNameColor: 'dingley',
             linkUrl: '/' + Section.Opinion,
             articleList: { sectionId: Section.Opinion, totalArticles: 3 }
           },
           {
             type: 'ArticleSection',
             displayName: 'Technology',
-            displayNameColor: 'red',
+            displayNameColor: 'carribeangreen',
             linkUrl: '/' + Section.Technology,
             articleList: { sectionId: Section.Technology, totalArticles: 3 }
           },
           {
             type: 'ArticleSection',
             displayName: 'Homed',
-            displayNameColor: 'cyan',
+            displayNameColor: 'keppel',
             linkUrl: '/' + Section.Homed,
             articleList: { sectionId: Section.Homed, totalArticles: 3 }
           },
           {
             type: 'ArticleSection',
             displayName: 'Life Style',
-            displayNameColor: 'black',
+            displayNameColor: 'amaranth',
             linkUrl: '/' + Section.LifeStyle,
             articleList: { sectionId: Section.LifeStyle, totalArticles: 3 }
           },
           {
             type: 'ArticleSection',
             displayName: 'Entertainment',
-            displayNameColor: 'blue',
+            displayNameColor: 'purpleheart',
             linkUrl: '/' + Section.Entertainment,
             articleList: {
               sectionId: Section.Entertainment,
@@ -94,28 +94,28 @@ export default async (params: IParams): Promise<IPage> => {
           {
             type: 'ArticleSection',
             displayName: 'Travel',
-            displayNameColor: 'red',
+            displayNameColor: 'yellowsea',
             linkUrl: '/' + Section.Travel,
             articleList: { sectionId: Section.Travel, totalArticles: 3 }
           },
           {
             type: 'ArticleSection',
             displayName: 'Motoring',
-            displayNameColor: 'cyan',
+            displayNameColor: 'pizzaz',
             linkUrl: '/' + Section.Motoring,
             articleList: { sectionId: Section.Motoring, totalArticles: 3 }
           },
           {
             type: 'ArticleSection',
             displayName: 'Stuff Nation',
-            displayNameColor: 'black',
+            displayNameColor: 'junglegreen',
             linkUrl: '/' + Section.StuffNation,
             articleList: { sectionId: Section.StuffNation, totalArticles: 3 }
           },
           {
             type: 'ArticleSection',
             displayName: 'Quick! Save The Planet',
-            displayNameColor: 'blue',
+            displayNameColor: 'toreabay',
             linkUrl: '/' + Section.QuickSaveThePlanet,
             articleList: {
               sectionId: Section.QuickSaveThePlanet,
@@ -125,7 +125,7 @@ export default async (params: IParams): Promise<IPage> => {
           {
             type: 'ArticleSection',
             displayName: 'Well Good',
-            displayNameColor: 'red',
+            displayNameColor: 'sunglow',
             linkUrl: '/' + Section.WellGood,
             articleList: { sectionId: Section.WellGood, totalArticles: 3 }
           }

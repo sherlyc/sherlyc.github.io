@@ -1,16 +1,18 @@
 header {
   background-color: #fff;
   .color-bar {
-    position: relative;
-    top: 3px;
+    margin-bottom: -3px;
   }
 }
 .header-bar {
-  height: 40px;
+  height: 48px;
 }
-
+.title {
+  height: 28px;
+  padding-top: 2px;
+}
 .menu {
-  padding: 10px;
+  padding: 10px 16px;
   position: relative;
   height: 18px;
   width: 18px;
@@ -33,9 +35,9 @@ header {
   div::after,
   div::before {
     position: absolute;
-    width: 18px;
+    width: 16px;
     height: 2px;
-    background-color: black;
+    background-color: #333;
     transition: all 200ms ease-in-out;
   }
 
@@ -44,11 +46,11 @@ header {
 
     &::after {
       content: '';
-      top: 7px;
+      top: 6px;
     }
     &::before {
       content: '';
-      top: -7px;
+      top: -6px;
     }
   }
 }
