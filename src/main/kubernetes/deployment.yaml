@@ -41,7 +41,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: newrelic-apm-license
-                  key: NEW_RELIC_LICENSE_KEY                
+                  key: NEW_RELIC_LICENSE_KEY
             - name: NEW_RELIC_ATTRIBUTES_EXCLUDE
               value: >
                 [
