@@ -5,10 +5,12 @@ import BreakingNews from './breaking-news';
 import MidStrip from './midstrip-handler';
 import Page from './page';
 import { handlerRunnerFunction } from './runner';
+import { IParams } from '../__types__/IParams';
 
 type handlerFunction = (
   handlerRunner: handlerRunnerFunction,
-  input: any
+  input: any,
+  params: IParams
 ) => Promise<IContentBlock[]>;
 
 const handlerRegistry: { [key: string]: handlerFunction } = {

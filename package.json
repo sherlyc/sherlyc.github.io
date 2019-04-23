@@ -29,7 +29,7 @@
     "dev:build": "ng run stuff-experience-frontend:build && ng run stuff-experience-frontend:server",
     "dev:build:browser": "ng run stuff-experience-frontend:build --watch",
     "dev:build:server": "ng run stuff-experience-frontend:server --watch",
-    "dev:serve": "NODE_ENV=development SPADE_ENV=development nodemon --delay 2.5 --watch dist dist/server/main.js",
+    "dev:serve": "NODE_ENV=development SPADE_ENV=development nodemon --delay 2.5 --inspect=4200 --watch dist dist/server/main.js",
     "dev:proxy": "ts-node dev-proxy.ts"
   },
   "private": true,

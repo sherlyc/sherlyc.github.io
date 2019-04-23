@@ -1,11 +1,21 @@
 import getBreakingNews from './breaking-news';
 import http from '../utils/http';
 import config from '../utils/config';
+import { IParams } from '../__types__/IParams';
 
-jest.mock('../utils/http');
 jest.mock('../utils/config');
+jest.mock('../utils/http');
 
 describe('Breaking news service', () => {
+  const params: IParams = { apiRequestId: 'request-id-for-testing' };
+
+  beforeAll(() => {
+    (http as jest.Mock).mockReturnValue({
+      get: jest.fn(),
+      post: jest.fn()
+    });
+  });
+
   it('should get a breaking news', async () => {
     const breakingNews = {
       enabled: true,
@@ -13,24 +23,24 @@ describe('Breaking news service', () => {
       text: 'breaking_news_text',
       link: 'http://example.com'
     };
-    (http.get as jest.Mock).mockResolvedValue({
+    (http(params).get as jest.Mock).mockResolvedValue({
       data: breakingNews
     });
 
     config.contentAPI =
       'http://content-api-gateway-staging.fairfaxmedia.co.nz/service/content/v1';
-    expect(await getBreakingNews()).toEqual(breakingNews);
+    expect(await getBreakingNews(params)).toEqual(breakingNews);
   });
 
   it('should not get a breaking news when content-api request fails', async () => {
     const error = new Error('AJAX error');
-    (http.get as jest.Mock).mockRejectedValue(error);
-    await expect(getBreakingNews()).rejects.toEqual(error);
+    (http(params).get as jest.Mock).mockRejectedValue(error);
+    await expect(getBreakingNews(params)).rejects.toEqual(error);
   });
 
   it('should return mocked contentAPI when contentAPI value is MOCKED', async () => {
     config.contentAPI = 'MOCKED';
-    expect(await getBreakingNews()).toEqual({
+    expect(await getBreakingNews(params)).toEqual({
       id: '123',
       text: 'Buyer made $700k overnight',
       link:

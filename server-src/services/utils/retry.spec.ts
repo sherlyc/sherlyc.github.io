@@ -1,6 +1,8 @@
 import retry from './retry';
+import { IParams } from '../__types__/IParams';
 
 describe('Retry', () => {
+  const params: IParams = { apiRequestId: 'request-id-for-testing' };
   it('should succeed after retrying 3 times when the last one resolved', async () => {
     const input = jest.fn();
     input.mockRejectedValueOnce({ reject: 1 });
@@ -9,7 +11,7 @@ describe('Retry', () => {
     input.mockResolvedValue({ resolve: 4 });
 
     await expect(
-      retry(input, { minTimeout: 100, retries: 3 })
+      retry(input, params, { minTimeout: 100, retries: 3 })
     ).resolves.toMatchObject({
       resolve: 4
     });
@@ -23,7 +25,7 @@ describe('Retry', () => {
     input.mockRejectedValueOnce({ reject: 4 });
 
     await expect(
-      retry(input, { minTimeout: 100, retries: 3 })
+      retry(input, params, { minTimeout: 100, retries: 3 })
     ).rejects.toMatchObject({
       reject: 4
     });

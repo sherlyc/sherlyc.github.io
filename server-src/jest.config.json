@@ -5,6 +5,5 @@
   "collectCoverageFrom": ["**/*.ts"],
   "rootDir": "../",
   "roots": ["server-src"],
-  "testEnvironment": "node",
-  "setupTestFrameworkScriptFile": "<rootDir>/server-src/setupJest.ts"
+  "testEnvironment": "node"
 }

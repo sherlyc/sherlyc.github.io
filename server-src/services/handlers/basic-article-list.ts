@@ -5,19 +5,22 @@ import { IBasicAdUnit } from '../../../common/__types__/IBasicAdUnit';
 import getRawArticleList from '../adapters/jsonfeed';
 import { IBasicArticleListHandlerInput } from './__types__/IBasicArticleListHandlerInput';
 import { handlerRunnerFunction } from './runner';
+import { IParams } from '../__types__/IParams';
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  { sectionId, totalArticles }: IBasicArticleListHandlerInput
+  { sectionId, totalArticles }: IBasicArticleListHandlerInput,
+  params: IParams
 ): Promise<IContentBlock[]> {
   const basicAdUnit: IBasicAdUnit = {
     type: ContentBlockType.BasicAdUnit
   };
 
-  const rawArticles = (await getRawArticleList(sectionId, totalArticles)).slice(
-    0,
-    totalArticles
-  );
+  const rawArticles = (await getRawArticleList(
+    sectionId,
+    totalArticles,
+    params
+  )).slice(0, totalArticles);
 
   return rawArticles.reduce(
     (final, article) => [

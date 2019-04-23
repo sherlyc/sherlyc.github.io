@@ -2,8 +2,9 @@ import config from '../utils/config';
 import { IRawBreakingNews } from './__types__/IRawBreakingNews';
 import retry from '../utils/retry';
 import http from '../utils/http';
+import { IParams } from '../__types__/IParams';
 
-async function apiCall(): Promise<IRawBreakingNews> {
+async function apiCall(params: IParams): Promise<IRawBreakingNews> {
   if (config.contentAPI === 'MOCKED') {
     return {
       id: '123',
@@ -14,10 +15,10 @@ async function apiCall(): Promise<IRawBreakingNews> {
     } as IRawBreakingNews;
   }
 
-  const response = await http.get<IRawBreakingNews>(
+  const response = await http(params).get<IRawBreakingNews>(
     `${config.contentAPI}/breakingnews`
   );
   return response.data;
 }
 
-export default () => retry(() => apiCall());
+export default (params: IParams) => retry(() => apiCall(params), params);
