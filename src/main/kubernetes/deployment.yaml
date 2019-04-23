@@ -40,7 +40,7 @@ spec:
             - name: NEW_RELIC_LICENSE_KEY
               valueFrom:
                 secretKeyRef:
-                  name: newrelic-apm-preprod-license
+                  name: newrelic-apm-license
                   key: NEW_RELIC_LICENSE_KEY                
             - name: NEW_RELIC_ATTRIBUTES_EXCLUDE
               value: >
