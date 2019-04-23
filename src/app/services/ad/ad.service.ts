@@ -1,7 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
-import { filter } from 'rxjs/operators';
 import { ConfigService } from '../config/config.service';
 
 @Injectable({
@@ -24,12 +23,10 @@ export class AdService {
         this.document.body.appendChild(script);
       }
     }
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        setTimeout(() => {
-          this.document.dispatchEvent(new Event('NavigationEnd'));
-        }, 0);
-      });
+  }
+  notify() {
+    setTimeout(() => {
+      this.document.dispatchEvent(new Event('NavigationEnd'));
+    }, 0);
   }
 }

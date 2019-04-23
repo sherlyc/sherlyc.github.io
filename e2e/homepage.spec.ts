@@ -44,4 +44,11 @@ describe('Homepage test', () => {
     await driver.wait(until.elementLocated(By.css('app-basic-article-unit')));
     expect(await driver.getCurrentUrl()).toBe(href);
   }, 60000);
+
+  it('should display basic ad units', async () => {
+    await driver.get(config.url);
+    await driver.wait(until.elementLocated(By.css('app-basic-ad-unit')));
+    const ads = await driver.findElements(By.css('app-basic-ad-unit'));
+    expect(ads.length).toBeGreaterThan(0);
+  }, 60000);
 });

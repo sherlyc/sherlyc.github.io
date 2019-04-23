@@ -102,7 +102,7 @@
         <version>3.0.2</version>
         <executions>
           <execution>
-            <id>copy-ng-resources</id>
+            <id>copy-dist</id>
             <phase>prepare-package</phase>
             <goals>
               <goal>copy-resources</goal>
@@ -125,9 +125,6 @@
         <artifactId>maven-resources-plugin</artifactId>
         <version>3.1.0</version>
         <executions>
-
-
-
           <execution>
             <id>copy-docker-resources</id>
             <phase>process-resources</phase>
