@@ -3,6 +3,6 @@
   "setupTestFrameworkScriptFile": "<rootDir>/src/setupJest.ts",
   "rootDir": "../",
   "roots": ["src"],
-  "coverageDirectory": "./src/coverage",
+  "coverageDirectory": "<rootDir>/src/coverage",
   "collectCoverageFrom": ["**/*.ts"]
 }

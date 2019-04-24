@@ -2,17 +2,32 @@ import { TestBed } from '@angular/core/testing';
 import { LoggerService } from './logger.service';
 import { ConfigService } from '../config/config.service';
 import { mockService, ServiceMock } from '../mocks/MockService';
+import { CorrelationService } from '../correlation/correlation.service';
+import { ICorrelation } from '../correlation/__types__/ICorrelation';
 
 describe('LoggerService', () => {
   let configService: ServiceMock<ConfigService>;
+  let correlationIdService: ServiceMock<CorrelationService>;
+  const correlationInfo: ICorrelation = {
+    deviceId: 'deviceId',
+    apiRequestId: 'apiRequestId',
+    pageScopedId: 'pageScopedId'
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        { provide: ConfigService, useClass: mockService(ConfigService) }
+        { provide: ConfigService, useClass: mockService(ConfigService) },
+        {
+          provide: CorrelationService,
+          useClass: mockService(CorrelationService)
+        }
       ]
     });
     configService = TestBed.get(ConfigService);
+    correlationIdService = TestBed.get(CorrelationService);
+
+    correlationIdService.getCorrelation.mockReturnValue(correlationInfo);
   });
 
   it('should log debug when configured log level is debug', () => {
@@ -26,6 +41,7 @@ describe('LoggerService', () => {
     service.debug('This should be logged as debug');
 
     expect(console['debug']).toHaveBeenCalledWith(
+      correlationInfo,
       'This should be logged as debug'
     );
   });
@@ -54,6 +70,7 @@ describe('LoggerService', () => {
     service.error(new Error('This should be logged as an error'));
 
     expect(console.error).toHaveBeenCalledWith(
+      correlationInfo,
       new Error('This should be logged as an error')
     );
   });
@@ -69,6 +86,7 @@ describe('LoggerService', () => {
     service.warn('This should be logged as a warn');
 
     expect(console.warn).toHaveBeenCalledWith(
+      correlationInfo,
       'This should be logged as a warn'
     );
   });

@@ -1,6 +1,7 @@
 import { ErrorHandler, Injectable } from '@angular/core';
 import { ConfigService } from '../config/config.service';
 import * as Sentry from '@sentry/browser';
+import { CorrelationService } from '../correlation/correlation.service';
 interface ISpadeConsole extends Console {
   [key: string]: Function;
 }
@@ -9,7 +10,10 @@ interface ISpadeConsole extends Console {
   providedIn: 'root'
 })
 export class LoggerService implements ErrorHandler {
-  constructor(private config: ConfigService) {}
+  constructor(
+    private config: ConfigService,
+    private correlationService: CorrelationService
+  ) {}
 
   logLevels = ['debug', 'info', 'warn', 'error'];
 
@@ -24,7 +28,11 @@ export class LoggerService implements ErrorHandler {
 
     const loggingIndex = this.logLevels.indexOf(logLevel);
     if (loggingIndex >= currentLogLevelIndex) {
-      (console as ISpadeConsole)[logLevel].call(console, ...rest);
+      (console as ISpadeConsole)[logLevel].call(
+        console,
+        this.correlationService.getCorrelation(),
+        ...rest
+      );
     }
   }
 
@@ -41,6 +49,10 @@ export class LoggerService implements ErrorHandler {
   }
 
   error(error: Error, ...rest: any[]) {
+    const correlation = this.correlationService.getCorrelation();
+    Sentry.configureScope((scope) => {
+      scope.setTags(correlation as any);
+    });
     Sentry.captureException(error);
     this.log('error', error, ...rest);
   }

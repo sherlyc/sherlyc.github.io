@@ -1,11 +1,13 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IContentBlock } from '../../../../../common/__types__/IContentBlock';
 import { IPage } from '../../../../../common/__types__/IPage';
-import { NavigationStart, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { filter } from 'rxjs/operators';
 import { ContentRetrieverService } from '../../../services/content-retriever/content-retriever.service';
 import { AdService } from '../../../services/ad/ad.service';
+import { CorrelationService } from '../../../services/correlation/correlation.service';
+import { EventsService } from '../../../services/events/events.service';
+import { Subject } from 'rxjs';
+import { NavigationStart } from '@angular/router';
 
 @Component({
   selector: 'app-page',
@@ -13,26 +15,30 @@ import { AdService } from '../../../services/ad/ad.service';
   styleUrls: ['./page.component.scss']
 })
 export class PageComponent implements OnInit {
+  private navigationStartSubject: Subject<NavigationStart>;
   constructor(
-    private router: Router,
     private contentRetriever: ContentRetrieverService,
     private adService: AdService,
-    private title: Title
-  ) {}
+    private title: Title,
+    private correlationService: CorrelationService,
+    private eventsService: EventsService
+  ) {
+    this.navigationStartSubject = this.eventsService.getEventSubject().NavigationStart;
+  }
 
   contentBlocks: IContentBlock[] = [];
 
   ngOnInit() {
     this.getData();
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationStart))
-      .subscribe(() => {
-        this.getData();
-      });
+    this.navigationStartSubject.subscribe(() => {
+      this.getData();
+    });
   }
 
   getData() {
+    this.correlationService.generatePageScopedId();
     this.contentRetriever.getContent().subscribe((page: IPage) => {
+      this.correlationService.setApiRequestId(page.apiRequestId);
       this.title.setTitle(page.title);
       this.contentBlocks = page.content;
       this.adService.notify();

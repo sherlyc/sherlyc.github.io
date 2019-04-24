@@ -10,7 +10,6 @@ export type ServiceMethodMock<PropertyType> = PropertyType extends (
   ...args: any[]
 ) => any
   ? (PropertyType &
-      // @ts-ignore
       jest.MockInstance<
         DeepPartial<ReturnType<PropertyType>> | null,
         Parameters<PropertyType>
@@ -24,7 +23,6 @@ export function mockService<TService>(
     constructor() {
       Object.keys(service.prototype).forEach((method) => {
         if (!(this as any)[method]) {
-          // @ts-ignore
           (this as any)[method] = jest.fn();
         }
       });
