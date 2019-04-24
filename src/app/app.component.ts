@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { AdService } from './services/ad/ad.service';
+import { EventsService } from './services/events/events.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,11 @@ import { AdService } from './services/ad/ad.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(private router: Router, private adService: AdService) {
+  constructor(
+    private adService: AdService,
+    private eventsService: EventsService
+  ) {
     this.adService.setupAds();
+    this.eventsService.setup();
   }
 }

@@ -2,7 +2,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PageComponent } from './page.component';
 import { ContentRetrieverService } from '../../../services/content-retriever/content-retriever.service';
-import { of, throwError } from 'rxjs';
+import { of, throwError, ReplaySubject } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NavigationStart, Router } from '@angular/router';
@@ -10,6 +10,8 @@ import { RouterMock } from '../../../services/mocks/router.mock';
 import { IContentBlock } from '../../../../../common/__types__/IContentBlock';
 import { mockService, ServiceMock } from '../../../services/mocks/MockService';
 import { AdService } from '../../../services/ad/ad.service';
+import { CorrelationService } from 'src/app/services/correlation/correlation.service';
+import { EventsService } from 'src/app/services/events/events.service';
 
 describe('PageComponent', () => {
   let component: PageComponent;
@@ -17,7 +19,7 @@ describe('PageComponent', () => {
 
   let contentRetrieverMock: ServiceMock<ContentRetrieverService>;
   let adServiceMock: ServiceMock<AdService>;
-  let routerMock: RouterMock;
+  let eventsServiceMock: ServiceMock<EventsService>;
 
   const mockContentBlocks: IContentBlock[] = ([
     {
@@ -50,7 +52,14 @@ describe('PageComponent', () => {
           provide: AdService,
           useClass: mockService(AdService)
         },
-        { provide: Router, useClass: RouterMock }
+        {
+          provide: CorrelationService,
+          useClass: mockService(CorrelationService)
+        },
+        {
+          provide: EventsService,
+          useClass: mockService(EventsService)
+        }
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })
@@ -67,7 +76,10 @@ describe('PageComponent', () => {
     component = fixture.componentInstance;
     contentRetrieverMock = TestBed.get(ContentRetrieverService);
     adServiceMock = TestBed.get(AdService);
-    routerMock = TestBed.get(Router);
+    eventsServiceMock = TestBed.get(EventsService);
+    eventsServiceMock.getEventSubject.mockReturnValue({
+      NavigationStart: new ReplaySubject<NavigationStart>(1)
+    });
   });
 
   afterEach(() => {
@@ -85,7 +97,7 @@ describe('PageComponent', () => {
 
   it('should render a list of content block', () => {
     contentRetrieverMock.getContent.mockReturnValue(
-      of({ title: '', content: mockContentBlocks })
+      of({ title: '', content: mockContentBlocks, apiRequestId: '' })
     );
 
     component.getData();
@@ -96,18 +108,22 @@ describe('PageComponent', () => {
 
   it('should render a list of content block when router navigates to "/"', () => {
     contentRetrieverMock.getContent.mockReturnValue(
-      of({ title: '', content: mockContentBlocks })
+      of({ title: '', content: mockContentBlocks, apiRequestId: '' })
     );
     const getDataSpy = jest.spyOn(component, 'getData');
 
-    routerMock.events.next(new NavigationStart(0, '/')); // emit an event before subscription
+    eventsServiceMock
+      .getEventSubject()
+      .NavigationStart.next(new NavigationStart(0, '/')); // emit an event before subscription
     expect(getDataSpy).not.toHaveBeenCalled();
 
     fixture.detectChanges(); // ngOnInit() and subscribe
     expect(getDataSpy).toBeCalledTimes(1);
     expect(contentRetrieverMock.getContent).toBeCalledTimes(1);
 
-    routerMock.events.next(new NavigationStart(0, '/')); // emit an event
+    eventsServiceMock
+      .getEventSubject()
+      .NavigationStart.next(new NavigationStart(0, '/')); // emit an event
     expect(getDataSpy).toBeCalledTimes(2);
     expect(contentRetrieverMock.getContent).toBeCalledTimes(2);
     fixture.detectChanges(); // input updated
@@ -129,20 +145,24 @@ describe('PageComponent', () => {
     );
     const getDataSpy = jest.spyOn(component, 'getData');
 
-    routerMock.events.next(new NavigationStart(0, '/')); // emit an event before subscription
+    eventsServiceMock
+      .getEventSubject()
+      .NavigationStart.next(new NavigationStart(0, '/')); // emit an event before subscription
     expect(getDataSpy).not.toHaveBeenCalled();
 
     fixture.detectChanges(); // ngOnInit() and subscribe
     expect(getDataSpy).toHaveBeenCalled();
     expect(contentRetrieverMock.getContent).toHaveBeenCalled();
 
-    routerMock.events.next(new NavigationStart(0, '/')); // emit an event
+    eventsServiceMock
+      .getEventSubject()
+      .NavigationStart.next(new NavigationStart(0, '/')); // emit an event
     assertsForFailedRetrieval();
   });
 
   it('should dispatch DOM NavigationEnd when page finish render', () => {
     contentRetrieverMock.getContent.mockReturnValue(
-      of({ title: '', content: mockContentBlocks })
+      of({ title: '', content: mockContentBlocks, apiRequestId: '' })
     );
     component.getData();
     fixture.detectChanges(); // input updated

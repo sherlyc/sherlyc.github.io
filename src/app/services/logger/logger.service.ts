@@ -1,6 +1,7 @@
 import { ErrorHandler, Injectable } from '@angular/core';
 import { ConfigService } from '../config/config.service';
 import * as Sentry from '@sentry/browser';
+import { CorrelationService } from '../correlation/correlation.service';
 interface ISpadeConsole extends Console {
   [key: string]: Function;
 }
@@ -9,11 +10,14 @@ interface ISpadeConsole extends Console {
   providedIn: 'root'
 })
 export class LoggerService implements ErrorHandler {
-  constructor(private config: ConfigService) {}
+  constructor(
+    private config: ConfigService,
+    private correlationService: CorrelationService
+  ) {}
 
   logLevels = ['debug', 'info', 'warn', 'error'];
 
-  private log(logLevel: string, ...rest: any[]) {
+  private async log(logLevel: string, ...rest: any[]) {
     let currentLogLevelIndex = this.logLevels.indexOf(
       this.config.getConfig().loggerOptions.level
     );
@@ -24,28 +28,36 @@ export class LoggerService implements ErrorHandler {
 
     const loggingIndex = this.logLevels.indexOf(logLevel);
     if (loggingIndex >= currentLogLevelIndex) {
-      (console as ISpadeConsole)[logLevel].call(console, ...rest);
+      (console as ISpadeConsole)[logLevel].call(
+        console,
+        await this.correlationService.getCorrelation(),
+        ...rest
+      );
     }
   }
 
-  handleError(error: any) {
-    this.error(error);
+  async handleError(error: any) {
+    await this.error(error);
   }
 
-  debug(...messages: any[]) {
-    this.log('debug', ...messages);
+  async debug(...messages: any[]) {
+    await this.log('debug', ...messages);
   }
 
-  info(...messages: any[]) {
-    this.log('info', ...messages);
+  async info(...messages: any[]) {
+    await this.log('info', ...messages);
   }
 
-  error(error: Error, ...rest: any[]) {
+  async error(error: Error, ...rest: any[]) {
+    const correlation = await this.correlationService.getCorrelation();
+    Sentry.configureScope((scope) => {
+      scope.setExtra('correlation', correlation);
+    });
     Sentry.captureException(error);
-    this.log('error', error, ...rest);
+    await this.log('error', error, ...rest);
   }
 
-  warn(...messages: any[]) {
-    this.log('warn', ...messages);
+  async warn(...messages: any[]) {
+    await this.log('warn', ...messages);
   }
 }
