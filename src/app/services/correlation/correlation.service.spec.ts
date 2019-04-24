@@ -1,12 +1,8 @@
-import { TestBed, async } from '@angular/core/testing';
-import * as store from 'store';
+import { TestBed } from '@angular/core/testing';
 import { CorrelationService } from './correlation.service';
 import { mockService, ServiceMock } from '../mocks/MockService';
 import { StoreService } from '../store/store.service';
 import { RuntimeService } from '../runtime/runtime.service';
-
-jest.mock('fingerprintjs2');
-jest.mock('store');
 
 describe('CorrelationService should', () => {
   let correlationIdService: CorrelationService;
@@ -65,7 +61,7 @@ describe('CorrelationService should', () => {
 
     correlationIdService.getDeviceId();
 
-    expect(store.set).not.toHaveBeenCalled();
+    expect(storeService.set).not.toHaveBeenCalled();
   });
 
   it('should return warning message if running getDeviceId in server', () => {
