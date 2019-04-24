@@ -51,7 +51,7 @@ export class LoggerService implements ErrorHandler {
   async error(error: Error, ...rest: any[]) {
     const correlation = await this.correlationService.getCorrelation();
     Sentry.configureScope((scope) => {
-      scope.setExtra('correlation', correlation);
+      scope.setTags(correlation as any);
     });
     Sentry.captureException(error);
     await this.log('error', error, ...rest);
