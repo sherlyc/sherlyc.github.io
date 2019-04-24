@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, Event as RouteEvent, NavigationStart } from '@angular/router';
-import { ReplaySubject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { filter } from 'rxjs/operators';
 })
 export class EventsService {
   private routerEvents = {
-    NavigationStart: new ReplaySubject<NavigationStart>(1)
+    NavigationStart: new Subject<NavigationStart>()
   };
   constructor(private router: Router) {}
 

@@ -17,7 +17,7 @@ export class LoggerService implements ErrorHandler {
 
   logLevels = ['debug', 'info', 'warn', 'error'];
 
-  private async log(logLevel: string, ...rest: any[]) {
+  private log(logLevel: string, ...rest: any[]) {
     let currentLogLevelIndex = this.logLevels.indexOf(
       this.config.getConfig().loggerOptions.level
     );
@@ -30,34 +30,34 @@ export class LoggerService implements ErrorHandler {
     if (loggingIndex >= currentLogLevelIndex) {
       (console as ISpadeConsole)[logLevel].call(
         console,
-        await this.correlationService.getCorrelation(),
+        this.correlationService.getCorrelation(),
         ...rest
       );
     }
   }
 
-  async handleError(error: any) {
-    await this.error(error);
+  handleError(error: any) {
+    this.error(error);
   }
 
-  async debug(...messages: any[]) {
-    await this.log('debug', ...messages);
+  debug(...messages: any[]) {
+    this.log('debug', ...messages);
   }
 
-  async info(...messages: any[]) {
-    await this.log('info', ...messages);
+  info(...messages: any[]) {
+    this.log('info', ...messages);
   }
 
-  async error(error: Error, ...rest: any[]) {
-    const correlation = await this.correlationService.getCorrelation();
+  error(error: Error, ...rest: any[]) {
+    const correlation = this.correlationService.getCorrelation();
     Sentry.configureScope((scope) => {
       scope.setTags(correlation as any);
     });
     Sentry.captureException(error);
-    await this.log('error', error, ...rest);
+    this.log('error', error, ...rest);
   }
 
-  async warn(...messages: any[]) {
-    await this.log('warn', ...messages);
+  warn(...messages: any[]) {
+    this.log('warn', ...messages);
   }
 }

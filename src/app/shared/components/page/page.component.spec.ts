@@ -2,11 +2,10 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PageComponent } from './page.component';
 import { ContentRetrieverService } from '../../../services/content-retriever/content-retriever.service';
-import { of, throwError, ReplaySubject } from 'rxjs';
+import { of, throwError, Subject } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NavigationStart, Router } from '@angular/router';
-import { RouterMock } from '../../../services/mocks/router.mock';
 import { IContentBlock } from '../../../../../common/__types__/IContentBlock';
 import { mockService, ServiceMock } from '../../../services/mocks/MockService';
 import { AdService } from '../../../services/ad/ad.service';
@@ -72,14 +71,14 @@ describe('PageComponent', () => {
         }
       })
       .compileComponents();
+    eventsServiceMock = TestBed.get(EventsService);
+    eventsServiceMock.getEventSubject.mockReturnValue({
+      NavigationStart: new Subject<NavigationStart>()
+    });
     fixture = TestBed.createComponent(PageComponent);
     component = fixture.componentInstance;
     contentRetrieverMock = TestBed.get(ContentRetrieverService);
     adServiceMock = TestBed.get(AdService);
-    eventsServiceMock = TestBed.get(EventsService);
-    eventsServiceMock.getEventSubject.mockReturnValue({
-      NavigationStart: new ReplaySubject<NavigationStart>(1)
-    });
   });
 
   afterEach(() => {

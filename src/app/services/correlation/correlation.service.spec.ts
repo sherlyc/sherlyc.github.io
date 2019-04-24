@@ -1,5 +1,4 @@
 import { TestBed, async } from '@angular/core/testing';
-import * as Fingerprint2 from 'fingerprintjs2';
 import * as store from 'store';
 import { CorrelationService } from './correlation.service';
 import { mockService, ServiceMock } from '../mocks/MockService';
@@ -51,31 +50,28 @@ describe('CorrelationService should', () => {
     expect(correlationIdService.getApiRequestId()).toEqual(apiRequestId);
   });
 
-  it('should create and set deviceId to local storage if not yet exist', async () => {
+  it('should create and set deviceId to local storage if not yet exist', () => {
     runtimeService.isServer.mockReturnValue(false);
     (storeService.get as jest.Mock).mockReturnValue(null);
-    (Fingerprint2.getPromise as jest.Mock).mockResolvedValue([{ value: '1' }]);
-    const hashDeviceId = 'generatedDeviceId';
-    (Fingerprint2.x64hash128 as jest.Mock).mockReturnValue(hashDeviceId);
 
-    const deviceId = await correlationIdService.getDeviceId();
+    const deviceId = correlationIdService.getDeviceId();
 
-    expect(deviceId).toEqual(hashDeviceId);
+    expect(typeof deviceId).toBe('string');
   });
 
-  it('should not create and set deviceId to local storage if already exists', async () => {
+  it('should not create and set deviceId to local storage if already exists', () => {
     runtimeService.isServer.mockReturnValue(false);
     (storeService.get as jest.Mock).mockReturnValue('deviceId');
 
-    await correlationIdService.getDeviceId();
+    correlationIdService.getDeviceId();
 
     expect(store.set).not.toHaveBeenCalled();
   });
 
-  it('should return warning message if running getDeviceId in server', async () => {
+  it('should return warning message if running getDeviceId in server', () => {
     runtimeService.isServer.mockReturnValue(true);
 
-    const result = await correlationIdService.getDeviceId();
+    const result = correlationIdService.getDeviceId();
 
     expect(result).toContain('not supported');
   });

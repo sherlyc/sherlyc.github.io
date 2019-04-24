@@ -6,6 +6,8 @@ import { ContentRetrieverService } from '../../../services/content-retriever/con
 import { AdService } from '../../../services/ad/ad.service';
 import { CorrelationService } from '../../../services/correlation/correlation.service';
 import { EventsService } from '../../../services/events/events.service';
+import { Subject } from 'rxjs';
+import { NavigationStart } from '@angular/router';
 
 @Component({
   selector: 'app-page',
@@ -13,29 +15,33 @@ import { EventsService } from '../../../services/events/events.service';
   styleUrls: ['./page.component.scss']
 })
 export class PageComponent implements OnInit {
+  private navigationStartSubject: Subject<NavigationStart>;
   constructor(
     private contentRetriever: ContentRetrieverService,
     private adService: AdService,
     private title: Title,
     private correlationService: CorrelationService,
     private eventsService: EventsService
-  ) {}
+  ) {
+    this.navigationStartSubject = this.eventsService.getEventSubject().NavigationStart;
+  }
 
   contentBlocks: IContentBlock[] = [];
 
   ngOnInit() {
-    this.eventsService.getEventSubject().NavigationStart.subscribe(() => {
-      this.correlationService.generatePageScopedId();
+    this.getData();
+    this.navigationStartSubject.subscribe(() => {
       this.getData();
     });
   }
 
   getData() {
+    this.correlationService.generatePageScopedId();
     this.contentRetriever.getContent().subscribe((page: IPage) => {
+      this.correlationService.setApiRequestId(page.apiRequestId);
       this.title.setTitle(page.title);
       this.contentBlocks = page.content;
       this.adService.notify();
-      this.correlationService.setApiRequestId(page.apiRequestId);
     });
   }
 }

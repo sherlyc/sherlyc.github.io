@@ -27,10 +27,10 @@ describe('LoggerService', () => {
     configService = TestBed.get(ConfigService);
     correlationIdService = TestBed.get(CorrelationService);
 
-    correlationIdService.getCorrelation.mockResolvedValue(correlationInfo);
+    correlationIdService.getCorrelation.mockReturnValue(correlationInfo);
   });
 
-  it('should log debug when configured log level is debug', async () => {
+  it('should log debug when configured log level is debug', () => {
     configService.getConfig.mockReturnValue({
       loggerOptions: { level: 'debug', format: 'json' }
     });
@@ -38,7 +38,7 @@ describe('LoggerService', () => {
     const service: LoggerService = TestBed.get(LoggerService);
     spyOn(console, 'debug');
 
-    await service.debug('This should be logged as debug');
+    service.debug('This should be logged as debug');
 
     expect(console['debug']).toHaveBeenCalledWith(
       correlationInfo,
@@ -46,7 +46,7 @@ describe('LoggerService', () => {
     );
   });
 
-  it('should not log debug when configured log level is higher than debug', async () => {
+  it('should not log debug when configured log level is higher than debug', () => {
     configService.getConfig.mockReturnValue({
       loggerOptions: { level: 'info', format: 'json' }
     });
@@ -54,12 +54,12 @@ describe('LoggerService', () => {
     const service: LoggerService = TestBed.get(LoggerService);
     spyOn(console, 'debug');
 
-    await service.debug('This should not be logged as debug');
+    service.debug('This should not be logged as debug');
 
     expect(console['debug']).not.toHaveBeenCalled();
   });
 
-  it('should log error when configured log level is error', async () => {
+  it('should log error when configured log level is error', () => {
     configService.getConfig.mockReturnValue({
       loggerOptions: { level: 'error', format: 'json' }
     });
@@ -67,7 +67,7 @@ describe('LoggerService', () => {
     const service: LoggerService = TestBed.get(LoggerService);
     spyOn(console, 'error');
 
-    await service.error(new Error('This should be logged as an error'));
+    service.error(new Error('This should be logged as an error'));
 
     expect(console.error).toHaveBeenCalledWith(
       correlationInfo,
@@ -75,7 +75,7 @@ describe('LoggerService', () => {
     );
   });
 
-  it('should log warn when configured log level does not exist', async () => {
+  it('should log warn when configured log level does not exist', () => {
     configService.getConfig.mockReturnValue({
       loggerOptions: { level: 'non-existing-level', format: 'json' }
     });
@@ -83,7 +83,7 @@ describe('LoggerService', () => {
     const service: LoggerService = TestBed.get(LoggerService);
     spyOn(console, 'warn');
 
-    await service.warn('This should be logged as a warn');
+    service.warn('This should be logged as a warn');
 
     expect(console.warn).toHaveBeenCalledWith(
       correlationInfo,
