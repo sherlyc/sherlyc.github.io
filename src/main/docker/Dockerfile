@@ -4,7 +4,7 @@ ENV APP_HOME /srv/${project.artifactId}
 ENV TZ Pacific/Auckland
 
 WORKDIR /srv/${project.artifactId}
-RUN npm i newrelic
+RUN npm i newrelic && npm update newrelic
 
 # Copy dist folder
 COPY maven /
