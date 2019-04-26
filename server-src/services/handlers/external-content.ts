@@ -1,22 +1,20 @@
 import { IContentBlock } from '../../../common/__types__/IContentBlock';
 import { ContentBlockType } from '../../../common/__types__/ContentBlockType';
-import { IPageHandlerInput } from './__types__/IPageHandlerInput';
 import { handlerRunnerFunction } from './runner';
 import { IParams } from '../__types__/IParams';
+import { IExternalContentHandlerInput } from './__types__/IExternalContentHandlerInput';
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  { items }: IPageHandlerInput,
+  { url, height, width }: IExternalContentHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   return [
-    { type: ContentBlockType.Header },
     {
-      type: ContentBlockType.Container,
-      items: (await Promise.all(
-        items.map((item) => handlerRunner(item, params))
-      )).reduce((final, item) => [...final, ...item], [])
-    },
-    { type: ContentBlockType.Footer }
+      type: ContentBlockType.ExternalContentUnit,
+      url,
+      width,
+      height
+    }
   ];
 }

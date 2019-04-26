@@ -1,3 +1,5 @@
+import { ContentBlockType } from './ContentBlockType';
+
 export interface IBasicAdUnit {
-  type: 'BasicAdUnit';
+  type: ContentBlockType.BasicAdUnit;
 }

@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BasicArticleUnitComponent } from './basic-article-unit.component';
 import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
 import { MomentModule } from 'ngx-moment';
+import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 
 describe('BasicArticleUnitComponent', () => {
   let component: BasicArticleUnitComponent;
@@ -12,7 +13,7 @@ describe('BasicArticleUnitComponent', () => {
     new Date().setDate(new Date().getDate() - 2) / 1000;
 
   const articleData: IBasicArticleUnit = {
-    type: 'BasicArticleUnit',
+    type: ContentBlockType.BasicArticleUnit,
     indexHeadline: 'Dummy Headline',
     introText: 'Dummy intro text',
     linkUrl: 'https://dummyurl.com',

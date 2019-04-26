@@ -1,6 +1,7 @@
 import { IContentBlock } from './IContentBlock';
+import { ContentBlockType } from './ContentBlockType';
 
 export interface IContainer {
-  type: 'Container';
+  type: ContentBlockType.Container;
   items: IContentBlock[];
 }

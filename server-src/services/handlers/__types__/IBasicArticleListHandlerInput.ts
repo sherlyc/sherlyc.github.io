@@ -1,7 +1,8 @@
 import { Section } from '../../section';
+import { HandlerInputType } from './HandlerInputType';
 
 export interface IBasicArticleListHandlerInput {
-  type: 'ArticleList';
+  type: HandlerInputType.ArticleList;
   sectionId: Section;
   totalArticles: number;
 }
