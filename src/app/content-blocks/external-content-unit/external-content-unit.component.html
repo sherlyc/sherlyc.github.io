@@ -1,7 +1,6 @@
 <iframe
   [src]="getUrl()"
   *ngIf="input"
-  width="{{ input.width }}"
-  height="{{ input.height }}"
+  [ngStyle]="{ width: input.width, height: input.height }"
   frameborder="0"
 ></iframe>
