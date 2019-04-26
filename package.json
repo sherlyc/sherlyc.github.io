@@ -61,6 +61,7 @@
     "moment": "^2.24.0",
     "ngx-moment": "^3.4.0",
     "p-retry": "^3.0.1",
+    "polyfill-array-includes": "^2.0.0",
     "rxjs": "^6.4.0",
     "source-map-support": "^0.5.10",
     "store": "^2.0.12",
