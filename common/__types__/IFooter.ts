@@ -1,3 +1,5 @@
+import { ContentBlockType } from './ContentBlockType';
+
 export interface IFooter {
-  type: 'Footer';
+  type: ContentBlockType.Footer;
 }

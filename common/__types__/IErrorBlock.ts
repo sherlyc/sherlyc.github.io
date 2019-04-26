@@ -1,5 +1,7 @@
+import { ContentBlockType } from './ContentBlockType';
+
 export interface IErrorBlock {
-  type: 'ErrorBlock';
+  type: ContentBlockType.ErrorBlock;
   message: string;
   debugMessage?: string;
 }

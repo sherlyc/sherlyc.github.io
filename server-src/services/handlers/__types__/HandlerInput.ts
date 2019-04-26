@@ -3,10 +3,12 @@ import { IBasicArticleSectionHandlerInput } from './IBasicArticleSectionHandlerI
 import { IPageHandlerInput } from './IPageHandlerInput';
 import { IBreakingNewsHandlerInput } from './IBreakingNewsHandlerInput';
 import { IMidStripHandlerInput } from './IMidStripHandlerInput';
+import { IExternalContentHandlerInput } from './IExternalContentHandlerInput';
 
 export type HandlerInput =
   | IBasicArticleListHandlerInput
   | IMidStripHandlerInput
   | IBasicArticleSectionHandlerInput
   | IBreakingNewsHandlerInput
+  | IExternalContentHandlerInput
   | IPageHandlerInput;

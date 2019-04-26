@@ -1,5 +1,7 @@
+import { ContentBlockType } from './ContentBlockType';
+
 export interface IImageLinkUnit {
-  type: 'ImageLinkUnit';
+  type: ContentBlockType.ImageLinkUnit;
   indexHeadline: string;
   linkUrl: string;
   imageSrc: string | null;

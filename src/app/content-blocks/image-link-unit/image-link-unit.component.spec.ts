@@ -1,13 +1,14 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ImageLinkUnitComponent } from './image-link-unit.component';
 import { IImageLinkUnit } from '../../../../common/__types__/IImageLinkUnit';
+import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 
 describe('ImageLinkUnitComponent', () => {
   let component: ImageLinkUnitComponent;
   let fixture: ComponentFixture<ImageLinkUnitComponent>;
 
   const articleData: IImageLinkUnit = {
-    type: 'ImageLinkUnit',
+    type: ContentBlockType.ImageLinkUnit,
     indexHeadline: 'Dummy Headline',
     linkUrl: 'https://dummyurl.com',
     imageSrc: 'https://dummyimagesrc.com',

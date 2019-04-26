@@ -16,9 +16,11 @@ import { CookieService } from './services/cookie/cookie.service';
 import { SharedModule } from './shared/shared.module';
 import { ConfigService } from './services/config/config.service';
 import * as Sentry from '@sentry/browser';
+import { BrowserOptions } from '@sentry/browser';
 
 export function init_sentry(configService: ConfigService) {
-  return () => Sentry.init(configService.getConfig().sentryIO);
+  return () =>
+    Sentry.init(configService.getConfig().sentryIO as BrowserOptions);
 }
 @NgModule({
   declarations: [AppComponent],

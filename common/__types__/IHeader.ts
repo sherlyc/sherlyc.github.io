@@ -1,3 +1,5 @@
+import { ContentBlockType } from './ContentBlockType';
+
 export interface IHeader {
-  type: 'Header';
+  type: ContentBlockType.Header;
 }

@@ -4,6 +4,7 @@ import * as rawArticleList from './__fixtures__/raw-article-list.json';
 import * as basicArticleListHandlerOutput from './__fixtures__/basic-article-list-handler-output.json';
 import jsonfeed from '../adapters/jsonfeed';
 import { IParams } from '../__types__/IParams';
+import { HandlerInputType } from './__types__/HandlerInputType';
 
 jest.mock('../adapters/jsonfeed');
 
@@ -24,7 +25,7 @@ describe('BasicArticleListHandler', () => {
     const contentBlocks = await basicArticleListHandler(
       handlerRunnerMock,
       {
-        type: 'ArticleList',
+        type: HandlerInputType.ArticleList,
         sectionId,
         totalArticles
       },
@@ -48,7 +49,7 @@ describe('BasicArticleListHandler', () => {
     const contentBlocks = await basicArticleListHandler(
       handlerRunnerMock,
       {
-        type: 'ArticleList',
+        type: HandlerInputType.ArticleList,
         sectionId,
         totalArticles
       },

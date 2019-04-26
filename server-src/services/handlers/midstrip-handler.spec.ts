@@ -5,6 +5,7 @@ import * as midstripHandlerOutput from './__fixtures__/midstrip-handler-output.j
 import jsonfeed from '../adapters/jsonfeed';
 import { IColumnContainer } from 'common/__types__/IColumnContainer';
 import { IParams } from '../__types__/IParams';
+import { HandlerInputType } from './__types__/HandlerInputType';
 
 jest.mock('../adapters/jsonfeed');
 
@@ -25,7 +26,7 @@ describe('MidStripHandler', () => {
     const columnContainer = (await midstripHandler(
       handlerRunnerMock,
       {
-        type: 'MidStrip',
+        type: HandlerInputType.MidStrip,
         sectionId,
         totalArticles
       },
@@ -48,7 +49,7 @@ describe('MidStripHandler', () => {
     const columnContainer = (await midstripHandler(
       handlerRunnerMock,
       {
-        type: 'MidStrip',
+        type: HandlerInputType.MidStrip,
         sectionId,
         totalArticles
       },

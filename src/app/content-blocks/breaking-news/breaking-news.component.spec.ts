@@ -3,6 +3,7 @@ import { BreakingNewsComponent } from './breaking-news.component';
 import { By } from '@angular/platform-browser';
 import { CookieService } from '../../services/cookie/cookie.service';
 import { mockService, ServiceMock } from '../../services/mocks/MockService';
+import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 
 describe('BreakingNewsComponent', () => {
   let component: BreakingNewsComponent;
@@ -27,7 +28,7 @@ describe('BreakingNewsComponent', () => {
     component = fixture.componentInstance;
 
     component.input = {
-      type: 'BreakingNews',
+      type: ContentBlockType.BreakingNews,
       id: 'whatever',
       text: 'breaking_news_text',
       link: 'breaking_news_link'

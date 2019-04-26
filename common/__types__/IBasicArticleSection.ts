@@ -1,7 +1,8 @@
 import { IContentBlock } from './IContentBlock';
+import { ContentBlockType } from './ContentBlockType';
 
 export interface IBasicArticleSection {
-  type: 'BasicArticleSection';
+  type: ContentBlockType.BasicArticleSection;
   displayName: string;
   displayNameColor: string;
   linkUrl: string;

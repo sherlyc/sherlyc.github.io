@@ -1,4 +1,6 @@
+import { HandlerInputType } from './HandlerInputType';
+
 export interface IBreakingNewsHandlerInput {
-  type: 'BreakingNews';
+  type: HandlerInputType.BreakingNews;
   ignoreBreakingNews?: string;
 }

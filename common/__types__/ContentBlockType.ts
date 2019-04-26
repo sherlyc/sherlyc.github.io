@@ -8,5 +8,6 @@ export enum ContentBlockType {
   Footer = 'Footer',
   BasicArticleSection = 'BasicArticleSection',
   Header = 'Header',
-  BreakingNews = 'BreakingNews'
+  BreakingNews = 'BreakingNews',
+  ExternalContentUnit = 'ExternalContentUnit'
 }

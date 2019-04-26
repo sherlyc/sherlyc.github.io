@@ -4,8 +4,11 @@
 .gitkeep
 *.ico
 *.svg
+.clinic
+out-tsc
 Dockerfile
 /server-src/coverage/*
+/src/coverage/*
 /dist/*
 /documentation/*
 /coverage/*

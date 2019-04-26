@@ -1,6 +1,7 @@
 import { HandlerInput } from './HandlerInput';
+import { HandlerInputType } from './HandlerInputType';
 
 export interface IPageHandlerInput {
-  type: 'Page';
+  type: HandlerInputType.Page;
   items: HandlerInput[];
 }

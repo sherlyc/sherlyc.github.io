@@ -3,6 +3,7 @@ import { ContentBlockType } from '../../../common/__types__/ContentBlockType';
 import { IBasicArticleSectionHandlerInput } from './__types__/IBasicArticleSectionHandlerInput';
 import { handlerRunnerFunction } from './runner';
 import { IParams } from '../__types__/IParams';
+import { HandlerInputType } from './__types__/HandlerInputType';
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -23,7 +24,7 @@ export default async function(
         linkUrl,
         items: await handlerRunner(
           {
-            type: 'ArticleList',
+            type: HandlerInputType.ArticleList,
             sectionId,
             totalArticles
           },
