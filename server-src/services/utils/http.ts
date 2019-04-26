@@ -23,7 +23,7 @@ const create = (params: IParams): AxiosInstance => {
   httpClient.interceptors.response.use(
     (response: AxiosResponse & { config: any }) => {
       const elapsedTime = Number(performance.now() - response.config.ts);
-      logger.debug(
+      logger.info(
         params.apiRequestId,
         `${response.config.method!.toUpperCase()} ${response.config.url} ==> ${
           response.status
