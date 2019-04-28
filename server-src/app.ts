@@ -10,9 +10,16 @@ app.use(cookieParser());
 
 app.get('/robots.txt', (req, res) => res.send(''));
 
+declare const global: {
+  newrelic: any;
+};
+
 app.get('/api/content', async (req, res, next) => {
   const params: IParams = extractParams(req);
   res.header('api-request-id', params.apiRequestId);
+  if (global.newrelic) {
+    global.newrelic.addCustomAttribute('apiRequestId', params.apiRequestId);
+  }
   res.json(await orchestrate(params));
   res.end();
 });
