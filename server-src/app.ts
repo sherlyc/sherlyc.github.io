@@ -16,9 +16,10 @@ declare const global: {
 
 app.get('/api/content', async (req, res, next) => {
   const params: IParams = extractParams(req);
-  res.header('api-request-id', params.apiRequestId);
   if (global.newrelic) {
-    global.newrelic.addCustomAttribute('apiRequestId', params.apiRequestId);
+    setTimeout(() => {
+      global.newrelic.addCustomAttribute('apiRequestId', params.apiRequestId);
+    }, 0);
   }
   res.json(await orchestrate(params));
   res.end();
