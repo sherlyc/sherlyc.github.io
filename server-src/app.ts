@@ -3,6 +3,7 @@ import * as cookieParser from 'cookie-parser';
 import orchestrate from './services/orchestrator';
 import extractParams from './services/params-extractor';
 import { IParams } from './services/__types__/IParams';
+import logger from './services/utils/logger';
 
 const app = express();
 
@@ -20,7 +21,7 @@ app.get('/api/content', async (req, res, next) => {
     try {
       global.newrelic.addCustomAttribute('apiRequestId', params.apiRequestId);
     } catch (err) {
-      console.error(err);
+      logger.error(params.apiRequestId, err);
     }
   }
   res.json(await orchestrate(params));

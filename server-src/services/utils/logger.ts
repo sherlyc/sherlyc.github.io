@@ -34,11 +34,11 @@ const wrappedLogger: ILogger = {
   },
 
   warn: (requestId: string, message: string, ...args: any[]) => {
-    winstonLogger.error(`${requestId} / ${message}`, ...args);
+    winstonLogger.warn(`${requestId} / ${message}`, ...args);
   },
 
   error: (requestId: string, message: string, ...args: any[]) => {
-    winstonLogger.error(message, requestId, ...args);
+    winstonLogger.error(`${requestId} / ${message}`, ...args);
   }
 };
 
