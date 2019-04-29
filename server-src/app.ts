@@ -17,9 +17,11 @@ declare const global: {
 app.get('/api/content', async (req, res, next) => {
   const params: IParams = extractParams(req);
   if (global.newrelic) {
-    setTimeout(() => {
+    try {
       global.newrelic.addCustomAttribute('apiRequestId', params.apiRequestId);
-    }, 0);
+    } catch (err) {
+      console.error(err);
+    }
   }
   res.json(await orchestrate(params));
   res.end();
