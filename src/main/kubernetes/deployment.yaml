@@ -28,10 +28,14 @@ spec:
             - name: SKIP_SECRETS
               value: 'true'
             - name: NEW_RELIC_APP_NAME
-              value: 'stuff-experience-frontend'
+              value: 'stuff-experience-frontend-${environment}'
             - name: NR_NATIVE_METRICS_NO_BUILD
               value: 'true'
             - name: NEW_RELIC_NO_CONFIG_FILE
+              value: 'true'
+            - name: NEW_RELIC_LOG
+              value: STDOUT
+            - name: NEW_RELIC_DISTRIBUTED_TRACING_ENABLED
               value: 'true'
             - name: NEW_RELIC_LABELS
               value: 'Team: experience'
