@@ -3,6 +3,7 @@ import * as cookieParser from 'cookie-parser';
 import orchestrate from './services/orchestrator';
 import extractParams from './services/params-extractor';
 import { IParams } from './services/__types__/IParams';
+import { getWeather } from './api/weather';
 import logger from './services/utils/logger';
 
 const app = express();
@@ -27,5 +28,7 @@ app.get('/api/content', async (req, res, next) => {
   res.json(await orchestrate(params));
   res.end();
 });
+
+app.get('/api/weather', getWeather);
 
 export default app;

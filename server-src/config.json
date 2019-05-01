@@ -3,6 +3,7 @@
     "retryTimeout": 1000,
     "requestTimeout": 10000,
     "jsonFeedAPI": "https://www.stuff.co.nz/_json",
+    "weatherAPI": "https://www.stuff.co.nz/do/weather_for_location",
     "contentAPI": "MOCKED",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
@@ -14,6 +15,7 @@
     "retryTimeout": 1000,
     "requestTimeout": 10000,
     "jsonFeedAPI": "https://www.stuff.co.nz/_json",
+    "weatherAPI": "https://www.stuff.co.nz/do/weather_for_location",
     "contentAPI": "MOCKED",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
@@ -25,6 +27,7 @@
     "retryTimeout": 500,
     "requestTimeout": 10000,
     "jsonFeedAPI": "https://www.stuff.co.nz/_json",
+    "weatherAPI": "https://www.stuff.co.nz/do/weather_for_location",
     "contentAPI": "MOCKED",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
@@ -36,6 +39,7 @@
     "retryTimeout": 1,
     "requestTimeout": 10000,
     "jsonFeedAPI": "https://www.stuff.co.nz/_json",
+    "weatherAPI": "https://www.stuff.co.nz/do/weather_for_location",
     "contentAPI": "MOCKED",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {

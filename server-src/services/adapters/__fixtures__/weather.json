@@ -1,0 +1,50 @@
+{
+  "oneword_forecasts": [
+    {
+      "day": "Fri",
+      "max_temp": 21,
+      "min_temp": 14,
+      "oneword_forecast": "partcloudy"
+    },
+    {
+      "min_temp": 15,
+      "max_temp": 21,
+      "day": "Sat",
+      "oneword_forecast": "partcloudy"
+    },
+    {
+      "oneword_forecast": "fewshowers",
+      "max_temp": 20,
+      "min_temp": 12,
+      "day": "Sun"
+    },
+    {
+      "max_temp": 20,
+      "min_temp": 12,
+      "day": "Mon",
+      "oneword_forecast": "fewshowers"
+    }
+  ],
+  "wind_speed_unit": "km/hr",
+  "latest_reading": {
+    "temperature": 18,
+    "humidity": 83,
+    "wind_speed": 22,
+    "rain_today": "0.0",
+    "updated_nz_pretty": "26/04 10:45"
+  },
+  "humidity_unit": "%",
+  "location": "AUCKLAND",
+  "temperature_unit": "°C",
+  "rainfall_unit": "mm",
+  "forecasts": [
+    {
+      "forecast": "Cloudy periods. Might see a shower out west. Southwesterlies dying out evening.",
+      "day": "Fri"
+    },
+    {
+      "day": "Sat",
+      "forecast": "Mainly fine, but some cloud morning and evening. Northwest developing afternoon."
+    }
+  ]
+}

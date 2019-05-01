@@ -155,8 +155,9 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md). -->
 
 ## Running Jenkins build pipeline locally
-+ Install branchout as per [Shift-21 instructions](https://bitbucket.org/fairfax/stuff-shift21/src)
-+ Then set up maven to use Nexus [Shift-21_maven-via-nexus](https://bitbucket.org/fairfax/stuff-shift21/src/48036a95708a7b3e1b84cf41f1043dadd3edfc0d/docs/maven-via-nexus.md)
-+ You will need your nexus credentials (kindly ask kiwiops)
-+ login to docker `docker login https://nexus.ci.shift21.ffx.nz/` and `docker login https://docker-upload.ci.shift21.ffx.nz`
-+ Finally, on the root of the project run `branchout maven cv` 
+
+- Install branchout as per [Shift-21 instructions](https://bitbucket.org/fairfax/stuff-shift21/src)
+- Then set up maven to use Nexus [Shift-21_maven-via-nexus](https://bitbucket.org/fairfax/stuff-shift21/src/48036a95708a7b3e1b84cf41f1043dadd3edfc0d/docs/maven-via-nexus.md)
+- You will need your nexus credentials (kindly ask kiwiops)
+- login to docker `docker login https://nexus.ci.shift21.ffx.nz/` and `docker login https://docker-upload.ci.shift21.ffx.nz`
+- Finally, on the root of the project run `branchout maven cv`
