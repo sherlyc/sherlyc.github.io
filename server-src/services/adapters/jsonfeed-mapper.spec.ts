@@ -7,12 +7,16 @@ import { IRawArticle } from './__types__/IRawArticle';
 
 describe('JsonFeed Mapper', () => {
   it('should map jsonfeed to rawArticle json format', () => {
-    const data: IJsonFeedArticleList = cloneDeep(jsonfeed);
+    const data: IJsonFeedArticleList = cloneDeep(
+      jsonfeed as IJsonFeedArticleList
+    );
     expect(map(data)).toEqual(rawArticle);
   });
 
   it('should handle empty image value', () => {
-    const data: IJsonFeedArticleList = cloneDeep(jsonfeed);
+    const data: IJsonFeedArticleList = cloneDeep(
+      jsonfeed as IJsonFeedArticleList
+    );
     data.stories.forEach((story) => {
       story.images = [];
     });
@@ -25,7 +29,9 @@ describe('JsonFeed Mapper', () => {
   });
 
   it('should get Strap Image', () => {
-    const data: IJsonFeedArticleList = cloneDeep(jsonfeed);
+    const data: IJsonFeedArticleList = cloneDeep(
+      jsonfeed as IJsonFeedArticleList
+    );
     const result = map(data);
     const strapImageUrl =
       'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffLandscapeThreeByTwo.300x200.1tgvdg.png/1547607024623.jpg';
