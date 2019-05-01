@@ -23,4 +23,12 @@ describe('JsonFeed Mapper', () => {
     });
     expect(map(data)).toEqual(expected);
   });
+
+  it('should get Strap Image', () => {
+    const data: IJsonFeedArticleList = cloneDeep(jsonfeed);
+    const result = map(data);
+    const strapImageUrl =
+      'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffLandscapeThreeByTwo.300x200.1tgvdg.png/1547607024623.jpg';
+    expect(result[0].imageSrc).toBe(strapImageUrl);
+  });
 });
