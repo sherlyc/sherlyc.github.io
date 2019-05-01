@@ -1,3 +1,5 @@
+import { JsonFeedImageType } from './JsonFeedImageType';
+
 export interface IJsonFeedArticle {
   [key: string]: any;
   id: number;
@@ -10,6 +12,7 @@ export interface IJsonFeedArticle {
     variants?: Array<{
       [key: string]: any;
       src: string;
+      layout: JsonFeedImageType;
     }>;
   }>;
 }

@@ -2,6 +2,7 @@ import { IJsonFeedArticleList } from './__types__/IJsonFeedArticleList';
 import { IJsonFeedArticle } from './__types__/IJsonFeedArticle';
 import * as moment from 'moment';
 import { IRawArticle } from './__types__/IRawArticle';
+import { JsonFeedImageType } from './__types__/JsonFeedImageType';
 
 export default (jsonfeed: IJsonFeedArticleList): IRawArticle[] => {
   return jsonfeed.stories.reduce(
@@ -22,11 +23,16 @@ export default (jsonfeed: IJsonFeedArticleList): IRawArticle[] => {
 };
 
 function getImageSrc(item: IJsonFeedArticle): string | null {
-  let imageSrc = null;
   if (item.images && item.images.length > 0) {
-    if (item.images[0].variants && item.images[0].variants.length > 0) {
-      imageSrc = item.images[0].variants[0].src;
+    for (const image of item.images) {
+      if (image.variants) {
+        for (const variant of image.variants) {
+          if (variant.layout === JsonFeedImageType.STRAP_IMAGE) {
+            return variant.src;
+          }
+        }
+      }
     }
   }
-  return imageSrc;
+  return null;
 }
