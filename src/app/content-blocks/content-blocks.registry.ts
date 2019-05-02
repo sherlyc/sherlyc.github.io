@@ -30,9 +30,19 @@ export const contentBlockComponents = [
 
 const registry: {
   [key: string]: Type<IContentBlockComponent>;
-} = contentBlockComponents.reduce(
-  (final, item) => ({ ...final, [item.name]: item }),
-  {}
-);
+} = {
+  BasicArticleUnitComponent,
+  BasicArticleSectionComponent,
+  ImageLinkUnitComponent,
+  BasicAdUnitComponent,
+  BreakingNewsComponent,
+  ContainerComponent,
+  ColumnContainerComponent,
+  ErrorBlockComponent,
+  HeaderComponent,
+  ExternalContentUnitComponent,
+  WeatherUnitComponent,
+  FooterComponent
+};
 
 export default registry;
