@@ -21,5 +21,6 @@ export class StoreService implements IStoreService {
 }
 
 export enum StorageKeys {
-  DeviceId = 'deviceId'
+  DeviceId = 'deviceId',
+  WeatherLocation = 'weatherLocation'
 }

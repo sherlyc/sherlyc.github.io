@@ -4,5 +4,6 @@ export enum HandlerInputType {
   BreakingNews = 'BreakingNews',
   MidStrip = 'MidStrip',
   ExternalContent = 'ExternalContent',
-  Page = 'Page'
+  Page = 'Page',
+  Weather = 'Weather'
 }

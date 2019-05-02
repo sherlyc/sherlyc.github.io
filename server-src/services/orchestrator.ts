@@ -15,6 +15,9 @@ export default async (params: IParams): Promise<IPage> => {
           type: HandlerInputType.Page,
           items: [
             {
+              type: HandlerInputType.Weather
+            },
+            {
               type: HandlerInputType.BreakingNews,
               ignoreBreakingNews: params.ignoreBreakingNews
             },

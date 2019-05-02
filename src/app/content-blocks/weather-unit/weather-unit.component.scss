@@ -1,0 +1,19 @@
+.weatherCheckLabel {
+  p {
+    font-size: 11px;
+  }
+}
+
+.weatherLocationList {
+  li {
+    list-style-type: none;
+    cursor: pointer;
+  }
+  .weatherLocationItem {
+    color: #2ba4eb;
+  }
+}
+
+.weatherLabel {
+  cursor: pointer;
+}

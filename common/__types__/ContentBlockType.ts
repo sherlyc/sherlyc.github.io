@@ -9,5 +9,6 @@ export enum ContentBlockType {
   BasicArticleSection = 'BasicArticleSection',
   Header = 'Header',
   BreakingNews = 'BreakingNews',
-  ExternalContentUnit = 'ExternalContentUnit'
+  ExternalContentUnit = 'ExternalContentUnit',
+  WeatherUnit = 'WeatherUnit'
 }

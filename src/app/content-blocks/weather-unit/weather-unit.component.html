@@ -1,0 +1,25 @@
+<div class="weatherLabel" (click)="onToggle()">
+  <div *ngIf="!selectedLocation; else locationInfo" class="weatherCheckLabel">
+    <p>Check your weather</p>
+    <hr />
+  </div>
+  <ng-template #locationInfo>
+    <div class="weatherLocationInfo">{{ selectedLocation }}</div>
+  </ng-template>
+</div>
+
+<div *ngIf="isDropdownOpen" class="weatherLocationList">
+  <li *ngFor="let region of regions">
+    {{ region.name }}
+    <ul *ngFor="let location of region.locations">
+      <li (click)="onSelectLocation(location)">
+        <span class="weatherLocationItem">{{ location }}</span>
+        <span
+          *ngIf="selectedLocation === location"
+          class="weatherLocationTickSymbol"
+          >✓</span
+        >
+      </li>
+    </ul>
+  </li>
+</div>

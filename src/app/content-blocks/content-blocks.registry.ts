@@ -11,6 +11,7 @@ import { BreakingNewsComponent } from './breaking-news/breaking-news.component';
 import { ImageLinkUnitComponent } from './image-link-unit/image-link-unit.component';
 import { ColumnContainerComponent } from './column-container/column-container.component';
 import { ExternalContentUnitComponent } from './external-content-unit/external-content-unit.component';
+import { WeatherUnitComponent } from './weather-unit/weather-unit.component';
 
 export const contentBlockComponents = [
   BasicArticleUnitComponent,
@@ -23,21 +24,15 @@ export const contentBlockComponents = [
   ErrorBlockComponent,
   HeaderComponent,
   ExternalContentUnitComponent,
+  WeatherUnitComponent,
   FooterComponent
 ];
 
-const registry: { [key: string]: Type<IContentBlockComponent> } = {
-  BasicArticleUnitComponent,
-  BasicArticleSectionComponent,
-  ImageLinkUnitComponent,
-  BasicAdUnitComponent,
-  BreakingNewsComponent,
-  ContainerComponent,
-  ColumnContainerComponent,
-  ErrorBlockComponent,
-  HeaderComponent,
-  ExternalContentUnitComponent,
-  FooterComponent
-};
+const registry: {
+  [key: string]: Type<IContentBlockComponent>;
+} = contentBlockComponents.reduce(
+  (final, item) => ({ ...final, [item.name]: item }),
+  {}
+);
 
 export default registry;

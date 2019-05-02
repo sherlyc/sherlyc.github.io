@@ -4,6 +4,7 @@ import ArticleSection from './basic-article-section';
 import BreakingNews from './breaking-news';
 import MidStrip from './midstrip-handler';
 import ExternalContent from './external-content';
+import Weather from './weather';
 import Page from './page';
 import { handlerRunnerFunction } from './runner';
 import { IParams } from '../__types__/IParams';
@@ -21,7 +22,8 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   ExternalContent,
   ArticleSection,
   BreakingNews,
-  Page
+  Page,
+  Weather
 };
 
 export default handlerRegistry;

@@ -4,6 +4,7 @@ import { IPageHandlerInput } from './IPageHandlerInput';
 import { IBreakingNewsHandlerInput } from './IBreakingNewsHandlerInput';
 import { IMidStripHandlerInput } from './IMidStripHandlerInput';
 import { IExternalContentHandlerInput } from './IExternalContentHandlerInput';
+import { IWeatherHandlerInput } from './IWeatherHandlerInput';
 
 export type HandlerInput =
   | IBasicArticleListHandlerInput
@@ -11,4 +12,5 @@ export type HandlerInput =
   | IBasicArticleSectionHandlerInput
   | IBreakingNewsHandlerInput
   | IExternalContentHandlerInput
-  | IPageHandlerInput;
+  | IPageHandlerInput
+  | IWeatherHandlerInput;

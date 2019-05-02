@@ -9,6 +9,7 @@ import { IBreakingNews } from './IBreakingNews';
 import { IImageLinkUnit } from './IImageLinkUnit';
 import { IColumnContainer } from './IColumnContainer';
 import { IExternalContentUnit } from './IExternalContentUnit';
+import { IWeatherUnit } from './IWeatherUnit';
 
 export type IContentBlock =
   | IBasicArticleUnit
@@ -21,4 +22,5 @@ export type IContentBlock =
   | IBreakingNews
   | IFooter
   | IExternalContentUnit
-  | IHeader;
+  | IHeader
+  | IWeatherUnit;
