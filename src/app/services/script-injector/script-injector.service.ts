@@ -1,5 +1,4 @@
 import { Inject, Injectable } from '@angular/core';
-import { ScriptId } from './__types__/ScriptId';
 import { Position } from './__types__/Position';
 import { DOCUMENT } from '@angular/common';
 import { RuntimeService } from '../runtime/runtime.service';
@@ -17,7 +16,7 @@ export class ScriptInjectorService {
     private runtime: RuntimeService
   ) {}
 
-  load(id: ScriptId, src: string, position: Position, async: boolean = false) {
+  load(id: string, src: string, position: Position, async: boolean = false) {
     if (this.runtime.isServer()) {
       return;
     }

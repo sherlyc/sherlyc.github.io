@@ -4,5 +4,9 @@
   "rootDir": "../",
   "roots": ["src"],
   "coverageDirectory": "<rootDir>/src/coverage",
-  "collectCoverageFrom": ["**/*.ts"]
+  "collectCoverageFrom": ["**/*.ts"],
+  "testEnvironmentOptions": {
+    "runScripts": "dangerously",
+    "resources": "usable"
+  }
 }
