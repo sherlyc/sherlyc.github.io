@@ -5,7 +5,7 @@ import { IBasicAdUnit } from '../../../../common/__types__/IBasicAdUnit';
 @Component({
   selector: 'app-basic-ad-unit',
   template: '',
-  styles: ['']
+  styleUrls: ['./basic-ad-unit.component.scss']
 })
 export class BasicAdUnitComponent implements IContentBlockComponent, OnInit {
   @Input() input!: IBasicAdUnit;
