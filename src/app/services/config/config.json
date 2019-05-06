@@ -15,7 +15,8 @@
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
       "sampleRate": 1.0,
       "environment": "production"
-    }
+    },
+    "dtmUrl": "https://assets.adobedtm.com/10d15a330ba9eec67033fb8a57223f1f239d36eb/satelliteLib-8ff0ef0f82e3dfb69c3732fec2854ff9506f9f38-staging.js"
   },
   "staging": {
     "retryTimeout": 1000,
@@ -33,7 +34,8 @@
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
       "sampleRate": 1.0,
       "environment": "staging"
-    }
+    },
+    "dtmUrl": "https://assets.adobedtm.com/10d15a330ba9eec67033fb8a57223f1f239d36eb/satelliteLib-8ff0ef0f82e3dfb69c3732fec2854ff9506f9f38-staging.js"
   },
   "development": {
     "retryTimeout": 500,
@@ -51,7 +53,8 @@
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
       "sampleRate": 1.0,
       "environment": "development"
-    }
+    },
+    "dtmUrl": "https://assets.adobedtm.com/10d15a330ba9eec67033fb8a57223f1f239d36eb/satelliteLib-8ff0ef0f82e3dfb69c3732fec2854ff9506f9f38-staging.js"
   },
   "test": {
     "retryTimeout": 1,
@@ -69,6 +72,7 @@
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
       "sampleRate": 1.0,
       "environment": "test"
-    }
+    },
+    "dtmUrl": "https://assets.adobedtm.com/10d15a330ba9eec67033fb8a57223f1f239d36eb/satelliteLib-8ff0ef0f82e3dfb69c3732fec2854ff9506f9f38-staging.js"
   }
 }
