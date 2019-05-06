@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ScriptInjectorService } from '../script-injector/script-injector.service';
 import { ScriptId } from '../script-injector/__types__/ScriptId';
-import { Position } from '../script-injector/__types__/Position';
 import { ConfigService } from '../config/config.service';
 
 declare const window: {
@@ -18,14 +17,12 @@ export class DtmService {
   ) {}
 
   setup() {
-    this.scriptInjectorService.load(
-      ScriptId.dtm,
-      this.config.getConfig().dtmUrl
-    );
-    this.scriptInjectorService.check(ScriptId.dtm).then(() => {
-      if (window._satellite && window._satellite.pageBottom) {
-        window._satellite.pageBottom();
-      }
-    });
+    this.scriptInjectorService
+      .load(ScriptId.dtm, this.config.getConfig().dtmUrl)
+      .then(() => {
+        if (window._satellite && window._satellite.pageBottom) {
+          window._satellite.pageBottom();
+        }
+      });
   }
 }

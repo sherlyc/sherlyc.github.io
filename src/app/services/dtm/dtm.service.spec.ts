@@ -39,18 +39,15 @@ describe('DtmService', () => {
   it('should delegate to script injector to load the script after the setup', async () => {
     scriptInjectorService.load.mockImplementation(() => {
       window._satellite = { pageBottom: jest.fn() };
+      return Promise.resolve(new Event('loaded'));
     });
-    scriptInjectorService.check.mockReturnValue(
-      Promise.resolve(new Event('loaded'))
-    );
     configService.getConfig.mockReturnValue({
       dtmUrl: 'http://example/dtm.js'
     });
 
     dtmService.setup();
 
-    await scriptInjectorService.check(ScriptId.dtm);
-    expect(scriptInjectorService.load).toHaveBeenCalled();
+    await expect(scriptInjectorService.load).toHaveBeenCalled();
     expect(window._satellite.pageBottom).toHaveBeenCalled();
   });
 });

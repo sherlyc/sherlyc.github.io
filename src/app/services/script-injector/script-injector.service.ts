@@ -4,6 +4,7 @@ import { DOCUMENT } from '@angular/common';
 import { RuntimeService } from '../runtime/runtime.service';
 import { LoggerService } from '../logger/logger.service';
 import { ScriptId } from './__types__/ScriptId';
+import { promises } from 'fs';
 
 @Injectable({
   providedIn: 'root'
@@ -26,13 +27,12 @@ export class ScriptInjectorService {
     async: boolean = false
   ) {
     if (this.runtime.isServer()) {
-      this.promises[id] = new Promise<never>(() => {
+      return (this.promises[id] = new Promise<Event>(() => {
         this.logger.info('Script loading promise is not supported in server');
-      });
-      return;
+      }));
     }
     if (this.document.querySelector(`#${id}`)) {
-      return;
+      return this.promises[id];
     }
     const scriptElement: HTMLScriptElement = this.document.createElement(
       'script'
@@ -41,7 +41,7 @@ export class ScriptInjectorService {
     scriptElement.id = id;
     scriptElement.src = src;
     scriptElement.async = async;
-    this.promises[id] = new Promise((resolve, reject) => {
+    const promise = new Promise<Event>((resolve, reject) => {
       scriptElement.addEventListener('load', (evt) => {
         this.logger.info(`${id} has been loaded`);
         resolve(evt);
@@ -51,8 +51,10 @@ export class ScriptInjectorService {
         reject(err);
       });
     });
+    this.promises[id] = promise;
 
     this.appendElement(scriptElement, position);
+    return promise;
   }
 
   private appendElement(scriptElement: HTMLScriptElement, position: Position) {
@@ -68,9 +70,5 @@ export class ScriptInjectorService {
     if (targetElement) {
       targetElement.appendChild(scriptElement);
     }
-  }
-
-  check(id: ScriptId) {
-    return this.promises[id];
   }
 }
