@@ -6,7 +6,7 @@ import { IWeather } from './__types__/IWeather';
 
 describe('Weather Mapper should', () => {
   it('map weather response to rawWeather format', () => {
-    const data: IWeather = cloneDeep(weatherJson);
+    const data = cloneDeep(weatherJson) as IWeather;
 
     expect(weatherMapper(data)).toEqual(rawWeather);
   });

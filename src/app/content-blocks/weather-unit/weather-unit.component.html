@@ -1,25 +1,79 @@
-<div class="weatherLabel" (click)="onToggle()">
-  <div *ngIf="!selectedLocation; else locationInfo" class="weatherCheckLabel">
-    <p>Check your weather</p>
-    <hr />
+<div [ngClass]="{ 'location-list-visible': isDropdownOpen }">
+  <div class="weather-bar row between-xs middle-xs" (click)="onToggle()">
+    <div *ngIf="!selectedLocation" class="weatherCheckLabel">
+      <img
+        class="weather-icon weather-unknown-icon"
+        src="/assets/icons/weather/weather-forecast--unknown.svg"
+      />
+      <span>Check your weather</span>
+    </div>
+    <div *ngIf="!hasError && selectedLocation" class="weatherLocationInfo">
+      <span class="weather-location-info-label">{{ selectedLocation }}: </span>
+      <img class="weather-icon" src="{{ forecastSvgPath }}" />
+      <span>
+        {{ weatherData.temperature }}{{ weatherData.temperature_unit }}
+      </span>
+      <span>
+        <span class="weather-location-info-label">Max: </span
+        >{{ weatherData.max_temp }}{{ weatherData.temperature_unit }}
+      </span>
+      <span>
+        <span class="weather-location-info-label">Min: </span
+        >{{ weatherData.min_temp }}{{ weatherData.temperature_unit }}
+      </span>
+    </div>
+    <div *ngIf="hasError" class="weatherError">
+      <img
+        class="weather-icon weather-unknown-icon"
+        src="/assets/icons/weather/weather-forecast--unknown.svg"
+      />
+      Weather is unavailable
+    </div>
+    <span class="weather-bar-arrow"></span>
   </div>
-  <ng-template #locationInfo>
-    <div class="weatherLocationInfo">{{ selectedLocation }}</div>
-  </ng-template>
-</div>
 
-<div *ngIf="isDropdownOpen" class="weatherLocationList">
-  <li *ngFor="let region of regions">
-    {{ region.name }}
-    <ul *ngFor="let location of region.locations">
-      <li (click)="onSelectLocation(location)">
-        <span class="weatherLocationItem">{{ location }}</span>
-        <span
-          *ngIf="selectedLocation === location"
-          class="weatherLocationTickSymbol"
-          >✓</span
-        >
-      </li>
-    </ul>
-  </li>
+  <div class="weather-location-list">
+    <h2 class="location-list-header">regions</h2>
+    <div class="location-list row">
+      <ul class="location-list-left-col col-xs">
+        <div *ngFor="let region of (regions | slice: 0:firstColumnLimit)">
+          <li class="region-name">{{ region.name }}</li>
+          <ul>
+            <li
+              *ngFor="let location of region.locations"
+              (click)="onSelectLocation(location)"
+            >
+              <span class="location-name">{{ location }}</span>
+              <span *ngIf="selectedLocation === location">
+                <img
+                  class="tick-icon"
+                  src="/assets/icons/weather/weather-forecast--tick.svg"
+                />
+              </span>
+            </li>
+          </ul>
+        </div>
+      </ul>
+      <ul class="region-list-right-col col-xs">
+        <div *ngFor="let region of (regions | slice: firstColumnLimit)">
+          <li class="region-name">{{ region.name }}</li>
+          <ul>
+            <li
+              *ngFor="let location of region.locations"
+              (click)="onSelectLocation(location)"
+            >
+              <span class="location-name">{{ location }}</span>
+              <span *ngIf="selectedLocation === location">
+                <img
+                  class="tick-icon"
+                  src="/assets/icons/weather/weather-forecast--tick.svg"
+                />
+              </span>
+            </li>
+          </ul>
+        </div>
+      </ul>
+      <div (click)="onToggle()" class="close-button"></div>
+    </div>
+  </div>
 </div>
