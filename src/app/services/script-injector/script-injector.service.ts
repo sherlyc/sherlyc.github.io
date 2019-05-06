@@ -33,14 +33,14 @@ export class ScriptInjectorService {
     scriptElement.src = src;
     scriptElement.async = async;
     this.promises[id] = new Promise((resolve, reject) => {
-      scriptElement.onload = (evt) => {
+      scriptElement.addEventListener('load', (evt) => {
         this.logger.info(`${id} has been loaded`);
         resolve(evt);
-      };
-      scriptElement.onerror = (err) => {
+      });
+      scriptElement.addEventListener('error', (err) => {
         this.logger.warn(`${id} fails to be loaded: ${err}`);
         reject(err);
-      };
+      });
     });
 
     this.appendElement(scriptElement, position);
