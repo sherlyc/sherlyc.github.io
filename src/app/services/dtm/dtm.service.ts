@@ -16,13 +16,14 @@ export class DtmService {
     private config: ConfigService
   ) {}
 
-  setup() {
-    this.scriptInjectorService
-      .load(ScriptId.dtm, this.config.getConfig().dtmUrl)
-      .then(() => {
-        if (window._satellite && window._satellite.pageBottom) {
-          window._satellite.pageBottom();
-        }
-      });
+  async setup() {
+    await this.scriptInjectorService.load(
+      ScriptId.dtm,
+      this.config.getConfig().dtmUrl
+    );
+
+    if (window._satellite && window._satellite.pageBottom) {
+      window._satellite.pageBottom();
+    }
   }
 }

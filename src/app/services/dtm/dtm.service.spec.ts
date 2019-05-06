@@ -45,9 +45,9 @@ describe('DtmService', () => {
       dtmUrl: 'http://example/dtm.js'
     });
 
-    dtmService.setup();
+    await dtmService.setup();
 
-    await expect(scriptInjectorService.load).toHaveBeenCalled();
+    expect(scriptInjectorService.load).toHaveBeenCalled();
     expect(window._satellite.pageBottom).toHaveBeenCalled();
   });
 });
