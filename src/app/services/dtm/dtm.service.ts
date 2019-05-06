@@ -20,8 +20,7 @@ export class DtmService {
   setup() {
     this.scriptInjectorService.load(
       ScriptId.dtm,
-      this.config.getConfig().dtmUrl,
-      Position.HEAD
+      this.config.getConfig().dtmUrl
     );
     this.scriptInjectorService.check(ScriptId.dtm).then(() => {
       if (window._satellite && window._satellite.pageBottom) {

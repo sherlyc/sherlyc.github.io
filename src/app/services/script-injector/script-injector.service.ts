@@ -19,7 +19,12 @@ export class ScriptInjectorService {
     private logger: LoggerService
   ) {}
 
-  load(id: string, src: string, position: Position, async: boolean = false) {
+  load(
+    id: string,
+    src: string,
+    position: Position = Position.HEAD,
+    async: boolean = false
+  ) {
     if (this.runtime.isServer()) {
       this.promises[id] = new Promise<never>(() => {
         this.logger.info('Script loading promise is not supported in server');
