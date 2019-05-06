@@ -4,13 +4,12 @@ import { DOCUMENT } from '@angular/common';
 import { RuntimeService } from '../runtime/runtime.service';
 import { LoggerService } from '../logger/logger.service';
 import { ScriptId } from './__types__/ScriptId';
-import { promises } from 'fs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScriptInjectorService {
-  promises: {
+  private promises: {
     [key: string]: Promise<Event>;
   } = {};
 
@@ -22,6 +21,9 @@ export class ScriptInjectorService {
 
   load(id: string, src: string, position: Position, async: boolean = false) {
     if (this.runtime.isServer()) {
+      this.promises[id] = new Promise<never>(() => {
+        this.logger.info('Script loading promise is not supported in server');
+      });
       return;
     }
     if (this.document.querySelector(`#${id}`)) {
