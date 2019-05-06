@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Position } from './__types__/Position';
 import { DOCUMENT } from '@angular/common';
 import { RuntimeService } from '../runtime/runtime.service';
+import { LoggerService } from '../logger/logger.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class ScriptInjectorService {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private runtime: RuntimeService
+    private runtime: RuntimeService,
+    private logger: LoggerService
   ) {}
 
   load(id: string, src: string, position: Position, async: boolean = false) {
@@ -31,8 +33,14 @@ export class ScriptInjectorService {
     scriptElement.src = src;
     scriptElement.async = async;
     this.promises[id] = new Promise((resolve, reject) => {
-      scriptElement.onload = resolve;
-      scriptElement.onerror = reject;
+      scriptElement.onload = (evt) => {
+        this.logger.info(`${id} has been loaded`);
+        resolve(evt);
+      };
+      scriptElement.onerror = (err) => {
+        this.logger.warn(`${id} fails to be loaded: ${err}`);
+        reject(err);
+      };
     });
 
     this.appendElement(scriptElement, position);

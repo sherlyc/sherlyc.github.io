@@ -4,6 +4,7 @@ import { ScriptInjectorService } from './script-injector.service';
 import { mockService, ServiceMock } from '../mocks/MockService';
 import { RuntimeService } from '../runtime/runtime.service';
 import { Position } from './__types__/Position';
+import { LoggerService } from '../logger/logger.service';
 
 describe('ScriptInjectorService', () => {
   let runtimeServiceMock: ServiceMock<RuntimeService>;
@@ -15,6 +16,10 @@ describe('ScriptInjectorService', () => {
         {
           provide: RuntimeService,
           useClass: mockService(RuntimeService)
+        },
+        {
+          provide: LoggerService,
+          useClass: mockService(LoggerService)
         }
       ]
     });
@@ -46,7 +51,6 @@ describe('ScriptInjectorService', () => {
     const src = '__fixtures__/test-script.js';
     scriptInjectorService.load(id, src, Position.HEAD);
     const element = document.getElementById('test-script-id');
-    console.log(document.head!.innerHTML);
     expect(element).toBeTruthy();
     expect(element).toBeInstanceOf(HTMLScriptElement);
     expect(element!.getAttribute('src')).toEqual(src);
@@ -64,16 +68,4 @@ describe('ScriptInjectorService', () => {
     expect(element!.getAttribute('src')).toEqual(src);
     expect(element!.parentElement).toBeInstanceOf(HTMLBodyElement);
   });
-
-  // it('should resolve the promise when script is loaded', async () => {
-  //   runtimeServiceMock.isServer.mockReturnValue(false);
-  //   const id = 'test-script-id';
-  //   const src = 'http://127.0.0.1:8080/test-script.js';
-  //   scriptInjectorService.load(id, src, Position.HEAD);
-  //   const element = document.getElementById('test-script-id');
-  //   expect(element).toBeTruthy();
-  //   await expect(scriptInjectorService.promises[id]).resolves.toBeInstanceOf(
-  //     Event
-  //   );
-  // });
 });
