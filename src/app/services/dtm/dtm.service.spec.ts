@@ -4,6 +4,11 @@ import { DtmService } from './dtm.service';
 import { ScriptInjectorService } from '../script-injector/script-injector.service';
 import { mockService, ServiceMock } from '../mocks/MockService';
 import { ConfigService } from '../config/config.service';
+import { ScriptId } from '../script-injector/__types__/ScriptId';
+
+declare const window: {
+  _satellite: any;
+};
 
 describe('DtmService', () => {
   let dtmService: DtmService;
@@ -31,13 +36,21 @@ describe('DtmService', () => {
     expect(dtmService).toBeTruthy();
   });
 
-  it('should delegate to script injector to load the script after the setup', () => {
+  it('should delegate to script injector to load the script after the setup', async () => {
+    scriptInjectorService.load.mockImplementation(() => {
+      window._satellite = { pageBottom: jest.fn() };
+    });
+    scriptInjectorService.check.mockReturnValue(
+      Promise.resolve(new Event('loaded'))
+    );
     configService.getConfig.mockReturnValue({
       dtmUrl: 'http://example/dtm.js'
     });
 
     dtmService.setup();
 
+    await scriptInjectorService.check(ScriptId.dtm);
     expect(scriptInjectorService.load).toHaveBeenCalled();
+    expect(window._satellite.pageBottom).toHaveBeenCalled();
   });
 });
