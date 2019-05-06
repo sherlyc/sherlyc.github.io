@@ -4,7 +4,6 @@ import { DtmService } from './dtm.service';
 import { ScriptInjectorService } from '../script-injector/script-injector.service';
 import { mockService, ServiceMock } from '../mocks/MockService';
 import { ConfigService } from '../config/config.service';
-import { ScriptId } from '../script-injector/__types__/ScriptId';
 
 declare const window: {
   _satellite: any;

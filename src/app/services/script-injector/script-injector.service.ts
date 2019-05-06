@@ -3,8 +3,6 @@ import { Position } from './__types__/Position';
 import { DOCUMENT } from '@angular/common';
 import { RuntimeService } from '../runtime/runtime.service';
 import { LoggerService } from '../logger/logger.service';
-import { ScriptId } from './__types__/ScriptId';
-import { promises } from 'fs';
 
 @Injectable({
   providedIn: 'root'
