@@ -16,7 +16,7 @@
       "sampleRate": 1.0,
       "environment": "production"
     },
-    "dtmUrl": "https://assets.adobedtm.com/10d15a330ba9eec67033fb8a57223f1f239d36eb/satelliteLib-8ff0ef0f82e3dfb69c3732fec2854ff9506f9f38-staging.js"
+    "dtmUrl": "https://assets.adobedtm.com/10d15a330ba9eec67033fb8a57223f1f239d36eb/satelliteLib-8ff0ef0f82e3dfb69c3732fec2854ff9506f9f38.js"
   },
   "staging": {
     "retryTimeout": 1000,
