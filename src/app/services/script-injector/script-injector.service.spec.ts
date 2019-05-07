@@ -40,7 +40,9 @@ describe('ScriptInjectorService', () => {
     runtimeServiceMock.isServer.mockReturnValue(true);
     const id = 'test-script-id';
     const src = '__fixtures__/test-script.js';
+
     scriptInjectorService.load(id, src, Position.HEAD);
+
     const element = document.getElementById('test-script-id');
     expect(element).toBeFalsy();
   });
@@ -49,7 +51,9 @@ describe('ScriptInjectorService', () => {
     runtimeServiceMock.isServer.mockReturnValue(false);
     const id = 'test-script-id';
     const src = '__fixtures__/test-script.js';
+
     scriptInjectorService.load(id, src, Position.HEAD);
+
     const element = document.getElementById('test-script-id');
     expect(element).toBeTruthy();
     expect(element).toBeInstanceOf(HTMLScriptElement);
@@ -61,7 +65,9 @@ describe('ScriptInjectorService', () => {
     runtimeServiceMock.isServer.mockReturnValue(false);
     const id = 'test-script-id';
     const src = '__fixtures__/test-script.js';
+
     scriptInjectorService.load(id, src, Position.BOTTOM);
+
     const element = document.getElementById('test-script-id');
     expect(element).toBeTruthy();
     expect(element).toBeInstanceOf(HTMLScriptElement);
