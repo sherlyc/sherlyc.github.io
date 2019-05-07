@@ -15,4 +15,5 @@ export interface IEnvironmentDefinition {
   browserOverrides?: Partial<
     Omit<IEnvironmentDefinition, 'serverOverrides' | 'browserOverrides'>
   >;
+  dtmUrl: string;
 }
