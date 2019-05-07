@@ -10,7 +10,7 @@ describe('JsonFeed Mapper', () => {
     const data: IJsonFeedArticleList = cloneDeep(
       jsonfeed as IJsonFeedArticleList
     );
-    expect(map(data)).toEqual(rawArticle);
+    expect(map(data.stories)).toEqual(rawArticle);
   });
 
   it('should handle empty image value', () => {
@@ -25,14 +25,14 @@ describe('JsonFeed Mapper', () => {
     Object.values(expected).forEach((article: IRawArticle) => {
       article.imageSrc = null;
     });
-    expect(map(data)).toEqual(expected);
+    expect(map(data.stories)).toEqual(expected);
   });
 
   it('should get Strap Image', () => {
     const data: IJsonFeedArticleList = cloneDeep(
       jsonfeed as IJsonFeedArticleList
     );
-    const result = map(data);
+    const result = map(data.stories);
     const strapImageUrl =
       'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffLandscapeThreeByTwo.300x200.1tgvdg.png/1547607024623.jpg';
     expect(result[0].imageSrc).toBe(strapImageUrl);

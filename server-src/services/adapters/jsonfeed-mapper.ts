@@ -4,8 +4,8 @@ import * as moment from 'moment';
 import { IRawArticle } from './__types__/IRawArticle';
 import { JsonFeedImageType } from './__types__/JsonFeedImageType';
 
-export default (jsonfeed: IJsonFeedArticleList): IRawArticle[] => {
-  return jsonfeed.stories.reduce(
+export default (articles: IJsonFeedArticle[]): IRawArticle[] => {
+  return articles.reduce(
     (final, item) => {
       final.push({
         id: String(item.id),

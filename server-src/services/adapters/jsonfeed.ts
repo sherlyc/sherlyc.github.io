@@ -15,5 +15,5 @@ export default async (
     total,
     params
   );
-  return mapToIRawArticleList(jsonFeed);
+  return mapToIRawArticleList(jsonFeed.stories);
 };
