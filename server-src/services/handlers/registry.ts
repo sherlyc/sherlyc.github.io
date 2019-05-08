@@ -3,6 +3,7 @@ import ArticleList from './basic-article-list';
 import ArticleSection from './basic-article-section';
 import BreakingNews from './breaking-news';
 import MidStrip from './midstrip-handler';
+import MiniMidStrip from './mini-midstrip-handler';
 import ExternalContent from './external-content';
 import Weather from './weather';
 import Page from './page';
@@ -19,6 +20,7 @@ type handlerFunction = (
 const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   ArticleList,
   MidStrip,
+  MiniMidStrip,
   ExternalContent,
   ArticleSection,
   BreakingNews,

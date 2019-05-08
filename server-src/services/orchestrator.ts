@@ -37,8 +37,7 @@ export default async (params: IParams): Promise<IPage> => {
               url: 'https://cdn.neighbourly.co.nz/stuff/strap/empty'
             },
             {
-              type: HandlerInputType.MidStrip,
-              totalArticles: 2
+              type: HandlerInputType.MiniMidStrip
             },
             {
               type: HandlerInputType.ArticleSection,

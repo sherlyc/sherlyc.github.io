@@ -1,9 +1,11 @@
-import { getMidStrip, getArticleList } from './jsonfeed';
+import { getMidStrip, getArticleList, getMiniMidStrip } from './jsonfeed';
 import * as rawArticleList from './__fixtures__/raw-article-list.json';
 import * as rawMidStrip from './__fixtures__/raw-mid-strip.json';
+import * as rawMiniMidStrip from './__fixtures__/raw-mini-mid-strip.json';
 import http from '../utils/http';
 import * as jsonfeed from './__fixtures__/jsonfeed.json';
 import * as midStripData from './__fixtures__/mid-strip.json';
+import * as miniMidStripData from './__fixtures__/mini-mid-strip.json';
 import { Section } from '../section';
 import { IParams } from '../__types__/IParams';
 
@@ -33,6 +35,16 @@ describe('json feed service', () => {
       (http(params).get as jest.Mock).mockResolvedValue({ data: midStripData });
 
       expect(await getMidStrip(2, params)).toEqual(rawMidStrip);
+    });
+  });
+
+  describe('mini mid strip service', () => {
+    it('should provide mini mid strip data', async () => {
+      (http(params).get as jest.Mock).mockResolvedValue({
+        data: miniMidStripData
+      });
+
+      expect(await getMiniMidStrip(params)).toEqual(rawMiniMidStrip);
     });
   });
 });
