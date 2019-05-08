@@ -1,6 +1,6 @@
 import { IContentBlock } from '../../../common/__types__/IContentBlock';
 import { ContentBlockType } from '../../../common/__types__/ContentBlockType';
-import getRawArticleList, { getMidStrip } from '../adapters/jsonfeed';
+import { getMidStrip } from '../adapters/jsonfeed';
 import { IMidStripHandlerInput } from './__types__/IMidStripHandlerInput';
 import { handlerRunnerFunction } from './runner';
 import { IImageLinkUnit } from '../../../common/__types__/IImageLinkUnit';

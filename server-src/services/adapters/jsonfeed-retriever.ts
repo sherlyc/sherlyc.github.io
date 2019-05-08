@@ -7,7 +7,7 @@ import { URL } from 'url';
 import { IParams } from '../__types__/IParams';
 import { IMidStrip } from './__types__/IMidStrip';
 
-async function apiCall(
+async function requestArticleList(
   section: Section,
   total: number,
   params: IParams
@@ -17,19 +17,26 @@ async function apiCall(
   return response.data;
 }
 
-export default (section: Section, total: number, params: IParams) =>
-  retry(() => apiCall(section, total, params), params);
-
-export const retrieveMidStrip = async (
+export const retrieveArticleList = async (
+  section: Section,
   total: number,
   params: IParams
-): Promise<IMidStrip> => {
-  const midStripPath = 'listasset/63769065';
-  const url: URL = new URL(`${config.jsonFeedAPI}/${midStripPath}`);
+) => retry(() => requestArticleList(section, total, params), params);
+
+async function requestMidStrip(
+  total: number,
+  params: IParams
+): Promise<IMidStrip> {
+  const url: URL = new URL(
+    `${config.jsonFeedAPI}/listasset/${config.midStripListAssetId}`
+  );
   const response = await http(params).get<IMidStrip>(url.href);
 
   return {
     ...response.data,
     assets: response.data.assets.slice(0, total)
   };
-};
+}
+
+export const retrieveMidStrip = async (total: number, params: IParams) =>
+  retry(() => requestMidStrip(total, params), params);

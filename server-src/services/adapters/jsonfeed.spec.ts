@@ -1,4 +1,4 @@
-import getRawArticleList, { getMidStrip } from './jsonfeed';
+import { getMidStrip, getArticleList } from './jsonfeed';
 import * as rawArticleList from './__fixtures__/raw-article-list.json';
 import * as rawMidStrip from './__fixtures__/raw-mid-strip.json';
 import http from '../utils/http';
@@ -22,7 +22,7 @@ describe('json feed service', () => {
     it('should provide a raw article list', async () => {
       (http(params).get as jest.Mock).mockResolvedValue({ data: jsonfeed });
 
-      expect(await getRawArticleList(Section.Latest, 2, params)).toEqual(
+      expect(await getArticleList(Section.Latest, 2, params)).toEqual(
         rawArticleList
       );
     });

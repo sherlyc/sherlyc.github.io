@@ -1,4 +1,4 @@
-import retrieve, { retrieveMidStrip } from './jsonfeed-retriever';
+import { retrieveMidStrip, retrieveArticleList } from './jsonfeed-retriever';
 import * as jsonfeed from './__fixtures__/jsonfeed.json';
 import * as midStripData from './__fixtures__/mid-strip.json';
 import http from '../utils/http';
@@ -20,13 +20,17 @@ describe('JsonFeed Retriever', () => {
   describe('Article List', () => {
     it('should respond with the article list', async () => {
       (http(params).get as jest.Mock).mockResolvedValue({ data: jsonfeed });
-      expect(await retrieve(Section.Latest, 6, params)).toEqual(jsonfeed);
+      expect(await retrieveArticleList(Section.Latest, 6, params)).toEqual(
+        jsonfeed
+      );
     });
 
     it('should not retrieve the article list when jsonfeed request fails', async () => {
       const error = new Error('AJAX error');
       (http(params).get as jest.Mock).mockRejectedValue(error);
-      await expect(retrieve(Section.Latest, 6, params)).rejects.toEqual(error);
+      await expect(
+        retrieveArticleList(Section.Latest, 6, params)
+      ).rejects.toEqual(error);
     });
   });
 

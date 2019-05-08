@@ -2,7 +2,7 @@ import { IContentBlock } from '../../../common/__types__/IContentBlock';
 import { IBasicArticleUnit } from '../../../common/__types__/IBasicArticleUnit';
 import { ContentBlockType } from '../../../common/__types__/ContentBlockType';
 import { IBasicAdUnit } from '../../../common/__types__/IBasicAdUnit';
-import getRawArticleList from '../adapters/jsonfeed';
+import { getArticleList } from '../adapters/jsonfeed';
 import { IBasicArticleListHandlerInput } from './__types__/IBasicArticleListHandlerInput';
 import { handlerRunnerFunction } from './runner';
 import { IParams } from '../__types__/IParams';
@@ -16,7 +16,7 @@ export default async function(
     type: ContentBlockType.BasicAdUnit
   };
 
-  const rawArticles = (await getRawArticleList(
+  const rawArticles = (await getArticleList(
     sectionId,
     totalArticles,
     params

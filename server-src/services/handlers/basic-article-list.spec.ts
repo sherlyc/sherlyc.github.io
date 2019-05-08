@@ -2,7 +2,7 @@ import basicArticleListHandler from './basic-article-list';
 import { Section } from '../section';
 import * as rawArticleList from './__fixtures__/raw-article-list.json';
 import * as basicArticleListHandlerOutput from './__fixtures__/basic-article-list-handler-output.json';
-import jsonfeed from '../adapters/jsonfeed';
+import { getArticleList } from '../adapters/jsonfeed';
 import { IParams } from '../__types__/IParams';
 import { HandlerInputType } from './__types__/HandlerInputType';
 
@@ -18,7 +18,7 @@ describe('BasicArticleListHandler', () => {
     const sectionId = Section.Business;
     const totalArticles = 1;
     const totalAdUnits = 2;
-    (jsonfeed as jest.Mock).mockResolvedValue(rawArticleList);
+    (getArticleList as jest.Mock).mockResolvedValue(rawArticleList);
 
     const handlerRunnerMock = jest.fn();
 
@@ -42,7 +42,7 @@ describe('BasicArticleListHandler', () => {
     const sectionId = Section.Business;
     const totalArticles = 2;
     const totalAdUnits = 3;
-    (jsonfeed as jest.Mock).mockResolvedValue(rawArticleList);
+    (getArticleList as jest.Mock).mockResolvedValue(rawArticleList);
 
     const handlerRunnerMock = jest.fn();
 
