@@ -28,7 +28,6 @@ export default async (params: IParams): Promise<IPage> => {
             },
             {
               type: HandlerInputType.MidStrip,
-              sectionId: Section.Latest,
               totalArticles: 6
             },
             {
