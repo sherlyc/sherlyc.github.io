@@ -37,6 +37,10 @@ export default async (params: IParams): Promise<IPage> => {
               url: 'https://cdn.neighbourly.co.nz/stuff/strap/empty'
             },
             {
+              type: HandlerInputType.MidStrip,
+              totalArticles: 2
+            },
+            {
               type: HandlerInputType.ArticleSection,
               displayName: 'Sport',
               displayNameColor: 'scarlet',
