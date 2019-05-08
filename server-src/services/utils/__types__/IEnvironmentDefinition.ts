@@ -5,6 +5,7 @@ export interface IEnvironmentDefinition {
   requestTimeout: number;
   jsonFeedAPI: string;
   midStripListAssetId: string;
+  miniMidStripListAssetId: string;
   weatherAPI: string;
   contentAPI: string;
   maxArticlesToRetrieve: number;

@@ -40,3 +40,15 @@ async function requestMidStrip(
 
 export const retrieveMidStrip = async (total: number, params: IParams) =>
   retry(() => requestMidStrip(total, params), params);
+
+async function requestMiniMidStrip(params: IParams): Promise<IMidStrip> {
+  const url: URL = new URL(
+    `${config.jsonFeedAPI}/listasset/${config.miniMidStripListAssetId}`
+  );
+  const response = await http(params).get<IMidStrip>(url.href);
+
+  return response.data;
+}
+
+export const retrieveMiniMidStrip = async (params: IParams) =>
+  retry(() => requestMiniMidStrip(params), params);

@@ -1,6 +1,11 @@
-import { retrieveMidStrip, retrieveArticleList } from './jsonfeed-retriever';
+import {
+  retrieveMidStrip,
+  retrieveArticleList,
+  retrieveMiniMidStrip
+} from './jsonfeed-retriever';
 import * as jsonfeed from './__fixtures__/jsonfeed.json';
 import * as midStripData from './__fixtures__/mid-strip.json';
+import * as miniMidStripData from './__fixtures__/mini-mid-strip.json';
 import http from '../utils/http';
 import { Section } from '../section';
 import { IParams } from '../__types__/IParams';
@@ -64,6 +69,23 @@ describe('JsonFeed Retriever', () => {
 
       const articles = midStripJsonFeed.assets;
       expect(articles.length).toEqual(2);
+    });
+  });
+
+  describe('Mini midstrip', () => {
+    it('should respond with mid strip data', async () => {
+      (http(params).get as jest.Mock).mockResolvedValue({
+        data: miniMidStripData
+      });
+
+      expect(await retrieveMiniMidStrip(params)).toEqual(miniMidStripData);
+    });
+
+    it('should throw error when jsonfeed request for mini mid strip fails', async () => {
+      const error = new Error('AJAX error');
+      (http(params).get as jest.Mock).mockRejectedValue(error);
+
+      await expect(retrieveMiniMidStrip(params)).rejects.toEqual(error);
     });
   });
 });

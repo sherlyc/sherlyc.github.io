@@ -1,4 +1,8 @@
-import { retrieveMidStrip, retrieveArticleList } from './jsonfeed-retriever';
+import {
+  retrieveMidStrip,
+  retrieveArticleList,
+  retrieveMiniMidStrip
+} from './jsonfeed-retriever';
 import mapToIRawArticleList from './jsonfeed-mapper';
 import { IJsonFeedArticleList } from './__types__/IJsonFeedArticleList';
 import { IRawArticle } from './__types__/IRawArticle';
@@ -25,4 +29,11 @@ export const getMidStrip = async (
 ): Promise<IRawArticle[]> => {
   const midStripJsonFeed: IMidStrip = await retrieveMidStrip(total, params);
   return mapToIRawArticleList(midStripJsonFeed.assets);
+};
+
+export const getMiniMidStrip = async (
+  params: IParams
+): Promise<IRawArticle[]> => {
+  const miniMidStripJsonFeed: IMidStrip = await retrieveMiniMidStrip(params);
+  return mapToIRawArticleList(miniMidStripJsonFeed.assets);
 };
