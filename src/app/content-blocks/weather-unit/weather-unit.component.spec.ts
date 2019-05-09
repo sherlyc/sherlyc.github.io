@@ -421,5 +421,19 @@ describe('WeatherUnitComponent', () => {
         'weather.bar': 'closed'
       });
     });
+
+    it('should push event when weather bar is closed with X button', () => {
+      const { fixture, component } = setupComponent();
+      component.isDropdownOpen = true;
+      fixture.detectChanges();
+
+      fixture.debugElement.query(By.css('.close-button"')).nativeElement.click();
+      fixture.detectChanges();
+
+      expect(dataLayerService.pushEvent).toHaveBeenCalledWith({
+        type: 'analytics',
+        event: 'weather.location.exit'
+      });
+    });
   });
 });
