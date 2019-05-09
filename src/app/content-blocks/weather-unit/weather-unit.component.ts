@@ -11,7 +11,6 @@ import {
 import { StoreService, StorageKeys } from '../../services/store/store.service';
 import { RuntimeService } from '../../services/runtime/runtime.service';
 import { mapForecastToIcon } from './forecast-icon.mapper';
-import { IAnalyticsEvent } from '../../services/data-layer/__types__/IAnalyticsEvent';
 
 @Component({
   selector: 'app-weather-unit',
@@ -49,9 +48,19 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
     }
   }
 
-  onToggle(isExitClicked = false) {
-    this.isDropdownOpen = !this.isDropdownOpen;
-    this.trackAnalytics(isExitClicked);
+  onWeatherBarClick() {
+    this.toggleDropdown();
+    this.analyticsService.pushEvent({
+      event: 'weather.location.bar',
+      'weather.bar': this.isDropdownOpen ? 'opened' : 'closed'
+    });
+  }
+
+  onExit() {
+    this.toggleDropdown();
+    this.analyticsService.pushEvent({
+      event: 'weather.location.exit'
+    });
   }
 
   onSelectLocation(location: string) {
@@ -62,7 +71,11 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
     this.selectedLocation = location as WeatherLocations;
     this.storeService.set(StorageKeys.WeatherLocation, location);
     this.getWeatherData(location);
-    this.onToggle();
+    this.toggleDropdown();
+  }
+
+  private toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
   }
 
   private getWeatherData(location: string) {
@@ -72,21 +85,7 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
         this.hasError = false;
         this.forecastSvgPath = mapForecastToIcon(weatherData.condition);
       },
-      (error) => (this.hasError = true)
+      () => (this.hasError = true)
     );
-  }
-
-  private trackAnalytics(isExitClicked: boolean) {
-    if (isExitClicked) {
-      this.analyticsService.pushEvent({
-        event: 'weather.location.exit'
-      });
-      return;
-    }
-
-    this.analyticsService.pushEvent({
-      event: 'weather.location.bar',
-      'weather.bar': this.isDropdownOpen ? 'opened' : 'closed'
-    });
   }
 }
