@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { WeatherUnitComponent } from './weather-unit.component';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 import { By, TransferState } from '@angular/platform-browser';
@@ -18,6 +18,8 @@ describe('WeatherUnitComponent', () => {
   let weatherRetrieverService: ServiceMock<WeatherRetrieverService>;
   let dataLayerService: ServiceMock<DataLayerService>;
   const weatherData = weatherDataJson as IWeatherResponse;
+  let fixture: ComponentFixture<WeatherUnitComponent>;
+  let component: WeatherUnitComponent;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -51,24 +53,19 @@ describe('WeatherUnitComponent', () => {
     weatherRetrieverService = TestBed.get(WeatherRetrieverService);
     dataLayerService = TestBed.get(DataLayerService);
     runtimeService.isBrowser.mockReturnValue(true);
-  });
 
-  const setupComponent = () => {
-    const fixture = TestBed.createComponent(WeatherUnitComponent);
-    const component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WeatherUnitComponent);
+    component = fixture.componentInstance;
     component.input = {
       type: ContentBlockType.WeatherUnit
     };
-    return { fixture, component };
-  };
+  });
 
   it('should create', () => {
-    const { component } = setupComponent();
     expect(component).toBeTruthy();
   });
 
   it('should display region list when weather label is clicked', () => {
-    const { component, fixture } = setupComponent();
     component.isDropdownOpen = false;
     expect(
       fixture.debugElement.query(By.css('.location-list-visible'))
@@ -83,7 +80,6 @@ describe('WeatherUnitComponent', () => {
   });
 
   it('should display 2 columns of region list when weather label is clicked', () => {
-    const { component, fixture } = setupComponent();
     component.isDropdownOpen = false;
     expect(fixture.debugElement.query(By.css('.regionsList'))).toBeFalsy();
 
@@ -99,7 +95,6 @@ describe('WeatherUnitComponent', () => {
   });
 
   it('should hide region list when weather label is clicked and region list is already displayed', () => {
-    const { component, fixture } = setupComponent();
     component.isDropdownOpen = true;
     fixture.detectChanges();
     expect(
@@ -117,7 +112,6 @@ describe('WeatherUnitComponent', () => {
   it('should display tick for selected location', () => {
     weatherRetrieverService.getWeather.mockReturnValue(of(weatherData));
     storeService.get.mockReturnValue(WeatherLocations.Auckland);
-    const { component, fixture } = setupComponent();
     component.regions = [
       {
         name: 'Auckland',
@@ -131,7 +125,6 @@ describe('WeatherUnitComponent', () => {
   });
 
   it('should not display tick for non-selected location', () => {
-    const { component, fixture } = setupComponent();
     component.regions = [
       {
         name: 'Auckland',
@@ -147,7 +140,6 @@ describe('WeatherUnitComponent', () => {
 
   it('should save last selected location and retrieve weather data for that location', () => {
     weatherRetrieverService.getWeather.mockReturnValue(of(weatherData));
-    const { component, fixture } = setupComponent();
     component.regions = [
       {
         name: 'Auckland',
@@ -171,7 +163,6 @@ describe('WeatherUnitComponent', () => {
   it('should retrieve last selected location on load if there is a location', () => {
     storeService.get.mockReturnValue(WeatherLocations.Auckland);
     weatherRetrieverService.getWeather.mockReturnValue(of(weatherData));
-    const { fixture } = setupComponent();
     fixture.detectChanges();
 
     expect(
@@ -186,7 +177,6 @@ describe('WeatherUnitComponent', () => {
 
   it('should show the weather condition svg icon of current location', () => {
     weatherRetrieverService.getWeather.mockReturnValue(of(weatherData));
-    const { component, fixture } = setupComponent();
     component.regions = [
       {
         name: 'Auckland',
@@ -208,7 +198,6 @@ describe('WeatherUnitComponent', () => {
   it('should display weather info on load if there is a selected location', () => {
     weatherRetrieverService.getWeather.mockReturnValue(of(weatherData));
     storeService.get.mockReturnValue(WeatherLocations.Auckland);
-    const { component, fixture } = setupComponent();
     component.weatherData = weatherData;
     fixture.detectChanges();
 
@@ -232,7 +221,6 @@ describe('WeatherUnitComponent', () => {
 
   it('should not retrieve last selected location on load if there is no location saved', () => {
     storeService.get.mockReturnValue('');
-    const { fixture } = setupComponent();
     fixture.detectChanges();
 
     expect(
@@ -245,7 +233,6 @@ describe('WeatherUnitComponent', () => {
 
   it('should collapse location list after selecting a location', () => {
     weatherRetrieverService.getWeather.mockReturnValue(of(weatherData));
-    const { component, fixture } = setupComponent();
     component.isDropdownOpen = true;
     fixture.detectChanges();
 
@@ -265,7 +252,6 @@ describe('WeatherUnitComponent', () => {
     weatherRetrieverService.getWeather.mockReturnValue(
       throwError({ status: 500, statusText: 'Internal Server error' })
     );
-    const { fixture } = setupComponent();
     fixture.detectChanges();
 
     expect(
@@ -282,7 +268,6 @@ describe('WeatherUnitComponent', () => {
 
   it('should show weather unavailable if cannot retrieve selected weather info after selecting new location', () => {
     storeService.get.mockReturnValue(null);
-    const { component, fixture } = setupComponent();
     component.isDropdownOpen = true;
     component.regions = [
       {
@@ -315,7 +300,6 @@ describe('WeatherUnitComponent', () => {
     weatherRetrieverService.getWeather.mockReturnValue(
       throwError({ status: 500, statusText: 'Internal Server error' })
     );
-    const { component, fixture } = setupComponent();
     component.isDropdownOpen = true;
     component.regions = [
       {
@@ -361,7 +345,6 @@ describe('WeatherUnitComponent', () => {
 
   it('should show check weather if there is no selected location', () => {
     storeService.get.mockReturnValue(null);
-    const { fixture } = setupComponent();
     fixture.detectChanges();
 
     expect(
@@ -375,7 +358,6 @@ describe('WeatherUnitComponent', () => {
   });
 
   it('should close region list when clicking exit button', () => {
-    const { fixture, component } = setupComponent();
     component.isDropdownOpen = true;
     fixture.detectChanges();
 
@@ -392,8 +374,7 @@ describe('WeatherUnitComponent', () => {
   });
 
   describe('Analytics', () => {
-    it('should push event when weather bar is clicked to open it', () => {
-      const { fixture, component } = setupComponent();
+    it('should push analytic event when weather bar is clicked to open it', () => {
       component.isDropdownOpen = false;
       fixture.detectChanges();
 
@@ -406,8 +387,7 @@ describe('WeatherUnitComponent', () => {
       });
     });
 
-    it('should push event when weather bar is clicked to close it', () => {
-      const { fixture, component } = setupComponent();
+    it('should push analytic event when weather bar is clicked to close it', () => {
       component.isDropdownOpen = true;
       fixture.detectChanges();
 
@@ -420,8 +400,7 @@ describe('WeatherUnitComponent', () => {
       });
     });
 
-    it('should push event when weather bar is closed with X button', () => {
-      const { fixture, component } = setupComponent();
+    it('should push analytic event when weather bar is closed with X button', () => {
       component.isDropdownOpen = true;
       fixture.detectChanges();
 
@@ -432,5 +411,7 @@ describe('WeatherUnitComponent', () => {
         event: 'weather.location.exit'
       });
     });
+
+    it('should push analytic event when weather location is changed ', () => {});
   });
 });
