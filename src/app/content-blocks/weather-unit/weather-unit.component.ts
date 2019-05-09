@@ -24,8 +24,7 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
     private runtimeService: RuntimeService,
     private weatherRetrieverService: WeatherRetrieverService,
     private dataLayerService: DataLayerService
-  ) {
-  }
+  ) {}
 
   @Input() input!: IWeatherUnit;
 
@@ -50,22 +49,9 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
     }
   }
 
-  onToggle(isXButtonClicked = false) {
+  onToggle(isExitClicked = false) {
     this.isDropdownOpen = !this.isDropdownOpen;
-
-      const analyticEvent = {
-      type: 'analytics',
-      event: 'weather.location.bar'
-    } as IAnalyticsEvent;
-
-    if (isXButtonClicked) {
-      analyticEvent.event = 'weather.exit';
-    } else if (this.isDropdownOpen) {
-      analyticEvent['weather.bar'] = 'opened';
-    } else {
-      analyticEvent['weather.bar'] = 'closed';
-    }
-    this.dataLayerService.pushEvent(analyticEvent);
+    this.trackAnalytics(isExitClicked);
   }
 
   onSelectLocation(location: string) {
@@ -84,5 +70,22 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
       },
       (error) => (this.hasError = true)
     );
+  }
+
+  private trackAnalytics(isExitClicked: boolean) {
+    if (isExitClicked) {
+      this.dataLayerService.pushEvent({
+        type: 'analytics',
+        event: 'weather.location.exit'
+      });
+      return;
+    }
+
+    const analyticEvent = {
+      type: 'analytics',
+      event: 'weather.location.bar',
+      'weather.bar': this.isDropdownOpen ? 'opened' : 'closed'
+    };
+    this.dataLayerService.pushEvent(analyticEvent);
   }
 }

@@ -427,7 +427,7 @@ describe('WeatherUnitComponent', () => {
       component.isDropdownOpen = true;
       fixture.detectChanges();
 
-      fixture.debugElement.query(By.css('.close-button"')).nativeElement.click();
+      fixture.debugElement.query(By.css('.close-button')).nativeElement.click();
       fixture.detectChanges();
 
       expect(dataLayerService.pushEvent).toHaveBeenCalledWith({
