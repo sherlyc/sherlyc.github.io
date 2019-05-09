@@ -13,7 +13,7 @@ const home = 'home';
 @Injectable({
   providedIn: 'root'
 })
-export class DataLayerService {
+export class AnalyticsService {
   constructor(private runtimeService: RuntimeService) {}
 
   setup() {

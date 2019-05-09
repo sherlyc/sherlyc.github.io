@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { DataLayerService } from './data-layer.service';
+import { AnalyticsService } from './analytics.service';
 import { RuntimeService } from '../runtime/runtime.service';
 import { ServiceMock, mockService } from '../mocks/MockService';
 import { IDigitalData } from './__types__/IDigitalData';
@@ -8,9 +8,9 @@ declare let window: {
   digitalData: IDigitalData;
 };
 
-describe('DataLayerService', () => {
+describe('AnalyticsService', () => {
   let runtimeService: ServiceMock<RuntimeService>;
-  let dataLayerService: DataLayerService;
+  let dataLayerService: AnalyticsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -22,7 +22,7 @@ describe('DataLayerService', () => {
       ]
     });
     runtimeService = TestBed.get(RuntimeService);
-    dataLayerService = TestBed.get(DataLayerService);
+    dataLayerService = TestBed.get(AnalyticsService);
   });
 
   afterEach(() => {

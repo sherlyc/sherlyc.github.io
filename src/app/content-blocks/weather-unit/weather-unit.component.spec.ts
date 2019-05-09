@@ -10,14 +10,14 @@ import { WeatherRetrieverService } from '../../services/weather-retriever/weathe
 import * as weatherDataJson from '../../services/weather-retriever/__fixtures__/weatherData.json';
 import { of, throwError } from 'rxjs';
 import { IWeatherResponse } from '../../../../common/__types__/IWeatherResponse';
-import { DataLayerService } from 'src/app/services/data-layer/data-layer.service';
+import { AnalyticsService } from 'src/app/services/data-layer/analytics.service';
 import { DebugElement } from '@angular/core';
 
 describe('WeatherUnitComponent', () => {
   let storeService: ServiceMock<StoreService>;
   let runtimeService: ServiceMock<RuntimeService>;
   let weatherRetrieverService: ServiceMock<WeatherRetrieverService>;
-  let dataLayerService: ServiceMock<DataLayerService>;
+  let dataLayerService: ServiceMock<AnalyticsService>;
   const weatherData = weatherDataJson as IWeatherResponse;
   let fixture: ComponentFixture<WeatherUnitComponent>;
   let component: WeatherUnitComponent;
@@ -43,8 +43,8 @@ describe('WeatherUnitComponent', () => {
           useClass: mockService(WeatherRetrieverService)
         },
         {
-          provide: DataLayerService,
-          useClass: mockService(DataLayerService)
+          provide: AnalyticsService,
+          useClass: mockService(AnalyticsService)
         }
       ]
     }).compileComponents();
@@ -52,7 +52,7 @@ describe('WeatherUnitComponent', () => {
     runtimeService = TestBed.get(RuntimeService);
     storeService = TestBed.get(StoreService);
     weatherRetrieverService = TestBed.get(WeatherRetrieverService);
-    dataLayerService = TestBed.get(DataLayerService);
+    dataLayerService = TestBed.get(AnalyticsService);
     runtimeService.isBrowser.mockReturnValue(true);
 
     fixture = TestBed.createComponent(WeatherUnitComponent);

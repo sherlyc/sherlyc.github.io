@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
 import { IWeatherUnit } from '../../../../common/__types__/IWeatherUnit';
 import { WeatherRetrieverService } from '../../services/weather-retriever/weather-retriever.service';
-import { DataLayerService } from '../../services/data-layer/data-layer.service';
+import { AnalyticsService } from '../../services/data-layer/analytics.service';
 import { IWeatherResponse } from '../../../../common/__types__/IWeatherResponse';
 import {
   weatherRegions,
@@ -23,7 +23,7 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
     private storeService: StoreService,
     private runtimeService: RuntimeService,
     private weatherRetrieverService: WeatherRetrieverService,
-    private dataLayerService: DataLayerService
+    private dataLayerService: AnalyticsService
   ) {}
 
   @Input() input!: IWeatherUnit;

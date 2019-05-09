@@ -4,10 +4,10 @@ import { AppComponent } from './app.component';
 import { AdService } from './services/ad/ad.service';
 import { mockService, ServiceMock } from './services/mocks/MockService';
 import { DtmService } from './services/dtm/dtm.service';
-import { DataLayerService } from './services/data-layer/data-layer.service';
+import { AnalyticsService } from './services/data-layer/analytics.service';
 
 describe('AppComponent', () => {
-  let dataLayerService: ServiceMock<DataLayerService>;
+  let dataLayerService: ServiceMock<AnalyticsService>;
   let dtmService: ServiceMock<DtmService>;
 
   beforeEach(async () => {
@@ -20,8 +20,8 @@ describe('AppComponent', () => {
           useClass: mockService(AdService)
         },
         {
-          provide: DataLayerService,
-          useClass: mockService(DataLayerService)
+          provide: AnalyticsService,
+          useClass: mockService(AnalyticsService)
         },
         {
           provide: DtmService,
@@ -30,7 +30,7 @@ describe('AppComponent', () => {
       ]
     }).compileComponents();
 
-    dataLayerService = TestBed.get(DataLayerService);
+    dataLayerService = TestBed.get(AnalyticsService);
     dtmService = TestBed.get(DtmService);
   });
 
