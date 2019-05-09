@@ -139,7 +139,7 @@ describe('WeatherUnitComponent', () => {
       }
     ];
     component.isDropdownOpen = true;
-    component.selectedLocation = '';
+    component.selectedLocation = undefined;
     fixture.detectChanges();
 
     expect(fixture.debugElement.query(By.css('.tick-icon'))).toBeFalsy();
@@ -403,7 +403,22 @@ describe('WeatherUnitComponent', () => {
       expect(dataLayerService.pushEvent).toHaveBeenCalledWith({
         type: 'analytics',
         event: 'weather.location.bar',
-        'weather.bar': 'open'
+        'weather.bar': 'opened'
+      });
+    });
+
+    it('should push event when weather bar is clicked to close it', () => {
+      const { fixture, component } = setupComponent();
+      component.isDropdownOpen = true;
+      fixture.detectChanges();
+
+      fixture.debugElement.query(By.css('.weather-bar')).nativeElement.click();
+      fixture.detectChanges();
+
+      expect(dataLayerService.pushEvent).toHaveBeenCalledWith({
+        type: 'analytics',
+        event: 'weather.location.bar',
+        'weather.bar': 'closed'
       });
     });
   });

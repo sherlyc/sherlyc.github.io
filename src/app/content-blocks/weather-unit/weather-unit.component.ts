@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
 import { IWeatherUnit } from '../../../../common/__types__/IWeatherUnit';
 import { WeatherRetrieverService } from '../../services/weather-retriever/weather-retriever.service';
+import { DataLayerService } from '../../services/data-layer/data-layer.service';
 import { IWeatherResponse } from '../../../../common/__types__/IWeatherResponse';
 import {
   weatherRegions,
@@ -10,6 +11,7 @@ import {
 import { StoreService, StorageKeys } from '../../services/store/store.service';
 import { RuntimeService } from '../../services/runtime/runtime.service';
 import { mapForecastToIcon } from './forecast-icon.mapper';
+import { IAnalyticsEvent } from '../../services/data-layer/__types__/IAnalyticsEvent';
 
 @Component({
   selector: 'app-weather-unit',
@@ -20,8 +22,10 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
   constructor(
     private storeService: StoreService,
     private runtimeService: RuntimeService,
-    private weatherRetrieverService: WeatherRetrieverService
+    private weatherRetrieverService: WeatherRetrieverService,
+    private dataLayerService: DataLayerService
   ) {}
+
   @Input() input!: IWeatherUnit;
 
   regions = weatherRegions;
@@ -47,6 +51,19 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
 
   onToggle() {
     this.isDropdownOpen = !this.isDropdownOpen;
+
+    const analyticEvent = {
+      type: 'analytics',
+      event: 'weather.location.bar'
+    } as IAnalyticsEvent;
+
+    if (this.isDropdownOpen) {
+      analyticEvent['weather.bar'] = 'opened';
+      this.dataLayerService.pushEvent(analyticEvent);
+    } else {
+      analyticEvent['weather.bar'] = 'closed';
+      this.dataLayerService.pushEvent(analyticEvent);
+    }
   }
 
   onSelectLocation(location: string) {
