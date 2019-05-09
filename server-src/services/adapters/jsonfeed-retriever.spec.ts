@@ -1,11 +1,13 @@
 import {
   retrieveMidStrip,
   retrieveArticleList,
-  retrieveMiniMidStrip
+  retrieveMiniMidStrip,
+  retrieveEditorsPick
 } from './jsonfeed-retriever';
 import * as jsonfeed from './__fixtures__/jsonfeed.json';
 import * as midStripData from './__fixtures__/mid-strip.json';
 import * as miniMidStripData from './__fixtures__/mini-mid-strip.json';
+import * as editorsPickData from './__fixtures__/editors-pick.json';
 import http from '../utils/http';
 import { Section } from '../section';
 import { IParams } from '../__types__/IParams';
@@ -86,6 +88,33 @@ describe('JsonFeed Retriever', () => {
       (http(params).get as jest.Mock).mockRejectedValue(error);
 
       await expect(retrieveMiniMidStrip(params)).rejects.toEqual(error);
+    });
+  });
+
+  describe('Editors pick', () => {
+    it('should respond with editors pick data', async () => {
+      (http(params).get as jest.Mock).mockResolvedValue({
+        data: editorsPickData
+      });
+
+      expect(await retrieveEditorsPick(params)).toEqual(editorsPickData);
+    });
+
+    it('should throw error when jsonfeed request for editors pick fails', async () => {
+      const error = new Error('AJAX error');
+      (http(params).get as jest.Mock).mockRejectedValue(error);
+
+      await expect(retrieveEditorsPick(params)).rejects.toEqual(error);
+    });
+
+    it('should return only 8 editors pick article', async () => {
+      const tenArticles = Array(10).fill(editorsPickData.assets[0]);
+      (http(params).get as jest.Mock).mockResolvedValue({
+        data: { ...editorsPickData, assets: tenArticles }
+      });
+
+      const editorsPick = await retrieveEditorsPick(params);
+      expect(editorsPick.assets.length).toEqual(8);
     });
   });
 });
