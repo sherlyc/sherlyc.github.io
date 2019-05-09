@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { WeatherUnitComponent } from './weather-unit.component';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 import { By, TransferState } from '@angular/platform-browser';
@@ -10,11 +10,13 @@ import { WeatherRetrieverService } from '../../services/weather-retriever/weathe
 import * as weatherDataJson from '../../services/weather-retriever/__fixtures__/weatherData.json';
 import { of, throwError } from 'rxjs';
 import { IWeatherResponse } from '../../../../common/__types__/IWeatherResponse';
+import { DataLayerService } from 'src/app/services/data-layer/data-layer.service';
 
 describe('WeatherUnitComponent', () => {
   let storeService: ServiceMock<StoreService>;
   let runtimeService: ServiceMock<RuntimeService>;
   let weatherRetrieverService: ServiceMock<WeatherRetrieverService>;
+  let dataLayerService: ServiceMock<DataLayerService>;
   const weatherData = weatherDataJson as IWeatherResponse;
 
   beforeEach(async () => {
@@ -36,6 +38,10 @@ describe('WeatherUnitComponent', () => {
         {
           provide: WeatherRetrieverService,
           useClass: mockService(WeatherRetrieverService)
+        },
+        {
+          provide: DataLayerService,
+          useClass: mockService(DataLayerService)
         }
       ]
     }).compileComponents();
@@ -43,6 +49,7 @@ describe('WeatherUnitComponent', () => {
     runtimeService = TestBed.get(RuntimeService);
     storeService = TestBed.get(StoreService);
     weatherRetrieverService = TestBed.get(WeatherRetrieverService);
+    dataLayerService = TestBed.get(DataLayerService);
     runtimeService.isBrowser.mockReturnValue(true);
   });
 
@@ -382,5 +389,22 @@ describe('WeatherUnitComponent', () => {
     expect(
       fixture.debugElement.query(By.css('.location-list-visible'))
     ).toBeFalsy();
+  });
+
+  describe('Analytics', () => {
+    it('should push event when weather bar is clicked to open it', () => {
+      const { fixture, component } = setupComponent();
+      component.isDropdownOpen = false;
+      fixture.detectChanges();
+
+      fixture.debugElement.query(By.css('.weather-bar')).nativeElement.click();
+      fixture.detectChanges();
+
+      expect(dataLayerService.pushEvent).toHaveBeenCalledWith({
+        type: 'analytics',
+        event: 'weather.location.bar',
+        'weather.bar': 'open'
+      });
+    });
   });
 });
