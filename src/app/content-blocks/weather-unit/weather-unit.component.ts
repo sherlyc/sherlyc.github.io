@@ -55,6 +55,10 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
   }
 
   onSelectLocation(location: string) {
+    this.dataLayerService.pushEvent({
+      event: 'weather.location.change',
+      'weather.location': location
+    });
     this.selectedLocation = location as WeatherLocations;
     this.storeService.set(StorageKeys.WeatherLocation, location);
     this.getWeatherData(location);

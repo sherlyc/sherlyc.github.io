@@ -11,6 +11,7 @@ import * as weatherDataJson from '../../services/weather-retriever/__fixtures__/
 import { of, throwError } from 'rxjs';
 import { IWeatherResponse } from '../../../../common/__types__/IWeatherResponse';
 import { DataLayerService } from 'src/app/services/data-layer/data-layer.service';
+import { DebugElement } from '@angular/core';
 
 describe('WeatherUnitComponent', () => {
   let storeService: ServiceMock<StoreService>;
@@ -412,6 +413,26 @@ describe('WeatherUnitComponent', () => {
       });
     });
 
-    it('should push analytic event when weather location is changed ', () => {});
+    it('should push analytic event when weather location is changed ', () => {
+      weatherRetrieverService.getWeather.mockReturnValue(of(weatherData));
+      component.isDropdownOpen = true;
+      component.regions = [
+        {
+          name: 'Auckland',
+          locations: [WeatherLocations.Auckland]
+        }
+      ];
+      fixture.detectChanges();
+
+      const aucklandListElement = fixture.debugElement
+        .queryAll(By.css('.location-name'))
+        .find((element) => element.nativeElement.textContent === 'Auckland');
+      (aucklandListElement as DebugElement).nativeElement.click();
+
+      expect(dataLayerService.pushEvent).toHaveBeenCalledWith({
+        event: 'weather.location.change',
+        'weather.location': 'Auckland'
+      });
+    });
   });
 });
