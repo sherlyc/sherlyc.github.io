@@ -22,12 +22,13 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/manifest.webmanifest"
+            "assets": ["src/spade"],
+            "styles": [
+              {
+                "input": "src/styles.scss",
+                "bundleName": "spade/styles"
+              }
             ],
-            "styles": ["src/styles.scss"],
             "scripts": [],
             "serviceWorker": true
           },

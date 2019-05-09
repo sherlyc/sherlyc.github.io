@@ -16,7 +16,7 @@ declare const global: {
   newrelic: any;
 };
 
-app.get('/api/content', async (req, res, next) => {
+app.get('/spade/api/content', async (req, res, next) => {
   const params: IParams = extractParams(req);
   if (global.newrelic) {
     try {
@@ -29,6 +29,6 @@ app.get('/api/content', async (req, res, next) => {
   res.end();
 });
 
-app.get('/api/weather', getWeather);
+app.get('/spade/api/weather', getWeather);
 
 export default app;

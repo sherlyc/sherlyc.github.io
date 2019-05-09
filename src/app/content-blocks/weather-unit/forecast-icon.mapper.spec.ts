@@ -6,13 +6,15 @@ describe('ForecastIconMapper', () => {
     const svgPath = mapForecastToIcon(Forecasts.partcloudy);
 
     expect(svgPath).toBe(
-      '/assets/icons/weather/weather-forecast--partcloudy.svg'
+      '/spade/assets/icons/weather/weather-forecast--partcloudy.svg'
     );
   });
 
   it('should return path to unknown svg icon when forecast is not valid', () => {
     const svgPath = mapForecastToIcon('unknownForecast' as Forecasts);
 
-    expect(svgPath).toBe('/assets/icons/weather/weather-forecast--unknown.svg');
+    expect(svgPath).toBe(
+      '/spade/assets/icons/weather/weather-forecast--unknown.svg'
+    );
   });
 });
