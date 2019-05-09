@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { IDigitalData } from './__types__/IDigitalData';
 import { DeviceType } from './__types__/DeviceType';
 import { RuntimeService } from '../runtime/runtime.service';
+import { IEvent } from './__types__/IEvent';
 
 declare const window: {
   digitalData: IDigitalData;
@@ -56,6 +57,12 @@ export class DataLayerService {
         ],
         events: []
       };
+    }
+  }
+
+  pushEvent(event: IEvent) {
+    if (this.runtimeService.isBrowser()) {
+      window.digitalData.events.push(event);
     }
   }
 }
