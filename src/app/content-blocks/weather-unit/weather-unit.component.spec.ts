@@ -17,7 +17,7 @@ describe('WeatherUnitComponent', () => {
   let storeService: ServiceMock<StoreService>;
   let runtimeService: ServiceMock<RuntimeService>;
   let weatherRetrieverService: ServiceMock<WeatherRetrieverService>;
-  let dataLayerService: ServiceMock<AnalyticsService>;
+  let analyticsService: ServiceMock<AnalyticsService>;
   const weatherData = weatherDataJson as IWeatherResponse;
   let fixture: ComponentFixture<WeatherUnitComponent>;
   let component: WeatherUnitComponent;
@@ -52,7 +52,7 @@ describe('WeatherUnitComponent', () => {
     runtimeService = TestBed.get(RuntimeService);
     storeService = TestBed.get(StoreService);
     weatherRetrieverService = TestBed.get(WeatherRetrieverService);
-    dataLayerService = TestBed.get(AnalyticsService);
+    analyticsService = TestBed.get(AnalyticsService);
     runtimeService.isBrowser.mockReturnValue(true);
 
     fixture = TestBed.createComponent(WeatherUnitComponent);
@@ -407,7 +407,7 @@ describe('WeatherUnitComponent', () => {
       fixture.debugElement.query(By.css('.weather-bar')).nativeElement.click();
       fixture.detectChanges();
 
-      expect(dataLayerService.pushEvent).toHaveBeenCalledWith({
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
         event: 'weather.location.bar',
         'weather.bar': 'opened'
       });
@@ -420,7 +420,7 @@ describe('WeatherUnitComponent', () => {
       fixture.debugElement.query(By.css('.weather-bar')).nativeElement.click();
       fixture.detectChanges();
 
-      expect(dataLayerService.pushEvent).toHaveBeenCalledWith({
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
         event: 'weather.location.bar',
         'weather.bar': 'closed'
       });
@@ -433,7 +433,7 @@ describe('WeatherUnitComponent', () => {
       fixture.debugElement.query(By.css('.close-button')).nativeElement.click();
       fixture.detectChanges();
 
-      expect(dataLayerService.pushEvent).toHaveBeenCalledWith({
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
         event: 'weather.location.exit'
       });
     });
@@ -456,7 +456,7 @@ describe('WeatherUnitComponent', () => {
         ) as DebugElement;
       aucklandListElement.nativeElement.click();
 
-      expect(dataLayerService.pushEvent).toHaveBeenCalledWith({
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
         event: 'weather.location.change',
         'weather.location': 'Auckland'
       });

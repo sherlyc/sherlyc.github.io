@@ -23,7 +23,7 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
     private storeService: StoreService,
     private runtimeService: RuntimeService,
     private weatherRetrieverService: WeatherRetrieverService,
-    private dataLayerService: AnalyticsService
+    private analyticsService: AnalyticsService
   ) {}
 
   @Input() input!: IWeatherUnit;
@@ -55,7 +55,7 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
   }
 
   onSelectLocation(location: string) {
-    this.dataLayerService.pushEvent({
+    this.analyticsService.pushEvent({
       event: 'weather.location.change',
       'weather.location': location
     });
@@ -78,13 +78,13 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
 
   private trackAnalytics(isExitClicked: boolean) {
     if (isExitClicked) {
-      this.dataLayerService.pushEvent({
+      this.analyticsService.pushEvent({
         event: 'weather.location.exit'
       });
       return;
     }
 
-    this.dataLayerService.pushEvent({
+    this.analyticsService.pushEvent({
       event: 'weather.location.bar',
       'weather.bar': this.isDropdownOpen ? 'opened' : 'closed'
     });

@@ -13,12 +13,12 @@ export class AppComponent {
   constructor(
     private adService: AdService,
     private eventsService: EventsService,
-    private dataLayerService: AnalyticsService,
+    private analyticsService: AnalyticsService,
     private dtm: DtmService
   ) {
     this.adService.setupAds();
     this.eventsService.setup();
-    this.dataLayerService.setup();
+    this.analyticsService.setup();
     this.dtm.setup();
   }
 }
