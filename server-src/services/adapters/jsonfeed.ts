@@ -10,7 +10,6 @@ import { IRawArticle } from './__types__/IRawArticle';
 import { Section } from '../section';
 import { IParams } from '../__types__/IParams';
 import { IListAsset } from './__types__/IListAsset';
-import { IEditorsPick } from './__types__/IEditorsPick';
 
 export const getArticleList = async (
   section: Section,
@@ -43,6 +42,6 @@ export const getMiniMidStrip = async (
 export const getEditorsPick = async (
   params: IParams
 ): Promise<IRawArticle[]> => {
-  const editorsPick: IEditorsPick = await retrieveEditorsPick(params);
+  const editorsPick: IListAsset = await retrieveEditorsPick(params);
   return mapToIRawArticleList(editorsPick.assets);
 };
