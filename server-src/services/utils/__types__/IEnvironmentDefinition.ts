@@ -6,6 +6,7 @@ export interface IEnvironmentDefinition {
   jsonFeedAPI: string;
   midStripListAssetId: string;
   miniMidStripListAssetId: string;
+  editorsPickAssetId: string;
   weatherAPI: string;
   contentAPI: string;
   maxArticlesToRetrieve: number;

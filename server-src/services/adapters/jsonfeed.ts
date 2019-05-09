@@ -1,7 +1,8 @@
 import {
   retrieveMidStrip,
   retrieveArticleList,
-  retrieveMiniMidStrip
+  retrieveMiniMidStrip,
+  retrieveEditorsPick
 } from './jsonfeed-retriever';
 import mapToIRawArticleList from './jsonfeed-mapper';
 import { IJsonFeedArticleList } from './__types__/IJsonFeedArticleList';
@@ -9,6 +10,7 @@ import { IRawArticle } from './__types__/IRawArticle';
 import { Section } from '../section';
 import { IParams } from '../__types__/IParams';
 import { IMidStrip } from './__types__/IMidStrip';
+import { IEditorsPick } from './__types__/IEditorsPick';
 
 export const getArticleList = async (
   section: Section,
@@ -36,4 +38,11 @@ export const getMiniMidStrip = async (
 ): Promise<IRawArticle[]> => {
   const miniMidStripJsonFeed: IMidStrip = await retrieveMiniMidStrip(params);
   return mapToIRawArticleList(miniMidStripJsonFeed.assets);
+};
+
+export const getEditorsPick = async (
+  params: IParams
+): Promise<IRawArticle[]> => {
+  const editorsPick: IEditorsPick = await retrieveEditorsPick(params);
+  return mapToIRawArticleList(editorsPick.assets);
 };

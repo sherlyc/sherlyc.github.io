@@ -6,6 +6,7 @@ import { Section } from '../section';
 import { URL } from 'url';
 import { IParams } from '../__types__/IParams';
 import { IMidStrip } from './__types__/IMidStrip';
+import { IEditorsPick } from './__types__/IEditorsPick';
 
 async function requestArticleList(
   section: Section,
@@ -52,3 +53,17 @@ async function requestMiniMidStrip(params: IParams): Promise<IMidStrip> {
 
 export const retrieveMiniMidStrip = async (params: IParams) =>
   retry(() => requestMiniMidStrip(params), params);
+
+async function requestEditorsPick(params: IParams): Promise<IEditorsPick> {
+  const url: URL = new URL(
+    `${config.jsonFeedAPI}/listasset/${config.editorsPickAssetId}`
+  );
+  const response = await http(params).get<IEditorsPick>(url.href);
+  return {
+    ...response.data,
+    assets: response.data.assets.slice(0, 8)
+  };
+}
+
+export const retrieveEditorsPick = async (params: IParams) =>
+  retry(() => requestEditorsPick(params), params);
