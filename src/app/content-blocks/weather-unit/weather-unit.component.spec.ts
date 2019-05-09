@@ -150,7 +150,12 @@ describe('WeatherUnitComponent', () => {
     component.isDropdownOpen = true;
     fixture.detectChanges();
 
-    fixture.debugElement.query(By.css('.location-name')).nativeElement.click();
+    const aucklandListElement = fixture.debugElement
+      .queryAll(By.css('.location-name'))
+      .find(
+        (element) => element.nativeElement.textContent === 'Auckland'
+      ) as DebugElement;
+    aucklandListElement.nativeElement.click();
 
     expect(storeService.set).toHaveBeenCalledWith(
       StorageKeys.WeatherLocation,
@@ -187,7 +192,12 @@ describe('WeatherUnitComponent', () => {
     component.isDropdownOpen = true;
     fixture.detectChanges();
 
-    fixture.debugElement.query(By.css('.location-name')).nativeElement.click();
+    const aucklandListElement = fixture.debugElement
+      .queryAll(By.css('.location-name'))
+      .find(
+        (element) => element.nativeElement.textContent === 'Auckland'
+      ) as DebugElement;
+    aucklandListElement.nativeElement.click();
     fixture.detectChanges();
 
     const weatherIcon = fixture.debugElement.query(By.css('.weather-icon'));
@@ -237,7 +247,12 @@ describe('WeatherUnitComponent', () => {
     component.isDropdownOpen = true;
     fixture.detectChanges();
 
-    fixture.debugElement.query(By.css('.location-name')).nativeElement.click();
+    const aucklandListElement = fixture.debugElement
+      .queryAll(By.css('.location-name'))
+      .find(
+        (element) => element.nativeElement.textContent === 'Auckland'
+      ) as DebugElement;
+    aucklandListElement.nativeElement.click();
     fixture.detectChanges();
 
     expect(
@@ -281,7 +296,12 @@ describe('WeatherUnitComponent', () => {
     weatherRetrieverService.getWeather.mockReturnValue(
       throwError({ status: 500, statusText: 'Internal Server error' })
     );
-    fixture.debugElement.query(By.css('.location-name')).nativeElement.click();
+    const aucklandListElement = fixture.debugElement
+      .queryAll(By.css('.location-name'))
+      .find(
+        (element) => element.nativeElement.textContent === 'Auckland'
+      ) as DebugElement;
+    aucklandListElement.nativeElement.click();
     fixture.detectChanges();
 
     expect(
@@ -322,7 +342,12 @@ describe('WeatherUnitComponent', () => {
     ).toBeFalsy();
 
     weatherRetrieverService.getWeather.mockReturnValue(of(weatherData));
-    fixture.debugElement.query(By.css('.location-name')).nativeElement.click();
+    const aucklandListElement = fixture.debugElement
+      .queryAll(By.css('.location-name'))
+      .find(
+        (element) => element.nativeElement.textContent === 'Auckland'
+      ) as DebugElement;
+    aucklandListElement.nativeElement.click();
     fixture.detectChanges();
 
     expect(
@@ -426,8 +451,10 @@ describe('WeatherUnitComponent', () => {
 
       const aucklandListElement = fixture.debugElement
         .queryAll(By.css('.location-name'))
-        .find((element) => element.nativeElement.textContent === 'Auckland');
-      (aucklandListElement as DebugElement).nativeElement.click();
+        .find(
+          (element) => element.nativeElement.textContent === 'Auckland'
+        ) as DebugElement;
+      aucklandListElement.nativeElement.click();
 
       expect(dataLayerService.pushEvent).toHaveBeenCalledWith({
         event: 'weather.location.change',
