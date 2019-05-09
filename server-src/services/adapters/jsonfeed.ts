@@ -9,7 +9,7 @@ import { IJsonFeedArticleList } from './__types__/IJsonFeedArticleList';
 import { IRawArticle } from './__types__/IRawArticle';
 import { Section } from '../section';
 import { IParams } from '../__types__/IParams';
-import { IMidStrip } from './__types__/IMidStrip';
+import { IListAsset } from './__types__/IListAsset';
 import { IEditorsPick } from './__types__/IEditorsPick';
 
 export const getArticleList = async (
@@ -29,14 +29,14 @@ export const getMidStrip = async (
   total: number,
   params: IParams
 ): Promise<IRawArticle[]> => {
-  const midStripJsonFeed: IMidStrip = await retrieveMidStrip(total, params);
+  const midStripJsonFeed: IListAsset = await retrieveMidStrip(total, params);
   return mapToIRawArticleList(midStripJsonFeed.assets);
 };
 
 export const getMiniMidStrip = async (
   params: IParams
 ): Promise<IRawArticle[]> => {
-  const miniMidStripJsonFeed: IMidStrip = await retrieveMiniMidStrip(params);
+  const miniMidStripJsonFeed: IListAsset = await retrieveMiniMidStrip(params);
   return mapToIRawArticleList(miniMidStripJsonFeed.assets);
 };
 
