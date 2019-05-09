@@ -401,7 +401,6 @@ describe('WeatherUnitComponent', () => {
       fixture.detectChanges();
 
       expect(dataLayerService.pushEvent).toHaveBeenCalledWith({
-        type: 'analytics',
         event: 'weather.location.bar',
         'weather.bar': 'opened'
       });
@@ -416,7 +415,6 @@ describe('WeatherUnitComponent', () => {
       fixture.detectChanges();
 
       expect(dataLayerService.pushEvent).toHaveBeenCalledWith({
-        type: 'analytics',
         event: 'weather.location.bar',
         'weather.bar': 'closed'
       });
@@ -431,7 +429,6 @@ describe('WeatherUnitComponent', () => {
       fixture.detectChanges();
 
       expect(dataLayerService.pushEvent).toHaveBeenCalledWith({
-        type: 'analytics',
         event: 'weather.location.exit'
       });
     });

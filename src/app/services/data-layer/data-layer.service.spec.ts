@@ -55,12 +55,14 @@ describe('DataLayerService', () => {
     window.digitalData.events.push = jest.fn();
 
     const event = {
-      type: 'analytics',
       event: 'button.toggle',
       button: 'closed'
     };
     dataLayerService.pushEvent(event);
 
-    expect(window.digitalData.events.push).toHaveBeenCalledWith(event);
+    expect(window.digitalData.events.push).toHaveBeenCalledWith({
+      type: 'analytics',
+      ...event
+    });
   });
 });

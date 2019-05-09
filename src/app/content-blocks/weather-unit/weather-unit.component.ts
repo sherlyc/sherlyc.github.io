@@ -75,17 +75,14 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
   private trackAnalytics(isExitClicked: boolean) {
     if (isExitClicked) {
       this.dataLayerService.pushEvent({
-        type: 'analytics',
         event: 'weather.location.exit'
       });
       return;
     }
 
-    const analyticEvent = {
-      type: 'analytics',
+    this.dataLayerService.pushEvent({
       event: 'weather.location.bar',
       'weather.bar': this.isDropdownOpen ? 'opened' : 'closed'
-    };
-    this.dataLayerService.pushEvent(analyticEvent);
+    });
   }
 }

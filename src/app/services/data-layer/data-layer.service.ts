@@ -62,7 +62,7 @@ export class DataLayerService {
 
   pushEvent(event: IAnalyticsEvent) {
     if (this.runtimeService.isBrowser()) {
-      window.digitalData.events.push(event);
+      window.digitalData.events.push({ type: 'analytics', ...event });
     }
   }
 }
