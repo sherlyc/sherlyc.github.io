@@ -7,7 +7,7 @@ import { DtmService } from './services/dtm/dtm.service';
 import { AnalyticsService } from './services/data-layer/analytics.service';
 
 describe('AppComponent', () => {
-  let dataLayerService: ServiceMock<AnalyticsService>;
+  let analyticsService: ServiceMock<AnalyticsService>;
   let dtmService: ServiceMock<DtmService>;
 
   beforeEach(async () => {
@@ -30,7 +30,7 @@ describe('AppComponent', () => {
       ]
     }).compileComponents();
 
-    dataLayerService = TestBed.get(AnalyticsService);
+    analyticsService = TestBed.get(AnalyticsService);
     dtmService = TestBed.get(DtmService);
   });
 
@@ -49,7 +49,7 @@ describe('AppComponent', () => {
 
   it('should setup data layer service before dtm service', () => {
     const serviceCallOrder: string[] = [];
-    dataLayerService.setup.mockImplementation(() => {
+    analyticsService.setup.mockImplementation(() => {
       serviceCallOrder.push('1');
     });
     dtmService.setup.mockImplementation(() => {

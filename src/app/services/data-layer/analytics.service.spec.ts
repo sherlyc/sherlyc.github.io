@@ -10,7 +10,7 @@ declare let window: {
 
 describe('AnalyticsService', () => {
   let runtimeService: ServiceMock<RuntimeService>;
-  let dataLayerService: AnalyticsService;
+  let analyticsService: AnalyticsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -22,7 +22,7 @@ describe('AnalyticsService', () => {
       ]
     });
     runtimeService = TestBed.get(RuntimeService);
-    dataLayerService = TestBed.get(AnalyticsService);
+    analyticsService = TestBed.get(AnalyticsService);
   });
 
   afterEach(() => {
@@ -30,13 +30,13 @@ describe('AnalyticsService', () => {
   });
 
   it('should be created', () => {
-    expect(dataLayerService).toBeTruthy();
+    expect(analyticsService).toBeTruthy();
   });
 
   it('should assign digitalData object to the window if running in browser', () => {
     runtimeService.isBrowser.mockReturnValue(true);
 
-    dataLayerService.setup();
+    analyticsService.setup();
 
     expect(window.digitalData).toBeTruthy();
   });
@@ -44,21 +44,21 @@ describe('AnalyticsService', () => {
   it('should not assign digitalData object to the window if not running in browser', () => {
     runtimeService.isBrowser.mockReturnValue(false);
 
-    dataLayerService.setup();
+    analyticsService.setup();
 
     expect(window.digitalData).toEqual({});
   });
 
   it('should push analytics if running in browser', () => {
     runtimeService.isBrowser.mockReturnValue(true);
-    dataLayerService.setup();
+    analyticsService.setup();
     window.digitalData.events.push = jest.fn();
 
     const event = {
       event: 'button.toggle',
       button: 'closed'
     };
-    dataLayerService.pushEvent(event);
+    analyticsService.pushEvent(event);
 
     expect(window.digitalData.events.push).toHaveBeenCalledWith({
       type: 'analytics',
