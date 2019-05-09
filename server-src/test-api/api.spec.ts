@@ -5,7 +5,7 @@ describe('api test', () => {
   it('should respond with a json payload', async () => {
     const app = require('../app').default;
     const response: supertest.Response = await supertest(app)
-      .get('/api/content')
+      .get('/spade/api/content')
       .set('Accept', 'application/json');
 
     expect(response.ok).toBeTruthy();
