@@ -37,7 +37,7 @@ export default async function(
   {
     sourceId,
     totalArticles,
-    totalImageArticles
+    totalBasicArticlesUnit
   }: IBasicArticleListHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
@@ -52,8 +52,8 @@ export default async function(
     : await getEditorsPick(params);
   return rawArticles.reduce(
     (final, article, index) => {
-      const numberOfBasicArticle = totalImageArticles || totalArticles;
-      if (index < numberOfBasicArticle) {
+      const numberOfBasicArticleUnit = totalBasicArticlesUnit || totalArticles;
+      if (index < numberOfBasicArticleUnit) {
         return [...final, createBasicArticleUnitBlock(article), basicAdUnit];
       }
       return [...final, createBasicTitleArticleBlock(article), basicAdUnit];
