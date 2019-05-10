@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AdService } from './services/ad/ad.service';
 import { EventsService } from './services/events/events.service';
 import { DtmService } from './services/dtm/dtm.service';
-import { DataLayerService } from './services/data-layer/data-layer.service';
+import { AnalyticsService } from './services/data-layer/analytics.service';
 
 @Component({
   selector: 'app-root',
@@ -13,12 +13,12 @@ export class AppComponent {
   constructor(
     private adService: AdService,
     private eventsService: EventsService,
-    private dataLayerService: DataLayerService,
+    private analyticsService: AnalyticsService,
     private dtm: DtmService
   ) {
     this.adService.setupAds();
     this.eventsService.setup();
-    this.dataLayerService.setup();
+    this.analyticsService.setup();
     this.dtm.setup();
   }
 }
