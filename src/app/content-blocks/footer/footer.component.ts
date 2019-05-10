@@ -13,7 +13,7 @@ export class FooterComponent implements IContentBlockComponent {
 
   @Input() input!: IFooter;
 
-  onSocialLinkClick(name: string) {
+  sendSocialLinkAnalytics(name: string) {
     this.analyticsService.pushEvent({
       event: 'menu.footer',
       'menu.link': name

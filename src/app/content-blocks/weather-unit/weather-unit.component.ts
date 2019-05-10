@@ -48,34 +48,35 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
     }
   }
 
-  onWeatherBarClick() {
-    this.toggleDropdown();
+  onSelectLocation(location: string) {
+    this.selectedLocation = location as WeatherLocations;
+    this.storeService.set(StorageKeys.WeatherLocation, location);
+    this.getWeatherData(location);
+    this.onToggleDropdown();
+  }
+
+  onToggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  sendWeatherBarAnalytics() {
     this.analyticsService.pushEvent({
       event: 'weather.location.bar',
       'weather.bar': this.isDropdownOpen ? 'opened' : 'closed'
     });
   }
 
-  onExit() {
-    this.toggleDropdown();
+  sendExitButtonAnalytics() {
     this.analyticsService.pushEvent({
       event: 'weather.location.exit'
     });
   }
 
-  onSelectLocation(location: string) {
+  sendLocationAnalytics(location: string) {
     this.analyticsService.pushEvent({
       event: 'weather.location.change',
       'weather.location': location
     });
-    this.selectedLocation = location as WeatherLocations;
-    this.storeService.set(StorageKeys.WeatherLocation, location);
-    this.getWeatherData(location);
-    this.toggleDropdown();
-  }
-
-  private toggleDropdown() {
-    this.isDropdownOpen = !this.isDropdownOpen;
   }
 
   private getWeatherData(location: string) {

@@ -19,16 +19,18 @@ export class BreakingNewsComponent implements IContentBlockComponent {
     private analyticsService: AnalyticsService
   ) {}
 
-  onClickOrDismiss(isDismissing: boolean) {
-    this.analyticsService.pushEvent({
-      event: isDismissing ? 'breaking.news.close' : 'breaking.news.open'
-    });
-
+  onClickOrDismiss() {
     const domain = window && window.location && window.location.hostname;
     this.cookieService.set(CookieNames.IGNORE_BREAKING_NEWS, this.input.id, {
       path: '/',
       domain
     });
     this.shouldHide = true;
+  }
+
+  sendAnalytics(isDismissing: boolean) {
+    this.analyticsService.pushEvent({
+      event: isDismissing ? 'breaking.news.close' : 'breaking.news.open'
+    });
   }
 }
