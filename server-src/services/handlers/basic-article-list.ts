@@ -8,6 +8,7 @@ import { handlerRunnerFunction } from './runner';
 import { IParams } from '../__types__/IParams';
 import { IBasicTitleArticle } from '../../../common/__types__/IBasicTitleArticle';
 import { IRawArticle } from '../adapters/__types__/IRawArticle';
+import { Section } from '../section';
 
 const createBasicArticleUnitBlock = (
   article: IRawArticle
@@ -35,7 +36,7 @@ const createBasicTitleArticleBlock = (
 export default async function(
   handlerRunner: handlerRunnerFunction,
   {
-    sectionId,
+    sourceId,
     totalArticles,
     totalImageArticles
   }: IBasicArticleListHandlerInput,
@@ -44,22 +45,20 @@ export default async function(
   const basicAdUnit: IBasicAdUnit = {
     type: ContentBlockType.BasicAdUnit
   };
-
-  const rawArticles = sectionId
-    ? (await getArticleList(sectionId, totalArticles, params)).slice(
+  const rawArticles = Object.values(Section).includes(sourceId)
+    ? (await getArticleList(sourceId as Section, totalArticles, params)).slice(
         0,
         totalArticles
       )
     : await getEditorsPick(params);
-
   return rawArticles.reduce(
-    (final, article, index) => [
-      ...final,
-      index < (totalImageArticles || totalArticles)
-        ? createBasicArticleUnitBlock(article)
-        : createBasicTitleArticleBlock(article),
-      basicAdUnit
-    ],
+    (final, article, index) => {
+      const numberOfBasicArticle = totalImageArticles || totalArticles;
+      if (index < numberOfBasicArticle) {
+        return [...final, createBasicArticleUnitBlock(article), basicAdUnit];
+      }
+      return [...final, createBasicTitleArticleBlock(article), basicAdUnit];
+    },
     [basicAdUnit] as IContentBlock[]
   );
 }
