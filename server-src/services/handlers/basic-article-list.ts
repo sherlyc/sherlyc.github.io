@@ -27,7 +27,6 @@ const createBasicTitleArticleBlock = (
 ): IBasicArticleTitleUnit => ({
   type: ContentBlockType.BasicArticleTitleUnit,
   indexHeadline: article.indexHeadline,
-  introText: article.introText,
   linkUrl: article.linkUrl,
   lastPublishedTime: article.lastPublishedTime,
   headlineFlags: article.headlineFlags
