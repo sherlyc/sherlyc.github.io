@@ -58,5 +58,13 @@ describe('Header', () => {
         event: 'close.menu.nav'
       });
     });
+
+    it('should push analytics event when stuff logo is clicked', () => {
+      fixture.debugElement.query(By.css('.title')).nativeElement.click();
+
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+        event: 'stuff.logo'
+      });
+    });
   });
 });

@@ -76,4 +76,8 @@ export class HeaderComponent implements IContentBlockComponent {
       event: this.navigationVisible ? 'menu.nav' : 'close.menu.nav'
     });
   }
+
+  onLogoClick() {
+    this.analyticsService.pushEvent({ event: 'stuff.logo' });
+  }
 }
