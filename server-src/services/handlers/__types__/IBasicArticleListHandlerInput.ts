@@ -3,6 +3,7 @@ import { HandlerInputType } from './HandlerInputType';
 
 export interface IBasicArticleListHandlerInput {
   type: HandlerInputType.ArticleList;
-  sectionId: Section;
+  sectionId?: Section;
   totalArticles: number;
+  totalImageArticles?: number;
 }
