@@ -2,7 +2,7 @@ import { Component, Inject, Input, Renderer2 } from '@angular/core';
 import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
 import { IHeader } from '../../../../common/__types__/IHeader';
 import { DOCUMENT } from '@angular/common';
-import { AnalyticsService } from 'src/app/services/data-layer/analytics.service';
+import { AnalyticsService } from '../../services/data-layer/analytics.service';
 
 @Component({
   selector: 'app-header',
