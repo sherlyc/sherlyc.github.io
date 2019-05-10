@@ -155,6 +155,162 @@
       "galleries": [],
       "headline_flags": [],
       "asset_type": "ARTICLE"
+    },
+    {
+      "id": 112552027,
+      "path": "/business/farming/112552026/path",
+      "url": "http://www.stuff.co.nz/_json/business/farming/112552026/contracts-favouring-farm-owners-are-the-dark-side-of-dairy-industry",
+      "section": "Farming",
+      "section-home": "Farming",
+      "section-top-level": "Business",
+      "layout": "landscape-video",
+      "title": "Barcelona beatiful city",
+      "alt_headline": "Barcelona",
+      "datetime_iso8601": "20190509T093701+1200",
+      "datetime_display": "09:37 09/05/2019",
+      "byline": "",
+      "source_code": "1national-newsroom",
+      "source_name": "Stuff",
+      "intro": "Lets go to Barcelona",
+      "alt_intro": "Tour to Barcelona",
+      "body": "",
+      "images": [
+        {
+          "id": 103922401,
+          "position_after_paragraph": 5,
+          "datetime_iso8601": "20190509T093701+1200",
+          "datetime_display": "09:37 09/05/2019",
+          "creditline": "STUFF",
+          "source_code": "the-southland-times",
+          "source_name": "The Southland Times",
+          "caption": "A Waikato farmer says current contracts and legislation protect farm owners and the system needs a complete overhaul. (File photo)",
+          "variants": [
+            {
+              "id": 103922401,
+              "layout": "Defcon Image",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffBigHeadline.418x220.1v0dp6.png/1557353782649.jpg",
+              "media_type": "Photo",
+              "width": "418",
+              "height": "220"
+            },
+            {
+              "id": 103922401,
+              "layout": "Standard Image",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffLandscapeSixteenByNine.620x349.1v0dp6.png/1557353782649.jpg",
+              "media_type": "Photo",
+              "width": "620",
+              "height": "349"
+            },
+            {
+              "id": 103922401,
+              "layout": "Strap Image",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffLandscapeThreeByTwo.300x200.1v0dp6.png/1557353782649.jpg",
+              "media_type": "Photo",
+              "width": "300",
+              "height": "200"
+            },
+            {
+              "id": 103922401,
+              "layout": "Small Thumbnail",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffThumbnail.90x60.1v0dp6.png/1557353782649.jpg",
+              "media_type": "Photo",
+              "width": "90",
+              "height": "60"
+            }
+          ],
+          "asset_type": "IMAGE"
+        },
+        {
+          "id": 105110119,
+          "position_after_paragraph": 19,
+          "datetime_iso8601": "20190509T093701+1200",
+          "datetime_display": "09:37 09/05/2019",
+          "creditline": "STUFF",
+          "source_code": "the-press",
+          "source_name": "The Press",
+          "caption": "The dairy industry prides itself on being the backbone of the country's economy but it needs to do more to protect energetic young workers, the contract milker says. (File photo)",
+          "variants": [
+            {
+              "id": 105110119,
+              "layout": "Standard Image",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/q/k/v/h/j/image.related.StuffLandscapeSixteenByNine.620x349.1v0dp6.png/1557353782649.jpg",
+              "media_type": "Photo",
+              "width": "620",
+              "height": "349"
+            },
+            {
+              "id": 105110119,
+              "layout": "Strap Image",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/q/k/v/h/j/image.related.StuffLandscapeThreeByTwo.300x200.1v0dp6.png/1557353782649.jpg",
+              "media_type": "Photo",
+              "width": "300",
+              "height": "200"
+            }
+          ],
+          "asset_type": "IMAGE"
+        },
+        {
+          "id": 112570068,
+          "position_after_paragraph": 23,
+          "datetime_iso8601": "20190509T093701+1200",
+          "datetime_display": "09:37 09/05/2019",
+          "creditline": "DOMINICO ZAPATA/STUFF",
+          "source_code": "waikato-times",
+          "source_name": "Waikato Times",
+          "caption": "Farmers have a \"moral obligation\" to give the next generation the opportunity to make their mark on the industry, he says.",
+          "variants": [
+            {
+              "id": 112570068,
+              "layout": "Standard Image",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/v/0/r/m/c/image.related.StuffLandscapeSixteenByNine.620x349.1v0dp6.png/1557353782649.jpg",
+              "media_type": "Photo",
+              "width": "620",
+              "height": "349"
+            },
+            {
+              "id": 112570068,
+              "layout": "Strap Image",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/v/0/r/m/c/image.related.StuffLandscapeThreeByTwo.300x200.1v0dp6.png/1557353782649.jpg",
+              "media_type": "Photo",
+              "width": "300",
+              "height": "200"
+            }
+          ],
+          "asset_type": "IMAGE"
+        }
+      ],
+      "videos": [
+        {
+          "id": 106408629,
+          "position_after_paragraph": 0,
+          "layout": "Standard Video",
+          "source_code": "Stuff",
+          "datetime_iso8601": "20180820T125309+1200",
+          "datetime_display": "12:53 20/08/2018",
+          "creditline": "STUFF",
+          "caption": "Just what is the make up of our dairy industry?",
+          "src": "https://media.stuff.co.nz/video/production/1534726360405-Stuff%20SOCIAL%20VID%201.mp4",
+          "video_poster": {
+            "id": 106408353,
+            "layout": "Video Image",
+            "src": "https://resources.stuff.co.nz/content/dam/images/1/r/c/p/7/l/image.related.StuffLandscapeSixteenByNine.620x349.1rcpf9.png/1534726397733.png",
+            "width": "620",
+            "height": "349"
+          },
+          "asset_type": "VIDEO"
+        }
+      ],
+      "html_assets": [
+        {
+          "id": 112381666,
+          "data_content": "<style>\n    \n\t.stuff-linkedin {\n\t\twidth: 100%;\n\t\tmax-width: 1000px;\n\t\tmargin: 0 auto;\n\t\ttext-align: center;\n\t\tbackground-image: url(https://static3.stuff.co.nz/stuff-linkedin-bg-4a182713.jpg);\n\t\tbackground-size: cover;\n\t\tbackground-position: center;\n\t\tbackground-repeat: no-repeat;\n\t\tbackground-color: #ffffff;\n\t\toverflow: hidden;\n\t}\n\t.stuff-linkedin a {\n\t\twidth: 100%;\n\t\theight: 100%;\n\t\ttext-decoration: none;\n\t\t\n\t}\n\n\t.stuff-linkedin img {\n\t\twidth: 100%;\n\t\tmax-width: 446px;\n\t\tdisplay: block;\n\t\tmargin: 0 auto;\n\t\ttransition: 0.2s opacity ease-in-out;\n\t\t-webkit-transition: 0.2s opacity ease-in-out;\n}\n\t\n\n\n\t.stuff-linkedin img:hover {\n\t\topacity: 0.7;\n\t}\n\t\n</style>\n\n<div class=\"stuff-linkedin\">\n\t<a href=\"https://www.linkedin.com/company/business-stuff\" target=\"_top\">\n\t\t<img src=\"https://static3.stuff.co.nz/stuff-linkedin-pointer-825c67c0.png\" alt=\"\">\n\t</a>\n</div>",
+          "position_after_paragraph": 10,
+          "asset_type": "HTML"
+        }
+      ],
+      "galleries": [],
+      "headline_flags": [],
+      "asset_type": "ARTICLE"
     }
   ],
   "datetime_iso8601": "20190131T150349+1300",
