@@ -2,6 +2,9 @@
 const webpack = require('webpack');
 module.exports = {
   devtool: false,
+  output: {
+    filename: 'spade/[name].[chunkhash:20].js'
+  },
   externals: {
     newrelic: true
   },
