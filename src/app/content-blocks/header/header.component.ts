@@ -2,6 +2,7 @@ import { Component, Inject, Input, Renderer2 } from '@angular/core';
 import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
 import { IHeader } from '../../../../common/__types__/IHeader';
 import { DOCUMENT } from '@angular/common';
+import { AnalyticsService } from 'src/app/services/data-layer/analytics.service';
 
 @Component({
   selector: 'app-header',
@@ -9,10 +10,14 @@ import { DOCUMENT } from '@angular/common';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements IContentBlockComponent {
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private renderer: Renderer2,
+    private analyticsService: AnalyticsService
+  ) {}
+
   @Input() input!: IHeader;
-
   navigationVisible = false;
-
   sections = [
     {
       theme: 'light',
@@ -59,11 +64,6 @@ export class HeaderComponent implements IContentBlockComponent {
     }
   ];
 
-  constructor(
-    @Inject(DOCUMENT) private document: Document,
-    private renderer: Renderer2
-  ) {}
-
   toggleMenu() {
     this.navigationVisible = !this.navigationVisible;
     if (this.navigationVisible) {
@@ -71,5 +71,9 @@ export class HeaderComponent implements IContentBlockComponent {
     } else {
       this.renderer.removeClass(this.document.body, 'noScroll');
     }
+
+    this.analyticsService.pushEvent({
+      event: this.navigationVisible ? 'menu.nav' : 'close.menu.nav'
+    });
   }
 }
