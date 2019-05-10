@@ -7,6 +7,30 @@ import { IBasicArticleListHandlerInput } from './__types__/IBasicArticleListHand
 import { handlerRunnerFunction } from './runner';
 import { IParams } from '../__types__/IParams';
 import { IBasicTitleArticle } from '../../../common/__types__/IBasicTitleArticle';
+import { IRawArticle } from '../adapters/__types__/IRawArticle';
+
+const createBasicArticleUnitBlock = (
+  article: IRawArticle
+): IBasicArticleUnit => ({
+  type: ContentBlockType.BasicArticleUnit,
+  indexHeadline: article.indexHeadline,
+  introText: article.introText,
+  imageSrc: article.imageSrc,
+  linkUrl: article.linkUrl,
+  lastPublishedTime: article.lastPublishedTime,
+  headlineFlags: article.headlineFlags
+});
+
+const createBasicTitleArticleBlock = (
+  article: IRawArticle
+): IBasicTitleArticle => ({
+  type: ContentBlockType.BasicTitleArticle,
+  indexHeadline: article.indexHeadline,
+  introText: article.introText,
+  linkUrl: article.linkUrl,
+  lastPublishedTime: article.lastPublishedTime,
+  headlineFlags: article.headlineFlags
+});
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -32,23 +56,8 @@ export default async function(
     (final, article, index) => [
       ...final,
       index < (totalImageArticles || totalArticles)
-        ? ({
-            type: ContentBlockType.BasicArticleUnit,
-            indexHeadline: article.indexHeadline,
-            introText: article.introText,
-            imageSrc: article.imageSrc,
-            linkUrl: article.linkUrl,
-            lastPublishedTime: article.lastPublishedTime,
-            headlineFlags: article.headlineFlags
-          } as IBasicArticleUnit)
-        : ({
-            type: ContentBlockType.BasicTitleArticle,
-            indexHeadline: article.indexHeadline,
-            introText: article.introText,
-            linkUrl: article.linkUrl,
-            lastPublishedTime: article.lastPublishedTime,
-            headlineFlags: article.headlineFlags
-          } as IBasicTitleArticle),
+        ? createBasicArticleUnitBlock(article)
+        : createBasicTitleArticleBlock(article),
       basicAdUnit
     ],
     [basicAdUnit] as IContentBlock[]
