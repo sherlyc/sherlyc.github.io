@@ -1,7 +1,7 @@
 import { ContentBlockType } from './ContentBlockType';
 
-export interface IBasicTitleArticle {
-  type: ContentBlockType.BasicTitleArticle;
+export interface IBasicArticleTitleUnit {
+  type: ContentBlockType.BasicArticleTitleUnit;
   indexHeadline: string;
   introText: string;
   linkUrl: string;
