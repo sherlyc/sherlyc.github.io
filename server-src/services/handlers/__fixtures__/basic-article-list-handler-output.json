@@ -69,7 +69,7 @@
       "introText": "Tour to Barcelona",
       "lastPublishedTime": 1557351421,
       "linkUrl": "/business/farming/112552026/path",
-      "type": "BasicTitleArticle"
+      "type": "BasicArticleTitleUnit"
     },
     {
       "type": "BasicAdUnit"
@@ -110,7 +110,7 @@
       "introText": "Iron Man",
       "lastPublishedTime": 1557351421,
       "linkUrl": "/business/farming/112552026/path2",
-      "type": "BasicTitleArticle"
+      "type": "BasicArticleTitleUnit"
     },
     {
       "type": "BasicAdUnit"
@@ -121,7 +121,7 @@
       "introText": "Far from home",
       "lastPublishedTime": 1557351421,
       "linkUrl": "/business/farming/112552026/path3",
-      "type": "BasicTitleArticle"
+      "type": "BasicArticleTitleUnit"
     },
     {
       "type": "BasicAdUnit"

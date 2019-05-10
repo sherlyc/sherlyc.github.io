@@ -63,9 +63,9 @@ describe('BasicArticleListHandler', () => {
     );
   });
 
-  it('should get one basic article with images and one without images', async () => {
+  it('should get one basic article units and one basic article title unit', async () => {
     const totalArticles = 2;
-    const totalImageArticles = 1;
+    const totalBasicArticleUnits = 1;
     const totalAdUnits = 3;
     (getEditorsPick as jest.Mock).mockResolvedValue(rawEditorsPick);
 
@@ -74,7 +74,7 @@ describe('BasicArticleListHandler', () => {
       {
         type: HandlerInputType.ArticleList,
         totalArticles,
-        totalImageArticles,
+        totalImageArticles: totalBasicArticleUnits,
         sourceId: ListAsset.EditorPicks
       },
       params
@@ -86,9 +86,9 @@ describe('BasicArticleListHandler', () => {
     );
   });
 
-  it('should get multiple basic article with images and multiple without images', async () => {
+  it('should get multiple basic article units and multiple articles title units', async () => {
     const totalArticles = 4;
-    const totalImageArticles = 2;
+    const totalBasicArticleUnits = 2;
     const totalAdUnits = 5;
     (getEditorsPick as jest.Mock).mockResolvedValue(longEditorsPick);
 
@@ -97,7 +97,7 @@ describe('BasicArticleListHandler', () => {
       {
         type: HandlerInputType.ArticleList,
         totalArticles,
-        totalImageArticles,
+        totalImageArticles: totalBasicArticleUnits,
         sourceId: ListAsset.EditorPicks
       },
       params

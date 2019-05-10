@@ -6,7 +6,7 @@ import { getArticleList, getEditorsPick } from '../adapters/jsonfeed';
 import { IBasicArticleListHandlerInput } from './__types__/IBasicArticleListHandlerInput';
 import { handlerRunnerFunction } from './runner';
 import { IParams } from '../__types__/IParams';
-import { IBasicTitleArticle } from '../../../common/__types__/IBasicTitleArticle';
+import { IBasicArticleTitleUnit } from '../../../common/__types__/IBasicArticleTitleUnit';
 import { IRawArticle } from '../adapters/__types__/IRawArticle';
 import { Section } from '../section';
 
@@ -24,8 +24,8 @@ const createBasicArticleUnitBlock = (
 
 const createBasicTitleArticleBlock = (
   article: IRawArticle
-): IBasicTitleArticle => ({
-  type: ContentBlockType.BasicTitleArticle,
+): IBasicArticleTitleUnit => ({
+  type: ContentBlockType.BasicArticleTitleUnit,
   indexHeadline: article.indexHeadline,
   introText: article.introText,
   linkUrl: article.linkUrl,
