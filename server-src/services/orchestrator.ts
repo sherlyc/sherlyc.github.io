@@ -4,6 +4,7 @@ import { Section } from './section';
 import { IParams } from './__types__/IParams';
 import { ContentBlockType } from '../../common/__types__/ContentBlockType';
 import { HandlerInputType } from './handlers/__types__/HandlerInputType';
+import { ListAsset } from './listAsset';
 
 export default async (params: IParams): Promise<IPage> => {
   try {
@@ -23,7 +24,7 @@ export default async (params: IParams): Promise<IPage> => {
             },
             {
               type: HandlerInputType.ArticleList,
-              sectionId: Section.Latest,
+              sourceId: Section.Latest,
               totalArticles: 6
             },
             {
@@ -44,56 +45,67 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Sport',
               displayNameColor: 'scarlet',
               linkUrl: '/' + Section.Sport,
-              articleList: { sectionId: Section.Sport, totalArticles: 3 }
+              articleList: { sourceId: Section.Sport, totalArticles: 3 }
+            },
+            {
+              type: HandlerInputType.ArticleSection,
+              displayName: `Editor's Pick`,
+              displayNameColor: 'scarlet',
+              linkUrl: '/' + Section.Sport,
+              articleList: {
+                sourceId: ListAsset.EditorPicks,
+                totalArticles: 8,
+                totalImageArticles: 2
+              }
             },
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'National',
               displayNameColor: 'toreabay',
               linkUrl: '/' + Section.National,
-              articleList: { sectionId: Section.National, totalArticles: 3 }
+              articleList: { sourceId: Section.National, totalArticles: 3 }
             },
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'World',
               displayNameColor: 'azureblue',
               linkUrl: '/' + Section.World,
-              articleList: { sectionId: Section.World, totalArticles: 3 }
+              articleList: { sourceId: Section.World, totalArticles: 3 }
             },
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Business',
               displayNameColor: 'royalblue',
               linkUrl: '/' + Section.Business,
-              articleList: { sectionId: Section.Business, totalArticles: 3 }
+              articleList: { sourceId: Section.Business, totalArticles: 3 }
             },
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Opinion',
               displayNameColor: 'dingley',
               linkUrl: '/' + Section.Opinion,
-              articleList: { sectionId: Section.Opinion, totalArticles: 3 }
+              articleList: { sourceId: Section.Opinion, totalArticles: 3 }
             },
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Technology',
               displayNameColor: 'carribeangreen',
               linkUrl: '/' + Section.Technology,
-              articleList: { sectionId: Section.Technology, totalArticles: 3 }
+              articleList: { sourceId: Section.Technology, totalArticles: 3 }
             },
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Homed',
               displayNameColor: 'keppel',
               linkUrl: '/' + Section.Homed,
-              articleList: { sectionId: Section.Homed, totalArticles: 3 }
+              articleList: { sourceId: Section.Homed, totalArticles: 3 }
             },
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Life Style',
               displayNameColor: 'amaranth',
               linkUrl: '/' + Section.LifeStyle,
-              articleList: { sectionId: Section.LifeStyle, totalArticles: 3 }
+              articleList: { sourceId: Section.LifeStyle, totalArticles: 3 }
             },
             {
               type: HandlerInputType.ArticleSection,
@@ -101,7 +113,7 @@ export default async (params: IParams): Promise<IPage> => {
               displayNameColor: 'purpleheart',
               linkUrl: '/' + Section.Entertainment,
               articleList: {
-                sectionId: Section.Entertainment,
+                sourceId: Section.Entertainment,
                 totalArticles: 3
               }
             },
@@ -110,21 +122,21 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Travel',
               displayNameColor: 'yellowsea',
               linkUrl: '/' + Section.Travel,
-              articleList: { sectionId: Section.Travel, totalArticles: 3 }
+              articleList: { sourceId: Section.Travel, totalArticles: 3 }
             },
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Motoring',
               displayNameColor: 'pizzaz',
               linkUrl: '/' + Section.Motoring,
-              articleList: { sectionId: Section.Motoring, totalArticles: 3 }
+              articleList: { sourceId: Section.Motoring, totalArticles: 3 }
             },
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Stuff Nation',
               displayNameColor: 'junglegreen',
               linkUrl: '/' + Section.StuffNation,
-              articleList: { sectionId: Section.StuffNation, totalArticles: 3 }
+              articleList: { sourceId: Section.StuffNation, totalArticles: 3 }
             },
             {
               type: HandlerInputType.ArticleSection,
@@ -132,7 +144,7 @@ export default async (params: IParams): Promise<IPage> => {
               displayNameColor: 'toreabay',
               linkUrl: '/' + Section.QuickSaveThePlanet,
               articleList: {
-                sectionId: Section.QuickSaveThePlanet,
+                sourceId: Section.QuickSaveThePlanet,
                 totalArticles: 3
               }
             },
@@ -141,7 +153,7 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Well Good',
               displayNameColor: 'sunglow',
               linkUrl: '/' + Section.WellGood,
-              articleList: { sectionId: Section.WellGood, totalArticles: 3 }
+              articleList: { sourceId: Section.WellGood, totalArticles: 3 }
             }
           ]
         },

@@ -1,9 +1,10 @@
 import { Section } from '../../section';
+import { ListAsset } from '../../listAsset';
 import { HandlerInputType } from './HandlerInputType';
 
 export interface IBasicArticleListHandlerInput {
   type: HandlerInputType.ArticleList;
-  sectionId?: Section;
+  sourceId: Section | ListAsset;
   totalArticles: number;
   totalImageArticles?: number;
 }

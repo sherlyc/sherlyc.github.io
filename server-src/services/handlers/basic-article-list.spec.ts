@@ -7,6 +7,7 @@ import * as basicArticleListHandlerOutput from './__fixtures__/basic-article-lis
 import { getArticleList, getEditorsPick } from '../adapters/jsonfeed';
 import { IParams } from '../__types__/IParams';
 import { HandlerInputType } from './__types__/HandlerInputType';
+import { ListAsset } from '../listAsset';
 
 jest.mock('../adapters/jsonfeed');
 
@@ -17,7 +18,6 @@ describe('BasicArticleListHandler', () => {
   });
 
   it('should get a list of basic article units and ad units', async () => {
-    const sectionId = Section.Business;
     const totalArticles = 1;
     const totalAdUnits = 2;
     (getArticleList as jest.Mock).mockResolvedValue(rawArticleList);
@@ -28,7 +28,7 @@ describe('BasicArticleListHandler', () => {
       handlerRunnerMock,
       {
         type: HandlerInputType.ArticleList,
-        sectionId,
+        sourceId: Section.Business,
         totalArticles
       },
       params
@@ -41,7 +41,6 @@ describe('BasicArticleListHandler', () => {
   });
 
   it('should get a list of basic article units and ad units not exceeding the maximum length', async () => {
-    const sectionId = Section.Business;
     const totalArticles = 2;
     const totalAdUnits = 3;
     (getArticleList as jest.Mock).mockResolvedValue(rawArticleList);
@@ -52,7 +51,7 @@ describe('BasicArticleListHandler', () => {
       handlerRunnerMock,
       {
         type: HandlerInputType.ArticleList,
-        sectionId,
+        sourceId: Section.Business,
         totalArticles
       },
       params
@@ -65,8 +64,8 @@ describe('BasicArticleListHandler', () => {
   });
 
   it('should get one basic article with images and one without images', async () => {
-    const totalArticles = 1;
-    const totalTitleArticles = 1;
+    const totalArticles = 2;
+    const totalImageArticles = 1;
     const totalAdUnits = 3;
     (getEditorsPick as jest.Mock).mockResolvedValue(rawEditorsPick);
 
@@ -74,14 +73,14 @@ describe('BasicArticleListHandler', () => {
       jest.fn(),
       {
         type: HandlerInputType.ArticleList,
-        totalArticles
+        totalArticles,
+        totalImageArticles,
+        sourceId: ListAsset.EditorPicks
       },
       params
     );
 
-    expect(contentBlocks.length).toBe(
-      totalArticles + totalTitleArticles + totalAdUnits
-    );
+    expect(contentBlocks.length).toBe(totalArticles + totalAdUnits);
     expect(contentBlocks).toEqual(
       basicArticleListHandlerOutput.OneArticleUnitOneArticleTitleThreeAd
     );
@@ -98,7 +97,8 @@ describe('BasicArticleListHandler', () => {
       {
         type: HandlerInputType.ArticleList,
         totalArticles,
-        totalImageArticles
+        totalImageArticles,
+        sourceId: ListAsset.EditorPicks
       },
       params
     );
