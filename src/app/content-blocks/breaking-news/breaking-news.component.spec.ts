@@ -4,11 +4,13 @@ import { By } from '@angular/platform-browser';
 import { CookieService } from '../../services/cookie/cookie.service';
 import { mockService, ServiceMock } from '../../services/mocks/MockService';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
+import { AnalyticsService } from 'src/app/services/data-layer/analytics.service';
 
 describe('BreakingNewsComponent', () => {
   let component: BreakingNewsComponent;
   let fixture: ComponentFixture<BreakingNewsComponent>;
   let cookieServiceMock: ServiceMock<CookieService>;
+  let analyticsService: ServiceMock<AnalyticsService>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -17,10 +19,15 @@ describe('BreakingNewsComponent', () => {
         {
           provide: CookieService,
           useClass: mockService(CookieService)
+        },
+        {
+          provide: AnalyticsService,
+          useClass: mockService(AnalyticsService)
         }
       ]
     }).compileComponents();
     cookieServiceMock = TestBed.get(CookieService);
+    analyticsService = TestBed.get(AnalyticsService);
   });
 
   beforeEach(() => {
@@ -48,6 +55,7 @@ describe('BreakingNewsComponent', () => {
   it('should disappear when dismiss button is clicked', () => {
     fixture.debugElement.query(By.css('.dismiss')).nativeElement.click();
     fixture.detectChanges();
+
     expect(component.onClickOrDismiss).toHaveBeenCalled();
     expect(cookieServiceMock.set).toHaveBeenCalled();
     expect(fixture.debugElement.query(By.css('.breaking-news'))).toBeFalsy();
@@ -56,8 +64,27 @@ describe('BreakingNewsComponent', () => {
   it('should disappear when the link is clicked', () => {
     fixture.debugElement.query(By.css('.link')).nativeElement.click();
     fixture.detectChanges();
+
     expect(component.onClickOrDismiss).toHaveBeenCalled();
     expect(cookieServiceMock.set).toHaveBeenCalled();
     expect(fixture.debugElement.query(By.css('.breaking-news'))).toBeFalsy();
+  });
+
+  describe('Analytics', () => {
+    it('should push analytics event when opening the breaking news link', () => {
+      fixture.debugElement.query(By.css('.dismiss')).nativeElement.click();
+
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+        event: 'breaking.news.close'
+      });
+    });
+
+    it('should push analytics event when closing breaking news', () => {
+      fixture.debugElement.query(By.css('.link')).nativeElement.click();
+
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+        event: 'breaking.news.open'
+      });
+    });
   });
 });

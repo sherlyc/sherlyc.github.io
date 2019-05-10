@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { IDigitalData } from './__types__/IDigitalData';
 import { DeviceType } from './__types__/DeviceType';
 import { RuntimeService } from '../runtime/runtime.service';
+import { IAnalyticsEvent } from './__types__/IAnalyticsEvent';
 
 declare const window: {
   digitalData: IDigitalData;
@@ -12,7 +13,7 @@ const home = 'home';
 @Injectable({
   providedIn: 'root'
 })
-export class DataLayerService {
+export class AnalyticsService {
   constructor(private runtimeService: RuntimeService) {}
 
   setup() {
@@ -56,6 +57,12 @@ export class DataLayerService {
         ],
         events: []
       };
+    }
+  }
+
+  pushEvent(event: IAnalyticsEvent) {
+    if (this.runtimeService.isBrowser()) {
+      window.digitalData.events.push({ type: 'analytics', ...event });
     }
   }
 }

@@ -10,12 +10,17 @@ import { WeatherRetrieverService } from '../../services/weather-retriever/weathe
 import * as weatherDataJson from '../../services/weather-retriever/__fixtures__/weatherData.json';
 import { of, throwError } from 'rxjs';
 import { IWeatherResponse } from '../../../../common/__types__/IWeatherResponse';
+import { AnalyticsService } from 'src/app/services/data-layer/analytics.service';
+import { DebugElement } from '@angular/core';
 
 describe('WeatherUnitComponent', () => {
   let storeService: ServiceMock<StoreService>;
   let runtimeService: ServiceMock<RuntimeService>;
   let weatherRetrieverService: ServiceMock<WeatherRetrieverService>;
+  let analyticsService: ServiceMock<AnalyticsService>;
   const weatherData = weatherDataJson as IWeatherResponse;
+  let fixture: ComponentFixture<WeatherUnitComponent>;
+  let component: WeatherUnitComponent;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -36,6 +41,10 @@ describe('WeatherUnitComponent', () => {
         {
           provide: WeatherRetrieverService,
           useClass: mockService(WeatherRetrieverService)
+        },
+        {
+          provide: AnalyticsService,
+          useClass: mockService(AnalyticsService)
         }
       ]
     }).compileComponents();
@@ -43,25 +52,21 @@ describe('WeatherUnitComponent', () => {
     runtimeService = TestBed.get(RuntimeService);
     storeService = TestBed.get(StoreService);
     weatherRetrieverService = TestBed.get(WeatherRetrieverService);
+    analyticsService = TestBed.get(AnalyticsService);
     runtimeService.isBrowser.mockReturnValue(true);
-  });
 
-  const setupComponent = () => {
-    const fixture = TestBed.createComponent(WeatherUnitComponent);
-    const component = fixture.componentInstance;
+    fixture = TestBed.createComponent(WeatherUnitComponent);
+    component = fixture.componentInstance;
     component.input = {
       type: ContentBlockType.WeatherUnit
     };
-    return { fixture, component };
-  };
+  });
 
   it('should create', () => {
-    const { component } = setupComponent();
     expect(component).toBeTruthy();
   });
 
   it('should display region list when weather label is clicked', () => {
-    const { component, fixture } = setupComponent();
     component.isDropdownOpen = false;
     expect(
       fixture.debugElement.query(By.css('.location-list-visible'))
@@ -76,7 +81,6 @@ describe('WeatherUnitComponent', () => {
   });
 
   it('should display 2 columns of region list when weather label is clicked', () => {
-    const { component, fixture } = setupComponent();
     component.isDropdownOpen = false;
     expect(fixture.debugElement.query(By.css('.regionsList'))).toBeFalsy();
 
@@ -92,7 +96,6 @@ describe('WeatherUnitComponent', () => {
   });
 
   it('should hide region list when weather label is clicked and region list is already displayed', () => {
-    const { component, fixture } = setupComponent();
     component.isDropdownOpen = true;
     fixture.detectChanges();
     expect(
@@ -110,7 +113,6 @@ describe('WeatherUnitComponent', () => {
   it('should display tick for selected location', () => {
     weatherRetrieverService.getWeather.mockReturnValue(of(weatherData));
     storeService.get.mockReturnValue(WeatherLocations.Auckland);
-    const { component, fixture } = setupComponent();
     component.regions = [
       {
         name: 'Auckland',
@@ -124,7 +126,6 @@ describe('WeatherUnitComponent', () => {
   });
 
   it('should not display tick for non-selected location', () => {
-    const { component, fixture } = setupComponent();
     component.regions = [
       {
         name: 'Auckland',
@@ -132,7 +133,7 @@ describe('WeatherUnitComponent', () => {
       }
     ];
     component.isDropdownOpen = true;
-    component.selectedLocation = '';
+    component.selectedLocation = undefined;
     fixture.detectChanges();
 
     expect(fixture.debugElement.query(By.css('.tick-icon'))).toBeFalsy();
@@ -140,7 +141,6 @@ describe('WeatherUnitComponent', () => {
 
   it('should save last selected location and retrieve weather data for that location', () => {
     weatherRetrieverService.getWeather.mockReturnValue(of(weatherData));
-    const { component, fixture } = setupComponent();
     component.regions = [
       {
         name: 'Auckland',
@@ -150,7 +150,12 @@ describe('WeatherUnitComponent', () => {
     component.isDropdownOpen = true;
     fixture.detectChanges();
 
-    fixture.debugElement.query(By.css('.location-name')).nativeElement.click();
+    const aucklandListElement = fixture.debugElement
+      .queryAll(By.css('.location-name'))
+      .find(
+        (element) => element.nativeElement.textContent === 'Auckland'
+      ) as DebugElement;
+    aucklandListElement.nativeElement.click();
 
     expect(storeService.set).toHaveBeenCalledWith(
       StorageKeys.WeatherLocation,
@@ -164,7 +169,6 @@ describe('WeatherUnitComponent', () => {
   it('should retrieve last selected location on load if there is a location', () => {
     storeService.get.mockReturnValue(WeatherLocations.Auckland);
     weatherRetrieverService.getWeather.mockReturnValue(of(weatherData));
-    const { fixture } = setupComponent();
     fixture.detectChanges();
 
     expect(
@@ -179,7 +183,6 @@ describe('WeatherUnitComponent', () => {
 
   it('should show the weather condition svg icon of current location', () => {
     weatherRetrieverService.getWeather.mockReturnValue(of(weatherData));
-    const { component, fixture } = setupComponent();
     component.regions = [
       {
         name: 'Auckland',
@@ -189,7 +192,12 @@ describe('WeatherUnitComponent', () => {
     component.isDropdownOpen = true;
     fixture.detectChanges();
 
-    fixture.debugElement.query(By.css('.location-name')).nativeElement.click();
+    const aucklandListElement = fixture.debugElement
+      .queryAll(By.css('.location-name'))
+      .find(
+        (element) => element.nativeElement.textContent === 'Auckland'
+      ) as DebugElement;
+    aucklandListElement.nativeElement.click();
     fixture.detectChanges();
 
     const weatherIcon = fixture.debugElement.query(By.css('.weather-icon'));
@@ -201,7 +209,6 @@ describe('WeatherUnitComponent', () => {
   it('should display weather info on load if there is a selected location', () => {
     weatherRetrieverService.getWeather.mockReturnValue(of(weatherData));
     storeService.get.mockReturnValue(WeatherLocations.Auckland);
-    const { component, fixture } = setupComponent();
     component.weatherData = weatherData;
     fixture.detectChanges();
 
@@ -225,7 +232,6 @@ describe('WeatherUnitComponent', () => {
 
   it('should not retrieve last selected location on load if there is no location saved', () => {
     storeService.get.mockReturnValue('');
-    const { fixture } = setupComponent();
     fixture.detectChanges();
 
     expect(
@@ -238,11 +244,15 @@ describe('WeatherUnitComponent', () => {
 
   it('should collapse location list after selecting a location', () => {
     weatherRetrieverService.getWeather.mockReturnValue(of(weatherData));
-    const { component, fixture } = setupComponent();
     component.isDropdownOpen = true;
     fixture.detectChanges();
 
-    fixture.debugElement.query(By.css('.location-name')).nativeElement.click();
+    const aucklandListElement = fixture.debugElement
+      .queryAll(By.css('.location-name'))
+      .find(
+        (element) => element.nativeElement.textContent === 'Auckland'
+      ) as DebugElement;
+    aucklandListElement.nativeElement.click();
     fixture.detectChanges();
 
     expect(
@@ -258,7 +268,6 @@ describe('WeatherUnitComponent', () => {
     weatherRetrieverService.getWeather.mockReturnValue(
       throwError({ status: 500, statusText: 'Internal Server error' })
     );
-    const { fixture } = setupComponent();
     fixture.detectChanges();
 
     expect(
@@ -275,7 +284,6 @@ describe('WeatherUnitComponent', () => {
 
   it('should show weather unavailable if cannot retrieve selected weather info after selecting new location', () => {
     storeService.get.mockReturnValue(null);
-    const { component, fixture } = setupComponent();
     component.isDropdownOpen = true;
     component.regions = [
       {
@@ -288,7 +296,12 @@ describe('WeatherUnitComponent', () => {
     weatherRetrieverService.getWeather.mockReturnValue(
       throwError({ status: 500, statusText: 'Internal Server error' })
     );
-    fixture.debugElement.query(By.css('.location-name')).nativeElement.click();
+    const aucklandListElement = fixture.debugElement
+      .queryAll(By.css('.location-name'))
+      .find(
+        (element) => element.nativeElement.textContent === 'Auckland'
+      ) as DebugElement;
+    aucklandListElement.nativeElement.click();
     fixture.detectChanges();
 
     expect(
@@ -308,7 +321,6 @@ describe('WeatherUnitComponent', () => {
     weatherRetrieverService.getWeather.mockReturnValue(
       throwError({ status: 500, statusText: 'Internal Server error' })
     );
-    const { component, fixture } = setupComponent();
     component.isDropdownOpen = true;
     component.regions = [
       {
@@ -330,7 +342,12 @@ describe('WeatherUnitComponent', () => {
     ).toBeFalsy();
 
     weatherRetrieverService.getWeather.mockReturnValue(of(weatherData));
-    fixture.debugElement.query(By.css('.location-name')).nativeElement.click();
+    const aucklandListElement = fixture.debugElement
+      .queryAll(By.css('.location-name'))
+      .find(
+        (element) => element.nativeElement.textContent === 'Auckland'
+      ) as DebugElement;
+    aucklandListElement.nativeElement.click();
     fixture.detectChanges();
 
     expect(
@@ -354,7 +371,6 @@ describe('WeatherUnitComponent', () => {
 
   it('should show check weather if there is no selected location', () => {
     storeService.get.mockReturnValue(null);
-    const { fixture } = setupComponent();
     fixture.detectChanges();
 
     expect(
@@ -368,7 +384,6 @@ describe('WeatherUnitComponent', () => {
   });
 
   it('should close region list when clicking exit button', () => {
-    const { fixture, component } = setupComponent();
     component.isDropdownOpen = true;
     fixture.detectChanges();
 
@@ -382,5 +397,69 @@ describe('WeatherUnitComponent', () => {
     expect(
       fixture.debugElement.query(By.css('.location-list-visible'))
     ).toBeFalsy();
+  });
+
+  describe('Analytics', () => {
+    it('should push analytic event when weather bar is clicked to open it', () => {
+      component.isDropdownOpen = false;
+      fixture.detectChanges();
+
+      fixture.debugElement.query(By.css('.weather-bar')).nativeElement.click();
+      fixture.detectChanges();
+
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+        event: 'weather.location.bar',
+        'weather.bar': 'opened'
+      });
+    });
+
+    it('should push analytic event when weather bar is clicked to close it', () => {
+      component.isDropdownOpen = true;
+      fixture.detectChanges();
+
+      fixture.debugElement.query(By.css('.weather-bar')).nativeElement.click();
+      fixture.detectChanges();
+
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+        event: 'weather.location.bar',
+        'weather.bar': 'closed'
+      });
+    });
+
+    it('should push analytic event when weather bar is closed with X button', () => {
+      component.isDropdownOpen = true;
+      fixture.detectChanges();
+
+      fixture.debugElement.query(By.css('.close-button')).nativeElement.click();
+      fixture.detectChanges();
+
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+        event: 'weather.location.exit'
+      });
+    });
+
+    it('should push analytic event when weather location is changed ', () => {
+      weatherRetrieverService.getWeather.mockReturnValue(of(weatherData));
+      component.isDropdownOpen = true;
+      component.regions = [
+        {
+          name: 'Auckland',
+          locations: [WeatherLocations.Auckland]
+        }
+      ];
+      fixture.detectChanges();
+
+      const aucklandListElement = fixture.debugElement
+        .queryAll(By.css('.location-name'))
+        .find(
+          (element) => element.nativeElement.textContent === 'Auckland'
+        ) as DebugElement;
+      aucklandListElement.nativeElement.click();
+
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+        event: 'weather.location.change',
+        'weather.location': 'Auckland'
+      });
+    });
   });
 });

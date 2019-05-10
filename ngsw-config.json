@@ -5,7 +5,7 @@
       "name": "app",
       "installMode": "prefetch",
       "resources": {
-        "files": ["/favicon.ico", "/index.html", "/*.css", "/*.js"]
+        "files": ["/index.html", "/spade/*.css", "/spade/*.js"]
       }
     },
     {
@@ -13,14 +13,14 @@
       "installMode": "lazy",
       "updateMode": "prefetch",
       "resources": {
-        "files": ["/assets/**"]
+        "files": ["/spade/assets/**"]
       }
     }
   ],
   "dataGroups": [
     {
       "name": "api",
-      "urls": ["/api/**"],
+      "urls": ["/spade/api/**"],
       "cacheConfig": {
         "timeout": "500u",
         "maxSize": 1000,

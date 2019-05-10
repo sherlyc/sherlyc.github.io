@@ -5,7 +5,7 @@ describe('weather api test', () => {
     const app = require('../app').default;
 
     const response: supertest.Response = await supertest(app)
-      .get('/api/weather')
+      .get('/spade/api/weather')
       .query({ location: 'auckland' })
       .set('Accept', 'application/json');
 
@@ -24,7 +24,7 @@ describe('weather api test', () => {
     const app = require('../app').default;
 
     const response: supertest.Response = await supertest(app)
-      .get('/api/weather')
+      .get('/spade/api/weather')
       .set('Accept', 'application/json');
 
     expect(response.status).toBe(400);

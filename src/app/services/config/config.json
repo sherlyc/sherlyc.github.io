@@ -2,16 +2,16 @@
   "production": {
     "retryTimeout": 1000,
     "requestTimeout": 10000,
-    "spadeAPI": "http://localhost:4000/api/content",
-    "weatherAPI": "http://localhost:4000/api/weather",
+    "spadeAPI": "http://localhost:4000/spade/api/content",
+    "weatherAPI": "http://localhost:4000/spade/api/weather",
     "loggerOptions": {
       "level": "info",
       "format": "json"
     },
     "aadSdkUrl": "/adnostic/index.min.js",
     "browserOverrides": {
-      "spadeAPI": "/api/content",
-      "weatherAPI": "/api/weather"
+      "spadeAPI": "/spade/api/content",
+      "weatherAPI": "/spade/api/weather"
     },
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
@@ -23,16 +23,16 @@
   "staging": {
     "retryTimeout": 1000,
     "requestTimeout": 10000,
-    "spadeAPI": "http://localhost:4000/api/content",
-    "weatherAPI": "http://localhost:4000/api/weather",
+    "spadeAPI": "http://localhost:4000/spade/api/content",
+    "weatherAPI": "http://localhost:4000/spade/api/weather",
     "loggerOptions": {
       "level": "info",
       "format": "json"
     },
     "aadSdkUrl": "/adnostic/index.min.js",
     "browserOverrides": {
-      "spadeAPI": "/api/content",
-      "weatherAPI": "/api/weather"
+      "spadeAPI": "/spade/api/content",
+      "weatherAPI": "/spade/api/weather"
     },
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
@@ -44,16 +44,16 @@
   "development": {
     "retryTimeout": 500,
     "requestTimeout": 10000,
-    "spadeAPI": "http://localhost:4000/api/content",
-    "weatherAPI": "http://localhost:4000/api/weather",
+    "spadeAPI": "http://localhost:4000/spade/api/content",
+    "weatherAPI": "http://localhost:4000/spade/api/weather",
     "loggerOptions": {
       "level": "debug",
       "format": "text"
     },
-    "aadSdkUrl": "/assets/test-aad-sdk.js",
+    "aadSdkUrl": "/spade/assets/test-aad-sdk.js",
     "browserOverrides": {
-      "spadeAPI": "/api/content",
-      "weatherAPI": "/api/weather"
+      "spadeAPI": "/spade/api/content",
+      "weatherAPI": "/spade/api/weather"
     },
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
@@ -65,16 +65,16 @@
   "test": {
     "retryTimeout": 1,
     "requestTimeout": 10000,
-    "spadeAPI": "http://localhost:4000/api/content",
-    "weatherAPI": "http://localhost:4000/api/weather",
+    "spadeAPI": "http://localhost:4000/spade/api/content",
+    "weatherAPI": "http://localhost:4000/spade/api/weather",
     "loggerOptions": {
       "level": "debug",
       "format": "text"
     },
     "aadSdkUrl": "/adnostic/index.min.js",
     "browserOverrides": {
-      "spadeAPI": "/api/content",
-      "weatherAPI": "/api/weather"
+      "spadeAPI": "/spade/api/content",
+      "weatherAPI": "/spade/api/weather"
     },
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",

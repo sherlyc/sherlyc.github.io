@@ -1,0 +1,93 @@
+/* Light */
+@font-face {
+  font-family: 'Merriweather Sans';
+  src: url('/spade/assets/fonts/webfontkit-20170919-000243/merriweathersans-light.woff2')
+      format('woff2'),
+    url('/spade/assets/fonts/webfontkit-20170919-000243/merriweathersans-light.woff')
+      format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Merriweather Sans';
+  src: url('/spade/assets/fonts/webfontkit-20170919-000243/merriweathersans-lightitalic.woff2')
+      format('woff2'),
+    url('/spade/assets/fonts/webfontkit-20170919-000243/merriweathersans-lightitalic.woff')
+      format('woff');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Bold */
+@font-face {
+  font-family: 'Merriweather Sans';
+  src: url('/spade/assets/fonts/webfontkit-20170919-000243/merriweathersans-bold.woff2')
+      format('woff2'),
+    url('/spade/assets/fonts/webfontkit-20170919-000243/merriweathersans-bold.woff')
+      format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Merriweather Sans';
+  src: url('/spade/assets/fonts/webfontkit-20170919-000243/merriweathersans-bolditalic.woff2')
+      format('woff2'),
+    url('/spade/assets/fonts/webfontkit-20170919-000243/merriweathersans-bolditalic.woff')
+      format('woff');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* MERRIWEATHER SERIF */
+
+/* Light */
+@font-face {
+  font-family: 'Merriweather';
+  src: url('/spade/assets/fonts/webfontkit-20170919-002446/merriweather_light.woff2')
+      format('woff2'),
+    url('/spade/assets/fonts/webfontkit-20170919-002446/merriweather_light.woff')
+      format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  src: url('/spade/assets/fonts/webfontkit-20170919-002446/merriweather-lightit.woff2')
+      format('woff2'),
+    url('/spade/assets/fonts/webfontkit-20170919-002446/merriweather-lightit.woff')
+      format('woff');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Regular */
+@font-face {
+  font-family: 'Merriweather';
+  src: url('/spade/assets/fonts/webfontkit-20170919-002446/merriweather-regular.woff2')
+      format('woff2'),
+    url('/spade/assets/fonts/webfontkit-20170919-002446/merriweather-regular.woff')
+      format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  src: url('/spade/assets/fonts/webfontkit-20170919-002446/merriweather-italic.woff2')
+      format('woff2'),
+    url('/spade/assets/fonts/webfontkit-20170919-002446/merriweather-italic.woff')
+      format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}

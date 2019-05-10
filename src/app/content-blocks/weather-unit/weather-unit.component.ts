@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
 import { IWeatherUnit } from '../../../../common/__types__/IWeatherUnit';
 import { WeatherRetrieverService } from '../../services/weather-retriever/weather-retriever.service';
+import { AnalyticsService } from '../../services/data-layer/analytics.service';
 import { IWeatherResponse } from '../../../../common/__types__/IWeatherResponse';
 import {
   weatherRegions,
@@ -20,8 +21,10 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
   constructor(
     private storeService: StoreService,
     private runtimeService: RuntimeService,
-    private weatherRetrieverService: WeatherRetrieverService
+    private weatherRetrieverService: WeatherRetrieverService,
+    private analyticsService: AnalyticsService
   ) {}
+
   @Input() input!: IWeatherUnit;
 
   regions = weatherRegions;
@@ -45,15 +48,35 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
     }
   }
 
-  onToggle() {
-    this.isDropdownOpen = !this.isDropdownOpen;
-  }
-
   onSelectLocation(location: string) {
     this.selectedLocation = location as WeatherLocations;
     this.storeService.set(StorageKeys.WeatherLocation, location);
     this.getWeatherData(location);
-    this.onToggle();
+    this.onToggleDropdown();
+  }
+
+  onToggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  sendWeatherBarAnalytics() {
+    this.analyticsService.pushEvent({
+      event: 'weather.location.bar',
+      'weather.bar': this.isDropdownOpen ? 'opened' : 'closed'
+    });
+  }
+
+  sendExitButtonAnalytics() {
+    this.analyticsService.pushEvent({
+      event: 'weather.location.exit'
+    });
+  }
+
+  sendLocationAnalytics(location: string) {
+    this.analyticsService.pushEvent({
+      event: 'weather.location.change',
+      'weather.location': location
+    });
   }
 
   private getWeatherData(location: string) {
@@ -63,7 +86,7 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
         this.hasError = false;
         this.forecastSvgPath = mapForecastToIcon(weatherData.condition);
       },
-      (error) => (this.hasError = true)
+      () => (this.hasError = true)
     );
   }
 }
