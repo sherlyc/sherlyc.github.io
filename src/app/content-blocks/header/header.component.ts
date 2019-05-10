@@ -71,13 +71,15 @@ export class HeaderComponent implements IContentBlockComponent {
     } else {
       this.renderer.removeClass(this.document.body, 'noScroll');
     }
+  }
 
+  sendMenuAnalytics() {
     this.analyticsService.pushEvent({
       event: this.navigationVisible ? 'menu.nav' : 'close.menu.nav'
     });
   }
 
-  onLogoClick() {
+  sendLogoAnalytics() {
     this.analyticsService.pushEvent({ event: 'stuff.logo' });
   }
 }

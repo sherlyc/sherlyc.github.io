@@ -3,14 +3,14 @@
     <div class="row between-xs middle-xs header-bar">
       <a
         href="javascript:void(0)"
-        (click)="toggleMenu()"
+        (click)="[toggleMenu(), sendMenuAnalytics()]"
         aria-label="Menu"
         class="menu"
         [ngClass]="{ navigationVisible: navigationVisible }"
       >
         <div></div>
       </a>
-      <div class="title" (click)="onLogoClick()">
+      <div class="title" (click)="sendLogoAnalytics()">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="70"
