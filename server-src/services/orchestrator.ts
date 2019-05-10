@@ -55,7 +55,7 @@ export default async (params: IParams): Promise<IPage> => {
               articleList: {
                 sourceId: ListAsset.EditorPicks,
                 totalArticles: 8,
-                totalImageArticles: 2
+                totalBasicArticlesUnit: 2
               }
             },
             {

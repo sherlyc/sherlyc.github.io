@@ -47,7 +47,7 @@ describe('BasicArticleSectionHandler', () => {
       articleList: {
         sourceId: Section.Business,
         totalArticles: 2,
-        totalImageArticles: 1
+        totalBasicArticlesUnit: 1
       }
     } as IBasicArticleSectionHandlerInput;
 

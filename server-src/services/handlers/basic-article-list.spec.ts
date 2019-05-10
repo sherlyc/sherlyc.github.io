@@ -74,7 +74,7 @@ describe('BasicArticleListHandler', () => {
       {
         type: HandlerInputType.ArticleList,
         totalArticles,
-        totalImageArticles: totalBasicArticleUnits,
+        totalBasicArticlesUnit: totalBasicArticleUnits,
         sourceId: ListAsset.EditorPicks
       },
       params
@@ -97,7 +97,7 @@ describe('BasicArticleListHandler', () => {
       {
         type: HandlerInputType.ArticleList,
         totalArticles,
-        totalImageArticles: totalBasicArticleUnits,
+        totalBasicArticlesUnit: totalBasicArticleUnits,
         sourceId: ListAsset.EditorPicks
       },
       params

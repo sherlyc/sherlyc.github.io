@@ -6,5 +6,5 @@ export interface IBasicArticleListHandlerInput {
   type: HandlerInputType.ArticleList;
   sourceId: Section | ListAsset;
   totalArticles: number;
-  totalImageArticles?: number;
+  totalBasicArticlesUnit?: number;
 }
