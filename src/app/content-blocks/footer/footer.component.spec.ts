@@ -5,7 +5,7 @@ import { CopyrightComponent } from '../../shared/components/copyright/copyright.
 import { AnalyticsService } from 'src/app/services/data-layer/analytics.service';
 import { mockService, ServiceMock } from 'src/app/services/mocks/MockService';
 
-describe('Header', () => {
+describe('Footer', () => {
   let fixture: ComponentFixture<FooterComponent>;
   let analyticsService: ServiceMock<AnalyticsService>;
 
