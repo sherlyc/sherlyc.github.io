@@ -29,14 +29,14 @@ describe('BasicArticleListHandler', () => {
       {
         type: HandlerInputType.ArticleList,
         sourceId: Section.Business,
-        totalArticles
+        totalBasicArticlesUnit: 1
       },
       params
     );
 
     expect(contentBlocks.length).toBe(totalArticles + totalAdUnits);
     expect(contentBlocks).toEqual(
-      basicArticleListHandlerOutput.OneArticleTwoAd
+      basicArticleListHandlerOutput.OneArticleUnitTwoAdForSection
     );
   });
 
@@ -52,20 +52,47 @@ describe('BasicArticleListHandler', () => {
       {
         type: HandlerInputType.ArticleList,
         sourceId: Section.Business,
-        totalArticles
+        totalBasicArticlesUnit: 2
       },
       params
     );
 
     expect(contentBlocks.length).toBe(totalArticles + totalAdUnits);
     expect(contentBlocks).toEqual(
-      basicArticleListHandlerOutput.TwoArticleThreeAd
+      basicArticleListHandlerOutput.TwoArticleUnitsThreeAdForSection
+    );
+  });
+
+  it('should get a list of basic article units, basic article title units, and ad units', async () => {
+    const totalBasicArticlesUnit = 1;
+    const totalBasicArticleTitleUnit = 1;
+
+    const totalAdUnits = 3;
+    (getArticleList as jest.Mock).mockResolvedValue(rawArticleList);
+
+    const handlerRunnerMock = jest.fn();
+
+    const contentBlocks = await basicArticleListHandler(
+      handlerRunnerMock,
+      {
+        type: HandlerInputType.ArticleList,
+        sourceId: Section.Business,
+        totalBasicArticlesUnit,
+        totalBasicArticleTitleUnit
+      },
+      params
+    );
+
+    expect(contentBlocks.length).toBe(
+      totalBasicArticlesUnit + totalBasicArticleTitleUnit + totalAdUnits
+    );
+    expect(contentBlocks).toEqual(
+      basicArticleListHandlerOutput.OneArticleUnitOneArticleTitleThreeAdForSection
     );
   });
 
   it('should get one basic article units and one basic article title unit', async () => {
     const totalArticles = 2;
-    const totalBasicArticleUnits = 1;
     const totalAdUnits = 3;
     (getEditorsPick as jest.Mock).mockResolvedValue(rawEditorsPick);
 
@@ -73,8 +100,8 @@ describe('BasicArticleListHandler', () => {
       jest.fn(),
       {
         type: HandlerInputType.ArticleList,
-        totalArticles,
-        totalBasicArticlesUnit: totalBasicArticleUnits,
+        totalBasicArticlesUnit: 1,
+        totalBasicArticleTitleUnit: 1,
         sourceId: ListAsset.EditorPicks
       },
       params
@@ -82,13 +109,12 @@ describe('BasicArticleListHandler', () => {
 
     expect(contentBlocks.length).toBe(totalArticles + totalAdUnits);
     expect(contentBlocks).toEqual(
-      basicArticleListHandlerOutput.OneArticleUnitOneArticleTitleThreeAd
+      basicArticleListHandlerOutput.OneArticleUnitOneArticleTitleThreeAdForListAsset
     );
   });
 
   it('should get multiple basic article units and multiple articles title units', async () => {
     const totalArticles = 4;
-    const totalBasicArticleUnits = 2;
     const totalAdUnits = 5;
     (getEditorsPick as jest.Mock).mockResolvedValue(longEditorsPick);
 
@@ -96,8 +122,8 @@ describe('BasicArticleListHandler', () => {
       jest.fn(),
       {
         type: HandlerInputType.ArticleList,
-        totalArticles,
-        totalBasicArticlesUnit: totalBasicArticleUnits,
+        totalBasicArticlesUnit: 2,
+        totalBasicArticleTitleUnit: 2,
         sourceId: ListAsset.EditorPicks
       },
       params
@@ -105,7 +131,7 @@ describe('BasicArticleListHandler', () => {
 
     expect(contentBlocks.length).toBe(totalArticles + totalAdUnits);
     expect(contentBlocks).toEqual(
-      basicArticleListHandlerOutput.TwoArticleUnitsTwoArticleTitlesFiveAds
+      basicArticleListHandlerOutput.TwoArticleUnitsTwoArticleTitlesFiveAdsForListAsset
     );
   });
 });

@@ -12,7 +12,7 @@ jest.mock('./runner');
 describe('BasicArticleSectionHandler', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
   it('should get a section content block with only basic article units', async () => {
-    const totalArticles = 5;
+    const totalBasicArticlesUnit = 5;
     const handlerInput = {
       type: 'ArticleSection',
       linkUrl: '/business',
@@ -20,14 +20,14 @@ describe('BasicArticleSectionHandler', () => {
       displayNameColor: 'red',
       articleList: {
         sourceId: Section.Business,
-        totalArticles
+        totalBasicArticlesUnit
       }
     } as IBasicArticleSectionHandlerInput;
 
     const handlerRunnerMock = jest.fn();
 
     handlerRunnerMock.mockResolvedValue(
-      basicArticleListHandlerOutput.TwoArticleThreeAd
+      basicArticleListHandlerOutput.TwoArticleUnitsThreeAdForSection
     );
 
     const contentBlocks = await basicArticleSectionHandler(
@@ -42,15 +42,15 @@ describe('BasicArticleSectionHandler', () => {
       {
         type: HandlerInputType.ArticleList,
         sourceId: Section.Business,
-        totalArticles
+        totalBasicArticlesUnit
       },
       params
     );
   });
 
   it('should get a section content block with basic article units and article title link', async () => {
-    const totalArticles = 2;
     const totalBasicArticlesUnit = 1;
+    const totalBasicArticleTitleUnit = 1;
     const handlerInput = {
       type: 'ArticleSection',
       linkUrl: '/business',
@@ -58,15 +58,15 @@ describe('BasicArticleSectionHandler', () => {
       displayNameColor: 'red',
       articleList: {
         sourceId: ListAsset.EditorPicks,
-        totalArticles,
-        totalBasicArticlesUnit
+        totalBasicArticlesUnit,
+        totalBasicArticleTitleUnit
       }
     } as IBasicArticleSectionHandlerInput;
 
     const handlerRunnerMock = jest.fn();
 
     handlerRunnerMock.mockResolvedValue(
-      basicArticleListHandlerOutput.OneArticleUnitOneArticleTitleThreeAd
+      basicArticleListHandlerOutput.OneArticleUnitOneArticleTitleThreeAdForListAsset
     );
 
     const contentBlocks = await basicArticleSectionHandler(
@@ -81,8 +81,8 @@ describe('BasicArticleSectionHandler', () => {
       {
         type: HandlerInputType.ArticleList,
         sourceId: ListAsset.EditorPicks,
-        totalArticles,
-        totalBasicArticlesUnit
+        totalBasicArticlesUnit,
+        totalBasicArticleTitleUnit
       },
       params
     );
