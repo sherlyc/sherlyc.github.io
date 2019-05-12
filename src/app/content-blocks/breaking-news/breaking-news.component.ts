@@ -4,6 +4,7 @@ import { IBreakingNews } from '../../../../common/__types__/IBreakingNews';
 import { CookieNames } from '../../../../common/__types__/CookieNames';
 import { CookieService } from '../../services/cookie/cookie.service';
 import { AnalyticsService } from '../../services/analytics/analytics.service';
+import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
 
 @Component({
   selector: 'app-breaking-news',
@@ -13,11 +14,13 @@ import { AnalyticsService } from '../../services/analytics/analytics.service';
 export class BreakingNewsComponent implements IContentBlockComponent {
   input!: IBreakingNews;
   shouldHide = false;
+  analyticsEvents = AnalyticsEventsType;
 
   constructor(
     private cookieService: CookieService,
     private analyticsService: AnalyticsService
-  ) {}
+  ) {
+  }
 
   onClickOrDismiss() {
     const domain = window && window.location && window.location.hostname;
@@ -29,8 +32,9 @@ export class BreakingNewsComponent implements IContentBlockComponent {
   }
 
   sendAnalytics(isDismissing: boolean) {
-    this.analyticsService.pushEvent({
-      event: isDismissing ? 'breaking.news.close' : 'breaking.news.open'
-    });
+    this.analyticsService.pushEvent(isDismissing ?
+      this.analyticsEvents.BREAKING_NEWS_CLOSE :
+      this.analyticsEvents.BREAKING_NEWS_OPEN
+    );
   }
 }
