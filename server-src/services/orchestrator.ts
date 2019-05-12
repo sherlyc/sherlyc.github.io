@@ -25,7 +25,7 @@ export default async (params: IParams): Promise<IPage> => {
             {
               type: HandlerInputType.ArticleList,
               sourceId: Section.Latest,
-              totalArticles: 6
+              totalBasicArticlesUnit: 6
             },
             {
               type: HandlerInputType.MidStrip,
@@ -45,17 +45,9 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Sport',
               displayNameColor: 'scarlet',
               linkUrl: '/' + Section.Sport,
-              articleList: { sourceId: Section.Sport, totalArticles: 3 }
-            },
-            {
-              type: HandlerInputType.ArticleSection,
-              displayName: `Editor's Pick`,
-              displayNameColor: 'scarlet',
-              linkUrl: '/' + Section.Sport,
               articleList: {
-                sourceId: ListAsset.EditorPicks,
-                totalArticles: 8,
-                totalBasicArticlesUnit: 2
+                sourceId: Section.Sport,
+                totalBasicArticlesUnit: 3
               }
             },
             {
@@ -63,49 +55,70 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'National',
               displayNameColor: 'toreabay',
               linkUrl: '/' + Section.National,
-              articleList: { sourceId: Section.National, totalArticles: 3 }
+              articleList: {
+                sourceId: Section.National,
+                totalBasicArticlesUnit: 3
+              }
             },
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'World',
               displayNameColor: 'azureblue',
               linkUrl: '/' + Section.World,
-              articleList: { sourceId: Section.World, totalArticles: 3 }
+              articleList: {
+                sourceId: Section.World,
+                totalBasicArticlesUnit: 3
+              }
             },
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Business',
               displayNameColor: 'royalblue',
               linkUrl: '/' + Section.Business,
-              articleList: { sourceId: Section.Business, totalArticles: 3 }
+              articleList: {
+                sourceId: Section.Business,
+                totalBasicArticlesUnit: 3
+              }
             },
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Opinion',
               displayNameColor: 'dingley',
               linkUrl: '/' + Section.Opinion,
-              articleList: { sourceId: Section.Opinion, totalArticles: 3 }
+              articleList: {
+                sourceId: Section.Opinion,
+                totalBasicArticlesUnit: 3
+              }
             },
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Technology',
               displayNameColor: 'carribeangreen',
               linkUrl: '/' + Section.Technology,
-              articleList: { sourceId: Section.Technology, totalArticles: 3 }
+              articleList: {
+                sourceId: Section.Technology,
+                totalBasicArticlesUnit: 3
+              }
             },
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Homed',
               displayNameColor: 'keppel',
               linkUrl: '/' + Section.Homed,
-              articleList: { sourceId: Section.Homed, totalArticles: 3 }
+              articleList: {
+                sourceId: Section.Homed,
+                totalBasicArticlesUnit: 3
+              }
             },
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Life Style',
               displayNameColor: 'amaranth',
               linkUrl: '/' + Section.LifeStyle,
-              articleList: { sourceId: Section.LifeStyle, totalArticles: 3 }
+              articleList: {
+                sourceId: Section.LifeStyle,
+                totalBasicArticlesUnit: 3
+              }
             },
             {
               type: HandlerInputType.ArticleSection,
@@ -114,7 +127,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.Entertainment,
               articleList: {
                 sourceId: Section.Entertainment,
-                totalArticles: 3
+                totalBasicArticlesUnit: 3
               }
             },
             {
@@ -122,21 +135,30 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Travel',
               displayNameColor: 'yellowsea',
               linkUrl: '/' + Section.Travel,
-              articleList: { sourceId: Section.Travel, totalArticles: 3 }
+              articleList: {
+                sourceId: Section.Travel,
+                totalBasicArticlesUnit: 3
+              }
             },
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Motoring',
               displayNameColor: 'pizzaz',
               linkUrl: '/' + Section.Motoring,
-              articleList: { sourceId: Section.Motoring, totalArticles: 3 }
+              articleList: {
+                sourceId: Section.Motoring,
+                totalBasicArticlesUnit: 3
+              }
             },
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Stuff Nation',
               displayNameColor: 'junglegreen',
               linkUrl: '/' + Section.StuffNation,
-              articleList: { sourceId: Section.StuffNation, totalArticles: 3 }
+              articleList: {
+                sourceId: Section.StuffNation,
+                totalBasicArticlesUnit: 3
+              }
             },
             {
               type: HandlerInputType.ArticleSection,
@@ -145,7 +167,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.QuickSaveThePlanet,
               articleList: {
                 sourceId: Section.QuickSaveThePlanet,
-                totalArticles: 3
+                totalBasicArticlesUnit: 3
               }
             },
             {
@@ -153,7 +175,10 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Well Good',
               displayNameColor: 'sunglow',
               linkUrl: '/' + Section.WellGood,
-              articleList: { sourceId: Section.WellGood, totalArticles: 3 }
+              articleList: {
+                sourceId: Section.WellGood,
+                totalBasicArticlesUnit: 3
+              }
             }
           ]
         },

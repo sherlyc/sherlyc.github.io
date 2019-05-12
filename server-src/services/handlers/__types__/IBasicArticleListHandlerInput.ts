@@ -5,6 +5,6 @@ import { HandlerInputType } from './HandlerInputType';
 export interface IBasicArticleListHandlerInput {
   type: HandlerInputType.ArticleList;
   sourceId: Section | ListAsset;
-  totalArticles: number;
   totalBasicArticlesUnit?: number;
+  totalBasicArticleTitleUnit?: number;
 }

@@ -36,8 +36,8 @@ export default async function(
   handlerRunner: handlerRunnerFunction,
   {
     sourceId,
-    totalArticles,
-    totalBasicArticlesUnit
+    totalBasicArticlesUnit = 0,
+    totalBasicArticleTitleUnit = 0
   }: IBasicArticleListHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
@@ -45,6 +45,7 @@ export default async function(
     type: ContentBlockType.BasicAdUnit
   };
   const sourceIdIsASection = Object.values(Section).includes(sourceId);
+  const totalArticles = totalBasicArticlesUnit + totalBasicArticleTitleUnit;
   const rawArticles = sourceIdIsASection
     ? (await getArticleList(sourceId as Section, totalArticles, params)).slice(
         0,
@@ -53,8 +54,7 @@ export default async function(
     : await getEditorsPick(params);
   return rawArticles.reduce(
     (final, article, index) => {
-      const numberOfBasicArticleUnit = totalBasicArticlesUnit || totalArticles;
-      if (index < numberOfBasicArticleUnit) {
+      if (index < totalBasicArticlesUnit) {
         return [...final, createBasicArticleUnitBlock(article), basicAdUnit];
       }
       return [...final, createBasicTitleArticleBlock(article), basicAdUnit];
