@@ -1,7 +1,8 @@
 import basicArticleSectionHandler from './basic-article-section';
 import { Section } from '../section';
 import { ListAsset } from '../listAsset';
-import * as basicArticleListHandlerOutput from './__fixtures__/basic-article-list-handler-output.json';
+import * as handlerOutputForSection from './__fixtures__/basic-article-list-handler-output-for-section.json';
+import * as handlerOutputForListAsset from './__fixtures__/basic-article-list-handler-output-for-listasset.json';
 import * as basicArticleSectionHandlerOutput from './__fixtures__/basic-article-section-handler-output.json';
 import { IBasicArticleSectionHandlerInput } from './__types__/IBasicArticleSectionHandlerInput';
 import { IParams } from '../__types__/IParams';
@@ -27,7 +28,7 @@ describe('BasicArticleSectionHandler', () => {
     const handlerRunnerMock = jest.fn();
 
     handlerRunnerMock.mockResolvedValue(
-      basicArticleListHandlerOutput.TwoArticleUnitsThreeAdForSection
+      handlerOutputForSection.TwoArticleUnitsThreeAds
     );
 
     const contentBlocks = await basicArticleSectionHandler(
@@ -66,7 +67,7 @@ describe('BasicArticleSectionHandler', () => {
     const handlerRunnerMock = jest.fn();
 
     handlerRunnerMock.mockResolvedValue(
-      basicArticleListHandlerOutput.OneArticleUnitOneArticleTitleThreeAdForListAsset
+      handlerOutputForListAsset.OneArticleUnitOneArticleTitleThreeAds
     );
 
     const contentBlocks = await basicArticleSectionHandler(

@@ -1,5 +1,5 @@
 {
-  "OneArticleUnitTwoAdForSection": [
+  "OneArticleUnitTwoAds": [
     {
       "type": "BasicAdUnit"
     },
@@ -17,7 +17,7 @@
     }
   ],
 
-  "TwoArticleUnitsThreeAdForSection": [
+  "TwoArticleUnitsThreeAds": [
     {
       "type": "BasicAdUnit"
     },
@@ -47,7 +47,7 @@
     }
   ],
 
-  "OneArticleUnitOneArticleTitleThreeAdForSection": [
+  "OneArticleUnitOneArticleTitleThreeAds": [
     {
       "type": "BasicAdUnit"
     },
@@ -68,84 +68,6 @@
       "indexHeadline": "Wanted: Tree planters for $400 a day",
       "lastPublishedTime": 1547601993,
       "linkUrl": "/business/farming/109810764/400-a-day-to-plant-trees-but-no-one-wants-the-job",
-      "type": "BasicArticleTitleUnit"
-    },
-    {
-      "type": "BasicAdUnit"
-    }
-  ],
-
-  "OneArticleUnitOneArticleTitleThreeAdForListAsset": [
-    {
-      "type": "BasicAdUnit"
-    },
-    {
-      "headlineFlags": [],
-      "indexHeadline": "Farm workers stung by contracts",
-      "introText": "A Waikato dairy farmer says his family lost everything after an employment agreement turned sour.",
-      "linkUrl": "/business/farming/112552026/contracts-favouring-farm-owners-are-the-dark-side-of-dairy-industry",
-      "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffLandscapeThreeByTwo.300x200.1v0dp6.png/1557353782649.jpg",
-      "lastPublishedTime": 1557351421,
-      "type": "BasicArticleUnit"
-    },
-    {
-      "type": "BasicAdUnit"
-    },
-    {
-      "headlineFlags": [],
-      "indexHeadline": "Barcelona",
-      "lastPublishedTime": 1557351421,
-      "linkUrl": "/business/farming/112552026/path",
-      "type": "BasicArticleTitleUnit"
-    },
-    {
-      "type": "BasicAdUnit"
-    }
-  ],
-
-  "TwoArticleUnitsTwoArticleTitlesFiveAdsForListAsset": [
-    {
-      "type": "BasicAdUnit"
-    },
-    {
-      "headlineFlags": [],
-      "indexHeadline": "Farm workers stung by contracts",
-      "introText": "A Waikato dairy farmer says his family lost everything after an employment agreement turned sour.",
-      "linkUrl": "/business/farming/112552026/contracts-favouring-farm-owners-are-the-dark-side-of-dairy-industry",
-      "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffLandscapeThreeByTwo.300x200.1v0dp6.png/1557353782649.jpg",
-      "lastPublishedTime": 1557351421,
-      "type": "BasicArticleUnit"
-    },
-    {
-      "type": "BasicAdUnit"
-    },
-    {
-      "headlineFlags": [],
-      "indexHeadline": "Barcelona",
-      "introText": "Tour to Barcelona",
-      "linkUrl": "/business/farming/112552026/path",
-      "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffLandscapeThreeByTwo.300x200.1v0dp6.png/1557353782649.jpg",
-      "lastPublishedTime": 1557351421,
-      "type": "BasicArticleUnit"
-    },
-    {
-      "type": "BasicAdUnit"
-    },
-    {
-      "headlineFlags": [],
-      "indexHeadline": "Marvel Spoilers",
-      "lastPublishedTime": 1557351421,
-      "linkUrl": "/business/farming/112552026/path2",
-      "type": "BasicArticleTitleUnit"
-    },
-    {
-      "type": "BasicAdUnit"
-    },
-    {
-      "headlineFlags": [],
-      "indexHeadline": "Spider man",
-      "lastPublishedTime": 1557351421,
-      "linkUrl": "/business/farming/112552026/path3",
       "type": "BasicArticleTitleUnit"
     },
     {
