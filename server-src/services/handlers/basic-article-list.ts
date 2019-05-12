@@ -44,7 +44,8 @@ export default async function(
   const basicAdUnit: IBasicAdUnit = {
     type: ContentBlockType.BasicAdUnit
   };
-  const rawArticles = Object.values(Section).includes(sourceId)
+  const sourceIdIsASection = Object.values(Section).includes(sourceId);
+  const rawArticles = sourceIdIsASection
     ? (await getArticleList(sourceId as Section, totalArticles, params)).slice(
         0,
         totalArticles
