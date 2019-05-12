@@ -17,10 +17,10 @@ const home = 'home';
   providedIn: 'root'
 })
 export class AnalyticsService implements IAnalyticsService {
-
-  constructor(private runtimeService: RuntimeService,
-              private logger: LoggerService) {
-  }
+  constructor(
+    private runtimeService: RuntimeService,
+    private logger: LoggerService
+  ) {}
 
   setup() {
     if (this.runtimeService.isBrowser()) {
@@ -76,7 +76,10 @@ export class AnalyticsService implements IAnalyticsService {
     }
   }
 
-  private transformEvent(event: AnalyticsEventsType, extra?: Map<string, string>): IAdobeAnalyticsEvent {
+  private transformEvent(
+    event: AnalyticsEventsType,
+    extra?: Map<string, string>
+  ): IAdobeAnalyticsEvent {
     let adobeEvent = {} as IAdobeAnalyticsEvent;
 
     switch (event) {
@@ -103,7 +106,7 @@ export class AnalyticsService implements IAnalyticsService {
       case AnalyticsEventsType.WEATHER_LOCATION_CHANGED: {
         adobeEvent = {
           event: 'weather.location.change',
-          'weather.location': <string> extra!.get('location')
+          'weather.location': extra!.get('location')
         };
         break;
       }
@@ -128,7 +131,7 @@ export class AnalyticsService implements IAnalyticsService {
       case AnalyticsEventsType.FOOTER_MENU: {
         adobeEvent = {
           event: 'menu.footer',
-          'menu.link': <string> extra!.get('name')
+          'menu.link': extra!.get('name')
         };
         break;
       }
@@ -150,6 +153,6 @@ export class AnalyticsService implements IAnalyticsService {
       }
     }
 
-    return {type: 'analytics', ...adobeEvent};
+    return { type: 'analytics', ...adobeEvent };
   }
 }
