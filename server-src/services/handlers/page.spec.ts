@@ -17,21 +17,21 @@ describe('PageHandler', () => {
         {
           type: 'ArticleList',
           sourceId: Section.Latest,
-          totalArticles: 3
+          totalBasicArticlesUnit: 3
         },
         {
           type: 'ArticleSection',
           displayName: 'Sport',
           displayNameColor: 'blue',
           linkUrl: '/' + Section.Sport,
-          articleList: { sourceId: Section.Sport, totalArticles: 3 }
+          articleList: { sourceId: Section.Sport, totalBasicArticlesUnit: 3 }
         },
         {
           type: 'ArticleSection',
           displayName: 'National',
           displayNameColor: 'red',
           linkUrl: '/' + Section.National,
-          articleList: { sourceId: Section.National, totalArticles: 3 }
+          articleList: { sourceId: Section.National, totalBasicArticlesUnit: 3 }
         }
       ]
     } as IPageHandlerInput;
