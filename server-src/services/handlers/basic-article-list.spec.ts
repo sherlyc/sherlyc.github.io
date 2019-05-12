@@ -3,7 +3,8 @@ import { Section } from '../section';
 import * as rawArticleList from './__fixtures__/raw-article-list.json';
 import * as rawEditorsPick from '../adapters/__fixtures__/raw-editors-pick.json';
 import * as longEditorsPick from './__fixtures__/raw-editors-pick.json';
-import * as basicArticleListHandlerOutput from './__fixtures__/basic-article-list-handler-output.json';
+import * as handlerOutputForSection from './__fixtures__/basic-article-list-handler-output-for-section.json';
+import * as handlerOutputForListAsset from './__fixtures__/basic-article-list-handler-output-for-listasset.json';
 import { getArticleList, getEditorsPick } from '../adapters/jsonfeed';
 import { IParams } from '../__types__/IParams';
 import { HandlerInputType } from './__types__/HandlerInputType';
@@ -35,9 +36,7 @@ describe('BasicArticleListHandler', () => {
     );
 
     expect(contentBlocks.length).toBe(totalArticles + totalAdUnits);
-    expect(contentBlocks).toEqual(
-      basicArticleListHandlerOutput.OneArticleUnitTwoAdForSection
-    );
+    expect(contentBlocks).toEqual(handlerOutputForSection.OneArticleUnitTwoAds);
   });
 
   it('should get a list of basic article units and ad units not exceeding the maximum length', async () => {
@@ -59,7 +58,7 @@ describe('BasicArticleListHandler', () => {
 
     expect(contentBlocks.length).toBe(totalArticles + totalAdUnits);
     expect(contentBlocks).toEqual(
-      basicArticleListHandlerOutput.TwoArticleUnitsThreeAdForSection
+      handlerOutputForSection.TwoArticleUnitsThreeAds
     );
   });
 
@@ -87,7 +86,7 @@ describe('BasicArticleListHandler', () => {
       totalBasicArticlesUnit + totalBasicArticleTitleUnit + totalAdUnits
     );
     expect(contentBlocks).toEqual(
-      basicArticleListHandlerOutput.OneArticleUnitOneArticleTitleThreeAdForSection
+      handlerOutputForSection.OneArticleUnitOneArticleTitleThreeAds
     );
   });
 
@@ -109,7 +108,7 @@ describe('BasicArticleListHandler', () => {
 
     expect(contentBlocks.length).toBe(totalArticles + totalAdUnits);
     expect(contentBlocks).toEqual(
-      basicArticleListHandlerOutput.OneArticleUnitOneArticleTitleThreeAdForListAsset
+      handlerOutputForListAsset.OneArticleUnitOneArticleTitleThreeAds
     );
   });
 
@@ -131,7 +130,7 @@ describe('BasicArticleListHandler', () => {
 
     expect(contentBlocks.length).toBe(totalArticles + totalAdUnits);
     expect(contentBlocks).toEqual(
-      basicArticleListHandlerOutput.TwoArticleUnitsTwoArticleTitlesFiveAdsForListAsset
+      handlerOutputForListAsset.TwoArticleUnitsTwoArticleTitlesFiveAds
     );
   });
 });
