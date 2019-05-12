@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { IDigitalData } from './__types__/IDigitalData';
 import { DeviceType } from './__types__/DeviceType';
 import { RuntimeService } from '../runtime/runtime.service';
-import { IAnalyticsEvent } from './__types__/IAnalyticsEvent';
+import { AnalyticsEventsType } from './__types__/AnalyticsEventsType';
+import { IAdobeAnalyticsEvent } from './__types__/IAdobeAnalyticsEvent';
+import { LoggerService } from '../logger/logger.service';
+import { IAnalyticsService } from './__types__/IAnalyticsService';
 
 declare const window: {
   digitalData: IDigitalData;
@@ -13,8 +16,11 @@ const home = 'home';
 @Injectable({
   providedIn: 'root'
 })
-export class AnalyticsService {
-  constructor(private runtimeService: RuntimeService) {}
+export class AnalyticsService implements IAnalyticsService {
+
+  constructor(private runtimeService: RuntimeService,
+              private logger: LoggerService) {
+  }
 
   setup() {
     if (this.runtimeService.isBrowser()) {
@@ -60,9 +66,90 @@ export class AnalyticsService {
     }
   }
 
-  pushEvent(event: IAnalyticsEvent) {
-    if (this.runtimeService.isBrowser()) {
-      window.digitalData.events.push({ type: 'analytics', ...event });
+  pushEvent(event: AnalyticsEventsType, extra?: Map<string, string>) {
+    try {
+      if (this.runtimeService.isBrowser()) {
+        window.digitalData.events.push(this.transformEvent(event, extra));
+      }
+    } catch (err) {
+      this.logger.error(err);
     }
+  }
+
+  private transformEvent(event: AnalyticsEventsType, extra?: Map<string, string>): IAdobeAnalyticsEvent {
+    let adobeEvent = {} as IAdobeAnalyticsEvent;
+
+    switch (event) {
+      case AnalyticsEventsType.WEATHER_BAR_OPENED: {
+        adobeEvent = {
+          event: 'weather.location.bar',
+          'weather.bar': 'opened'
+        };
+        break;
+      }
+      case AnalyticsEventsType.WEATHER_BAR_CLOSED: {
+        adobeEvent = {
+          event: 'weather.location.bar',
+          'weather.bar': 'closed'
+        };
+        break;
+      }
+      case AnalyticsEventsType.WEATHER_EXIT_BUTTON: {
+        adobeEvent = {
+          event: 'weather.location.exit'
+        };
+        break;
+      }
+      case AnalyticsEventsType.WEATHER_LOCATION_CHANGED: {
+        adobeEvent = {
+          event: 'weather.location.change',
+          'weather.location': <string> extra!.get('location')
+        };
+        break;
+      }
+      case AnalyticsEventsType.MENU_NAV_OPEN: {
+        adobeEvent = {
+          event: 'menu.nav'
+        };
+        break;
+      }
+      case AnalyticsEventsType.MENU_NAV_CLOSE: {
+        adobeEvent = {
+          event: 'close.menu.nav'
+        };
+        break;
+      }
+      case AnalyticsEventsType.STUFF_LOGO: {
+        adobeEvent = {
+          event: 'stuff.logo'
+        };
+        break;
+      }
+      case AnalyticsEventsType.FOOTER_MENU: {
+        adobeEvent = {
+          event: 'menu.footer',
+          'menu.link': <string> extra!.get('name')
+        };
+        break;
+      }
+      case AnalyticsEventsType.BREAKING_NEWS_OPEN: {
+        adobeEvent = {
+          event: 'breaking.news.open'
+        };
+        break;
+      }
+      case AnalyticsEventsType.BREAKING_NEWS_CLOSE: {
+        adobeEvent = {
+          event: 'breaking.news.close'
+        };
+        break;
+      }
+      default: {
+        this.logger.warn('Non existent Adobe analytic event ', event);
+        break;
+      }
+    }
+
+    return {type: 'analytics', ...adobeEvent};
   }
 }
