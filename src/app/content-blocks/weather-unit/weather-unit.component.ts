@@ -11,6 +11,7 @@ import {
 import { StoreService, StorageKeys } from '../../services/store/store.service';
 import { RuntimeService } from '../../services/runtime/runtime.service';
 import { mapForecastToIcon } from './forecast-icon.mapper';
+import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
 
 @Component({
   selector: 'app-weather-unit',
@@ -26,7 +27,7 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
   ) {}
 
   @Input() input!: IWeatherUnit;
-
+  analyticsEvents = AnalyticsEventsType;
   regions = weatherRegions;
   firstColumnLimit = 8;
 
@@ -59,26 +60,6 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
 
-  sendWeatherBarAnalytics() {
-    this.analyticsService.pushEvent({
-      event: 'weather.location.bar',
-      'weather.bar': this.isDropdownOpen ? 'opened' : 'closed'
-    });
-  }
-
-  sendExitButtonAnalytics() {
-    this.analyticsService.pushEvent({
-      event: 'weather.location.exit'
-    });
-  }
-
-  sendLocationAnalytics(location: string) {
-    this.analyticsService.pushEvent({
-      event: 'weather.location.change',
-      'weather.location': location
-    });
-  }
-
   private getWeatherData(location: string) {
     this.weatherRetrieverService.getWeather(location).subscribe(
       (weatherData: IWeatherResponse) => {
@@ -87,6 +68,25 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
         this.forecastSvgPath = mapForecastToIcon(weatherData.condition);
       },
       () => (this.hasError = true)
+    );
+  }
+
+  sendWeatherBarAnalytics() {
+    this.analyticsService.pushEvent(
+      this.isDropdownOpen
+        ? this.analyticsEvents.WEATHER_BAR_OPENED
+        : this.analyticsEvents.WEATHER_BAR_CLOSED
+    );
+  }
+
+  sendExitButtonAnalytics() {
+    this.analyticsService.pushEvent(this.analyticsEvents.WEATHER_EXIT_BUTTON);
+  }
+
+  sendLocationAnalytics(location: string) {
+    this.analyticsService.pushEvent(
+      this.analyticsEvents.WEATHER_LOCATION_CHANGED,
+      new Map().set('location', location)
     );
   }
 }
