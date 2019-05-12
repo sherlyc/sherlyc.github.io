@@ -1,4 +1,4 @@
-export interface IAnalyticsEvent {
+export interface IAdobeAnalyticsEvent {
   event: string;
   [key: string]: string;
 }
