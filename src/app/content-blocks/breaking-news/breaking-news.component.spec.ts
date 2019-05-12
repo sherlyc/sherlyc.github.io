@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { CookieService } from '../../services/cookie/cookie.service';
 import { mockService, ServiceMock } from '../../services/mocks/MockService';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { AnalyticsService } from 'src/app/services/data-layer/analytics.service';
+import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
 
 describe('BreakingNewsComponent', () => {
   let component: BreakingNewsComponent;

@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FooterComponent } from './footer.component';
 import { By } from '@angular/platform-browser';
 import { CopyrightComponent } from '../../shared/components/copyright/copyright.component';
-import { AnalyticsService } from 'src/app/services/data-layer/analytics.service';
+import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
 import { mockService, ServiceMock } from 'src/app/services/mocks/MockService';
 
 describe('Footer', () => {

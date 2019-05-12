@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
 import { IFooter } from '../../../../common/__types__/IFooter';
-import { AnalyticsService } from '../../services/data-layer/analytics.service';
+import { AnalyticsService } from '../../services/analytics/analytics.service';
 
 @Component({
   selector: 'app-footer',

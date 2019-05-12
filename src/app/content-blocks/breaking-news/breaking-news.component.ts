@@ -3,7 +3,7 @@ import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
 import { IBreakingNews } from '../../../../common/__types__/IBreakingNews';
 import { CookieNames } from '../../../../common/__types__/CookieNames';
 import { CookieService } from '../../services/cookie/cookie.service';
-import { AnalyticsService } from '../../services/data-layer/analytics.service';
+import { AnalyticsService } from '../../services/analytics/analytics.service';
 
 @Component({
   selector: 'app-breaking-news',
