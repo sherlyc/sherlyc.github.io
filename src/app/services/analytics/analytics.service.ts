@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { DeviceType } from './__types__/DeviceType';
-import { RuntimeService } from '../runtime/runtime.service';
 import { AnalyticsEventsType } from './__types__/AnalyticsEventsType';
 import { IAdobeAnalyticsEvent } from './__types__/IAdobeAnalyticsEvent';
 import { LoggerService } from '../logger/logger.service';
@@ -145,6 +144,13 @@ export class AnalyticsService implements IAnalyticsService {
         adobeEvent = {
           event: 'more.content.button',
           'more.content.url': <string>extra!.get('url')
+        };
+        break;
+      }
+      case AnalyticsEventsType.MENU_NAV_SECTION_CLICKED: {
+        adobeEvent = {
+          event: 'menu.nav',
+          'menu.nav.section': <string>extra!.get('section')
         };
         break;
       }

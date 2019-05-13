@@ -1,4 +1,5 @@
 export enum AnalyticsEventsType {
+  MENU_NAV_SECTION_CLICKED,
   MORE_BUTTON_CLICKED,
   FOOTER_MENU,
   WEATHER_BAR_OPENED,

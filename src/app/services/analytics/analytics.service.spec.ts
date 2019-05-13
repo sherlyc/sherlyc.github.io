@@ -238,4 +238,26 @@ describe('AnalyticsService', () => {
       ...event
     });
   });
+
+  it('should push corresponding analytics when menu section is clicked', () => {
+    analyticsService.setup();
+    windowService.getWindow().digitalData.events.push = jest.fn();
+
+    const event = {
+      event: 'menu.nav',
+      'menu.nav.section': 'Entertainment'
+    };
+
+    analyticsService.pushEvent(
+      AnalyticsEventsType.MENU_NAV_SECTION_CLICKED,
+      new Map().set('section', 'Entertainment')
+    );
+
+    expect(
+      windowService.getWindow().digitalData.events.push
+    ).toHaveBeenCalledWith({
+      type: 'analytics',
+      ...event
+    });
+  });
 });

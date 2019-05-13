@@ -15,8 +15,7 @@ export class HeaderComponent implements IContentBlockComponent {
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
     private analyticsService: AnalyticsService
-  ) {
-  }
+  ) {}
 
   @Input() input!: IHeader;
   navigationVisible = false;
@@ -77,12 +76,20 @@ export class HeaderComponent implements IContentBlockComponent {
 
   sendMenuAnalytics() {
     this.analyticsService.pushEvent(
-      this.navigationVisible ?
-        AnalyticsEventsType.MENU_NAV_OPENED :
-        AnalyticsEventsType.MENU_NAV_CLOSED);
+      this.navigationVisible
+        ? AnalyticsEventsType.MENU_NAV_OPENED
+        : AnalyticsEventsType.MENU_NAV_CLOSED
+    );
   }
 
   sendLogoAnalytics() {
     this.analyticsService.pushEvent(AnalyticsEventsType.STUFF_LOGO_CLICKED);
+  }
+
+  sendMenuSectionClickAnalytics(section: string) {
+    this.analyticsService.pushEvent(
+      AnalyticsEventsType.MENU_NAV_SECTION_CLICKED,
+      new Map().set('section', section)
+    );
   }
 }

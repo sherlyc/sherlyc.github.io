@@ -47,7 +47,12 @@
               class="col-xs-12 col-sm-6 col-md-12 col-lg-6"
               *ngFor="let item of section.items"
             >
-              <a href="{{ item.link }}">{{ item.label }}</a>
+              <a
+                class="section-{{ item.label }}"
+                href="{{ item.link }}"
+                (click)="sendMenuSectionClickAnalytics(item.label)"
+                >{{ item.label }}
+              </a>
             </li>
           </ul>
         </div>

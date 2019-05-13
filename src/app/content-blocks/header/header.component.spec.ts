@@ -67,5 +67,18 @@ describe('Header', () => {
         AnalyticsEventsType.STUFF_LOGO_CLICKED
       );
     });
+
+    it('should push analytics event when menu section is clicked', () => {
+      fixture.componentInstance.navigationVisible = true;
+      fixture.detectChanges();
+      fixture.debugElement
+        .query(By.css('.section-Homed'))
+        .nativeElement.click();
+
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
+        AnalyticsEventsType.MENU_NAV_SECTION_CLICKED,
+        new Map().set('section', 'Homed')
+      );
+    });
   });
 });
