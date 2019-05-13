@@ -2,9 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HeaderComponent } from './header.component';
 import { By } from '@angular/platform-browser';
 import { CopyrightComponent } from '../../shared/components/copyright/copyright.component';
-import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
 import { mockService, ServiceMock } from 'src/app/services/mocks/MockService';
 import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
+import { AnalyticsService } from '../../services/analytics/analytics.service';
 
 describe('Header', () => {
   let fixture: ComponentFixture<HeaderComponent>;
@@ -44,7 +44,9 @@ describe('Header', () => {
 
       fixture.debugElement.query(By.css('.menu')).nativeElement.click();
 
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith(AnalyticsEventsType.MENU_NAV_OPEN);
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
+        AnalyticsEventsType.MENU_NAV_OPEN
+      );
     });
 
     it('should push analytics event when hamburger menu is closed', () => {
@@ -53,13 +55,17 @@ describe('Header', () => {
 
       fixture.debugElement.query(By.css('.menu')).nativeElement.click();
 
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith(AnalyticsEventsType.MENU_NAV_CLOSE);
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
+        AnalyticsEventsType.MENU_NAV_CLOSE
+      );
     });
 
     it('should push analytics event when stuff logo is clicked', () => {
       fixture.debugElement.query(By.css('.title')).nativeElement.click();
 
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith(AnalyticsEventsType.STUFF_LOGO);
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
+        AnalyticsEventsType.STUFF_LOGO
+      );
     });
   });
 });

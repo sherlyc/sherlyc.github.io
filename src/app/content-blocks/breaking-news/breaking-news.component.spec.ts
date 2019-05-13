@@ -4,8 +4,8 @@ import { By } from '@angular/platform-browser';
 import { CookieService } from '../../services/cookie/cookie.service';
 import { mockService, ServiceMock } from '../../services/mocks/MockService';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
 import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
+import { AnalyticsService } from '../../services/analytics/analytics.service';
 
 describe('BreakingNewsComponent', () => {
   let component: BreakingNewsComponent;
@@ -75,13 +75,17 @@ describe('BreakingNewsComponent', () => {
     it('should push analytics event when opening the breaking news link', () => {
       fixture.debugElement.query(By.css('.link')).nativeElement.click();
 
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith(AnalyticsEventsType.BREAKING_NEWS_OPEN);
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
+        AnalyticsEventsType.BREAKING_NEWS_OPEN
+      );
     });
 
     it('should push analytics event when closing breaking news', () => {
       fixture.debugElement.query(By.css('.dismiss')).nativeElement.click();
 
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith(AnalyticsEventsType.BREAKING_NEWS_CLOSE);
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
+        AnalyticsEventsType.BREAKING_NEWS_CLOSE
+      );
     });
   });
 });
