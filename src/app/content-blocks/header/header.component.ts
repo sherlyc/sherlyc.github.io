@@ -78,11 +78,11 @@ export class HeaderComponent implements IContentBlockComponent {
   sendMenuAnalytics() {
     this.analyticsService.pushEvent(
       this.navigationVisible ?
-        AnalyticsEventsType.MENU_NAV_OPEN :
-        AnalyticsEventsType.MENU_NAV_CLOSE);
+        AnalyticsEventsType.MENU_NAV_OPENED :
+        AnalyticsEventsType.MENU_NAV_CLOSED);
   }
 
   sendLogoAnalytics() {
-    this.analyticsService.pushEvent(AnalyticsEventsType.STUFF_LOGO);
+    this.analyticsService.pushEvent(AnalyticsEventsType.STUFF_LOGO_CLICKED);
   }
 }

@@ -110,19 +110,19 @@ export class AnalyticsService implements IAnalyticsService {
         };
         break;
       }
-      case AnalyticsEventsType.MENU_NAV_OPEN: {
+      case AnalyticsEventsType.MENU_NAV_OPENED: {
         adobeEvent = {
           event: 'menu.nav'
         };
         break;
       }
-      case AnalyticsEventsType.MENU_NAV_CLOSE: {
+      case AnalyticsEventsType.MENU_NAV_CLOSED: {
         adobeEvent = {
           event: 'close.menu.nav'
         };
         break;
       }
-      case AnalyticsEventsType.STUFF_LOGO: {
+      case AnalyticsEventsType.STUFF_LOGO_CLICKED: {
         adobeEvent = {
           event: 'stuff.logo'
         };

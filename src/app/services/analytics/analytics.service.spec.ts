@@ -126,7 +126,7 @@ describe('AnalyticsService', () => {
     const event = {
       event: 'menu.nav'
     };
-    analyticsService.pushEvent(AnalyticsEventsType.MENU_NAV_OPEN);
+    analyticsService.pushEvent(AnalyticsEventsType.MENU_NAV_OPENED);
 
     expect(window.digitalData.events.push).toHaveBeenCalledWith({
       type: 'analytics',
@@ -142,7 +142,7 @@ describe('AnalyticsService', () => {
     const event = {
       event: 'close.menu.nav'
     };
-    analyticsService.pushEvent(AnalyticsEventsType.MENU_NAV_CLOSE);
+    analyticsService.pushEvent(AnalyticsEventsType.MENU_NAV_CLOSED);
 
     expect(window.digitalData.events.push).toHaveBeenCalledWith({
       type: 'analytics',
@@ -158,7 +158,7 @@ describe('AnalyticsService', () => {
     const event = {
       event: 'stuff.logo'
     };
-    analyticsService.pushEvent(AnalyticsEventsType.STUFF_LOGO);
+    analyticsService.pushEvent(AnalyticsEventsType.STUFF_LOGO_CLICKED);
 
     expect(window.digitalData.events.push).toHaveBeenCalledWith({
       type: 'analytics',

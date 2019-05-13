@@ -45,7 +45,7 @@ describe('Header', () => {
       fixture.debugElement.query(By.css('.menu')).nativeElement.click();
 
       expect(analyticsService.pushEvent).toHaveBeenCalledWith(
-        AnalyticsEventsType.MENU_NAV_OPEN
+        AnalyticsEventsType.MENU_NAV_OPENED
       );
     });
 
@@ -56,7 +56,7 @@ describe('Header', () => {
       fixture.debugElement.query(By.css('.menu')).nativeElement.click();
 
       expect(analyticsService.pushEvent).toHaveBeenCalledWith(
-        AnalyticsEventsType.MENU_NAV_CLOSE
+        AnalyticsEventsType.MENU_NAV_CLOSED
       );
     });
 
@@ -64,7 +64,7 @@ describe('Header', () => {
       fixture.debugElement.query(By.css('.title')).nativeElement.click();
 
       expect(analyticsService.pushEvent).toHaveBeenCalledWith(
-        AnalyticsEventsType.STUFF_LOGO
+        AnalyticsEventsType.STUFF_LOGO_CLICKED
       );
     });
   });
