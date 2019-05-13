@@ -2,7 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FooterComponent } from './footer.component';
 import { By } from '@angular/platform-browser';
 import { CopyrightComponent } from '../../shared/components/copyright/copyright.component';
-import { AnalyticsService } from '../../services/data-layer/analytics.service';
+import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
+import { AnalyticsService } from '../../services/analytics/analytics.service';
 import { mockService, ServiceMock } from '../../services/mocks/MockService';
 
 describe('Footer', () => {
@@ -28,9 +29,31 @@ describe('Footer', () => {
       .query(By.css('a[aria-label="Twitter"]'))
       .nativeElement.click();
 
-    expect(analyticsService.pushEvent).toHaveBeenCalledWith({
-      event: 'menu.footer',
-      'menu.link': 'Twitter'
-    });
+    expect(analyticsService.pushEvent).toHaveBeenCalledWith(
+      AnalyticsEventsType.FOOTER_MENU,
+      new Map().set('name', 'Twitter')
+    );
+  });
+
+  it('push analytics event when Facebook link is clicked', () => {
+    fixture.debugElement
+      .query(By.css('a[aria-label="Facebook"]'))
+      .nativeElement.click();
+
+    expect(analyticsService.pushEvent).toHaveBeenCalledWith(
+      AnalyticsEventsType.FOOTER_MENU,
+      new Map().set('name', 'Facebook')
+    );
+  });
+
+  it('push analytics event when Snapchat link is clicked', () => {
+    fixture.debugElement
+      .query(By.css('a[aria-label="Snapchat"]'))
+      .nativeElement.click();
+
+    expect(analyticsService.pushEvent).toHaveBeenCalledWith(
+      AnalyticsEventsType.FOOTER_MENU,
+      new Map().set('name', 'Snapchat')
+    );
   });
 });

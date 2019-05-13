@@ -10,8 +10,9 @@ import { WeatherRetrieverService } from '../../services/weather-retriever/weathe
 import * as weatherDataJson from '../../services/weather-retriever/__fixtures__/weatherData.json';
 import { of, throwError } from 'rxjs';
 import { IWeatherResponse } from '../../../../common/__types__/IWeatherResponse';
-import { AnalyticsService } from '../../services/data-layer/analytics.service';
+import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
 import { DebugElement } from '@angular/core';
+import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
 
 describe('WeatherUnitComponent', () => {
   let storeService: ServiceMock<StoreService>;
@@ -407,10 +408,9 @@ describe('WeatherUnitComponent', () => {
       fixture.debugElement.query(By.css('.weather-bar')).nativeElement.click();
       fixture.detectChanges();
 
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
-        event: 'weather.location.bar',
-        'weather.bar': 'opened'
-      });
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
+        AnalyticsEventsType.WEATHER_BAR_OPENED
+      );
     });
 
     it('should push analytic event when weather bar is clicked to close it', () => {
@@ -420,10 +420,9 @@ describe('WeatherUnitComponent', () => {
       fixture.debugElement.query(By.css('.weather-bar')).nativeElement.click();
       fixture.detectChanges();
 
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
-        event: 'weather.location.bar',
-        'weather.bar': 'closed'
-      });
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
+        AnalyticsEventsType.WEATHER_BAR_CLOSED
+      );
     });
 
     it('should push analytic event when weather bar is closed with X button', () => {
@@ -433,9 +432,9 @@ describe('WeatherUnitComponent', () => {
       fixture.debugElement.query(By.css('.close-button')).nativeElement.click();
       fixture.detectChanges();
 
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
-        event: 'weather.location.exit'
-      });
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
+        AnalyticsEventsType.WEATHER_EXIT_BUTTON
+      );
     });
 
     it('should push analytic event when weather location is changed ', () => {
@@ -456,10 +455,10 @@ describe('WeatherUnitComponent', () => {
         ) as DebugElement;
       aucklandListElement.nativeElement.click();
 
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
-        event: 'weather.location.change',
-        'weather.location': 'Auckland'
-      });
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
+        AnalyticsEventsType.WEATHER_LOCATION_CHANGED,
+        new Map().set('location', 'Auckland')
+      );
     });
   });
 });

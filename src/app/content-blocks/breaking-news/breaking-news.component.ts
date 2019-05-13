@@ -3,7 +3,8 @@ import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
 import { IBreakingNews } from '../../../../common/__types__/IBreakingNews';
 import { CookieNames } from '../../../../common/__types__/CookieNames';
 import { CookieService } from '../../services/cookie/cookie.service';
-import { AnalyticsService } from '../../services/data-layer/analytics.service';
+import { AnalyticsService } from '../../services/analytics/analytics.service';
+import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
 import { WindowService } from '../../services/window/window.service';
 
 @Component({
@@ -31,8 +32,10 @@ export class BreakingNewsComponent implements IContentBlockComponent {
   }
 
   sendAnalytics(isDismissing: boolean) {
-    this.analyticsService.pushEvent({
-      event: isDismissing ? 'breaking.news.close' : 'breaking.news.open'
-    });
+    this.analyticsService.pushEvent(
+      isDismissing
+        ? AnalyticsEventsType.BREAKING_NEWS_CLOSE
+        : AnalyticsEventsType.BREAKING_NEWS_OPEN
+    );
   }
 }

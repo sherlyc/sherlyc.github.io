@@ -2,8 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HeaderComponent } from './header.component';
 import { By } from '@angular/platform-browser';
 import { CopyrightComponent } from '../../shared/components/copyright/copyright.component';
-import { AnalyticsService } from '../../services/data-layer/analytics.service';
-import { mockService, ServiceMock } from '../../services/mocks/MockService';
+import { mockService, ServiceMock } from 'src/app/services/mocks/MockService';
+import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
+import { AnalyticsService } from '../../services/analytics/analytics.service';
 
 describe('Header', () => {
   let fixture: ComponentFixture<HeaderComponent>;
@@ -43,9 +44,9 @@ describe('Header', () => {
 
       fixture.debugElement.query(By.css('.menu')).nativeElement.click();
 
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
-        event: 'menu.nav'
-      });
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
+        AnalyticsEventsType.MENU_NAV_OPENED
+      );
     });
 
     it('should push analytics event when hamburger menu is closed', () => {
@@ -54,17 +55,30 @@ describe('Header', () => {
 
       fixture.debugElement.query(By.css('.menu')).nativeElement.click();
 
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
-        event: 'close.menu.nav'
-      });
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
+        AnalyticsEventsType.MENU_NAV_CLOSED
+      );
     });
 
     it('should push analytics event when stuff logo is clicked', () => {
       fixture.debugElement.query(By.css('.title')).nativeElement.click();
 
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
-        event: 'stuff.logo'
-      });
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
+        AnalyticsEventsType.STUFF_LOGO_CLICKED
+      );
+    });
+
+    it('should push analytics event when menu section is clicked', () => {
+      fixture.componentInstance.navigationVisible = true;
+      fixture.detectChanges();
+      fixture.debugElement
+        .query(By.css('.section-Homed'))
+        .nativeElement.click();
+
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
+        AnalyticsEventsType.MENU_NAV_SECTION_CLICKED,
+        new Map().set('section', 'Homed')
+      );
     });
   });
 });
