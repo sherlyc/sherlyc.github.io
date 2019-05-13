@@ -1,12 +1,7 @@
 import { Injectable } from '@angular/core';
-import { IDigitalData } from './__types__/IDigitalData';
 import { DeviceType } from './__types__/DeviceType';
-import { RuntimeService } from '../runtime/runtime.service';
+import { WindowService } from '../window/window.service';
 import { IAnalyticsEvent } from './__types__/IAnalyticsEvent';
-
-declare const window: {
-  digitalData: IDigitalData;
-};
 
 const home = 'home';
 
@@ -14,55 +9,53 @@ const home = 'home';
   providedIn: 'root'
 })
 export class AnalyticsService {
-  constructor(private runtimeService: RuntimeService) {}
+  constructor(private windowService: WindowService) {}
 
   setup() {
-    if (this.runtimeService.isBrowser()) {
-      window.digitalData = {
-        page: {
-          pageInfo: {
-            pageID: home,
-            pageName: 'Stuff home',
-            sysEnv: DeviceType.mobile,
-            variant: '1',
-            version: '1',
-            publisher: '',
-            articleID: '',
-            headline: '',
-            author: '',
-            source: '',
-            lastPublishedTime: ''
-          },
-          category: {
-            pageType: home,
-            primaryCategory: home
-          },
-          ads: {
-            environment: '',
-            exclusions: '',
-            sections: ['']
-          }
+    this.windowService.getWindow().digitalData = {
+      page: {
+        pageInfo: {
+          pageID: home,
+          pageName: 'Stuff home',
+          sysEnv: DeviceType.mobile,
+          variant: '1',
+          version: '1',
+          publisher: '',
+          articleID: '',
+          headline: '',
+          author: '',
+          source: '',
+          lastPublishedTime: ''
         },
-        user: [
-          {
-            profile: [
-              {
-                profileInfo: {
-                  uid: ''
-                }
+        category: {
+          pageType: home,
+          primaryCategory: home
+        },
+        ads: {
+          environment: '',
+          exclusions: '',
+          sections: ['']
+        }
+      },
+      user: [
+        {
+          profile: [
+            {
+              profileInfo: {
+                uid: ''
               }
-            ],
-            segment: {}
-          }
-        ],
-        events: []
-      };
-    }
+            }
+          ],
+          segment: {}
+        }
+      ],
+      events: []
+    };
   }
 
   pushEvent(event: IAnalyticsEvent) {
-    if (this.runtimeService.isBrowser()) {
-      window.digitalData.events.push({ type: 'analytics', ...event });
-    }
+    this.windowService
+      .getWindow()
+      .digitalData.events.push({ type: 'analytics', ...event });
   }
 }

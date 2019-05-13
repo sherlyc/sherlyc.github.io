@@ -1,66 +1,51 @@
 import { TestBed } from '@angular/core/testing';
 import { AnalyticsService } from './analytics.service';
-import { RuntimeService } from '../runtime/runtime.service';
 import { ServiceMock, mockService } from '../mocks/MockService';
-import { IDigitalData } from './__types__/IDigitalData';
-
-declare let window: {
-  digitalData: IDigitalData;
-};
+import { WindowService } from '../window/window.service';
 
 describe('AnalyticsService', () => {
-  let runtimeService: ServiceMock<RuntimeService>;
   let analyticsService: AnalyticsService;
+  let windowService: ServiceMock<WindowService>;
 
-  beforeEach(() => {
+  beforeAll(() => {
     TestBed.configureTestingModule({
       providers: [
         {
-          provide: RuntimeService,
-          useClass: mockService(RuntimeService)
+          provide: WindowService,
+          useClass: mockService(WindowService)
         }
       ]
     });
-    runtimeService = TestBed.get(RuntimeService);
     analyticsService = TestBed.get(AnalyticsService);
-  });
-
-  afterEach(() => {
-    window.digitalData = {} as IDigitalData;
+    windowService = TestBed.get(WindowService);
   });
 
   it('should be created', () => {
     expect(analyticsService).toBeTruthy();
   });
 
-  it('should assign digitalData object to the window if running in browser', () => {
-    runtimeService.isBrowser.mockReturnValue(true);
+  it('should assign digitalData object to the window', () => {
+    windowService.getWindow.mockReturnValue({});
 
     analyticsService.setup();
 
-    expect(window.digitalData).toBeTruthy();
+    expect(windowService.getWindow().digitalData).toBeTruthy();
   });
 
-  it('should not assign digitalData object to the window if not running in browser', () => {
-    runtimeService.isBrowser.mockReturnValue(false);
+  it('should push analytics to the window', () => {
+    windowService.getWindow.mockReturnValue({});
 
     analyticsService.setup();
-
-    expect(window.digitalData).toEqual({});
-  });
-
-  it('should push analytics if running in browser', () => {
-    runtimeService.isBrowser.mockReturnValue(true);
-    analyticsService.setup();
-    window.digitalData.events.push = jest.fn();
-
+    windowService.getWindow().digitalData.events.push = jest.fn();
     const event = {
       event: 'button.toggle',
       button: 'closed'
     };
     analyticsService.pushEvent(event);
 
-    expect(window.digitalData.events.push).toHaveBeenCalledWith({
+    expect(
+      windowService.getWindow().digitalData.events.push
+    ).toHaveBeenCalledWith({
       type: 'analytics',
       ...event
     });

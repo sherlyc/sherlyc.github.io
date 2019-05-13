@@ -5,12 +5,12 @@ import { ContentRetrieverService } from '../../../services/content-retriever/con
 import { of, throwError, Subject } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
-import { NavigationStart, Router } from '@angular/router';
+import { NavigationStart } from '@angular/router';
 import { IContentBlock } from '../../../../../common/__types__/IContentBlock';
 import { mockService, ServiceMock } from '../../../services/mocks/MockService';
 import { AdService } from '../../../services/ad/ad.service';
-import { CorrelationService } from 'src/app/services/correlation/correlation.service';
-import { EventsService } from 'src/app/services/events/events.service';
+import { CorrelationService } from '../../../services/correlation/correlation.service';
+import { EventsService } from '../../../services/events/events.service';
 
 describe('PageComponent', () => {
   let component: PageComponent;

@@ -10,7 +10,7 @@ import { WeatherRetrieverService } from '../../services/weather-retriever/weathe
 import * as weatherDataJson from '../../services/weather-retriever/__fixtures__/weatherData.json';
 import { of, throwError } from 'rxjs';
 import { IWeatherResponse } from '../../../../common/__types__/IWeatherResponse';
-import { AnalyticsService } from 'src/app/services/data-layer/analytics.service';
+import { AnalyticsService } from '../../services/data-layer/analytics.service';
 import { DebugElement } from '@angular/core';
 
 describe('WeatherUnitComponent', () => {

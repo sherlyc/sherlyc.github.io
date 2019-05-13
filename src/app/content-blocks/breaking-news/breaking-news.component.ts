@@ -4,6 +4,7 @@ import { IBreakingNews } from '../../../../common/__types__/IBreakingNews';
 import { CookieNames } from '../../../../common/__types__/CookieNames';
 import { CookieService } from '../../services/cookie/cookie.service';
 import { AnalyticsService } from '../../services/data-layer/analytics.service';
+import { WindowService } from '../../services/window/window.service';
 
 @Component({
   selector: 'app-breaking-news',
@@ -16,11 +17,12 @@ export class BreakingNewsComponent implements IContentBlockComponent {
 
   constructor(
     private cookieService: CookieService,
-    private analyticsService: AnalyticsService
+    private analyticsService: AnalyticsService,
+    private windowService: WindowService
   ) {}
 
   onClickOrDismiss() {
-    const domain = window && window.location && window.location.hostname;
+    const domain = this.windowService.getWindow().location.hostname;
     this.cookieService.set(CookieNames.IGNORE_BREAKING_NEWS, this.input.id, {
       path: '/',
       domain

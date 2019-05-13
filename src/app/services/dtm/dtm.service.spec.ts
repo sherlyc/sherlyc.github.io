@@ -4,15 +4,15 @@ import { DtmService } from './dtm.service';
 import { ScriptInjectorService } from '../script-injector/script-injector.service';
 import { mockService, ServiceMock } from '../mocks/MockService';
 import { ConfigService } from '../config/config.service';
-
-declare const window: {
-  _satellite: any;
-};
+import { WindowService } from '../window/window.service';
+import { IWindow } from '../window/__types__/IWindow';
 
 describe('DtmService', () => {
   let dtmService: DtmService;
-  let configService: ServiceMock<ConfigService>;
   let scriptInjectorService: ServiceMock<ScriptInjectorService>;
+  let configService: ServiceMock<ConfigService>;
+  let windowService: ServiceMock<WindowService>;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
@@ -23,21 +23,27 @@ describe('DtmService', () => {
         {
           provide: ConfigService,
           useClass: mockService(ConfigService)
+        },
+        {
+          provide: WindowService,
+          useClass: mockService(WindowService)
         }
       ]
     });
     dtmService = TestBed.get(DtmService);
-    configService = TestBed.get(ConfigService);
     scriptInjectorService = TestBed.get(ScriptInjectorService);
+    configService = TestBed.get(ConfigService);
+    windowService = TestBed.get(WindowService);
   });
 
   it('should be created', () => {
     expect(dtmService).toBeTruthy();
   });
 
-  it('should delegate to script injector to load the script after the setup', async () => {
+  it('should delegate to script injector to load the script on setup', async () => {
+    windowService.getWindow.mockReturnValue({});
     scriptInjectorService.load.mockImplementation(() => {
-      window._satellite = { pageBottom: jest.fn() };
+      windowService.getWindow()._satellite = { pageBottom: jest.fn() };
       return Promise.resolve(new Event('loaded'));
     });
     configService.getConfig.mockReturnValue({
@@ -47,6 +53,6 @@ describe('DtmService', () => {
     await dtmService.setup();
 
     expect(scriptInjectorService.load).toHaveBeenCalled();
-    expect(window._satellite.pageBottom).toHaveBeenCalled();
+    expect(windowService.getWindow()._satellite.pageBottom).toHaveBeenCalled();
   });
 });

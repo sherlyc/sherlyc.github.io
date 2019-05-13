@@ -17,6 +17,7 @@ import { SharedModule } from './shared/shared.module';
 import { ConfigService } from './services/config/config.service';
 import * as Sentry from '@sentry/browser';
 import { BrowserOptions } from '@sentry/browser';
+import { WindowService } from './services/window/window.service';
 
 export function init_sentry(configService: ConfigService) {
   return () =>
@@ -49,7 +50,8 @@ export function init_sentry(configService: ConfigService) {
       useClass: HttpInterceptorService,
       multi: true
     },
-    CookieService
+    CookieService,
+    WindowService
   ],
   bootstrap: [AppComponent]
 })
