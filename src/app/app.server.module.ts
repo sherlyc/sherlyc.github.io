@@ -11,6 +11,10 @@ import { CookieService } from './services/cookie/cookie.service';
 import { ServerCookieService } from './services/cookie/server-cookie.service';
 import { StoreService } from './services/store/store.service';
 import { ServerStoreService } from './services/store/server-store.service';
+import {
+  WindowService,
+  ServerWindowService
+} from './services/window/window.service';
 
 @NgModule({
   imports: [
@@ -22,7 +26,8 @@ import { ServerStoreService } from './services/store/server-store.service';
   providers: [
     // Add universal-only providers here
     { provide: CookieService, useClass: ServerCookieService },
-    { provide: StoreService, useClass: ServerStoreService }
+    { provide: StoreService, useClass: ServerStoreService },
+    { provide: WindowService, useClass: ServerWindowService }
   ],
   bootstrap: [AppComponent]
 })

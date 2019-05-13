@@ -2,7 +2,8 @@ import { Component, Inject, Input, Renderer2 } from '@angular/core';
 import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
 import { IHeader } from '../../../../common/__types__/IHeader';
 import { DOCUMENT } from '@angular/common';
-import { AnalyticsService } from '../../services/data-layer/analytics.service';
+import { AnalyticsService } from '../../services/analytics/analytics.service';
+import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
 
 @Component({
   selector: 'app-header',
@@ -74,12 +75,21 @@ export class HeaderComponent implements IContentBlockComponent {
   }
 
   sendMenuAnalytics() {
-    this.analyticsService.pushEvent({
-      event: this.navigationVisible ? 'menu.nav' : 'close.menu.nav'
-    });
+    this.analyticsService.pushEvent(
+      this.navigationVisible
+        ? AnalyticsEventsType.MENU_NAV_OPENED
+        : AnalyticsEventsType.MENU_NAV_CLOSED
+    );
   }
 
   sendLogoAnalytics() {
-    this.analyticsService.pushEvent({ event: 'stuff.logo' });
+    this.analyticsService.pushEvent(AnalyticsEventsType.STUFF_LOGO_CLICKED);
+  }
+
+  sendMenuSectionClickAnalytics(section: string) {
+    this.analyticsService.pushEvent(
+      AnalyticsEventsType.MENU_NAV_SECTION_CLICKED,
+      new Map().set('section', section)
+    );
   }
 }

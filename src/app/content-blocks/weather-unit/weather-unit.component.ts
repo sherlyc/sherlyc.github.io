@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
 import { IWeatherUnit } from '../../../../common/__types__/IWeatherUnit';
 import { WeatherRetrieverService } from '../../services/weather-retriever/weather-retriever.service';
-import { AnalyticsService } from '../../services/data-layer/analytics.service';
+import { AnalyticsService } from '../../services/analytics/analytics.service';
 import { IWeatherResponse } from '../../../../common/__types__/IWeatherResponse';
 import {
   weatherRegions,
@@ -11,6 +11,7 @@ import {
 import { StoreService, StorageKeys } from '../../services/store/store.service';
 import { RuntimeService } from '../../services/runtime/runtime.service';
 import { mapForecastToIcon } from './forecast-icon.mapper';
+import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
 
 @Component({
   selector: 'app-weather-unit',
@@ -26,7 +27,6 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
   ) {}
 
   @Input() input!: IWeatherUnit;
-
   regions = weatherRegions;
   firstColumnLimit = 8;
 
@@ -59,26 +59,6 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
 
-  sendWeatherBarAnalytics() {
-    this.analyticsService.pushEvent({
-      event: 'weather.location.bar',
-      'weather.bar': this.isDropdownOpen ? 'opened' : 'closed'
-    });
-  }
-
-  sendExitButtonAnalytics() {
-    this.analyticsService.pushEvent({
-      event: 'weather.location.exit'
-    });
-  }
-
-  sendLocationAnalytics(location: string) {
-    this.analyticsService.pushEvent({
-      event: 'weather.location.change',
-      'weather.location': location
-    });
-  }
-
   private getWeatherData(location: string) {
     this.weatherRetrieverService.getWeather(location).subscribe(
       (weatherData: IWeatherResponse) => {
@@ -87,6 +67,25 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
         this.forecastSvgPath = mapForecastToIcon(weatherData.condition);
       },
       () => (this.hasError = true)
+    );
+  }
+
+  sendWeatherBarAnalytics() {
+    this.analyticsService.pushEvent(
+      this.isDropdownOpen
+        ? AnalyticsEventsType.WEATHER_BAR_OPENED
+        : AnalyticsEventsType.WEATHER_BAR_CLOSED
+    );
+  }
+
+  sendExitButtonAnalytics() {
+    this.analyticsService.pushEvent(AnalyticsEventsType.WEATHER_EXIT_BUTTON);
+  }
+
+  sendLocationAnalytics(location: string) {
+    this.analyticsService.pushEvent(
+      AnalyticsEventsType.WEATHER_LOCATION_CHANGED,
+      new Map().set('location', location)
     );
   }
 }

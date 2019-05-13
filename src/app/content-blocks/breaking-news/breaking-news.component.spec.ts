@@ -4,7 +4,8 @@ import { By } from '@angular/platform-browser';
 import { CookieService } from '../../services/cookie/cookie.service';
 import { mockService, ServiceMock } from '../../services/mocks/MockService';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { AnalyticsService } from 'src/app/services/data-layer/analytics.service';
+import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
+import { AnalyticsService } from '../../services/analytics/analytics.service';
 
 describe('BreakingNewsComponent', () => {
   let component: BreakingNewsComponent;
@@ -72,19 +73,19 @@ describe('BreakingNewsComponent', () => {
 
   describe('Analytics', () => {
     it('should push analytics event when opening the breaking news link', () => {
-      fixture.debugElement.query(By.css('.dismiss')).nativeElement.click();
+      fixture.debugElement.query(By.css('.link')).nativeElement.click();
 
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
-        event: 'breaking.news.close'
-      });
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
+        AnalyticsEventsType.BREAKING_NEWS_OPEN
+      );
     });
 
     it('should push analytics event when closing breaking news', () => {
-      fixture.debugElement.query(By.css('.link')).nativeElement.click();
+      fixture.debugElement.query(By.css('.dismiss')).nativeElement.click();
 
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
-        event: 'breaking.news.open'
-      });
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
+        AnalyticsEventsType.BREAKING_NEWS_CLOSE
+      );
     });
   });
 });

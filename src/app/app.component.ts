@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AdService } from './services/ad/ad.service';
 import { EventsService } from './services/events/events.service';
 import { DtmService } from './services/dtm/dtm.service';
-import { AnalyticsService } from './services/data-layer/analytics.service';
+import { AnalyticsService } from './services/analytics/analytics.service';
 
 @Component({
   selector: 'app-root',

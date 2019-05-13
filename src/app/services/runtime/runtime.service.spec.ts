@@ -3,20 +3,12 @@ import { RuntimeService } from './runtime.service';
 import { TransferState } from '@angular/platform-browser';
 import { PLATFORM_ID } from '@angular/core';
 import { mockService, ServiceMock } from '../mocks/MockService';
+import { WindowService } from '../window/window.service';
 
 describe('RuntimeService', () => {
   let runtimeService: RuntimeService;
-  let transferStateMock: ServiceMock<TransferState>;
-
-  beforeAll(() => {
-    // A workaround for an issue JSDOM window.location used by Jest cannot be writable
-    // See also https://github.com/facebook/jest/issues/5124
-    const windowLocation = JSON.stringify(window.location);
-    delete window.location;
-    Object.defineProperty(window, 'location', {
-      value: JSON.parse(windowLocation)
-    });
-  });
+  let transferState: ServiceMock<TransferState>;
+  let windowService: ServiceMock<WindowService>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -26,6 +18,10 @@ describe('RuntimeService', () => {
           useClass: mockService(TransferState)
         },
         {
+          provide: WindowService,
+          useClass: mockService(WindowService)
+        },
+        {
           provide: PLATFORM_ID,
           useValue: {}
         }
@@ -33,12 +29,18 @@ describe('RuntimeService', () => {
     });
 
     runtimeService = TestBed.get(RuntimeService);
-    transferStateMock = TestBed.get(TransferState);
+    transferState = TestBed.get(TransferState);
+    windowService = TestBed.get(WindowService);
+
+    windowService.getWindow.mockReturnValue({
+      location: {
+        hostname: 'example.com'
+      }
+    });
   });
 
   afterEach(() => {
     process.env = {};
-    window.location.hostname = '';
   });
 
   it('should get env variable in server when env var is set', () => {
@@ -59,7 +61,6 @@ describe('RuntimeService', () => {
     runtimeService.domainsByEnvironment = {
       whatever: ['example.com']
     };
-    window.location.hostname = 'example.com';
 
     const isServerSpy = jest.spyOn(runtimeService, 'isServer');
     isServerSpy.mockReturnValue(false);
@@ -88,7 +89,6 @@ describe('RuntimeService', () => {
     runtimeService.domainsByEnvironment = {
       whatever: []
     };
-    window.location.hostname = 'example.com';
 
     const isServerSpy = jest.spyOn(runtimeService, 'isServer');
     isServerSpy.mockReturnValue(false);

@@ -9,6 +9,8 @@
   </ng-template>
   <ng-container [appContentBlock]="input.items"></ng-container>
   <div *ngIf="input.linkUrl">
-    <a class="more" href="{{ input.linkUrl }}">More {{ input.displayName }}</a>
+    <a class="more" href="{{ input.linkUrl }}" (click)="sendAnalytics()"
+      >More {{ input.displayName }}</a
+    >
   </div>
 </div>

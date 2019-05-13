@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { AdService } from './services/ad/ad.service';
 import { mockService, ServiceMock } from './services/mocks/MockService';
 import { DtmService } from './services/dtm/dtm.service';
-import { AnalyticsService } from './services/data-layer/analytics.service';
+import { AnalyticsService } from './services/analytics/analytics.service';
 
 describe('AppComponent', () => {
   let analyticsService: ServiceMock<AnalyticsService>;
