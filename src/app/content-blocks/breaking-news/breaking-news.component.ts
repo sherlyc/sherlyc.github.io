@@ -14,7 +14,6 @@ import { AnalyticsEventsType } from '../../services/analytics/__types__/Analytic
 export class BreakingNewsComponent implements IContentBlockComponent {
   input!: IBreakingNews;
   shouldHide = false;
-  analyticsEvents = AnalyticsEventsType;
 
   constructor(
     private cookieService: CookieService,
@@ -33,8 +32,8 @@ export class BreakingNewsComponent implements IContentBlockComponent {
 
   sendAnalytics(isDismissing: boolean) {
     this.analyticsService.pushEvent(isDismissing ?
-      this.analyticsEvents.BREAKING_NEWS_CLOSE :
-      this.analyticsEvents.BREAKING_NEWS_OPEN
+      AnalyticsEventsType.BREAKING_NEWS_CLOSE :
+      AnalyticsEventsType.BREAKING_NEWS_OPEN
     );
   }
 }

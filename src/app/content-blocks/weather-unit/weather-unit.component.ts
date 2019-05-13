@@ -27,7 +27,6 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
   ) {}
 
   @Input() input!: IWeatherUnit;
-  analyticsEvents = AnalyticsEventsType;
   regions = weatherRegions;
   firstColumnLimit = 8;
 
@@ -74,18 +73,18 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
   sendWeatherBarAnalytics() {
     this.analyticsService.pushEvent(
       this.isDropdownOpen
-        ? this.analyticsEvents.WEATHER_BAR_OPENED
-        : this.analyticsEvents.WEATHER_BAR_CLOSED
+        ? AnalyticsEventsType.WEATHER_BAR_OPENED
+        : AnalyticsEventsType.WEATHER_BAR_CLOSED
     );
   }
 
   sendExitButtonAnalytics() {
-    this.analyticsService.pushEvent(this.analyticsEvents.WEATHER_EXIT_BUTTON);
+    this.analyticsService.pushEvent(AnalyticsEventsType.WEATHER_EXIT_BUTTON);
   }
 
   sendLocationAnalytics(location: string) {
     this.analyticsService.pushEvent(
-      this.analyticsEvents.WEATHER_LOCATION_CHANGED,
+      AnalyticsEventsType.WEATHER_LOCATION_CHANGED,
       new Map().set('location', location)
     );
   }
