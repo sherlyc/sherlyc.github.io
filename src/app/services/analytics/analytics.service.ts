@@ -75,90 +75,70 @@ export class AnalyticsService implements IAnalyticsService {
   ): IAdobeAnalyticsEvent {
     let adobeEvent = {} as IAdobeAnalyticsEvent;
 
-    switch (event) {
-      case AnalyticsEventsType.WEATHER_BAR_OPENED: {
-        adobeEvent = {
+    const eventTypesRegistry: { [key in AnalyticsEventsType]: Function } = {
+      [AnalyticsEventsType.WEATHER_BAR_OPENED]: () =>
+        (adobeEvent = {
           event: 'weather.location.bar',
           'weather.bar': 'opened'
-        };
-        break;
-      }
-      case AnalyticsEventsType.WEATHER_BAR_CLOSED: {
-        adobeEvent = {
+        }),
+      [AnalyticsEventsType.WEATHER_BAR_CLOSED]: () =>
+        (adobeEvent = {
           event: 'weather.location.bar',
           'weather.bar': 'closed'
-        };
-        break;
-      }
-      case AnalyticsEventsType.WEATHER_EXIT_BUTTON: {
-        adobeEvent = {
+        }),
+      [AnalyticsEventsType.WEATHER_EXIT_BUTTON]: () =>
+        (adobeEvent = {
           event: 'weather.location.exit'
-        };
-        break;
-      }
-      case AnalyticsEventsType.WEATHER_LOCATION_CHANGED: {
-        adobeEvent = {
+        }),
+      [AnalyticsEventsType.WEATHER_LOCATION_CHANGED]: (
+        extraParams?: Map<string, string>
+      ) =>
+        (adobeEvent = {
           event: 'weather.location.change',
-          'weather.location': <string>extra!.get('location')
-        };
-        break;
-      }
-      case AnalyticsEventsType.MENU_NAV_OPENED: {
-        adobeEvent = {
+          'weather.location': <string>extraParams!.get('location')
+        }),
+      [AnalyticsEventsType.MENU_NAV_OPENED]: () =>
+        (adobeEvent = {
           event: 'menu.nav'
-        };
-        break;
-      }
-      case AnalyticsEventsType.MENU_NAV_CLOSED: {
-        adobeEvent = {
+        }),
+      [AnalyticsEventsType.MENU_NAV_CLOSED]: () =>
+        (adobeEvent = {
           event: 'close.menu.nav'
-        };
-        break;
-      }
-      case AnalyticsEventsType.STUFF_LOGO_CLICKED: {
-        adobeEvent = {
+        }),
+      [AnalyticsEventsType.STUFF_LOGO_CLICKED]: () =>
+        (adobeEvent = {
           event: 'stuff.logo'
-        };
-        break;
-      }
-      case AnalyticsEventsType.FOOTER_MENU: {
-        adobeEvent = {
+        }),
+      [AnalyticsEventsType.FOOTER_MENU]: (extraParams?: Map<string, string>) =>
+        (adobeEvent = {
           event: 'menu.footer',
-          'menu.link': <string>extra!.get('name')
-        };
-        break;
-      }
-      case AnalyticsEventsType.BREAKING_NEWS_OPEN: {
-        adobeEvent = {
+          'menu.link': <string>extraParams!.get('name')
+        }),
+      [AnalyticsEventsType.BREAKING_NEWS_OPEN]: () =>
+        (adobeEvent = {
           event: 'breaking.news.open'
-        };
-        break;
-      }
-      case AnalyticsEventsType.BREAKING_NEWS_CLOSE: {
-        adobeEvent = {
+        }),
+      [AnalyticsEventsType.BREAKING_NEWS_CLOSE]: () =>
+        (adobeEvent = {
           event: 'breaking.news.close'
-        };
-        break;
-      }
-      case AnalyticsEventsType.MORE_BUTTON_CLICKED: {
-        adobeEvent = {
+        }),
+      [AnalyticsEventsType.MORE_BUTTON_CLICKED]: (
+        extraParams?: Map<string, string>
+      ) =>
+        (adobeEvent = {
           event: 'more.content.button',
-          'more.content.url': <string>extra!.get('url')
-        };
-        break;
-      }
-      case AnalyticsEventsType.MENU_NAV_SECTION_CLICKED: {
-        adobeEvent = {
+          'more.content.url': <string>extraParams!.get('url')
+        }),
+      [AnalyticsEventsType.MENU_NAV_SECTION_CLICKED]: (
+        extraParams?: Map<string, string>
+      ) =>
+        (adobeEvent = {
           event: 'menu.nav',
-          'menu.nav.section': <string>extra!.get('section')
-        };
-        break;
-      }
-      default: {
-        this.logger.warn('Non existent Adobe analytic event ', event);
-        break;
-      }
-    }
+          'menu.nav.section': <string>extraParams!.get('section')
+        })
+    };
+
+    eventTypesRegistry[event](extra);
 
     return { type: 'analytics', ...adobeEvent };
   }
