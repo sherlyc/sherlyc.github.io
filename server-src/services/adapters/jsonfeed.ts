@@ -9,7 +9,7 @@ import { IJsonFeedArticleList } from './__types__/IJsonFeedArticleList';
 import { IRawArticle } from './__types__/IRawArticle';
 import { Section } from '../section';
 import { IParams } from '../__types__/IParams';
-import { IListAsset } from './__types__/IListAsset';
+import { ListAsset } from '../listAsset';
 
 export const getArticleList = async (
   section: Section,
@@ -24,24 +24,24 @@ export const getArticleList = async (
   return mapToIRawArticleList(jsonFeed.stories);
 };
 
-export const getMidStrip = async (
-  total: number,
-  params: IParams
+export const getListAsset = async (
+  params: IParams,
+  listAssetId: ListAsset,
+  total: number = 0
 ): Promise<IRawArticle[]> => {
-  const midStripJsonFeed: IListAsset = await retrieveMidStrip(total, params);
-  return mapToIRawArticleList(midStripJsonFeed.assets);
-};
-
-export const getMiniMidStrip = async (
-  params: IParams
-): Promise<IRawArticle[]> => {
-  const miniMidStripJsonFeed: IListAsset = await retrieveMiniMidStrip(params);
-  return mapToIRawArticleList(miniMidStripJsonFeed.assets);
-};
-
-export const getEditorsPick = async (
-  params: IParams
-): Promise<IRawArticle[]> => {
-  const editorsPick: IListAsset = await retrieveEditorsPick(params);
-  return mapToIRawArticleList(editorsPick.assets);
+  let articles;
+  switch (listAssetId) {
+    case ListAsset.EditorPicks:
+      articles = await retrieveEditorsPick(params);
+      break;
+    case ListAsset.MidStrip:
+      articles = await retrieveMidStrip(total, params);
+      break;
+    case ListAsset.MiniMidStrip:
+      articles = await retrieveMiniMidStrip(params);
+      break;
+    default:
+      articles = { assets: [] };
+  }
+  return mapToIRawArticleList(articles.assets);
 };
