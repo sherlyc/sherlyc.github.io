@@ -12,10 +12,12 @@ import { ImageLinkUnitComponent } from './image-link-unit/image-link-unit.compon
 import { ColumnContainerComponent } from './column-container/column-container.component';
 import { ExternalContentUnitComponent } from './external-content-unit/external-content-unit.component';
 import { WeatherUnitComponent } from './weather-unit/weather-unit.component';
+import { BasicArticleTitleUnitComponent } from './basic-article-title-unit/basic-article-title-unit.component';
 
 export const contentBlockComponents = [
   BasicArticleUnitComponent,
   BasicArticleSectionComponent,
+  BasicArticleTitleUnitComponent,
   ImageLinkUnitComponent,
   BasicAdUnitComponent,
   BreakingNewsComponent,
@@ -33,6 +35,7 @@ const registry: {
 } = {
   BasicArticleUnitComponent,
   BasicArticleSectionComponent,
+  BasicArticleTitleUnitComponent,
   ImageLinkUnitComponent,
   BasicAdUnitComponent,
   BreakingNewsComponent,
