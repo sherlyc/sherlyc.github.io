@@ -4,6 +4,7 @@ import { HideHeaderDirective } from './directives/hide-header/hide-header.direct
 import { ContentBlockDirective } from './directives/content-block/content-block.directive';
 import { CopyrightComponent } from './components/copyright/copyright.component';
 import { PageComponent } from './components/page/page.component';
+import { HeadlineComponent } from '../content-blocks/headline/headline.component';
 
 @NgModule({
   imports: [CommonModule],
@@ -11,13 +12,15 @@ import { PageComponent } from './components/page/page.component';
     PageComponent,
     HideHeaderDirective,
     ContentBlockDirective,
-    CopyrightComponent
+    CopyrightComponent,
+    HeadlineComponent
   ],
   exports: [
     PageComponent,
     HideHeaderDirective,
     ContentBlockDirective,
-    CopyrightComponent
+    CopyrightComponent,
+    HeadlineComponent
   ]
 })
 export class SharedModule {}

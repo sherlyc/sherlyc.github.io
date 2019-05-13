@@ -1,8 +1,6 @@
 <article>
   <a href="{{ input.linkUrl }}">
-    <div class="row">
-      <h3 class="col-xs">{{ input.indexHeadline }}</h3>
-    </div>
+    <app-headline [headline]="input.indexHeadline"></app-headline>
     <div class="row">
       <div class="col-md-2 col-sm-3 col-xs-4 column">
         <div class="image">
