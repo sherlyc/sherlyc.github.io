@@ -110,7 +110,10 @@ describe('AnalyticsService', () => {
       'weather.location': 'Auckland'
     };
 
-    analyticsService.pushEvent(AnalyticsEventsType.WEATHER_LOCATION_CHANGED, new Map().set('location', 'Auckland'));
+    analyticsService.pushEvent(
+      AnalyticsEventsType.WEATHER_LOCATION_CHANGED,
+      new Map().set('location', 'Auckland')
+    );
 
     expect(window.digitalData.events.push).toHaveBeenCalledWith({
       type: 'analytics',
@@ -175,7 +178,10 @@ describe('AnalyticsService', () => {
       event: 'menu.footer',
       'menu.link': 'twitter'
     };
-    analyticsService.pushEvent(AnalyticsEventsType.FOOTER_MENU, new Map().set('name', 'twitter'));
+    analyticsService.pushEvent(
+      AnalyticsEventsType.FOOTER_MENU,
+      new Map().set('name', 'twitter')
+    );
 
     expect(window.digitalData.events.push).toHaveBeenCalledWith({
       type: 'analytics',
@@ -208,6 +214,26 @@ describe('AnalyticsService', () => {
       event: 'breaking.news.close'
     };
     analyticsService.pushEvent(AnalyticsEventsType.BREAKING_NEWS_CLOSE);
+
+    expect(window.digitalData.events.push).toHaveBeenCalledWith({
+      type: 'analytics',
+      ...event
+    });
+  });
+
+  it('should push corresponding analytics when the more button is clicked', () => {
+    runtimeService.isBrowser.mockReturnValue(true);
+    analyticsService.setup();
+    window.digitalData.events.push = jest.fn();
+
+    const event = {
+      event: 'more.content.button',
+      'more.content.url': '/national'
+    };
+    analyticsService.pushEvent(
+      AnalyticsEventsType.MORE_BUTTON_CLICKED,
+      new Map().set('url', '/national')
+    );
 
     expect(window.digitalData.events.push).toHaveBeenCalledWith({
       type: 'analytics',

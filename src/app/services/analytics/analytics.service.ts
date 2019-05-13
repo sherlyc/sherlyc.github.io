@@ -106,7 +106,7 @@ export class AnalyticsService implements IAnalyticsService {
       case AnalyticsEventsType.WEATHER_LOCATION_CHANGED: {
         adobeEvent = {
           event: 'weather.location.change',
-          'weather.location': <string> extra!.get('location')
+          'weather.location': <string>extra!.get('location')
         };
         break;
       }
@@ -131,7 +131,7 @@ export class AnalyticsService implements IAnalyticsService {
       case AnalyticsEventsType.FOOTER_MENU: {
         adobeEvent = {
           event: 'menu.footer',
-          'menu.link': <string> extra!.get('name')
+          'menu.link': <string>extra!.get('name')
         };
         break;
       }
@@ -144,6 +144,13 @@ export class AnalyticsService implements IAnalyticsService {
       case AnalyticsEventsType.BREAKING_NEWS_CLOSE: {
         adobeEvent = {
           event: 'breaking.news.close'
+        };
+        break;
+      }
+      case AnalyticsEventsType.MORE_BUTTON_CLICKED: {
+        adobeEvent = {
+          event: 'more.content.button',
+          'more.content.url': <string>extra!.get('url')
         };
         break;
       }
