@@ -2,13 +2,14 @@ import { IContentBlock } from '../../../common/__types__/IContentBlock';
 import { IBasicArticleUnit } from '../../../common/__types__/IBasicArticleUnit';
 import { ContentBlockType } from '../../../common/__types__/ContentBlockType';
 import { IBasicAdUnit } from '../../../common/__types__/IBasicAdUnit';
-import { getArticleList, getEditorsPick } from '../adapters/jsonfeed';
+import { getArticleList, getListAsset } from '../adapters/jsonfeed';
 import { IBasicArticleListHandlerInput } from './__types__/IBasicArticleListHandlerInput';
 import { handlerRunnerFunction } from './runner';
 import { IParams } from '../__types__/IParams';
 import { IBasicArticleTitleUnit } from '../../../common/__types__/IBasicArticleTitleUnit';
 import { IRawArticle } from '../adapters/__types__/IRawArticle';
 import { Section } from '../section';
+import { ListAsset } from '../listAsset';
 
 const createBasicArticleUnitBlock = (
   article: IRawArticle
@@ -51,7 +52,7 @@ export default async function(
         0,
         totalArticles
       )
-    : await getEditorsPick(params);
+    : await getListAsset(params, sourceId as ListAsset, totalArticles);
   return rawArticles.reduce(
     (final, article, index) => {
       if (index < totalBasicArticlesUnit) {

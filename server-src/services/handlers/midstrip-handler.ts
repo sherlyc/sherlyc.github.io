@@ -1,20 +1,22 @@
 import { IContentBlock } from '../../../common/__types__/IContentBlock';
 import { ContentBlockType } from '../../../common/__types__/ContentBlockType';
-import { getMidStrip } from '../adapters/jsonfeed';
+import { getListAsset } from '../adapters/jsonfeed';
 import { IMidStripHandlerInput } from './__types__/IMidStripHandlerInput';
 import { handlerRunnerFunction } from './runner';
 import { IImageLinkUnit } from '../../../common/__types__/IImageLinkUnit';
 import { IParams } from '../__types__/IParams';
+import { ListAsset } from '../listAsset';
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
   { totalArticles }: IMidStripHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const rawArticles = (await getMidStrip(totalArticles, params)).slice(
-    0,
+  const rawArticles = (await getListAsset(
+    params,
+    ListAsset.MidStrip,
     totalArticles
-  );
+  )).slice(0, totalArticles);
 
   return [
     {

@@ -5,7 +5,7 @@ import * as rawEditorsPick from '../adapters/__fixtures__/raw-editors-pick.json'
 import * as longEditorsPick from './__fixtures__/raw-editors-pick.json';
 import * as handlerOutputForSection from './__fixtures__/basic-article-list-handler-output-for-section.json';
 import * as handlerOutputForListAsset from './__fixtures__/basic-article-list-handler-output-for-listasset.json';
-import { getArticleList, getEditorsPick } from '../adapters/jsonfeed';
+import { getArticleList, getListAsset } from '../adapters/jsonfeed';
 import { IParams } from '../__types__/IParams';
 import { HandlerInputType } from './__types__/HandlerInputType';
 import { ListAsset } from '../listAsset';
@@ -93,7 +93,7 @@ describe('BasicArticleListHandler', () => {
   it('should get one basic article units and one basic article title unit', async () => {
     const totalArticles = 2;
     const totalAdUnits = 3;
-    (getEditorsPick as jest.Mock).mockResolvedValue(rawEditorsPick);
+    (getListAsset as jest.Mock).mockResolvedValue(rawEditorsPick);
 
     const contentBlocks = await basicArticleListHandler(
       jest.fn(),
@@ -115,7 +115,7 @@ describe('BasicArticleListHandler', () => {
   it('should get multiple basic article units and multiple articles title units', async () => {
     const totalArticles = 4;
     const totalAdUnits = 5;
-    (getEditorsPick as jest.Mock).mockResolvedValue(longEditorsPick);
+    (getListAsset as jest.Mock).mockResolvedValue(longEditorsPick);
 
     const contentBlocks = await basicArticleListHandler(
       jest.fn(),

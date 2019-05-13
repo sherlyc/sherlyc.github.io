@@ -1,6 +1,6 @@
 import miniMidstripHandler from './mini-midstrip-handler';
 import * as rawMiniMidStrip from '../adapters/__fixtures__/raw-mini-mid-strip.json';
-import { getMiniMidStrip } from '../adapters/jsonfeed';
+import { getListAsset } from '../adapters/jsonfeed';
 import { IColumnContainer } from 'common/__types__/IColumnContainer';
 import { IParams } from '../__types__/IParams';
 import { HandlerInputType } from './__types__/HandlerInputType';
@@ -14,7 +14,7 @@ describe('MiniMidStripHandler', () => {
   });
 
   it('should get a list of Image Links', async () => {
-    (getMiniMidStrip as jest.Mock).mockResolvedValue(rawMiniMidStrip);
+    (getListAsset as jest.Mock).mockResolvedValue(rawMiniMidStrip);
 
     const handlerRunnerMock = jest.fn();
 

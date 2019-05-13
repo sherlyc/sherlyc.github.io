@@ -1,9 +1,4 @@
-import {
-  getMidStrip,
-  getArticleList,
-  getMiniMidStrip,
-  getEditorsPick
-} from './jsonfeed';
+import { getArticleList, getListAsset } from './jsonfeed';
 import * as rawArticleList from './__fixtures__/raw-article-list.json';
 import * as rawMidStrip from './__fixtures__/raw-mid-strip.json';
 import * as rawMiniMidStrip from './__fixtures__/raw-mini-mid-strip.json';
@@ -15,6 +10,7 @@ import * as miniMidStripData from './__fixtures__/mini-mid-strip.json';
 import * as editorsPickData from './__fixtures__/editors-pick.json';
 import { Section } from '../section';
 import { IParams } from '../__types__/IParams';
+import { ListAsset } from '../listAsset';
 
 jest.mock('../utils/http');
 
@@ -41,7 +37,9 @@ describe('json feed service', () => {
     it('should provide mid strip data', async () => {
       (http(params).get as jest.Mock).mockResolvedValue({ data: midStripData });
 
-      expect(await getMidStrip(2, params)).toEqual(rawMidStrip);
+      expect(await getListAsset(params, ListAsset.MidStrip, 2)).toEqual(
+        rawMidStrip
+      );
     });
   });
 
@@ -51,7 +49,9 @@ describe('json feed service', () => {
         data: miniMidStripData
       });
 
-      expect(await getMiniMidStrip(params)).toEqual(rawMiniMidStrip);
+      expect(await getListAsset(params, ListAsset.MiniMidStrip)).toEqual(
+        rawMiniMidStrip
+      );
     });
   });
 
@@ -61,7 +61,9 @@ describe('json feed service', () => {
         data: editorsPickData
       });
 
-      expect(await getEditorsPick(params)).toEqual(rawEditorsPickData);
+      expect(await getListAsset(params, ListAsset.EditorPicks)).toEqual(
+        rawEditorsPickData
+      );
     });
   });
 });

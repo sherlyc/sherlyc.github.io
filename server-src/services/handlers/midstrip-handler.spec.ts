@@ -1,7 +1,7 @@
 import midstripHandler from './midstrip-handler';
 import * as rawMidStrip from '../adapters/__fixtures__/raw-mid-strip.json';
 import * as midstripHandlerOutput from './__fixtures__/midstrip-handler-output.json';
-import { getMidStrip } from '../adapters/jsonfeed';
+import { getListAsset } from '../adapters/jsonfeed';
 import { IColumnContainer } from 'common/__types__/IColumnContainer';
 import { IParams } from '../__types__/IParams';
 import { HandlerInputType } from './__types__/HandlerInputType';
@@ -17,7 +17,7 @@ describe('MidStripHandler', () => {
   it('should get a list of Image Links', async () => {
     const totalArticles = 2;
 
-    (getMidStrip as jest.Mock).mockResolvedValue(rawMidStrip);
+    (getListAsset as jest.Mock).mockResolvedValue(rawMidStrip);
 
     const handlerRunnerMock = jest.fn();
 
@@ -38,7 +38,7 @@ describe('MidStripHandler', () => {
 
   it('should get a list of Image links not exceeding number of requested item', async () => {
     const totalArticles = 1;
-    (getMidStrip as jest.Mock).mockResolvedValue(rawMidStrip);
+    (getListAsset as jest.Mock).mockResolvedValue(rawMidStrip);
 
     const handlerRunnerMock = jest.fn();
 
