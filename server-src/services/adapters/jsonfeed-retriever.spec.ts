@@ -45,20 +45,20 @@ describe('JsonFeed Retriever', () => {
     it('should respond with mid strip data', async () => {
       (http(params).get as jest.Mock).mockResolvedValue({ data: midStripData });
 
-      expect(await retrieveMidStrip(2, params)).toEqual(midStripData);
+      expect(await retrieveMidStrip(params, 2)).toEqual(midStripData);
     });
 
     it('should throw error when jsonfeed request for mid strip fails', async () => {
       const error = new Error('AJAX error');
       (http(params).get as jest.Mock).mockRejectedValue(error);
 
-      await expect(retrieveMidStrip(2, params)).rejects.toEqual(error);
+      await expect(retrieveMidStrip(params, 2)).rejects.toEqual(error);
     });
 
     it('should retrieve specified number of articles', async () => {
       (http(params).get as jest.Mock).mockResolvedValue({ data: midStripData });
 
-      const midStripJsonFeed = await retrieveMidStrip(1, params);
+      const midStripJsonFeed = await retrieveMidStrip(params, 1);
 
       const articles = midStripJsonFeed.assets;
       expect(articles.length).toEqual(1);
@@ -67,7 +67,7 @@ describe('JsonFeed Retriever', () => {
     it('should retrieve all articles if specifed total is more than number of articles received', async () => {
       (http(params).get as jest.Mock).mockResolvedValue({ data: midStripData });
 
-      const midStripJsonFeed = await retrieveMidStrip(5, params);
+      const midStripJsonFeed = await retrieveMidStrip(params, 5);
 
       const articles = midStripJsonFeed.assets;
       expect(articles.length).toEqual(2);
