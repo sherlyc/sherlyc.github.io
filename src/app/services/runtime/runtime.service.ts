@@ -1,6 +1,7 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { makeStateKey, TransferState } from '@angular/platform-browser';
+import { WindowService } from '../window/window.service';
 
 export type EnvironmentName = 'SPADE_ENV';
 
@@ -14,7 +15,8 @@ declare const process: {
 export class RuntimeService {
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private transferState: TransferState
+    private transferState: TransferState,
+    private windowService: WindowService
   ) {}
 
   domainsByEnvironment: {
@@ -55,9 +57,8 @@ export class RuntimeService {
     if (this.isServer()) {
       return process.env.SPADE_ENV || defaultValue;
     }
-    return (
-      this.findEnvironmentByDomain(window.location.hostname) || defaultValue
-    );
+    const hostname = this.windowService.getWindow().location.hostname;
+    return this.findEnvironmentByDomain(hostname) || defaultValue;
   }
 
   private findEnvironmentByDomain(domain: string): string | undefined {

@@ -5,6 +5,7 @@ import { CookieNames } from '../../../../common/__types__/CookieNames';
 import { CookieService } from '../../services/cookie/cookie.service';
 import { AnalyticsService } from '../../services/analytics/analytics.service';
 import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
+import { WindowService } from '../../services/window/window.service';
 
 @Component({
   selector: 'app-breaking-news',
@@ -17,12 +18,12 @@ export class BreakingNewsComponent implements IContentBlockComponent {
 
   constructor(
     private cookieService: CookieService,
-    private analyticsService: AnalyticsService
-  ) {
-  }
+    private analyticsService: AnalyticsService,
+    private windowService: WindowService
+  ) {}
 
   onClickOrDismiss() {
-    const domain = window && window.location && window.location.hostname;
+    const domain = this.windowService.getWindow().location.hostname;
     this.cookieService.set(CookieNames.IGNORE_BREAKING_NEWS, this.input.id, {
       path: '/',
       domain
@@ -31,9 +32,10 @@ export class BreakingNewsComponent implements IContentBlockComponent {
   }
 
   sendAnalytics(isDismissing: boolean) {
-    this.analyticsService.pushEvent(isDismissing ?
-      AnalyticsEventsType.BREAKING_NEWS_CLOSE :
-      AnalyticsEventsType.BREAKING_NEWS_OPEN
+    this.analyticsService.pushEvent(
+      isDismissing
+        ? AnalyticsEventsType.BREAKING_NEWS_CLOSE
+        : AnalyticsEventsType.BREAKING_NEWS_OPEN
     );
   }
 }
