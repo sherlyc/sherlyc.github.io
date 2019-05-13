@@ -24,24 +24,17 @@ export const getArticleList = async (
   return mapToIRawArticleList(jsonFeed.stories);
 };
 
+const listAssetRegistry: { [key in ListAsset]: any } = {
+  [ListAsset.EditorPicks]: retrieveEditorsPick,
+  [ListAsset.MidStrip]: retrieveMidStrip,
+  [ListAsset.MiniMidStrip]: retrieveMiniMidStrip
+};
+
 export const getListAsset = async (
   params: IParams,
   listAssetId: ListAsset,
   total: number = 0
 ): Promise<IRawArticle[]> => {
-  let articles;
-  switch (listAssetId) {
-    case ListAsset.EditorPicks:
-      articles = await retrieveEditorsPick(params);
-      break;
-    case ListAsset.MidStrip:
-      articles = await retrieveMidStrip(total, params);
-      break;
-    case ListAsset.MiniMidStrip:
-      articles = await retrieveMiniMidStrip(params);
-      break;
-    default:
-      articles = { assets: [] };
-  }
+  const articles = await listAssetRegistry[listAssetId](params, total);
   return mapToIRawArticleList(articles.assets);
 };

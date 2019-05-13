@@ -39,7 +39,7 @@ async function requestListAsset(
     : response.data;
 }
 
-export const retrieveMidStrip = async (total: number, params: IParams) =>
+export const retrieveMidStrip = async (params: IParams, total: number) =>
   retry(
     () => requestListAsset(params, config.midStripListAssetId, total),
     params
