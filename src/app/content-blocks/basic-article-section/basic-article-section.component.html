@@ -1,9 +1,14 @@
 <div class="{{ input.displayNameColor }}">
-  <a href="{{ input.linkUrl }}">
+  <ng-template [ngIf]="input.linkUrl">
+    <a class="headlineLink" href="{{ input.linkUrl }}">
+      <h3>{{ input.displayName }}</h3>
+    </a>
+  </ng-template>
+  <ng-template [ngIf]="!input.linkUrl">
     <h3>{{ input.displayName }}</h3>
-  </a>
+  </ng-template>
   <ng-container [appContentBlock]="input.items"></ng-container>
-  <div>
+  <div *ngIf="input.linkUrl">
     <a class="more" href="{{ input.linkUrl }}">More {{ input.displayName }}</a>
   </div>
 </div>

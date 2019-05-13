@@ -28,6 +28,17 @@ export default async (params: IParams): Promise<IPage> => {
               totalBasicArticlesUnit: 6
             },
             {
+              type: HandlerInputType.ArticleSection,
+              displayName: `Editor's Pick`,
+              displayNameColor: 'scarlet',
+              linkUrl: '',
+              articleList: {
+                sourceId: ListAsset.EditorPicks,
+                totalBasicArticlesUnit: 2,
+                totalBasicArticleTitleUnit: 6
+              }
+            },
+            {
               type: HandlerInputType.MidStrip,
               totalArticles: 6
             },
