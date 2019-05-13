@@ -1,15 +1,11 @@
 import { Injectable } from '@angular/core';
-import { IDigitalData } from './__types__/IDigitalData';
 import { DeviceType } from './__types__/DeviceType';
 import { RuntimeService } from '../runtime/runtime.service';
 import { AnalyticsEventsType } from './__types__/AnalyticsEventsType';
 import { IAdobeAnalyticsEvent } from './__types__/IAdobeAnalyticsEvent';
 import { LoggerService } from '../logger/logger.service';
 import { IAnalyticsService } from './__types__/IAnalyticsService';
-
-declare const window: {
-  digitalData: IDigitalData;
-};
+import { WindowService } from '../window/window.service';
 
 const home = 'home';
 
@@ -18,59 +14,57 @@ const home = 'home';
 })
 export class AnalyticsService implements IAnalyticsService {
   constructor(
-    private runtimeService: RuntimeService,
-    private logger: LoggerService
+    private logger: LoggerService,
+    private windowService: WindowService
   ) {}
 
   setup() {
-    if (this.runtimeService.isBrowser()) {
-      window.digitalData = {
-        page: {
-          pageInfo: {
-            pageID: home,
-            pageName: 'Stuff home',
-            sysEnv: DeviceType.mobile,
-            variant: '1',
-            version: '1',
-            publisher: '',
-            articleID: '',
-            headline: '',
-            author: '',
-            source: '',
-            lastPublishedTime: ''
-          },
-          category: {
-            pageType: home,
-            primaryCategory: home
-          },
-          ads: {
-            environment: '',
-            exclusions: '',
-            sections: ['']
-          }
+    this.windowService.getWindow().digitalData = {
+      page: {
+        pageInfo: {
+          pageID: home,
+          pageName: 'Stuff home',
+          sysEnv: DeviceType.mobile,
+          variant: '1',
+          version: '1',
+          publisher: '',
+          articleID: '',
+          headline: '',
+          author: '',
+          source: '',
+          lastPublishedTime: ''
         },
-        user: [
-          {
-            profile: [
-              {
-                profileInfo: {
-                  uid: ''
-                }
+        category: {
+          pageType: home,
+          primaryCategory: home
+        },
+        ads: {
+          environment: '',
+          exclusions: '',
+          sections: ['']
+        }
+      },
+      user: [
+        {
+          profile: [
+            {
+              profileInfo: {
+                uid: ''
               }
-            ],
-            segment: {}
-          }
-        ],
-        events: []
-      };
-    }
+            }
+          ],
+          segment: {}
+        }
+      ],
+      events: []
+    };
   }
 
   pushEvent(event: AnalyticsEventsType, extra?: Map<string, string>) {
     try {
-      if (this.runtimeService.isBrowser()) {
-        window.digitalData.events.push(this.transformEvent(event, extra));
-      }
+      this.windowService
+        .getWindow()
+        .digitalData.events.push(this.transformEvent(event, extra));
     } catch (err) {
       this.logger.error(err);
     }
