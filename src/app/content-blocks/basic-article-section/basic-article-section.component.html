@@ -1,10 +1,10 @@
 <div class="{{ input.displayNameColor }}">
-  <ng-template [ngIf]="input.linkUrl">
+  <div *ngIf="input.linkUrl; else linkUrlNotProvided">
     <a class="headlineLink" href="{{ input.linkUrl }}">
       <h3>{{ input.displayName }}</h3>
     </a>
-  </ng-template>
-  <ng-template [ngIf]="!input.linkUrl">
+  </div>
+  <ng-template #linkUrlNotProvided>
     <h3>{{ input.displayName }}</h3>
   </ng-template>
   <ng-container [appContentBlock]="input.items"></ng-container>
