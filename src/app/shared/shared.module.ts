@@ -4,7 +4,7 @@ import { HideHeaderDirective } from './directives/hide-header/hide-header.direct
 import { ContentBlockDirective } from './directives/content-block/content-block.directive';
 import { CopyrightComponent } from './components/copyright/copyright.component';
 import { PageComponent } from './components/page/page.component';
-import { HeadlineComponent } from '../content-blocks/headline/headline.component';
+import { HeadlineComponent } from './components/headline/headline.component';
 
 @NgModule({
   imports: [CommonModule],

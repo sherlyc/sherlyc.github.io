@@ -2,7 +2,7 @@ import { BasicArticleTitleUnitComponent } from './basic-article-title-unit.compo
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { HeadlineComponent } from '../headline/headline.component';
+import { HeadlineComponent } from '../../shared/components/headline/headline.component';
 import { By } from '@angular/platform-browser';
 
 describe('BasicArticleTitleUnitComponent', () => {
