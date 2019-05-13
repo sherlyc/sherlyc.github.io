@@ -1,4 +1,4 @@
-import { IDigitalData } from '../../data-layer/__types__/IDigitalData';
+import { IDigitalData } from '../../analytics/__types__/IDigitalData';
 
 export interface IWindow {
   digitalData: IDigitalData;
