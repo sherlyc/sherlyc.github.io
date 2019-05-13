@@ -29,7 +29,7 @@ export default async (params: IParams): Promise<IPage> => {
             },
             {
               type: HandlerInputType.ArticleSection,
-              displayName: `Editor's Pick`,
+              displayName: `Editors' Pick`,
               displayNameColor: 'darkblue',
               articleList: {
                 sourceId: ListAsset.EditorPicks,
