@@ -10,9 +10,11 @@ import { IImageLinkUnit } from './IImageLinkUnit';
 import { IColumnContainer } from './IColumnContainer';
 import { IExternalContentUnit } from './IExternalContentUnit';
 import { IWeatherUnit } from './IWeatherUnit';
+import { IBasicArticleTitleUnit } from './IBasicArticleTitleUnit';
 
 export type IContentBlock =
   | IBasicArticleUnit
+  | IBasicArticleTitleUnit
   | IBasicArticleSection
   | IImageLinkUnit
   | IBasicAdUnit

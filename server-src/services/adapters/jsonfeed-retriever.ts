@@ -5,7 +5,7 @@ import http from '../utils/http';
 import { Section } from '../section';
 import { URL } from 'url';
 import { IParams } from '../__types__/IParams';
-import { IMidStrip } from './__types__/IMidStrip';
+import { IListAsset } from './__types__/IListAsset';
 
 async function requestArticleList(
   section: Section,
@@ -23,32 +23,30 @@ export const retrieveArticleList = async (
   params: IParams
 ) => retry(() => requestArticleList(section, total, params), params);
 
-async function requestMidStrip(
-  total: number,
-  params: IParams
-): Promise<IMidStrip> {
-  const url: URL = new URL(
-    `${config.jsonFeedAPI}/listasset/${config.midStripListAssetId}`
-  );
-  const response = await http(params).get<IMidStrip>(url.href);
+async function requestListAsset(
+  params: IParams,
+  listAssetId: string,
+  total?: number
+): Promise<IListAsset> {
+  const url: URL = new URL(`${config.jsonFeedAPI}/listasset/${listAssetId}`);
+  const response = await http(params).get<IListAsset>(url.href);
 
-  return {
-    ...response.data,
-    assets: response.data.assets.slice(0, total)
-  };
+  return total
+    ? {
+        ...response.data,
+        assets: response.data.assets.slice(0, total)
+      }
+    : response.data;
 }
 
-export const retrieveMidStrip = async (total: number, params: IParams) =>
-  retry(() => requestMidStrip(total, params), params);
-
-async function requestMiniMidStrip(params: IParams): Promise<IMidStrip> {
-  const url: URL = new URL(
-    `${config.jsonFeedAPI}/listasset/${config.miniMidStripListAssetId}`
+export const retrieveMidStrip = async (params: IParams, total: number) =>
+  retry(
+    () => requestListAsset(params, config.midStripListAssetId, total),
+    params
   );
-  const response = await http(params).get<IMidStrip>(url.href);
-
-  return response.data;
-}
 
 export const retrieveMiniMidStrip = async (params: IParams) =>
-  retry(() => requestMiniMidStrip(params), params);
+  retry(() => requestListAsset(params, config.miniMidStripListAssetId), params);
+
+export const retrieveEditorsPick = async (params: IParams) =>
+  retry(() => requestListAsset(params, config.editorsPickAssetId, 8), params);

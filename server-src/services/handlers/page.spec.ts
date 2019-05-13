@@ -16,22 +16,22 @@ describe('PageHandler', () => {
       items: [
         {
           type: 'ArticleList',
-          sectionId: Section.Latest,
-          totalArticles: 3
+          sourceId: Section.Latest,
+          totalBasicArticlesUnit: 3
         },
         {
           type: 'ArticleSection',
           displayName: 'Sport',
           displayNameColor: 'blue',
           linkUrl: '/' + Section.Sport,
-          articleList: { sectionId: Section.Sport, totalArticles: 3 }
+          articleList: { sourceId: Section.Sport, totalBasicArticlesUnit: 3 }
         },
         {
           type: 'ArticleSection',
           displayName: 'National',
           displayNameColor: 'red',
           linkUrl: '/' + Section.National,
-          articleList: { sectionId: Section.National, totalArticles: 3 }
+          articleList: { sourceId: Section.National, totalBasicArticlesUnit: 3 }
         }
       ]
     } as IPageHandlerInput;

@@ -11,7 +11,11 @@ export default async function(
     displayName,
     displayNameColor,
     linkUrl,
-    articleList: { sectionId, totalArticles }
+    articleList: {
+      sourceId,
+      totalBasicArticlesUnit,
+      totalBasicArticleTitleUnit
+    }
   }: IBasicArticleSectionHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
@@ -25,8 +29,9 @@ export default async function(
         items: await handlerRunner(
           {
             type: HandlerInputType.ArticleList,
-            sectionId,
-            totalArticles
+            sourceId,
+            totalBasicArticlesUnit,
+            totalBasicArticleTitleUnit
           },
           params
         )
