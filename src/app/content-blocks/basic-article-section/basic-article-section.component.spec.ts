@@ -85,7 +85,7 @@ describe('basic article section', () => {
 
     component.input = sectionArticleData;
     fixture.detectChanges();
-    expect(fixture.debugElement.query(By.css('.headlineLink'))).toBeTruthy();
+    expect(fixture.debugElement.query(By.css('.headline-link'))).toBeTruthy();
   });
 
   it('should not render section headline as link when linkUrl is not provided', () => {
@@ -98,7 +98,7 @@ describe('basic article section', () => {
 
     component.input = sectionArticleData;
     fixture.detectChanges();
-    expect(fixture.debugElement.query(By.css('.headlineLink'))).toBeFalsy();
+    expect(fixture.debugElement.query(By.css('.headline-link'))).toBeFalsy();
   });
 
   it('should render more button when linkUrl is provided', () => {
@@ -112,7 +112,7 @@ describe('basic article section', () => {
 
     component.input = sectionArticleData;
     fixture.detectChanges();
-    expect(fixture.debugElement.query(By.css('.more'))).toBeTruthy();
+    expect(fixture.debugElement.query(By.css('.more-button'))).toBeTruthy();
   });
 
   it('should not render more button when linkUrl is not provided', () => {
@@ -125,7 +125,7 @@ describe('basic article section', () => {
 
     component.input = sectionArticleData;
     fixture.detectChanges();
-    expect(fixture.debugElement.query(By.css('.more'))).toBeFalsy();
+    expect(fixture.debugElement.query(By.css('.more-button'))).toBeFalsy();
   });
 
   it('button should show the text `More National`', () => {
@@ -133,7 +133,8 @@ describe('basic article section', () => {
     fixture.detectChanges();
 
     expect(
-      fixture.debugElement.query(By.css('.more')).nativeElement.textContent
+      fixture.debugElement.query(By.css('.more-button')).nativeElement
+        .textContent
     ).toBe('More National');
   });
 
@@ -141,7 +142,7 @@ describe('basic article section', () => {
     component.input = sectionData;
     fixture.detectChanges();
 
-    fixture.debugElement.query(By.css('.more')).nativeElement.click();
+    fixture.debugElement.query(By.css('.more-button')).nativeElement.click();
 
     expect(analyticsService.pushEvent).toHaveBeenCalledWith(
       AnalyticsEventsType.MORE_BUTTON_CLICKED,

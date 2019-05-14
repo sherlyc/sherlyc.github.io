@@ -1,6 +1,6 @@
 <div class="{{ input.displayNameColor }}">
   <div *ngIf="input.linkUrl; else linkUrlNotProvided">
-    <a class="headlineLink" href="{{ input.linkUrl }}">
+    <a class="headline-link" href="{{ input.linkUrl }}">
       <h3>{{ input.displayName }}</h3>
     </a>
   </div>
@@ -9,7 +9,7 @@
   </ng-template>
   <ng-container [appContentBlock]="input.items"></ng-container>
   <div *ngIf="input.linkUrl">
-    <a class="more" href="{{ input.linkUrl }}" (click)="sendAnalytics()"
+    <a class="more-button" href="{{ input.linkUrl }}" (click)="sendAnalytics()"
       >More {{ input.displayName }}</a
     >
   </div>
