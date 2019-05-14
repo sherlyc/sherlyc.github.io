@@ -289,7 +289,7 @@
                   <run>
                     <env>
                       <URL_UNDER_TEST>http://application:4000</URL_UNDER_TEST>
-                      <MAX_BENCHMARK_SECONDS>80</MAX_BENCHMARK_SECONDS>
+                      <MAX_BENCHMARK_SECONDS>90</MAX_BENCHMARK_SECONDS>
                     </env>
 
                     <log>
