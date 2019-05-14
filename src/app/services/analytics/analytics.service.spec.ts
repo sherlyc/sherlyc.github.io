@@ -37,59 +37,6 @@ describe('AnalyticsService', () => {
     expect(windowService.getWindow().digitalData).toBeTruthy();
   });
 
-  it('should push corresponding analytics when weather bar is opened', () => {
-    analyticsService.setup();
-    windowService.getWindow().digitalData.events.push = jest.fn();
-
-    const event = {
-      event: 'weather.location.bar',
-      'weather.bar': 'opened'
-    };
-    analyticsService.pushEvent(AnalyticsEventsType.WEATHER_BAR_OPENED);
-
-    expect(
-      windowService.getWindow().digitalData.events.push
-    ).toHaveBeenCalledWith({
-      type: 'analytics',
-      ...event
-    });
-  });
-
-  it('should push corresponding analytics when weather bar is closed', () => {
-    analyticsService.setup();
-    windowService.getWindow().digitalData.events.push = jest.fn();
-
-    const event = {
-      event: 'weather.location.bar',
-      'weather.bar': 'closed'
-    };
-    analyticsService.pushEvent(AnalyticsEventsType.WEATHER_BAR_CLOSED);
-
-    expect(
-      windowService.getWindow().digitalData.events.push
-    ).toHaveBeenCalledWith({
-      type: 'analytics',
-      ...event
-    });
-  });
-
-  it('should push corresponding analytics when weather bar is closed with exit button', () => {
-    analyticsService.setup();
-    windowService.getWindow().digitalData.events.push = jest.fn();
-
-    const event = {
-      event: 'weather.location.exit'
-    };
-    analyticsService.pushEvent(AnalyticsEventsType.WEATHER_EXIT_BUTTON);
-
-    expect(
-      windowService.getWindow().digitalData.events.push
-    ).toHaveBeenCalledWith({
-      type: 'analytics',
-      ...event
-    });
-  });
-
   it('should push corresponding analytics when weather bar is closed with exit button', () => {
     analyticsService.setup();
     windowService.getWindow().digitalData.events.push = jest.fn();
@@ -103,40 +50,6 @@ describe('AnalyticsService', () => {
       AnalyticsEventsType.WEATHER_LOCATION_CHANGED,
       new Map().set('location', 'Auckland')
     );
-
-    expect(
-      windowService.getWindow().digitalData.events.push
-    ).toHaveBeenCalledWith({
-      type: 'analytics',
-      ...event
-    });
-  });
-
-  it('should push corresponding analytics when the navigation menu is open', () => {
-    analyticsService.setup();
-    windowService.getWindow().digitalData.events.push = jest.fn();
-
-    const event = {
-      event: 'menu.nav'
-    };
-    analyticsService.pushEvent(AnalyticsEventsType.MENU_NAV_OPENED);
-
-    expect(
-      windowService.getWindow().digitalData.events.push
-    ).toHaveBeenCalledWith({
-      type: 'analytics',
-      ...event
-    });
-  });
-
-  it('should push corresponding analytics when the navigation menu is closed ', () => {
-    analyticsService.setup();
-    windowService.getWindow().digitalData.events.push = jest.fn();
-
-    const event = {
-      event: 'close.menu.nav'
-    };
-    analyticsService.pushEvent(AnalyticsEventsType.MENU_NAV_CLOSED);
 
     expect(
       windowService.getWindow().digitalData.events.push
