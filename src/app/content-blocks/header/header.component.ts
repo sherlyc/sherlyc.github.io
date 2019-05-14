@@ -74,6 +74,12 @@ export class HeaderComponent implements IContentBlockComponent {
     }
   }
 
+  sendMenuAnalytics() {
+    if (this.navigationVisible) {
+      this.analyticsService.pushEvent(AnalyticsEventsType.MENU_NAV_OPENED);
+    }
+  }
+
   sendLogoAnalytics() {
     this.analyticsService.pushEvent(AnalyticsEventsType.STUFF_LOGO_CLICKED);
   }

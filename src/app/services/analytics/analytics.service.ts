@@ -83,6 +83,10 @@ export class AnalyticsService implements IAnalyticsService {
           event: 'weather.location.change',
           'weather.location': <string>extraParams!.get('location')
         }),
+      [AnalyticsEventsType.MENU_NAV_OPENED]: () =>
+        (adobeEvent = {
+          event: 'menu.nav'
+        }),
       [AnalyticsEventsType.STUFF_LOGO_CLICKED]: () =>
         (adobeEvent = {
           event: 'stuff.logo'
