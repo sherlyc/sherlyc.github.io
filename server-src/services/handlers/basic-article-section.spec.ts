@@ -36,6 +36,7 @@ describe('BasicArticleSectionHandler', () => {
       handlerInput,
       params
     );
+
     expect(contentBlocks).toEqual(
       basicArticleSectionHandlerOutput.SectionWithOnlyBasicArticleUnit
     );
@@ -54,7 +55,6 @@ describe('BasicArticleSectionHandler', () => {
     const totalBasicArticleTitleUnit = 1;
     const handlerInput = {
       type: 'ArticleSection',
-      linkUrl: '/business',
       displayName: 'business',
       displayNameColor: 'red',
       articleList: {
@@ -75,6 +75,7 @@ describe('BasicArticleSectionHandler', () => {
       handlerInput,
       params
     );
+
     expect(contentBlocks).toEqual(
       basicArticleSectionHandlerOutput.SectionWithBasicArticleUnitAndArticleTitleLink
     );

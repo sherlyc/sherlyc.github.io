@@ -1,10 +1,15 @@
 <div class="{{ input.displayNameColor }}">
-  <a href="{{ input.linkUrl }}">
+  <div *ngIf="input.linkUrl; else linkUrlNotProvided">
+    <a class="headline-link" href="{{ input.linkUrl }}">
+      <h3>{{ input.displayName }}</h3>
+    </a>
+  </div>
+  <ng-template #linkUrlNotProvided>
     <h3>{{ input.displayName }}</h3>
-  </a>
+  </ng-template>
   <ng-container [appContentBlock]="input.items"></ng-container>
-  <div>
-    <a class="more" href="{{ input.linkUrl }}" (click)="sendAnalytics()"
+  <div *ngIf="input.linkUrl">
+    <a class="more-button" href="{{ input.linkUrl }}" (click)="sendAnalytics()"
       >More {{ input.displayName }}</a
     >
   </div>

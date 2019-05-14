@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { mockService, ServiceMock } from '../../services/mocks/MockService';
 import { AnalyticsService } from '../../services/analytics/analytics.service';
 import { BasicArticleSectionComponent } from './basic-article-section.component';
-import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 import { IBasicArticleSection } from '../../../../common/__types__/IBasicArticleSection';
 import { Section } from '../../../../server-src/services/section';
@@ -67,15 +66,66 @@ describe('basic article section', () => {
       .compileComponents();
 
     analyticsService = TestBed.get(AnalyticsService);
-  });
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(BasicArticleSectionComponent);
     component = fixture.componentInstance;
   });
 
-  it('should pass', () => {
-    expect(1).toBe(1);
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should render section headline as link when linkUrl is provided', () => {
+    const sectionArticleData: IBasicArticleSection = {
+      type: ContentBlockType.BasicArticleSection,
+      displayName: `National`,
+      displayNameColor: 'scarlet',
+      linkUrl: '/national',
+      items: []
+    };
+
+    component.input = sectionArticleData;
+    fixture.detectChanges();
+    expect(fixture.debugElement.query(By.css('.headline-link'))).toBeTruthy();
+  });
+
+  it('should not render section headline as link when linkUrl is not provided', () => {
+    const sectionArticleData: IBasicArticleSection = {
+      type: ContentBlockType.BasicArticleSection,
+      displayName: `Editor's Pick`,
+      displayNameColor: 'scarlet',
+      items: []
+    };
+
+    component.input = sectionArticleData;
+    fixture.detectChanges();
+    expect(fixture.debugElement.query(By.css('.headline-link'))).toBeFalsy();
+  });
+
+  it('should render more button when linkUrl is provided', () => {
+    const sectionArticleData: IBasicArticleSection = {
+      type: ContentBlockType.BasicArticleSection,
+      displayName: `National`,
+      displayNameColor: 'scarlet',
+      linkUrl: '/national',
+      items: []
+    };
+
+    component.input = sectionArticleData;
+    fixture.detectChanges();
+    expect(fixture.debugElement.query(By.css('.more-button'))).toBeTruthy();
+  });
+
+  it('should not render more button when linkUrl is not provided', () => {
+    const sectionArticleData: IBasicArticleSection = {
+      type: ContentBlockType.BasicArticleSection,
+      displayName: `Editor's Pick`,
+      displayNameColor: 'scarlet',
+      items: []
+    };
+
+    component.input = sectionArticleData;
+    fixture.detectChanges();
+    expect(fixture.debugElement.query(By.css('.more-button'))).toBeFalsy();
   });
 
   it('button should show the text `More National`', () => {
@@ -83,7 +133,8 @@ describe('basic article section', () => {
     fixture.detectChanges();
 
     expect(
-      fixture.debugElement.query(By.css('.more')).nativeElement.textContent
+      fixture.debugElement.query(By.css('.more-button')).nativeElement
+        .textContent
     ).toBe('More National');
   });
 
@@ -91,7 +142,7 @@ describe('basic article section', () => {
     component.input = sectionData;
     fixture.detectChanges();
 
-    fixture.debugElement.query(By.css('.more')).nativeElement.click();
+    fixture.debugElement.query(By.css('.more-button')).nativeElement.click();
 
     expect(analyticsService.pushEvent).toHaveBeenCalledWith(
       AnalyticsEventsType.MORE_BUTTON_CLICKED,

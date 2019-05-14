@@ -5,6 +5,6 @@ export interface IBasicArticleSection {
   type: ContentBlockType.BasicArticleSection;
   displayName: string;
   displayNameColor: string;
-  linkUrl: string;
+  linkUrl?: string;
   items: IContentBlock[];
 }

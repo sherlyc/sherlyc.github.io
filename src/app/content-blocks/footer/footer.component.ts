@@ -15,6 +15,9 @@ export class FooterComponent implements IContentBlockComponent {
   @Input() input!: IFooter;
 
   sendLinkAnalytics(name: string) {
-    this.analyticsService.pushEvent(AnalyticsEventsType.FOOTER_MENU, new Map().set('name', name));
+    this.analyticsService.pushEvent(
+      AnalyticsEventsType.FOOTER_MENU,
+      new Map().set('name', name)
+    );
   }
 }

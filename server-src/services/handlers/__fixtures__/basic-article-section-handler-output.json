@@ -45,7 +45,6 @@
       "type": "BasicArticleSection",
       "displayName": "business",
       "displayNameColor": "red",
-      "linkUrl": "/business",
       "items": [
         {
           "type": "BasicAdUnit"

@@ -6,6 +6,6 @@ export interface IBasicArticleSectionHandlerInput {
   type: HandlerInputType.ArticleSection;
   displayName: string;
   displayNameColor: string;
-  linkUrl: string;
+  linkUrl?: string;
   articleList: Omit<IBasicArticleListHandlerInput, 'type'>;
 }

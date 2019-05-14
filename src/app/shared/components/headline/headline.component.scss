@@ -1,0 +1,9 @@
+h3 {
+  font-family: 'Merriweather', serif;
+  font-size: 19px;
+  color: rgb(43, 164, 235);
+  margin: 10px 0;
+  &:hover {
+    text-decoration: underline;
+  }
+}

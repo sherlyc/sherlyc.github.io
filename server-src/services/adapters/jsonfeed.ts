@@ -24,7 +24,7 @@ export const getArticleList = async (
   return mapToIRawArticleList(jsonFeed.stories);
 };
 
-const listAssetRegistry: { [key in ListAsset]: any } = {
+const listAssetRegistry: { [key in ListAsset]: Function } = {
   [ListAsset.EditorPicks]: retrieveEditorsPick,
   [ListAsset.MidStrip]: retrieveMidStrip,
   [ListAsset.MiniMidStrip]: retrieveMiniMidStrip
