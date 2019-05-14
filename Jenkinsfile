@@ -1,2 +1,2 @@
 buildImage()
-buildCascade(["stuff-raster-shift21"])
+buildCascade(["stuff-raster-shift21", "stuff-raster-spade"])
