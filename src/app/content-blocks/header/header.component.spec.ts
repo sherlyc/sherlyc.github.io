@@ -38,28 +38,6 @@ describe('Header', () => {
   });
 
   describe('Analytics', () => {
-    it('should push analytics event when hamburger menu is opened', () => {
-      fixture.componentInstance.navigationVisible = false;
-      fixture.detectChanges();
-
-      fixture.debugElement.query(By.css('.menu')).nativeElement.click();
-
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
-        AnalyticsEventsType.MENU_NAV_OPENED
-      );
-    });
-
-    it('should push analytics event when hamburger menu is closed', () => {
-      fixture.componentInstance.navigationVisible = true;
-      fixture.detectChanges();
-
-      fixture.debugElement.query(By.css('.menu')).nativeElement.click();
-
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
-        AnalyticsEventsType.MENU_NAV_CLOSED
-      );
-    });
-
     it('should push analytics event when stuff logo is clicked', () => {
       fixture.debugElement.query(By.css('.title')).nativeElement.click();
 
