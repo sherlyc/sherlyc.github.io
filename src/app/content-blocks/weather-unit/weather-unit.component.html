@@ -1,7 +1,7 @@
 <div [ngClass]="{ 'location-list-visible': isDropdownOpen }">
   <div
     class="weather-bar row between-xs middle-xs"
-    (click)="[onToggleDropdown(), sendWeatherBarAnalytics()]"
+    (click)="onToggleDropdown()"
   >
     <div *ngIf="!selectedLocation" class="weatherCheckLabel">
       <img
@@ -80,10 +80,7 @@
           </ul>
         </div>
       </ul>
-      <div
-        (click)="[onToggleDropdown(), sendExitButtonAnalytics()]"
-        class="close-button"
-      ></div>
+      <div (click)="onToggleDropdown()" class="close-button"></div>
     </div>
   </div>
 </div>

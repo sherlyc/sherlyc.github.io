@@ -401,42 +401,6 @@ describe('WeatherUnitComponent', () => {
   });
 
   describe('Analytics', () => {
-    it('should push analytic event when weather bar is clicked to open it', () => {
-      component.isDropdownOpen = false;
-      fixture.detectChanges();
-
-      fixture.debugElement.query(By.css('.weather-bar')).nativeElement.click();
-      fixture.detectChanges();
-
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
-        AnalyticsEventsType.WEATHER_BAR_OPENED
-      );
-    });
-
-    it('should push analytic event when weather bar is clicked to close it', () => {
-      component.isDropdownOpen = true;
-      fixture.detectChanges();
-
-      fixture.debugElement.query(By.css('.weather-bar')).nativeElement.click();
-      fixture.detectChanges();
-
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
-        AnalyticsEventsType.WEATHER_BAR_CLOSED
-      );
-    });
-
-    it('should push analytic event when weather bar is closed with X button', () => {
-      component.isDropdownOpen = true;
-      fixture.detectChanges();
-
-      fixture.debugElement.query(By.css('.close-button')).nativeElement.click();
-      fixture.detectChanges();
-
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
-        AnalyticsEventsType.WEATHER_EXIT_BUTTON
-      );
-    });
-
     it('should push analytic event when weather location is changed ', () => {
       weatherRetrieverService.getWeather.mockReturnValue(of(weatherData));
       component.isDropdownOpen = true;
