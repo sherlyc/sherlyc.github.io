@@ -22,7 +22,7 @@ describe('BasicArticleTitleUnitComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render headline component', () => {
+  it('should render headline in headline component', () => {
     const headline = 'Headline';
     component.input = {
       type: ContentBlockType.BasicArticleTitleUnit,
