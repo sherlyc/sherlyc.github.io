@@ -70,18 +70,6 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
     );
   }
 
-  sendWeatherBarAnalytics() {
-    this.analyticsService.pushEvent(
-      this.isDropdownOpen
-        ? AnalyticsEventsType.WEATHER_BAR_OPENED
-        : AnalyticsEventsType.WEATHER_BAR_CLOSED
-    );
-  }
-
-  sendExitButtonAnalytics() {
-    this.analyticsService.pushEvent(AnalyticsEventsType.WEATHER_EXIT_BUTTON);
-  }
-
   sendLocationAnalytics(location: string) {
     this.analyticsService.pushEvent(
       AnalyticsEventsType.WEATHER_LOCATION_CHANGED,

@@ -76,20 +76,6 @@ export class AnalyticsService implements IAnalyticsService {
     let adobeEvent = {} as IAdobeAnalyticsEvent;
 
     const eventTypesRegistry: { [key in AnalyticsEventsType]: Function } = {
-      [AnalyticsEventsType.WEATHER_BAR_OPENED]: () =>
-        (adobeEvent = {
-          event: 'weather.location.bar',
-          'weather.bar': 'opened'
-        }),
-      [AnalyticsEventsType.WEATHER_BAR_CLOSED]: () =>
-        (adobeEvent = {
-          event: 'weather.location.bar',
-          'weather.bar': 'closed'
-        }),
-      [AnalyticsEventsType.WEATHER_EXIT_BUTTON]: () =>
-        (adobeEvent = {
-          event: 'weather.location.exit'
-        }),
       [AnalyticsEventsType.WEATHER_LOCATION_CHANGED]: (
         extraParams?: Map<string, string>
       ) =>
@@ -100,10 +86,6 @@ export class AnalyticsService implements IAnalyticsService {
       [AnalyticsEventsType.MENU_NAV_OPENED]: () =>
         (adobeEvent = {
           event: 'menu.nav'
-        }),
-      [AnalyticsEventsType.MENU_NAV_CLOSED]: () =>
-        (adobeEvent = {
-          event: 'close.menu.nav'
         }),
       [AnalyticsEventsType.STUFF_LOGO_CLICKED]: () =>
         (adobeEvent = {
