@@ -3,6 +3,7 @@ import { Position } from './__types__/Position';
 import { DOCUMENT } from '@angular/common';
 import { RuntimeService } from '../runtime/runtime.service';
 import { LoggerService } from '../logger/logger.service';
+import { EMPTY } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -25,9 +26,7 @@ export class ScriptInjectorService {
     async: boolean = false
   ) {
     if (this.runtime.isServer()) {
-      return (this.promises[id] = new Promise<Event>(() => {
-        this.logger.info('Script loading promise is not supported in server');
-      }));
+      return EMPTY;
     }
     if (this.document.querySelector(`#${id}`)) {
       return this.promises[id];
