@@ -26,7 +26,7 @@ export class ScriptInjectorService {
     async: boolean = false
   ) {
     if (this.runtime.isServer()) {
-      return EMPTY;
+      return EMPTY.toPromise();
     }
     if (this.document.querySelector(`#${id}`)) {
       return this.promises[id];
