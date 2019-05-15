@@ -23,6 +23,13 @@ export default async (params: IParams): Promise<IPage> => {
               ignoreBreakingNews: params.ignoreBreakingNews
             },
             {
+              type: HandlerInputType.ExternalContent,
+              height: '80px',
+              width: '100%',
+              url:
+                'https://interactives.stuff.co.nz/2019/the-homicide-report/hr-uber.html'
+            },
+            {
               type: HandlerInputType.ArticleList,
               sourceId: Section.Latest,
               totalBasicArticlesUnit: 6
