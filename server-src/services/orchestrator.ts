@@ -68,7 +68,7 @@ export default async (params: IParams): Promise<IPage> => {
               displayNameColor: 'toreabay',
               linkUrl: '/' + Section.ChristchurchShooting,
               articleList: {
-                sourceId: Section.National,
+                sourceId: Section.ChristchurchShooting,
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 3
               }
