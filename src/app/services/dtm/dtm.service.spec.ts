@@ -5,13 +5,14 @@ import { ScriptInjectorService } from '../script-injector/script-injector.servic
 import { mockService, ServiceMock } from '../mocks/MockService';
 import { ConfigService } from '../config/config.service';
 import { WindowService } from '../window/window.service';
-import { IWindow } from '../window/__types__/IWindow';
+import { RuntimeService } from '../runtime/runtime.service';
 
 describe('DtmService', () => {
   let dtmService: DtmService;
   let scriptInjectorService: ServiceMock<ScriptInjectorService>;
   let configService: ServiceMock<ConfigService>;
   let windowService: ServiceMock<WindowService>;
+  let runtimeService: ServiceMock<RuntimeService>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -27,6 +28,10 @@ describe('DtmService', () => {
         {
           provide: WindowService,
           useClass: mockService(WindowService)
+        },
+        {
+          provide: RuntimeService,
+          useClass: mockService(RuntimeService)
         }
       ]
     });
@@ -34,13 +39,25 @@ describe('DtmService', () => {
     scriptInjectorService = TestBed.get(ScriptInjectorService);
     configService = TestBed.get(ConfigService);
     windowService = TestBed.get(WindowService);
+    runtimeService = TestBed.get(RuntimeService);
   });
 
   it('should be created', () => {
     expect(dtmService).toBeTruthy();
   });
 
+  it('should be created', () => {
+    expect(dtmService).toBeTruthy();
+  });
+
+  it('should do nothing', () => {
+    runtimeService.isServer.mockReturnValue(true);
+    expect(windowService.getWindow).not.toHaveBeenCalled();
+    expect(scriptInjectorService.load).not.toHaveBeenCalled();
+  });
+
   it('should delegate to script injector to load the script on setup', async () => {
+    runtimeService.isServer.mockReturnValue(false);
     windowService.getWindow.mockReturnValue({});
     scriptInjectorService.load.mockImplementation(() => {
       windowService.getWindow()._satellite = { pageBottom: jest.fn() };

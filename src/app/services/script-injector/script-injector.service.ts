@@ -1,9 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { Position } from './__types__/Position';
 import { DOCUMENT } from '@angular/common';
-import { RuntimeService } from '../runtime/runtime.service';
 import { LoggerService } from '../logger/logger.service';
-import { EMPTY } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +13,6 @@ export class ScriptInjectorService {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private runtime: RuntimeService,
     private logger: LoggerService
   ) {}
 
@@ -25,9 +22,6 @@ export class ScriptInjectorService {
     position: Position = Position.HEAD,
     async: boolean = false
   ) {
-    if (this.runtime.isServer()) {
-      return EMPTY.toPromise();
-    }
     if (this.document.querySelector(`#${id}`)) {
       return this.promises[id];
     }
