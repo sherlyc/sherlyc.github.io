@@ -6,5 +6,6 @@ export enum HandlerInputType {
   MiniMidStrip = 'MiniMidStrip',
   ExternalContent = 'ExternalContent',
   Page = 'Page',
-  Weather = 'Weather'
+  Weather = 'Weather',
+  VideoUnit = 'VideoUnit'
 }

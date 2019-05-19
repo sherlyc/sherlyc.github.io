@@ -11,6 +11,7 @@ import { IColumnContainer } from './IColumnContainer';
 import { IExternalContentUnit } from './IExternalContentUnit';
 import { IWeatherUnit } from './IWeatherUnit';
 import { IBasicArticleTitleUnit } from './IBasicArticleTitleUnit';
+import { IVideoUnit } from './IVideoUnit';
 
 export type IContentBlock =
   | IBasicArticleUnit
@@ -25,4 +26,5 @@ export type IContentBlock =
   | IFooter
   | IExternalContentUnit
   | IHeader
-  | IWeatherUnit;
+  | IWeatherUnit
+  | IVideoUnit;
