@@ -7,6 +7,7 @@ import MiniMidStrip from './mini-midstrip-handler';
 import ExternalContent from './external-content';
 import Weather from './weather';
 import Page from './page';
+import Video from './video-handler';
 import { handlerRunnerFunction } from './runner';
 import { IParams } from '../__types__/IParams';
 import { HandlerInputType } from './__types__/HandlerInputType';
@@ -25,7 +26,8 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   ArticleSection,
   BreakingNews,
   Page,
-  Weather
+  Weather,
+  Video
 };
 
 export default handlerRegistry;

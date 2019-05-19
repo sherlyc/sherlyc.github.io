@@ -74,6 +74,9 @@ export default async (params: IParams): Promise<IPage> => {
               }
             },
             {
+              type: HandlerInputType.Video
+            },
+            {
               type: HandlerInputType.ArticleSection,
               displayName: 'Premium',
               displayNameColor: 'toreabay',
