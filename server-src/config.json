@@ -12,6 +12,11 @@
     "loggerOptions": {
       "level": "info",
       "format": "json"
+    },
+    "video": {
+      "playlistId": "5789330518001",
+      "account": "3921507366001",
+      "player": "SJzCEInBZ"
     }
   },
   "staging": {
@@ -27,6 +32,11 @@
     "loggerOptions": {
       "level": "info",
       "format": "json"
+    },
+    "video": {
+      "playlistId": "4780310104001",
+      "account": "4191638491001",
+      "player": "rkxaKRVsVb"
     }
   },
   "development": {
@@ -42,6 +52,11 @@
     "loggerOptions": {
       "level": "debug",
       "format": "text"
+    },
+    "video": {
+      "playlistId": "4780310104001",
+      "account": "4191638491001",
+      "player": "rkxaKRVsVb"
     }
   },
   "test": {
@@ -57,6 +72,11 @@
     "loggerOptions": {
       "level": "debug",
       "format": "text"
+    },
+    "video": {
+      "playlistId": "4780310104001",
+      "account": "4191638491001",
+      "player": "rkxaKRVsVb"
     }
   }
 }

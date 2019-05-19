@@ -11,4 +11,9 @@ export interface IEnvironmentDefinition {
   contentAPI: string;
   maxArticlesToRetrieve: number;
   loggerOptions: ILoggerOptions;
+  video: {
+    playlistId: string;
+    account: string;
+    player: string;
+  };
 }
