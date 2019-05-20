@@ -5,6 +5,7 @@ import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
 import { IVideoUnit } from '../../../../common/__types__/IVideoUnit';
 import { ScriptId } from '../../services/script-injector/__types__/ScriptId';
 import { ConfigService } from '../../services/config/config.service';
+import { WindowService } from '../../services/window/window.service';
 
 @Component({
   selector: 'app-video-unit',
@@ -17,7 +18,8 @@ export class VideoUnitComponent implements OnInit, IContentBlockComponent {
 
   constructor(
     private injectorService: ScriptInjectorService,
-    private configService: ConfigService
+    private configService: ConfigService,
+    private windowService: WindowService
   ) {}
 
   async ngOnInit() {
@@ -26,5 +28,6 @@ export class VideoUnitComponent implements OnInit, IContentBlockComponent {
       this.configService.getConfig().video.videoPlayerSrc,
       Position.BOTTOM
     );
+    this.windowService.getWindow().videojs();
   }
 }

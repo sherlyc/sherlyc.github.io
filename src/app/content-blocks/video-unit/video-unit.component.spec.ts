@@ -10,6 +10,7 @@ import { By } from '@angular/platform-browser';
 import { WindowService } from '../../services/window/window.service';
 
 describe('VideoUnitComponent', () => {
+  const videojs = jest.fn();
   let component: VideoUnitComponent;
   let fixture: ComponentFixture<VideoUnitComponent>;
   let injectorService: ServiceMock<ScriptInjectorService>;
@@ -36,15 +37,20 @@ describe('VideoUnitComponent', () => {
       declarations: [VideoUnitComponent]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(VideoUnitComponent);
-    component = fixture.componentInstance;
-    injectorService = TestBed.get(ScriptInjectorService);
     configService = TestBed.get(ConfigService);
     windowService = TestBed.get(WindowService);
+    windowService.getWindow.mockReturnValue({ videojs });
 
     configService.getConfig.mockReturnValue({
       video: { videoPlayerSrc: videoScriptUrl }
     });
+
+    injectorService = TestBed.get(ScriptInjectorService);
+    injectorService.load.mockResolvedValue({});
+
+    fixture = TestBed.createComponent(VideoUnitComponent);
+
+    component = fixture.componentInstance;
   });
 
   it('should create', () => {
@@ -108,10 +114,12 @@ describe('VideoUnitComponent', () => {
 
     expect(videoPlaylist).toBeTruthy();
   });
+
   it('should load the videojs library', () => {
     const playlistId = '123';
     const accountId = '456';
     const playerId = '789';
+
     component.input = {
       type: ContentBlockType.VideoUnit,
       playlistId,
@@ -119,6 +127,8 @@ describe('VideoUnitComponent', () => {
       playerId
     };
 
-    expect(windowService.getWindow().videojs).toHaveBeenCalled();
+    fixture.detectChanges();
+
+    expect(videojs).toHaveBeenCalled();
   });
 });
