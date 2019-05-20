@@ -16,4 +16,8 @@ export interface IEnvironmentDefinition {
     Omit<IEnvironmentDefinition, 'serverOverrides' | 'browserOverrides'>
   >;
   dtmUrl: string;
+  video: {
+    videoPlayerSrc: string;
+    videoAnalyticsPluginSrc: string;
+  };
 }
