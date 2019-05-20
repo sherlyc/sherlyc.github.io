@@ -1,3 +1,4 @@
+import { DOCUMENT } from '@angular/common';
 import { ContentBlockType } from './../../../../common/__types__/ContentBlockType';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { VideoUnitComponent } from './video-unit.component';
@@ -11,6 +12,8 @@ import { WindowService } from '../../services/window/window.service';
 
 describe('VideoUnitComponent', () => {
   const videojs = jest.fn();
+  const mockDocument = { getElementById: jest.fn() };
+
   let component: VideoUnitComponent;
   let fixture: ComponentFixture<VideoUnitComponent>;
   let injectorService: ServiceMock<ScriptInjectorService>;
@@ -32,6 +35,10 @@ describe('VideoUnitComponent', () => {
         {
           provide: WindowService,
           useClass: mockService(WindowService)
+        },
+        {
+          provide: DOCUMENT,
+          useClass: mockDocument
         }
       ],
       declarations: [VideoUnitComponent]
@@ -115,7 +122,10 @@ describe('VideoUnitComponent', () => {
     expect(videoPlaylist).toBeTruthy();
   });
 
-  it('should load the videojs library', () => {
+  it('should load the videojs library with the video player', () => {
+    const fakeVideoElement = {};
+    mockDocument.getElementById.mockReturnValue(fakeVideoElement);
+
     const playlistId = '123';
     const accountId = '456';
     const playerId = '789';
@@ -129,6 +139,6 @@ describe('VideoUnitComponent', () => {
 
     fixture.detectChanges();
 
-    expect(videojs).toHaveBeenCalled();
+    expect(videojs).toHaveBeenCalledWith(fakeVideoElement);
   });
 });
