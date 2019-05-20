@@ -1,11 +1,12 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ContentBlockType } from './../../../../common/__types__/ContentBlockType';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { VideoUnitComponent } from './video-unit.component';
 import { mockService, ServiceMock } from '../../services/mocks/MockService';
 import { ScriptInjectorService } from '../../services/script-injector/script-injector.service';
 import { ScriptId } from '../../services/script-injector/__types__/ScriptId';
 import { Position } from '../../services/script-injector/__types__/Position';
 import { ConfigService } from '../../services/config/config.service';
+import { By } from '@angular/platform-browser';
 
 describe('VideoUnitComponent', () => {
   let component: VideoUnitComponent;
@@ -43,7 +44,7 @@ describe('VideoUnitComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should inject the library javascript dependency', () => {
+  it('should inject the video.js library', () => {
     fixture.detectChanges();
     expect(injectorService.load).toHaveBeenCalledTimes(1);
     expect(injectorService.load).toHaveBeenCalledWith(
@@ -51,5 +52,20 @@ describe('VideoUnitComponent', () => {
       videoScriptUrl,
       Position.BOTTOM
     );
+  });
+
+  it('should render the video player', () => {
+    component.input = {
+      type: ContentBlockType.VideoUnit,
+      playlistId: '123',
+      accountId: '456',
+      playerId: '789'
+    };
+
+    fixture.detectChanges();
+
+    const videoPlayer = fixture.debugElement.query(By.css('video'));
+
+    expect(videoPlayer).toBeTruthy();
   });
 });
