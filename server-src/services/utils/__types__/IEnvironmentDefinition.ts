@@ -13,7 +13,7 @@ export interface IEnvironmentDefinition {
   loggerOptions: ILoggerOptions;
   video: {
     playlistId: string;
-    account: string;
-    player: string;
+    accountId: string;
+    playerId: string;
   };
 }

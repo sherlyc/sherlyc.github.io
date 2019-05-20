@@ -8,10 +8,10 @@ jest.mock('../utils/config');
 describe('VideoHandler', () => {
   it('should return VideoUnit', async () => {
     const playlistId = '7484894';
-    const account = '8394004';
-    const player = 'isXOSnh';
+    const accountId = '8394004';
+    const playerId = 'isXOSnh';
 
-    config.video = { playlistId, account, player };
+    config.video = { playlistId, accountId, playerId };
 
     const videoUnit = await VideoHandler();
 
@@ -19,8 +19,8 @@ describe('VideoHandler', () => {
       {
         type: ContentBlockType.VideoUnit,
         playlistId,
-        account,
-        player
+        accountId,
+        playerId
       } as IVideoUnit
     ];
 
