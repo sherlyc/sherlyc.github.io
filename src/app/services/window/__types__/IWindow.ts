@@ -5,4 +5,7 @@ export interface IWindow {
   _satellite: {
     pageBottom: () => void;
   };
+  videojs: () => void;
 }
+
+

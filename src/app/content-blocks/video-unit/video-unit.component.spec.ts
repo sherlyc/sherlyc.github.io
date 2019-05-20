@@ -7,12 +7,14 @@ import { ScriptId } from '../../services/script-injector/__types__/ScriptId';
 import { Position } from '../../services/script-injector/__types__/Position';
 import { ConfigService } from '../../services/config/config.service';
 import { By } from '@angular/platform-browser';
+import { WindowService } from '../../services/window/window.service';
 
 describe('VideoUnitComponent', () => {
   let component: VideoUnitComponent;
   let fixture: ComponentFixture<VideoUnitComponent>;
   let injectorService: ServiceMock<ScriptInjectorService>;
   let configService: ServiceMock<ConfigService>;
+  let windowService: ServiceMock<WindowService>;
   const videoScriptUrl = 'http://something.com/video.js';
 
   beforeEach(async () => {
@@ -25,6 +27,10 @@ describe('VideoUnitComponent', () => {
         {
           provide: ConfigService,
           useClass: mockService(ConfigService)
+        },
+        {
+          provide: WindowService,
+          useClass: mockService(WindowService)
         }
       ],
       declarations: [VideoUnitComponent]
@@ -34,6 +40,7 @@ describe('VideoUnitComponent', () => {
     component = fixture.componentInstance;
     injectorService = TestBed.get(ScriptInjectorService);
     configService = TestBed.get(ConfigService);
+    windowService = TestBed.get(WindowService);
 
     configService.getConfig.mockReturnValue({
       video: { videoPlayerSrc: videoScriptUrl }
@@ -85,5 +92,33 @@ describe('VideoUnitComponent', () => {
     expect(videoPlayer.nativeElement.getAttribute('data-player')).toEqual(
       playerId
     );
+  });
+  it('should render the video playlist', () => {
+    const playlistId = '123';
+    const accountId = '456';
+    const playerId = '789';
+    component.input = {
+      type: ContentBlockType.VideoUnit,
+      playlistId,
+      accountId,
+      playerId
+    };
+
+    const videoPlaylist = fixture.debugElement.query(By.css('ol.vjs-playlist'));
+
+    expect(videoPlaylist).toBeTruthy();
+  });
+  it('should load the videojs library', () => {
+    const playlistId = '123';
+    const accountId = '456';
+    const playerId = '789';
+    component.input = {
+      type: ContentBlockType.VideoUnit,
+      playlistId,
+      accountId,
+      playerId
+    };
+
+    expect(windowService.getWindow().videojs).toHaveBeenCalled();
   });
 });

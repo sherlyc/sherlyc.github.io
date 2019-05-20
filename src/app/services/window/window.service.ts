@@ -3,12 +3,7 @@ import { IWindowService } from './__types__/IWindowService';
 import { IWindow } from './__types__/IWindow';
 import { IDigitalData } from '../analytics/__types__/IDigitalData';
 
-declare const window: Window & {
-  digitalData: IDigitalData;
-  _satellite: {
-    pageBottom: () => void;
-  };
-};
+declare const window: Window & IWindow;
 
 @Injectable({
   providedIn: 'root'
