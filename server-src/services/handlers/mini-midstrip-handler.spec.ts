@@ -21,7 +21,8 @@ describe('MiniMidStripHandler', () => {
     const columnContainer = (await miniMidstripHandler(
       handlerRunnerMock,
       {
-        type: HandlerInputType.MiniMidStrip
+        type: HandlerInputType.MiniMidStrip,
+        totalArticles: 2
       },
       params
     )) as IColumnContainer[];

@@ -35,7 +35,8 @@ export default async (params: IParams): Promise<IPage> => {
               totalBasicArticlesUnit: 6
             },
             {
-              type: HandlerInputType.MiniMidStrip
+              type: HandlerInputType.MiniMidStrip,
+              totalArticles: 2
             },
             {
               type: HandlerInputType.ArticleSection,
