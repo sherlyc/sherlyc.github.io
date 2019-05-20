@@ -1,3 +1,15 @@
-<p>
-  video-unit works!
-</p>
+<div style="display: block; position: relative;">
+  <div style="padding-top: 56.25%;">
+    <video
+      [attr.data-playlist-id]="input.playlistId"
+      [attr.data-account]="input.accountId"
+      [attr.data-player]="input.playerId"
+      data-embed="default"
+      class="video-js"
+      controls
+      id="video"
+      style="width: 100%; height: 100%; position: absolute; top: 0px; bottom: 0px; right: 0px; left: 0px;"
+    ></video>
+  </div>
+</div>
+<ol class="vjs-playlist"></ol>

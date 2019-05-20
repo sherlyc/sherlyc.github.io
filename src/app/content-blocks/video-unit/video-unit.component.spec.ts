@@ -45,6 +45,13 @@ describe('VideoUnitComponent', () => {
   });
 
   it('should inject the video.js library', () => {
+    const playlistId = '123';
+    component.input = {
+      type: ContentBlockType.VideoUnit,
+      playlistId,
+      accountId: '456',
+      playerId: '789'
+    };
     fixture.detectChanges();
     expect(injectorService.load).toHaveBeenCalledTimes(1);
     expect(injectorService.load).toHaveBeenCalledWith(
@@ -55,17 +62,28 @@ describe('VideoUnitComponent', () => {
   });
 
   it('should render the video player', () => {
+    const playlistId = '123';
+    const accountId = '456';
+    const playerId = '789';
     component.input = {
       type: ContentBlockType.VideoUnit,
-      playlistId: '123',
-      accountId: '456',
-      playerId: '789'
+      playlistId,
+      accountId,
+      playerId
     };
 
     fixture.detectChanges();
 
     const videoPlayer = fixture.debugElement.query(By.css('video'));
 
-    expect(videoPlayer).toBeTruthy();
+    expect(videoPlayer.nativeElement.getAttribute('data-playlist-id')).toEqual(
+      playlistId
+    );
+    expect(videoPlayer.nativeElement.getAttribute('data-account')).toEqual(
+      accountId
+    );
+    expect(videoPlayer.nativeElement.getAttribute('data-player')).toEqual(
+      playerId
+    );
   });
 });

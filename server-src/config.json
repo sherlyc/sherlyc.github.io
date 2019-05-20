@@ -15,8 +15,8 @@
     },
     "video": {
       "playlistId": "5789330518001",
-      "account": "3921507366001",
-      "player": "SJzCEInBZ"
+      "accountId": "3921507366001",
+      "playerId": "SJzCEInBZ"
     }
   },
   "staging": {
@@ -35,8 +35,8 @@
     },
     "video": {
       "playlistId": "4780310104001",
-      "account": "4191638491001",
-      "player": "rkxaKRVsVb"
+      "accountId": "4191638491001",
+      "playerId": "rkxaKRVsVb"
     }
   },
   "development": {
@@ -55,8 +55,8 @@
     },
     "video": {
       "playlistId": "4780310104001",
-      "account": "4191638491001",
-      "player": "rkxaKRVsVb"
+      "accountId": "4191638491001",
+      "playerId": "rkxaKRVsVb"
     }
   },
   "test": {
@@ -75,8 +75,8 @@
     },
     "video": {
       "playlistId": "4780310104001",
-      "account": "4191638491001",
-      "player": "rkxaKRVsVb"
+      "accountId": "4191638491001",
+      "playerId": "rkxaKRVsVb"
     }
   }
 }
