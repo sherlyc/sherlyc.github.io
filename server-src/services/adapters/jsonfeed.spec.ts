@@ -49,7 +49,7 @@ describe('json feed service', () => {
         data: miniMidStripData
       });
 
-      expect(await getListAsset(params, ListAsset.MiniMidStrip)).toEqual(
+      expect(await getListAsset(params, ListAsset.MiniMidStrip, 2)).toEqual(
         rawMiniMidStrip
       );
     });

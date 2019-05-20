@@ -9,10 +9,14 @@ import { ListAsset } from '../listAsset';
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  {  }: IMiniMidStripHandlerInput,
+  { totalArticles }: IMiniMidStripHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const rawArticles = await getListAsset(params, ListAsset.MiniMidStrip);
+  const rawArticles = await getListAsset(
+    params,
+    ListAsset.MiniMidStrip,
+    totalArticles
+  );
 
   return [
     {
