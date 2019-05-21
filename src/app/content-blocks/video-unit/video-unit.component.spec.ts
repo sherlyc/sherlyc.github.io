@@ -115,7 +115,7 @@ describe('VideoUnitComponent', () => {
     expect(videoPlaylist).toBeTruthy();
   });
 
-  it('should load the videojs library', () => {
+  it('should load the videojs library with the video player', () => {
     const playlistId = '123';
     const accountId = '456';
     const playerId = '789';
@@ -128,7 +128,8 @@ describe('VideoUnitComponent', () => {
     };
 
     fixture.detectChanges();
-
-    expect(videojs).toHaveBeenCalled();
+    expect(videojs).toHaveBeenCalledWith(
+      fixture.debugElement.query(By.css('#video')).nativeElement
+    );
   });
 });
