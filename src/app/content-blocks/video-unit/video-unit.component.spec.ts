@@ -81,6 +81,14 @@ describe('VideoUnitComponent', () => {
     );
   });
 
+  it('should not load the video.js library in server', async () => {
+    runtimeService.isBrowser.mockReturnValue(false);
+    await component.ngOnInit();
+
+    expect(injectorService.load).not.toHaveBeenCalled();
+    expect(videojs).not.toHaveBeenCalled();
+  });
+
   it('should render the video player', () => {
     const playlistId = '123';
     const accountId = '456';

@@ -7,6 +7,7 @@ import { ScriptId } from '../../services/script-injector/__types__/ScriptId';
 import { ConfigService } from '../../services/config/config.service';
 import { WindowService } from '../../services/window/window.service';
 import { DOCUMENT } from '@angular/common';
+import { RuntimeService } from '../../services/runtime/runtime.service';
 
 @Component({
   selector: 'app-video-unit',
@@ -21,18 +22,22 @@ export class VideoUnitComponent implements OnInit, IContentBlockComponent {
     private injectorService: ScriptInjectorService,
     private configService: ConfigService,
     private windowService: WindowService,
+    private runtimeService: RuntimeService,
     @Inject(DOCUMENT) private document: Document
   ) {}
 
   async ngOnInit() {
-    await this.injectorService.load(
-      ScriptId.videoPlayer,
-      this.configService.getConfig().video.videoPlayerSrc,
-      Position.BOTTOM
-    );
-    const videoElement = this.document.getElementById('video');
-    if (videoElement) {
-      this.windowService.getWindow().videojs(videoElement);
+    if (this.runtimeService.isBrowser()) {
+      await this.injectorService.load(
+        ScriptId.videoPlayer,
+        this.configService.getConfig().video.videoPlayerSrc,
+        Position.BOTTOM
+      );
+
+      const videoElement = this.document.getElementById('video');
+      if (videoElement) {
+        this.windowService.getWindow().videojs(videoElement);
+      }
     }
   }
 }
