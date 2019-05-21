@@ -13,7 +13,9 @@
       "level": "info",
       "format": "json"
     },
-    "video": {
+    "videoConfig": {
+      "videoPlayerSrc": "//players.brightcove.net/3921507366001/SJzCEInBZ_default/index.js",
+      "videoAnalyticsPluginSrc": "https://assets.stuff.co.nz/static/video-plugins/stuff-videojs-analytics/stuff-videojs-analytics-1.1.2.js",
       "playlistId": "5789330518001",
       "accountId": "3921507366001",
       "playerId": "SJzCEInBZ"
@@ -33,10 +35,12 @@
       "level": "info",
       "format": "json"
     },
-    "video": {
-      "playlistId": "4780310104001",
-      "accountId": "4191638491001",
-      "playerId": "rkxaKRVsVb"
+    "videoConfig": {
+      "videoPlayerSrc": "//players.brightcove.net/3921507366001/SJzCEInBZ_default/index.js",
+      "videoAnalyticsPluginSrc": "https://assets.stuff.co.nz/static/video-plugins/stuff-videojs-analytics/stuff-videojs-analytics-1.1.2.js",
+      "playlistId": "5789330518001",
+      "accountId": "3921507366001",
+      "playerId": "SJzCEInBZ"
     }
   },
   "development": {
@@ -53,10 +57,12 @@
       "level": "debug",
       "format": "text"
     },
-    "video": {
-      "playlistId": "4780310104001",
-      "accountId": "4191638491001",
-      "playerId": "rkxaKRVsVb"
+    "videoConfig": {
+      "videoPlayerSrc": "//players.brightcove.net/3921507366001/SJzCEInBZ_default/index.js",
+      "videoAnalyticsPluginSrc": "https://assets.stuff.co.nz/static/video-plugins/stuff-videojs-analytics/stuff-videojs-analytics-1.1.2.js",
+      "playlistId": "5789330518001",
+      "accountId": "3921507366001",
+      "playerId": "SJzCEInBZ"
     }
   },
   "test": {
@@ -73,10 +79,12 @@
       "level": "debug",
       "format": "text"
     },
-    "video": {
-      "playlistId": "4780310104001",
-      "accountId": "4191638491001",
-      "playerId": "rkxaKRVsVb"
+    "videoConfig": {
+      "videoPlayerSrc": "//players.brightcove.net/3921507366001/SJzCEInBZ_default/index.js",
+      "videoAnalyticsPluginSrc": "https://assets.stuff.co.nz/static/video-plugins/stuff-videojs-analytics/stuff-videojs-analytics-1.1.2.js",
+      "playlistId": "5789330518001",
+      "accountId": "3921507366001",
+      "playerId": "SJzCEInBZ"
     }
   }
 }

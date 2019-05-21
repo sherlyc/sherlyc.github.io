@@ -1,8 +1,7 @@
 import { ContentBlockType } from './ContentBlockType';
+import { IVideoConfig } from '../../src/app/content-blocks/video-unit/__types__/IVideoConfig';
 
 export interface IVideoUnit {
   type: ContentBlockType.VideoUnit;
-  playlistId: string;
-  accountId: string;
-  playerId: string;
+  videoConfig: IVideoConfig;
 }

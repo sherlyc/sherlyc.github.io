@@ -6,7 +6,7 @@ export default async function(): Promise<IVideoUnit[]> {
   return [
     {
       type: ContentBlockType.VideoUnit,
-      ...config.video
+      videoConfig: config.videoConfig
     }
   ];
 }

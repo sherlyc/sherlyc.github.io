@@ -4,7 +4,6 @@ import { Position } from '../../services/script-injector/__types__/Position';
 import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
 import { IVideoUnit } from '../../../../common/__types__/IVideoUnit';
 import { ScriptId } from '../../services/script-injector/__types__/ScriptId';
-import { ConfigService } from '../../services/config/config.service';
 import { WindowService } from '../../services/window/window.service';
 import { DOCUMENT } from '@angular/common';
 import { RuntimeService } from '../../services/runtime/runtime.service';
@@ -20,7 +19,6 @@ export class VideoUnitComponent implements OnInit, IContentBlockComponent {
 
   constructor(
     private injectorService: ScriptInjectorService,
-    private configService: ConfigService,
     private windowService: WindowService,
     private runtimeService: RuntimeService,
     @Inject(DOCUMENT) private document: Document
@@ -30,7 +28,7 @@ export class VideoUnitComponent implements OnInit, IContentBlockComponent {
     if (this.runtimeService.isBrowser()) {
       await this.injectorService.load(
         ScriptId.videoPlayer,
-        this.configService.getConfig().video.videoPlayerSrc,
+        this.input.videoConfig.videoPlayerSrc,
         Position.BOTTOM
       );
 

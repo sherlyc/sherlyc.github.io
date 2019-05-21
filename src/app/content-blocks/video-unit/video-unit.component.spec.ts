@@ -5,7 +5,6 @@ import { mockService, ServiceMock } from '../../services/mocks/MockService';
 import { ScriptInjectorService } from '../../services/script-injector/script-injector.service';
 import { ScriptId } from '../../services/script-injector/__types__/ScriptId';
 import { Position } from '../../services/script-injector/__types__/Position';
-import { ConfigService } from '../../services/config/config.service';
 import { By } from '@angular/platform-browser';
 import { WindowService } from '../../services/window/window.service';
 import { RuntimeService } from '../../services/runtime/runtime.service';
@@ -15,10 +14,8 @@ describe('VideoUnitComponent', () => {
   let component: VideoUnitComponent;
   let fixture: ComponentFixture<VideoUnitComponent>;
   let injectorService: ServiceMock<ScriptInjectorService>;
-  let configService: ServiceMock<ConfigService>;
   let windowService: ServiceMock<WindowService>;
   let runtimeService: ServiceMock<RuntimeService>;
-  const videoScriptUrl = 'http://something.com/video.js';
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -26,10 +23,6 @@ describe('VideoUnitComponent', () => {
         {
           provide: ScriptInjectorService,
           useClass: mockService(ScriptInjectorService)
-        },
-        {
-          provide: ConfigService,
-          useClass: mockService(ConfigService)
         },
         {
           provide: WindowService,
@@ -43,14 +36,9 @@ describe('VideoUnitComponent', () => {
       declarations: [VideoUnitComponent]
     }).compileComponents();
 
-    configService = TestBed.get(ConfigService);
     windowService = TestBed.get(WindowService);
     windowService.getWindow.mockReturnValue({ videojs });
     runtimeService = TestBed.get(RuntimeService);
-
-    configService.getConfig.mockReturnValue({
-      video: { videoPlayerSrc: videoScriptUrl }
-    });
 
     injectorService = TestBed.get(ScriptInjectorService);
     injectorService.load.mockResolvedValue({});
@@ -68,12 +56,26 @@ describe('VideoUnitComponent', () => {
 
   it('should load the video.js library only in browser', async () => {
     runtimeService.isBrowser.mockReturnValue(true);
+    const playlistId = '123';
+    const accountId = '456';
+    const playerId = '789';
+    const videoPlayerSrc = 'https://player.js';
+    component.input = {
+      type: ContentBlockType.VideoUnit,
+      videoConfig: {
+        playlistId,
+        accountId,
+        playerId,
+        videoAnalyticsPluginSrc: 'https://plugin.js',
+        videoPlayerSrc
+      }
+    };
+    fixture.detectChanges();
     await component.ngOnInit();
 
-    expect(injectorService.load).toHaveBeenCalledTimes(1);
     expect(injectorService.load).toHaveBeenCalledWith(
       ScriptId.videoPlayer,
-      videoScriptUrl,
+      videoPlayerSrc,
       Position.BOTTOM
     );
     expect(videojs).toHaveBeenCalledWith(
@@ -95,9 +97,13 @@ describe('VideoUnitComponent', () => {
     const playerId = '789';
     component.input = {
       type: ContentBlockType.VideoUnit,
-      playlistId,
-      accountId,
-      playerId
+      videoConfig: {
+        playlistId,
+        accountId,
+        playerId,
+        videoAnalyticsPluginSrc: 'https://plugin.js',
+        videoPlayerSrc: 'https://player.js'
+      }
     };
 
     fixture.detectChanges();
@@ -121,9 +127,13 @@ describe('VideoUnitComponent', () => {
     const playerId = '789';
     component.input = {
       type: ContentBlockType.VideoUnit,
-      playlistId,
-      accountId,
-      playerId
+      videoConfig: {
+        playlistId,
+        accountId,
+        playerId,
+        videoAnalyticsPluginSrc: 'https://plugin.js',
+        videoPlayerSrc: 'https://player.js'
+      }
     };
 
     const videoPlaylist = fixture.debugElement.query(By.css('ol.vjs-playlist'));

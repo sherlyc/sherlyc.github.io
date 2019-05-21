@@ -1,9 +1,9 @@
 <div style="display: block; position: relative;">
   <div style="padding-top: 56.25%;">
     <video
-      [attr.data-playlist-id]="input.playlistId"
-      [attr.data-account]="input.accountId"
-      [attr.data-player]="input.playerId"
+      [attr.data-playlist-id]="input.videoConfig.playlistId"
+      [attr.data-account]="input.videoConfig.accountId"
+      [attr.data-player]="input.videoConfig.playerId"
       data-embed="default"
       class="video-js"
       controls

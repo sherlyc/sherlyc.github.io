@@ -10,17 +10,29 @@ describe('VideoHandler', () => {
     const playlistId = '7484894';
     const accountId = '8394004';
     const playerId = 'isXOSnh';
+    const videoAnalyticsPluginSrc = 'https://plugin.js';
+    const videoPlayerSrc = 'https://player.js';
 
-    config.video = { playlistId, accountId, playerId };
+    config.videoConfig = {
+      playlistId,
+      accountId,
+      playerId,
+      videoPlayerSrc,
+      videoAnalyticsPluginSrc
+    };
 
     const videoUnit = await VideoHandler();
 
     const expectedResult: IVideoUnit[] = [
       {
         type: ContentBlockType.VideoUnit,
-        playlistId,
-        accountId,
-        playerId
+        videoConfig: {
+          playlistId,
+          accountId,
+          playerId,
+          videoAnalyticsPluginSrc,
+          videoPlayerSrc
+        }
       } as IVideoUnit
     ];
 

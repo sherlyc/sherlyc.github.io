@@ -1,4 +1,5 @@
 import { ILoggerOptions } from '../../../../common/__types__/ILoggerOptions';
+import { IVideoConfig } from '../../../../src/app/content-blocks/video-unit/__types__/IVideoConfig';
 
 export interface IEnvironmentDefinition {
   retryTimeout: number;
@@ -11,9 +12,5 @@ export interface IEnvironmentDefinition {
   contentAPI: string;
   maxArticlesToRetrieve: number;
   loggerOptions: ILoggerOptions;
-  video: {
-    playlistId: string;
-    accountId: string;
-    playerId: string;
-  };
+  videoConfig: IVideoConfig;
 }
