@@ -31,10 +31,16 @@ export class VideoUnitComponent implements OnInit, IContentBlockComponent {
         this.input.videoConfig.videoPlayerSrc,
         Position.BOTTOM
       );
+      await this.injectorService.load(
+        ScriptId.videoPlayerAnalytics,
+        this.input.videoConfig.videoAnalyticsPluginSrc,
+        Position.BOTTOM
+      );
 
       const videoElement = this.document.getElementById('video');
       if (videoElement) {
-        this.windowService.getWindow().videojs(videoElement);
+        const player = this.windowService.getWindow().videojs(videoElement);
+        player.stuffVideoAnalytics();
       }
     }
   }

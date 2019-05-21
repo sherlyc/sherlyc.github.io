@@ -10,7 +10,8 @@ import { WindowService } from '../../services/window/window.service';
 import { RuntimeService } from '../../services/runtime/runtime.service';
 
 describe('VideoUnitComponent', () => {
-  const videojs = jest.fn();
+  const stuffVideoAnalyticsSpy = jest.fn();
+  const videojsSpy = jest.fn();
   let component: VideoUnitComponent;
   let fixture: ComponentFixture<VideoUnitComponent>;
   let injectorService: ServiceMock<ScriptInjectorService>;
@@ -37,7 +38,8 @@ describe('VideoUnitComponent', () => {
     }).compileComponents();
 
     windowService = TestBed.get(WindowService);
-    windowService.getWindow.mockReturnValue({ videojs });
+    videojsSpy.mockReturnValue({ stuffVideoAnalytics: stuffVideoAnalyticsSpy });
+    windowService.getWindow.mockReturnValue({ videojs: videojsSpy });
     runtimeService = TestBed.get(RuntimeService);
 
     injectorService = TestBed.get(ScriptInjectorService);
@@ -54,19 +56,20 @@ describe('VideoUnitComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should load the video.js library only in browser', async () => {
+  it('should load the video.js library and analytics plugin in browser', async () => {
     runtimeService.isBrowser.mockReturnValue(true);
     const playlistId = '123';
     const accountId = '456';
     const playerId = '789';
     const videoPlayerSrc = 'https://player.js';
+    const videoAnalyticsPluginSrc = 'https://plugin.js';
     component.input = {
       type: ContentBlockType.VideoUnit,
       videoConfig: {
         playlistId,
         accountId,
         playerId,
-        videoAnalyticsPluginSrc: 'https://plugin.js',
+        videoAnalyticsPluginSrc,
         videoPlayerSrc
       }
     };
@@ -78,17 +81,24 @@ describe('VideoUnitComponent', () => {
       videoPlayerSrc,
       Position.BOTTOM
     );
-    expect(videojs).toHaveBeenCalledWith(
+    expect(injectorService.load).toHaveBeenCalledWith(
+      ScriptId.videoPlayerAnalytics,
+      videoAnalyticsPluginSrc,
+      Position.BOTTOM
+    );
+    expect(videojsSpy).toHaveBeenCalledWith(
       fixture.debugElement.query(By.css('#video')).nativeElement
     );
+    expect(stuffVideoAnalyticsSpy).toHaveBeenCalled();
   });
 
-  it('should not load the video.js library in server', async () => {
+  it('should not load the video.js library and analytics plugin in server', async () => {
     runtimeService.isBrowser.mockReturnValue(false);
     await component.ngOnInit();
 
     expect(injectorService.load).not.toHaveBeenCalled();
-    expect(videojs).not.toHaveBeenCalled();
+    expect(videojsSpy).not.toHaveBeenCalled();
+    expect(stuffVideoAnalyticsSpy).not.toHaveBeenCalled();
   });
 
   it('should render the video player', () => {

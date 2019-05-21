@@ -1,4 +1,5 @@
 export enum ScriptId {
   dtm = 'dtm',
-  videoPlayer = 'videoPlayer'
+  videoPlayer = 'videoPlayer',
+  videoPlayerAnalytics = 'videoPlayerAnalytics'
 }
