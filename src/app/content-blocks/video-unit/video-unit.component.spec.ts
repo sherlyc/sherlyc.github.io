@@ -8,6 +8,7 @@ import { Position } from '../../services/script-injector/__types__/Position';
 import { ConfigService } from '../../services/config/config.service';
 import { By } from '@angular/platform-browser';
 import { WindowService } from '../../services/window/window.service';
+import { RuntimeService } from '../../services/runtime/runtime.service';
 
 describe('VideoUnitComponent', () => {
   const videojs = jest.fn();
@@ -16,6 +17,7 @@ describe('VideoUnitComponent', () => {
   let injectorService: ServiceMock<ScriptInjectorService>;
   let configService: ServiceMock<ConfigService>;
   let windowService: ServiceMock<WindowService>;
+  let runtimeService: ServiceMock<RuntimeService>;
   const videoScriptUrl = 'http://something.com/video.js';
 
   beforeEach(async () => {
@@ -32,6 +34,10 @@ describe('VideoUnitComponent', () => {
         {
           provide: WindowService,
           useClass: mockService(WindowService)
+        },
+        {
+          provide: RuntimeService,
+          useClass: mockService(RuntimeService)
         }
       ],
       declarations: [VideoUnitComponent]
@@ -40,6 +46,7 @@ describe('VideoUnitComponent', () => {
     configService = TestBed.get(ConfigService);
     windowService = TestBed.get(WindowService);
     windowService.getWindow.mockReturnValue({ videojs });
+    runtimeService = TestBed.get(RuntimeService);
 
     configService.getConfig.mockReturnValue({
       video: { videoPlayerSrc: videoScriptUrl }
@@ -47,30 +54,30 @@ describe('VideoUnitComponent', () => {
 
     injectorService = TestBed.get(ScriptInjectorService);
     injectorService.load.mockResolvedValue({});
-
     fixture = TestBed.createComponent(VideoUnitComponent);
-
     component = fixture.componentInstance;
+  });
+
+  afterEach(() => {
+    jest.resetAllMocks();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should inject the video.js library', () => {
-    const playlistId = '123';
-    component.input = {
-      type: ContentBlockType.VideoUnit,
-      playlistId,
-      accountId: '456',
-      playerId: '789'
-    };
-    fixture.detectChanges();
+  it('should load the video.js library only in browser', async () => {
+    runtimeService.isBrowser.mockReturnValue(true);
+    await component.ngOnInit();
+
     expect(injectorService.load).toHaveBeenCalledTimes(1);
     expect(injectorService.load).toHaveBeenCalledWith(
       ScriptId.videoPlayer,
       videoScriptUrl,
       Position.BOTTOM
+    );
+    expect(videojs).toHaveBeenCalledWith(
+      fixture.debugElement.query(By.css('#video')).nativeElement
     );
   });
 
@@ -99,6 +106,7 @@ describe('VideoUnitComponent', () => {
       playerId
     );
   });
+
   it('should render the video playlist', () => {
     const playlistId = '123';
     const accountId = '456';
@@ -111,25 +119,6 @@ describe('VideoUnitComponent', () => {
     };
 
     const videoPlaylist = fixture.debugElement.query(By.css('ol.vjs-playlist'));
-
     expect(videoPlaylist).toBeTruthy();
-  });
-
-  it('should load the videojs library with the video player', () => {
-    const playlistId = '123';
-    const accountId = '456';
-    const playerId = '789';
-
-    component.input = {
-      type: ContentBlockType.VideoUnit,
-      playlistId,
-      accountId,
-      playerId
-    };
-
-    fixture.detectChanges();
-    expect(videojs).toHaveBeenCalledWith(
-      fixture.debugElement.query(By.css('#video')).nativeElement
-    );
   });
 });
