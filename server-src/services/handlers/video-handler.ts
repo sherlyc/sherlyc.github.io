@@ -1,12 +1,20 @@
 import { ContentBlockType } from '../../../common/__types__/ContentBlockType';
-import { IVideoUnit } from '../../../common/__types__/IVideoUnit';
 import config from '../utils/config';
+import { IBasicArticleSection } from '../../../common/__types__/IBasicArticleSection';
 
-export default async function(): Promise<IVideoUnit[]> {
+export default async function(): Promise<IBasicArticleSection[]> {
   return [
     {
-      type: ContentBlockType.VideoUnit,
-      videoConfig: config.videoConfig
+      type: ContentBlockType.BasicArticleSection,
+      displayName: 'Video',
+      displayNameColor: 'teal',
+      linkUrl: '/video',
+      items: [
+        {
+          type: ContentBlockType.VideoUnit,
+          videoConfig: config.videoConfig
+        }
+      ]
     }
   ];
 }
