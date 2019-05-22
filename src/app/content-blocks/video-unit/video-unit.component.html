@@ -1,15 +1,12 @@
-<div style="display: block; position: relative;">
-  <div style="padding-top: 56.25%;">
-    <video
-      [attr.data-playlist-id]="input.videoConfig.playlistId"
-      [attr.data-account]="input.videoConfig.accountId"
-      [attr.data-player]="input.videoConfig.playerId"
-      data-embed="default"
-      class="video-js"
-      controls
-      id="video"
-      style="width: 100%; height: 100%; position: absolute; top: 0px; bottom: 0px; right: 0px; left: 0px;"
-    ></video>
-  </div>
+<div class="container">
+  <video
+    [attr.data-playlist-id]="input.videoConfig.playlistId"
+    [attr.data-account]="input.videoConfig.accountId"
+    [attr.data-player]="input.videoConfig.playerId"
+    data-embed="default"
+    class="video-js video-player"
+    controls
+    id="video"
+  ></video>
 </div>
 <ol class="vjs-playlist"></ol>
