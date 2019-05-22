@@ -1,6 +1,5 @@
 import { ILoggerOptions } from '../../../../../common/__types__/ILoggerOptions';
 import { Omit } from 'utility-types';
-import { IVideoConfig } from '../../../content-blocks/video-unit/__types__/IVideoConfig';
 
 export interface IEnvironmentDefinition {
   retryTimeout: number;
