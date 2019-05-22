@@ -24,6 +24,13 @@ export default async (params: IParams): Promise<IPage> => {
             },
             {
               type: HandlerInputType.ExternalContent,
+              height: '40px',
+              width: '100%',
+              url:
+                'https://interactives.stuff.co.nz/voyager/2019/2019-mobile.html'
+            },
+            {
+              type: HandlerInputType.ExternalContent,
               height: '80px',
               width: '100%',
               url:
