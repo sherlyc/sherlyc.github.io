@@ -1,0 +1,3 @@
+interface IExperimentVariant {
+  variant: string;
+}
