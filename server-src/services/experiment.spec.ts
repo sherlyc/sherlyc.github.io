@@ -1,14 +1,25 @@
-import { IParams } from './__types__/IParams';
 import { experimentService } from './experiment';
 
-describe('Experiment service should', () => {
-  const response = { variant: 'A' };
+describe('Experiment service', () => {
+  describe('during BackgroundColor experiment', () => {
+    const experimentName = 'backgroundColor';
 
-  const params: IParams = { apiRequestId: 'request-id-for-testing' };
+    it('should assign variant of YellowBackground when lottery number is less than 50', async () => {
+      const lotteryNumber = 30;
+      const variant = { variant: 'YellowBackground' }
 
-  it('return experiment data when experiment name and segment is provided', async () => {
-    expect(await experimentService('backgroundColor', 20, params)).toEqual(
-      response
-    );
-  });
+      expect(await experimentService(experimentName, lotteryNumber)).toEqual(
+        variant
+      );
+    });
+
+    it('should assign variant Control when lottery number is greater than 50', async () => {
+      const lotteryNumber = 51;
+      const variant = { variant: 'control' }
+
+      expect(await experimentService(experimentName, lotteryNumber)).toEqual(
+        variant
+      );
+    });
+  })
 });
