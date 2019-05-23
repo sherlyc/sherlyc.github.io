@@ -1,14 +1,26 @@
 import { IParams } from './__types__/IParams';
+import { throwError } from 'rxjs';
 
-export const experimentService = async (
+export const experimentService = (
   name: string,
   lotteryNumber: number
-): Promise<IExperimentVariant> => {
-  if (name === 'backgroundColor') {
-    if (lotteryNumber < 50) {
-      return { variant: 'YellowBackground' } as IExperimentVariant;
+): IExperimentVariant => {
+  if (name && lotteryNumber) {
+    switch (name) {
+      case 'backgroundColor':
+        if (lotteryNumber < 50) {
+          return { variant: 'YellowBackground' } as IExperimentVariant;
+        } else {
+          return { variant: 'control' };
+        }
+        break;
+      default:
+        throw Error(
+          `bad experiment data provided, name[${name}], lotteryNumber[${lotteryNumber}]`
+        );
     }
   }
-
-  return { variant: 'control' };
+  throw Error(
+    `bad experiment data provided, name[${name}], lotteryNumber[${lotteryNumber}]`
+  );
 };
