@@ -6,27 +6,48 @@ describe('Experiment service', () => {
 
     it('should assign variant of YellowBackground when lottery number is less than 50', () => {
       const lotteryNumber = 30;
-      const variant = { variant: 'YellowBackground' };
+      const variant = 'YellowBackground';
 
       expect(experimentService(experimentName, lotteryNumber)).toEqual(variant);
     });
 
     it('should assign variant Control when lottery number is greater than 50', () => {
       const lotteryNumber = 51;
-      const variant = { variant: 'control' };
+      const variant = 'control';
 
       expect(experimentService(experimentName, lotteryNumber)).toEqual(variant);
     });
   });
 
   it('should handle errors when provided with bad data', () => {
-    const experimentName = '';
-    const lotteryNumber = -1;
+    let experimentName = '';
+    let lotteryNumber = -1;
 
     expect(() => {
       experimentService(experimentName, lotteryNumber);
     }).toThrowError(
       `bad experiment data provided, name[${experimentName}], lotteryNumber[${lotteryNumber}]`
     );
+
+    experimentName = 'afjdjafia';
+    lotteryNumber = 8;
+
+    expect(() => {
+      experimentService(experimentName, lotteryNumber);
+    }).toThrowError(
+      `bad experiment data provided, name[${experimentName}], lotteryNumber[${lotteryNumber}]`
+    );
+
+    experimentName = 'backgroundColor';
+    lotteryNumber = -8;
+
+    expect(() => {
+      experimentService(experimentName, lotteryNumber);
+    }).toThrowError(
+      `bad experiment data provided, name[${experimentName}], lotteryNumber[${lotteryNumber}]`
+    );
+
   });
+
+
 });
