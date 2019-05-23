@@ -20,7 +20,6 @@ export const getExperimentVariant = (
       } else {
         return 'control';
       }
-      break;
     case 'Toucan':
       if (lotteryNumber < 32) {
         return 'purpleHeadline';

@@ -19,7 +19,8 @@ describe('Experiment controller', () => {
     req.query.lotteryNumber = -1;
 
     experimentController(req, res);
-    assertIs400Status(res, req);
+
+    assert400Status(res, req);
   });
 
   it('should handle errors when provided with invalid number and return 400', () => {
@@ -27,22 +28,38 @@ describe('Experiment controller', () => {
     req.query.lotteryNumber = -8;
 
     experimentController(req, res);
-    assertIs400Status(res, req);
+
+    assert400Status(res, req);
   });
 
   it('should respond with variant', () => {
     req.query.name = 'Users';
     req.query.lotteryNumber = 27;
-
     (getExperimentVariant as jest.Mock).mockReturnValue('A');
 
     experimentController(req, res);
+
     expect(res.send).toHaveBeenCalledWith('A');
   });
+
+  it('should respond with 404 when experiment does not exist', () => {
+    req.query.name = 'KarenSaysHi';
+    req.query.lotteryNumber = 19;
+    (getExperimentVariant as jest.Mock).mockImplementation(() => {
+      throw new Error();
+    });
+
+    experimentController(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(404);
+    expect(res.send).toHaveBeenCalledWith(`Experiment does not exist,
+     name [${req.query.name}]`);  })
+
 });
 
-function assertIs400Status(res: Response, req: Request) {
+function assert400Status(res: Response, req: Request) {
   expect(res.status).toHaveBeenCalledWith(400);
-  expect(res.send).toHaveBeenCalledWith(`bad experiment data provided,
+  expect(res.send).toHaveBeenCalledWith(`Invalid experiment data provided,
      name [${req.query.name}], lotteryNumber [${req.query.lotteryNumber}]`);
 }
+
