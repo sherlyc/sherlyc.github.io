@@ -1,41 +1,34 @@
 import { experimentService } from './experiment';
 
 describe('Experiment service', () => {
-  describe('during BackgroundColor experiment', () => {
-    const experimentName = 'backgroundColor';
+  let experimentName = 'Parrot';
 
-    it('should assign variant of YellowBackground when lottery number is between 0 and 49', () => {
-      const lotteryNumber = 49;
-      const variant = 'YellowBackground';
+  it('should assign variant of redHeadline when lottery number is between 0 and 33', () => {
+    const lotteryNumber = 33;
+    const variant = 'redHeadline';
 
-      expect(experimentService(experimentName, lotteryNumber)).toEqual(variant);
-    });
-
-    it('should assign variant Control when lottery number is between 50 and 99', () => {
-      let lotteryNumber = 51;
-      const variant = 'control';
-
-      expect(experimentService(experimentName, lotteryNumber)).toEqual(variant);
-
-      lotteryNumber = 99;
-      expect(experimentService(experimentName, lotteryNumber)).toEqual(variant);
-    });
+    expect(experimentService(experimentName, lotteryNumber)).toEqual(variant);
   });
 
+  it('should assign variant of greenHeadline when lottery number is between 34 and 67', () => {
+    const lotteryNumber = 67;
+    const variant = 'greenHeadline';
 
-  describe('handles multiple experiments', () => {
-    const experimentName = 'linkColor';
-    it('should assign variant of PurpleLinkColor when lottery number is between 0 and 24', () => {
-      const lotteryNumber = 24;
-      const variant = 'PurpleLinkColor';
-
-      expect(experimentService(experimentName, lotteryNumber)).toEqual(variant);
-    });
+    expect(experimentService(experimentName, lotteryNumber)).toEqual(variant);
   });
 
+  it('should assign variant Control when lottery number is between 68 and 99', () => {
+    let lotteryNumber = 68;
+    const variant = 'control';
+
+    expect(experimentService(experimentName, lotteryNumber)).toEqual(variant);
+
+    lotteryNumber = 99;
+    expect(experimentService(experimentName, lotteryNumber)).toEqual(variant);
+  });
 
   it('should handle errors when provided with bad data', () => {
-    let experimentName = '';
+    experimentName = '';
     let lotteryNumber = -1;
 
     expect(() => {
@@ -61,8 +54,5 @@ describe('Experiment service', () => {
     }).toThrowError(
       `bad experiment data provided, name[${experimentName}], lotteryNumber[${lotteryNumber}]`
     );
-
   });
-
-
 });
