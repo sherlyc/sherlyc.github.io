@@ -12,6 +12,13 @@
     "loggerOptions": {
       "level": "info",
       "format": "json"
+    },
+    "videoConfig": {
+      "videoPlayerSrc": "https://players.brightcove.net/3921507366001/SJzCEInBZ_default/index.js",
+      "videoAnalyticsPluginSrc": "https://assets.stuff.co.nz/static/video-plugins/stuff-videojs-analytics/stuff-videojs-analytics-1.1.2.js",
+      "playlistId": "5789330518001",
+      "accountId": "3921507366001",
+      "playerId": "SJzCEInBZ"
     }
   },
   "staging": {
@@ -27,6 +34,13 @@
     "loggerOptions": {
       "level": "info",
       "format": "json"
+    },
+    "videoConfig": {
+      "videoPlayerSrc": "https://players.brightcove.net/3921507366001/SJzCEInBZ_default/index.js",
+      "videoAnalyticsPluginSrc": "https://assets.stuff.co.nz/static/video-plugins/stuff-videojs-analytics/stuff-videojs-analytics-1.1.2.js",
+      "playlistId": "5789330518001",
+      "accountId": "3921507366001",
+      "playerId": "SJzCEInBZ"
     }
   },
   "development": {
@@ -42,6 +56,13 @@
     "loggerOptions": {
       "level": "debug",
       "format": "text"
+    },
+    "videoConfig": {
+      "videoPlayerSrc": "https://players.brightcove.net/3921507366001/SJzCEInBZ_default/index.js",
+      "videoAnalyticsPluginSrc": "https://assets.stuff.co.nz/static/video-plugins/stuff-videojs-analytics/stuff-videojs-analytics-1.1.2.js",
+      "playlistId": "5789330518001",
+      "accountId": "3921507366001",
+      "playerId": "SJzCEInBZ"
     }
   },
   "test": {
@@ -57,6 +78,13 @@
     "loggerOptions": {
       "level": "debug",
       "format": "text"
+    },
+    "videoConfig": {
+      "videoPlayerSrc": "https://players.brightcove.net/3921507366001/SJzCEInBZ_default/index.js",
+      "videoAnalyticsPluginSrc": "https://assets.stuff.co.nz/static/video-plugins/stuff-videojs-analytics/stuff-videojs-analytics-1.1.2.js",
+      "playlistId": "5789330518001",
+      "accountId": "3921507366001",
+      "playerId": "SJzCEInBZ"
     }
   }
 }

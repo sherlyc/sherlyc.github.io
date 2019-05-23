@@ -1,0 +1,12 @@
+<div class="video-container">
+  <video
+    [attr.data-playlist-id]="input.videoConfig.playlistId"
+    [attr.data-account]="input.videoConfig.accountId"
+    [attr.data-player]="input.videoConfig.playerId"
+    data-embed="default"
+    class="video-js video-player"
+    controls
+    id="video"
+  ></video>
+</div>
+<ol class="vjs-playlist"></ol>

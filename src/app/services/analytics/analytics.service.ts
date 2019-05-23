@@ -38,9 +38,9 @@ export class AnalyticsService implements IAnalyticsService {
           primaryCategory: home
         },
         ads: {
-          environment: '',
+          environment: 'prod',
           exclusions: '',
-          sections: ['']
+          sections: []
         }
       },
       user: [
