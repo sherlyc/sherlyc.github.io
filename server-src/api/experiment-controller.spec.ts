@@ -53,8 +53,8 @@ describe('Experiment controller', () => {
 
     expect(res.status).toHaveBeenCalledWith(404);
     expect(res.send).toHaveBeenCalledWith(`Experiment does not exist,
-     name [${req.query.name}]`);  })
-
+     name [${req.query.name}]`);
+  });
 });
 
 function assert400Status(res: Response, req: Request) {
@@ -62,4 +62,3 @@ function assert400Status(res: Response, req: Request) {
   expect(res.send).toHaveBeenCalledWith(`Invalid experiment data provided,
      name [${req.query.name}], lotteryNumber [${req.query.lotteryNumber}]`);
 }
-

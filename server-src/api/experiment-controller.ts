@@ -15,8 +15,8 @@ export const experimentController = function(req: Request, res: Response) {
   try {
     const variant = getExperimentVariant(name, lotteryNumber);
     res.send(variant);
-  } catch(e) {
+  } catch (e) {
     res.status(404).send(`Experiment does not exist,
-     name [${name}]`)
+     name [${name}]`);
   }
 };
