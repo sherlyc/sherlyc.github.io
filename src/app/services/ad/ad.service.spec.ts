@@ -1,36 +1,30 @@
 import { TestBed } from '@angular/core/testing';
-
 import { AdService } from './ad.service';
-import { NavigationEnd, Router, RouterEvent } from '@angular/router';
-import { ConnectableObservable, Observable, Subscriber } from 'rxjs';
-import { publish } from 'rxjs/operators';
 import { ConfigService } from '../config/config.service';
-import { DOCUMENT } from '@angular/common';
 import { mockService, ServiceMock } from '../mocks/MockService';
+import { ScriptInjectorService } from '../script-injector/script-injector.service';
+import { DOCUMENT } from '@angular/common';
 
 describe('AdService', () => {
-  let routerEventEmitter: Subscriber<RouterEvent>;
-  let routerMock: Pick<Router, 'events'>;
+  let scriptInjectorService: ServiceMock<ScriptInjectorService>;
   let configMock: ServiceMock<ConfigService>;
   let adService: AdService;
 
   beforeEach(() => {
-    routerMock = {
-      events: new Observable((e: Subscriber<RouterEvent>) => {
-        routerEventEmitter = e;
-      }).pipe(publish())
-    };
-    (routerMock.events as ConnectableObservable<RouterEvent>).connect();
-
     TestBed.configureTestingModule({
       providers: [
-        { provide: Router, useValue: routerMock },
         {
           provide: ConfigService,
           useClass: mockService(ConfigService)
+        },
+        {
+          provide: ScriptInjectorService,
+          useClass: mockService(ScriptInjectorService)
         }
       ]
     });
+
+    scriptInjectorService = TestBed.get(ScriptInjectorService);
     configMock = TestBed.get(ConfigService);
     adService = TestBed.get(AdService);
   });
@@ -39,18 +33,27 @@ describe('AdService', () => {
     expect(adService).toBeTruthy();
   });
 
-  it('should create <script tag at the bottom of body', () => {
+  it('should delegate to script injector to load the script on setup', async () => {
+    scriptInjectorService.load.mockImplementation(() => null);
+
     const aadSdkUrl = 'http://whatever_url/';
     configMock.getConfig.mockReturnValue({ aadSdkUrl });
-    adService.setupAds();
 
+    await adService.setup();
+    expect(scriptInjectorService.load).toHaveBeenCalledWith(
+      'aad-sdk',
+      aadSdkUrl
+    );
+  });
+
+  it('should notify the adnostic sdk', (done) => {
     const document: Document = TestBed.get(DOCUMENT);
-
-    const aadSdkElements = document.querySelectorAll('#aad-sdk');
-    expect(aadSdkElements).toHaveLength(1);
-    const aadSdkScriptElement = aadSdkElements[0] as HTMLScriptElement;
-    expect(aadSdkScriptElement).toEqual(document.body.lastElementChild);
-    expect(aadSdkScriptElement.id).toEqual('aad-sdk');
-    expect(aadSdkScriptElement.src).toEqual(aadSdkUrl);
+    document.dispatchEvent = jest.fn();
+    adService.notify();
+    setTimeout(() => {
+      const fakeEvent = new Event('NavigationEnd');
+      expect(document.dispatchEvent).toHaveBeenCalledWith(fakeEvent);
+      done();
+    });
   });
 });
