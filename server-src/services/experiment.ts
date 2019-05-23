@@ -17,6 +17,14 @@ export const experimentService = (
   validateLottery(name, lotteryNumber);
 
   switch (name) {
+    case 'Users':
+      if (lotteryNumber >= 50 && lotteryNumber <= 75) {
+        return 'Parrot';
+      } else if (lotteryNumber >= 76 && lotteryNumber <= 99) {
+        return 'Toucan';
+      } else {
+        return 'control';
+      }
     case 'Parrot':
       if (lotteryNumber < 34) {
         return 'redHeadline';
