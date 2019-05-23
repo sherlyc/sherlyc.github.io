@@ -26,33 +26,4 @@ describe('Experiment service', () => {
     lotteryNumber = 99;
     expect(experimentService(experimentName, lotteryNumber)).toEqual(variant);
   });
-
-  it('should handle errors when provided with bad data', () => {
-    experimentName = '';
-    let lotteryNumber = -1;
-
-    expect(() => {
-      experimentService(experimentName, lotteryNumber);
-    }).toThrowError(
-      `bad experiment data provided, name[${experimentName}], lotteryNumber[${lotteryNumber}]`
-    );
-
-    experimentName = 'afjdjafia';
-    lotteryNumber = 8;
-
-    expect(() => {
-      experimentService(experimentName, lotteryNumber);
-    }).toThrowError(
-      `bad experiment data provided, name[${experimentName}], lotteryNumber[${lotteryNumber}]`
-    );
-
-    experimentName = 'backgroundColor';
-    lotteryNumber = -8;
-
-    expect(() => {
-      experimentService(experimentName, lotteryNumber);
-    }).toThrowError(
-      `bad experiment data provided, name[${experimentName}], lotteryNumber[${lotteryNumber}]`
-    );
-  });
 });
