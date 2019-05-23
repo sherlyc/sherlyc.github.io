@@ -37,6 +37,16 @@ describe('AnalyticsService', () => {
     expect(windowService.getWindow().digitalData).toBeTruthy();
   });
 
+  it('should inject correct values (section should be empty) into digitalData object for ads to work', () => {
+    analyticsService.setup();
+
+    expect(windowService.getWindow().digitalData.page.ads).toEqual({
+      environment: 'prod',
+      exclusions: '',
+      sections: []
+    });
+  });
+
   it('should push corresponding analytics when weather bar is closed with exit button', () => {
     analyticsService.setup();
     windowService.getWindow().digitalData.events.push = jest.fn();
