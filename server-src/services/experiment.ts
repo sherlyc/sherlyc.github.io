@@ -1,4 +1,4 @@
-export const experimentService = (
+export const getExperimentVariant = (
   name: string,
   lotteryNumber: number
 ): string => {
@@ -31,6 +31,5 @@ export const experimentService = (
       }
     default:
       throw Error(`Bad experiment input data provided: name [${name}], lotteryNumber [${lotteryNumber}]`);
-      return '';
   }
 };

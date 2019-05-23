@@ -1,4 +1,4 @@
-import { experimentService } from './experiment';
+import { getExperimentVariant } from './experiment';
 
 describe('Experiment service', () => {
   let experimentName = 'Parrot';
@@ -8,24 +8,24 @@ describe('Experiment service', () => {
     lotteryNumber = 32;
     const variant = 'redHeadline';
 
-    expect(experimentService(experimentName, lotteryNumber)).toEqual(variant);
+    expect(getExperimentVariant(experimentName, lotteryNumber)).toEqual(variant);
   });
 
   it('should assign variant of greenHeadline when lottery number is between 33 and 66', () => {
     lotteryNumber = 66;
     const variant = 'greenHeadline';
 
-    expect(experimentService(experimentName, lotteryNumber)).toEqual(variant);
+    expect(getExperimentVariant(experimentName, lotteryNumber)).toEqual(variant);
   });
 
   it('should assign variant Control when lottery number is between 67 and 99', () => {
     lotteryNumber = 67;
     const variant = 'control';
 
-    expect(experimentService(experimentName, lotteryNumber)).toEqual(variant);
+    expect(getExperimentVariant(experimentName, lotteryNumber)).toEqual(variant);
 
     lotteryNumber = 99;
-    expect(experimentService(experimentName, lotteryNumber)).toEqual(variant);
+    expect(getExperimentVariant(experimentName, lotteryNumber)).toEqual(variant);
   });
 
   it('should throw an error when the experiment does not exists', () => {
@@ -33,7 +33,7 @@ describe('Experiment service', () => {
     lotteryNumber = 23;
 
     expect(() => {
-      experimentService(experimentName, lotteryNumber);
+      getExperimentVariant(experimentName, lotteryNumber);
     }).toThrowError(
       `Bad experiment input data provided: name [Eagle], lotteryNumber [23]`
     );
