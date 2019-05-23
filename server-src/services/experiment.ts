@@ -25,6 +25,12 @@ export const experimentService = (
         return 'control';
       }
       break;
+    case 'linkColor':
+      if (lotteryNumber < 25) {
+        return 'PurpleLinkColor';
+      } else {
+        return 'control';
+      }
     default:
       throwException(name, lotteryNumber);
       return '';
