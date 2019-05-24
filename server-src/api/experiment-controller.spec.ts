@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { experimentController } from './experiment-controller';
 import { getExperimentVariant } from '../services/experiment';
-jest.mock('../services/experiment.service.spec.ts');
+jest.mock('../services/experiment');
 
 describe('Experiment controller', () => {
   const req = {
@@ -14,45 +14,46 @@ describe('Experiment controller', () => {
     res.status.mockReturnValue(res);
   });
 
-  it('should handle errors when provided with empty name and negative lottery number and return 400', () => {
+  it('should return 400 and message in body when provided with empty name and negative lottery number', () => {
     req.query.name = '';
     req.query.lotteryNumber = -1;
 
     experimentController(req, res);
 
-    assert400Status(res, req);
+    assert400StatusAndMessage(res, req);
   });
 
-  it('should handle errors when provided with invalid number and return 400', () => {
+  it('should return 400 and message in body when provided with invalid experiment and lottery number', () => {
     req.query.name = 'afjdjafia';
     req.query.lotteryNumber = -8;
 
     experimentController(req, res);
 
-    assert400Status(res, req);
+    assert400StatusAndMessage(res, req);
   });
 
-  it('should handle errors when provided with empty lottery number and return 400', () => {
+  it('should return 400 and message in body when provided with valid experiment and empty lottery number', () => {
     req.query.name = 'Users';
     req.query.lotteryNumber = '';
 
     experimentController(req, res);
 
-    assert400Status(res, req);
+    assert400StatusAndMessage(res, req);
   });
 
   it('should respond with variant', () => {
     req.query.name = 'Users';
     req.query.lotteryNumber = 27;
-    (getExperimentVariant as jest.Mock).mockReturnValue('A');
+    const variant = 'Variant A';
+    (getExperimentVariant as jest.Mock).mockReturnValue(variant);
 
     experimentController(req, res);
 
-    expect(res.send).toHaveBeenCalledWith('A');
+    expect(res.send).toHaveBeenCalledWith(variant);
   });
 
-  it('should respond with 404 when experiment.service.spec.ts does not exist', () => {
-    req.query.name = 'KarenSaysHi';
+  it('should respond with 404 when experiment does not exist', () => {
+    req.query.name = 'Experiment A';
     req.query.lotteryNumber = 19;
     (getExperimentVariant as jest.Mock).mockImplementation(() => {
       throw new Error();
@@ -66,7 +67,7 @@ describe('Experiment controller', () => {
   });
 });
 
-function assert400Status(res: Response, req: Request) {
+function assert400StatusAndMessage(res: Response, req: Request) {
   expect(res.status).toHaveBeenCalledWith(400);
   expect(res.send).toHaveBeenCalledWith(`Invalid experiment data provided,
      name [${req.query.name}], lotteryNumber [${req.query.lotteryNumber}]`);

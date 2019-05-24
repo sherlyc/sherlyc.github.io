@@ -19,8 +19,7 @@ describe('Experiment API', () => {
       .get(experimentApi)
       .query({ name: '', lotteryNumber: -1 });
 
-    const { body, status } = response;
-    expect(status).toBe(400);
+    expect(response.status).toBe(400);
   });
 
   it('should return 404 status code when non existing experiment name is provided', async () => {
@@ -28,7 +27,6 @@ describe('Experiment API', () => {
       .get(experimentApi)
       .query({ name: 'German', lotteryNumber: 50 });
 
-    const { body, status } = response;
-    expect(status).toBe(404);
+    expect(response.status).toBe(404);
   });
 });
