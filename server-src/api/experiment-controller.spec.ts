@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { experimentController } from './experiment-controller';
 import { getExperimentVariant } from '../services/experiment';
-jest.mock('../services/experiment');
+jest.mock('../services/experiment.service.spec.ts');
 
 describe('Experiment controller', () => {
   const req = {
@@ -51,7 +51,7 @@ describe('Experiment controller', () => {
     expect(res.send).toHaveBeenCalledWith('A');
   });
 
-  it('should respond with 404 when experiment does not exist', () => {
+  it('should respond with 404 when experiment.service.spec.ts does not exist', () => {
     req.query.name = 'KarenSaysHi';
     req.query.lotteryNumber = 19;
     (getExperimentVariant as jest.Mock).mockImplementation(() => {

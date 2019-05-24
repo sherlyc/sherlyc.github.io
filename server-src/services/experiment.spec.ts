@@ -28,7 +28,7 @@ describe('Experiment service', () => {
     expect(getExperimentVariant(experimentName, lotteryNumber)).toEqual(variant);
   });
 
-  it('should throw an error when the experiment does not exists', () => {
+  it('should throw an error when the experiment.service.spec.ts does not exists', () => {
     experimentName = 'Eagle';
     lotteryNumber = 23;
 
