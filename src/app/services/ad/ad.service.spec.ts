@@ -34,11 +34,8 @@ describe('AdService', () => {
   });
 
   it('should delegate to script injector to load the script on setup', async () => {
-    scriptInjectorService.load.mockImplementation(() => null);
-
     const aadSdkUrl = 'http://whatever_url/';
     configMock.getConfig.mockReturnValue({ aadSdkUrl });
-
     await adService.setup();
     expect(scriptInjectorService.load).toHaveBeenCalledWith(
       'aad-sdk',

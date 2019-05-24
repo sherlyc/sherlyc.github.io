@@ -23,7 +23,7 @@ export class AdService {
   }
 
   notify() {
-    setTimeout(async () => {
+    setTimeout(() => {
       this.document.dispatchEvent(new Event('NavigationEnd'));
     }, 0);
   }
