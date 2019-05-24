@@ -32,6 +32,15 @@ describe('Experiment controller', () => {
     assert400Status(res, req);
   });
 
+  it('should handle errors when provided with empty lottery number and return 400', () => {
+    req.query.name = 'Users';
+    req.query.lotteryNumber = '';
+
+    experimentController(req, res);
+
+    assert400Status(res, req);
+  });
+
   it('should respond with variant', () => {
     req.query.name = 'Users';
     req.query.lotteryNumber = 27;
