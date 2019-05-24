@@ -2,14 +2,16 @@ import { Request, Response } from 'express';
 import { getExperimentVariant } from '../services/experiment';
 
 function validateRequest(name: string, lotteryNumber: number, res: Response) {
-  if ((!name && !lotteryNumber) || lotteryNumber > 100 || lotteryNumber < 0) {
+  if (!name || !lotteryNumber || lotteryNumber > 100 || lotteryNumber < 0) {
     res.status(400).send(`Invalid experiment data provided,
      name [${name}], lotteryNumber [${lotteryNumber}]`);
   }
 }
 
 export const experimentController = function(req: Request, res: Response) {
+  console.log('query', req.query);
   const { name, lotteryNumber } = req.query;
+  console.log('name', name, 'lotteryNumber', lotteryNumber);
   validateRequest(name, lotteryNumber, res);
 
   try {
