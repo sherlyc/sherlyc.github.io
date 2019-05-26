@@ -5,6 +5,7 @@ import extractParams from './services/params-extractor';
 import { IParams } from './services/__types__/IParams';
 import { getWeather } from './api/weather';
 import logger from './services/utils/logger';
+import { experimentController } from './api/experiment-controller';
 
 const app = express();
 
@@ -16,7 +17,9 @@ declare const global: {
   newrelic: any;
 };
 
-app.get('/spade/api/content', async (req, res, next) => {
+const spadeApiPath = '/spade/api';
+
+app.get(`${spadeApiPath}/content`, async (req, res, next) => {
   const params: IParams = extractParams(req);
   if (global.newrelic) {
     try {
@@ -29,6 +32,8 @@ app.get('/spade/api/content', async (req, res, next) => {
   res.end();
 });
 
-app.get('/spade/api/weather', getWeather);
+app.get(`${spadeApiPath}/weather`, getWeather);
+
+app.get(`${spadeApiPath}/experiment`, experimentController);
 
 export default app;

@@ -20,7 +20,7 @@
 *.sublime-workspace
 
 # IDE - VSCode
-.vscode/*
+.vscode/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -36,6 +36,7 @@ yarn-error.log
 testem.log
 /typings
 .clinic/
+*.iml
 
 # System Files
 .DS_Store
