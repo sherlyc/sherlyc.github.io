@@ -1,16 +1,16 @@
 import basicArticleListHandler from './basic-article-list';
-import { Section } from '../section';
-import * as rawArticleList from './__fixtures__/raw-article-list.json';
-import * as rawEditorsPick from '../adapters/__fixtures__/raw-editors-pick.json';
-import * as longEditorsPick from './__fixtures__/raw-editors-pick.json';
-import * as handlerOutputForSection from './__fixtures__/basic-article-list-handler-output-for-section.json';
-import * as handlerOutputForListAsset from './__fixtures__/basic-article-list-handler-output-for-listasset.json';
-import { getArticleList, getListAsset } from '../adapters/jsonfeed';
-import { IParams } from '../__types__/IParams';
-import { HandlerInputType } from './__types__/HandlerInputType';
-import { ListAsset } from '../listAsset';
+import { Section } from '../../section';
+import * as rawArticleList from '../__fixtures__/raw-article-list.json';
+import * as rawEditorsPick from '../../adapters/__fixtures__/raw-editors-pick.json';
+import * as longEditorsPick from '../__fixtures__/raw-editors-pick.json';
+import * as handlerOutputForSection from '../__fixtures__/basic-article-list-handler-output-for-section.json';
+import * as handlerOutputForListAsset from '../__fixtures__/basic-article-list-handler-output-for-listasset.json';
+import { getArticleList, getListAsset } from '../../adapters/jsonfeed';
+import { IParams } from '../../__types__/IParams';
+import { HandlerInputType } from '../__types__/HandlerInputType';
+import { ListAsset } from '../../listAsset';
 
-jest.mock('../adapters/jsonfeed');
+jest.mock('../../adapters/jsonfeed');
 
 describe('BasicArticleListHandler', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };

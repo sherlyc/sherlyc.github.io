@@ -1,12 +1,12 @@
 import midstripHandler from './midstrip-handler';
-import * as rawMidStrip from '../adapters/__fixtures__/raw-mid-strip.json';
-import * as midstripHandlerOutput from './__fixtures__/midstrip-handler-output.json';
-import { getListAsset } from '../adapters/jsonfeed';
+import * as rawMidStrip from '../../adapters/__fixtures__/raw-mid-strip.json';
+import * as midstripHandlerOutput from '../__fixtures__/midstrip-handler-output.json';
+import { getListAsset } from '../../adapters/jsonfeed';
 import { IColumnContainer } from 'common/__types__/IColumnContainer';
-import { IParams } from '../__types__/IParams';
-import { HandlerInputType } from './__types__/HandlerInputType';
+import { IParams } from '../../__types__/IParams';
+import { HandlerInputType } from '../__types__/HandlerInputType';
 
-jest.mock('../adapters/jsonfeed');
+jest.mock('../../adapters/jsonfeed');
 
 describe('MidStripHandler', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
