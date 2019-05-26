@@ -18,7 +18,7 @@ export class AppComponent {
     private dtm: DtmService,
     private browserOverride: BrowserOverrideService
   ) {
-    this.adService.setupAds();
+    this.adService.setup();
     this.eventsService.setup();
     this.analyticsService.setup();
     this.dtm.setup();
