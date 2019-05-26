@@ -1,9 +1,9 @@
 import externalContentHandler from './external-content';
-import { IParams } from '../__types__/IParams';
-import { HandlerInputType } from './__types__/HandlerInputType';
-import { IExternalContentUnit } from '../../../common/__types__/IExternalContentUnit';
-import { ContentBlockType } from '../../../common/__types__/ContentBlockType';
-import { IContentBlock } from '../../../common/__types__/IContentBlock';
+import { IParams } from '../../__types__/IParams';
+import { HandlerInputType } from '../__types__/HandlerInputType';
+import { IExternalContentUnit } from '../../../../common/__types__/IExternalContentUnit';
+import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
+import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 
 describe('ExternalContentHandler', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
