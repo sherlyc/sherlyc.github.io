@@ -1,3 +1,6 @@
 export enum ScriptId {
-  dtm = 'dtm'
+  dtm = 'dtm',
+  videoPlayer = 'videoPlayer',
+  videoPlayerAnalytics = 'videoPlayerAnalytics',
+  adnostic = 'aad-sdk'
 }

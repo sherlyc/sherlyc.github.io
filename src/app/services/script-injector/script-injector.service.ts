@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Position } from './__types__/Position';
 import { DOCUMENT } from '@angular/common';
 import { LoggerService } from '../logger/logger.service';
+import { ScriptId } from './__types__/ScriptId';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class ScriptInjectorService {
   ) {}
 
   load(
-    id: string,
+    id: ScriptId,
     src: string,
     position: Position = Position.HEAD,
     async: boolean = false

@@ -1,3 +1,4 @@
+import { VideoUnitComponent } from './video-unit/video-unit.component';
 import { Type } from '@angular/core';
 import { BasicArticleUnitComponent } from './basic-article-unit/basic-article-unit.component';
 import { ErrorBlockComponent } from './error-block/error-block.component';
@@ -27,6 +28,7 @@ export const contentBlockComponents = [
   HeaderComponent,
   ExternalContentUnitComponent,
   WeatherUnitComponent,
+  VideoUnitComponent,
   FooterComponent
 ];
 
@@ -45,6 +47,7 @@ const registry: {
   HeaderComponent,
   ExternalContentUnitComponent,
   WeatherUnitComponent,
+  VideoUnitComponent,
   FooterComponent
 };
 

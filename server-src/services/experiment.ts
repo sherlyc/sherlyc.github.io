@@ -2,7 +2,6 @@ export const getExperimentVariant = (
   name: string,
   lotteryNumber: number
 ): string => {
-
   switch (name) {
     case 'Users':
       if (lotteryNumber >= 50 && lotteryNumber <= 75) {
@@ -29,6 +28,6 @@ export const getExperimentVariant = (
         return 'control';
       }
     default:
-      throw Error(`Bad experiment input data provided: name [${name}], lotteryNumber [${lotteryNumber}]`);
+      return 'control';
   }
 };
