@@ -9,9 +9,7 @@ function validateRequest(name: string, lotteryNumber: number, res: Response) {
 }
 
 export const experimentController = function(req: Request, res: Response) {
-  console.log('query', req.query);
   const { name, lotteryNumber } = req.query;
-  console.log('name', name, 'lotteryNumber', lotteryNumber);
   validateRequest(name, lotteryNumber, res);
 
   try {
