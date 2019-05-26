@@ -52,18 +52,15 @@ describe('Experiment controller', () => {
     expect(res.send).toHaveBeenCalledWith(variant);
   });
 
-  it('should respond with 404 when experiment does not exist', () => {
-    req.query.name = 'Experiment A';
-    req.query.lotteryNumber = 19;
-    (getExperimentVariant as jest.Mock).mockImplementation(() => {
-      throw new Error();
-    });
+  it('should respond with control variant when experiment does not exist', () => {
+    req.query.name = 'Random';
+    req.query.lotteryNumber = 27;
+    const variant = 'control';
+    (getExperimentVariant as jest.Mock).mockReturnValue(variant);
 
     experimentController(req, res);
 
-    expect(res.status).toHaveBeenCalledWith(404);
-    expect(res.send).toHaveBeenCalledWith(`Experiment does not exist,
-     name [${req.query.name}]`);
+    expect(res.send).toHaveBeenCalledWith(variant);
   });
 });
 
