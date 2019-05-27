@@ -9,10 +9,10 @@ import { StoreService } from '../store/store.service';
   providedIn: 'root'
 })
 export class ExperimentService {
-  experiment: {
+  experiment!: Promise<{
     name: string;
-    variant?: string;
-  } = { name: 'control' };
+    variant: string;
+  }>;
   constructor(
     private http: HttpClient,
     private config: ConfigService,
@@ -47,26 +47,39 @@ export class ExperimentService {
   }
 
   setup() {
-    const userLotteryNumber = this.getRandomNumber('Users');
-    this.retrieveVariant('Users', userLotteryNumber).subscribe(
-      (experimentName) => {
-        this.experiment.name = experimentName;
-        if (experimentName === 'control') {
-          return;
-        }
-        const variantLotteryNumber = this.getRandomNumber(experimentName);
-        this.retrieveVariant(experimentName, variantLotteryNumber).subscribe(
-          (variant) => {
-            this.experiment.variant = variant;
+    this.experiment = new Promise<{ name: string; variant: string }>(
+      (resolve, reject) => {
+        const userLotteryNumber = this.getRandomNumber('Users');
+        this.retrieveVariant('Users', userLotteryNumber).subscribe(
+          (experimentName) => {
+            if (experimentName === 'control') {
+              resolve({
+                name: 'control',
+                variant: 'control'
+              });
+              return;
+            }
+            const variantLotteryNumber = this.getRandomNumber(experimentName);
+            this.retrieveVariant(
+              experimentName,
+              variantLotteryNumber
+            ).subscribe((variant) => {
+              resolve({
+                name: experimentName,
+                variant
+              });
+            });
           }
         );
       }
     );
   }
 
-  getVariant(experimentName: string): string {
-    return experimentName === this.experiment.name
-      ? this.experiment.variant || 'control'
-      : 'control';
+  async getVariant(experimentName: string) {
+    const experiment = await this.experiment;
+    if (experiment.name === experimentName) {
+      return experiment.variant;
+    }
+    return 'control';
   }
 }

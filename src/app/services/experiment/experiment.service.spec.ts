@@ -82,7 +82,7 @@ describe('ExperimentService', () => {
     expect(response).toEqual(55);
   });
 
-  it('should set up experiment information when not in control group', () => {
+  it('should set up experiment information when not in control group', async () => {
     storeService.get.mockReturnValue(undefined);
     const experimentName = 'FakeExperiment';
     const variant = 'A';
@@ -92,11 +92,12 @@ describe('ExperimentService', () => {
 
     service.setup();
 
-    expect(service.experiment.name).toEqual(experimentName);
-    expect(service.experiment.variant).toEqual(variant);
+    const experiment = await service.experiment;
+    expect(experiment.name).toEqual(experimentName);
+    expect(experiment.variant).toEqual(variant);
   });
 
-  it('should set up experiment information when in control group', () => {
+  it('should set up experiment information when in control group', async () => {
     storeService.get.mockReturnValue(undefined);
     const experimentName = 'control';
     (random as jest.Mock).mockReturnValue(0.38);
@@ -104,28 +105,29 @@ describe('ExperimentService', () => {
 
     service.setup();
 
-    expect(service.experiment.name).toEqual(experimentName);
-    expect(service.experiment.variant).toEqual(undefined);
+    const experiment = await service.experiment;
+    expect(experiment.name).toEqual(experimentName);
+    expect(experiment.variant).toEqual('control');
   });
 
-  it('should get a variant when the experiment is not in control group', () => {
+  it('should get a variant when the experiment is not in control group', async () => {
     const experimentName = 'FakeExperiment';
-    service.experiment = {
+    service.experiment = Promise.resolve({
       name: 'FakeExperiment',
       variant: 'A'
-    };
-    const variant = service.getVariant(experimentName);
+    });
+    const variant = await service.getVariant(experimentName);
 
     expect(variant).toEqual('A');
   });
 
-  it('should get a variant when the experiment is in control group', () => {
+  it('should get a variant when the experiment is in control group', async () => {
     const experimentName = 'AnotherFakeExperiment';
-    service.experiment = {
+    service.experiment = Promise.resolve({
       name: 'FakeExperiment',
       variant: 'A'
-    };
-    const variant = service.getVariant(experimentName);
+    });
+    const variant = await service.getVariant(experimentName);
 
     expect(variant).toEqual('control');
   });
