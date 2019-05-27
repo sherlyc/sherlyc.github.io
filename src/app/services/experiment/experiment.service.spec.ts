@@ -60,12 +60,12 @@ describe('ExperimentService', () => {
     });
   });
 
-  it('should return a new random number if it does not exist in storage service', () => {
+  it('should return a new lottery number if it does not exist in storage service', () => {
     (random as jest.Mock).mockReturnValue(0.38);
     storeService.get.mockReturnValue(undefined);
 
     const experimentName = 'experimentName';
-    const randomNumber = service.getRandomNumber(experimentName);
+    const randomNumber = service.getLotteryNumber(experimentName);
 
     expect(randomNumber).toEqual(38);
     expect(storeService.set).toHaveBeenCalledWith(
@@ -74,10 +74,10 @@ describe('ExperimentService', () => {
     );
   });
 
-  it('should return existing random number if it exists in storage service', () => {
+  it('should return existing lottery number if it exists in storage service', () => {
     storeService.get.mockReturnValue(55);
 
-    const randomNumber = service.getRandomNumber('FakeExperiment');
+    const randomNumber = service.getLotteryNumber('FakeExperiment');
 
     expect(randomNumber).toEqual(55);
   });

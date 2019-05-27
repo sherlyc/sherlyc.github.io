@@ -34,7 +34,7 @@ export class ExperimentService {
     );
   }
 
-  getRandomNumber(experimentName: string): number {
+  getLotteryNumber(experimentName: string): number {
     const experimentStorageKey = `${experimentName}ExperimentLottery`;
     const existingLotteryNumber = this.storeService.get<number>(
       experimentStorageKey
@@ -50,7 +50,7 @@ export class ExperimentService {
   async setup() {
     this.experiment = new Promise<{ name: string; variant: string }>(
       async (resolve) => {
-        const userLotteryNumber = this.getRandomNumber('Users');
+        const userLotteryNumber = this.getLotteryNumber('Users');
         const experimentName = await this.retrieveVariant(
           'Users',
           userLotteryNumber
@@ -63,7 +63,7 @@ export class ExperimentService {
           return;
         }
 
-        const experimentLotteryNumber = this.getRandomNumber(experimentName);
+        const experimentLotteryNumber = this.getLotteryNumber(experimentName);
         const variant = await this.retrieveVariant(
           experimentName,
           experimentLotteryNumber
