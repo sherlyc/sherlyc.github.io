@@ -9,13 +9,11 @@ import { StoreService } from '../store/store.service';
   providedIn: 'root'
 })
 export class ExperimentService {
-  experiment: {
+  experiment!: Promise<{
     name: string;
     variant: string;
-  } = {
-    name: 'control',
-    variant: 'control'
-  };
+  }>;
+
   constructor(
     private http: HttpClient,
     private config: ConfigService,
@@ -50,30 +48,36 @@ export class ExperimentService {
   }
 
   async setup() {
-    // this.experiment =
-    const userLotteryNumber = this.getRandomNumber('Users');
-    const experimentName = await this.retrieveVariant(
-      'Users',
-      userLotteryNumber
-    ).toPromise();
-    this.experiment.name = experimentName;
+    this.experiment = new Promise<{ name: string; variant: string }>(
+      async (resolve) => {
+        const userLotteryNumber = this.getRandomNumber('Users');
+        const experimentName = await this.retrieveVariant(
+          'Users',
+          userLotteryNumber
+        ).toPromise();
+        if (experimentName === 'control') {
+          resolve({
+            name: 'control',
+            variant: 'control'
+          });
+          return;
+        }
 
-    if (experimentName === 'control') {
-      return;
-    }
-
-    const experimentLotteryNumber = this.getRandomNumber(experimentName);
-    const variant = await this.retrieveVariant(
-      experimentName,
-      experimentLotteryNumber
-    ).toPromise();
-    this.experiment.variant = variant;
+        const experimentLotteryNumber = this.getRandomNumber(experimentName);
+        const variant = await this.retrieveVariant(
+          experimentName,
+          experimentLotteryNumber
+        ).toPromise();
+        resolve({
+          name: experimentName,
+          variant
+        });
+      }
+    );
   }
 
-  getVariant(experimentName: string) {
-    if (this.experiment.name === experimentName) {
-      return this.experiment.variant;
-    }
-    return 'control';
+  async getVariant(experimentName: string) {
+    const experiment = await this.experiment;
+    return experiment.name === experimentName ? experiment.variant : 'control';
   }
 }

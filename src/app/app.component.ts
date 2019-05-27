@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AdService } from './services/ad/ad.service';
 import { EventsService } from './services/events/events.service';
 import { DtmService } from './services/dtm/dtm.service';
@@ -11,22 +11,20 @@ import { ExperimentService } from './services/experiment/experiment.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   constructor(
+    private experimentService: ExperimentService,
     private adService: AdService,
     private eventsService: EventsService,
     private analyticsService: AnalyticsService,
     private dtm: DtmService,
-    private browserOverride: BrowserOverrideService,
-    private experimentService: ExperimentService
-  ) {}
-
-  async ngOnInit() {
-    await this.adService.setup();
+    private browserOverride: BrowserOverrideService
+  ) {
+    this.experimentService.setup();
+    this.adService.setup();
     this.eventsService.setup();
     this.analyticsService.setup();
-    await this.dtm.setup();
+    this.dtm.setup();
     this.browserOverride.setup();
-    await this.experimentService.setup();
   }
 }
