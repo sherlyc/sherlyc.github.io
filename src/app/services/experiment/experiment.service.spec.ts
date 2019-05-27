@@ -121,7 +121,7 @@ describe('ExperimentService', () => {
     expect(variant).toEqual('A');
   });
 
-  it('should get a variant when the experiment is in control group', async () => {
+  it('should get a control variant when the experiment is in control group', async () => {
     const experimentName = 'AnotherFakeExperiment';
     service.experiment = Promise.resolve({
       name: 'FakeExperiment',

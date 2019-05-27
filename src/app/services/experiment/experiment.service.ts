@@ -48,7 +48,7 @@ export class ExperimentService {
 
   setup() {
     this.experiment = new Promise<{ name: string; variant: string }>(
-      (resolve, reject) => {
+      (resolve) => {
         const userLotteryNumber = this.getRandomNumber('Users');
         this.retrieveVariant('Users', userLotteryNumber).subscribe(
           (experimentName) => {
@@ -59,10 +59,12 @@ export class ExperimentService {
               });
               return;
             }
-            const variantLotteryNumber = this.getRandomNumber(experimentName);
+            const experimentLotteryNumber = this.getRandomNumber(
+              experimentName
+            );
             this.retrieveVariant(
               experimentName,
-              variantLotteryNumber
+              experimentLotteryNumber
             ).subscribe((variant) => {
               resolve({
                 name: experimentName,
