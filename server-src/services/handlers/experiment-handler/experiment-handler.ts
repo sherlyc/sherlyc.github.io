@@ -13,14 +13,14 @@ export default async function(
   const variantNames = Object.keys(variants);
 
   const contentBlockPromises: Promise<{
-    [key: string]: IContentBlock;
+    [key: string]: IContentBlock[];
   }>[] = variantNames.map(async (variantName) => {
-    const contentBlockForVariant = (await handlerRunner(
+    const contentBlocksForVariant = await handlerRunner(
       variants[variantName],
       params
-    ))[0];
+    );
     return {
-      [variantName]: contentBlockForVariant
+      [variantName]: contentBlocksForVariant
     };
   });
 

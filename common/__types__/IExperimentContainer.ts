@@ -5,6 +5,6 @@ export interface IExperimentContainer {
   type: ContentBlockType.ExperimentContainer;
   name: string;
   variants: {
-    [key: string]: IContentBlock;
+    [key: string]: IContentBlock[];
   };
 }
