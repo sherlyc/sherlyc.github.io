@@ -10,12 +10,31 @@ describe('Experiment Handler', () => {
 
   it('should return parrot content block when experiment name is parrot', async () => {
     const handlerRunnerMock = jest.fn();
+    handlerRunnerMock.mockResolvedValue([
+      {
+        type: ContentBlockType.BreakingNews,
+        id: 'fake',
+        text: 'fake',
+        link: 'fake'
+      } as IBreakingNews
+    ]);
+
     const expectedResult: IExperimentContainer = {
       type: ContentBlockType.ExperimentContainer,
       name: 'Parrot',
       variants: {
-        redHeadline: {} as IBreakingNews,
-        greenHeadline: {} as IBreakingNews
+        redHeadline: {
+          type: ContentBlockType.BreakingNews,
+          id: 'fake',
+          text: 'fake',
+          link: 'fake'
+        } as IBreakingNews,
+        greenHeadline: {
+          type: ContentBlockType.BreakingNews,
+          id: 'fake',
+          text: 'fake',
+          link: 'fake'
+        } as IBreakingNews
       }
     };
 
