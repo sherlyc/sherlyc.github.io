@@ -8,6 +8,7 @@ import ExternalContent from './external-content/external-content';
 import Weather from './weather/weather';
 import Page from './page/page';
 import Video from './video-handler/video-handler';
+import Experiment from './experiment-handler/experiment-handler';
 import { handlerRunnerFunction } from './runner';
 import { IParams } from '../__types__/IParams';
 import { HandlerInputType } from './__types__/HandlerInputType';
@@ -27,7 +28,8 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   BreakingNews,
   Page,
   Weather,
-  Video
+  Video,
+  Experiment
 };
 
 export default handlerRegistry;
