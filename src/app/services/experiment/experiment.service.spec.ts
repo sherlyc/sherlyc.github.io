@@ -18,6 +18,7 @@ describe('ExperimentService', () => {
   let httpClient: ServiceMock<HttpClient>;
 
   beforeEach(() => {
+    jest.clearAllMocks();
     TestBed.configureTestingModule({
       imports: [],
       providers: [
