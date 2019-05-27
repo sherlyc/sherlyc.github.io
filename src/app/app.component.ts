@@ -4,6 +4,7 @@ import { EventsService } from './services/events/events.service';
 import { DtmService } from './services/dtm/dtm.service';
 import { AnalyticsService } from './services/analytics/analytics.service';
 import { BrowserOverrideService } from './services/browser-override/browser-override.service';
+import { ExperimentService } from './services/experiment/experiment.service';
 
 @Component({
   selector: 'app-root',
@@ -16,12 +17,14 @@ export class AppComponent {
     private eventsService: EventsService,
     private analyticsService: AnalyticsService,
     private dtm: DtmService,
-    private browserOverride: BrowserOverrideService
+    private browserOverride: BrowserOverrideService,
+    private experimentService: ExperimentService
   ) {
     this.adService.setup();
     this.eventsService.setup();
     this.analyticsService.setup();
     this.dtm.setup();
     this.browserOverride.setup();
+    this.experimentService.setup();
   }
 }

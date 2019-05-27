@@ -50,7 +50,7 @@ export class ExperimentService {
     return newLotteryNumber;
   }
 
-  setUp() {
+  setup() {
     const userLotteryNumber = this.getRandomNumber('Users');
     this.retrieveVariant('Users', userLotteryNumber).subscribe(
       (experimentName) => {

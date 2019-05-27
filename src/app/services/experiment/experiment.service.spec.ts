@@ -89,7 +89,7 @@ describe('ExperimentService', () => {
     httpClient.get.mockReturnValueOnce(of(experimentName));
     httpClient.get.mockReturnValueOnce(of(variant));
 
-    service.setUp();
+    service.setup();
 
     expect(service.experiment.name).toEqual(experimentName);
     expect(service.experiment.variant).toEqual(variant);
@@ -101,7 +101,7 @@ describe('ExperimentService', () => {
     (random as jest.Mock).mockReturnValue(0.38);
     httpClient.get.mockReturnValueOnce(of(experimentName));
 
-    service.setUp();
+    service.setup();
 
     expect(service.experiment.name).toEqual(experimentName);
     expect(service.experiment.variant).toEqual(undefined);
