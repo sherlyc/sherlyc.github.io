@@ -1,6 +1,6 @@
-import { ContentBlockType } from '../../../common/__types__/ContentBlockType';
-import config from '../utils/config';
-import { IBasicArticleSection } from '../../../common/__types__/IBasicArticleSection';
+import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
+import config from '../../utils/config';
+import { IBasicArticleSection } from '../../../../common/__types__/IBasicArticleSection';
 
 export default async function(): Promise<IBasicArticleSection[]> {
   return [

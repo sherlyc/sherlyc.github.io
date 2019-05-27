@@ -1,11 +1,11 @@
 import miniMidstripHandler from './mini-midstrip-handler';
-import * as rawMiniMidStrip from '../adapters/__fixtures__/raw-mini-mid-strip.json';
-import { getListAsset } from '../adapters/jsonfeed';
+import * as rawMiniMidStrip from '../../adapters/__fixtures__/raw-mini-mid-strip.json';
+import { getListAsset } from '../../adapters/jsonfeed';
 import { IColumnContainer } from 'common/__types__/IColumnContainer';
-import { IParams } from '../__types__/IParams';
-import { HandlerInputType } from './__types__/HandlerInputType';
+import { IParams } from '../../__types__/IParams';
+import { HandlerInputType } from '../__types__/HandlerInputType';
 
-jest.mock('../adapters/jsonfeed');
+jest.mock('../../adapters/jsonfeed');
 
 describe('MiniMidStripHandler', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };

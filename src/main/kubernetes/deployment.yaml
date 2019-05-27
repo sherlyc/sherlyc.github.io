@@ -62,8 +62,11 @@ spec:
                 ]
           resources:
             limits:
-              cpu: ${quota-limits.smallCpu}
-              memory: ${quota-limits.smallMemory}
+              # Roll out OOMKilled fix
+              #              cpu: ${quota-limits.smallCpu}
+              #              memory: ${quota-limits.smallMemory}
+              cpu: 600m
+              memory: 512Mi
             requests:
               cpu: ${quota-requests.smallCpu}
               memory: ${quota-requests.smallMemory}

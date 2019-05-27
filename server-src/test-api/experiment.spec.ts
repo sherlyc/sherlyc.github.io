@@ -22,11 +22,11 @@ describe('Experiment API', () => {
     expect(response.status).toBe(400);
   });
 
-  it('should return 404 status code when non existing experiment name is provided', async () => {
+  it('should return 200 control when non existing experiment name is provided', async () => {
     const response: supertest.Response = await supertest(app)
       .get(experimentApi)
       .query({ name: 'German', lotteryNumber: 50 });
 
-    expect(response.status).toBe(404);
+    expect(response.status).toBe(200);
   });
 });

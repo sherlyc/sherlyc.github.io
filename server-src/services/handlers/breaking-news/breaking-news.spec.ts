@@ -1,10 +1,10 @@
-import getBreakingNews from '../adapters/breaking-news';
-import { IRawBreakingNews } from '../adapters/__types__/IRawBreakingNews';
+import getBreakingNews from '../../adapters/breaking-news';
+import { IRawBreakingNews } from '../../adapters/__types__/IRawBreakingNews';
 import breakingNewsHandler from './breaking-news';
-import { IBreakingNewsHandlerInput } from './__types__/IBreakingNewsHandlerInput';
-import { IParams } from '../__types__/IParams';
+import { IBreakingNewsHandlerInput } from '../__types__/IBreakingNewsHandlerInput';
+import { IParams } from '../../__types__/IParams';
 
-jest.mock('../adapters/breaking-news');
+jest.mock('../../adapters/breaking-news');
 
 describe('BreakingNewsHandler', () => {
   const handlerRunnerMock = jest.fn();

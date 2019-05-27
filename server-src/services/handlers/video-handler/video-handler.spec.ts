@@ -1,9 +1,9 @@
 import VideoHandler from './video-handler';
-import { ContentBlockType } from '../../../common/__types__/ContentBlockType';
-import config from '../utils/config';
-import { IBasicArticleSection } from '../../../common/__types__/IBasicArticleSection';
+import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
+import config from '../../utils/config';
+import { IBasicArticleSection } from '../../../../common/__types__/IBasicArticleSection';
 
-jest.mock('../utils/config');
+jest.mock('../../utils/config');
 
 describe('VideoHandler', () => {
   it('should return VideoUnit inside a basic section strap', async () => {
