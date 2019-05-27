@@ -65,21 +65,21 @@ describe('ExperimentService', () => {
     storeService.get.mockReturnValue(undefined);
 
     const experimentName = 'experimentName';
-    const response = service.getRandomNumber(experimentName);
+    const randomNumber = service.getRandomNumber(experimentName);
 
-    expect(response).toEqual(38);
+    expect(randomNumber).toEqual(38);
     expect(storeService.set).toHaveBeenCalledWith(
       `${experimentName}ExperimentLottery`,
-      response
+      randomNumber
     );
   });
 
   it('should return existing random number if it exists in storage service', () => {
     storeService.get.mockReturnValue(55);
 
-    const response = service.getRandomNumber('storageKey');
+    const randomNumber = service.getRandomNumber('FakeExperiment');
 
-    expect(response).toEqual(55);
+    expect(randomNumber).toEqual(55);
   });
 
   it('should set up experiment information when not in control group', async () => {
@@ -90,11 +90,10 @@ describe('ExperimentService', () => {
     httpClient.get.mockReturnValueOnce(of(experimentName));
     httpClient.get.mockReturnValueOnce(of(variant));
 
-    service.setup();
+    await service.setup();
 
-    const experiment = await service.experiment;
-    expect(experiment.name).toEqual(experimentName);
-    expect(experiment.variant).toEqual(variant);
+    expect(service.experiment.name).toEqual(experimentName);
+    expect(service.experiment.variant).toEqual(variant);
   });
 
   it('should set up experiment information when in control group', async () => {
@@ -103,31 +102,30 @@ describe('ExperimentService', () => {
     (random as jest.Mock).mockReturnValue(0.38);
     httpClient.get.mockReturnValueOnce(of(experimentName));
 
-    service.setup();
+    await service.setup();
 
-    const experiment = await service.experiment;
-    expect(experiment.name).toEqual(experimentName);
-    expect(experiment.variant).toEqual('control');
+    expect(service.experiment.name).toEqual(experimentName);
+    expect(service.experiment.variant).toEqual('control');
   });
 
-  it('should get a variant when the experiment is not in control group', async () => {
+  it('should get a variant when the experiment is not in control group', () => {
     const experimentName = 'FakeExperiment';
-    service.experiment = Promise.resolve({
+    service.experiment = {
       name: 'FakeExperiment',
       variant: 'A'
-    });
-    const variant = await service.getVariant(experimentName);
+    };
+    const variant = service.getVariant(experimentName);
 
     expect(variant).toEqual('A');
   });
 
-  it('should get a control variant when the experiment is in control group', async () => {
+  it('should get a control variant when the experiment is in control group', () => {
     const experimentName = 'AnotherFakeExperiment';
-    service.experiment = Promise.resolve({
+    service.experiment = {
       name: 'FakeExperiment',
       variant: 'A'
-    });
-    const variant = await service.getVariant(experimentName);
+    };
+    const variant = service.getVariant(experimentName);
 
     expect(variant).toEqual('control');
   });

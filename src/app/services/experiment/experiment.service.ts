@@ -9,10 +9,10 @@ import { StoreService } from '../store/store.service';
   providedIn: 'root'
 })
 export class ExperimentService {
-  experiment!: Promise<{
+  experiment!: {
     name: string;
     variant: string;
-  }>;
+  };
   constructor(
     private http: HttpClient,
     private config: ConfigService,
@@ -46,41 +46,36 @@ export class ExperimentService {
     return newLotteryNumber;
   }
 
-  setup() {
-    this.experiment = new Promise<{ name: string; variant: string }>(
-      (resolve) => {
-        const userLotteryNumber = this.getRandomNumber('Users');
-        this.retrieveVariant('Users', userLotteryNumber).subscribe(
-          (experimentName) => {
-            if (experimentName === 'control') {
-              resolve({
-                name: 'control',
-                variant: 'control'
-              });
-              return;
-            }
-            const experimentLotteryNumber = this.getRandomNumber(
-              experimentName
-            );
-            this.retrieveVariant(
-              experimentName,
-              experimentLotteryNumber
-            ).subscribe((variant) => {
-              resolve({
-                name: experimentName,
-                variant
-              });
-            });
-          }
-        );
-      }
-    );
+  async setup() {
+    // this.experiment =
+    const userLotteryNumber = this.getRandomNumber('Users');
+    const experimentName = await this.retrieveVariant(
+      'Users',
+      userLotteryNumber
+    ).toPromise();
+
+    if (experimentName === 'control') {
+      this.experiment = {
+        name: 'control',
+        variant: 'control'
+      };
+      return;
+    }
+
+    const experimentLotteryNumber = this.getRandomNumber(experimentName);
+    const variant = await this.retrieveVariant(
+      experimentName,
+      experimentLotteryNumber
+    ).toPromise();
+    this.experiment = {
+      name: experimentName,
+      variant
+    };
   }
 
-  async getVariant(experimentName: string) {
-    const experiment = await this.experiment;
-    if (experiment.name === experimentName) {
-      return experiment.variant;
+  getVariant(experimentName: string) {
+    if (this.experiment.name === experimentName) {
+      return this.experiment.variant;
     }
     return 'control';
   }

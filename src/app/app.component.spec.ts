@@ -55,20 +55,25 @@ describe('AppComponent', () => {
     dtmService = TestBed.get(DtmService);
     browserOverrideService = TestBed.get(BrowserOverrideService);
     experimentService = TestBed.get(ExperimentService);
+
+    adService.setup.mockResolvedValue(new Event('ad-sdk loaded'));
+    dtmService.setup.mockResolvedValue();
   });
 
-  it('should create the app and set up services', async(() => {
+  it('should create the app and set up services', async () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
+    const app: AppComponent = fixture.debugElement.componentInstance;
 
     expect(app).toBeTruthy();
+    await app.ngOnInit();
+
     expect(adService.setup).toHaveBeenCalled();
     expect(eventsService.setup).toHaveBeenCalled();
     expect(analyticsService.setup).toHaveBeenCalled();
     expect(dtmService.setup).toHaveBeenCalled();
     expect(browserOverrideService.setup).toHaveBeenCalled();
     expect(experimentService.setup).toHaveBeenCalled();
-  }));
+  });
 
   it('should check router outlet is present', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
@@ -77,18 +82,18 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('router-outlet')).toBeTruthy();
   }));
 
-  it('should setup data layer service before dtm service', () => {
+  it('should setup data layer service before dtm service', async () => {
     const serviceCallOrder: string[] = [];
     analyticsService.setup.mockImplementation(() => {
       serviceCallOrder.push('1');
     });
     dtmService.setup.mockImplementation(() => {
       serviceCallOrder.push('2');
-      return null;
     });
 
     const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
+    const app: AppComponent = fixture.componentInstance;
+    await app.ngOnInit();
 
     expect(serviceCallOrder).toEqual(['1', '2']);
   });

@@ -6,12 +6,16 @@ export type ServiceMock<T> = {
 } &
   T;
 
+export type PartialOrPromise<T> = T extends Promise<infer U>
+  ? U
+  : DeepPartial<T> | null;
+
 export type ServiceMethodMock<PropertyType> = PropertyType extends (
   ...args: any[]
 ) => any
   ? (PropertyType &
       jest.MockInstance<
-        DeepPartial<ReturnType<PropertyType>> | null,
+        PartialOrPromise<ReturnType<PropertyType>>,
         Parameters<PropertyType>
       >)
   : PropertyType;
