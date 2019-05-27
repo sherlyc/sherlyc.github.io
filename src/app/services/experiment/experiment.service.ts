@@ -9,9 +9,12 @@ import { StoreService } from '../store/store.service';
   providedIn: 'root'
 })
 export class ExperimentService {
-  experiment!: {
+  experiment: {
     name: string;
     variant: string;
+  } = {
+    name: 'control',
+    variant: 'control'
   };
   constructor(
     private http: HttpClient,
@@ -53,12 +56,9 @@ export class ExperimentService {
       'Users',
       userLotteryNumber
     ).toPromise();
+    this.experiment.name = experimentName;
 
     if (experimentName === 'control') {
-      this.experiment = {
-        name: 'control',
-        variant: 'control'
-      };
       return;
     }
 
@@ -67,10 +67,7 @@ export class ExperimentService {
       experimentName,
       experimentLotteryNumber
     ).toPromise();
-    this.experiment = {
-      name: experimentName,
-      variant
-    };
+    this.experiment.variant = variant;
   }
 
   getVariant(experimentName: string) {
