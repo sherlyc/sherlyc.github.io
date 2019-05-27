@@ -7,6 +7,7 @@ import { IExternalContentHandlerInput } from './IExternalContentHandlerInput';
 import { IWeatherHandlerInput } from './IWeatherHandlerInput';
 import { IMiniMidStripHandlerInput } from './IMiniMidStripHandlerInput';
 import { IVideoHandlerInput } from './IVideoHandlerInput';
+import { IExperimentHandlerInput } from './IExperimentHandlerInput';
 
 export type HandlerInput =
   | IBasicArticleListHandlerInput
@@ -17,4 +18,5 @@ export type HandlerInput =
   | IExternalContentHandlerInput
   | IPageHandlerInput
   | IWeatherHandlerInput
-  | IVideoHandlerInput;
+  | IVideoHandlerInput
+  | IExperimentHandlerInput;

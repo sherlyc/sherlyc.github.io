@@ -19,8 +19,18 @@ export default async (params: IParams): Promise<IPage> => {
               type: HandlerInputType.Weather
             },
             {
-              type: HandlerInputType.BreakingNews,
-              ignoreBreakingNews: params.ignoreBreakingNews
+              type: HandlerInputType.Experiment,
+              name: 'Toucan',
+              variants: {
+                purpleBackground: {
+                  type: HandlerInputType.BreakingNews,
+                  ignoreBreakingNews: params.ignoreBreakingNews
+                },
+                orangeBackground: {
+                  type: HandlerInputType.BreakingNews,
+                  ignoreBreakingNews: params.ignoreBreakingNews
+                }
+              }
             },
             {
               type: HandlerInputType.ExternalContent,

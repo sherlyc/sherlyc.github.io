@@ -4,6 +4,7 @@ import { ScriptInjectorService } from './script-injector.service';
 import { mockService } from '../mocks/MockService';
 import { Position } from './__types__/Position';
 import { LoggerService } from '../logger/logger.service';
+import { ScriptId } from './__types__/ScriptId';
 
 describe('ScriptInjectorService', () => {
   let scriptInjectorService: ScriptInjectorService;
@@ -30,12 +31,12 @@ describe('ScriptInjectorService', () => {
   });
 
   it('should create a script element in the head', () => {
-    const id = 'test-script-id';
+    const id = 'test-script-id' as ScriptId;
     const src = '__fixtures__/test-script.js';
 
     scriptInjectorService.load(id, src, Position.HEAD);
 
-    const element = document.getElementById('test-script-id');
+    const element = document.getElementById(id);
     expect(element).toBeTruthy();
     expect(element).toBeInstanceOf(HTMLScriptElement);
     expect(element!.getAttribute('src')).toEqual(src);
@@ -43,12 +44,12 @@ describe('ScriptInjectorService', () => {
   });
 
   it('should create a script element in the body', () => {
-    const id = 'test-script-id';
+    const id = 'test-script-id' as ScriptId;
     const src = '__fixtures__/test-script.js';
 
     scriptInjectorService.load(id, src, Position.BOTTOM);
 
-    const element = document.getElementById('test-script-id');
+    const element = document.getElementById(id);
     expect(element).toBeTruthy();
     expect(element).toBeInstanceOf(HTMLScriptElement);
     expect(element!.getAttribute('src')).toEqual(src);
