@@ -23,18 +23,14 @@ export class ExperimentService {
     experiment: string,
     lotteryNumber: number
   ): Observable<string> {
-    return new Observable((subscriber) => {
-      this.http
-        .get<string>(
-          `${
-            this.config.getConfig().experimentAPI
-          }?name=${experiment}&lotteryNumber=${lotteryNumber}`
-        )
-        .subscribe((result) => {
-          subscriber.next(result);
-          subscriber.complete();
-        });
-    });
+    return this.http.get<string>(
+      `${
+        this.config.getConfig().experimentAPI
+      }?name=${experiment}&lotteryNumber=${lotteryNumber}`,
+      {
+        responseType: 'text'
+      } as Object
+    );
   }
 
   getRandomNumber(experimentName: string): number {
@@ -68,9 +64,9 @@ export class ExperimentService {
     );
   }
 
-  getVariant(experimentName: string) {
+  getVariant(experimentName: string): string {
     return experimentName === this.experiment.name
-      ? this.experiment.variant
+      ? this.experiment.variant || 'control'
       : 'control';
   }
 }
