@@ -24,11 +24,18 @@ export default async (params: IParams): Promise<IPage> => {
               variants: {
                 purpleBackground: {
                   type: HandlerInputType.BreakingNews,
-                  ignoreBreakingNews: params.ignoreBreakingNews
+                  ignoreBreakingNews: params.ignoreBreakingNews,
+                  variant: 'purpleBackground'
                 },
                 orangeBackground: {
                   type: HandlerInputType.BreakingNews,
-                  ignoreBreakingNews: params.ignoreBreakingNews
+                  ignoreBreakingNews: params.ignoreBreakingNews,
+                  variant: 'orangeBackground'
+                },
+                control: {
+                  type: HandlerInputType.BreakingNews,
+                  ignoreBreakingNews: params.ignoreBreakingNews,
+                  variant: 'control'
                 }
               }
             },

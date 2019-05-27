@@ -50,10 +50,12 @@ describe('Experiment Handler', () => {
         name: 'Toucan',
         variants: {
           purpleBackground: {
-            type: HandlerInputType.BreakingNews
+            type: HandlerInputType.BreakingNews,
+            variant: 'purpleBackground'
           },
           orangeBackground: {
-            type: HandlerInputType.BreakingNews
+            type: HandlerInputType.BreakingNews,
+            variant: 'orangeBackground'
           }
         }
       },

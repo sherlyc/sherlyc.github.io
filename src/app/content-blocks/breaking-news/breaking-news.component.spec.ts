@@ -39,7 +39,8 @@ describe('BreakingNewsComponent', () => {
       type: ContentBlockType.BreakingNews,
       id: 'whatever',
       text: 'breaking_news_text',
-      link: 'breaking_news_link'
+      link: 'breaking_news_link',
+      variant: 'orangeBackground'
     };
     fixture.detectChanges();
     jest.spyOn(component, 'onClickOrDismiss');
