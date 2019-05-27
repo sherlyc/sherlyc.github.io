@@ -1,31 +1,39 @@
-import { IExperimentContainer } from 'common/__types__/IExperimentContainer';
+import { IContentBlock } from './../../../../common/__types__/IContentBlock';
+import { IExperimentContainer } from '../../../../common/__types__/IExperimentContainer';
 import { IExperimentHandlerInput } from '../__types__/IExperimentHandlerInput';
 import { handlerRunnerFunction } from '../runner';
-import { IParams } from 'server-src/services/__types__/IParams';
+import { IParams } from '../../__types__/IParams';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { IBreakingNews } from '../../../../common/__types__/IBreakingNews';
-import { HandlerInputType } from '../__types__/HandlerInputType';
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  { name }: IExperimentHandlerInput,
+  { name, variants }: IExperimentHandlerInput,
   params: IParams
 ): Promise<IExperimentContainer[]> {
-  const breakingNews = (await handlerRunner(
-    {
-      type: HandlerInputType.BreakingNews
-    },
-    params
-  ))[0];
+  const variantNames = Object.keys(variants);
+
+  const contentBlockPromises: Promise<{
+    [key: string]: IContentBlock;
+  }>[] = variantNames.map(async (variantName) => {
+    const contentBlockForVariant = (await handlerRunner(
+      variants[variantName],
+      params
+    ))[0];
+    return {
+      [variantName]: contentBlockForVariant
+    };
+  });
+
+  const variantBlocks = (await Promise.all(contentBlockPromises)).reduce(
+    (final, item) => ({ ...final, ...item }),
+    {}
+  );
 
   return [
     {
       type: ContentBlockType.ExperimentContainer,
       name,
-      variants: {
-        redHeadline: breakingNews,
-        greenHeadline: breakingNews
-      }
+      variants: variantBlocks
     }
   ];
 }

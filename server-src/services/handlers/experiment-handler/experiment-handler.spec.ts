@@ -1,3 +1,4 @@
+import { HandlerInput } from './../__types__/HandlerInput';
 import experimentHandler from './experiment-handler';
 import { HandlerInputType } from '../__types__/HandlerInputType';
 import { IParams } from '../../__types__/IParams';
@@ -8,7 +9,7 @@ import { IBreakingNews } from '../../../../common/__types__/IBreakingNews';
 describe('Experiment Handler', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
 
-  it('should return parrot content block when experiment name is parrot', async () => {
+  it('should return Toucan content block when experiment name is Toucan', async () => {
     const handlerRunnerMock = jest.fn();
     handlerRunnerMock.mockResolvedValue([
       {
@@ -21,15 +22,15 @@ describe('Experiment Handler', () => {
 
     const expectedResult: IExperimentContainer = {
       type: ContentBlockType.ExperimentContainer,
-      name: 'Parrot',
+      name: 'Toucan',
       variants: {
-        redHeadline: {
+        purpleBackground: {
           type: ContentBlockType.BreakingNews,
           id: 'fake',
           text: 'fake',
           link: 'fake'
         } as IBreakingNews,
-        greenHeadline: {
+        orangeBackground: {
           type: ContentBlockType.BreakingNews,
           id: 'fake',
           text: 'fake',
@@ -42,7 +43,15 @@ describe('Experiment Handler', () => {
       handlerRunnerMock,
       {
         type: HandlerInputType.Experiment,
-        name: 'Parrot'
+        name: 'Toucan',
+        variants: {
+          purpleBackground: {
+            type: HandlerInputType.BreakingNews
+          },
+          orangeBackground: {
+            type: HandlerInputType.BreakingNews
+          }
+        }
       },
       params
     );
