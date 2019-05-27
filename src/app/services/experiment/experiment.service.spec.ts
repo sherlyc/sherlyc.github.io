@@ -53,7 +53,7 @@ describe('ExperimentService', () => {
 
     httpClient.get.mockReturnValue(of(expectedVariant));
 
-    service.getVariant(experiment, lotteryNumber).subscribe((response) => {
+    service.retrieveVariant(experiment, lotteryNumber).subscribe((response) => {
       expect(response).toEqual(expectedVariant);
       done();
     });
@@ -105,5 +105,27 @@ describe('ExperimentService', () => {
 
     expect(service.experiment.name).toEqual(experimentName);
     expect(service.experiment.variant).toEqual(undefined);
+  });
+
+  it('should get a variant when the experiment is not in control group', () => {
+    const experimentName = 'FakeExperiment';
+    service.experiment = {
+      name: 'FakeExperiment',
+      variant: 'A'
+    };
+    const variant = service.getVariant(experimentName);
+
+    expect(variant).toEqual('A');
+  });
+
+  it('should get a variant when the experiment is in control group', () => {
+    const experimentName = 'AnotherFakeExperiment';
+    service.experiment = {
+      name: 'FakeExperiment',
+      variant: 'A'
+    };
+    const variant = service.getVariant(experimentName);
+
+    expect(variant).toEqual('control');
   });
 });

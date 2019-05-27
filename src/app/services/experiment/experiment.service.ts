@@ -19,7 +19,10 @@ export class ExperimentService {
     private storeService: StoreService
   ) {}
 
-  getVariant(experiment: string, lotteryNumber: number): Observable<string> {
+  retrieveVariant(
+    experiment: string,
+    lotteryNumber: number
+  ): Observable<string> {
     return new Observable((subscriber) => {
       this.http
         .get<string>(
@@ -49,17 +52,25 @@ export class ExperimentService {
 
   setUp() {
     const userLotteryNumber = this.getRandomNumber('Users');
-    this.getVariant('Users', userLotteryNumber).subscribe((experimentName) => {
-      this.experiment.name = experimentName;
-      if (experimentName === 'control') {
-        return;
-      }
-      const variantLotteryNumber = this.getRandomNumber(experimentName);
-      this.getVariant(experimentName, variantLotteryNumber).subscribe(
-        (variant) => {
-          this.experiment.variant = variant;
+    this.retrieveVariant('Users', userLotteryNumber).subscribe(
+      (experimentName) => {
+        this.experiment.name = experimentName;
+        if (experimentName === 'control') {
+          return;
         }
-      );
-    });
+        const variantLotteryNumber = this.getRandomNumber(experimentName);
+        this.retrieveVariant(experimentName, variantLotteryNumber).subscribe(
+          (variant) => {
+            this.experiment.variant = variant;
+          }
+        );
+      }
+    );
+  }
+
+  getVariant(experimentName: string) {
+    return experimentName === this.experiment.name
+      ? this.experiment.variant
+      : 'control';
   }
 }
