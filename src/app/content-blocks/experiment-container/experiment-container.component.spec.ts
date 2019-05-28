@@ -53,7 +53,7 @@ describe('ExperimentContainerComponent', () => {
         }
       })
       .compileComponents();
-      experimentService = TestBed.get(ExperimentService);
+    experimentService = TestBed.get(ExperimentService);
   });
 
   beforeEach(() => {
@@ -83,12 +83,12 @@ describe('ExperimentContainerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it.only('should render control variant', async () => {
+  it('should render control variant', async () => {
     (experimentService.getVariant as jest.Mock).mockResolvedValue('control');
     component.input = experimentContainer;
 
-    fixture.detectChanges();
     await component.ngOnInit();
+    fixture.detectChanges();
 
     const children = fixture.debugElement.queryAll(
       By.directive(FakeContentBlockComponent)

@@ -1,4 +1,4 @@
-import { IContentBlock } from './../../../../common/__types__/IContentBlock';
+import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 import experimentHandler from './experiment-handler';
 import { HandlerInputType } from '../__types__/HandlerInputType';
 import { IParams } from '../../__types__/IParams';
