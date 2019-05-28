@@ -94,7 +94,7 @@ describe('JsonFeed Retriever', () => {
   });
 
   describe('Editors pick', () => {
-    it('should response with editors pick data', async () => {
+    it('should respond with editors pick data', async () => {
       (http(params).get as jest.Mock).mockResolvedValue({
         data: editorsPickData
       });
