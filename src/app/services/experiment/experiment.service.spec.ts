@@ -80,6 +80,7 @@ describe('ExperimentService', () => {
     const randomNumber = service.getLotteryNumber('FakeExperiment');
 
     expect(randomNumber).toEqual(55);
+    expect(storeService.set).not.toHaveBeenCalled();
   });
 
   it('should set up experiment information when not in control group', async () => {
@@ -120,6 +121,7 @@ describe('ExperimentService', () => {
     service.getExperiment = getExperiment;
 
     const variant = await service.getVariant(experimentName);
+
     expect(variant).toEqual('A');
   });
 
@@ -133,6 +135,7 @@ describe('ExperimentService', () => {
     service.getExperiment = getExperiment;
 
     const variant = await service.getVariant(experimentName);
+
     expect(variant).toEqual('control');
   });
 });
