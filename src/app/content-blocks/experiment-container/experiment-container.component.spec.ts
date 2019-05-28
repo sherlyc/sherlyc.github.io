@@ -1,3 +1,5 @@
+import { ServiceMock } from 'src/app/services/mocks/MockService';
+import { ExperimentService } from './../../services/experiment/experiment.service';
 import { ExperimentContainerComponent } from './experiment-container.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
@@ -13,6 +15,7 @@ import { IExperimentContainer } from '../../../../common/__types__/IExperimentCo
 describe('ExperimentContainerComponent', () => {
   let component: ExperimentContainerComponent;
   let fixture: ComponentFixture<ExperimentContainerComponent>;
+  let experimentService: ServiceMock<ExperimentService>;
 
   @Component({
     selector: 'app-fake-content-block',
@@ -37,6 +40,10 @@ describe('ExperimentContainerComponent', () => {
         {
           provide: TransferState,
           useClass: mockService(TransferState)
+        },
+        {
+          provide: ExperimentService,
+          useClass: mockService(ExperimentService)
         }
       ]
     })
@@ -46,6 +53,7 @@ describe('ExperimentContainerComponent', () => {
         }
       })
       .compileComponents();
+      experimentService = TestBed.get(ExperimentService);
   });
 
   beforeEach(() => {
@@ -75,14 +83,17 @@ describe('ExperimentContainerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render control variant', () => {
+  it.only('should render control variant', async () => {
+    (experimentService.getVariant as jest.Mock).mockResolvedValue('control');
     component.input = experimentContainer;
 
     fixture.detectChanges();
+    await component.ngOnInit();
 
     const children = fixture.debugElement.queryAll(
       By.directive(FakeContentBlockComponent)
     );
+
     expect(children.length).toBe(1);
   });
 });
