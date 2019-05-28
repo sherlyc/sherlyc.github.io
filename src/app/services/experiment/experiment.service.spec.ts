@@ -7,6 +7,7 @@ import { StoreService } from '../store/store.service';
 import * as random from 'math-random';
 import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
+import { RuntimeService } from '../runtime/runtime.service';
 
 jest.mock('math-random');
 
@@ -16,6 +17,7 @@ describe('ExperimentService', () => {
   let service: ExperimentService;
   let storeService: ServiceMock<StoreService>;
   let httpClient: ServiceMock<HttpClient>;
+  let runtimeService: ServiceMock<RuntimeService>;
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -33,6 +35,10 @@ describe('ExperimentService', () => {
         {
           provide: HttpClient,
           useClass: mockService(HttpClient)
+        },
+        {
+          provide: RuntimeService,
+          useClass: mockService(RuntimeService)
         }
       ]
     });
@@ -41,6 +47,7 @@ describe('ExperimentService', () => {
     service = TestBed.get(ExperimentService);
     storeService = TestBed.get(StoreService);
     httpClient = TestBed.get(HttpClient);
+    runtimeService = TestBed.get(RuntimeService);
   });
 
   it('should be created', () => {
@@ -83,7 +90,16 @@ describe('ExperimentService', () => {
     expect(storeService.set).not.toHaveBeenCalled();
   });
 
+  it('should not setup when running in server', async () => {
+    runtimeService.isServer.mockReturnValue(true);
+
+    await service.setup();
+
+    expect(service.getExperiment()).toBeFalsy();
+  });
+
   it('should set up experiment information when not in control group', async () => {
+    runtimeService.isServer.mockReturnValue(false);
     storeService.get.mockReturnValue(undefined);
     const experimentName = 'FakeExperiment';
     const variant = 'A';
@@ -99,6 +115,7 @@ describe('ExperimentService', () => {
   });
 
   it('should set up experiment information when in control group', async () => {
+    runtimeService.isServer.mockReturnValue(false);
     storeService.get.mockReturnValue(undefined);
     const experimentName = 'control';
     (random as jest.Mock).mockReturnValue(0.38);
@@ -133,6 +150,14 @@ describe('ExperimentService', () => {
       variant: 'A'
     });
     service.getExperiment = getExperiment;
+
+    const variant = await service.getVariant(experimentName);
+
+    expect(variant).toEqual('control');
+  });
+
+  it('should get a control variant when experiment does not exist', async () => {
+    const experimentName = 'AnotherFakeExperiment';
 
     const variant = await service.getVariant(experimentName);
 
