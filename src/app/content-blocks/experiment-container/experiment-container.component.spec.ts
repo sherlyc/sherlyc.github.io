@@ -110,11 +110,15 @@ describe('ExperimentContainerComponent', () => {
     await component.ngOnInit();
     fixture.detectChanges();
 
-    const children = fixture.debugElement.queryAll(
+    const controlVariantBlocks = fixture.debugElement.queryAll(
       By.directive(ControlVariantContentBlockComponent)
     );
+    const otherVariantBlocks = fixture.debugElement.queryAll(
+      By.directive(OtherVariantContentBlockComponent)
+    );
 
-    expect(children.length).toBe(1);
+    expect(controlVariantBlocks).toHaveLength(1);
+    expect(otherVariantBlocks).toHaveLength(0);
   });
 
   it('should render other variant', async () => {
@@ -124,10 +128,14 @@ describe('ExperimentContainerComponent', () => {
     await component.ngOnInit();
     fixture.detectChanges();
 
-    const children = fixture.debugElement.queryAll(
+    const otherVariantBlocks = fixture.debugElement.queryAll(
       By.directive(OtherVariantContentBlockComponent)
     );
+    const controlVariantBlocks = fixture.debugElement.queryAll(
+      By.directive(ControlVariantContentBlockComponent)
+    );
 
-    expect(children.length).toBe(1);
+    expect(otherVariantBlocks).toHaveLength(1);
+    expect(controlVariantBlocks).toHaveLength(0);
   });
 });
