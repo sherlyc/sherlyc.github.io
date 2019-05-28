@@ -82,6 +82,7 @@ app.set('views', join(DIST_FOLDER, 'browser'));
 // Server static files from /browser
 app.get('*.*', express.static(join(DIST_FOLDER, 'browser')));
 
+app.get('/content/*', (req, res) => res.send(''));
 // All regular routes use the Universal engine
 app.get('*', (req, res) => {
   res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });
