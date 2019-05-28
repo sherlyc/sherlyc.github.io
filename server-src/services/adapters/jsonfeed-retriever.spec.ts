@@ -94,19 +94,19 @@ describe('JsonFeed Retriever', () => {
   });
 
   describe('Editors pick', () => {
-    it('should respond with editors pick data', async () => {
+    it('should response with editors pick data', async () => {
       (http(params).get as jest.Mock).mockResolvedValue({
         data: editorsPickData
       });
 
-      expect(await retrieveEditorsPick(params)).toEqual(editorsPickData);
+      expect(await retrieveEditorsPick(params, 8)).toEqual(editorsPickData);
     });
 
     it('should throw error when jsonfeed request for editors pick fails', async () => {
       const error = new Error('AJAX error');
       (http(params).get as jest.Mock).mockRejectedValue(error);
 
-      await expect(retrieveEditorsPick(params)).rejects.toEqual(error);
+      await expect(retrieveEditorsPick(params, 8)).rejects.toEqual(error);
     });
 
     it('should return only 8 editors pick article', async () => {
@@ -115,7 +115,7 @@ describe('JsonFeed Retriever', () => {
         data: { ...editorsPickData, assets: tenArticles }
       });
 
-      const editorsPick = await retrieveEditorsPick(params);
+      const editorsPick = await retrieveEditorsPick(params, 8);
       expect(editorsPick.assets.length).toEqual(8);
     });
   });
