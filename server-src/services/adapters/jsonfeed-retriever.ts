@@ -45,8 +45,14 @@ export const retrieveMidStrip = async (params: IParams, total: number) =>
     params
   );
 
-export const retrieveMiniMidStrip = async (params: IParams) =>
-  retry(() => requestListAsset(params, config.miniMidStripListAssetId), params);
+export const retrieveMiniMidStrip = async (params: IParams, total: number) =>
+  retry(
+    () => requestListAsset(params, config.miniMidStripListAssetId, total),
+    params
+  );
 
-export const retrieveEditorsPick = async (params: IParams) =>
-  retry(() => requestListAsset(params, config.editorsPickAssetId, 8), params);
+export const retrieveEditorsPick = async (params: IParams, total: number) =>
+  retry(
+    () => requestListAsset(params, config.editorsPickAssetId, total),
+    params
+  );

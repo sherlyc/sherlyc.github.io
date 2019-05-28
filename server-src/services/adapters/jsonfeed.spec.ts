@@ -46,7 +46,7 @@ describe('json feed service', () => {
   describe('mini mid strip service', () => {
     it('should provide mini mid strip data', async () => {
       (http(params).get as jest.Mock).mockResolvedValue({
-        data: miniMidStripData
+        data: miniMidStripData.threeListAssets
       });
 
       expect(await getListAsset(params, ListAsset.MiniMidStrip, 2)).toEqual(
