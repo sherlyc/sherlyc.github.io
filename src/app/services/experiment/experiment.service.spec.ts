@@ -92,7 +92,7 @@ describe('ExperimentService', () => {
 
     await service.setup();
 
-    const experiment = await service.experiment;
+    const experiment = await service.getExperiment();
     expect(experiment.name).toEqual(experimentName);
     expect(experiment.variant).toEqual(variant);
   });
@@ -105,27 +105,32 @@ describe('ExperimentService', () => {
 
     await service.setup();
 
-    const experiment = await service.experiment;
+    const experiment = await service.getExperiment();
     expect(experiment.name).toEqual(experimentName);
     expect(experiment.variant).toEqual('control');
   });
 
   it('should get a variant when the experiment is not in control group', async () => {
     const experimentName = 'FakeExperiment';
-    service.experiment = Promise.resolve({
+    const getExperiment = jest.fn();
+    getExperiment.mockResolvedValue({
       name: 'FakeExperiment',
       variant: 'A'
     });
+    service.getExperiment = getExperiment;
+
     const variant = await service.getVariant(experimentName);
     expect(variant).toEqual('A');
   });
 
   it('should get a control variant when the experiment is in control group', async () => {
     const experimentName = 'AnotherFakeExperiment';
-    service.experiment = Promise.resolve({
+    const getExperiment = jest.fn();
+    getExperiment.mockResolvedValue({
       name: 'FakeExperiment',
       variant: 'A'
     });
+    service.getExperiment = getExperiment;
 
     const variant = await service.getVariant(experimentName);
     expect(variant).toEqual('control');

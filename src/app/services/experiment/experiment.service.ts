@@ -9,7 +9,7 @@ import { StoreService } from '../store/store.service';
   providedIn: 'root'
 })
 export class ExperimentService {
-  experiment!: Promise<{
+  private experiment!: Promise<{
     name: string;
     variant: string;
   }>;
@@ -77,7 +77,11 @@ export class ExperimentService {
   }
 
   async getVariant(experimentName: string) {
-    const experiment = await this.experiment;
+    const experiment = await this.getExperiment();
     return experiment.name === experimentName ? experiment.variant : 'control';
+  }
+
+  getExperiment() {
+    return this.experiment;
   }
 }
