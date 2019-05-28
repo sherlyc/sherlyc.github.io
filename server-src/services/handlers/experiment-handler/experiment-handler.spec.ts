@@ -24,8 +24,8 @@ describe('Experiment Handler', () => {
       type: ContentBlockType.ExperimentContainer,
       name: 'Toucan',
       variants: {
-        purpleBackground: [breakingNewsBlock],
-        orangeBackground: [breakingNewsBlock],
+        purpleHeadline: [breakingNewsBlock],
+        orangeHeadline: [breakingNewsBlock],
         control: [breakingNewsBlock]
       }
     };
@@ -36,13 +36,13 @@ describe('Experiment Handler', () => {
         type: HandlerInputType.Experiment,
         name: 'Toucan',
         variants: {
-          purpleBackground: {
+          purpleHeadline: {
             type: HandlerInputType.BreakingNews,
-            variant: 'purpleBackground'
+            variant: 'purpleHeadline'
           },
-          orangeBackground: {
+          orangeHeadline: {
             type: HandlerInputType.BreakingNews,
-            variant: 'orangeBackground'
+            variant: 'orangeHeadline'
           },
           control: {
             type: HandlerInputType.BreakingNews,

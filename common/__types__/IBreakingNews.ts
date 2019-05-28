@@ -5,5 +5,5 @@ export interface IBreakingNews {
   id: string;
   text: string;
   link: string;
-  variant: 'purpleBackground' | 'orangeBackground' | 'control';
+  variant: 'purpleHeadline' | 'orangeHeadline' | 'control';
 }

@@ -22,15 +22,15 @@ export default async (params: IParams): Promise<IPage> => {
               type: HandlerInputType.Experiment,
               name: 'Toucan',
               variants: {
-                purpleBackground: {
+                purpleHeadline: {
                   type: HandlerInputType.BreakingNews,
                   ignoreBreakingNews: params.ignoreBreakingNews,
-                  variant: 'purpleBackground'
+                  variant: 'purpleHeadline'
                 },
-                orangeBackground: {
+                orangeHeadline: {
                   type: HandlerInputType.BreakingNews,
                   ignoreBreakingNews: params.ignoreBreakingNews,
-                  variant: 'orangeBackground'
+                  variant: 'orangeHeadline'
                 },
                 control: {
                   type: HandlerInputType.BreakingNews,
