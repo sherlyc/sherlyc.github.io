@@ -11,9 +11,9 @@ export class ExperimentContainerComponent
   implements OnInit, IContentBlockComponent {
   @Input() input!: IExperimentContainer;
   contentBlocks: IContentBlock[] = [];
+  variant = 'control';
 
   ngOnInit() {
-    const defaultVariant = 'control';
-    this.contentBlocks = this.input.variants[defaultVariant];
+    this.contentBlocks = this.input.variants[this.variant];
   }
 }

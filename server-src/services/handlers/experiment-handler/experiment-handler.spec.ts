@@ -1,3 +1,4 @@
+import { IContentBlock } from './../../../../common/__types__/IContentBlock';
 import experimentHandler from './experiment-handler';
 import { HandlerInputType } from '../__types__/HandlerInputType';
 import { IParams } from '../../__types__/IParams';
@@ -11,35 +12,21 @@ describe('Experiment Handler', () => {
 
   it('should return Toucan content block when experiment name is Toucan', async () => {
     const handlerRunnerMock = jest.fn();
-    handlerRunnerMock.mockResolvedValue([
-      {
-        type: ContentBlockType.BreakingNews,
-        id: 'fake',
-        text: 'fake',
-        link: 'fake'
-      } as IBreakingNews
-    ]);
+    const breakingNewsBlock = {
+      type: ContentBlockType.BreakingNews,
+      id: 'fake',
+      text: 'fake',
+      link: 'fake'
+    } as IBreakingNews;
+    handlerRunnerMock.mockResolvedValue([breakingNewsBlock]);
 
     const expectedResult: IExperimentContainer = {
       type: ContentBlockType.ExperimentContainer,
       name: 'Toucan',
       variants: {
-        purpleBackground: [
-          {
-            type: ContentBlockType.BreakingNews,
-            id: 'fake',
-            text: 'fake',
-            link: 'fake'
-          } as IBreakingNews
-        ],
-        orangeBackground: [
-          {
-            type: ContentBlockType.BreakingNews,
-            id: 'fake',
-            text: 'fake',
-            link: 'fake'
-          } as IBreakingNews
-        ]
+        purpleBackground: [breakingNewsBlock],
+        orangeBackground: [breakingNewsBlock],
+        control: [breakingNewsBlock]
       }
     };
 
@@ -56,6 +43,10 @@ describe('Experiment Handler', () => {
           orangeBackground: {
             type: HandlerInputType.BreakingNews,
             variant: 'orangeBackground'
+          },
+          control: {
+            type: HandlerInputType.BreakingNews,
+            variant: 'control'
           }
         }
       },
@@ -67,71 +58,24 @@ describe('Experiment Handler', () => {
 
   it('should return Parrot content block when experiment name is Parrot', async () => {
     const handlerRunnerMock = jest.fn();
-    handlerRunnerMock.mockResolvedValue([
-      {
-        type: ContentBlockType.BasicArticleUnit,
-        indexHeadline: 'fake',
-        introText: 'fake',
-        linkUrl: 'fake',
-        imageSrc: 'fake',
-        lastPublishedTime: 0,
-        headlineFlags: []
-      },
-      {
-        type: ContentBlockType.BasicArticleUnit,
-        indexHeadline: 'fake',
-        introText: 'fake',
-        linkUrl: 'fake',
-        imageSrc: 'fake',
-        lastPublishedTime: 0,
-        headlineFlags: []
-      }
-    ]);
+    const basicArticleUnit: IContentBlock = {
+      type: ContentBlockType.BasicArticleUnit,
+      indexHeadline: 'fake',
+      introText: 'fake',
+      linkUrl: 'fake',
+      imageSrc: 'fake',
+      lastPublishedTime: 0,
+      headlineFlags: []
+    };
+    handlerRunnerMock.mockResolvedValue([basicArticleUnit, basicArticleUnit]);
 
     const expectedResult: IExperimentContainer = {
       type: ContentBlockType.ExperimentContainer,
       name: 'Parrot',
       variants: {
-        redHeadline: [
-          {
-            type: ContentBlockType.BasicArticleUnit,
-            indexHeadline: 'fake',
-            introText: 'fake',
-            linkUrl: 'fake',
-            imageSrc: 'fake',
-            lastPublishedTime: 0,
-            headlineFlags: []
-          },
-          {
-            type: ContentBlockType.BasicArticleUnit,
-            indexHeadline: 'fake',
-            introText: 'fake',
-            linkUrl: 'fake',
-            imageSrc: 'fake',
-            lastPublishedTime: 0,
-            headlineFlags: []
-          }
-        ],
-        greenHeadline: [
-          {
-            type: ContentBlockType.BasicArticleUnit,
-            indexHeadline: 'fake',
-            introText: 'fake',
-            linkUrl: 'fake',
-            imageSrc: 'fake',
-            lastPublishedTime: 0,
-            headlineFlags: []
-          },
-          {
-            type: ContentBlockType.BasicArticleUnit,
-            indexHeadline: 'fake',
-            introText: 'fake',
-            linkUrl: 'fake',
-            imageSrc: 'fake',
-            lastPublishedTime: 0,
-            headlineFlags: []
-          }
-        ]
+        redHeadline: [basicArticleUnit, basicArticleUnit],
+        greenHeadline: [basicArticleUnit, basicArticleUnit],
+        control: [basicArticleUnit, basicArticleUnit]
       }
     };
 
@@ -147,6 +91,11 @@ describe('Experiment Handler', () => {
             totalBasicArticlesUnit: 2
           },
           greenHeadline: {
+            type: HandlerInputType.ArticleList,
+            sourceId: Section.Latest,
+            totalBasicArticlesUnit: 2
+          },
+          control: {
             type: HandlerInputType.ArticleList,
             sourceId: Section.Latest,
             totalBasicArticlesUnit: 2
