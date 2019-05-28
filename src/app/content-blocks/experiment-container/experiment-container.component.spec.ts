@@ -1,5 +1,5 @@
 import { ServiceMock } from 'src/app/services/mocks/MockService';
-import { ExperimentService } from './../../services/experiment/experiment.service';
+import { ExperimentService } from '../../services/experiment/experiment.service';
 import { ExperimentContainerComponent } from './experiment-container.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
@@ -18,14 +18,26 @@ describe('ExperimentContainerComponent', () => {
   let experimentService: ServiceMock<ExperimentService>;
 
   @Component({
-    selector: 'app-fake-content-block',
+    selector: 'app-control-variant-content-block',
     template: ''
   })
-  class FakeContentBlockComponent {}
+  class ControlVariantContentBlockComponent {}
+
+  @Component({
+    selector: 'app-other-variant-content-block',
+    template: ''
+  })
+  class OtherVariantContentBlockComponent {}
 
   beforeAll(() => {
     // @ts-ignore
-    registry['FakeContentBlockComponent'] = FakeContentBlockComponent;
+    registry[
+      'ControlVariantContentBlockComponent'
+    ] = ControlVariantContentBlockComponent;
+    // @ts-ignore
+    registry[
+      'OtherVariantContentBlockComponent'
+    ] = OtherVariantContentBlockComponent;
   });
 
   beforeEach(async () => {
@@ -34,7 +46,8 @@ describe('ExperimentContainerComponent', () => {
       declarations: [
         ExperimentContainerComponent,
         ContentBlockDirective,
-        FakeContentBlockComponent
+        ControlVariantContentBlockComponent,
+        OtherVariantContentBlockComponent
       ],
       providers: [
         {
@@ -49,7 +62,10 @@ describe('ExperimentContainerComponent', () => {
     })
       .overrideModule(BrowserDynamicTestingModule, {
         set: {
-          entryComponents: [FakeContentBlockComponent]
+          entryComponents: [
+            ControlVariantContentBlockComponent,
+            OtherVariantContentBlockComponent
+          ]
         }
       })
       .compileComponents();
@@ -62,16 +78,20 @@ describe('ExperimentContainerComponent', () => {
   });
 
   // @ts-ignore
-  const input = {
-    type: 'FakeContentBlock'
+  const controlVariantContentBlock = {
+    type: 'ControlVariantContentBlock'
+  } as IContentBlock;
+  // @ts-ignore
+  const otherVariantContentBlock = {
+    type: 'OtherVariantContentBlock'
   } as IContentBlock;
 
   const experimentContainer: IExperimentContainer = {
     type: ContentBlockType.ExperimentContainer,
     name: 'ExperimentName',
     variants: {
-      control: [input] as IContentBlock[],
-      red: []
+      control: [controlVariantContentBlock] as IContentBlock[],
+      red: [otherVariantContentBlock] as IContentBlock[]
     }
   };
 
@@ -91,7 +111,21 @@ describe('ExperimentContainerComponent', () => {
     fixture.detectChanges();
 
     const children = fixture.debugElement.queryAll(
-      By.directive(FakeContentBlockComponent)
+      By.directive(ControlVariantContentBlockComponent)
+    );
+
+    expect(children.length).toBe(1);
+  });
+
+  it('should render other variant', async () => {
+    (experimentService.getVariant as jest.Mock).mockResolvedValue('red');
+    component.input = experimentContainer;
+
+    await component.ngOnInit();
+    fixture.detectChanges();
+
+    const children = fixture.debugElement.queryAll(
+      By.directive(OtherVariantContentBlockComponent)
     );
 
     expect(children.length).toBe(1);
