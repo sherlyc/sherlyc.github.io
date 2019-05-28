@@ -58,6 +58,7 @@
     "helmet": "^3.18.0",
     "intersection-observer": "^0.5.1",
     "lodash": "^4.17.11",
+    "math-random": "^1.0.4",
     "moment": "^2.24.0",
     "newrelic": "^5.8.0",
     "ngx-moment": "^3.4.0",

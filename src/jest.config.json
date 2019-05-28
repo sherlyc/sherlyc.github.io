@@ -4,5 +4,6 @@
   "rootDir": "../",
   "roots": ["src"],
   "coverageDirectory": "<rootDir>/src/coverage",
-  "collectCoverageFrom": ["**/*.ts"]
+  "collectCoverageFrom": ["**/*.ts"],
+  "coveragePathIgnorePatterns": [".*\\.d\\.ts"]
 }

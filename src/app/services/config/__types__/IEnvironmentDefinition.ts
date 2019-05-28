@@ -6,6 +6,7 @@ export interface IEnvironmentDefinition {
   requestTimeout: number;
   spadeAPI: string;
   weatherAPI: string;
+  experimentAPI: string;
   loggerOptions: ILoggerOptions;
   aadSdkUrl: string;
   sentryIO: { dsn: string; sampleRate: number; environment: string };
