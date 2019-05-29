@@ -4,25 +4,24 @@ export const getExperimentVariant = (
 ): string => {
   switch (name) {
     case 'Users':
-      if (lotteryNumber >= 50 && lotteryNumber <= 75) {
+      if (lotteryNumber >= 1 && lotteryNumber <= 50) {
         return 'Parrot';
-      } else if (lotteryNumber >= 76 && lotteryNumber <= 99) {
+      } else if (lotteryNumber >= 51 && lotteryNumber <= 100) {
         return 'Toucan';
-      } else {
-        return 'control';
       }
+      return 'control';
     case 'Parrot':
-      if (lotteryNumber <= 32) {
+      if (lotteryNumber >= 1 && lotteryNumber <= 13) {
         return 'redHeadline';
-      } else if (lotteryNumber >= 33 && lotteryNumber <= 66) {
+      } else if (lotteryNumber >= 14 && lotteryNumber <= 26) {
         return 'greenHeadline';
       } else {
         return 'control';
       }
     case 'Toucan':
-      if (lotteryNumber < 32) {
+      if (lotteryNumber >= 51 && lotteryNumber <= 64) {
         return 'purpleHeadline';
-      } else if (lotteryNumber >= 33 && lotteryNumber <= 66) {
+      } else if (lotteryNumber >= 65 && lotteryNumber <= 76) {
         return 'orangeHeadline';
       } else {
         return 'control';
