@@ -5,4 +5,5 @@ export interface IBreakingNews {
   id: string;
   text: string;
   link: string;
+  variant: 'purpleHeadline' | 'orangeHeadline' | 'control';
 }

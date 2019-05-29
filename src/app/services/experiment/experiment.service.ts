@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import * as random from 'math-random';
 import { ConfigService } from '../config/config.service';
 import { StoreService } from '../store/store.service';
+import { RuntimeService } from '../runtime/runtime.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class ExperimentService {
   constructor(
     private http: HttpClient,
     private config: ConfigService,
-    private storeService: StoreService
+    private storeService: StoreService,
+    private runtimeService: RuntimeService
   ) {}
 
   retrieveVariant(
@@ -42,12 +44,15 @@ export class ExperimentService {
     if (existingLotteryNumber) {
       return existingLotteryNumber;
     }
-    const newLotteryNumber = Math.floor(random() * 100);
+    const newLotteryNumber = Math.floor(random() * 100) + 1;
     this.storeService.set(experimentStorageKey, newLotteryNumber);
     return newLotteryNumber;
   }
 
   async setup() {
+    if (this.runtimeService.isServer()) {
+      return;
+    }
     this.experiment = new Promise<{ name: string; variant: string }>(
       async (resolve) => {
         const userLotteryNumber = this.getLotteryNumber('Users');
@@ -78,7 +83,9 @@ export class ExperimentService {
 
   async getVariant(experimentName: string) {
     const experiment = await this.getExperiment();
-    return experiment.name === experimentName ? experiment.variant : 'control';
+    return experiment && experiment.name === experimentName
+      ? experiment.variant
+      : 'control';
   }
 
   getExperiment() {

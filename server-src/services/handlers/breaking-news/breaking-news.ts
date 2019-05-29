@@ -8,7 +8,7 @@ import { IParams } from '../../__types__/IParams';
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  { ignoreBreakingNews }: IBreakingNewsHandlerInput,
+  { ignoreBreakingNews, variant }: IBreakingNewsHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   const { id, text, link, enabled }: IRawBreakingNews = await getBreakingNews(
@@ -22,7 +22,8 @@ export default async function(
           type: 'BreakingNews',
           id,
           text,
-          link
+          link,
+          variant
         } as IBreakingNews
       ];
 }

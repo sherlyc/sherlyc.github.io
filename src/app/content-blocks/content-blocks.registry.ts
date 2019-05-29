@@ -14,6 +14,7 @@ import { ColumnContainerComponent } from './column-container/column-container.co
 import { ExternalContentUnitComponent } from './external-content-unit/external-content-unit.component';
 import { WeatherUnitComponent } from './weather-unit/weather-unit.component';
 import { BasicArticleTitleUnitComponent } from './basic-article-title-unit/basic-article-title-unit.component';
+import { ExperimentContainerComponent } from './experiment-container/experiment-container.component';
 
 export const contentBlockComponents = [
   BasicArticleUnitComponent,
@@ -29,6 +30,7 @@ export const contentBlockComponents = [
   ExternalContentUnitComponent,
   WeatherUnitComponent,
   VideoUnitComponent,
+  ExperimentContainerComponent,
   FooterComponent
 ];
 
@@ -48,6 +50,7 @@ const registry: {
   ExternalContentUnitComponent,
   WeatherUnitComponent,
   VideoUnitComponent,
+  ExperimentContainerComponent,
   FooterComponent
 };
 
