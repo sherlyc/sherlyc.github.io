@@ -22,8 +22,16 @@ export class RuntimeService {
   domainsByEnvironment: {
     [key: string]: string[];
   } = {
-    production: ['i.stuff.co.nz', 'experience.live.shift21.ffx.nz'],
-    staging: ['i-preprod.stuff.co.nz', 'experience.staging.shift21.ffx.nz'],
+    production: [
+      'i.stuff.co.nz',
+      'experience.production.shift21.ffx.nz',
+      'experience.expproduction.shift21.ffx.nz'
+    ],
+    staging: [
+      'i-preprod.stuff.co.nz',
+      'experience.staging.shift21.ffx.nz',
+      'experience.expstaging.shift21.ffx.nz'
+    ],
     development: ['localhost', '127.0.0.1']
   };
 

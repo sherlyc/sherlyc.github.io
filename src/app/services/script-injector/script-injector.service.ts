@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, NgZone } from '@angular/core';
 import { Position } from './__types__/Position';
 import { DOCUMENT } from '@angular/common';
 import { LoggerService } from '../logger/logger.service';
@@ -14,7 +14,8 @@ export class ScriptInjectorService {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private logger: LoggerService
+    private logger: LoggerService,
+    private zone: NgZone
   ) {}
 
   load(
@@ -45,7 +46,10 @@ export class ScriptInjectorService {
     });
     this.promises[id] = promise;
 
-    this.appendElement(scriptElement, position);
+    this.zone.runOutsideAngular(() => {
+      this.appendElement(scriptElement, position);
+    });
+
     return promise;
   }
 

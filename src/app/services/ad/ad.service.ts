@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, NgZone } from '@angular/core';
 import { NavigationEnd } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { ConfigService } from '../config/config.service';
@@ -12,7 +12,8 @@ export class AdService {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private config: ConfigService,
-    private scriptInjectorService: ScriptInjectorService
+    private scriptInjectorService: ScriptInjectorService,
+    private zone: NgZone
   ) {}
 
   setup() {
@@ -24,7 +25,9 @@ export class AdService {
 
   notify() {
     setTimeout(() => {
-      this.document.dispatchEvent(new Event('NavigationEnd'));
+      this.zone.runOutsideAngular(() => {
+        this.document.dispatchEvent(new Event('NavigationEnd'));
+      });
     }, 0);
   }
 }
