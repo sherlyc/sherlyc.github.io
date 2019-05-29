@@ -44,7 +44,7 @@ export class ExperimentService {
     if (existingLotteryNumber) {
       return existingLotteryNumber;
     }
-    const newLotteryNumber = Math.floor(random() * 100);
+    const newLotteryNumber = Math.floor(random() * 100) + 1;
     this.storeService.set(experimentStorageKey, newLotteryNumber);
     return newLotteryNumber;
   }

@@ -74,7 +74,7 @@ describe('ExperimentService', () => {
     const experimentName = 'experimentName';
     const randomNumber = service.getLotteryNumber(experimentName);
 
-    expect(randomNumber).toEqual(38);
+    expect(randomNumber).toEqual(39);
     expect(storeService.set).toHaveBeenCalledWith(
       `${experimentName}ExperimentLottery`,
       randomNumber
