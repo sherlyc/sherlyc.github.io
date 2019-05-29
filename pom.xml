@@ -19,7 +19,7 @@
   <properties>
     <microserviceGroup>experience</microserviceGroup>
     <tile-deploy.nodeVersionRange>[10,11)</tile-deploy.nodeVersionRange>
-    <tile-deploy.autocannon.timeoutMillis>360000</tile-deploy.autocannon.timeoutMillis>
+    <tile-deploy.autocannon.timeoutMillis>3600000</tile-deploy.autocannon.timeoutMillis>
     <tile-deploy.image.name>${tile-deploy.docker.registry}/${organisation.domain}/${organisation.group}/${project.artifactId}:${project.version}</tile-deploy.image.name>
     <tile-deploy.autocannon.image.name>${tile-deploy.docker.registry}/nz.stuff/yokohama/yokohama-autocannon:1.3</tile-deploy.autocannon.image.name>
 
