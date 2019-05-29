@@ -12,12 +12,14 @@ import registry from '../content-blocks.registry';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { IExperimentContainer } from '../../../../common/__types__/IExperimentContainer';
 import { RuntimeService } from 'src/app/services/runtime/runtime.service';
+import { LoggerService } from 'src/app/services/logger/logger.service';
 
 describe('ExperimentContainerComponent', () => {
   let component: ExperimentContainerComponent;
   let fixture: ComponentFixture<ExperimentContainerComponent>;
   let experimentService: ServiceMock<ExperimentService>;
   let runtimeService: ServiceMock<RuntimeService>;
+  let loggerService: ServiceMock<LoggerService>;
 
   @Component({
     selector: 'app-control-variant-content-block',
@@ -63,6 +65,10 @@ describe('ExperimentContainerComponent', () => {
         {
           provide: RuntimeService,
           useClass: mockService(RuntimeService)
+        },
+        {
+          provide: LoggerService,
+          useClass: mockService(LoggerService)
         }
       ]
     })
@@ -77,6 +83,7 @@ describe('ExperimentContainerComponent', () => {
       .compileComponents();
     experimentService = TestBed.get(ExperimentService);
     runtimeService = TestBed.get(RuntimeService);
+    loggerService = TestBed.get(LoggerService);
   });
 
   beforeEach(() => {
@@ -156,5 +163,19 @@ describe('ExperimentContainerComponent', () => {
     fixture.detectChanges();
 
     expect(component.contentBlocks).toHaveLength(0);
+  });
+
+  it('should log error when variant does not exist', async () => {
+    runtimeService.isBrowser.mockReturnValue(true);
+    (experimentService.getVariant as jest.Mock).mockResolvedValue(
+      'invalidVariant'
+    );
+    component.input = { ...experimentContainer, variants: { control: [] } };
+
+    await component.ngOnInit();
+    fixture.detectChanges();
+
+    expect(component.contentBlocks).toHaveLength(0);
+    expect(loggerService.error).toHaveBeenCalled();
   });
 });
