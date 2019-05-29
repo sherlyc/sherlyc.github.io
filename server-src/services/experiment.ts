@@ -11,17 +11,17 @@ export const getExperimentVariant = (
       }
       return 'control';
     case 'Parrot':
-      if (lotteryNumber >= 1 && lotteryNumber <= 17) {
+      if (lotteryNumber >= 1 && lotteryNumber <= 33) {
         return 'redHeadline';
-      } else if (lotteryNumber >= 18 && lotteryNumber <= 34) {
+      } else if (lotteryNumber >= 34 && lotteryNumber <= 66) {
         return 'greenHeadline';
       } else {
         return 'control';
       }
     case 'Toucan':
-      if (lotteryNumber >= 51 && lotteryNumber <= 67) {
+      if (lotteryNumber >= 1 && lotteryNumber <= 33) {
         return 'purpleHeadline';
-      } else if (lotteryNumber >= 68 && lotteryNumber <= 84) {
+      } else if (lotteryNumber >= 34 && lotteryNumber <= 66) {
         return 'orangeHeadline';
       } else {
         return 'control';
