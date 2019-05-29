@@ -11,11 +11,13 @@ import { mockService } from '../../services/mocks/MockService';
 import registry from '../content-blocks.registry';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { IExperimentContainer } from '../../../../common/__types__/IExperimentContainer';
+import { RuntimeService } from 'src/app/services/runtime/runtime.service';
 
 describe('ExperimentContainerComponent', () => {
   let component: ExperimentContainerComponent;
   let fixture: ComponentFixture<ExperimentContainerComponent>;
   let experimentService: ServiceMock<ExperimentService>;
+  let runtimeService: ServiceMock<RuntimeService>;
 
   @Component({
     selector: 'app-control-variant-content-block',
@@ -57,6 +59,10 @@ describe('ExperimentContainerComponent', () => {
         {
           provide: ExperimentService,
           useClass: mockService(ExperimentService)
+        },
+        {
+          provide: RuntimeService,
+          useClass: mockService(RuntimeService)
         }
       ]
     })
@@ -70,6 +76,7 @@ describe('ExperimentContainerComponent', () => {
       })
       .compileComponents();
     experimentService = TestBed.get(ExperimentService);
+    runtimeService = TestBed.get(RuntimeService);
   });
 
   beforeEach(() => {
@@ -104,6 +111,7 @@ describe('ExperimentContainerComponent', () => {
   });
 
   it('should render control variant', async () => {
+    runtimeService.isBrowser.mockReturnValue(true);
     (experimentService.getVariant as jest.Mock).mockResolvedValue('control');
     component.input = experimentContainer;
 
@@ -122,6 +130,7 @@ describe('ExperimentContainerComponent', () => {
   });
 
   it('should render other variant', async () => {
+    runtimeService.isBrowser.mockReturnValue(true);
     (experimentService.getVariant as jest.Mock).mockResolvedValue('red');
     component.input = experimentContainer;
 
@@ -137,5 +146,15 @@ describe('ExperimentContainerComponent', () => {
 
     expect(otherVariantBlocks).toHaveLength(1);
     expect(controlVariantBlocks).toHaveLength(0);
+  });
+
+  it('should not render any variant in server', async () => {
+    runtimeService.isBrowser.mockReturnValue(false);
+    component.input = experimentContainer;
+
+    await component.ngOnInit();
+    fixture.detectChanges();
+
+    expect(component.contentBlocks).toHaveLength(0);
   });
 });
