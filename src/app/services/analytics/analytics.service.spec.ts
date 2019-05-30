@@ -183,4 +183,32 @@ describe('AnalyticsService', () => {
       ...event
     });
   });
+
+  it('should push corresponding analytics for breaking news experiment', () => {
+    analyticsService.setup();
+    windowService.getWindow().digitalData.events.push = jest.fn();
+
+    const variant = 'purpleHeadline';
+    const experiment = 'Toucan';
+    const event = {
+      event: 'ab.testing.event',
+      'ab.testing.segment.web': variant,
+      'ab.testing.experiment.name': experiment
+    };
+    const extra = new Map();
+    extra.set('variant', variant);
+    extra.set('experiment', experiment);
+
+    analyticsService.pushEvent(
+      AnalyticsEventsType.BREAKING_NEWS_EXPERIMENT,
+      extra
+    );
+
+    expect(
+      windowService.getWindow().digitalData.events.push
+    ).toHaveBeenCalledWith({
+      type: 'analytics',
+      ...event
+    });
+  });
 });
