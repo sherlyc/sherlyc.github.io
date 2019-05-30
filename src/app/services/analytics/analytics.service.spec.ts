@@ -199,10 +199,7 @@ describe('AnalyticsService', () => {
     extra.set('variant', variant);
     extra.set('experiment', experiment);
 
-    analyticsService.pushEvent(
-      AnalyticsEventsType.BREAKING_NEWS_EXPERIMENT,
-      extra
-    );
+    analyticsService.pushEvent(AnalyticsEventsType.EXPERIMENT, extra);
 
     expect(
       windowService.getWindow().digitalData.events.push

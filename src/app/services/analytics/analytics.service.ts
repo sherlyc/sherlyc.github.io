@@ -118,9 +118,7 @@ export class AnalyticsService implements IAnalyticsService {
           event: 'menu.nav',
           'menu.nav.section': <string>extraParams!.get('section')
         }),
-      [AnalyticsEventsType.BREAKING_NEWS_EXPERIMENT]: (
-        extraParams?: Map<string, string>
-      ) =>
+      [AnalyticsEventsType.EXPERIMENT]: (extraParams?: Map<string, string>) =>
         (adobeEvent = {
           event: 'ab.testing.event',
           'ab.testing.segment.web': <string>extraParams!.get('variant'),

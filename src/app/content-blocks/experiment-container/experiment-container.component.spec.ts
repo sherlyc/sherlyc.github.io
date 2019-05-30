@@ -13,6 +13,8 @@ import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/t
 import { IExperimentContainer } from '../../../../common/__types__/IExperimentContainer';
 import { RuntimeService } from 'src/app/services/runtime/runtime.service';
 import { LoggerService } from 'src/app/services/logger/logger.service';
+import { AnalyticsService } from '../../services/analytics/analytics.service';
+import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
 
 describe('ExperimentContainerComponent', () => {
   let component: ExperimentContainerComponent;
@@ -20,6 +22,7 @@ describe('ExperimentContainerComponent', () => {
   let experimentService: ServiceMock<ExperimentService>;
   let runtimeService: ServiceMock<RuntimeService>;
   let loggerService: ServiceMock<LoggerService>;
+  let analyticsService: ServiceMock<AnalyticsService>;
 
   @Component({
     selector: 'app-control-variant-content-block',
@@ -69,6 +72,10 @@ describe('ExperimentContainerComponent', () => {
         {
           provide: LoggerService,
           useClass: mockService(LoggerService)
+        },
+        {
+          provide: AnalyticsService,
+          useClass: mockService(AnalyticsService)
         }
       ]
     })
@@ -84,6 +91,7 @@ describe('ExperimentContainerComponent', () => {
     experimentService = TestBed.get(ExperimentService);
     runtimeService = TestBed.get(RuntimeService);
     loggerService = TestBed.get(LoggerService);
+    analyticsService = TestBed.get(AnalyticsService);
   });
 
   beforeEach(() => {
@@ -177,5 +185,23 @@ describe('ExperimentContainerComponent', () => {
 
     expect(component.contentBlocks).toHaveLength(0);
     expect(loggerService.error).toHaveBeenCalled();
+  });
+
+  describe('Analytics', () => {
+    it('should send analytics when experiment is displayed', async () => {
+      runtimeService.isBrowser.mockReturnValue(true);
+      (experimentService.getVariant as jest.Mock).mockResolvedValue('red');
+      component.input = experimentContainer;
+
+      await component.ngOnInit();
+
+      const extra = new Map();
+      extra.set('variant', 'red');
+      extra.set('experiment', 'ExperimentName');
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
+        AnalyticsEventsType.EXPERIMENT,
+        extra
+      );
+    });
   });
 });
