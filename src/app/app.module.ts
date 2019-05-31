@@ -21,7 +21,10 @@ import { WindowService } from './services/window/window.service';
 
 export function init_sentry(configService: ConfigService) {
   return () =>
-    Sentry.init(configService.getConfig().sentryIO as BrowserOptions);
+    Sentry.init({
+      ...configService.getConfig().sentryIO,
+      integrations: []
+    } as BrowserOptions);
 }
 @NgModule({
   declarations: [AppComponent],
