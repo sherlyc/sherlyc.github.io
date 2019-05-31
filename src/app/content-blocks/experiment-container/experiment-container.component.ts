@@ -30,7 +30,9 @@ export class ExperimentContainerComponent
       this.variant = await this.experimentService.getVariant(this.input.name);
       if (this.input.variants[this.variant]) {
         this.contentBlocks = this.input.variants[this.variant];
-        this.sendAnalytics();
+        if (this.contentBlocks.length > 0) {
+          this.sendAnalytics();
+        }
       } else {
         this.loggerService.error(
           new Error(

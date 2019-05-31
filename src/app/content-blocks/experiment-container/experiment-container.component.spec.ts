@@ -203,5 +203,18 @@ describe('ExperimentContainerComponent', () => {
         extra
       );
     });
+
+    it('should not send analytics when content block is empty', async () => {
+      runtimeService.isBrowser.mockReturnValue(true);
+      (experimentService.getVariant as jest.Mock).mockResolvedValue('red');
+      component.input = {
+        ...experimentContainer,
+        variants: { ...experimentContainer.variants, red: [] }
+      };
+
+      await component.ngOnInit();
+
+      expect(analyticsService.pushEvent).not.toHaveBeenCalled();
+    });
   });
 });
