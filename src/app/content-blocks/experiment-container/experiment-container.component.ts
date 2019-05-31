@@ -5,6 +5,8 @@ import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 import { ExperimentService } from '../../services/experiment/experiment.service';
 import { RuntimeService } from '../../services/runtime/runtime.service';
 import { LoggerService } from '../../services/logger/logger.service';
+import { AnalyticsService } from '../../services/analytics/analytics.service';
+import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
 
 @Component({
   selector: 'app-experiment-container',
@@ -19,7 +21,8 @@ export class ExperimentContainerComponent
   constructor(
     private experimentService: ExperimentService,
     private runtimeService: RuntimeService,
-    private loggerService: LoggerService
+    private loggerService: LoggerService,
+    private analyticsService: AnalyticsService
   ) {}
 
   async ngOnInit() {
@@ -27,6 +30,9 @@ export class ExperimentContainerComponent
       this.variant = await this.experimentService.getVariant(this.input.name);
       if (this.input.variants[this.variant]) {
         this.contentBlocks = this.input.variants[this.variant];
+        if (this.contentBlocks.length > 0) {
+          this.sendAnalytics();
+        }
       } else {
         this.loggerService.error(
           new Error(
@@ -37,5 +43,15 @@ export class ExperimentContainerComponent
         );
       }
     }
+  }
+
+  private sendAnalytics() {
+    const analyticsExtra = new Map();
+    analyticsExtra.set('variant', this.variant);
+    analyticsExtra.set('experiment', this.input.name);
+    this.analyticsService.pushEvent(
+      AnalyticsEventsType.EXPERIMENT,
+      analyticsExtra
+    );
   }
 }
