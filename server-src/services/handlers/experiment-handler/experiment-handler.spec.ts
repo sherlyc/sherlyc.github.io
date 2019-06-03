@@ -60,6 +60,7 @@ describe('Experiment Handler', () => {
     const handlerRunnerMock = jest.fn();
     const basicArticleUnit: IContentBlock = {
       type: ContentBlockType.BasicArticleUnit,
+      id: 'fake',
       indexHeadline: 'fake',
       introText: 'fake',
       linkUrl: 'fake',
