@@ -16,6 +16,7 @@ const createBasicArticleUnitBlock = (
 ): IBasicArticleUnit => ({
   type: ContentBlockType.BasicArticleUnit,
   id: article.id,
+  strapName: article.strapName,
   indexHeadline: article.indexHeadline,
   introText: article.introText,
   imageSrc: article.imageSrc,
@@ -29,6 +30,7 @@ const createBasicTitleArticleBlock = (
 ): IBasicArticleTitleUnit => ({
   type: ContentBlockType.BasicArticleTitleUnit,
   id: article.id,
+  strapName: article.strapName,
   indexHeadline: article.indexHeadline,
   linkUrl: article.linkUrl,
   lastPublishedTime: article.lastPublishedTime,
