@@ -5,16 +5,23 @@ import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUni
 import { MomentModule } from 'ngx-moment';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
+import { mockService, ServiceMock } from 'src/app/services/mocks/MockService';
+import { By } from '@angular/platform-browser';
+import { AnalyticsEventsType } from 'src/app/services/analytics/__types__/AnalyticsEventsType';
 
 describe('BasicArticleUnitComponent', () => {
   let component: BasicArticleUnitComponent;
   let fixture: ComponentFixture<BasicArticleUnitComponent>;
+  let analyticsService: ServiceMock<AnalyticsService>;
 
   const twoDaysAgoDateInSeconds =
     new Date().setDate(new Date().getDate() - 2) / 1000;
 
   const articleData: IBasicArticleUnit = {
     type: ContentBlockType.BasicArticleUnit,
+    id: '123123',
+    strapName: 'National',
     indexHeadline: 'Dummy Headline',
     introText: 'Dummy intro text',
     linkUrl: 'https://dummyurl.com',
@@ -26,12 +33,19 @@ describe('BasicArticleUnitComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [MomentModule, SharedModule],
-      declarations: [BasicArticleUnitComponent]
+      declarations: [BasicArticleUnitComponent],
+      providers: [
+        {
+          provide: AnalyticsService,
+          useClass: mockService(AnalyticsService)
+        }
+      ]
     }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BasicArticleUnitComponent);
+    analyticsService = TestBed.get(AnalyticsService);
     component = fixture.componentInstance;
   });
 
@@ -60,5 +74,22 @@ describe('BasicArticleUnitComponent', () => {
 
     const span = componentElement.querySelector('p span');
     expect(span!.textContent).toEqual('2 days ago');
+  });
+
+  it('should send analytics when clicked', () => {
+    const { strapName, indexHeadline, id } = articleData;
+    component.input = articleData;
+    fixture.detectChanges();
+
+    const anchorTag = fixture.debugElement.query(By.css('a')).nativeElement;
+    anchorTag.click();
+
+    expect(analyticsService.pushEvent).toHaveBeenCalledWith(
+      AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
+      new Map()
+        .set('homepage.strap', strapName)
+        .set('article.headline', indexHeadline)
+        .set('article.id', id)
+    );
   });
 });

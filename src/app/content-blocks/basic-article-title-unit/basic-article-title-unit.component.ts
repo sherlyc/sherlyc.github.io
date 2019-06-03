@@ -16,6 +16,7 @@ export class BasicArticleTitleUnitComponent implements IContentBlockComponent {
 
   sendAnalytics() {
     const { strapName, indexHeadline, id } = this.input;
+
     this.analyticsService.pushEvent(
       AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
       new Map()
