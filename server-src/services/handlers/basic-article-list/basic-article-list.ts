@@ -13,7 +13,7 @@ import { ListAsset } from '../../listAsset';
 
 const createBasicArticleUnitBlock = (
   article: IRawArticle,
-  strapName?: string
+  strapName: string
 ): IBasicArticleUnit => ({
   type: ContentBlockType.BasicArticleUnit,
   id: article.id,
@@ -28,7 +28,7 @@ const createBasicArticleUnitBlock = (
 
 const createBasicTitleArticleBlock = (
   article: IRawArticle,
-  strapName?: string
+  strapName: string
 ): IBasicArticleTitleUnit => ({
   type: ContentBlockType.BasicArticleTitleUnit,
   id: article.id,

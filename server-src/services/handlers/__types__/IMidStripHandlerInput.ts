@@ -2,6 +2,6 @@ import { HandlerInputType } from './HandlerInputType';
 
 export interface IMidStripHandlerInput {
   type: HandlerInputType.MidStrip;
-  strapName?: string;
+  strapName: string;
   totalArticles: number;
 }
