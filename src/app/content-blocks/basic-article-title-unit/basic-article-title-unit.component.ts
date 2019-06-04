@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
 import { IBasicArticleTitleUnit } from '../../../../common/__types__/IBasicArticleTitleUnit';
-import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
-import { AnalyticsEventsType } from 'src/app/services/analytics/__types__/AnalyticsEventsType';
+import { AnalyticsService } from '../../services/analytics/analytics.service';
+import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
 
 @Component({
   selector: 'app-basic-article-title-unit',

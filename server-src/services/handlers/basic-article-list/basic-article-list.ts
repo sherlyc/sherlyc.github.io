@@ -12,11 +12,12 @@ import { Section } from '../../section';
 import { ListAsset } from '../../listAsset';
 
 const createBasicArticleUnitBlock = (
-  article: IRawArticle
+  article: IRawArticle,
+  strapName?: string
 ): IBasicArticleUnit => ({
   type: ContentBlockType.BasicArticleUnit,
   id: article.id,
-  strapName: article.strapName,
+  strapName: strapName,
   indexHeadline: article.indexHeadline,
   introText: article.introText,
   imageSrc: article.imageSrc,
@@ -26,11 +27,12 @@ const createBasicArticleUnitBlock = (
 });
 
 const createBasicTitleArticleBlock = (
-  article: IRawArticle
+  article: IRawArticle,
+  strapName?: string
 ): IBasicArticleTitleUnit => ({
   type: ContentBlockType.BasicArticleTitleUnit,
   id: article.id,
-  strapName: article.strapName,
+  strapName: strapName,
   indexHeadline: article.indexHeadline,
   linkUrl: article.linkUrl,
   lastPublishedTime: article.lastPublishedTime,
@@ -42,7 +44,8 @@ export default async function(
   {
     sourceId,
     totalBasicArticlesUnit = 0,
-    totalBasicArticleTitleUnit = 0
+    totalBasicArticleTitleUnit = 0,
+    strapName
   }: IBasicArticleListHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
@@ -60,9 +63,17 @@ export default async function(
   return rawArticles.reduce(
     (final, article, index) => {
       if (index < totalBasicArticlesUnit) {
-        return [...final, createBasicArticleUnitBlock(article), basicAdUnit];
+        return [
+          ...final,
+          createBasicArticleUnitBlock(article, strapName),
+          basicAdUnit
+        ];
       }
-      return [...final, createBasicTitleArticleBlock(article), basicAdUnit];
+      return [
+        ...final,
+        createBasicTitleArticleBlock(article, strapName),
+        basicAdUnit
+      ];
     },
     [basicAdUnit] as IContentBlock[]
   );

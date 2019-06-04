@@ -22,6 +22,7 @@ describe('MiniMidStripHandler', () => {
       handlerRunnerMock,
       {
         type: HandlerInputType.MiniMidStrip,
+        strapName: 'MiniMidStrip',
         totalArticles: 2
       },
       params
@@ -35,6 +36,8 @@ describe('MiniMidStripHandler', () => {
         type: 'ColumnContainer',
         items: [
           {
+            id: '112556125',
+            strapName: 'MiniMidStrip',
             headlineFlags: [],
             imageSrc:
               'https://resources.stuff.co.nz/content/dam/images/1/v/0/i/9/z/image.related.StuffLandscapeThreeByTwo.300x200.1v0gv1.png/1557282443654.png',
@@ -44,6 +47,8 @@ describe('MiniMidStripHandler', () => {
             type: 'ImageLinkUnit'
           },
           {
+            id: '112561756',
+            strapName: 'MiniMidStrip',
             headlineFlags: [],
             imageSrc:
               'https://resources.stuff.co.nz/content/dam/images/1/u/y/s/b/z/image.related.StuffLandscapeThreeByTwo.300x200.1v0l7g.png/1557286998808.jpg',
