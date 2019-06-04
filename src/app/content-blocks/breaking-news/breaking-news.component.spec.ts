@@ -40,7 +40,7 @@ describe('BreakingNewsComponent', () => {
       id: 'whatever',
       text: 'breaking_news_text',
       link: 'breaking_news_link',
-      variant: 'orangeBackground'
+      variant: 'orangeHeadline'
     };
     fixture.detectChanges();
     jest.spyOn(component, 'onClickOrDismiss');

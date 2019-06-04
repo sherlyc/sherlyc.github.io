@@ -36,10 +36,3 @@ img {
 p {
   margin: 0;
 }
-
-@media only screen and (max-width: 23em) {
-  .column {
-    flex-basis: 100%;
-    max-width: 100%;
-  }
-}

@@ -126,6 +126,12 @@ export class AnalyticsService implements IAnalyticsService {
           'homepage.strap': <string>extraParams!.get('strapName'),
           'article.headline': <string>extraParams!.get('articleHeadline'),
           'article.id': <string>extraParams!.get('articleId')
+        }),
+      [AnalyticsEventsType.EXPERIMENT]: (extraParams?: Map<string, string>) =>
+        (adobeEvent = {
+          event: 'ab.testing.event',
+          'ab.testing.segment.web': <string>extraParams!.get('variant'),
+          'ab.testing.experiment.name': <string>extraParams!.get('experiment')
         })
     };
 
