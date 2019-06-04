@@ -117,6 +117,15 @@ export class AnalyticsService implements IAnalyticsService {
         (adobeEvent = {
           event: 'menu.nav',
           'menu.nav.section': <string>extraParams!.get('section')
+        }),
+      [AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED]: (
+        extraParams?: Map<string, string>
+      ) =>
+        (adobeEvent = {
+          event: 'homepage.strap.click',
+          'homepage.strap': <string>extraParams!.get('strapName'),
+          'article.headline': <string>extraParams!.get('articleHeadline'),
+          'article.id': <string>extraParams!.get('articleId')
         })
     };
 

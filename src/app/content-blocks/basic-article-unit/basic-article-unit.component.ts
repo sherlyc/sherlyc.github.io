@@ -20,9 +20,9 @@ export class BasicArticleUnitComponent implements IContentBlockComponent {
     this.analyticsService.pushEvent(
       AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
       new Map()
-        .set('homepage.strap', strapName)
-        .set('article.headline', indexHeadline)
-        .set('article.id', id)
+        .set('strapName', strapName)
+        .set('articleHeadline', indexHeadline)
+        .set('articleId', id)
     );
   }
 }
