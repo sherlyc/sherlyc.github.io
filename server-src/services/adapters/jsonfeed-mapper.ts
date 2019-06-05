@@ -1,12 +1,18 @@
 import { IJsonFeedArticleList } from './__types__/IJsonFeedArticleList';
-import { IJsonFeedArticle } from './__types__/IJsonFeedArticle';
+import { IJsonFeedArticle, AssetType } from './__types__/IJsonFeedArticle';
 import * as moment from 'moment';
 import { IRawArticle } from './__types__/IRawArticle';
 import { JsonFeedImageType } from './__types__/JsonFeedImageType';
 
 export default (articles: IJsonFeedArticle[]): IRawArticle[] => {
+  const mappedArticles = mapArticleAssets(articles);
+  const mappedUrlAssets = mapUrlAssets(articles);
+  return [...mappedArticles, ...mappedUrlAssets];
+};
+
+function mapArticleAssets(articles: IJsonFeedArticle[]) {
   return articles
-    .filter((article) => article.asset_type === 'ARTICLE')
+    .filter((article) => article.asset_type === AssetType.ARTICLE)
     .reduce(
       (final, item) => {
         final.push({
@@ -22,7 +28,27 @@ export default (articles: IJsonFeedArticle[]): IRawArticle[] => {
       },
       [] as IRawArticle[]
     );
-};
+}
+
+function mapUrlAssets(articles: IJsonFeedArticle[]) {
+  return articles
+    .filter((article) => article.asset_type === AssetType.URL)
+    .reduce(
+      (final, item) => {
+        final.push({
+          id: String(item.id),
+          indexHeadline: item.title,
+          introText: item.alt_intro,
+          linkUrl: item.url,
+          imageSrc: getImageSrc(item),
+          lastPublishedTime: moment(item.datetime_iso8601).unix(),
+          headlineFlags: []
+        });
+        return final;
+      },
+      [] as IRawArticle[]
+    );
+}
 
 function getImageSrc(item: IJsonFeedArticle): string | null {
   if (item.images && item.images.length > 0) {
