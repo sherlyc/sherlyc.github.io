@@ -29,10 +29,10 @@ describe('Footer', () => {
       .query(By.css('a[aria-label="Twitter"]'))
       .nativeElement.click();
 
-    expect(analyticsService.pushEvent).toHaveBeenCalledWith(
-      AnalyticsEventsType.FOOTER_MENU,
-      new Map().set('name', 'Twitter')
-    );
+    expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+      type: AnalyticsEventsType.FOOTER_MENU_CLICKED,
+      name: 'Twitter'
+    });
   });
 
   it('push analytics event when Facebook link is clicked', () => {
@@ -40,10 +40,10 @@ describe('Footer', () => {
       .query(By.css('a[aria-label="Facebook"]'))
       .nativeElement.click();
 
-    expect(analyticsService.pushEvent).toHaveBeenCalledWith(
-      AnalyticsEventsType.FOOTER_MENU,
-      new Map().set('name', 'Facebook')
-    );
+    expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+      type: AnalyticsEventsType.FOOTER_MENU_CLICKED,
+      name: 'Facebook'
+    });
   });
 
   it('push analytics event when Snapchat link is clicked', () => {
@@ -51,9 +51,9 @@ describe('Footer', () => {
       .query(By.css('a[aria-label="Snapchat"]'))
       .nativeElement.click();
 
-    expect(analyticsService.pushEvent).toHaveBeenCalledWith(
-      AnalyticsEventsType.FOOTER_MENU,
-      new Map().set('name', 'Snapchat')
-    );
+    expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+      type: AnalyticsEventsType.FOOTER_MENU_CLICKED,
+      name: 'Snapchat'
+    });
   });
 });

@@ -32,10 +32,10 @@ export class BreakingNewsComponent implements IContentBlockComponent {
   }
 
   sendAnalytics(isDismissing: boolean) {
-    this.analyticsService.pushEvent(
-      isDismissing
-        ? AnalyticsEventsType.BREAKING_NEWS_CLOSE
-        : AnalyticsEventsType.BREAKING_NEWS_OPEN
-    );
+    this.analyticsService.pushEvent({
+      type: isDismissing
+        ? AnalyticsEventsType.BREAKING_NEWS_CLOSED
+        : AnalyticsEventsType.BREAKING_NEWS_OPENED
+    });
   }
 }

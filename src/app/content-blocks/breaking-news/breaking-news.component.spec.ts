@@ -76,17 +76,17 @@ describe('BreakingNewsComponent', () => {
     it('should push analytics event when opening the breaking news link', () => {
       fixture.debugElement.query(By.css('.link')).nativeElement.click();
 
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
-        AnalyticsEventsType.BREAKING_NEWS_OPEN
-      );
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+        type: AnalyticsEventsType.BREAKING_NEWS_OPENED
+      });
     });
 
     it('should push analytics event when closing breaking news', () => {
       fixture.debugElement.query(By.css('.dismiss')).nativeElement.click();
 
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
-        AnalyticsEventsType.BREAKING_NEWS_CLOSE
-      );
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+        type: AnalyticsEventsType.BREAKING_NEWS_CLOSED
+      });
     });
   });
 });
