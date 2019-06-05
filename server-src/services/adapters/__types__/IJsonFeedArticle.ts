@@ -3,6 +3,7 @@ import { JsonFeedImageType } from './JsonFeedImageType';
 export interface IJsonFeedArticle {
   [key: string]: any;
   id: number;
+  asset_type: string;
   path: string;
   alt_headline: string;
   datetime_iso8601: string;

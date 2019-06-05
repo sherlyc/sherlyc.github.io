@@ -2,6 +2,7 @@
   "stories": [
     {
       "id": 109962196,
+      "asset_type": "ARTICLE",
       "path": "/national/109962196/cctv-shows-unruly-travelling-family-taking-christmas-tree-from-auckland-caltex",
       "url": "http://www.stuff.co.nz/_json/national/109962196/cctv-shows-unruly-travelling-family-taking-christmas-tree-from-auckland-caltex",
       "section": "National",
@@ -161,6 +162,7 @@
     },
     {
       "id": 109810764,
+      "asset_type": "ARTICLE",
       "path": "/business/farming/109810764/400-a-day-to-plant-trees-but-no-one-wants-the-job",
       "url": "http://www.stuff.co.nz/_json/business/farming/109810764/400-a-day-to-plant-trees-but-no-one-wants-the-job",
       "section": "Farming",
@@ -274,6 +276,11 @@
         }
       ],
       "galleries": []
+    },
+    {
+      "id": 110706741,
+      "asset_type": "QUERY",
+      "datetime_iso8601": "20190322T085041+1300"
     }
   ]
 }
