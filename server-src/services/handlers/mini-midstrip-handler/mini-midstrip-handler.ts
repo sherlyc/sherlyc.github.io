@@ -9,7 +9,7 @@ import { ListAsset } from '../../listAsset';
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  { totalArticles }: IMiniMidStripHandlerInput,
+  { totalArticles, strapName }: IMiniMidStripHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   const rawArticles = await getListAsset(
@@ -26,6 +26,8 @@ export default async function(
           ...final,
           {
             type: ContentBlockType.ImageLinkUnit,
+            id: article.id,
+            strapName: strapName,
             indexHeadline: article.indexHeadline,
             imageSrc: article.imageSrc,
             linkUrl: article.linkUrl,

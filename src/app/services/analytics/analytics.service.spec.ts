@@ -184,6 +184,36 @@ describe('AnalyticsService', () => {
     });
   });
 
+  it('should push corresponding analytics when homepage strap is clicked', () => {
+    analyticsService.setup();
+    windowService.getWindow().digitalData.events.push = jest.fn();
+
+    const strapName = 'National';
+    const headline = 'Headline';
+    const articleId = '123123';
+    const event = {
+      event: 'homepage.strap.click',
+      'homepage.strap': strapName,
+      'article.headline': headline,
+      'article.id': articleId
+    };
+
+    analyticsService.pushEvent(
+      AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
+      new Map()
+        .set('strapName', strapName)
+        .set('articleHeadline', headline)
+        .set('articleId', articleId)
+    );
+
+    expect(
+      windowService.getWindow().digitalData.events.push
+    ).toHaveBeenCalledWith({
+      type: 'analytics',
+      ...event
+    });
+  });
+
   it('should push corresponding analytics for breaking news experiment', () => {
     analyticsService.setup();
     windowService.getWindow().digitalData.events.push = jest.fn();

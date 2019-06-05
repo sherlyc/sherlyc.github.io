@@ -25,6 +25,7 @@ describe('MidStripHandler', () => {
       handlerRunnerMock,
       {
         type: HandlerInputType.MidStrip,
+        strapName: 'MidStrip',
         totalArticles
       },
       params
@@ -46,6 +47,7 @@ describe('MidStripHandler', () => {
       handlerRunnerMock,
       {
         type: HandlerInputType.MidStrip,
+        strapName: 'MidStrip',
         totalArticles
       },
       params

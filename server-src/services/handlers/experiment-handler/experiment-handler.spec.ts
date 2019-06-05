@@ -60,6 +60,8 @@ describe('Experiment Handler', () => {
     const handlerRunnerMock = jest.fn();
     const basicArticleUnit: IContentBlock = {
       type: ContentBlockType.BasicArticleUnit,
+      strapName: 'fake',
+      id: 'fake',
       indexHeadline: 'fake',
       introText: 'fake',
       linkUrl: 'fake',
@@ -87,16 +89,19 @@ describe('Experiment Handler', () => {
         variants: {
           redHeadline: {
             type: HandlerInputType.ArticleList,
+            strapName: 'fake',
             sourceId: Section.Latest,
             totalBasicArticlesUnit: 2
           },
           greenHeadline: {
             type: HandlerInputType.ArticleList,
+            strapName: 'fake',
             sourceId: Section.Latest,
             totalBasicArticlesUnit: 2
           },
           control: {
             type: HandlerInputType.ArticleList,
+            strapName: 'fake',
             sourceId: Section.Latest,
             totalBasicArticlesUnit: 2
           }
