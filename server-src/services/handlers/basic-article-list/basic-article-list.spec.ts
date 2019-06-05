@@ -29,6 +29,7 @@ describe('BasicArticleListHandler', () => {
       handlerRunnerMock,
       {
         type: HandlerInputType.ArticleList,
+        strapName: 'business',
         sourceId: Section.Business,
         totalBasicArticlesUnit: 1
       },
@@ -50,6 +51,7 @@ describe('BasicArticleListHandler', () => {
       handlerRunnerMock,
       {
         type: HandlerInputType.ArticleList,
+        strapName: 'business',
         sourceId: Section.Business,
         totalBasicArticlesUnit: 2
       },
@@ -75,6 +77,7 @@ describe('BasicArticleListHandler', () => {
       handlerRunnerMock,
       {
         type: HandlerInputType.ArticleList,
+        strapName: 'business',
         sourceId: Section.Business,
         totalBasicArticlesUnit,
         totalBasicArticleTitleUnit
@@ -99,6 +102,7 @@ describe('BasicArticleListHandler', () => {
       jest.fn(),
       {
         type: HandlerInputType.ArticleList,
+        strapName: 'business',
         totalBasicArticlesUnit: 1,
         totalBasicArticleTitleUnit: 1,
         sourceId: ListAsset.EditorPicks
@@ -121,6 +125,7 @@ describe('BasicArticleListHandler', () => {
       jest.fn(),
       {
         type: HandlerInputType.ArticleList,
+        strapName: 'business',
         totalBasicArticlesUnit: 2,
         totalBasicArticleTitleUnit: 2,
         sourceId: ListAsset.EditorPicks
