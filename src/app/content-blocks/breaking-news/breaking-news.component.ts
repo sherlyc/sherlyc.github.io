@@ -25,17 +25,21 @@ export class BreakingNewsComponent implements OnInit, IContentBlockComponent {
   ) {}
 
   ngOnInit() {
-    const storeBreakingNewsId = this.storeService.get<string>(
-      StorageKeys.BreakingNewsId
-    );
-    const isDismissedInSpade = storeBreakingNewsId === this.input.id;
+    this.shouldHide = this.isDismissedInSpade() || this.isDismissedInOtherApp();
+  }
 
+  private isDismissedInOtherApp() {
     const cookiesBreakingNewsId = this.cookieService.get(
       CookieNames.IGNORE_BREAKING_NEWS
     );
-    const isDismissedInOtherApp = cookiesBreakingNewsId === this.input.id;
+    return cookiesBreakingNewsId === this.input.id;
+  }
 
-    this.shouldHide = isDismissedInSpade || isDismissedInOtherApp;
+  private isDismissedInSpade() {
+    const storeBreakingNewsId = this.storeService.get<string>(
+      StorageKeys.BreakingNewsId
+    );
+    return storeBreakingNewsId === this.input.id;
   }
 
   onClickOrDismiss() {
