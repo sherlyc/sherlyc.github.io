@@ -1,15 +1,10 @@
 import { JsonFeedImageType } from './JsonFeedImageType';
-
-export enum AssetType {
-  ARTICLE = 'ARTICLE',
-  QUERY = 'QUERY',
-  URL = 'URL'
-}
+import { JsonFeedAssetType } from './JsonFeedAssetType';
 
 export interface IJsonFeedArticle {
   [key: string]: any;
   id: number;
-  asset_type: AssetType;
+  asset_type: JsonFeedAssetType;
   path: string;
   alt_headline: string;
   datetime_iso8601: string;

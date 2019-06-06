@@ -1,8 +1,8 @@
-import { IJsonFeedArticleList } from './__types__/IJsonFeedArticleList';
-import { IJsonFeedArticle, AssetType } from './__types__/IJsonFeedArticle';
+import { IJsonFeedArticle } from './__types__/IJsonFeedArticle';
 import * as moment from 'moment';
 import { IRawArticle } from './__types__/IRawArticle';
 import { JsonFeedImageType } from './__types__/JsonFeedImageType';
+import { JsonFeedAssetType } from './__types__/JsonFeedAssetType';
 
 export default (articles: IJsonFeedArticle[]): IRawArticle[] => {
   const mappedArticles = mapArticleAssets(articles);
@@ -12,7 +12,7 @@ export default (articles: IJsonFeedArticle[]): IRawArticle[] => {
 
 function mapArticleAssets(articles: IJsonFeedArticle[]) {
   return articles
-    .filter((article) => article.asset_type === AssetType.ARTICLE)
+    .filter((article) => article.asset_type === JsonFeedAssetType.ARTICLE)
     .reduce(
       (final, item) => {
         final.push({
@@ -32,7 +32,7 @@ function mapArticleAssets(articles: IJsonFeedArticle[]) {
 
 function mapUrlAssets(articles: IJsonFeedArticle[]) {
   return articles
-    .filter((article) => article.asset_type === AssetType.URL)
+    .filter((article) => article.asset_type === JsonFeedAssetType.URL)
     .reduce(
       (final, item) => {
         final.push({
