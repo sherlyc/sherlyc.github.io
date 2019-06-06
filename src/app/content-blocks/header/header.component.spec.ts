@@ -44,17 +44,17 @@ describe('Header', () => {
 
       fixture.debugElement.query(By.css('.menu')).nativeElement.click();
 
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
-        AnalyticsEventsType.MENU_NAV_OPENED
-      );
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+        type: AnalyticsEventsType.MENU_NAV_OPENED
+      });
     });
 
     it('should push analytics event when stuff logo is clicked', () => {
       fixture.debugElement.query(By.css('.title')).nativeElement.click();
 
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
-        AnalyticsEventsType.STUFF_LOGO_CLICKED
-      );
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+        type: AnalyticsEventsType.STUFF_LOGO_CLICKED
+      });
     });
 
     it('should push analytics event when menu section is clicked', () => {
@@ -64,10 +64,10 @@ describe('Header', () => {
         .query(By.css('.section-Homed'))
         .nativeElement.click();
 
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
-        AnalyticsEventsType.MENU_NAV_SECTION_CLICKED,
-        new Map().set('section', 'Homed')
-      );
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+        type: AnalyticsEventsType.MENU_NAV_SECTION_CLICKED,
+        section: 'Homed'
+      });
     });
   });
 });

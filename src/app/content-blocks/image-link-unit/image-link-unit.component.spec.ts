@@ -74,12 +74,11 @@ describe('ImageLinkUnitComponent', () => {
     const anchorTag = fixture.debugElement.query(By.css('a')).nativeElement;
     anchorTag.click();
 
-    expect(analyticsService.pushEvent).toHaveBeenCalledWith(
-      AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
-      new Map()
-        .set('strapName', strapName)
-        .set('articleHeadline', indexHeadline)
-        .set('articleId', id)
-    );
+    expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+      type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
+      strapName,
+      articleHeadline: indexHeadline,
+      articleId: id
+    });
   });
 });

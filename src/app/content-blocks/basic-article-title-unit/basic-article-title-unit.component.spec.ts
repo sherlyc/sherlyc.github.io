@@ -38,6 +38,7 @@ describe('BasicArticleTitleUnitComponent', () => {
     component.input = {
       type: ContentBlockType.BasicArticleTitleUnit,
       id: '123123123',
+      strapName: 'Top stories',
       indexHeadline: headline,
       linkUrl: '/headline/top-news',
       headlineFlags: [],
@@ -57,6 +58,7 @@ describe('BasicArticleTitleUnitComponent', () => {
       type: ContentBlockType.BasicArticleTitleUnit,
       id: '123123123',
       indexHeadline: 'Headline',
+      strapName: 'Top stories',
       linkUrl,
       headlineFlags: [],
       lastPublishedTime: 1
@@ -85,12 +87,11 @@ describe('BasicArticleTitleUnitComponent', () => {
 
     const anchorTag = fixture.debugElement.query(By.css('a')).nativeElement;
     anchorTag.click();
-    expect(analyticsService.pushEvent).toBeCalledWith(
-      AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
-      new Map()
-        .set('strapName', strapName)
-        .set('articleHeadline', indexHeadline)
-        .set('articleId', articleId)
-    );
+    expect(analyticsService.pushEvent).toBeCalledWith({
+      type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
+      strapName,
+      articleHeadline: indexHeadline,
+      articleId: articleId
+    });
   });
 });

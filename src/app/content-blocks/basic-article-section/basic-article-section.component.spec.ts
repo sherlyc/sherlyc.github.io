@@ -144,9 +144,9 @@ describe('basic article section', () => {
 
     fixture.debugElement.query(By.css('.more-button')).nativeElement.click();
 
-    expect(analyticsService.pushEvent).toHaveBeenCalledWith(
-      AnalyticsEventsType.MORE_BUTTON_CLICKED,
-      new Map().set('url', '/national')
-    );
+    expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+      type: AnalyticsEventsType.MORE_BUTTON_CLICKED,
+      url: '/national'
+    });
   });
 });
