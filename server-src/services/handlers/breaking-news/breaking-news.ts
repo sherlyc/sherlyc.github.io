@@ -8,7 +8,7 @@ import { IParams } from '../../__types__/IParams';
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  { ignoreBreakingNews, variant }: IBreakingNewsHandlerInput,
+  { variant }: IBreakingNewsHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   const {
@@ -17,10 +17,8 @@ export default async function(
     link,
     enabled
   }: IBreakingNewsResponse = await getBreakingNews(params);
-  const shouldIgnore = !enabled || ignoreBreakingNews === id;
-  return shouldIgnore
-    ? []
-    : [
+  return enabled
+    ? [
         {
           type: 'BreakingNews',
           id,
@@ -28,5 +26,6 @@ export default async function(
           link,
           variant
         } as IBreakingNews
-      ];
+      ]
+    : [];
 }
