@@ -1,14 +1,13 @@
 import { JsonFeedImageType } from './JsonFeedImageType';
 import { JsonFeedAssetType } from './JsonFeedAssetType';
 
-export interface IJsonFeedArticle {
+export interface IJsonFeedUrl {
   [key: string]: any;
-  id: number;
-  asset_type: JsonFeedAssetType.ARTICLE;
-  path: string;
-  alt_headline: string;
-  datetime_iso8601: string;
+  id: string;
+  asset_type: JsonFeedAssetType.URL;
+  title: string;
   alt_intro: string;
+  url: string;
   images?: Array<{
     [key: string]: any;
     variants?: Array<{
@@ -17,4 +16,5 @@ export interface IJsonFeedArticle {
       layout: JsonFeedImageType;
     }>;
   }>;
+  datetime_iso8601: string;
 }
