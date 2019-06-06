@@ -11,15 +11,15 @@ export default (
   return articles
     .map((article) => {
       if (article.asset_type === JsonFeedAssetType.ARTICLE) {
-        return mapArticleAssets(article);
+        return mapArticleAsset(article);
       } else if (article.asset_type === JsonFeedAssetType.URL) {
-        return mapUrlAssets(article);
+        return mapUrlAsset(article);
       }
     })
     .filter(Boolean) as IRawArticle[];
 };
 
-function mapArticleAssets(item: IJsonFeedArticle): IRawArticle {
+function mapArticleAsset(item: IJsonFeedArticle): IRawArticle {
   return {
     id: String(item.id),
     indexHeadline: item.alt_headline,
@@ -31,7 +31,7 @@ function mapArticleAssets(item: IJsonFeedArticle): IRawArticle {
   };
 }
 
-function mapUrlAssets(item: IJsonFeedUrl): IRawArticle {
+function mapUrlAsset(item: IJsonFeedUrl): IRawArticle {
   return {
     id: String(item.id),
     indexHeadline: item.title,
