@@ -68,6 +68,16 @@ describe('BreakingNewsComponent', () => {
     expect(fixture.debugElement.query(By.css('.breaking-news'))).toBeTruthy();
   });
 
+  it('should show breaking news if it is a new breaking news', async () => {
+    (storeService.get as jest.Mock).mockReturnValue('oldBreakingNews');
+    (cookieServiceMock.get as jest.Mock).mockReturnValue('oldBreakingNews');
+
+    await component.ngOnInit();
+    fixture.detectChanges();
+
+    expect(fixture.debugElement.query(By.css('.breaking-news'))).toBeTruthy();
+  });
+
   it('should hide breaking news if has been dismissed in spade and storage id matches current breaking new id', async () => {
     (storeService.get as jest.Mock).mockReturnValue(breakingNewsId);
     (cookieServiceMock.get as jest.Mock).mockReturnValue(null);
@@ -91,6 +101,16 @@ describe('BreakingNewsComponent', () => {
       expect(fixture.debugElement.query(By.css('.breaking-news'))).toBeFalsy();
     }
   );
+
+  it('should hide breaking news if both breaking new id in local storage and cookies match current breaking news id', async () => {
+    (storeService.get as jest.Mock).mockReturnValue(breakingNewsId);
+    (cookieServiceMock.get as jest.Mock).mockReturnValue(breakingNewsId);
+
+    await component.ngOnInit();
+    fixture.detectChanges();
+
+    expect(fixture.debugElement.query(By.css('.breaking-news'))).toBeFalsy();
+  });
 
   it(
     'should hide breaking news when breaking new id in other applications matches current breaking news id ' +

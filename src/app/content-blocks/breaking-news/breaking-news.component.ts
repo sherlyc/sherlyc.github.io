@@ -28,14 +28,12 @@ export class BreakingNewsComponent implements OnInit, IContentBlockComponent {
     const storeBreakingNewsId = this.storeService.get<string>(
       StorageKeys.BreakingNewsId
     );
-    const isDismissedInSpade =
-      !!storeBreakingNewsId || storeBreakingNewsId === this.input.id;
+    const isDismissedInSpade = storeBreakingNewsId === this.input.id;
 
     const cookiesBreakingNewsId = this.cookieService.get(
       CookieNames.IGNORE_BREAKING_NEWS
     );
-    const isDismissedInOtherApp =
-      !!cookiesBreakingNewsId || cookiesBreakingNewsId === this.input.id;
+    const isDismissedInOtherApp = cookiesBreakingNewsId === this.input.id;
 
     this.shouldHide = isDismissedInSpade || isDismissedInOtherApp;
   }
