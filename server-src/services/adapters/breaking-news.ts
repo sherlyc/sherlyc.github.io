@@ -7,7 +7,7 @@ import { IIsomophicApiBreakingNews } from './__types__/IIsomophicApiBreakingNews
 
 async function apiCall(params: IParams): Promise<IBreakingNewsResponse> {
   const response = await http(params).get<IIsomophicApiBreakingNews>(
-    `${config.breakingNewsApi}`
+    config.breakingNewsApi
   );
   return response.data.breakingNews.breakingNewsData;
 }
