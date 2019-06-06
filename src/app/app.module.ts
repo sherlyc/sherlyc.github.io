@@ -11,7 +11,6 @@ import { ContentBlocksModule } from './content-blocks/content-blocks.module';
 import { LoggerService } from './services/logger/logger.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { HttpInterceptorService } from './services/http-interceptor/http-interceptor.service';
 import { CookieService } from './services/cookie/cookie.service';
 import { SharedModule } from './shared/shared.module';
 import { WindowService } from './services/window/window.service';
@@ -32,11 +31,6 @@ import { WindowService } from './services/window/window.service';
   ],
   providers: [
     { provide: ErrorHandler, useClass: LoggerService },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpInterceptorService,
-      multi: true
-    },
     CookieService,
     WindowService
   ],
