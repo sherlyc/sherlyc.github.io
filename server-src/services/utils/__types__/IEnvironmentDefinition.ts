@@ -9,7 +9,7 @@ export interface IEnvironmentDefinition {
   miniMidStripListAssetId: string;
   editorsPickAssetId: string;
   weatherAPI: string;
-  contentAPI: string;
+  breakingNewsApi: string;
   maxArticlesToRetrieve: number;
   loggerOptions: ILoggerOptions;
   videoConfig: IVideoConfig;

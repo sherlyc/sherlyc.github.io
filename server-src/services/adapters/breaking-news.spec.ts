@@ -17,36 +17,24 @@ describe('Breaking news service', () => {
   });
 
   it('should get a breaking news', async () => {
-    const breakingNews = {
+    const breakingNewsData = {
       enabled: true,
       id: 'whatever',
       text: 'breaking_news_text',
       link: 'http://example.com'
     };
     (http(params).get as jest.Mock).mockResolvedValue({
-      data: breakingNews
+      data: { breakingNews: { breakingNewsData } }
     });
 
-    config.contentAPI =
+    config.breakingNewsApi =
       'http://content-api-gateway-staging.fairfaxmedia.co.nz/service/content/v1';
-    expect(await getBreakingNews(params)).toEqual(breakingNews);
+    expect(await getBreakingNews(params)).toEqual(breakingNewsData);
   });
 
   it('should not get a breaking news when content-api request fails', async () => {
     const error = new Error('AJAX error');
     (http(params).get as jest.Mock).mockRejectedValue(error);
     await expect(getBreakingNews(params)).rejects.toEqual(error);
-  });
-
-  it('should return mocked contentAPI when contentAPI value is MOCKED', async () => {
-    config.contentAPI = 'MOCKED';
-    expect(await getBreakingNews(params)).toEqual({
-      id: '123',
-      text:
-        '$1 billion budget blowout in Aucklands City Rail Link, officials admit... read more',
-      link:
-        'https://www.stuff.co.nz/business/111688527/vendors-claim-real-estate-agent-acted-inappropriately-in-helping-buyer-flip-house',
-      enabled: true
-    });
   });
 });
