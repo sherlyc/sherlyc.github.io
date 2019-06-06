@@ -7,6 +7,7 @@ import { AnalyticsService } from '../../services/analytics/analytics.service';
 import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
 import { WindowService } from '../../services/window/window.service';
 import { StorageKeys, StoreService } from '../../services/store/store.service';
+import { RuntimeService } from '../../services/runtime/runtime.service';
 
 @Component({
   selector: 'app-breaking-news',
@@ -15,17 +16,21 @@ import { StorageKeys, StoreService } from '../../services/store/store.service';
 })
 export class BreakingNewsComponent implements OnInit, IContentBlockComponent {
   input!: IBreakingNews;
-  shouldHide = false;
+  shouldHide = true;
 
   constructor(
     private cookieService: CookieService,
     private analyticsService: AnalyticsService,
     private windowService: WindowService,
-    private storeService: StoreService
+    private storeService: StoreService,
+    private runtimeService: RuntimeService
   ) {}
 
   ngOnInit() {
-    this.shouldHide = this.isDismissedInSpade() || this.isDismissedInOtherApp();
+    if (this.runtimeService.isBrowser()) {
+      this.shouldHide =
+        this.isDismissedInSpade() || this.isDismissedInOtherApp();
+    }
   }
 
   private isDismissedInOtherApp() {
