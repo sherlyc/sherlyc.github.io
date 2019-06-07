@@ -56,10 +56,10 @@ describe('AnalyticsService', () => {
       'weather.location': 'Auckland'
     };
 
-    analyticsService.pushEvent(
-      AnalyticsEventsType.WEATHER_LOCATION_CHANGED,
-      new Map().set('location', 'Auckland')
-    );
+    analyticsService.pushEvent({
+      type: AnalyticsEventsType.WEATHER_LOCATION_CHANGED,
+      location: 'Auckland'
+    });
 
     expect(
       windowService.getWindow().digitalData.events.push
@@ -76,7 +76,9 @@ describe('AnalyticsService', () => {
     const event = {
       event: 'stuff.logo'
     };
-    analyticsService.pushEvent(AnalyticsEventsType.STUFF_LOGO_CLICKED);
+    analyticsService.pushEvent({
+      type: AnalyticsEventsType.STUFF_LOGO_CLICKED
+    });
 
     expect(
       windowService.getWindow().digitalData.events.push
@@ -94,10 +96,10 @@ describe('AnalyticsService', () => {
       event: 'menu.footer',
       'menu.link': 'twitter'
     };
-    analyticsService.pushEvent(
-      AnalyticsEventsType.FOOTER_MENU,
-      new Map().set('name', 'twitter')
-    );
+    analyticsService.pushEvent({
+      type: AnalyticsEventsType.FOOTER_MENU_CLICKED,
+      name: 'twitter'
+    });
 
     expect(
       windowService.getWindow().digitalData.events.push
@@ -114,8 +116,9 @@ describe('AnalyticsService', () => {
     const event = {
       event: 'breaking.news.open'
     };
-    analyticsService.pushEvent(AnalyticsEventsType.BREAKING_NEWS_OPEN);
-
+    analyticsService.pushEvent({
+      type: AnalyticsEventsType.BREAKING_NEWS_OPENED
+    });
     expect(
       windowService.getWindow().digitalData.events.push
     ).toHaveBeenCalledWith({
@@ -131,7 +134,9 @@ describe('AnalyticsService', () => {
     const event = {
       event: 'breaking.news.close'
     };
-    analyticsService.pushEvent(AnalyticsEventsType.BREAKING_NEWS_CLOSE);
+    analyticsService.pushEvent({
+      type: AnalyticsEventsType.BREAKING_NEWS_CLOSED
+    });
 
     expect(
       windowService.getWindow().digitalData.events.push
@@ -149,10 +154,10 @@ describe('AnalyticsService', () => {
       event: 'more.content.button',
       'more.content.url': '/national'
     };
-    analyticsService.pushEvent(
-      AnalyticsEventsType.MORE_BUTTON_CLICKED,
-      new Map().set('url', '/national')
-    );
+    analyticsService.pushEvent({
+      type: AnalyticsEventsType.MORE_BUTTON_CLICKED,
+      url: '/national'
+    });
 
     expect(
       windowService.getWindow().digitalData.events.push
@@ -171,10 +176,39 @@ describe('AnalyticsService', () => {
       'menu.nav.section': 'Entertainment'
     };
 
-    analyticsService.pushEvent(
-      AnalyticsEventsType.MENU_NAV_SECTION_CLICKED,
-      new Map().set('section', 'Entertainment')
-    );
+    analyticsService.pushEvent({
+      type: AnalyticsEventsType.MENU_NAV_SECTION_CLICKED,
+      section: 'Entertainment'
+    });
+
+    expect(
+      windowService.getWindow().digitalData.events.push
+    ).toHaveBeenCalledWith({
+      type: 'analytics',
+      ...event
+    });
+  });
+
+  it('should push corresponding analytics when homepage strap is clicked', () => {
+    analyticsService.setup();
+    windowService.getWindow().digitalData.events.push = jest.fn();
+
+    const strapName = 'National';
+    const headline = 'Headline';
+    const articleId = '123123';
+    const event = {
+      event: 'homepage.strap.click',
+      'homepage.strap': strapName,
+      'article.headline': headline,
+      'article.id': articleId
+    };
+
+    analyticsService.pushEvent({
+      type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
+      strapName,
+      articleHeadline: headline,
+      articleId: articleId
+    });
 
     expect(
       windowService.getWindow().digitalData.events.push
@@ -195,11 +229,12 @@ describe('AnalyticsService', () => {
       'ab.testing.segment.web': variant,
       'ab.testing.experiment.name': experiment
     };
-    const extra = new Map();
-    extra.set('variant', variant);
-    extra.set('experiment', experiment);
 
-    analyticsService.pushEvent(AnalyticsEventsType.EXPERIMENT, extra);
+    analyticsService.pushEvent({
+      type: AnalyticsEventsType.EXPERIMENT,
+      variant,
+      experiment
+    });
 
     expect(
       windowService.getWindow().digitalData.events.push

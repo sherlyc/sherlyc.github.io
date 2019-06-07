@@ -2,13 +2,20 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ImageLinkUnitComponent } from './image-link-unit.component';
 import { IImageLinkUnit } from '../../../../common/__types__/IImageLinkUnit';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
+import { By } from '@angular/platform-browser';
+import { AnalyticsEventsType } from 'src/app/services/analytics/__types__/AnalyticsEventsType';
+import { ServiceMock, mockService } from 'src/app/services/mocks/MockService';
+import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
 
 describe('ImageLinkUnitComponent', () => {
   let component: ImageLinkUnitComponent;
   let fixture: ComponentFixture<ImageLinkUnitComponent>;
+  let analyticsService: ServiceMock<AnalyticsService>;
 
   const articleData: IImageLinkUnit = {
     type: ContentBlockType.ImageLinkUnit,
+    id: '123123',
+    strapName: 'National',
     indexHeadline: 'Dummy Headline',
     linkUrl: 'https://dummyurl.com',
     imageSrc: 'https://dummyimagesrc.com',
@@ -18,13 +25,20 @@ describe('ImageLinkUnitComponent', () => {
   beforeEach(async () =>
     TestBed.configureTestingModule({
       imports: [],
-      declarations: [ImageLinkUnitComponent]
+      declarations: [ImageLinkUnitComponent],
+      providers: [
+        {
+          provide: AnalyticsService,
+          useClass: mockService(AnalyticsService)
+        }
+      ]
     }).compileComponents()
   );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ImageLinkUnitComponent);
     component = fixture.componentInstance;
+    analyticsService = TestBed.get(AnalyticsService);
   });
 
   it('should create', () => {
@@ -49,5 +63,22 @@ describe('ImageLinkUnitComponent', () => {
     const img = componentElement.querySelector('img');
     expect(img!.getAttribute('src')).toEqual(articleData.imageSrc);
     expect(img!.getAttribute('alt')).toEqual(articleData.indexHeadline);
+  });
+
+  it('should send analytics when clicked', () => {
+    const { strapName, indexHeadline, id } = articleData;
+    component.input = articleData;
+
+    fixture.detectChanges();
+
+    const anchorTag = fixture.debugElement.query(By.css('a')).nativeElement;
+    anchorTag.click();
+
+    expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+      type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
+      strapName,
+      articleHeadline: indexHeadline,
+      articleId: id
+    });
   });
 });

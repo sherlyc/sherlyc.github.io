@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
 import { IBasicArticleTitleUnit } from '../../../../common/__types__/IBasicArticleTitleUnit';
+import { AnalyticsService } from '../../services/analytics/analytics.service';
+import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
 
 @Component({
   selector: 'app-basic-article-title-unit',
@@ -10,5 +12,16 @@ import { IBasicArticleTitleUnit } from '../../../../common/__types__/IBasicArtic
 export class BasicArticleTitleUnitComponent implements IContentBlockComponent {
   @Input() input!: IBasicArticleTitleUnit;
 
-  constructor() {}
+  constructor(private analyticsService: AnalyticsService) {}
+
+  sendAnalytics() {
+    const { strapName, indexHeadline, id } = this.input;
+
+    this.analyticsService.pushEvent({
+      type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
+      strapName,
+      articleHeadline: indexHeadline,
+      articleId: id
+    });
+  }
 }

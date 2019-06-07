@@ -1,6 +1,6 @@
 import { ErrorHandler, Injectable } from '@angular/core';
 import { ConfigService } from '../config/config.service';
-import * as Sentry from '@sentry/browser';
+import { BrowserClient, Hub } from '@sentry/browser';
 import { CorrelationService } from '../correlation/correlation.service';
 interface ISpadeConsole extends Console {
   [key: string]: Function;
@@ -10,10 +10,19 @@ interface ISpadeConsole extends Console {
   providedIn: 'root'
 })
 export class LoggerService implements ErrorHandler {
+  client: Hub;
+
   constructor(
     private config: ConfigService,
     private correlationService: CorrelationService
-  ) {}
+  ) {
+    this.client = new Hub(
+      new BrowserClient({
+        ...config.getConfig().sentryIO,
+        integrations: []
+      })
+    );
+  }
 
   logLevels = ['debug', 'info', 'warn', 'error'];
 
@@ -50,10 +59,10 @@ export class LoggerService implements ErrorHandler {
 
   error(error: Error, ...rest: any[]) {
     const correlation = this.correlationService.getCorrelation();
-    Sentry.configureScope((scope) => {
+    this.client.configureScope((scope) => {
       scope.setTags(correlation as any);
     });
-    Sentry.captureException(error);
+    this.client.captureException(error);
     this.log('error', error, ...rest);
   }
 

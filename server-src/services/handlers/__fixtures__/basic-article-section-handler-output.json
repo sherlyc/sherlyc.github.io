@@ -10,6 +10,8 @@
           "type": "BasicAdUnit"
         },
         {
+          "id": "109962196",
+          "strapName": "business",
           "headlineFlags": [],
           "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffBigHeadline.418x220.1tgvdg.png/1547607024623.jpg",
           "indexHeadline": "Not even Christmas is safe",
@@ -22,6 +24,8 @@
           "type": "BasicAdUnit"
         },
         {
+          "id": "109810764",
+          "strapName": "business",
           "headlineFlags": [],
           "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/f/z/u/4/image.related.StuffBigHeadline.418x220.1tdmj0.png/1547601996972.jpg",
           "indexHeadline": "Wanted: Tree planters for $400 a day",
@@ -50,6 +54,8 @@
           "type": "BasicAdUnit"
         },
         {
+          "id": "112552026",
+          "strapName": "business",
           "headlineFlags": [],
           "indexHeadline": "Farm workers stung by contracts",
           "introText": "A Waikato dairy farmer says his family lost everything after an employment agreement turned sour.",
@@ -62,6 +68,8 @@
           "type": "BasicAdUnit"
         },
         {
+          "id": "112552027",
+          "strapName": "business",
           "headlineFlags": [],
           "indexHeadline": "Barcelona",
           "lastPublishedTime": 1557351421,

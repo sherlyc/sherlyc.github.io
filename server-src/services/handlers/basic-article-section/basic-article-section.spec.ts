@@ -21,7 +21,8 @@ describe('BasicArticleSectionHandler', () => {
       displayNameColor: 'red',
       articleList: {
         sourceId: Section.Business,
-        totalBasicArticlesUnit
+        totalBasicArticlesUnit,
+        strapName: 'business'
       }
     } as IBasicArticleSectionHandlerInput;
 
@@ -43,6 +44,7 @@ describe('BasicArticleSectionHandler', () => {
     expect(handlerRunnerMock).toHaveBeenCalledWith(
       {
         type: HandlerInputType.ArticleList,
+        strapName: 'business',
         sourceId: Section.Business,
         totalBasicArticlesUnit
       },
@@ -60,7 +62,8 @@ describe('BasicArticleSectionHandler', () => {
       articleList: {
         sourceId: ListAsset.EditorPicks,
         totalBasicArticlesUnit,
-        totalBasicArticleTitleUnit
+        totalBasicArticleTitleUnit,
+        strapName: 'business'
       }
     } as IBasicArticleSectionHandlerInput;
 
@@ -83,6 +86,7 @@ describe('BasicArticleSectionHandler', () => {
       {
         type: HandlerInputType.ArticleList,
         sourceId: ListAsset.EditorPicks,
+        strapName: 'business',
         totalBasicArticlesUnit,
         totalBasicArticleTitleUnit
       },

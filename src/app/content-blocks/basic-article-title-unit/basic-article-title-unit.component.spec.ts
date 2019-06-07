@@ -4,18 +4,29 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 import { HeadlineComponent } from '../../shared/components/headline/headline.component';
 import { By } from '@angular/platform-browser';
+import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
+import { mockService, ServiceMock } from 'src/app/services/mocks/MockService';
+import { AnalyticsEventsType } from 'src/app/services/analytics/__types__/AnalyticsEventsType';
 
 describe('BasicArticleTitleUnitComponent', () => {
   let component: BasicArticleTitleUnitComponent;
   let fixture: ComponentFixture<BasicArticleTitleUnitComponent>;
+  let analyticsService: ServiceMock<AnalyticsService>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [SharedModule],
-      declarations: [BasicArticleTitleUnitComponent]
+      declarations: [BasicArticleTitleUnitComponent],
+      providers: [
+        {
+          provide: AnalyticsService,
+          useClass: mockService(AnalyticsService)
+        }
+      ]
     }).compileComponents();
     fixture = TestBed.createComponent(BasicArticleTitleUnitComponent);
     component = fixture.componentInstance;
+    analyticsService = TestBed.get(AnalyticsService);
   });
 
   it('should be created', () => {
@@ -26,6 +37,8 @@ describe('BasicArticleTitleUnitComponent', () => {
     const headline = 'Headline';
     component.input = {
       type: ContentBlockType.BasicArticleTitleUnit,
+      id: '123123123',
+      strapName: 'Top stories',
       indexHeadline: headline,
       linkUrl: '/headline/top-news',
       headlineFlags: [],
@@ -43,7 +56,9 @@ describe('BasicArticleTitleUnitComponent', () => {
     const linkUrl = '/headline/top-news';
     component.input = {
       type: ContentBlockType.BasicArticleTitleUnit,
+      id: '123123123',
       indexHeadline: 'Headline',
+      strapName: 'Top stories',
       linkUrl,
       headlineFlags: [],
       lastPublishedTime: 1
@@ -52,5 +67,31 @@ describe('BasicArticleTitleUnitComponent', () => {
 
     const anchorTag = fixture.debugElement.query(By.css('a')).nativeElement;
     expect(anchorTag.href).toEqual(`http://localhost${linkUrl}`);
+  });
+
+  it('should send analytics when clicked', () => {
+    const linkUrl = '/national/top-news';
+    const strapName = 'National';
+    const indexHeadline = 'Headline';
+    const articleId = '123123123';
+    component.input = {
+      type: ContentBlockType.BasicArticleTitleUnit,
+      id: articleId,
+      strapName,
+      indexHeadline,
+      linkUrl,
+      headlineFlags: [],
+      lastPublishedTime: 1
+    };
+    fixture.detectChanges();
+
+    const anchorTag = fixture.debugElement.query(By.css('a')).nativeElement;
+    anchorTag.click();
+    expect(analyticsService.pushEvent).toBeCalledWith({
+      type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
+      strapName,
+      articleHeadline: indexHeadline,
+      articleId: articleId
+    });
   });
 });

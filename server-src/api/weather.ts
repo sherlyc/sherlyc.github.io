@@ -6,7 +6,7 @@ export const getWeather = async (req: Request, res: Response) => {
   const location = req.query.location;
   if (location) {
     try {
-      const weatherData = await weatherService(location, extractParams(req));
+      const weatherData = await weatherService(location, extractParams());
       res.json(weatherData);
       res.end();
     } catch (error) {

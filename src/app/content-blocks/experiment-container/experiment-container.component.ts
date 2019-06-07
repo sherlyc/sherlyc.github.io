@@ -46,12 +46,10 @@ export class ExperimentContainerComponent
   }
 
   private sendAnalytics() {
-    const analyticsExtra = new Map();
-    analyticsExtra.set('variant', this.variant);
-    analyticsExtra.set('experiment', this.input.name);
-    this.analyticsService.pushEvent(
-      AnalyticsEventsType.EXPERIMENT,
-      analyticsExtra
-    );
+    this.analyticsService.pushEvent({
+      type: AnalyticsEventsType.EXPERIMENT,
+      variant: this.variant,
+      experiment: this.input.name
+    });
   }
 }

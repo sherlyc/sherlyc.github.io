@@ -5,6 +5,15 @@ import { IAdobeAnalyticsEvent } from './__types__/IAdobeAnalyticsEvent';
 import { LoggerService } from '../logger/logger.service';
 import { IAnalyticsService } from './__types__/IAnalyticsService';
 import { WindowService } from '../window/window.service';
+import {
+  AnalyticsEvent,
+  IExperimentAssigned,
+  IFooterMenuClicked,
+  IHomepageStrapClicked,
+  IMenuNavSectionClicked,
+  IMoreButtonClicked,
+  IWeatherLocationChanged
+} from './__types__/IAnalyticEvents';
 
 const home = 'home';
 
@@ -59,29 +68,26 @@ export class AnalyticsService implements IAnalyticsService {
     };
   }
 
-  pushEvent(event: AnalyticsEventsType, extra?: Map<string, string>) {
+  pushEvent(event: AnalyticsEvent) {
     try {
       this.windowService
         .getWindow()
-        .digitalData.events.push(this.transformEvent(event, extra));
+        .digitalData.events.push(this.transformEvent(event));
     } catch (err) {
       this.logger.error(err);
     }
   }
 
-  private transformEvent(
-    event: AnalyticsEventsType,
-    extra?: Map<string, string>
-  ): IAdobeAnalyticsEvent {
+  private transformEvent(event: AnalyticsEvent): IAdobeAnalyticsEvent {
     let adobeEvent = {} as IAdobeAnalyticsEvent;
 
     const eventTypesRegistry: { [key in AnalyticsEventsType]: Function } = {
       [AnalyticsEventsType.WEATHER_LOCATION_CHANGED]: (
-        extraParams?: Map<string, string>
+        analyticEvent: IWeatherLocationChanged
       ) =>
         (adobeEvent = {
           event: 'weather.location.change',
-          'weather.location': <string>extraParams!.get('location')
+          'weather.location': analyticEvent!.location
         }),
       [AnalyticsEventsType.MENU_NAV_OPENED]: () =>
         (adobeEvent = {
@@ -91,42 +97,53 @@ export class AnalyticsService implements IAnalyticsService {
         (adobeEvent = {
           event: 'stuff.logo'
         }),
-      [AnalyticsEventsType.FOOTER_MENU]: (extraParams?: Map<string, string>) =>
+      [AnalyticsEventsType.FOOTER_MENU_CLICKED]: (
+        analyticEvent: IFooterMenuClicked
+      ) =>
         (adobeEvent = {
           event: 'menu.footer',
-          'menu.link': <string>extraParams!.get('name')
+          'menu.link': analyticEvent.name
         }),
-      [AnalyticsEventsType.BREAKING_NEWS_OPEN]: () =>
+      [AnalyticsEventsType.BREAKING_NEWS_OPENED]: () =>
         (adobeEvent = {
-          event: 'breaking.news.open'
+          event: `breaking.news.open`
         }),
-      [AnalyticsEventsType.BREAKING_NEWS_CLOSE]: () =>
+      [AnalyticsEventsType.BREAKING_NEWS_CLOSED]: () =>
         (adobeEvent = {
-          event: 'breaking.news.close'
+          event: `breaking.news.close`
         }),
       [AnalyticsEventsType.MORE_BUTTON_CLICKED]: (
-        extraParams?: Map<string, string>
+        analyticEvent: IMoreButtonClicked
       ) =>
         (adobeEvent = {
           event: 'more.content.button',
-          'more.content.url': <string>extraParams!.get('url')
+          'more.content.url': analyticEvent.url
         }),
       [AnalyticsEventsType.MENU_NAV_SECTION_CLICKED]: (
-        extraParams?: Map<string, string>
+        analyticEvent: IMenuNavSectionClicked
       ) =>
         (adobeEvent = {
           event: 'menu.nav',
-          'menu.nav.section': <string>extraParams!.get('section')
+          'menu.nav.section': analyticEvent.section
         }),
-      [AnalyticsEventsType.EXPERIMENT]: (extraParams?: Map<string, string>) =>
+      [AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED]: (
+        analyticEvent: IHomepageStrapClicked
+      ) =>
+        (adobeEvent = {
+          event: 'homepage.strap.click',
+          'homepage.strap': analyticEvent.strapName,
+          'article.headline': analyticEvent.articleHeadline,
+          'article.id': analyticEvent.articleId
+        }),
+      [AnalyticsEventsType.EXPERIMENT]: (analyticEvent: IExperimentAssigned) =>
         (adobeEvent = {
           event: 'ab.testing.event',
-          'ab.testing.segment.web': <string>extraParams!.get('variant'),
-          'ab.testing.experiment.name': <string>extraParams!.get('experiment')
+          'ab.testing.segment.web': analyticEvent.variant,
+          'ab.testing.experiment.name': analyticEvent.experiment
         })
     };
 
-    eventTypesRegistry[event](extra);
+    eventTypesRegistry[event.type](event);
 
     return { type: 'analytics', ...adobeEvent };
   }

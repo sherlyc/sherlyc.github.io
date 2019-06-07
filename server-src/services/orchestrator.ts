@@ -24,17 +24,14 @@ export default async (params: IParams): Promise<IPage> => {
               variants: {
                 purpleHeadline: {
                   type: HandlerInputType.BreakingNews,
-                  ignoreBreakingNews: params.ignoreBreakingNews,
                   variant: 'purpleHeadline'
                 },
                 orangeHeadline: {
                   type: HandlerInputType.BreakingNews,
-                  ignoreBreakingNews: params.ignoreBreakingNews,
                   variant: 'orangeHeadline'
                 },
                 control: {
                   type: HandlerInputType.BreakingNews,
-                  ignoreBreakingNews: params.ignoreBreakingNews,
                   variant: 'control'
                 }
               }
@@ -55,11 +52,13 @@ export default async (params: IParams): Promise<IPage> => {
             },
             {
               type: HandlerInputType.ArticleList,
+              strapName: 'Latest',
               sourceId: Section.Latest,
               totalBasicArticlesUnit: 6
             },
             {
               type: HandlerInputType.MiniMidStrip,
+              strapName: 'MiniMidStrip',
               totalArticles: 2
             },
             {
@@ -68,12 +67,14 @@ export default async (params: IParams): Promise<IPage> => {
               displayNameColor: 'darkblue',
               articleList: {
                 sourceId: ListAsset.EditorPicks,
+                strapName: `Editors' Picks`,
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 6
               }
             },
             {
               type: HandlerInputType.MidStrip,
+              strapName: 'MidStrip',
               totalArticles: 6
             },
             {
@@ -83,6 +84,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.National,
               articleList: {
                 sourceId: Section.National,
+                strapName: 'National',
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 3
               }
@@ -94,6 +96,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.ChristchurchShooting,
               articleList: {
                 sourceId: Section.ChristchurchShooting,
+                strapName: 'Christchurch Mosque Terrorist Attack',
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 3
               }
@@ -108,6 +111,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.Premium,
               articleList: {
                 sourceId: Section.Premium,
+                strapName: 'Premium',
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 3
               }
@@ -119,6 +123,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.QuickSaveThePlanet,
               articleList: {
                 sourceId: Section.QuickSaveThePlanet,
+                strapName: 'Quick! Save The Planet',
                 totalBasicArticlesUnit: 3
               }
             },
@@ -129,6 +134,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.World,
               articleList: {
                 sourceId: Section.World,
+                strapName: 'World',
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 3
               }
@@ -146,6 +152,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.Business,
               articleList: {
                 sourceId: Section.Business,
+                strapName: 'Business',
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 3
               }
@@ -157,6 +164,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.Opinion,
               articleList: {
                 sourceId: Section.Opinion,
+                strapName: 'Opinion',
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 2
               }
@@ -168,6 +176,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.GoodReads,
               articleList: {
                 sourceId: Section.GoodReads,
+                strapName: 'Good Reads',
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 2
               }
@@ -180,6 +189,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.Technology,
               articleList: {
                 sourceId: Section.Technology,
+                strapName: 'Technology',
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 3
               }
@@ -191,6 +201,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.Homed,
               articleList: {
                 sourceId: Section.Homed,
+                strapName: 'Homed',
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 3
               }
@@ -202,6 +213,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.LifeStyle,
               articleList: {
                 sourceId: Section.LifeStyle,
+                strapName: 'Life Style',
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 3
               }
@@ -213,6 +225,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.WellGood,
               articleList: {
                 sourceId: Section.WellGood,
+                strapName: 'Well Good',
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 3
               }
@@ -224,6 +237,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.Entertainment,
               articleList: {
                 sourceId: Section.Entertainment,
+                strapName: 'Entertainment',
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 3
               }
@@ -235,6 +249,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.Travel,
               articleList: {
                 sourceId: Section.Travel,
+                strapName: 'Travel',
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 3
               }
@@ -246,6 +261,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.Motoring,
               articleList: {
                 sourceId: Section.Motoring,
+                strapName: 'Motoring',
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 3
               }
@@ -257,6 +273,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.StuffNation,
               articleList: {
                 sourceId: Section.StuffNation,
+                strapName: 'Stuff Nation',
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 3
               }
@@ -268,6 +285,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.Sport,
               articleList: {
                 sourceId: Section.Sport,
+                strapName: 'Sport',
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 3
               }
@@ -279,6 +297,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.Noted,
               articleList: {
                 sourceId: Section.Noted,
+                strapName: 'Noted',
                 totalBasicArticlesUnit: 2
               }
             },
@@ -289,6 +308,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.NowToLove,
               articleList: {
                 sourceId: Section.NowToLove,
+                strapName: 'Now to Love',
                 totalBasicArticlesUnit: 2
               }
             },
@@ -299,6 +319,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.HomesToLove,
               articleList: {
                 sourceId: Section.HomesToLove,
+                strapName: 'Homes to Love',
                 totalBasicArticlesUnit: 2
               }
             },
@@ -309,6 +330,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.FoodToLove,
               articleList: {
                 sourceId: Section.FoodToLove,
+                strapName: 'Food to Love',
                 totalBasicArticlesUnit: 2
               }
             },
@@ -319,6 +341,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.BeautyHeaven,
               articleList: {
                 sourceId: Section.BeautyHeaven,
+                strapName: 'BeautyHeaven',
                 totalBasicArticlesUnit: 2
               }
             },
@@ -329,6 +352,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.FashionQuarterly,
               articleList: {
                 sourceId: Section.FashionQuarterly,
+                strapName: 'Fashion Quarterly',
                 totalBasicArticlesUnit: 2
               }
             },
@@ -339,6 +363,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.Metro,
               articleList: {
                 sourceId: Section.Metro,
+                strapName: 'Metro',
                 totalBasicArticlesUnit: 2
               }
             },
@@ -349,6 +374,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.Newsroom,
               articleList: {
                 sourceId: Section.Newsroom,
+                strapName: 'Newsroom.co.nz',
                 totalBasicArticlesUnit: 2
               }
             },
@@ -359,6 +385,7 @@ export default async (params: IParams): Promise<IPage> => {
               linkUrl: '/' + Section.SponsoredContent,
               articleList: {
                 sourceId: Section.SponsoredContent,
+                strapName: 'Sponsored Content',
                 totalBasicArticlesUnit: 2
               }
             }

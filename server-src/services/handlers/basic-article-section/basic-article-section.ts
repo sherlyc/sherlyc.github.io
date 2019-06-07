@@ -13,6 +13,7 @@ export default async function(
     linkUrl,
     articleList: {
       sourceId,
+      strapName,
       totalBasicArticlesUnit,
       totalBasicArticleTitleUnit
     }
@@ -30,6 +31,7 @@ export default async function(
           {
             type: HandlerInputType.ArticleList,
             sourceId,
+            strapName,
             totalBasicArticlesUnit,
             totalBasicArticleTitleUnit
           },
