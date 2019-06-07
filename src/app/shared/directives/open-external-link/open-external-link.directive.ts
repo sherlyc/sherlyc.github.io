@@ -1,15 +1,10 @@
 import {
   Directive,
   ElementRef,
-  HostListener,
   Input,
-  HostBinding,
-  Host,
   OnChanges,
-  SimpleChange,
   SimpleChanges
 } from '@angular/core';
-import { TargetLocator } from 'selenium-webdriver';
 
 @Directive({
   selector: '[appOpenExternalLink]'

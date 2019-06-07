@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { OpenExternalLinkDirective } from './open-external-link.directive';
 import { By } from '@angular/platform-browser';
