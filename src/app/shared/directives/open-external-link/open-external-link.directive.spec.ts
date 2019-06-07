@@ -60,4 +60,14 @@ describe('OpenExternalLinkDirective', () => {
     expect(anchor.getAttribute('target')).toBe('_blank');
     expect(anchor.getAttribute('rel')).toBe('noopener noreferrer');
   });
+
+  it('should set open external link attributes when url is external and contains casing', () => {
+    component.linkUrl = 'HTTPS://interactive.stuff.co.nz/some-url-article';
+    fixture.detectChanges();
+
+    const anchor = fixture.debugElement.query(By.css('a')).nativeElement;
+
+    expect(anchor.getAttribute('target')).toBe('_blank');
+    expect(anchor.getAttribute('rel')).toBe('noopener noreferrer');
+  });
 });
