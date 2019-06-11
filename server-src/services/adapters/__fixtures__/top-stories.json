@@ -1,0 +1,172 @@
+{
+  "assets": [
+    {
+      "datetime_iso8601": "20190612T000100+1200",
+      "url": "https://interactives.stuff.co.nz/2019/06/three-gunshots/",
+      "alt_intro": "A family trusted the justice system, but was left devastated. Three times.",
+      "images": [
+        {
+          "id": 113407357,
+          "datetime_iso8601": "20190612T000100+1200",
+          "datetime_display": "00:01 12/06/2019",
+          "creditline": "",
+          "source_code": "1national-newsroom",
+          "source_name": "Stuff",
+          "caption": "Three Gunshots",
+          "variants": [
+            {
+              "id": 113407357,
+              "layout": "Defcon Image",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/v/i/p/o/d/image.related.StuffBigHeadline.418x220.1vipph.png/1560230211617.jpg",
+              "media_type": "Photo",
+              "width": "418",
+              "height": "220"
+            },
+            {
+              "id": 113407357,
+              "layout": "Standard Image",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/v/i/p/o/d/image.related.StuffLandscapeSixteenByNine.620x349.1vipph.png/1560230211617.jpg",
+              "media_type": "Photo",
+              "width": "620",
+              "height": "349"
+            },
+            {
+              "id": 113407357,
+              "layout": "Strap Image",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/v/i/p/o/d/image.related.StuffLandscapeThreeByTwo.300x200.1vipph.png/1560230211617.jpg",
+              "media_type": "Photo",
+              "width": "300",
+              "height": "200"
+            },
+            {
+              "id": 113407357,
+              "layout": "Small Thumbnail",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/v/i/p/o/d/image.related.StuffThumbnail.90x60.1vipph.png/1560230211617.jpg",
+              "media_type": "Photo",
+              "width": "90",
+              "height": "60"
+            }
+          ],
+          "asset_type": "IMAGE"
+        }
+      ],
+      "datetime_display": "00:01 12/06/2019",
+      "asset_type": "URL",
+      "title": "One family. Two generations. Three dead",
+      "id": 113407397
+    },
+    {
+      "id": 113381672,
+      "path": "/auckland/113381672/pedestrian-hit-by-truck-in-whangarei",
+      "url": "http://www.stuff.co.nz/_json/auckland/113381672/pedestrian-hit-by-truck-in-whangarei",
+      "section": "Auckland",
+      "section-home": "Auckland",
+      "section-top-level": "Auckland",
+      "layout": "landscape-image",
+      "title": "Child hit and killed by truck in Whangārei",
+      "alt_headline": "Child killed by truck",
+      "datetime_iso8601": "20190612T092413+1200",
+      "datetime_display": "09:24 12/06/2019",
+      "byline": "MELANIE EARLEY AND CAROLINE WILLIAMS",
+      "source_code": "1national-newsroom",
+      "source_name": "Stuff",
+      "intro": "A child has died after being hit by a truck in Kensington, Whangārei.",
+      "alt_intro": "A child has died after being hit by a truck in Kensington, Whangārei.",
+      "body": "<p>A child has died after being hit by a truck in Kensington, Whangārei.</p> \n<p>A Fire and Emergency New Zealand spokesman, Scott Osmond, confirmed a child had died at the scene.</p> \n<p>Two fire engines were at the scene and helping police with scene protection.</p> \n<p>A police spokeswoman confirmed the incident happened just after 8am on Wednesday on Kamo Rd.</p> \n<p>A worker at a nearby motel said the crash happened \"right out front\". He believed \"a guy got run over by a truck\".</p> \n<p>He said the road was not a common crash site, despite being one of the main roads into Whangārei.</p> \n<p>A staff member at a nearby bakery believed the crash to be serious due to the number&nbsp;of emergency service vehicles nearby.</p> \n<p>\"There are quite a few.\"</p> \n<p>A St John spokeswoman said it sent two ambulances to the scene at 8.09am.</p> \n<p>She said no transport was required.</p> \n<p>The serious crash had been notified, the police spokeswoman said.</p> \n<p>\"Police are in the process of notifying next of kin,\" she said.</p> \n<p>Kamo Rd was likely to be closed for several hours.</p> \n<div style=\"margin-bottom: 10px;\"> \n <iframe allowfullscreen frameborder=\"0\" height=\"450\" src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15413.81701384876!2d174.30966228716323!3d-35.692859386530245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d0b7f2aee933a9d%3A0xe6d891713f9f1d33!2sKamo+Rd%2C+Kamo%2C+Whangarei+0112!5e0!3m2!1sen!2snz!4v1560287288638!5m2!1sen!2snz\" style=\"border:0\" width=\"600\"></iframe> \n</div>",
+      "images": [
+        {
+          "id": 113412571,
+          "position_after_paragraph": 0,
+          "datetime_iso8601": "20190612T092413+1200",
+          "datetime_display": "09:24 12/06/2019",
+          "creditline": "GOOGLE MAPS/SUPPLIED",
+          "source_code": "Not For Syndication",
+          "source_name": "not-for-syndication",
+          "caption": "Emergency services are at the scene of a crash on Kamo Rd in Kensington, Whangarei.",
+          "variants": [
+            {
+              "id": 113412571,
+              "layout": "Defcon Image",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/v/i/t/p/7/image.related.StuffBigHeadline.418x220.1vi5uw.png/1560288254976.jpg",
+              "media_type": "Photo",
+              "width": "418",
+              "height": "220"
+            },
+            {
+              "id": 113412571,
+              "layout": "Standard Image",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/v/i/t/p/7/image.related.StuffLandscapeSixteenByNine.620x349.1vi5uw.png/1560288254976.jpg",
+              "media_type": "Photo",
+              "width": "620",
+              "height": "349"
+            },
+            {
+              "id": 113412571,
+              "layout": "Strap Image",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/v/i/t/p/7/image.related.StuffLandscapeThreeByTwo.300x200.1vi5uw.png/1560288254976.jpg",
+              "media_type": "Photo",
+              "width": "300",
+              "height": "200"
+            },
+            {
+              "id": 113412571,
+              "layout": "Small Thumbnail",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/v/i/t/p/7/image.related.StuffThumbnail.90x60.1vi5uw.png/1560288254976.jpg",
+              "media_type": "Photo",
+              "width": "90",
+              "height": "60"
+            }
+          ],
+          "asset_type": "IMAGE"
+        },
+        {
+          "id": 113413853,
+          "position_after_paragraph": 6,
+          "datetime_iso8601": "20190612T092413+1200",
+          "datetime_display": "09:24 12/06/2019",
+          "creditline": "DENISE PIPER/STUFF",
+          "source_code": "Not For Syndication",
+          "source_name": "not-for-syndication",
+          "caption": "Traffic around Kamo Rd has backed up following the fatal crash - it's expected part of the road will be closed for several hours.",
+          "variants": [
+            {
+              "id": 113413853,
+              "layout": "Standard Image",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/v/i/u/o/t/image.related.StuffLandscapeSixteenByNine.620x349.1vi5uw.png/1560288254976.jpg",
+              "media_type": "Photo",
+              "width": "620",
+              "height": "349"
+            },
+            {
+              "id": 113413853,
+              "layout": "Strap Image",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/v/i/u/o/t/image.related.StuffLandscapeThreeByTwo.300x200.1vi5uw.png/1560288254976.jpg",
+              "media_type": "Photo",
+              "width": "300",
+              "height": "200"
+            }
+          ],
+          "asset_type": "IMAGE"
+        }
+      ],
+      "videos": [],
+      "html_assets": [
+        {
+          "id": 105745204,
+          "data_content": "<link href=\"https://fonts.googleapis.com/css?family=Merriweather+Sans:300,700\" rel=\"stylesheet\">\n<style type=\"text/css\">\n\t.bigbyline-container{font-family: 'Merriweather Sans', sans-serif; font-size: 13px; font-weight: 300; width:100%;}\n\t.bigbyline{ width:100%; margin-bottom:20px; width:100%; padding-left:90px; box-sizing: border-box; display: table;}\n\t.bylinetext-blue{color: #0e7bc2; text-transform: uppercase;}\n\t.bylinetext-email{color: #767676; padding-top: 10px; float: left;}\n\t.bylinetext-bold{font-weight: 700;}\n\t.bigbyline-image{width: 74px !important; height: 74px !important; background-size: 100% !important; float:left !important; margin-right: 15px !important; margin-left:-90px !important;}\n\t.bigbyline-image:hover{opacity: 0.7;}\n\t.bigbyline-text{display:table-cell; vertical-align: middle; text-align: left !important;}\n\t.bigbyline-gradient{width: 74px; height: 74px; background-image: url(https://assets.stuff.co.nz/interactives/byline/byline-image-frame.png); background-size: 100%;}\n\t.bigbyline-container a{text-decoration: none;}\n\t.bigbyline-container a:hover{opacity: 0.7;}\n\n\n\n</style>\n<div class=\"bigbyline-container\"><div class=\"bigbyline\">\n\n\n\n<!-- Replace \"https://www.stuff.co.nz/\" with the URL of the author's section or tag -->\n\n\t\t<a href=\"https://www.stuff.co.nz/authors/melanie-earley\">\n\n\n\n\n<!--  Replace \"photo.jpg\" with the URL of your photograph -->\n\n<div class=\"bigbyline-image\" style=\"background-image:url(https://static3.stuff.co.nz/17-akl-mel1-20f59538.jpg);\">\n\n<div class=\"bigbyline-gradient\"></div></div><div class=\"bigbyline-text\"><span class=\"bylinetext-blue\">More from<br/><span class=\"bylinetext-bold\">\n\t\t\t\n\n\n<!-- Replace \"Firstname Lastname\" with the name of the author, and \"Editor\" with the position. Don't remove the \"&bull;\" - this is the bullet point -->\n\n\t\t\tMelanie Earley &bull; Auckland breaking news reporter\n\n\t\t\t\n\n\t\t\t</span></span></a><br/>\n\t\t\t\n\n\n<!-- Replace \"newsroom@stuff.co.nz\" with the author's email address in both places -->\n\n\t\t\t<a class=\"bylinetext-email\" href=\"mailto:melanie.earley@stuff.co.nz\">melanie.earley@stuff.co.nz</a> \n\n\t\t\t\n\n\t\t</div>\n\t</div>\n</div>\n\n\n\n\n\n",
+          "position_after_paragraph": 3,
+          "asset_type": "HTML"
+        }
+      ],
+      "galleries": [],
+      "asset_type": "ARTICLE",
+      "headline_flags": []
+    }
+  ],
+  "datetime_iso8601": "20190430T054455+1200",
+  "datetime_display": "05:44 30/04/2019",
+  "alt_headline": "NZ Stuff Homepage top stories",
+  "asset_type": "LIST",
+  "title": "NZ Stuff Homepage top stories list",
+  "id": 63768623
+}

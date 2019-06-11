@@ -56,3 +56,9 @@ export const retrieveEditorsPick = async (params: IParams, total: number) =>
     () => requestListAsset(params, config.editorsPickAssetId, total),
     params
   );
+
+export const retrieveTopStories = async (params: IParams, total: number) =>
+  retry(
+    () => requestListAsset(params, config.topStoriesListAssetId, total),
+    params
+  );

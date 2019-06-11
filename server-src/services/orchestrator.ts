@@ -53,7 +53,7 @@ export default async (params: IParams): Promise<IPage> => {
             {
               type: HandlerInputType.ArticleList,
               strapName: 'Latest',
-              sourceId: Section.Latest,
+              sourceId: ListAsset.TopStories,
               totalBasicArticlesUnit: 6
             },
             {

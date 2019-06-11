@@ -3,11 +3,13 @@ import * as rawArticleList from './__fixtures__/raw-article-list.json';
 import * as rawMidStrip from './__fixtures__/raw-mid-strip.json';
 import * as rawMiniMidStrip from './__fixtures__/raw-mini-mid-strip.json';
 import * as rawEditorsPickData from './__fixtures__/raw-editors-pick.json';
+import * as rawTopStoriesData from './__fixtures__/raw-top-stories.json';
 import http from '../utils/http';
 import * as jsonfeed from './__fixtures__/jsonfeed.json';
 import * as midStripData from './__fixtures__/mid-strip.json';
 import * as miniMidStripData from './__fixtures__/mini-mid-strip.json';
 import * as editorsPickData from './__fixtures__/editors-pick.json';
+import * as topStories from './__fixtures__/top-stories.json';
 import { Section } from '../section';
 import { IParams } from '../__types__/IParams';
 import { ListAsset } from '../listAsset';
@@ -63,6 +65,18 @@ describe('json feed service', () => {
 
       expect(await getListAsset(params, ListAsset.EditorPicks)).toEqual(
         rawEditorsPickData
+      );
+    });
+  });
+
+  describe('top stories service', () => {
+    it('should provide top stories service data', async () => {
+      (http(params).get as jest.Mock).mockResolvedValue({
+        data: topStories
+      });
+
+      expect(await getListAsset(params, ListAsset.TopStories)).toEqual(
+        rawTopStoriesData
       );
     });
   });

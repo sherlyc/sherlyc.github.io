@@ -2,12 +2,14 @@ import {
   retrieveMidStrip,
   retrieveArticleList,
   retrieveMiniMidStrip,
-  retrieveEditorsPick
+  retrieveEditorsPick,
+  retrieveTopStories
 } from './jsonfeed-retriever';
 import * as jsonfeed from './__fixtures__/jsonfeed.json';
 import * as midStripData from './__fixtures__/mid-strip.json';
 import * as miniMidStripData from './__fixtures__/mini-mid-strip.json';
 import * as editorsPickData from './__fixtures__/editors-pick.json';
+import * as topStoriesData from './__fixtures__/top-stories.json';
 import http from '../utils/http';
 import { Section } from '../section';
 import { IParams } from '../__types__/IParams';
@@ -117,6 +119,23 @@ describe('JsonFeed Retriever', () => {
 
       const editorsPick = await retrieveEditorsPick(params, 8);
       expect(editorsPick.assets.length).toEqual(8);
+    });
+  });
+
+  describe('Top Stories', () => {
+    it('should respond with top stories data', async () => {
+      (http(params).get as jest.Mock).mockResolvedValue({
+        data: topStoriesData
+      });
+
+      expect(await retrieveTopStories(params, 2)).toEqual(topStoriesData);
+    });
+
+    it('should throw error when jsonfeed request for editors pick fails', async () => {
+      const error = new Error('AJAX error');
+      (http(params).get as jest.Mock).mockRejectedValue(error);
+
+      await expect(retrieveTopStories(params, 2)).rejects.toEqual(error);
     });
   });
 });
