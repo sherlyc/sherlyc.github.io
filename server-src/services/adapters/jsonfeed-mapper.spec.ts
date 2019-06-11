@@ -6,7 +6,7 @@ import { cloneDeep } from 'lodash';
 import { IRawArticle } from './__types__/IRawArticle';
 
 describe('JsonFeed Mapper', () => {
-  it('should map jsonfeed to rawArticle json format', () => {
+  it('should map jsonfeed articles and url assets to rawArticle json format', () => {
     const data: IJsonFeedArticleList = cloneDeep(
       jsonfeed as IJsonFeedArticleList
     );
