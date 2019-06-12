@@ -40,7 +40,7 @@ describe('BasicArticleListHandler', () => {
     expect(contentBlocks).toEqual(handlerOutputForSection.OneArticleUnitTwoAds);
   });
 
-  it('should get a list of basic article units and ad units not exceeding the maximum length', async () => {
+  it('should return a list of basic article units and ad units not exceeding the maximum length', async () => {
     const totalArticles = 2;
     const totalAdUnits = 3;
     (getArticleList as jest.Mock).mockResolvedValue(rawArticleList);
@@ -137,5 +137,44 @@ describe('BasicArticleListHandler', () => {
     expect(contentBlocks).toEqual(
       handlerOutputForListAsset.TwoArticleUnitsTwoArticleTitlesFiveAds
     );
+  });
+
+  it('should get an empty list when fails to retrieve an article list', async() => {
+    (getListAsset as jest.Mock).mockRejectedValue('Failed to get section list');
+
+    const contentBlocks = await basicArticleListHandler(
+      jest.fn(),
+      {
+        type: HandlerInputType.ArticleList,
+        strapName: 'business',
+        totalBasicArticlesUnit: 2,
+        totalBasicArticleTitleUnit: 2,
+        sourceId: ListAsset.EditorPicks
+      },
+      params
+    );
+
+    expect(contentBlocks.length).toBe(0);
+    expect(contentBlocks).toEqual([]);
+  });
+
+  it('should return an empty list when fails to retrieve a section list', async () => {
+    (getArticleList as jest.Mock).mockRejectedValue('Failed to get article list');
+
+    const handlerRunnerMock = jest.fn();
+
+    const contentBlocks = await basicArticleListHandler(
+      handlerRunnerMock,
+      {
+        type: HandlerInputType.ArticleList,
+        strapName: 'business',
+        sourceId: Section.Business,
+        totalBasicArticlesUnit: 1
+      },
+      params
+    );
+
+    expect(contentBlocks.length).toBe(0);
+    expect(contentBlocks).toEqual([]);
   });
 });
