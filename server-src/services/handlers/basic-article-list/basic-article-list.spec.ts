@@ -140,7 +140,7 @@ describe('BasicArticleListHandler', () => {
   });
 
   it('should get an empty list when fails to retrieve an article list', async() => {
-    (getListAsset as jest.Mock).mockResolvedValue([]);
+    (getListAsset as jest.Mock).mockResolvedValue('Error');
 
     const contentBlocks = await basicArticleListHandler(
       jest.fn(),
@@ -159,7 +159,7 @@ describe('BasicArticleListHandler', () => {
   });
 
   it('should return an empty list when fails to retrieve a section list', async () => {
-    (getArticleList as jest.Mock).mockResolvedValue([]);
+    (getArticleList as jest.Mock).mockResolvedValue('Error');
 
     const handlerRunnerMock = jest.fn();
 
