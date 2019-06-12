@@ -71,9 +71,9 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
   }
 
   sendLocationAnalytics(location: string) {
-    this.analyticsService.pushEvent(
-      AnalyticsEventsType.WEATHER_LOCATION_CHANGED,
-      new Map().set('location', location)
-    );
+    this.analyticsService.pushEvent({
+      type: AnalyticsEventsType.WEATHER_LOCATION_CHANGED,
+      location: location
+    });
   }
 }

@@ -15,9 +15,9 @@ export class BasicArticleSectionComponent implements IContentBlockComponent {
   constructor(private analyticsService: AnalyticsService) {}
 
   sendAnalytics() {
-    this.analyticsService.pushEvent(
-      AnalyticsEventsType.MORE_BUTTON_CLICKED,
-      new Map().set('url', this.input.linkUrl)
-    );
+    this.analyticsService.pushEvent({
+      type: AnalyticsEventsType.MORE_BUTTON_CLICKED,
+      url: this.input.linkUrl!
+    });
   }
 }

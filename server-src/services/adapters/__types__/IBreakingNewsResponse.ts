@@ -1,4 +1,4 @@
-export interface IRawBreakingNews {
+export interface IBreakingNewsResponse {
   id?: string;
   text?: string;
   link?: string;

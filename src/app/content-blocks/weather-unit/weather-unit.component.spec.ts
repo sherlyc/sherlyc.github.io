@@ -419,10 +419,10 @@ describe('WeatherUnitComponent', () => {
         ) as DebugElement;
       aucklandListElement.nativeElement.click();
 
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
-        AnalyticsEventsType.WEATHER_LOCATION_CHANGED,
-        new Map().set('location', 'Auckland')
-      );
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+        type: AnalyticsEventsType.WEATHER_LOCATION_CHANGED,
+        location: 'Auckland'
+      });
     });
   });
 });

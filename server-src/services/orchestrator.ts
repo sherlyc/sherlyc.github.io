@@ -25,17 +25,14 @@ export default async (params: IParams): Promise<IPage> => {
               variants: {
                 purpleHeadline: {
                   type: HandlerInputType.BreakingNews,
-                  ignoreBreakingNews: params.ignoreBreakingNews,
                   variant: 'purpleHeadline'
                 },
                 orangeHeadline: {
                   type: HandlerInputType.BreakingNews,
-                  ignoreBreakingNews: params.ignoreBreakingNews,
                   variant: 'orangeHeadline'
                 },
                 control: {
                   type: HandlerInputType.BreakingNews,
-                  ignoreBreakingNews: params.ignoreBreakingNews,
                   variant: 'control'
                 }
               }

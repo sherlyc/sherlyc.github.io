@@ -195,13 +195,11 @@ describe('ExperimentContainerComponent', () => {
 
       await component.ngOnInit();
 
-      const extra = new Map();
-      extra.set('variant', 'red');
-      extra.set('experiment', 'ExperimentName');
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith(
-        AnalyticsEventsType.EXPERIMENT,
-        extra
-      );
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+        type: AnalyticsEventsType.EXPERIMENT,
+        variant: 'red',
+        experiment: 'ExperimentName'
+      });
     });
 
     it('should not send analytics when content block is empty', async () => {

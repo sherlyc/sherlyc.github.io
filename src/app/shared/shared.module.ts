@@ -5,6 +5,7 @@ import { ContentBlockDirective } from './directives/content-block/content-block.
 import { CopyrightComponent } from './components/copyright/copyright.component';
 import { PageComponent } from './components/page/page.component';
 import { HeadlineComponent } from './components/headline/headline.component';
+import { OpenExternalLinkDirective } from './directives/open-external-link/open-external-link.directive';
 
 @NgModule({
   imports: [CommonModule],
@@ -12,6 +13,7 @@ import { HeadlineComponent } from './components/headline/headline.component';
     PageComponent,
     HideHeaderDirective,
     ContentBlockDirective,
+    OpenExternalLinkDirective,
     CopyrightComponent,
     HeadlineComponent
   ],
@@ -19,6 +21,7 @@ import { HeadlineComponent } from './components/headline/headline.component';
     PageComponent,
     HideHeaderDirective,
     ContentBlockDirective,
+    OpenExternalLinkDirective,
     CopyrightComponent,
     HeadlineComponent
   ]

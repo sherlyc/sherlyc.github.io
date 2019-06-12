@@ -17,12 +17,11 @@ export class BasicArticleUnitComponent implements IContentBlockComponent {
   sendAnalytics() {
     const { strapName, indexHeadline, id } = this.input;
 
-    this.analyticsService.pushEvent(
-      AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
-      new Map()
-        .set('strapName', strapName)
-        .set('articleHeadline', indexHeadline)
-        .set('articleId', id)
-    );
+    this.analyticsService.pushEvent({
+      type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
+      strapName,
+      articleHeadline: indexHeadline,
+      articleId: id
+    });
   }
 }

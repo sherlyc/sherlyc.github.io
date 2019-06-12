@@ -20,7 +20,7 @@ declare const global: {
 const spadeApiPath = '/spade/api';
 
 app.get(`${spadeApiPath}/content`, async (req, res, next) => {
-  const params: IParams = extractParams(req);
+  const params: IParams = extractParams();
   if (global.newrelic) {
     try {
       global.newrelic.addCustomAttribute('apiRequestId', params.apiRequestId);

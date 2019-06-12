@@ -2,6 +2,7 @@
   "stories": [
     {
       "id": 109962196,
+      "asset_type": "ARTICLE",
       "path": "/national/109962196/cctv-shows-unruly-travelling-family-taking-christmas-tree-from-auckland-caltex",
       "url": "http://www.stuff.co.nz/_json/national/109962196/cctv-shows-unruly-travelling-family-taking-christmas-tree-from-auckland-caltex",
       "section": "National",
@@ -160,7 +161,47 @@
       "galleries": []
     },
     {
+      "id": 112150655,
+      "asset_type": "URL",
+      "title": "Paving over paradise",
+      "url": "https://interactives.stuff.co.nz/2019/04/the-tourist-trap/#section-wS1QFb7arf",
+      "datetime_display": "00:01 22/04/2019",
+      "alt_intro": "The ancient, beautiful Ōpārara Basin is the subject of development plans.",
+      "images": [
+        {
+          "id": 112150634,
+          "datetime_iso8601": "20190422T000100+1200",
+          "datetime_display": "00:01 22/04/2019",
+          "creditline": "Iain McGregor/Stuff",
+          "source_code": "the-press",
+          "source_name": "The Press",
+          "caption": "Ōpārara Basin.",
+          "variants": [
+            {
+              "id": 112150634,
+              "layout": "Defcon Image",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/u/r/r/z/e/image.related.StuffBigHeadline.418x220.1urrzz.png/1555565610457.jpg",
+              "media_type": "Photo",
+              "width": "418",
+              "height": "220"
+            },
+            {
+              "id": 112150634,
+              "layout": "Strap Image",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/u/r/r/z/e/image.related.StuffLandscapeSixteenByNine.620x349.1urrzz.png/1555565610457.jpg",
+              "media_type": "Photo",
+              "width": "620",
+              "height": "349"
+            }
+          ],
+          "asset_type": "IMAGE"
+        }
+      ],
+      "datetime_iso8601": "20190422T000100+1200"
+    },
+    {
       "id": 109810764,
+      "asset_type": "ARTICLE",
       "path": "/business/farming/109810764/400-a-day-to-plant-trees-but-no-one-wants-the-job",
       "url": "http://www.stuff.co.nz/_json/business/farming/109810764/400-a-day-to-plant-trees-but-no-one-wants-the-job",
       "section": "Farming",
@@ -274,6 +315,11 @@
         }
       ],
       "galleries": []
+    },
+    {
+      "id": 110706741,
+      "asset_type": "QUERY",
+      "datetime_iso8601": "20190322T085041+1300"
     }
   ]
 }

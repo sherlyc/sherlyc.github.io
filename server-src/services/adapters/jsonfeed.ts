@@ -4,7 +4,7 @@ import {
   retrieveMiniMidStrip,
   retrieveEditorsPick
 } from './jsonfeed-retriever';
-import mapToIRawArticleList from './jsonfeed-mapper';
+import mapToRawArticleList from './jsonfeed-mapper';
 import { IJsonFeedArticleList } from './__types__/IJsonFeedArticleList';
 import { IRawArticle } from './__types__/IRawArticle';
 import { Section } from '../section';
@@ -21,7 +21,7 @@ export const getArticleList = async (
     total,
     params
   );
-  return mapToIRawArticleList(jsonFeed.stories);
+  return mapToRawArticleList(jsonFeed.stories);
 };
 
 const listAssetRegistry: { [key in ListAsset]: Function } = {
@@ -36,5 +36,5 @@ export const getListAsset = async (
   total: number = 0
 ): Promise<IRawArticle[]> => {
   const articles = await listAssetRegistry[listAssetId](params, total);
-  return mapToIRawArticleList(articles.assets);
+  return mapToRawArticleList(articles.assets);
 };
