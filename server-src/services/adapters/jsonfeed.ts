@@ -16,16 +16,12 @@ export const getArticleList = async (
   total: number,
   params: IParams
 ): Promise<IRawArticle[]> => {
-  try {
-    const jsonFeed: IJsonFeedArticleList = await retrieveArticleList(
-      section,
-      total,
-      params
-    );
-    return mapToRawArticleList(jsonFeed.stories);
-  } catch (e) {
-    return [];
-  }
+  const jsonFeed: IJsonFeedArticleList = await retrieveArticleList(
+    section,
+    total,
+    params
+  );
+  return mapToRawArticleList(jsonFeed.stories);
 };
 
 const listAssetRegistry: { [key in ListAsset]: Function } = {
@@ -39,10 +35,6 @@ export const getListAsset = async (
   listAssetId: ListAsset,
   total: number = 0
 ): Promise<IRawArticle[]> => {
-  try {
-    const articles = await listAssetRegistry[listAssetId](params, total);
-    return mapToRawArticleList(articles.assets);
-  } catch (e) {
-    return [];
-  }
+  const articles = await listAssetRegistry[listAssetId](params, total);
+  return mapToRawArticleList(articles.assets);
 };

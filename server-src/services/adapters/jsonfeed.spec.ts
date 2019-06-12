@@ -66,20 +66,4 @@ describe('json feed service', () => {
       );
     });
   });
-
-  it('Should return an empty list when fails to retrieve list asset data', async() => {
-    (http(params).get as jest.Mock).mockRejectedValue('Failed to retrieve');
-
-    expect(await getListAsset(params, ListAsset.EditorPicks)).toEqual(
-      []
-    );
-  });
-
-  it('Should return an empty list when fails to retrieve article list data', async() => {
-    (http(params).get as jest.Mock).mockRejectedValue('Failed to retrieve');
-
-    expect(await getArticleList(Section.Latest, 2, params)).toEqual(
-      []
-    );
-  });
 });
