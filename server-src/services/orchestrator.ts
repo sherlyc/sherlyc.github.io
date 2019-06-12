@@ -5,6 +5,7 @@ import { IParams } from './__types__/IParams';
 import { ContentBlockType } from '../../common/__types__/ContentBlockType';
 import { HandlerInputType } from './handlers/__types__/HandlerInputType';
 import { ListAsset } from './listAsset';
+import logger from './utils/logger';
 
 export default async (params: IParams): Promise<IPage> => {
   try {
@@ -398,6 +399,7 @@ export default async (params: IParams): Promise<IPage> => {
       )
     };
   } catch (e) {
+    logger.error(params.apiRequestId, e);
     return {
       apiRequestId: params.apiRequestId,
       title: 'Stuff',
