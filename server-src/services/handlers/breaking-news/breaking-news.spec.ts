@@ -50,4 +50,16 @@ describe('BreakingNewsHandler', () => {
     );
     expect(contentBlocks).toHaveLength(0);
   });
+
+
+  it('should get an empty content block list when breaking news fails to be retrieved ', async () => {
+    (getBreakingNews as jest.Mock).mockRejectedValue('Error retrieving breaking news');
+
+    const contentBlocks = await breakingNewsHandler(
+      handlerRunnerMock,
+      {} as IBreakingNewsHandlerInput,
+      params
+    );
+    expect(contentBlocks).toHaveLength(0);
+  });
 });
