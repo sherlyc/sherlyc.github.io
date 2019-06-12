@@ -396,7 +396,7 @@ export default async (params: IParams): Promise<IPage> => {
       )
     };
   } catch (e) {
-    logger.error(params.apiRequestId, e);
+    logger.error(params.apiRequestId, `Orchestrator level error - ${e}`);
     return {
       apiRequestId: params.apiRequestId,
       title: 'Stuff',
