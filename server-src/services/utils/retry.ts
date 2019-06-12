@@ -21,11 +21,14 @@ export default <T>(
         params.apiRequestId,
         `Attempt ${error.attemptNumber} failed. There are ${
           error.retriesLeft
-          } retries left.`
+        } retries left.`
       );
 
       if (error.retriesLeft === 0) {
-         logger.error(params.apiRequestId, error.message);
+        logger.error(
+          params.apiRequestId,
+          `Retry level error - ${error.message}`
+        );
       }
     },
     ...options

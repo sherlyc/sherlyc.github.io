@@ -32,8 +32,25 @@ app.get(`${spadeApiPath}/content`, async (req, res, next) => {
   res.end();
 });
 
-app.get(`${spadeApiPath}/weather`, getWeather);
+app.get(`${spadeApiPath}/weather`, async (req, res) => {
+  const params: IParams = extractParams();
+  await getWeather(req, res, params);
+});
 
-app.get(`${spadeApiPath}/experiment`, experimentController);
+app.get(`${spadeApiPath}/experiment`, async (req, res) => {
+  const params: IParams = extractParams();
+  await experimentController(req, res, params);
+});
+
+app.use((req, res, next) => {
+  if (res.statusCode >= 400) {
+    const params: IParams = extractParams();
+    logger.error(
+      params.apiRequestId,
+      `Express app error level - STATUS ${res.statusCode} ${res.statusMessage}`
+    );
+  }
+  next();
+});
 
 export default app;
