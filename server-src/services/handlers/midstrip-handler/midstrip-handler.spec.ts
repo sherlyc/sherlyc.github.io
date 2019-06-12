@@ -58,4 +58,25 @@ describe('MidStripHandler', () => {
     expect(imageLinkUnits.length).toBe(1);
     expect(columnContainer).toEqual(midstripHandlerOutput.OneImageLink);
   });
+
+
+  it('should return an empty list if request failed', async () => {
+    const totalArticles = 1;
+    (getListAsset as jest.Mock).mockRejectedValue('Error');
+
+    const handlerRunnerMock = jest.fn();
+
+    const columnContainer = (await midstripHandler(
+      handlerRunnerMock,
+      {
+        type: HandlerInputType.MidStrip,
+        strapName: 'MidStrip',
+        totalArticles
+      },
+      params
+    )) as IColumnContainer[];
+
+    expect(columnContainer.length).toBe(0);
+    expect(columnContainer).toEqual([]);
+  });
 });
