@@ -10,7 +10,11 @@ function validateRequest(name: string, lotteryNumber: number) {
   }
 }
 
-export const experimentController = function(req: Request, res: Response, params: IParams) {
+export const experimentController = function(
+  req: Request,
+  res: Response,
+  params: IParams
+) {
   const { name, lotteryNumber } = req.query;
 
   try {
@@ -18,7 +22,10 @@ export const experimentController = function(req: Request, res: Response, params
     const variant = getExperimentVariant(name, lotteryNumber);
     res.send(variant);
   } catch (e) {
-    logger.error(params.apiRequestId, e.message);
+    logger.error(
+      params.apiRequestId,
+      `Experiment controller level error - ${e.message}`
+    );
     res.status(400).send(e.message);
   }
 };
