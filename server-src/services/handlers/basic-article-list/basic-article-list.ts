@@ -54,34 +54,27 @@ export default async function(
   };
   const sourceIdIsASection = Object.values(Section).includes(sourceId);
   const totalArticles = totalBasicArticlesUnit + totalBasicArticleTitleUnit;
-
-  try {
-    const rawArticles = sourceIdIsASection
-      ? (
-        await getArticleList(sourceId as Section, totalArticles, params)).slice(
+  const rawArticles = sourceIdIsASection
+    ? (await getArticleList(sourceId as Section, totalArticles, params)).slice(
         0,
         totalArticles
-      ) : await getListAsset(params, sourceId as ListAsset, totalArticles);
-
-    return rawArticles.reduce(
-      (final, article, index) => {
-        if (index < totalBasicArticlesUnit) {
-          return [
-            ...final,
-            createBasicArticleUnitBlock(article, strapName),
-            basicAdUnit
-          ];
-        }
+      )
+    : await getListAsset(params, sourceId as ListAsset, totalArticles);
+  return rawArticles.reduce(
+    (final, article, index) => {
+      if (index < totalBasicArticlesUnit) {
         return [
           ...final,
-          createBasicTitleArticleBlock(article, strapName),
+          createBasicArticleUnitBlock(article, strapName),
           basicAdUnit
         ];
-      },
-      [basicAdUnit] as IContentBlock[]
-    );
-  } catch (e) {
-    return [];
-  }
-
+      }
+      return [
+        ...final,
+        createBasicTitleArticleBlock(article, strapName),
+        basicAdUnit
+      ];
+    },
+    [basicAdUnit] as IContentBlock[]
+  );
 }

@@ -12,35 +12,30 @@ export default async function(
   { totalArticles, strapName }: IMidStripHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  try {
-    const rawArticles = (await getListAsset(
-      params,
-      ListAsset.MidStrip,
-      totalArticles
-    )).slice(0, totalArticles);
+  const rawArticles = (await getListAsset(
+    params,
+    ListAsset.MidStrip,
+    totalArticles
+  )).slice(0, totalArticles);
 
-    return [
-      {
-        type: ContentBlockType.ColumnContainer,
-        items: rawArticles.reduce(
-          (final, article) => [
-            ...final,
-            {
-              type: ContentBlockType.ImageLinkUnit,
-              id: article.id,
-              strapName: strapName,
-              indexHeadline: article.indexHeadline,
-              imageSrc: article.imageSrc,
-              linkUrl: article.linkUrl,
-              headlineFlags: article.headlineFlags
-            } as IImageLinkUnit
-          ],
-          [] as IContentBlock[]
-        )
-      }
-    ];
-  } catch (e) {
-    return [];
-  }
-
+  return [
+    {
+      type: ContentBlockType.ColumnContainer,
+      items: rawArticles.reduce(
+        (final, article) => [
+          ...final,
+          {
+            type: ContentBlockType.ImageLinkUnit,
+            id: article.id,
+            strapName: strapName,
+            indexHeadline: article.indexHeadline,
+            imageSrc: article.imageSrc,
+            linkUrl: article.linkUrl,
+            headlineFlags: article.headlineFlags
+          } as IImageLinkUnit
+        ],
+        [] as IContentBlock[]
+      )
+    }
+  ];
 }

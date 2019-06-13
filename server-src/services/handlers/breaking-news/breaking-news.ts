@@ -11,15 +11,14 @@ export default async function(
   { variant }: IBreakingNewsHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  try {
-    const {
-      id,
-      text,
-      link,
-      enabled
-    }: IBreakingNewsResponse = await getBreakingNews(params);
-    return enabled
-      ? [
+  const {
+    id,
+    text,
+    link,
+    enabled
+  }: IBreakingNewsResponse = await getBreakingNews(params);
+  return enabled
+    ? [
         {
           type: 'BreakingNews',
           id,
@@ -28,8 +27,5 @@ export default async function(
           variant
         } as IBreakingNews
       ]
-      : [];
-  } catch (e) {
-    return [];
-  }
+    : [];
 }
