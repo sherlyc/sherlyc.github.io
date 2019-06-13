@@ -393,8 +393,7 @@ export default async (params: IParams): Promise<IPage> => {
               type: HandlerInputType.ExternalContent,
               height: '570px',
               width: '100%',
-              url: 'https://cdn.neighbourly.co.nz/stuff/933/homepage',
-              scriptUrl: 'https://cdn.neighbourly.co.nz/js/neighbourly-stuff-widget-init.js'
+              url: 'https://cdn.neighbourly.co.nz/stuff/933/homepage'
             }
           ]
         },

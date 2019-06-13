@@ -3,5 +3,6 @@ export enum ScriptId {
   videoPlayer = 'videoPlayer',
   videoPlayerAnalytics = 'videoPlayerAnalytics',
   adnostic = 'aad-sdk',
-  neighbourlyTopStories = 'neighbourlyTopStories'
+  neighbourlyTopStories = 'neighbourlyTopStories',
+  neighbourlyLocalStories = 'neighbourlyLocalStories'
 }
