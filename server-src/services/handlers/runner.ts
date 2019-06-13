@@ -12,9 +12,13 @@ export default async function handlerRunner(
   handlerInput: HandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  return await handlerRegistry[handlerInput.type](
-    handlerRunner,
-    handlerInput,
-    params
-  );
+  try {
+    return await handlerRegistry[handlerInput.type](
+      handlerRunner,
+      handlerInput,
+      params
+    );
+  } catch (error) {
+    return [];
+  }
 }

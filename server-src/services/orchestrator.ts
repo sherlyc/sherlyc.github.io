@@ -5,6 +5,7 @@ import { IParams } from './__types__/IParams';
 import { ContentBlockType } from '../../common/__types__/ContentBlockType';
 import { HandlerInputType } from './handlers/__types__/HandlerInputType';
 import { ListAsset } from './listAsset';
+import logger from './utils/logger';
 
 export default async (params: IParams): Promise<IPage> => {
   try {
@@ -395,6 +396,7 @@ export default async (params: IParams): Promise<IPage> => {
       )
     };
   } catch (e) {
+    logger.error(params.apiRequestId, `Orchestrator level error - ${e}`);
     return {
       apiRequestId: params.apiRequestId,
       title: 'Stuff',
@@ -402,7 +404,7 @@ export default async (params: IParams): Promise<IPage> => {
         { type: ContentBlockType.Header },
         {
           type: ContentBlockType.Container,
-          items: [{ type: ContentBlockType.ErrorBlock, message: e.message }]
+          items: [{ type: ContentBlockType.ErrorBlock, message: 'Oops, sorry! It looks like we\'ve stuffed up...' }]
         },
         { type: ContentBlockType.Footer }
       ]
