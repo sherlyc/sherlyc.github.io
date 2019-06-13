@@ -5,6 +5,7 @@ import { DtmService } from './services/dtm/dtm.service';
 import { AnalyticsService } from './services/analytics/analytics.service';
 import { BrowserOverrideService } from './services/browser-override/browser-override.service';
 import { ExperimentService } from './services/experiment/experiment.service';
+import { NeighbourlyService } from './services/neighbourly/neighbourly.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,8 @@ export class AppComponent {
     private eventsService: EventsService,
     private analyticsService: AnalyticsService,
     private dtm: DtmService,
-    private browserOverride: BrowserOverrideService
+    private browserOverride: BrowserOverrideService,
+    private neighbourlyService: NeighbourlyService
   ) {
     this.experimentService.setup();
     this.adService.setup();
@@ -26,5 +28,6 @@ export class AppComponent {
     this.analyticsService.setup();
     this.dtm.setup();
     this.browserOverride.setup();
+    this.neighbourlyService.setup();
   }
 }

@@ -389,6 +389,12 @@ export default async (params: IParams): Promise<IPage> => {
                 strapName: 'Sponsored Content',
                 totalBasicArticlesUnit: 2
               }
+            },
+            {
+              type: HandlerInputType.ExternalContent,
+              height: '580px',
+              width: '100%',
+              url: 'https://cdn.neighbourly.co.nz/stuff/933/homepage'
             }
           ]
         },
