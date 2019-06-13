@@ -48,7 +48,10 @@ function getImageSrc(item: IJsonFeedArticle | IJsonFeedUrl): string | null {
     for (const image of item.images) {
       if (image.variants) {
         for (const variant of image.variants) {
-          if (variant.layout === JsonFeedImageType.STRAP_IMAGE) {
+          if (
+            variant.layout === JsonFeedImageType.STRAP_IMAGE ||
+            variant.layout === JsonFeedImageType.SMALL_THUMBNAIL
+          ) {
             return variant.src;
           }
         }
