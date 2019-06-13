@@ -5,12 +5,14 @@ import { ContentBlockType } from '../../../../common/__types__/ContentBlockType'
 import { ScriptInjectorService } from '../../services/script-injector/script-injector.service';
 import { mockService, ServiceMock } from '../../services/mocks/MockService';
 import { ScriptId } from '../../services/script-injector/__types__/ScriptId';
-import { Position } from 'src/app/services/script-injector/__types__/Position';
+import { Position } from '../../services/script-injector/__types__/Position';
+import { RuntimeService } from '../../services/runtime/runtime.service';
 
 describe('ExternalContentUnitComponent', () => {
   let component: ExternalContentUnitComponent;
   let fixture: ComponentFixture<ExternalContentUnitComponent>;
   let scriptInjectorService: ServiceMock<ScriptInjectorService>;
+  let runtimeService: ServiceMock<RuntimeService>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -25,12 +27,17 @@ describe('ExternalContentUnitComponent', () => {
         {
           provide: ScriptInjectorService,
           useClass: mockService(ScriptInjectorService)
+        },
+        {
+          provide: RuntimeService,
+          useClass: mockService(RuntimeService)
         }
       ],
       declarations: [ExternalContentUnitComponent]
     }).compileComponents();
 
     scriptInjectorService = TestBed.get(ScriptInjectorService);
+    runtimeService = TestBed.get(RuntimeService);
     fixture = TestBed.createComponent(ExternalContentUnitComponent);
     component = fixture.componentInstance;
   });
@@ -48,6 +55,7 @@ describe('ExternalContentUnitComponent', () => {
   });
 
   it('should load script if provided in browser', () => {
+    runtimeService.isBrowser.mockReturnValue(true);
     const scriptUrl = 'https://script.com';
     component.input = {
       type: ContentBlockType.ExternalContentUnit,
@@ -66,10 +74,29 @@ describe('ExternalContentUnitComponent', () => {
   });
 
   it('should not load script if not provided in browser', () => {
-    expect(true).toBe(true);
+    runtimeService.isBrowser.mockReturnValue(true);
+    component.input = {
+      type: ContentBlockType.ExternalContentUnit,
+      url: 'https://example.com',
+      height: '100px',
+      width: '100%',
+    };
+    fixture.detectChanges();
+
+    expect(scriptInjectorService.load).not.toHaveBeenCalled();
   });
 
   it('should not load script if provided in server', () => {
-    expect(true).toBe(true);
+    runtimeService.isBrowser.mockReturnValue(false);
+    component.input = {
+      type: ContentBlockType.ExternalContentUnit,
+      url: 'https://example.com',
+      height: '100px',
+      width: '100%',
+      scriptUrl: 'https://script.com'
+    };
+    fixture.detectChanges();
+
+    expect(scriptInjectorService.load).not.toHaveBeenCalled();
   });
 });

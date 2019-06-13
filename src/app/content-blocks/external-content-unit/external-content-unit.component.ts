@@ -10,6 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ScriptInjectorService } from '../../services/script-injector/script-injector.service';
 import { ScriptId } from '../../services/script-injector/__types__/ScriptId';
 import { Position } from '../../services/script-injector/__types__/Position';
+import { RuntimeService } from '../../services/runtime/runtime.service';
 
 @Component({
   selector: 'app-external-content-unit',
@@ -23,15 +24,19 @@ export class ExternalContentUnitComponent
 
   constructor(
     private sanitizer: DomSanitizer,
-    private scriptInjectorService: ScriptInjectorService
+    private scriptInjectorService: ScriptInjectorService,
+    private runtimeService: RuntimeService
   ) {}
 
   ngOnInit() {
-    this.scriptInjectorService.load(
-      ScriptId.neighbourlyTopStories,
-      this.input.scriptUrl as any,
-      Position.BOTTOM
-    );
+    const { scriptUrl } = this.input;
+    if (this.runtimeService.isBrowser() && scriptUrl) {
+      this.scriptInjectorService.load(
+        ScriptId.neighbourlyTopStories,
+        this.input.scriptUrl as any,
+        Position.BOTTOM
+      );
+    }
   }
 
   getUrl() {
