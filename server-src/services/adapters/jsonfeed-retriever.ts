@@ -56,3 +56,6 @@ export const retrieveEditorsPick = async (params: IParams, total: number) =>
     () => requestListAsset(params, config.editorsPickAssetId, total),
     params
   );
+
+export const retrieveDailyFix = async (params: IParams, total: number) =>
+  retry(() => requestListAsset(params, config.dailyFixAssetId, total), params);

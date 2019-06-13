@@ -2,12 +2,14 @@ import {
   retrieveMidStrip,
   retrieveArticleList,
   retrieveMiniMidStrip,
-  retrieveEditorsPick
+  retrieveEditorsPick,
+  retrieveDailyFix
 } from './jsonfeed-retriever';
 import * as jsonfeed from './__fixtures__/jsonfeed.json';
 import * as midStripData from './__fixtures__/mid-strip.json';
 import * as miniMidStripData from './__fixtures__/mini-mid-strip.json';
 import * as editorsPickData from './__fixtures__/editors-pick.json';
+import * as dailyFixData from './__fixtures__/daily-fix.json';
 import http from '../utils/http';
 import { Section } from '../section';
 import { IParams } from '../__types__/IParams';
@@ -117,6 +119,33 @@ describe('JsonFeed Retriever', () => {
 
       const editorsPick = await retrieveEditorsPick(params, 8);
       expect(editorsPick.assets.length).toEqual(8);
+    });
+  });
+
+  describe('Daily Fix', () => {
+    it('should respond with daily fix data', async () => {
+      (http(params).get as jest.Mock).mockResolvedValue({
+        data: dailyFixData
+      });
+
+      expect(await retrieveDailyFix(params, 3)).toEqual(dailyFixData);
+    });
+
+    it('should throw error when jsonfeed request for retrieve daily fix fails', async () => {
+      const error = new Error('AJAX error');
+      (http(params).get as jest.Mock).mockRejectedValue(error);
+
+      await expect(retrieveDailyFix(params, 8)).rejects.toEqual(error);
+    });
+
+    it('should return 3 daily fix assets', async () => {
+      const tenDailyFixes = Array(10).fill(dailyFixData.assets[0]);
+      (http(params).get as jest.Mock).mockResolvedValue({
+        data: { ...editorsPickData, assets: tenDailyFixes }
+      });
+
+      const editorsPick = await retrieveDailyFix(params, 3);
+      expect(editorsPick.assets.length).toEqual(3);
     });
   });
 });
