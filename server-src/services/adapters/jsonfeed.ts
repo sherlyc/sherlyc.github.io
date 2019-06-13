@@ -2,7 +2,8 @@ import {
   retrieveMidStrip,
   retrieveArticleList,
   retrieveMiniMidStrip,
-  retrieveEditorsPick
+  retrieveEditorsPick,
+  retrieveDailyFix
 } from './jsonfeed-retriever';
 import mapToRawArticleList from './jsonfeed-mapper';
 import { IJsonFeedArticleList } from './__types__/IJsonFeedArticleList';
@@ -27,7 +28,8 @@ export const getArticleList = async (
 const listAssetRegistry: { [key in ListAsset]: Function } = {
   [ListAsset.EditorPicks]: retrieveEditorsPick,
   [ListAsset.MidStrip]: retrieveMidStrip,
-  [ListAsset.MiniMidStrip]: retrieveMiniMidStrip
+  [ListAsset.MiniMidStrip]: retrieveMiniMidStrip,
+  [ListAsset.DailyFix]: retrieveDailyFix
 };
 
 export const getListAsset = async (
