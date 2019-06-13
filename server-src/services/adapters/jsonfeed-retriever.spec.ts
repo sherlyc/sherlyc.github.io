@@ -6,8 +6,8 @@ import {
   retrieveDailyFix
 } from './jsonfeed-retriever';
 import * as jsonfeed from './__fixtures__/jsonfeed/jsonfeed.json';
-import * as midStripData from './__fixtures__/mid-strip.json';
-import * as miniMidStripData from './__fixtures__/mini-mid-strip.json';
+import * as midStripData from './__fixtures__/mid-strip/mid-strip.json';
+import * as miniMidStripData from './__fixtures__/mini-mid-strip/mini-mid-strip.json';
 import * as editorsPickData from './__fixtures__/editors-pick/editors-pick.json';
 import * as dailyFixData from './__fixtures__/daily-fix/daily-fix.json';
 import http from '../utils/http';
