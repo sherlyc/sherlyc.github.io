@@ -28,12 +28,12 @@ export class ExternalContentUnitComponent
     private runtimeService: RuntimeService
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     const { scriptUrl } = this.input;
     if (this.runtimeService.isBrowser() && scriptUrl) {
-      this.scriptInjectorService.load(
+      await this.scriptInjectorService.load(
         ScriptId.neighbourlyTopStories,
-        this.input.scriptUrl as any,
+        scriptUrl,
         Position.BOTTOM
       );
     }
