@@ -15,17 +15,19 @@ export class NeighbourlyService {
 
   async setup() {
     if (this.runtimeService.isBrowser()) {
-      await this.scriptInjectorService.load(
+      const localStoriesScriptLoad = this.scriptInjectorService.load(
         ScriptId.neighbourlyLocalStories,
         'https://cdn.neighbourly.co.nz/js/neighbourly-stuff-strap.js',
         Position.BOTTOM
       );
 
-      await this.scriptInjectorService.load(
+      const topStoriesScriptLoad = this.scriptInjectorService.load(
         ScriptId.neighbourlyTopStories,
         'https://cdn.neighbourly.co.nz/js/neighbourly-stuff-widget-init.js',
         Position.BOTTOM
       );
+
+      await Promise.all([localStoriesScriptLoad, topStoriesScriptLoad]);
     }
   }
 }
