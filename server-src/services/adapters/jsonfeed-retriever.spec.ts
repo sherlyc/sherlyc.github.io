@@ -138,13 +138,11 @@ describe('JsonFeed Retriever', () => {
       await expect(retrieveDailyFix(params, 8)).rejects.toEqual(error);
     });
 
-    it('should return 3 daily fix assets with newsletters, puzzles and cartoons', async () => {
-      const fourDailyFixes = [
-        dailyFixData.assets[0],
-        dailyFixData.assets[1],
-        dailyFixData.assets[2],
-        dailyFixData.assets[3]
-      ];
+    it('should return 3 assets - 1 newsletter, 1 puzzle and 1 cartoon', async () => {
+      const newsletters = dailyFixData.assets[0];
+      const puzzles = dailyFixData.assets[1];
+      const cartoons = dailyFixData.assets[2];
+      const fourDailyFixes = [newsletters, puzzles, cartoons, cartoons];
       (http(params).get as jest.Mock).mockResolvedValue({
         data: { ...editorsPickData, assets: fourDailyFixes }
       });
