@@ -404,7 +404,7 @@ export default async (params: IParams): Promise<IPage> => {
         { type: ContentBlockType.Header },
         {
           type: ContentBlockType.Container,
-          items: [{ type: ContentBlockType.ErrorBlock, message: 'Something went wrong :/, try again soon' }]
+          items: [{ type: ContentBlockType.ErrorBlock, message: 'Oops, sorry! It looks like we\'ve stuffed up...' }]
         },
         { type: ContentBlockType.Footer }
       ]
