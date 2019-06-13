@@ -391,7 +391,7 @@ export default async (params: IParams): Promise<IPage> => {
             },
             {
               type: HandlerInputType.ExternalContent,
-              height: '570px',
+              height: '580px',
               width: '100%',
               url: 'https://cdn.neighbourly.co.nz/stuff/933/homepage'
             }
