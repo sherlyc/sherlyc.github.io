@@ -4,8 +4,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 import { ScriptInjectorService } from '../../services/script-injector/script-injector.service';
 import { mockService, ServiceMock } from '../../services/mocks/MockService';
-import { ScriptId } from '../../services/script-injector/__types__/ScriptId';
-import { Position } from '../../services/script-injector/__types__/Position';
 import { RuntimeService } from '../../services/runtime/runtime.service';
 
 describe('ExternalContentUnitComponent', () => {
@@ -52,51 +50,5 @@ describe('ExternalContentUnitComponent', () => {
 
     fixture.detectChanges();
     expect(component).toBeTruthy();
-  });
-
-  it('should load script if provided in browser', () => {
-    runtimeService.isBrowser.mockReturnValue(true);
-    const scriptUrl = 'https://script.com';
-    component.input = {
-      type: ContentBlockType.ExternalContentUnit,
-      url: 'https://example.com',
-      height: '100px',
-      width: '100%',
-      scriptUrl: scriptUrl
-    };
-    fixture.detectChanges();
-
-    expect(scriptInjectorService.load).toHaveBeenCalledWith(
-      ScriptId.neighbourlyTopStories,
-      scriptUrl,
-      Position.BOTTOM
-    );
-  });
-
-  it('should not load script if not provided in browser', () => {
-    runtimeService.isBrowser.mockReturnValue(true);
-    component.input = {
-      type: ContentBlockType.ExternalContentUnit,
-      url: 'https://example.com',
-      height: '100px',
-      width: '100%',
-    };
-    fixture.detectChanges();
-
-    expect(scriptInjectorService.load).not.toHaveBeenCalled();
-  });
-
-  it('should not load script if provided in server', () => {
-    runtimeService.isBrowser.mockReturnValue(false);
-    component.input = {
-      type: ContentBlockType.ExternalContentUnit,
-      url: 'https://example.com',
-      height: '100px',
-      width: '100%',
-      scriptUrl: 'https://script.com'
-    };
-    fixture.detectChanges();
-
-    expect(scriptInjectorService.load).not.toHaveBeenCalled();
   });
 });

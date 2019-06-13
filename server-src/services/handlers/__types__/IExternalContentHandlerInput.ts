@@ -5,5 +5,4 @@ export interface IExternalContentHandlerInput {
   url: string;
   width: string;
   height: string;
-  scriptUrl?: string;
 }

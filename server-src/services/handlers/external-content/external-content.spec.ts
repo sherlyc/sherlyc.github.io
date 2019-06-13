@@ -16,8 +16,7 @@ describe('ExternalContentHandler', () => {
         type: HandlerInputType.ExternalContent,
         width: '100%',
         height: '300px',
-        url: 'https://example.com',
-        scriptUrl: 'https://script.com'
+        url: 'https://example.com'
       },
       params
     )) as IExternalContentUnit[];
@@ -27,8 +26,7 @@ describe('ExternalContentHandler', () => {
         type: ContentBlockType.ExternalContentUnit,
         width: '100%',
         height: '300px',
-        url: 'https://example.com',
-        scriptUrl: 'https://script.com'
+        url: 'https://example.com'
       } as IExternalContentUnit
     ];
 
