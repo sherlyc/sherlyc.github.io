@@ -182,7 +182,16 @@ export default async (params: IParams): Promise<IPage> => {
                 totalBasicArticleTitleUnit: 2
               }
             },
-
+            {
+              type: HandlerInputType.ArticleSection,
+              displayName: 'Daily Fix',
+              displayNameColor: 'navyblue',
+              articleList: {
+                sourceId: ListAsset.DailyFix,
+                strapName: 'Daily Fix',
+                totalBasicArticlesUnit: 3
+              }
+            },
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Technology',
@@ -404,7 +413,12 @@ export default async (params: IParams): Promise<IPage> => {
         { type: ContentBlockType.Header },
         {
           type: ContentBlockType.Container,
-          items: [{ type: ContentBlockType.ErrorBlock, message: 'Oops, sorry! It looks like we\'ve stuffed up...' }]
+          items: [
+            {
+              type: ContentBlockType.ErrorBlock,
+              message: `Oops, sorry! It looks like we've stuffed up...`
+            }
+          ]
         },
         { type: ContentBlockType.Footer }
       ]
