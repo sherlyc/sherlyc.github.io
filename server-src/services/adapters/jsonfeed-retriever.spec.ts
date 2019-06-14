@@ -1,10 +1,4 @@
-import {
-  retrieveMidStrip,
-  retrieveArticleList,
-  retrieveMiniMidStrip,
-  retrieveEditorsPick,
-  retrieveDailyFix
-} from './jsonfeed-retriever';
+import { retrieveArticleList, retrieveListAsset } from './jsonfeed-retriever';
 import * as jsonfeed from './__fixtures__/jsonfeed/jsonfeed.json';
 import * as midStripData from './__fixtures__/mid-strip/mid-strip.json';
 import * as miniMidStripData from './__fixtures__/mini-mid-strip/mini-mid-strip.json';
@@ -13,6 +7,7 @@ import * as dailyFixData from './__fixtures__/daily-fix/daily-fix.json';
 import http from '../utils/http';
 import { Section } from '../section';
 import { IParams } from '../__types__/IParams';
+import config from '../utils/config';
 
 jest.mock('../utils/http');
 
@@ -47,20 +42,26 @@ describe('JsonFeed Retriever', () => {
     it('should respond with mid strip data', async () => {
       (http(params).get as jest.Mock).mockResolvedValue({ data: midStripData });
 
-      expect(await retrieveMidStrip(params, 2)).toEqual(midStripData);
+      expect(
+        await retrieveListAsset(config.midStripListAssetId)(params, 2)
+      ).toEqual(midStripData);
     });
 
     it('should throw error when jsonfeed request for mid strip fails', async () => {
       const error = new Error('AJAX error');
       (http(params).get as jest.Mock).mockRejectedValue(error);
 
-      await expect(retrieveMidStrip(params, 2)).rejects.toEqual(error);
+      await expect(
+        retrieveListAsset(config.midStripListAssetId)(params, 2)
+      ).rejects.toEqual(error);
     });
 
     it('should retrieve specified number of articles', async () => {
       (http(params).get as jest.Mock).mockResolvedValue({ data: midStripData });
 
-      const midStripJsonFeed = await retrieveMidStrip(params, 1);
+      const midStripJsonFeed = await retrieveListAsset(
+        config.midStripListAssetId
+      )(params, 1);
 
       const articles = midStripJsonFeed.assets;
       expect(articles.length).toEqual(1);
@@ -69,7 +70,9 @@ describe('JsonFeed Retriever', () => {
     it('should retrieve all articles if specifed total is more than number of articles received', async () => {
       (http(params).get as jest.Mock).mockResolvedValue({ data: midStripData });
 
-      const midStripJsonFeed = await retrieveMidStrip(params, 5);
+      const midStripJsonFeed = await retrieveListAsset(
+        config.midStripListAssetId
+      )(params, 5);
 
       const articles = midStripJsonFeed.assets;
       expect(articles.length).toEqual(2);
@@ -82,16 +85,18 @@ describe('JsonFeed Retriever', () => {
         data: miniMidStripData.threeListAssets
       });
 
-      expect(await retrieveMiniMidStrip(params, 2)).toEqual(
-        miniMidStripData.twoListAssets
-      );
+      expect(
+        await retrieveListAsset(config.miniMidStripListAssetId)(params, 2)
+      ).toEqual(miniMidStripData.twoListAssets);
     });
 
     it('should throw error when jsonfeed request for mini mid strip fails', async () => {
       const error = new Error('AJAX error');
       (http(params).get as jest.Mock).mockRejectedValue(error);
 
-      await expect(retrieveMiniMidStrip(params, 2)).rejects.toEqual(error);
+      await expect(
+        retrieveListAsset(config.miniMidStripListAssetId)(params, 2)
+      ).rejects.toEqual(error);
     });
   });
 
@@ -101,14 +106,18 @@ describe('JsonFeed Retriever', () => {
         data: editorsPickData
       });
 
-      expect(await retrieveEditorsPick(params, 8)).toEqual(editorsPickData);
+      expect(
+        await retrieveListAsset(config.editorsPickAssetId)(params, 8)
+      ).toEqual(editorsPickData);
     });
 
     it('should throw error when jsonfeed request for editors pick fails', async () => {
       const error = new Error('AJAX error');
       (http(params).get as jest.Mock).mockRejectedValue(error);
 
-      await expect(retrieveEditorsPick(params, 8)).rejects.toEqual(error);
+      await expect(
+        retrieveListAsset(config.editorsPickAssetId)(params, 8)
+      ).rejects.toEqual(error);
     });
 
     it('should return only 8 editors pick article', async () => {
@@ -117,7 +126,10 @@ describe('JsonFeed Retriever', () => {
         data: { ...editorsPickData, assets: tenArticles }
       });
 
-      const editorsPick = await retrieveEditorsPick(params, 8);
+      const editorsPick = await retrieveListAsset(config.editorsPickAssetId)(
+        params,
+        8
+      );
       expect(editorsPick.assets.length).toEqual(8);
     });
   });
@@ -128,14 +140,18 @@ describe('JsonFeed Retriever', () => {
         data: dailyFixData
       });
 
-      expect(await retrieveDailyFix(params, 3)).toEqual(dailyFixData);
+      expect(
+        await retrieveListAsset(config.dailyFixAssetId)(params, 3)
+      ).toEqual(dailyFixData);
     });
 
     it('should throw error when jsonfeed request for retrieve daily fix fails', async () => {
       const error = new Error('AJAX error');
       (http(params).get as jest.Mock).mockRejectedValue(error);
 
-      await expect(retrieveDailyFix(params, 8)).rejects.toEqual(error);
+      await expect(
+        retrieveListAsset(config.dailyFixAssetId)(params, 8)
+      ).rejects.toEqual(error);
     });
 
     it('should return 3 assets - 1 newsletter, 1 puzzle and 1 cartoon', async () => {
@@ -147,7 +163,10 @@ describe('JsonFeed Retriever', () => {
         data: { ...editorsPickData, assets: fourDailyFixes }
       });
 
-      const dailyFix = await retrieveDailyFix(params, 3);
+      const dailyFix = await retrieveListAsset(config.dailyFixAssetId)(
+        params,
+        3
+      );
       const assetTitles = dailyFix.assets.map((asset) => asset.title);
 
       expect(assetTitles.length).toEqual(3);

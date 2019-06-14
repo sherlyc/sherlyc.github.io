@@ -1,16 +1,11 @@
-import {
-  retrieveMidStrip,
-  retrieveArticleList,
-  retrieveMiniMidStrip,
-  retrieveEditorsPick,
-  retrieveDailyFix
-} from './jsonfeed-retriever';
+import { retrieveArticleList, retrieveListAsset } from './jsonfeed-retriever';
 import mapToRawArticleList from './jsonfeed-mapper';
 import { IJsonFeedArticleList } from './__types__/IJsonFeedArticleList';
 import { IRawArticle } from './__types__/IRawArticle';
 import { Section } from '../section';
 import { IParams } from '../__types__/IParams';
 import { ListAsset } from '../listAsset';
+import config from '../utils/config';
 
 export const getArticleList = async (
   section: Section,
@@ -26,10 +21,10 @@ export const getArticleList = async (
 };
 
 const listAssetRegistry: { [key in ListAsset]: Function } = {
-  [ListAsset.EditorPicks]: retrieveEditorsPick,
-  [ListAsset.MidStrip]: retrieveMidStrip,
-  [ListAsset.MiniMidStrip]: retrieveMiniMidStrip,
-  [ListAsset.DailyFix]: retrieveDailyFix
+  [ListAsset.EditorPicks]: retrieveListAsset(config.editorsPickAssetId),
+  [ListAsset.MidStrip]: retrieveListAsset(config.midStripListAssetId),
+  [ListAsset.MiniMidStrip]: retrieveListAsset(config.miniMidStripListAssetId),
+  [ListAsset.DailyFix]: retrieveListAsset(config.dailyFixAssetId)
 };
 
 export const getListAsset = async (
