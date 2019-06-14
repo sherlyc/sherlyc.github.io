@@ -18,7 +18,8 @@ const winstonLogger: Logger = winston.createLogger({
   format: getFormat(config.loggerOptions.format),
   transports: [
     new winston.transports.Console({
-      handleExceptions: true
+      handleExceptions: true,
+      stderrLevels: ['error']
     })
   ],
   exitOnError: false
