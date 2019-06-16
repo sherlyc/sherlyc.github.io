@@ -6,6 +6,7 @@ import { IParams } from './services/__types__/IParams';
 import { getWeather } from './api/weather';
 import logger from './services/utils/logger';
 import { experimentController } from './api/experiment-controller';
+import { healthCheck } from './api/health-controller';
 
 const app = express();
 
@@ -51,6 +52,11 @@ app.use((req, res, next) => {
     );
   }
   next();
+});
+
+app.use('/health/:type', async (req, res) => {
+  const params: IParams = extractParams();
+  await healthCheck(req, res, params);
 });
 
 export default app;

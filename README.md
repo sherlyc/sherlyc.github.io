@@ -161,3 +161,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - You will need your nexus credentials (kindly ask kiwiops)
 - login to docker `docker login https://nexus.ci.shift21.ffx.nz/` and `docker login https://docker-upload.ci.shift21.ffx.nz`
 - Finally, on the root of the project run `branchout maven cv`
+
+## Health Checks
+
+Health checks can be queried at the endpoints `/health/light` which simply returns a 200 OK
+and `/health/full` that checks the upstream systems Spade consumes data from and if all reply 200 then the response
+will be 200 too.
