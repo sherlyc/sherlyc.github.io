@@ -1,5 +1,6 @@
 export enum ListAsset {
   EditorPicks = 'EditorPicks',
   MidStrip = 'MidStrip',
-  MiniMidStrip = 'MiniMidStrip'
+  MiniMidStrip = 'MiniMidStrip',
+  DailyFix = 'DailyFix'
 }

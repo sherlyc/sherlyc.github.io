@@ -1,6 +1,6 @@
 import { weatherMapper } from './weather-mapper';
-import * as weatherJson from './__fixtures__/weather.json';
-import * as rawWeather from './__fixtures__/raw-weather.json';
+import * as weatherJson from './__fixtures__/weather/weather.json';
+import * as rawWeather from './__fixtures__/weather/raw-weather.json';
 import { cloneDeep } from 'lodash';
 import { IWeather } from './__types__/IWeather';
 

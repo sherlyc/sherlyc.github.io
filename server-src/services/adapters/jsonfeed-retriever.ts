@@ -39,20 +39,7 @@ async function requestListAsset(
     : response.data;
 }
 
-export const retrieveMidStrip = async (params: IParams, total: number) =>
-  retry(
-    () => requestListAsset(params, config.midStripListAssetId, total),
-    params
-  );
-
-export const retrieveMiniMidStrip = async (params: IParams, total: number) =>
-  retry(
-    () => requestListAsset(params, config.miniMidStripListAssetId, total),
-    params
-  );
-
-export const retrieveEditorsPick = async (params: IParams, total: number) =>
-  retry(
-    () => requestListAsset(params, config.editorsPickAssetId, total),
-    params
-  );
+export const retrieveListAsset = (listAssetId: string) => async (
+  params: IParams,
+  total: number
+) => retry(() => requestListAsset(params, listAssetId, total), params);
