@@ -1,4 +1,4 @@
-<article>
+<article itemscope itemtype="https://schema.org/Article">
   <a
     href="{{ input.linkUrl }}"
     appOpenExternalLink="{{ input.linkUrl }}"
@@ -8,7 +8,11 @@
     <div class="row">
       <div class="col-md-2 col-sm-3 col-xs-4 column">
         <div class="image">
-          <img src="{{ input.imageSrc }}" alt="{{ input.indexHeadline }}" />
+          <img
+            itemprop="image"
+            src="{{ input.imageSrc }}"
+            alt="{{ input.indexHeadline }}"
+          />
         </div>
       </div>
       <div class="col-md-10 col-sm-9 col-xs-8 column">
@@ -21,4 +25,18 @@
       </div>
     </div>
   </a>
+
+  <meta itemprop="author" content="{{ input.author }}" />
+  <div
+    itemprop="publisher"
+    itemscope
+    itemtype="https://schema.org/Organization"
+  >
+    <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+      <meta itemprop="url" content="https://google.com/logo.jpg" />
+    </div>
+    <meta itemprop="name" content="Stuff" />
+  </div>
+  <meta itemprop="datePublished" content="{{ getISODate() }}" />
+  <meta itemprop="dateModified" content="{{ getISODate() }}" />
 </article>
