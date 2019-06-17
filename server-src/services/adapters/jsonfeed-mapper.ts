@@ -23,6 +23,8 @@ function mapArticleAsset(item: IJsonFeedArticle): IRawArticle {
   return {
     id: String(item.id),
     indexHeadline: item.alt_headline,
+    author: item.byline,
+    publisher: 'Stuff',
     introText: item.alt_intro,
     linkUrl: item.path,
     imageSrc: getImageSrc(item),
@@ -35,6 +37,8 @@ function mapUrlAsset(item: IJsonFeedUrl): IRawArticle {
   return {
     id: String(item.id),
     indexHeadline: item.title,
+    author: 'Stuff',
+    publisher: 'Stuff',
     introText: item.alt_intro,
     linkUrl: item.url,
     imageSrc: getImageSrc(item),
