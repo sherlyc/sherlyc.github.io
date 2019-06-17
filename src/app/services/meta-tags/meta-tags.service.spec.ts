@@ -9,6 +9,7 @@ describe('MetaTagsService', () => {
   let metaService: MetaTagsService;
 
   beforeEach(() => {
+    jest.clearAllMocks();
     TestBed.configureTestingModule({
       providers: [
         {
@@ -27,13 +28,28 @@ describe('MetaTagsService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should be created', () => {
-    const service: MetaTagsService = TestBed.get(MetaTagsService);
-    expect(service).toBeTruthy();
+  it('should create the general meta tags', () => {
+    const mockGeneralTags = [
+      {
+        name: 'description',
+        content: 'test description'
+      },
+      {
+        name: 'theme-color',
+        content: '#000000'
+      }
+    ];
+    metaService.getGeneralMetaTag = jest.fn(() => mockGeneralTags);
+    jest.spyOn(metaService, 'setTags');
+
+    metaService.setup();
+
+    expect(metaService.setTags).toHaveBeenCalledTimes(2);
+    expect(metaService.setTags).toHaveBeenNthCalledWith(1, mockGeneralTags);
   });
 
   it('should create the social meta tags', () => {
-    const mockTags = [
+    const mockSocialTags = [
       {
         name: 'fb:app_id',
         content: '207633159308175'
@@ -43,12 +59,12 @@ describe('MetaTagsService', () => {
         content: '21253884267'
       }
     ];
-
-    metaService.getSocialMetaTags = jest.fn();
-    (metaService.getSocialMetaTags as jest.Mock).mockReturnValue(mockTags);
+    metaService.getSocialMetaTags = jest.fn(() => mockSocialTags);
     jest.spyOn(metaService, 'setTags');
+
     metaService.setup();
-    expect(metaService.setTags).toBeCalledWith(mockTags);
-    expect(meta.setTag).toBeCalledTimes(2);
+
+    expect(metaService.setTags).toHaveBeenCalledTimes(2);
+    expect(metaService.setTags).toHaveBeenNthCalledWith(2, mockSocialTags);
   });
 });

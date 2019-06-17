@@ -3,7 +3,7 @@ import {
   BrowserTransferStateModule
 } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,6 +14,7 @@ import { environment } from '../environments/environment';
 import { CookieService } from './services/cookie/cookie.service';
 import { SharedModule } from './shared/shared.module';
 import { WindowService } from './services/window/window.service';
+import { MetaModule } from '@ngx-meta/core';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +28,8 @@ import { WindowService } from './services/window/window.service';
     ContentBlocksModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production
-    })
+    }),
+    MetaModule.forRoot()
   ],
   providers: [
     { provide: ErrorHandler, useClass: LoggerService },

@@ -8,6 +8,22 @@ import { IMeta } from './__types__/IMeta';
 export class MetaTagsService {
   constructor(private meta: MetaService) {}
 
+  getGeneralMetaTag(): IMeta[] {
+    return [
+      {
+        name: 'theme-color',
+        content: '#ffffff'
+      },
+      {
+        name: 'description',
+        content:
+          `Breaking news and videos of today's latest news stories from around` +
+          ' New Zealand, including up to date weather, World, sport, business, ' +
+          'Entertainment, Technology Life and Style, Travel and motoring.'
+      }
+    ];
+  }
+
   getSocialMetaTags(): IMeta[] {
     return [
       {
@@ -55,6 +71,7 @@ export class MetaTagsService {
   }
 
   setup() {
+    this.setTags(this.getGeneralMetaTag());
     this.setTags(this.getSocialMetaTags());
   }
 }
