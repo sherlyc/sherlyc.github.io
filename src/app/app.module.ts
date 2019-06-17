@@ -14,7 +14,6 @@ import { environment } from '../environments/environment';
 import { CookieService } from './services/cookie/cookie.service';
 import { SharedModule } from './shared/shared.module';
 import { WindowService } from './services/window/window.service';
-import { MetaModule } from '@ngx-meta/core';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,8 +27,7 @@ import { MetaModule } from '@ngx-meta/core';
     ContentBlocksModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production
-    }),
-    MetaModule.forRoot()
+    })
   ],
   providers: [
     { provide: ErrorHandler, useClass: LoggerService },

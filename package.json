@@ -46,7 +46,6 @@
     "@angular/service-worker": "^7.2.15",
     "@nguniversal/express-engine": "^7.1.1",
     "@nguniversal/module-map-ngfactory-loader": "^7.1.1",
-    "@ngx-meta/core": "^7.0.0",
     "@sentry/browser": "^5.2.1",
     "@types/store": "^2.0.1",
     "axios": "^0.18.0",

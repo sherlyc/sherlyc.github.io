@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 
 import { MetaTagsService } from './meta-tags.service';
-import { MetaService } from '@ngx-meta/core';
 import { mockService } from '../mocks/MockService';
+import { Meta } from '@angular/platform-browser';
 
 describe('MetaTagsService', () => {
-  let meta: MetaService;
+  let meta: Meta;
   let metaService: MetaTagsService;
 
   beforeEach(() => {
@@ -13,13 +13,13 @@ describe('MetaTagsService', () => {
     TestBed.configureTestingModule({
       providers: [
         {
-          provide: MetaService,
-          useClass: mockService(MetaService)
+          provide: Meta,
+          useClass: mockService(Meta)
         }
       ]
     });
 
-    meta = TestBed.get(MetaService);
+    meta = TestBed.get(Meta);
     metaService = TestBed.get(MetaTagsService);
   });
 
@@ -40,12 +40,11 @@ describe('MetaTagsService', () => {
       }
     ];
     metaService.getGeneralMetaTag = jest.fn(() => mockGeneralTags);
-    jest.spyOn(metaService, 'setTags');
 
     metaService.setup();
 
-    expect(metaService.setTags).toHaveBeenCalledTimes(2);
-    expect(metaService.setTags).toHaveBeenNthCalledWith(1, mockGeneralTags);
+    expect(meta.addTags).toHaveBeenCalledTimes(2);
+    expect(meta.addTags).toHaveBeenNthCalledWith(1, mockGeneralTags);
   });
 
   it('should create the social meta tags', () => {
@@ -60,11 +59,10 @@ describe('MetaTagsService', () => {
       }
     ];
     metaService.getSocialMetaTags = jest.fn(() => mockSocialTags);
-    jest.spyOn(metaService, 'setTags');
 
     metaService.setup();
 
-    expect(metaService.setTags).toHaveBeenCalledTimes(2);
-    expect(metaService.setTags).toHaveBeenNthCalledWith(2, mockSocialTags);
+    expect(meta.addTags).toHaveBeenCalledTimes(2);
+    expect(meta.addTags).toHaveBeenNthCalledWith(2, mockSocialTags);
   });
 });
