@@ -48,12 +48,12 @@ export class MetaTagsService {
       },
       {
         name: 'og:url',
-        content: 'http://www.stuff.co.nz/'
+        content: 'https://www.stuff.co.nz/'
       },
       {
         name: 'og:image',
         content:
-          'http://www.stuff.co.nz/etc/designs/ffx/nz/stuff/social-media-logos/stuff-200x200.png'
+          'https://www.stuff.co.nz/etc/designs/ffx/nz/stuff/social-media-logos/stuff-200x200.png'
       },
       {
         name: 'og:image:alt',
