@@ -56,6 +56,10 @@ export class MetaTagsService {
           'http://www.stuff.co.nz/etc/designs/ffx/nz/stuff/social-media-logos/stuff-200x200.png'
       },
       {
+        name: 'og:image:alt',
+        content: 'Stuff Logo'
+      },
+      {
         name: 'og:image:width',
         content: '200'
       },
