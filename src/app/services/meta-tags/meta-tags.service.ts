@@ -16,8 +16,8 @@ export class MetaTagsService {
       {
         name: 'description',
         content:
-          `Breaking news and videos of today's latest news stories from around` +
-          ' New Zealand, including up to date weather, World, sport, business, ' +
+          `Breaking news and videos of today's latest news stories from around ` +
+          'New Zealand, including up to date weather, World, sport, business, ' +
           'Entertainment, Technology Life and Style, Travel and motoring.'
       }
     ];
@@ -47,12 +47,12 @@ export class MetaTagsService {
       },
       {
         property: 'og:url',
-        content: 'http://www.stuff.co.nz/'
+        content: 'https://www.stuff.co.nz/'
       },
       {
         property: 'og:image',
         content:
-          'http://www.stuff.co.nz/etc/designs/ffx/nz/stuff/social-media-logos/stuff-200x200.png'
+          'https://www.stuff.co.nz/etc/designs/ffx/nz/stuff/social-media-logos/stuff-200x200.png'
       },
       {
         property: 'og:image:width',
