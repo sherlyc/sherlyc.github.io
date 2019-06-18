@@ -24,7 +24,7 @@ export const healthCheck = async (
   if (req.params.type === 'full') {
     try {
       await fullHealthCheck(params);
-      res.sendStatus(200);
+      res.status(200).send('Full Health Check Successful');
     } catch (err) {
       logger.error(
         params.apiRequestId,
@@ -33,6 +33,6 @@ export const healthCheck = async (
       res.sendStatus(500);
     }
   } else if (req.params.type === 'light') {
-    res.sendStatus(200);
+    res.status(200).send('Light Health Check Successful');
   }
 };
