@@ -14,7 +14,18 @@ export class MetaTagsService {
         content: '#ffffff'
       },
       {
+        name: 'name',
+        itemprop: 'name',
+        content: 'Latest breaking news NZ | Stuff.co.nz | New Zealand'
+      },
+      {
+        name: 'url',
+        itemprop: 'url',
+        content: 'https://www.stuff.co.nz/'
+      },
+      {
         name: 'description',
+        itemprop: 'description',
         content:
           `Breaking news and videos of today's latest news stories from around ` +
           'New Zealand, including up to date weather, World, sport, business, ' +
