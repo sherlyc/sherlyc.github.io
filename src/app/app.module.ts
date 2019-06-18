@@ -3,7 +3,7 @@ import {
   BrowserTransferStateModule
 } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';

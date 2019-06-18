@@ -34,13 +34,14 @@ const create = (params: IParams): AxiosInstance => {
     (error: AxiosError) => {
       const errMessage = `${error.config.method!.toUpperCase()} ${
         error.config.url
-        } ==> Failed with error: ${error.message}
-        ${error.response ? `, STATUS ${error.response.status} ${error.response.data}` : ''}`;
+      } ==> Failed with error: ${error.message}
+        ${
+          error.response
+            ? `, STATUS ${error.response.status} ${error.response.data}`
+            : ''
+        }`;
 
-      logger.warn(
-        params.apiRequestId,
-        errMessage
-      );
+      logger.warn(params.apiRequestId, errMessage);
 
       error.message = errMessage;
       return Promise.reject(error);
