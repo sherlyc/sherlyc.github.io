@@ -1,5 +1,11 @@
-<article itemscope itemtype="https://schema.org/Article">
+<article
+  itemprop="itemListElement"
+  itemscope
+  itemtype="https://schema.org/ListItem"
+>
+  <meta itemprop="position" content="{{ index }}" />
   <a
+    itemprop="url"
     href="{{ input.linkUrl }}"
     appOpenExternalLink="{{ input.linkUrl }}"
     (click)="sendAnalytics()"
@@ -25,18 +31,4 @@
       </div>
     </div>
   </a>
-
-  <meta itemprop="author" content="{{ input.author }}" />
-  <div
-    itemprop="publisher"
-    itemscope
-    itemtype="https://schema.org/Organization"
-  >
-    <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-      <meta itemprop="url" content="https://google.com/logo.jpg" />
-    </div>
-    <meta itemprop="name" content="Stuff" />
-  </div>
-  <meta itemprop="datePublished" content="{{ getISODate() }}" />
-  <meta itemprop="dateModified" content="{{ getISODate() }}" />
 </article>
