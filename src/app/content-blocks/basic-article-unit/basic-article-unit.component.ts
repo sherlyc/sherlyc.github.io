@@ -12,6 +12,7 @@ import * as moment from 'moment';
 })
 export class BasicArticleUnitComponent implements IContentBlockComponent {
   @Input() input!: IBasicArticleUnit;
+  index!: number;
 
   constructor(private analyticsService: AnalyticsService) {}
 
@@ -24,9 +25,5 @@ export class BasicArticleUnitComponent implements IContentBlockComponent {
       articleHeadline: indexHeadline,
       articleId: id
     });
-  }
-
-  getISODate() {
-    return moment(this.input.lastPublishedTime).toISOString();
   }
 }
