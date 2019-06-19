@@ -5,8 +5,6 @@ export interface IBasicArticleUnit {
   id: string;
   strapName: string;
   indexHeadline: string;
-  author: string;
-  publisher: string;
   introText: string;
   linkUrl: string;
   imageSrc: string | null;

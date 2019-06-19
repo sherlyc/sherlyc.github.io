@@ -18,8 +18,6 @@ const createBasicArticleUnitBlock = (
   type: ContentBlockType.BasicArticleUnit,
   id: article.id,
   strapName: strapName,
-  author: article.author,
-  publisher: article.publisher,
   indexHeadline: article.indexHeadline,
   introText: article.introText,
   imageSrc: article.imageSrc,
