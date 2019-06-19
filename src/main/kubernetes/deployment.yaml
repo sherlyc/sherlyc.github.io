@@ -76,14 +76,14 @@ spec:
               readOnly: true
           readinessProbe:
             httpGet:
-              path: "/health/light"
+              path: '/health/light'
               port: 4000
             initialDelaySeconds: 2
             periodSeconds: 5
             timeoutSeconds: 5
           livenessProbe:
             httpGet:
-              path: "/health/light"
+              path: '/health/light'
               port: 4000
             initialDelaySeconds: 5
             periodSeconds: 5
