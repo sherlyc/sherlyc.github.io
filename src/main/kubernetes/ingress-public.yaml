@@ -19,4 +19,4 @@ spec:
           - backend:
               serviceName: ${project.artifactId}
               servicePort: 80
-            path: /health/
+            path: /health/*
