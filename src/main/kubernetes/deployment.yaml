@@ -74,6 +74,19 @@ spec:
             - mountPath: /etc/${project.artifactId}/
               name: config-v${parsedVersion.majorVersion}
               readOnly: true
+          readinessProbe:
+            httpGet:
+              path: '/health/light'
+              port: 4000
+            initialDelaySeconds: 2
+            periodSeconds: 5
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: '/health/light'
+              port: 4000
+            initialDelaySeconds: 5
+            periodSeconds: 5
       volumes:
         - name: config-v${parsedVersion.majorVersion}
           configMap:
