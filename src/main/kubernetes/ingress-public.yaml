@@ -16,7 +16,11 @@ spec:
     - host: experience.${environmentDomain}
       http:
         paths:
-          - backend:
+          - path: /health/light
+            backend:
               serviceName: ${project.artifactId}
               servicePort: 80
-            path: /health/*
+          - path: /health/full
+            backend:
+              serviceName: ${project.artifactId}
+              servicePort: 80
