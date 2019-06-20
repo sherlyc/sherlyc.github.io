@@ -29,12 +29,12 @@ export class ContentBlockDirective implements OnChanges {
       this.viewContainerRef.clear();
       const inputs = Array.isArray(this.input) ? this.input : [this.input];
       if (inputs.length > 0) {
-        inputs.forEach((input) => this.render(input));
+        inputs.forEach((input, index) => this.render(input, index));
       }
     }
   }
 
-  render(input: IContentBlock) {
+  render(input: IContentBlock, index: number) {
     const componentFactory = registry[`${input.type}Component`];
     if (componentFactory) {
       const factory = this.resolver.resolveComponentFactory<
@@ -44,6 +44,7 @@ export class ContentBlockDirective implements OnChanges {
         IContentBlockComponent
       >(factory);
       componentRef.instance.input = input;
+      componentRef.instance.index = index;
     } else {
       this.logger.error(new Error(`No Component found for ${input.type} type`));
     }

@@ -12,7 +12,9 @@ describe('api test', () => {
     expect(response.header['content-type']).toMatch(/application\/json/);
 
     const page: IPage = response.body;
-    expect(page.title).toBe('Stuff');
+    expect(page.title).toBe(
+      'Latest breaking news NZ | Stuff.co.nz | New Zealand'
+    );
     expect(page.content).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ type: 'Header' }),

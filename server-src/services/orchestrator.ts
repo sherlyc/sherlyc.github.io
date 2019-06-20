@@ -11,7 +11,7 @@ export default async (params: IParams): Promise<IPage> => {
   try {
     return {
       apiRequestId: params.apiRequestId,
-      title: 'Stuff',
+      title: 'Latest breaking news NZ | Stuff.co.nz | New Zealand',
       content: await handlerRunner(
         {
           type: HandlerInputType.Page,

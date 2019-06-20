@@ -11,6 +11,7 @@ import { AnalyticsEventsType } from '../../services/analytics/__types__/Analytic
 })
 export class BasicArticleUnitComponent implements IContentBlockComponent {
   @Input() input!: IBasicArticleUnit;
+  index!: number;
 
   constructor(private analyticsService: AnalyticsService) {}
 
