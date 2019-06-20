@@ -1,3 +1,10 @@
+<div itemscope itemtype="https://schema.org/ItemList">
+  <ng-container
+    class="page-container"
+    [appContentBlock]="contentBlocks"
+  ></ng-container>
+</div>
+
 <div itemscope itemtype="https://schema.org/WebPage">
   <meta
     itemprop="name"
@@ -8,9 +15,19 @@
     content="Breaking news and videos of today's latest news stories from around New Zealand, including up to date weather, World, sport, business, Entertainment, Technology Life and Style, Travel and motoring."
   />
 </div>
-<div itemscope itemtype="https://schema.org/ItemList">
-  <ng-container
-    class="page-container"
-    [appContentBlock]="contentBlocks"
-  ></ng-container>
+
+<div itemscope itemtype="http://schema.org/Organization">
+  <meta itemprop="name" content="Stuff" />
+  <meta
+    itemprop="logo"
+    content="https://static2.stuff.co.nz/1388043522/194/9555194.png"
+  />
+  <link itemprop="url" href="https://www.stuff.co.nz" />
+  <link itemprop="sameAs" href="https://www.facebook.com/Stuff.co.nz/" />
+  <link itemprop="sameAs" href="https://twitter.com/nzstuff?lang=en" />
+  <link itemprop="sameAs" href="https://www.instagram.com/nzstuff/?hl=en" />
+  <link
+    itemprop="sameAs"
+    href="https://www.youtube.com/channel/UCZgnsVbXJPZRg5kmtKyq6Ew"
+  />
 </div>
