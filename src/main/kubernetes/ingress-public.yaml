@@ -16,21 +16,25 @@ spec:
     - host: experience.${environmentDomain}
       http:
         paths:
-          - backend:
-            serviceName: ${project.artifactId}
-            servicePort: 80
-            path: /health/
+          - path: /health/light
+            backend:
+              serviceName: ${project.artifactId}
+              servicePort: 80
+          - path: /health/full
+            backend:
+              serviceName: ${project.artifactId}
+              servicePort: 80
     - host: ${publicDomain1}
       http:
         paths:
-          - backend:
-            serviceName: ${project.artifactId}
-            servicePort: 80
-            path: /
+          - path: /
+            backend:
+              serviceName: ${project.artifactId}
+              servicePort: 80
     - host: ${publicDomain2}
       http:
         paths:
-          - backend:
-            serviceName: ${project.artifactId}
-            servicePort: 80
-            path: /
+          - path: /
+            backend:
+              serviceName: ${project.artifactId}
+              servicePort: 80

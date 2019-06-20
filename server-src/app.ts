@@ -43,17 +43,6 @@ app.get(`${spadeApiPath}/experiment`, async (req, res) => {
   await experimentController(req, res, params);
 });
 
-app.use((req, res, next) => {
-  if (res.statusCode >= 400) {
-    const params: IParams = extractParams();
-    logger.error(
-      params.apiRequestId,
-      `Express app error level - STATUS ${res.statusCode} ${res.statusMessage}`
-    );
-  }
-  next();
-});
-
 app.use('/health/:type', async (req, res) => {
   const params: IParams = extractParams();
   await healthCheck(req, res, params);
