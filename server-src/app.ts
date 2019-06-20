@@ -43,7 +43,6 @@ app.get(`${spadeApiPath}/experiment`, async (req, res) => {
   await experimentController(req, res, params);
 });
 
-
 app.use('/health/:type', async (req, res) => {
   const params: IParams = extractParams();
   await healthCheck(req, res, params);
