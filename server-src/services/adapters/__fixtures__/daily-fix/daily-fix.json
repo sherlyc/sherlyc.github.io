@@ -57,6 +57,7 @@
       ],
       "datetime_display": "12:12 23/03/2017",
       "asset_type": "URL",
+      "headline_flags": [],
       "title": "Newsletters",
       "id": 90764429
     },
@@ -86,6 +87,7 @@
       ],
       "datetime_display": "08:55 18/08/2015",
       "asset_type": "URL",
+      "headline_flags": [],
       "title": "Puzzles",
       "id": 63784440
     },
@@ -154,6 +156,7 @@
       ],
       "datetime_display": "15:00 21/12/2018",
       "asset_type": "URL",
+      "headline_flags": [],
       "title": "Cartoons",
       "id": 70118600
     }
