@@ -224,10 +224,10 @@ describe('WeatherUnitComponent', () => {
       weatherData.temperature
     );
     expect(weatherLocationInfo.nativeElement.textContent).toContain(
-      weatherData.min_temp
+      weatherData.minTemp
     );
     expect(weatherLocationInfo.nativeElement.textContent).toContain(
-      weatherData.max_temp
+      weatherData.maxTemp
     );
   });
 
@@ -358,11 +358,11 @@ describe('WeatherUnitComponent', () => {
     expect(
       fixture.debugElement.query(By.css('.weatherLocationInfo')).nativeElement
         .textContent
-    ).toContain(weatherData.min_temp);
+    ).toContain(weatherData.minTemp);
     expect(
       fixture.debugElement.query(By.css('.weatherLocationInfo')).nativeElement
         .textContent
-    ).toContain(weatherData.max_temp);
+    ).toContain(weatherData.maxTemp);
 
     expect(fixture.debugElement.query(By.css('.weatherError'))).toBeFalsy();
     expect(
