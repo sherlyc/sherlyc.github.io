@@ -57,7 +57,7 @@ describe('DtmService', () => {
     windowService.getWindow.mockReturnValue({});
     scriptInjectorService.load.mockImplementation(() => {
       windowService.getWindow()._satellite = { pageBottom: jest.fn() };
-      return Promise.resolve(new Event('loaded'));
+      return Promise.resolve();
     });
     configService.getConfig.mockReturnValue({
       dtmUrl: 'http://example/dtm.js'

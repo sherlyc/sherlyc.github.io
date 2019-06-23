@@ -1,6 +1,6 @@
 {
   "preset": "jest-preset-angular",
-  "setupTestFrameworkScriptFile": "<rootDir>/src/setupJest.ts",
+  "setupFilesAfterEnv": ["<rootDir>/src/setupJest.ts"],
   "rootDir": "../",
   "roots": ["src"],
   "coverageDirectory": "<rootDir>/src/coverage",
