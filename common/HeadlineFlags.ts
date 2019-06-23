@@ -1,0 +1,7 @@
+export enum HeadlineFlags {
+  VIDEO = 'VIDEO',
+  PHOTO = 'PHOTO',
+  STUFF_NATION = 'STUFF_NATION',
+  SPONSORED = 'SPONSORED',
+  ADVERTISEMENT = 'ADVERTISEMENT'
+}
