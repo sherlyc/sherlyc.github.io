@@ -26,6 +26,64 @@ export class AnalyticsService implements IAnalyticsService {
     private windowService: WindowService
   ) {}
 
+  private static transformEvent(event: AnalyticsEvent): IAdobeAnalyticsEvent {
+    const eventTypesRegistry: { [key in AnalyticsEventsType]: Function } = {
+      [AnalyticsEventsType.WEATHER_LOCATION_CHANGED]: (
+        analyticEvent: IWeatherLocationChanged
+      ) => ({
+        event: 'weather.location.change',
+        'weather.location': analyticEvent!.location
+      }),
+      [AnalyticsEventsType.MENU_NAV_OPENED]: () => ({
+        event: 'menu.nav'
+      }),
+      [AnalyticsEventsType.STUFF_LOGO_CLICKED]: () => ({
+        event: 'stuff.logo'
+      }),
+      [AnalyticsEventsType.FOOTER_MENU_CLICKED]: (
+        analyticEvent: IFooterMenuClicked
+      ) => ({
+        event: 'menu.footer',
+        'menu.link': analyticEvent.name
+      }),
+      [AnalyticsEventsType.BREAKING_NEWS_OPENED]: () => ({
+        event: `breaking.news.open`
+      }),
+      [AnalyticsEventsType.BREAKING_NEWS_CLOSED]: () => ({
+        event: `breaking.news.close`
+      }),
+      [AnalyticsEventsType.MORE_BUTTON_CLICKED]: (
+        analyticEvent: IMoreButtonClicked
+      ) => ({
+        event: 'more.content.button',
+        'more.content.url': analyticEvent.url
+      }),
+      [AnalyticsEventsType.MENU_NAV_SECTION_CLICKED]: (
+        analyticEvent: IMenuNavSectionClicked
+      ) => ({
+        event: 'menu.nav',
+        'menu.nav.section': analyticEvent.section
+      }),
+      [AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED]: (
+        analyticEvent: IHomepageStrapClicked
+      ) => ({
+        event: 'homepage.strap.click',
+        'homepage.strap': analyticEvent.strapName,
+        'article.headline': analyticEvent.articleHeadline,
+        'article.id': analyticEvent.articleId
+      }),
+      [AnalyticsEventsType.EXPERIMENT]: (
+        analyticEvent: IExperimentAssigned
+      ) => ({
+        event: 'ab.testing.event',
+        'ab.testing.segment.web': analyticEvent.variant,
+        'ab.testing.experiment.name': analyticEvent.experiment
+      })
+    };
+    const adobeEvent = eventTypesRegistry[event.type](event);
+    return { type: 'analytics', ...adobeEvent };
+  }
+
   setup() {
     this.windowService.getWindow().digitalData = {
       page: {
@@ -72,79 +130,9 @@ export class AnalyticsService implements IAnalyticsService {
     try {
       this.windowService
         .getWindow()
-        .digitalData.events.push(this.transformEvent(event));
+        .digitalData.events.push(AnalyticsService.transformEvent(event));
     } catch (err) {
       this.logger.error(err);
     }
-  }
-
-  private transformEvent(event: AnalyticsEvent): IAdobeAnalyticsEvent {
-    let adobeEvent = {} as IAdobeAnalyticsEvent;
-
-    const eventTypesRegistry: { [key in AnalyticsEventsType]: Function } = {
-      [AnalyticsEventsType.WEATHER_LOCATION_CHANGED]: (
-        analyticEvent: IWeatherLocationChanged
-      ) =>
-        (adobeEvent = {
-          event: 'weather.location.change',
-          'weather.location': analyticEvent!.location
-        }),
-      [AnalyticsEventsType.MENU_NAV_OPENED]: () =>
-        (adobeEvent = {
-          event: 'menu.nav'
-        }),
-      [AnalyticsEventsType.STUFF_LOGO_CLICKED]: () =>
-        (adobeEvent = {
-          event: 'stuff.logo'
-        }),
-      [AnalyticsEventsType.FOOTER_MENU_CLICKED]: (
-        analyticEvent: IFooterMenuClicked
-      ) =>
-        (adobeEvent = {
-          event: 'menu.footer',
-          'menu.link': analyticEvent.name
-        }),
-      [AnalyticsEventsType.BREAKING_NEWS_OPENED]: () =>
-        (adobeEvent = {
-          event: `breaking.news.open`
-        }),
-      [AnalyticsEventsType.BREAKING_NEWS_CLOSED]: () =>
-        (adobeEvent = {
-          event: `breaking.news.close`
-        }),
-      [AnalyticsEventsType.MORE_BUTTON_CLICKED]: (
-        analyticEvent: IMoreButtonClicked
-      ) =>
-        (adobeEvent = {
-          event: 'more.content.button',
-          'more.content.url': analyticEvent.url
-        }),
-      [AnalyticsEventsType.MENU_NAV_SECTION_CLICKED]: (
-        analyticEvent: IMenuNavSectionClicked
-      ) =>
-        (adobeEvent = {
-          event: 'menu.nav',
-          'menu.nav.section': analyticEvent.section
-        }),
-      [AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED]: (
-        analyticEvent: IHomepageStrapClicked
-      ) =>
-        (adobeEvent = {
-          event: 'homepage.strap.click',
-          'homepage.strap': analyticEvent.strapName,
-          'article.headline': analyticEvent.articleHeadline,
-          'article.id': analyticEvent.articleId
-        }),
-      [AnalyticsEventsType.EXPERIMENT]: (analyticEvent: IExperimentAssigned) =>
-        (adobeEvent = {
-          event: 'ab.testing.event',
-          'ab.testing.segment.web': analyticEvent.variant,
-          'ab.testing.experiment.name': analyticEvent.experiment
-        })
-    };
-
-    eventTypesRegistry[event.type](event);
-
-    return { type: 'analytics', ...adobeEvent };
   }
 }

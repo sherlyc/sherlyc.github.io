@@ -14,17 +14,20 @@ export class OpenExternalLinkDirective implements OnChanges {
 
   constructor(private elementRef: ElementRef) {}
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (this.linkUrl && this.isExternalLink(this.linkUrl)) {
-      this.elementRef.nativeElement.setAttribute('target', '_blank');
-      this.elementRef.nativeElement.setAttribute('rel', 'noopener noreferrer');
-    }
-  }
-
-  private isExternalLink(url: string) {
+  private static isExternalLink(url: string) {
     const lowercaseUrl = url.toLowerCase();
     return (
       lowercaseUrl.startsWith('http://') || lowercaseUrl.startsWith('https://')
     );
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (
+      this.linkUrl &&
+      OpenExternalLinkDirective.isExternalLink(this.linkUrl)
+    ) {
+      this.elementRef.nativeElement.setAttribute('target', '_blank');
+      this.elementRef.nativeElement.setAttribute('rel', 'noopener noreferrer');
+    }
   }
 }
