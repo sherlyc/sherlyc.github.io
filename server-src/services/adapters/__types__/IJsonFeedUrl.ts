@@ -1,6 +1,6 @@
 import { JsonFeedImageType } from './JsonFeedImageType';
 import { JsonFeedAssetType } from './JsonFeedAssetType';
-import { HeadlineFlags } from '../../../../common/__types__/HeadlineFlags';
+import { HeadlineFlags } from '../../../../common/HeadlineFlags';
 
 export interface IJsonFeedUrl {
   [key: string]: any;
