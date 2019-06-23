@@ -43,7 +43,7 @@ describe('VideoUnitComponent', () => {
     runtimeService = TestBed.get(RuntimeService);
 
     injectorService = TestBed.get(ScriptInjectorService);
-    injectorService.load.mockResolvedValue({});
+    injectorService.load.mockImplementation(() => Promise.resolve());
     fixture = TestBed.createComponent(VideoUnitComponent);
     component = fixture.componentInstance;
   });
