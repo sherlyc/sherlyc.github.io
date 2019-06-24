@@ -14,15 +14,15 @@
       <span class="weather-location-info-label">{{ selectedLocation }}: </span>
       <img class="weather-icon" src="{{ forecastSvgPath }}" />
       <span>
-        {{ weatherData.temperature }}{{ weatherData.temperature_unit }}
+        {{ weatherData.temperature }}{{ weatherData.temperatureUnit }}
       </span>
       <span>
         <span class="weather-location-info-label">Max: </span
-        >{{ weatherData.max_temp }}{{ weatherData.temperature_unit }}
+        >{{ weatherData.maxTemp }}{{ weatherData.temperatureUnit }}
       </span>
       <span>
         <span class="weather-location-info-label">Min: </span
-        >{{ weatherData.min_temp }}{{ weatherData.temperature_unit }}
+        >{{ weatherData.minTemp }}{{ weatherData.temperatureUnit }}
       </span>
     </div>
     <div *ngIf="hasError" class="weatherError">
@@ -39,7 +39,7 @@
     <h2 class="location-list-header">regions</h2>
     <div class="location-list row">
       <ul class="location-list-left-col col-xs">
-        <div *ngFor="let region of (regions | slice: 0:firstColumnLimit)">
+        <div *ngFor="let region of regions | slice: 0:firstColumnLimit">
           <li class="region-name">{{ region.name }}</li>
           <ul>
             <li
@@ -60,7 +60,7 @@
         </div>
       </ul>
       <ul class="region-list-right-col col-xs">
-        <div *ngFor="let region of (regions | slice: firstColumnLimit)">
+        <div *ngFor="let region of regions | slice: firstColumnLimit">
           <li class="region-name">{{ region.name }}</li>
           <ul>
             <li

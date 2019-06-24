@@ -13,9 +13,9 @@ describe('weather api test', () => {
     expect(response.status).toBe(200);
     expect(response.header['content-type']).toMatch(/application\/json/);
     expect(body).toHaveProperty('location');
-    expect(body).toHaveProperty('temperature_unit');
-    expect(body).toHaveProperty('min_temp');
-    expect(body).toHaveProperty('max_temp');
+    expect(body).toHaveProperty('temperatureUnit');
+    expect(body).toHaveProperty('minTemp');
+    expect(body).toHaveProperty('maxTemp');
     expect(body).toHaveProperty('condition');
     expect(body).toHaveProperty('temperature');
   });

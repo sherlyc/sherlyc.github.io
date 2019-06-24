@@ -11,21 +11,8 @@ export class WeatherRetrieverService {
   constructor(private http: HttpClient, private config: ConfigService) {}
 
   getWeather(location: string): Observable<IWeatherResponse> {
-    return new Observable<IWeatherResponse>((subscriber) => {
-      this.http
-        .get<IWeatherResponse>(
-          `${this.config.getConfig().weatherAPI}?location=${location}`
-        )
-        .subscribe(
-          (result) => {
-            subscriber.next(result);
-            subscriber.complete();
-          },
-          (error) => {
-            subscriber.error(error);
-            subscriber.complete();
-          }
-        );
-    });
+    return this.http.get<IWeatherResponse>(
+      `${this.config.getConfig().weatherAPI}?location=${location}`
+    );
   }
 }
