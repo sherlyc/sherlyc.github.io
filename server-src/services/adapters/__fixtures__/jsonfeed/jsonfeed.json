@@ -36,7 +36,11 @@
               "src": "https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffBigHeadline.418x220.1tgvdg.png/1547607024623.jpg",
               "media_type": "Photo",
               "width": "418",
-              "height": "220"
+              "height": "220",
+              "urls": {
+                "418x220": "https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffBigHeadline.418x220.1tgvdg.png/1547607024623.jpg"
+              },
+              "image_type_id": "StuffBigHeadline"
             },
             {
               "id": 109962229,
@@ -44,7 +48,12 @@
               "src": "https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffLandscapeSixteenByNine.620x349.1tgvdg.png/1547607024623.jpg",
               "media_type": "Photo",
               "width": "620",
-              "height": "349"
+              "height": "349",
+              "urls": {
+                "620x349": "https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffLandscapeSixteenByNine.620x349.1tgvdg.png/1547607024623.jpg",
+                "850x400": "https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffLandscapeSixteenByNine.850x400.1tgvdg.png/1547607024623.jpg"
+              },
+              "image_type_id": "StuffStandardImage"
             },
             {
               "id": 109962229,
@@ -52,7 +61,12 @@
               "src": "https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffLandscapeThreeByTwo.300x200.1tgvdg.png/1547607024623.jpg",
               "media_type": "Photo",
               "width": "300",
-              "height": "200"
+              "height": "200",
+              "urls": {
+                "300x200": "https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffLandscapeThreeByTwo.300x200.1tgvdg.png/1547607024623.jpg",
+                "600x400": "https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffLandscapeThreeByTwo.600x400.1tgvdg.png/1547607024623.jpg"
+              },
+              "image_type_id": "StuffLandscapeThreeByTwo"
             },
             {
               "id": 109962229,
@@ -60,7 +74,12 @@
               "src": "https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffThumbnail.90x60.1tgvdg.png/1547607024623.jpg",
               "media_type": "Photo",
               "width": "90",
-              "height": "60"
+              "height": "60",
+              "urls": {
+                "90x60": "https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffThumbnail.90x60.1tgvdg.png/1547607024623.jpg",
+                "180x120": "https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffThumbnail.180x120.1tgvdg.png/1547607024623.jpg"
+              },
+              "image_type_id": "StuffThumbnail"
             }
           ]
         },
@@ -80,7 +99,12 @@
               "src": "https://resources.stuff.co.nz/content/dam/images/1/t/g/x/s/p/image.related.StuffLandscapeSixteenByNine.620x349.1tgvdg.png/1547607024623.jpg",
               "media_type": "Photo",
               "width": "620",
-              "height": "349"
+              "height": "349",
+              "urls": {
+                "620x349": "https://resources.stuff.co.nz/content/dam/images/1/t/g/x/s/p/image.related.StuffLandscapeSixteenByNine.620x349.1tgvdg.png/1547607024623.jpg",
+                "850x400": "https://resources.stuff.co.nz/content/dam/images/1/t/g/x/s/p/image.related.StuffLandscapeSixteenByNine.850x400.1tgvdg.png/1547607024623.jpg"
+              },
+              "image_type_id": "StuffStandardImage"
             }
           ]
         },
@@ -100,7 +124,12 @@
               "src": "https://resources.stuff.co.nz/content/dam/images/1/t/g/v/q/p/image.related.StuffLandscapeSixteenByNine.620x349.1tgvdg.png/1547607024623.jpg",
               "media_type": "Photo",
               "width": "620",
-              "height": "349"
+              "height": "349",
+              "urls": {
+                "620x349": "https://resources.stuff.co.nz/content/dam/images/1/t/g/v/q/p/image.related.StuffLandscapeSixteenByNine.620x349.1tgvdg.png/1547607024623.jpg",
+                "850x400": "https://resources.stuff.co.nz/content/dam/images/1/t/g/x/s/p/image.related.StuffLandscapeSixteenByNine.850x400.1tgvdg.png/1547607024623.jpg"
+              },
+              "image_type_id": "StuffStandardImage"
             }
           ]
         },
@@ -120,7 +149,12 @@
               "src": "https://resources.stuff.co.nz/content/dam/images/1/t/g/x/s/o/image.related.StuffLandscapeSixteenByNine.620x349.1tgvdg.png/1547607024623.jpg",
               "media_type": "Photo",
               "width": "620",
-              "height": "349"
+              "height": "349",
+              "urls": {
+                "620x349": "https://resources.stuff.co.nz/content/dam/images/1/t/g/x/s/o/image.related.StuffLandscapeSixteenByNine.620x349.1tgvdg.png/1547607024623.jpg",
+                "850x400": "https://resources.stuff.co.nz/content/dam/images/1/t/g/x/s/p/image.related.StuffLandscapeSixteenByNine.850x400.1tgvdg.png/1547607024623.jpg"
+              },
+              "image_type_id": "StuffStandardImage"
             }
           ]
         },
@@ -140,7 +174,12 @@
               "src": "https://resources.stuff.co.nz/content/dam/images/1/t/g/j/h/i/image.related.StuffLandscapeSixteenByNine.620x349.1tgvdg.png/1547607024623.jpg",
               "media_type": "Photo",
               "width": "620",
-              "height": "349"
+              "height": "349",
+              "urls": {
+                "620x349": "https://resources.stuff.co.nz/content/dam/images/1/t/g/j/h/i/image.related.StuffLandscapeSixteenByNine.620x349.1tgvdg.png/1547607024623.jpg",
+                "850x400": "https://resources.stuff.co.nz/content/dam/images/1/t/g/x/s/p/image.related.StuffLandscapeSixteenByNine.850x400.1tgvdg.png/1547607024623.jpg"
+              },
+              "image_type_id": "StuffStandardImage"
             }
           ]
         }
@@ -183,7 +222,11 @@
               "src": "https://resources.stuff.co.nz/content/dam/images/1/u/r/r/z/e/image.related.StuffBigHeadline.418x220.1urrzz.png/1555565610457.jpg",
               "media_type": "Photo",
               "width": "418",
-              "height": "220"
+              "height": "220",
+              "urls": {
+                "418x220": "https://resources.stuff.co.nz/content/dam/images/1/u/r/r/z/e/image.related.StuffBigHeadline.418x220.1urrzz.png/1555565610457.jpg"
+              },
+              "image_type_id": "StuffBigHeadline"
             },
             {
               "id": 112150634,
@@ -191,7 +234,12 @@
               "src": "https://resources.stuff.co.nz/content/dam/images/1/u/r/r/z/e/image.related.StuffLandscapeSixteenByNine.620x349.1urrzz.png/1555565610457.jpg",
               "media_type": "Photo",
               "width": "620",
-              "height": "349"
+              "height": "349",
+              "urls": {
+                "620x349": "https://resources.stuff.co.nz/content/dam/images/1/u/r/r/z/e/image.related.StuffLandscapeSixteenByNine.620x349.1urrzz.png/1555565610457.jpg",
+                "800x500": "https://resources.stuff.co.nz/content/dam/images/1/u/r/r/z/e/image.related.StuffLandscapeSixteenByNine.800x500.1urrzz.png/1555565610457.jpg"
+              },
+              "image_type_id": "StuffLandscapeThreeByTwo"
             }
           ],
           "asset_type": "IMAGE"
@@ -237,7 +285,11 @@
               "src": "https://resources.stuff.co.nz/content/dam/images/1/t/f/z/u/4/image.related.StuffBigHeadline.418x220.1tdmj0.png/1547601996972.jpg",
               "media_type": "Photo",
               "width": "418",
-              "height": "220"
+              "height": "220",
+              "urls": {
+                "418x220": "https://resources.stuff.co.nz/content/dam/images/1/t/f/z/u/4/image.related.StuffBigHeadline.418x220.1tdmj0.png/1547601996972.jpg"
+              },
+              "image_type_id": "StuffBigHeadline"
             },
             {
               "id": 109921324,
@@ -245,7 +297,12 @@
               "src": "https://resources.stuff.co.nz/content/dam/images/1/t/f/z/u/4/image.related.StuffLandscapeSixteenByNine.620x349.1tdmj0.png/1547601996972.jpg",
               "media_type": "Photo",
               "width": "620",
-              "height": "349"
+              "height": "349",
+              "urls": {
+                "620x349": "https://resources.stuff.co.nz/content/dam/images/1/t/f/z/u/4/image.related.StuffLandscapeSixteenByNine.620x349.1tdmj0.png/1547601996972.jpg",
+                "850x400": "https://resources.stuff.co.nz/content/dam/images/1/t/f/z/u/4/image.related.StuffLandscapeSixteenByNine.850x400.1tdmj0.png/1547601996972.jpg"
+              },
+              "image_type_id": "StuffStandardImage"
             },
             {
               "id": 109921324,
@@ -253,7 +310,12 @@
               "src": "https://resources.stuff.co.nz/content/dam/images/1/t/f/z/u/4/image.related.StuffLandscapeThreeByTwo.300x200.1tdmj0.png/1547601996972.jpg",
               "media_type": "Photo",
               "width": "300",
-              "height": "200"
+              "height": "200",
+              "urls": {
+                "300x200": "https://resources.stuff.co.nz/content/dam/images/1/t/f/z/u/4/image.related.StuffLandscapeThreeByTwo.300x200.1tdmj0.png/1547601996972.jpg",
+                "600x400": "https://resources.stuff.co.nz/content/dam/images/1/t/f/z/u/4/image.related.StuffLandscapeThreeByTwo.600x400.1tdmj0.png/1547601996972.jpg"
+              },
+              "image_type_id": "StuffLandscapeThreeByTwo"
             },
             {
               "id": 109921324,
@@ -261,7 +323,12 @@
               "src": "https://resources.stuff.co.nz/content/dam/images/1/t/f/z/u/4/image.related.StuffThumbnail.90x60.1tdmj0.png/1547601996972.jpg",
               "media_type": "Photo",
               "width": "90",
-              "height": "60"
+              "height": "60",
+              "urls": {
+                "90x60": "https://resources.stuff.co.nz/content/dam/images/1/t/f/z/u/4/image.related.StuffThumbnail.90x60.1tdmj0.png/1547601996972.jpg",
+                "180x120": "https://resources.stuff.co.nz/content/dam/images/1/t/f/z/u/4/image.related.StuffThumbnail.180x120.1tdmj0.png/1547601996972.jpg"
+              },
+              "image_type_id": "StuffThumbnail"
             }
           ]
         },
@@ -281,7 +348,12 @@
               "src": "https://resources.stuff.co.nz/content/dam/images/1/t/f/z/u/5/image.related.StuffLandscapeSixteenByNine.620x349.1tdmj0.png/1547601996972.jpg",
               "media_type": "Photo",
               "width": "620",
-              "height": "349"
+              "height": "349",
+              "urls": {
+                "620x349": "https://resources.stuff.co.nz/content/dam/images/1/t/f/z/u/5/image.related.StuffLandscapeSixteenByNine.620x349.1tdmj0.png/1547601996972.jpg",
+                "850x400": "https://resources.stuff.co.nz/content/dam/images/1/t/f/z/u/5/image.related.StuffLandscapeSixteenByNine.850x400.1tdmj0.png/1547601996972.jpg"
+              },
+              "image_type_id": "StuffStandardImage"
             }
           ]
         },
@@ -301,7 +373,12 @@
               "src": "https://resources.stuff.co.nz/content/dam/images/1/t/g/0/d/1/image.related.StuffLandscapeSixteenByNine.620x349.1tdmj0.png/1547601996972.jpg",
               "media_type": "Photo",
               "width": "620",
-              "height": "349"
+              "height": "349",
+              "urls": {
+                "620x349": "https://resources.stuff.co.nz/content/dam/images/1/t/g/0/d/1/image.related.StuffLandscapeSixteenByNine.620x349.1tdmj0.png/1547601996972.jpg",
+                "850x400": "https://resources.stuff.co.nz/content/dam/images/1/t/g/0/d/1/image.related.StuffLandscapeSixteenByNine.850x400.1tdmj0.png/1547601996972.jpg"
+              },
+              "image_type_id": "StuffStandardImage"
             }
           ]
         }
@@ -339,7 +416,12 @@
               "src": "https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.90x60.11z4e0.png/1439844947411.jpg",
               "media_type": "Photo",
               "width": "90",
-              "height": "60"
+              "height": "60",
+              "urls": {
+                "90x60": "https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.90x60.11z4e0.png/1439844947411.jpg",
+                "180x120": "https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.180x120.11z4e0.png/1439844947411.jpg"
+              },
+              "image_type_id": "StuffThumbnail"
             }
           ],
           "asset_type": "IMAGE"

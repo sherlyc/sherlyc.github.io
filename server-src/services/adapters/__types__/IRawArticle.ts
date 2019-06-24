@@ -4,6 +4,7 @@ export interface IRawArticle {
   introText: string;
   linkUrl: string;
   imageSrc: string | null;
+  imageSrcSet: string | null;
   lastPublishedTime: number;
   headlineFlags: string[];
 }

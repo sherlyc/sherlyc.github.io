@@ -40,8 +40,9 @@ describe('MiniMidStripHandler', () => {
             strapName: 'MiniMidStrip',
             headlineFlags: [],
             imageSrc:
-              'https://resources.stuff.co.nz/content/dam/images/1/v/0/i/9/z/image.related.StuffLandscapeThreeByTwo.300x200.1v0gv1.png/1557282443654.png',
-            indexHeadline: "Barker's Am Cup capsize",
+              'https://resources.stuff.co.nz/content/dam/images/1/v/0/i/9/z/image.related.StuffThumbnail.90x60.1v0gv1.png' +
+              '/1557353497926.png',
+            indexHeadline: `Barker's Am Cup capsize`,
             linkUrl:
               '/sport/americas-cup/112556125/dean-barker-admits-to-hard-learnings-as-capsize-in-americas-cup-test-boat-revealed',
             type: 'ImageLinkUnit'
@@ -51,8 +52,9 @@ describe('MiniMidStripHandler', () => {
             strapName: 'MiniMidStrip',
             headlineFlags: [],
             imageSrc:
-              'https://resources.stuff.co.nz/content/dam/images/1/u/y/s/b/z/image.related.StuffLandscapeThreeByTwo.300x200.1v0l7g.png/1557286998808.jpg',
-            indexHeadline: "Hipkins: Anti-vaxxers 'pro-plague'",
+              'https://resources.stuff.co.nz/content/dam/images/1/u/y/s/b/z/image.related.StuffThumbnail.90x60.1v0l7g.png' +
+              '/1557286998808.jpg',
+            indexHeadline: `Hipkins: Anti-vaxxers 'pro-plague'`,
             linkUrl:
               '/national/politics/112561756/education-minister-chris-hipkins-says-antivaxxers-are-proplague',
             type: 'ImageLinkUnit'

@@ -1,5 +1,5 @@
-import { JsonFeedImageType } from './JsonFeedImageType';
 import { JsonFeedAssetType } from './JsonFeedAssetType';
+import { IImageVariant } from './IImageVariant';
 
 export interface IJsonFeedUrl {
   [key: string]: any;
@@ -10,11 +10,7 @@ export interface IJsonFeedUrl {
   url: string;
   images?: Array<{
     [key: string]: any;
-    variants?: Array<{
-      [key: string]: any;
-      src: string;
-      layout: JsonFeedImageType;
-    }>;
+    variants?: IImageVariant[];
   }>;
   datetime_iso8601: string;
 }

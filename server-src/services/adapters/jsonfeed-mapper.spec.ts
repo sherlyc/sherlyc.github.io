@@ -24,27 +24,33 @@ describe('JsonFeed Mapper', () => {
     const expected: IRawArticle[] = cloneDeep(rawArticle);
     Object.values(expected).forEach((article: IRawArticle) => {
       article.imageSrc = null;
+      article.imageSrcSet = null;
     });
+
     expect(map(data.stories)).toEqual(expected);
   });
 
-  it('should get strap image if it exists', () => {
+  it('should always get thumbnail image', () => {
     const data: IJsonFeedArticleList = cloneDeep(
       jsonfeed as IJsonFeedArticleList
     );
     const result = map(data.stories);
-    const strapImageUrl =
-      'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffLandscapeThreeByTwo.300x200.1tgvdg.png/1547607024623.jpg';
-    expect(result[0].imageSrc).toBe(strapImageUrl);
+    const thumbnailImageUrl =
+      'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffThumbnail.90x60.1tgvdg.png/1547607024623.jpg';
+    expect(result[0].imageSrc).toBe(thumbnailImageUrl);
   });
 
-  it('should get thumbnail if the strap image does not exist', () => {
+  it('should generate image source set', () => {
     const data: IJsonFeedArticleList = cloneDeep(
       jsonfeed as IJsonFeedArticleList
     );
+
     const result = map(data.stories);
-    const strapImageUrl =
-      'https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.90x60.11z4e0.png/1439844947411.jpg';
-    expect(result[3].imageSrc).toBe(strapImageUrl);
+
+    const imageSourceSet =
+      'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/' +
+      'image.related.StuffThumbnail.90x60.1tgvdg.png/1547607024623.jpg 90w, ' +
+      'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffThumbnail.180x120.1tgvdg.png/1547607024623.jpg 180w';
+    expect(result[0].imageSrcSet).toBe(imageSourceSet);
   });
 });
