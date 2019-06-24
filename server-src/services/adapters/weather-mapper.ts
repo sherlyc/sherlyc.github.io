@@ -4,11 +4,11 @@ import { IWeatherResponse } from '../../../common/__types__/IWeatherResponse';
 export const weatherMapper = (weatherInfo: IWeather): IWeatherResponse => {
   const todayWeather = weatherInfo.oneword_forecasts[0];
   return {
-    temperature_unit: weatherInfo.temperature_unit,
+    temperatureUnit: weatherInfo.temperature_unit,
     location: weatherInfo.location,
     temperature: weatherInfo.latest_reading.temperature,
-    min_temp: todayWeather.min_temp,
-    max_temp: todayWeather.max_temp,
+    minTemp: todayWeather.min_temp,
+    maxTemp: todayWeather.max_temp,
     condition: todayWeather.oneword_forecast
   };
 };

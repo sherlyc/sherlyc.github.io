@@ -1,7 +1,7 @@
 import { Request } from 'express';
 import { getWeather } from './weather';
 import { weatherService } from '../services/adapters/weather';
-import * as weatherData from '../services/adapters/__fixtures__/raw-weather.json';
+import * as weatherData from '../services/adapters/__fixtures__/weather/raw-weather.json';
 
 jest.mock('../services/adapters/weather');
 
@@ -18,7 +18,7 @@ describe('Weather Api', () => {
     } as any;
     (weatherService as jest.Mock).mockResolvedValue(weatherData);
 
-    await getWeather(req, res);
+    await getWeather(req, res, { apiRequestId: '43984398' });
 
     expect(res.json).toHaveBeenCalledWith(weatherData);
     expect(res.end).toHaveBeenCalled();
@@ -31,7 +31,7 @@ describe('Weather Api', () => {
     const res = { sendStatus: jest.fn(), end: jest.fn() } as any;
     (weatherService as jest.Mock).mockRejectedValue(new Error());
 
-    await getWeather(req, res);
+    await getWeather(req, res, { apiRequestId: '393482' });
 
     expect(res.sendStatus).toHaveBeenCalledWith(500);
   });
@@ -39,7 +39,7 @@ describe('Weather Api', () => {
     const req = { query: {}, cookies: {} } as Request;
     const res = { sendStatus: jest.fn(), end: jest.fn() } as any;
 
-    await getWeather(req, res);
+    await getWeather(req, res, { apiRequestId: '39438' });
 
     expect(res.sendStatus).toHaveBeenCalledWith(400);
   });

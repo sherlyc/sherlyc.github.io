@@ -1,5 +1,5 @@
 import midstripHandler from './midstrip-handler';
-import * as rawMidStrip from '../../adapters/__fixtures__/raw-mid-strip.json';
+import * as rawMidStrip from '../../adapters/__fixtures__/mid-strip/raw-mid-strip.json';
 import * as midstripHandlerOutput from '../__fixtures__/midstrip-handler-output.json';
 import { getListAsset } from '../../adapters/jsonfeed';
 import { IColumnContainer } from 'common/__types__/IColumnContainer';

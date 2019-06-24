@@ -1,7 +1,7 @@
 import http from '../utils/http';
 import { IParams } from '../__types__/IParams';
-import * as weatherJson from './__fixtures__/weather.json';
-import * as rawWeather from './__fixtures__/raw-weather.json';
+import * as weatherJson from './__fixtures__/weather/weather.json';
+import * as rawWeather from './__fixtures__/weather/raw-weather.json';
 import { weatherService } from './weather';
 import { weatherRetriever } from './weather-retriever';
 

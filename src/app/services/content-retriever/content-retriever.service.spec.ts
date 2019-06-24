@@ -53,8 +53,8 @@ describe('ContentRetrieverService', () => {
   describe('in browser', () => {
     beforeEach(() => {
       configServiceMock.getConfig.mockReturnValue({ spadeAPI });
-      runtimeMock.isServer.mockResolvedValue(false);
-      runtimeMock.isBrowser.mockResolvedValue(true);
+      runtimeMock.isServer.mockReturnValue(false);
+      runtimeMock.isBrowser.mockReturnValue(true);
     });
 
     it('should return data from transfer-state if available', (done) => {
@@ -111,13 +111,13 @@ describe('ContentRetrieverService', () => {
   describe('in server', () => {
     beforeEach(() => {
       configServiceMock.getConfig.mockReturnValue({ spadeAPI });
-      runtimeMock.isServer.mockResolvedValue(true);
-      runtimeMock.isBrowser.mockResolvedValue(false);
+      runtimeMock.isServer.mockReturnValue(true);
+      runtimeMock.isBrowser.mockReturnValue(false);
     });
 
     it('should add result to transfer-state', (done) => {
       transferStateMock.get.mockReturnValue(null);
-      contentRetrieverService.getContent().subscribe((response) => {
+      contentRetrieverService.getContent().subscribe(() => {
         expect(transferStateMock.set).toHaveBeenCalledWith('KEY', jsonfeed);
         done();
       });

@@ -9,7 +9,7 @@ import { ScriptId } from './__types__/ScriptId';
 })
 export class ScriptInjectorService {
   private promises: {
-    [key: string]: Promise<Event>;
+    [key: string]: Promise<void>;
   } = {};
 
   constructor(
@@ -34,10 +34,10 @@ export class ScriptInjectorService {
     scriptElement.id = id;
     scriptElement.src = src;
     scriptElement.async = async;
-    const promise = new Promise<Event>((resolve, reject) => {
-      scriptElement.addEventListener('load', (evt) => {
+    const promise = new Promise<void>((resolve, reject) => {
+      scriptElement.addEventListener('load', () => {
         this.logger.info(`${id} has been loaded`);
-        resolve(evt);
+        resolve();
       });
       scriptElement.addEventListener('error', (err) => {
         this.logger.warn(`${id} fails to be loaded: ${err}`);

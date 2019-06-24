@@ -5,12 +5,13 @@ import { IParams } from './__types__/IParams';
 import { ContentBlockType } from '../../common/__types__/ContentBlockType';
 import { HandlerInputType } from './handlers/__types__/HandlerInputType';
 import { ListAsset } from './listAsset';
+import logger from './utils/logger';
 
 export default async (params: IParams): Promise<IPage> => {
   try {
     return {
       apiRequestId: params.apiRequestId,
-      title: 'Stuff',
+      title: 'Latest breaking news NZ | Stuff.co.nz | New Zealand',
       content: await handlerRunner(
         {
           type: HandlerInputType.Page,
@@ -181,7 +182,16 @@ export default async (params: IParams): Promise<IPage> => {
                 totalBasicArticleTitleUnit: 2
               }
             },
-
+            {
+              type: HandlerInputType.ArticleSection,
+              displayName: 'Daily Fix',
+              displayNameColor: 'navyblue',
+              articleList: {
+                sourceId: ListAsset.DailyFix,
+                strapName: 'Daily Fix',
+                totalBasicArticlesUnit: 3
+              }
+            },
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Technology',
@@ -388,6 +398,12 @@ export default async (params: IParams): Promise<IPage> => {
                 strapName: 'Sponsored Content',
                 totalBasicArticlesUnit: 2
               }
+            },
+            {
+              type: HandlerInputType.ExternalContent,
+              height: '580px',
+              width: '100%',
+              url: 'https://cdn.neighbourly.co.nz/stuff/933/homepage'
             }
           ]
         },
@@ -395,6 +411,7 @@ export default async (params: IParams): Promise<IPage> => {
       )
     };
   } catch (e) {
+    logger.error(params.apiRequestId, `Orchestrator level error - ${e}`);
     return {
       apiRequestId: params.apiRequestId,
       title: 'Stuff',
@@ -402,7 +419,12 @@ export default async (params: IParams): Promise<IPage> => {
         { type: ContentBlockType.Header },
         {
           type: ContentBlockType.Container,
-          items: [{ type: ContentBlockType.ErrorBlock, message: e.message }]
+          items: [
+            {
+              type: ContentBlockType.ErrorBlock,
+              message: `Oops, sorry! It looks like we've stuffed up...`
+            }
+          ]
         },
         { type: ContentBlockType.Footer }
       ]

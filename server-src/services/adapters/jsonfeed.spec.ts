@@ -1,15 +1,17 @@
 import { getArticleList, getListAsset } from './jsonfeed';
-import * as rawArticleList from './__fixtures__/raw-article-list.json';
-import * as rawMidStrip from './__fixtures__/raw-mid-strip.json';
-import * as rawMiniMidStrip from './__fixtures__/raw-mini-mid-strip.json';
-import * as rawEditorsPickData from './__fixtures__/raw-editors-pick.json';
-import * as rawTopStoriesData from './__fixtures__/raw-top-stories.json';
 import http from '../utils/http';
-import * as jsonfeed from './__fixtures__/jsonfeed.json';
-import * as midStripData from './__fixtures__/mid-strip.json';
-import * as miniMidStripData from './__fixtures__/mini-mid-strip.json';
-import * as editorsPickData from './__fixtures__/editors-pick.json';
 import * as topStories from './__fixtures__/top-stories.json';
+import * as rawTopStoriesData from './__fixtures__/raw-top-stories.json';
+import * as rawArticleList from './__fixtures__/jsonfeed/raw-article-list.json';
+import * as rawMidStrip from './__fixtures__/mid-strip/raw-mid-strip.json';
+import * as rawMiniMidStrip from './__fixtures__/mini-mid-strip/raw-mini-mid-strip.json';
+import * as rawEditorsPickData from './__fixtures__/editors-pick/raw-editors-pick.json';
+import * as rawDailyFixData from './__fixtures__/daily-fix/raw-daily-fix.json';
+import * as jsonfeed from './__fixtures__/jsonfeed/jsonfeed.json';
+import * as midStripData from './__fixtures__/mid-strip/mid-strip.json';
+import * as miniMidStripData from './__fixtures__/mini-mid-strip/mini-mid-strip.json';
+import * as editorsPickData from './__fixtures__/editors-pick/editors-pick.json';
+import * as dailyFixData from './__fixtures__/daily-fix/daily-fix.json';
 import { Section } from '../section';
 import { IParams } from '../__types__/IParams';
 import { ListAsset } from '../listAsset';
@@ -77,6 +79,18 @@ describe('json feed service', () => {
 
       expect(await getListAsset(params, ListAsset.TopStories)).toEqual(
         rawTopStoriesData
+      );
+    });
+  });
+
+  describe('daily fix service', () => {
+    it('should provide daily fix service data', async () => {
+      (http(params).get as jest.Mock).mockResolvedValue({
+        data: dailyFixData
+      });
+
+      expect(await getListAsset(params, ListAsset.DailyFix)).toEqual(
+        rawDailyFixData
       );
     });
   });

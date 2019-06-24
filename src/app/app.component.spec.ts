@@ -8,6 +8,8 @@ import { AnalyticsService } from './services/analytics/analytics.service';
 import { ExperimentService } from './services/experiment/experiment.service';
 import { EventsService } from './services/events/events.service';
 import { BrowserOverrideService } from './services/browser-override/browser-override.service';
+import { NeighbourlyService } from './services/neighbourly/neighbourly.service';
+import { MetaTagsService } from './services/meta-tags/meta-tags.service';
 
 describe('AppComponent', () => {
   let adService: ServiceMock<AdService>;
@@ -16,6 +18,8 @@ describe('AppComponent', () => {
   let dtmService: ServiceMock<DtmService>;
   let browserOverrideService: ServiceMock<BrowserOverrideService>;
   let experimentService: ServiceMock<ExperimentService>;
+  let neighbourlyService: ServiceMock<NeighbourlyService>;
+  let metaTagsService: ServiceMock<MetaTagsService>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -45,6 +49,14 @@ describe('AppComponent', () => {
         {
           provide: ExperimentService,
           useClass: mockService(ExperimentService)
+        },
+        {
+          provide: NeighbourlyService,
+          useClass: mockService(NeighbourlyService)
+        },
+        {
+          provide: MetaTagsService,
+          useClass: mockService(MetaTagsService)
         }
       ]
     }).compileComponents();
@@ -55,6 +67,8 @@ describe('AppComponent', () => {
     dtmService = TestBed.get(DtmService);
     browserOverrideService = TestBed.get(BrowserOverrideService);
     experimentService = TestBed.get(ExperimentService);
+    neighbourlyService = TestBed.get(NeighbourlyService);
+    metaTagsService = TestBed.get(MetaTagsService);
   });
 
   it('should create the app and set up services', async(() => {
@@ -68,6 +82,8 @@ describe('AppComponent', () => {
     expect(dtmService.setup).toHaveBeenCalled();
     expect(browserOverrideService.setup).toHaveBeenCalled();
     expect(experimentService.setup).toHaveBeenCalled();
+    expect(neighbourlyService.setup).toHaveBeenCalled();
+    expect(metaTagsService.setup).toHaveBeenCalled();
   }));
 
   it('should check router outlet is present', async(() => {

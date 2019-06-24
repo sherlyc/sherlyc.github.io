@@ -1,7 +1,7 @@
 import { weatherRetriever } from './weather-retriever';
 import http from '../utils/http';
 import { IParams } from '../__types__/IParams';
-import * as weatherJson from './__fixtures__/weather.json';
+import * as weatherJson from './__fixtures__/weather/weather.json';
 
 jest.mock('../utils/http');
 

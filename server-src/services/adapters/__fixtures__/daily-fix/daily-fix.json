@@ -1,0 +1,170 @@
+{
+  "assets": [
+    {
+      "datetime_iso8601": "20170323T121256+1300",
+      "url": "http://www.stuff.co.nz/national/90621395/feed-your-news-hunger-with-stuffs-many-delicious-newsletters",
+      "alt_intro": "Hungry for news? Thirsting for the truth? Select from Stuff’s buffet of delicious newsletters.",
+      "images": [
+        {
+          "id": 90729887,
+          "datetime_iso8601": "20170323T121256+1300",
+          "datetime_display": "12:12 23/03/2017",
+          "creditline": "123rf",
+          "caption": "Stuff newsletters serve up the best content to suit your news appetite.",
+          "variants": [
+            {
+              "id": 90729887,
+              "layout": "Defcon Image",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/i/0/n/m/n/image.related.StuffBigHeadline.418x220.1i1ea5.png/1490146906731.jpg",
+              "media_type": "Photo",
+              "width": "418",
+              "height": "220"
+            },
+            {
+              "id": 90729887,
+              "layout": "Standard Image",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/i/0/n/m/n/image.related.StuffLandscapeSixteenByNine.620x349.1i1ea5.png/1490146906731.jpg",
+              "media_type": "Photo",
+              "width": "620",
+              "height": "349"
+            },
+            {
+              "id": 90729887,
+              "layout": "ipad section splash 956:956",
+              "media_type": "Photo",
+              "width": "956",
+              "height": "956"
+            },
+            {
+              "id": 90729887,
+              "layout": "Strap Image",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/i/0/n/m/n/image.related.StuffLandscapeThreeByTwo.300x200.1i1ea5.png/1490146906731.jpg",
+              "media_type": "Photo",
+              "width": "300",
+              "height": "200"
+            },
+            {
+              "id": 90729887,
+              "layout": "Small Thumbnail",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/i/0/n/m/n/image.related.StuffThumbnail.90x60.1i1ea5.png/1490146906731.jpg",
+              "media_type": "Photo",
+              "width": "90",
+              "height": "60"
+            }
+          ],
+          "asset_type": "IMAGE"
+        }
+      ],
+      "datetime_display": "12:12 23/03/2017",
+      "asset_type": "URL",
+      "headline_flags": [],
+      "title": "Newsletters",
+      "id": 90764429
+    },
+    {
+      "datetime_iso8601": "20150818T085547+1200",
+      "url": "http://www.stuff.co.nz/life-style/puzzles",
+      "alt_intro": "Test your mind with our puzzles",
+      "images": [
+        {
+          "id": 63784214,
+          "datetime_iso8601": "20150818T085547+1200",
+          "datetime_display": "08:55 18/08/2015",
+          "creditline": "",
+          "caption": "x",
+          "variants": [
+            {
+              "id": 63784214,
+              "layout": "Small Thumbnail",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.90x60.11z4e0.png/1439844947411.jpg",
+              "media_type": "Photo",
+              "width": "90",
+              "height": "60"
+            }
+          ],
+          "asset_type": "IMAGE"
+        }
+      ],
+      "datetime_display": "08:55 18/08/2015",
+      "asset_type": "URL",
+      "headline_flags": [],
+      "title": "Puzzles",
+      "id": 63784440
+    },
+    {
+      "datetime_iso8601": "20181221T150030+1300",
+      "url": "https://www.stuff.co.nz/opinion/cartoons",
+      "alt_intro": "Read the latest cartoons from Stuff, including Dilbert, Sharon Murdoch, Tom Scott and more.",
+      "images": [
+        {
+          "id": 72213880,
+          "datetime_iso8601": "20181221T150030+1300",
+          "datetime_display": "15:00 21/12/2018",
+          "creditline": "",
+          "caption": "x",
+          "variants": [
+            {
+              "id": 72213880,
+              "layout": "1024 Landscape",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/6/z/s/l/4/image.related.galleryFree.1024x0.15qvuw.png/1545357630768.jpg",
+              "media_type": "Photo",
+              "width": "1024",
+              "height": "0"
+            },
+            {
+              "id": 72213880,
+              "layout": "Defcon Image",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/6/z/s/l/4/image.related.StuffBigHeadline.418x220.15qvuw.png/1545357630768.jpg",
+              "media_type": "Photo",
+              "width": "418",
+              "height": "220"
+            },
+            {
+              "id": 72213880,
+              "layout": "ipad section splash 956:956",
+              "media_type": "Photo",
+              "width": "956",
+              "height": "956"
+            },
+            {
+              "id": 72213880,
+              "layout": "Standard Image",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/6/z/s/l/4/image.related.StuffLandscapeSixteenByNine.620x349.15qvuw.png/1545357630768.jpg",
+              "media_type": "Photo",
+              "width": "620",
+              "height": "349"
+            },
+            {
+              "id": 72213880,
+              "layout": "Strap Image",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/6/z/s/l/4/image.related.StuffLandscapeThreeByTwo.300x200.15qvuw.png/1545357630768.jpg",
+              "media_type": "Photo",
+              "width": "300",
+              "height": "200"
+            },
+            {
+              "id": 72213880,
+              "layout": "Small Thumbnail",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/6/z/s/l/4/image.related.StuffThumbnail.90x60.15qvuw.png/1545357630768.jpg",
+              "media_type": "Photo",
+              "width": "90",
+              "height": "60"
+            }
+          ],
+          "asset_type": "IMAGE"
+        }
+      ],
+      "datetime_display": "15:00 21/12/2018",
+      "asset_type": "URL",
+      "headline_flags": [],
+      "title": "Cartoons",
+      "id": 70118600
+    }
+  ],
+  "datetime_iso8601": "20190329T084323+1300",
+  "datetime_display": "08:43 29/03/2019",
+  "alt_headline": "NZ Daily Fix list",
+  "asset_type": "LIST",
+  "title": "NZ Daily Fix list",
+  "id": 63784884
+}

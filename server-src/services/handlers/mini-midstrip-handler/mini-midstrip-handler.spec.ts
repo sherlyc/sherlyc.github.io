@@ -1,5 +1,5 @@
 import miniMidstripHandler from './mini-midstrip-handler';
-import * as rawMiniMidStrip from '../../adapters/__fixtures__/raw-mini-mid-strip.json';
+import * as rawMiniMidStrip from '../../adapters/__fixtures__/mini-mid-strip/raw-mini-mid-strip.json';
 import { getListAsset } from '../../adapters/jsonfeed';
 import { IColumnContainer } from 'common/__types__/IColumnContainer';
 import { IParams } from '../../__types__/IParams';
@@ -38,7 +38,7 @@ describe('MiniMidStripHandler', () => {
           {
             id: '112556125',
             strapName: 'MiniMidStrip',
-            headlineFlags: [],
+            headlineFlags: ['VIDEO'],
             imageSrc:
               'https://resources.stuff.co.nz/content/dam/images/1/v/0/i/9/z/image.related.StuffLandscapeThreeByTwo.300x200.1v0gv1.png/1557282443654.png',
             indexHeadline: "Barker's Am Cup capsize",

@@ -4,7 +4,7 @@ import logger from './logger';
 import { IParams } from '../__types__/IParams';
 
 const defaultOptions = {
-  retries: 3,
+  retries: 2,
   factor: 1,
   minTimeout: config.retryTimeout
 };
@@ -19,10 +19,17 @@ export default <T>(
     onFailedAttempt: (error: pRetry.FailedAttemptError) => {
       logger.warn(
         params.apiRequestId,
-        `Attempt ${error.attemptNumber} failing when calling. There are ${
+        `Attempt ${error.attemptNumber} failed. There are ${
           error.retriesLeft
         } retries left.`
       );
+
+      if (error.retriesLeft === 0) {
+        logger.error(
+          params.apiRequestId,
+          `Retry level error - ${error.message}`
+        );
+      }
     },
     ...options
   });

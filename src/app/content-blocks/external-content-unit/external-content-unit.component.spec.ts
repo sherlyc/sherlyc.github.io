@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ExternalContentUnitComponent } from './external-content-unit.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
