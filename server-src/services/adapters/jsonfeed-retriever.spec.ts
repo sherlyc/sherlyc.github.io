@@ -1,3 +1,4 @@
+import * as topStoriesData from './__fixtures__/top-stories.json';
 import { retrieveArticleList, retrieveListAsset } from './jsonfeed-retriever';
 import * as jsonfeed from './__fixtures__/jsonfeed/jsonfeed.json';
 import * as midStripData from './__fixtures__/mid-strip/mid-strip.json';
@@ -131,6 +132,27 @@ describe('JsonFeed Retriever', () => {
         8
       );
       expect(editorsPick.assets.length).toEqual(8);
+    });
+  });
+
+  describe('Top Stories', () => {
+    it('should respond with top stories data', async () => {
+      (http(params).get as jest.Mock).mockResolvedValue({
+        data: topStoriesData
+      });
+
+      expect(
+        await retrieveListAsset(config.topStoriesListAssetId)(params, 2)
+      ).toEqual(topStoriesData);
+    });
+
+    it('should throw error when jsonfeed request for editors pick fails', async () => {
+      const error = new Error('AJAX error');
+      (http(params).get as jest.Mock).mockRejectedValue(error);
+
+      await expect(
+        retrieveListAsset(config.topStoriesListAssetId)(params, 2)
+      ).rejects.toEqual(error);
     });
   });
 

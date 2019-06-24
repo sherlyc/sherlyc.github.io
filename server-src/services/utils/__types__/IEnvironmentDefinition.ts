@@ -8,6 +8,7 @@ export interface IEnvironmentDefinition {
   midStripListAssetId: string;
   miniMidStripListAssetId: string;
   editorsPickAssetId: string;
+  topStoriesListAssetId: string;
   dailyFixAssetId: string;
   weatherAPI: string;
   breakingNewsApi: string;

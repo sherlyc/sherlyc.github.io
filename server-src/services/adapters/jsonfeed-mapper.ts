@@ -27,7 +27,7 @@ function mapArticleAsset(item: IJsonFeedArticle): IRawArticle {
     linkUrl: item.path,
     imageSrc: getImageSrc(item),
     lastPublishedTime: moment(item.datetime_iso8601).unix(),
-    headlineFlags: item.headline_flags
+    headlineFlags: item.headline_flags ? item.headline_flags : []
   };
 }
 
@@ -39,7 +39,7 @@ function mapUrlAsset(item: IJsonFeedUrl): IRawArticle {
     linkUrl: item.url,
     imageSrc: getImageSrc(item),
     lastPublishedTime: moment(item.datetime_iso8601).unix(),
-    headlineFlags: item.headline_flags
+    headlineFlags: item.headline_flags ? item.headline_flags : []
   };
 }
 
