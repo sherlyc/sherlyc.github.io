@@ -5,7 +5,7 @@
         <img
           src="{{ input.imageSrc }}"
           alt="{{ input.indexHeadline }}"
-          srcset="{{ input.imageSrcSet }}"
+          [attr.srcset]="input.imageSrcSet ? input.imageSrcSet : null"
         />
       </div>
     </div>

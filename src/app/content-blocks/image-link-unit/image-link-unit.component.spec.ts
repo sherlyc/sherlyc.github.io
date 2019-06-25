@@ -19,6 +19,7 @@ describe('ImageLinkUnitComponent', () => {
     indexHeadline: 'Dummy Headline',
     linkUrl: 'https://dummyurl.com',
     imageSrc: 'https://dummyimagesrc.com',
+    imageSrcSet: 'https://dummyimagesrc.com 1w',
     headlineFlags: []
   };
 
@@ -62,6 +63,7 @@ describe('ImageLinkUnitComponent', () => {
 
     const img = componentElement.querySelector('img');
     expect(img!.getAttribute('src')).toEqual(articleData.imageSrc);
+    expect(img!.getAttribute('srcset')).toEqual(articleData.imageSrcSet);
     expect(img!.getAttribute('alt')).toEqual(articleData.indexHeadline);
   });
 

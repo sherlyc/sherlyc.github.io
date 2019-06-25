@@ -17,8 +17,8 @@
           <img
             itemprop="image"
             src="{{ input.imageSrc }}"
-            srcset="{{ input.imageSrcSet }}"
             alt="{{ input.indexHeadline }}"
+            [attr.srcset]="input.imageSrcSet ? input.imageSrcSet : null"
           />
         </div>
       </div>
