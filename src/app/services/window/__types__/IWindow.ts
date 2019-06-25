@@ -7,4 +7,5 @@ export interface IWindow {
     pageBottom: () => void;
   };
   videojs: (element: HTMLElement) => IPlayer;
+  StuffLogin: { init: () => void };
 }

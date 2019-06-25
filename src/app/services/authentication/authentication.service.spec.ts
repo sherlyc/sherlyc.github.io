@@ -5,12 +5,14 @@ import { ScriptInjectorService } from '../script-injector/script-injector.servic
 import { ConfigService } from '../config/config.service';
 import { mockService, ServiceMock } from '../mocks/MockService';
 import { Position } from '../script-injector/__types__/Position';
+import { WindowService } from '../window/window.service';
 
 describe('AuhtenticationService', () => {
   let authenticationService: AuthenticationService;
   let runtimeService: ServiceMock<RuntimeService>;
   let scriptInjectorService: ServiceMock<ScriptInjectorService>;
   let configService: ServiceMock<ConfigService>;
+  let windowService: ServiceMock<WindowService>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -26,6 +28,10 @@ describe('AuhtenticationService', () => {
         {
           provide: ConfigService,
           useClass: mockService(ConfigService)
+        },
+        {
+          provide: WindowService,
+          useClass: mockService(WindowService)
         }
       ]
     });
@@ -33,6 +39,7 @@ describe('AuhtenticationService', () => {
     runtimeService = TestBed.get(RuntimeService);
     scriptInjectorService = TestBed.get(ScriptInjectorService);
     configService = TestBed.get(ConfigService);
+    windowService = TestBed.get(WindowService);
   });
 
   it('should be created', () => {
@@ -41,7 +48,12 @@ describe('AuhtenticationService', () => {
 
   it('should delegate to script injector to load the script on setup', async () => {
     const libraryUrl = 'http://libraryurl.com';
-    configService.getConfig.mockReturnValue({ user: { loginLibrary: { libraryUrl: libraryUrl }}});
+    configService.getConfig.mockReturnValue({
+      user: { loginLibrary: { libraryUrl: libraryUrl } }
+    });
+    windowService.getWindow.mockReturnValue({
+      StuffLogin: { init: jest.fn() }
+    });
     await authenticationService.setup();
 
     expect(scriptInjectorService.load).toHaveBeenCalledWith(
@@ -52,4 +64,16 @@ describe('AuhtenticationService', () => {
     );
   });
 
+  it('should initiate the library as part of setup', async () => {
+    const libraryUrl = 'http://libraryurl.com';
+    configService.getConfig.mockReturnValue({
+      user: { loginLibrary: { libraryUrl: libraryUrl } }
+    });
+    windowService.getWindow.mockReturnValue({
+      StuffLogin: { init: jest.fn() }
+    });
+    await authenticationService.setup();
+
+    expect(authenticationService.StuffLogin.init).toHaveBeenCalled();
+  });
 });

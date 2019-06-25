@@ -4,16 +4,20 @@ import { ScriptId } from '../script-injector/__types__/ScriptId';
 import { ScriptInjectorService } from '../script-injector/script-injector.service';
 import { ConfigService } from '../config/config.service';
 import { Position } from '../script-injector/__types__/Position';
+import { WindowService } from '../window/window.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
+  StuffLogin: any;
 
-  constructor(private runtime: RuntimeService,
-              private scriptInjectorService: ScriptInjectorService,
-              private config: ConfigService) {
-  }
+  constructor(
+    private runtime: RuntimeService,
+    private scriptInjectorService: ScriptInjectorService,
+    private config: ConfigService,
+    private window: WindowService
+  ) {}
 
   async setup() {
     if (this.runtime.isServer()) {
@@ -25,9 +29,14 @@ export class AuthenticationService {
       Position.HEAD,
       true
     );
+
+    this.StuffLogin = this.window.getWindow().StuffLogin;
+    this.initialiseLibrary();
   }
 
-  login() {
-
+  private initialiseLibrary() {
+    this.StuffLogin.init();
   }
+
+  login() {}
 }
