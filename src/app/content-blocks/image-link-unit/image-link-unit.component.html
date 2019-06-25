@@ -2,7 +2,11 @@
   <a href="{{ input.linkUrl }}" class="col-xs" (click)="sendAnalytics()">
     <div class="row">
       <div class="image">
-        <img src="{{ input.imageSrc }}" alt="{{ input.indexHeadline }}" />
+        <img
+          src="{{ input.imageSrc }}"
+          alt="{{ input.indexHeadline }}"
+          srcset="{{ input.imageSrcSet }}"
+        />
       </div>
     </div>
     <div class="row">
