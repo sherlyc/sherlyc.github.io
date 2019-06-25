@@ -25,6 +25,8 @@ spec:
           ports:
             - containerPort: 4000
           env:
+            - name: SPADE_ENV
+              value: ${spadeEnv}
             - name: SKIP_SECRETS
               value: 'true'
             - name: NEW_RELIC_APP_NAME
