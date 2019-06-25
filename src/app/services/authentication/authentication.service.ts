@@ -37,15 +37,20 @@ export class AuthenticationService {
   private initialiseLibrary() {
     const {
       clientId,
-      signinRedirectUrl,
+      signinRedirectPath,
       authProvider
     } = this.config.getConfig().user.loginLibrary;
+
     this.StuffLogin.init({
       client_id: clientId,
-      redirect_uri: signinRedirectUrl,
+      redirect_uri: `https://${
+        this.window.getWindow().location.hostname
+      }/${signinRedirectPath}`,
       authority: authProvider
     });
   }
 
-  login() {}
+  login() {
+    // TODO: in next set of PRS don't worry
+  }
 }

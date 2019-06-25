@@ -52,7 +52,8 @@ describe('AuhtenticationService', () => {
       user: { loginLibrary: { libraryUrl: libraryUrl } }
     });
     windowService.getWindow.mockReturnValue({
-      StuffLogin: { init: jest.fn() }
+      StuffLogin: { init: jest.fn() },
+      location: { hostname: 'www.stuff.co.nz' }
     });
     await authenticationService.setup();
 
@@ -68,26 +69,29 @@ describe('AuhtenticationService', () => {
     const libraryUrl = 'http://libraryurl.com';
     const authProvider = 'https://my.preprod.stuff.co.nz';
     const clientId = 'c0f1b219-297b-4104-8300-94c4636768da';
-    const signinRedirectUrl = 'signin-callback.html';
+    const signinRedirectPath = 'signin-callback.html';
+
     configService.getConfig.mockReturnValue({
       user: {
         loginLibrary: {
           libraryUrl,
           authProvider,
           clientId,
-          signinRedirectUrl
+          signinRedirectPath
         }
       }
     });
+
     windowService.getWindow.mockReturnValue({
-      StuffLogin: { init: jest.fn() }
+      StuffLogin: { init: jest.fn() },
+      location: { hostname: 'www.stuff.co.nz' }
     });
 
     await authenticationService.setup();
 
     expect(authenticationService.StuffLogin.init).toHaveBeenCalledWith({
       client_id: clientId,
-      redirect_uri: signinRedirectUrl,
+      redirect_uri: `https://www.stuff.co.nz/${signinRedirectPath}`,
       authority: authProvider
     });
   });
