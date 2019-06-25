@@ -91,7 +91,8 @@
           "asset_type": "IMAGE"
         }
       ],
-      "datetime_iso8601": "20170323T121256+1300"
+      "datetime_iso8601": "20170323T121256+1300",
+      "headline_flags": []
     },
     {
       "id": 63784440,
@@ -127,7 +128,8 @@
           "asset_type": "IMAGE"
         }
       ],
-      "datetime_iso8601": "20150818T085547+1200"
+      "datetime_iso8601": "20150818T085547+1200",
+      "headline_flags": []
     },
     {
       "id": 70118600,
@@ -235,7 +237,8 @@
           "asset_type": "IMAGE"
         }
       ],
-      "datetime_iso8601": "20181221T150030+1300"
+      "datetime_iso8601": "20181221T150030+1300",
+      "headline_flags": []
     }
   ],
   "id": 63784884,

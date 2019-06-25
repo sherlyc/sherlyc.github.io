@@ -24,7 +24,8 @@ const listAssetRegistry: { [key in ListAsset]: Function } = {
   [ListAsset.EditorPicks]: retrieveListAsset(config.editorsPickAssetId),
   [ListAsset.MidStrip]: retrieveListAsset(config.midStripListAssetId),
   [ListAsset.MiniMidStrip]: retrieveListAsset(config.miniMidStripListAssetId),
-  [ListAsset.DailyFix]: retrieveListAsset(config.dailyFixAssetId)
+  [ListAsset.DailyFix]: retrieveListAsset(config.dailyFixAssetId),
+  [ListAsset.TopStories]: retrieveListAsset(config.topStoriesListAssetId)
 };
 
 export const getListAsset = async (

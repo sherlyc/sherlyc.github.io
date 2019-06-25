@@ -30,7 +30,7 @@ function mapArticleAsset(item: IJsonFeedArticle): IRawArticle {
     imageSrc: getImageSrc(item),
     imageSrcSet: getImageSrcSet(item),
     lastPublishedTime: moment(item.datetime_iso8601).unix(),
-    headlineFlags: []
+    headlineFlags: item.headline_flags ? item.headline_flags : []
   };
 }
 
@@ -43,7 +43,7 @@ function mapUrlAsset(item: IJsonFeedUrl): IRawArticle {
     imageSrc: getImageSrc(item),
     imageSrcSet: getImageSrcSet(item),
     lastPublishedTime: moment(item.datetime_iso8601).unix(),
-    headlineFlags: []
+    headlineFlags: item.headline_flags ? item.headline_flags : []
   };
 }
 

@@ -5,6 +5,7 @@ import * as midStripData from './__fixtures__/mid-strip/mid-strip.json';
 import * as miniMidStripData from './__fixtures__/mini-mid-strip/mini-mid-strip.json';
 import * as editorsPickData from './__fixtures__/editors-pick/editors-pick.json';
 import * as dailyFixData from './__fixtures__/daily-fix/daily-fix.json';
+import * as topStories from './__fixtures__/top-stories.json';
 import { Section } from '../section';
 import { IParams } from '../__types__/IParams';
 import { ListAsset } from '../listAsset';
@@ -70,6 +71,21 @@ describe('json feed service', () => {
       const editorPicks = await getListAsset(params, ListAsset.EditorPicks);
 
       verifyArticles(editorPicks);
+    });
+  });
+
+  describe('top stories service', () => {
+    it('should provide top stories service data', async () => {
+      (http(params).get as jest.Mock).mockResolvedValue({
+        data: topStories
+      });
+
+      const topStoriesArticles = await getListAsset(
+        params,
+        ListAsset.TopStories
+      );
+
+      verifyArticles(topStoriesArticles);
     });
   });
 
