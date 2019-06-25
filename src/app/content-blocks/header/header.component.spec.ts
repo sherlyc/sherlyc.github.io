@@ -90,7 +90,7 @@ describe('Header', () => {
       fixture.detectChanges();
 
       const avatarImage = fixture.debugElement
-        .query(By.css('.user img'));
+        .query(By.css('.avatar'));
 
       expect(avatarImage).toBeTruthy();
     });
