@@ -5,6 +5,7 @@ import { DOCUMENT } from '@angular/common';
 import { AnalyticsService } from '../../services/analytics/analytics.service';
 import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
 import { ConfigService } from '../../services/config/config.service';
+import { AuthenticationService } from '../../services/authentication/authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +17,8 @@ export class HeaderComponent implements IContentBlockComponent, OnInit {
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
     private analyticsService: AnalyticsService,
-    private configService: ConfigService
+    private configService: ConfigService,
+    private authenticationService: AuthenticationService
   ) {}
 
   isLoggedIn = false;
@@ -102,5 +104,9 @@ export class HeaderComponent implements IContentBlockComponent, OnInit {
       type: AnalyticsEventsType.MENU_NAV_SECTION_CLICKED,
       section
     });
+  }
+
+  login() {
+    this.authenticationService.login();
   }
 }

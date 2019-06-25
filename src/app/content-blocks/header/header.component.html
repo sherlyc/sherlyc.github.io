@@ -27,18 +27,24 @@
       </div>
 
       <a
+        *ngIf="isLoggedIn"
         href="{{ profileUrl }}"
         target="_blank"
         aria-label="user"
         class="user"
-        rel="noopener"
+        rel="noopener noreferrer"
       >
-        <ng-container *ngIf="isLoggedIn">
-          <img class="avatar" src="/spade/assets/icons/avatar.svg" />
-        </ng-container>
-
-        <ng-container *ngIf="!isLoggedIn">Login</ng-container>
+        <img class="avatar" src="/spade/assets/icons/avatar.svg" />
       </a>
+
+      <a
+        *ngIf="!isLoggedIn"
+        href="javascript:void(0)"
+        aria-label="user-login"
+        class="user"
+        (click)="login()"
+        >Login</a
+      >
     </div>
   </div>
   <div class="color-bar"></div>

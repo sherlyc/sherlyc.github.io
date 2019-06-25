@@ -7,11 +7,14 @@ import { AnalyticsEventsType } from '../../services/analytics/__types__/Analytic
 import { AnalyticsService } from '../../services/analytics/analytics.service';
 import { ConfigService } from '../../services/config/config.service';
 import { IEnvironmentDefinition } from '../../services/config/__types__/IEnvironmentDefinition';
+import { AuthenticationService } from '../../services/authentication/authentication.service';
 
 describe('Header', () => {
   let fixture: ComponentFixture<HeaderComponent>;
   let analyticsService: ServiceMock<AnalyticsService>;
   let configService: ServiceMock<ConfigService>;
+  let authenticationService: ServiceMock<AuthenticationService>;
+  const profileUrl = 'https://my.stuff.co.nz/publicprofile';
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -24,14 +27,20 @@ describe('Header', () => {
         {
           provide: ConfigService,
           useClass: mockService(ConfigService)
+        },
+        {
+          provide: AuthenticationService,
+          useClass: mockService(AuthenticationService)
         }
       ]
     }).compileComponents();
     analyticsService = TestBed.get(AnalyticsService);
     configService = TestBed.get(ConfigService);
+    authenticationService = TestBed.get(AuthenticationService);
+
     configService.getConfig.mockReturnValue({
       user: {
-        profileUrl: 'https://my.stuff.co.nz/publicprofile'
+        profileUrl: profileUrl
       }
     } as IEnvironmentDefinition);
     fixture = TestBed.createComponent(HeaderComponent);
@@ -96,6 +105,18 @@ describe('Header', () => {
       expect(text).toBe('Login');
     });
 
+    it('should initiate a login when user clicks on login', () => {
+      fixture.componentInstance.navigationVisible = true;
+      fixture.componentInstance.isLoggedIn = false;
+      fixture.detectChanges();
+
+      fixture.debugElement.query(By.css('.user')).nativeElement.click();
+
+      fixture.detectChanges();
+
+      expect(authenticationService.login).toHaveBeenCalled();
+    });
+
     it('should show an avatar when the user is logged in', () => {
       fixture.componentInstance.navigationVisible = true;
       fixture.componentInstance.isLoggedIn = true;
@@ -104,9 +125,7 @@ describe('Header', () => {
       const user = fixture.debugElement.query(By.css('.user'));
 
       expect(user).toBeTruthy();
-      expect(user.nativeElement.getAttribute('href')).toContain(
-        '.stuff.co.nz/publicprofile'
-      );
+      expect(user.nativeElement.getAttribute('href')).toBe(profileUrl);
     });
   });
 });
