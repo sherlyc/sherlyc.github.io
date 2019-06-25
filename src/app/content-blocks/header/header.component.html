@@ -29,13 +29,17 @@
       <a
         href="https://my.stuff.co.nz/login"
         target="_blank"
+        aria-label="user"
         class="user"
         rel="noopener"
       >
         <ng-container *ngIf="isLoggedIn">
-          <img src="/spade/assets/icons/avatar.svg">
+          <img class="avatar" src="/spade/assets/icons/avatar.svg">
         </ng-container>
-        <ng-container *ngIf="!isLoggedIn">Login</ng-container>
+
+        <ng-container *ngIf="!isLoggedIn">
+          Login
+        </ng-container>
       </a>
     </div>
   </div>
