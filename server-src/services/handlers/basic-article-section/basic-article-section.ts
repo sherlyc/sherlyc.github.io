@@ -4,6 +4,7 @@ import { IBasicArticleSectionHandlerInput } from '../__types__/IBasicArticleSect
 import { handlerRunnerFunction } from '../runner';
 import { IParams } from '../../__types__/IParams';
 import { HandlerInputType } from '../__types__/HandlerInputType';
+import logger from '../../utils/logger';
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -41,6 +42,10 @@ export default async function(
       { type: ContentBlockType.BasicAdUnit }
     ];
   } catch (e) {
+    logger.error(
+      params.apiRequestId,
+      `Basic Article Section error for ${displayName} - ${e}`
+    );
     return [];
   }
 }

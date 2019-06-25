@@ -53,7 +53,7 @@ function getImageWidth(key: string) {
 
 function getImageSrcSet(item: IJsonFeedArticle | IJsonFeedUrl) {
   const thumbnailImages = findThumbnailImage(item);
-  if (thumbnailImages) {
+  if (thumbnailImages && thumbnailImages.urls) {
     const imageUrls = thumbnailImages.urls;
     return Object.entries(imageUrls)
       .map(([size, src]) => `${src} ${getImageWidth(size)}`)
@@ -75,7 +75,7 @@ function findThumbnailImage(
 ): IImageVariant | undefined {
   if (item.images && item.images.length > 0) {
     for (const image of item.images) {
-      if (image.variants) {
+      if (image.variants && image.variants.length > 0) {
         const smallThumbnailVariant = image.variants.find(
           (variant) => variant.layout === JsonFeedImageType.SMALL_THUMBNAIL
         );
