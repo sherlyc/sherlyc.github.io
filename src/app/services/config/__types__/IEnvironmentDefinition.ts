@@ -1,6 +1,6 @@
 import { ILoggerOptions } from '../../../../../common/__types__/ILoggerOptions';
 import { Omit } from 'utility-types';
-import { IUserConfig } from '../../authentication/__types__/IUserConfig';
+import { ILoginLibrary } from '../../authentication/__types__/ILoginLibrary';
 
 export interface IEnvironmentDefinition {
   retryTimeout: number;
@@ -18,5 +18,5 @@ export interface IEnvironmentDefinition {
     Omit<IEnvironmentDefinition, 'serverOverrides' | 'browserOverrides'>
   >;
   dtmUrl: string;
-  user: IUserConfig;
+  loginLibrary: ILoginLibrary;
 }

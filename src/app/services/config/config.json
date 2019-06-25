@@ -21,14 +21,11 @@
       "environment": "production"
     },
     "dtmUrl": "https://assets.adobedtm.com/10d15a330ba9eec67033fb8a57223f1f239d36eb/satelliteLib-8ff0ef0f82e3dfb69c3732fec2854ff9506f9f38.js",
-    "user": {
-      "profileUrl": "https://my.stuff.co.nz/publicprofile",
-      "loginLibrary": {
-        "libraryUrl": "https://www.stuff.co.nz/static/stuff-login-browser-sdk/1.2.0/stuff-login-sdk.js",
-        "authProvider": "https://my.stuff.co.nz",
-        "clientId": "",
-        "signinRedirectPath": "signin-callback"
-      }
+    "loginLibrary": {
+      "libraryUrl": "https://www.stuff.co.nz/static/stuff-login-browser-sdk/1.2.0/stuff-login-sdk.js",
+      "authProvider": "https://my.stuff.co.nz",
+      "clientId": "",
+      "signinRedirectPath": "signin-callback"
     }
   },
   "staging": {
@@ -53,14 +50,11 @@
       "environment": "staging"
     },
     "dtmUrl": "https://assets.adobedtm.com/10d15a330ba9eec67033fb8a57223f1f239d36eb/satelliteLib-8ff0ef0f82e3dfb69c3732fec2854ff9506f9f38-staging.js",
-    "user": {
-      "profileUrl": "https://my.preprod.stuff.co.nz/publicprofile",
-      "loginLibrary": {
-        "libraryUrl": "https://www.stuff.co.nz/static/stuff-login-browser-sdk/1.2.0/stuff-login-sdk.js",
-        "authProvider": "https://my.preprod.stuff.co.nz",
-        "clientId": "c0f1b219-297b-4104-8300-94c4636768da",
-        "signinRedirectPath": "signin-callback"
-      }
+    "loginLibrary": {
+      "libraryUrl": "https://www.stuff.co.nz/static/stuff-login-browser-sdk/1.2.0/stuff-login-sdk.js",
+      "authProvider": "https://my.preprod.stuff.co.nz",
+      "clientId": "c0f1b219-297b-4104-8300-94c4636768da",
+      "signinRedirectPath": "signin-callback"
     }
   },
   "development": {
@@ -85,14 +79,11 @@
       "environment": "development"
     },
     "dtmUrl": "https://assets.adobedtm.com/10d15a330ba9eec67033fb8a57223f1f239d36eb/satelliteLib-8ff0ef0f82e3dfb69c3732fec2854ff9506f9f38-staging.js",
-    "user": {
-      "profileUrl": "https://my.preprod.stuff.co.nz/publicprofile",
-      "loginLibrary": {
-        "libraryUrl": "https://www.stuff.co.nz/static/stuff-login-browser-sdk/1.2.0/stuff-login-sdk.js",
-        "authProvider": "https://my.stuff.co.nz",
-        "clientId": "c0f1b219-297b-4104-8300-94c4636768da",
-        "signinRedirectPath": "signin-callback"
-      }
+    "loginLibrary": {
+      "libraryUrl": "https://www.stuff.co.nz/static/stuff-login-browser-sdk/1.2.0/stuff-login-sdk.js",
+      "authProvider": "https://my.stuff.co.nz",
+      "clientId": "c0f1b219-297b-4104-8300-94c4636768da",
+      "signinRedirectPath": "signin-callback"
     }
   },
   "test": {
@@ -117,14 +108,11 @@
       "environment": "test"
     },
     "dtmUrl": "https://assets.adobedtm.com/10d15a330ba9eec67033fb8a57223f1f239d36eb/satelliteLib-8ff0ef0f82e3dfb69c3732fec2854ff9506f9f38-staging.js",
-    "user": {
-      "profileUrl": "https://my.preprod.stuff.co.nz/publicprofile",
-      "loginLibrary": {
-        "libraryUrl": "https://www.stuff.co.nz/static/stuff-login-browser-sdk/1.2.0/stuff-login-sdk.js",
-        "authProvider": "https://my.preprod.stuff.co.nz",
-        "clientId": "c0f1b219-297b-4104-8300-94c4636768da",
-        "signinRedirectPath": "signin-callback"
-      }
+    "loginLibrary": {
+      "libraryUrl": "https://www.stuff.co.nz/static/stuff-login-browser-sdk/1.2.0/stuff-login-sdk.js",
+      "authProvider": "https://my.preprod.stuff.co.nz",
+      "clientId": "c0f1b219-297b-4104-8300-94c4636768da",
+      "signinRedirectPath": "signin-callback"
     }
   }
 }

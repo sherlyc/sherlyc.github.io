@@ -39,8 +39,8 @@ describe('Header', () => {
     authenticationService = TestBed.get(AuthenticationService);
 
     configService.getConfig.mockReturnValue({
-      user: {
-        profileUrl: profileUrl
+      loginLibrary: {
+        authProvider: 'https://my.stuff.co.nz'
       }
     } as IEnvironmentDefinition);
     fixture = TestBed.createComponent(HeaderComponent);

@@ -73,7 +73,7 @@ export class HeaderComponent implements IContentBlockComponent, OnInit {
   ];
 
   ngOnInit() {
-    this.profileUrl = this.configService.getConfig().user.profileUrl;
+    this.profileUrl = `${this.configService.getConfig().loginLibrary.authProvider}/publicprofile`;
   }
 
   toggleMenu() {
