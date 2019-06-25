@@ -12,7 +12,9 @@ async function requestArticleList(
   total: number,
   params: IParams
 ): Promise<IJsonFeedArticleList> {
-  const url: URL = new URL(`${config.jsonFeedAPI}/${section}?limit=${total}`);
+  const url: URL = new URL(
+    `${config.jsonFeedAPI}/${section}?limit=${total}&breakTheCache`
+  );
   const response = await http(params).get<IJsonFeedArticleList>(url.href);
   return response.data;
 }
@@ -28,7 +30,9 @@ async function requestListAsset(
   listAssetId: string,
   total?: number
 ): Promise<IListAsset> {
-  const url: URL = new URL(`${config.jsonFeedAPI}/listasset/${listAssetId}`);
+  const url: URL = new URL(
+    `${config.jsonFeedAPI}/listasset/${listAssetId}?breakTheCache`
+  );
   const response = await http(params).get<IListAsset>(url.href);
 
   return total
