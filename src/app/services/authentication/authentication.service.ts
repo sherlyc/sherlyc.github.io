@@ -25,7 +25,7 @@ export class AuthenticationService {
     }
     await this.scriptInjectorService.load(
       ScriptId.loginSdk,
-      this.config.getConfig().user.loginLibrary.libraryUrl,
+      this.config.getConfig().loginLibrary.libraryUrl,
       Position.HEAD,
       true
     );
@@ -39,7 +39,7 @@ export class AuthenticationService {
       clientId,
       signinRedirectPath,
       authProvider
-    } = this.config.getConfig().user.loginLibrary;
+    } = this.config.getConfig().loginLibrary;
 
     this.StuffLogin.init({
       client_id: clientId,

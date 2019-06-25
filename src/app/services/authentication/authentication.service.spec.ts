@@ -48,9 +48,7 @@ describe('AuhtenticationService', () => {
 
   it('should delegate to script injector to load the script on setup', async () => {
     const libraryUrl = 'http://libraryurl.com';
-    configService.getConfig.mockReturnValue({
-      user: { loginLibrary: { libraryUrl: libraryUrl } }
-    });
+    configService.getConfig.mockReturnValue({ loginLibrary: { libraryUrl } });
     windowService.getWindow.mockReturnValue({
       StuffLogin: { init: jest.fn() },
       location: { hostname: 'www.stuff.co.nz' }
@@ -72,13 +70,11 @@ describe('AuhtenticationService', () => {
     const signinRedirectPath = 'signin-callback.html';
 
     configService.getConfig.mockReturnValue({
-      user: {
-        loginLibrary: {
-          libraryUrl,
-          authProvider,
-          clientId,
-          signinRedirectPath
-        }
+      loginLibrary: {
+        libraryUrl,
+        authProvider,
+        clientId,
+        signinRedirectPath
       }
     });
 

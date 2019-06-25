@@ -11,7 +11,6 @@ import { BrowserOverrideService } from './services/browser-override/browser-over
 import { NeighbourlyService } from './services/neighbourly/neighbourly.service';
 import { MetaTagsService } from './services/meta-tags/meta-tags.service';
 import { AuthenticationService } from './services/authentication/authentication.service';
-import autoMockOff = jest.autoMockOff;
 
 describe('AppComponent', () => {
   let adService: ServiceMock<AdService>;
