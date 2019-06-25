@@ -1,6 +1,4 @@
 import midstripHandler from './midstrip-handler';
-import * as rawMidStrip from '../../adapters/__fixtures__/mid-strip/raw-mid-strip.json';
-import * as midstripHandlerOutput from '../__fixtures__/midstrip-handler-output.json';
 import { getListAsset } from '../../adapters/jsonfeed';
 import { IColumnContainer } from 'common/__types__/IColumnContainer';
 import { IParams } from '../../__types__/IParams';
@@ -10,6 +8,28 @@ jest.mock('../../adapters/jsonfeed');
 
 describe('MidStripHandler', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
+  const rawMidStrip = [
+    {
+      id: '1',
+      indexHeadline: 'Headline 1',
+      introText: 'Intro 1',
+      linkUrl: '/link1',
+      imageSrc: '1.jpg',
+      imageSrcSet: '1.jpg 1w',
+      lastPublishedTime: 1,
+      headlineFlags: []
+    },
+    {
+      id: '2',
+      indexHeadline: 'Headline 2',
+      introText: 'Intro 2',
+      linkUrl: '/link2',
+      imageSrc: '2.jpg',
+      imageSrcSet: '2.jpg 2w',
+      lastPublishedTime: 2,
+      headlineFlags: []
+    }
+  ];
   beforeEach(() => {
     jest.resetModules();
   });
@@ -33,8 +53,34 @@ describe('MidStripHandler', () => {
 
     const imageLinkUnits = columnContainer[0].items;
 
-    expect(imageLinkUnits.length).toBe(2);
-    expect(columnContainer).toEqual(midstripHandlerOutput.TwoImageLink);
+    expect(imageLinkUnits.length).toBe(totalArticles);
+    expect(columnContainer).toEqual([
+      {
+        type: 'ColumnContainer',
+        items: [
+          {
+            headlineFlags: [],
+            id: '1',
+            strapName: 'MidStrip',
+            imageSrc: '1.jpg',
+            imageSrcSet: '1.jpg 1w',
+            indexHeadline: 'Headline 1',
+            linkUrl: '/link1',
+            type: 'ImageLinkUnit'
+          },
+          {
+            headlineFlags: [],
+            id: '2',
+            strapName: 'MidStrip',
+            imageSrc: '2.jpg',
+            imageSrcSet: '2.jpg 2w',
+            indexHeadline: 'Headline 2',
+            linkUrl: '/link2',
+            type: 'ImageLinkUnit'
+          }
+        ]
+      }
+    ]);
   });
 
   it('should get a list of Image links not exceeding number of requested item', async () => {
@@ -55,7 +101,23 @@ describe('MidStripHandler', () => {
 
     const imageLinkUnits = columnContainer[0].items;
 
-    expect(imageLinkUnits.length).toBe(1);
-    expect(columnContainer).toEqual(midstripHandlerOutput.OneImageLink);
+    expect(imageLinkUnits.length).toBe(totalArticles);
+    expect(columnContainer).toEqual([
+      {
+        type: 'ColumnContainer',
+        items: [
+          {
+            headlineFlags: [],
+            id: '1',
+            strapName: 'MidStrip',
+            imageSrc: '1.jpg',
+            imageSrcSet: '1.jpg 1w',
+            indexHeadline: 'Headline 1',
+            linkUrl: '/link1',
+            type: 'ImageLinkUnit'
+          }
+        ]
+      }
+    ]);
   });
 });

@@ -30,6 +30,7 @@ export default async function(
             strapName: strapName,
             indexHeadline: article.indexHeadline,
             imageSrc: article.imageSrc,
+            imageSrcSet: article.imageSrcSet,
             linkUrl: article.linkUrl,
             headlineFlags: article.headlineFlags
           } as IImageLinkUnit
