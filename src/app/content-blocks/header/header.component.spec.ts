@@ -70,4 +70,29 @@ describe('Header', () => {
       });
     });
   });
+
+  describe('User authentication', () => {
+
+    it('should show a Login text when the user is not logged in', () => {
+      fixture.componentInstance.navigationVisible = true;
+      fixture.componentInstance.isLoggedIn = false;
+      fixture.detectChanges();
+
+      const text = fixture.debugElement
+        .query(By.css('.user')).nativeElement.textContent;
+
+      expect(text).toBe('Login');
+    });
+
+    it('should show an avatar when the user is logged in', () => {
+      fixture.componentInstance.navigationVisible = true;
+      fixture.componentInstance.isLoggedIn = true;
+      fixture.detectChanges();
+
+      const avatarImage = fixture.debugElement
+        .query(By.css('.user img'));
+
+      expect(avatarImage).toBeTruthy();
+    });
+  });
 });

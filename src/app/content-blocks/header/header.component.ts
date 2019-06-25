@@ -17,6 +17,8 @@ export class HeaderComponent implements IContentBlockComponent {
     private analyticsService: AnalyticsService
   ) {}
 
+  isLoggedIn = true;
+
   @Input() input!: IHeader;
   navigationVisible = false;
   sections = [

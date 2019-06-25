@@ -25,13 +25,18 @@
           </svg>
         </a>
       </div>
+
       <a
         href="https://my.stuff.co.nz/login"
         target="_blank"
         class="user"
         rel="noopener"
-        >Login</a
       >
+        <ng-container *ngIf="isLoggedIn">
+          <img src="/spade/assets/icons/avatar.svg">
+        </ng-container>
+        <ng-container *ngIf="!isLoggedIn">Login</ng-container>
+      </a>
     </div>
   </div>
   <div class="color-bar"></div>
@@ -53,7 +58,7 @@
                 class="section-{{ item.label }}"
                 href="{{ item.link }}"
                 (click)="sendMenuSectionClickAnalytics(item.label)"
-                >{{ item.label }}
+              >{{ item.label }}
               </a>
             </li>
           </ul>
