@@ -1,9 +1,9 @@
 import miniMidstripHandler from './mini-midstrip-handler';
-import * as rawMiniMidStrip from '../../adapters/__fixtures__/mini-mid-strip/raw-mini-mid-strip.json';
 import { getListAsset } from '../../adapters/jsonfeed';
 import { IColumnContainer } from 'common/__types__/IColumnContainer';
 import { IParams } from '../../__types__/IParams';
 import { HandlerInputType } from '../__types__/HandlerInputType';
+import { IRawArticle } from '../../adapters/__types__/IRawArticle';
 
 jest.mock('../../adapters/jsonfeed');
 
@@ -12,6 +12,28 @@ describe('MiniMidStripHandler', () => {
   beforeEach(() => {
     jest.resetModules();
   });
+  const rawMiniMidStrip: IRawArticle[] = [
+    {
+      id: '1',
+      indexHeadline: 'Headline 1',
+      introText: 'Intro 1',
+      linkUrl: '/link1',
+      imageSrc: '1.jpg',
+      imageSrcSet: '1.jpg 1w',
+      lastPublishedTime: 1,
+      headlineFlags: []
+    },
+    {
+      id: '2',
+      indexHeadline: 'Headline 2',
+      introText: 'Intro 2',
+      linkUrl: '/link2',
+      imageSrc: '2.jpg',
+      imageSrcSet: '2.jpg 2w',
+      lastPublishedTime: 2,
+      headlineFlags: []
+    }
+  ];
 
   it('should get a list of Image Links', async () => {
     (getListAsset as jest.Mock).mockResolvedValue(rawMiniMidStrip);
@@ -36,27 +58,23 @@ describe('MiniMidStripHandler', () => {
         type: 'ColumnContainer',
         items: [
           {
-            id: '112556125',
+            id: '1',
             strapName: 'MiniMidStrip',
             headlineFlags: [],
-            imageSrc:
-              'https://resources.stuff.co.nz/content/dam/images/1/v/0/i/9/z/image.related.StuffThumbnail.90x60.1v0gv1.png' +
-              '/1557353497926.png',
-            indexHeadline: `Barker's Am Cup capsize`,
-            linkUrl:
-              '/sport/americas-cup/112556125/dean-barker-admits-to-hard-learnings-as-capsize-in-americas-cup-test-boat-revealed',
+            imageSrc: '1.jpg',
+            imageSrcSet: '1.jpg 1w',
+            indexHeadline: `Headline 1`,
+            linkUrl: '/link1',
             type: 'ImageLinkUnit'
           },
           {
-            id: '112561756',
+            id: '2',
             strapName: 'MiniMidStrip',
             headlineFlags: [],
-            imageSrc:
-              'https://resources.stuff.co.nz/content/dam/images/1/u/y/s/b/z/image.related.StuffThumbnail.90x60.1v0l7g.png' +
-              '/1557286998808.jpg',
-            indexHeadline: `Hipkins: Anti-vaxxers 'pro-plague'`,
-            linkUrl:
-              '/national/politics/112561756/education-minister-chris-hipkins-says-antivaxxers-are-proplague',
+            imageSrc: '2.jpg',
+            imageSrcSet: '2.jpg 2w',
+            indexHeadline: `Headline 2`,
+            linkUrl: '/link2',
             type: 'ImageLinkUnit'
           }
         ]

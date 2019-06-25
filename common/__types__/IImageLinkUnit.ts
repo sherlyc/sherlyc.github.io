@@ -7,5 +7,6 @@ export interface IImageLinkUnit {
   indexHeadline: string;
   linkUrl: string;
   imageSrc: string | null;
+  imageSrcSet: string | null;
   headlineFlags: string[];
 }
