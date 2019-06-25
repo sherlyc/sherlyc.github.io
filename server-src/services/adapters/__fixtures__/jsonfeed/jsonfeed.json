@@ -106,6 +106,19 @@
                 "850x400": "https://resources.stuff.co.nz/content/dam/images/1/t/g/x/s/p/image.related.StuffLandscapeSixteenByNine.850x400.1tgvdg.png/1547607024623.jpg"
               },
               "image_type_id": "StuffStandardImage"
+            },
+            {
+              "id": 109965337,
+              "layout": "Small Thumbnail",
+              "src": "https://resources.stuff.co.nz/1547607024623.jpg",
+              "media_type": "Photo",
+              "width": "90",
+              "height": "60",
+              "urls": {
+                "90x60": "https://resources.stuff.co.nz/1547607024623.jpg",
+                "180x120": "https://resources.stuff.co.nz/1547607024623.jpg"
+              },
+              "image_type_id": "StuffThumbnail"
             }
           ]
         },

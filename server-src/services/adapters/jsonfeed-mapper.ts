@@ -76,9 +76,12 @@ function findThumbnailImage(
   if (item.images && item.images.length > 0) {
     for (const image of item.images) {
       if (image.variants) {
-        return image.variants.find(
+        const smallThumbnailVariant = image.variants.find(
           (variant) => variant.layout === JsonFeedImageType.SMALL_THUMBNAIL
         );
+        if (smallThumbnailVariant) {
+          return smallThumbnailVariant;
+        }
       }
     }
   }
