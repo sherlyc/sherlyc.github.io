@@ -1,23 +1,26 @@
-import { Component, Inject, Input, Renderer2 } from '@angular/core';
+import { Component, Inject, Input, Renderer2, OnInit } from '@angular/core';
 import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
 import { IHeader } from '../../../../common/__types__/IHeader';
 import { DOCUMENT } from '@angular/common';
 import { AnalyticsService } from '../../services/analytics/analytics.service';
 import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
+import { ConfigService } from '../../services/config/config.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements IContentBlockComponent {
+export class HeaderComponent implements IContentBlockComponent, OnInit {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
-    private analyticsService: AnalyticsService
+    private analyticsService: AnalyticsService,
+    private configService: ConfigService
   ) {}
 
   isLoggedIn = false;
+  profileUrl?: string;
 
   @Input() input!: IHeader;
   navigationVisible = false;
@@ -66,6 +69,10 @@ export class HeaderComponent implements IContentBlockComponent {
       ]
     }
   ];
+
+  ngOnInit() {
+    this.profileUrl = this.configService.getConfig().user.profileUrl;
+  }
 
   toggleMenu() {
     this.navigationVisible = !this.navigationVisible;

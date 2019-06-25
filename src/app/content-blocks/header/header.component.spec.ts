@@ -5,10 +5,13 @@ import { CopyrightComponent } from '../../shared/components/copyright/copyright.
 import { mockService, ServiceMock } from 'src/app/services/mocks/MockService';
 import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
 import { AnalyticsService } from '../../services/analytics/analytics.service';
+import { ConfigService } from '../../services/config/config.service';
+import { IEnvironmentDefinition } from '../../services/config/__types__/IEnvironmentDefinition';
 
 describe('Header', () => {
   let fixture: ComponentFixture<HeaderComponent>;
   let analyticsService: ServiceMock<AnalyticsService>;
+  let configService: ServiceMock<ConfigService>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -17,11 +20,21 @@ describe('Header', () => {
         {
           provide: AnalyticsService,
           useClass: mockService(AnalyticsService)
+        },
+        {
+          provide: ConfigService,
+          useClass: mockService(ConfigService)
         }
       ]
     }).compileComponents();
-    fixture = TestBed.createComponent(HeaderComponent);
     analyticsService = TestBed.get(AnalyticsService);
+    configService = TestBed.get(ConfigService);
+    configService.getConfig.mockReturnValue({
+      user: {
+        profileUrl: 'https://my.stuff.co.nz/publicprofile'
+      }
+    } as IEnvironmentDefinition);
+    fixture = TestBed.createComponent(HeaderComponent);
   });
 
   it('should display navigation when hamburger menu is clicked', () => {
@@ -72,14 +85,13 @@ describe('Header', () => {
   });
 
   describe('User authentication', () => {
-
     it('should show a Login text when the user is not logged in', () => {
       fixture.componentInstance.navigationVisible = true;
       fixture.componentInstance.isLoggedIn = false;
       fixture.detectChanges();
 
-      const text = fixture.debugElement
-        .query(By.css('.user')).nativeElement.textContent;
+      const text = fixture.debugElement.query(By.css('.user')).nativeElement
+        .textContent;
 
       expect(text).toBe('Login');
     });
@@ -89,10 +101,12 @@ describe('Header', () => {
       fixture.componentInstance.isLoggedIn = true;
       fixture.detectChanges();
 
-      const avatarImage = fixture.debugElement
-        .query(By.css('.avatar'));
+      const user = fixture.debugElement.query(By.css('.user'));
 
-      expect(avatarImage).toBeTruthy();
+      expect(user).toBeTruthy();
+      expect(user.nativeElement.getAttribute('href')).toContain(
+        '.stuff.co.nz/publicprofile'
+      );
     });
   });
 });
