@@ -1,6 +1,6 @@
 import { ILoggerOptions } from '../../../../../common/__types__/ILoggerOptions';
 import { Omit } from 'utility-types';
-import { IUserConfig } from '../../../content-blocks/header/__types__/IUserConfig';
+import { IUserConfig } from '../../authentication/__types__/IUserConfig';
 
 export interface IEnvironmentDefinition {
   retryTimeout: number;
