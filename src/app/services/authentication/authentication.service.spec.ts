@@ -64,16 +64,31 @@ describe('AuhtenticationService', () => {
     );
   });
 
-  it('should initiate the library as part of setup', async () => {
+  it('should initiate the library with configuration as part of setup', async () => {
     const libraryUrl = 'http://libraryurl.com';
+    const authProvider = 'https://my.preprod.stuff.co.nz';
+    const clientId = 'c0f1b219-297b-4104-8300-94c4636768da';
+    const signinRedirectUrl = 'signin-callback.html';
     configService.getConfig.mockReturnValue({
-      user: { loginLibrary: { libraryUrl: libraryUrl } }
+      user: {
+        loginLibrary: {
+          libraryUrl,
+          authProvider,
+          clientId,
+          signinRedirectUrl
+        }
+      }
     });
     windowService.getWindow.mockReturnValue({
       StuffLogin: { init: jest.fn() }
     });
+
     await authenticationService.setup();
 
-    expect(authenticationService.StuffLogin.init).toHaveBeenCalled();
+    expect(authenticationService.StuffLogin.init).toHaveBeenCalledWith({
+      client_id: clientId,
+      redirect_uri: signinRedirectUrl,
+      authority: authProvider
+    });
   });
 });

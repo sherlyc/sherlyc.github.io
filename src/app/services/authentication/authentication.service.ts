@@ -35,7 +35,16 @@ export class AuthenticationService {
   }
 
   private initialiseLibrary() {
-    this.StuffLogin.init();
+    const {
+      clientId,
+      signinRedirectUrl,
+      authProvider
+    } = this.config.getConfig().user.loginLibrary;
+    this.StuffLogin.init({
+      client_id: clientId,
+      redirect_uri: signinRedirectUrl,
+      authority: authProvider
+    });
   }
 
   login() {}
