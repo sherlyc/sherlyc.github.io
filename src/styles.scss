@@ -5,11 +5,19 @@
 
 :root {
   --title-size: 17px;
+  --section-title-size: 17px;
 }
 
 @media only screen and (min-width: 375px) {
   :root {
     --title-size: 19px;
+    --section-title-size: 18px;
+  }
+}
+
+@media only screen and (min-width: 728px) {
+  :root {
+    --section-title-size: 20px;
   }
 }
 
