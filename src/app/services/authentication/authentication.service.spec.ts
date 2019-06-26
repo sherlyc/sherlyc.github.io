@@ -14,6 +14,11 @@ describe('AuhtenticationService', () => {
   let configService: ServiceMock<ConfigService>;
   let windowService: ServiceMock<WindowService>;
 
+  const libraryUrl = 'http://libraryurl.com';
+  const authProvider = 'https://my.preprod.stuff.co.nz';
+  const clientId = 'c0f1b219-297b-4104-8300-94c4636768da';
+  const signinRedirectPath = 'signin-callback.html';
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
@@ -40,6 +45,21 @@ describe('AuhtenticationService', () => {
     scriptInjectorService = TestBed.get(ScriptInjectorService);
     configService = TestBed.get(ConfigService);
     windowService = TestBed.get(WindowService);
+
+    windowService.getWindow.mockReturnValue({
+      StuffLogin: {init: jest.fn()},
+      location: {hostname: 'www.stuff.co.nz'}
+    });
+
+
+    configService.getConfig.mockReturnValue({
+      loginLibrary: {
+        libraryUrl: libraryUrl,
+        authProvider: authProvider,
+        clientId: clientId,
+        signinRedirectPath: signinRedirectPath
+      }
+    });
   });
 
   it('should be created', () => {
@@ -47,12 +67,6 @@ describe('AuhtenticationService', () => {
   });
 
   it('should delegate to script injector to load the script on setup', async () => {
-    const libraryUrl = 'http://libraryurl.com';
-    configService.getConfig.mockReturnValue({ loginLibrary: { libraryUrl } });
-    windowService.getWindow.mockReturnValue({
-      StuffLogin: { init: jest.fn() },
-      location: { hostname: 'www.stuff.co.nz' }
-    });
     await authenticationService.setup();
 
     expect(scriptInjectorService.load).toHaveBeenCalledWith(
@@ -64,25 +78,6 @@ describe('AuhtenticationService', () => {
   });
 
   it('should initiate the library with configuration as part of setup', async () => {
-    const libraryUrl = 'http://libraryurl.com';
-    const authProvider = 'https://my.preprod.stuff.co.nz';
-    const clientId = 'c0f1b219-297b-4104-8300-94c4636768da';
-    const signinRedirectPath = 'signin-callback.html';
-
-    configService.getConfig.mockReturnValue({
-      loginLibrary: {
-        libraryUrl,
-        authProvider,
-        clientId,
-        signinRedirectPath
-      }
-    });
-
-    windowService.getWindow.mockReturnValue({
-      StuffLogin: { init: jest.fn() },
-      location: { hostname: 'www.stuff.co.nz' }
-    });
-
     await authenticationService.setup();
 
     expect(authenticationService.StuffLogin.init).toHaveBeenCalledWith({
