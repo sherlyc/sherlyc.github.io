@@ -1,11 +1,20 @@
 import { PageComponent } from './shared/components/page/page.component';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { SigninCallbackComponent } from './shared/components/authentication/signin-callback.component';
 
-const routes: Routes = [{ path: '**', component: PageComponent }];
+const routes: Routes = [
+  {
+    path: 'signin-callback', component: SigninCallbackComponent
+  },
+  {
+    path: '**', component: PageComponent
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}
