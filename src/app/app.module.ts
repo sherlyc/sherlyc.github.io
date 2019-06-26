@@ -3,7 +3,7 @@ import {
   BrowserTransferStateModule
 } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,6 +14,7 @@ import { environment } from '../environments/environment';
 import { CookieService } from './services/cookie/cookie.service';
 import { SharedModule } from './shared/shared.module';
 import { WindowService } from './services/window/window.service';
+import { HttpInterceptorService } from './services/http-interceptor/http-interceptor.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,6 +32,11 @@ import { WindowService } from './services/window/window.service';
   ],
   providers: [
     { provide: ErrorHandler, useClass: LoggerService },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true
+    },
     CookieService,
     WindowService
   ],

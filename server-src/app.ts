@@ -21,7 +21,7 @@ declare const global: {
 const spadeApiPath = '/spade/api';
 
 app.get(`${spadeApiPath}/content`, async (req, res, next) => {
-  const params: IParams = extractParams();
+  const params: IParams = extractParams(req);
   if (global.newrelic) {
     try {
       global.newrelic.addCustomAttribute('apiRequestId', params.apiRequestId);
@@ -34,17 +34,17 @@ app.get(`${spadeApiPath}/content`, async (req, res, next) => {
 });
 
 app.get(`${spadeApiPath}/weather`, async (req, res) => {
-  const params: IParams = extractParams();
+  const params: IParams = extractParams(req);
   await getWeather(req, res, params);
 });
 
 app.get(`${spadeApiPath}/experiment`, async (req, res) => {
-  const params: IParams = extractParams();
+  const params: IParams = extractParams(req);
   await experimentController(req, res, params);
 });
 
 app.use('/health/:type', async (req, res) => {
-  const params: IParams = extractParams();
+  const params: IParams = extractParams(req);
   await healthCheck(req, res, params);
 });
 
