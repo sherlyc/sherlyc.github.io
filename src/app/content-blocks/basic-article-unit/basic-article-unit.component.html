@@ -18,6 +18,8 @@
             itemprop="image"
             src="{{ input.imageSrc }}"
             alt="{{ input.indexHeadline }}"
+            loading="lazy"
+            [attr.srcset]="input.imageSrcSet ? input.imageSrcSet : null"
           />
         </div>
       </div>

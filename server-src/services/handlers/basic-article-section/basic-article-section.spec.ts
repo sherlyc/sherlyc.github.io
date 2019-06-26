@@ -1,9 +1,6 @@
 import basicArticleSectionHandler from './basic-article-section';
 import { Section } from '../../section';
 import { ListAsset } from '../../listAsset';
-import * as handlerOutputForSection from '../__fixtures__/basic-article-list-handler-output-for-section.json';
-import * as handlerOutputForListAsset from '../__fixtures__/basic-article-list-handler-output-for-listasset.json';
-import * as basicArticleSectionHandlerOutput from '../__fixtures__/basic-article-section-handler-output.json';
 import { IBasicArticleSectionHandlerInput } from '../__types__/IBasicArticleSectionHandlerInput';
 import { IParams } from '../../__types__/IParams';
 import { HandlerInputType } from '../__types__/HandlerInputType';
@@ -12,8 +9,32 @@ jest.mock('../runner');
 
 describe('BasicArticleSectionHandler', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
+  const basicAdUnit = {
+    type: 'BasicAdUnit'
+  };
+  const basicArticleUnit = {
+    id: '1',
+    strapName: 'business',
+    headlineFlags: [],
+    imageSrc: '1.jpg',
+    indexHeadline: 'Headline 1',
+    introText: 'Intro 1',
+    lastPublishedTime: 1,
+    linkUrl: '/link1',
+    type: 'BasicArticleUnit'
+  };
+  const basicArticleTitleUnit = {
+    id: '2',
+    strapName: 'business',
+    headlineFlags: [],
+    indexHeadline: 'Headline 2',
+    lastPublishedTime: 2,
+    linkUrl: '/link2',
+    type: 'BasicArticleTitleUnit'
+  };
+
   it('should get a section content block with only basic article units', async () => {
-    const totalBasicArticlesUnit = 5;
+    const totalBasicArticlesUnit = 2;
     const handlerInput = {
       type: 'ArticleSection',
       linkUrl: '/business',
@@ -28,9 +49,14 @@ describe('BasicArticleSectionHandler', () => {
 
     const handlerRunnerMock = jest.fn();
 
-    handlerRunnerMock.mockResolvedValue(
-      handlerOutputForSection.TwoArticleUnitsThreeAds
-    );
+    const basicArticleListItems = [
+      basicAdUnit,
+      basicArticleUnit,
+      basicAdUnit,
+      basicArticleUnit,
+      basicAdUnit
+    ];
+    handlerRunnerMock.mockResolvedValue(basicArticleListItems);
 
     const contentBlocks = await basicArticleSectionHandler(
       handlerRunnerMock,
@@ -38,9 +64,16 @@ describe('BasicArticleSectionHandler', () => {
       params
     );
 
-    expect(contentBlocks).toEqual(
-      basicArticleSectionHandlerOutput.SectionWithOnlyBasicArticleUnit
-    );
+    expect(contentBlocks).toEqual([
+      {
+        type: 'BasicArticleSection',
+        displayName: 'business',
+        displayNameColor: 'red',
+        linkUrl: '/business',
+        items: basicArticleListItems
+      },
+      basicAdUnit
+    ]);
     expect(handlerRunnerMock).toHaveBeenCalledWith(
       {
         type: HandlerInputType.ArticleList,
@@ -69,9 +102,14 @@ describe('BasicArticleSectionHandler', () => {
 
     const handlerRunnerMock = jest.fn();
 
-    handlerRunnerMock.mockResolvedValue(
-      handlerOutputForListAsset.OneArticleUnitOneArticleTitleThreeAds
-    );
+    const basicArticleListItems = [
+      basicAdUnit,
+      basicArticleUnit,
+      basicAdUnit,
+      basicArticleTitleUnit,
+      basicAdUnit
+    ];
+    handlerRunnerMock.mockResolvedValue(basicArticleListItems);
 
     const contentBlocks = await basicArticleSectionHandler(
       handlerRunnerMock,
@@ -79,9 +117,15 @@ describe('BasicArticleSectionHandler', () => {
       params
     );
 
-    expect(contentBlocks).toEqual(
-      basicArticleSectionHandlerOutput.SectionWithBasicArticleUnitAndArticleTitleLink
-    );
+    expect(contentBlocks).toEqual([
+      {
+        type: 'BasicArticleSection',
+        displayName: 'business',
+        displayNameColor: 'red',
+        items: basicArticleListItems
+      },
+      basicAdUnit
+    ]);
     expect(handlerRunnerMock).toHaveBeenCalledWith(
       {
         type: HandlerInputType.ArticleList,

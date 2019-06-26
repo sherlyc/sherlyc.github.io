@@ -1,20 +1,15 @@
 import { getArticleList, getListAsset } from './jsonfeed';
 import http from '../utils/http';
-import * as topStories from './__fixtures__/top-stories.json';
-import * as rawTopStoriesData from './__fixtures__/raw-top-stories.json';
-import * as rawArticleList from './__fixtures__/jsonfeed/raw-article-list.json';
-import * as rawMidStrip from './__fixtures__/mid-strip/raw-mid-strip.json';
-import * as rawMiniMidStrip from './__fixtures__/mini-mid-strip/raw-mini-mid-strip.json';
-import * as rawEditorsPickData from './__fixtures__/editors-pick/raw-editors-pick.json';
-import * as rawDailyFixData from './__fixtures__/daily-fix/raw-daily-fix.json';
 import * as jsonfeed from './__fixtures__/jsonfeed/jsonfeed.json';
 import * as midStripData from './__fixtures__/mid-strip/mid-strip.json';
 import * as miniMidStripData from './__fixtures__/mini-mid-strip/mini-mid-strip.json';
 import * as editorsPickData from './__fixtures__/editors-pick/editors-pick.json';
 import * as dailyFixData from './__fixtures__/daily-fix/daily-fix.json';
+import * as topStories from './__fixtures__/top-stories.json';
 import { Section } from '../section';
 import { IParams } from '../__types__/IParams';
 import { ListAsset } from '../listAsset';
+import { IRawArticle } from './__types__/IRawArticle';
 
 jest.mock('../utils/http');
 
@@ -31,9 +26,9 @@ describe('json feed service', () => {
     it('should provide a raw article list', async () => {
       (http(params).get as jest.Mock).mockResolvedValue({ data: jsonfeed });
 
-      expect(await getArticleList(Section.Latest, 2, params)).toEqual(
-        rawArticleList
-      );
+      const articles = await getArticleList(Section.Latest, 2, params);
+
+      verifyArticles(articles);
     });
   });
 
@@ -41,9 +36,13 @@ describe('json feed service', () => {
     it('should provide mid strip data', async () => {
       (http(params).get as jest.Mock).mockResolvedValue({ data: midStripData });
 
-      expect(await getListAsset(params, ListAsset.MidStrip, 2)).toEqual(
-        rawMidStrip
+      const midStripArticles = await getListAsset(
+        params,
+        ListAsset.MidStrip,
+        2
       );
+
+      verifyArticles(midStripArticles);
     });
   });
 
@@ -53,9 +52,13 @@ describe('json feed service', () => {
         data: miniMidStripData.threeListAssets
       });
 
-      expect(await getListAsset(params, ListAsset.MiniMidStrip, 2)).toEqual(
-        rawMiniMidStrip
+      const miniMidStripArticles = await getListAsset(
+        params,
+        ListAsset.MiniMidStrip,
+        2
       );
+
+      verifyArticles(miniMidStripArticles);
     });
   });
 
@@ -65,9 +68,9 @@ describe('json feed service', () => {
         data: editorsPickData
       });
 
-      expect(await getListAsset(params, ListAsset.EditorPicks)).toEqual(
-        rawEditorsPickData
-      );
+      const editorPicks = await getListAsset(params, ListAsset.EditorPicks);
+
+      verifyArticles(editorPicks);
     });
   });
 
@@ -77,9 +80,12 @@ describe('json feed service', () => {
         data: topStories
       });
 
-      expect(await getListAsset(params, ListAsset.TopStories)).toEqual(
-        rawTopStoriesData
+      const topStoriesArticles = await getListAsset(
+        params,
+        ListAsset.TopStories
       );
+
+      verifyArticles(topStoriesArticles);
     });
   });
 
@@ -89,9 +95,22 @@ describe('json feed service', () => {
         data: dailyFixData
       });
 
-      expect(await getListAsset(params, ListAsset.DailyFix)).toEqual(
-        rawDailyFixData
-      );
+      const dailyFixArticles = await getListAsset(params, ListAsset.DailyFix);
+
+      verifyArticles(dailyFixArticles);
     });
   });
 });
+
+function verifyArticles(articles: IRawArticle[]) {
+  articles.forEach((article) => {
+    expect(article.id).toBeTruthy();
+    expect(article.indexHeadline).toBeTruthy();
+    expect(article.introText).toBeTruthy();
+    expect(article.linkUrl).toBeTruthy();
+    expect(article.imageSrc).toBeTruthy();
+    expect(article.imageSrcSet).toBeTruthy();
+    expect(article.lastPublishedTime).toBeTruthy();
+    expect(article.headlineFlags).toBeTruthy();
+  });
+}

@@ -1,5 +1,5 @@
-import { JsonFeedImageType } from './JsonFeedImageType';
 import { JsonFeedAssetType } from './JsonFeedAssetType';
+import { IImageVariant } from './IImageVariant';
 import { HeadlineFlags } from '../../../../common/HeadlineFlags';
 
 export interface IJsonFeedArticle {
@@ -13,10 +13,6 @@ export interface IJsonFeedArticle {
   alt_intro: string;
   images?: Array<{
     [key: string]: any;
-    variants?: Array<{
-      [key: string]: any;
-      src: string;
-      layout: JsonFeedImageType;
-    }>;
+    variants?: IImageVariant[];
   }>;
 }

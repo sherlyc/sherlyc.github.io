@@ -2,6 +2,7 @@ import { IContentBlock } from '../../../common/__types__/IContentBlock';
 import { HandlerInput } from './__types__/HandlerInput';
 import handlerRegistry from './registry';
 import { IParams } from '../__types__/IParams';
+import logger from '../utils/logger';
 
 export type handlerRunnerFunction = (
   handlerInput: HandlerInput,
@@ -19,6 +20,10 @@ export default async function handlerRunner(
       params
     );
   } catch (error) {
+    logger.error(
+      params.apiRequestId,
+      `Handler Runner Error for ${handlerInput.type} - ${error}`
+    );
     return [];
   }
 }
