@@ -47,10 +47,9 @@ describe('AuhtenticationService', () => {
     windowService = TestBed.get(WindowService);
 
     windowService.getWindow.mockReturnValue({
-      StuffLogin: {init: jest.fn()},
-      location: {hostname: 'www.stuff.co.nz'}
+      StuffLogin: { init: jest.fn(), login: jest.fn() },
+      location: { hostname: 'www.stuff.co.nz' }
     });
-
 
     configService.getConfig.mockReturnValue({
       loginLibrary: {
@@ -85,5 +84,13 @@ describe('AuhtenticationService', () => {
       redirect_uri: `https://www.stuff.co.nz/${signinRedirectPath}`,
       authority: authProvider
     });
+  });
+
+  it('should allow initiating login with underlying library', async () => {
+    await authenticationService.setup();
+
+    authenticationService.login();
+
+    expect(authenticationService.StuffLogin.login).toHaveBeenCalled();
   });
 });

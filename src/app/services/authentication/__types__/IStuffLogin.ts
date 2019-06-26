@@ -6,4 +6,5 @@ interface IStuffLoginConfig {
 
 export interface IStuffLogin {
   init: (config: IStuffLoginConfig) => void;
+  login: () => void;
 }
