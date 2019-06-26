@@ -6,6 +6,19 @@ import { Section } from '../section';
 import { IParams } from '../__types__/IParams';
 import { ListAsset } from '../listAsset';
 import config from '../utils/config';
+import logger from '../utils/logger';
+
+const warnIfMissingImages = (articles: IRawArticle[], params: IParams) => {
+  articles.forEach((article) => {
+    if (!article.imageSrc || !article.imageSrcSet) {
+      logger.warn(
+        params.apiRequestId,
+        `Image is missing for article id - ${article.id}
+       (imageSrc = ${article.imageSrc}. imageSrcSet = ${article.imageSrcSet})`
+      );
+    }
+  });
+};
 
 export const getArticleList = async (
   section: Section,
@@ -17,7 +30,9 @@ export const getArticleList = async (
     total,
     params
   );
-  return mapToRawArticleList(jsonFeed.stories);
+  const articles = mapToRawArticleList(jsonFeed.stories);
+  warnIfMissingImages(articles, params);
+  return articles;
 };
 
 const listAssetRegistry: { [key in ListAsset]: Function } = {
@@ -34,5 +49,7 @@ export const getListAsset = async (
   total: number = 0
 ): Promise<IRawArticle[]> => {
   const articles = await listAssetRegistry[listAssetId](params, total);
-  return mapToRawArticleList(articles.assets);
+  const listAssetArticles = mapToRawArticleList(articles.assets);
+  warnIfMissingImages(listAssetArticles, params);
+  return listAssetArticles;
 };
