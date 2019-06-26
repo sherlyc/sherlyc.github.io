@@ -12,8 +12,9 @@ async function requestArticleList(
   total: number,
   params: IParams
 ): Promise<IJsonFeedArticleList> {
+  // Adding extra query string to force retrieve new data from jsonfeed
   const url: URL = new URL(
-    `${config.jsonFeedAPI}/${section}?limit=${total}&breakTheCache`
+    `${config.jsonFeedAPI}/${section}?limit=${total}&from=spade`
   );
   const response = await http(params).get<IJsonFeedArticleList>(url.href);
   return response.data;
@@ -30,8 +31,9 @@ async function requestListAsset(
   listAssetId: string,
   total?: number
 ): Promise<IListAsset> {
+  // Adding extra query string to force retrieve new data from jsonfeed
   const url: URL = new URL(
-    `${config.jsonFeedAPI}/listasset/${listAssetId}?breakTheCache`
+    `${config.jsonFeedAPI}/listasset/${listAssetId}?from=spade`
   );
   const response = await http(params).get<IListAsset>(url.href);
 
