@@ -25,11 +25,24 @@
           </svg>
         </a>
       </div>
+
       <a
-        href="https://my.stuff.co.nz/login"
+        *ngIf="isLoggedIn"
+        href="{{ profileUrl }}"
         target="_blank"
+        aria-label="user"
         class="user"
-        rel="noopener"
+        rel="noopener noreferrer"
+      >
+        <img class="avatar" src="/spade/assets/icons/avatar.svg" />
+      </a>
+
+      <a
+        *ngIf="!isLoggedIn"
+        href="javascript:void(0)"
+        aria-label="user-login"
+        class="user"
+        (click)="login()"
         >Login</a
       >
     </div>

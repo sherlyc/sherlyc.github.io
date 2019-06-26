@@ -20,7 +20,13 @@
       "sampleRate": 1.0,
       "environment": "production"
     },
-    "dtmUrl": "https://assets.adobedtm.com/10d15a330ba9eec67033fb8a57223f1f239d36eb/satelliteLib-8ff0ef0f82e3dfb69c3732fec2854ff9506f9f38.js"
+    "dtmUrl": "https://assets.adobedtm.com/10d15a330ba9eec67033fb8a57223f1f239d36eb/satelliteLib-8ff0ef0f82e3dfb69c3732fec2854ff9506f9f38.js",
+    "loginLibrary": {
+      "libraryUrl": "https://www.stuff.co.nz/static/stuff-login-browser-sdk/1.2.0/stuff-login-sdk.js",
+      "authProvider": "https://my.stuff.co.nz",
+      "clientId": "",
+      "signinRedirectPath": "signin-callback"
+    }
   },
   "staging": {
     "retryTimeout": 1000,
@@ -43,7 +49,13 @@
       "sampleRate": 1.0,
       "environment": "staging"
     },
-    "dtmUrl": "https://assets.adobedtm.com/10d15a330ba9eec67033fb8a57223f1f239d36eb/satelliteLib-8ff0ef0f82e3dfb69c3732fec2854ff9506f9f38-staging.js"
+    "dtmUrl": "https://assets.adobedtm.com/10d15a330ba9eec67033fb8a57223f1f239d36eb/satelliteLib-8ff0ef0f82e3dfb69c3732fec2854ff9506f9f38-staging.js",
+    "loginLibrary": {
+      "libraryUrl": "https://www.stuff.co.nz/static/stuff-login-browser-sdk/1.2.0/stuff-login-sdk.js",
+      "authProvider": "https://my.preprod.stuff.co.nz",
+      "clientId": "c0f1b219-297b-4104-8300-94c4636768da",
+      "signinRedirectPath": "signin-callback"
+    }
   },
   "development": {
     "retryTimeout": 500,
@@ -66,7 +78,13 @@
       "sampleRate": 0,
       "environment": "development"
     },
-    "dtmUrl": "https://assets.adobedtm.com/10d15a330ba9eec67033fb8a57223f1f239d36eb/satelliteLib-8ff0ef0f82e3dfb69c3732fec2854ff9506f9f38-staging.js"
+    "dtmUrl": "https://assets.adobedtm.com/10d15a330ba9eec67033fb8a57223f1f239d36eb/satelliteLib-8ff0ef0f82e3dfb69c3732fec2854ff9506f9f38-staging.js",
+    "loginLibrary": {
+      "libraryUrl": "https://www.stuff.co.nz/static/stuff-login-browser-sdk/1.2.0/stuff-login-sdk.js",
+      "authProvider": "https://my.stuff.co.nz",
+      "clientId": "c0f1b219-297b-4104-8300-94c4636768da",
+      "signinRedirectPath": "signin-callback"
+    }
   },
   "test": {
     "retryTimeout": 1,
@@ -89,6 +107,12 @@
       "sampleRate": 1.0,
       "environment": "test"
     },
-    "dtmUrl": "https://assets.adobedtm.com/10d15a330ba9eec67033fb8a57223f1f239d36eb/satelliteLib-8ff0ef0f82e3dfb69c3732fec2854ff9506f9f38-staging.js"
+    "dtmUrl": "https://assets.adobedtm.com/10d15a330ba9eec67033fb8a57223f1f239d36eb/satelliteLib-8ff0ef0f82e3dfb69c3732fec2854ff9506f9f38-staging.js",
+    "loginLibrary": {
+      "libraryUrl": "https://www.stuff.co.nz/static/stuff-login-browser-sdk/1.2.0/stuff-login-sdk.js",
+      "authProvider": "https://my.preprod.stuff.co.nz",
+      "clientId": "c0f1b219-297b-4104-8300-94c4636768da",
+      "signinRedirectPath": "signin-callback"
+    }
   }
 }

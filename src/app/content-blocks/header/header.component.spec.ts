@@ -5,10 +5,16 @@ import { CopyrightComponent } from '../../shared/components/copyright/copyright.
 import { mockService, ServiceMock } from 'src/app/services/mocks/MockService';
 import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
 import { AnalyticsService } from '../../services/analytics/analytics.service';
+import { ConfigService } from '../../services/config/config.service';
+import { IEnvironmentDefinition } from '../../services/config/__types__/IEnvironmentDefinition';
+import { AuthenticationService } from '../../services/authentication/authentication.service';
 
 describe('Header', () => {
   let fixture: ComponentFixture<HeaderComponent>;
   let analyticsService: ServiceMock<AnalyticsService>;
+  let configService: ServiceMock<ConfigService>;
+  let authenticationService: ServiceMock<AuthenticationService>;
+  const profileUrl = 'https://my.stuff.co.nz/publicprofile';
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -17,11 +23,27 @@ describe('Header', () => {
         {
           provide: AnalyticsService,
           useClass: mockService(AnalyticsService)
+        },
+        {
+          provide: ConfigService,
+          useClass: mockService(ConfigService)
+        },
+        {
+          provide: AuthenticationService,
+          useClass: mockService(AuthenticationService)
         }
       ]
     }).compileComponents();
-    fixture = TestBed.createComponent(HeaderComponent);
     analyticsService = TestBed.get(AnalyticsService);
+    configService = TestBed.get(ConfigService);
+    authenticationService = TestBed.get(AuthenticationService);
+
+    configService.getConfig.mockReturnValue({
+      loginLibrary: {
+        authProvider: 'https://my.stuff.co.nz'
+      }
+    } as IEnvironmentDefinition);
+    fixture = TestBed.createComponent(HeaderComponent);
   });
 
   it('should display navigation when hamburger menu is clicked', () => {
@@ -68,6 +90,42 @@ describe('Header', () => {
         type: AnalyticsEventsType.MENU_NAV_SECTION_CLICKED,
         section: 'Homed'
       });
+    });
+  });
+
+  describe('User authentication', () => {
+    it('should show a Login text when the user is not logged in', () => {
+      fixture.componentInstance.navigationVisible = true;
+      fixture.componentInstance.isLoggedIn = false;
+      fixture.detectChanges();
+
+      const text = fixture.debugElement.query(By.css('.user')).nativeElement
+        .textContent;
+
+      expect(text).toBe('Login');
+    });
+
+    it('should initiate a login when user clicks on login', () => {
+      fixture.componentInstance.navigationVisible = true;
+      fixture.componentInstance.isLoggedIn = false;
+      fixture.detectChanges();
+
+      fixture.debugElement.query(By.css('.user')).nativeElement.click();
+
+      fixture.detectChanges();
+
+      expect(authenticationService.login).toHaveBeenCalled();
+    });
+
+    it('should show an avatar when the user is logged in', () => {
+      fixture.componentInstance.navigationVisible = true;
+      fixture.componentInstance.isLoggedIn = true;
+      fixture.detectChanges();
+
+      const user = fixture.debugElement.query(By.css('.user'));
+
+      expect(user).toBeTruthy();
+      expect(user.nativeElement.getAttribute('href')).toBe(profileUrl);
     });
   });
 });

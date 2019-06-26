@@ -4,5 +4,6 @@ export enum ScriptId {
   videoPlayerAnalytics = 'videoPlayerAnalytics',
   adnostic = 'aad-sdk',
   neighbourlyTopStories = 'neighbourlyTopStories',
-  neighbourlyLocalStories = 'neighbourlyLocalStories'
+  neighbourlyLocalStories = 'neighbourlyLocalStories',
+  loginSdk = 'login-sdk'
 }
