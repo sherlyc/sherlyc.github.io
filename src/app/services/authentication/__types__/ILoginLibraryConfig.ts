@@ -1,4 +1,4 @@
-export interface ILoginLibrary {
+export interface ILoginLibraryConfig {
   libraryUrl: string;
   authProvider: string;
   clientId: string;

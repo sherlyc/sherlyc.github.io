@@ -5,19 +5,20 @@ import { ScriptInjectorService } from '../script-injector/script-injector.servic
 import { ConfigService } from '../config/config.service';
 import { Position } from '../script-injector/__types__/Position';
 import { WindowService } from '../window/window.service';
+import { IStuffLogin } from './__types__/IStuffLogin';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  StuffLogin: any;
-
   constructor(
     private runtime: RuntimeService,
     private scriptInjectorService: ScriptInjectorService,
     private config: ConfigService,
     private window: WindowService
   ) {}
+
+  private StuffLogin?: IStuffLogin;
 
   async setup() {
     if (this.runtime.isServer()) {
@@ -30,7 +31,6 @@ export class AuthenticationService {
       true
     );
 
-    this.StuffLogin = this.window.getWindow().StuffLogin;
     this.initialiseLibrary();
   }
 
@@ -41,6 +41,7 @@ export class AuthenticationService {
       authProvider
     } = this.config.getConfig().loginLibrary;
 
+    this.StuffLogin = this.window.getWindow().StuffLogin;
     this.StuffLogin.init({
       client_id: clientId,
       redirect_uri: `https://${
