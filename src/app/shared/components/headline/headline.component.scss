@@ -1,6 +1,9 @@
 h3 {
-  font-family: 'Merriweather', serif;
-  font-size: 19px;
+  font-family: 'Merriweather', 'Lucida Bright', serif;
+  font-size: 17px;
+  font-size: var(--title-size);
+  line-height: 23.8px;
+  font-weight: 700;
   color: rgb(43, 164, 235);
   margin: 10px 0;
   &:hover {

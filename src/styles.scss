@@ -3,6 +3,16 @@
 @import 'spade/assets/fonts/merriweather.scss';
 @import 'spade/assets/fonts/merriweather-sans.scss';
 
+:root {
+  --title-size: 17px;
+}
+
+@media only screen and (min-width: 375px) {
+  :root {
+    --title-size: 19px;
+  }
+}
+
 body {
   overflow: overlay;
   &.noScroll {
