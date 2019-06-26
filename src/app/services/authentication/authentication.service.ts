@@ -21,7 +21,7 @@ export class AuthenticationService {
   StuffLogin!: IStuffLogin;
 
   async setup() {
-    if (this.runtime.isServer()) {
+    if (this.runtime.isServer() && this.window.getWindow().StuffLogin) {
       return;
     }
     await this.scriptInjectorService.load(
