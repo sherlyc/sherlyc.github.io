@@ -23,8 +23,7 @@ export class AppComponent {
     private dtm: DtmService,
     private browserOverride: BrowserOverrideService,
     private neighbourlyService: NeighbourlyService,
-    private metaTagsService: MetaTagsService,
-    private authenticationService: AuthenticationService
+    private metaTagsService: MetaTagsService
   ) {
     this.experimentService.setup();
     this.adService.setup();
@@ -34,6 +33,5 @@ export class AppComponent {
     this.browserOverride.setup();
     this.neighbourlyService.setup();
     this.metaTagsService.setup();
-    this.authenticationService.setup();
   }
 }

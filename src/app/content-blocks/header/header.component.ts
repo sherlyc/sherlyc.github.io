@@ -73,6 +73,7 @@ export class HeaderComponent implements IContentBlockComponent, OnInit {
   ];
 
   ngOnInit() {
+    this.authenticationService.setup();
     this.profileUrl = `${this.configService.getConfig().loginLibrary.authProvider}/publicprofile`;
   }
 
