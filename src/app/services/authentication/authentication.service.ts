@@ -18,7 +18,7 @@ export class AuthenticationService {
     private window: WindowService
   ) {}
 
-  private StuffLogin?: IStuffLogin;
+  StuffLogin!: IStuffLogin;
 
   async setup() {
     if (this.runtime.isServer()) {
