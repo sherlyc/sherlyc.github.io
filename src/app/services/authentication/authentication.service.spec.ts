@@ -47,7 +47,11 @@ describe('AuhtenticationService', () => {
     windowService = TestBed.get(WindowService);
 
     windowService.getWindow.mockReturnValue({
-      StuffLogin: { init: jest.fn(), login: jest.fn() },
+      StuffLogin: {
+        init: jest.fn(),
+        login: jest.fn(),
+        signinCallback: jest.fn()
+      },
       location: { hostname: 'www.stuff.co.nz' }
     });
 
@@ -92,5 +96,11 @@ describe('AuhtenticationService', () => {
     authenticationService.login();
 
     expect(authenticationService.StuffLogin.login).toHaveBeenCalled();
+  });
+
+  it('should allow do a signin callback with underlying library', async () => {
+    await authenticationService.signinCallback();
+
+    expect(authenticationService.StuffLogin.signinCallback).toHaveBeenCalled();
   });
 });

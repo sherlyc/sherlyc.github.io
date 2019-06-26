@@ -21,17 +21,23 @@ export class AuthenticationService {
   StuffLogin!: IStuffLogin;
 
   async setup() {
-    if (this.runtime.isServer() && this.window.getWindow().StuffLogin) {
+    if (this.runtime.isServer()) {
       return;
     }
+
+    await this.injectScript();
+    this.initialiseLibrary();
+  }
+
+  private async injectScript(async = true) {
     await this.scriptInjectorService.load(
       ScriptId.loginSdk,
       this.config.getConfig().loginLibrary.libraryUrl,
       Position.HEAD,
-      true
+      async
     );
 
-    this.initialiseLibrary();
+    this.StuffLogin = this.window.getWindow().StuffLogin;
   }
 
   private initialiseLibrary() {
@@ -41,17 +47,26 @@ export class AuthenticationService {
       authProvider
     } = this.config.getConfig().loginLibrary;
 
-    this.StuffLogin = this.window.getWindow().StuffLogin;
+    const hostname = this.window.getWindow().location.hostname;
+
+    const redirect_uri =
+      hostname === 'localhost'
+        ? `http://${hostname}:4000/${signinRedirectPath}`
+        : `https://${hostname}/${signinRedirectPath}`;
+
     this.StuffLogin.init({
       client_id: clientId,
-      redirect_uri: `https://${
-        this.window.getWindow().location.hostname
-      }/${signinRedirectPath}`,
+      redirect_uri,
       authority: authProvider
     });
   }
 
   login() {
     this.StuffLogin.login();
+  }
+
+  async signinCallback() {
+    await this.injectScript(false);
+    this.StuffLogin.signinCallback();
   }
 }

@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationCallbackService } from '../../../services/authentication/authentication-callback.service';
+import { AuthenticationService } from '../../../services/authentication/authentication.service';
 
 @Component({
   selector: 'app-signin-callback',
   template: '<h4> Authenticating ... </h4>'
 })
 export class SigninCallbackComponent implements OnInit {
-
-  constructor(private authenticationCallBackService: AuthenticationCallbackService) {
-  }
+  constructor(private authenticationService: AuthenticationService) {}
 
   ngOnInit() {
-    this.authenticationCallBackService.signinCallback();
+    this.authenticationService.signinCallback();
   }
 }
