@@ -7,7 +7,6 @@ import { BrowserOverrideService } from './services/browser-override/browser-over
 import { ExperimentService } from './services/experiment/experiment.service';
 import { NeighbourlyService } from './services/neighbourly/neighbourly.service';
 import { MetaTagsService } from './services/meta-tags/meta-tags.service';
-import { AuthenticationService } from './services/authentication/authentication.service';
 
 @Component({
   selector: 'app-root',
