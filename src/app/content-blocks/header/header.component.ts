@@ -13,6 +13,7 @@ import { AuthenticationService } from '../../services/authentication/authenticat
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements IContentBlockComponent, OnInit {
+  private imgSrc = '';
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
@@ -74,7 +75,19 @@ export class HeaderComponent implements IContentBlockComponent, OnInit {
 
   ngOnInit() {
     this.authenticationService.setup();
-    this.profileUrl = `${this.configService.getConfig().loginLibrary.authProvider}/publicprofile`;
+    this.authenticationService.authenticationStateChange.subscribe(
+      (user: any) => {
+        if (user) {
+          this.isLoggedIn = true;
+          this.imgSrc = user.profile.picture;
+        } else {
+          this.isLoggedIn = false;
+        }
+      }
+    );
+    this.profileUrl = `${
+      this.configService.getConfig().loginLibrary.authProvider
+    }/publicprofile`;
   }
 
   toggleMenu() {

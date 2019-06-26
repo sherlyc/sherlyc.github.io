@@ -8,6 +8,7 @@ import { AnalyticsService } from '../../services/analytics/analytics.service';
 import { ConfigService } from '../../services/config/config.service';
 import { IEnvironmentDefinition } from '../../services/config/__types__/IEnvironmentDefinition';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
+import { Subject } from 'rxjs';
 
 describe('Header', () => {
   let fixture: ComponentFixture<HeaderComponent>;
@@ -37,6 +38,7 @@ describe('Header', () => {
     analyticsService = TestBed.get(AnalyticsService);
     configService = TestBed.get(ConfigService);
     authenticationService = TestBed.get(AuthenticationService);
+    authenticationService.authenticationStateChange = new Subject<any>();
 
     configService.getConfig.mockReturnValue({
       loginLibrary: {

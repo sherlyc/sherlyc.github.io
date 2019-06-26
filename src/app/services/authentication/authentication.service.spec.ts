@@ -50,7 +50,9 @@ describe('AuhtenticationService', () => {
       StuffLogin: {
         init: jest.fn(),
         login: jest.fn(),
-        signinCallback: jest.fn()
+        signinCallback: jest.fn(),
+        onLogin: jest.fn(),
+        onLogout: jest.fn()
       },
       location: { hostname: 'www.stuff.co.nz' }
     });

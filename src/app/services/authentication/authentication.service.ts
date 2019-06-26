@@ -6,6 +6,7 @@ import { ConfigService } from '../config/config.service';
 import { Position } from '../script-injector/__types__/Position';
 import { WindowService } from '../window/window.service';
 import { IStuffLogin } from './__types__/IStuffLogin';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,8 @@ export class AuthenticationService {
   ) {}
 
   StuffLogin!: IStuffLogin;
+
+  authenticationStateChange = new Subject<any>();
 
   async setup() {
     if (this.runtime.isServer()) {
@@ -58,6 +61,18 @@ export class AuthenticationService {
       client_id: clientId,
       redirect_uri,
       authority: authProvider
+    });
+
+    this.registerAuthStateCallbacks();
+  }
+
+  private registerAuthStateCallbacks() {
+    this.StuffLogin.onLogin((user) => {
+      this.authenticationStateChange.next(user);
+    });
+
+    this.StuffLogin.onLogout(() => {
+      this.authenticationStateChange.next(null);
     });
   }
 

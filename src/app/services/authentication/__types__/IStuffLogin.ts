@@ -8,4 +8,8 @@ export interface IStuffLogin {
   init: (config: IStuffLoginConfig) => void;
   login: () => void;
   signinCallback: () => void;
+
+  onLogin(param: (user: any) => void): void;
+
+  onLogout(param: () => void): void;
 }
