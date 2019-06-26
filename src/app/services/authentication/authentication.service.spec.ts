@@ -78,14 +78,15 @@ describe('AuhtenticationService', () => {
       }
     });
 
+    const stuffLoginInit = jest.fn();
     windowService.getWindow.mockReturnValue({
-      StuffLogin: { init: jest.fn() },
+      StuffLogin: { init: stuffLoginInit },
       location: { hostname: 'www.stuff.co.nz' }
     });
 
     await authenticationService.setup();
 
-    expect(authenticationService.StuffLogin.init).toHaveBeenCalledWith({
+    expect(stuffLoginInit).toHaveBeenCalledWith({
       client_id: clientId,
       redirect_uri: `https://www.stuff.co.nz/${signinRedirectPath}`,
       authority: authProvider
