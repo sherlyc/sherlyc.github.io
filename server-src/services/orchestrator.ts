@@ -20,22 +20,7 @@ export default async (params: IParams): Promise<IPage> => {
               type: HandlerInputType.Weather
             },
             {
-              type: HandlerInputType.Experiment,
-              name: 'Toucan',
-              variants: {
-                purpleHeadline: {
-                  type: HandlerInputType.BreakingNews,
-                  variant: 'purpleHeadline'
-                },
-                orangeHeadline: {
-                  type: HandlerInputType.BreakingNews,
-                  variant: 'orangeHeadline'
-                },
-                control: {
-                  type: HandlerInputType.BreakingNews,
-                  variant: 'control'
-                }
-              }
+              type: HandlerInputType.BreakingNews
             },
             {
               type: HandlerInputType.ExternalContent,
