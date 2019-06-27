@@ -19,7 +19,7 @@ export class AuthenticationService {
     private window: WindowService
   ) {}
 
-  private StuffLogin!: IStuffLogin;
+  StuffLogin!: IStuffLogin;
 
   authenticationStateChange = new Subject<any>();
 
@@ -32,12 +32,12 @@ export class AuthenticationService {
     this.initialiseLibrary();
   }
 
-  private async injectScript(async = true) {
+  private async injectScript() {
     await this.scriptInjectorService.load(
       ScriptId.loginSdk,
       this.config.getConfig().loginLibrary.libraryUrl,
       Position.HEAD,
-      async
+      false
     );
 
     this.StuffLogin = this.window.getWindow().StuffLogin;
@@ -81,7 +81,7 @@ export class AuthenticationService {
   }
 
   async signinCallback() {
-    await this.injectScript(false);
+    await this.injectScript();
     this.StuffLogin.signinCallback();
   }
 }

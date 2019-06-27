@@ -78,7 +78,7 @@ describe('AuhtenticationService', () => {
       'login-sdk',
       libraryUrl,
       Position.HEAD,
-      true
+      false
     );
   });
 
