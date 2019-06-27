@@ -5,8 +5,10 @@
 }
 
 h3 {
+  font-size: 18px;
+  font-size: var(--section-title-size);
   font-weight: 700;
-  font-size: 20px;
+  font-style: normal;
   text-transform: lowercase;
   border-bottom: 1px solid #000;
   color: #000;
