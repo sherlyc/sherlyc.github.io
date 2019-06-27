@@ -24,7 +24,7 @@
     "loginLibrary": {
       "libraryUrl": "https://www.stuff.co.nz/static/stuff-login-browser-sdk/1.2.0/stuff-login-sdk.js",
       "authProvider": "https://my.stuff.co.nz",
-      "clientId": "",
+      "clientId": "c93d66ab-a7cf-4538-83fa-75c71622c458",
       "signinRedirectPath": "signin-callback"
     }
   },
