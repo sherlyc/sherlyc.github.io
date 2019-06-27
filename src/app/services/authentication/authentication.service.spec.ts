@@ -92,6 +92,12 @@ describe('AuhtenticationService', () => {
     });
   });
 
+  it('should register login/logout callbacks as part of setup', async () => {
+    await authenticationService.setup();
+    expect(authenticationService.StuffLogin.onLogin).toHaveBeenCalled();
+    expect(authenticationService.StuffLogin.onLogout).toHaveBeenCalled();
+  });
+
   it('should allow initiating login with underlying library', async () => {
     await authenticationService.setup();
 

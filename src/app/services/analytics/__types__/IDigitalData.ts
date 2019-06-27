@@ -29,7 +29,7 @@ export interface IDigitalData {
         {
           profileInfo: {
             uid: string;
-          };
+          } | null;
         }
       ];
       segment: {};

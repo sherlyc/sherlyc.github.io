@@ -68,10 +68,14 @@ export class AuthenticationService {
 
   private registerAuthStateCallbacks() {
     this.StuffLogin.onLogin((user) => {
+      this.window.getWindow().digitalData.user[0].profile[0].profileInfo = {
+        uid: user.profile.sub
+      };
       this.authenticationStateChange.next(user);
     });
 
     this.StuffLogin.onLogout(() => {
+      this.window.getWindow().digitalData.user[0].profile[0].profileInfo = null;
       this.authenticationStateChange.next(null);
     });
   }
