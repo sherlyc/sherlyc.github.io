@@ -24,7 +24,8 @@ export class AnalyticsService implements IAnalyticsService {
   constructor(
     private logger: LoggerService,
     private windowService: WindowService
-  ) {}
+  ) {
+  }
 
   private static transformEvent(event: AnalyticsEvent): IAdobeAnalyticsEvent {
     const eventTypesRegistry: { [key in AnalyticsEventsType]: Function } = {
@@ -141,5 +142,10 @@ export class AnalyticsService implements IAnalyticsService {
     } catch (err) {
       this.logger.error(err);
     }
+  }
+
+  setUserInDataLayer(user: { uid: string } | null) {
+    this.windowService.getWindow().digitalData.user[0].profile[0].profileInfo =
+      user;
   }
 }

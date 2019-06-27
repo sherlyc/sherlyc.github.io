@@ -284,4 +284,14 @@ describe('AnalyticsService', () => {
       ...event
     });
   });
+
+  it('should allow updating datalayer with user data', () => {
+    analyticsService.setup();
+
+    analyticsService.setUserInDataLayer(null);
+    expect(windowService.getWindow().digitalData.user[0].profile[0].profileInfo).toBeNull();
+
+    analyticsService.setUserInDataLayer({uid: '11234'});
+    expect(windowService.getWindow().digitalData.user[0].profile[0].profileInfo).toStrictEqual({uid: '11234'});
+  });
 });

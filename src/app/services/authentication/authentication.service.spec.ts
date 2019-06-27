@@ -6,6 +6,7 @@ import { ConfigService } from '../config/config.service';
 import { mockService, ServiceMock } from '../mocks/MockService';
 import { Position } from '../script-injector/__types__/Position';
 import { WindowService } from '../window/window.service';
+import { AnalyticsService } from '../analytics/analytics.service';
 
 describe('AuhtenticationService', () => {
   let authenticationService: AuthenticationService;
@@ -37,6 +38,10 @@ describe('AuhtenticationService', () => {
         {
           provide: WindowService,
           useClass: mockService(WindowService)
+        },
+        {
+          provide: AnalyticsService,
+          useClass: mockService(AnalyticsService)
         }
       ]
     });
