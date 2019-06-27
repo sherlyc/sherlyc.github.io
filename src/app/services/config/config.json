@@ -67,7 +67,7 @@
       "level": "debug",
       "format": "text"
     },
-    "aadSdkUrl": "/spade/assets/test-aad-sdk.js",
+    "aadSdkUrl": "/adnostic/index.min.js",
     "browserOverrides": {
       "spadeAPI": "/spade/api/content",
       "weatherAPI": "/spade/api/weather",
