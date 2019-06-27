@@ -19,7 +19,8 @@ export class HeaderComponent implements IContentBlockComponent, OnInit {
     private analyticsService: AnalyticsService,
     private configService: ConfigService,
     private authenticationService: AuthenticationService
-  ) {}
+  ) {
+  }
 
   isLoggedIn = false;
   profileUrl!: string;
@@ -91,7 +92,7 @@ export class HeaderComponent implements IContentBlockComponent, OnInit {
     );
     this.profileUrl = `${
       this.configService.getConfig().loginLibrary.authProvider
-    }/publicprofile`;
+      }/publicprofile`;
   }
 
   toggleMenu() {
@@ -129,5 +130,11 @@ export class HeaderComponent implements IContentBlockComponent, OnInit {
       type: AnalyticsEventsType.LOGIN_CLIKED
     });
     this.authenticationService.login();
+  }
+
+  avatarAnalytics() {
+    this.analyticsService.pushEvent({
+      type: AnalyticsEventsType.AVATAR_CLICKED
+    });
   }
 }

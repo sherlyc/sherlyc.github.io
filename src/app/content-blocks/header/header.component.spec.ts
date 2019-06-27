@@ -132,6 +132,17 @@ describe('Header', () => {
       });
     });
 
+    it('should send analytics when user clicks on avatar', async () => {
+      component.isLoggedIn = true;
+      fixture.detectChanges();
+
+      fixture.debugElement.query(By.css('.user')).nativeElement.click();
+
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+        type: AnalyticsEventsType.AVATAR_CLICKED
+      });
+    });
+
     it('should show an avatar when the user is logged in', async () => {
       await component.ngOnInit();
       authenticationService.authenticationStateChange.next({
