@@ -243,4 +243,25 @@ describe('AnalyticsService', () => {
       ...event
     });
   });
+
+  it('should push corresponding analytics for login text clicked', () => {
+    analyticsService.setup();
+    windowService.getWindow().digitalData.events.push = jest.fn();
+
+    const event = {
+      event: 'login.signup.click',
+      'login.signup.location': 'top'
+    };
+
+    analyticsService.pushEvent({
+      type: AnalyticsEventsType.LOGIN_CLIKED
+    });
+
+    expect(
+      windowService.getWindow().digitalData.events.push
+    ).toHaveBeenCalledWith({
+      type: 'analytics',
+      ...event
+    });
+  });
 });

@@ -14,7 +14,8 @@ export interface ISimpleAnalyticEvent {
     | AnalyticsEventsType.MENU_NAV_OPENED
     | AnalyticsEventsType.STUFF_LOGO_CLICKED
     | AnalyticsEventsType.BREAKING_NEWS_CLOSED
-    | AnalyticsEventsType.BREAKING_NEWS_OPENED;
+    | AnalyticsEventsType.BREAKING_NEWS_OPENED
+    | AnalyticsEventsType.LOGIN_CLIKED;
 }
 
 export interface IWeatherLocationChanged {

@@ -37,6 +37,10 @@ export class AnalyticsService implements IAnalyticsService {
       [AnalyticsEventsType.MENU_NAV_OPENED]: () => ({
         event: 'menu.nav'
       }),
+      [AnalyticsEventsType.LOGIN_CLIKED]: () => ({
+        event: 'login.signup.click',
+        'login.signup.location': 'top'
+      }),
       [AnalyticsEventsType.STUFF_LOGO_CLICKED]: () => ({
         event: 'stuff.logo'
       }),
