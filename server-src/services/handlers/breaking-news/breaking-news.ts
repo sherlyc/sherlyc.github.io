@@ -5,10 +5,11 @@ import { IBreakingNews } from '../../../../common/__types__/IBreakingNews';
 import getBreakingNews from '../../adapters/breaking-news';
 import { IBreakingNewsResponse } from '../../adapters/__types__/IBreakingNewsResponse';
 import { IParams } from '../../__types__/IParams';
+import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  { variant }: IBreakingNewsHandlerInput,
+  {  }: IBreakingNewsHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   const {
@@ -20,11 +21,10 @@ export default async function(
   return enabled
     ? [
         {
-          type: 'BreakingNews',
+          type: ContentBlockType.BreakingNews,
           id,
           text,
-          link,
-          variant
+          link
         } as IBreakingNews
       ]
     : [];

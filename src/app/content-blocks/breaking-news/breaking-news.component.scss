@@ -1,14 +1,5 @@
 .breaking-news {
-  &.control {
-    background-color: #d12421;
-  }
-  &.purpleHeadline {
-    background-color: purple;
-  }
-  &.orangeHeadline {
-    background-color: orange;
-  }
-
+  background-color: #d12421;
   color: #ffffff;
 
   transition: opacity 0.25s ease-in-out, max-height 0.25s ease-in-out;

@@ -5,7 +5,7 @@ import { IParams } from '../../__types__/IParams';
 import { IExperimentContainer } from '../../../../common/__types__/IExperimentContainer';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 import { IBreakingNews } from '../../../../common/__types__/IBreakingNews';
-import { Section } from '../../../services/section';
+import { Section } from '../../section';
 
 describe('Experiment Handler', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
@@ -37,16 +37,13 @@ describe('Experiment Handler', () => {
         name: 'Toucan',
         variants: {
           purpleHeadline: {
-            type: HandlerInputType.BreakingNews,
-            variant: 'purpleHeadline'
+            type: HandlerInputType.BreakingNews
           },
           orangeHeadline: {
-            type: HandlerInputType.BreakingNews,
-            variant: 'orangeHeadline'
+            type: HandlerInputType.BreakingNews
           },
           control: {
-            type: HandlerInputType.BreakingNews,
-            variant: 'control'
+            type: HandlerInputType.BreakingNews
           }
         }
       },
