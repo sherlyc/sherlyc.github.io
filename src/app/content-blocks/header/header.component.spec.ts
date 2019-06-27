@@ -114,10 +114,22 @@ describe('Header', () => {
       component.navigationVisible = true;
 
       fixture.detectChanges();
-      fixture.debugElement.query(By.css('.user')).nativeElement.click();
+      fixture.debugElement.query(By.css('.login-text')).nativeElement.click();
       fixture.detectChanges();
 
       expect(authenticationService.login).toHaveBeenCalled();
+    });
+
+    it('should send analytics when user clicks on login', () => {
+      component.navigationVisible = true;
+
+      fixture.detectChanges();
+      fixture.debugElement.query(By.css('.login-text')).nativeElement.click();
+      fixture.detectChanges();
+
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+        type: AnalyticsEventsType.LOGIN_CLIKED
+      });
     });
 
     it('should show an avatar when the user is logged in', async () => {
