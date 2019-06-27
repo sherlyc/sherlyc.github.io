@@ -24,7 +24,7 @@
     "loginLibrary": {
       "libraryUrl": "https://www.stuff.co.nz/static/stuff-login-browser-sdk/1.2.0/stuff-login-sdk.js",
       "authProvider": "https://my.stuff.co.nz",
-      "clientId": "",
+      "clientId": "c93d66ab-a7cf-4538-83fa-75c71622c458",
       "signinRedirectPath": "signin-callback"
     }
   },
@@ -81,7 +81,7 @@
     "dtmUrl": "https://assets.adobedtm.com/10d15a330ba9eec67033fb8a57223f1f239d36eb/satelliteLib-8ff0ef0f82e3dfb69c3732fec2854ff9506f9f38-staging.js",
     "loginLibrary": {
       "libraryUrl": "https://www.stuff.co.nz/static/stuff-login-browser-sdk/1.2.0/stuff-login-sdk.js",
-      "authProvider": "https://my.stuff.co.nz",
+      "authProvider": "https://my.preprod.stuff.co.nz",
       "clientId": "c0f1b219-297b-4104-8300-94c4636768da",
       "signinRedirectPath": "signin-callback"
     }

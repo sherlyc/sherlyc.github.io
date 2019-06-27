@@ -21,7 +21,6 @@ describe('AppComponent', () => {
   let experimentService: ServiceMock<ExperimentService>;
   let neighbourlyService: ServiceMock<NeighbourlyService>;
   let metaTagsService: ServiceMock<MetaTagsService>;
-  let authenticationService: ServiceMock<AuthenticationService>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -75,7 +74,6 @@ describe('AppComponent', () => {
     experimentService = TestBed.get(ExperimentService);
     neighbourlyService = TestBed.get(NeighbourlyService);
     metaTagsService = TestBed.get(MetaTagsService);
-    authenticationService = TestBed.get(AuthenticationService);
   });
 
   it('should create the app and set up services', async(() => {
@@ -91,7 +89,6 @@ describe('AppComponent', () => {
     expect(experimentService.setup).toHaveBeenCalled();
     expect(neighbourlyService.setup).toHaveBeenCalled();
     expect(metaTagsService.setup).toHaveBeenCalled();
-    expect(authenticationService.setup).toHaveBeenCalled();
   }));
 
   it('should check router outlet is present', async(() => {

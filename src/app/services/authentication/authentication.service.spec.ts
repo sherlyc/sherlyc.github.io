@@ -14,6 +14,11 @@ describe('AuhtenticationService', () => {
   let configService: ServiceMock<ConfigService>;
   let windowService: ServiceMock<WindowService>;
 
+  const libraryUrl = 'http://libraryurl.com';
+  const authProvider = 'https://my.preprod.stuff.co.nz';
+  const clientId = 'c0f1b219-297b-4104-8300-94c4636768da';
+  const signinRedirectPath = 'signin-callback.html';
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
@@ -40,6 +45,26 @@ describe('AuhtenticationService', () => {
     scriptInjectorService = TestBed.get(ScriptInjectorService);
     configService = TestBed.get(ConfigService);
     windowService = TestBed.get(WindowService);
+
+    windowService.getWindow.mockReturnValue({
+      StuffLogin: {
+        init: jest.fn(),
+        login: jest.fn(),
+        signinCallback: jest.fn(),
+        onLogin: jest.fn(),
+        onLogout: jest.fn()
+      },
+      location: { hostname: 'www.stuff.co.nz' }
+    });
+
+    configService.getConfig.mockReturnValue({
+      loginLibrary: {
+        libraryUrl: libraryUrl,
+        authProvider: authProvider,
+        clientId: clientId,
+        signinRedirectPath: signinRedirectPath
+      }
+    });
   });
 
   it('should be created', () => {
@@ -47,49 +72,37 @@ describe('AuhtenticationService', () => {
   });
 
   it('should delegate to script injector to load the script on setup', async () => {
-    const libraryUrl = 'http://libraryurl.com';
-    configService.getConfig.mockReturnValue({ loginLibrary: { libraryUrl } });
-    windowService.getWindow.mockReturnValue({
-      StuffLogin: { init: jest.fn() },
-      location: { hostname: 'www.stuff.co.nz' }
-    });
     await authenticationService.setup();
 
     expect(scriptInjectorService.load).toHaveBeenCalledWith(
       'login-sdk',
       libraryUrl,
       Position.HEAD,
-      true
+      false
     );
   });
 
   it('should initiate the library with configuration as part of setup', async () => {
-    const libraryUrl = 'http://libraryurl.com';
-    const authProvider = 'https://my.preprod.stuff.co.nz';
-    const clientId = 'c0f1b219-297b-4104-8300-94c4636768da';
-    const signinRedirectPath = 'signin-callback.html';
-
-    configService.getConfig.mockReturnValue({
-      loginLibrary: {
-        libraryUrl,
-        authProvider,
-        clientId,
-        signinRedirectPath
-      }
-    });
-
-    const stuffLoginInit = jest.fn();
-    windowService.getWindow.mockReturnValue({
-      StuffLogin: { init: stuffLoginInit },
-      location: { hostname: 'www.stuff.co.nz' }
-    });
-
     await authenticationService.setup();
 
-    expect(stuffLoginInit).toHaveBeenCalledWith({
+    expect(authenticationService.StuffLogin.init).toHaveBeenCalledWith({
       client_id: clientId,
       redirect_uri: `https://www.stuff.co.nz/${signinRedirectPath}`,
       authority: authProvider
     });
+  });
+
+  it('should allow initiating login with underlying library', async () => {
+    await authenticationService.setup();
+
+    authenticationService.login();
+
+    expect(authenticationService.StuffLogin.login).toHaveBeenCalled();
+  });
+
+  it('should allow do a signin callback with underlying library', async () => {
+    await authenticationService.signinCallback();
+
+    expect(authenticationService.StuffLogin.signinCallback).toHaveBeenCalled();
   });
 });

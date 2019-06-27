@@ -6,6 +6,7 @@ import { CopyrightComponent } from './components/copyright/copyright.component';
 import { PageComponent } from './components/page/page.component';
 import { HeadlineComponent } from './components/headline/headline.component';
 import { OpenExternalLinkDirective } from './directives/open-external-link/open-external-link.directive';
+import { SigninCallbackComponent } from './components/authentication/signin-callback.component';
 
 @NgModule({
   imports: [CommonModule],
@@ -15,7 +16,8 @@ import { OpenExternalLinkDirective } from './directives/open-external-link/open-
     ContentBlockDirective,
     OpenExternalLinkDirective,
     CopyrightComponent,
-    HeadlineComponent
+    HeadlineComponent,
+    SigninCallbackComponent
   ],
   exports: [
     PageComponent,
@@ -23,7 +25,8 @@ import { OpenExternalLinkDirective } from './directives/open-external-link/open-
     ContentBlockDirective,
     OpenExternalLinkDirective,
     CopyrightComponent,
-    HeadlineComponent
+    HeadlineComponent,
+    SigninCallbackComponent
   ]
 })
 export class SharedModule {}

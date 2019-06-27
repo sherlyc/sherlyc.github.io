@@ -7,7 +7,6 @@ import { BrowserOverrideService } from './services/browser-override/browser-over
 import { ExperimentService } from './services/experiment/experiment.service';
 import { NeighbourlyService } from './services/neighbourly/neighbourly.service';
 import { MetaTagsService } from './services/meta-tags/meta-tags.service';
-import { AuthenticationService } from './services/authentication/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -23,8 +22,7 @@ export class AppComponent {
     private dtm: DtmService,
     private browserOverride: BrowserOverrideService,
     private neighbourlyService: NeighbourlyService,
-    private metaTagsService: MetaTagsService,
-    private authenticationService: AuthenticationService
+    private metaTagsService: MetaTagsService
   ) {
     this.experimentService.setup();
     this.adService.setup();
@@ -34,6 +32,5 @@ export class AppComponent {
     this.browserOverride.setup();
     this.neighbourlyService.setup();
     this.metaTagsService.setup();
-    this.authenticationService.setup();
   }
 }
