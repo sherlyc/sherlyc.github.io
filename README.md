@@ -123,6 +123,9 @@ The following commands can be used as well:
 
 TBD: Add additional notes about how to deploy this on a live system
 
+## Login Library 
+The login library utilised is [StuffLoginSdk](https://stuffnz.atlassian.net/wiki/spaces/MEM/pages/702971995/Stuff+Login+Browser+SDK+-+V1.2.0)
+
 ## Contributing
 
 [Contribution guidelines](https://stuffnz.atlassian.net/wiki/spaces/DE/pages/653230081/Experience+Frontend+Contribution)
@@ -137,22 +140,6 @@ Do increase the version whenever you consider your code is a significant/breakin
 ## Angular CLI commands
 
 ---
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md). -->
 
 ## Running Jenkins build pipeline locally
 
