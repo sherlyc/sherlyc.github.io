@@ -25,7 +25,7 @@
       "libraryUrl": "https://www.stuff.co.nz/static/stuff-login-browser-sdk/1.2.0/stuff-login-sdk.js",
       "authProvider": "https://my.stuff.co.nz",
       "clientId": "c93d66ab-a7cf-4538-83fa-75c71622c458",
-      "signinRedirectPath": "signin-callback"
+      "signinRedirectPath": "/spade/signin-callback"
     }
   },
   "staging": {
@@ -54,7 +54,7 @@
       "libraryUrl": "https://www.stuff.co.nz/static/stuff-login-browser-sdk/1.2.0/stuff-login-sdk.js",
       "authProvider": "https://my.preprod.stuff.co.nz",
       "clientId": "c0f1b219-297b-4104-8300-94c4636768da",
-      "signinRedirectPath": "signin-callback"
+      "signinRedirectPath": "/spade/signin-callback"
     }
   },
   "development": {
@@ -83,7 +83,7 @@
       "libraryUrl": "https://www.stuff.co.nz/static/stuff-login-browser-sdk/1.2.0/stuff-login-sdk.js",
       "authProvider": "https://my.preprod.stuff.co.nz",
       "clientId": "c0f1b219-297b-4104-8300-94c4636768da",
-      "signinRedirectPath": "signin-callback"
+      "signinRedirectPath": "/spade/signin-callback"
     }
   },
   "test": {
@@ -112,7 +112,7 @@
       "libraryUrl": "https://www.stuff.co.nz/static/stuff-login-browser-sdk/1.2.0/stuff-login-sdk.js",
       "authProvider": "https://my.preprod.stuff.co.nz",
       "clientId": "c0f1b219-297b-4104-8300-94c4636768da",
-      "signinRedirectPath": "signin-callback"
+      "signinRedirectPath": "/spade/signin-callback"
     }
   }
 }

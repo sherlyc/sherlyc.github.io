@@ -18,7 +18,7 @@ describe('AuhtenticationService', () => {
   const libraryUrl = 'http://libraryurl.com';
   const authProvider = 'https://my.preprod.stuff.co.nz';
   const clientId = 'c0f1b219-297b-4104-8300-94c4636768da';
-  const signinRedirectPath = 'signin-callback.html';
+  const signinRedirectPath = '/spade/signin-callback.html';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -92,7 +92,7 @@ describe('AuhtenticationService', () => {
 
     expect(authenticationService.StuffLogin.init).toHaveBeenCalledWith({
       client_id: clientId,
-      redirect_uri: `https://www.stuff.co.nz/${signinRedirectPath}`,
+      redirect_uri: `https://www.stuff.co.nz${signinRedirectPath}`,
       authority: authProvider
     });
   });

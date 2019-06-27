@@ -56,8 +56,8 @@ export class AuthenticationService {
 
     const redirect_uri =
       hostname === 'localhost'
-        ? `http://${hostname}:4000/${signinRedirectPath}`
-        : `https://${hostname}/${signinRedirectPath}`;
+        ? `http://${hostname}:4000${signinRedirectPath}`
+        : `https://${hostname}${signinRedirectPath}`;
 
     this.StuffLogin.init({
       client_id: clientId,
