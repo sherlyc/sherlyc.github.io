@@ -41,6 +41,9 @@ export class AnalyticsService implements IAnalyticsService {
         event: 'login.signup.click',
         'login.signup.location': 'top'
       }),
+      [AnalyticsEventsType.AVATAR_CLICKED]: () => ({
+        event: 'avatar.click'
+      }),
       [AnalyticsEventsType.STUFF_LOGO_CLICKED]: () => ({
         event: 'stuff.logo'
       }),

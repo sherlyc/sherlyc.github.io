@@ -15,7 +15,8 @@ export interface ISimpleAnalyticEvent {
     | AnalyticsEventsType.STUFF_LOGO_CLICKED
     | AnalyticsEventsType.BREAKING_NEWS_CLOSED
     | AnalyticsEventsType.BREAKING_NEWS_OPENED
-    | AnalyticsEventsType.LOGIN_CLIKED;
+    | AnalyticsEventsType.LOGIN_CLIKED
+    | AnalyticsEventsType.AVATAR_CLICKED;
 }
 
 export interface IWeatherLocationChanged {

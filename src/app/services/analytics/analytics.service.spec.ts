@@ -264,4 +264,24 @@ describe('AnalyticsService', () => {
       ...event
     });
   });
+
+  it('should push corresponding analytics for login text clicked', () => {
+    analyticsService.setup();
+    windowService.getWindow().digitalData.events.push = jest.fn();
+
+    const event = {
+      event: 'avatar.click'
+    };
+
+    analyticsService.pushEvent({
+      type: AnalyticsEventsType.AVATAR_CLICKED
+    });
+
+    expect(
+      windowService.getWindow().digitalData.events.push
+    ).toHaveBeenCalledWith({
+      type: 'analytics',
+      ...event
+    });
+  });
 });
