@@ -13,7 +13,6 @@ import { AuthenticationService } from '../../services/authentication/authenticat
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements IContentBlockComponent, OnInit {
-  private imgSrc = '';
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
@@ -23,7 +22,8 @@ export class HeaderComponent implements IContentBlockComponent, OnInit {
   ) {}
 
   isLoggedIn = false;
-  profileUrl?: string;
+  profileUrl!: string;
+  imgSrc!: string;
 
   @Input() input!: IHeader;
   navigationVisible = false;
@@ -79,7 +79,11 @@ export class HeaderComponent implements IContentBlockComponent, OnInit {
       (user: any) => {
         if (user) {
           this.isLoggedIn = true;
-          this.imgSrc = user.profile.picture;
+          this.imgSrc = user.profile.picture.includes(
+            '/profile_avatar_n_sm.gif'
+          )
+            ? '/spade/assets/icons/avatar.svg'
+            : user.profile.picture;
         } else {
           this.isLoggedIn = false;
         }

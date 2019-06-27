@@ -15,6 +15,7 @@ describe('Header', () => {
   let analyticsService: ServiceMock<AnalyticsService>;
   let configService: ServiceMock<ConfigService>;
   let authenticationService: ServiceMock<AuthenticationService>;
+  let component: HeaderComponent;
   const profileUrl = 'https://my.stuff.co.nz/publicprofile';
 
   beforeEach(async () => {
@@ -45,7 +46,9 @@ describe('Header', () => {
         authProvider: 'https://my.stuff.co.nz'
       }
     } as IEnvironmentDefinition);
+
     fixture = TestBed.createComponent(HeaderComponent);
+    component = fixture.componentInstance;
   });
 
   it('should display navigation when hamburger menu is clicked', () => {
@@ -82,7 +85,7 @@ describe('Header', () => {
     });
 
     it('should push analytics event when menu section is clicked', () => {
-      fixture.componentInstance.navigationVisible = true;
+      component.navigationVisible = true;
       fixture.detectChanges();
       fixture.debugElement
         .query(By.css('.section-Homed'))
@@ -97,8 +100,8 @@ describe('Header', () => {
 
   describe('User authentication', () => {
     it('should show a Login text when the user is not logged in', () => {
-      fixture.componentInstance.navigationVisible = true;
-      fixture.componentInstance.isLoggedIn = false;
+      component.navigationVisible = true;
+      component.isLoggedIn = false;
       fixture.detectChanges();
 
       const text = fixture.debugElement.query(By.css('.user')).nativeElement
@@ -108,20 +111,20 @@ describe('Header', () => {
     });
 
     it('should initiate a login when user clicks on login', () => {
-      fixture.componentInstance.navigationVisible = true;
-      fixture.componentInstance.isLoggedIn = false;
+      component.navigationVisible = true;
+
       fixture.detectChanges();
-
       fixture.debugElement.query(By.css('.user')).nativeElement.click();
-
       fixture.detectChanges();
 
       expect(authenticationService.login).toHaveBeenCalled();
     });
 
-    it('should show an avatar when the user is logged in', () => {
-      fixture.componentInstance.navigationVisible = true;
-      fixture.componentInstance.isLoggedIn = true;
+    it('should show an avatar when the user is logged in', async () => {
+      await component.ngOnInit();
+      authenticationService.authenticationStateChange.next({
+        profile: { picture: '/profile_avatar_n_sm.gif' }
+      });
       fixture.detectChanges();
 
       const user = fixture.debugElement.query(By.css('.user'));
@@ -129,5 +132,33 @@ describe('Header', () => {
       expect(user).toBeTruthy();
       expect(user.nativeElement.getAttribute('href')).toBe(profileUrl);
     });
+  });
+
+  it('should show our generic avatar when user picture is a my.stuff generic avatar', async () => {
+    await component.ngOnInit();
+    authenticationService.authenticationStateChange.next({
+      profile: { picture: '/profile_avatar_n_sm.gif' }
+    });
+
+    fixture.detectChanges();
+
+    const avatar = fixture.debugElement.query(By.css('.avatar'));
+    expect(avatar.nativeElement.getAttribute('src')).toBe(
+      '/spade/assets/icons/avatar.svg'
+    );
+  });
+
+  it('should show user picture when it has a profile picture to show', async () => {
+    await component.ngOnInit();
+    authenticationService.authenticationStateChange.next({
+      profile: { picture: 'www.stuff-static.com/image/my-social-net-pic.png' }
+    });
+
+    fixture.detectChanges();
+
+    const avatar = fixture.debugElement.query(By.css('.avatar'));
+    expect(avatar.nativeElement.getAttribute('src')).toBe(
+      'www.stuff-static.com/image/my-social-net-pic.png'
+    );
   });
 });
