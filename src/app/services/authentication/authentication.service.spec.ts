@@ -59,7 +59,7 @@ describe('AuhtenticationService', () => {
         onLogin: jest.fn(),
         onLogout: jest.fn()
       },
-      location: { hostname: 'www.stuff.co.nz' }
+      location: { host: 'www.stuff.co.nz' }
     });
 
     configService.getConfig.mockReturnValue({

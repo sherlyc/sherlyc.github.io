@@ -52,12 +52,12 @@ export class AuthenticationService {
       authProvider
     } = this.config.getConfig().loginLibrary;
 
-    const hostname = this.window.getWindow().location.hostname;
+    const host = this.window.getWindow().location.host;
 
     const redirect_uri =
-      hostname === 'localhost'
-        ? `http://${hostname}:4000${signinRedirectPath}`
-        : `https://${hostname}${signinRedirectPath}`;
+      host.includes('localhost')
+        ? `http://${host}${signinRedirectPath}`
+        : `https://${host}${signinRedirectPath}`;
 
     this.StuffLogin.init({
       client_id: clientId,
