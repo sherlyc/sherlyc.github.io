@@ -19,7 +19,7 @@ export class AuthenticationService {
     private window: WindowService
   ) {}
 
-  StuffLogin!: IStuffLogin;
+  private StuffLogin!: IStuffLogin;
 
   authenticationStateChange = new Subject<any>();
 

@@ -66,6 +66,7 @@ describe('Experiment Handler', () => {
       introText: 'fake',
       linkUrl: 'fake',
       imageSrc: 'fake',
+      imageSrcSet: 'fake',
       lastPublishedTime: 0,
       headlineFlags: []
     };

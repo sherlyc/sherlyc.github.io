@@ -12,6 +12,8 @@ spec:
     - secretName: experience.${environmentDomain}.tls
       hosts:
         - experience.${environmentDomain}
+    - secretName: stuff.co.nz.tls
+      hosts:
         - ${publicDomain1}
         - ${publicDomain2}
   rules:

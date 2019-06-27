@@ -37,6 +37,10 @@ app.use(
 );
 app.use(cors());
 app.use(cookieParser());
+app.use((req, res, next) => {
+  res.set('Cache-Control', 'max-age=60');
+  next();
+});
 
 app.use(api);
 
@@ -87,6 +91,7 @@ app.set('views', join(DIST_FOLDER, 'browser'));
 app.get('*.*', express.static(join(DIST_FOLDER, 'browser')));
 
 app.get('/content/*', (req, res) => res.send(''));
+app.get('/adnostic/*', (req, res) => res.send(''));
 // All regular routes use the Universal engine
 app.get('*', (req, res) => {
   res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });

@@ -21,6 +21,7 @@ const createBasicArticleUnitBlock = (
   indexHeadline: article.indexHeadline,
   introText: article.introText,
   imageSrc: article.imageSrc,
+  imageSrcSet: article.imageSrcSet,
   linkUrl: article.linkUrl,
   lastPublishedTime: article.lastPublishedTime,
   headlineFlags: article.headlineFlags

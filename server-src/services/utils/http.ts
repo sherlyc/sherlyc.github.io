@@ -17,6 +17,9 @@ const create = (params: IParams): AxiosInstance => {
     return status >= 200 && status < 400;
   };
   httpClient.interceptors.request.use((request: AxiosRequestConfig & any) => {
+    if (params.authorization) {
+      request.headers['Authorization'] = params.authorization;
+    }
     request.ts = performance.now();
     return request;
   });

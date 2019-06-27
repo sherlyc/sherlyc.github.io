@@ -35,7 +35,11 @@
               "src": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffBigHeadline.418x220.1v0dp6.png/1557353782649.jpg",
               "media_type": "Photo",
               "width": "418",
-              "height": "220"
+              "height": "220",
+              "urls": {
+                "418x220": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffBigHeadline.418x220.1v0dp6.png/1557353782649.jpg"
+              },
+              "image_type_id": "StuffBigHeadline"
             },
             {
               "id": 103922401,
@@ -43,7 +47,18 @@
               "src": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffLandscapeSixteenByNine.620x349.1v0dp6.png/1557353782649.jpg",
               "media_type": "Photo",
               "width": "620",
-              "height": "349"
+              "height": "349",
+              "urls": {
+                "320x180": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffLandscapeSixteenByNine.320x180.1v0dp6.png/1557353782649.jpg",
+                "380x214": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffLandscapeSixteenByNine.380x214.1v0dp6.png/1557353782649.jpg",
+                "620x350": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffLandscapeSixteenByNine.620x350.1v0dp6.png/1557353782649.jpg",
+                "620x349": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffLandscapeSixteenByNine.620x349.1v0dp6.png/1557353782649.jpg",
+                "1240x700": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffLandscapeSixteenByNine.1240x700.1v0dp6.png/1557353782649.jpg",
+                "710x400": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffLandscapeSixteenByNine.710x400.1v0dp6.png/1557353782649.jpg",
+                "418x235": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffLandscapeSixteenByNine.418x235.1v0dp6.png/1557353782649.jpg",
+                "1420x800": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffLandscapeSixteenByNine.1420x800.1v0dp6.png/1557353782649.jpg"
+              },
+              "image_type_id": "StuffLandscapeSixteenByNine"
             },
             {
               "id": 103922401,
@@ -51,7 +66,16 @@
               "src": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffLandscapeThreeByTwo.300x200.1v0dp6.png/1557353782649.jpg",
               "media_type": "Photo",
               "width": "300",
-              "height": "200"
+              "height": "200",
+              "urls": {
+                "300x200": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffLandscapeThreeByTwo.300x200.1v0dp6.png/1557353782649.jpg",
+                "200x133": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffLandscapeThreeByTwo.200x133.1v0dp6.png/1557353782649.jpg",
+                "600x400": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffLandscapeThreeByTwo.600x400.1v0dp6.png/1557353782649.jpg",
+                "1151x768": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffLandscapeThreeByTwo.1151x768.1v0dp6.png/1557353782649.jpg",
+                "490x327": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffLandscapeThreeByTwo.490x327.1v0dp6.png/1557353782649.jpg",
+                "1464x976": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffLandscapeThreeByTwo.1464x976.1v0dp6.png/1557353782649.jpg"
+              },
+              "image_type_id": "StuffLandscapeThreeByTwo"
             },
             {
               "id": 103922401,
@@ -59,7 +83,14 @@
               "src": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffThumbnail.90x60.1v0dp6.png/1557353782649.jpg",
               "media_type": "Photo",
               "width": "90",
-              "height": "60"
+              "height": "60",
+              "urls": {
+                "130x86": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffThumbnail.130x86.1v0dp6.png/1557353782649.jpg",
+                "90x60": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffThumbnail.90x60.1v0dp6.png/1557353782649.jpg",
+                "140x93": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffThumbnail.140x93.1v0dp6.png/1557353782649.jpg",
+                "240x160": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffThumbnail.240x160.1v0dp6.png/1557353782649.jpg"
+              },
+              "image_type_id": "StuffThumbnail"
             }
           ],
           "asset_type": "IMAGE"
@@ -80,7 +111,18 @@
               "src": "https://resources.stuff.co.nz/content/dam/images/1/q/k/v/h/j/image.related.StuffLandscapeSixteenByNine.620x349.1v0dp6.png/1557353782649.jpg",
               "media_type": "Photo",
               "width": "620",
-              "height": "349"
+              "height": "349",
+              "urls": {
+                "320x180": "https://resources.stuff.co.nz/content/dam/images/1/q/k/v/h/j/image.related.StuffLandscapeSixteenByNine.320x180.1v0dp6.png/1557353782649.jpg",
+                "380x214": "https://resources.stuff.co.nz/content/dam/images/1/q/k/v/h/j/image.related.StuffLandscapeSixteenByNine.380x214.1v0dp6.png/1557353782649.jpg",
+                "620x350": "https://resources.stuff.co.nz/content/dam/images/1/q/k/v/h/j/image.related.StuffLandscapeSixteenByNine.620x350.1v0dp6.png/1557353782649.jpg",
+                "620x349": "https://resources.stuff.co.nz/content/dam/images/1/q/k/v/h/j/image.related.StuffLandscapeSixteenByNine.620x349.1v0dp6.png/1557353782649.jpg",
+                "1240x700": "https://resources.stuff.co.nz/content/dam/images/1/q/k/v/h/j/image.related.StuffLandscapeSixteenByNine.1240x700.1v0dp6.png/1557353782649.jpg",
+                "710x400": "https://resources.stuff.co.nz/content/dam/images/1/q/k/v/h/j/image.related.StuffLandscapeSixteenByNine.710x400.1v0dp6.png/1557353782649.jpg",
+                "418x235": "https://resources.stuff.co.nz/content/dam/images/1/q/k/v/h/j/image.related.StuffLandscapeSixteenByNine.418x235.1v0dp6.png/1557353782649.jpg",
+                "1420x800": "https://resources.stuff.co.nz/content/dam/images/1/q/k/v/h/j/image.related.StuffLandscapeSixteenByNine.1420x800.1v0dp6.png/1557353782649.jpg"
+              },
+              "image_type_id": "StuffLandscapeSixteenByNine"
             },
             {
               "id": 105110119,
@@ -88,7 +130,16 @@
               "src": "https://resources.stuff.co.nz/content/dam/images/1/q/k/v/h/j/image.related.StuffLandscapeThreeByTwo.300x200.1v0dp6.png/1557353782649.jpg",
               "media_type": "Photo",
               "width": "300",
-              "height": "200"
+              "height": "200",
+              "urls": {
+                "300x200": "https://resources.stuff.co.nz/content/dam/images/1/q/k/v/h/j/image.related.StuffLandscapeThreeByTwo.300x200.1v0dp6.png/1557353782649.jpg",
+                "200x133": "https://resources.stuff.co.nz/content/dam/images/1/q/k/v/h/j/image.related.StuffLandscapeThreeByTwo.200x133.1v0dp6.png/1557353782649.jpg",
+                "600x400": "https://resources.stuff.co.nz/content/dam/images/1/q/k/v/h/j/image.related.StuffLandscapeThreeByTwo.600x400.1v0dp6.png/1557353782649.jpg",
+                "1151x768": "https://resources.stuff.co.nz/content/dam/images/1/q/k/v/h/j/image.related.StuffLandscapeThreeByTwo.1151x768.1v0dp6.png/1557353782649.jpg",
+                "490x327": "https://resources.stuff.co.nz/content/dam/images/1/q/k/v/h/j/image.related.StuffLandscapeThreeByTwo.490x327.1v0dp6.png/1557353782649.jpg",
+                "1464x976": "https://resources.stuff.co.nz/content/dam/images/1/q/k/v/h/j/image.related.StuffLandscapeThreeByTwo.1464x976.1v0dp6.png/1557353782649.jpg"
+              },
+              "image_type_id": "StuffLandscapeThreeByTwo"
             }
           ],
           "asset_type": "IMAGE"
@@ -106,18 +157,38 @@
             {
               "id": 112570068,
               "layout": "Standard Image",
-              "src": "https://resources.stuff.co.nz/content/dam/images/1/v/0/r/m/c/image.related.StuffLandscapeSixteenByNine.620x349.1v0dp6.png/1557353782649.jpg",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/v/0/r/m/c/image.related.StuffLandscapeSixteenByNine.620x349.1v0dp6.png/1557511168773.jpg",
               "media_type": "Photo",
               "width": "620",
-              "height": "349"
+              "height": "349",
+              "urls": {
+                "320x180": "https://resources.stuff.co.nz/content/dam/images/1/v/0/r/m/c/image.related.StuffLandscapeSixteenByNine.320x180.1v0dp6.png/1557511168773.jpg",
+                "380x214": "https://resources.stuff.co.nz/content/dam/images/1/v/0/r/m/c/image.related.StuffLandscapeSixteenByNine.380x214.1v0dp6.png/1557511168773.jpg",
+                "620x350": "https://resources.stuff.co.nz/content/dam/images/1/v/0/r/m/c/image.related.StuffLandscapeSixteenByNine.620x350.1v0dp6.png/1557511168773.jpg",
+                "620x349": "https://resources.stuff.co.nz/content/dam/images/1/v/0/r/m/c/image.related.StuffLandscapeSixteenByNine.620x349.1v0dp6.png/1557511168773.jpg",
+                "1240x700": "https://resources.stuff.co.nz/content/dam/images/1/v/0/r/m/c/image.related.StuffLandscapeSixteenByNine.1240x700.1v0dp6.png/1557511168773.jpg",
+                "710x400": "https://resources.stuff.co.nz/content/dam/images/1/v/0/r/m/c/image.related.StuffLandscapeSixteenByNine.710x400.1v0dp6.png/1557511168773.jpg",
+                "418x235": "https://resources.stuff.co.nz/content/dam/images/1/v/0/r/m/c/image.related.StuffLandscapeSixteenByNine.418x235.1v0dp6.png/1557511168773.jpg",
+                "1420x800": "https://resources.stuff.co.nz/content/dam/images/1/v/0/r/m/c/image.related.StuffLandscapeSixteenByNine.1420x800.1v0dp6.png/1557511168773.jpg"
+              },
+              "image_type_id": "StuffLandscapeSixteenByNine"
             },
             {
               "id": 112570068,
               "layout": "Strap Image",
-              "src": "https://resources.stuff.co.nz/content/dam/images/1/v/0/r/m/c/image.related.StuffLandscapeThreeByTwo.300x200.1v0dp6.png/1557353782649.jpg",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/v/0/r/m/c/image.related.StuffLandscapeThreeByTwo.300x200.1v0dp6.png/1557511168773.jpg",
               "media_type": "Photo",
               "width": "300",
-              "height": "200"
+              "height": "200",
+              "urls": {
+                "300x200": "https://resources.stuff.co.nz/content/dam/images/1/v/0/r/m/c/image.related.StuffLandscapeThreeByTwo.300x200.1v0dp6.png/1557511168773.jpg",
+                "200x133": "https://resources.stuff.co.nz/content/dam/images/1/v/0/r/m/c/image.related.StuffLandscapeThreeByTwo.200x133.1v0dp6.png/1557511168773.jpg",
+                "600x400": "https://resources.stuff.co.nz/content/dam/images/1/v/0/r/m/c/image.related.StuffLandscapeThreeByTwo.600x400.1v0dp6.png/1557511168773.jpg",
+                "1151x768": "https://resources.stuff.co.nz/content/dam/images/1/v/0/r/m/c/image.related.StuffLandscapeThreeByTwo.1151x768.1v0dp6.png/1557511168773.jpg",
+                "490x327": "https://resources.stuff.co.nz/content/dam/images/1/v/0/r/m/c/image.related.StuffLandscapeThreeByTwo.490x327.1v0dp6.png/1557511168773.jpg",
+                "1464x976": "https://resources.stuff.co.nz/content/dam/images/1/v/0/r/m/c/image.related.StuffLandscapeThreeByTwo.1464x976.1v0dp6.png/1557511168773.jpg"
+              },
+              "image_type_id": "StuffLandscapeThreeByTwo"
             }
           ],
           "asset_type": "IMAGE"
@@ -157,123 +228,192 @@
       "asset_type": "ARTICLE"
     },
     {
-      "id": 112552027,
-      "path": "/business/farming/112552026/path",
-      "url": "http://www.stuff.co.nz/_json/business/farming/112552026/contracts-favouring-farm-owners-are-the-dark-side-of-dairy-industry",
-      "section": "Farming",
-      "section-home": "Farming",
+      "id": 113712883,
+      "path": "/business/opinion-analysis/113712883/how-did-anz-lose-money-on-a-house-in-the-hottest-housing-market-in-memory",
+      "url": "http://www.stuff.co.nz/_json/business/opinion-analysis/113712883/how-did-anz-lose-money-on-a-house-in-the-hottest-housing-market-in-memory",
+      "section": "Opinion Analysis",
+      "section-home": "Opinion Analysis",
       "section-top-level": "Business",
       "layout": "landscape-video",
-      "title": "Barcelona beatiful city",
-      "alt_headline": "Barcelona",
-      "datetime_iso8601": "20190509T093701+1200",
-      "datetime_display": "09:37 09/05/2019",
-      "byline": "",
+      "title": "How did ANZ lose money on a house in the hottest housing market in memory?",
+      "alt_headline": "ANZ's casual arrogance",
+      "datetime_iso8601": "20190624T050000+1200",
+      "datetime_display": "05:00 24/06/2019",
+      "byline": "KATE MACNAMARA",
       "source_code": "1national-newsroom",
       "source_name": "Stuff",
-      "intro": "Lets go to Barcelona",
-      "alt_intro": "Tour to Barcelona",
-      "body": "",
+      "intro": "OPINION: There is a casual arrogance to ANZ NZ chairman John Key's handling of the David Hisco affair.",
+      "alt_intro": "OPINION: The story of former CEO David Hisco's St Heliers home is one that ANZ hoped not to tell.",
+      "body": "<p><strong>OPINION: </strong>There is a casual arrogance to ANZ NZ chairman John Key's handling of the David Hisco affair.</p> \n<p>And it complements, with delicate nuance, the entitlement of the former ANZ NZ chief executive himself.</p> \n<p>At the beginning of last week <a href=\"https://www.stuff.co.nz/business/113536338/sir-john-key-fronts-media-over-hiscos-departure?rm=a\">Key convened a press conference</a> to announce Hisco's unceremonious departure. The former prime minister was relaxed and self-assured with an easy grasp of the narrative: Hisco was a good man but he had a blind spot.</p> \n<p>Hisco, he said, had obscured personal bills for chauffeur-driven cars and offshore wine cellaring as business expenses. Tens of thousands of dollars had been \"mis-characterised\".</p> \n<p><strong>READ MORE:<br> *<a href=\"https://www.stuff.co.nz/business/113661929/anz-bought-75m-beachside-auckland-property-for-david-hisco\"> ANZ bought $7.5m home for David Hisco</a><br> *&nbsp;<a href=\"https://www.stuff.co.nz/business/113599166/anzs-former-boss-david-hisco-clocked-up-nearly-450k-a-year-in-expenses?rm=a\" title=\"\">ANZ's former boss David Hisco clocked up nearly $450k a year in expenses</a><br> *&nbsp;<a href=\"https://www.stuff.co.nz/business/113576752/the-smiling-assassin-returns-for-his-biggest-hit?rm=a\" title=\"\">The smiling assassin strikes: John Key pushes out David Hisco as ANZ CEO</a><br> *&nbsp;<a href=\"https://www.stuff.co.nz/business/113554814/profits-strikes-settlements-and-huge-paypackets-the-anz-career-of-david-hisco?rm=a\" title=\"\">Profits, strikes, settlements and huge paypackets: The ANZ career of David Hisco</a><br> *&nbsp;<a href=\"https://www.stuff.co.nz/business/113553059/key-sold-beach-house-to-hisco-it-was-a-transparent-isue?rm=a\" title=\"\">Sir John Key sold beach house to exiting ANZ boss David Hisco: 'It was a transparent issue'</a></strong></p> \n<p>It was a great pity, but the bank had a \"culture of integrity\" to uphold, Key said. Hisco&nbsp;had agreed to go because he'd fallen short of his own and the bank's standard.</p> \n<p>Blind spots are like that, we all have them, and when someone points them out you simply adjust your perspective, and see what previously you didn't.</p> \n<p>That was the story, clearly agreed by Key and ANZ executives and communications staff.</p> \n<p>But it was a painfully partial story. Key knew that and so did the woman at his side, Antonia Watson, the safe pair of hands into which he'd passed the running of ANZ NZ.</p> \n<p>So did others on the Albert St&nbsp;executive floor.</p> \n<p>Key didn't mention that Hisco's business expense account, reported by the bank as <a href=\"https://www.stuff.co.nz/business/113599166/anzs-former-boss-david-hisco-clocked-up-nearly-450k-a-year-in-expenses?rm=a\">\"non monetary benefits\" topped A$464,577 in 2018</a>.</p> \n<p>Nor that the value of those benefits soared more than nine times higher than any other of the bank's executives. But he knew this. He'd been a director of parent ANZ Group since February 2018 and signed off on the annual report that disclosed those figures. Key even sat on the bank's ethics and governance committee.</p> \n<p>To dig any further into the full range of perks Hisco enjoyed, either in 2018, or in the seven previous financial years for which he had held the top ANZ NZ job would blur&nbsp;the narrative.</p> \n<p>And worse, it would make the bank look like a haughty corporation that was out of touch with the everyday Kiwis who formed the customer base for its massive loans portfolios.</p> \n<p>Antonia Watson's knowledge was more specific still.</p> \n<p>Austere, and a little uneasy at Key's side, Watson knew the <a href=\"https://www.stuff.co.nz/business/113661929/anz-bought-75m-beachside-auckland-property-for-david-hisco\">details of the St&nbsp;Heliers mansion</a>. In 2017 she was one of three directors of Arawata Assets, a wholly owned subsidiary of ANZ NZ which owned 269 St&nbsp;Heliers Bay Rd, the house where David Hisco and his wife Deborah Walsh had lived since 2011.</p> \n<p>In July of that year Arawata sold the luxury six-bedroom property, complete with tennis court and swimming pool, to Walsh, for an extraordinary $6.9 million, close to $3m below the rateable value of $10.75m.</p> \n<p>Neither Watson nor Key mentioned the \"housing allowance\"&nbsp;Hisco enjoyed for years after he'd bought a $1.7 million dollar apartment in the plush suburb of Kohimarama, within easy reach of his Albert St&nbsp;office in downtown Auckland.<br> <br> If they didn't know about it, others certainly did. Craig Mulholland, ANZ NZ's general counsel at the time of the 2014 purchase was on the title (it was sold in 2016).</p> \n<p>Mulholland is also listed alongside Hisco and Walsh on the <a href=\"https://www.stuff.co.nz/business/113553059/key-sold-beach-house-to-hisco-it-was-a-transparent-isue?rm=a\">title of an Omaha beach house</a> they bought from Key in 2018 for an estimated $3.8m.</p> \n<p>But Hisco and Walsh continued to use the St&nbsp;Heliers home as their main residence.</p> \n<p>ANZ also paid for substantial refurbishment of the home in 2015 and 2016, when it replaced the roof, redecorated, renovated the bathrooms, and fixed the spa pool.</p> \n<p>Annis O'Brien knew the details of the property. The ANZ NZ senior executive was appointed director of Arawata in 2016 and remains on the board.</p> \n<p>The story of the St&nbsp;Heliers home is one that ANZ hoped not to tell. And it still hasn't explained how it managed to hold a $7.55m&nbsp;property through the hottest Auckland housing market in living memory and lose money.</p> \n<p>The value of neighbouring properties doubled during that time. It's a bank. Its bread and butter business, on which it makes billions in profits, is mortgages.</p> \n<p>Hisco and his wife appeared to benefit to the tune of nearly $3m from the St&nbsp;Heliers house purchase. Has Hisco or ANZ ever declared that benefit to the IRD?</p> \n<p>ANZ shareholders and the New Zealand public can't look at the accounting for Arawata, and they don't know how it's accounted for.</p> \n<p>Key certainly didn't intend that they should when told a rather quaint fable last week about a banker with a $50,000 blind spot.</p> \n<p>That story is morphing into a saga about a bank and opacity and half-truths. One of the bankers is gone, but at the helm remains a man who is blind to hubris.</p>",
       "images": [
         {
-          "id": 103922401,
-          "position_after_paragraph": 5,
-          "datetime_iso8601": "20190509T093701+1200",
-          "datetime_display": "09:37 09/05/2019",
-          "creditline": "STUFF",
-          "source_code": "the-southland-times",
-          "source_name": "The Southland Times",
-          "caption": "A Waikato farmer says current contracts and legislation protect farm owners and the system needs a complete overhaul. (File photo)",
+          "id": 113671066,
+          "position_after_paragraph": 6,
+          "datetime_iso8601": "20190624T050000+1200",
+          "datetime_display": "05:00 24/06/2019",
+          "creditline": "DAVID WHITE/STUFF",
+          "source_code": "1national-newsroom",
+          "source_name": "Stuff",
+          "caption": "A company owned by ANZ NZ purchased this $7.5m St Heliers home for former chief executive David Hisco.",
           "variants": [
             {
-              "id": 103922401,
+              "id": 113671066,
               "layout": "Defcon Image",
-              "src": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffBigHeadline.418x220.1v0dp6.png/1557353782649.jpg",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/v/o/d/5/m/image.related.StuffBigHeadline.418x220.1vp9f7.png/1561314144289.jpg",
               "media_type": "Photo",
               "width": "418",
-              "height": "220"
+              "height": "220",
+              "urls": {
+                "418x220": "https://resources.stuff.co.nz/content/dam/images/1/v/o/d/5/m/image.related.StuffBigHeadline.418x220.1vp9f7.png/1561314144289.jpg"
+              },
+              "image_type_id": "StuffBigHeadline"
             },
             {
-              "id": 103922401,
+              "id": 113671066,
               "layout": "Standard Image",
-              "src": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffLandscapeSixteenByNine.620x349.1v0dp6.png/1557353782649.jpg",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/v/o/d/5/m/image.related.StuffLandscapeSixteenByNine.620x349.1vp9f7.png/1561314144289.jpg",
               "media_type": "Photo",
               "width": "620",
-              "height": "349"
+              "height": "349",
+              "urls": {
+                "320x180": "https://resources.stuff.co.nz/content/dam/images/1/v/o/d/5/m/image.related.StuffLandscapeSixteenByNine.320x180.1vp9f7.png/1561314144289.jpg",
+                "380x214": "https://resources.stuff.co.nz/content/dam/images/1/v/o/d/5/m/image.related.StuffLandscapeSixteenByNine.380x214.1vp9f7.png/1561314144289.jpg",
+                "620x350": "https://resources.stuff.co.nz/content/dam/images/1/v/o/d/5/m/image.related.StuffLandscapeSixteenByNine.620x350.1vp9f7.png/1561314144289.jpg",
+                "620x349": "https://resources.stuff.co.nz/content/dam/images/1/v/o/d/5/m/image.related.StuffLandscapeSixteenByNine.620x349.1vp9f7.png/1561314144289.jpg",
+                "1240x700": "https://resources.stuff.co.nz/content/dam/images/1/v/o/d/5/m/image.related.StuffLandscapeSixteenByNine.1240x700.1vp9f7.png/1561314144289.jpg",
+                "710x400": "https://resources.stuff.co.nz/content/dam/images/1/v/o/d/5/m/image.related.StuffLandscapeSixteenByNine.710x400.1vp9f7.png/1561314144289.jpg",
+                "418x235": "https://resources.stuff.co.nz/content/dam/images/1/v/o/d/5/m/image.related.StuffLandscapeSixteenByNine.418x235.1vp9f7.png/1561314144289.jpg",
+                "1420x800": "https://resources.stuff.co.nz/content/dam/images/1/v/o/d/5/m/image.related.StuffLandscapeSixteenByNine.1420x800.1vp9f7.png/1561314144289.jpg"
+              },
+              "image_type_id": "StuffLandscapeSixteenByNine"
             },
             {
-              "id": 103922401,
+              "id": 113671066,
               "layout": "Strap Image",
-              "src": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffLandscapeThreeByTwo.300x200.1v0dp6.png/1557353782649.jpg",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/v/o/d/5/m/image.related.StuffLandscapeThreeByTwo.300x200.1vp9f7.png/1561314144289.jpg",
               "media_type": "Photo",
               "width": "300",
-              "height": "200"
+              "height": "200",
+              "urls": {
+                "300x200": "https://resources.stuff.co.nz/content/dam/images/1/v/o/d/5/m/image.related.StuffLandscapeThreeByTwo.300x200.1vp9f7.png/1561314144289.jpg",
+                "200x133": "https://resources.stuff.co.nz/content/dam/images/1/v/o/d/5/m/image.related.StuffLandscapeThreeByTwo.200x133.1vp9f7.png/1561314144289.jpg",
+                "600x400": "https://resources.stuff.co.nz/content/dam/images/1/v/o/d/5/m/image.related.StuffLandscapeThreeByTwo.600x400.1vp9f7.png/1561314144289.jpg",
+                "1151x768": "https://resources.stuff.co.nz/content/dam/images/1/v/o/d/5/m/image.related.StuffLandscapeThreeByTwo.1151x768.1vp9f7.png/1561314144289.jpg",
+                "490x327": "https://resources.stuff.co.nz/content/dam/images/1/v/o/d/5/m/image.related.StuffLandscapeThreeByTwo.490x327.1vp9f7.png/1561314144289.jpg",
+                "1464x976": "https://resources.stuff.co.nz/content/dam/images/1/v/o/d/5/m/image.related.StuffLandscapeThreeByTwo.1464x976.1vp9f7.png/1561314144289.jpg"
+              },
+              "image_type_id": "StuffLandscapeThreeByTwo"
             },
             {
-              "id": 103922401,
+              "id": 113671066,
               "layout": "Small Thumbnail",
-              "src": "https://resources.stuff.co.nz/content/dam/images/1/p/v/f/1/d/image.related.StuffThumbnail.90x60.1v0dp6.png/1557353782649.jpg",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/v/o/d/5/m/image.related.StuffThumbnail.90x60.1vp9f7.png/1561314144289.jpg",
               "media_type": "Photo",
               "width": "90",
-              "height": "60"
+              "height": "60",
+              "urls": {
+                "130x86": "https://resources.stuff.co.nz/content/dam/images/1/v/o/d/5/m/image.related.StuffThumbnail.130x86.1vp9f7.png/1561314144289.jpg",
+                "90x60": "https://resources.stuff.co.nz/content/dam/images/1/v/o/d/5/m/image.related.StuffThumbnail.90x60.1vp9f7.png/1561314144289.jpg",
+                "140x93": "https://resources.stuff.co.nz/content/dam/images/1/v/o/d/5/m/image.related.StuffThumbnail.140x93.1vp9f7.png/1561314144289.jpg",
+                "240x160": "https://resources.stuff.co.nz/content/dam/images/1/v/o/d/5/m/image.related.StuffThumbnail.240x160.1vp9f7.png/1561314144289.jpg"
+              },
+              "image_type_id": "StuffThumbnail"
             }
           ],
           "asset_type": "IMAGE"
         },
         {
-          "id": 105110119,
-          "position_after_paragraph": 19,
-          "datetime_iso8601": "20190509T093701+1200",
-          "datetime_display": "09:37 09/05/2019",
+          "id": 113542207,
+          "position_after_paragraph": 10,
+          "datetime_iso8601": "20190624T050000+1200",
+          "datetime_display": "05:00 24/06/2019",
+          "creditline": "DAVID WHITE/STUFF",
+          "source_code": "1national-newsroom",
+          "source_name": "Stuff",
+          "caption": "Sir John Key, pictured with acting ANZ chief executive Antonia Watson. Key didn't mention that Hisco's business expense account, reported by the bank as \"non monetary benefits\" topped A$464,577 in 2018.",
+          "variants": [
+            {
+              "id": 113542207,
+              "layout": "Standard Image",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/v/l/l/q/7/image.related.StuffLandscapeSixteenByNine.620x349.1vp9f7.png/1561314144289.jpg",
+              "media_type": "Photo",
+              "width": "620",
+              "height": "349",
+              "urls": {
+                "320x180": "https://resources.stuff.co.nz/content/dam/images/1/v/l/l/q/7/image.related.StuffLandscapeSixteenByNine.320x180.1vp9f7.png/1561314144289.jpg",
+                "380x214": "https://resources.stuff.co.nz/content/dam/images/1/v/l/l/q/7/image.related.StuffLandscapeSixteenByNine.380x214.1vp9f7.png/1561314144289.jpg",
+                "620x350": "https://resources.stuff.co.nz/content/dam/images/1/v/l/l/q/7/image.related.StuffLandscapeSixteenByNine.620x350.1vp9f7.png/1561314144289.jpg",
+                "620x349": "https://resources.stuff.co.nz/content/dam/images/1/v/l/l/q/7/image.related.StuffLandscapeSixteenByNine.620x349.1vp9f7.png/1561314144289.jpg",
+                "1240x700": "https://resources.stuff.co.nz/content/dam/images/1/v/l/l/q/7/image.related.StuffLandscapeSixteenByNine.1240x700.1vp9f7.png/1561314144289.jpg",
+                "710x400": "https://resources.stuff.co.nz/content/dam/images/1/v/l/l/q/7/image.related.StuffLandscapeSixteenByNine.710x400.1vp9f7.png/1561314144289.jpg",
+                "418x235": "https://resources.stuff.co.nz/content/dam/images/1/v/l/l/q/7/image.related.StuffLandscapeSixteenByNine.418x235.1vp9f7.png/1561314144289.jpg",
+                "1420x800": "https://resources.stuff.co.nz/content/dam/images/1/v/l/l/q/7/image.related.StuffLandscapeSixteenByNine.1420x800.1vp9f7.png/1561314144289.jpg"
+              },
+              "image_type_id": "StuffLandscapeSixteenByNine"
+            }
+          ],
+          "asset_type": "IMAGE"
+        },
+        {
+          "id": 113612132,
+          "position_after_paragraph": 16,
+          "datetime_iso8601": "20190624T050000+1200",
+          "datetime_display": "05:00 24/06/2019",
           "creditline": "STUFF",
-          "source_code": "the-press",
-          "source_name": "The Press",
-          "caption": "The dairy industry prides itself on being the backbone of the country's economy but it needs to do more to protect energetic young workers, the contract milker says. (File photo)",
+          "source_code": "sunday-star-times",
+          "source_name": "Sunday Star Times",
+          "caption": "David Hisco and wife Deborah Walsh with Grand Designs presenter Kevin McCloud. Walsh was sold the house for millions less than its capital valuation.",
           "variants": [
             {
-              "id": 105110119,
+              "id": 113612132,
               "layout": "Standard Image",
-              "src": "https://resources.stuff.co.nz/content/dam/images/1/q/k/v/h/j/image.related.StuffLandscapeSixteenByNine.620x349.1v0dp6.png/1557353782649.jpg",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/v/n/3/o/k/image.related.StuffLandscapeSixteenByNine.620x349.1vp9f7.png/1561314144289.jpg",
               "media_type": "Photo",
               "width": "620",
-              "height": "349"
-            },
-            {
-              "id": 105110119,
-              "layout": "Strap Image",
-              "src": "https://resources.stuff.co.nz/content/dam/images/1/q/k/v/h/j/image.related.StuffLandscapeThreeByTwo.300x200.1v0dp6.png/1557353782649.jpg",
-              "media_type": "Photo",
-              "width": "300",
-              "height": "200"
+              "height": "349",
+              "urls": {
+                "320x180": "https://resources.stuff.co.nz/content/dam/images/1/v/n/3/o/k/image.related.StuffLandscapeSixteenByNine.320x180.1vp9f7.png/1561314144289.jpg",
+                "380x214": "https://resources.stuff.co.nz/content/dam/images/1/v/n/3/o/k/image.related.StuffLandscapeSixteenByNine.380x214.1vp9f7.png/1561314144289.jpg",
+                "620x350": "https://resources.stuff.co.nz/content/dam/images/1/v/n/3/o/k/image.related.StuffLandscapeSixteenByNine.620x350.1vp9f7.png/1561314144289.jpg",
+                "620x349": "https://resources.stuff.co.nz/content/dam/images/1/v/n/3/o/k/image.related.StuffLandscapeSixteenByNine.620x349.1vp9f7.png/1561314144289.jpg",
+                "1240x700": "https://resources.stuff.co.nz/content/dam/images/1/v/n/3/o/k/image.related.StuffLandscapeSixteenByNine.1240x700.1vp9f7.png/1561314144289.jpg",
+                "710x400": "https://resources.stuff.co.nz/content/dam/images/1/v/n/3/o/k/image.related.StuffLandscapeSixteenByNine.710x400.1vp9f7.png/1561314144289.jpg",
+                "418x235": "https://resources.stuff.co.nz/content/dam/images/1/v/n/3/o/k/image.related.StuffLandscapeSixteenByNine.418x235.1vp9f7.png/1561314144289.jpg",
+                "1420x800": "https://resources.stuff.co.nz/content/dam/images/1/v/n/3/o/k/image.related.StuffLandscapeSixteenByNine.1420x800.1vp9f7.png/1561314144289.jpg"
+              },
+              "image_type_id": "StuffLandscapeSixteenByNine"
             }
           ],
           "asset_type": "IMAGE"
         },
         {
-          "id": 112570068,
-          "position_after_paragraph": 23,
-          "datetime_iso8601": "20190509T093701+1200",
-          "datetime_display": "09:37 09/05/2019",
-          "creditline": "DOMINICO ZAPATA/STUFF",
-          "source_code": "waikato-times",
-          "source_name": "Waikato Times",
-          "caption": "Farmers have a \"moral obligation\" to give the next generation the opportunity to make their mark on the industry, he says.",
+          "id": 113688586,
+          "position_after_paragraph": 21,
+          "datetime_iso8601": "20190624T050000+1200",
+          "datetime_display": "05:00 24/06/2019",
+          "creditline": "STUFF",
+          "source_code": "the-dominion-post",
+          "source_name": "The Dominion Post",
+          "caption": "The pool at 269 St Heliers Bay Road dwarfs that of neighbours.",
           "variants": [
             {
-              "id": 112570068,
+              "id": 113688586,
               "layout": "Standard Image",
-              "src": "https://resources.stuff.co.nz/content/dam/images/1/v/0/r/m/c/image.related.StuffLandscapeSixteenByNine.620x349.1v0dp6.png/1557353782649.jpg",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/v/o/q/o/a/image.related.StuffLandscapeSixteenByNine.620x349.1vp9f7.png/1561314144289.jpg",
               "media_type": "Photo",
               "width": "620",
-              "height": "349"
-            },
-            {
-              "id": 112570068,
-              "layout": "Strap Image",
-              "src": "https://resources.stuff.co.nz/content/dam/images/1/v/0/r/m/c/image.related.StuffLandscapeThreeByTwo.300x200.1v0dp6.png/1557353782649.jpg",
-              "media_type": "Photo",
-              "width": "300",
-              "height": "200"
+              "height": "349",
+              "urls": {
+                "320x180": "https://resources.stuff.co.nz/content/dam/images/1/v/o/q/o/a/image.related.StuffLandscapeSixteenByNine.320x180.1vp9f7.png/1561314144289.jpg",
+                "380x214": "https://resources.stuff.co.nz/content/dam/images/1/v/o/q/o/a/image.related.StuffLandscapeSixteenByNine.380x214.1vp9f7.png/1561314144289.jpg",
+                "620x350": "https://resources.stuff.co.nz/content/dam/images/1/v/o/q/o/a/image.related.StuffLandscapeSixteenByNine.620x350.1vp9f7.png/1561314144289.jpg",
+                "620x349": "https://resources.stuff.co.nz/content/dam/images/1/v/o/q/o/a/image.related.StuffLandscapeSixteenByNine.620x349.1vp9f7.png/1561314144289.jpg",
+                "1240x700": "https://resources.stuff.co.nz/content/dam/images/1/v/o/q/o/a/image.related.StuffLandscapeSixteenByNine.1240x700.1vp9f7.png/1561314144289.jpg",
+                "710x400": "https://resources.stuff.co.nz/content/dam/images/1/v/o/q/o/a/image.related.StuffLandscapeSixteenByNine.710x400.1vp9f7.png/1561314144289.jpg",
+                "418x235": "https://resources.stuff.co.nz/content/dam/images/1/v/o/q/o/a/image.related.StuffLandscapeSixteenByNine.418x235.1vp9f7.png/1561314144289.jpg",
+                "1420x800": "https://resources.stuff.co.nz/content/dam/images/1/v/o/q/o/a/image.related.StuffLandscapeSixteenByNine.1420x800.1vp9f7.png/1561314144289.jpg"
+              },
+              "image_type_id": "StuffLandscapeSixteenByNine"
             }
           ],
           "asset_type": "IMAGE"
@@ -281,19 +421,19 @@
       ],
       "videos": [
         {
-          "id": 106408629,
+          "id": 113675086,
           "position_after_paragraph": 0,
           "layout": "Standard Video",
           "source_code": "Stuff",
-          "datetime_iso8601": "20180820T125309+1200",
-          "datetime_display": "12:53 20/08/2018",
-          "creditline": "STUFF",
-          "caption": "Just what is the make up of our dairy industry?",
-          "src": "https://media.stuff.co.nz/video/production/1534726360405-Stuff%20SOCIAL%20VID%201.mp4",
+          "datetime_iso8601": "20190621T155825+1200",
+          "datetime_display": "15:58 21/06/2019",
+          "creditline": "Rob Stock/Stuff",
+          "caption": "ANZ purchased a $7.5m home for former CEO David Hisco, which it then sold to his wife for a loss.",
+          "src": "https://media.stuff.co.nz/video/production/1561079745173-SOCIAL_18.mp4",
           "video_poster": {
-            "id": 106408353,
+            "id": 113675069,
             "layout": "Video Image",
-            "src": "https://resources.stuff.co.nz/content/dam/images/1/r/c/p/7/l/image.related.StuffLandscapeSixteenByNine.620x349.1rcpf9.png/1534726397733.png",
+            "src": "https://resources.stuff.co.nz/content/dam/images/1/v/o/g/8/t/image.related.StuffLandscapeSixteenByNine.620x349.1vog9a.png/1561089509656.jpg",
             "width": "620",
             "height": "349"
           },
@@ -304,13 +444,13 @@
         {
           "id": 112381666,
           "data_content": "<style>\n    \n\t.stuff-linkedin {\n\t\twidth: 100%;\n\t\tmax-width: 1000px;\n\t\tmargin: 0 auto;\n\t\ttext-align: center;\n\t\tbackground-image: url(https://static3.stuff.co.nz/stuff-linkedin-bg-4a182713.jpg);\n\t\tbackground-size: cover;\n\t\tbackground-position: center;\n\t\tbackground-repeat: no-repeat;\n\t\tbackground-color: #ffffff;\n\t\toverflow: hidden;\n\t}\n\t.stuff-linkedin a {\n\t\twidth: 100%;\n\t\theight: 100%;\n\t\ttext-decoration: none;\n\t\t\n\t}\n\n\t.stuff-linkedin img {\n\t\twidth: 100%;\n\t\tmax-width: 446px;\n\t\tdisplay: block;\n\t\tmargin: 0 auto;\n\t\ttransition: 0.2s opacity ease-in-out;\n\t\t-webkit-transition: 0.2s opacity ease-in-out;\n}\n\t\n\n\n\t.stuff-linkedin img:hover {\n\t\topacity: 0.7;\n\t}\n\t\n</style>\n\n<div class=\"stuff-linkedin\">\n\t<a href=\"https://www.linkedin.com/company/business-stuff\" target=\"_top\">\n\t\t<img src=\"https://static3.stuff.co.nz/stuff-linkedin-pointer-825c67c0.png\" alt=\"\">\n\t</a>\n</div>",
-          "position_after_paragraph": 10,
+          "position_after_paragraph": 3,
           "asset_type": "HTML"
         }
       ],
       "galleries": [],
-      "headline_flags": [],
-      "asset_type": "ARTICLE"
+      "asset_type": "ARTICLE",
+      "headline_flags": []
     }
   ],
   "datetime_iso8601": "20190131T150349+1300",
