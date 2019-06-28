@@ -13,17 +13,9 @@ export default async function handlerRunner(
   handlerInput: HandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  try {
-    return await handlerRegistry[handlerInput.type](
-      handlerRunner,
-      handlerInput,
-      params
-    );
-  } catch (error) {
-    logger.error(
-      params.apiRequestId,
-      `Handler Runner Error for ${handlerInput.type} - ${error}`
-    );
-    return [];
-  }
+  return await handlerRegistry[handlerInput.type](
+    handlerRunner,
+    handlerInput,
+    params
+  );
 }
