@@ -1,4 +1,4 @@
-import { Component, Inject, Input, Renderer2, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit, Renderer2 } from '@angular/core';
 import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
 import { IHeader } from '../../../../common/__types__/IHeader';
 import { DOCUMENT } from '@angular/common';
@@ -19,7 +19,8 @@ export class HeaderComponent implements IContentBlockComponent, OnInit {
     private analyticsService: AnalyticsService,
     private configService: ConfigService,
     private authenticationService: AuthenticationService
-  ) {}
+  ) {
+  }
 
   isLoggedIn = false;
   profileUrl!: string;
@@ -91,7 +92,7 @@ export class HeaderComponent implements IContentBlockComponent, OnInit {
     );
     this.profileUrl = `${
       this.configService.getConfig().loginLibrary.authProvider
-    }/publicprofile`;
+      }/publicprofile`;
   }
 
   toggleMenu() {
@@ -125,6 +126,15 @@ export class HeaderComponent implements IContentBlockComponent, OnInit {
   }
 
   login() {
+    this.analyticsService.pushEvent({
+      type: AnalyticsEventsType.LOGIN_CLIKED
+    });
     this.authenticationService.login();
+  }
+
+  avatarAnalytics() {
+    this.analyticsService.pushEvent({
+      type: AnalyticsEventsType.AVATAR_CLICKED
+    });
   }
 }

@@ -7,6 +7,7 @@ import { Position } from '../script-injector/__types__/Position';
 import { WindowService } from '../window/window.service';
 import { IStuffLogin } from './__types__/IStuffLogin';
 import { Subject } from 'rxjs';
+import { AnalyticsService } from '../analytics/analytics.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,10 @@ export class AuthenticationService {
     private runtime: RuntimeService,
     private scriptInjectorService: ScriptInjectorService,
     private config: ConfigService,
-    private window: WindowService
-  ) {}
+    private window: WindowService,
+    private analyticsService: AnalyticsService
+  ) {
+  }
 
   StuffLogin!: IStuffLogin;
 
@@ -50,12 +53,10 @@ export class AuthenticationService {
       authProvider
     } = this.config.getConfig().loginLibrary;
 
-    const hostname = this.window.getWindow().location.hostname;
+    const protocol = this.window.getWindow().location.protocol;
+    const host = this.window.getWindow().location.host;
 
-    const redirect_uri =
-      hostname === 'localhost'
-        ? `http://${hostname}:4000/${signinRedirectPath}`
-        : `https://${hostname}/${signinRedirectPath}`;
+    const redirect_uri = `${protocol}//${host}${signinRedirectPath}`;
 
     this.StuffLogin.init({
       client_id: clientId,
@@ -68,10 +69,12 @@ export class AuthenticationService {
 
   private registerAuthStateCallbacks() {
     this.StuffLogin.onLogin((user) => {
+      this.analyticsService.setUserInDataLayer(user);
       this.authenticationStateChange.next(user);
     });
 
     this.StuffLogin.onLogout(() => {
+      this.analyticsService.setUserInDataLayer(null);
       this.authenticationStateChange.next(null);
     });
   }

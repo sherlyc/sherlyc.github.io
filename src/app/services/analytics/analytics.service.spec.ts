@@ -243,4 +243,55 @@ describe('AnalyticsService', () => {
       ...event
     });
   });
+
+  it('should push corresponding analytics for login text clicked', () => {
+    analyticsService.setup();
+    windowService.getWindow().digitalData.events.push = jest.fn();
+
+    const event = {
+      event: 'login.signup.click',
+      'login.signup.location': 'top'
+    };
+
+    analyticsService.pushEvent({
+      type: AnalyticsEventsType.LOGIN_CLIKED
+    });
+
+    expect(
+      windowService.getWindow().digitalData.events.push
+    ).toHaveBeenCalledWith({
+      type: 'analytics',
+      ...event
+    });
+  });
+
+  it('should push corresponding analytics for login text clicked', () => {
+    analyticsService.setup();
+    windowService.getWindow().digitalData.events.push = jest.fn();
+
+    const event = {
+      event: 'avatar.click'
+    };
+
+    analyticsService.pushEvent({
+      type: AnalyticsEventsType.AVATAR_CLICKED
+    });
+
+    expect(
+      windowService.getWindow().digitalData.events.push
+    ).toHaveBeenCalledWith({
+      type: 'analytics',
+      ...event
+    });
+  });
+
+  it('should allow updating datalayer with user data', () => {
+    analyticsService.setup();
+
+    analyticsService.setUserInDataLayer(null);
+    expect(windowService.getWindow().digitalData.user[0].profile[0].profileInfo).toBeNull();
+
+    analyticsService.setUserInDataLayer({uid: '11234'});
+    expect(windowService.getWindow().digitalData.user[0].profile[0].profileInfo).toStrictEqual({uid: '11234'});
+  });
 });

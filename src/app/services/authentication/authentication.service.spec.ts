@@ -6,6 +6,7 @@ import { ConfigService } from '../config/config.service';
 import { mockService, ServiceMock } from '../mocks/MockService';
 import { Position } from '../script-injector/__types__/Position';
 import { WindowService } from '../window/window.service';
+import { AnalyticsService } from '../analytics/analytics.service';
 
 describe('AuhtenticationService', () => {
   let authenticationService: AuthenticationService;
@@ -17,7 +18,7 @@ describe('AuhtenticationService', () => {
   const libraryUrl = 'http://libraryurl.com';
   const authProvider = 'https://my.preprod.stuff.co.nz';
   const clientId = 'c0f1b219-297b-4104-8300-94c4636768da';
-  const signinRedirectPath = 'signin-callback.html';
+  const signinRedirectPath = '/spade/signin-callback.html';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -37,6 +38,10 @@ describe('AuhtenticationService', () => {
         {
           provide: WindowService,
           useClass: mockService(WindowService)
+        },
+        {
+          provide: AnalyticsService,
+          useClass: mockService(AnalyticsService)
         }
       ]
     });
@@ -54,7 +59,10 @@ describe('AuhtenticationService', () => {
         onLogin: jest.fn(),
         onLogout: jest.fn()
       },
-      location: { hostname: 'www.stuff.co.nz' }
+      location: {
+        host: 'www.stuff.co.nz',
+        protocol: 'https:'
+      }
     });
 
     configService.getConfig.mockReturnValue({
@@ -87,9 +95,15 @@ describe('AuhtenticationService', () => {
 
     expect(authenticationService.StuffLogin.init).toHaveBeenCalledWith({
       client_id: clientId,
-      redirect_uri: `https://www.stuff.co.nz/${signinRedirectPath}`,
+      redirect_uri: `https://www.stuff.co.nz${signinRedirectPath}`,
       authority: authProvider
     });
+  });
+
+  it('should register login/logout callbacks as part of setup', async () => {
+    await authenticationService.setup();
+    expect(authenticationService.StuffLogin.onLogin).toHaveBeenCalled();
+    expect(authenticationService.StuffLogin.onLogout).toHaveBeenCalled();
   });
 
   it('should allow initiating login with underlying library', async () => {

@@ -24,7 +24,8 @@ export class AnalyticsService implements IAnalyticsService {
   constructor(
     private logger: LoggerService,
     private windowService: WindowService
-  ) {}
+  ) {
+  }
 
   private static transformEvent(event: AnalyticsEvent): IAdobeAnalyticsEvent {
     const eventTypesRegistry: { [key in AnalyticsEventsType]: Function } = {
@@ -36,6 +37,13 @@ export class AnalyticsService implements IAnalyticsService {
       }),
       [AnalyticsEventsType.MENU_NAV_OPENED]: () => ({
         event: 'menu.nav'
+      }),
+      [AnalyticsEventsType.LOGIN_CLIKED]: () => ({
+        event: 'login.signup.click',
+        'login.signup.location': 'top'
+      }),
+      [AnalyticsEventsType.AVATAR_CLICKED]: () => ({
+        event: 'avatar.click'
       }),
       [AnalyticsEventsType.STUFF_LOGO_CLICKED]: () => ({
         event: 'stuff.logo'
@@ -134,5 +142,10 @@ export class AnalyticsService implements IAnalyticsService {
     } catch (err) {
       this.logger.error(err);
     }
+  }
+
+  setUserInDataLayer(user: { uid: string } | null) {
+    this.windowService.getWindow().digitalData.user[0].profile[0].profileInfo =
+      user;
   }
 }

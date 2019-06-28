@@ -5,10 +5,12 @@ import { SigninCallbackComponent } from './shared/components/authentication/sign
 
 const routes: Routes = [
   {
-    path: 'signin-callback', component: SigninCallbackComponent
+    path: 'spade/signin-callback',
+    component: SigninCallbackComponent
   },
   {
-    path: '**', component: PageComponent
+    path: '**',
+    component: PageComponent
   }
 ];
 
@@ -16,5 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}
