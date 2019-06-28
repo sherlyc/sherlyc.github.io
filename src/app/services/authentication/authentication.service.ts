@@ -19,7 +19,8 @@ export class AuthenticationService {
     private config: ConfigService,
     private window: WindowService,
     private analyticsService: AnalyticsService
-  ) {}
+  ) {
+  }
 
   StuffLogin!: IStuffLogin;
 
@@ -52,12 +53,10 @@ export class AuthenticationService {
       authProvider
     } = this.config.getConfig().loginLibrary;
 
+    const protocol = this.window.getWindow().location.protocol;
     const host = this.window.getWindow().location.host;
 
-    const redirect_uri =
-      host.includes('localhost')
-        ? `http://${host}${signinRedirectPath}`
-        : `https://${host}${signinRedirectPath}`;
+    const redirect_uri = `${protocol}//${host}${signinRedirectPath}`;
 
     this.StuffLogin.init({
       client_id: clientId,
