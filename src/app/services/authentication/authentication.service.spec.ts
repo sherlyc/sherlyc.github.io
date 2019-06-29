@@ -7,6 +7,8 @@ import { mockService, ServiceMock } from '../mocks/MockService';
 import { Position } from '../script-injector/__types__/Position';
 import { WindowService } from '../window/window.service';
 import { AnalyticsService } from '../analytics/analytics.service';
+import { IStuffLogin } from './__types__/IStuffLogin';
+import { IStuffLoginUser } from './__types__/IStuffLoginUser';
 
 describe('AuhtenticationService', () => {
   let authenticationService: AuthenticationService;
@@ -14,7 +16,9 @@ describe('AuhtenticationService', () => {
   let scriptInjectorService: ServiceMock<ScriptInjectorService>;
   let configService: ServiceMock<ConfigService>;
   let windowService: ServiceMock<WindowService>;
+  let analyticsService: ServiceMock<AnalyticsService>;
 
+  let StuffLogin: IStuffLogin;
   const libraryUrl = 'http://libraryurl.com';
   const authProvider = 'https://my.preprod.stuff.co.nz';
   const clientId = 'c0f1b219-297b-4104-8300-94c4636768da';
@@ -45,20 +49,25 @@ describe('AuhtenticationService', () => {
         }
       ]
     });
+
     authenticationService = TestBed.get(AuthenticationService);
     runtimeService = TestBed.get(RuntimeService);
     scriptInjectorService = TestBed.get(ScriptInjectorService);
     configService = TestBed.get(ConfigService);
     windowService = TestBed.get(WindowService);
+    analyticsService = TestBed.get(AnalyticsService);
+
+    StuffLogin = {
+      init: jest.fn(),
+      login: jest.fn(),
+      signinCallback: jest.fn(),
+      onLogin: jest.fn(),
+      onLogout: jest.fn(),
+      getUser: jest.fn()
+    } as IStuffLogin;
 
     windowService.getWindow.mockReturnValue({
-      StuffLogin: {
-        init: jest.fn(),
-        login: jest.fn(),
-        signinCallback: jest.fn(),
-        onLogin: jest.fn(),
-        onLogout: jest.fn()
-      },
+      StuffLogin,
       location: {
         host: 'www.stuff.co.nz',
         protocol: 'https:'
@@ -93,17 +102,51 @@ describe('AuhtenticationService', () => {
   it('should initiate the library with configuration as part of setup', async () => {
     await authenticationService.setup();
 
-    expect(authenticationService.StuffLogin.init).toHaveBeenCalledWith({
+    expect(StuffLogin.init).toHaveBeenCalledWith({
       client_id: clientId,
       redirect_uri: `https://www.stuff.co.nz${signinRedirectPath}`,
       authority: authProvider
     });
   });
 
+  it('should get current authentication state on library initialisation', async () => {
+    const loggedInUser = {
+      'id_token': 'yourIdToken',
+      'access_token': 'yourAccessToken',
+      'profile': {
+        'sub': '1234',
+        'auth_time': 1508961560,
+        'kid': 'sffx',
+        'jti': '0fab3adc-6106-4b20-bec6-45144b721b31',
+        'name': 'user123',
+        'preferred_username': 'user123@mail.com',
+        'given_name': 'firstName',
+        'family_name': 'surname',
+        'nickname': 'user123',
+        'profile': 'https://my.local.stuff.co.nz:8443/stuff-ssp-web//profile/user123',
+        'picture': 'https://static2.stuff.co.nz/145453/static/images/profile_avatar_n_sm.gif',
+        'gender': 'm',
+        'locale': 'en_NZ',
+        'birthdate': '1992'
+      }
+    } as IStuffLoginUser;
+
+    (StuffLogin.getUser as jest.Mock).mockResolvedValue(loggedInUser);
+
+    authenticationService.authenticationStateChange.subscribe(user => {
+      expect(user).toBe(loggedInUser);
+    });
+
+    await authenticationService.setup();
+
+    expect(analyticsService.setUserInDataLayer).toHaveBeenCalledWith(loggedInUser);
+  });
+
+
   it('should register login/logout callbacks as part of setup', async () => {
     await authenticationService.setup();
-    expect(authenticationService.StuffLogin.onLogin).toHaveBeenCalled();
-    expect(authenticationService.StuffLogin.onLogout).toHaveBeenCalled();
+    expect(StuffLogin.onLogin).toHaveBeenCalled();
+    expect(StuffLogin.onLogout).toHaveBeenCalled();
   });
 
   it('should allow initiating login with underlying library', async () => {
@@ -111,12 +154,12 @@ describe('AuhtenticationService', () => {
 
     authenticationService.login();
 
-    expect(authenticationService.StuffLogin.login).toHaveBeenCalled();
+    expect(StuffLogin.login).toHaveBeenCalled();
   });
 
   it('should allow do a signin callback with underlying library', async () => {
     await authenticationService.signinCallback();
 
-    expect(authenticationService.StuffLogin.signinCallback).toHaveBeenCalled();
+    expect(StuffLogin.signinCallback).toHaveBeenCalled();
   });
 });
