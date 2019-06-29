@@ -14,6 +14,7 @@ import {
   IMoreButtonClicked,
   IWeatherLocationChanged
 } from './__types__/IAnalyticEvents';
+import { IStuffLoginUser } from '../authentication/__types__/IStuffLoginUser';
 
 const home = 'home';
 
@@ -89,7 +90,7 @@ export class AnalyticsService implements IAnalyticsService {
       })
     };
     const adobeEvent = eventTypesRegistry[event.type](event);
-    return { type: 'analytics', ...adobeEvent };
+    return {type: 'analytics', ...adobeEvent};
   }
 
   setup() {
@@ -144,8 +145,8 @@ export class AnalyticsService implements IAnalyticsService {
     }
   }
 
-  setUserInDataLayer(user: { uid: string } | null) {
+  setUserInDataLayer(user: IStuffLoginUser | null) {
     this.windowService.getWindow().digitalData.user[0].profile[0].profileInfo =
-      user;
+      user ? {uid: user.profile.sub} : null;
   }
 }
