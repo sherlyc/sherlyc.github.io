@@ -6,6 +6,7 @@ import { AnalyticsService } from '../../services/analytics/analytics.service';
 import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
 import { ConfigService } from '../../services/config/config.service';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
+import { IStuffLoginUser } from '../../services/authentication/__types__/IStuffLoginUser';
 
 @Component({
   selector: 'app-header',
@@ -19,8 +20,7 @@ export class HeaderComponent implements IContentBlockComponent, OnInit {
     private analyticsService: AnalyticsService,
     private configService: ConfigService,
     private authenticationService: AuthenticationService
-  ) {
-  }
+  ) {}
 
   isLoggedIn = false;
   profileUrl!: string;
@@ -77,7 +77,7 @@ export class HeaderComponent implements IContentBlockComponent, OnInit {
   ngOnInit() {
     this.authenticationService.setup();
     this.authenticationService.authenticationStateChange.subscribe(
-      (user: any) => {
+      (user: IStuffLoginUser) => {
         if (user) {
           this.isLoggedIn = true;
           this.imgSrc = user.profile.picture.includes(
@@ -92,7 +92,7 @@ export class HeaderComponent implements IContentBlockComponent, OnInit {
     );
     this.profileUrl = `${
       this.configService.getConfig().loginLibrary.authProvider
-      }/publicprofile`;
+    }/publicprofile`;
   }
 
   toggleMenu() {
