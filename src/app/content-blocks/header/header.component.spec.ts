@@ -9,6 +9,7 @@ import { ConfigService } from '../../services/config/config.service';
 import { IEnvironmentDefinition } from '../../services/config/__types__/IEnvironmentDefinition';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { Subject } from 'rxjs';
+import { IStuffLoginUser } from '../../services/authentication/__types__/IStuffLoginUser';
 
 describe('Header', () => {
   let fixture: ComponentFixture<HeaderComponent>;
@@ -17,6 +18,29 @@ describe('Header', () => {
   let authenticationService: ServiceMock<AuthenticationService>;
   let component: HeaderComponent;
   const profileUrl = 'https://my.stuff.co.nz/publicprofile';
+
+  const loggedInUser = {
+    id_token: 'yourIdToken',
+    access_token: 'yourAccessToken',
+    profile: {
+      sub: '1234',
+      auth_time: 1508961560,
+      kid: 'sffx',
+      jti: '0fab3adc-6106-4b20-bec6-45144b721b31',
+      name: 'user123',
+      preferred_username: 'user123@mail.com',
+      given_name: 'firstName',
+      family_name: 'surname',
+      nickname: 'user123',
+      profile:
+        'https://my.local.stuff.co.nz:8443/stuff-ssp-web//profile/user123',
+      picture:
+        'https://static2.stuff.co.nz/145453/static/images/profile_avatar_n_sm.gif',
+      gender: 'm',
+      locale: 'en_NZ',
+      birthdate: '1992'
+    }
+  } as IStuffLoginUser;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -145,9 +169,7 @@ describe('Header', () => {
 
     it('should show an avatar when the user is logged in', async () => {
       await component.ngOnInit();
-      authenticationService.authenticationStateChange.next({
-        profile: { picture: '/profile_avatar_n_sm.gif' }
-      });
+      authenticationService.authenticationStateChange.next(loggedInUser);
       fixture.detectChanges();
 
       const user = fixture.debugElement.query(By.css('.user'));
@@ -159,9 +181,7 @@ describe('Header', () => {
 
   it('should show our generic avatar when user picture is a my.stuff generic avatar', async () => {
     await component.ngOnInit();
-    authenticationService.authenticationStateChange.next({
-      profile: { picture: '/profile_avatar_n_sm.gif' }
-    });
+    authenticationService.authenticationStateChange.next(loggedInUser);
 
     fixture.detectChanges();
 
@@ -172,10 +192,10 @@ describe('Header', () => {
   });
 
   it('should show user picture when it has a profile picture to show', async () => {
+    loggedInUser.profile.picture =
+      'www.stuff-static.com/image/my-social-net-pic.png';
     await component.ngOnInit();
-    authenticationService.authenticationStateChange.next({
-      profile: { picture: 'www.stuff-static.com/image/my-social-net-pic.png' }
-    });
+    authenticationService.authenticationStateChange.next(loggedInUser);
 
     fixture.detectChanges();
 
