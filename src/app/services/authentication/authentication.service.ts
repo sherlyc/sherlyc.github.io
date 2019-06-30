@@ -8,6 +8,7 @@ import { WindowService } from '../window/window.service';
 import { IStuffLogin } from './__types__/IStuffLogin';
 import { Subject } from 'rxjs';
 import { AnalyticsService } from '../analytics/analytics.service';
+import { IStuffLoginUser } from './__types__/IStuffLoginUser';
 
 @Injectable({
   providedIn: 'root'
@@ -23,17 +24,7 @@ export class AuthenticationService {
   }
 
   StuffLogin!: IStuffLogin;
-
-  authenticationStateChange = new Subject<any>();
-
-  async setup() {
-    if (this.runtime.isServer()) {
-      return;
-    }
-
-    await this.injectScript();
-    this.initialiseLibrary();
-  }
+  authenticationStateChange = new Subject<IStuffLoginUser>();
 
   private async injectScript() {
     await this.scriptInjectorService.load(
@@ -55,7 +46,6 @@ export class AuthenticationService {
 
     const protocol = this.window.getWindow().location.protocol;
     const host = this.window.getWindow().location.host;
-
     const redirect_uri = `${protocol}//${host}${signinRedirectPath}`;
 
     this.StuffLogin.init({
@@ -63,20 +53,46 @@ export class AuthenticationService {
       redirect_uri,
       authority: authProvider
     });
-
-    this.registerAuthStateCallbacks();
   }
 
-  private registerAuthStateCallbacks() {
-    this.StuffLogin.onLogin((user) => {
-      this.analyticsService.setUserInDataLayer(user);
-      this.authenticationStateChange.next(user);
+  private async processCurrentAuthState() {
+    const userLoggedIn = await this.StuffLogin.getUser();
+    if (userLoggedIn) {
+      this.processLoggedInUser(userLoggedIn);
+    } else {
+      this.processLoggedOutUser();
+    }
+  }
+
+  private registerAuthStateChangeCallbacks() {
+    this.StuffLogin.onLogin((user: IStuffLoginUser) => {
+      this.processLoggedInUser(user);
     });
 
     this.StuffLogin.onLogout(() => {
-      this.analyticsService.setUserInDataLayer(null);
-      this.authenticationStateChange.next(null);
+      this.processLoggedOutUser();
     });
+  }
+
+  private processLoggedInUser(user: IStuffLoginUser) {
+    this.analyticsService.setUserInDataLayer(user);
+    this.authenticationStateChange.next(user);
+  }
+
+  private processLoggedOutUser() {
+    this.analyticsService.setUserInDataLayer(null);
+    this.authenticationStateChange.next(undefined);
+  }
+
+  async setup() {
+    if (this.runtime.isServer()) {
+      return;
+    }
+
+    await this.injectScript();
+    this.initialiseLibrary();
+    this.registerAuthStateChangeCallbacks();
+    await this.processCurrentAuthState();
   }
 
   login() {

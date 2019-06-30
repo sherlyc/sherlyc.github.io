@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit, Renderer2 } from '@angular/core';
+import { Component, Inject, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
 import { IHeader } from '../../../../common/__types__/IHeader';
 import { DOCUMENT } from '@angular/common';
@@ -6,21 +6,21 @@ import { AnalyticsService } from '../../services/analytics/analytics.service';
 import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
 import { ConfigService } from '../../services/config/config.service';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
+import { IStuffLoginUser } from '../../services/authentication/__types__/IStuffLoginUser';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements IContentBlockComponent, OnInit {
+export class HeaderComponent implements IContentBlockComponent, OnInit, OnDestroy {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
     private analyticsService: AnalyticsService,
     private configService: ConfigService,
     private authenticationService: AuthenticationService
-  ) {
-  }
+  ) {}
 
   isLoggedIn = false;
   profileUrl!: string;
@@ -77,7 +77,7 @@ export class HeaderComponent implements IContentBlockComponent, OnInit {
   ngOnInit() {
     this.authenticationService.setup();
     this.authenticationService.authenticationStateChange.subscribe(
-      (user: any) => {
+      (user: IStuffLoginUser) => {
         if (user) {
           this.isLoggedIn = true;
           this.imgSrc = user.profile.picture.includes(
@@ -92,7 +92,7 @@ export class HeaderComponent implements IContentBlockComponent, OnInit {
     );
     this.profileUrl = `${
       this.configService.getConfig().loginLibrary.authProvider
-      }/publicprofile`;
+    }/publicprofile`;
   }
 
   toggleMenu() {
@@ -136,5 +136,9 @@ export class HeaderComponent implements IContentBlockComponent, OnInit {
     this.analyticsService.pushEvent({
       type: AnalyticsEventsType.AVATAR_CLICKED
     });
+  }
+
+  ngOnDestroy(): void {
+    this.authenticationService.authenticationStateChange.unsubscribe();
   }
 }

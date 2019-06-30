@@ -1,3 +1,5 @@
+import { IStuffLoginUser } from './IStuffLoginUser';
+
 interface IStuffLoginConfig {
   client_id: string;
   redirect_uri: string;
@@ -8,8 +10,7 @@ export interface IStuffLogin {
   init: (config: IStuffLoginConfig) => void;
   login: () => void;
   signinCallback: () => void;
-
-  onLogin(param: (user: any) => void): void;
-
-  onLogout(param: () => void): void;
+  getUser: () => Promise<IStuffLoginUser>;
+  onLogout: (p: () => void) => void;
+  onLogin: (param: (user: IStuffLoginUser) => void) => void;
 }
