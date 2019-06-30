@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit, Renderer2 } from '@angular/core';
+import { Component, Inject, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
 import { IHeader } from '../../../../common/__types__/IHeader';
 import { DOCUMENT } from '@angular/common';
@@ -13,7 +13,7 @@ import { IStuffLoginUser } from '../../services/authentication/__types__/IStuffL
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements IContentBlockComponent, OnInit {
+export class HeaderComponent implements IContentBlockComponent, OnInit, OnDestroy {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
@@ -136,5 +136,9 @@ export class HeaderComponent implements IContentBlockComponent, OnInit {
     this.analyticsService.pushEvent({
       type: AnalyticsEventsType.AVATAR_CLICKED
     });
+  }
+
+  ngOnDestroy(): void {
+    this.authenticationService.authenticationStateChange.unsubscribe();
   }
 }
