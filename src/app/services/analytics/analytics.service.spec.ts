@@ -4,6 +4,8 @@ import { mockService, ServiceMock } from '../mocks/MockService';
 import { AnalyticsEventsType } from './__types__/AnalyticsEventsType';
 import { WindowService } from '../window/window.service';
 import { LoggerService } from '../logger/logger.service';
+import { DtmService } from '../dtm/dtm.service';
+import { RuntimeService } from '../runtime/runtime.service';
 
 describe('AnalyticsService', () => {
   let windowService: ServiceMock<WindowService>;
@@ -19,6 +21,14 @@ describe('AnalyticsService', () => {
         {
           provide: LoggerService,
           useClass: mockService(LoggerService)
+        },
+        {
+          provide: DtmService,
+          useClass: mockService(DtmService)
+        },
+        {
+          provide: RuntimeService,
+          useClass: mockService(RuntimeService)
         }
       ]
     });
@@ -289,31 +299,36 @@ describe('AnalyticsService', () => {
     analyticsService.setup();
 
     analyticsService.setUserInDataLayer(null);
-    expect(windowService.getWindow().digitalData.user[0].profile[0].profileInfo).toBeNull();
+    expect(
+      windowService.getWindow().digitalData.user[0].profile[0].profileInfo
+    ).toBeNull();
 
     const user = {
-      'id_token': 'yourIdToken',
-      'access_token': 'yourAccessToken',
-      'profile': {
-        'sub': '11234',
-        'auth_time': 1508961560,
-        'kid': 'sffx',
-        'jti': '0fab3adc-6106-4b20-bec6-45144b721b31',
-        'name': 'user123',
-        'preferred_username': 'user123@mail.com',
-        'given_name': 'firstName',
-        'family_name': 'surname',
-        'nickname': 'user123',
-        'profile': 'https://my.local.stuff.co.nz:8443/stuff-ssp-web//profile/user123',
-        'picture': 'https://static2.stuff.co.nz/145453/static/images/profile_avatar_n_sm.gif',
-        'gender': 'm',
-        'locale': 'en_NZ',
-        'birthdate': '1992'
+      id_token: 'yourIdToken',
+      access_token: 'yourAccessToken',
+      profile: {
+        sub: '11234',
+        auth_time: 1508961560,
+        kid: 'sffx',
+        jti: '0fab3adc-6106-4b20-bec6-45144b721b31',
+        name: 'user123',
+        preferred_username: 'user123@mail.com',
+        given_name: 'firstName',
+        family_name: 'surname',
+        nickname: 'user123',
+        profile:
+          'https://my.local.stuff.co.nz:8443/stuff-ssp-web//profile/user123',
+        picture:
+          'https://static2.stuff.co.nz/145453/static/images/profile_avatar_n_sm.gif',
+        gender: 'm',
+        locale: 'en_NZ',
+        birthdate: '1992'
       }
     };
 
     analyticsService.setUserInDataLayer(user);
-    expect(windowService.getWindow().digitalData.user[0].profile[0].profileInfo)
-      .toStrictEqual({uid: '11234'});
+    expect(
+      windowService.getWindow().digitalData.user[0].profile[0].profileInfo
+    ).toStrictEqual({ uid: '11234' });
   });
 });

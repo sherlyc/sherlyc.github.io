@@ -11,6 +11,8 @@ import { mockService, ServiceMock } from '../../../services/mocks/MockService';
 import { AdService } from '../../../services/ad/ad.service';
 import { CorrelationService } from '../../../services/correlation/correlation.service';
 import { EventsService } from '../../../services/events/events.service';
+import { AnalyticsService } from '../../../services/analytics/analytics.service';
+import Test = jest.Test;
 
 describe('PageComponent', () => {
   let component: PageComponent;
@@ -19,6 +21,7 @@ describe('PageComponent', () => {
   let contentRetrieverMock: ServiceMock<ContentRetrieverService>;
   let adServiceMock: ServiceMock<AdService>;
   let eventsServiceMock: ServiceMock<EventsService>;
+  let anlyticsServiceMock: ServiceMock<AnalyticsService>;
 
   const mockContentBlocks: IContentBlock[] = ([
     {
@@ -58,6 +61,10 @@ describe('PageComponent', () => {
         {
           provide: EventsService,
           useClass: mockService(EventsService)
+        },
+        {
+          provide: AnalyticsService,
+          useClass: mockService(AnalyticsService)
         }
       ],
       schemas: [NO_ERRORS_SCHEMA]
@@ -79,6 +86,7 @@ describe('PageComponent', () => {
     component = fixture.componentInstance;
     contentRetrieverMock = TestBed.get(ContentRetrieverService);
     adServiceMock = TestBed.get(AdService);
+    anlyticsServiceMock = TestBed.get(AnalyticsService);
   });
 
   afterEach(() => {
@@ -166,6 +174,15 @@ describe('PageComponent', () => {
     component.getData();
     fixture.detectChanges(); // input updated
     expect(adServiceMock.notify).toHaveBeenCalled();
+  });
+
+  it('should post nielsen tracking record when page finish render', () => {
+    contentRetrieverMock.getContent.mockReturnValue(
+      of({ title: '', content: mockContentBlocks, apiRequestId: '' })
+    );
+    component.getData();
+    fixture.detectChanges(); // input updated
+    expect(anlyticsServiceMock.trackPageByNielsen).toHaveBeenCalled();
   });
 
   function assertsForSuccessfulRetrieval() {
