@@ -20,8 +20,7 @@ export class AuthenticationService {
     private config: ConfigService,
     private window: WindowService,
     private analyticsService: AnalyticsService
-  ) {
-  }
+  ) {}
 
   StuffLogin!: IStuffLogin;
   authenticationStateChange = new Subject<IStuffLoginUser>();
