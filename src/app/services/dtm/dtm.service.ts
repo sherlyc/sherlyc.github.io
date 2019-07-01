@@ -16,10 +16,19 @@ export class DtmService {
     private windowService: WindowService
   ) {}
 
+  nielsenLoaded!: Promise<void>;
+
   async setup() {
     if (this.runtime.isServer()) {
       return;
     }
+
+    this.nielsenLoaded = new Promise<void>((resolve) => {
+      document.addEventListener('nielsen_loaded', () => {
+        resolve();
+      });
+    });
+
     await this.scriptInjectorService.load(
       ScriptId.dtm,
       this.config.getConfig().dtmUrl
