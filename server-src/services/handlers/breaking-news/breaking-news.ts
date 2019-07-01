@@ -33,7 +33,7 @@ export default async function(
   } catch (e) {
     logger.error(
       params.apiRequestId,
-      `Breaking News API return an error - ${e}`
+      `Breaking News handler returns an error - ${e}`
     );
     return [];
   }
