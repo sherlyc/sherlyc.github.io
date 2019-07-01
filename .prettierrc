@@ -8,6 +8,12 @@
       "options": {
         "parser": "typescript"
       }
+    },
+    {
+      "files": "*.html",
+      "options": {
+        "printWidth": 280
+      }
     }
   ]
 }
