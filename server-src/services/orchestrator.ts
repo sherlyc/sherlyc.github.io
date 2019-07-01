@@ -31,10 +31,9 @@ export default async (params: IParams): Promise<IPage> => {
             },
             {
               type: HandlerInputType.ExternalContent,
-              height: '80px',
+              height: '50px',
               width: '100%',
-              url:
-                'https://interactives.stuff.co.nz/2019/the-homicide-report/hr-uber.html'
+              url: 'https://interactives.stuff.co.nz/2019/cwc/cwc-uber.html'
             },
             {
               type: HandlerInputType.ArticleList,
