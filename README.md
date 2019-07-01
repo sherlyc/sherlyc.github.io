@@ -123,7 +123,8 @@ The following commands can be used as well:
 
 TBD: Add additional notes about how to deploy this on a live system
 
-## Login Library 
+## Login Library
+
 The login library utilised is [StuffLoginSdk](https://stuffnz.atlassian.net/wiki/spaces/MEM/pages/702971995/Stuff+Login+Browser+SDK+-+V1.2.0)
 
 ## Contributing
