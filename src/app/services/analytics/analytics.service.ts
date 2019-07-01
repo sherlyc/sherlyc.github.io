@@ -25,8 +25,7 @@ export class AnalyticsService implements IAnalyticsService {
   constructor(
     private logger: LoggerService,
     private windowService: WindowService
-  ) {
-  }
+  ) {}
 
   private static transformEvent(event: AnalyticsEvent): IAdobeAnalyticsEvent {
     const eventTypesRegistry: { [key in AnalyticsEventsType]: Function } = {
@@ -90,7 +89,7 @@ export class AnalyticsService implements IAnalyticsService {
       })
     };
     const adobeEvent = eventTypesRegistry[event.type](event);
-    return {type: 'analytics', ...adobeEvent};
+    return { type: 'analytics', ...adobeEvent };
   }
 
   setup() {
@@ -146,7 +145,8 @@ export class AnalyticsService implements IAnalyticsService {
   }
 
   setUserInDataLayer(user: IStuffLoginUser | null) {
-    this.windowService.getWindow().digitalData.user[0].profile[0].profileInfo =
-      user ? {uid: user.profile.sub} : null;
+    this.windowService.getWindow().digitalData.user[0].profile[0].profileInfo = user
+      ? { uid: user.profile.sub }
+      : null;
   }
 }

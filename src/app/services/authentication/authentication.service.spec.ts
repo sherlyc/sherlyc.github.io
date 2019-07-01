@@ -111,37 +111,40 @@ describe('AuhtenticationService', () => {
 
   it('should get current authentication state on library initialisation', async () => {
     const loggedInUser = {
-      'id_token': 'yourIdToken',
-      'access_token': 'yourAccessToken',
-      'profile': {
-        'sub': '1234',
-        'auth_time': 1508961560,
-        'kid': 'sffx',
-        'jti': '0fab3adc-6106-4b20-bec6-45144b721b31',
-        'name': 'user123',
-        'preferred_username': 'user123@mail.com',
-        'given_name': 'firstName',
-        'family_name': 'surname',
-        'nickname': 'user123',
-        'profile': 'https://my.local.stuff.co.nz:8443/stuff-ssp-web//profile/user123',
-        'picture': 'https://static2.stuff.co.nz/145453/static/images/profile_avatar_n_sm.gif',
-        'gender': 'm',
-        'locale': 'en_NZ',
-        'birthdate': '1992'
+      id_token: 'yourIdToken',
+      access_token: 'yourAccessToken',
+      profile: {
+        sub: '1234',
+        auth_time: 1508961560,
+        kid: 'sffx',
+        jti: '0fab3adc-6106-4b20-bec6-45144b721b31',
+        name: 'user123',
+        preferred_username: 'user123@mail.com',
+        given_name: 'firstName',
+        family_name: 'surname',
+        nickname: 'user123',
+        profile:
+          'https://my.local.stuff.co.nz:8443/stuff-ssp-web//profile/user123',
+        picture:
+          'https://static2.stuff.co.nz/145453/static/images/profile_avatar_n_sm.gif',
+        gender: 'm',
+        locale: 'en_NZ',
+        birthdate: '1992'
       }
     } as IStuffLoginUser;
 
     (StuffLogin.getUser as jest.Mock).mockResolvedValue(loggedInUser);
 
-    authenticationService.authenticationStateChange.subscribe(user => {
+    authenticationService.authenticationStateChange.subscribe((user) => {
       expect(user).toBe(loggedInUser);
     });
 
     await authenticationService.setup();
 
-    expect(analyticsService.setUserInDataLayer).toHaveBeenCalledWith(loggedInUser);
+    expect(analyticsService.setUserInDataLayer).toHaveBeenCalledWith(
+      loggedInUser
+    );
   });
-
 
   it('should register login/logout callbacks as part of setup', async () => {
     await authenticationService.setup();
