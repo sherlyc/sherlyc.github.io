@@ -4,6 +4,7 @@ import { ScriptId } from '../script-injector/__types__/ScriptId';
 import { ConfigService } from '../config/config.service';
 import { WindowService } from '../window/window.service';
 import { RuntimeService } from '../runtime/runtime.service';
+import { LoadedEvent } from './__types__/LoadedEvent';
 
 @Injectable({
   providedIn: 'root'
@@ -16,18 +17,14 @@ export class DtmService {
     private windowService: WindowService
   ) {}
 
-  nielsenLoaded!: Promise<void>;
+  private loadedPromises: { [key: string]: Promise<void> } = {};
 
   async setup() {
     if (this.runtime.isServer()) {
       return;
     }
 
-    this.nielsenLoaded = new Promise<void>((resolve) => {
-      document.addEventListener('nielsen_loaded', () => {
-        resolve();
-      });
-    });
+    this.initLoadedPromises();
 
     await this.scriptInjectorService.load(
       ScriptId.dtm,
@@ -38,5 +35,19 @@ export class DtmService {
     if (satellite && satellite.pageBottom) {
       satellite.pageBottom();
     }
+  }
+
+  private initLoadedPromises() {
+    Object.values(LoadedEvent).forEach((event) => {
+      this.loadedPromises['event'] = new Promise<void>((resolve) => {
+        document.addEventListener(event, () => {
+          resolve();
+        });
+      });
+    });
+  }
+
+  public getLoadedPromise(loadedEvent: string) {
+    return this.loadedPromises[loadedEvent];
   }
 }

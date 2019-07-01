@@ -17,6 +17,7 @@ import {
 import { IStuffLoginUser } from '../authentication/__types__/IStuffLoginUser';
 import { DtmService } from '../dtm/dtm.service';
 import { RuntimeService } from '../runtime/runtime.service';
+import { LoadedEvent } from '../dtm/__types__/LoadedEvent';
 
 const home = 'home';
 
@@ -149,8 +150,9 @@ export class AnalyticsService implements IAnalyticsService {
   }
 
   setUserInDataLayer(user: IStuffLoginUser | null) {
-    this.windowService.getWindow().digitalData.user[0].profile[0].profileInfo =
-      user ? {uid: user.profile.sub} : null;
+    this.windowService.getWindow().digitalData.user[0].profile[0].profileInfo = user
+      ? { uid: user.profile.sub }
+      : null;
   }
 
   async trackPageByNielsen() {
@@ -159,7 +161,7 @@ export class AnalyticsService implements IAnalyticsService {
     }
 
     try {
-      await this.dtmService.nielsenLoaded;
+      await this.dtmService.getLoadedPromise(LoadedEvent.nielsenLoaded);
       this.windowService
         .getWindow()
         .nol_t({ cid: 'nz-stuff', content: '0', server: 'secure-nz' })
