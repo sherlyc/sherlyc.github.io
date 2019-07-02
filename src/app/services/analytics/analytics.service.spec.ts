@@ -4,10 +4,14 @@ import { mockService, ServiceMock } from '../mocks/MockService';
 import { AnalyticsEventsType } from './__types__/AnalyticsEventsType';
 import { WindowService } from '../window/window.service';
 import { LoggerService } from '../logger/logger.service';
+import { DtmService } from '../dtm/dtm.service';
+import { RuntimeService } from '../runtime/runtime.service';
 
 describe('AnalyticsService', () => {
   let windowService: ServiceMock<WindowService>;
   let analyticsService: AnalyticsService;
+  let dtmService: ServiceMock<DtmService>;
+  let runtimeService: ServiceMock<RuntimeService>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -19,10 +23,20 @@ describe('AnalyticsService', () => {
         {
           provide: LoggerService,
           useClass: mockService(LoggerService)
+        },
+        {
+          provide: DtmService,
+          useClass: mockService(DtmService)
+        },
+        {
+          provide: RuntimeService,
+          useClass: mockService(RuntimeService)
         }
       ]
     });
     analyticsService = TestBed.get(AnalyticsService);
+    dtmService = TestBed.get(DtmService);
+    runtimeService = TestBed.get(RuntimeService);
     windowService = TestBed.get(WindowService);
     windowService.getWindow.mockReturnValue({});
   });
@@ -320,5 +334,25 @@ describe('AnalyticsService', () => {
     expect(
       windowService.getWindow().digitalData.user[0].profile[0].profileInfo
     ).toStrictEqual({ uid: '11234' });
+  });
+
+  it('should not post nielsen page tracking record in SSR', async () => {
+    runtimeService.isServer.mockReturnValue(true);
+
+    await analyticsService.trackPageByNielsen();
+
+    expect(dtmService.getLoadedPromise).not.toHaveBeenCalled();
+  });
+
+  it('should post nielsen page tracking record', async () => {
+    runtimeService.isServer.mockReturnValue(false);
+    // @ts-ignore
+    dtmService.getLoadedPromise.mockResolvedValue(undefined);
+    windowService.getWindow().nol_t = jest.fn();
+
+    await analyticsService.trackPageByNielsen();
+
+    expect(dtmService.getLoadedPromise).toHaveBeenCalled();
+    expect(windowService.getWindow().nol_t).toHaveBeenCalled();
   });
 });

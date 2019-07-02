@@ -7,6 +7,15 @@ export interface IWindow {
   _satellite: {
     pageBottom: () => void;
   };
+  nol_t: (config: {
+    cid: string;
+    content: string;
+    server: string;
+  }) => {
+    record: () => {
+      post: () => void;
+    };
+  };
   videojs: (element: HTMLElement) => IPlayer;
   StuffLogin: IStuffLogin;
 }

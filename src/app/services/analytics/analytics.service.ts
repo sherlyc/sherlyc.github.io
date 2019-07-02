@@ -15,6 +15,9 @@ import {
   IWeatherLocationChanged
 } from './__types__/IAnalyticEvents';
 import { IStuffLoginUser } from '../authentication/__types__/IStuffLoginUser';
+import { DtmService } from '../dtm/dtm.service';
+import { RuntimeService } from '../runtime/runtime.service';
+import { LoadedEvent } from '../dtm/__types__/LoadedEvent';
 
 const home = 'home';
 
@@ -24,7 +27,9 @@ const home = 'home';
 export class AnalyticsService implements IAnalyticsService {
   constructor(
     private logger: LoggerService,
-    private windowService: WindowService
+    private windowService: WindowService,
+    private dtmService: DtmService,
+    private runtime: RuntimeService
   ) {}
 
   private static transformEvent(event: AnalyticsEvent): IAdobeAnalyticsEvent {
@@ -148,5 +153,23 @@ export class AnalyticsService implements IAnalyticsService {
     this.windowService.getWindow().digitalData.user[0].profile[0].profileInfo = user
       ? { uid: user.profile.sub }
       : null;
+  }
+
+  async trackPageByNielsen() {
+    if (this.runtime.isServer()) {
+      return;
+    }
+
+    await this.dtmService.getLoadedPromise(LoadedEvent.nielsenLoaded);
+
+    try {
+      this.windowService
+        .getWindow()
+        .nol_t({ cid: 'nz-stuff', content: '0', server: 'secure-nz' })
+        .record()
+        .post();
+    } catch (err) {
+      this.logger.error(err);
+    }
   }
 }

@@ -11,6 +11,7 @@ import { mockService, ServiceMock } from '../../../services/mocks/MockService';
 import { AdService } from '../../../services/ad/ad.service';
 import { CorrelationService } from '../../../services/correlation/correlation.service';
 import { EventsService } from '../../../services/events/events.service';
+import { AnalyticsService } from '../../../services/analytics/analytics.service';
 
 describe('PageComponent', () => {
   let component: PageComponent;
@@ -19,6 +20,7 @@ describe('PageComponent', () => {
   let contentRetrieverMock: ServiceMock<ContentRetrieverService>;
   let adServiceMock: ServiceMock<AdService>;
   let eventsServiceMock: ServiceMock<EventsService>;
+  let analyticsServiceMock: ServiceMock<AnalyticsService>;
 
   const mockContentBlocks: IContentBlock[] = ([
     {
@@ -58,6 +60,10 @@ describe('PageComponent', () => {
         {
           provide: EventsService,
           useClass: mockService(EventsService)
+        },
+        {
+          provide: AnalyticsService,
+          useClass: mockService(AnalyticsService)
         }
       ],
       schemas: [NO_ERRORS_SCHEMA]
@@ -79,6 +85,7 @@ describe('PageComponent', () => {
     component = fixture.componentInstance;
     contentRetrieverMock = TestBed.get(ContentRetrieverService);
     adServiceMock = TestBed.get(AdService);
+    analyticsServiceMock = TestBed.get(AnalyticsService);
   });
 
   afterEach(() => {
@@ -166,6 +173,15 @@ describe('PageComponent', () => {
     component.getData();
     fixture.detectChanges(); // input updated
     expect(adServiceMock.notify).toHaveBeenCalled();
+  });
+
+  it('should post nielsen tracking record when the page rendering finishes', () => {
+    contentRetrieverMock.getContent.mockReturnValue(
+      of({ title: '', content: mockContentBlocks, apiRequestId: '' })
+    );
+    component.getData();
+    fixture.detectChanges();
+    expect(analyticsServiceMock.trackPageByNielsen).toHaveBeenCalled();
   });
 
   function assertsForSuccessfulRetrieval() {
