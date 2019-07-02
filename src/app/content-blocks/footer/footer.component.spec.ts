@@ -5,10 +5,12 @@ import { CopyrightComponent } from '../../shared/components/copyright/copyright.
 import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
 import { AnalyticsService } from '../../services/analytics/analytics.service';
 import { mockService, ServiceMock } from '../../services/mocks/MockService';
+import { CookieService } from '../../services/cookie/cookie.service';
 
 describe('Footer', () => {
   let fixture: ComponentFixture<FooterComponent>;
   let analyticsService: ServiceMock<AnalyticsService>;
+  let cookieService: ServiceMock<CookieService>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -17,11 +19,16 @@ describe('Footer', () => {
         {
           provide: AnalyticsService,
           useClass: mockService(AnalyticsService)
+        },
+        {
+          provide: CookieService,
+          useClass: mockService(CookieService)
         }
       ]
     }).compileComponents();
     fixture = TestBed.createComponent(FooterComponent);
     analyticsService = TestBed.get(AnalyticsService);
+    cookieService = TestBed.get(CookieService);
   });
 
   it('push analytics event when twitter link is clicked', () => {
@@ -54,6 +61,18 @@ describe('Footer', () => {
     expect(analyticsService.pushEvent).toHaveBeenCalledWith({
       type: AnalyticsEventsType.FOOTER_MENU_CLICKED,
       name: 'Snapchat'
+    });
+  });
+
+  it('should set cookie when desktop link is clicked', () => {
+    fixture.debugElement
+      .query(By.css('.links a[href="https://www.stuff.co.nz/"]'))
+      .nativeElement.click();
+
+    expect(cookieService.set).toHaveBeenCalledWith('site-view', 'd', {
+      domain: '.stuff.co.nz',
+      expires: expect.any(Date),
+      path: '/'
     });
   });
 });
