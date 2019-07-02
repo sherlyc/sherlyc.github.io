@@ -6,26 +6,35 @@ import getBreakingNews from '../../adapters/breaking-news';
 import { IBreakingNewsResponse } from '../../adapters/__types__/IBreakingNewsResponse';
 import { IParams } from '../../__types__/IParams';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
+import logger from '../../utils/logger';
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
   {  }: IBreakingNewsHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const {
-    id,
-    text,
-    link,
-    enabled
-  }: IBreakingNewsResponse = await getBreakingNews(params);
-  return enabled
-    ? [
-        {
-          type: ContentBlockType.BreakingNews,
-          id,
-          text,
-          link
-        } as IBreakingNews
-      ]
-    : [];
+  try {
+    const {
+      id,
+      text,
+      link,
+      enabled
+    }: IBreakingNewsResponse = await getBreakingNews(params);
+    return enabled
+      ? [
+          {
+            type: ContentBlockType.BreakingNews,
+            id,
+            text,
+            link
+          } as IBreakingNews
+        ]
+      : [];
+  } catch (e) {
+    logger.error(
+      params.apiRequestId,
+      `Breaking News handler returns an error - ${e}`
+    );
+    return [];
+  }
 }

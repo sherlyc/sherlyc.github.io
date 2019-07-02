@@ -6,37 +6,46 @@ import { IImageLinkUnit } from '../../../../common/__types__/IImageLinkUnit';
 import { IParams } from '../../__types__/IParams';
 import { IMiniMidStripHandlerInput } from '../__types__/IMiniMidStripHandlerInput';
 import { ListAsset } from '../../listAsset';
+import logger from '../../utils/logger';
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
   { totalArticles, strapName }: IMiniMidStripHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const rawArticles = await getListAsset(
-    params,
-    ListAsset.MiniMidStrip,
-    totalArticles
-  );
+  try {
+    const rawArticles = await getListAsset(
+      params,
+      ListAsset.MiniMidStrip,
+      totalArticles
+    );
 
-  return [
-    {
-      type: ContentBlockType.ColumnContainer,
-      items: rawArticles.reduce(
-        (final, article) => [
-          ...final,
-          {
-            type: ContentBlockType.ImageLinkUnit,
-            id: article.id,
-            strapName: strapName,
-            indexHeadline: article.indexHeadline,
-            imageSrc: article.imageSrc,
-            imageSrcSet: article.imageSrcSet,
-            linkUrl: article.linkUrl,
-            headlineFlags: article.headlineFlags
-          } as IImageLinkUnit
-        ],
-        [] as IContentBlock[]
-      )
-    }
-  ];
+    return [
+      {
+        type: ContentBlockType.ColumnContainer,
+        items: rawArticles.reduce(
+          (final, article) => [
+            ...final,
+            {
+              type: ContentBlockType.ImageLinkUnit,
+              id: article.id,
+              strapName: strapName,
+              indexHeadline: article.indexHeadline,
+              imageSrc: article.imageSrc,
+              imageSrcSet: article.imageSrcSet,
+              linkUrl: article.linkUrl,
+              headlineFlags: article.headlineFlags
+            } as IImageLinkUnit
+          ],
+          [] as IContentBlock[]
+        )
+      }
+    ];
+  } catch (e) {
+    logger.error(
+      params.apiRequestId,
+      `Mini Midstrip handler error for ${strapName} - ${e}`
+    );
+    return [];
+  }
 }
