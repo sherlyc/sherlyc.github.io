@@ -15,7 +15,7 @@ import 'source-map-support/register';
 import api from '../server-src/app';
 import * as helmet from 'helmet';
 import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
-
+import { cacheControl } from './middlewares/cache-control';
 export { AppServerModule } from './app/app.server.module';
 
 // @ts-ignore
@@ -37,10 +37,21 @@ app.use(
 );
 app.use(cors());
 app.use(cookieParser());
-app.use((req, res, next) => {
-  res.set('Cache-Control', 'max-age=60');
-  next();
-});
+
+app.use(
+  cacheControl({
+    '/spade/api/**': 'max-age=60', // 1 minute
+    '/spade/assets/**': 'max-age=86400', // 1 day
+    '/spade/*.js': 'max-age=604800', // 1 week
+    '/spade/*.css': 'max-age=604800', // 1 week
+    '/spade/**': 'max-age=60', // 1 minute
+    '/*.json': 'max-age=60', // 1 minute
+    '/*.js': 'max-age=60', // 1 minute
+    '/index.html': 'max-age=60', // 1 minute
+    '/': 'max-age=60', // 1 minute
+    default: 'max-age=60'
+  })
+);
 
 app.use(api);
 
