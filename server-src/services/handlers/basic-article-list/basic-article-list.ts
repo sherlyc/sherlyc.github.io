@@ -40,30 +40,15 @@ const createBasicTitleArticleBlock = (
   headlineFlags: article.headlineFlags
 });
 
-export default async function(
-  handlerRunner: handlerRunnerFunction,
-  {
-    sourceId,
-    totalBasicArticlesUnit = 0,
-    totalBasicArticleTitleUnit = 0,
-    strapName
-  }: IBasicArticleListHandlerInput,
-  params: IParams
-): Promise<IContentBlock[]> {
-  const basicAdUnit: IBasicAdUnit = {
-    type: ContentBlockType.BasicAdUnit
-  };
-  const sourceIdIsASection = Object.values(Section).includes(sourceId);
-  const totalArticles = totalBasicArticlesUnit + totalBasicArticleTitleUnit;
-  const rawArticles = sourceIdIsASection
-    ? (await getArticleList(sourceId as Section, totalArticles, params)).slice(
-        0,
-        totalArticles
-      )
-    : await getListAsset(params, sourceId as ListAsset, totalArticles);
+const formatAsArticleBlocks = (
+  rawArticles: IRawArticle[],
+  totalBasicArticleUnits: number,
+  strapName: string,
+  basicAdUnit: IBasicAdUnit
+) => {
   return rawArticles.reduce(
     (final, article, index) => {
-      if (index < totalBasicArticlesUnit) {
+      if (index < totalBasicArticleUnits) {
         return [
           ...final,
           createBasicArticleUnitBlock(article, strapName),
@@ -77,5 +62,45 @@ export default async function(
       ];
     },
     [basicAdUnit] as IContentBlock[]
+  );
+};
+
+const getRawArticles = async (
+  sourceId: Section | ListAsset,
+  totalArticles: number,
+  params: IParams
+) => {
+  const sourceIsASection = Object.values(Section).includes(sourceId);
+  if (sourceIsASection) {
+    return (await getArticleList(
+      sourceId as Section,
+      totalArticles,
+      params
+    )).slice(0, totalArticles);
+  }
+  return await getListAsset(params, sourceId as ListAsset, totalArticles);
+};
+
+export default async function(
+  handlerRunner: handlerRunnerFunction,
+  {
+    sourceId,
+    totalBasicArticlesUnit = 0,
+    totalBasicArticleTitleUnit = 0,
+    strapName
+  }: IBasicArticleListHandlerInput,
+  params: IParams
+): Promise<IContentBlock[]> {
+  const basicAdUnit: IBasicAdUnit = {
+    type: ContentBlockType.BasicAdUnit
+  };
+  const totalArticles = totalBasicArticlesUnit + totalBasicArticleTitleUnit;
+  const rawArticles = await getRawArticles(sourceId, totalArticles, params);
+
+  return formatAsArticleBlocks(
+    rawArticles,
+    totalBasicArticlesUnit,
+    strapName,
+    basicAdUnit
   );
 }
