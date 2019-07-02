@@ -160,8 +160,9 @@ export class AnalyticsService implements IAnalyticsService {
       return;
     }
 
+    await this.dtmService.getLoadedPromise(LoadedEvent.nielsenLoaded);
+
     try {
-      await this.dtmService.getLoadedPromise(LoadedEvent.nielsenLoaded);
       this.windowService
         .getWindow()
         .nol_t({ cid: 'nz-stuff', content: '0', server: 'secure-nz' })

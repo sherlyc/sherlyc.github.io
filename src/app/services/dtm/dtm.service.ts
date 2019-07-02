@@ -39,7 +39,7 @@ export class DtmService {
 
   private initLoadedPromises() {
     Object.values(LoadedEvent).forEach((event) => {
-      this.loadedPromises['event'] = new Promise<void>((resolve) => {
+      this.loadedPromises[event] = new Promise<void>((resolve) => {
         document.addEventListener(event, () => {
           resolve();
         });
@@ -47,7 +47,7 @@ export class DtmService {
     });
   }
 
-  public getLoadedPromise(loadedEvent: string) {
+  public getLoadedPromise(loadedEvent: LoadedEvent) {
     return this.loadedPromises[loadedEvent];
   }
 }

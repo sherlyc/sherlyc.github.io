@@ -176,12 +176,12 @@ describe('PageComponent', () => {
     expect(adServiceMock.notify).toHaveBeenCalled();
   });
 
-  it('should post nielsen tracking record when page finish render', () => {
+  it('should post nielsen tracking record when the page rendering finishes', () => {
     contentRetrieverMock.getContent.mockReturnValue(
       of({ title: '', content: mockContentBlocks, apiRequestId: '' })
     );
     component.getData();
-    fixture.detectChanges(); // input updated
+    fixture.detectChanges();
     expect(anlyticsServiceMock.trackPageByNielsen).toHaveBeenCalled();
   });
 
