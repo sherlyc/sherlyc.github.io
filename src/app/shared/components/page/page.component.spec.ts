@@ -12,7 +12,6 @@ import { AdService } from '../../../services/ad/ad.service';
 import { CorrelationService } from '../../../services/correlation/correlation.service';
 import { EventsService } from '../../../services/events/events.service';
 import { AnalyticsService } from '../../../services/analytics/analytics.service';
-import Test = jest.Test;
 
 describe('PageComponent', () => {
   let component: PageComponent;
@@ -21,7 +20,7 @@ describe('PageComponent', () => {
   let contentRetrieverMock: ServiceMock<ContentRetrieverService>;
   let adServiceMock: ServiceMock<AdService>;
   let eventsServiceMock: ServiceMock<EventsService>;
-  let anlyticsServiceMock: ServiceMock<AnalyticsService>;
+  let analyticsServiceMock: ServiceMock<AnalyticsService>;
 
   const mockContentBlocks: IContentBlock[] = ([
     {
@@ -86,7 +85,7 @@ describe('PageComponent', () => {
     component = fixture.componentInstance;
     contentRetrieverMock = TestBed.get(ContentRetrieverService);
     adServiceMock = TestBed.get(AdService);
-    anlyticsServiceMock = TestBed.get(AnalyticsService);
+    analyticsServiceMock = TestBed.get(AnalyticsService);
   });
 
   afterEach(() => {
@@ -182,7 +181,7 @@ describe('PageComponent', () => {
     );
     component.getData();
     fixture.detectChanges();
-    expect(anlyticsServiceMock.trackPageByNielsen).toHaveBeenCalled();
+    expect(analyticsServiceMock.trackPageByNielsen).toHaveBeenCalled();
   });
 
   function assertsForSuccessfulRetrieval() {
