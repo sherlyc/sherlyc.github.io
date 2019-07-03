@@ -102,7 +102,6 @@ describe('TopStoriesHandler', () => {
       .mockResolvedValue(LayoutType.DEFCON);
 
     const expectedContentBlocks = [
-      basicAdUnit,
       articleAsDefconArticle,
       basicAdUnit,
       articleAsBasicArticle,

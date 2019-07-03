@@ -28,14 +28,13 @@ export default async function(
       },
       params
     );
-  }
-  if (layout === LayoutType.DEFCON) {
+  } else if (layout === LayoutType.DEFCON) {
     return handlerRunner(
       {
         type: HandlerInputType.DefconArticleList,
         sourceId: ListAsset.TopStories,
         strapName,
-        totalBasicArticlesUnit
+        totalArticles: totalBasicArticlesUnit
       },
       params
     );

@@ -5,5 +5,5 @@ export interface IDefconArticleListHandlerInput {
   type: HandlerInputType.DefconArticleList;
   sourceId: ListAsset.TopStories;
   strapName: string;
-  totalBasicArticlesUnit?: number;
+  totalArticles?: number;
 }
