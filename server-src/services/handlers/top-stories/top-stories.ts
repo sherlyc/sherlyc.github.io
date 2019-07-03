@@ -1,4 +1,4 @@
-import { IContentBlock } from 'common/__types__/IContentBlock';
+import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 import { ITopStoriesHandlerInput } from '../__types__/ITopStoriesHandlerInput';
 import { handlerRunnerFunction } from '../runner';
 import { IParams } from '../../../services/__types__/IParams';
@@ -25,6 +25,17 @@ export default async function(
         strapName,
         totalBasicArticlesUnit,
         totalBasicArticleTitleUnit
+      },
+      params
+    );
+  }
+  if (layout === LayoutType.DEFCON) {
+    return handlerRunner(
+      {
+        type: HandlerInputType.DefconArticleList,
+        sourceId: ListAsset.TopStories,
+        strapName,
+        totalBasicArticlesUnit
       },
       params
     );

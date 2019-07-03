@@ -6,6 +6,7 @@ import * as jsonfeed from '../../adapters/jsonfeed';
 import handlerRunner from '../runner';
 import * as layoutRetriever from '../../../services/adapters/layout-retriever';
 import { LayoutType } from '../../../services/adapters/__types__/LayoutType';
+import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 
 describe('TopStoriesHandler', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
@@ -26,6 +27,7 @@ describe('TopStoriesHandler', () => {
   };
 
   const articleAsBasicArticle = {
+    type: ContentBlockType.BasicArticleUnit,
     id: '1',
     strapName: 'Latest',
     headlineFlags: [],
@@ -34,8 +36,20 @@ describe('TopStoriesHandler', () => {
     indexHeadline: 'Headline 1',
     introText: 'Intro 1',
     lastPublishedTime: 1,
-    linkUrl: '/link1',
-    type: 'BasicArticleUnit'
+    linkUrl: '/link1'
+  };
+
+  const articleAsDefconArticle = {
+    type: ContentBlockType.DefconArticleUnit,
+    id: '1',
+    strapName: 'Latest',
+    headlineFlags: [],
+    imageSrc: '1.jpg',
+    imageSrcSet: '1.jpg 1w',
+    indexHeadline: 'Headline 1',
+    introText: 'Intro 1',
+    lastPublishedTime: 1,
+    linkUrl: '/link1'
   };
 
   beforeEach(() => {
@@ -60,6 +74,36 @@ describe('TopStoriesHandler', () => {
       articleAsBasicArticle,
       basicAdUnit,
       articleAsBasicArticle,
+      basicAdUnit,
+      articleAsBasicArticle,
+      basicAdUnit
+    ];
+
+    const contentBlocks = await topStoriesHandler(
+      handlerRunner,
+      handlerInput,
+      params
+    );
+
+    expect(contentBlocks).toEqual(expectedContentBlocks);
+  });
+
+  it('should return first article as defcon when layout is defcon', async () => {
+    const handlerInput: ITopStoriesHandlerInput = {
+      type: HandlerInputType.TopStories,
+      strapName: 'Latest',
+      totalBasicArticlesUnit: 2
+    };
+    const rawArticles = [article, article];
+
+    jest.spyOn(jsonfeed, 'getListAsset').mockResolvedValue(rawArticles);
+    jest
+      .spyOn(layoutRetriever, 'layoutRetriever')
+      .mockResolvedValue(LayoutType.DEFCON);
+
+    const expectedContentBlocks = [
+      basicAdUnit,
+      articleAsDefconArticle,
       basicAdUnit,
       articleAsBasicArticle,
       basicAdUnit
