@@ -71,6 +71,7 @@ const getRawArticles = async (
   params: IParams
 ) => {
   const sourceIsASection = Object.values(Section).includes(sourceId);
+
   if (sourceIsASection) {
     return (await getArticleList(
       sourceId as Section,
@@ -78,7 +79,15 @@ const getRawArticles = async (
       params
     )).slice(0, totalArticles);
   }
-  return await getListAsset(params, sourceId as ListAsset, totalArticles);
+
+  const listAssets = await getListAsset(
+    params,
+    sourceId as ListAsset,
+    totalArticles
+  );
+  return sourceId === ListAsset.TopStories
+    ? [listAssets[1], listAssets[0], ...listAssets.slice(2)]
+    : listAssets;
 };
 
 export default async function(
@@ -96,7 +105,6 @@ export default async function(
   };
   const totalArticles = totalBasicArticlesUnit + totalBasicArticleTitleUnit;
   const rawArticles = await getRawArticles(sourceId, totalArticles, params);
-
   return formatAsArticleBlocks(
     rawArticles,
     totalBasicArticlesUnit,
