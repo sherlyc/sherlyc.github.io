@@ -26,7 +26,13 @@ export class AdService {
   notify() {
     setTimeout(() => {
       this.zone.runOutsideAngular(() => {
-        this.document.dispatchEvent(new Event('NavigationEnd'));
+        if ('name' in Event.prototype.constructor) {
+          this.document.dispatchEvent(new Event('NavigationEnd'));
+        } else {
+          const e = this.document.createEvent('Event');
+          e.initEvent('NavigationEnd', true, true);
+          this.document.dispatchEvent(e);
+        }
       });
     }, 0);
   }

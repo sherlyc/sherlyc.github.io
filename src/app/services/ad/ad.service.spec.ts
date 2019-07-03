@@ -53,4 +53,28 @@ describe('AdService', () => {
       done();
     });
   });
+
+  it('should notify ie11', (done) => {
+    const document: ServiceMock<Document> = TestBed.get(DOCUMENT);
+    document.dispatchEvent = jest.fn();
+    document.createEvent = jest.fn();
+
+    const fakeEvent = {
+      initEvent: jest.fn()
+    };
+
+    document.createEvent.mockReturnValue(fakeEvent);
+    (window as any).Event = { prototype: { constructor: {} } };
+    adService.notify();
+    setTimeout(() => {
+      expect(document.createEvent).toHaveBeenCalledWith('Event');
+      expect(fakeEvent.initEvent).toHaveBeenCalledWith(
+        'NavigationEnd',
+        true,
+        true
+      );
+      expect(document.dispatchEvent).toHaveBeenCalledWith(fakeEvent);
+      done();
+    });
+  });
 });
