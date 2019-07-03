@@ -227,4 +227,58 @@ describe('BasicArticleListHandler', () => {
     ];
     expect(contentBlocks).toEqual(expectedContentBlocks);
   });
+
+  it('should swap the first and second articles for top stories', async () => {
+    const rawTopStories = [
+      articleNumberOne,
+      articleNumberTwo,
+      articleNumberOne
+    ];
+    (getListAsset as jest.Mock).mockResolvedValue(rawTopStories);
+    const expectedContentBlocks = [
+      basicAdUnit,
+      articleNumberTwoAsBasicArticle,
+      basicAdUnit,
+      articleNumberOneAsBasicArticle,
+      basicAdUnit,
+      articleNumberOneAsBasicArticle,
+      basicAdUnit
+    ];
+
+    const contentBlocks = await basicArticleListHandler(
+      jest.fn(),
+      {
+        type: HandlerInputType.ArticleList,
+        strapName: 'business',
+        sourceId: ListAsset.TopStories,
+        totalBasicArticlesUnit: 3
+      },
+      params
+    );
+
+    expect(contentBlocks).toEqual(expectedContentBlocks);
+  });
+
+  it('should return article as is if there is only one article', async () => {
+    const rawTopStories = [articleNumberOne];
+    (getListAsset as jest.Mock).mockResolvedValue(rawTopStories);
+    const expectedContentBlocks = [
+      basicAdUnit,
+      articleNumberOneAsBasicArticle,
+      basicAdUnit
+    ];
+
+    const contentBlocks = await basicArticleListHandler(
+      jest.fn(),
+      {
+        type: HandlerInputType.ArticleList,
+        strapName: 'business',
+        sourceId: ListAsset.TopStories,
+        totalBasicArticlesUnit: 1
+      },
+      params
+    );
+
+    expect(contentBlocks).toEqual(expectedContentBlocks);
+  });
 });
