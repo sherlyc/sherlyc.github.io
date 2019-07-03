@@ -54,7 +54,7 @@ describe('AdService', () => {
     });
   });
 
-  it('should notify ie11', (done) => {
+  it('should notify the adnostic sdk in IE11', (done) => {
     const document: ServiceMock<Document> = TestBed.get(DOCUMENT);
     document.dispatchEvent = jest.fn();
     document.createEvent = jest.fn();
