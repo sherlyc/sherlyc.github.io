@@ -2,10 +2,10 @@ import { HandlerInputType } from '../__types__/HandlerInputType';
 import { IParams } from '../../../services/__types__/IParams';
 import topStoriesHandler from './top-stories';
 import { ITopStoriesHandlerInput } from '../__types__/ITopStoriesHandlerInput';
-import { getListAsset } from '../../adapters/jsonfeed';
+import * as jsonfeed from '../../adapters/jsonfeed';
 import handlerRunner from '../runner';
-
-jest.mock('../../adapters/jsonfeed');
+import * as layoutRetriever from '../../../services/adapters/layout-retriever';
+import { LayoutType } from '../../../services/adapters/__types__/LayoutType';
 
 describe('TopStoriesHandler', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
@@ -42,7 +42,7 @@ describe('TopStoriesHandler', () => {
     jest.resetModules();
   });
 
-  it('should return default layout', async () => {
+  it('should return basic articles when layout is default', async () => {
     const handlerInput: ITopStoriesHandlerInput = {
       type: HandlerInputType.TopStories,
       strapName: 'Latest',
@@ -50,7 +50,10 @@ describe('TopStoriesHandler', () => {
     };
     const rawArticles = [article, article, article];
 
-    (getListAsset as jest.Mock).mockResolvedValue(rawArticles);
+    jest.spyOn(jsonfeed, 'getListAsset').mockResolvedValue(rawArticles);
+    jest
+      .spyOn(layoutRetriever, 'layoutRetriever')
+      .mockResolvedValue(LayoutType.DEFAULT);
 
     const expectedContentBlocks = [
       basicAdUnit,

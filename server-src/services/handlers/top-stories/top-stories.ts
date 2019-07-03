@@ -4,6 +4,8 @@ import { handlerRunnerFunction } from '../runner';
 import { IParams } from '../../../services/__types__/IParams';
 import { HandlerInputType } from '../__types__/HandlerInputType';
 import { ListAsset } from '../../../services/listAsset';
+import { layoutRetriever } from '../../../services/adapters/layout-retriever';
+import { LayoutType } from '../../../services/adapters/__types__/LayoutType';
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -14,14 +16,18 @@ export default async function(
   }: ITopStoriesHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  return handlerRunner(
-    {
-      type: HandlerInputType.ArticleList,
-      sourceId: ListAsset.TopStories,
-      strapName,
-      totalBasicArticlesUnit,
-      totalBasicArticleTitleUnit
-    },
-    params
-  );
+  const layout = await layoutRetriever(params);
+  if (layout === LayoutType.DEFAULT) {
+    return handlerRunner(
+      {
+        type: HandlerInputType.ArticleList,
+        sourceId: ListAsset.TopStories,
+        strapName,
+        totalBasicArticlesUnit,
+        totalBasicArticleTitleUnit
+      },
+      params
+    );
+  }
+  return [];
 }
