@@ -1,4 +1,5 @@
 import { IContentBlock } from '../../../common/__types__/IContentBlock';
+import TopStories from './top-stories/top-stories';
 import ArticleList from './basic-article-list/basic-article-list';
 import ArticleSection from './basic-article-section/basic-article-section';
 import BreakingNews from './breaking-news/breaking-news';
@@ -20,6 +21,7 @@ type handlerFunction = (
 ) => Promise<IContentBlock[]>;
 
 const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
+  TopStories,
   ArticleList,
   MidStrip,
   MiniMidStrip,

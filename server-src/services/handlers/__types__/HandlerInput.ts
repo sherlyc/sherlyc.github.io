@@ -8,8 +8,10 @@ import { IWeatherHandlerInput } from './IWeatherHandlerInput';
 import { IMiniMidStripHandlerInput } from './IMiniMidStripHandlerInput';
 import { IVideoHandlerInput } from './IVideoHandlerInput';
 import { IExperimentHandlerInput } from './IExperimentHandlerInput';
+import { ITopStoriesHandlerInput } from './ITopStoriesHandlerInput';
 
 export type HandlerInput =
+  | ITopStoriesHandlerInput
   | IBasicArticleListHandlerInput
   | IMidStripHandlerInput
   | IMiniMidStripHandlerInput
