@@ -86,7 +86,7 @@ const getRawArticles = async (
     totalArticles
   );
   return sourceId === ListAsset.TopStories
-    ? [listAssets[1], listAssets[0], ...listAssets.slice(2)]
+    ? [listAssets[1], listAssets[0], ...listAssets.slice(2)].filter(Boolean)
     : listAssets;
 };
 
