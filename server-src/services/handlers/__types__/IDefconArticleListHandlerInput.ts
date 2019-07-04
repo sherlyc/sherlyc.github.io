@@ -1,5 +1,5 @@
 import { HandlerInputType } from './HandlerInputType';
-import { ListAsset } from 'server-src/services/listAsset';
+import { ListAsset } from '../../../services/listAsset';
 
 export interface IDefconArticleListHandlerInput {
   type: HandlerInputType.DefconArticleList;

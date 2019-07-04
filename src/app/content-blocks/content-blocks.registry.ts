@@ -39,6 +39,7 @@ export const contentBlockComponents = [
 const registry: {
   [key: string]: Type<IContentBlockComponent>;
 } = {
+  DefconArticleUnitComponent,
   BasicArticleUnitComponent,
   BasicArticleSectionComponent,
   BasicArticleTitleUnitComponent,

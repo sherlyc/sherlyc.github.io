@@ -1,0 +1,31 @@
+a {
+  display: block;
+  text-decoration: none;
+  margin-bottom: 10px;
+  color: #000;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+img {
+  width: 100%;
+  margin-bottom: -4px;
+}
+
+.image {
+  overflow: hidden;
+  margin: 5px -10px;
+}
+
+.headline {
+  padding: 0 8px;
+}
+
+.intro {
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  padding: 0 8px;
+}
