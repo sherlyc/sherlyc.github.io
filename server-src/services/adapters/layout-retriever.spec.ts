@@ -1,6 +1,6 @@
 import { IParams } from '../__types__/IParams';
 import http from '../utils/http';
-import config from '../utils/config';
+import logger from '../utils/logger';
 import { layoutRetriever } from './layout-retriever';
 import { LayoutType } from './__types__/LayoutType';
 
@@ -19,7 +19,22 @@ describe('layout retriever', () => {
 
   it('should return defcon when layout retrieved is defcon', async () => {
     const layoutInfo = {
-      layout: '/TopLeftArea/esi_parsys/ESIParsys/defcon_top_stories/lists/list1'
+      section: '/content/desktop/stuff/jcr:content',
+      title: null,
+      layouts: [
+        {
+          layout:
+            '/TopLeftArea/esi_parsys/ESIParsys/defcon_top_stories/lists/list1',
+          asset_type: 'LIST',
+          asset_id: 63768623
+        },
+        {
+          layout:
+            '/TopLeftArea/two_column_container/RightColumnParsys/title_headlines/lists/list1',
+          asset_type: 'LIST',
+          asset_id: 63868237
+        }
+      ]
     };
     (http(params).get as jest.Mock).mockResolvedValue({
       status: 200,
@@ -31,7 +46,22 @@ describe('layout retriever', () => {
 
   it('should return default when layout retrieved is portrait', async () => {
     const layoutInfo = {
-      layout: '/TopLeftArea/esi_parsys/ESIParsys/portrait/something'
+      section: '/content/desktop/stuff/jcr:content',
+      title: null,
+      layouts: [
+        {
+          layout:
+            '/TopLeftArea/esi_parsys/ESIParsys/portrait_top_stories/lists/list1',
+          asset_type: 'LIST',
+          asset_id: 63768623
+        },
+        {
+          layout:
+            '/TopLeftArea/two_column_container/RightColumnParsys/title_headlines/lists/list1',
+          asset_type: 'LIST',
+          asset_id: 63868237
+        }
+      ]
     };
     (http(params).get as jest.Mock).mockResolvedValue({
       status: 200,
@@ -41,11 +71,13 @@ describe('layout retriever', () => {
     expect(await layoutRetriever(params)).toEqual(LayoutType.DEFAULT);
   });
 
-  it('should throw error when the request is unsuccessful', async () => {
+  it('should log error and return default layout when the request is unsuccessful', async () => {
     (http(params).get as jest.Mock).mockResolvedValue({ status: 500 });
+    const loggerSpy = jest.spyOn(logger, 'error');
 
-    await expect(layoutRetriever(params)).rejects.toEqual(
-      new Error('Failed to fetch layout')
-    );
+    const layout = await layoutRetriever(params);
+
+    expect(loggerSpy).toHaveBeenCalled();
+    expect(layout).toBe(LayoutType.DEFAULT);
   });
 });

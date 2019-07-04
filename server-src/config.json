@@ -10,7 +10,7 @@
     "dailyFixAssetId": "63784884",
     "weatherAPI": "https://www.stuff.co.nz/do/weather_for_location",
     "breakingNewsApi": "https://api.stuff.co.nz/isomorphic-api/breakingNews?field=state",
-    "layoutAPI": "http://demo2234626.mockable.io/layout",
+    "layoutAPI": "http://www.stuff.co.nz/_json/layout/jcr:content",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
       "level": "info",
@@ -35,7 +35,7 @@
     "dailyFixAssetId": "63784884",
     "weatherAPI": "https://www-preprod.stuff.co.nz/do/weather_for_location",
     "breakingNewsApi": "https://api-preprod.stuff.co.nz/isomorphic-api/breakingNews?field=state",
-    "layoutAPI": "http://demo2234626.mockable.io/layout",
+    "layoutAPI": "http://www-preprod.stuff.co.nz/_json/layout/jcr:content",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
       "level": "info",
@@ -60,7 +60,7 @@
     "dailyFixAssetId": "63784884",
     "weatherAPI": "https://www.stuff.co.nz/do/weather_for_location",
     "breakingNewsApi": "https://api.stuff.co.nz/isomorphic-api/breakingNews?field=state",
-    "layoutAPI": "http://demo2234626.mockable.io/layout",
+    "layoutAPI": "http://www-preprod.stuff.co.nz/_json/layout/jcr:content",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
       "level": "debug",
@@ -85,7 +85,7 @@
     "dailyFixAssetId": "63784884",
     "weatherAPI": "https://www.stuff.co.nz/do/weather_for_location",
     "breakingNewsApi": "https://api.stuff.co.nz/isomorphic-api/breakingNews?field=state",
-    "layoutAPI": "http://demo2234626.mockable.io/layout",
+    "layoutAPI": "http://www-preprod.stuff.co.nz/_json/layout/jcr:content",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
       "level": "debug",
