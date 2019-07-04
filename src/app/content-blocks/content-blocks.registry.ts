@@ -1,5 +1,6 @@
 import { VideoUnitComponent } from './video-unit/video-unit.component';
 import { Type } from '@angular/core';
+import { DefconArticleUnitComponent } from './defcon-article-unit/defcon-article-unit.component';
 import { BasicArticleUnitComponent } from './basic-article-unit/basic-article-unit.component';
 import { ErrorBlockComponent } from './error-block/error-block.component';
 import { IContentBlockComponent } from './__types__/IContentBlockComponent';
@@ -17,6 +18,7 @@ import { BasicArticleTitleUnitComponent } from './basic-article-title-unit/basic
 import { ExperimentContainerComponent } from './experiment-container/experiment-container.component';
 
 export const contentBlockComponents = [
+  DefconArticleUnitComponent,
   BasicArticleUnitComponent,
   BasicArticleSectionComponent,
   BasicArticleTitleUnitComponent,
