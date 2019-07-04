@@ -7,84 +7,57 @@ import handlerRunner from '../runner';
 import * as layoutRetriever from '../../../services/adapters/layout-retriever';
 import { LayoutType } from '../../../services/adapters/__types__/LayoutType';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
+import { ListAsset } from '../../../services/listAsset';
+import { IBasicArticleListHandlerInput } from '../__types__/IBasicArticleListHandlerInput';
+import { IDefconArticleListHandlerInput } from '../__types__/IDefconArticleListHandlerInput';
 
 describe('TopStoriesHandler', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
+  const strapName = 'Latest';
 
-  const basicAdUnit = {
-    type: 'BasicAdUnit'
-  };
-
-  const article = {
-    id: '1',
-    indexHeadline: 'Headline 1',
-    introText: 'Intro 1',
-    linkUrl: '/link1',
-    imageSrc: '1.jpg',
-    imageSrcSet: '1.jpg 1w',
-    lastPublishedTime: 1,
-    headlineFlags: []
-  };
-
-  const articleAsBasicArticle = {
-    type: ContentBlockType.BasicArticleUnit,
-    id: '1',
-    strapName: 'Latest',
-    headlineFlags: [],
-    imageSrc: '1.jpg',
-    imageSrcSet: '1.jpg 1w',
-    indexHeadline: 'Headline 1',
-    introText: 'Intro 1',
-    lastPublishedTime: 1,
-    linkUrl: '/link1'
-  };
-
-  const articleAsDefconArticle = {
-    type: ContentBlockType.DefconArticleUnit,
-    id: '1',
-    strapName: 'Latest',
-    headlineFlags: [],
-    imageSrc: '1.jpg',
-    imageSrcSet: '1.jpg 1w',
-    indexHeadline: 'Headline 1',
-    introText: 'Intro 1',
-    lastPublishedTime: 1,
-    linkUrl: '/link1'
-  };
-
-  beforeEach(() => {
-    jest.resetModules();
-  });
-
-  it('should return basic articles when layout is default', async () => {
-    const handlerInput: ITopStoriesHandlerInput = {
-      type: HandlerInputType.TopStories,
-      strapName: 'Latest',
-      totalBasicArticlesUnit: 3
-    };
-    const rawArticles = [article, article, article];
-
-    jest.spyOn(jsonfeed, 'getListAsset').mockResolvedValue(rawArticles);
+  it('should create basic article list when layout retrieved is default', async () => {
     jest
       .spyOn(layoutRetriever, 'layoutRetriever')
       .mockResolvedValue(LayoutType.DEFAULT);
+    const handlerFunction = jest.fn();
+    const handlerInput: ITopStoriesHandlerInput = {
+      type: HandlerInputType.TopStories,
+      strapName: strapName,
+      totalBasicArticlesUnit: 3,
+      totalBasicArticleTitleUnit: 3
+    };
+    const basicArticleListInput: IBasicArticleListHandlerInput = {
+      type: HandlerInputType.ArticleList,
+      sourceId: ListAsset.TopStories,
+      strapName,
+      totalBasicArticlesUnit: 3,
+      totalBasicArticleTitleUnit: 3
+    };
 
-    const expectedContentBlocks = [
-      basicAdUnit,
-      articleAsBasicArticle,
-      basicAdUnit,
-      articleAsBasicArticle,
-      basicAdUnit,
-      articleAsBasicArticle,
-      basicAdUnit
-    ];
+    await topStoriesHandler(handlerFunction, handlerInput, params);
 
-    const contentBlocks = await topStoriesHandler(
-      handlerRunner,
-      handlerInput,
-      params
-    );
+    expect(handlerFunction).toHaveBeenCalledWith(basicArticleListInput, params);
+  });
 
-    expect(contentBlocks).toEqual(expectedContentBlocks);
+  it('should create defcon article list when layout retrieved is defcon', async () => {
+    jest
+      .spyOn(layoutRetriever, 'layoutRetriever')
+      .mockResolvedValue(LayoutType.DEFCON);
+    const handlerFunction = jest.fn();
+    const handlerInput: ITopStoriesHandlerInput = {
+      type: HandlerInputType.TopStories,
+      strapName: strapName,
+      totalBasicArticlesUnit: 3
+    };
+    const basicArticleListInput: IDefconArticleListHandlerInput = {
+      type: HandlerInputType.DefconArticleList,
+      sourceId: ListAsset.TopStories,
+      strapName,
+      totalArticles: 3
+    };
+
+    await topStoriesHandler(handlerFunction, handlerInput, params);
+
+    expect(handlerFunction).toHaveBeenCalledWith(basicArticleListInput, params);
   });
 });

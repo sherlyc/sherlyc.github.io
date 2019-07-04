@@ -70,7 +70,7 @@ describe('DefconArticleList', () => {
     jest.resetModules();
   });
 
-  it('should return first article as defcon when layout is defcon', async () => {
+  it('should return first article as defcon and others as basic articles when layout is defcon', async () => {
     const handlerInput: IDefconArticleListHandlerInput = {
       type: HandlerInputType.DefconArticleList,
       sourceId: ListAsset.TopStories,
