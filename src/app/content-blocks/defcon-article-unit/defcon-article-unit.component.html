@@ -5,6 +5,10 @@
       <img itemprop="image" src="{{ input.imageSrc }}" alt="{{ input.indexHeadline }}" loading="lazy" [attr.srcset]="input.imageSrcSet ? input.imageSrcSet : null" />
     </div>
     <app-headline [headline]="input.indexHeadline"></app-headline>
-    <span class="intro">{{ input.introText }}</span>
+    <p>
+      <span class="time-ago">{{ input.lastPublishedTime * 1000 | amTimeAgo }}</span>
+      <span class="separator"></span>
+      <span class="intro">{{ input.introText }}</span>
+    </p>
   </a>
 </article>
