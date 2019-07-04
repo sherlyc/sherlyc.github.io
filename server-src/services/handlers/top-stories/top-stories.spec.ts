@@ -87,33 +87,4 @@ describe('TopStoriesHandler', () => {
 
     expect(contentBlocks).toEqual(expectedContentBlocks);
   });
-
-  it('should return first article as defcon when layout is defcon', async () => {
-    const handlerInput: ITopStoriesHandlerInput = {
-      type: HandlerInputType.TopStories,
-      strapName: 'Latest',
-      totalBasicArticlesUnit: 2
-    };
-    const rawArticles = [article, article];
-
-    jest.spyOn(jsonfeed, 'getListAsset').mockResolvedValue(rawArticles);
-    jest
-      .spyOn(layoutRetriever, 'layoutRetriever')
-      .mockResolvedValue(LayoutType.DEFCON);
-
-    const expectedContentBlocks = [
-      articleAsDefconArticle,
-      basicAdUnit,
-      articleAsBasicArticle,
-      basicAdUnit
-    ];
-
-    const contentBlocks = await topStoriesHandler(
-      handlerRunner,
-      handlerInput,
-      params
-    );
-
-    expect(contentBlocks).toEqual(expectedContentBlocks);
-  });
 });
