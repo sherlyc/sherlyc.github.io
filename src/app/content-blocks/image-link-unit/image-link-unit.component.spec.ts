@@ -6,6 +6,7 @@ import { By } from '@angular/platform-browser';
 import { AnalyticsEventsType } from 'src/app/services/analytics/__types__/AnalyticsEventsType';
 import { ServiceMock, mockService } from 'src/app/services/mocks/MockService';
 import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
+import { SharedModule } from '../../shared/shared.module';
 
 describe('ImageLinkUnitComponent', () => {
   let component: ImageLinkUnitComponent;
@@ -25,7 +26,7 @@ describe('ImageLinkUnitComponent', () => {
 
   beforeEach(async () =>
     TestBed.configureTestingModule({
-      imports: [],
+      imports: [SharedModule],
       declarations: [ImageLinkUnitComponent],
       providers: [
         {
