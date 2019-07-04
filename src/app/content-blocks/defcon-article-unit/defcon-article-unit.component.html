@@ -1,14 +1,10 @@
 <article itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
   <meta itemprop="position" content="{{ index }}" />
   <a itemprop="url" href="{{ input.linkUrl }}" appOpenExternalLink="{{ input.linkUrl }}">
-    <div class="image">
+    <div class="row">
       <img itemprop="image" src="{{ input.imageSrc }}" alt="{{ input.indexHeadline }}" loading="lazy" [attr.srcset]="input.imageSrcSet ? input.imageSrcSet : null" />
     </div>
-    <div class="row headline">
-      <app-headline [headline]="input.indexHeadline"></app-headline>
-    </div>
-    <div class="row">
-      <span class="intro">{{ input.introText }}</span>
-    </div>
+    <app-headline [headline]="input.indexHeadline"></app-headline>
+    <span class="intro">{{ input.introText }}</span>
   </a>
 </article>

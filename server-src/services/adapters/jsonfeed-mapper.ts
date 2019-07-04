@@ -47,8 +47,8 @@ function mapUrlAsset(item: IJsonFeedUrl): IRawArticle {
   };
 }
 
-function getImageWidth(key: string) {
-  return `${key.split('x')[0]}w`;
+function getImageWidth(dimensions: string) {
+  return `${dimensions.split('x')[0]}w`;
 }
 
 function getImageSrcSet(item: IJsonFeedArticle | IJsonFeedUrl) {
