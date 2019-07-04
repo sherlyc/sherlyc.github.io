@@ -1,4 +1,5 @@
 import { ContentBlockType } from './ContentBlockType';
+import { HeadlineFlags } from '../HeadlineFlags';
 
 export interface IBasicArticleUnit {
   type: ContentBlockType.BasicArticleUnit;
@@ -10,5 +11,5 @@ export interface IBasicArticleUnit {
   imageSrc: string | null;
   imageSrcSet: string | null;
   lastPublishedTime: number;
-  headlineFlags: string[];
+  headlineFlags: HeadlineFlags[];
 }

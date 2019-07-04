@@ -1,3 +1,5 @@
+import { HeadlineFlags } from '../../../../common/HeadlineFlags';
+
 export interface IRawArticle {
   id: string;
   indexHeadline: string;
@@ -6,5 +8,5 @@ export interface IRawArticle {
   imageSrc: string | null;
   imageSrcSet: string | null;
   lastPublishedTime: number;
-  headlineFlags: string[];
+  headlineFlags: HeadlineFlags[];
 }
