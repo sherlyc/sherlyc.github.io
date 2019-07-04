@@ -1,4 +1,4 @@
-import { IRawArticle } from "../../adapters/__types__/IRawArticle";
+import { IRawArticle } from '../../adapters/__types__/IRawArticle';
 
 describe('DefconArticleList', () => {
   const basicAdUnit = {
@@ -38,20 +38,24 @@ describe('DefconArticleList', () => {
     headlineFlags: []
   };
 
-  const rawDefconArticleList: IRawArticle[] = [articleNumberOne, articleNumberTwo, articleNumberThree];
+  const rawDefconArticleList: IRawArticle[] = [
+    articleNumberOne,
+    articleNumberTwo,
+    articleNumberThree
+  ];
 
   const articleNumberOneAsDefconArticleUnit = {
-    ... articleNumberOne,
+    ...articleNumberOne,
     type: 'DefconArticleUnit'
   };
 
   const articleNumberTwoAsBasicArticle = {
-    ... articleNumberTwo,
+    ...articleNumberTwo,
     type: 'BasicArticleUnit'
   };
 
   const articleNumberThreeAsBasicArticle = {
-    ... articleNumberThree,
+    ...articleNumberThree,
     type: 'BasicArticleUnit'
   };
 
@@ -59,6 +63,5 @@ describe('DefconArticleList', () => {
     jest.resetModules();
   });
 
-  it('should get a list of Defcon Article Unit and article units', async () => {
-  });
+  it('should get a list of Defcon Article Unit and article units', async () => {});
 });

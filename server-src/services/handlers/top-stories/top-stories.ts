@@ -17,27 +17,27 @@ export default async function(
   params: IParams
 ): Promise<IContentBlock[]> {
   const layout = await layoutRetriever(params);
-  if (layout === LayoutType.DEFAULT) {
-    return handlerRunner(
-      {
-        type: HandlerInputType.ArticleList,
-        sourceId: ListAsset.TopStories,
-        strapName,
-        totalBasicArticlesUnit,
-        totalBasicArticleTitleUnit
-      },
-      params
-    );
-  } else if (layout === LayoutType.DEFCON) {
-    return handlerRunner(
-      {
-        type: HandlerInputType.DefconArticleList,
-        sourceId: ListAsset.TopStories,
-        strapName,
-        totalArticles: totalBasicArticlesUnit
-      },
-      params
-    );
+  switch (layout) {
+    case LayoutType.DEFCON:
+      return handlerRunner(
+        {
+          type: HandlerInputType.DefconArticleList,
+          sourceId: ListAsset.TopStories,
+          strapName,
+          totalArticles: totalBasicArticlesUnit
+        },
+        params
+      );
+    default:
+      return handlerRunner(
+        {
+          type: HandlerInputType.ArticleList,
+          sourceId: ListAsset.TopStories,
+          strapName,
+          totalBasicArticlesUnit,
+          totalBasicArticleTitleUnit
+        },
+        params
+      );
   }
-  return [];
 }
