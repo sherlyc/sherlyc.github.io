@@ -80,4 +80,22 @@ describe('layout retriever', () => {
     expect(loggerSpy).toHaveBeenCalled();
     expect(layout).toBe(LayoutType.DEFAULT);
   });
+
+  it('should log error and return default layout when the request does not contain top stories layout', async () => {
+    const layoutInfo = {
+      section: '/content/desktop/stuff/jcr:content',
+      title: null,
+      layouts: []
+    };
+    (http(params).get as jest.Mock).mockResolvedValue({
+      status: 200,
+      data: layoutInfo
+    });
+    const loggerSpy = jest.spyOn(logger, 'error');
+
+    const layout = await layoutRetriever(params);
+
+    expect(loggerSpy).toHaveBeenCalled();
+    expect(layout).toBe(LayoutType.DEFAULT);
+  });
 });
