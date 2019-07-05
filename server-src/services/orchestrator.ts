@@ -65,7 +65,7 @@ export default async (params: IParams): Promise<IPage> => {
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'National',
-              displayNameColor: 'toreabay',
+              displayNameColor: 'darkblue',
               linkUrl: '/' + Section.National,
               articleList: {
                 sourceId: Section.National,
@@ -77,7 +77,7 @@ export default async (params: IParams): Promise<IPage> => {
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Christchurch Mosque Terrorist Attack',
-              displayNameColor: 'toreabay',
+              displayNameColor: 'darkblue',
               linkUrl: '/' + Section.ChristchurchShooting,
               articleList: {
                 sourceId: Section.ChristchurchShooting,
@@ -104,7 +104,7 @@ export default async (params: IParams): Promise<IPage> => {
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Quick! Save The Planet',
-              displayNameColor: 'toreabay',
+              displayNameColor: 'darkblue',
               linkUrl: '/' + Section.QuickSaveThePlanet,
               articleList: {
                 sourceId: Section.QuickSaveThePlanet,
