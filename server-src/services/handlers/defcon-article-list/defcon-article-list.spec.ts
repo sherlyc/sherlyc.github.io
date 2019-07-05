@@ -23,8 +23,9 @@ describe('DefconArticleList', () => {
     indexHeadline: 'Defcon Headline',
     introText: 'Defcon Intro',
     linkUrl: '/link1',
-    imageSrc: 'defcon.jpg',
-    imageSrcSet: 'defcon.jpg 1w',
+    imageSrc: 'article.jpg',
+    imageSrcSet: 'article.jpg 1w',
+    defconSrc: 'defcon.jpg',
     lastPublishedTime: 1,
     headlineFlags: []
   };
@@ -36,6 +37,7 @@ describe('DefconArticleList', () => {
     linkUrl: '/link1',
     imageSrc: 'article.jpg',
     imageSrcSet: 'article.jpg 1w',
+    defconSrc: null,
     lastPublishedTime: 1,
     headlineFlags: []
   };
@@ -48,7 +50,7 @@ describe('DefconArticleList', () => {
     introText: 'Defcon Intro',
     linkUrl: '/link1',
     imageSrc: 'defcon.jpg',
-    imageSrcSet: 'defcon.jpg 1w',
+    imageSrcSet: 'article.jpg 1w',
     lastPublishedTime: 1,
     headlineFlags: []
   };

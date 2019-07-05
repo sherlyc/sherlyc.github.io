@@ -18,7 +18,7 @@ const createDefconArticleBlock = (
   strapName,
   indexHeadline: article.indexHeadline,
   introText: article.introText,
-  imageSrc: article.imageSrc,
+  imageSrc: article.defconSrc,
   imageSrcSet: article.imageSrcSet,
   linkUrl: article.linkUrl,
   lastPublishedTime: article.lastPublishedTime,
