@@ -92,7 +92,7 @@ export default async (params: IParams): Promise<IPage> => {
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Premium',
-              displayNameColor: 'toreabay',
+              displayNameColor: 'premiumndark',
               linkUrl: '/' + Section.Premium,
               articleList: {
                 sourceId: Section.Premium,
@@ -157,7 +157,7 @@ export default async (params: IParams): Promise<IPage> => {
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Good Reads',
-              displayNameColor: 'dingley',
+              displayNameColor: 'mediumslateblue',
               linkUrl: '/' + Section.GoodReads,
               articleList: {
                 sourceId: Section.GoodReads,
@@ -287,7 +287,7 @@ export default async (params: IParams): Promise<IPage> => {
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Noted',
-              displayNameColor: 'scarlet',
+              displayNameColor: 'darkblue',
               linkUrl: '/' + Section.Noted,
               articleList: {
                 sourceId: Section.Noted,
@@ -298,7 +298,7 @@ export default async (params: IParams): Promise<IPage> => {
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Now to Love',
-              displayNameColor: 'scarlet',
+              displayNameColor: 'amaranth',
               linkUrl: '/' + Section.NowToLove,
               articleList: {
                 sourceId: Section.NowToLove,
@@ -309,7 +309,7 @@ export default async (params: IParams): Promise<IPage> => {
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Homes to Love',
-              displayNameColor: 'scarlet',
+              displayNameColor: 'amaranth',
               linkUrl: '/' + Section.HomesToLove,
               articleList: {
                 sourceId: Section.HomesToLove,
@@ -320,7 +320,7 @@ export default async (params: IParams): Promise<IPage> => {
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Food to Love',
-              displayNameColor: 'scarlet',
+              displayNameColor: 'amaranth',
               linkUrl: '/' + Section.FoodToLove,
               articleList: {
                 sourceId: Section.FoodToLove,
@@ -331,7 +331,7 @@ export default async (params: IParams): Promise<IPage> => {
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'BeautyHeaven',
-              displayNameColor: 'scarlet',
+              displayNameColor: 'amaranth',
               linkUrl: '/' + Section.BeautyHeaven,
               articleList: {
                 sourceId: Section.BeautyHeaven,
@@ -342,7 +342,7 @@ export default async (params: IParams): Promise<IPage> => {
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Fashion Quarterly',
-              displayNameColor: 'scarlet',
+              displayNameColor: 'amaranth',
               linkUrl: '/' + Section.FashionQuarterly,
               articleList: {
                 sourceId: Section.FashionQuarterly,
@@ -353,7 +353,7 @@ export default async (params: IParams): Promise<IPage> => {
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Metro',
-              displayNameColor: 'scarlet',
+              displayNameColor: 'amaranth',
               linkUrl: '/' + Section.Metro,
               articleList: {
                 sourceId: Section.Metro,
@@ -364,7 +364,7 @@ export default async (params: IParams): Promise<IPage> => {
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Newsroom.co.nz',
-              displayNameColor: 'scarlet',
+              displayNameColor: 'darkblue',
               linkUrl: '/' + Section.Newsroom,
               articleList: {
                 sourceId: Section.Newsroom,
@@ -375,7 +375,7 @@ export default async (params: IParams): Promise<IPage> => {
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Sponsored Content',
-              displayNameColor: 'scarlet',
+              displayNameColor: 'darkblue',
               linkUrl: '/' + Section.SponsoredContent,
               articleList: {
                 sourceId: Section.SponsoredContent,
