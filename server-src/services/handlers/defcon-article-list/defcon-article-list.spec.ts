@@ -9,6 +9,8 @@ import * as layoutRetriever from '../../../services/adapters/layout-retriever';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 import { IParams } from '../../../services/__types__/IParams';
 import defconArticleList from './defcon-article-list';
+import { IDefconArticleUnit } from '../../../../common/__types__/IDefconArticleUnit';
+import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
 
 describe('DefconArticleList', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
@@ -42,7 +44,7 @@ describe('DefconArticleList', () => {
     headlineFlags: []
   };
 
-  const articleOneAsDefconArticle = {
+  const articleOneAsDefconArticle: IDefconArticleUnit = {
     type: ContentBlockType.DefconArticleUnit,
     strapName,
     id: '1',
@@ -50,12 +52,11 @@ describe('DefconArticleList', () => {
     introText: 'Defcon Intro',
     linkUrl: '/link1',
     imageSrc: 'defcon.jpg',
-    imageSrcSet: 'article.jpg 1w',
     lastPublishedTime: 1,
     headlineFlags: []
   };
 
-  const articleTwoAsBasicArticle = {
+  const articleTwoAsBasicArticle: IBasicArticleUnit = {
     type: ContentBlockType.BasicArticleUnit,
     strapName,
     id: '2',
