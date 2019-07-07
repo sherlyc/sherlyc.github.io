@@ -46,7 +46,7 @@ describe('TopStoriesHandler', () => {
       strapName: strapName,
       totalBasicArticlesUnit: 3
     };
-    const basicArticleListInput: IDefconArticleListHandlerInput = {
+    const defconArticleListInput: IDefconArticleListHandlerInput = {
       type: HandlerInputType.DefconArticleList,
       sourceId: ListAsset.TopStories,
       strapName,
@@ -55,6 +55,9 @@ describe('TopStoriesHandler', () => {
 
     await topStoriesHandler(handlerFunction, handlerInput, params);
 
-    expect(handlerFunction).toHaveBeenCalledWith(basicArticleListInput, params);
+    expect(handlerFunction).toHaveBeenCalledWith(
+      defconArticleListInput,
+      params
+    );
   });
 });
