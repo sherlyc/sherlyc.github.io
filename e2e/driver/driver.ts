@@ -74,6 +74,18 @@ async function buildSpecificBrowserDriver(browser: string) {
         }
       };
       break;
+    case 'EDGE' :
+      capabilities = {
+        ...capabilities,
+        ...{
+          'browserName': 'Edge',
+          'browser_version': '18.0',
+          'os': 'Windows',
+          'os_version': '10',
+          'resolution': '1024x768',
+        }
+      };
+      break;
     case 'IOS':
       capabilities = {
         ...capabilities,
