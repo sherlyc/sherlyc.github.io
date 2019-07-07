@@ -48,14 +48,14 @@ It is strongly recommended to use Intellij Jest testing feature to keep these te
 
 - Running end-to-end tests with Selenium
 
-local Chrome browser `npm run e2e` in browserstack, create file /e2e/driver/creds.json
+local Chrome browser `npm run e2e`. to run in multiple browsers in parallel by using Browserstack create a file /e2e/driver/creds.json like:
  ```$json
   {
     account: 'your-browserstack-account,
     key: 'your-browserstack-key
   }
 ```
-or export `BS_ACCOUNT` and `BS_KEY` env variables and run
+or export `BS_ACCOUNT` and `BS_KEY` env variables then run
  `npm run test:e2e`
 
 ### CLINIC - Performance Insight Tools
