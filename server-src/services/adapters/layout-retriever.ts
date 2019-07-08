@@ -8,12 +8,7 @@ import { AxiosResponse } from 'axios';
 import logger from '../utils/logger';
 
 const isValid = (response: AxiosResponse<ISectionLayout>) => {
-  if (
-    response.status !== 200 ||
-    !response.data ||
-    !response.data.layouts ||
-    !response.data.layouts[0]
-  ) {
+  if (!response.data || !response.data.layouts || !response.data.layouts[0]) {
     return false;
   }
   return true;
