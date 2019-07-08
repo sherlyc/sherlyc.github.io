@@ -1,7 +1,7 @@
 import { Section } from '../../section';
 import { ListAsset } from '../../listAsset';
 import { HandlerInputType } from './HandlerInputType';
-import { LayoutType } from 'server-src/services/adapters/__types__/LayoutType';
+import { LayoutType } from '../../../services/adapters/__types__/LayoutType';
 
 export interface IBasicArticleListHandlerInput {
   type: HandlerInputType.ArticleList;
