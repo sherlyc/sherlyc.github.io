@@ -28,12 +28,25 @@ export default async function(
         },
         params
       );
+    case LayoutType.BIG_HEADLINE:
+      return handlerRunner(
+        {
+          type: HandlerInputType.ArticleList,
+          sourceId: ListAsset.TopStories,
+          strapName,
+          layout: LayoutType.BIG_HEADLINE,
+          totalBasicArticlesUnit,
+          totalBasicArticleTitleUnit
+        },
+        params
+      );
     default:
       return handlerRunner(
         {
           type: HandlerInputType.ArticleList,
           sourceId: ListAsset.TopStories,
           strapName,
+          layout: LayoutType.DEFAULT,
           totalBasicArticlesUnit,
           totalBasicArticleTitleUnit
         },
