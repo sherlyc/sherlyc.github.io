@@ -71,6 +71,33 @@ describe('layout retriever', () => {
     expect(await layoutRetriever(params)).toEqual(LayoutType.DEFAULT);
   });
 
+  it('should return big headline when layout retrieved is big headline', async () => {
+    const layoutInfo = {
+      section: '/content/desktop/stuff/jcr:content',
+      title: null,
+      layouts: [
+        {
+          layout:
+            '/TopLeftArea/esi_parsys/ESIParsys/big_headline_top_sto/lists/list1',
+          asset_type: 'LIST',
+          asset_id: 63768623
+        },
+        {
+          layout:
+            '/TopLeftArea/two_column_container/RightColumnParsys/title_headlines/lists/list1',
+          asset_type: 'LIST',
+          asset_id: 63868237
+        }
+      ]
+    };
+    (http(params).get as jest.Mock).mockResolvedValue({
+      status: 200,
+      data: layoutInfo
+    });
+
+    expect(await layoutRetriever(params)).toEqual(LayoutType.BIG_HEADLINE);
+  });
+
   it('should log error and return default layout when the request is unsuccessful', async () => {
     (http(params).get as jest.Mock).mockResolvedValue({ status: 500 });
     const loggerSpy = jest.spyOn(logger, 'error');
