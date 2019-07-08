@@ -25,7 +25,7 @@
     "bundle-report:browser": "webpack-bundle-analyzer ./dist/browser/stats.json -m 'static' -O -r './dist/browser.html'",
     "bundle-report:server": "webpack-bundle-analyzer ./dist/server/stats.json -m 'static' -O -r './dist/server.html'",
     "e2e:top-browsers": "concurrently --kill-others-on-fail npm:e2e:ie11 npm:e2e:firefox npm:e2e:chrome npm:e2e:android npm:e2e:safari npm:e2e:edge",
-    "e2e:ie11" : "E2E_BROWSER=IE11 npm run e2e",
+    "e2e:ie11": "E2E_BROWSER=IE11 npm run e2e",
     "e2e:chrome": "E2E_BROWSER=CHROME npm run e2e",
     "e2e:firefox": "E2E_BROWSER=FIREFOX npm run e2e",
     "e2e:safari": "E2E_BROWSER=SAFARI npm run e2e",
