@@ -7,7 +7,7 @@ export interface IBasicArticleListHandlerInput {
   type: HandlerInputType.ArticleList;
   sourceId: Section | ListAsset;
   strapName: string;
-  layout: LayoutType | null;
+  layout?: LayoutType;
   totalBasicArticlesUnit?: number;
   totalBasicArticleTitleUnit?: number;
 }
