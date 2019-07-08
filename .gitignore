@@ -43,3 +43,9 @@ testem.log
 Thumbs.db
 target
 newrelic_agent.log
+
+# Secrets
+/e2e/driver/creds.json
+
+# Browserstack log file
+local.log
