@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BasicArticleUnitComponent } from './basic-article-unit.component';
 import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
-import { MomentModule } from 'ngx-moment';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
@@ -33,7 +32,7 @@ describe('BasicArticleUnitComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MomentModule, SharedModule],
+      imports: [SharedModule],
       declarations: [BasicArticleUnitComponent],
       providers: [
         {

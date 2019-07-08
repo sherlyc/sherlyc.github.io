@@ -60,9 +60,9 @@
     "intersection-observer": "^0.5.1",
     "lodash": "^4.17.11",
     "math-random": "^1.0.4",
+    "minimatch": "^3.0.4",
     "moment": "^2.24.0",
     "newrelic": "^5.8.0",
-    "ngx-moment": "^3.4.0",
     "p-retry": "^4.1.0",
     "polyfill-array-includes": "^2.0.0",
     "rxjs": "^6.5.2",
@@ -71,7 +71,6 @@
     "uuid": "^3.3.2",
     "web-animations-js": "^2.3.1",
     "winston": "^3.2.1",
-    "minimatch": "^3.0.4",
     "zone.js": "^0.8.29"
   },
   "devDependencies": {

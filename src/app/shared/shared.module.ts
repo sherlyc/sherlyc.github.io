@@ -7,6 +7,7 @@ import { PageComponent } from './components/page/page.component';
 import { HeadlineComponent } from './components/headline/headline.component';
 import { OpenExternalLinkDirective } from './directives/open-external-link/open-external-link.directive';
 import { SigninCallbackComponent } from './components/authentication/signin-callback.component';
+import { TimeAgoPipe } from './pipes/time-ago/time-ago.pipe';
 
 @NgModule({
   imports: [CommonModule],
@@ -17,7 +18,8 @@ import { SigninCallbackComponent } from './components/authentication/signin-call
     OpenExternalLinkDirective,
     CopyrightComponent,
     HeadlineComponent,
-    SigninCallbackComponent
+    SigninCallbackComponent,
+    TimeAgoPipe
   ],
   exports: [
     PageComponent,
@@ -26,7 +28,8 @@ import { SigninCallbackComponent } from './components/authentication/signin-call
     OpenExternalLinkDirective,
     CopyrightComponent,
     HeadlineComponent,
-    SigninCallbackComponent
+    SigninCallbackComponent,
+    TimeAgoPipe
   ]
 })
 export class SharedModule {}
