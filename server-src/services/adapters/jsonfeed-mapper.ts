@@ -7,9 +7,6 @@ import { IJsonFeedUrl } from './__types__/IJsonFeedUrl';
 import { IJsonFeedQuery } from './__types__/IJsonFeedQuery';
 import { IImageVariant } from './__types__/IImageVariant';
 
-const THUMBNAIL = JsonFeedImageType.SMALL_THUMBNAIL;
-const DEFCON = JsonFeedImageType.DEFCON_IMAGE;
-
 export default (
   articles: Array<IJsonFeedArticle | IJsonFeedUrl | IJsonFeedQuery>
 ): IRawArticle[] => {
@@ -57,7 +54,7 @@ function getImageWidth(dimensions: string) {
 }
 
 function getImageSrcSet(item: IJsonFeedArticle | IJsonFeedUrl) {
-  const thumbnailImages = findImage(item, THUMBNAIL);
+  const thumbnailImages = findImage(item, JsonFeedImageType.SMALL_THUMBNAIL);
   if (thumbnailImages && thumbnailImages.urls) {
     const imageUrls = thumbnailImages.urls;
     return Object.entries(imageUrls)
@@ -68,7 +65,7 @@ function getImageSrcSet(item: IJsonFeedArticle | IJsonFeedUrl) {
 }
 
 function getImageSrc(item: IJsonFeedArticle | IJsonFeedUrl): string | null {
-  const thumbnailImages = findImage(item, THUMBNAIL);
+  const thumbnailImages = findImage(item, JsonFeedImageType.SMALL_THUMBNAIL);
   if (thumbnailImages) {
     return thumbnailImages.src;
   }
@@ -76,7 +73,7 @@ function getImageSrc(item: IJsonFeedArticle | IJsonFeedUrl): string | null {
 }
 
 function getDefconSrc(item: IJsonFeedArticle | IJsonFeedUrl): string | null {
-  const defconImage = findImage(item, DEFCON);
+  const defconImage = findImage(item, JsonFeedImageType.DEFCON_IMAGE);
   if (defconImage) {
     return defconImage.src;
   }
@@ -85,7 +82,7 @@ function getDefconSrc(item: IJsonFeedArticle | IJsonFeedUrl): string | null {
 
 function findImage(
   item: IJsonFeedArticle | IJsonFeedUrl,
-  imageType: string
+  imageType: JsonFeedImageType
 ): IImageVariant | undefined {
   if (item.images && item.images.length > 0) {
     for (const image of item.images) {
