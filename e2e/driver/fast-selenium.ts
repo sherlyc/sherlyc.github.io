@@ -1,3 +1,7 @@
+/**
+ * Browser stack add-on to speed up tests
+ * https://github.com/browserstack/fast-selenium-scripts/blob/master/node/fast-selenium.js
+ */
 import * as http from 'http';
 import * as https from 'https';
 

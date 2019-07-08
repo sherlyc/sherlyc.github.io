@@ -1,4 +1,3 @@
-// @ts-ignore
 import * as browserstack from 'browserstack-local';
 
 export const startBrowserStackLocal = (key: string, browser: string) => {
