@@ -78,7 +78,8 @@ describe('MiniMidStripHandler', () => {
             type: 'ImageLinkUnit'
           }
         ]
-      }
+      },
+      { type: 'BasicAdUnit' }
     ]);
   });
 });
