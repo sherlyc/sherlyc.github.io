@@ -6,8 +6,7 @@
     </div>
     <app-headline [headline]="input.indexHeadline"></app-headline>
     <p>
-      <span class="time-ago">{{ input.lastPublishedTime * 1000 | amTimeAgo }}</span>
-      <span class="separator"></span>
+      <app-time-ago [timestamp]="input.lastPublishedTime * 1000"></app-time-ago>
       <span class="intro">{{ input.introText }}</span>
     </p>
   </a>
