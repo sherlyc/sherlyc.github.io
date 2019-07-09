@@ -79,7 +79,8 @@ describe('MidStripHandler', () => {
             type: 'ImageLinkUnit'
           }
         ]
-      }
+      },
+      { type: 'BasicAdUnit' }
     ]);
   });
 
@@ -117,7 +118,8 @@ describe('MidStripHandler', () => {
             type: 'ImageLinkUnit'
           }
         ]
-      }
+      },
+      { type: 'BasicAdUnit' }
     ]);
   });
 });
