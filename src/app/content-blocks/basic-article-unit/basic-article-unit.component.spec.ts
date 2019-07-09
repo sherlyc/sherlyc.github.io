@@ -73,8 +73,8 @@ describe('BasicArticleUnitComponent', () => {
     expect(img!.getAttribute('srcset')).toEqual(articleData.imageSrcSet);
     expect(img!.getAttribute('alt')).toEqual(articleData.indexHeadline);
 
-    const span = componentElement.querySelector('p span');
-    expect(span!.textContent).toEqual('');
+    const introSpan = componentElement.querySelector('p span.intro');
+    expect(introSpan!.textContent).toEqual('Dummy intro text');
   });
 
   it('should send analytics when clicked', () => {

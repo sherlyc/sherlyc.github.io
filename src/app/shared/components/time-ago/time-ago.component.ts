@@ -10,7 +10,7 @@ export class TimeAgoComponent implements OnInit {
   constructor() {}
 
   @Input()
-  separator: 'left' | 'right' | 'none' = 'right';
+  separator: 'left' | 'right' = 'right';
 
   @Input()
   timestamp!: moment.MomentInput;

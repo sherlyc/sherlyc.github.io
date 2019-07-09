@@ -36,7 +36,7 @@ export default async (params: IParams): Promise<IPage> => {
               url: 'https://interactives.stuff.co.nz/2019/cwc/cwc-uber.html'
             },
             {
-              type: HandlerInputType.ArticleList,
+              type: HandlerInputType.TopStories,
               strapName: 'Latest',
               sourceId: ListAsset.TopStories,
               totalBasicArticlesUnit: 6

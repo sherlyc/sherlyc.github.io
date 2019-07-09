@@ -12,6 +12,7 @@ export interface IEnvironmentDefinition {
   dailyFixAssetId: string;
   weatherAPI: string;
   breakingNewsApi: string;
+  layoutAPI: string;
   maxArticlesToRetrieve: number;
   loggerOptions: ILoggerOptions;
   videoConfig: IVideoConfig;

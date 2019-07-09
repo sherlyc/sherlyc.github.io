@@ -48,16 +48,7 @@ It is strongly recommended to use Intellij Jest testing feature to keep these te
 
 - Running end-to-end tests with Selenium
 
-local Chrome browser `npm run e2e`. To run in multiple browsers in parallel by using Browserstack create the file `e2e/driver/creds.json` with an object like
-
-```javascript
-  {
-    "account": "your-browserstack-account",
-    "key": "your-browserstack-key"
-  }
-```
-
-or export `BS_ACCOUNT` and `BS_KEY` env variables then run
+local Chrome browser `npm run e2e`. To run in multiple browsers in parallel by using Browserstack export `BS_ACCOUNT` and `BS_KEY` env variables then run
 `npm run test:e2e`
 
 You can also test individual browsers. In a terminal run `npm run start:no-newrelic` and in other terminal run `npm run e2e:android`.

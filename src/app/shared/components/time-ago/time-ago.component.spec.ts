@@ -71,7 +71,7 @@ describe('TimeAgoComponent', () => {
 
     const timeAgoSpan = fixture.debugElement.query(By.css('.time-ago'));
     const separatorSpan = fixture.debugElement.query(By.css('.separator'));
-    expect(timeAgoSpan.nativeElement.textContent).toBe('');
+    expect(timeAgoSpan).toBeFalsy();
     expect(separatorSpan).toBeFalsy();
   });
 
@@ -81,7 +81,7 @@ describe('TimeAgoComponent', () => {
 
     const timeAgoSpan = fixture.debugElement.query(By.css('.time-ago'));
     const separatorSpan = fixture.debugElement.query(By.css('.separator'));
-    expect(timeAgoSpan.nativeElement.textContent).toBe('');
+    expect(timeAgoSpan).toBeFalsy();
     expect(separatorSpan).toBeFalsy();
   });
 
