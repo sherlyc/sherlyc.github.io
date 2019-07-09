@@ -26,22 +26,25 @@ describe('TimeAgoPipe', () => {
     let date = moment().subtract(1, 'd');
     expect(pipe.transform(date)).toBe('');
 
+    // 1 minute later
+    date = moment().add(1, 'm');
+    expect(pipe.transform(date)).toBe('');
+
+    // 2 hours ago
     date = moment().subtract(2, 'h');
     expect(pipe.transform(date)).toBe('');
 
+    // 1 hour 20 minutes ago
     date = moment()
       .subtract(1, 'h')
       .subtract(20, 'm');
     expect(pipe.transform(date)).toBe('1 hour 20 min ago');
 
-    date = moment()
-      .subtract(1, 'h')
-      .subtract(20, 'm');
-    expect(pipe.transform(date)).toBe('1 hour 20 min ago');
-
+    // 20 minutes ago
     date = moment().subtract(20, 'm');
     expect(pipe.transform(date)).toBe('20 min ago');
 
+    // 19 minutes ago
     date = moment().subtract(19, 'm');
     expect(pipe.transform(date)).toBe('19 min ago');
   });
