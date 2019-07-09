@@ -1,6 +1,5 @@
 function format(seconds: number) {
   if (seconds >= 7200 || seconds < 0) {
-    // 2 hours
     return '';
   }
   const hours = Math.floor(seconds / 3600);

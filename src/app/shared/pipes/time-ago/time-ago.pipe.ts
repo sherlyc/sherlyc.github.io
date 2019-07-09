@@ -7,7 +7,7 @@ import formatters from './formatters';
 })
 export class TimeAgoPipe implements PipeTransform {
   transform(value: moment.MomentInput, formatter: string = 'default'): string {
-    const seconds = Math.round(moment().diff(moment(value)) / 1000);
+    const seconds = Math.round(moment().diff(moment(value), 'seconds'));
     const format = formatters[formatter];
     return format(seconds);
   }
