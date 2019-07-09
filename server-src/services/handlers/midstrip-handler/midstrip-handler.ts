@@ -39,7 +39,8 @@ export default async function(
           ],
           [] as IContentBlock[]
         )
-      }
+      },
+      { type: ContentBlockType.BasicAdUnit }
     ];
   } catch (e) {
     logger.error(
