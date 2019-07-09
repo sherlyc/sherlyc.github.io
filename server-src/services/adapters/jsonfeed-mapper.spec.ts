@@ -23,6 +23,7 @@ describe('JsonFeed Mapper', () => {
 
     const expected: IRawArticle[] = cloneDeep(rawArticle);
     Object.values(expected).forEach((article: IRawArticle) => {
+      article.defconSrc = null;
       article.imageSrc = null;
       article.imageSrcSet = null;
     });

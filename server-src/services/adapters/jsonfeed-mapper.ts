@@ -29,6 +29,7 @@ function mapArticleAsset(item: IJsonFeedArticle): IRawArticle {
     linkUrl: item.path,
     imageSrc: getImageSrc(item),
     imageSrcSet: getImageSrcSet(item),
+    defconSrc: getDefconSrc(item),
     lastPublishedTime: moment(item.datetime_iso8601).unix(),
     headlineFlags: item.headline_flags ? item.headline_flags : []
   };
@@ -42,17 +43,18 @@ function mapUrlAsset(item: IJsonFeedUrl): IRawArticle {
     linkUrl: item.url,
     imageSrc: getImageSrc(item),
     imageSrcSet: getImageSrcSet(item),
+    defconSrc: getDefconSrc(item),
     lastPublishedTime: moment(item.datetime_iso8601).unix(),
     headlineFlags: item.headline_flags ? item.headline_flags : []
   };
 }
 
-function getImageWidth(key: string) {
-  return `${key.split('x')[0]}w`;
+function getImageWidth(dimensions: string) {
+  return `${dimensions.split('x')[0]}w`;
 }
 
 function getImageSrcSet(item: IJsonFeedArticle | IJsonFeedUrl) {
-  const thumbnailImages = findThumbnailImage(item);
+  const thumbnailImages = findImage(item, JsonFeedImageType.SMALL_THUMBNAIL);
   if (thumbnailImages && thumbnailImages.urls) {
     const imageUrls = thumbnailImages.urls;
     return Object.entries(imageUrls)
@@ -63,24 +65,33 @@ function getImageSrcSet(item: IJsonFeedArticle | IJsonFeedUrl) {
 }
 
 function getImageSrc(item: IJsonFeedArticle | IJsonFeedUrl): string | null {
-  const thumbnailImages = findThumbnailImage(item);
+  const thumbnailImages = findImage(item, JsonFeedImageType.SMALL_THUMBNAIL);
   if (thumbnailImages) {
     return thumbnailImages.src;
   }
   return null;
 }
 
-function findThumbnailImage(
-  item: IJsonFeedArticle | IJsonFeedUrl
+function getDefconSrc(item: IJsonFeedArticle | IJsonFeedUrl): string | null {
+  const defconImage = findImage(item, JsonFeedImageType.DEFCON_IMAGE);
+  if (defconImage) {
+    return defconImage.src;
+  }
+  return null;
+}
+
+function findImage(
+  item: IJsonFeedArticle | IJsonFeedUrl,
+  imageType: JsonFeedImageType
 ): IImageVariant | undefined {
   if (item.images && item.images.length > 0) {
     for (const image of item.images) {
       if (image.variants && image.variants.length > 0) {
-        const smallThumbnailVariant = image.variants.find(
-          (variant) => variant.layout === JsonFeedImageType.SMALL_THUMBNAIL
+        const imageVariant = image.variants.find(
+          (variant) => variant.layout === imageType
         );
-        if (smallThumbnailVariant) {
-          return smallThumbnailVariant;
+        if (imageVariant) {
+          return imageVariant;
         }
       }
     }

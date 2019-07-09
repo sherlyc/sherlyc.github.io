@@ -1,3 +1,4 @@
+import { IDefconArticleUnit } from './IDefconArticleUnit';
 import { IBasicArticleUnit } from './IBasicArticleUnit';
 import { IErrorBlock } from './IErrorBlock';
 import { IContainer } from './IContainer';
@@ -15,6 +16,7 @@ import { IVideoUnit } from './IVideoUnit';
 import { IExperimentContainer } from './IExperimentContainer';
 
 export type IContentBlock =
+  | IDefconArticleUnit
   | IBasicArticleUnit
   | IBasicArticleTitleUnit
   | IBasicArticleSection

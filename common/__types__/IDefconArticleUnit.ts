@@ -1,11 +1,13 @@
-export interface IRawArticle {
+import { ContentBlockType } from './ContentBlockType';
+
+export interface IDefconArticleUnit {
+  type: ContentBlockType.DefconArticleUnit;
   id: string;
+  strapName: string;
   indexHeadline: string;
   introText: string;
   linkUrl: string;
-  defconSrc: string | null;
   imageSrc: string | null;
-  imageSrcSet: string | null;
   lastPublishedTime: number;
   headlineFlags: string[];
 }
