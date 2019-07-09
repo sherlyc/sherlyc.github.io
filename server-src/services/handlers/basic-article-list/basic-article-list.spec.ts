@@ -88,7 +88,6 @@ describe('BasicArticleListHandler', () => {
         type: HandlerInputType.ArticleList,
         strapName: 'business',
         sourceId: Section.Business,
-        layout: LayoutType.DEFAULT,
         totalBasicArticlesUnit: 1
       },
       params
@@ -117,7 +116,6 @@ describe('BasicArticleListHandler', () => {
         type: HandlerInputType.ArticleList,
         strapName: 'business',
         sourceId: Section.Business,
-        layout: LayoutType.DEFAULT,
         totalBasicArticlesUnit: 2
       },
       params
@@ -150,7 +148,6 @@ describe('BasicArticleListHandler', () => {
         type: HandlerInputType.ArticleList,
         strapName: 'business',
         sourceId: Section.Business,
-        layout: LayoutType.DEFAULT,
         totalBasicArticlesUnit,
         totalBasicArticleTitleUnit
       },
