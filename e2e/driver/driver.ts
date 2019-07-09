@@ -1,14 +1,13 @@
 import { Builder, Capabilities } from 'selenium-webdriver';
 import './fast-selenium.ts';
 import { startBrowserStackLocal } from './browserstack.local';
-import * as creds from './creds.json';
 
 async function buildSpecificBrowserDriver(browser: string) {
-  const account = creds.account || process.env.BS_ACCOUNT;
-  const key = creds.key || process.env.BS_KEY;
+  const account = process.env.BS_ACCOUNT;
+  const key = process.env.BS_KEY;
 
   if (!key || !account) {
-    throw new Error('Provide Browser Stack account and key');
+    throw new Error('Provide Browser Stack BS_ACCOUNT and BS_KEY env vars.');
   }
 
   await startBrowserStackLocal(key, browser);
