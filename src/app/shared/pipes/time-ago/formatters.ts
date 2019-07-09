@@ -6,10 +6,11 @@ function format(seconds: number) {
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
   const hoursText = hours === 0 ? '' : `${hours} hour `;
-  return `${hoursText}${minutes} min ago`;
+  const minutesText = minutes === 0 ? '' : `${minutes} min `;
+  return `${hoursText}${minutesText}ago`;
 }
 
-const formatters: { [key: string]: (diff: number) => string } = {
+const formatters: { [key: string]: (seconds: number) => string } = {
   default: format
 };
 

@@ -74,7 +74,7 @@ describe('BasicArticleUnitComponent', () => {
     expect(img!.getAttribute('alt')).toEqual(articleData.indexHeadline);
 
     const span = componentElement.querySelector('p span');
-    expect(span!.textContent).toEqual('2 days ago');
+    expect(span!.textContent).toEqual('');
   });
 
   it('should send analytics when clicked', () => {
