@@ -2,8 +2,9 @@ import { TimeAgoPipe } from './time-ago.pipe';
 import formatters from './formatters';
 import * as moment from 'moment';
 
+const _Date = Date;
+
 function fakeDate(defaultDate: string | number) {
-  const _Date = Date;
   // @ts-ignore
   global.Date = (arg: any) =>
     new _Date(typeof arg !== 'undefined' ? arg : defaultDate);
@@ -12,6 +13,14 @@ function fakeDate(defaultDate: string | number) {
 
 describe('TimeAgoPipe', () => {
   const pipe = new TimeAgoPipe();
+
+  beforeAll(() => {
+    fakeDate('2019-07-01');
+  });
+
+  afterAll(() => {
+    global.Date = _Date;
+  });
 
   it('should transform the date with a default formatter', () => {
     let date = moment().subtract(1, 'd');
@@ -38,8 +47,6 @@ describe('TimeAgoPipe', () => {
   });
 
   it('should transform the date when a formatter is provided', () => {
-    fakeDate('2016-05-01');
-
     formatters['fake'] = (seconds: number) => {
       if (seconds >= 2 * 60 * 60) {
         return '';
