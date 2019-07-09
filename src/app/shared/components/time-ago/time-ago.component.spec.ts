@@ -28,9 +28,6 @@ describe('TimeAgoComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [TimeAgoComponent]
     }).compileComponents();
-  });
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(TimeAgoComponent);
     component = fixture.componentInstance;
   });
