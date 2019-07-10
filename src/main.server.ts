@@ -32,7 +32,9 @@ enableProdMode();
 const app = express();
 app.use(
   helmet({
-    hsts: false
+    hsts: false,
+    hidePoweredBy: true,
+    xssFilter: false
   })
 );
 app.use(cors());

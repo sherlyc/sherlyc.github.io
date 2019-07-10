@@ -1,5 +1,6 @@
 export enum ContentBlockType {
   VideoUnit = 'VideoUnit',
+  DefconArticleUnit = 'DefconArticleUnit',
   BasicArticleUnit = 'BasicArticleUnit',
   BasicArticleTitleUnit = 'BasicArticleTitleUnit',
   ImageLinkUnit = 'ImageLinkUnit',

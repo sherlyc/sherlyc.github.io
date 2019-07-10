@@ -8,6 +8,7 @@ import { HeadlineComponent } from './components/headline/headline.component';
 import { OpenExternalLinkDirective } from './directives/open-external-link/open-external-link.directive';
 import { SigninCallbackComponent } from './components/authentication/signin-callback.component';
 import { HeadlineFlagComponent } from './components/headline-flag/headline-flag.component';
+import { TimeAgoComponent } from './components/time-ago/time-ago.component';
 
 @NgModule({
   imports: [CommonModule],
@@ -19,7 +20,8 @@ import { HeadlineFlagComponent } from './components/headline-flag/headline-flag.
     CopyrightComponent,
     HeadlineComponent,
     SigninCallbackComponent,
-    HeadlineFlagComponent
+    HeadlineFlagComponent,
+    TimeAgoComponent
   ],
   exports: [
     PageComponent,
@@ -29,7 +31,8 @@ import { HeadlineFlagComponent } from './components/headline-flag/headline-flag.
     CopyrightComponent,
     HeadlineComponent,
     SigninCallbackComponent,
-    HeadlineFlagComponent
+    HeadlineFlagComponent,
+    TimeAgoComponent
   ]
 })
 export class SharedModule {}

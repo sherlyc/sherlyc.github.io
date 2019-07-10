@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { experimentController } from './experiment-controller';
 import { getExperimentVariant } from '../services/experiment';
+import { Experiments } from '../../common/Experiments';
 
 jest.mock('../services/experiment');
 
@@ -34,7 +35,7 @@ describe('Experiment controller', () => {
   });
 
   it('should return 400 and message in body when provided with valid experiment and empty lottery number', () => {
-    req.query.name = 'Users';
+    req.query.name = Experiments.Users;
     req.query.lotteryNumber = '';
 
     experimentController(req, res, { apiRequestId: '845478' });
@@ -43,7 +44,7 @@ describe('Experiment controller', () => {
   });
 
   it('should respond with variant', () => {
-    req.query.name = 'Users';
+    req.query.name = Experiments.Users;
     req.query.lotteryNumber = 27;
     const variant = 'Variant A';
     (getExperimentVariant as jest.Mock).mockReturnValue(variant);

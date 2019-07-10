@@ -10,6 +10,7 @@ import { IBasicArticleTitleUnit } from '../../../../common/__types__/IBasicArtic
 import { IRawArticle } from '../../adapters/__types__/IRawArticle';
 import { Section } from '../../section';
 import { ListAsset } from '../../listAsset';
+import { LayoutType } from '../../adapters/__types__/LayoutType';
 
 const createBasicArticleUnitBlock = (
   article: IRawArticle,
@@ -68,6 +69,7 @@ const formatAsArticleBlocks = (
 const getRawArticles = async (
   sourceId: Section | ListAsset,
   totalArticles: number,
+  layout: LayoutType,
   params: IParams
 ) => {
   const sourceIsASection = Object.values(Section).includes(sourceId);
@@ -85,7 +87,7 @@ const getRawArticles = async (
     sourceId as ListAsset,
     totalArticles
   );
-  return sourceId === ListAsset.TopStories
+  return sourceId === ListAsset.TopStories && layout === LayoutType.DEFAULT
     ? [listAssets[1], listAssets[0], ...listAssets.slice(2)].filter(Boolean)
     : listAssets;
 };
@@ -96,7 +98,8 @@ export default async function(
     sourceId,
     totalBasicArticlesUnit = 0,
     totalBasicArticleTitleUnit = 0,
-    strapName
+    strapName,
+    layout = LayoutType.DEFAULT
   }: IBasicArticleListHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
@@ -104,7 +107,12 @@ export default async function(
     type: ContentBlockType.BasicAdUnit
   };
   const totalArticles = totalBasicArticlesUnit + totalBasicArticleTitleUnit;
-  const rawArticles = await getRawArticles(sourceId, totalArticles, params);
+  const rawArticles = await getRawArticles(
+    sourceId,
+    totalArticles,
+    layout,
+    params
+  );
   return formatAsArticleBlocks(
     rawArticles,
     totalBasicArticlesUnit,

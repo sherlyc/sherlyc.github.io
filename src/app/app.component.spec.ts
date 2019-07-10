@@ -11,6 +11,7 @@ import { BrowserOverrideService } from './services/browser-override/browser-over
 import { NeighbourlyService } from './services/neighbourly/neighbourly.service';
 import { MetaTagsService } from './services/meta-tags/meta-tags.service';
 import { AuthenticationService } from './services/authentication/authentication.service';
+import { FeatureSwitchService } from './services/feature-switch/feature-switch.service';
 
 describe('AppComponent', () => {
   let adService: ServiceMock<AdService>;
@@ -21,6 +22,7 @@ describe('AppComponent', () => {
   let experimentService: ServiceMock<ExperimentService>;
   let neighbourlyService: ServiceMock<NeighbourlyService>;
   let metaTagsService: ServiceMock<MetaTagsService>;
+  let featureSwitchService: ServiceMock<FeatureSwitchService>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -62,6 +64,10 @@ describe('AppComponent', () => {
         {
           provide: AuthenticationService,
           useClass: mockService(AuthenticationService)
+        },
+        {
+          provide: FeatureSwitchService,
+          useClass: mockService(FeatureSwitchService)
         }
       ]
     }).compileComponents();
@@ -74,6 +80,7 @@ describe('AppComponent', () => {
     experimentService = TestBed.get(ExperimentService);
     neighbourlyService = TestBed.get(NeighbourlyService);
     metaTagsService = TestBed.get(MetaTagsService);
+    featureSwitchService = TestBed.get(FeatureSwitchService);
   });
 
   it('should create the app and set up services', async(() => {
@@ -89,6 +96,7 @@ describe('AppComponent', () => {
     expect(experimentService.setup).toHaveBeenCalled();
     expect(neighbourlyService.setup).toHaveBeenCalled();
     expect(metaTagsService.setup).toHaveBeenCalled();
+    expect(featureSwitchService.setup).toHaveBeenCalled();
   }));
 
   it('should check router outlet is present', async(() => {

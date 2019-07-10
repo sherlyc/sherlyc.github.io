@@ -2,4 +2,5 @@
   <a href="{{ input.linkUrl }}" appOpenExternalLink="{{ input.linkUrl }}" (click)="sendAnalytics()">
     <app-headline [headline]="input.indexHeadline" [flags]="input.headlineFlags"></app-headline>
   </a>
+  <app-time-ago [timestamp]="input.lastPublishedTime * 1000" separator="left"></app-time-ago>
 </article>

@@ -3,11 +3,9 @@ import { TestBed } from '@angular/core/testing';
 
 import { ExperimentService } from './experiment.service';
 import { mockService, ServiceMock } from '../mocks/MockService';
-import { StoreService } from '../store/store.service';
-import * as random from 'math-random';
-import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
 import { RuntimeService } from '../runtime/runtime.service';
+import { LottoService } from '../lotto/lotto.service';
 
 jest.mock('math-random');
 
@@ -15,9 +13,8 @@ describe('ExperimentService', () => {
   const experimentAPI = '/spade/api/experiment';
   let configServiceMock: ServiceMock<ConfigService>;
   let service: ExperimentService;
-  let storeService: ServiceMock<StoreService>;
-  let httpClient: ServiceMock<HttpClient>;
   let runtimeService: ServiceMock<RuntimeService>;
+  let lottoService: ServiceMock<LottoService>;
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -29,65 +26,24 @@ describe('ExperimentService', () => {
           useClass: mockService(ConfigService)
         },
         {
-          provide: StoreService,
-          useClass: mockService(StoreService)
-        },
-        {
-          provide: HttpClient,
-          useClass: mockService(HttpClient)
-        },
-        {
           provide: RuntimeService,
           useClass: mockService(RuntimeService)
+        },
+        {
+          provide: LottoService,
+          useClass: mockService(LottoService)
         }
       ]
     });
     configServiceMock = TestBed.get(ConfigService);
     configServiceMock.getConfig.mockReturnValue({ experimentAPI });
     service = TestBed.get(ExperimentService);
-    storeService = TestBed.get(StoreService);
-    httpClient = TestBed.get(HttpClient);
     runtimeService = TestBed.get(RuntimeService);
+    lottoService = TestBed.get(LottoService);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
-  });
-
-  it('should call experiment endpoint', (done) => {
-    const experiment = 'Toucan';
-    const lotteryNumber = 50;
-    const expectedVariant = 'redHighlight';
-
-    httpClient.get.mockReturnValue(of(expectedVariant));
-
-    service.retrieveVariant(experiment, lotteryNumber).subscribe((response) => {
-      expect(response).toEqual(expectedVariant);
-      done();
-    });
-  });
-
-  it('should return a new lottery number if it does not exist in storage service', () => {
-    (random as jest.Mock).mockReturnValue(0.38);
-    storeService.get.mockReturnValue(undefined);
-
-    const experimentName = 'experimentName';
-    const randomNumber = service.getLotteryNumber(experimentName);
-
-    expect(randomNumber).toEqual(39);
-    expect(storeService.set).toHaveBeenCalledWith(
-      `${experimentName}ExperimentLottery`,
-      randomNumber
-    );
-  });
-
-  it('should return existing lottery number if it exists in storage service', () => {
-    storeService.get.mockReturnValue(55);
-
-    const randomNumber = service.getLotteryNumber('FakeExperiment');
-
-    expect(randomNumber).toEqual(55);
-    expect(storeService.set).not.toHaveBeenCalled();
   });
 
   it('should not setup when running in server', async () => {
@@ -95,17 +51,17 @@ describe('ExperimentService', () => {
 
     await service.setup();
 
-    expect(service.getExperiment()).toBeFalsy();
+    expect(lottoService.getLotteryNumber).not.toHaveBeenCalled();
+    expect(lottoService.retrieveVariant).not.toHaveBeenCalled();
   });
 
   it('should set up experiment information when not in control group', async () => {
     runtimeService.isServer.mockReturnValue(false);
-    storeService.get.mockReturnValue(undefined);
     const experimentName = 'FakeExperiment';
     const variant = 'A';
-    (random as jest.Mock).mockReturnValue(0.38);
-    httpClient.get.mockReturnValueOnce(of(experimentName));
-    httpClient.get.mockReturnValueOnce(of(variant));
+    lottoService.getLotteryNumber.mockReturnValue(1);
+    lottoService.retrieveVariant.mockReturnValueOnce(of(experimentName));
+    lottoService.retrieveVariant.mockReturnValueOnce(of(variant));
 
     await service.setup();
 
@@ -116,10 +72,9 @@ describe('ExperimentService', () => {
 
   it('should set up experiment information when in control group', async () => {
     runtimeService.isServer.mockReturnValue(false);
-    storeService.get.mockReturnValue(undefined);
     const experimentName = 'control';
-    (random as jest.Mock).mockReturnValue(0.38);
-    httpClient.get.mockReturnValueOnce(of(experimentName));
+    lottoService.getLotteryNumber.mockReturnValue(1);
+    lottoService.retrieveVariant.mockReturnValueOnce(of(experimentName));
 
     await service.setup();
 
