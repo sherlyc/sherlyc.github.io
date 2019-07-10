@@ -12,6 +12,7 @@ import { StoreService, StorageKeys } from '../../services/store/store.service';
 import { RuntimeService } from '../../services/runtime/runtime.service';
 import { mapForecastToIcon } from './forecast-icon.mapper';
 import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
+import { WindowService } from '../../services/window/window.service';
 
 @Component({
   selector: 'app-weather-unit',
@@ -23,7 +24,8 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
     private storeService: StoreService,
     private runtimeService: RuntimeService,
     private weatherRetrieverService: WeatherRetrieverService,
-    private analyticsService: AnalyticsService
+    private analyticsService: AnalyticsService,
+    private windowService: WindowService
   ) {}
 
   @Input() input!: IWeatherUnit;
@@ -56,7 +58,14 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
   }
 
   onToggleDropdown() {
+    console.log('onToggleDropDown');
     this.isDropdownOpen = !this.isDropdownOpen;
+    if (!this.isDropdownOpen) {
+      console.log('scrolling called');
+      // console.log('window service returns', this.windowService)
+      console.log('window returns', this.windowService.getWindow);
+      this.windowService.getWindow().scrollTo(0, 0);
+    }
   }
 
   private getWeatherData(location: string) {
