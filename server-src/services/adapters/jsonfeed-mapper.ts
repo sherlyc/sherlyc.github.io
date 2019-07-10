@@ -24,7 +24,7 @@ export default (
 function mapArticleAsset(item: IJsonFeedArticle): IRawArticle {
   return {
     id: String(item.id),
-    indexHeadline: item.alt_headline,
+    indexHeadline: item.title,
     introText: item.alt_intro,
     linkUrl: item.path,
     imageSrc: getImageSrc(item),

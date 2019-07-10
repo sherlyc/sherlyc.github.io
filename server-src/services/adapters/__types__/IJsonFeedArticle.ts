@@ -8,7 +8,7 @@ export interface IJsonFeedArticle {
   asset_type: JsonFeedAssetType.ARTICLE;
   headline_flags: HeadlineFlags[];
   path: string;
-  alt_headline: string;
+  title: string;
   datetime_iso8601: string;
   alt_intro: string;
   images?: Array<{
