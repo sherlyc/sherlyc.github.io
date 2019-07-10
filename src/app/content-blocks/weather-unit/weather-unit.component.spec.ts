@@ -410,6 +410,7 @@ describe('WeatherUnitComponent', () => {
     expect(
       fixture.debugElement.query(By.css('.location-list-visible'))
     ).toBeFalsy();
+    expect(scrollToSpy).toHaveBeenCalled();
   });
 
   describe('Analytics', () => {

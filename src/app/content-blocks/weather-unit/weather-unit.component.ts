@@ -58,12 +58,8 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
   }
 
   onToggleDropdown() {
-    console.log('onToggleDropDown');
     this.isDropdownOpen = !this.isDropdownOpen;
     if (!this.isDropdownOpen) {
-      console.log('scrolling called');
-      // console.log('window service returns', this.windowService)
-      console.log('window returns', this.windowService.getWindow);
       this.windowService.getWindow().scrollTo(0, 0);
     }
   }
