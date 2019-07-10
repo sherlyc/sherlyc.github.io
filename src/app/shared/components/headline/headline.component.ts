@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { HeadlineFlags } from '../../../../../common/HeadlineFlags';
 
 @Component({
   selector: 'app-headline',
@@ -8,5 +7,4 @@ import { HeadlineFlags } from '../../../../../common/HeadlineFlags';
 })
 export class HeadlineComponent {
   @Input() headline?: string;
-  @Input() flags?: HeadlineFlags[];
 }

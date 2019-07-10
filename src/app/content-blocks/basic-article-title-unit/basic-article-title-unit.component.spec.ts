@@ -7,6 +7,9 @@ import { By } from '@angular/platform-browser';
 import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
 import { mockService, ServiceMock } from 'src/app/services/mocks/MockService';
 import { AnalyticsEventsType } from 'src/app/services/analytics/__types__/AnalyticsEventsType';
+import { TimeAgoComponent } from '../../shared/components/time-ago/time-ago.component';
+import { HeadlineFlagComponent } from '../../shared/components/headline-flag/headline-flag.component';
+import { HeadlineFlags } from '../../../../common/HeadlineFlags';
 
 describe('BasicArticleTitleUnitComponent', () => {
   let component: BasicArticleTitleUnitComponent;
@@ -93,5 +96,29 @@ describe('BasicArticleTitleUnitComponent', () => {
       articleHeadline: indexHeadline,
       articleId: articleId
     });
+  });
+
+  it('should render title, time ago, and head line flags in correct order', () => {
+    component.input = {
+      type: ContentBlockType.BasicArticleTitleUnit,
+      id: '123123123',
+      strapName: 'Top stories',
+      indexHeadline: 'Headline',
+      linkUrl: '/headline/top-news',
+      headlineFlags: [HeadlineFlags.PHOTO],
+      lastPublishedTime: 1
+    };
+    fixture.detectChanges();
+
+    const headline = fixture.debugElement.query(By.directive(HeadlineComponent))
+      .nativeElement;
+    const timeAgo = fixture.debugElement.query(By.directive(TimeAgoComponent))
+      .nativeElement;
+    const headlineFlags = fixture.debugElement.query(
+      By.directive(HeadlineFlagComponent)
+    ).nativeElement;
+
+    expect(headline.nextElementSibling).toBe(timeAgo);
+    expect(timeAgo.nextElementSibling).toBe(headlineFlags);
   });
 });
