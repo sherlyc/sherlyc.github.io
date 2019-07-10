@@ -24,6 +24,7 @@ describe('WeatherUnitComponent', () => {
   let fixture: ComponentFixture<WeatherUnitComponent>;
   let component: WeatherUnitComponent;
   let windowService: ServiceMock<WindowService>;
+  const scrollToSpy = jest.fn();
 
   beforeEach(async () => {
     jest.clearAllMocks();
@@ -70,6 +71,7 @@ describe('WeatherUnitComponent', () => {
     component.input = {
       type: ContentBlockType.WeatherUnit
     };
+    windowService.getWindow.mockReturnValue({ scrollTo: scrollToSpy });
   });
 
   it('should create', () => {
@@ -254,8 +256,6 @@ describe('WeatherUnitComponent', () => {
 
   it('should collapse location list after selecting a location', () => {
     weatherRetrieverService.getWeather.mockReturnValue(of(weatherData));
-    const scrollToSpy = jest.fn();
-    windowService.getWindow.mockReturnValue({ scrollTo: scrollToSpy });
     component.isDropdownOpen = true;
     fixture.detectChanges();
 
