@@ -4,7 +4,7 @@ import logger from '../services/utils/logger';
 import { IParams } from '../services/__types__/IParams';
 
 function validateRequest(name: string, lotteryNumber: number) {
-  if (!name || !lotteryNumber || lotteryNumber > 100 || lotteryNumber < 0) {
+  if (!name || !lotteryNumber || lotteryNumber < 0) {
     throw new Error(`Invalid experiment data provided,
      name [${name}], lotteryNumber [${lotteryNumber}]`);
   }
@@ -19,7 +19,7 @@ export const experimentController = function(
 
   try {
     validateRequest(name, lotteryNumber);
-    const variant = getExperimentVariant(name, lotteryNumber);
+    const variant = getExperimentVariant(name, parseInt(lotteryNumber, 10));
     res.send(variant);
   } catch (e) {
     logger.error(

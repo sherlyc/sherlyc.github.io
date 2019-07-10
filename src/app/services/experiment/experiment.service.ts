@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import * as random from 'math-random';
 import { ConfigService } from '../config/config.service';
-import { StoreService } from '../store/store.service';
 import { RuntimeService } from '../runtime/runtime.service';
+import { LottoService } from '../lotto/lotto.service';
+import { Experiments } from '../../../../common/Experiments';
 
 @Injectable({
   providedIn: 'root'
@@ -16,69 +14,45 @@ export class ExperimentService {
   }>;
 
   constructor(
-    private http: HttpClient,
     private config: ConfigService,
-    private storeService: StoreService,
-    private runtimeService: RuntimeService
+    private runtimeService: RuntimeService,
+    private lottoService: LottoService
   ) {}
-
-  retrieveVariant(
-    experiment: string,
-    lotteryNumber: number
-  ): Observable<string> {
-    return this.http.get<string>(
-      `${
-        this.config.getConfig().experimentAPI
-      }?name=${experiment}&lotteryNumber=${lotteryNumber}`,
-      {
-        responseType: 'text'
-      } as Object
-    );
-  }
-
-  getLotteryNumber(experimentName: string): number {
-    const experimentStorageKey = `${experimentName}ExperimentLottery`;
-    const existingLotteryNumber = this.storeService.get<number>(
-      experimentStorageKey
-    );
-    if (existingLotteryNumber) {
-      return existingLotteryNumber;
-    }
-    const newLotteryNumber = Math.floor(random() * 100) + 1;
-    this.storeService.set(experimentStorageKey, newLotteryNumber);
-    return newLotteryNumber;
-  }
 
   async setup() {
     if (this.runtimeService.isServer()) {
       return;
     }
-    this.experiment = new Promise<{ name: string; variant: string }>(
-      async (resolve) => {
-        const userLotteryNumber = this.getLotteryNumber('Users');
-        const experimentName = await this.retrieveVariant(
-          'Users',
-          userLotteryNumber
-        ).toPromise();
-        if (experimentName === 'control') {
-          resolve({
-            name: 'control',
-            variant: 'control'
-          });
-          return;
-        }
+    this.experiment = this.loadExperiment();
+  }
 
-        const experimentLotteryNumber = this.getLotteryNumber(experimentName);
-        const variant = await this.retrieveVariant(
-          experimentName,
-          experimentLotteryNumber
-        ).toPromise();
+  private loadExperiment() {
+    return new Promise<{ name: string; variant: string }>(async (resolve) => {
+      const userLotteryNumber = this.lottoService.getLotteryNumber(
+        Experiments.Users
+      );
+      const experimentName = await this.lottoService
+        .retrieveVariant(Experiments.Users, userLotteryNumber)
+        .toPromise();
+      if (experimentName === 'control') {
         resolve({
-          name: experimentName,
-          variant
+          name: 'control',
+          variant: 'control'
         });
+        return;
       }
-    );
+
+      const experimentLotteryNumber = this.lottoService.getLotteryNumber(
+        experimentName
+      );
+      const variant = await this.lottoService
+        .retrieveVariant(experimentName, experimentLotteryNumber)
+        .toPromise();
+      resolve({
+        name: experimentName,
+        variant
+      });
+    });
   }
 
   async getVariant(experimentName: string) {
