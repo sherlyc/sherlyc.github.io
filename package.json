@@ -74,7 +74,6 @@
     "minimatch": "^3.0.4",
     "moment": "^2.24.0",
     "newrelic": "^5.8.0",
-    "ngx-moment": "^3.4.0",
     "p-retry": "^4.1.0",
     "polyfill-array-includes": "^2.0.0",
     "rxjs": "^6.5.2",

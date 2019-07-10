@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DefconArticleUnitComponent } from './defcon-article-unit.component';
 import { SharedModule } from '../../shared/shared.module';
-import { MomentModule } from 'ngx-moment';
 
 describe('DefconArticleUnitComponent', () => {
   let component: DefconArticleUnitComponent;
@@ -9,7 +8,7 @@ describe('DefconArticleUnitComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MomentModule, SharedModule],
+      imports: [SharedModule],
       declarations: [DefconArticleUnitComponent]
     }).compileComponents();
   }));

@@ -2,7 +2,7 @@ import * as browserstack from 'browserstack-local';
 
 export const startBrowserStackLocal = (key: string, browser: string) => {
   const bsLocal = new browserstack.Local();
-  const bsLocalArgs = {'key': key, 'localIdentifier': browser};
+  const bsLocalArgs = { key: key, localIdentifier: browser };
 
   process.on('SIGTERM', () => {
     bsLocal.stop(() => {});
@@ -19,6 +19,3 @@ export const startBrowserStackLocal = (key: string, browser: string) => {
     });
   });
 };
-
-
-

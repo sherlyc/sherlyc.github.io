@@ -6,7 +6,7 @@ import { ContentBlockType } from '../../../../common/__types__/ContentBlockType'
 import { IExperimentContainer } from '../../../../common/__types__/IExperimentContainer';
 import logger from '../../utils/logger';
 
-export default async function (
+export default async function(
   handlerRunner: handlerRunnerFunction,
   { name, variants }: IExperimentHandlerInput,
   params: IParams

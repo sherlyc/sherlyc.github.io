@@ -16,7 +16,6 @@ if (http.globalAgent && http.globalAgent.hasOwnProperty('keepAlive')) {
   http.globalAgent.keepAliveMsecs = keepAliveTimeout;
   // @ts-ignore
   https.globalAgent.keepAliveMsecs = keepAliveTimeout;
-
 } else {
   const agent = new http.Agent({
     keepAlive: true,
@@ -32,7 +31,10 @@ if (http.globalAgent && http.globalAgent.hasOwnProperty('keepAlive')) {
   const httpsRequest = https.request;
 
   // @ts-ignore
-  http.request = function (options: https.RequestOptions, callback: (res: http.IncomingMessage) => (void)) {
+  http.request = function(
+    options: https.RequestOptions,
+    callback: (res: http.IncomingMessage) => void
+  ) {
     if (options.protocol === 'https:') {
       options['agent'] = secureAgent;
       return httpsRequest(options, callback);
