@@ -1,6 +1,7 @@
 import { HeadlineComponent } from './headline.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { HeadlineFlagComponent } from '../headline-flag/headline-flag.component';
 
 describe('Headline Component', () => {
   let component: HeadlineComponent;
@@ -9,7 +10,7 @@ describe('Headline Component', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [],
-      declarations: [HeadlineComponent]
+      declarations: [HeadlineComponent, HeadlineFlagComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(HeadlineComponent);
