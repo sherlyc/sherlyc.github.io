@@ -30,6 +30,7 @@ enableProdMode();
 
 // Express server
 const app = express();
+app.disable('x-powered-by');
 app.use(
   helmet({
     hsts: false,
@@ -104,7 +105,10 @@ app.set('views', join(DIST_FOLDER, 'browser'));
 app.get('*.*', express.static(join(DIST_FOLDER, 'browser')));
 
 app.get('/content/*', (req, res) => res.send(''));
-app.get('/adnostic/*', (req, res) => res.send(''));
+app.get('/adnostic/*', (req, res) => {
+  res.header('Content-Type', 'application/javascript');
+  return res.send('');
+});
 // All regular routes use the Universal engine
 app.get('*', (req, res) => {
   res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });
