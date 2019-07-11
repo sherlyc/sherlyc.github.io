@@ -1,43 +1,45 @@
-<ng-template [ngIf]="flag === 'PHOTO'">
-  <svg class="photo-flag icon-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 176 131">
-    <path fill="#2F67DC" d="M163 39.35V118H40.2V39.35H163m13-13H27.2V131H176V26.35z"></path>
-    <path fill="#2F67DC" d="M135.8 13v78.65H13V13h122.8m13-13H0v104.65h148.8V0z"></path>
-    <path fill="#FFF" d="M39.94 39.34h123.33v78.67H39.94z"></path>
-    <path fill="#2F67DC" d="M119.23 102.26h-27.9L105.28 82l13.95-20.25L133.18 82l13.95 20.26z"></path>
-    <path fill="#2F67DC" d="M84.25 102.26H60.29l11.98-17.4 11.98-17.39 11.98 17.39 11.98 17.4z"></path>
-    <circle cx="66.18" cy="61.75" r="8.22" fill="#2F67DC"></circle>
-  </svg>
-</ng-template>
+<ng-template [ngIf]="isVisible">
+  <ng-template [ngIf]="flag === 'PHOTO'">
+    <svg class="photo-flag icon-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 176 131">
+      <path fill="#2F67DC" d="M163 39.35V118H40.2V39.35H163m13-13H27.2V131H176V26.35z"></path>
+      <path fill="#2F67DC" d="M135.8 13v78.65H13V13h122.8m13-13H0v104.65h148.8V0z"></path>
+      <path fill="#FFF" d="M39.94 39.34h123.33v78.67H39.94z"></path>
+      <path fill="#2F67DC" d="M119.23 102.26h-27.9L105.28 82l13.95-20.25L133.18 82l13.95 20.26z"></path>
+      <path fill="#2F67DC" d="M84.25 102.26H60.29l11.98-17.4 11.98-17.39 11.98 17.39 11.98 17.4z"></path>
+      <circle cx="66.18" cy="61.75" r="8.22" fill="#2F67DC"></circle>
+    </svg>
+  </ng-template>
 
-<ng-template [ngIf]="flag === 'VIDEO'">
-  <span class="video-flag"></span>
-</ng-template>
+  <ng-template [ngIf]="flag === 'VIDEO'">
+    <span class="video-flag"></span>
+  </ng-template>
 
-<ng-template [ngIf]="flag === 'STUFF_NATION'">
-  <svg class="stuff-nation-flag icon-flag" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 154 154">
-    <defs>
-      <clipPath id="a">
-        <ellipse cx="77" cy="77" fill="none" rx="54.25" ry="54.25"></ellipse>
-      </clipPath>
-    </defs>
-    <path fill="#ff4e00" d="M77 76.86L4.81 53.4C15.17 21.5 43.46.95 77 .95v75.91z"></path>
-    <path fill="#8130e4" d="M77 76.86l-44.62 61.41C5.25 118.55-5.55 85.3 4.81 53.4z"></path>
-    <path fill="#00a2fc" d="M77 76.86l44.62 61.41c-27.13 19.71-62.1 19.71-89.23 0z"></path>
-    <path fill="#00c580" d="M77 76.86l72.19-23.46c10.36 31.9-.44 65.15-27.57 84.87z"></path>
-    <path fill="#fcd300" d="M77 76.86V.95c33.54 0 61.83 20.55 72.19 52.45z"></path>
-    <ellipse cx="77" cy="77" fill="#fff" rx="54.25" ry="54.25"></ellipse>
-    <g clip-path="url(#a)">
-      <path
-        d="M124.8 145c-11.43 8.89-27 13.65-47.94 13.65-23.52 0-48.28-7.32-66.08-24.14l19.06-30.17c12.7 10.78 33.66 19.05 46.36 19.05s21.6-3.21 21.6-13.39-22.88-15.22-28.57-17.12A163.41 163.41 0 0 1 47 85.56c-7.29-3.17-26.68-13-26.68-40.95C20.31 14.12 47-4.62 79.71-4.62s51.12 12.08 60 19.37l-16.52 29.86c-8.89-7-26.68-15.23-39.36-15.23-12.08 0-18.74 3.17-18.74 11.43S77.17 52.86 87.95 56s15.56 4.77 22.23 7.31c7 2.56 14.94 6.66 20.32 11.73 5.08 5.12 12.72 15.27 12.72 31.8 0 16.16-6.99 28.9-18.42 38.16z"
-      ></path>
-    </g>
-  </svg>
-</ng-template>
+  <ng-template [ngIf]="flag === 'STUFF_NATION'">
+    <svg class="stuff-nation-flag icon-flag" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 154 154">
+      <defs>
+        <clipPath id="a">
+          <ellipse cx="77" cy="77" fill="none" rx="54.25" ry="54.25"></ellipse>
+        </clipPath>
+      </defs>
+      <path fill="#ff4e00" d="M77 76.86L4.81 53.4C15.17 21.5 43.46.95 77 .95v75.91z"></path>
+      <path fill="#8130e4" d="M77 76.86l-44.62 61.41C5.25 118.55-5.55 85.3 4.81 53.4z"></path>
+      <path fill="#00a2fc" d="M77 76.86l44.62 61.41c-27.13 19.71-62.1 19.71-89.23 0z"></path>
+      <path fill="#00c580" d="M77 76.86l72.19-23.46c10.36 31.9-.44 65.15-27.57 84.87z"></path>
+      <path fill="#fcd300" d="M77 76.86V.95c33.54 0 61.83 20.55 72.19 52.45z"></path>
+      <ellipse cx="77" cy="77" fill="#fff" rx="54.25" ry="54.25"></ellipse>
+      <g clip-path="url(#a)">
+        <path
+          d="M124.8 145c-11.43 8.89-27 13.65-47.94 13.65-23.52 0-48.28-7.32-66.08-24.14l19.06-30.17c12.7 10.78 33.66 19.05 46.36 19.05s21.6-3.21 21.6-13.39-22.88-15.22-28.57-17.12A163.41 163.41 0 0 1 47 85.56c-7.29-3.17-26.68-13-26.68-40.95C20.31 14.12 47-4.62 79.71-4.62s51.12 12.08 60 19.37l-16.52 29.86c-8.89-7-26.68-15.23-39.36-15.23-12.08 0-18.74 3.17-18.74 11.43S77.17 52.86 87.95 56s15.56 4.77 22.23 7.31c7 2.56 14.94 6.66 20.32 11.73 5.08 5.12 12.72 15.27 12.72 31.8 0 16.16-6.99 28.9-18.42 38.16z"
+        ></path>
+      </g>
+    </svg>
+  </ng-template>
 
-<ng-template [ngIf]="flag === 'SPONSORED'">
-  <span class="sponsored-flag text-only-flag">SPONSORED</span>
-</ng-template>
+  <ng-template [ngIf]="flag === 'SPONSORED'">
+    <span class="sponsored-flag text-only-flag">SPONSORED</span>
+  </ng-template>
 
-<ng-template [ngIf]="flag === 'ADVERTISEMENT'">
-  <span class="advertisement-flag text-only-flag">ADVERTISEMENT</span>
+  <ng-template [ngIf]="flag === 'ADVERTISEMENT'">
+    <span class="advertisement-flag text-only-flag">ADVERTISEMENT</span>
+  </ng-template>
 </ng-template>
