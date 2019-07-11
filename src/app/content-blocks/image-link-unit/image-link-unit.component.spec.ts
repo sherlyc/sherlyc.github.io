@@ -4,9 +4,12 @@ import { IImageLinkUnit } from '../../../../common/__types__/IImageLinkUnit';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 import { By } from '@angular/platform-browser';
 import { AnalyticsEventsType } from 'src/app/services/analytics/__types__/AnalyticsEventsType';
-import { ServiceMock, mockService } from 'src/app/services/mocks/MockService';
+import { mockService, ServiceMock } from 'src/app/services/mocks/MockService';
 import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
 import { SharedModule } from '../../shared/shared.module';
+import { HeadlineComponent } from '../../shared/components/headline/headline.component';
+import { HeadlineFlagComponent } from '../../shared/components/headline-flag/headline-flag.component';
+import { HeadlineFlags } from '../../../../common/HeadlineFlags';
 
 describe('ImageLinkUnitComponent', () => {
   let component: ImageLinkUnitComponent;
@@ -83,5 +86,19 @@ describe('ImageLinkUnitComponent', () => {
       articleHeadline: indexHeadline,
       articleId: id
     });
+  });
+
+  it('should render headline and headline flags in the correct order', () => {
+    articleData.headlineFlags = [HeadlineFlags.VIDEO, HeadlineFlags.PHOTO];
+    component.input = articleData;
+    fixture.detectChanges();
+
+    const headline = fixture.debugElement.query(By.directive(HeadlineComponent))
+      .nativeElement;
+    const headlineFlags = fixture.debugElement.query(
+      By.directive(HeadlineFlagComponent)
+    ).nativeElement;
+
+    expect(headline.nextElementSibling).toBe(headlineFlags);
   });
 });

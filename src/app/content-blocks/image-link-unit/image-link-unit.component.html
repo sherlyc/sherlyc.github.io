@@ -6,5 +6,6 @@
       </div>
     </div>
     <app-headline [headline]="input.indexHeadline"></app-headline>
+    <app-headline-flag *ngFor="let flag of input.headlineFlags" [flag]="flag"></app-headline-flag>
   </a>
 </article>
