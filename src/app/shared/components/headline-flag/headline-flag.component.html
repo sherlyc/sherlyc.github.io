@@ -1,5 +1,5 @@
-<ng-template [ngIf]="isVisible">
-  <ng-template [ngIf]="flag === 'PHOTO'">
+<ng-container *ngIf="isVisible">
+  <ng-container *ngIf="flag === 'PHOTO'">
     <svg class="photo-flag icon-flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 176 131">
       <path fill="#2F67DC" d="M163 39.35V118H40.2V39.35H163m13-13H27.2V131H176V26.35z"></path>
       <path fill="#2F67DC" d="M135.8 13v78.65H13V13h122.8m13-13H0v104.65h148.8V0z"></path>
@@ -8,13 +8,11 @@
       <path fill="#2F67DC" d="M84.25 102.26H60.29l11.98-17.4 11.98-17.39 11.98 17.39 11.98 17.4z"></path>
       <circle cx="66.18" cy="61.75" r="8.22" fill="#2F67DC"></circle>
     </svg>
-  </ng-template>
+  </ng-container>
 
-  <ng-template [ngIf]="flag === 'VIDEO'">
-    <span class="video-flag"></span>
-  </ng-template>
+  <span *ngIf="flag === 'VIDEO'" class="video-flag"></span>
 
-  <ng-template [ngIf]="flag === 'STUFF_NATION'">
+  <ng-container *ngIf="flag === 'STUFF_NATION'">
     <svg class="stuff-nation-flag icon-flag" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 154 154">
       <defs>
         <clipPath id="a">
@@ -33,13 +31,9 @@
         ></path>
       </g>
     </svg>
-  </ng-template>
+  </ng-container>
 
-  <ng-template [ngIf]="flag === 'SPONSORED'">
-    <span class="sponsored-flag text-only-flag">SPONSORED</span>
-  </ng-template>
+  <span *ngIf="flag === 'SPONSORED'" class="sponsored-flag text-only-flag">SPONSORED</span>
 
-  <ng-template [ngIf]="flag === 'ADVERTISEMENT'">
-    <span class="advertisement-flag text-only-flag">ADVERTISEMENT</span>
-  </ng-template>
-</ng-template>
+  <span *ngIf="flag === 'ADVERTISEMENT'" class="advertisement-flag text-only-flag">ADVERTISEMENT</span>
+</ng-container>
