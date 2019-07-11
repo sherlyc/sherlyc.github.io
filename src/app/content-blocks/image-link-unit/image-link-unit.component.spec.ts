@@ -10,6 +10,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { HeadlineComponent } from '../../shared/components/headline/headline.component';
 import { HeadlineFlagComponent } from '../../shared/components/headline-flag/headline-flag.component';
 import { HeadlineFlags } from '../../../../common/HeadlineFlags';
+import { FeatureSwitchService } from '../../services/feature-switch/feature-switch.service';
 
 describe('ImageLinkUnitComponent', () => {
   let component: ImageLinkUnitComponent;
@@ -35,6 +36,10 @@ describe('ImageLinkUnitComponent', () => {
         {
           provide: AnalyticsService,
           useClass: mockService(AnalyticsService)
+        },
+        {
+          provide: FeatureSwitchService,
+          useClass: mockService(FeatureSwitchService)
         }
       ]
     }).compileComponents()

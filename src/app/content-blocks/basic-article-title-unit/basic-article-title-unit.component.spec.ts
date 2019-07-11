@@ -10,6 +10,7 @@ import { AnalyticsEventsType } from 'src/app/services/analytics/__types__/Analyt
 import { TimeAgoComponent } from '../../shared/components/time-ago/time-ago.component';
 import { HeadlineFlagComponent } from '../../shared/components/headline-flag/headline-flag.component';
 import { HeadlineFlags } from '../../../../common/HeadlineFlags';
+import { FeatureSwitchService } from '../../services/feature-switch/feature-switch.service';
 
 describe('BasicArticleTitleUnitComponent', () => {
   let component: BasicArticleTitleUnitComponent;
@@ -24,6 +25,10 @@ describe('BasicArticleTitleUnitComponent', () => {
         {
           provide: AnalyticsService,
           useClass: mockService(AnalyticsService)
+        },
+        {
+          provide: FeatureSwitchService,
+          useClass: mockService(FeatureSwitchService)
         }
       ]
     }).compileComponents();
