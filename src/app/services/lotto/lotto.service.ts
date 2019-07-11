@@ -9,8 +9,11 @@ import { StoreService } from '../store/store.service';
   providedIn: 'root'
 })
 export class LottoService {
-
-  constructor(private http: HttpClient, private config: ConfigService, private storeService: StoreService) { }
+  constructor(
+    private http: HttpClient,
+    private config: ConfigService,
+    private storeService: StoreService
+  ) {}
 
   retrieveVariant(
     experiment: string,
@@ -19,7 +22,7 @@ export class LottoService {
     return this.http.get<string>(
       `${
         this.config.getConfig().experimentAPI
-        }?name=${experiment}&lotteryNumber=${lotteryNumber}`,
+      }?name=${experiment}&lotteryNumber=${lotteryNumber}`,
       {
         responseType: 'text'
       } as Object

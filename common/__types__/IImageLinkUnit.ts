@@ -1,4 +1,5 @@
 import { ContentBlockType } from './ContentBlockType';
+import { HeadlineFlags } from '../HeadlineFlags';
 
 export interface IImageLinkUnit {
   type: ContentBlockType.ImageLinkUnit;
@@ -8,5 +9,5 @@ export interface IImageLinkUnit {
   linkUrl: string;
   imageSrc: string | null;
   imageSrcSet: string | null;
-  headlineFlags: string[];
+  headlineFlags: HeadlineFlags[];
 }

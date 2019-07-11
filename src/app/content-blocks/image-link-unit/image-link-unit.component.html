@@ -5,8 +5,7 @@
         <img src="{{ input.imageSrc }}" alt="{{ input.indexHeadline }}" loading="lazy" [attr.srcset]="input.imageSrcSet ? input.imageSrcSet : null" />
       </div>
     </div>
-    <div class="row">
-      <h3>{{ input.indexHeadline }}</h3>
-    </div>
+    <app-headline [headline]="input.indexHeadline"></app-headline>
+    <app-headline-flag *ngFor="let flag of input.headlineFlags" [flag]="flag"></app-headline-flag>
   </a>
 </article>

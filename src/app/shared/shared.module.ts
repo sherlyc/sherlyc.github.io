@@ -7,6 +7,7 @@ import { PageComponent } from './components/page/page.component';
 import { HeadlineComponent } from './components/headline/headline.component';
 import { OpenExternalLinkDirective } from './directives/open-external-link/open-external-link.directive';
 import { SigninCallbackComponent } from './components/authentication/signin-callback.component';
+import { HeadlineFlagComponent } from './components/headline-flag/headline-flag.component';
 import { TimeAgoComponent } from './components/time-ago/time-ago.component';
 
 @NgModule({
@@ -19,6 +20,7 @@ import { TimeAgoComponent } from './components/time-ago/time-ago.component';
     CopyrightComponent,
     HeadlineComponent,
     SigninCallbackComponent,
+    HeadlineFlagComponent,
     TimeAgoComponent
   ],
   exports: [
@@ -29,6 +31,7 @@ import { TimeAgoComponent } from './components/time-ago/time-ago.component';
     CopyrightComponent,
     HeadlineComponent,
     SigninCallbackComponent,
+    HeadlineFlagComponent,
     TimeAgoComponent
   ]
 })
