@@ -13,6 +13,7 @@ import { IWeatherResponse } from '../../../../common/__types__/IWeatherResponse'
 import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
 import { DebugElement } from '@angular/core';
 import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
+import { WindowService } from 'src/app/services/window/window.service';
 
 describe('WeatherUnitComponent', () => {
   let storeService: ServiceMock<StoreService>;
@@ -22,8 +23,11 @@ describe('WeatherUnitComponent', () => {
   const weatherData = weatherDataJson as IWeatherResponse;
   let fixture: ComponentFixture<WeatherUnitComponent>;
   let component: WeatherUnitComponent;
+  let windowService: ServiceMock<WindowService>;
+  const scrollToSpy = jest.fn();
 
   beforeEach(async () => {
+    jest.clearAllMocks();
     await TestBed.configureTestingModule({
       declarations: [WeatherUnitComponent],
       providers: [
@@ -46,6 +50,10 @@ describe('WeatherUnitComponent', () => {
         {
           provide: AnalyticsService,
           useClass: mockService(AnalyticsService)
+        },
+        {
+          provide: WindowService,
+          useClass: mockService(WindowService)
         }
       ]
     }).compileComponents();
@@ -54,6 +62,8 @@ describe('WeatherUnitComponent', () => {
     storeService = TestBed.get(StoreService);
     weatherRetrieverService = TestBed.get(WeatherRetrieverService);
     analyticsService = TestBed.get(AnalyticsService);
+    windowService = TestBed.get(WindowService);
+
     runtimeService.isBrowser.mockReturnValue(true);
 
     fixture = TestBed.createComponent(WeatherUnitComponent);
@@ -61,6 +71,7 @@ describe('WeatherUnitComponent', () => {
     component.input = {
       type: ContentBlockType.WeatherUnit
     };
+    windowService.getWindow.mockReturnValue({ scrollTo: scrollToSpy });
   });
 
   it('should create', () => {
@@ -262,6 +273,7 @@ describe('WeatherUnitComponent', () => {
     expect(
       fixture.debugElement.query(By.css('.weatherLocationInfo'))
     ).toBeTruthy();
+    expect(scrollToSpy).toHaveBeenCalled();
   });
 
   it('should show weather unavailable if cannot retrieve selected weather info for returning user', () => {
@@ -398,6 +410,7 @@ describe('WeatherUnitComponent', () => {
     expect(
       fixture.debugElement.query(By.css('.location-list-visible'))
     ).toBeFalsy();
+    expect(scrollToSpy).toHaveBeenCalled();
   });
 
   describe('Analytics', () => {
