@@ -7,4 +7,8 @@ import { Component, Input } from '@angular/core';
 })
 export class HeadlineComponent {
   @Input() headline?: string;
+
+  assggg() {
+    console.log(33);
+  }
 }
