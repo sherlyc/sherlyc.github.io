@@ -1,3 +1,7 @@
 <div class="row">
-  <h3 class="col-xs">{{ headline }}</h3>
+  <h3 class="col-xs">
+    <span class="title">{{ headline }}</span>
+    <app-time-ago *ngIf="timeStamp" [timestamp]="timeStamp * 1000" [separator]="'left'"></app-time-ago>
+    <app-headline-flag *ngFor="let flag of headlineFlags" [flag]="flag"></app-headline-flag>
+  </h3>
 </div>

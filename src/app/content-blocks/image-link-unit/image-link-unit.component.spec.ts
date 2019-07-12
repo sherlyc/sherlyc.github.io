@@ -92,18 +92,4 @@ describe('ImageLinkUnitComponent', () => {
       articleId: id
     });
   });
-
-  it('should render headline and headline flags in the correct order', () => {
-    articleData.headlineFlags = [HeadlineFlags.VIDEO, HeadlineFlags.PHOTO];
-    component.input = articleData;
-    fixture.detectChanges();
-
-    const headline = fixture.debugElement.query(By.directive(HeadlineComponent))
-      .nativeElement;
-    const headlineFlags = fixture.debugElement.query(
-      By.directive(HeadlineFlagComponent)
-    ).nativeElement;
-
-    expect(headline.nextElementSibling).toBe(headlineFlags);
-  });
 });

@@ -102,28 +102,4 @@ describe('BasicArticleTitleUnitComponent', () => {
       articleId: articleId
     });
   });
-
-  it('should render title, time ago, and head line flags in correct order', () => {
-    component.input = {
-      type: ContentBlockType.BasicArticleTitleUnit,
-      id: '123123123',
-      strapName: 'Top stories',
-      indexHeadline: 'Headline',
-      linkUrl: '/headline/top-news',
-      headlineFlags: [HeadlineFlags.PHOTO],
-      lastPublishedTime: 1
-    };
-    fixture.detectChanges();
-
-    const headline = fixture.debugElement.query(By.directive(HeadlineComponent))
-      .nativeElement;
-    const timeAgo = fixture.debugElement.query(By.directive(TimeAgoComponent))
-      .nativeElement;
-    const headlineFlags = fixture.debugElement.query(
-      By.directive(HeadlineFlagComponent)
-    ).nativeElement;
-
-    expect(headline.nextElementSibling).toBe(timeAgo);
-    expect(timeAgo.nextElementSibling).toBe(headlineFlags);
-  });
 });
