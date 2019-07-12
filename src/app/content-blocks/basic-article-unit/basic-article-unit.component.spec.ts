@@ -8,10 +8,9 @@ import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
 import { mockService, ServiceMock } from 'src/app/services/mocks/MockService';
 import { By } from '@angular/platform-browser';
 import { AnalyticsEventsType } from 'src/app/services/analytics/__types__/AnalyticsEventsType';
-import { HeadlineComponent } from '../../shared/components/headline/headline.component';
-import { HeadlineFlagComponent } from '../../shared/components/headline-flag/headline-flag.component';
-import { HeadlineFlags } from '../../../../common/HeadlineFlags';
 import { FeatureSwitchService } from '../../services/feature-switch/feature-switch.service';
+import { HeadlineFlags } from '../../../../common/HeadlineFlags';
+import { HeadlineComponent } from '../../shared/components/headline/headline.component';
 
 describe('BasicArticleUnitComponent', () => {
   let component: BasicArticleUnitComponent;
@@ -99,5 +98,19 @@ describe('BasicArticleUnitComponent', () => {
       articleHeadline: indexHeadline,
       articleId: id
     });
+  });
+
+  it('should pass correct inputs to headline component', () => {
+    articleData.headlineFlags = [HeadlineFlags.PHOTO];
+    component.input = articleData;
+
+    fixture.detectChanges();
+
+    const headline = fixture.debugElement.query(By.directive(HeadlineComponent))
+      .componentInstance;
+
+    expect(headline).toHaveProperty('headline', articleData.indexHeadline);
+    expect(headline).toHaveProperty('headlineFlags', articleData.headlineFlags);
+    expect(headline).not.toHaveProperty('timeStamp');
   });
 });
