@@ -9,7 +9,7 @@
       "level": "info",
       "format": "json"
     },
-    "aadSdkUrl": "/adnostic/index.min.js",
+    "aadSdkUrl": "/adnostic/manifest.json",
     "browserOverrides": {
       "spadeAPI": "/spade/api/content",
       "weatherAPI": "/spade/api/weather",
@@ -38,7 +38,7 @@
       "level": "info",
       "format": "json"
     },
-    "aadSdkUrl": "/adnostic/index.min.js",
+    "aadSdkUrl": "/adnostic/manifest.json",
     "browserOverrides": {
       "spadeAPI": "/spade/api/content",
       "weatherAPI": "/spade/api/weather",
@@ -67,8 +67,38 @@
       "level": "debug",
       "format": "text"
     },
-    "aadSdkUrl": "/adnostic/index.min.js",
+    "aadSdkUrl": "/adnostic/manifest.json",
     "browserOverrides": {
+      "spadeAPI": "/spade/api/content",
+      "weatherAPI": "/spade/api/weather",
+      "experimentAPI": "/spade/api/experiment"
+    },
+    "sentryIO": {
+      "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
+      "sampleRate": 0,
+      "environment": "development"
+    },
+    "dtmUrl": "https://assets.adobedtm.com/10d15a330ba9eec67033fb8a57223f1f239d36eb/satelliteLib-8ff0ef0f82e3dfb69c3732fec2854ff9506f9f38-staging.js",
+    "loginLibrary": {
+      "libraryUrl": "https://www.stuff.co.nz/static/stuff-login-browser-sdk/1.2.0/stuff-login-sdk.js",
+      "authProvider": "https://my.preprod.stuff.co.nz",
+      "clientId": "c0f1b219-297b-4104-8300-94c4636768da",
+      "signinRedirectPath": "/spade/signin-callback"
+    }
+  },
+  "localhost": {
+    "retryTimeout": 500,
+    "requestTimeout": 10000,
+    "spadeAPI": "http://localhost:4000/spade/api/content",
+    "weatherAPI": "http://localhost:4000/spade/api/weather",
+    "experimentAPI": "http://localhost:4000/spade/api/experiment",
+    "loggerOptions": {
+      "level": "debug",
+      "format": "text"
+    },
+    "aadSdkUrl": "http://localhost:4000/spade/assets/adnostic_manifest.json",
+    "browserOverrides": {
+      "aadSdkUrl": "/spade/assets/adnostic_manifest.json",
       "spadeAPI": "/spade/api/content",
       "weatherAPI": "/spade/api/weather",
       "experimentAPI": "/spade/api/experiment"
@@ -96,7 +126,7 @@
       "level": "debug",
       "format": "text"
     },
-    "aadSdkUrl": "/adnostic/index.min.js",
+    "aadSdkUrl": "/adnostic/manifest.json",
     "browserOverrides": {
       "spadeAPI": "/spade/api/content",
       "weatherAPI": "/spade/api/weather",

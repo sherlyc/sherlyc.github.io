@@ -4,10 +4,13 @@ import { ConfigService } from '../config/config.service';
 import { mockService, ServiceMock } from '../mocks/MockService';
 import { ScriptInjectorService } from '../script-injector/script-injector.service';
 import { DOCUMENT } from '@angular/common';
+import { of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 describe('AdService', () => {
   let scriptInjectorService: ServiceMock<ScriptInjectorService>;
   let configMock: ServiceMock<ConfigService>;
+  let httpClient: ServiceMock<HttpClient>;
   let adService: AdService;
 
   beforeEach(() => {
@@ -18,6 +21,10 @@ describe('AdService', () => {
           useClass: mockService(ConfigService)
         },
         {
+          provide: HttpClient,
+          useClass: mockService(HttpClient)
+        },
+        {
           provide: ScriptInjectorService,
           useClass: mockService(ScriptInjectorService)
         }
@@ -25,6 +32,7 @@ describe('AdService', () => {
     });
 
     scriptInjectorService = TestBed.get(ScriptInjectorService);
+    httpClient = TestBed.get(HttpClient);
     configMock = TestBed.get(ConfigService);
     adService = TestBed.get(AdService);
   });
@@ -34,9 +42,15 @@ describe('AdService', () => {
   });
 
   it('should delegate to script injector to load the script on setup', async () => {
+    const manifestUrl = 'http://manifest_url/';
     const aadSdkUrl = 'http://whatever_url/';
-    configMock.getConfig.mockReturnValue({ aadSdkUrl });
+
+    configMock.getConfig.mockReturnValue({ aadSdkUrl: manifestUrl });
+
+    httpClient.get.mockReturnValue(of({ url: aadSdkUrl }));
+
     await adService.setup();
+
     expect(scriptInjectorService.load).toHaveBeenCalledWith(
       'aad-sdk',
       aadSdkUrl
