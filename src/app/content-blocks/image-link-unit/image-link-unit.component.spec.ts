@@ -92,4 +92,18 @@ describe('ImageLinkUnitComponent', () => {
       articleId: id
     });
   });
+
+  it('should pass correct inputs to headline component', () => {
+    articleData.headlineFlags = [HeadlineFlags.PHOTO];
+    component.input = articleData;
+
+    fixture.detectChanges();
+
+    const headline = fixture.debugElement.query(By.directive(HeadlineComponent))
+      .componentInstance;
+
+    expect(headline).toHaveProperty('headline', articleData.indexHeadline);
+    expect(headline).toHaveProperty('headlineFlags', articleData.headlineFlags);
+    expect(headline).not.toHaveProperty('timeStamp');
+  });
 });

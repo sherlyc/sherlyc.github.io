@@ -41,23 +41,37 @@ describe('BasicArticleTitleUnitComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render headline in headline component', () => {
+  it('should render headline in headline component with correct inputs', () => {
     const headline = 'Headline';
+    const headlineFlags = [HeadlineFlags.PHOTO];
+    const timeStamp = 1;
     component.input = {
       type: ContentBlockType.BasicArticleTitleUnit,
       id: '123123123',
       strapName: 'Top stories',
       indexHeadline: headline,
       linkUrl: '/headline/top-news',
-      headlineFlags: [],
-      lastPublishedTime: 1
+      headlineFlags,
+      lastPublishedTime: timeStamp
     };
     fixture.detectChanges();
 
     const headlineComponent = fixture.debugElement.query(
       By.directive(HeadlineComponent)
-    ).nativeElement;
-    expect(headlineComponent.textContent).toEqual(headline);
+    );
+    expect(headlineComponent.nativeElement.textContent).toEqual(headline);
+    expect(headlineComponent.componentInstance).toHaveProperty(
+      'headline',
+      headline
+    );
+    expect(headlineComponent.componentInstance).toHaveProperty(
+      'headlineFlags',
+      headlineFlags
+    );
+    expect(headlineComponent.componentInstance).toHaveProperty(
+      'timeStamp',
+      timeStamp
+    );
   });
 
   it('should render anchor tag with correct linkUrl', () => {
