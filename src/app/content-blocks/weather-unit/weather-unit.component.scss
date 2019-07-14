@@ -67,6 +67,7 @@
   transition: visibility 0s 0.4s, opacity 0.4s linear;
   margin-top: 3px;
   border-bottom: 1px solid #edeef1;
+  z-index: 1;
 }
 
 .weather-icon {
