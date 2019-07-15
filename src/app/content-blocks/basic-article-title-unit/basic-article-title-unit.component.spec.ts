@@ -41,23 +41,37 @@ describe('BasicArticleTitleUnitComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render headline in headline component', () => {
+  it('should render headline in headline component with correct inputs', () => {
     const headline = 'Headline';
+    const headlineFlags = [HeadlineFlags.PHOTO];
+    const timeStamp = 1;
     component.input = {
       type: ContentBlockType.BasicArticleTitleUnit,
       id: '123123123',
       strapName: 'Top stories',
       indexHeadline: headline,
       linkUrl: '/headline/top-news',
-      headlineFlags: [],
-      lastPublishedTime: 1
+      headlineFlags,
+      lastPublishedTime: timeStamp
     };
     fixture.detectChanges();
 
     const headlineComponent = fixture.debugElement.query(
       By.directive(HeadlineComponent)
-    ).nativeElement;
-    expect(headlineComponent.textContent).toEqual(headline);
+    );
+    expect(headlineComponent.nativeElement.textContent).toEqual(headline);
+    expect(headlineComponent.componentInstance).toHaveProperty(
+      'headline',
+      headline
+    );
+    expect(headlineComponent.componentInstance).toHaveProperty(
+      'headlineFlags',
+      headlineFlags
+    );
+    expect(headlineComponent.componentInstance).toHaveProperty(
+      'timeStamp',
+      timeStamp
+    );
   });
 
   it('should render anchor tag with correct linkUrl', () => {
@@ -101,29 +115,5 @@ describe('BasicArticleTitleUnitComponent', () => {
       articleHeadline: indexHeadline,
       articleId: articleId
     });
-  });
-
-  it('should render title, time ago, and head line flags in correct order', () => {
-    component.input = {
-      type: ContentBlockType.BasicArticleTitleUnit,
-      id: '123123123',
-      strapName: 'Top stories',
-      indexHeadline: 'Headline',
-      linkUrl: '/headline/top-news',
-      headlineFlags: [HeadlineFlags.PHOTO],
-      lastPublishedTime: 1
-    };
-    fixture.detectChanges();
-
-    const headline = fixture.debugElement.query(By.directive(HeadlineComponent))
-      .nativeElement;
-    const timeAgo = fixture.debugElement.query(By.directive(TimeAgoComponent))
-      .nativeElement;
-    const headlineFlags = fixture.debugElement.query(
-      By.directive(HeadlineFlagComponent)
-    ).nativeElement;
-
-    expect(headline.nextElementSibling).toBe(timeAgo);
-    expect(timeAgo.nextElementSibling).toBe(headlineFlags);
   });
 });
