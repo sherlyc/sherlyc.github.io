@@ -4,6 +4,7 @@
       "id": 109962196,
       "asset_type": "ARTICLE",
       "headline_flags": [],
+      "sponsored": false,
       "path": "/national/109962196/cctv-shows-unruly-travelling-family-taking-christmas-tree-from-auckland-caltex",
       "url": "http://www.stuff.co.nz/_json/national/109962196/cctv-shows-unruly-travelling-family-taking-christmas-tree-from-auckland-caltex",
       "section": "National",
@@ -217,6 +218,7 @@
       "id": 112150655,
       "asset_type": "URL",
       "headline_flags": [],
+      "sponsored": false,
       "title": "Paving over paradise",
       "url": "https://interactives.stuff.co.nz/2019/04/the-tourist-trap/#section-wS1QFb7arf",
       "datetime_display": "00:01 22/04/2019",
@@ -281,6 +283,7 @@
       "id": 109810764,
       "asset_type": "ARTICLE",
       "headline_flags": [],
+      "sponsored": false,
       "path": "/business/farming/109810764/400-a-day-to-plant-trees-but-no-one-wants-the-job",
       "url": "http://www.stuff.co.nz/_json/business/farming/109810764/400-a-day-to-plant-trees-but-no-one-wants-the-job",
       "section": "Farming",
@@ -461,6 +464,7 @@
       "datetime_display": "08:55 18/08/2015",
       "asset_type": "URL",
       "headline_flags": [],
+      "sponsored": false,
       "title": "Puzzles",
       "id": 63784440
     }
