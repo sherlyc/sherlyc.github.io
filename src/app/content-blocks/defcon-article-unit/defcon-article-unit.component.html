@@ -4,7 +4,7 @@
     <div class="image">
       <img itemprop="image" src="{{ input.imageSrc }}" alt="{{ input.indexHeadline }}" loading="lazy" />
     </div>
-    <app-headline [headline]="input.indexHeadline"></app-headline>
+    <app-headline [headline]="input.indexHeadline" [headlineFlags]="input.headlineFlags"></app-headline>
     <p>
       <app-time-ago [timestamp]="input.lastPublishedTime"></app-time-ago>
       <span class="intro">{{ input.introText }}</span>

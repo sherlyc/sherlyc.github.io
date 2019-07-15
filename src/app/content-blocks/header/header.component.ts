@@ -47,7 +47,7 @@ export class HeaderComponent
         { label: 'Entertainment', link: '/entertainment' },
         { label: 'Business', link: '/business' },
         { label: 'Homed', link: '/life-style/homed' },
-        { label: 'Opinion', link: '/opinion' },
+        { label: 'Climate Change', link: '/environment/climate-news' },
         { label: 'Travel', link: '/travel' },
         { label: 'Technology', link: '/technology' },
         { label: 'Stuff Nation', link: '/stuff-nation' },
