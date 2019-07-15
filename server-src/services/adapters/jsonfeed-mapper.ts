@@ -6,6 +6,7 @@ import { JsonFeedAssetType } from './__types__/JsonFeedAssetType';
 import { IJsonFeedUrl } from './__types__/IJsonFeedUrl';
 import { IJsonFeedQuery } from './__types__/IJsonFeedQuery';
 import { IImageVariant } from './__types__/IImageVariant';
+import { HeadlineFlags } from '../../../common/HeadlineFlags';
 
 export default (
   articles: Array<IJsonFeedArticle | IJsonFeedUrl | IJsonFeedQuery>
@@ -31,7 +32,7 @@ function mapArticleAsset(item: IJsonFeedArticle): IRawArticle {
     imageSrcSet: getImageSrcSet(item),
     defconSrc: getDefconSrc(item),
     lastPublishedTime: moment(item.datetime_iso8601).unix(),
-    headlineFlags: item.headline_flags ? item.headline_flags : []
+    headlineFlags: getHeadlineFlags(item)
   };
 }
 
@@ -45,8 +46,13 @@ function mapUrlAsset(item: IJsonFeedUrl): IRawArticle {
     imageSrcSet: getImageSrcSet(item),
     defconSrc: getDefconSrc(item),
     lastPublishedTime: moment(item.datetime_iso8601).unix(),
-    headlineFlags: item.headline_flags ? item.headline_flags : []
+    headlineFlags: getHeadlineFlags(item)
   };
+}
+
+function getHeadlineFlags(asset: IJsonFeedArticle | IJsonFeedUrl) {
+  const flags = asset.headline_flags ? asset.headline_flags : [];
+  return asset.sponsored ? flags.concat(HeadlineFlags.SPONSORED) : flags;
 }
 
 function getImageWidth(dimensions: string) {
