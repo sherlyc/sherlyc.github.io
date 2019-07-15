@@ -6,6 +6,7 @@ import { ScriptInjectorService } from '../script-injector/script-injector.servic
 import { DOCUMENT } from '@angular/common';
 import { of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { LoggerService } from '../logger/logger.service';
 
 describe('AdService', () => {
   let scriptInjectorService: ServiceMock<ScriptInjectorService>;
@@ -23,6 +24,10 @@ describe('AdService', () => {
         {
           provide: HttpClient,
           useClass: mockService(HttpClient)
+        },
+        {
+          provide: LoggerService,
+          useClass: mockService(LoggerService)
         },
         {
           provide: ScriptInjectorService,
@@ -57,18 +62,16 @@ describe('AdService', () => {
     );
   });
 
-  it('should notify the adnostic sdk', (done) => {
+  it('should notify the adnostic sdk', async () => {
     const document: Document = TestBed.get(DOCUMENT);
     document.dispatchEvent = jest.fn();
-    adService.notify();
-    setTimeout(() => {
-      const fakeEvent = new Event('NavigationEnd');
-      expect(document.dispatchEvent).toHaveBeenCalledWith(fakeEvent);
-      done();
-    });
+    await adService.notify();
+
+    const fakeEvent = new Event('NavigationEnd');
+    expect(document.dispatchEvent).toHaveBeenCalledWith(fakeEvent);
   });
 
-  it('should notify the adnostic sdk in IE11', (done) => {
+  it('should notify the adnostic sdk in IE11', async () => {
     const document: ServiceMock<Document> = TestBed.get(DOCUMENT);
     document.dispatchEvent = jest.fn();
     document.createEvent = jest.fn();
@@ -79,16 +82,14 @@ describe('AdService', () => {
 
     document.createEvent.mockReturnValue(fakeEvent);
     (window as any).Event = { prototype: { constructor: {} } };
-    adService.notify();
-    setTimeout(() => {
-      expect(document.createEvent).toHaveBeenCalledWith('Event');
-      expect(fakeEvent.initEvent).toHaveBeenCalledWith(
-        'NavigationEnd',
-        true,
-        true
-      );
-      expect(document.dispatchEvent).toHaveBeenCalledWith(fakeEvent);
-      done();
-    });
+    await adService.notify();
+
+    expect(document.createEvent).toHaveBeenCalledWith('Event');
+    expect(fakeEvent.initEvent).toHaveBeenCalledWith(
+      'NavigationEnd',
+      true,
+      true
+    );
+    expect(document.dispatchEvent).toHaveBeenCalledWith(fakeEvent);
   });
 });

@@ -5,6 +5,7 @@ import { ConfigService } from '../config/config.service';
 import { ScriptInjectorService } from '../script-injector/script-injector.service';
 import { ScriptId } from '../script-injector/__types__/ScriptId';
 import { HttpClient } from '@angular/common/http';
+import { LoggerService } from '../logger/logger.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class AdService {
     private config: ConfigService,
     private scriptInjectorService: ScriptInjectorService,
     private http: HttpClient,
+    private logger: LoggerService,
     private zone: NgZone
   ) {}
 
@@ -26,7 +28,14 @@ export class AdService {
         const manifest = await this.http
           .get<{ url: string }>(this.config.getConfig().aadSdkUrl)
           .toPromise();
-        await this.scriptInjectorService.load(ScriptId.adnostic, manifest.url);
+        if (manifest.url) {
+          await this.scriptInjectorService.load(
+            ScriptId.adnostic,
+            manifest.url
+          );
+        } else {
+          this.logger.error(new Error('No adnostic URL'));
+        }
         resolve();
       } catch (e) {
         reject(e);
