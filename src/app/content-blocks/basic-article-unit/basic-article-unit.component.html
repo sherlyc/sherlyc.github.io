@@ -1,8 +1,7 @@
 <article itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
   <meta itemprop="position" content="{{ index }}" />
   <a itemprop="url" href="{{ input.linkUrl }}" appOpenExternalLink="{{ input.linkUrl }}" (click)="sendAnalytics()">
-    <app-headline [headline]="input.indexHeadline"></app-headline>
-    <app-headline-flag *ngFor="let flag of input.headlineFlags" [flag]="flag"></app-headline-flag>
+    <app-headline [headline]="input.indexHeadline" [headlineFlags]="input.headlineFlags"></app-headline>
     <div class="row">
       <div class="col-md-2 col-sm-3 col-xs-4 column">
         <div class="image">
@@ -11,7 +10,7 @@
       </div>
       <div class="col-md-10 col-sm-9 col-xs-8 column">
         <p>
-          <app-time-ago [timestamp]="input.lastPublishedTime * 1000"></app-time-ago>
+          <app-time-ago [timestamp]="input.lastPublishedTime"></app-time-ago>
           <span class="intro">{{ input.introText }}</span>
         </p>
       </div>

@@ -25,7 +25,10 @@ export class TimeAgoComponent implements OnInit {
   }
 
   format() {
-    const seconds = moment().diff(moment(this.timestamp), 'seconds');
+    const seconds = moment().diff(
+      moment((this.timestamp as number) * 1000),
+      'seconds'
+    );
     if (seconds >= 2 * HOUR_IN_SECONDS || seconds < 0) {
       return '';
     }

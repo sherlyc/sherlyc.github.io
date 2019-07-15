@@ -7,6 +7,7 @@ export interface IJsonFeedArticle {
   id: number;
   asset_type: JsonFeedAssetType.ARTICLE;
   headline_flags: HeadlineFlags[];
+  sponsored: boolean;
   path: string;
   title: string;
   datetime_iso8601: string;
