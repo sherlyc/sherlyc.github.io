@@ -8,7 +8,6 @@ import { mockService, ServiceMock } from 'src/app/services/mocks/MockService';
 import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
 import { SharedModule } from '../../shared/shared.module';
 import { HeadlineComponent } from '../../shared/components/headline/headline.component';
-import { HeadlineFlagComponent } from '../../shared/components/headline-flag/headline-flag.component';
 import { HeadlineFlags } from '../../../../common/HeadlineFlags';
 import { FeatureSwitchService } from '../../services/feature-switch/feature-switch.service';
 
@@ -74,6 +73,15 @@ describe('ImageLinkUnitComponent', () => {
     expect(img!.getAttribute('src')).toEqual(articleData.imageSrc);
     expect(img!.getAttribute('srcset')).toEqual(articleData.imageSrcSet);
     expect(img!.getAttribute('alt')).toEqual(articleData.indexHeadline);
+  });
+
+  it('should hide image if not available', async () => {
+    component.input = { ...articleData, imageSrc: null };
+
+    fixture.detectChanges();
+    const componentElement: HTMLElement = fixture.debugElement.nativeElement;
+    const img = componentElement.querySelector('img');
+    expect(img).toBeFalsy();
   });
 
   it('should send analytics when clicked', () => {

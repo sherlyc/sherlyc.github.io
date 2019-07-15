@@ -8,6 +8,15 @@ a {
   }
 }
 
+.row {
+  flex-wrap: nowrap;
+}
+
+.column {
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
 img {
   width: 100%;
   margin-bottom: -4px;
