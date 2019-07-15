@@ -84,6 +84,15 @@ describe('BasicArticleUnitComponent', () => {
     expect(introSpan!.textContent).toEqual('Dummy intro text');
   });
 
+  it('should hide image if not available', async () => {
+    component.input = { ...articleData, imageSrc: null };
+
+    fixture.detectChanges();
+    const componentElement: HTMLElement = fixture.debugElement.nativeElement;
+    const img = componentElement.querySelector('img');
+    expect(img).toBeFalsy();
+  });
+
   it('should send analytics when clicked', () => {
     const { strapName, indexHeadline, id } = articleData;
     component.input = articleData;
