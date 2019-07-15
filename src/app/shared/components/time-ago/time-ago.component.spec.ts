@@ -36,7 +36,8 @@ describe('TimeAgoComponent', () => {
     // 1 hour 20 minutes ago
     component.timestamp = moment()
       .subtract(1, 'h')
-      .subtract(20, 'm');
+      .subtract(20, 'm')
+      .unix();
 
     fixture.detectChanges();
 
@@ -50,7 +51,9 @@ describe('TimeAgoComponent', () => {
 
   it('should show the timestamp when it is less than 1 hour ago', () => {
     // 20 minutes ago
-    component.timestamp = moment().subtract(20, 'm');
+    component.timestamp = moment()
+      .subtract(20, 'm')
+      .unix();
 
     fixture.detectChanges();
 
@@ -63,7 +66,9 @@ describe('TimeAgoComponent', () => {
   });
 
   it('should not show the timestamp when it is more than 2 hours ago', () => {
-    component.timestamp = moment().subtract(2, 'h');
+    component.timestamp = moment()
+      .subtract(2, 'h')
+      .unix();
     fixture.detectChanges();
 
     const timeAgoSpan = fixture.debugElement.query(By.css('.time-ago'));
@@ -84,7 +89,9 @@ describe('TimeAgoComponent', () => {
 
   it('should show the separator on the left when specified', () => {
     // 20 minutes ago
-    component.timestamp = moment().subtract(20, 'm');
+    component.timestamp = moment()
+      .subtract(20, 'm')
+      .unix();
     component.separator = 'left';
 
     fixture.detectChanges();

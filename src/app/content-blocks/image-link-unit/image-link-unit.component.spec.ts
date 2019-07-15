@@ -93,17 +93,17 @@ describe('ImageLinkUnitComponent', () => {
     });
   });
 
-  it('should render headline and headline flags in the correct order', () => {
-    articleData.headlineFlags = [HeadlineFlags.VIDEO, HeadlineFlags.PHOTO];
+  it('should pass correct inputs to headline component', () => {
+    articleData.headlineFlags = [HeadlineFlags.PHOTO];
     component.input = articleData;
+
     fixture.detectChanges();
 
     const headline = fixture.debugElement.query(By.directive(HeadlineComponent))
-      .nativeElement;
-    const headlineFlags = fixture.debugElement.query(
-      By.directive(HeadlineFlagComponent)
-    ).nativeElement;
+      .componentInstance;
 
-    expect(headline.nextElementSibling).toBe(headlineFlags);
+    expect(headline).toHaveProperty('headline', articleData.indexHeadline);
+    expect(headline).toHaveProperty('headlineFlags', articleData.headlineFlags);
+    expect(headline).not.toHaveProperty('timeStamp');
   });
 });
