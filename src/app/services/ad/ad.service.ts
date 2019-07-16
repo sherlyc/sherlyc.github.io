@@ -28,7 +28,7 @@ export class AdService {
         const manifest = await this.http
           .get<{ url: string }>(this.config.getConfig().aadSdkUrl)
           .toPromise();
-        if (manifest.url) {
+        if (manifest && manifest.url) {
           await this.scriptInjectorService.load(
             ScriptId.adnostic,
             manifest.url
