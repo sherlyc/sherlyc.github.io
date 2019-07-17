@@ -76,7 +76,7 @@ try {
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = exports;
 
 // @ts-ignore
-app.engine('html', (_, options, callback) => {
+app.engine('html', (_, options: any, callback) => {
   renderModuleFactory(AppServerModuleNgFactory, {
     // Our index.html
     document: template,
