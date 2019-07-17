@@ -75,18 +75,6 @@ export default async (params: IParams): Promise<IPage> => {
               }
             },
             {
-              type: HandlerInputType.ArticleSection,
-              displayName: 'Christchurch Mosque Terrorist Attack',
-              displayNameColor: 'darkblue',
-              linkUrl: '/' + Section.ChristchurchShooting,
-              articleList: {
-                sourceId: Section.ChristchurchShooting,
-                strapName: 'Christchurch Mosque Terrorist Attack',
-                totalBasicArticlesUnit: 2,
-                totalBasicArticleTitleUnit: 3
-              }
-            },
-            {
               type: HandlerInputType.Video
             },
             {
