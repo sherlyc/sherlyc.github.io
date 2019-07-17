@@ -64,7 +64,7 @@
     "classlist.js": "^1.1.20150312",
     "cookie": "^0.4.0",
     "cookie-parser": "^1.4.4",
-    "core-js": "^3.1.4",
+    "core-js": "^2.6.5",
     "cors": "^2.8.5",
     "default-passive-events": "^1.0.10",
     "flexboxgrid": "^6.3.1",
