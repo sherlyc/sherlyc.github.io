@@ -9,6 +9,7 @@ import { RuntimeService } from '../runtime/runtime.service';
 import { LottoService } from '../lotto/lotto.service';
 import { of } from 'rxjs/internal/observable/of';
 import { Features } from '../../../../common/Features';
+import { throwError } from 'rxjs';
 
 describe('FeatureSwitchService', () => {
   const experimentAPI = '/spade/api/experiment';
@@ -85,6 +86,34 @@ describe('FeatureSwitchService', () => {
 
   it('should return false for all features while running in server', async () => {
     runtimeService.isServer.mockReturnValue(true);
+
+    Object.keys(Features).forEach(async (feature) => {
+      const featureValue = await service.getFeature(feature as Features);
+      expect(featureValue).toEqual(false);
+    });
+  });
+
+  it('should return false when api fails', async () => {
+    runtimeService.isServer.mockReturnValue(false);
+    lottoService.getLotteryNumber.mockReturnValue(1);
+    lottoService.retrieveVariant.mockReturnValue(
+      throwError({ status: 500, statusText: 'Internal Server error' })
+    );
+
+    await service.setup();
+
+    Object.keys(Features).forEach(async (feature) => {
+      const featureValue = await service.getFeature(feature as Features);
+      expect(featureValue).toEqual(false);
+    });
+  });
+
+  it('should return false when api return non-boolean value', async () => {
+    runtimeService.isServer.mockReturnValue(false);
+    lottoService.getLotteryNumber.mockReturnValue(1);
+    lottoService.retrieveVariant.mockReturnValue(of('control'));
+
+    await service.setup();
 
     Object.keys(Features).forEach(async (feature) => {
       const featureValue = await service.getFeature(feature as Features);
