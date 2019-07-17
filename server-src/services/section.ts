@@ -12,7 +12,7 @@ export enum Section {
   Travel = 'travel',
   Motoring = 'motoring',
   StuffNation = 'stuff-nation',
-  QuickSaveThePlanet = 'environment',
+  ClimateChange = 'environment',
   WellGood = 'life-style/well-good',
   Premium = 'national/premium',
   GoodReads = 'good-reads',

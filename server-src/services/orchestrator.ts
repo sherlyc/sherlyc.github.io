@@ -103,12 +103,12 @@ export default async (params: IParams): Promise<IPage> => {
             },
             {
               type: HandlerInputType.ArticleSection,
-              displayName: 'Quick! Save The Planet',
+              displayName: 'Climate Change',
               displayNameColor: 'darkblue',
-              linkUrl: '/' + Section.QuickSaveThePlanet,
+              linkUrl: '/' + Section.ClimateChange,
               articleList: {
-                sourceId: Section.QuickSaveThePlanet,
-                strapName: 'Quick! Save The Planet',
+                sourceId: Section.ClimateChange,
+                strapName: 'Climate Change',
                 totalBasicArticlesUnit: 3
               }
             },
