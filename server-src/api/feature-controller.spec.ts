@@ -1,6 +1,5 @@
 import { featureController } from './feature-controller';
 import { Request } from 'express';
-import { experimentController } from './experiment-controller';
 
 describe('Feature Controller', () => {
   const params = { apiRequestId: '33498' };
