@@ -79,6 +79,17 @@ export default async (params: IParams): Promise<IPage> => {
             },
             {
               type: HandlerInputType.ArticleSection,
+              displayName: 'Climate Change',
+              displayNameColor: 'darkblue',
+              linkUrl: '/' + Section.ClimateChange,
+              articleList: {
+                sourceId: Section.ClimateChange,
+                strapName: 'Climate Change',
+                totalBasicArticlesUnit: 3
+              }
+            },
+            {
+              type: HandlerInputType.ArticleSection,
               displayName: 'Premium',
               displayNameColor: 'premiumdark',
               linkUrl: '/' + Section.Premium,
@@ -87,17 +98,6 @@ export default async (params: IParams): Promise<IPage> => {
                 strapName: 'Premium',
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 3
-              }
-            },
-            {
-              type: HandlerInputType.ArticleSection,
-              displayName: 'Climate Change',
-              displayNameColor: 'darkblue',
-              linkUrl: '/' + Section.ClimateChange,
-              articleList: {
-                sourceId: Section.ClimateChange,
-                strapName: 'Climate Change',
-                totalBasicArticlesUnit: 3
               }
             },
             {
@@ -357,6 +357,17 @@ export default async (params: IParams): Promise<IPage> => {
               articleList: {
                 sourceId: Section.Newsroom,
                 strapName: 'Newsroom.co.nz',
+                totalBasicArticlesUnit: 2
+              }
+            },
+            {
+              type: HandlerInputType.ArticleSection,
+              displayName: 'Tarana',
+              displayNameColor: 'scarlet',
+              linkUrl: '/' + Section.Tarana,
+              articleList: {
+                sourceId: Section.Tarana,
+                strapName: 'Tarana',
                 totalBasicArticlesUnit: 2
               }
             },
