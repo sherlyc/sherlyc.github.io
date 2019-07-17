@@ -1,3 +1,3 @@
-export enum Features {
+export enum FeatureNames {
   HeadlineFlagsFeature = 'HeadlineFlagsFeature'
 }

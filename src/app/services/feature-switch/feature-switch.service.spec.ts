@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { RuntimeService } from '../runtime/runtime.service';
 import { LottoService } from '../lotto/lotto.service';
 import { of } from 'rxjs/internal/observable/of';
-import { Features } from '../../../../common/Features';
+import { FeatureNames } from '../../../../common/FeatureNames';
 
 describe('FeatureSwitchService', () => {
   const experimentAPI = '/spade/api/experiment';
@@ -77,8 +77,8 @@ describe('FeatureSwitchService', () => {
 
     await service.setup();
 
-    Object.keys(Features).forEach(async (feature) => {
-      const featureValue = await service.getFeature(feature as Features);
+    Object.keys(FeatureNames).forEach(async (feature) => {
+      const featureValue = await service.getFeature(feature as FeatureNames);
       expect(featureValue).toEqual(true);
     });
   });
@@ -86,8 +86,8 @@ describe('FeatureSwitchService', () => {
   it('should return false for all features while running in server', async () => {
     runtimeService.isServer.mockReturnValue(true);
 
-    Object.keys(Features).forEach(async (feature) => {
-      const featureValue = await service.getFeature(feature as Features);
+    Object.keys(FeatureNames).forEach(async (feature) => {
+      const featureValue = await service.getFeature(feature as FeatureNames);
       expect(featureValue).toEqual(false);
     });
   });

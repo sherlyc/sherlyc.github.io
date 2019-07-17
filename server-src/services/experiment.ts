@@ -1,4 +1,4 @@
-import { Features } from '../../common/Features';
+import { FeatureNames } from '../../common/FeatureNames';
 import { Experiments } from '../../common/Experiments';
 
 export const getExperimentVariant = (
@@ -8,7 +8,7 @@ export const getExperimentVariant = (
   switch (name) {
     case Experiments.Users:
       return 'control';
-    case Features.HeadlineFlagsFeature:
+    case FeatureNames.HeadlineFlagsFeature:
       return lotteryNumber === 404;
     default:
       return 'control';

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Features } from '../../../../common/Features';
+import { FeatureNames } from '../../../../common/FeatureNames';
 import { Observable } from 'rxjs';
 import * as random from 'math-random';
 import { StoreService } from '../store/store.service';
@@ -20,7 +20,7 @@ export class FeatureSwitchService {
     private lotto: LottoService
   ) {}
 
-  private features!: Promise<{ [key in Features]: boolean }>;
+  private features!: Promise<{ [key in FeatureNames]: boolean }>;
 
   setup() {
     if (this.runtimeService.isServer()) {
@@ -29,7 +29,7 @@ export class FeatureSwitchService {
     this.features = this.loadFeatures();
   }
 
-  async getFeature(featureName: Features) {
+  async getFeature(featureName: FeatureNames) {
     if (this.runtimeService.isServer()) {
       return false;
     }
@@ -38,18 +38,20 @@ export class FeatureSwitchService {
   }
 
   private async loadFeatures() {
-    const featurePromises = Object.keys(Features).map(async (featureName) => {
-      const lotteryNumber = this.lotto.getLotteryNumber(featureName);
-      const isFeatureEnabled = await this.lotto
-        .retrieveVariant(featureName, lotteryNumber)
-        .toPromise();
-      return {
-        [featureName]: JSON.parse(isFeatureEnabled)
-      };
-    });
+    const featurePromises = Object.keys(FeatureNames).map(
+      async (featureName) => {
+        const lotteryNumber = this.lotto.getLotteryNumber(featureName);
+        const isFeatureEnabled = await this.lotto
+          .retrieveVariant(featureName, lotteryNumber)
+          .toPromise();
+        return {
+          [featureName]: JSON.parse(isFeatureEnabled)
+        };
+      }
+    );
     return (await Promise.all(featurePromises)).reduce(
       (final, item) => ({ ...final, ...item }),
       {}
-    ) as { [key in Features]: boolean };
+    ) as { [key in FeatureNames]: boolean };
   }
 }
