@@ -9,6 +9,7 @@ export const getExperimentVariant = (
     case Experiments.Users:
       return 'control';
     case Features.HeadlineFlagsFeature:
+    case Features.VideoHubFeature:
       return lotteryNumber === 404;
     default:
       return 'control';

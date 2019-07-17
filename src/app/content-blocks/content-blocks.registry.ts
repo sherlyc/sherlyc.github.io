@@ -16,6 +16,7 @@ import { ExternalContentUnitComponent } from './external-content-unit/external-c
 import { WeatherUnitComponent } from './weather-unit/weather-unit.component';
 import { BasicArticleTitleUnitComponent } from './basic-article-title-unit/basic-article-title-unit.component';
 import { ExperimentContainerComponent } from './experiment-container/experiment-container.component';
+import { FeatureContainerComponent } from './feature-container/feature-container.component';
 
 export const contentBlockComponents = [
   DefconArticleUnitComponent,
@@ -33,6 +34,7 @@ export const contentBlockComponents = [
   WeatherUnitComponent,
   VideoUnitComponent,
   ExperimentContainerComponent,
+  FeatureContainerComponent,
   FooterComponent
 ];
 
@@ -54,6 +56,7 @@ const registry: {
   WeatherUnitComponent,
   VideoUnitComponent,
   ExperimentContainerComponent,
+  FeatureContainerComponent,
   FooterComponent
 };
 

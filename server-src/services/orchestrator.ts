@@ -6,6 +6,7 @@ import { ContentBlockType } from '../../common/__types__/ContentBlockType';
 import { HandlerInputType } from './handlers/__types__/HandlerInputType';
 import { ListAsset } from './listAsset';
 import logger from './utils/logger';
+import { Features } from '../../common/Features';
 
 export default async (params: IParams): Promise<IPage> => {
   try {
@@ -61,6 +62,17 @@ export default async (params: IParams): Promise<IPage> => {
               type: HandlerInputType.MidStrip,
               strapName: 'MidStrip',
               totalArticles: 6
+            },
+            {
+              type: HandlerInputType.Feature,
+              name: Features.VideoHubFeature,
+              toggle: {
+                type: HandlerInputType.ExternalContent,
+                height: '215px',
+                width: '100%',
+                url:
+                  'https://stuff-dev.accedoanz.com/shelf/5d06caa81de1c4001f81a46e'
+              }
             },
             {
               type: HandlerInputType.ArticleSection,

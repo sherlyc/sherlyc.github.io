@@ -14,6 +14,7 @@ import { IWeatherUnit } from './IWeatherUnit';
 import { IBasicArticleTitleUnit } from './IBasicArticleTitleUnit';
 import { IVideoUnit } from './IVideoUnit';
 import { IExperimentContainer } from './IExperimentContainer';
+import { IFeatureContainer } from './IFeatureContainer';
 
 export type IContentBlock =
   | IDefconArticleUnit
@@ -31,4 +32,5 @@ export type IContentBlock =
   | IHeader
   | IWeatherUnit
   | IVideoUnit
-  | IExperimentContainer;
+  | IExperimentContainer
+  | IFeatureContainer;

@@ -1,3 +1,4 @@
 export enum Features {
-  HeadlineFlagsFeature = 'HeadlineFlagsFeature'
+  HeadlineFlagsFeature = 'HeadlineFlagsFeature',
+  VideoHubFeature = 'VideoHubFeature'
 }
