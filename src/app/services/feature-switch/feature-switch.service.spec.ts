@@ -10,6 +10,7 @@ import { LottoService } from '../lotto/lotto.service';
 import { of } from 'rxjs/internal/observable/of';
 import { Features } from '../../../../common/Features';
 import { throwError } from 'rxjs';
+import { LoggerService } from '../logger/logger.service';
 
 describe('FeatureSwitchService', () => {
   const experimentAPI = '/spade/api/experiment';
@@ -20,6 +21,7 @@ describe('FeatureSwitchService', () => {
   let httpClient: ServiceMock<HttpClient>;
   let runtimeService: ServiceMock<RuntimeService>;
   let lottoService: ServiceMock<LottoService>;
+  let loggerService: ServiceMock<LoggerService>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -44,6 +46,10 @@ describe('FeatureSwitchService', () => {
         {
           provide: LottoService,
           useClass: mockService(LottoService)
+        },
+        {
+          provide: LoggerService,
+          useClass: mockService(LoggerService)
         }
       ]
     });
@@ -54,6 +60,7 @@ describe('FeatureSwitchService', () => {
     httpClient = TestBed.get(HttpClient);
     runtimeService = TestBed.get(RuntimeService);
     lottoService = TestBed.get(LottoService);
+    loggerService = TestBed.get(LoggerService);
 
     service = TestBed.get(FeatureSwitchService);
   });
