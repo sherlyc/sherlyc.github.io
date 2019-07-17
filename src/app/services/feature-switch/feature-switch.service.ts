@@ -48,7 +48,7 @@ export class FeatureSwitchService {
           [featureName]: JSON.parse(isFeatureEnabled)
         };
       } catch (e) {
-        this.logger.warn('Invalid response for feature switch');
+        this.logger.warn(`Feature Switch Service Error - ${e}`);
         return {
           [featureName]: false
         };
