@@ -8,6 +8,9 @@ import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
 import { mockService, ServiceMock } from 'src/app/services/mocks/MockService';
 import { By } from '@angular/platform-browser';
 import { AnalyticsEventsType } from 'src/app/services/analytics/__types__/AnalyticsEventsType';
+import { FeatureSwitchService } from '../../services/feature-switch/feature-switch.service';
+import { HeadlineFlags } from '../../../../common/HeadlineFlags';
+import { HeadlineComponent } from '../../shared/components/headline/headline.component';
 
 describe('BasicArticleUnitComponent', () => {
   let component: BasicArticleUnitComponent;
@@ -38,6 +41,10 @@ describe('BasicArticleUnitComponent', () => {
         {
           provide: AnalyticsService,
           useClass: mockService(AnalyticsService)
+        },
+        {
+          provide: FeatureSwitchService,
+          useClass: mockService(FeatureSwitchService)
         }
       ]
     }).compileComponents();
@@ -77,6 +84,15 @@ describe('BasicArticleUnitComponent', () => {
     expect(introSpan!.textContent).toEqual('Dummy intro text');
   });
 
+  it('should hide image if not available', async () => {
+    component.input = { ...articleData, imageSrc: null };
+
+    fixture.detectChanges();
+    const componentElement: HTMLElement = fixture.debugElement.nativeElement;
+    const img = componentElement.querySelector('img');
+    expect(img).toBeFalsy();
+  });
+
   it('should send analytics when clicked', () => {
     const { strapName, indexHeadline, id } = articleData;
     component.input = articleData;
@@ -91,5 +107,19 @@ describe('BasicArticleUnitComponent', () => {
       articleHeadline: indexHeadline,
       articleId: id
     });
+  });
+
+  it('should pass correct inputs to headline component', () => {
+    articleData.headlineFlags = [HeadlineFlags.PHOTO];
+    component.input = articleData;
+
+    fixture.detectChanges();
+
+    const headline = fixture.debugElement.query(By.directive(HeadlineComponent))
+      .componentInstance;
+
+    expect(headline).toHaveProperty('headline', articleData.indexHeadline);
+    expect(headline).toHaveProperty('headlineFlags', articleData.headlineFlags);
+    expect(headline).not.toHaveProperty('timeStamp');
   });
 });

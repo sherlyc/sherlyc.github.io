@@ -4,8 +4,12 @@ import { IImageLinkUnit } from '../../../../common/__types__/IImageLinkUnit';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 import { By } from '@angular/platform-browser';
 import { AnalyticsEventsType } from 'src/app/services/analytics/__types__/AnalyticsEventsType';
-import { ServiceMock, mockService } from 'src/app/services/mocks/MockService';
+import { mockService, ServiceMock } from 'src/app/services/mocks/MockService';
 import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
+import { SharedModule } from '../../shared/shared.module';
+import { HeadlineComponent } from '../../shared/components/headline/headline.component';
+import { HeadlineFlags } from '../../../../common/HeadlineFlags';
+import { FeatureSwitchService } from '../../services/feature-switch/feature-switch.service';
 
 describe('ImageLinkUnitComponent', () => {
   let component: ImageLinkUnitComponent;
@@ -25,12 +29,16 @@ describe('ImageLinkUnitComponent', () => {
 
   beforeEach(async () =>
     TestBed.configureTestingModule({
-      imports: [],
+      imports: [SharedModule],
       declarations: [ImageLinkUnitComponent],
       providers: [
         {
           provide: AnalyticsService,
           useClass: mockService(AnalyticsService)
+        },
+        {
+          provide: FeatureSwitchService,
+          useClass: mockService(FeatureSwitchService)
         }
       ]
     }).compileComponents()
@@ -67,6 +75,15 @@ describe('ImageLinkUnitComponent', () => {
     expect(img!.getAttribute('alt')).toEqual(articleData.indexHeadline);
   });
 
+  it('should hide image if not available', async () => {
+    component.input = { ...articleData, imageSrc: null };
+
+    fixture.detectChanges();
+    const componentElement: HTMLElement = fixture.debugElement.nativeElement;
+    const img = componentElement.querySelector('img');
+    expect(img).toBeFalsy();
+  });
+
   it('should send analytics when clicked', () => {
     const { strapName, indexHeadline, id } = articleData;
     component.input = articleData;
@@ -82,5 +99,19 @@ describe('ImageLinkUnitComponent', () => {
       articleHeadline: indexHeadline,
       articleId: id
     });
+  });
+
+  it('should pass correct inputs to headline component', () => {
+    articleData.headlineFlags = [HeadlineFlags.PHOTO];
+    component.input = articleData;
+
+    fixture.detectChanges();
+
+    const headline = fixture.debugElement.query(By.directive(HeadlineComponent))
+      .componentInstance;
+
+    expect(headline).toHaveProperty('headline', articleData.indexHeadline);
+    expect(headline).toHaveProperty('headlineFlags', articleData.headlineFlags);
+    expect(headline).not.toHaveProperty('timeStamp');
   });
 });

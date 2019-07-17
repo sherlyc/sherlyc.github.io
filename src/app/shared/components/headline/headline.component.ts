@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { HeadlineFlags } from '../../../../../common/HeadlineFlags';
 
 @Component({
   selector: 'app-headline',
@@ -7,8 +8,6 @@ import { Component, Input } from '@angular/core';
 })
 export class HeadlineComponent {
   @Input() headline?: string;
-
-  assggg() {
-    console.log(33);
-  }
+  @Input() timeStamp?: number;
+  @Input() headlineFlags?: HeadlineFlags[];
 }
