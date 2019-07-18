@@ -89,7 +89,7 @@ export class ExperimentService {
       )
       .pipe(
         catchError((error: HttpErrorResponse) => {
-          this.logger.error(error);
+          this.logger.warn(`Experiment Service Error - ${error}`);
           return of('control');
         })
       );
