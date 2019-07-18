@@ -4,7 +4,10 @@ import { RuntimeService } from '../runtime/runtime.service';
 import { LottoService } from '../lotto/lotto.service';
 import { Experiments } from '../../../../common/Experiments';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs/internal/observable/of';
+import { LoggerService } from '../logger/logger.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +22,8 @@ export class ExperimentService {
     private config: ConfigService,
     private runtimeService: RuntimeService,
     private lottoService: LottoService,
-    private http: HttpClient
+    private http: HttpClient,
+    private logger: LoggerService
   ) {}
 
   async setup() {
@@ -45,7 +49,6 @@ export class ExperimentService {
         });
         return;
       }
-
       const experimentLotteryNumber = this.lottoService.getLotteryNumber(
         experimentName
       );
@@ -75,11 +78,20 @@ export class ExperimentService {
     experiment: string,
     lotteryNumber: number
   ): Observable<string> {
-    return this.http.get<string>(
-      `${this.config.getConfig().experimentAPI}/${experiment}/${lotteryNumber}`,
-      {
-        responseType: 'text'
-      } as Object
-    );
+    return this.http
+      .get<string>(
+        `${
+          this.config.getConfig().experimentAPI
+        }/${experiment}/${lotteryNumber}`,
+        {
+          responseType: 'text'
+        } as Object
+      )
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.logger.error(error);
+          return of('control');
+        })
+      );
   }
 }
