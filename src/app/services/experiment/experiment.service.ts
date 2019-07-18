@@ -3,6 +3,11 @@ import { ConfigService } from '../config/config.service';
 import { RuntimeService } from '../runtime/runtime.service';
 import { LottoService } from '../lotto/lotto.service';
 import { Experiments } from '../../../../common/Experiments';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs/internal/observable/of';
+import { LoggerService } from '../logger/logger.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +21,9 @@ export class ExperimentService {
   constructor(
     private config: ConfigService,
     private runtimeService: RuntimeService,
-    private lottoService: LottoService
+    private lottoService: LottoService,
+    private http: HttpClient,
+    private logger: LoggerService
   ) {}
 
   async setup() {
@@ -31,9 +38,10 @@ export class ExperimentService {
       const userLotteryNumber = this.lottoService.getLotteryNumber(
         Experiments.Users
       );
-      const experimentName = await this.lottoService
-        .retrieveVariant(Experiments.Users, userLotteryNumber)
-        .toPromise();
+      const experimentName = await this.retrieveVariant(
+        Experiments.Users,
+        userLotteryNumber
+      ).toPromise();
       if (experimentName === 'control') {
         resolve({
           name: 'control',
@@ -41,13 +49,13 @@ export class ExperimentService {
         });
         return;
       }
-
       const experimentLotteryNumber = this.lottoService.getLotteryNumber(
         experimentName
       );
-      const variant = await this.lottoService
-        .retrieveVariant(experimentName, experimentLotteryNumber)
-        .toPromise();
+      const variant = await this.retrieveVariant(
+        experimentName,
+        experimentLotteryNumber
+      ).toPromise();
       resolve({
         name: experimentName,
         variant
@@ -64,5 +72,26 @@ export class ExperimentService {
 
   getExperiment() {
     return this.experiment;
+  }
+
+  retrieveVariant(
+    experiment: string,
+    lotteryNumber: number
+  ): Observable<string> {
+    return this.http
+      .get<string>(
+        `${
+          this.config.getConfig().experimentAPI
+        }/${experiment}/${lotteryNumber}`,
+        {
+          responseType: 'text'
+        } as Object
+      )
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          this.logger.warn(`Experiment Service Error - ${error}`);
+          return of('control');
+        })
+      );
   }
 }

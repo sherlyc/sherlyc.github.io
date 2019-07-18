@@ -8,7 +8,9 @@ import { HttpClient } from '@angular/common/http';
 import { RuntimeService } from '../runtime/runtime.service';
 import { LottoService } from '../lotto/lotto.service';
 import { of } from 'rxjs/internal/observable/of';
-import { Features } from '../../../../common/Features';
+import { FeatureName } from '../../../../common/FeatureName';
+import { throwError } from 'rxjs';
+import { LoggerService } from '../logger/logger.service';
 
 describe('FeatureSwitchService', () => {
   const experimentAPI = '/spade/api/experiment';
@@ -19,6 +21,7 @@ describe('FeatureSwitchService', () => {
   let httpClient: ServiceMock<HttpClient>;
   let runtimeService: ServiceMock<RuntimeService>;
   let lottoService: ServiceMock<LottoService>;
+  let loggerService: ServiceMock<LoggerService>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -43,6 +46,10 @@ describe('FeatureSwitchService', () => {
         {
           provide: LottoService,
           useClass: mockService(LottoService)
+        },
+        {
+          provide: LoggerService,
+          useClass: mockService(LoggerService)
         }
       ]
     });
@@ -53,6 +60,7 @@ describe('FeatureSwitchService', () => {
     httpClient = TestBed.get(HttpClient);
     runtimeService = TestBed.get(RuntimeService);
     lottoService = TestBed.get(LottoService);
+    loggerService = TestBed.get(LoggerService);
 
     service = TestBed.get(FeatureSwitchService);
   });
@@ -67,27 +75,40 @@ describe('FeatureSwitchService', () => {
     await service.setup();
 
     expect(lottoService.getLotteryNumber).not.toHaveBeenCalled();
-    expect(lottoService.retrieveVariant).not.toHaveBeenCalled();
+    expect(httpClient.get).not.toHaveBeenCalled();
   });
 
   it('should return features as enabled when all features are on', async () => {
     runtimeService.isServer.mockReturnValue(false);
     lottoService.getLotteryNumber.mockReturnValue(1);
-    lottoService.retrieveVariant.mockReturnValue(of('true'));
+    httpClient.get.mockReturnValue(of(true));
 
     await service.setup();
 
-    Object.keys(Features).forEach(async (feature) => {
-      const featureValue = await service.getFeature(feature as Features);
+    Object.keys(FeatureName).forEach(async (feature) => {
+      const featureValue = await service.getFeature(feature as FeatureName);
       expect(featureValue).toEqual(true);
+    });
+  });
+
+  it('should return features as disabled when api fails', async () => {
+    runtimeService.isServer.mockReturnValue(false);
+    lottoService.getLotteryNumber.mockReturnValue(1);
+    httpClient.get.mockReturnValue(throwError('Internal Server Error'));
+
+    await service.setup();
+
+    Object.keys(FeatureName).forEach(async (feature) => {
+      const featureValue = await service.getFeature(feature as FeatureName);
+      expect(featureValue).toEqual(false);
     });
   });
 
   it('should return false for all features while running in server', async () => {
     runtimeService.isServer.mockReturnValue(true);
 
-    Object.keys(Features).forEach(async (feature) => {
-      const featureValue = await service.getFeature(feature as Features);
+    Object.keys(FeatureName).forEach(async (feature) => {
+      const featureValue = await service.getFeature(feature as FeatureName);
       expect(featureValue).toEqual(false);
     });
   });

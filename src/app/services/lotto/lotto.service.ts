@@ -15,20 +15,6 @@ export class LottoService {
     private storeService: StoreService
   ) {}
 
-  retrieveVariant(
-    experiment: string,
-    lotteryNumber: number
-  ): Observable<string> {
-    return this.http.get<string>(
-      `${
-        this.config.getConfig().experimentAPI
-      }?name=${experiment}&lotteryNumber=${lotteryNumber}`,
-      {
-        responseType: 'text'
-      } as Object
-    );
-  }
-
   getLotteryNumber(experimentName: string): number {
     const experimentStorageKey = `${experimentName}ExperimentLottery`;
     const existingLotteryNumber = this.storeService.get<number>(
