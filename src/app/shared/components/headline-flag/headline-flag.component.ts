@@ -8,15 +8,6 @@ import { FeatureNames } from '../../../../../common/FeatureNames';
   templateUrl: './headline-flag.component.html',
   styleUrls: ['./headline-flag.component.scss']
 })
-export class HeadlineFlagComponent implements OnInit {
+export class HeadlineFlagComponent {
   @Input() flag?: HeadlineFlags;
-  isVisible = false;
-
-  constructor(private featureSwitchService: FeatureSwitchService) {}
-
-  async ngOnInit() {
-    this.isVisible = await this.featureSwitchService.getFeature(
-      FeatureNames.HeadlineFlagsFeature
-    );
-  }
 }
