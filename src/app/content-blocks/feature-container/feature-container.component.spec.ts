@@ -1,5 +1,4 @@
 import { ServiceMock } from 'src/app/services/mocks/MockService';
-import { ExperimentService } from '../../services/experiment/experiment.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 import { IContentBlock } from '../../../../common/__types__/IContentBlock';
@@ -9,51 +8,38 @@ import { TransferState, By } from '@angular/platform-browser';
 import { mockService } from '../../services/mocks/MockService';
 import registry from '../content-blocks.registry';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { IExperimentContainer } from '../../../../common/__types__/IExperimentContainer';
 import { RuntimeService } from 'src/app/services/runtime/runtime.service';
-import { LoggerService } from 'src/app/services/logger/logger.service';
 import { AnalyticsService } from '../../services/analytics/analytics.service';
-import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
+import { FeatureContainerComponent } from './feature-container.component';
+import { FeatureSwitchService } from '../../services/feature-switch/feature-switch.service';
+import { IFeatureContainer } from '../../../../common/__types__/IFeatureContainer';
 
-describe('ExperimentContainerComponent', () => {
-  let component: ExperimentContainerComponent;
-  let fixture: ComponentFixture<ExperimentContainerComponent>;
-  let experimentService: ServiceMock<ExperimentService>;
+describe('FeatureContainerComponent', () => {
+  let component: FeatureContainerComponent;
+  let fixture: ComponentFixture<FeatureContainerComponent>;
+  let featureSwitchServiceServiceMock: ServiceMock<FeatureSwitchService>;
   let runtimeService: ServiceMock<RuntimeService>;
-  let loggerService: ServiceMock<LoggerService>;
-  let analyticsService: ServiceMock<AnalyticsService>;
 
   @Component({
-    selector: 'app-control-variant-content-block',
+    selector: 'app-feature-enabled-content-block',
     template: ''
   })
-  class ControlVariantContentBlockComponent {}
-
-  @Component({
-    selector: 'app-other-variant-content-block',
-    template: ''
-  })
-  class OtherVariantContentBlockComponent {}
+  class FeatureEnabledContentBlockComponent {}
 
   beforeAll(() => {
     // @ts-ignore
     registry[
-      'ControlVariantContentBlockComponent'
-    ] = ControlVariantContentBlockComponent;
-    // @ts-ignore
-    registry[
-      'OtherVariantContentBlockComponent'
-    ] = OtherVariantContentBlockComponent;
+      'FeatureEnabledContentBlockComponent'
+    ] = FeatureEnabledContentBlockComponent;
   });
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [],
       declarations: [
-        ExperimentContainerComponent,
+        FeatureContainerComponent,
         ContentBlockDirective,
-        ControlVariantContentBlockComponent,
-        OtherVariantContentBlockComponent
+        FeatureEnabledContentBlockComponent
       ],
       providers: [
         {
@@ -61,16 +47,12 @@ describe('ExperimentContainerComponent', () => {
           useClass: mockService(TransferState)
         },
         {
-          provide: ExperimentService,
-          useClass: mockService(ExperimentService)
+          provide: FeatureSwitchService,
+          useClass: mockService(FeatureSwitchService)
         },
         {
           provide: RuntimeService,
           useClass: mockService(RuntimeService)
-        },
-        {
-          provide: LoggerService,
-          useClass: mockService(LoggerService)
         },
         {
           provide: AnalyticsService,
@@ -80,91 +62,76 @@ describe('ExperimentContainerComponent', () => {
     })
       .overrideModule(BrowserDynamicTestingModule, {
         set: {
-          entryComponents: [
-            ControlVariantContentBlockComponent,
-            OtherVariantContentBlockComponent
-          ]
+          entryComponents: [FeatureEnabledContentBlockComponent]
         }
       })
       .compileComponents();
-    experimentService = TestBed.get(ExperimentService);
+    featureSwitchServiceServiceMock = TestBed.get(FeatureSwitchService);
     runtimeService = TestBed.get(RuntimeService);
-    loggerService = TestBed.get(LoggerService);
-    analyticsService = TestBed.get(AnalyticsService);
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ExperimentContainerComponent);
+    fixture = TestBed.createComponent(FeatureContainerComponent);
     component = fixture.componentInstance;
   });
 
   // @ts-ignore
-  const controlVariantContentBlock = {
-    type: 'ControlVariantContentBlock'
-  } as IContentBlock;
-  // @ts-ignore
-  const otherVariantContentBlock = {
-    type: 'OtherVariantContentBlock'
+  const featureEnabledContentBlock = {
+    type: 'FeatureEnabledContentBlock'
   } as IContentBlock;
 
-  const experimentContainer: IExperimentContainer = {
-    type: ContentBlockType.ExperimentContainer,
-    name: 'ExperimentName',
-    variants: {
-      control: [controlVariantContentBlock] as IContentBlock[],
-      red: [otherVariantContentBlock] as IContentBlock[]
-    }
+  const featureContainer: IFeatureContainer = {
+    type: ContentBlockType.FeatureContainer,
+    // @ts-ignore
+    name: 'FeatureName',
+    content: [featureEnabledContentBlock] as IContentBlock[]
   };
 
   it('should create', () => {
-    component.input = experimentContainer;
+    component.input = featureContainer;
 
     fixture.detectChanges();
 
     expect(component).toBeTruthy();
   });
 
-  it('should render control variant', async () => {
+  it('should render feature enabled component', async () => {
     runtimeService.isBrowser.mockReturnValue(true);
-    (experimentService.getVariant as jest.Mock).mockResolvedValue('control');
-    component.input = experimentContainer;
+    (featureSwitchServiceServiceMock.getFeature as jest.Mock).mockResolvedValue(
+      true
+    );
+    component.input = featureContainer;
 
     await component.ngOnInit();
     fixture.detectChanges();
 
     const controlVariantBlocks = fixture.debugElement.queryAll(
-      By.directive(ControlVariantContentBlockComponent)
-    );
-    const otherVariantBlocks = fixture.debugElement.queryAll(
-      By.directive(OtherVariantContentBlockComponent)
+      By.directive(FeatureEnabledContentBlockComponent)
     );
 
     expect(controlVariantBlocks).toHaveLength(1);
-    expect(otherVariantBlocks).toHaveLength(0);
   });
 
-  it('should render other variant', async () => {
+  it('should not render feature disabled component', async () => {
     runtimeService.isBrowser.mockReturnValue(true);
-    (experimentService.getVariant as jest.Mock).mockResolvedValue('red');
-    component.input = experimentContainer;
+    (featureSwitchServiceServiceMock.getFeature as jest.Mock).mockResolvedValue(
+      false
+    );
+    component.input = featureContainer;
 
     await component.ngOnInit();
     fixture.detectChanges();
 
     const otherVariantBlocks = fixture.debugElement.queryAll(
-      By.directive(OtherVariantContentBlockComponent)
-    );
-    const controlVariantBlocks = fixture.debugElement.queryAll(
-      By.directive(ControlVariantContentBlockComponent)
+      By.directive(FeatureEnabledContentBlockComponent)
     );
 
-    expect(otherVariantBlocks).toHaveLength(1);
-    expect(controlVariantBlocks).toHaveLength(0);
+    expect(otherVariantBlocks).toHaveLength(0);
   });
 
   it('should not render any variant in server', async () => {
     runtimeService.isBrowser.mockReturnValue(false);
-    component.input = experimentContainer;
+    component.input = featureContainer;
 
     await component.ngOnInit();
     fixture.detectChanges();
@@ -172,46 +139,16 @@ describe('ExperimentContainerComponent', () => {
     expect(component.contentBlocks).toHaveLength(0);
   });
 
-  it('should log error when variant does not exist', async () => {
+  it('should log error when feature enabled component does not exist', async () => {
     runtimeService.isBrowser.mockReturnValue(true);
-    (experimentService.getVariant as jest.Mock).mockResolvedValue(
-      'invalidVariant'
+    (featureSwitchServiceServiceMock.getFeature as jest.Mock).mockResolvedValue(
+      true
     );
-    component.input = { ...experimentContainer, variants: { control: [] } };
+    component.input = { ...featureContainer, content: [] };
 
     await component.ngOnInit();
     fixture.detectChanges();
 
     expect(component.contentBlocks).toHaveLength(0);
-    expect(loggerService.error).toHaveBeenCalled();
-  });
-
-  describe('Analytics', () => {
-    it('should send analytics when experiment is displayed', async () => {
-      runtimeService.isBrowser.mockReturnValue(true);
-      (experimentService.getVariant as jest.Mock).mockResolvedValue('red');
-      component.input = experimentContainer;
-
-      await component.ngOnInit();
-
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
-        type: AnalyticsEventsType.EXPERIMENT,
-        variant: 'red',
-        experiment: 'ExperimentName'
-      });
-    });
-
-    it('should not send analytics when content block is empty', async () => {
-      runtimeService.isBrowser.mockReturnValue(true);
-      (experimentService.getVariant as jest.Mock).mockResolvedValue('red');
-      component.input = {
-        ...experimentContainer,
-        variants: { ...experimentContainer.variants, red: [] }
-      };
-
-      await component.ngOnInit();
-
-      expect(analyticsService.pushEvent).not.toHaveBeenCalled();
-    });
   });
 });

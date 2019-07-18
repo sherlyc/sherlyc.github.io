@@ -6,7 +6,7 @@ import { ContentBlockType } from '../../common/__types__/ContentBlockType';
 import { HandlerInputType } from './handlers/__types__/HandlerInputType';
 import { ListAsset } from './listAsset';
 import logger from './utils/logger';
-import { Features } from '../../common/Features';
+import { FeatureName } from '../../common/FeatureName';
 
 export default async (params: IParams): Promise<IPage> => {
   try {
@@ -65,8 +65,8 @@ export default async (params: IParams): Promise<IPage> => {
             },
             {
               type: HandlerInputType.Feature,
-              name: Features.VideoHubFeature,
-              toggle: {
+              name: FeatureName.VideoHubFeature,
+              content: {
                 type: HandlerInputType.ExternalContent,
                 height: '215px',
                 width: '100%',

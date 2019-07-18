@@ -1,109 +1,42 @@
-import { IContentBlock } from '../../../../common/__types__/IContentBlock';
-import experimentHandler from './experiment-handler';
+import featureHandler from './feature-handler';
 import { HandlerInputType } from '../__types__/HandlerInputType';
 import { IParams } from '../../__types__/IParams';
-import { IExperimentContainer } from '../../../../common/__types__/IExperimentContainer';
+import { IFeatureContainer } from '../../../../common/__types__/IFeatureContainer';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { IBreakingNews } from '../../../../common/__types__/IBreakingNews';
-import { Section } from '../../section';
+import { IExternalContentUnit } from '../../../../common/__types__/IExternalContentUnit';
+import { FeatureName } from '../../../../common/FeatureName';
+import { IExternalContentHandlerInput } from '../__types__/IExternalContentHandlerInput';
 
-describe('Experiment Handler', () => {
+describe('Feature Handler', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
 
-  it('should return Toucan content block when experiment name is Toucan', async () => {
+  it('should return specified content block', async () => {
     const handlerRunnerMock = jest.fn();
-    const breakingNewsBlock = {
-      type: ContentBlockType.BreakingNews,
-      id: 'fake',
-      text: 'fake',
-      link: 'fake'
-    } as IBreakingNews;
-    handlerRunnerMock.mockResolvedValue([breakingNewsBlock]);
+    const videoHubBlock = {
+      type: ContentBlockType.ExternalContentUnit,
+      url: '/abc',
+      width: '200px',
+      height: '100%'
+    } as IExternalContentUnit;
+    handlerRunnerMock.mockResolvedValue([videoHubBlock]);
 
-    const expectedResult: IExperimentContainer = {
-      type: ContentBlockType.ExperimentContainer,
-      name: 'Toucan',
-      variants: {
-        purpleHeadline: [breakingNewsBlock],
-        orangeHeadline: [breakingNewsBlock],
-        control: [breakingNewsBlock]
-      }
+    const expectedResult: IFeatureContainer = {
+      type: ContentBlockType.FeatureContainer,
+      name: FeatureName.VideoHubFeature,
+      content: [videoHubBlock]
     };
 
-    const result = await experimentHandler(
+    const result = await featureHandler(
       handlerRunnerMock,
       {
-        type: HandlerInputType.Experiment,
-        name: 'Toucan',
-        variants: {
-          purpleHeadline: {
-            type: HandlerInputType.BreakingNews
-          },
-          orangeHeadline: {
-            type: HandlerInputType.BreakingNews
-          },
-          control: {
-            type: HandlerInputType.BreakingNews
-          }
-        }
-      },
-      params
-    );
-
-    expect(result).toEqual([expectedResult]);
-  });
-
-  it('should return Parrot content block when experiment name is Parrot', async () => {
-    const handlerRunnerMock = jest.fn();
-    const basicArticleUnit: IContentBlock = {
-      type: ContentBlockType.BasicArticleUnit,
-      strapName: 'fake',
-      id: 'fake',
-      indexHeadline: 'fake',
-      introText: 'fake',
-      linkUrl: 'fake',
-      imageSrc: 'fake',
-      imageSrcSet: 'fake',
-      lastPublishedTime: 0,
-      headlineFlags: []
-    };
-    handlerRunnerMock.mockResolvedValue([basicArticleUnit, basicArticleUnit]);
-
-    const expectedResult: IExperimentContainer = {
-      type: ContentBlockType.ExperimentContainer,
-      name: 'Parrot',
-      variants: {
-        redHeadline: [basicArticleUnit, basicArticleUnit],
-        greenHeadline: [basicArticleUnit, basicArticleUnit],
-        control: [basicArticleUnit, basicArticleUnit]
-      }
-    };
-
-    const result = await experimentHandler(
-      handlerRunnerMock,
-      {
-        type: HandlerInputType.Experiment,
-        name: 'Parrot',
-        variants: {
-          redHeadline: {
-            type: HandlerInputType.ArticleList,
-            strapName: 'fake',
-            sourceId: Section.Latest,
-            totalBasicArticlesUnit: 2
-          },
-          greenHeadline: {
-            type: HandlerInputType.ArticleList,
-            strapName: 'fake',
-            sourceId: Section.Latest,
-            totalBasicArticlesUnit: 2
-          },
-          control: {
-            type: HandlerInputType.ArticleList,
-            strapName: 'fake',
-            sourceId: Section.Latest,
-            totalBasicArticlesUnit: 2
-          }
-        }
+        type: HandlerInputType.Feature,
+        name: FeatureName.VideoHubFeature,
+        content: {
+          type: HandlerInputType.ExternalContent,
+          url: '/abc',
+          width: '200px',
+          height: '100%'
+        } as IExternalContentHandlerInput
       },
       params
     );

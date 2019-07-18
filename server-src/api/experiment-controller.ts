@@ -15,11 +15,14 @@ export const experimentController = function(
   res: Response,
   params: IParams
 ) {
-  const { name, lotteryNumber } = req.query;
+  const { experimentName, lotteryNumber } = req.params;
 
   try {
-    validateRequest(name, lotteryNumber);
-    const variant = getExperimentVariant(name, parseInt(lotteryNumber, 10));
+    validateRequest(experimentName, lotteryNumber);
+    const variant = getExperimentVariant(
+      experimentName,
+      parseInt(lotteryNumber, 10)
+    );
     res.send(variant);
   } catch (e) {
     logger.error(

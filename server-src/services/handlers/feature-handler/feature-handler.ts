@@ -8,7 +8,7 @@ import { IFeatureContainer } from '../../../../common/__types__/IFeatureContaine
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  { name, toggle }: IFeatureHandlerInput,
+  { name, content }: IFeatureHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   try {
@@ -16,7 +16,7 @@ export default async function(
       {
         type: ContentBlockType.FeatureContainer,
         name,
-        toggle: await handlerRunner(toggle, params)
+        content: await handlerRunner(content, params)
       } as IFeatureContainer
     ];
   } catch (e) {
