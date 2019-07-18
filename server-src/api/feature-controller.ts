@@ -19,7 +19,7 @@ export const featureController = function(
   const { featureName, lotteryNumber } = req.params;
   try {
     validateRequest(featureName, lotteryNumber);
-    res.send(isFeatureEnabled(featureName, lotteryNumber));
+    res.send(isFeatureEnabled(featureName, parseInt(lotteryNumber, 10)));
   } catch (error) {
     logger.error(
       params.apiRequestId,
