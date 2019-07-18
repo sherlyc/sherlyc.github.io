@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FeatureNames } from '../../../../common/FeatureNames';
+import { FeatureName } from '../../../../common/FeatureName';
 import { StoreService } from '../store/store.service';
 import { ConfigService } from '../config/config.service';
 import { HttpClient } from '@angular/common/http';
@@ -21,7 +21,7 @@ export class FeatureSwitchService {
     private logger: LoggerService
   ) {}
 
-  private features!: Promise<{ [key in FeatureNames]: boolean }>;
+  private features!: Promise<{ [key in FeatureName]: boolean }>;
 
   setup() {
     if (this.runtimeService.isServer()) {
@@ -30,7 +30,7 @@ export class FeatureSwitchService {
     this.features = this.loadFeatures();
   }
 
-  async getFeature(featureName: FeatureNames) {
+  async getFeature(featureName: FeatureName) {
     if (this.runtimeService.isServer()) {
       return false;
     }
@@ -39,7 +39,7 @@ export class FeatureSwitchService {
   }
 
   private async loadFeatures() {
-    const featurePromises = Object.keys(FeatureNames).map(
+    const featurePromises = Object.keys(FeatureName).map(
       async (featureName) => {
         const lotteryNumber = this.lotto.getLotteryNumber(featureName);
         try {
@@ -61,7 +61,7 @@ export class FeatureSwitchService {
     return (await Promise.all(featurePromises)).reduce(
       (final, item) => ({ ...final, ...item }),
       {}
-    ) as { [key in FeatureNames]: boolean };
+    ) as { [key in FeatureName]: boolean };
   }
 
   isFeatureEnabled(

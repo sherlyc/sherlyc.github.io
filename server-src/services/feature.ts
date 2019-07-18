@@ -1,6 +1,6 @@
-import { FeatureNames } from '../../common/FeatureNames';
+import { FeatureName } from '../../common/FeatureName';
 
 export const isFeatureEnabled = (
-  feature: FeatureNames,
+  feature: FeatureName,
   lotteryNumber: number
 ): boolean => false;

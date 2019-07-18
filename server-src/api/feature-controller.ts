@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import { IParams } from '../services/__types__/IParams';
 import { isFeatureEnabled } from '../services/feature';
-import { FeatureNames } from '../../common/FeatureNames';
+import { FeatureName } from '../../common/FeatureName';
 import logger from '../services/utils/logger';
 
-function validateRequest(featureName: FeatureNames, lotteryNumber: number) {
+function validateRequest(featureName: FeatureName, lotteryNumber: number) {
   if (lotteryNumber < 0) {
     throw new Error(`Invalid feature data provided,
      featureName [${featureName}], lotteryNumber [${lotteryNumber}]`);
