@@ -39,10 +39,13 @@ app.get(`${spadeApiPath}/weather`, async (req, res) => {
   await getWeather(req, res, params);
 });
 
-app.get(`${spadeApiPath}/experiment`, async (req, res) => {
-  const params: IParams = extractParams(req);
-  await experimentController(req, res, params);
-});
+app.get(
+  `${spadeApiPath}/experiment/:experimentName/:lotteryNumber`,
+  async (req, res) => {
+    const params: IParams = extractParams(req);
+    await experimentController(req, res, params);
+  }
+);
 
 app.get(
   `${spadeApiPath}/feature/:featureName/:lotteryNumber`,

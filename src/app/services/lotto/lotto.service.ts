@@ -20,9 +20,7 @@ export class LottoService {
     lotteryNumber: number
   ): Observable<string> {
     return this.http.get<string>(
-      `${
-        this.config.getConfig().experimentAPI
-      }?name=${experiment}&lotteryNumber=${lotteryNumber}`,
+      `${this.config.getConfig().experimentAPI}/${experiment}/${lotteryNumber}`,
       {
         responseType: 'text'
       } as Object

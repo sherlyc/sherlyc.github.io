@@ -7,7 +7,7 @@ jest.mock('../services/experiment');
 
 describe('Experiment controller', () => {
   const req = {
-    query: { name: '', lotteryNumber: '' },
+    params: { experimentName: '', lotteryNumber: 1 },
     cookies: {}
   } as Request;
   const res = { send: jest.fn(), status: jest.fn(), end: jest.fn() } as any;
@@ -17,8 +17,8 @@ describe('Experiment controller', () => {
   });
 
   it('should return 400 and message in body when provided with empty name and negative lottery number', () => {
-    req.query.name = '';
-    req.query.lotteryNumber = -1;
+    req.params.experimentName = '';
+    req.params.lotteryNumber = -1;
 
     experimentController(req, res, { apiRequestId: '5335k' });
 
@@ -26,8 +26,8 @@ describe('Experiment controller', () => {
   });
 
   it('should return 400 and message in body when provided with invalid experiment and lottery number', () => {
-    req.query.name = 'afjdjafia';
-    req.query.lotteryNumber = -8;
+    req.params.experimentName = 'afjdjafia';
+    req.params.lotteryNumber = -8;
 
     experimentController(req, res, { apiRequestId: '33498' });
 
@@ -35,8 +35,8 @@ describe('Experiment controller', () => {
   });
 
   it('should return 400 and message in body when provided with valid experiment and empty lottery number', () => {
-    req.query.name = Experiments.Users;
-    req.query.lotteryNumber = '';
+    req.params.experimentName = Experiments.Users;
+    req.params.lotteryNumber = '';
 
     experimentController(req, res, { apiRequestId: '845478' });
 
@@ -44,8 +44,8 @@ describe('Experiment controller', () => {
   });
 
   it('should respond with variant', () => {
-    req.query.name = Experiments.Users;
-    req.query.lotteryNumber = 27;
+    req.params.experimentName = Experiments.Users;
+    req.params.lotteryNumber = 27;
     const variant = 'Variant A';
     (getExperimentVariant as jest.Mock).mockReturnValue(variant);
 
@@ -55,8 +55,8 @@ describe('Experiment controller', () => {
   });
 
   it('should respond with control variant when experiment does not exist', () => {
-    req.query.name = 'Random';
-    req.query.lotteryNumber = 27;
+    req.params.experimentName = 'Random';
+    req.params.lotteryNumber = 27;
     const variant = 'control';
     (getExperimentVariant as jest.Mock).mockReturnValue(variant);
 
@@ -69,5 +69,5 @@ describe('Experiment controller', () => {
 function assert400StatusAndMessage(res: Response, req: Request) {
   expect(res.status).toHaveBeenCalledWith(400);
   expect(res.send).toHaveBeenCalledWith(`Invalid experiment data provided,
-     name [${req.query.name}], lotteryNumber [${req.query.lotteryNumber}]`);
+     name [${req.params.experimentName}], lotteryNumber [${req.params.lotteryNumber}]`);
 }
