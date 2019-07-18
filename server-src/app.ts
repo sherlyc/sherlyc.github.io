@@ -7,6 +7,7 @@ import { getWeather } from './api/weather';
 import logger from './services/utils/logger';
 import { experimentController } from './api/experiment-controller';
 import { healthCheck } from './api/health-controller';
+import { featureController } from './api/feature-controller';
 
 const app = express();
 
@@ -42,6 +43,14 @@ app.get(`${spadeApiPath}/experiment`, async (req, res) => {
   const params: IParams = extractParams(req);
   await experimentController(req, res, params);
 });
+
+app.get(
+  `${spadeApiPath}/feature/:featureName/:lotteryNumber`,
+  async (req, res) => {
+    const params: IParams = extractParams(req);
+    await featureController(req, res, params);
+  }
+);
 
 app.use('/health/:type', async (req, res) => {
   const params: IParams = extractParams(req);
