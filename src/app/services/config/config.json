@@ -5,6 +5,7 @@
     "spadeAPI": "http://localhost:4000/spade/api/content",
     "weatherAPI": "http://localhost:4000/spade/api/weather",
     "experimentAPI": "http://localhost:4000/spade/api/experiment",
+    "featureAPI": "http://localhost:4000/spade/api/feature",
     "loggerOptions": {
       "level": "info",
       "format": "json"
@@ -14,7 +15,8 @@
       "aadSdkUrl": "/adnostic/manifest.json",
       "spadeAPI": "/spade/api/content",
       "weatherAPI": "/spade/api/weather",
-      "experimentAPI": "/spade/api/experiment"
+      "experimentAPI": "/spade/api/experiment",
+      "featureAPI": "/spade/api/feature"
     },
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
@@ -35,6 +37,7 @@
     "spadeAPI": "http://localhost:4000/spade/api/content",
     "weatherAPI": "http://localhost:4000/spade/api/weather",
     "experimentAPI": "http://localhost:4000/spade/api/experiment",
+    "featureAPI": "http://localhost:4000/spade/api/feature",
     "loggerOptions": {
       "level": "info",
       "format": "json"
@@ -44,7 +47,8 @@
       "aadSdkUrl": "/adnostic/manifest.json",
       "spadeAPI": "/spade/api/content",
       "weatherAPI": "/spade/api/weather",
-      "experimentAPI": "/spade/api/experiment"
+      "experimentAPI": "/spade/api/experiment",
+      "featureAPI": "/spade/api/feature"
     },
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
@@ -65,6 +69,7 @@
     "spadeAPI": "http://localhost:4000/spade/api/content",
     "weatherAPI": "http://localhost:4000/spade/api/weather",
     "experimentAPI": "http://localhost:4000/spade/api/experiment",
+    "featureAPI": "http://localhost:4000/spade/api/feature",
     "loggerOptions": {
       "level": "debug",
       "format": "text"
@@ -74,7 +79,8 @@
       "aadSdkUrl": "/adnostic/manifest.json",
       "spadeAPI": "/spade/api/content",
       "weatherAPI": "/spade/api/weather",
-      "experimentAPI": "/spade/api/experiment"
+      "experimentAPI": "/spade/api/experiment",
+      "featureAPI": "/spade/api/feature"
     },
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
@@ -95,6 +101,7 @@
     "spadeAPI": "http://localhost:4000/spade/api/content",
     "weatherAPI": "http://localhost:4000/spade/api/weather",
     "experimentAPI": "http://localhost:4000/spade/api/experiment",
+    "featureAPI": "http://localhost:4000/spade/api/feature",
     "loggerOptions": {
       "level": "debug",
       "format": "text"
@@ -104,7 +111,8 @@
       "aadSdkUrl": "/spade/assets/adnostic_manifest.json",
       "spadeAPI": "/spade/api/content",
       "weatherAPI": "/spade/api/weather",
-      "experimentAPI": "/spade/api/experiment"
+      "experimentAPI": "/spade/api/experiment",
+      "featureAPI": "/spade/api/feature"
     },
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
@@ -125,6 +133,7 @@
     "spadeAPI": "http://localhost:4000/spade/api/content",
     "weatherAPI": "http://localhost:4000/spade/api/weather",
     "experimentAPI": "http://localhost:4000/spade/api/experiment",
+    "featureAPI": "http://localhost:4000/spade/api/feature",
     "loggerOptions": {
       "level": "debug",
       "format": "text"
@@ -134,7 +143,8 @@
       "aadSdkUrl": "/adnostic/manifest.json",
       "spadeAPI": "/spade/api/content",
       "weatherAPI": "/spade/api/weather",
-      "experimentAPI": "/spade/api/experiment"
+      "experimentAPI": "/spade/api/experiment",
+      "featureAPI": "/spade/api/feature"
     },
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
