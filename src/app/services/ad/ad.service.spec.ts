@@ -4,10 +4,14 @@ import { ConfigService } from '../config/config.service';
 import { mockService, ServiceMock } from '../mocks/MockService';
 import { ScriptInjectorService } from '../script-injector/script-injector.service';
 import { DOCUMENT } from '@angular/common';
+import { of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { LoggerService } from '../logger/logger.service';
 
 describe('AdService', () => {
   let scriptInjectorService: ServiceMock<ScriptInjectorService>;
   let configMock: ServiceMock<ConfigService>;
+  let httpClient: ServiceMock<HttpClient>;
   let adService: AdService;
 
   beforeEach(() => {
@@ -18,6 +22,14 @@ describe('AdService', () => {
           useClass: mockService(ConfigService)
         },
         {
+          provide: HttpClient,
+          useClass: mockService(HttpClient)
+        },
+        {
+          provide: LoggerService,
+          useClass: mockService(LoggerService)
+        },
+        {
           provide: ScriptInjectorService,
           useClass: mockService(ScriptInjectorService)
         }
@@ -25,6 +37,7 @@ describe('AdService', () => {
     });
 
     scriptInjectorService = TestBed.get(ScriptInjectorService);
+    httpClient = TestBed.get(HttpClient);
     configMock = TestBed.get(ConfigService);
     adService = TestBed.get(AdService);
   });
@@ -34,27 +47,31 @@ describe('AdService', () => {
   });
 
   it('should delegate to script injector to load the script on setup', async () => {
+    const manifestUrl = 'http://manifest_url/';
     const aadSdkUrl = 'http://whatever_url/';
-    configMock.getConfig.mockReturnValue({ aadSdkUrl });
+
+    configMock.getConfig.mockReturnValue({ aadSdkUrl: manifestUrl });
+
+    httpClient.get.mockReturnValue(of({ url: aadSdkUrl }));
+
     await adService.setup();
+
     expect(scriptInjectorService.load).toHaveBeenCalledWith(
       'aad-sdk',
       aadSdkUrl
     );
   });
 
-  it('should notify the adnostic sdk', (done) => {
+  it('should notify the adnostic sdk', async () => {
     const document: Document = TestBed.get(DOCUMENT);
     document.dispatchEvent = jest.fn();
-    adService.notify();
-    setTimeout(() => {
-      const fakeEvent = new Event('NavigationEnd');
-      expect(document.dispatchEvent).toHaveBeenCalledWith(fakeEvent);
-      done();
-    });
+    await adService.notify();
+
+    const fakeEvent = new Event('NavigationEnd');
+    expect(document.dispatchEvent).toHaveBeenCalledWith(fakeEvent);
   });
 
-  it('should notify the adnostic sdk in IE11', (done) => {
+  it('should notify the adnostic sdk in IE11', async () => {
     const document: ServiceMock<Document> = TestBed.get(DOCUMENT);
     document.dispatchEvent = jest.fn();
     document.createEvent = jest.fn();
@@ -65,16 +82,14 @@ describe('AdService', () => {
 
     document.createEvent.mockReturnValue(fakeEvent);
     (window as any).Event = { prototype: { constructor: {} } };
-    adService.notify();
-    setTimeout(() => {
-      expect(document.createEvent).toHaveBeenCalledWith('Event');
-      expect(fakeEvent.initEvent).toHaveBeenCalledWith(
-        'NavigationEnd',
-        true,
-        true
-      );
-      expect(document.dispatchEvent).toHaveBeenCalledWith(fakeEvent);
-      done();
-    });
+    await adService.notify();
+
+    expect(document.createEvent).toHaveBeenCalledWith('Event');
+    expect(fakeEvent.initEvent).toHaveBeenCalledWith(
+      'NavigationEnd',
+      true,
+      true
+    );
+    expect(document.dispatchEvent).toHaveBeenCalledWith(fakeEvent);
   });
 });
