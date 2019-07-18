@@ -75,7 +75,7 @@ describe('FeatureSwitchService', () => {
     await service.setup();
 
     expect(lottoService.getLotteryNumber).not.toHaveBeenCalled();
-    expect(lottoService.retrieveVariant).not.toHaveBeenCalled();
+    expect(httpClient.get).not.toHaveBeenCalled();
   });
 
   it('should return features as enabled when all features are on', async () => {
@@ -106,34 +106,6 @@ describe('FeatureSwitchService', () => {
 
   it('should return false for all features while running in server', async () => {
     runtimeService.isServer.mockReturnValue(true);
-
-    Object.keys(FeatureNames).forEach(async (feature) => {
-      const featureValue = await service.getFeature(feature as FeatureNames);
-      expect(featureValue).toEqual(false);
-    });
-  });
-
-  it('should return false when api fails', async () => {
-    runtimeService.isServer.mockReturnValue(false);
-    lottoService.getLotteryNumber.mockReturnValue(1);
-    lottoService.retrieveVariant.mockReturnValue(
-      throwError({ status: 500, statusText: 'Internal Server error' })
-    );
-
-    await service.setup();
-
-    Object.keys(FeatureNames).forEach(async (feature) => {
-      const featureValue = await service.getFeature(feature as FeatureNames);
-      expect(featureValue).toEqual(false);
-    });
-  });
-
-  it('should return false when api return non-boolean value', async () => {
-    runtimeService.isServer.mockReturnValue(false);
-    lottoService.getLotteryNumber.mockReturnValue(1);
-    lottoService.retrieveVariant.mockReturnValue(of('control'));
-
-    await service.setup();
 
     Object.keys(FeatureNames).forEach(async (feature) => {
       const featureValue = await service.getFeature(feature as FeatureNames);

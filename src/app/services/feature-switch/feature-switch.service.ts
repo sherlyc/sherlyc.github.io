@@ -67,8 +67,8 @@ export class FeatureSwitchService {
   isFeatureEnabled(
     featureName: string,
     lotteryNumber: number
-  ): Observable<string> {
-    return this.http.get<string>(
+  ): Observable<boolean> {
+    return this.http.get<boolean>(
       `${this.config.getConfig().featureAPI}/${featureName}/${lotteryNumber}`
     );
   }
