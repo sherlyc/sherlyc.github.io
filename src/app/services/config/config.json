@@ -10,7 +10,7 @@
       "level": "info",
       "format": "json"
     },
-    "aadSdkUrl": "http://localhost:4000/adnostic/manifest.json",
+    "aadSdkUrl": "https://experience.expproduction.shift21.ffx.nz/adnostic/manifest.json",
     "browserOverrides": {
       "aadSdkUrl": "/adnostic/manifest.json",
       "spadeAPI": "/spade/api/content",
@@ -42,7 +42,7 @@
       "level": "info",
       "format": "json"
     },
-    "aadSdkUrl": "http://localhost:4000/adnostic/manifest.json",
+    "aadSdkUrl": "https://experience.expstaging.shift21.ffx.nz/adnostic/manifest.json",
     "browserOverrides": {
       "aadSdkUrl": "/adnostic/manifest.json",
       "spadeAPI": "/spade/api/content",
@@ -74,7 +74,7 @@
       "level": "debug",
       "format": "text"
     },
-    "aadSdkUrl": "http://localhost:4000/adnostic/manifest.json",
+    "aadSdkUrl": "https://experience.expdevint.shift21.ffx.nz/adnostic/manifest.json",
     "browserOverrides": {
       "aadSdkUrl": "/adnostic/manifest.json",
       "spadeAPI": "/spade/api/content",
