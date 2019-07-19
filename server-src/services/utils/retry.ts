@@ -19,9 +19,7 @@ export default <T>(
     onFailedAttempt: (error: pRetry.FailedAttemptError) => {
       logger.warn(
         params.apiRequestId,
-        `Attempt ${error.attemptNumber} failed. There are ${
-          error.retriesLeft
-        } retries left.`
+        `Attempt ${error.attemptNumber} failed. There are ${error.retriesLeft} retries left.`
       );
 
       if (error.retriesLeft === 0) {

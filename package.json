@@ -35,12 +35,11 @@
     "e2e": "jest --config ./e2e/jest.config.json",
     "format": "prettier --write '**/*.{js,json,css,scss,md,html,yaml,ts}'",
     "compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json -w -s",
-    "dev": "concurrently -c red,green,magenta,cyan,blue npm:dev:build:browser npm:dev:build:server npm:dev:serve npm:dev:proxy",
-    "dev:build": "ng run stuff-experience-frontend:build && ng run stuff-experience-frontend:server",
-    "dev:build:browser": "ng run stuff-experience-frontend:build --watch",
-    "dev:build:server": "ng run stuff-experience-frontend:server --watch",
-    "dev:serve": "wait-on dist/server/main.js dist/browser/index.html && NODE_ENV=development SPADE_ENV=development nodemon --inspect=4200 --watch dist --exec 'node dist/server/main.js'",
-    "dev:proxy": "ts-node dev-proxy.ts"
+    "dev": "rm -rf dist/* && concurrently -c red,magenta,cyan npm:dev:build:browser npm:dev:build:server npm:dev:serve npm:dev:proxy",
+    "dev:build:browser": "ng run stuff-experience-frontend:build:development --watch",
+    "dev:build:server": "wait-on dist/browser/index.html && ng run stuff-experience-frontend:server:development --watch",
+    "dev:serve": "wait-on dist/server/main.js && nodemon -q --inspect=4200 -w dist/server -x 'NODE_ENV=development SPADE_ENV=localhost node dist/server/main.js'",
+    "dev:proxy": "wait-on tcp:4000 && ts-node dev-proxy.ts"
   },
   "private": true,
   "dependencies": {
@@ -64,7 +63,7 @@
     "classlist.js": "^1.1.20150312",
     "cookie": "^0.4.0",
     "cookie-parser": "^1.4.4",
-    "core-js": "^3.1.4",
+    "core-js": "^2.6.5",
     "cors": "^2.8.5",
     "default-passive-events": "^1.0.10",
     "flexboxgrid": "^6.3.1",

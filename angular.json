@@ -33,6 +33,24 @@
             "serviceWorker": true
           },
           "configurations": {
+            "development": {
+              "poll": 3000,
+              "sourceMap": {
+                "scripts": true,
+                "styles": false
+              },
+              "aot": false,
+              "statsJson": false,
+              "optimization": false,
+              "buildOptimizer": false,
+              "outputHashing": "none",
+              "namedChunks": false,
+              "vendorChunk": false,
+              "extractCss": true,
+              "showCircularDependencies": false,
+              "extractLicenses": false,
+              "progress": false
+            },
             "production": {
               "customWebpackConfig": {
                 "path": "extra-webpack.config.js",
@@ -78,6 +96,14 @@
             "tsConfig": "src/tsconfig.server.json"
           },
           "configurations": {
+            "development": {
+              "poll": 3000,
+              "optimization": false,
+              "outputHashing": "none",
+              "optimization": false,
+              "statsJson": false,
+              "sourceMap": false
+            },
             "production": {
               "bundleDependencies": "all",
               "sourceMap": {

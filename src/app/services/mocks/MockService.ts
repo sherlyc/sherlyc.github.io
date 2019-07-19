@@ -2,7 +2,7 @@ import { Type } from '@angular/core';
 import { DeepPartial, PickByValue } from 'utility-types/dist/mapped-types';
 
 export type ServiceMock<T> = {
-  [K in keyof PickByValue<T, Function>]: ServiceMethodMock<T[K]>
+  [K in keyof PickByValue<T, Function>]: ServiceMethodMock<T[K]>;
 } &
   T;
 

@@ -12,11 +12,10 @@ export enum Section {
   Travel = 'travel',
   Motoring = 'motoring',
   StuffNation = 'stuff-nation',
-  QuickSaveThePlanet = 'environment',
+  ClimateChange = 'environment/climate-news',
   WellGood = 'life-style/well-good',
   Premium = 'national/premium',
   GoodReads = 'good-reads',
-  ChristchurchShooting = 'national/christchurch-shooting',
   Noted = 'national/noted',
   NowToLove = 'life-style/now-to-love',
   HomesToLove = 'life-style/homes-to-love',
@@ -25,5 +24,6 @@ export enum Section {
   FashionQuarterly = 'life-style/fashion-quarterly',
   Metro = 'life-style/metro',
   Newsroom = 'national/newsroom',
-  SponsoredContent = 'sponsored-content'
+  SponsoredContent = 'sponsored-content',
+  Tarana = 'tarana'
 }
