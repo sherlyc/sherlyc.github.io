@@ -4,15 +4,14 @@ import { ContentBlockType } from '../../../../common/__types__/ContentBlockType'
 import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 import { ContentBlockDirective } from '../../shared/directives/content-block/content-block.directive';
 import { Component } from '@angular/core';
-import { TransferState, By } from '@angular/platform-browser';
 import { mockService } from '../../services/mocks/MockService';
 import registry from '../content-blocks.registry';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { RuntimeService } from 'src/app/services/runtime/runtime.service';
-import { AnalyticsService } from '../../services/analytics/analytics.service';
 import { FeatureContainerComponent } from './feature-container.component';
 import { FeatureSwitchService } from '../../services/feature-switch/feature-switch.service';
 import { IFeatureContainer } from '../../../../common/__types__/IFeatureContainer';
+import { By } from '@angular/platform-browser';
 
 describe('FeatureContainerComponent', () => {
   let component: FeatureContainerComponent;
@@ -43,20 +42,12 @@ describe('FeatureContainerComponent', () => {
       ],
       providers: [
         {
-          provide: TransferState,
-          useClass: mockService(TransferState)
-        },
-        {
           provide: FeatureSwitchService,
           useClass: mockService(FeatureSwitchService)
         },
         {
           provide: RuntimeService,
           useClass: mockService(RuntimeService)
-        },
-        {
-          provide: AnalyticsService,
-          useClass: mockService(AnalyticsService)
         }
       ]
     })
