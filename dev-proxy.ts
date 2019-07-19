@@ -144,4 +144,6 @@ https
   })
   .listen(PROXY_HTTPS_SERVER_PORT);
 
-console.log(`Listen on https://localhost:${PROXY_HTTPS_SERVER_PORT}`);
+console.log(
+  `🍺 Proxy server listening on https://localhost:${PROXY_HTTPS_SERVER_PORT}`
+);

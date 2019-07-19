@@ -35,12 +35,11 @@
     "e2e": "jest --config ./e2e/jest.config.json",
     "format": "prettier --write '**/*.{js,json,css,scss,md,html,yaml,ts}'",
     "compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json -w -s",
-    "dev": "concurrently -c red,green,magenta,cyan,blue npm:dev:build:browser npm:dev:build:server npm:dev:serve npm:dev:proxy",
-    "dev:build": "ng run stuff-experience-frontend:build && ng run stuff-experience-frontend:server",
-    "dev:build:browser": "ng run stuff-experience-frontend:build --watch",
-    "dev:build:server": "ng run stuff-experience-frontend:server --watch",
-    "dev:serve": "NODE_ENV=development SPADE_ENV=localhost nodemon --delay 2.5 --inspect=4200 --watch dist dist/server/main.js",
-    "dev:proxy": "ts-node dev-proxy.ts"
+    "dev": "rm -rf dist/* && concurrently -c red,magenta,cyan npm:dev:build:browser npm:dev:build:server npm:dev:serve npm:dev:proxy",
+    "dev:build:browser": "ng run stuff-experience-frontend:build:development --watch",
+    "dev:build:server": "wait-on dist/browser/index.html && ng run stuff-experience-frontend:server:development --watch",
+    "dev:serve": "wait-on dist/server/main.js && nodemon -q --inspect=4200 -w dist/server -x 'NODE_ENV=development SPADE_ENV=localhost node dist/server/main.js'",
+    "dev:proxy": "wait-on tcp:4000 && ts-node dev-proxy.ts"
   },
   "private": true,
   "dependencies": {
@@ -135,6 +134,7 @@
     "tslint": "^5.18.0",
     "typescript": "3.2.4",
     "utility-types": "^3.7.0",
+    "wait-on": "^3.3.0",
     "webpack": "^4.35.3",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.6"
