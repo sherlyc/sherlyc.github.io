@@ -68,17 +68,4 @@ describe('LottoService', () => {
     expect(randomNumber).toEqual(55);
     expect(storeService.set).not.toHaveBeenCalled();
   });
-
-  it('should call experiment endpoint', (done) => {
-    const experiment = 'Toucan';
-    const lotteryNumber = 50;
-    const expectedVariant = 'redHighlight';
-
-    httpClient.get.mockReturnValue(of(expectedVariant));
-
-    service.retrieveVariant(experiment, lotteryNumber).subscribe((response) => {
-      expect(response).toEqual(expectedVariant);
-      done();
-    });
-  });
 });

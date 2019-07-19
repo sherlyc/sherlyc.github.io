@@ -87,19 +87,18 @@ export default async (params: IParams): Promise<IPage> => {
               }
             },
             {
-              type: HandlerInputType.ArticleSection,
-              displayName: 'Christchurch Mosque Terrorist Attack',
-              displayNameColor: 'darkblue',
-              linkUrl: '/' + Section.ChristchurchShooting,
-              articleList: {
-                sourceId: Section.ChristchurchShooting,
-                strapName: 'Christchurch Mosque Terrorist Attack',
-                totalBasicArticlesUnit: 2,
-                totalBasicArticleTitleUnit: 3
-              }
+              type: HandlerInputType.Video
             },
             {
-              type: HandlerInputType.Video
+              type: HandlerInputType.ArticleSection,
+              displayName: 'Climate Change',
+              displayNameColor: 'darkblue',
+              linkUrl: '/' + Section.ClimateChange,
+              articleList: {
+                sourceId: Section.ClimateChange,
+                strapName: 'Climate Change',
+                totalBasicArticlesUnit: 3
+              }
             },
             {
               type: HandlerInputType.ArticleSection,
@@ -111,17 +110,6 @@ export default async (params: IParams): Promise<IPage> => {
                 strapName: 'Premium',
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 3
-              }
-            },
-            {
-              type: HandlerInputType.ArticleSection,
-              displayName: 'Quick! Save The Planet',
-              displayNameColor: 'darkblue',
-              linkUrl: '/' + Section.QuickSaveThePlanet,
-              articleList: {
-                sourceId: Section.QuickSaveThePlanet,
-                strapName: 'Quick! Save The Planet',
-                totalBasicArticlesUnit: 3
               }
             },
             {
@@ -381,6 +369,17 @@ export default async (params: IParams): Promise<IPage> => {
               articleList: {
                 sourceId: Section.Newsroom,
                 strapName: 'Newsroom.co.nz',
+                totalBasicArticlesUnit: 2
+              }
+            },
+            {
+              type: HandlerInputType.ArticleSection,
+              displayName: 'Tarana',
+              displayNameColor: 'scarlet',
+              linkUrl: '/' + Section.Tarana,
+              articleList: {
+                sourceId: Section.Tarana,
+                strapName: 'Tarana',
                 totalBasicArticlesUnit: 2
               }
             },

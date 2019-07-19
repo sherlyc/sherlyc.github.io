@@ -3,9 +3,11 @@ import { TestBed } from '@angular/core/testing';
 
 import { ExperimentService } from './experiment.service';
 import { mockService, ServiceMock } from '../mocks/MockService';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { RuntimeService } from '../runtime/runtime.service';
 import { LottoService } from '../lotto/lotto.service';
+import { HttpClient } from '@angular/common/http';
+import { LoggerService } from '../logger/logger.service';
 
 jest.mock('math-random');
 
@@ -15,6 +17,8 @@ describe('ExperimentService', () => {
   let service: ExperimentService;
   let runtimeService: ServiceMock<RuntimeService>;
   let lottoService: ServiceMock<LottoService>;
+  let http: ServiceMock<HttpClient>;
+  let loggerService: ServiceMock<LoggerService>;
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -32,6 +36,14 @@ describe('ExperimentService', () => {
         {
           provide: LottoService,
           useClass: mockService(LottoService)
+        },
+        {
+          provide: HttpClient,
+          useClass: mockService(HttpClient)
+        },
+        {
+          provide: LoggerService,
+          useClass: mockService(LoggerService)
         }
       ]
     });
@@ -40,6 +52,8 @@ describe('ExperimentService', () => {
     service = TestBed.get(ExperimentService);
     runtimeService = TestBed.get(RuntimeService);
     lottoService = TestBed.get(LottoService);
+    http = TestBed.get(HttpClient);
+    loggerService = TestBed.get(LoggerService);
   });
 
   it('should be created', () => {
@@ -52,7 +66,7 @@ describe('ExperimentService', () => {
     await service.setup();
 
     expect(lottoService.getLotteryNumber).not.toHaveBeenCalled();
-    expect(lottoService.retrieveVariant).not.toHaveBeenCalled();
+    expect(http.get).not.toHaveBeenCalled();
   });
 
   it('should set up experiment information when not in control group', async () => {
@@ -60,8 +74,8 @@ describe('ExperimentService', () => {
     const experimentName = 'FakeExperiment';
     const variant = 'A';
     lottoService.getLotteryNumber.mockReturnValue(1);
-    lottoService.retrieveVariant.mockReturnValueOnce(of(experimentName));
-    lottoService.retrieveVariant.mockReturnValueOnce(of(variant));
+    http.get.mockReturnValueOnce(of(experimentName));
+    http.get.mockReturnValueOnce(of(variant));
 
     await service.setup();
 
@@ -74,12 +88,24 @@ describe('ExperimentService', () => {
     runtimeService.isServer.mockReturnValue(false);
     const experimentName = 'control';
     lottoService.getLotteryNumber.mockReturnValue(1);
-    lottoService.retrieveVariant.mockReturnValueOnce(of(experimentName));
+    http.get.mockReturnValueOnce(of(experimentName));
 
     await service.setup();
 
     const experiment = await service.getExperiment();
     expect(experiment.name).toEqual(experimentName);
+    expect(experiment.variant).toEqual('control');
+  });
+
+  it('should return control if api fails to retrieve variant', async () => {
+    runtimeService.isServer.mockReturnValue(false);
+    lottoService.getLotteryNumber.mockReturnValue(1);
+    http.get.mockReturnValue(throwError(of('Internal Server Error')));
+
+    await service.setup();
+
+    const experiment = await service.getExperiment();
+    expect(experiment.name).toEqual('control');
     expect(experiment.variant).toEqual('control');
   });
 
