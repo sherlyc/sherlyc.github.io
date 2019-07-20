@@ -14,6 +14,7 @@ import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
 import { DebugElement } from '@angular/core';
 import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
 import { WindowService } from 'src/app/services/window/window.service';
+import { WeatherIconComponent } from '../../shared/components/weather-icon/weather-icon.component';
 
 describe('WeatherUnitComponent', () => {
   let storeService: ServiceMock<StoreService>;
@@ -29,7 +30,7 @@ describe('WeatherUnitComponent', () => {
   beforeEach(async () => {
     jest.clearAllMocks();
     await TestBed.configureTestingModule({
-      declarations: [WeatherUnitComponent],
+      declarations: [WeatherUnitComponent, WeatherIconComponent],
       providers: [
         {
           provide: TransferState,
@@ -134,7 +135,7 @@ describe('WeatherUnitComponent', () => {
     component.isDropdownOpen = true;
     fixture.detectChanges();
 
-    expect(fixture.debugElement.query(By.css('.tick-icon'))).toBeTruthy();
+    expect(fixture.debugElement.query(By.css('.tick'))).toBeTruthy();
   });
 
   it('should not display tick for non-selected location', () => {
@@ -213,9 +214,7 @@ describe('WeatherUnitComponent', () => {
     fixture.detectChanges();
 
     const weatherIcon = fixture.debugElement.query(By.css('.weather-icon'));
-    expect(weatherIcon.nativeElement.src).toContain(
-      'weather-forecast--partcloudy.svg'
-    );
+    expect(weatherIcon).toBeTruthy();
   });
 
   it('should display weather info on load if there is a selected location', () => {
