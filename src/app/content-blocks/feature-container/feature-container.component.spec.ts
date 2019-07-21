@@ -120,7 +120,7 @@ describe('FeatureContainerComponent', () => {
     expect(otherVariantBlocks).toHaveLength(0);
   });
 
-  it('should not render any variant in server', async () => {
+  it('should not render any feature enabled component in server', async () => {
     runtimeService.isBrowser.mockReturnValue(false);
     component.input = featureContainer;
 
@@ -130,7 +130,7 @@ describe('FeatureContainerComponent', () => {
     expect(component.contentBlocks).toHaveLength(0);
   });
 
-  it('should log error when feature enabled component does not exist', async () => {
+  it('should not render any component when feature enabled component does not exist', async () => {
     runtimeService.isBrowser.mockReturnValue(true);
     (featureSwitchServiceServiceMock.getFeature as jest.Mock).mockResolvedValue(
       true
