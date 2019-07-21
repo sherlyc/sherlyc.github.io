@@ -252,7 +252,7 @@ export default async (params: IParams): Promise<IPage> => {
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Stuff Nation',
-              displayNameColor: 'junglegreen',
+              displayNameColor: 'woodsmoke',
               linkUrl: '/' + Section.StuffNation,
               articleList: {
                 sourceId: Section.StuffNation,
