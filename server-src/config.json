@@ -24,24 +24,24 @@
       "playerId": "SJzCEInBZ"
     },
     "homepageStraps": {
-      "TopStories": {
+      "strapTopStories": {
         "ids": ["63768623"],
         "totalArticlesWithImages": 6
       },
-      "EditorPicks": {
+      "strapEditorPicks": {
         "ids": ["63868237"],
         "totalArticlesWithImages": 2,
         "totalTitleArticles": 6
       },
-      "MidStrip": {
+      "strapMidStrip": {
         "ids": ["63769065"],
         "totalTitleArticles": 6
       },
-      "MiniMidStrip": {
+      "strapMiniMidStrip": {
         "ids": ["63768876"],
         "totalArticlesWithImages": 2
       },
-      "DailyFix" : {
+      "strapDailyFix" : {
         "ids": ["63784884"]
       }
     }
@@ -71,24 +71,24 @@
       "playerId": "SJzCEInBZ"
     },
     "homepageStraps": {
-      "TopStories": {
+      "strapTopStories": {
         "ids": ["63768623"],
         "totalArticlesWithImages": 6
       },
-      "EditorPicks": {
+      "strapEditorPicks": {
         "ids": ["63868237"],
         "totalArticlesWithImages": 2,
         "totalTitleArticles": 6
       },
-      "MidStrip": {
+      "strapMidStrip": {
         "ids": ["63769065"],
         "totalTitleArticles": 6
       },
-      "MiniMidStrip": {
+      "strapMiniMidStrip": {
         "ids": ["63768876"],
         "totalArticlesWithImages": 2
       },
-      "DailyFix" : {
+      "strapDailyFix" : {
         "ids": ["63784884"]
       }
     }
@@ -118,24 +118,24 @@
       "playerId": "SJzCEInBZ"
     },
     "homepageStraps": {
-      "TopStories": {
+      "strapTopStories": {
         "ids": ["63768623"],
         "totalArticlesWithImages": 6
       },
-      "EditorPicks": {
+      "strapEditorPicks": {
         "ids": ["63868237"],
         "totalArticlesWithImages": 2,
         "totalTitleArticles": 6
       },
-      "MidStrip": {
+      "strapMidStrip": {
         "ids": ["63769065"],
         "totalTitleArticles": 6
       },
-      "MiniMidStrip": {
+      "strapMiniMidStrip": {
         "ids": ["63768876"],
         "totalArticlesWithImages": 2
       },
-      "DailyFix" : {
+      "strapDailyFix" : {
         "ids": ["63784884"]
       }
     }
@@ -165,24 +165,24 @@
       "playerId": "SJzCEInBZ"
     },
     "homepageStraps": {
-      "TopStories": {
+      "strapTopStories": {
         "ids": ["63768623"],
         "totalArticlesWithImages": 6
       },
-      "EditorPicks": {
+      "strapEditorPicks": {
         "ids": ["63868237"],
         "totalArticlesWithImages": 2,
         "totalTitleArticles": 6
       },
-      "MidStrip": {
+      "strapMidStrip": {
         "ids": ["63769065"],
         "totalTitleArticles": 6
       },
-      "MiniMidStrip": {
+      "strapMiniMidStrip": {
         "ids": ["63768876"],
         "totalArticlesWithImages": 2
       },
-      "DailyFix" : {
+      "strapDailyFix" : {
         "ids": ["63784884"]
       }
     }
@@ -212,24 +212,24 @@
       "playerId": "SJzCEInBZ"
     },
     "homepageStraps": {
-      "TopStories": {
+      "strapTopStories": {
         "ids": ["63768623"],
         "totalArticlesWithImages": 6
       },
-      "EditorPicks": {
+      "strapEditorPicks": {
         "ids": ["63868237"],
         "totalArticlesWithImages": 2,
         "totalTitleArticles": 6
       },
-      "MidStrip": {
+      "strapMidStrip": {
         "ids": ["63769065"],
         "totalTitleArticles": 6
       },
-      "MiniMidStrip": {
+      "strapMiniMidStrip": {
         "ids": ["63768876"],
         "totalArticlesWithImages": 2
       },
-      "DailyFix" : {
+      "strapDailyFix" : {
         "ids": ["63784884"]
       }
     }

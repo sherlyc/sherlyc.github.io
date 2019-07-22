@@ -13,10 +13,10 @@ describe('The strap list service', () => {
 
   beforeAll(() => {
     config.homepageStraps = {
-      EditorPicks: {
+      strapEditorPicks: {
         ids: ['63868237']
       },
-      DailyFix: {
+      strapDailyFix: {
         ids: ['63868237', '63768623']
       }
     };
@@ -49,10 +49,10 @@ describe('The strap list service', () => {
 
   it('should deduplicate list from configured deduplication lists', async () => {
     config.homepageStraps = {
-      EditorPicks: {
+      strapEditorPicks: {
         ids: ['63868237']
       },
-      TopStories: {
+      strapTopStories: {
         ids: ['63868237', '63784884'],
         deduplicateFrom: ['EditorPicks']
       }
