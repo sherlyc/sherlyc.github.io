@@ -11,6 +11,7 @@ import Weather from './weather/weather';
 import Page from './page/page';
 import Video from './video-handler/video-handler';
 import Experiment from './experiment-handler/experiment-handler';
+import Feature from './feature-handler/feature-handler';
 import { handlerRunnerFunction } from './runner';
 import { IParams } from '../__types__/IParams';
 import { HandlerInputType } from './__types__/HandlerInputType';
@@ -33,7 +34,8 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   Page,
   Weather,
   Video,
-  Experiment
+  Experiment,
+  Feature
 };
 
 export default handlerRegistry;
