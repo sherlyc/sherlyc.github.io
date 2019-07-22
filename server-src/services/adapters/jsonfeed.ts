@@ -53,3 +53,14 @@ export const getListAsset = async (
   warnIfMissingImages(listAssetArticles, params);
   return listAssetArticles;
 };
+
+export const getListAssetById = async (
+  params: IParams,
+  listAssetId: string,
+  total: number = 0
+): Promise<IRawArticle[]> => {
+  const articles = await retrieveListAsset(listAssetId)(params, total);
+  const listAssetArticles = mapToRawArticleList(articles.assets);
+  warnIfMissingImages(listAssetArticles, params);
+  return listAssetArticles;
+};
