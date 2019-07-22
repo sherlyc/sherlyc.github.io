@@ -39,7 +39,7 @@ export class LoggerService implements ErrorHandler {
     if (loggingIndex >= currentLogLevelIndex) {
       (console as ISpadeConsole)[logLevel].call(
         console,
-        this.correlationService.getCorrelation(),
+        JSON.stringify(this.correlationService.getCorrelation()),
         ...rest
       );
     }
