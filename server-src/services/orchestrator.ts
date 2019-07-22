@@ -8,6 +8,7 @@ import { ListAsset } from './listAsset';
 import logger from './utils/logger';
 import { FeatureName } from '../../common/FeatureName';
 import { Strap } from './strap';
+import config from './utils/config';
 
 export default async (params: IParams): Promise<IPage> => {
   try {
@@ -42,12 +43,12 @@ export default async (params: IParams): Promise<IPage> => {
               type: HandlerInputType.TopStories,
               strapName: 'Latest',
               sourceId: ListAsset.TopStories,
-              totalBasicArticlesUnit: 6
+              totalBasicArticlesUnit: config.homepageStraps[Strap.TopStories].totalArticlesWithImages
             },
             {
               type: HandlerInputType.MiniMidStrip,
               strapName: 'MiniMidStrip',
-              totalArticles: 2
+              totalArticles: config.homepageStraps[Strap.MiniMidStrip].totalArticlesWithImages
             },
             {
               type: HandlerInputType.ArticleSection,
@@ -56,14 +57,14 @@ export default async (params: IParams): Promise<IPage> => {
               articleList: {
                 sourceId: Strap.EditorPicks,
                 strapName: `Editors' Picks`,
-                totalBasicArticlesUnit: 2,
-                totalBasicArticleTitleUnit: 6
+                totalBasicArticlesUnit: config.homepageStraps[Strap.EditorPicks].totalArticlesWithImages,
+                totalBasicArticleTitleUnit: config.homepageStraps[Strap.EditorPicks].totalTitleArticles
               }
             },
             {
               type: HandlerInputType.MidStrip,
               strapName: 'MidStrip',
-              totalArticles: 6
+              totalArticles: config.homepageStraps[Strap.MidStrip].totalArticlesWithImages
             },
             {
               type: HandlerInputType.Feature,
