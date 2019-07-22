@@ -11,7 +11,7 @@ import { IExperimentHandlerInput } from './IExperimentHandlerInput';
 import { ITopStoriesHandlerInput } from './ITopStoriesHandlerInput';
 import { IDefconArticleListHandlerInput } from './IDefconArticleListHandlerInput';
 import { IFeatureHandlerInput } from './IFeatureHandlerInput';
-import { IStrapListHandlerInput } from './StrapListHandlerInput';
+import { IStrapListHandlerInput } from './IStrapListHandlerInput';
 
 export type HandlerInput =
   | ITopStoriesHandlerInput

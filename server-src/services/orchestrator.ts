@@ -7,6 +7,7 @@ import { HandlerInputType } from './handlers/__types__/HandlerInputType';
 import { ListAsset } from './listAsset';
 import logger from './utils/logger';
 import { FeatureName } from '../../common/FeatureName';
+import { Strap } from './strap';
 
 export default async (params: IParams): Promise<IPage> => {
   try {
@@ -53,7 +54,7 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: `Editors' Picks`,
               displayNameColor: 'darkblue',
               articleList: {
-                sourceId: ListAsset.EditorPicks,
+                sourceId: Strap.EditorPicks,
                 strapName: `Editors' Picks`,
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 6

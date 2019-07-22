@@ -34,7 +34,7 @@ describe('The strap list service', () => {
       .mockResolvedValueOnce(rawList)
       .mockResolvedValueOnce(rawSecondList);
 
-    const result = await getStrapArticles(parameters, Strap.EditorPicks);
+    const result = await getStrapArticles(parameters, Strap.DailyFix);
     expect(result).toMatchObject([...rawList, ...rawSecondList]);
   });
 
@@ -43,7 +43,7 @@ describe('The strap list service', () => {
       .mockResolvedValueOnce(rawList)
       .mockResolvedValueOnce(rawSecondList);
 
-    const result = await getStrapArticles(parameters, Strap.EditorPicks, 8);
+    const result = await getStrapArticles(parameters, Strap.DailyFix, 8);
     expect(result).toMatchObject([...rawList, ...rawSecondList].slice(0, 8));
   });
 
