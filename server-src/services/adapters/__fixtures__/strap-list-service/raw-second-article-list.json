@@ -1,0 +1,57 @@
+[
+  {
+    "id": "4090878",
+    "indexHeadline": "Lorem Ipsum",
+    "introText": "Is this article a revenue driver? click and find out!",
+    "linkUrl": "/business/farming/4090878/is-this-revenue-driver-article",
+    "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/f/z/u/4/image.related.StuffThumbnail.90x60.1tdmj0.png/1547601996972.jpg",
+    "imageSrcSet": "https://resources.stuff.co.nz/content/dam/images/1/t/f/z/u/4/image.related.StuffThumbnail.90x60.1tdmj0.png/1547601996972.jpg 90w, https://resources.stuff.co.nz/content/dam/images/1/t/f/z/u/4/image.related.StuffThumbnail.180x120.1tdmj0.png/1547601996972.jpg 180w",
+    "defconSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/f/z/u/4/image.related.StuffBigHeadline.418x220.1tdmj0.png/1547601996972.jpg",
+    "lastPublishedTime": 1547601993,
+    "headlineFlags": []
+  },
+  {
+    "id": "45812",
+    "indexHeadline": "Games console",
+    "introText": "Play consoles all day, more if you are crazy",
+    "linkUrl": "http://www.stuff.co.nz/life-style/games-and-consoles",
+    "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.90x60.11z4e0.png/1439844947411.jpg",
+    "imageSrcSet": "https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.90x60.11z4e0.png/1439844947411.jpg 90w, https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.180x120.11z4e0.png/1439844947411.jpg 180w",
+    "defconSrc": null,
+    "lastPublishedTime": 1439844947,
+    "headlineFlags": []
+  },
+  {
+    "id": "4848452",
+    "indexHeadline": "Hello Hello",
+    "introText": "Are you reading between lines? Good! ",
+    "linkUrl": "/business/farming/4090878/reading-between-lines-article",
+    "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/f/z/u/4/image.related.StuffThumbnail.90x60.1tdmj0.png/1547601996972.jpg",
+    "imageSrcSet": "https://resources.stuff.co.nz/content/dam/images/1/t/f/z/u/4/image.related.StuffThumbnail.90x60.1tdmj0.png/1547601996972.jpg 90w, https://resources.stuff.co.nz/content/dam/images/1/t/f/z/u/4/image.related.StuffThumbnail.180x120.1tdmj0.png/1547601996972.jpg 180w",
+    "defconSrc": "https://resources.stuff.co.nz/content/dam/images/1/t/f/z/u/4/image.related.StuffBigHeadline.418x220.1tdmj0.png/1547601996972.jpg",
+    "lastPublishedTime": 1547601993,
+    "headlineFlags": []
+  },
+  {
+    "id": "48421654",
+    "indexHeadline": "Techno music for the people",
+    "introText": "Techno Viking to give a conference very soon",
+    "linkUrl": "http://www.stuff.co.nz/technology/techno-viking-giving-conference",
+    "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.90x60.11z4e0.png/1439844947411.jpg",
+    "imageSrcSet": "https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.90x60.11z4e0.png/1439844947411.jpg 90w, https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.180x120.11z4e0.png/1439844947411.jpg 180w",
+    "defconSrc": null,
+    "lastPublishedTime": 1439844947,
+    "headlineFlags": []
+  },
+  {
+    "id": "844224720",
+    "indexHeadline": "Test test drill",
+    "introText": "Don't panic this is a test only!",
+    "linkUrl": "http://www.stuff.co.nz/technology/do-not-run-with-the-test",
+    "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.90x60.11z4e0.png/1439844947411.jpg",
+    "imageSrcSet": "https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.90x60.11z4e0.png/1439844947411.jpg 90w, https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.180x120.11z4e0.png/1439844947411.jpg 180w",
+    "defconSrc": null,
+    "lastPublishedTime": 1439844947,
+    "headlineFlags": []
+  }
+]
