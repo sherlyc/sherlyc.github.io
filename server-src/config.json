@@ -44,8 +44,8 @@
       "strapDailyFix" : {
         "ids": ["63784884"]
       },
-      "strapOpinion" : {
-        "ids" : ["91706224"],
+      "strapTravel" : {
+        "ids": ["60860998"],
         "deduplicateFrom": [
           "strapEditorPicks",
           "strapTopStories",
@@ -100,8 +100,8 @@
       "strapDailyFix" : {
         "ids": ["63784884"]
       },
-      "strapOpinion" : {
-        "ids" : ["91706224"],
+      "strapTravel" : {
+        "ids": ["60860998"],
         "deduplicateFrom": [
           "strapEditorPicks",
           "strapTopStories",
@@ -156,8 +156,8 @@
       "strapDailyFix" : {
         "ids": ["63784884"]
       },
-      "strapOpinion" : {
-        "ids" : ["91706224"],
+      "strapTravel" : {
+        "ids": ["60860998"],
         "deduplicateFrom": [
           "strapEditorPicks",
           "strapTopStories",
@@ -212,8 +212,8 @@
       "strapDailyFix" : {
         "ids": ["63784884"]
       },
-      "strapOpinion" : {
-        "ids" : ["91706224"],
+      "strapTravel" : {
+        "ids": ["60860998"],
         "deduplicateFrom": [
           "strapEditorPicks",
           "strapTopStories",
@@ -268,8 +268,8 @@
       "strapDailyFix" : {
         "ids": ["63784884"]
       },
-      "strapOpinion" : {
-        "ids" : ["91706224"],
+      "strapTravel" : {
+        "ids": ["60860998"],
         "deduplicateFrom": [
           "strapEditorPicks",
           "strapTopStories",
