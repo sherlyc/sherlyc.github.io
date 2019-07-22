@@ -54,7 +54,7 @@ describe('The strap list service', () => {
       },
       strapTopStories: {
         ids: ['63868237', '63784884'],
-        deduplicateFrom: ['EditorPicks']
+        deduplicateFrom: ['strapEditorPicks']
       }
     };
 
