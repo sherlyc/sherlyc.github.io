@@ -50,7 +50,7 @@ export default async (params: IParams): Promise<IPage> => {
               totalArticles: 2
             },
             {
-              type: HandlerInputType.StrapList,
+              type: HandlerInputType.ArticleSection,
               displayName: `Editors' Picks`,
               displayNameColor: 'darkblue',
               articleList: {
@@ -150,7 +150,7 @@ export default async (params: IParams): Promise<IPage> => {
               displayNameColor: 'dingley',
               linkUrl: '/' + Section.Opinion,
               articleList: {
-                sourceId: Section.Opinion,
+                sourceId: Strap.Opinion,
                 strapName: 'Opinion',
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 2

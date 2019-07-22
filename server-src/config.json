@@ -43,6 +43,15 @@
       },
       "strapDailyFix" : {
         "ids": ["63784884"]
+      },
+      "strapOpinion" : {
+        "ids" : ["91706224"],
+        "deduplicateFrom": [
+          "strapEditorPicks",
+          "strapTopStories",
+          "strapMidStrip",
+          "strapMiniMidStrip"
+        ]
       }
     }
   },
@@ -90,6 +99,15 @@
       },
       "strapDailyFix" : {
         "ids": ["63784884"]
+      },
+      "strapOpinion" : {
+        "ids" : ["91706224"],
+        "deduplicateFrom": [
+          "strapEditorPicks",
+          "strapTopStories",
+          "strapMidStrip",
+          "strapMiniMidStrip"
+        ]
       }
     }
   },
@@ -137,6 +155,15 @@
       },
       "strapDailyFix" : {
         "ids": ["63784884"]
+      },
+      "strapOpinion" : {
+        "ids" : ["91706224"],
+        "deduplicateFrom": [
+          "strapEditorPicks",
+          "strapTopStories",
+          "strapMidStrip",
+          "strapMiniMidStrip"
+        ]
       }
     }
   },
@@ -184,6 +211,15 @@
       },
       "strapDailyFix" : {
         "ids": ["63784884"]
+      },
+      "strapOpinion" : {
+        "ids" : ["91706224"],
+        "deduplicateFrom": [
+          "strapEditorPicks",
+          "strapTopStories",
+          "strapMidStrip",
+          "strapMiniMidStrip"
+        ]
       }
     }
   },
@@ -231,6 +267,15 @@
       },
       "strapDailyFix" : {
         "ids": ["63784884"]
+      },
+      "strapOpinion" : {
+        "ids" : ["91706224"],
+        "deduplicateFrom": [
+          "strapEditorPicks",
+          "strapTopStories",
+          "strapMidStrip",
+          "strapMiniMidStrip"
+        ]
       }
     }
   }
