@@ -13,7 +13,6 @@ export class FeatureContainerComponent
   implements OnInit, IContentBlockComponent {
   @Input() input!: IFeatureContainer;
   contentBlocks: IContentBlock[] = [];
-  isFeatureEnabled = false;
 
   constructor(
     private featureSwitchService: FeatureSwitchService,
@@ -22,12 +21,12 @@ export class FeatureContainerComponent
 
   async ngOnInit() {
     if (this.runtimeService.isBrowser()) {
-      this.isFeatureEnabled = await this.featureSwitchService.getFeature(
+      const isFeatureEnabled = await this.featureSwitchService.getFeature(
         this.input.name
       );
-    }
-    if (this.isFeatureEnabled) {
-      this.contentBlocks = this.input.content;
+      if (isFeatureEnabled) {
+        this.contentBlocks = this.input.content;
+      }
     }
   }
 }
