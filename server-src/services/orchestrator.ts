@@ -49,7 +49,7 @@ export default async (params: IParams): Promise<IPage> => {
               totalArticles: 2
             },
             {
-              type: HandlerInputType.ArticleSection,
+              type: HandlerInputType.StrapList,
               displayName: `Editors' Picks`,
               displayNameColor: 'darkblue',
               articleList: {
