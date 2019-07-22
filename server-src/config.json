@@ -22,6 +22,28 @@
       "playlistId": "5789330518001",
       "accountId": "3921507366001",
       "playerId": "SJzCEInBZ"
+    },
+    "homepageStraps": {
+      "TopStories": {
+        "ids": ["63768623"],
+        "totalArticlesWithImages": 6
+      },
+      "EditorPicks": {
+        "ids": ["63868237"],
+        "totalArticlesWithImages": 2,
+        "totalTitleArticles": 6
+      },
+      "MidStrip": {
+        "ids": ["63769065"],
+        "totalTitleArticles": 6
+      },
+      "MiniMidStrip": {
+        "ids": ["63768876"],
+        "totalArticlesWithImages": 2
+      },
+      "DailyFix" : {
+        "ids": ["63784884"]
+      }
     }
   },
   "staging": {
@@ -47,6 +69,28 @@
       "playlistId": "5789330518001",
       "accountId": "3921507366001",
       "playerId": "SJzCEInBZ"
+    },
+    "homepageStraps": {
+      "TopStories": {
+        "ids": ["63768623"],
+        "totalArticlesWithImages": 6
+      },
+      "EditorPicks": {
+        "ids": ["63868237"],
+        "totalArticlesWithImages": 2,
+        "totalTitleArticles": 6
+      },
+      "MidStrip": {
+        "ids": ["63769065"],
+        "totalTitleArticles": 6
+      },
+      "MiniMidStrip": {
+        "ids": ["63768876"],
+        "totalArticlesWithImages": 2
+      },
+      "DailyFix" : {
+        "ids": ["63784884"]
+      }
     }
   },
   "development": {
@@ -72,6 +116,28 @@
       "playlistId": "5789330518001",
       "accountId": "3921507366001",
       "playerId": "SJzCEInBZ"
+    },
+    "homepageStraps": {
+      "TopStories": {
+        "ids": ["63768623"],
+        "totalArticlesWithImages": 6
+      },
+      "EditorPicks": {
+        "ids": ["63868237"],
+        "totalArticlesWithImages": 2,
+        "totalTitleArticles": 6
+      },
+      "MidStrip": {
+        "ids": ["63769065"],
+        "totalTitleArticles": 6
+      },
+      "MiniMidStrip": {
+        "ids": ["63768876"],
+        "totalArticlesWithImages": 2
+      },
+      "DailyFix" : {
+        "ids": ["63784884"]
+      }
     }
   },
   "localhost": {
@@ -97,6 +163,28 @@
       "playlistId": "5789330518001",
       "accountId": "3921507366001",
       "playerId": "SJzCEInBZ"
+    },
+    "homepageStraps": {
+      "TopStories": {
+        "ids": ["63768623"],
+        "totalArticlesWithImages": 6
+      },
+      "EditorPicks": {
+        "ids": ["63868237"],
+        "totalArticlesWithImages": 2,
+        "totalTitleArticles": 6
+      },
+      "MidStrip": {
+        "ids": ["63769065"],
+        "totalTitleArticles": 6
+      },
+      "MiniMidStrip": {
+        "ids": ["63768876"],
+        "totalArticlesWithImages": 2
+      },
+      "DailyFix" : {
+        "ids": ["63784884"]
+      }
     }
   },
   "test": {
@@ -122,6 +210,28 @@
       "playlistId": "5789330518001",
       "accountId": "3921507366001",
       "playerId": "SJzCEInBZ"
+    },
+    "homepageStraps": {
+      "TopStories": {
+        "ids": ["63768623"],
+        "totalArticlesWithImages": 6
+      },
+      "EditorPicks": {
+        "ids": ["63868237"],
+        "totalArticlesWithImages": 2,
+        "totalTitleArticles": 6
+      },
+      "MidStrip": {
+        "ids": ["63769065"],
+        "totalTitleArticles": 6
+      },
+      "MiniMidStrip": {
+        "ids": ["63768876"],
+        "totalArticlesWithImages": 2
+      },
+      "DailyFix" : {
+        "ids": ["63784884"]
+      }
     }
   }
 }
