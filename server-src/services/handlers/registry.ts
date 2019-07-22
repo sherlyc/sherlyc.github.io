@@ -12,6 +12,7 @@ import Page from './page/page';
 import Video from './video-handler/video-handler';
 import Experiment from './experiment-handler/experiment-handler';
 import Feature from './feature-handler/feature-handler';
+import StrapList from './strap-list/strap-list';
 import { handlerRunnerFunction } from './runner';
 import { IParams } from '../__types__/IParams';
 import { HandlerInputType } from './__types__/HandlerInputType';
@@ -35,7 +36,8 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   Weather,
   Video,
   Experiment,
-  Feature
+  Feature,
+  StrapList
 };
 
 export default handlerRegistry;

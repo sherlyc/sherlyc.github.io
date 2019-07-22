@@ -11,6 +11,7 @@ import { IExperimentHandlerInput } from './IExperimentHandlerInput';
 import { ITopStoriesHandlerInput } from './ITopStoriesHandlerInput';
 import { IDefconArticleListHandlerInput } from './IDefconArticleListHandlerInput';
 import { IFeatureHandlerInput } from './IFeatureHandlerInput';
+import { IStrapListHandlerInput } from './StrapListHandlerInput';
 
 export type HandlerInput =
   | ITopStoriesHandlerInput
@@ -25,4 +26,5 @@ export type HandlerInput =
   | IWeatherHandlerInput
   | IVideoHandlerInput
   | IExperimentHandlerInput
-  | IFeatureHandlerInput;
+  | IFeatureHandlerInput
+  | IStrapListHandlerInput;

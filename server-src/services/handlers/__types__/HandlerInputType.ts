@@ -11,5 +11,6 @@ export enum HandlerInputType {
   Weather = 'Weather',
   Video = 'Video',
   Experiment = 'Experiment',
-  Feature = 'Feature'
+  Feature = 'Feature',
+  StrapList = 'StrapList'
 }
