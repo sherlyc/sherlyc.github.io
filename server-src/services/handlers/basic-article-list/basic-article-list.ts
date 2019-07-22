@@ -11,6 +11,8 @@ import { IRawArticle } from '../../adapters/__types__/IRawArticle';
 import { Section } from '../../section';
 import { ListAsset } from '../../listAsset';
 import { LayoutType } from '../../adapters/__types__/LayoutType';
+import { Strap } from '../../strap';
+import { getStrapArticles } from '../../adapters/strap-list-service';
 
 const createBasicArticleUnitBlock = (
   article: IRawArticle,
@@ -67,7 +69,7 @@ const formatAsArticleBlocks = (
 };
 
 const getRawArticles = async (
-  sourceId: Section | ListAsset,
+  sourceId: Section | ListAsset | Strap,
   totalArticles: number,
   layout: LayoutType,
   params: IParams
@@ -80,6 +82,11 @@ const getRawArticles = async (
       totalArticles,
       params
     )).slice(0, totalArticles);
+  }
+  const sourceIsAStrap = Object.values(Strap).includes(sourceId);
+
+  if (sourceIsAStrap) {
+    return await getStrapArticles(params, sourceId as Strap, totalArticles);
   }
 
   const listAssets = await getListAsset(
