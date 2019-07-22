@@ -150,7 +150,7 @@ export default async (params: IParams): Promise<IPage> => {
               displayNameColor: 'dingley',
               linkUrl: '/' + Section.Opinion,
               articleList: {
-                sourceId: Strap.Opinion,
+                sourceId: Section.Opinion,
                 strapName: 'Opinion',
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 2
@@ -244,7 +244,7 @@ export default async (params: IParams): Promise<IPage> => {
               displayNameColor: 'yellowsea',
               linkUrl: '/' + Section.Travel,
               articleList: {
-                sourceId: Section.Travel,
+                sourceId: Strap.Travel,
                 strapName: 'Travel',
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 3
