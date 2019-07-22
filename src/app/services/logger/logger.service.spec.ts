@@ -41,7 +41,7 @@ describe('LoggerService', () => {
     service.debug('This should be logged as debug');
 
     expect(console['debug']).toHaveBeenCalledWith(
-      correlationInfo,
+      JSON.stringify(correlationInfo),
       'This should be logged as debug'
     );
   });
@@ -70,7 +70,7 @@ describe('LoggerService', () => {
     service.error(new Error('This should be logged as an error'));
 
     expect(console.error).toHaveBeenCalledWith(
-      correlationInfo,
+      JSON.stringify(correlationInfo),
       new Error('This should be logged as an error')
     );
   });
@@ -86,7 +86,7 @@ describe('LoggerService', () => {
     service.warn('This should be logged as a warn');
 
     expect(console.warn).toHaveBeenCalledWith(
-      correlationInfo,
+      JSON.stringify(correlationInfo),
       'This should be logged as a warn'
     );
   });

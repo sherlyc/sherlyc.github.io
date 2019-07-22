@@ -10,7 +10,6 @@ import {
 } from '../../../../common/WeatherLocations';
 import { StoreService, StorageKeys } from '../../services/store/store.service';
 import { RuntimeService } from '../../services/runtime/runtime.service';
-import { mapForecastToIcon } from './forecast-icon.mapper';
 import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
 import { WindowService } from '../../services/window/window.service';
 
@@ -37,7 +36,6 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
 
   weatherData: IWeatherResponse = {} as any;
   selectedLocation?: WeatherLocations;
-  forecastSvgPath?: string;
 
   ngOnInit() {
     if (this.runtimeService.isBrowser()) {
@@ -69,7 +67,6 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
       (weatherData: IWeatherResponse) => {
         this.weatherData = weatherData;
         this.hasError = false;
-        this.forecastSvgPath = mapForecastToIcon(weatherData.condition);
       },
       () => (this.hasError = true)
     );

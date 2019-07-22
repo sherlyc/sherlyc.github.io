@@ -1,21 +1,23 @@
 <div class="weather-component" [ngClass]="{ 'location-list-visible': isDropdownOpen }">
   <div class="weather-bar row between-xs middle-xs" (click)="onToggleDropdown()">
     <div *ngIf="!selectedLocation" class="weatherCheckLabel">
-      <img alt="unknown weather" class="weather-icon weather-unknown-icon" src="/spade/assets/icons/weather/weather-forecast--unknown.svg" />
+      <app-weather-icon icon="unknown"></app-weather-icon>
       <span>Check your weather</span>
     </div>
+
     <div *ngIf="!hasError && selectedLocation" class="weatherLocationInfo">
       <span class="weather-location-info-label">{{ selectedLocation }}: </span>
-      <img alt="weather icon" class="weather-icon" src="{{ forecastSvgPath }}" />
-      <span> {{ weatherData.temperature }}{{ weatherData.temperatureUnit }} </span>
+      <app-weather-icon [icon]="weatherData.condition"></app-weather-icon>
+      <span> {{ weatherData.temperature }} {{ weatherData.temperatureUnit }} </span>
       <span> <span class="weather-location-info-label">Max: </span>{{ weatherData.maxTemp }}{{ weatherData.temperatureUnit }} </span>
       <span> <span class="weather-location-info-label">Min: </span>{{ weatherData.minTemp }}{{ weatherData.temperatureUnit }} </span>
     </div>
+
     <div *ngIf="hasError" class="weatherError">
-      <img alt="unknown weather" class="weather-icon weather-unknown-icon" src="/spade/assets/icons/weather/weather-forecast--unknown.svg" />
+      <app-weather-icon icon="unknown"></app-weather-icon>
       Weather is unavailable
     </div>
-    <span class="weather-bar-arrow"></span>
+    <app-weather-icon class="weather-bar-arrow" icon="dropdown"></app-weather-icon>
   </div>
 
   <div class="weather-location-list">
@@ -28,7 +30,7 @@
             <li *ngFor="let location of region.locations" (click)="[onSelectLocation(location), sendLocationAnalytics(location)]">
               <span class="location-name">{{ location }}</span>
               <span *ngIf="selectedLocation === location">
-                <img alt="weather forecast" class="tick-icon" src="/spade/assets/icons/weather/weather-forecast--tick.svg" />
+                <app-weather-icon icon="tick"></app-weather-icon>
               </span>
             </li>
           </ul>
@@ -41,13 +43,13 @@
             <li *ngFor="let location of region.locations" (click)="[onSelectLocation(location), sendLocationAnalytics(location)]">
               <span class="location-name">{{ location }}</span>
               <span *ngIf="selectedLocation === location">
-                <img alt="weather forecast" class="tick-icon" src="/spade/assets/icons/weather/weather-forecast--tick.svg" />
+                <app-weather-icon icon="tick"></app-weather-icon>
               </span>
             </li>
           </ul>
         </ng-container>
       </ul>
-      <div (click)="onToggleDropdown()" class="close-button"></div>
+      <app-weather-icon (click)="onToggleDropdown()" class="close-button" icon="exit"></app-weather-icon>
     </div>
   </div>
 </div>

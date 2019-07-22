@@ -9,6 +9,7 @@ import { OpenExternalLinkDirective } from './directives/open-external-link/open-
 import { SigninCallbackComponent } from './components/authentication/signin-callback.component';
 import { HeadlineFlagComponent } from './components/headline-flag/headline-flag.component';
 import { TimeAgoComponent } from './components/time-ago/time-ago.component';
+import { WeatherIconComponent } from './components/weather-icon/weather-icon.component';
 
 @NgModule({
   imports: [CommonModule],
@@ -21,6 +22,7 @@ import { TimeAgoComponent } from './components/time-ago/time-ago.component';
     HeadlineComponent,
     SigninCallbackComponent,
     HeadlineFlagComponent,
+    WeatherIconComponent,
     TimeAgoComponent
   ],
   exports: [
@@ -32,6 +34,7 @@ import { TimeAgoComponent } from './components/time-ago/time-ago.component';
     HeadlineComponent,
     SigninCallbackComponent,
     HeadlineFlagComponent,
+    WeatherIconComponent,
     TimeAgoComponent
   ]
 })
