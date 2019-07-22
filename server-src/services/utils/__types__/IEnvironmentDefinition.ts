@@ -1,5 +1,6 @@
 import { ILoggerOptions } from '../../../../common/__types__/ILoggerOptions';
 import { IVideoConfig } from '../../../../src/app/content-blocks/video-unit/__types__/IVideoConfig';
+import { IStrapDefinition } from './IStrapDefinition';
 
 export interface IEnvironmentDefinition {
   retryTimeout: number;
@@ -16,4 +17,5 @@ export interface IEnvironmentDefinition {
   maxArticlesToRetrieve: number;
   loggerOptions: ILoggerOptions;
   videoConfig: IVideoConfig;
+  homepageStraps: {[key: string]: IStrapDefinition };
 }
