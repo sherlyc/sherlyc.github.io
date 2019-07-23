@@ -4,7 +4,7 @@ import { IEnvironmentDefinition } from './__types__/IEnvironmentDefinition';
 const defaultEnvironmentName = 'production';
 const environmentName = process.env.SPADE_ENV || defaultEnvironmentName;
 
-const environments: { [key: string]: IEnvironmentDefinition } = config;
+const environments = config as { [key: string]: IEnvironmentDefinition };
 const environment: IEnvironmentDefinition =
   environments[environmentName] || environments['production'];
 
