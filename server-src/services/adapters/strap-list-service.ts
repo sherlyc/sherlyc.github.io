@@ -28,8 +28,10 @@ export const getStrapArticles = async (
   );
 
   let dedupeSourcePromise: Promise<IRawArticle[][]> = Promise.resolve([[]]);
-  if (config.homepageStraps[strap].deduplicateFrom) {
-    dedupeSourcePromise = getDeduplicationLists(params, strap);
+
+  const deduplicateSources = config.homepageStraps[strap].deduplicateFrom;
+  if (deduplicateSources) {
+    dedupeSourcePromise = getDeduplicationLists(params, deduplicateSources);
   }
 
   const [nestedStrapArticles, nestedDedupeSource] = await Promise.all([
@@ -42,9 +44,9 @@ export const getStrapArticles = async (
   return deduplicate(articles, deduplicationSource).slice(0, total);
 };
 
-function getDeduplicationLists(params: IParams, strap: Strap) {
+function getDeduplicationLists(params: IParams, strapNames: Strap[]) {
   return Promise.all(
-    config.homepageStraps[strap].deduplicateFrom!.map((strapToDedupeFrom) => {
+    strapNames.map((strapToDedupeFrom) => {
       const dedupeFrom = config.homepageStraps[strapToDedupeFrom];
       const limit =
         (dedupeFrom.totalArticlesWithImages || 0) +

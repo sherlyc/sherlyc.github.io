@@ -1,6 +1,8 @@
+import { Strap } from '../../strap';
+
 export interface IStrapDefinition {
   ids: string[];
-  deduplicateFrom?: string[];
+  deduplicateFrom?: Strap[];
   totalArticlesWithImages?: number;
   totalTitleArticles?: number;
 }
