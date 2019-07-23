@@ -60,4 +60,8 @@ app.use('/health/:type', async (req, res) => {
   await healthCheck(req, res, params);
 });
 
+app.use('/version', (req, res) => {
+  res.send(`experience-frontend-${process.env.SPADE_VERSION || 'SNAPSHOT'}`);
+});
+
 export default app;
