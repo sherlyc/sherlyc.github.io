@@ -22,6 +22,37 @@
       "playlistId": "5789330518001",
       "accountId": "3921507366001",
       "playerId": "SJzCEInBZ"
+    },
+    "homepageStraps": {
+      "strapTopStories": {
+        "ids": ["63768623"],
+        "totalArticlesWithImages": 6
+      },
+      "strapEditorPicks": {
+        "ids": ["63868237"],
+        "totalArticlesWithImages": 2,
+        "totalTitleArticles": 6
+      },
+      "strapMidStrip": {
+        "ids": ["63769065"],
+        "totalTitleArticles": 6
+      },
+      "strapMiniMidStrip": {
+        "ids": ["63768876"],
+        "totalArticlesWithImages": 2
+      },
+      "strapDailyFix" : {
+        "ids": ["63784884"]
+      },
+      "strapTravel" : {
+        "ids": ["60860998"],
+        "deduplicateFrom": [
+          "strapEditorPicks",
+          "strapTopStories",
+          "strapMidStrip",
+          "strapMiniMidStrip"
+        ]
+      }
     }
   },
   "staging": {
@@ -47,6 +78,37 @@
       "playlistId": "5789330518001",
       "accountId": "3921507366001",
       "playerId": "SJzCEInBZ"
+    },
+    "homepageStraps": {
+      "strapTopStories": {
+        "ids": ["63768623"],
+        "totalArticlesWithImages": 6
+      },
+      "strapEditorPicks": {
+        "ids": ["63868237"],
+        "totalArticlesWithImages": 2,
+        "totalTitleArticles": 6
+      },
+      "strapMidStrip": {
+        "ids": ["63769065"],
+        "totalTitleArticles": 6
+      },
+      "strapMiniMidStrip": {
+        "ids": ["63768876"],
+        "totalArticlesWithImages": 2
+      },
+      "strapDailyFix" : {
+        "ids": ["63784884"]
+      },
+      "strapTravel" : {
+        "ids": ["60860998"],
+        "deduplicateFrom": [
+          "strapEditorPicks",
+          "strapTopStories",
+          "strapMidStrip",
+          "strapMiniMidStrip"
+        ]
+      }
     }
   },
   "development": {
@@ -72,6 +134,37 @@
       "playlistId": "5789330518001",
       "accountId": "3921507366001",
       "playerId": "SJzCEInBZ"
+    },
+    "homepageStraps": {
+      "strapTopStories": {
+        "ids": ["63768623"],
+        "totalArticlesWithImages": 6
+      },
+      "strapEditorPicks": {
+        "ids": ["63868237"],
+        "totalArticlesWithImages": 2,
+        "totalTitleArticles": 6
+      },
+      "strapMidStrip": {
+        "ids": ["63769065"],
+        "totalTitleArticles": 6
+      },
+      "strapMiniMidStrip": {
+        "ids": ["63768876"],
+        "totalArticlesWithImages": 2
+      },
+      "strapDailyFix" : {
+        "ids": ["63784884"]
+      },
+      "strapTravel" : {
+        "ids": ["60860998"],
+        "deduplicateFrom": [
+          "strapEditorPicks",
+          "strapTopStories",
+          "strapMidStrip",
+          "strapMiniMidStrip"
+        ]
+      }
     }
   },
   "localhost": {
@@ -97,6 +190,37 @@
       "playlistId": "5789330518001",
       "accountId": "3921507366001",
       "playerId": "SJzCEInBZ"
+    },
+    "homepageStraps": {
+      "strapTopStories": {
+        "ids": ["63768623"],
+        "totalArticlesWithImages": 6
+      },
+      "strapEditorPicks": {
+        "ids": ["63868237"],
+        "totalArticlesWithImages": 2,
+        "totalTitleArticles": 6
+      },
+      "strapMidStrip": {
+        "ids": ["63769065"],
+        "totalTitleArticles": 6
+      },
+      "strapMiniMidStrip": {
+        "ids": ["63768876"],
+        "totalArticlesWithImages": 2
+      },
+      "strapDailyFix" : {
+        "ids": ["63784884"]
+      },
+      "strapTravel" : {
+        "ids": ["60860998"],
+        "deduplicateFrom": [
+          "strapEditorPicks",
+          "strapTopStories",
+          "strapMidStrip",
+          "strapMiniMidStrip"
+        ]
+      }
     }
   },
   "test": {
@@ -122,6 +246,37 @@
       "playlistId": "5789330518001",
       "accountId": "3921507366001",
       "playerId": "SJzCEInBZ"
+    },
+    "homepageStraps": {
+      "strapTopStories": {
+        "ids": ["63768623"],
+        "totalArticlesWithImages": 6
+      },
+      "strapEditorPicks": {
+        "ids": ["63868237"],
+        "totalArticlesWithImages": 2,
+        "totalTitleArticles": 6
+      },
+      "strapMidStrip": {
+        "ids": ["63769065"],
+        "totalTitleArticles": 6
+      },
+      "strapMiniMidStrip": {
+        "ids": ["63768876"],
+        "totalArticlesWithImages": 2
+      },
+      "strapDailyFix" : {
+        "ids": ["63784884"]
+      },
+      "strapTravel" : {
+        "ids": ["60860998"],
+        "deduplicateFrom": [
+          "strapEditorPicks",
+          "strapTopStories",
+          "strapMidStrip",
+          "strapMiniMidStrip"
+        ]
+      }
     }
   }
 }

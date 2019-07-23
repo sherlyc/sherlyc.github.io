@@ -1,13 +1,16 @@
 import basicArticleListHandler from './basic-article-list';
 import { Section } from '../../section';
+import {getStrapArticles} from '../../adapters/strap-list-service';
 import { getArticleList, getListAsset } from '../../adapters/jsonfeed';
 import { IParams } from '../../__types__/IParams';
 import { HandlerInputType } from '../__types__/HandlerInputType';
 import { ListAsset } from '../../listAsset';
 import { IRawArticle } from '../../adapters/__types__/IRawArticle';
 import { LayoutType } from '../../adapters/__types__/LayoutType';
+import { Strap } from '../../strap';
 
 jest.mock('../../adapters/jsonfeed');
+jest.mock('../../adapters/strap-list-service');
 
 describe('BasicArticleListHandler', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
@@ -202,7 +205,7 @@ describe('BasicArticleListHandler', () => {
     const totalArticles = 4;
     const totalAdUnits = 5;
     const longEditorsPick = new Array(4).fill(articleNumberTwo);
-    (getListAsset as jest.Mock).mockResolvedValue(longEditorsPick);
+    (getStrapArticles as jest.Mock).mockResolvedValue(longEditorsPick);
 
     const contentBlocks = await basicArticleListHandler(
       jest.fn(),
@@ -211,7 +214,7 @@ describe('BasicArticleListHandler', () => {
         strapName: 'business',
         totalBasicArticlesUnit: 2,
         totalBasicArticleTitleUnit: 2,
-        sourceId: ListAsset.EditorPicks
+        sourceId: Strap.EditorPicks
       },
       params
     );
