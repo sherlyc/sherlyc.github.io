@@ -5,11 +5,12 @@ import { getListAssetById } from './jsonfeed';
 import * as rawList from './__fixtures__/strap-list-service/raw-article-list.json';
 import * as rawSecondList from './__fixtures__/strap-list-service/raw-second-article-list.json';
 import config from '../utils/config';
+import { IStrapDefinition } from '../utils/__types__/IStrapDefinition';
 
 jest.mock('./jsonfeed');
 
 describe('The strap list service', () => {
-  const parameters: IParams = {apiRequestId: 'request-id-for-testing'};
+  const parameters: IParams = { apiRequestId: 'request-id-for-testing' };
 
   beforeAll(() => {
     config.homepageStraps = {
@@ -19,7 +20,7 @@ describe('The strap list service', () => {
       strapDailyFix: {
         ids: ['63868237', '63768623']
       }
-    };
+    } as { [key in Strap]: IStrapDefinition };
   });
 
   it('should return strap articles when strap composed by one list', async () => {
@@ -54,9 +55,9 @@ describe('The strap list service', () => {
       },
       strapTopStories: {
         ids: ['63868237', '63784884'],
-        deduplicateFrom: ['strapEditorPicks']
+        deduplicateFrom: ['strapEditorPicks' as Strap]
       }
-    };
+    } as { [key in Strap]: IStrapDefinition };
 
     (getListAssetById as jest.Mock)
       .mockResolvedValueOnce(rawList)
