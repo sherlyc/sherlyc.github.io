@@ -9,8 +9,14 @@ import config from '../utils/config';
 jest.mock('./jsonfeed');
 
 describe('The strap list service', () => {
-  const parameters: IParams = {apiRequestId: 'request-id-for-testing'};
+  let parameters: IParams;
 
+  beforeEach(() => {
+    parameters = {
+      apiRequestId: 'request-id-for-testing',
+      cache: {}
+    };
+  });
   beforeAll(() => {
     config.homepageStraps = {
       strapEditorPicks: {
@@ -66,5 +72,44 @@ describe('The strap list service', () => {
     const result = await getStrapArticles(parameters, Strap.TopStories);
 
     expect(result).toMatchObject(rawSecondList);
+  });
+
+  it('should save strapArticles to cache', async () => {
+    config.homepageStraps = {
+      strapEditorPicks: {
+        ids: ['63868237']
+      },
+      strapTopStories: {
+        ids: ['63868237', '63784884'],
+        deduplicateFrom: ['strapEditorPicks']
+      }
+    };
+    (getListAssetById as jest.Mock)
+      .mockResolvedValueOnce(rawList)
+      .mockResolvedValueOnce(rawSecondList)
+      .mockResolvedValueOnce(rawList);
+
+    await getStrapArticles(parameters, Strap.TopStories);
+    const topStoriesCache = parameters.cache!['strapTopStories'];
+
+    expect(topStoriesCache).toMatchObject(rawSecondList);
+  });
+
+  it('should read strapArticles from cache', async () => {
+    config.homepageStraps = {
+      strapEditorPicks: {
+        ids: ['63868237']
+      },
+      strapTopStories: {
+        ids: ['63868237', '63784884'],
+        deduplicateFrom: ['strapEditorPicks']
+      }
+    };
+
+    parameters.cache!['strapTopStories'] = rawSecondList;
+    const topStoriesCache = parameters.cache!['strapTopStories'];
+    const result = await getStrapArticles(parameters, Strap.TopStories);
+
+    expect(result).toBe(topStoriesCache);
   });
 });
