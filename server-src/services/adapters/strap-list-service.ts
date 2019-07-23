@@ -28,12 +28,11 @@ function deduplicate(
   articles: IRawArticle[],
   dedupeSource: IRawArticle[]
 ): IRawArticle[] {
-  const mappedData = dedupeSource.map(
-    (article) => [article.id, true] as [string, boolean]
-  );
-  const dupeDict = new Map<string, boolean>(mappedData);
+  const dupeSet = new Set();
 
-  return articles.filter((asset) => !dupeDict.has(asset.id));
+  dedupeSource.map((article) => dupeSet.add(article.id));
+
+  return articles.filter((asset) => !dupeSet.has(asset.id));
 }
 
 export const getStrapArticles = async (
