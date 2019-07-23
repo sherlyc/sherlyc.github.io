@@ -5,12 +5,13 @@ import { getListAssetById } from './jsonfeed';
 import { IRawArticle } from './__types__/IRawArticle';
 import { flatten } from 'lodash';
 
-const getStrapArticlesFromCache = (params: IParams, strap: Strap) => {
+const getStrapArticlesFromCache = (
+  params: IParams,
+  strap: Strap
+): IRawArticle[] | undefined => {
   const { cache } = params;
-  if (cache && strap in cache) {
-    return cache[strap]!;
-  }
-  return false;
+
+  return cache && strap in cache ? cache[strap] : undefined;
 };
 
 const saveStrapArticlesToCache = (
@@ -30,7 +31,7 @@ function deduplicate(
 ): IRawArticle[] {
   const dupeSet = new Set();
 
-  dedupeSource.map((article) => dupeSet.add(article.id));
+  dedupeSource.forEach((article) => dupeSet.add(article.id));
 
   return articles.filter((asset) => !dupeSet.has(asset.id));
 }
@@ -79,6 +80,7 @@ function getDeduplicationLists(params: IParams, strap: Strap) {
       const limit =
         (dedupeFrom.totalArticlesWithImages || 0) +
         (dedupeFrom.totalTitleArticles || 0);
+
       return getStrapArticles(
         params,
         strapToDedupeFrom as Strap,
