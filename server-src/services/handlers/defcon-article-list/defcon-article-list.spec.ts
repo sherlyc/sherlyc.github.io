@@ -1,13 +1,11 @@
 import { IRawArticle } from '../../adapters/__types__/IRawArticle';
 import { IDefconArticleListHandlerInput } from '../__types__/IDefconArticleListHandlerInput';
 import { HandlerInputType } from '../__types__/HandlerInputType';
-import { LayoutType } from '../../../services/adapters/__types__/LayoutType';
 import handlerRunner from '../runner';
-import { ListAsset } from '../../../services/listAsset';
+import { ListAsset } from '../../listAsset';
 import * as jsonfeed from '../../adapters/jsonfeed';
-import * as layoutRetriever from '../../../services/adapters/layout-retriever';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { IParams } from '../../../services/__types__/IParams';
+import { IParams } from '../../__types__/IParams';
 import defconArticleList from './defcon-article-list';
 import { IDefconArticleUnit } from '../../../../common/__types__/IDefconArticleUnit';
 import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
@@ -73,7 +71,7 @@ describe('DefconArticleList', () => {
     jest.resetModules();
   });
 
-  it('should return first article as defcon and others as basic articles when layout is defcon', async () => {
+  it('should return first article as defcon and others as basic articles', async () => {
     const handlerInput: IDefconArticleListHandlerInput = {
       type: HandlerInputType.DefconArticleList,
       sourceId: ListAsset.TopStories,
@@ -83,9 +81,6 @@ describe('DefconArticleList', () => {
     const rawArticles = [articleOne, articleTwo];
 
     jest.spyOn(jsonfeed, 'getListAsset').mockResolvedValue(rawArticles);
-    jest
-      .spyOn(layoutRetriever, 'layoutRetriever')
-      .mockResolvedValue(LayoutType.DEFCON);
 
     const expectedContentBlocks = [
       articleOneAsDefconArticle,
@@ -101,5 +96,21 @@ describe('DefconArticleList', () => {
     );
 
     expect(contentBlocks).toEqual(expectedContentBlocks);
+  });
+
+  it('should throw error when failing to retrieve articles', async () => {
+    const error = new Error('failed to retrieve');
+    const handlerInput: IDefconArticleListHandlerInput = {
+      type: HandlerInputType.DefconArticleList,
+      sourceId: ListAsset.TopStories,
+      strapName,
+      totalArticles: 2
+    };
+
+    jest.spyOn(jsonfeed, 'getListAsset').mockRejectedValue(error);
+
+    await expect(
+      defconArticleList(handlerRunner, handlerInput, params)
+    ).rejects.toEqual(error);
   });
 });

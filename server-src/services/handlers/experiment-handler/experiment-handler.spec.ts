@@ -110,4 +110,29 @@ describe('Experiment Handler', () => {
 
     expect(result).toEqual([expectedResult]);
   });
+
+  it('should throw error if content block rendered throws error', async () => {
+    const error = new Error('content block error');
+    const handlerRunnerMock = jest.fn();
+    handlerRunnerMock.mockRejectedValue(error);
+
+    await expect(
+      experimentHandler(
+        handlerRunnerMock,
+        {
+          type: HandlerInputType.Experiment,
+          name: 'Experiment',
+          variants: {
+            control: {
+              type: HandlerInputType.ArticleList,
+              strapName: 'fake',
+              sourceId: Section.Latest,
+              totalBasicArticlesUnit: 0
+            }
+          }
+        },
+        params
+      )
+    ).rejects.toEqual(error);
+  });
 });

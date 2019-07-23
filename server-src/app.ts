@@ -8,6 +8,7 @@ import logger from './services/utils/logger';
 import { experimentController } from './api/experiment-controller';
 import { healthCheck } from './api/health-controller';
 import { featureController } from './api/feature-controller';
+import { getContent } from './services/content';
 
 const app = express();
 
@@ -21,8 +22,7 @@ declare const global: {
 
 const spadeApiPath = '/spade/api';
 
-app.get(`${spadeApiPath}/content`, async (req, res, next) => {
-  const params: IParams = extractParams(req);
+const setUpNewRelicCustomAttribute = (params: IParams) => {
   if (global.newrelic) {
     try {
       global.newrelic.addCustomAttribute('apiRequestId', params.apiRequestId);
@@ -30,8 +30,12 @@ app.get(`${spadeApiPath}/content`, async (req, res, next) => {
       logger.error(params.apiRequestId, err);
     }
   }
-  res.json(await orchestrate(params));
-  res.end();
+};
+
+app.get(`${spadeApiPath}/content`, async (req, res) => {
+  const params: IParams = extractParams(req);
+  setUpNewRelicCustomAttribute(params);
+  await getContent(req, res, params);
 });
 
 app.get(`${spadeApiPath}/weather`, async (req, res) => {

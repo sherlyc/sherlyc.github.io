@@ -1,12 +1,13 @@
 import { HandlerInputType } from '../__types__/HandlerInputType';
-import { IParams } from '../../../services/__types__/IParams';
+import { IParams } from '../../__types__/IParams';
 import topStoriesHandler from './top-stories';
 import { ITopStoriesHandlerInput } from '../__types__/ITopStoriesHandlerInput';
 import * as layoutRetriever from '../../../services/adapters/layout-retriever';
-import { LayoutType } from '../../../services/adapters/__types__/LayoutType';
-import { ListAsset } from '../../../services/listAsset';
+import { LayoutType } from '../../adapters/__types__/LayoutType';
+import { ListAsset } from '../../listAsset';
 import { IBasicArticleListHandlerInput } from '../__types__/IBasicArticleListHandlerInput';
 import { IDefconArticleListHandlerInput } from '../__types__/IDefconArticleListHandlerInput';
+import logger from '../../utils/logger';
 
 describe('TopStoriesHandler', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
@@ -85,5 +86,35 @@ describe('TopStoriesHandler', () => {
       defconArticleListInput,
       params
     );
+  });
+
+  it('should create basic article list with default layout and log error when failing to retrieve layout', async () => {
+    jest
+      .spyOn(layoutRetriever, 'layoutRetriever')
+      .mockRejectedValue(new Error());
+    const loggerSpy = jest.spyOn(logger, 'error');
+    const handlerFunction = jest.fn();
+    const handlerInput: ITopStoriesHandlerInput = {
+      type: HandlerInputType.TopStories,
+      strapName: strapName,
+      totalBasicArticlesUnit: 3,
+      totalBasicArticleTitleUnit: 1
+    };
+    const basicArticleListInput: IBasicArticleListHandlerInput = {
+      type: HandlerInputType.ArticleList,
+      sourceId: ListAsset.TopStories,
+      strapName,
+      layout: LayoutType.DEFAULT,
+      totalBasicArticlesUnit: 3,
+      totalBasicArticleTitleUnit: 1
+    };
+
+    await topStoriesHandler(handlerFunction, handlerInput, params);
+
+    expect(handlerFunction).toHaveBeenCalledWith(
+      basicArticleListInput,
+      params
+    );
+    expect(loggerSpy).toHaveBeenCalled();
   });
 });
