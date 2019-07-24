@@ -7,14 +7,14 @@ import { AnalyticsEventsType } from '../analytics/__types__/AnalyticsEventsType'
 @Injectable({
   providedIn: 'root'
 })
-export class PwaService implements OnInit {
+export class PwaService {
   constructor(
     private runtimeService: RuntimeService,
     private windowService: WindowService,
     private analyticsService: AnalyticsService
   ) {}
 
-  ngOnInit() {
+  setup() {
     if (this.runtimeService.isServer()) {
       return;
     }

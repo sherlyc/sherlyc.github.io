@@ -50,7 +50,7 @@ describe('PwaService', () => {
     });
     windowService.getWindow.mockReturnValue({ addEventListener });
 
-    await pwaService.ngOnInit();
+    await pwaService.setup();
     eventRegistry.appinstalled();
 
     expect(analyticsService.pushEvent).toHaveBeenCalledWith({
@@ -64,7 +64,7 @@ describe('PwaService', () => {
     const addEventListener = jest.fn();
     windowService.getWindow.mockReturnValue({ addEventListener });
 
-    await pwaService.ngOnInit();
+    await pwaService.setup();
 
     expect(addEventListener).not.toHaveBeenCalled();
   });
