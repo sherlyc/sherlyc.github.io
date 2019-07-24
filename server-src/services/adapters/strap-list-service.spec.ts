@@ -5,6 +5,7 @@ import { getListAssetById } from './jsonfeed';
 import * as rawList from './__fixtures__/strap-list-service/raw-article-list.json';
 import * as rawSecondList from './__fixtures__/strap-list-service/raw-second-article-list.json';
 import config from '../utils/config';
+import { IStrapConfigDefinition } from '../utils/__types__/IStrapConfigDefinition';
 
 jest.mock('./jsonfeed');
 
@@ -17,15 +18,25 @@ describe('The strap list service', () => {
       cache: {}
     };
   });
+
   beforeAll(() => {
-    config.homepageStraps = {
-      strapEditorPicks: {
-        ids: ['63868237']
-      },
-      strapDailyFix: {
-        ids: ['63868237', '63768623']
+    config.strapConfig = {
+      dedupeList: ['strapEditorPicks'],
+      homepageStraps: {
+        strapEditorPicks: {
+          ids: ['63868237'],
+          toDedupe: false
+        },
+        strapDailyFix: {
+          ids: ['63868237', '63768623'],
+          toDedupe: false
+        },
+        strapTopStories: {
+          ids: ['63868237', '63784884'],
+          toDedupe: true
+        }
       }
-    };
+    } as IStrapConfigDefinition;
   });
 
   it('should return strap articles when strap composed by one list', async () => {
@@ -54,16 +65,6 @@ describe('The strap list service', () => {
   });
 
   it('should deduplicate list from configured deduplication lists', async () => {
-    config.homepageStraps = {
-      strapEditorPicks: {
-        ids: ['63868237']
-      },
-      strapTopStories: {
-        ids: ['63868237', '63784884'],
-        deduplicateFrom: ['strapEditorPicks']
-      }
-    };
-
     (getListAssetById as jest.Mock)
       .mockResolvedValueOnce(rawList)
       .mockResolvedValueOnce(rawSecondList)
@@ -75,15 +76,6 @@ describe('The strap list service', () => {
   });
 
   it('should save strapArticles to cache', async () => {
-    config.homepageStraps = {
-      strapEditorPicks: {
-        ids: ['63868237']
-      },
-      strapTopStories: {
-        ids: ['63868237', '63784884'],
-        deduplicateFrom: ['strapEditorPicks']
-      }
-    };
     (getListAssetById as jest.Mock)
       .mockResolvedValueOnce(rawList)
       .mockResolvedValueOnce(rawSecondList)
@@ -96,16 +88,6 @@ describe('The strap list service', () => {
   });
 
   it('should read strapArticles from cache', async () => {
-    config.homepageStraps = {
-      strapEditorPicks: {
-        ids: ['63868237']
-      },
-      strapTopStories: {
-        ids: ['63868237', '63784884'],
-        deduplicateFrom: ['strapEditorPicks']
-      }
-    };
-
     parameters.cache!['strapTopStories'] = rawSecondList;
     const topStoriesCache = parameters.cache!['strapTopStories'];
     const result = await getStrapArticles(parameters, Strap.TopStories);

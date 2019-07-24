@@ -7,44 +7,32 @@
   ],
   "homepageStraps": {
     "strapTopStories": {
-      "ids": [
-        "63768623"
-      ],
+      "ids": ["63768623"],
       "totalArticlesWithImages": 6,
       "toDedupe": false
     },
     "strapEditorPicks": {
-      "ids": [
-        "63868237"
-      ],
+      "ids": ["63868237"],
       "totalArticlesWithImages": 2,
       "totalTitleArticles": 6,
       "toDedupe": false
     },
     "strapMidStrip": {
-      "ids": [
-        "63769065"
-      ],
-      "totalTitleArticles": 6,
+      "ids": ["63769065"],
+      "totalArticlesWithImages": 6,
       "toDedupe": false
     },
     "strapMiniMidStrip": {
-      "ids": [
-        "63768876"
-      ],
+      "ids": ["63768876"],
       "totalArticlesWithImages": 2,
       "toDedupe": false
     },
     "strapDailyFix": {
-      "ids": [
-        "63784884"
-      ],
+      "ids": ["63784884"],
       "toDedupe": false
     },
     "strapTravel": {
-      "ids": [
-        "60860998"
-      ],
+      "ids": ["60860998"],
       "toDedupe": true
     }
   }
