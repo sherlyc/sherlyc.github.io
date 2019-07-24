@@ -8,6 +8,7 @@ import { ExperimentService } from './services/experiment/experiment.service';
 import { NeighbourlyService } from './services/neighbourly/neighbourly.service';
 import { MetaTagsService } from './services/meta-tags/meta-tags.service';
 import { FeatureSwitchService } from './services/feature-switch/feature-switch.service';
+import { PwaService } from './services/pwa/pwa.service';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,8 @@ export class AppComponent {
     private browserOverride: BrowserOverrideService,
     private neighbourlyService: NeighbourlyService,
     private metaTagsService: MetaTagsService,
-    private featureSwitchService: FeatureSwitchService
+    private featureSwitchService: FeatureSwitchService,
+    private pwaService: PwaService
   ) {
     this.experimentService.setup();
     this.adService.setup();
@@ -35,5 +37,6 @@ export class AppComponent {
     this.neighbourlyService.setup();
     this.metaTagsService.setup();
     this.featureSwitchService.setup();
+    this.pwaService.setup();
   }
 }
