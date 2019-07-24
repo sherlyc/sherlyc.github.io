@@ -10,6 +10,8 @@ import { FeatureName } from '../../common/FeatureName';
 import { Strap } from './strap';
 import config from './utils/config';
 
+const homepageStrapsConfig = config.strapConfig!.homepageStraps;
+
 export default async (params: IParams): Promise<IPage> => {
   try {
     return {
@@ -43,12 +45,12 @@ export default async (params: IParams): Promise<IPage> => {
               type: HandlerInputType.TopStories,
               strapName: 'Latest',
               sourceId: ListAsset.TopStories,
-              totalBasicArticlesUnit: config.homepageStraps[Strap.TopStories].totalArticlesWithImages
+              totalBasicArticlesUnit: homepageStrapsConfig[Strap.TopStories].totalArticlesWithImages
             },
             {
               type: HandlerInputType.MiniMidStrip,
               strapName: 'MiniMidStrip',
-              totalArticles: config.homepageStraps[Strap.MiniMidStrip].totalArticlesWithImages
+              totalArticles: homepageStrapsConfig[Strap.MiniMidStrip].totalArticlesWithImages
             },
             {
               type: HandlerInputType.ArticleSection,
@@ -57,14 +59,14 @@ export default async (params: IParams): Promise<IPage> => {
               articleList: {
                 sourceId: Strap.EditorPicks,
                 strapName: `Editors' Picks`,
-                totalBasicArticlesUnit: config.homepageStraps[Strap.EditorPicks].totalArticlesWithImages,
-                totalBasicArticleTitleUnit: config.homepageStraps[Strap.EditorPicks].totalTitleArticles
+                totalBasicArticlesUnit: homepageStrapsConfig[Strap.EditorPicks].totalArticlesWithImages,
+                totalBasicArticleTitleUnit: homepageStrapsConfig[Strap.EditorPicks].totalTitleArticles
               }
             },
             {
               type: HandlerInputType.MidStrip,
               strapName: 'MidStrip',
-              totalArticles: config.homepageStraps[Strap.MidStrip].totalArticlesWithImages
+              totalArticles: homepageStrapsConfig[Strap.MidStrip].totalArticlesWithImages
             },
             {
               type: HandlerInputType.Feature,
@@ -410,22 +412,6 @@ export default async (params: IParams): Promise<IPage> => {
     };
   } catch (e) {
     logger.error(params.apiRequestId, `Orchestrator level error - ${e}`);
-    return {
-      apiRequestId: params.apiRequestId,
-      title: 'Stuff',
-      content: [
-        { type: ContentBlockType.Header },
-        {
-          type: ContentBlockType.Container,
-          items: [
-            {
-              type: ContentBlockType.ErrorBlock,
-              message: `Oops, sorry! It looks like we've stuffed up...`
-            }
-          ]
-        },
-        { type: ContentBlockType.Footer }
-      ]
-    };
+    throw e;
   }
 };
