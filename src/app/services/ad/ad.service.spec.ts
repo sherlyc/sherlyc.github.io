@@ -7,6 +7,7 @@ import { DOCUMENT } from '@angular/common';
 import { of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { LoggerService } from '../logger/logger.service';
+import { RuntimeService } from '../runtime/runtime.service';
 
 describe('AdService', () => {
   let scriptInjectorService: ServiceMock<ScriptInjectorService>;
@@ -32,6 +33,10 @@ describe('AdService', () => {
         {
           provide: ScriptInjectorService,
           useClass: mockService(ScriptInjectorService)
+        },
+        {
+          provide: RuntimeService,
+          useClass: mockService(RuntimeService)
         }
       ]
     });

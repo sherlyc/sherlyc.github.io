@@ -27,9 +27,9 @@ export class AppComponent {
     private featureSwitchService: FeatureSwitchService
   ) {
     this.experimentService.setup();
+    this.analyticsService.setup();
     this.adService.setup();
     this.eventsService.setup();
-    this.analyticsService.setup();
     this.dtm.setup();
     this.browserOverride.setup();
     this.neighbourlyService.setup();
