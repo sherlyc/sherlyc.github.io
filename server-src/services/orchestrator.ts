@@ -42,12 +42,15 @@ export default async (params: IParams): Promise<IPage> => {
               type: HandlerInputType.TopStories,
               strapName: 'Latest',
               sourceId: ListAsset.TopStories,
-              totalBasicArticlesUnit: config.homepageStraps[Strap.TopStories].totalArticlesWithImages
+              totalBasicArticlesUnit:
+                config.homepageStraps[Strap.TopStories].totalArticlesWithImages
             },
             {
               type: HandlerInputType.MiniMidStrip,
               strapName: 'MiniMidStrip',
-              totalArticles: config.homepageStraps[Strap.MiniMidStrip].totalArticlesWithImages
+              totalArticles:
+                config.homepageStraps[Strap.MiniMidStrip]
+                  .totalArticlesWithImages
             },
             {
               type: HandlerInputType.ArticleSection,
@@ -56,14 +59,18 @@ export default async (params: IParams): Promise<IPage> => {
               articleList: {
                 sourceId: Strap.EditorPicks,
                 strapName: `Editors' Picks`,
-                totalBasicArticlesUnit: config.homepageStraps[Strap.EditorPicks].totalArticlesWithImages,
-                totalBasicArticleTitleUnit: config.homepageStraps[Strap.EditorPicks].totalTitleArticles
+                totalBasicArticlesUnit:
+                  config.homepageStraps[Strap.EditorPicks]
+                    .totalArticlesWithImages,
+                totalBasicArticleTitleUnit:
+                  config.homepageStraps[Strap.EditorPicks].totalTitleArticles
               }
             },
             {
               type: HandlerInputType.MidStrip,
               strapName: 'MidStrip',
-              totalArticles: config.homepageStraps[Strap.MidStrip].totalArticlesWithImages
+              totalArticles:
+                config.homepageStraps[Strap.MidStrip].totalArticlesWithImages
             },
             {
               type: HandlerInputType.Feature,

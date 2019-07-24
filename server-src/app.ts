@@ -1,6 +1,5 @@
 import * as express from 'express';
 import * as cookieParser from 'cookie-parser';
-import orchestrate from './services/orchestrator';
 import extractParams from './services/params-extractor';
 import { IParams } from './services/__types__/IParams';
 import { getWeather } from './api/weather';
@@ -11,6 +10,7 @@ import { featureController } from './api/feature-controller';
 import { getContent } from './services/content';
 
 const app = express();
+app.disable('x-powered-by');
 
 app.use(cookieParser());
 

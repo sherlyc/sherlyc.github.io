@@ -35,7 +35,9 @@ app.use(
   helmet({
     hsts: false,
     hidePoweredBy: true,
-    xssFilter: false
+    xssFilter: false,
+    frameguard: false,
+    noSniff: false
   })
 );
 app.use(cors());

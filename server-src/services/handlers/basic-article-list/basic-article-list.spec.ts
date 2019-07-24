@@ -1,6 +1,6 @@
 import basicArticleListHandler from './basic-article-list';
 import { Section } from '../../section';
-import {getStrapArticles} from '../../adapters/strap-list-service';
+import { getStrapArticles } from '../../adapters/strap-list-service';
 import { getArticleList, getListAsset } from '../../adapters/jsonfeed';
 import { IParams } from '../../__types__/IParams';
 import { HandlerInputType } from '../__types__/HandlerInputType';
