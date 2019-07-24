@@ -1,4 +1,5 @@
 export enum AnalyticsEventsType {
+  PAGE_LOAD,
   LOGIN_CLIKED,
   AVATAR_CLICKED,
   MENU_NAV_SECTION_CLICKED,

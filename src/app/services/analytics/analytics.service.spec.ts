@@ -311,6 +311,27 @@ describe('AnalyticsService', () => {
     });
   });
 
+  it('should push beta rollout analytics', () => {
+    analyticsService.setup();
+    windowService.getWindow().digitalData.events.push = jest.fn();
+
+    const event = {
+      event: 'beta.rollout',
+      'beta.rollout.segment': 'beta'
+    };
+
+    analyticsService.pushEvent({
+      type: AnalyticsEventsType.PAGE_LOAD
+    });
+
+    expect(
+      windowService.getWindow().digitalData.events.push
+    ).toHaveBeenCalledWith({
+      type: 'analytics',
+      ...event
+    });
+  });
+
   it('should allow updating datalayer with user data', () => {
     analyticsService.setup();
 

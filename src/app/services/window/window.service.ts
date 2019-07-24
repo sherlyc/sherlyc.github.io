@@ -15,7 +15,8 @@ export class WindowService implements IWindowService {
 
 @Injectable()
 export class ServerWindowService implements IWindowService {
+  window = {};
   getWindow() {
-    return {} as Window & IWindow;
+    return this.window as Window & IWindow;
   }
 }

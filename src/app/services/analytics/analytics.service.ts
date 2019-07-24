@@ -34,6 +34,10 @@ export class AnalyticsService implements IAnalyticsService {
 
   private static transformEvent(event: AnalyticsEvent): IAdobeAnalyticsEvent {
     const eventTypesRegistry: { [key in AnalyticsEventsType]: Function } = {
+      [AnalyticsEventsType.PAGE_LOAD]: () => ({
+        event: 'beta.rollout',
+        'beta.rollout.segment': 'beta'
+      }),
       [AnalyticsEventsType.WEATHER_LOCATION_CHANGED]: (
         analyticEvent: IWeatherLocationChanged
       ) => ({

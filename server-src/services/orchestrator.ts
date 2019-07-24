@@ -2,7 +2,6 @@ import { IPage } from '../../common/__types__/IPage';
 import handlerRunner from './handlers/runner';
 import { Section } from './section';
 import { IParams } from './__types__/IParams';
-import { ContentBlockType } from '../../common/__types__/ContentBlockType';
 import { HandlerInputType } from './handlers/__types__/HandlerInputType';
 import { ListAsset } from './listAsset';
 import logger from './utils/logger';
@@ -45,12 +44,14 @@ export default async (params: IParams): Promise<IPage> => {
               type: HandlerInputType.TopStories,
               strapName: 'Latest',
               sourceId: ListAsset.TopStories,
-              totalBasicArticlesUnit: homepageStrapsConfig[Strap.TopStories].totalArticlesWithImages
+              totalBasicArticlesUnit:
+                homepageStrapsConfig[Strap.TopStories].totalArticlesWithImages
             },
             {
               type: HandlerInputType.MiniMidStrip,
               strapName: 'MiniMidStrip',
-              totalArticles: homepageStrapsConfig[Strap.MiniMidStrip].totalArticlesWithImages
+              totalArticles:
+                homepageStrapsConfig[Strap.MiniMidStrip].totalArticlesWithImages
             },
             {
               type: HandlerInputType.ArticleSection,
@@ -59,14 +60,18 @@ export default async (params: IParams): Promise<IPage> => {
               articleList: {
                 sourceId: Strap.EditorPicks,
                 strapName: `Editors' Picks`,
-                totalBasicArticlesUnit: homepageStrapsConfig[Strap.EditorPicks].totalArticlesWithImages,
-                totalBasicArticleTitleUnit: homepageStrapsConfig[Strap.EditorPicks].totalTitleArticles
+                totalBasicArticlesUnit:
+                  homepageStrapsConfig[Strap.EditorPicks]
+                    .totalArticlesWithImages,
+                totalBasicArticleTitleUnit:
+                  homepageStrapsConfig[Strap.EditorPicks].totalTitleArticles
               }
             },
             {
               type: HandlerInputType.MidStrip,
               strapName: 'MidStrip',
-              totalArticles: homepageStrapsConfig[Strap.MidStrip].totalArticlesWithImages
+              totalArticles:
+                homepageStrapsConfig[Strap.MidStrip].totalArticlesWithImages
             },
             {
               type: HandlerInputType.Feature,
