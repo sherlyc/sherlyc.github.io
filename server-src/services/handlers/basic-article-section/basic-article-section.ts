@@ -20,23 +20,23 @@ export default async function(
   }: IBasicArticleSectionHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-    return [
-      {
-        type: ContentBlockType.BasicArticleSection,
-        displayName,
-        displayNameColor,
-        linkUrl,
-        items: await handlerRunner(
-          {
-            type: HandlerInputType.ArticleList,
-            sourceId,
-            strapName,
-            totalBasicArticlesUnit,
-            totalBasicArticleTitleUnit
-          },
-          params
-        )
-      },
-      { type: ContentBlockType.BasicAdUnit }
-    ];
+  return [
+    {
+      type: ContentBlockType.BasicArticleSection,
+      displayName,
+      displayNameColor,
+      linkUrl,
+      items: await handlerRunner(
+        {
+          type: HandlerInputType.ArticleList,
+          sourceId,
+          strapName,
+          totalBasicArticlesUnit,
+          totalBasicArticleTitleUnit
+        },
+        params
+      )
+    },
+    { type: ContentBlockType.BasicAdUnit }
+  ];
 }
