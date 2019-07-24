@@ -12,6 +12,7 @@ import { AdService } from '../../../services/ad/ad.service';
 import { CorrelationService } from '../../../services/correlation/correlation.service';
 import { EventsService } from '../../../services/events/events.service';
 import { AnalyticsService } from '../../../services/analytics/analytics.service';
+import { AnalyticsEventsType } from '../../../services/analytics/__types__/AnalyticsEventsType';
 
 describe('PageComponent', () => {
   let component: PageComponent;
@@ -182,6 +183,17 @@ describe('PageComponent', () => {
     component.getData();
     fixture.detectChanges();
     expect(analyticsServiceMock.trackPageByNielsen).toHaveBeenCalled();
+  });
+
+  it('should send analytics when page starts to load', () => {
+    contentRetrieverMock.getContent.mockReturnValue(
+      of({ title: '', content: mockContentBlocks, apiRequestId: '' })
+    );
+    component.ngOnInit();
+
+    expect(analyticsServiceMock.pushEvent).toHaveBeenCalledWith({
+      type: AnalyticsEventsType.PAGE_LOAD
+    });
   });
 
   function assertsForSuccessfulRetrieval() {
