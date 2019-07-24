@@ -9,9 +9,9 @@ const getStrapArticlesFromCache = (
   params: IParams,
   strap: Strap
 ): IRawArticle[] | undefined => {
-  const { cache } = params;
+  const { strapArticlesCache } = params;
 
-  return cache && strap in cache ? cache[strap] : undefined;
+  return strapArticlesCache && strap in strapArticlesCache ? strapArticlesCache[strap] : undefined;
 };
 
 const saveStrapArticlesToCache = (
@@ -19,10 +19,10 @@ const saveStrapArticlesToCache = (
   strap: Strap,
   strapResult: IRawArticle[]
 ) => {
-  if (!params.cache) {
-    params.cache = {};
+  if (!params.strapArticlesCache) {
+    params.strapArticlesCache = {};
   }
-  params.cache[strap] = strapResult;
+  params.strapArticlesCache[strap] = strapResult;
 };
 
 function deduplicate(

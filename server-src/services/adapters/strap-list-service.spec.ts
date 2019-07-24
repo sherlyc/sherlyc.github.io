@@ -15,7 +15,7 @@ describe('The strap list service', () => {
   beforeEach(() => {
     parameters = {
       apiRequestId: 'request-id-for-testing',
-      cache: {}
+      strapArticlesCache: {}
     };
   });
 
@@ -82,14 +82,14 @@ describe('The strap list service', () => {
       .mockResolvedValueOnce(rawList);
 
     await getStrapArticles(parameters, Strap.TopStories);
-    const topStoriesCache = parameters.cache!['strapTopStories'];
+    const topStoriesCache = parameters.strapArticlesCache!['strapTopStories'];
 
     expect(topStoriesCache).toMatchObject(rawSecondList);
   });
 
   it('should read strapArticles from cache', async () => {
-    parameters.cache!['strapTopStories'] = rawSecondList;
-    const topStoriesCache = parameters.cache!['strapTopStories'];
+    parameters.strapArticlesCache!['strapTopStories'] = rawSecondList;
+    const topStoriesCache = parameters.strapArticlesCache!['strapTopStories'];
     const result = await getStrapArticles(parameters, Strap.TopStories);
 
     expect(result).toBe(topStoriesCache);
