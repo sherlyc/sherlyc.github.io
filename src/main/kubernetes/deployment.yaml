@@ -27,6 +27,8 @@ spec:
           env:
             - name: SPADE_ENV
               value: ${spadeEnv}
+            - name: SPADE_VERSION
+              value: ${project.version}
             - name: SKIP_SECRETS
               value: 'true'
             - name: NEW_RELIC_APP_NAME
