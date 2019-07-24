@@ -332,6 +332,26 @@ describe('AnalyticsService', () => {
     });
   });
 
+  it('should push pwa download analytics', () => {
+    analyticsService.setup();
+    windowService.getWindow().digitalData.events.push = jest.fn();
+
+    const event = {
+      event: 'pwa.download'
+    };
+
+    analyticsService.pushEvent({
+      type: AnalyticsEventsType.PWA_DOWNLOADED
+    });
+
+    expect(
+      windowService.getWindow().digitalData.events.push
+    ).toHaveBeenCalledWith({
+      type: 'analytics',
+      ...event
+    });
+  });
+
   it('should allow updating datalayer with user data', () => {
     analyticsService.setup();
 

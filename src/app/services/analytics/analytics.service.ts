@@ -34,6 +34,9 @@ export class AnalyticsService implements IAnalyticsService {
 
   private static transformEvent(event: AnalyticsEvent): IAdobeAnalyticsEvent {
     const eventTypesRegistry: { [key in AnalyticsEventsType]: Function } = {
+      [AnalyticsEventsType.PWA_DOWNLOADED]: () => ({
+        event: 'pwa.download'
+      }),
       [AnalyticsEventsType.PAGE_LOAD]: () => ({
         event: 'beta.rollout',
         'beta.rollout.segment': 'beta'
