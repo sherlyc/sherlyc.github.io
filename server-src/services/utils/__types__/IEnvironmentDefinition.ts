@@ -17,5 +17,5 @@ export interface IEnvironmentDefinition {
   maxArticlesToRetrieve: number;
   loggerOptions: ILoggerOptions;
   videoConfig: IVideoConfig;
-  strapConfig?: IStrapConfigDefinition;
+  strapConfig: IStrapConfigDefinition;
 }

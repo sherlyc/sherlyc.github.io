@@ -47,7 +47,7 @@ export const getStrapArticles = async (
     return cachedStrapArticles;
   }
 
-  const strapArticlesIds = config.strapConfig!.homepageStraps[strap].ids;
+  const strapArticlesIds = config.strapConfig.homepageStraps[strap].ids;
 
   const strapArticlesPromise = Promise.all(
     strapArticlesIds.map((listAssetId) => getListAssetById(params, listAssetId))
@@ -55,8 +55,8 @@ export const getStrapArticles = async (
 
   let dedupeSourcePromise: Promise<IRawArticle[][]> = Promise.resolve([[]]);
 
-  const hasDedupe = config.strapConfig!.homepageStraps[strap].toDedupe;
-  const deduplicateSources = config.strapConfig!.dedupeList;
+  const hasDedupe = config.strapConfig.homepageStraps[strap].toDedupe;
+  const deduplicateSources = config.strapConfig.dedupeList;
 
   if (hasDedupe && deduplicateSources) {
     dedupeSourcePromise = getDeduplicationLists(params, deduplicateSources);
@@ -81,7 +81,7 @@ export const getStrapArticles = async (
 function getDeduplicationLists(params: IParams, strapNames: Strap[]) {
   return Promise.all(
     strapNames.map((strapToDedupeFrom) => {
-      const dedupeFrom = config.strapConfig!.homepageStraps[strapToDedupeFrom];
+      const dedupeFrom = config.strapConfig.homepageStraps[strapToDedupeFrom];
       const limit =
         (dedupeFrom.totalArticlesWithImages || 0) +
         (dedupeFrom.totalTitleArticles || 0);
