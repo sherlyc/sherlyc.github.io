@@ -9,6 +9,8 @@ import { FeatureName } from '../../common/FeatureName';
 import { Strap } from './strap';
 import config from './utils/config';
 
+const homepageStrapsConfig = config.strapConfig!.homepageStraps;
+
 export default async (params: IParams): Promise<IPage> => {
   try {
     return {
@@ -43,14 +45,13 @@ export default async (params: IParams): Promise<IPage> => {
               strapName: 'Latest',
               sourceId: ListAsset.TopStories,
               totalBasicArticlesUnit:
-                config.homepageStraps[Strap.TopStories].totalArticlesWithImages
+                homepageStrapsConfig[Strap.TopStories].totalArticlesWithImages
             },
             {
               type: HandlerInputType.MiniMidStrip,
               strapName: 'MiniMidStrip',
               totalArticles:
-                config.homepageStraps[Strap.MiniMidStrip]
-                  .totalArticlesWithImages
+                homepageStrapsConfig[Strap.MiniMidStrip].totalArticlesWithImages
             },
             {
               type: HandlerInputType.ArticleSection,
@@ -60,17 +61,17 @@ export default async (params: IParams): Promise<IPage> => {
                 sourceId: Strap.EditorPicks,
                 strapName: `Editors' Picks`,
                 totalBasicArticlesUnit:
-                  config.homepageStraps[Strap.EditorPicks]
+                  homepageStrapsConfig[Strap.EditorPicks]
                     .totalArticlesWithImages,
                 totalBasicArticleTitleUnit:
-                  config.homepageStraps[Strap.EditorPicks].totalTitleArticles
+                  homepageStrapsConfig[Strap.EditorPicks].totalTitleArticles
               }
             },
             {
               type: HandlerInputType.MidStrip,
               strapName: 'MidStrip',
               totalArticles:
-                config.homepageStraps[Strap.MidStrip].totalArticlesWithImages
+                homepageStrapsConfig[Strap.MidStrip].totalArticlesWithImages
             },
             {
               type: HandlerInputType.Feature,

@@ -5,16 +5,35 @@ import { getListAssetById } from './jsonfeed';
 import { IRawArticle } from './__types__/IRawArticle';
 import { flatten } from 'lodash';
 
+const getStrapArticlesFromCache = (
+  params: IParams,
+  strap: Strap
+): IRawArticle[] | undefined => {
+  const { strapArticlesCache } = params;
+
+  return strapArticlesCache && strap in strapArticlesCache ? strapArticlesCache[strap] : undefined;
+};
+
+const saveStrapArticlesToCache = (
+  params: IParams,
+  strap: Strap,
+  strapResult: IRawArticle[]
+) => {
+  if (!params.strapArticlesCache) {
+    params.strapArticlesCache = {};
+  }
+  params.strapArticlesCache[strap] = strapResult;
+};
+
 function deduplicate(
   articles: IRawArticle[],
   dedupeSource: IRawArticle[]
 ): IRawArticle[] {
-  const mappedData = dedupeSource.map(
-    (article) => [article.id, true] as [string, boolean]
-  );
-  const dupeDict = new Map<string, boolean>(mappedData);
+  const dupeSet = new Set();
 
-  return articles.filter((asset) => !dupeDict.has(asset.id));
+  dedupeSource.forEach((article) => dupeSet.add(article.id));
+
+  return articles.filter((asset) => !dupeSet.has(asset.id));
 }
 
 export const getStrapArticles = async (
@@ -22,15 +41,24 @@ export const getStrapArticles = async (
   strap: Strap,
   total?: number
 ): Promise<IRawArticle[]> => {
-  const strapArticlesIds = config.homepageStraps[strap].ids;
+  const cachedStrapArticles = getStrapArticlesFromCache(params, strap);
+
+  if (cachedStrapArticles) {
+    return cachedStrapArticles;
+  }
+
+  const strapArticlesIds = config.strapConfig.homepageStraps[strap].ids;
+
   const strapArticlesPromise = Promise.all(
     strapArticlesIds.map((listAssetId) => getListAssetById(params, listAssetId))
   );
 
   let dedupeSourcePromise: Promise<IRawArticle[][]> = Promise.resolve([[]]);
 
-  const deduplicateSources = config.homepageStraps[strap].deduplicateFrom;
-  if (deduplicateSources) {
+  const hasDedupe = config.strapConfig.homepageStraps[strap].toDedupe;
+  const deduplicateSources = config.strapConfig.dedupeList;
+
+  if (hasDedupe && deduplicateSources) {
     dedupeSourcePromise = getDeduplicationLists(params, deduplicateSources);
   }
 
@@ -41,16 +69,23 @@ export const getStrapArticles = async (
   const articles = flatten(nestedStrapArticles);
   const deduplicationSource = flatten(nestedDedupeSource);
 
-  return deduplicate(articles, deduplicationSource).slice(0, total);
+  const strapResult = deduplicate(articles, deduplicationSource).slice(
+    0,
+    total
+  );
+  saveStrapArticlesToCache(params, strap, strapResult);
+
+  return strapResult;
 };
 
 function getDeduplicationLists(params: IParams, strapNames: Strap[]) {
   return Promise.all(
     strapNames.map((strapToDedupeFrom) => {
-      const dedupeFrom = config.homepageStraps[strapToDedupeFrom];
+      const dedupeFrom = config.strapConfig.homepageStraps[strapToDedupeFrom];
       const limit =
         (dedupeFrom.totalArticlesWithImages || 0) +
         (dedupeFrom.totalTitleArticles || 0);
+
       return getStrapArticles(
         params,
         strapToDedupeFrom as Strap,
