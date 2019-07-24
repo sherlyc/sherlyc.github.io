@@ -11,6 +11,7 @@ export type AnalyticsEvent =
 
 export interface ISimpleAnalyticEvent {
   type:
+    | AnalyticsEventsType.PAGE_LOAD
     | AnalyticsEventsType.MENU_NAV_OPENED
     | AnalyticsEventsType.STUFF_LOGO_CLICKED
     | AnalyticsEventsType.BREAKING_NEWS_CLOSED
