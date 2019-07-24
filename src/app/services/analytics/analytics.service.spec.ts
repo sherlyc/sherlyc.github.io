@@ -316,8 +316,9 @@ describe('AnalyticsService', () => {
     windowService.getWindow().digitalData.events.push = jest.fn();
 
     const event = {
-      event: 'beta.rollout',
-      'beta.rollout.segment': 'beta'
+      event: 'ab.testing.event',
+      'ab.testing.segment.web': 'spade',
+      'ab.testing.experiment.name': 'spadeRollout'
     };
 
     analyticsService.pushEvent({

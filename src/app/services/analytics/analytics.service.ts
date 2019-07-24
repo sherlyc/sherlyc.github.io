@@ -38,8 +38,9 @@ export class AnalyticsService implements IAnalyticsService {
         event: 'pwa.download'
       }),
       [AnalyticsEventsType.PAGE_LOAD]: () => ({
-        event: 'beta.rollout',
-        'beta.rollout.segment': 'beta'
+        event: 'ab.testing.event',
+        'ab.testing.segment.web': 'spade',
+        'ab.testing.experiment.name': 'spadeRollout'
       }),
       [AnalyticsEventsType.WEATHER_LOCATION_CHANGED]: (
         analyticEvent: IWeatherLocationChanged
