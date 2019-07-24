@@ -51,11 +51,23 @@ describe('AnalyticsService', () => {
     expect(windowService.getWindow().digitalData).toBeTruthy();
   });
 
-  it('should inject correct values (section should be empty) into digitalData object for ads to work', () => {
+  it('should inject correct values (section should be empty) into digitalData object for ads to work for production', () => {
+    runtimeService.getEnvironmentVariable.mockReturnValue('production');
     analyticsService.setup();
 
     expect(windowService.getWindow().digitalData.page.ads).toEqual({
       environment: 'prod',
+      exclusions: '',
+      sections: []
+    });
+  });
+
+  it('should inject correct values (section should be empty) into digitalData object for ads to work for non-production', () => {
+    runtimeService.getEnvironmentVariable.mockReturnValue('staging');
+    analyticsService.setup();
+
+    expect(windowService.getWindow().digitalData.page.ads).toEqual({
+      environment: 'preprod',
       exclusions: '',
       sections: []
     });

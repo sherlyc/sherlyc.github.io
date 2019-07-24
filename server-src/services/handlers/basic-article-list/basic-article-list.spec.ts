@@ -1,6 +1,6 @@
 import basicArticleListHandler from './basic-article-list';
 import { Section } from '../../section';
-import {getStrapArticles} from '../../adapters/strap-list-service';
+import { getStrapArticles } from '../../adapters/strap-list-service';
 import { getArticleList, getListAsset } from '../../adapters/jsonfeed';
 import { IParams } from '../../__types__/IParams';
 import { HandlerInputType } from '../__types__/HandlerInputType';
@@ -320,5 +320,41 @@ describe('BasicArticleListHandler', () => {
     );
 
     expect(contentBlocks).toEqual(expectedContentBlocks);
+  });
+
+  it('should throw error when failing to retrieve articles for section', async () => {
+    const error = new Error('failed to retrieve');
+    (getArticleList as jest.Mock).mockRejectedValue(error);
+
+    await expect(
+      basicArticleListHandler(
+        jest.fn(),
+        {
+          type: HandlerInputType.ArticleList,
+          strapName: 'business',
+          sourceId: Section.Business,
+          totalBasicArticlesUnit: 3
+        },
+        params
+      )
+    ).rejects.toEqual(error);
+  });
+
+  it('should throw error when failing to retrieve list assets', async () => {
+    const error = new Error('failed to retrieve');
+    (getListAsset as jest.Mock).mockRejectedValue(error);
+
+    await expect(
+      basicArticleListHandler(
+        jest.fn(),
+        {
+          type: HandlerInputType.ArticleList,
+          strapName: 'business',
+          sourceId: ListAsset.TopStories,
+          totalBasicArticlesUnit: 3
+        },
+        params
+      )
+    ).rejects.toEqual(error);
   });
 });

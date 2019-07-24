@@ -122,4 +122,21 @@ describe('MidStripHandler', () => {
       { type: 'BasicAdUnit' }
     ]);
   });
+
+  it('should throw error when failing to retrieve articles', async () => {
+    const error = new Error('failed to retrieve');
+    (getListAsset as jest.Mock).mockRejectedValue(error);
+
+    await expect(
+      midstripHandler(
+        jest.fn(),
+        {
+          type: HandlerInputType.MidStrip,
+          strapName: 'MidStrip',
+          totalArticles: 2
+        },
+        params
+      )
+    ).rejects.toEqual(error);
+  });
 });

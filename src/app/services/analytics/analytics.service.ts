@@ -98,6 +98,7 @@ export class AnalyticsService implements IAnalyticsService {
   }
 
   setup() {
+    const productionEnv = 'production';
     this.windowService.getWindow().digitalData = {
       page: {
         pageInfo: {
@@ -118,7 +119,11 @@ export class AnalyticsService implements IAnalyticsService {
           primaryCategory: home
         },
         ads: {
-          environment: 'prod',
+          environment:
+            this.runtime.getEnvironmentVariable('SPADE_ENV', productionEnv) ===
+            productionEnv
+              ? 'prod'
+              : 'preprod',
           exclusions: '',
           sections: []
         }

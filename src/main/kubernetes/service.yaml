@@ -3,6 +3,7 @@ kind: Service
 metadata:
   labels:
     app: ${project.artifactId}
+    run-source: spade
   name: ${project.artifactId}
 spec:
   ports:

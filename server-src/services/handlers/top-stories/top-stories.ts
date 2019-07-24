@@ -1,11 +1,21 @@
 import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 import { ITopStoriesHandlerInput } from '../__types__/ITopStoriesHandlerInput';
 import { handlerRunnerFunction } from '../runner';
-import { IParams } from '../../../services/__types__/IParams';
+import { IParams } from '../../__types__/IParams';
 import { HandlerInputType } from '../__types__/HandlerInputType';
-import { ListAsset } from '../../../services/listAsset';
-import { layoutRetriever } from '../../../services/adapters/layout-retriever';
-import { LayoutType } from '../../../services/adapters/__types__/LayoutType';
+import { ListAsset } from '../../listAsset';
+import { layoutRetriever } from '../../adapters/layout-retriever';
+import { LayoutType } from '../../adapters/__types__/LayoutType';
+import logger from '../../utils/logger';
+
+const retrieveLayout = async (params: IParams): Promise<LayoutType> => {
+  try {
+    return await layoutRetriever(params);
+  } catch (error) {
+    logger.error(params.apiRequestId, error.message);
+    return LayoutType.DEFAULT;
+  }
+};
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -16,7 +26,7 @@ export default async function(
   }: ITopStoriesHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const layout = await layoutRetriever(params);
+  const layout = await retrieveLayout(params);
   switch (layout) {
     case LayoutType.DEFCON:
       return handlerRunner(
