@@ -1,4 +1,4 @@
-import { IContentBlock } from '../../../../common/__types__/IContentBlock';
+ import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 import { IBasicAdUnit } from '../../../../common/__types__/IBasicAdUnit';
@@ -84,19 +84,20 @@ const getRawArticles = async (
     )).slice(0, totalArticles);
   }
   const sourceIsAStrap = Object.values(Strap).includes(sourceId);
-
+  let list;
   if (sourceIsAStrap) {
-    return await getStrapArticles(params, sourceId as Strap, totalArticles);
+    list = await getStrapArticles(params, sourceId as Strap, totalArticles);
+  } else {
+    list = await getListAsset(
+      params,
+      sourceId as ListAsset,
+      totalArticles
+    );
   }
 
-  const listAssets = await getListAsset(
-    params,
-    sourceId as ListAsset,
-    totalArticles
-  );
-  return sourceId === ListAsset.TopStories && layout === LayoutType.DEFAULT
-    ? [listAssets[1], listAssets[0], ...listAssets.slice(2)].filter(Boolean)
-    : listAssets;
+  return (sourceId === Strap.TopStories || ListAsset.TopStories) && layout === LayoutType.DEFAULT
+    ? [list[1], list[0], ...list.slice(2)].filter(Boolean)
+    : list;
 };
 
 export default async function(
