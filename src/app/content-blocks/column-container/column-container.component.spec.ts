@@ -73,7 +73,7 @@ describe('ColumnContainerComponent', () => {
 
     const componentElement: HTMLElement = fixture.debugElement.nativeElement;
     const columns = componentElement.querySelectorAll(
-      '.col-lg-2.col-md-2.col-sm-4.col-xs-6.column'
+      '.col-lg-2.col-md-2.col-sm-4.col-xs-6'
     );
 
     expect(columns.length).toBe(6);
