@@ -8,6 +8,9 @@ import { IRawArticle } from '../../../services/adapters/__types__/IRawArticle';
 import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
 import { IDefconArticleUnit } from '../../../../common/__types__/IDefconArticleUnit';
 import { handlerRunnerFunction } from '../runner';
+import { Strap } from '../../strap';
+import { getStrapArticles } from '../../adapters/strap-list-service';
+import { ListAsset } from '../../listAsset';
 
 const createDefconArticleBlock = (
   article: IRawArticle,
@@ -45,11 +48,23 @@ export default async function(
   { sourceId, strapName, totalArticles = 0 }: IDefconArticleListHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const rawArticles: IRawArticle[] = await getListAsset(
-    params,
-    sourceId,
-    totalArticles
-  );
+  let rawArticles: IRawArticle[];
+  const sourceIsAStrap = Strap.TopStories === sourceId;
+
+  if (sourceIsAStrap) {
+    rawArticles = await getStrapArticles(
+      params,
+      Strap.TopStories,
+      totalArticles
+    );
+  } else {
+    rawArticles = await getListAsset(
+      params,
+      sourceId as ListAsset.TopStories,
+      totalArticles
+    );
+  }
+
   const basicAdUnit: IBasicAdUnit = {
     type: ContentBlockType.BasicAdUnit
   };

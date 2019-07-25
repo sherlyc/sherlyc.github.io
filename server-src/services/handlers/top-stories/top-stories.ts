@@ -3,7 +3,6 @@ import { ITopStoriesHandlerInput } from '../__types__/ITopStoriesHandlerInput';
 import { handlerRunnerFunction } from '../runner';
 import { IParams } from '../../__types__/IParams';
 import { HandlerInputType } from '../__types__/HandlerInputType';
-import { ListAsset } from '../../listAsset';
 import { layoutRetriever } from '../../adapters/layout-retriever';
 import { LayoutType } from '../../adapters/__types__/LayoutType';
 import logger from '../../utils/logger';
@@ -22,7 +21,8 @@ export default async function(
   {
     strapName,
     totalBasicArticlesUnit = 0,
-    totalBasicArticleTitleUnit = 0
+    totalBasicArticleTitleUnit = 0,
+    sourceId
   }: ITopStoriesHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
@@ -32,7 +32,7 @@ export default async function(
       return handlerRunner(
         {
           type: HandlerInputType.DefconArticleList,
-          sourceId: ListAsset.TopStories,
+          sourceId,
           strapName,
           totalArticles: totalBasicArticlesUnit
         },
@@ -42,7 +42,7 @@ export default async function(
       return handlerRunner(
         {
           type: HandlerInputType.ArticleList,
-          sourceId: ListAsset.TopStories,
+          sourceId,
           strapName,
           layout: LayoutType.BIG_HEADLINE,
           totalBasicArticlesUnit,
@@ -54,7 +54,7 @@ export default async function(
       return handlerRunner(
         {
           type: HandlerInputType.ArticleList,
-          sourceId: ListAsset.TopStories,
+          sourceId,
           strapName,
           layout: LayoutType.DEFAULT,
           totalBasicArticlesUnit,
