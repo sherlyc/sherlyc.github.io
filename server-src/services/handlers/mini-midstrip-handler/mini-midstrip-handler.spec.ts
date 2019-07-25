@@ -1,11 +1,12 @@
 import miniMidstripHandler from './mini-midstrip-handler';
-import { getListAsset } from '../../adapters/jsonfeed';
 import { IColumnContainer } from 'common/__types__/IColumnContainer';
 import { IParams } from '../../__types__/IParams';
 import { HandlerInputType } from '../__types__/HandlerInputType';
 import { IRawArticle } from '../../adapters/__types__/IRawArticle';
+import { Strap } from '../../strap';
+import { getStrapArticles } from '../../adapters/strap-list-service';
 
-jest.mock('../../adapters/jsonfeed');
+jest.mock('../../adapters/strap-list-service');
 
 describe('MiniMidStripHandler', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
@@ -38,7 +39,7 @@ describe('MiniMidStripHandler', () => {
   ];
 
   it('should get a list of Image Links', async () => {
-    (getListAsset as jest.Mock).mockResolvedValue(rawMiniMidStrip);
+    (getStrapArticles as jest.Mock).mockResolvedValue(rawMiniMidStrip);
 
     const handlerRunnerMock = jest.fn();
 
@@ -46,6 +47,7 @@ describe('MiniMidStripHandler', () => {
       handlerRunnerMock,
       {
         type: HandlerInputType.MiniMidStrip,
+        sourceId: Strap.MiniMidStrip,
         strapName: 'MiniMidStrip',
         totalArticles: 2
       },
@@ -87,13 +89,14 @@ describe('MiniMidStripHandler', () => {
 
   it('should throw error when failing to retrieve articles', async () => {
     const error = new Error('failed to retrieve');
-    (getListAsset as jest.Mock).mockRejectedValue(error);
+    (getStrapArticles as jest.Mock).mockRejectedValue(error);
 
     await expect(
       miniMidstripHandler(
         jest.fn(),
         {
           type: HandlerInputType.MiniMidStrip,
+          sourceId: Strap.MiniMidStrip,
           strapName: 'MidStrip',
           totalArticles: 2
         },
