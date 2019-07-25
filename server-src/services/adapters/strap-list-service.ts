@@ -4,10 +4,28 @@ import config from '../utils/config';
 import { getListAssetById } from './jsonfeed';
 import { IRawArticle } from './__types__/IRawArticle';
 import { flatten } from 'lodash';
-import {
-  getStrapArticlesFromCache,
-  saveStrapArticlesToCache
-} from '../utils/cache';
+
+export const saveStrapArticlesToCache = (
+  params: IParams,
+  strap: Strap,
+  strapLoadedPromise: Promise<IRawArticle[]>
+) => {
+  if (!params.strapArticlesCache) {
+    params.strapArticlesCache = {};
+  }
+  params.strapArticlesCache![strap] = strapLoadedPromise;
+};
+
+export const getStrapArticlesFromCache = (
+  params: IParams,
+  strap: Strap
+): Promise<IRawArticle[]> | undefined => {
+  const { strapArticlesCache } = params;
+
+  return strapArticlesCache && strapArticlesCache[strap]
+    ? strapArticlesCache[strap]
+    : undefined;
+};
 
 function deduplicate(
   articles: IRawArticle[],
