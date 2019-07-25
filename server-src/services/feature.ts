@@ -6,7 +6,7 @@ export const isFeatureEnabled = (
 ): boolean => {
   switch (feature) {
     case FeatureName.VideoHubFeature:
-      return process.env.SPADE_ENV !== 'production' && lotteryNumber === 404;
+      return lotteryNumber === 404;
     default:
       return false;
   }
