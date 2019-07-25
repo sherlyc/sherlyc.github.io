@@ -50,6 +50,7 @@ export default async (params: IParams): Promise<IPage> => {
             {
               type: HandlerInputType.MiniMidStrip,
               strapName: 'MiniMidStrip',
+              sourceId: Strap.MiniMidStrip,
               totalArticles:
                 homepageStrapsConfig[Strap.MiniMidStrip].totalArticlesWithImages
             },

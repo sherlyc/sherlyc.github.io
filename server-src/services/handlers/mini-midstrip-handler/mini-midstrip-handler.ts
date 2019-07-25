@@ -6,22 +6,37 @@ import { IImageLinkUnit } from '../../../../common/__types__/IImageLinkUnit';
 import { IParams } from '../../__types__/IParams';
 import { IMiniMidStripHandlerInput } from '../__types__/IMiniMidStripHandlerInput';
 import { ListAsset } from '../../listAsset';
+import { Strap } from '../../strap';
+import { getStrapArticles } from '../../adapters/strap-list-service';
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  { totalArticles, strapName }: IMiniMidStripHandlerInput,
+  { totalArticles, strapName, sourceId }: IMiniMidStripHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const rawArticles = await getListAsset(
-    params,
-    ListAsset.MiniMidStrip,
-    totalArticles
-  );
+  const sourceIsAStrap = Object.values(Strap).includes(sourceId);
+  let rawArticles;
+
+  if (sourceIsAStrap) {
+    rawArticles = await getStrapArticles(
+      params,
+      sourceId as Strap,
+      totalArticles
+    );
+  } else {
+    rawArticles = await getListAsset(
+      params,
+      ListAsset.MiniMidStrip,
+      totalArticles
+    );
+  }
+
+  const miniMidStripArticles = rawArticles.slice(0, totalArticles);
 
   return [
     {
       type: ContentBlockType.ColumnContainer,
-      items: rawArticles.reduce(
+      items: miniMidStripArticles.reduce(
         (final, article) => [
           ...final,
           {
