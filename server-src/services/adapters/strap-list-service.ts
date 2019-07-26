@@ -10,10 +10,8 @@ export const saveStrapArticlesToCache = (
   strap: Strap,
   strapLoadedPromise: Promise<IRawArticle[]>
 ) => {
-  if (!params.strapArticlesCache) {
-    params.strapArticlesCache = {};
-  }
-  params.strapArticlesCache![strap] = strapLoadedPromise;
+  params.strapArticlesCache = params.strapArticlesCache || {};
+  params.strapArticlesCache[strap] = strapLoadedPromise;
 };
 
 export const getStrapArticlesFromCache = (
@@ -32,7 +30,6 @@ function deduplicate(
   dedupeSource: IRawArticle[]
 ): IRawArticle[] {
   const dupeSet = new Set();
-
   dedupeSource.forEach((article) => dupeSet.add(article.id));
 
   return articles.filter((asset) => !dupeSet.has(asset.id));
@@ -50,11 +47,7 @@ function getDeduplicationLists(params: IParams, strap: Strap) {
           (dedupeFrom.totalArticlesWithImages || 0) +
           (dedupeFrom.totalTitleArticles || 0);
 
-        return getStrapArticles(
-          params,
-          strapToDedupeFrom as Strap,
-          limit > 0 ? limit : undefined
-        );
+        return getStrapArticles(params, strapToDedupeFrom as Strap, limit);
       })
     );
   }
@@ -94,11 +87,9 @@ export const getStrapArticles = async (
   const strapArticles = flatten(nestedStrapArticles);
   const deduplicationSource = flatten(nestedDedupeSource);
 
-  const strapResult = deduplicate(strapArticles, deduplicationSource).slice(
-    0,
-    total
-  );
+  const strapResult = deduplicate(strapArticles, deduplicationSource);
+  const limitedStrapResult = total ? strapResult.slice(0, total) : strapResult;
 
-  resolveStrapCachedPromise(strapResult);
-  return strapResult;
+  resolveStrapCachedPromise(limitedStrapResult);
+  return limitedStrapResult;
 };
