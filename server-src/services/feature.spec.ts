@@ -17,10 +17,4 @@ describe('Feature service', () => {
 
     expect(isFeatureEnabled(FeatureName.VideoHubFeature, 1)).toEqual(false);
   });
-
-  it(`should return false for ${FeatureName.VideoHubFeature} for production env`, () => {
-    process.env.SPADE_ENV = 'production';
-
-    expect(isFeatureEnabled(FeatureName.VideoHubFeature, 404)).toEqual(false);
-  });
 });
