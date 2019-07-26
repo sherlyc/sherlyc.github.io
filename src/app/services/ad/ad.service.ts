@@ -6,6 +6,7 @@ import { ScriptInjectorService } from '../script-injector/script-injector.servic
 import { ScriptId } from '../script-injector/__types__/ScriptId';
 import { HttpClient } from '@angular/common/http';
 import { LoggerService } from '../logger/logger.service';
+import { RuntimeService } from '../runtime/runtime.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class AdService {
     private config: ConfigService,
     private scriptInjectorService: ScriptInjectorService,
     private http: HttpClient,
+    private runtime: RuntimeService,
     private logger: LoggerService,
     private zone: NgZone
   ) {}
@@ -23,6 +25,9 @@ export class AdService {
   load?: Promise<void>;
 
   setup() {
+    if (this.runtime.isServer()) {
+      return;
+    }
     this.load = new Promise(async (resolve, reject) => {
       try {
         const manifest = await this.http

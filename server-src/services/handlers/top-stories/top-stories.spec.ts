@@ -111,10 +111,7 @@ describe('TopStoriesHandler', () => {
 
     await topStoriesHandler(handlerFunction, handlerInput, params);
 
-    expect(handlerFunction).toHaveBeenCalledWith(
-      basicArticleListInput,
-      params
-    );
+    expect(handlerFunction).toHaveBeenCalledWith(basicArticleListInput, params);
     expect(loggerSpy).toHaveBeenCalled();
   });
 });

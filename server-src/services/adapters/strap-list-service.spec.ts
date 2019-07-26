@@ -5,22 +5,38 @@ import { getListAssetById } from './jsonfeed';
 import * as rawList from './__fixtures__/strap-list-service/raw-article-list.json';
 import * as rawSecondList from './__fixtures__/strap-list-service/raw-second-article-list.json';
 import config from '../utils/config';
-import { IStrapDefinition } from '../utils/__types__/IStrapDefinition';
+import { IStrapConfigDefinition } from '../utils/__types__/IStrapConfigDefinition';
 
 jest.mock('./jsonfeed');
 
 describe('The strap list service', () => {
-  const parameters: IParams = { apiRequestId: 'request-id-for-testing' };
+  let parameters: IParams;
+
+  beforeEach(() => {
+    parameters = {
+      apiRequestId: 'request-id-for-testing',
+      strapArticlesCache: {}
+    };
+  });
 
   beforeAll(() => {
-    config.homepageStraps = {
-      strapEditorPicks: {
-        ids: ['63868237']
-      },
-      strapDailyFix: {
-        ids: ['63868237', '63768623']
+    config.strapConfig = {
+      dedupeList: ['strapEditorPicks'],
+      homepageStraps: {
+        strapEditorPicks: {
+          ids: ['63868237'],
+          toDedupe: false
+        },
+        strapDailyFix: {
+          ids: ['63868237', '63768623'],
+          toDedupe: false
+        },
+        strapTopStories: {
+          ids: ['63868237', '63784884'],
+          toDedupe: true
+        }
       }
-    } as { [key in Strap]: IStrapDefinition };
+    } as IStrapConfigDefinition;
   });
 
   it('should return strap articles when strap composed by one list', async () => {
@@ -49,16 +65,6 @@ describe('The strap list service', () => {
   });
 
   it('should deduplicate list from configured deduplication lists', async () => {
-    config.homepageStraps = {
-      strapEditorPicks: {
-        ids: ['63868237']
-      },
-      strapTopStories: {
-        ids: ['63868237', '63784884'],
-        deduplicateFrom: ['strapEditorPicks' as Strap]
-      }
-    } as { [key in Strap]: IStrapDefinition };
-
     (getListAssetById as jest.Mock)
       .mockResolvedValueOnce(rawList)
       .mockResolvedValueOnce(rawSecondList)
@@ -67,5 +73,25 @@ describe('The strap list service', () => {
     const result = await getStrapArticles(parameters, Strap.TopStories);
 
     expect(result).toMatchObject(rawSecondList);
+  });
+
+  it('should save strapArticles to cache', async () => {
+    (getListAssetById as jest.Mock)
+      .mockResolvedValueOnce(rawList)
+      .mockResolvedValueOnce(rawSecondList)
+      .mockResolvedValueOnce(rawList);
+
+    await getStrapArticles(parameters, Strap.TopStories);
+    const topStoriesCache = parameters.strapArticlesCache!['strapTopStories'];
+
+    expect(topStoriesCache).toMatchObject(rawSecondList);
+  });
+
+  it('should read strapArticles from cache', async () => {
+    parameters.strapArticlesCache!['strapTopStories'] = rawSecondList;
+    const topStoriesCache = parameters.strapArticlesCache!['strapTopStories'];
+    const result = await getStrapArticles(parameters, Strap.TopStories);
+
+    expect(result).toBe(topStoriesCache);
   });
 });

@@ -12,6 +12,7 @@ import { AdService } from '../../../services/ad/ad.service';
 import { CorrelationService } from '../../../services/correlation/correlation.service';
 import { EventsService } from '../../../services/events/events.service';
 import { AnalyticsService } from '../../../services/analytics/analytics.service';
+import { AnalyticsEventsType } from '../../../services/analytics/__types__/AnalyticsEventsType';
 
 describe('PageComponent', () => {
   let component: PageComponent;
@@ -109,7 +110,7 @@ describe('PageComponent', () => {
     component.getData();
 
     fixture.detectChanges(); // input updated
-    assertsForSuccessfulRetrieval();
+    setTimeout(() => assertsForSuccessfulRetrieval());
   });
 
   it('should render a list of content block when router navigates to "/"', () => {
@@ -133,7 +134,7 @@ describe('PageComponent', () => {
     expect(getDataSpy).toBeCalledTimes(2);
     expect(contentRetrieverMock.getContent).toBeCalledTimes(2);
     fixture.detectChanges(); // input updated
-    assertsForSuccessfulRetrieval();
+    setTimeout(() => assertsForSuccessfulRetrieval());
   });
 
   it('should not render any content block when the retriever fails to get content', () => {
@@ -166,22 +167,44 @@ describe('PageComponent', () => {
     assertsForFailedRetrieval();
   });
 
-  it('should dispatch DOM NavigationEnd when page finish render', () => {
+  it('should notify ad sdk when page finish render', () => {
     contentRetrieverMock.getContent.mockReturnValue(
       of({ title: '', content: mockContentBlocks, apiRequestId: '' })
     );
-    component.getData();
     fixture.detectChanges(); // input updated
-    expect(adServiceMock.notify).toHaveBeenCalled();
+    setTimeout(() => {
+      expect(adServiceMock.notify).toHaveBeenCalled();
+    });
+  });
+
+  it('should render the page when ad sdk fail loading', () => {
+    adServiceMock.load = Promise.reject();
+    contentRetrieverMock.getContent.mockReturnValue(
+      of({ title: '', content: mockContentBlocks, apiRequestId: '' })
+    );
+    fixture.detectChanges(); // input updated
+    setTimeout(() => assertsForSuccessfulRetrieval());
   });
 
   it('should post nielsen tracking record when the page rendering finishes', () => {
     contentRetrieverMock.getContent.mockReturnValue(
       of({ title: '', content: mockContentBlocks, apiRequestId: '' })
     );
-    component.getData();
     fixture.detectChanges();
-    expect(analyticsServiceMock.trackPageByNielsen).toHaveBeenCalled();
+    setTimeout(() => {
+      expect(analyticsServiceMock.trackPageByNielsen).toHaveBeenCalled();
+    });
+  });
+
+  it('should send analytics when page starts to load', () => {
+    contentRetrieverMock.getContent.mockReturnValue(
+      of({ title: '', content: mockContentBlocks, apiRequestId: '' })
+    );
+    component.ngOnInit();
+
+    expect(analyticsServiceMock.pushEvent).toHaveBeenCalledWith({
+      type: AnalyticsEventsType.PAGE_LOAD
+    });
   });
 
   function assertsForSuccessfulRetrieval() {

@@ -34,6 +34,14 @@ export class AnalyticsService implements IAnalyticsService {
 
   private static transformEvent(event: AnalyticsEvent): IAdobeAnalyticsEvent {
     const eventTypesRegistry: { [key in AnalyticsEventsType]: Function } = {
+      [AnalyticsEventsType.PWA_DOWNLOADED]: () => ({
+        event: 'pwa.download'
+      }),
+      [AnalyticsEventsType.PAGE_LOAD]: () => ({
+        event: 'ab.testing.event',
+        'ab.testing.segment.web': 'spade',
+        'ab.testing.experiment.name': 'spadeRollout'
+      }),
       [AnalyticsEventsType.WEATHER_LOCATION_CHANGED]: (
         analyticEvent: IWeatherLocationChanged
       ) => ({

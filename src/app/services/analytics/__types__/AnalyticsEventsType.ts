@@ -1,4 +1,6 @@
 export enum AnalyticsEventsType {
+  PWA_DOWNLOADED,
+  PAGE_LOAD,
   LOGIN_CLIKED,
   AVATAR_CLICKED,
   MENU_NAV_SECTION_CLICKED,

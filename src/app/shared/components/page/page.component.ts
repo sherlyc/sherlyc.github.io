@@ -9,6 +9,7 @@ import { EventsService } from '../../../services/events/events.service';
 import { Subject } from 'rxjs';
 import { NavigationStart } from '@angular/router';
 import { AnalyticsService } from '../../../services/analytics/analytics.service';
+import { AnalyticsEventsType } from '../../../services/analytics/__types__/AnalyticsEventsType';
 
 @Component({
   selector: 'app-page',
@@ -31,6 +32,7 @@ export class PageComponent implements OnInit {
   contentBlocks: IContentBlock[] = [];
 
   ngOnInit() {
+    this.analyticsService.pushEvent({ type: AnalyticsEventsType.PAGE_LOAD });
     this.getData();
     this.navigationStartSubject.subscribe(() => {
       this.getData();
@@ -39,12 +41,16 @@ export class PageComponent implements OnInit {
 
   getData() {
     this.correlationService.generatePageScopedId();
-    this.contentRetriever.getContent().subscribe((page: IPage) => {
+    this.contentRetriever.getContent().subscribe(async (page: IPage) => {
       this.correlationService.setApiRequestId(page.apiRequestId);
       this.title.setTitle(page.title);
-      this.contentBlocks = page.content;
-      this.adService.notify();
-      this.analyticsService.trackPageByNielsen();
+      try {
+        await this.adService.load;
+      } finally {
+        this.contentBlocks = page.content;
+        this.adService.notify();
+        this.analyticsService.trackPageByNielsen();
+      }
     });
   }
 }

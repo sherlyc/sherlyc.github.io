@@ -311,6 +311,48 @@ describe('AnalyticsService', () => {
     });
   });
 
+  it('should push beta rollout analytics', () => {
+    analyticsService.setup();
+    windowService.getWindow().digitalData.events.push = jest.fn();
+
+    const event = {
+      event: 'ab.testing.event',
+      'ab.testing.segment.web': 'spade',
+      'ab.testing.experiment.name': 'spadeRollout'
+    };
+
+    analyticsService.pushEvent({
+      type: AnalyticsEventsType.PAGE_LOAD
+    });
+
+    expect(
+      windowService.getWindow().digitalData.events.push
+    ).toHaveBeenCalledWith({
+      type: 'analytics',
+      ...event
+    });
+  });
+
+  it('should push pwa download analytics', () => {
+    analyticsService.setup();
+    windowService.getWindow().digitalData.events.push = jest.fn();
+
+    const event = {
+      event: 'pwa.download'
+    };
+
+    analyticsService.pushEvent({
+      type: AnalyticsEventsType.PWA_DOWNLOADED
+    });
+
+    expect(
+      windowService.getWindow().digitalData.events.push
+    ).toHaveBeenCalledWith({
+      type: 'analytics',
+      ...event
+    });
+  });
+
   it('should allow updating datalayer with user data', () => {
     analyticsService.setup();
 
