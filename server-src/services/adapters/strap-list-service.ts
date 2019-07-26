@@ -11,7 +11,9 @@ const getStrapArticlesFromCache = (
 ): IRawArticle[] | undefined => {
   const { strapArticlesCache } = params;
 
-  return strapArticlesCache && strap in strapArticlesCache ? strapArticlesCache[strap] : undefined;
+  return strapArticlesCache && strap in strapArticlesCache
+    ? strapArticlesCache[strap]
+    : undefined;
 };
 
 const saveStrapArticlesToCache = (
