@@ -40,32 +40,6 @@ describe('TopStoriesHandler', () => {
     expect(handlerFunction).toHaveBeenCalledWith(basicArticleListInput, params);
   });
 
-  it('should create basic article list with default layout when layout retrieved is default and input Strap.TopStories', async () => {
-    jest
-      .spyOn(layoutRetriever, 'layoutRetriever')
-      .mockResolvedValue(LayoutType.DEFAULT);
-    const handlerFunction = jest.fn();
-    const handlerInput: ITopStoriesHandlerInput = {
-      type: HandlerInputType.TopStories,
-      sourceId: Strap.TopStories,
-      strapName: strapName,
-      totalBasicArticlesUnit: 3,
-      totalBasicArticleTitleUnit: 3
-    };
-    const basicArticleListInput: IBasicArticleListHandlerInput = {
-      type: HandlerInputType.ArticleList,
-      sourceId: Strap.TopStories,
-      strapName,
-      layout: LayoutType.DEFAULT,
-      totalBasicArticlesUnit: 3,
-      totalBasicArticleTitleUnit: 3
-    };
-
-    await topStoriesHandler(handlerFunction, handlerInput, params);
-
-    expect(handlerFunction).toHaveBeenCalledWith(basicArticleListInput, params);
-  });
-
   it('should create basic article list with big headline layout when layout retrieved is big headline', async () => {
     jest
       .spyOn(layoutRetriever, 'layoutRetriever')
