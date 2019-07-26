@@ -1,6 +1,7 @@
 import { ErrorHandler, Injectable } from '@angular/core';
 import { ConfigService } from '../config/config.service';
 import { BrowserClient, Hub } from '@sentry/browser';
+import { RewriteFrames } from '@sentry/integrations';
 import { CorrelationService } from '../correlation/correlation.service';
 interface ISpadeConsole extends Console {
   [key: string]: Function;
@@ -19,7 +20,7 @@ export class LoggerService implements ErrorHandler {
     this.client = new Hub(
       new BrowserClient({
         ...config.getConfig().sentryIO,
-        integrations: []
+        integrations: [new RewriteFrames()]
       })
     );
   }

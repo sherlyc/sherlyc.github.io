@@ -316,12 +316,33 @@ describe('AnalyticsService', () => {
     windowService.getWindow().digitalData.events.push = jest.fn();
 
     const event = {
-      event: 'beta.rollout',
-      'beta.rollout.segment': 'beta'
+      event: 'ab.testing.event',
+      'ab.testing.segment.web': 'spade',
+      'ab.testing.experiment.name': 'spadeRollout'
     };
 
     analyticsService.pushEvent({
       type: AnalyticsEventsType.PAGE_LOAD
+    });
+
+    expect(
+      windowService.getWindow().digitalData.events.push
+    ).toHaveBeenCalledWith({
+      type: 'analytics',
+      ...event
+    });
+  });
+
+  it('should push pwa download analytics', () => {
+    analyticsService.setup();
+    windowService.getWindow().digitalData.events.push = jest.fn();
+
+    const event = {
+      event: 'pwa.download'
+    };
+
+    analyticsService.pushEvent({
+      type: AnalyticsEventsType.PWA_DOWNLOADED
     });
 
     expect(

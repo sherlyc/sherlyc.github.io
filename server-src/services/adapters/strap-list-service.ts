@@ -32,7 +32,9 @@ function deduplicate(
   dedupeSource: IRawArticle[]
 ): IRawArticle[] {
   const dupeSet = new Set();
+
   dedupeSource.forEach((article) => dupeSet.add(article.id));
+
   return articles.filter((asset) => !dupeSet.has(asset.id));
 }
 
@@ -65,6 +67,7 @@ export const getStrapArticles = async (
   total?: number
 ): Promise<IRawArticle[]> => {
   const cachedStrapArticles = getStrapArticlesFromCache(params, strap);
+
   if (cachedStrapArticles) {
     return cachedStrapArticles;
   }
@@ -77,6 +80,7 @@ export const getStrapArticles = async (
   );
 
   const strapArticlesIds = config.strapConfig.homepageStraps[strap].ids;
+
   const strapArticlesPromise = Promise.all(
     strapArticlesIds.map((listAssetId) => getListAssetById(params, listAssetId))
   );
