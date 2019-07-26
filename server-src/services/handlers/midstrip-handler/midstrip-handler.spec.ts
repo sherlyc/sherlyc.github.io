@@ -4,8 +4,11 @@ import { IParams } from '../../__types__/IParams';
 import { HandlerInputType } from '../__types__/HandlerInputType';
 import { getStrapArticles } from '../../adapters/strap-list-service';
 import { Strap } from '../../strap';
+import { getListAsset } from '../../adapters/jsonfeed';
+import {ListAsset} from "../../listAsset";
 
 jest.mock('../../adapters/strap-list-service');
+jest.mock('../../adapters/jsonfeed');
 
 describe('MidStripHandler', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
@@ -35,112 +38,226 @@ describe('MidStripHandler', () => {
     jest.resetModules();
   });
 
-  it('should get a list of Image Links', async () => {
-    const totalArticles = 2;
+  describe('when source is strap', () => {
+    it('should get a list of Image Links', async () => {
+      const totalArticles = 2;
 
-    (getStrapArticles as jest.Mock).mockResolvedValue(rawMidStrip);
+      (getStrapArticles as jest.Mock).mockResolvedValue(rawMidStrip);
 
-    const handlerRunnerMock = jest.fn();
+      const handlerRunnerMock = jest.fn();
 
-    const columnContainer = (await midstripHandler(
-      handlerRunnerMock,
-      {
-        type: HandlerInputType.MidStrip,
-        sourceId: Strap.MidStrip,
-        strapName: 'MidStrip',
-        totalArticles
-      },
-      params
-    )) as IColumnContainer[];
-
-    const imageLinkUnits = columnContainer[0].items;
-
-    expect(imageLinkUnits.length).toBe(totalArticles);
-    expect(columnContainer).toEqual([
-      {
-        type: 'ColumnContainer',
-        items: [
-          {
-            headlineFlags: [],
-            id: '1',
-            strapName: 'MidStrip',
-            imageSrc: '1.jpg',
-            imageSrcSet: '1.jpg 1w',
-            indexHeadline: 'Headline 1',
-            linkUrl: '/link1',
-            type: 'ImageLinkUnit'
-          },
-          {
-            headlineFlags: [],
-            id: '2',
-            strapName: 'MidStrip',
-            imageSrc: '2.jpg',
-            imageSrcSet: '2.jpg 2w',
-            indexHeadline: 'Headline 2',
-            linkUrl: '/link2',
-            type: 'ImageLinkUnit'
-          }
-        ]
-      },
-      { type: 'BasicAdUnit' }
-    ]);
-  });
-
-  it('should get a list of Image links not exceeding number of requested item', async () => {
-    const totalArticles = 1;
-    (getStrapArticles as jest.Mock).mockResolvedValue(rawMidStrip);
-
-    const handlerRunnerMock = jest.fn();
-
-    const columnContainer = (await midstripHandler(
-      handlerRunnerMock,
-      {
-        type: HandlerInputType.MidStrip,
-        sourceId: Strap.MidStrip,
-        strapName: 'MidStrip',
-        totalArticles
-      },
-      params
-    )) as IColumnContainer[];
-
-    const imageLinkUnits = columnContainer[0].items;
-
-    expect(imageLinkUnits.length).toBe(totalArticles);
-    expect(columnContainer).toEqual([
-      {
-        type: 'ColumnContainer',
-        items: [
-          {
-            headlineFlags: [],
-            id: '1',
-            strapName: 'MidStrip',
-            imageSrc: '1.jpg',
-            imageSrcSet: '1.jpg 1w',
-            indexHeadline: 'Headline 1',
-            linkUrl: '/link1',
-            type: 'ImageLinkUnit'
-          }
-        ]
-      },
-      { type: 'BasicAdUnit' }
-    ]);
-  });
-
-  it('should throw error when failing to retrieve articles', async () => {
-    const error = new Error('failed to retrieve');
-    (getStrapArticles as jest.Mock).mockRejectedValue(error);
-
-    await expect(
-      midstripHandler(
-        jest.fn(),
+      const columnContainer = (await midstripHandler(
+        handlerRunnerMock,
         {
           type: HandlerInputType.MidStrip,
           sourceId: Strap.MidStrip,
           strapName: 'MidStrip',
-          totalArticles: 2
+          totalArticles
         },
         params
-      )
-    ).rejects.toEqual(error);
+      )) as IColumnContainer[];
+
+      const imageLinkUnits = columnContainer[0].items;
+
+      expect(imageLinkUnits.length).toBe(totalArticles);
+      expect(columnContainer).toEqual([
+        {
+          type: 'ColumnContainer',
+          items: [
+            {
+              headlineFlags: [],
+              id: '1',
+              strapName: 'MidStrip',
+              imageSrc: '1.jpg',
+              imageSrcSet: '1.jpg 1w',
+              indexHeadline: 'Headline 1',
+              linkUrl: '/link1',
+              type: 'ImageLinkUnit'
+            },
+            {
+              headlineFlags: [],
+              id: '2',
+              strapName: 'MidStrip',
+              imageSrc: '2.jpg',
+              imageSrcSet: '2.jpg 2w',
+              indexHeadline: 'Headline 2',
+              linkUrl: '/link2',
+              type: 'ImageLinkUnit'
+            }
+          ]
+        },
+        { type: 'BasicAdUnit' }
+      ]);
+    });
+
+    it('should get a list of Image links not exceeding number of requested item', async () => {
+      const totalArticles = 1;
+      (getStrapArticles as jest.Mock).mockResolvedValue(rawMidStrip);
+
+      const handlerRunnerMock = jest.fn();
+
+      const columnContainer = (await midstripHandler(
+        handlerRunnerMock,
+        {
+          type: HandlerInputType.MidStrip,
+          sourceId: Strap.MidStrip,
+          strapName: 'MidStrip',
+          totalArticles
+        },
+        params
+      )) as IColumnContainer[];
+
+      const imageLinkUnits = columnContainer[0].items;
+
+      expect(imageLinkUnits.length).toBe(totalArticles);
+      expect(columnContainer).toEqual([
+        {
+          type: 'ColumnContainer',
+          items: [
+            {
+              headlineFlags: [],
+              id: '1',
+              strapName: 'MidStrip',
+              imageSrc: '1.jpg',
+              imageSrcSet: '1.jpg 1w',
+              indexHeadline: 'Headline 1',
+              linkUrl: '/link1',
+              type: 'ImageLinkUnit'
+            }
+          ]
+        },
+        { type: 'BasicAdUnit' }
+      ]);
+    });
+
+    it('should throw error when failing to retrieve articles', async () => {
+      const error = new Error('failed to retrieve');
+      (getStrapArticles as jest.Mock).mockRejectedValue(error);
+
+      await expect(
+        midstripHandler(
+          jest.fn(),
+          {
+            type: HandlerInputType.MidStrip,
+            sourceId: Strap.MidStrip,
+            strapName: 'MidStrip',
+            totalArticles: 2
+          },
+          params
+        )
+      ).rejects.toEqual(error);
+    });
   });
+
+  describe('when source is listasset', () => {
+    it('should get a list of Image Links', async () => {
+      const totalArticles = 2;
+
+      (getListAsset as jest.Mock).mockResolvedValue(rawMidStrip);
+
+      const handlerRunnerMock = jest.fn();
+
+      const columnContainer = (await midstripHandler(
+        handlerRunnerMock,
+        {
+          type: HandlerInputType.MidStrip,
+          sourceId: ListAsset.MidStrip,
+          strapName: 'MidStrip',
+          totalArticles
+        },
+        params
+      )) as IColumnContainer[];
+
+      const imageLinkUnits = columnContainer[0].items;
+
+      expect(imageLinkUnits.length).toBe(totalArticles);
+      expect(columnContainer).toEqual([
+        {
+          type: 'ColumnContainer',
+          items: [
+            {
+              headlineFlags: [],
+              id: '1',
+              strapName: 'MidStrip',
+              imageSrc: '1.jpg',
+              imageSrcSet: '1.jpg 1w',
+              indexHeadline: 'Headline 1',
+              linkUrl: '/link1',
+              type: 'ImageLinkUnit'
+            },
+            {
+              headlineFlags: [],
+              id: '2',
+              strapName: 'MidStrip',
+              imageSrc: '2.jpg',
+              imageSrcSet: '2.jpg 2w',
+              indexHeadline: 'Headline 2',
+              linkUrl: '/link2',
+              type: 'ImageLinkUnit'
+            }
+          ]
+        },
+        { type: 'BasicAdUnit' }
+      ]);
+    });
+
+    it('should get a list of Image links not exceeding number of requested item', async () => {
+      const totalArticles = 1;
+      (getListAsset as jest.Mock).mockResolvedValue(rawMidStrip);
+
+      const handlerRunnerMock = jest.fn();
+
+      const columnContainer = (await midstripHandler(
+        handlerRunnerMock,
+        {
+          type: HandlerInputType.MidStrip,
+          sourceId: ListAsset.MidStrip,
+          strapName: 'MidStrip',
+          totalArticles
+        },
+        params
+      )) as IColumnContainer[];
+
+      const imageLinkUnits = columnContainer[0].items;
+
+      expect(imageLinkUnits.length).toBe(totalArticles);
+      expect(columnContainer).toEqual([
+        {
+          type: 'ColumnContainer',
+          items: [
+            {
+              headlineFlags: [],
+              id: '1',
+              strapName: 'MidStrip',
+              imageSrc: '1.jpg',
+              imageSrcSet: '1.jpg 1w',
+              indexHeadline: 'Headline 1',
+              linkUrl: '/link1',
+              type: 'ImageLinkUnit'
+            }
+          ]
+        },
+        { type: 'BasicAdUnit' }
+      ]);
+    });
+
+    it('should throw error when failing to retrieve articles', async () => {
+      const error = new Error('failed to retrieve');
+      (getListAsset as jest.Mock).mockRejectedValue(error);
+
+      await expect(
+        midstripHandler(
+          jest.fn(),
+          {
+            type: HandlerInputType.MidStrip,
+            sourceId: ListAsset.MidStrip,
+            strapName: 'MidStrip',
+            totalArticles: 2
+          },
+          params
+        )
+      ).rejects.toEqual(error);
+    });
+  });
+
 });
