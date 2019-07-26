@@ -14,7 +14,7 @@ describe('TopStoriesHandler', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
   const strapName = 'Latest';
 
-  it('should create basic article list with default layout when layout retrieved is default and input ListAsset.TopStories', async () => {
+  it('should create basic article list with default layout when layout retrieved is default', async () => {
     jest
       .spyOn(layoutRetriever, 'layoutRetriever')
       .mockResolvedValue(LayoutType.DEFAULT);
