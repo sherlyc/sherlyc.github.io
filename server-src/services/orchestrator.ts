@@ -38,7 +38,7 @@ export default async (params: IParams): Promise<IPage> => {
               height: '50px',
               width: '100%',
               url:
-                'https://interactives.stuff.co.nz/2019/sport-pointers/netball-world-cup/nwc-pointer.html'
+                'https://assets.stuff.co.nz/interactives/sponsored/bravo/bravo-uber.html'
             },
             {
               type: HandlerInputType.TopStories,
