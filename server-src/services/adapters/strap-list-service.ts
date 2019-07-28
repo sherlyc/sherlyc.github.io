@@ -5,26 +5,24 @@ import { getListAssetById } from './jsonfeed';
 import { IRawArticle } from './__types__/IRawArticle';
 import { flatten } from 'lodash';
 
-const getStrapArticlesFromCache = (
-  params: IParams,
-  strap: Strap
-): IRawArticle[] | undefined => {
-  const { strapArticlesCache } = params;
-
-  return strapArticlesCache && strap in strapArticlesCache
-    ? strapArticlesCache[strap]
-    : undefined;
-};
-
-const saveStrapArticlesToCache = (
+export const saveStrapArticlesToCache = (
   params: IParams,
   strap: Strap,
-  strapResult: IRawArticle[]
+  strapLoadedPromise: Promise<IRawArticle[]>
 ) => {
-  if (!params.strapArticlesCache) {
-    params.strapArticlesCache = {};
-  }
-  params.strapArticlesCache[strap] = strapResult;
+  params.strapArticlesCache = params.strapArticlesCache || {};
+  params.strapArticlesCache[strap] = strapLoadedPromise;
+};
+
+export const getStrapArticlesFromCache = (
+  params: IParams,
+  strap: Strap
+): Promise<IRawArticle[]> | undefined => {
+  const { strapArticlesCache } = params;
+
+  return strapArticlesCache && strapArticlesCache[strap]
+    ? strapArticlesCache[strap]
+    : undefined;
 };
 
 function deduplicate(
@@ -32,10 +30,28 @@ function deduplicate(
   dedupeSource: IRawArticle[]
 ): IRawArticle[] {
   const dupeSet = new Set();
-
   dedupeSource.forEach((article) => dupeSet.add(article.id));
 
   return articles.filter((asset) => !dupeSet.has(asset.id));
+}
+
+function getDeduplicationLists(params: IParams, strap: Strap) {
+  const hasDedupe = config.strapConfig.homepageStraps[strap].toDedupe;
+  const deduplicateSources = config.strapConfig.dedupeList;
+
+  if (hasDedupe && deduplicateSources) {
+    return Promise.all(
+      deduplicateSources.map((strapToDedupeFrom) => {
+        const dedupeFrom = config.strapConfig.homepageStraps[strapToDedupeFrom];
+        const limit =
+          (dedupeFrom.totalArticlesWithImages || 0) +
+          (dedupeFrom.totalTitleArticles || 0);
+
+        return getStrapArticles(params, strapToDedupeFrom as Strap, limit);
+      })
+    );
+  }
+  return Promise.resolve([[]]);
 }
 
 export const getStrapArticles = async (
@@ -49,50 +65,31 @@ export const getStrapArticles = async (
     return cachedStrapArticles;
   }
 
+  let resolveStrapCachedPromise: Function = () => {};
+  saveStrapArticlesToCache(
+    params,
+    strap,
+    new Promise((resolve) => (resolveStrapCachedPromise = resolve))
+  );
+
   const strapArticlesIds = config.strapConfig.homepageStraps[strap].ids;
 
   const strapArticlesPromise = Promise.all(
     strapArticlesIds.map((listAssetId) => getListAssetById(params, listAssetId))
   );
 
-  let dedupeSourcePromise: Promise<IRawArticle[][]> = Promise.resolve([[]]);
-
-  const hasDedupe = config.strapConfig.homepageStraps[strap].toDedupe;
-  const deduplicateSources = config.strapConfig.dedupeList;
-
-  if (hasDedupe && deduplicateSources) {
-    dedupeSourcePromise = getDeduplicationLists(params, deduplicateSources);
-  }
+  const dedupeSourcePromise = getDeduplicationLists(params, strap);
 
   const [nestedStrapArticles, nestedDedupeSource] = await Promise.all([
     strapArticlesPromise,
     dedupeSourcePromise
   ]);
-  const articles = flatten(nestedStrapArticles);
+  const strapArticles = flatten(nestedStrapArticles);
   const deduplicationSource = flatten(nestedDedupeSource);
 
-  const strapResult = deduplicate(articles, deduplicationSource).slice(
-    0,
-    total
-  );
-  saveStrapArticlesToCache(params, strap, strapResult);
+  const strapResult = deduplicate(strapArticles, deduplicationSource);
+  const limitedStrapResult = total ? strapResult.slice(0, total) : strapResult;
 
-  return strapResult;
+  resolveStrapCachedPromise(limitedStrapResult);
+  return limitedStrapResult;
 };
-
-function getDeduplicationLists(params: IParams, strapNames: Strap[]) {
-  return Promise.all(
-    strapNames.map((strapToDedupeFrom) => {
-      const dedupeFrom = config.strapConfig.homepageStraps[strapToDedupeFrom];
-      const limit =
-        (dedupeFrom.totalArticlesWithImages || 0) +
-        (dedupeFrom.totalTitleArticles || 0);
-
-      return getStrapArticles(
-        params,
-        strapToDedupeFrom as Strap,
-        limit > 0 ? limit : undefined
-      );
-    })
-  );
-}

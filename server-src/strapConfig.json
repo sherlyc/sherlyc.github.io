@@ -34,6 +34,94 @@
     "strapTravel": {
       "ids": ["60860998"],
       "toDedupe": true
+    },
+    "strapNational": {
+      "ids": ["62950252", "62926368"],
+      "toDedupe": true
+    },
+    "strapSport": {
+      "ids": ["62922196", "62919098"],
+      "toDedupe": true
+    },
+    "strapWorld": {
+      "ids": ["60844362"],
+      "toDedupe": true
+    },
+    "strapBusiness": {
+      "ids": ["63060863"],
+      "toDedupe": true
+    },
+    "strapOpinion": {
+      "ids": ["91706224"],
+      "toDedupe": true
+    },
+    "strapTechnology": {
+      "ids": ["60119046"],
+      "toDedupe": true
+    },
+    "strapHomed": {
+      "ids": ["91738058", "91738163"],
+      "toDedupe": true
+    },
+    "strapLifeStyle": {
+      "ids": ["62546009", "62546149"],
+      "toDedupe": true
+    },
+    "strapEntertainment": {
+      "ids": ["62497979", "62498297"],
+      "toDedupe": true
+    },
+    "strapMotoring": {
+      "ids": ["62925442"],
+      "toDedupe": true
+    },
+    "strapStuffNation": {
+      "ids": ["90804478"],
+      "toDedupe": true
+    },
+    "strapClimateChange": {
+      "ids": ["74545269"],
+      "toDedupe": true
+    },
+    "strapWellGood": {
+      "ids": ["62547807"],
+      "toDedupe": true
+    },
+    "strapPremium": {
+      "ids": ["95972272"],
+      "toDedupe": false
+    },
+    "strapGoodReads": {
+      "ids": ["63587628"],
+      "toDedupe": true
+    },
+    "strapNoted": {
+      "ids": ["108728445"],
+      "toDedupe": true
+    },
+    "strapNowToLove": {
+      "ids": ["108720459"],
+      "toDedupe": true
+    },
+    "strapHomesToLove": {
+      "ids": ["108727583"],
+      "toDedupe": true
+    },
+    "strapFoodToLove": {
+      "ids": ["108721752"],
+      "toDedupe": true
+    },
+    "strapBeautyHeaven": {
+      "ids": ["108724149"],
+      "toDedupe": true
+    },
+    "strapFashionQuarterly": {
+      "ids": ["108722375"],
+      "toDedupe": true
+    },
+    "strapNewsroom": {
+      "ids": ["108722375"],
+      "toDedupe": true
     }
   }
 }

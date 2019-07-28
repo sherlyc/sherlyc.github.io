@@ -84,14 +84,16 @@ describe('The strap list service', () => {
     await getStrapArticles(parameters, Strap.TopStories);
     const topStoriesCache = parameters.strapArticlesCache!['strapTopStories'];
 
-    expect(topStoriesCache).toMatchObject(rawSecondList);
+    expect(await topStoriesCache).toMatchObject(rawSecondList);
   });
 
   it('should read strapArticles from cache', async () => {
-    parameters.strapArticlesCache!['strapTopStories'] = rawSecondList;
+    parameters.strapArticlesCache!['strapTopStories'] = Promise.resolve(
+      rawSecondList
+    );
     const topStoriesCache = parameters.strapArticlesCache!['strapTopStories'];
     const result = await getStrapArticles(parameters, Strap.TopStories);
 
-    expect(result).toBe(topStoriesCache);
+    expect(result).toBe(await topStoriesCache);
   });
 });

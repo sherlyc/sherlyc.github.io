@@ -84,19 +84,25 @@ const getRawArticles = async (
     )).slice(0, totalArticles);
   }
   const sourceIsAStrap = Object.values(Strap).includes(sourceId);
-
+  let rawArticles;
   if (sourceIsAStrap) {
-    return await getStrapArticles(params, sourceId as Strap, totalArticles);
+    rawArticles = await getStrapArticles(
+      params,
+      sourceId as Strap,
+      totalArticles
+    );
+  } else {
+    rawArticles = await getListAsset(
+      params,
+      sourceId as ListAsset,
+      totalArticles
+    );
   }
 
-  const listAssets = await getListAsset(
-    params,
-    sourceId as ListAsset,
-    totalArticles
-  );
-  return sourceId === ListAsset.TopStories && layout === LayoutType.DEFAULT
-    ? [listAssets[1], listAssets[0], ...listAssets.slice(2)].filter(Boolean)
-    : listAssets;
+  return (sourceId === Strap.TopStories || sourceId === ListAsset.TopStories) &&
+    layout === LayoutType.DEFAULT
+    ? [rawArticles[1], rawArticles[0], ...rawArticles.slice(2)].filter(Boolean)
+    : rawArticles;
 };
 
 export default async function(

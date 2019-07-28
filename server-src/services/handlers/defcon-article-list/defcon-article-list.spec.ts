@@ -9,6 +9,9 @@ import { IParams } from '../../__types__/IParams';
 import defconArticleList from './defcon-article-list';
 import { IDefconArticleUnit } from '../../../../common/__types__/IDefconArticleUnit';
 import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
+import { getStrapArticles } from '../../adapters/strap-list-service';
+
+jest.mock('../../adapters/strap-list-service');
 
 describe('DefconArticleList', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
@@ -71,7 +74,7 @@ describe('DefconArticleList', () => {
     jest.resetModules();
   });
 
-  it('should return first article as defcon and others as basic articles', async () => {
+  it('should return first article as defcon and others as basic articles when input ListAsset.TopStories', async () => {
     const handlerInput: IDefconArticleListHandlerInput = {
       type: HandlerInputType.DefconArticleList,
       sourceId: ListAsset.TopStories,
@@ -81,6 +84,33 @@ describe('DefconArticleList', () => {
     const rawArticles = [articleOne, articleTwo];
 
     jest.spyOn(jsonfeed, 'getListAsset').mockResolvedValue(rawArticles);
+
+    const expectedContentBlocks = [
+      articleOneAsDefconArticle,
+      basicAdUnit,
+      articleTwoAsBasicArticle,
+      basicAdUnit
+    ];
+
+    const contentBlocks = await defconArticleList(
+      handlerRunner,
+      handlerInput,
+      params
+    );
+
+    expect(contentBlocks).toEqual(expectedContentBlocks);
+  });
+
+  it('should return first article as defcon and others as basic articles when input Strap.TopStories', async () => {
+    const handlerInput: IDefconArticleListHandlerInput = {
+      type: HandlerInputType.DefconArticleList,
+      sourceId: ListAsset.TopStories,
+      strapName,
+      totalArticles: 2
+    };
+    const rawArticles = [articleOne, articleTwo];
+
+    (getStrapArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
 
     const expectedContentBlocks = [
       articleOneAsDefconArticle,
