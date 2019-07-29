@@ -45,13 +45,13 @@ app.use(cookieParser());
 
 app.use(
   cacheControl({
-    '/spade/api/**': 'public, max-age=60', // 1 minute
+    '/spade/api/**': 'public, max-age=180', // 3 minute
     '/spade/assets/**': 'public, max-age=86400', // 1 day
     '/spade/*.js': 'public, max-age=604800', // 1 week
     '/spade/*.css': 'public, max-age=604800', // 1 week
-    '/spade/**': 'public, max-age=60', // 1 minute
-    '/*.json': 'public, max-age=60', // 1 minute
-    '/*.js': 'public, max-age=60', // 1 minute
+    '/spade/**': 'public, max-age=180', // 3 minute
+    '/*.json': 'public, max-age=180', // 3 minute
+    '/*.js': 'public, max-age=180', // 3 minute
     '/index.html': 'public, max-age=60', // 1 minute
     '/': 'public, max-age=60', // 1 minute
     default: 'public, max-age=60'
