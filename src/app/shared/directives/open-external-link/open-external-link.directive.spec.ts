@@ -51,8 +51,18 @@ describe('OpenExternalLinkDirective', () => {
     expect(anchor.getAttribute('rel')).toBeFalsy();
   });
 
+  it('should not set external link attributes when url contains stuff.co.nz', () => {
+    component.linkUrl = 'http://www.stuff.co.nz/some-url-article';
+    fixture.detectChanges();
+
+    const anchor = fixture.debugElement.query(By.css('a')).nativeElement;
+
+    expect(anchor.getAttribute('target')).toBeFalsy();
+    expect(anchor.getAttribute('rel')).toBeFalsy();
+  });
+
   it('should set open external link attributes when url is external', () => {
-    component.linkUrl = 'https://interactive.stuff.co.nz/some-url-article';
+    component.linkUrl = 'https://www.external.com/some-url-article';
     fixture.detectChanges();
 
     const anchor = fixture.debugElement.query(By.css('a')).nativeElement;
@@ -62,7 +72,7 @@ describe('OpenExternalLinkDirective', () => {
   });
 
   it('should set open external link attributes when url is external and contains casing', () => {
-    component.linkUrl = 'HTTPS://interactive.stuff.co.nz/some-url-article';
+    component.linkUrl = 'HTTPS://www.external.com/some-url-article';
     fixture.detectChanges();
 
     const anchor = fixture.debugElement.query(By.css('a')).nativeElement;
