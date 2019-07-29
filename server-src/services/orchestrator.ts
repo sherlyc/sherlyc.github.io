@@ -109,7 +109,8 @@ export default async (params: IParams): Promise<IPage> => {
               articleList: {
                 sourceId: Strap.ClimateChange,
                 strapName: 'Climate Change',
-                totalBasicArticlesUnit: 3
+                totalBasicArticlesUnit: 2,
+                totalBasicArticleTitleUnit: 3
               }
             },
             {
