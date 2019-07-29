@@ -45,16 +45,16 @@ app.use(cookieParser());
 
 app.use(
   cacheControl({
-    '/spade/api/**': 'max-age=60', // 1 minute
-    '/spade/assets/**': 'max-age=86400', // 1 day
-    '/spade/*.js': 'max-age=604800', // 1 week
-    '/spade/*.css': 'max-age=604800', // 1 week
-    '/spade/**': 'max-age=60', // 1 minute
-    '/*.json': 'max-age=60', // 1 minute
-    '/*.js': 'max-age=60', // 1 minute
-    '/index.html': 'max-age=60', // 1 minute
-    '/': 'max-age=60', // 1 minute
-    default: 'max-age=60'
+    '/spade/api/**': 'public, max-age=60', // 1 minute
+    '/spade/assets/**': 'public, max-age=86400', // 1 day
+    '/spade/*.js': 'public, max-age=604800', // 1 week
+    '/spade/*.css': 'public, max-age=604800', // 1 week
+    '/spade/**': 'public, max-age=60', // 1 minute
+    '/*.json': 'public, max-age=60', // 1 minute
+    '/*.js': 'public, max-age=60', // 1 minute
+    '/index.html': 'public, max-age=60', // 1 minute
+    '/': 'public, max-age=60', // 1 minute
+    default: 'public, max-age=60'
   })
 );
 
