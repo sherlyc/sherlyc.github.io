@@ -47,8 +47,8 @@ app.use(
   cacheControl({
     '/spade/api/**': 'public, max-age=180', // 3 minute
     '/spade/assets/**': 'public, max-age=86400', // 1 day
-    '/spade/*.js': 'public, max-age=604800', // 1 week
-    '/spade/*.css': 'public, max-age=604800', // 1 week
+    '/spade/*.js': 'public, max-age=31536000', // 1 year
+    '/spade/*.css': 'public, max-age=31536000', // 1 year
     '/spade/**': 'public, max-age=180', // 3 minute
     '/*.json': 'public, max-age=180', // 3 minute
     '/*.js': 'public, max-age=180', // 3 minute
