@@ -1,24 +1,3 @@
-apiVersion: autoscaling/v2beta1
-kind: HorizontalPodAutoscaler
-metadata:
-  name: experience-scaling
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: ${project.artifactId}
-  minReplicas: 2
-  maxReplicas: 10
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      targetAverageUtilization: 80
-  - type: Resource
-    resource:
-      name: memory
-      targetAverageUtilization: 80
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
