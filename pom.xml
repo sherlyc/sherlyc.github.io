@@ -142,7 +142,6 @@
             </configuration>
           </execution>
           <execution>
-            
             <id>copy-dockerfile</id>
             <phase>process-resources</phase>
             <goals>
@@ -291,6 +290,7 @@
                     <env>
                       <URL_UNDER_TEST>http://application:4000</URL_UNDER_TEST>
                       <MAX_BENCHMARK_SECONDS>185</MAX_BENCHMARK_SECONDS>
+                      <AUTOCANNON_REQUESTS>100</AUTOCANNON_REQUESTS>
                     </env>
 
                     <log>
