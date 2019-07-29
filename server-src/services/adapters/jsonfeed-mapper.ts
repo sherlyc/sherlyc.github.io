@@ -41,13 +41,23 @@ function mapUrlAsset(item: IJsonFeedUrl): IRawArticle {
     id: String(item.id),
     indexHeadline: item.title,
     introText: item.alt_intro,
-    linkUrl: item.url,
+    linkUrl: getLinkUrl(item),
     imageSrc: getImageSrc(item),
     imageSrcSet: getImageSrcSet(item),
     defconSrc: getDefconSrc(item),
     lastPublishedTime: moment(item.datetime_iso8601).unix(),
     headlineFlags: getHeadlineFlags(item)
   };
+}
+
+function getLinkUrl(item: IJsonFeedUrl) {
+  const { url } = item;
+  const linkUrl = url.toLowerCase();
+
+  if (linkUrl.includes('www.stuff.co.nz')) {
+    return url.replace('www.stuff.co.nz', 'i.stuff.co.nz');
+  }
+  return url;
 }
 
 function getHeadlineFlags(asset: IJsonFeedArticle | IJsonFeedUrl) {

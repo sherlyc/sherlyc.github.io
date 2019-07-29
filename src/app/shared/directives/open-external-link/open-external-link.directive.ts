@@ -17,7 +17,9 @@ export class OpenExternalLinkDirective implements OnChanges {
   private static isExternalLink(url: string) {
     const lowercaseUrl = url.toLowerCase();
     return (
-      lowercaseUrl.startsWith('http://') || lowercaseUrl.startsWith('https://')
+      (lowercaseUrl.startsWith('http://') ||
+        lowercaseUrl.startsWith('https://')) &&
+      !lowercaseUrl.includes('stuff.co.nz')
     );
   }
 
