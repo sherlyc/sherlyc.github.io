@@ -369,7 +369,7 @@ export default async (params: IParams): Promise<IPage> => {
               displayNameColor: 'amaranth',
               linkUrl: '/' + Section.Metro,
               articleList: {
-                sourceId: Section.Metro,
+                sourceId: Strap.Metro,
                 strapName: 'Metro',
                 totalBasicArticlesUnit: 2
               }
@@ -391,9 +391,10 @@ export default async (params: IParams): Promise<IPage> => {
               displayNameColor: 'scarlet',
               linkUrl: '/' + Section.Tarana,
               articleList: {
-                sourceId: Section.Tarana,
+                sourceId: Strap.Tarana,
                 strapName: 'Tarana',
-                totalBasicArticlesUnit: 2
+                totalBasicArticlesUnit: 2,
+                totalBasicArticleTitleUnit: 2
               }
             },
             {
