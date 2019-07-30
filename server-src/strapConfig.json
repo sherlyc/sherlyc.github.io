@@ -126,6 +126,14 @@
     "strapSponsoredContent": {
       "ids": ["112451426"],
       "toDedupe": true
+    },
+    "strapMetro": {
+      "ids": ["112352326"],
+      "toDedupe": true
+    },
+    "strapTarana": {
+      "ids": ["104747808"],
+      "toDedupe": true
     }
   }
 }
