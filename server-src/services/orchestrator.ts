@@ -382,7 +382,7 @@ export default async (params: IParams): Promise<IPage> => {
               articleList: {
                 sourceId: Strap.Newsroom,
                 strapName: 'Newsroom.co.nz',
-                totalBasicArticlesUnit: 2
+                totalBasicArticlesUnit: 3
               }
             },
             {
@@ -402,7 +402,7 @@ export default async (params: IParams): Promise<IPage> => {
               displayNameColor: 'darkblue',
               linkUrl: '/' + Section.SponsoredContent,
               articleList: {
-                sourceId: Section.SponsoredContent,
+                sourceId: Strap.SponsoredContent,
                 strapName: 'Sponsored Content',
                 totalBasicArticlesUnit: 2
               }
