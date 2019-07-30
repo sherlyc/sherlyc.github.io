@@ -120,7 +120,11 @@
       "toDedupe": true
     },
     "strapNewsroom": {
-      "ids": ["108722375"],
+      "ids": ["108729104"],
+      "toDedupe": true
+    },
+    "strapSponsoredContent": {
+      "ids": ["112451426"],
       "toDedupe": true
     }
   }
