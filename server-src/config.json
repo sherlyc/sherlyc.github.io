@@ -2,7 +2,7 @@
   "production": {
     "retryTimeout": 1000,
     "requestTimeout": 10000,
-    "jsonFeedAPI": "https://www.stuff.co.nz/_json",
+    "jsonFeedAPI": "https://i.stuff.co.nz/_json",
     "midStripListAssetId": "63769065",
     "miniMidStripListAssetId": "63768876",
     "topStoriesListAssetId": "63768623",
@@ -27,7 +27,7 @@
   "staging": {
     "retryTimeout": 1000,
     "requestTimeout": 10000,
-    "jsonFeedAPI": "https://www-preprod.stuff.co.nz/_json",
+    "jsonFeedAPI": "https://i-preprod.stuff.co.nz/_json",
     "midStripListAssetId": "63769065",
     "miniMidStripListAssetId": "63768876",
     "topStoriesListAssetId": "63768623",
@@ -52,7 +52,7 @@
   "development": {
     "retryTimeout": 500,
     "requestTimeout": 10000,
-    "jsonFeedAPI": "https://www.stuff.co.nz/_json",
+    "jsonFeedAPI": "https://i.stuff.co.nz/_json",
     "midStripListAssetId": "63769065",
     "miniMidStripListAssetId": "63768876",
     "topStoriesListAssetId": "63768623",
@@ -77,7 +77,7 @@
   "localhost": {
     "retryTimeout": 500,
     "requestTimeout": 10000,
-    "jsonFeedAPI": "https://www.stuff.co.nz/_json",
+    "jsonFeedAPI": "https://i.stuff.co.nz/_json",
     "midStripListAssetId": "63769065",
     "miniMidStripListAssetId": "63768876",
     "topStoriesListAssetId": "63768623",
@@ -102,7 +102,7 @@
   "test": {
     "retryTimeout": 1,
     "requestTimeout": 10000,
-    "jsonFeedAPI": "https://www.stuff.co.nz/_json",
+    "jsonFeedAPI": "https://i.stuff.co.nz/_json",
     "midStripListAssetId": "63769065",
     "miniMidStripListAssetId": "63768876",
     "topStoriesListAssetId": "63768623",
