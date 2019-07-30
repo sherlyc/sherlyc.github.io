@@ -382,7 +382,7 @@ export default async (params: IParams): Promise<IPage> => {
               articleList: {
                 sourceId: Strap.Newsroom,
                 strapName: 'Newsroom.co.nz',
-                totalBasicArticlesUnit: 2
+                totalBasicArticlesUnit: 3
               }
             },
             {
