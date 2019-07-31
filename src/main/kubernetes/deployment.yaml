@@ -70,10 +70,10 @@ spec:
               #              cpu: ${quota-limits.smallCpu}
               #              memory: ${quota-limits.smallMemory}
               cpu: 600m
-              memory: 512Mi
+              memory: 1Gi
             requests:
-              cpu: ${quota-requests.smallCpu}
-              memory: ${quota-requests.smallMemory}
+              cpu: 100m
+              memory: 512Mi
           volumeMounts:
             - mountPath: /etc/${project.artifactId}/
               name: config-v${parsedVersion.majorVersion}
