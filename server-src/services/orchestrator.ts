@@ -215,24 +215,24 @@ export default async (params: IParams): Promise<IPage> => {
             },
             {
               type: HandlerInputType.ArticleSection,
-              displayName: 'Life Style',
+              displayName: 'Life & Style',
               displayNameColor: 'amaranth',
               linkUrl: '/' + Section.LifeStyle,
               articleList: {
                 sourceId: Strap.LifeStyle,
-                strapName: 'Life Style',
+                strapName: 'Life & Style',
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 3
               }
             },
             {
               type: HandlerInputType.ArticleSection,
-              displayName: 'Well Good',
+              displayName: 'Well & Good',
               displayNameColor: 'sunglow',
               linkUrl: '/' + Section.WellGood,
               articleList: {
                 sourceId: Strap.WellGood,
-                strapName: 'Well Good',
+                strapName: 'Well & Good',
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 3
               }
