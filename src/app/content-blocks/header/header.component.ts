@@ -50,12 +50,7 @@ export class HeaderComponent
         { label: 'Travel', link: '/travel' },
         { label: 'Motoring', link: '/motoring' },
         { label: 'Stuff Nation', link: '/stuff-nation' },
-        { label: 'Quizzes', link: '/national/quizzes' }
-      ]
-    },
-    {
-      theme: 'dark',
-      items: [
+        { label: 'Quizzes', link: '/national/quizzes' },
         { label: 'Politics', link: '/national/politics' },
         { label: 'Premium', link: '/national/premium' },
         { label: 'Homed', link: '/life-style/homed' },
@@ -65,6 +60,23 @@ export class HeaderComponent
         { label: 'Rugby', link: '/sport/rugby' },
         { label: 'Farming', link: '/business/farming' },
         { label: 'Technology', link: '/technology' }
+      ]
+    },
+    {
+      theme: 'dark',
+      items: [
+        { label: 'Auckland', link: '/auckland' },
+        { label: 'Wellington', link: '/dominion-post' },
+        { label: 'Canterbury', link: '/the-press' },
+        { label: 'Waikato', link: '/waikato-times' },
+        { label: 'Bay of Plenty', link: '/bay-of-plenty' },
+        { label: 'Taranaki', link: '/taranaki-daily-news' },
+        { label: 'Manawatu', link: '/manawatu-standard' },
+        { label: 'Nelson', link: '/nelson-mail' },
+        { label: 'Marlborough', link: '/marlborough-express' },
+        { label: 'Timaru', link: '/timaru-herald' },
+        { label: 'Otago', link: '/otago' },
+        { label: 'Southland', link: '/southland-times' }
       ]
     },
     {
