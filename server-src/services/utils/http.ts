@@ -17,7 +17,7 @@ const create = (params: IParams): AxiosInstance => {
     return status >= 200 && status < 400;
   };
   httpClient.interceptors.request.use((request: AxiosRequestConfig & any) => {
-    request.headers['User-Agent'] = 'SPADE backend';
+    request.headers['User-Agent'] = 'Stuff NZ SPADE; nz.co.stuff.spade';
     if (params.authorization) {
       request.headers['Authorization'] = params.authorization;
     }
