@@ -21,7 +21,6 @@ export enum Section {
   HomesToLove = 'life-style/homes-to-love',
   FoodToLove = 'life-style/food-to-love',
   BeautyHeaven = 'life-style/beauty-heaven',
-  FashionQuarterly = 'life-style/fashion-quarterly',
   Metro = 'life-style/metro',
   Newsroom = 'national/newsroom',
   SponsoredContent = 'sponsored-content',
