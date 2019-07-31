@@ -354,17 +354,6 @@ export default async (params: IParams): Promise<IPage> => {
             },
             {
               type: HandlerInputType.ArticleSection,
-              displayName: 'Fashion Quarterly',
-              displayNameColor: 'amaranth',
-              linkUrl: '/' + Section.FashionQuarterly,
-              articleList: {
-                sourceId: Strap.FashionQuarterly,
-                strapName: 'Fashion Quarterly',
-                totalBasicArticlesUnit: 2
-              }
-            },
-            {
-              type: HandlerInputType.ArticleSection,
               displayName: 'Metro',
               displayNameColor: 'amaranth',
               linkUrl: '/' + Section.Metro,

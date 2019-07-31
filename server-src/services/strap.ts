@@ -25,7 +25,6 @@ export enum Strap {
   HomesToLove = 'strapHomesToLove',
   FoodToLove = 'strapFoodToLove',
   BeautyHeaven = 'strapBeautyHeaven',
-  FashionQuarterly = 'strapFashionQuarterly',
   Metro = 'strapMetro',
   Newsroom = 'strapNewsroom',
   Tarana = 'strapTarana',
