@@ -130,6 +130,10 @@
     "strapTarana": {
       "ids": ["104747808"],
       "toDedupe": true
+    },
+    "strapBravo": {
+      "ids": ["114265840"],
+      "toDedupe": true
     }
   }
 }

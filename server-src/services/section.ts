@@ -24,5 +24,6 @@ export enum Section {
   Metro = 'life-style/metro',
   Newsroom = 'national/newsroom',
   SponsoredContent = 'sponsored-content',
-  Tarana = 'tarana'
+  Tarana = 'tarana',
+  Bravo = 'entertainment/bravo'
 }
