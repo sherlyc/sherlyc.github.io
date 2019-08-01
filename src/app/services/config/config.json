@@ -10,9 +10,8 @@
       "level": "info",
       "format": "json"
     },
-    "aadSdkUrl": "https://experience.expproduction.shift21.ffx.nz/adnostic/manifest.json",
+    "aadSdkUrl": "https://i.stuff.co.nz/adnostic/manifest.json",
     "browserOverrides": {
-      "aadSdkUrl": "/adnostic/manifest.json",
       "spadeAPI": "/spade/api/content",
       "weatherAPI": "/spade/api/weather",
       "experimentAPI": "/spade/api/experiment",
@@ -42,9 +41,8 @@
       "level": "info",
       "format": "json"
     },
-    "aadSdkUrl": "https://experience.expstaging.shift21.ffx.nz/adnostic/manifest.json",
+    "aadSdkUrl": "https://i-preprod.stuff.co.nz/adnostic/manifest.json",
     "browserOverrides": {
-      "aadSdkUrl": "/adnostic/manifest.json",
       "spadeAPI": "/spade/api/content",
       "weatherAPI": "/spade/api/weather",
       "experimentAPI": "/spade/api/experiment",
@@ -74,9 +72,8 @@
       "level": "debug",
       "format": "text"
     },
-    "aadSdkUrl": "https://experience.expdevint.shift21.ffx.nz/adnostic/manifest.json",
+    "aadSdkUrl": "https://adnostic.adsdevint.shift21.ffx.nz/adnostic/manifest.json",
     "browserOverrides": {
-      "aadSdkUrl": "/adnostic/manifest.json",
       "spadeAPI": "/spade/api/content",
       "weatherAPI": "/spade/api/weather",
       "experimentAPI": "/spade/api/experiment",
