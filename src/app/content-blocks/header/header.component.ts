@@ -41,17 +41,25 @@ export class HeaderComponent
       theme: 'light',
       items: [
         { label: 'National', link: '/national' },
-        { label: 'Sport', link: '/sport' },
-        { label: 'Life & Style', link: '/life-style' },
         { label: 'World', link: '/world' },
-        { label: 'Entertainment', link: '/entertainment' },
         { label: 'Business', link: '/business' },
-        { label: 'Homed', link: '/life-style/homed' },
         { label: 'Climate Change', link: '/environment/climate-news' },
+        { label: 'Sport', link: '/sport' },
+        { label: 'Entertainment', link: '/entertainment' },
+        { label: 'Life & Style', link: '/life-style' },
         { label: 'Travel', link: '/travel' },
-        { label: 'Technology', link: '/technology' },
+        { label: 'Motoring', link: '/motoring' },
         { label: 'Stuff Nation', link: '/stuff-nation' },
-        { label: 'Motoring', link: '/motoring' }
+        { label: 'Quizzes', link: '/national/quizzes' },
+        { label: 'Politics', link: '/national/politics' },
+        { label: 'Premium', link: '/national/premium' },
+        { label: 'Homed', link: '/life-style/homed' },
+        { label: 'Well & Good', link: '/life-style/well-good' },
+        { label: 'Food & Wine', link: '/life-style/food-wine' },
+        { label: 'Parenting', link: '/life-style/parenting' },
+        { label: 'Rugby', link: '/sport/rugby' },
+        { label: 'Farming', link: '/business/farming' },
+        { label: 'Technology', link: '/technology' }
       ]
     },
     {
