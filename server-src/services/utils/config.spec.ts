@@ -1,5 +1,9 @@
-import * as configJson from '../../config.json';
-import * as strapConfig from '../../strapConfig.json';
+import * as configJson from './__fixtures__/config.json';
+import * as strapConfig from './__fixtures__/strapConfig.json';
+import * as configForProduction from './__fixtures__/expectedConfigWithOverridenStraps.json';
+
+jest.mock('../../config.json', () => configJson, { virtual: true });
+jest.mock('../../strapConfig.json', () => strapConfig, { virtual: true });
 
 describe('Config Service', () => {
   it('should load config based on environment variable', () => {
@@ -13,7 +17,7 @@ describe('Config Service', () => {
     jest.resetModules();
     delete process.env.SPADE_ENV;
     const config = require('./config').default;
-    expect(config).toEqual({ ...configJson['production'], strapConfig });
+    expect(config).toEqual(configForProduction);
   });
 
   it('should fall back to production configuration when environment variable is not recognized', () => {
@@ -21,5 +25,12 @@ describe('Config Service', () => {
     process.env.SPADE_ENV = 'something';
     const config = require('./config').default;
     expect(config).toEqual({ ...configJson['production'], strapConfig });
+  });
+
+  it('should load strap overrides configuration based on environment', () => {
+    jest.resetModules();
+    process.env.SPADE_ENV = 'production';
+    const config = require('./config').default;
+    expect(config).toEqual(configForProduction);
   });
 });
