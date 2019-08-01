@@ -1,0 +1,161 @@
+{
+  "dedupeList": [
+    "strapEditorPicks",
+    "strapTopStories",
+    "strapMidStrip",
+    "strapMiniMidStrip"
+  ],
+  "homepageStraps": {
+    "strapTopStories": {
+      "ids": ["63768623"],
+      "totalArticlesWithImages": 6,
+      "toDedupe": false
+    },
+    "strapEditorPicks": {
+      "ids": ["63868237"],
+      "totalArticlesWithImages": 2,
+      "totalTitleArticles": 6,
+      "toDedupe": false
+    },
+    "strapMidStrip": {
+      "ids": ["63769065"],
+      "totalArticlesWithImages": 6,
+      "toDedupe": false
+    },
+    "strapMiniMidStrip": {
+      "ids": ["63768876"],
+      "totalArticlesWithImages": 2,
+      "toDedupe": false
+    },
+    "strapDailyFix": {
+      "ids": ["63784884"],
+      "toDedupe": false
+    },
+    "strapTravel": {
+      "ids": ["60860998"],
+      "toDedupe": true
+    },
+    "strapNational": {
+      "ids": ["62950252", "62926368"],
+      "toDedupe": true
+    },
+    "strapSport": {
+      "ids": ["62922196", "62919098"],
+      "toDedupe": true
+    },
+    "strapWorld": {
+      "ids": ["60844362"],
+      "toDedupe": true
+    },
+    "strapBusiness": {
+      "ids": ["63060863"],
+      "toDedupe": true
+    },
+    "strapOpinion": {
+      "ids": ["91706224"],
+      "toDedupe": true
+    },
+    "strapTechnology": {
+      "ids": ["60119046"],
+      "toDedupe": true
+    },
+    "strapHomed": {
+      "ids": ["91738058", "91738163"],
+      "toDedupe": true
+    },
+    "strapLifeStyle": {
+      "ids": ["62546009", "62546149"],
+      "toDedupe": true
+    },
+    "strapEntertainment": {
+      "ids": ["62497979", "62498297"],
+      "toDedupe": true
+    },
+    "strapMotoring": {
+      "ids": ["62925442"],
+      "toDedupe": true
+    },
+    "strapStuffNation": {
+      "ids": ["90804478"],
+      "toDedupe": true
+    },
+    "strapClimateChange": {
+      "ids": ["74545269"],
+      "toDedupe": true
+    },
+    "strapWellGood": {
+      "ids": ["62547807"],
+      "toDedupe": true
+    },
+    "strapPremium": {
+      "ids": ["95972272"],
+      "toDedupe": false
+    },
+    "strapGoodReads": {
+      "ids": ["63587628"],
+      "toDedupe": true
+    },
+    "strapNoted": {
+      "ids": ["108728445"],
+      "toDedupe": true
+    },
+    "strapNowToLove": {
+      "ids": ["108720459"],
+      "toDedupe": true
+    },
+    "strapHomesToLove": {
+      "ids": ["108727583"],
+      "toDedupe": true
+    },
+    "strapFoodToLove": {
+      "ids": ["108721752"],
+      "toDedupe": true
+    },
+    "strapBeautyHeaven": {
+      "ids": ["108724149"],
+      "toDedupe": true
+    },
+    "strapNewsroom": {
+      "ids": ["108729104"],
+      "toDedupe": true
+    },
+    "strapSponsoredContent": {
+      "ids": ["112451426"],
+      "toDedupe": true
+    },
+    "strapMetro": {
+      "ids": ["112352326"],
+      "toDedupe": true
+    },
+    "strapTarana": {
+      "ids": ["104747808"],
+      "toDedupe": true
+    },
+    "strapBravo": {
+      "ids": ["114265840"],
+      "toDedupe": true
+    }
+  },
+  "overrides": {
+    "production": {
+      "strapSponsoredContent": {
+        "ids": [
+          "999999"
+        ],
+        "toDedupe": false
+      },
+      "strapMetro": {
+        "ids": [
+          "111111"
+        ],
+        "toDedupe": false
+      },
+      "strapBravo": {
+        "ids": [
+          "63868237"
+        ],
+        "toDedupe": false
+      }
+    }
+  }
+}
