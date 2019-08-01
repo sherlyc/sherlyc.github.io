@@ -1,17 +1,30 @@
 import * as config from '../../config.json';
-import * as strapConfig from '../../strapConfig.json';
+import * as strapConfiguration from '../../strapConfig.json';
 import { IEnvironmentDefinition } from './__types__/IEnvironmentDefinition';
 import { IStrapConfigDefinition } from './__types__/IStrapConfigDefinition';
 import { Omit } from 'utility-types';
 
-const defaultEnvironmentName = 'production';
-const environmentName = process.env.SPADE_ENV || defaultEnvironmentName;
+const environmentName: string = process.env.SPADE_ENV || 'production';
 
-const environments = config as {
-  [key: string]: Omit<IEnvironmentDefinition, 'strapConfig'>;
+const loadStrapConfig = (): IStrapConfigDefinition => {
+  const strapConfig = strapConfiguration as IStrapConfigDefinition;
+  if (strapConfig.overrides && strapConfig.overrides[environmentName]) {
+    strapConfig.homepageStraps = {
+      ...strapConfig.homepageStraps,
+      ...strapConfig.overrides![environmentName]
+    };
+  }
+  return strapConfig;
 };
-const environment = environments[environmentName] || environments['production'];
 
-(environment as IEnvironmentDefinition).strapConfig = strapConfig as IStrapConfigDefinition;
+const loadConfig = (): IEnvironmentDefinition => {
+  const environments = config as {
+    [key: string]: Omit<IEnvironmentDefinition, 'strapConfig'>;
+  };
+  const environmentConfig =
+    environments[environmentName] || environments['production'];
+  (environmentConfig as IEnvironmentDefinition).strapConfig = loadStrapConfig();
+  return environmentConfig as IEnvironmentDefinition;
+};
 
-export default environment as IEnvironmentDefinition;
+export default loadConfig();

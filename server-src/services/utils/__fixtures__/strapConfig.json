@@ -137,17 +137,23 @@
     }
   },
   "overrides": {
-    "staging": {
+    "production": {
       "strapSponsoredContent": {
-        "ids": ["63868237"],
+        "ids": [
+          "999999"
+        ],
         "toDedupe": false
       },
       "strapMetro": {
-        "ids": ["63868237"],
+        "ids": [
+          "111111"
+        ],
         "toDedupe": false
       },
       "strapBravo": {
-        "ids": ["63868237"],
+        "ids": [
+          "63868237"
+        ],
         "toDedupe": false
       }
     }
