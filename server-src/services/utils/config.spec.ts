@@ -2,8 +2,8 @@ import * as configJson from './__fixtures__/config.json';
 import * as strapConfig from './__fixtures__/strapConfig.json';
 import * as configForProduction from './__fixtures__/expectedConfigWithOverridenStraps.json';
 
-jest.mock('../../config.json', () => configJson, { virtual: true });
-jest.mock('../../strapConfig.json', () => strapConfig, { virtual: true });
+jest.mock('../../config.json', () => configJson);
+jest.mock('../../strapConfig.json', () => strapConfig);
 
 describe('Config Service', () => {
   it('should load config based on environment variable', () => {
