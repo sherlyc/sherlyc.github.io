@@ -135,5 +135,21 @@
       "ids": ["114265840"],
       "toDedupe": true
     }
+  },
+  "overrides": {
+    "staging": {
+      "strapSponsoredContent": {
+        "ids": ["63868237"],
+        "toDedupe": false
+      },
+      "strapMetro": {
+        "ids": ["63868237"],
+        "toDedupe": false
+      },
+      "strapBravo": {
+        "ids": ["63868237"],
+        "toDedupe": false
+      }
+    }
   }
 }
