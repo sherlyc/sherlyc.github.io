@@ -22,7 +22,7 @@
       "name": "api",
       "urls": ["/spade/api/**"],
       "cacheConfig": {
-        "timeout": "500u",
+        "timeout": "5s",
         "maxSize": 1000,
         "maxAge": "24h",
         "strategy": "freshness"
