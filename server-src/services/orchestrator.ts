@@ -251,6 +251,18 @@ export default async (params: IParams): Promise<IPage> => {
             },
             {
               type: HandlerInputType.ArticleSection,
+              displayName: 'Bravo',
+              displayNameColor: 'purpleheart',
+              linkUrl: '/' + Section.Bravo,
+              articleList: {
+                sourceId: Strap.Bravo,
+                strapName: 'Bravo',
+                totalBasicArticlesUnit: 2,
+                totalBasicArticleTitleUnit: 3
+              }
+            },
+            {
+              type: HandlerInputType.ArticleSection,
               displayName: 'Travel',
               displayNameColor: 'yellowsea',
               linkUrl: '/' + Section.Travel,
