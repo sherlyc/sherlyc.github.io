@@ -45,16 +45,16 @@ app.use(cookieParser());
 
 app.use(
   cacheControl({
-    '/spade/api/**': 'max-age=180', // 3 minute
+    '/spade/api/**': 'max-age=60', // 1 minute
     '/spade/assets/**': 'max-age=86400', // 1 day
     '/spade/*.js.map': 'max-age=31536000', // 1 year
     '/spade/*.js': 'max-age=31536000', // 1 year
     '/spade/*.css': 'max-age=31536000', // 1 year
     '/spade/signin-callback*': 'max-age=2592000', // 30 days
     '/spade/manifest.webmanifest': 'max-age=600', // 10 minutes
-    '/spade/**': 'max-age=180', // 3 minute
-    '/*.json': 'max-age=180', // 3 minute
-    '/*.js': 'max-age=180', // 3 minute
+    '/spade/**': 'max-age=180', // 3 minutes
+    '/*.json': 'max-age=180', // 3 minutes
+    '/*.js': 'max-age=180', // 3 minutes
     '/index.html': 'max-age=60', // 1 minute
     '/': 'max-age=60', // 1 minute
     default: 'max-age=60'
