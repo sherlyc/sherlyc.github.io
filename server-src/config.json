@@ -1,7 +1,7 @@
 {
   "production": {
     "retryTimeout": 1000,
-    "requestTimeout": 10000,
+    "requestTimeout": 30000,
     "jsonFeedAPI": "https://i.stuff.co.nz/_json",
     "midStripListAssetId": "63769065",
     "miniMidStripListAssetId": "63768876",
@@ -26,7 +26,7 @@
   },
   "staging": {
     "retryTimeout": 1000,
-    "requestTimeout": 10000,
+    "requestTimeout": 30000,
     "jsonFeedAPI": "https://i-preprod.stuff.co.nz/_json",
     "midStripListAssetId": "63769065",
     "miniMidStripListAssetId": "63768876",
@@ -51,7 +51,7 @@
   },
   "development": {
     "retryTimeout": 500,
-    "requestTimeout": 10000,
+    "requestTimeout": 30000,
     "jsonFeedAPI": "https://i.stuff.co.nz/_json",
     "midStripListAssetId": "63769065",
     "miniMidStripListAssetId": "63768876",
@@ -76,7 +76,7 @@
   },
   "localhost": {
     "retryTimeout": 500,
-    "requestTimeout": 10000,
+    "requestTimeout": 30000,
     "jsonFeedAPI": "https://i.stuff.co.nz/_json",
     "midStripListAssetId": "63769065",
     "miniMidStripListAssetId": "63768876",
@@ -101,7 +101,7 @@
   },
   "test": {
     "retryTimeout": 1,
-    "requestTimeout": 10000,
+    "requestTimeout": 30000,
     "jsonFeedAPI": "https://i.stuff.co.nz/_json",
     "midStripListAssetId": "63769065",
     "miniMidStripListAssetId": "63768876",
