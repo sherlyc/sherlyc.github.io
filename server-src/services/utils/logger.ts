@@ -13,7 +13,7 @@ function getFormat(name: string): logform.Format {
       );
 }
 
-const winstonLogger: Logger = winston.createLogger({
+export const winstonLogger: Logger = winston.createLogger({
   level: config.loggerOptions.level,
   format: getFormat(config.loggerOptions.format),
   transports: [

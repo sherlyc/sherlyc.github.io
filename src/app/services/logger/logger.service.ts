@@ -3,6 +3,7 @@ import { ConfigService } from '../config/config.service';
 import { BrowserClient, Hub } from '@sentry/browser';
 import { RewriteFrames } from '@sentry/integrations';
 import { CorrelationService } from '../correlation/correlation.service';
+import { RuntimeService } from '../runtime/runtime.service';
 interface ISpadeConsole extends Console {
   [key: string]: Function;
 }
@@ -15,7 +16,8 @@ export class LoggerService implements ErrorHandler {
 
   constructor(
     private config: ConfigService,
-    private correlationService: CorrelationService
+    private correlationService: CorrelationService,
+    private runtime: RuntimeService
   ) {
     this.client = new Hub(
       new BrowserClient({
@@ -37,7 +39,7 @@ export class LoggerService implements ErrorHandler {
     }
 
     const loggingIndex = this.logLevels.indexOf(logLevel);
-    if (loggingIndex >= currentLogLevelIndex) {
+    if (this.runtime.isServer() || loggingIndex >= currentLogLevelIndex) {
       (console as ISpadeConsole)[logLevel].call(
         console,
         JSON.stringify(this.correlationService.getCorrelation()),
