@@ -13,8 +13,10 @@ import { join } from 'path';
 import 'source-map-support/register';
 import api from '../server-src/app';
 import * as helmet from 'helmet';
+import { winstonLogger } from '../server-src/services/utils/logger';
 import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
 import { cacheControl } from './middlewares/cache-control';
+import { logger } from 'express-winston';
 export { AppServerModule } from './app/app.server.module';
 
 // @ts-ignore
@@ -29,6 +31,13 @@ enableProdMode();
 
 // Express server
 const app = express();
+
+app.use(
+  logger({
+    winstonInstance: winstonLogger
+  })
+);
+
 app.disable('x-powered-by');
 app.use(
   helmet({

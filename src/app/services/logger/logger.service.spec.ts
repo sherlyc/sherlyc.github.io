@@ -4,6 +4,7 @@ import { ConfigService } from '../config/config.service';
 import { mockService, ServiceMock } from '../mocks/MockService';
 import { CorrelationService } from '../correlation/correlation.service';
 import { ICorrelation } from '../correlation/__types__/ICorrelation';
+import { RuntimeService } from '../runtime/runtime.service';
 
 describe('LoggerService', () => {
   let configService: ServiceMock<ConfigService>;
@@ -21,6 +22,10 @@ describe('LoggerService', () => {
         {
           provide: CorrelationService,
           useClass: mockService(CorrelationService)
+        },
+        {
+          provide: RuntimeService,
+          useClass: mockService(RuntimeService)
         }
       ]
     });
