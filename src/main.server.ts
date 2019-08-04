@@ -7,7 +7,6 @@ import { renderModuleFactory } from '@angular/platform-server';
 import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 
 import * as express from 'express';
-import * as cors from 'cors';
 import * as cookieParser from 'cookie-parser';
 import { readFileSync } from 'fs';
 import { join } from 'path';
@@ -40,7 +39,7 @@ app.use(
     noSniff: false
   })
 );
-app.use(cors());
+
 app.use(cookieParser());
 
 app.use(
