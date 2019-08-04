@@ -24,8 +24,18 @@ export class HttpInterceptorService implements HttpInterceptor {
     if (this.runtime.isBrowser()) {
       return next.handle(req);
     }
+    // in SSR, replace relative path with host or X-Forwarded-Host
+    const protocol =
+      this.request.get('x-orig-proto') ||
+      this.request.get('x-forwarded-proto') ||
+      (this.request.secure ? 'https' : 'http');
+    const host =
+      this.request.get('x-forwarded-host') || this.request.get('host');
+    const url = req.url.startsWith('/')
+      ? `${protocol}://${host}${req.url}`
+      : req.url;
 
-    return next.handle(this.populateAuthorizationHeader(req));
+    return next.handle(this.populateAuthorizationHeader(req.clone({ url })));
   }
 
   populateAuthorizationHeader(req: HttpRequest<any>): HttpRequest<any> {

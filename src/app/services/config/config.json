@@ -2,21 +2,15 @@
   "production": {
     "retryTimeout": 1000,
     "requestTimeout": 10000,
-    "spadeAPI": "http://localhost:4000/spade/api/content",
-    "weatherAPI": "http://localhost:4000/spade/api/weather",
-    "experimentAPI": "http://localhost:4000/spade/api/experiment",
-    "featureAPI": "http://localhost:4000/spade/api/feature",
+    "spadeAPI": "/spade/api/content",
+    "weatherAPI": "/spade/api/weather",
+    "experimentAPI": "/spade/api/experiment",
+    "featureAPI": "/spade/api/feature",
     "loggerOptions": {
       "level": "warn",
       "format": "json"
     },
     "aadSdkUrl": "https://i.stuff.co.nz/adnostic/manifest.json",
-    "browserOverrides": {
-      "spadeAPI": "/spade/api/content",
-      "weatherAPI": "/spade/api/weather",
-      "experimentAPI": "/spade/api/experiment",
-      "featureAPI": "/spade/api/feature"
-    },
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
       "sampleRate": 1.0,
@@ -33,21 +27,15 @@
   "staging": {
     "retryTimeout": 1000,
     "requestTimeout": 10000,
-    "spadeAPI": "http://localhost:4000/spade/api/content",
-    "weatherAPI": "http://localhost:4000/spade/api/weather",
-    "experimentAPI": "http://localhost:4000/spade/api/experiment",
-    "featureAPI": "http://localhost:4000/spade/api/feature",
+    "spadeAPI": "/spade/api/content",
+    "weatherAPI": "/spade/api/weather",
+    "experimentAPI": "/spade/api/experiment",
+    "featureAPI": "/spade/api/feature",
     "loggerOptions": {
       "level": "info",
       "format": "json"
     },
     "aadSdkUrl": "https://i-preprod.stuff.co.nz/adnostic/manifest.json",
-    "browserOverrides": {
-      "spadeAPI": "/spade/api/content",
-      "weatherAPI": "/spade/api/weather",
-      "experimentAPI": "/spade/api/experiment",
-      "featureAPI": "/spade/api/feature"
-    },
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
       "sampleRate": 1.0,
@@ -64,21 +52,15 @@
   "development": {
     "retryTimeout": 500,
     "requestTimeout": 10000,
-    "spadeAPI": "http://localhost:4000/spade/api/content",
-    "weatherAPI": "http://localhost:4000/spade/api/weather",
-    "experimentAPI": "http://localhost:4000/spade/api/experiment",
-    "featureAPI": "http://localhost:4000/spade/api/feature",
+    "spadeAPI": "/spade/api/content",
+    "weatherAPI": "/spade/api/weather",
+    "experimentAPI": "/spade/api/experiment",
+    "featureAPI": "/spade/api/feature",
     "loggerOptions": {
       "level": "debug",
       "format": "text"
     },
     "aadSdkUrl": "https://adnostic.adsdevint.shift21.ffx.nz/adnostic/manifest.json",
-    "browserOverrides": {
-      "spadeAPI": "/spade/api/content",
-      "weatherAPI": "/spade/api/weather",
-      "experimentAPI": "/spade/api/experiment",
-      "featureAPI": "/spade/api/feature"
-    },
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
       "sampleRate": 0,
@@ -95,22 +77,15 @@
   "localhost": {
     "retryTimeout": 500,
     "requestTimeout": 10000,
-    "spadeAPI": "http://localhost:4000/spade/api/content",
-    "weatherAPI": "http://localhost:4000/spade/api/weather",
-    "experimentAPI": "http://localhost:4000/spade/api/experiment",
-    "featureAPI": "http://localhost:4000/spade/api/feature",
+    "spadeAPI": "/spade/api/content",
+    "weatherAPI": "/spade/api/weather",
+    "experimentAPI": "/spade/api/experiment",
+    "featureAPI": "/spade/api/feature",
     "loggerOptions": {
       "level": "debug",
       "format": "text"
     },
-    "aadSdkUrl": "http://localhost:4000/spade/assets/adnostic_manifest.json",
-    "browserOverrides": {
-      "aadSdkUrl": "/spade/assets/adnostic_manifest.json",
-      "spadeAPI": "/spade/api/content",
-      "weatherAPI": "/spade/api/weather",
-      "experimentAPI": "/spade/api/experiment",
-      "featureAPI": "/spade/api/feature"
-    },
+    "aadSdkUrl": "/spade/assets/adnostic_manifest.json",
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
       "sampleRate": 0,
@@ -127,22 +102,15 @@
   "test": {
     "retryTimeout": 1,
     "requestTimeout": 10000,
-    "spadeAPI": "http://localhost:4000/spade/api/content",
-    "weatherAPI": "http://localhost:4000/spade/api/weather",
-    "experimentAPI": "http://localhost:4000/spade/api/experiment",
-    "featureAPI": "http://localhost:4000/spade/api/feature",
+    "spadeAPI": "/spade/api/content",
+    "weatherAPI": "/spade/api/weather",
+    "experimentAPI": "/spade/api/experiment",
+    "featureAPI": "/spade/api/feature",
     "loggerOptions": {
       "level": "debug",
       "format": "text"
     },
-    "aadSdkUrl": "http://localhost:4000/adnostic/manifest.json",
-    "browserOverrides": {
-      "aadSdkUrl": "/adnostic/manifest.json",
-      "spadeAPI": "/spade/api/content",
-      "weatherAPI": "/spade/api/weather",
-      "experimentAPI": "/spade/api/experiment",
-      "featureAPI": "/spade/api/feature"
-    },
+    "aadSdkUrl": "/adnostic/manifest.json",
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
       "sampleRate": 1.0,
