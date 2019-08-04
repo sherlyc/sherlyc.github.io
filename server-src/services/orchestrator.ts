@@ -35,10 +35,10 @@ export default async (params: IParams): Promise<IPage> => {
             },
             {
               type: HandlerInputType.ExternalContent,
-              height: '145px',
+              height: '75px',
               width: '100%',
               url:
-                'https://interactives.stuff.co.nz/2019/07/desert-island-dump/desert-island-dump-mpointer.html'
+                'https://interactives.stuff.co.nz/2019/08/bnz-files/bnz-files-m-uber.html'
             },
             {
               type: HandlerInputType.TopStories,
