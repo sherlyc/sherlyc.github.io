@@ -29,5 +29,6 @@ export enum Strap {
   Newsroom = 'strapNewsroom',
   Tarana = 'strapTarana',
   SponsoredContent = 'strapSponsoredContent',
-  Bravo = 'strapBravo'
+  Bravo = 'strapBravo',
+  Property = 'strapProperty'
 }

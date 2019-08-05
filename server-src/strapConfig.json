@@ -134,6 +134,10 @@
     "strapBravo": {
       "ids": ["114265840"],
       "toDedupe": true
+    },
+    "strapProperty": {
+      "ids": ["85424401"],
+      "toDedupe": false
     }
   },
   "overrides": {

@@ -25,5 +25,6 @@ export enum Section {
   Newsroom = 'national/newsroom',
   SponsoredContent = 'sponsored-content',
   Tarana = 'tarana',
-  Bravo = 'entertainment/bravo'
+  Bravo = 'entertainment/bravo',
+  Property = 'business/property'
 }

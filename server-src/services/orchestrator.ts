@@ -114,6 +114,30 @@ export default async (params: IParams): Promise<IPage> => {
             },
             {
               type: HandlerInputType.ArticleSection,
+              displayName: 'Business',
+              displayNameColor: 'royalblue',
+              linkUrl: '/' + Section.Business,
+              articleList: {
+                sourceId: Strap.Business,
+                strapName: 'Business',
+                totalBasicArticlesUnit: 2,
+                totalBasicArticleTitleUnit: 3
+              }
+            },
+            {
+              type: HandlerInputType.ArticleSection,
+              displayName: 'Travel',
+              displayNameColor: 'yellowsea',
+              linkUrl: '/' + Section.Travel,
+              articleList: {
+                sourceId: Strap.Travel,
+                strapName: 'Travel',
+                totalBasicArticlesUnit: 2,
+                totalBasicArticleTitleUnit: 3
+              }
+            },
+            {
+              type: HandlerInputType.ArticleSection,
               displayName: 'Premium',
               displayNameColor: 'premiumdark',
               linkUrl: '/' + Section.Premium,
@@ -144,38 +168,14 @@ export default async (params: IParams): Promise<IPage> => {
             },
             {
               type: HandlerInputType.ArticleSection,
-              displayName: 'Business',
+              displayName: 'Property',
               displayNameColor: 'royalblue',
-              linkUrl: '/' + Section.Business,
+              linkUrl: '/' + Section.Property,
               articleList: {
-                sourceId: Strap.Business,
-                strapName: 'Business',
+                sourceId: Strap.Property,
+                strapName: 'Property',
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 3
-              }
-            },
-            {
-              type: HandlerInputType.ArticleSection,
-              displayName: 'Opinion',
-              displayNameColor: 'dingley',
-              linkUrl: '/' + Section.Opinion,
-              articleList: {
-                sourceId: Strap.Opinion,
-                strapName: 'Opinion',
-                totalBasicArticlesUnit: 2,
-                totalBasicArticleTitleUnit: 2
-              }
-            },
-            {
-              type: HandlerInputType.ArticleSection,
-              displayName: 'Good Reads',
-              displayNameColor: 'mediumslateblue',
-              linkUrl: '/' + Section.GoodReads,
-              articleList: {
-                sourceId: Strap.GoodReads,
-                strapName: 'Good Reads',
-                totalBasicArticlesUnit: 2,
-                totalBasicArticleTitleUnit: 2
               }
             },
             {
@@ -186,18 +186,6 @@ export default async (params: IParams): Promise<IPage> => {
                 sourceId: Strap.DailyFix,
                 strapName: 'Daily Fix',
                 totalBasicArticlesUnit: 3
-              }
-            },
-            {
-              type: HandlerInputType.ArticleSection,
-              displayName: 'Technology',
-              displayNameColor: 'carribeangreen',
-              linkUrl: '/' + Section.Technology,
-              articleList: {
-                sourceId: Strap.Technology,
-                strapName: 'Technology',
-                totalBasicArticlesUnit: 2,
-                totalBasicArticleTitleUnit: 3
               }
             },
             {
@@ -262,14 +250,38 @@ export default async (params: IParams): Promise<IPage> => {
             },
             {
               type: HandlerInputType.ArticleSection,
-              displayName: 'Travel',
-              displayNameColor: 'yellowsea',
-              linkUrl: '/' + Section.Travel,
+              displayName: 'Technology',
+              displayNameColor: 'carribeangreen',
+              linkUrl: '/' + Section.Technology,
               articleList: {
-                sourceId: Strap.Travel,
-                strapName: 'Travel',
+                sourceId: Strap.Technology,
+                strapName: 'Technology',
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 3
+              }
+            },
+            {
+              type: HandlerInputType.ArticleSection,
+              displayName: 'Opinion',
+              displayNameColor: 'dingley',
+              linkUrl: '/' + Section.Opinion,
+              articleList: {
+                sourceId: Strap.Opinion,
+                strapName: 'Opinion',
+                totalBasicArticlesUnit: 2,
+                totalBasicArticleTitleUnit: 2
+              }
+            },
+            {
+              type: HandlerInputType.ArticleSection,
+              displayName: 'Good Reads',
+              displayNameColor: 'mediumslateblue',
+              linkUrl: '/' + Section.GoodReads,
+              articleList: {
+                sourceId: Strap.GoodReads,
+                strapName: 'Good Reads',
+                totalBasicArticlesUnit: 2,
+                totalBasicArticleTitleUnit: 2
               }
             },
             {
