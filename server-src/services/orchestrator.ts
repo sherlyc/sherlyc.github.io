@@ -69,13 +69,6 @@ export default async (params: IParams): Promise<IPage> => {
               }
             },
             {
-              type: HandlerInputType.MidStrip,
-              strapName: 'MidStrip',
-              sourceId: Strap.MidStrip,
-              totalArticles:
-                homepageStrapsConfig[Strap.MidStrip].totalArticlesWithImages
-            },
-            {
               type: HandlerInputType.Feature,
               name: FeatureName.VideoHubFeature,
               content: {
@@ -83,8 +76,15 @@ export default async (params: IParams): Promise<IPage> => {
                 height: '215px',
                 width: '100%',
                 url:
-                  'https://stuff-dev.accedoanz.com/shelf/5d06caa81de1c4001f81a46e'
+                  'https://www.playwidget.stuff.co.nz/shelf/5d06caa81de1c4001f81a46e'
               }
+            },
+            {
+              type: HandlerInputType.MidStrip,
+              strapName: 'MidStrip',
+              sourceId: Strap.MidStrip,
+              totalArticles:
+                homepageStrapsConfig[Strap.MidStrip].totalArticlesWithImages
             },
             {
               type: HandlerInputType.ArticleSection,
