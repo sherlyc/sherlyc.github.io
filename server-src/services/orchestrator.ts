@@ -54,6 +54,17 @@ export default async (params: IParams): Promise<IPage> => {
                 homepageStrapsConfig[Strap.MiniMidStrip].totalArticlesWithImages
             },
             {
+              type: HandlerInputType.Feature,
+              name: FeatureName.VideoHubFeature,
+              content: {
+                type: HandlerInputType.ExternalContent,
+                height: '215px',
+                width: '100%',
+                url:
+                  'https://www.playwidget.stuff.co.nz/shelf/5d06caa81de1c4001f81a46e'
+              }
+            },
+            {
               type: HandlerInputType.ArticleSection,
               displayName: `Editors' Picks`,
               displayNameColor: 'darkblue',
@@ -65,17 +76,6 @@ export default async (params: IParams): Promise<IPage> => {
                     .totalArticlesWithImages,
                 totalBasicArticleTitleUnit:
                   homepageStrapsConfig[Strap.EditorPicks].totalTitleArticles
-              }
-            },
-            {
-              type: HandlerInputType.Feature,
-              name: FeatureName.VideoHubFeature,
-              content: {
-                type: HandlerInputType.ExternalContent,
-                height: '215px',
-                width: '100%',
-                url:
-                  'https://www.playwidget.stuff.co.nz/shelf/5d06caa81de1c4001f81a46e'
               }
             },
             {
