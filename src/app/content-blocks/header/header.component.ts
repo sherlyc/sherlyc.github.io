@@ -50,7 +50,6 @@ export class HeaderComponent
         { label: 'Travel', link: '/travel' },
         { label: 'Motoring', link: '/motoring' },
         { label: 'Stuff Nation', link: '/stuff-nation' },
-        { label: 'Play Stuff', link: 'https://play.stuff.co.nz' },
         { label: 'Quizzes', link: '/national/quizzes' },
         { label: 'Politics', link: '/national/politics' },
         { label: 'Premium', link: '/national/premium' },
