@@ -1,3 +1,3 @@
 export enum FeatureName {
-  VideoHubFeature = 'VideoHubFeature'
+  Fake = 'fake'
 }

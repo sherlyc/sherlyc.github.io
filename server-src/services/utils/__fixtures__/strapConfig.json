@@ -139,21 +139,15 @@
   "overrides": {
     "production": {
       "strapSponsoredContent": {
-        "ids": [
-          "999999"
-        ],
+        "ids": ["999999"],
         "toDedupe": false
       },
       "strapMetro": {
-        "ids": [
-          "111111"
-        ],
+        "ids": ["111111"],
         "toDedupe": false
       },
       "strapBravo": {
-        "ids": [
-          "63868237"
-        ],
+        "ids": ["63868237"],
         "toDedupe": false
       }
     }

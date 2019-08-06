@@ -12,25 +12,25 @@ describe('Feature Handler', () => {
 
   it('should return specified content block', async () => {
     const handlerRunnerMock = jest.fn();
-    const videoHubBlock = {
+    const fakeBlock = {
       type: ContentBlockType.ExternalContentUnit,
       url: '/abc',
       width: '200px',
       height: '100%'
     } as IExternalContentUnit;
-    handlerRunnerMock.mockResolvedValue([videoHubBlock]);
+    handlerRunnerMock.mockResolvedValue([fakeBlock]);
 
     const expectedResult: IFeatureContainer = {
       type: ContentBlockType.FeatureContainer,
-      name: FeatureName.VideoHubFeature,
-      content: [videoHubBlock]
+      name: FeatureName.Fake,
+      content: [fakeBlock]
     };
 
     const result = await featureHandler(
       handlerRunnerMock,
       {
         type: HandlerInputType.Feature,
-        name: FeatureName.VideoHubFeature,
+        name: FeatureName.Fake,
         content: {
           type: HandlerInputType.ExternalContent,
           url: '/abc',

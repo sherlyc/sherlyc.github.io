@@ -32,9 +32,7 @@ async function requestListAsset(
   total?: number
 ): Promise<IListAsset> {
   // Adding extra query string to force retrieve new data from jsonfeed
-  const url: URL = new URL(
-    `${config.jsonFeedAPI}/listasset/${listAssetId}`
-  );
+  const url: URL = new URL(`${config.jsonFeedAPI}/listasset/${listAssetId}`);
   const response = await http(params).get<IListAsset>(url.href);
 
   return total

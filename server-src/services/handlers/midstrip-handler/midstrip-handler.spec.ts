@@ -5,7 +5,7 @@ import { HandlerInputType } from '../__types__/HandlerInputType';
 import { getStrapArticles } from '../../adapters/strap-list-service';
 import { Strap } from '../../strap';
 import { getListAsset } from '../../adapters/jsonfeed';
-import {ListAsset} from "../../listAsset";
+import { ListAsset } from '../../listAsset';
 
 jest.mock('../../adapters/strap-list-service');
 jest.mock('../../adapters/jsonfeed');
@@ -259,5 +259,4 @@ describe('MidStripHandler', () => {
       ).rejects.toEqual(error);
     });
   });
-
 });

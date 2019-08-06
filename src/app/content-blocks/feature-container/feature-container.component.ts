@@ -6,7 +6,7 @@ import { FeatureSwitchService } from '../../services/feature-switch/feature-swit
 import { IFeatureContainer } from '../../../../common/__types__/IFeatureContainer';
 
 @Component({
-  selector: 'app-experiment-container',
+  selector: 'app-feature-container',
   templateUrl: './feature-container.component.html'
 })
 export class FeatureContainerComponent
