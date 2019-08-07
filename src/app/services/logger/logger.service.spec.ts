@@ -47,7 +47,7 @@ describe('LoggerService', () => {
 
     expect(console['debug']).toHaveBeenCalledWith(
       JSON.stringify(correlationInfo),
-      '"This should be logged as debug"'
+      'This should be logged as debug'
     );
   });
 
@@ -93,7 +93,7 @@ describe('LoggerService', () => {
 
     expect(console.warn).toHaveBeenCalledWith(
       JSON.stringify(correlationInfo),
-      '"This should be logged as a warn"'
+      'This should be logged as a warn'
     );
   });
 });
