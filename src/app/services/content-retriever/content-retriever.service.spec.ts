@@ -76,36 +76,6 @@ describe('ContentRetrieverService', () => {
       expect(req.request.method).toBe('GET');
       req.flush(jsonfeed);
     });
-
-    it('should return an error content block when the request fails', (done) => {
-      contentRetrieverService.getContent().subscribe(
-        (response) => {
-          expect(response).toEqual(
-            expect.objectContaining({
-              content: expect.arrayContaining([
-                { type: 'Header' },
-                {
-                  type: 'Container',
-                  items: [expect.objectContaining({ type: 'ErrorBlock' })]
-                },
-                { type: 'Footer' }
-              ])
-            })
-          );
-          done();
-        },
-        (err) => {
-          fail(err);
-        }
-      );
-
-      const req = httpMock.expectOne(spadeAPI);
-      expect(req.request.method).toBe('GET');
-      req.flush(
-        { data: 'something went wrong' },
-        { status: 500, statusText: 'Server error' }
-      );
-    });
   });
 
   describe('in server', () => {
@@ -145,36 +115,6 @@ describe('ContentRetrieverService', () => {
       const req = httpMock.expectOne(spadeAPI);
       expect(req.request.method).toBe('GET');
       req.flush(jsonfeed);
-    });
-
-    it('should return an error content block when the request fails', (done) => {
-      contentRetrieverService.getContent().subscribe(
-        (response) => {
-          expect(response).toEqual(
-            expect.objectContaining({
-              content: expect.arrayContaining([
-                { type: 'Header' },
-                {
-                  type: 'Container',
-                  items: [expect.objectContaining({ type: 'ErrorBlock' })]
-                },
-                { type: 'Footer' }
-              ])
-            })
-          );
-          done();
-        },
-        (err) => {
-          fail(err);
-        }
-      );
-
-      const req = httpMock.expectOne(spadeAPI);
-      expect(req.request.method).toBe('GET');
-      req.flush(
-        { data: 'something went wrong' },
-        { status: 500, statusText: 'Server error' }
-      );
     });
   });
 });
