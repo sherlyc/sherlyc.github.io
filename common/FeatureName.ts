@@ -1,3 +1,1 @@
-export enum FeatureName {
-  Fake = 'fake'
-}
+export enum FeatureName {}

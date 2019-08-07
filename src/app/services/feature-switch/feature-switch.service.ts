@@ -36,6 +36,7 @@ export class FeatureSwitchService {
       return false;
     }
     const features = await this.features;
+    // @ts-ignore
     return features[featureName];
   }
 
