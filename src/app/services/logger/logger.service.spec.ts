@@ -47,7 +47,7 @@ describe('LoggerService', () => {
 
     expect(console['debug']).toHaveBeenCalledWith(
       JSON.stringify(correlationInfo),
-      'This should be logged as debug'
+      '"This should be logged as debug"'
     );
   });
 
@@ -72,11 +72,12 @@ describe('LoggerService', () => {
     const service: LoggerService = TestBed.get(LoggerService);
     spyOn(console, 'error');
 
-    service.error(new Error('This should be logged as an error'));
+    const error = new Error('This should be logged as an error');
+    service.error(error);
 
     expect(console.error).toHaveBeenCalledWith(
       JSON.stringify(correlationInfo),
-      new Error('This should be logged as an error')
+      error.toString()
     );
   });
 
@@ -92,7 +93,7 @@ describe('LoggerService', () => {
 
     expect(console.warn).toHaveBeenCalledWith(
       JSON.stringify(correlationInfo),
-      'This should be logged as a warn'
+      '"This should be logged as a warn"'
     );
   });
 });
