@@ -47,7 +47,7 @@ export class ContentRetrieverService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    this.logger.error(error);
+    this.logger.error(error, 'ContentRetrieverService - getContent error');
     return of({
       title: 'Stuff',
       content: [
