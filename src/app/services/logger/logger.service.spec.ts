@@ -72,11 +72,12 @@ describe('LoggerService', () => {
     const service: LoggerService = TestBed.get(LoggerService);
     spyOn(console, 'error');
 
-    service.error(new Error('This should be logged as an error'));
+    const error = new Error('This should be logged as an error');
+    service.error(error);
 
     expect(console.error).toHaveBeenCalledWith(
       JSON.stringify(correlationInfo),
-      new Error('This should be logged as an error')
+      error.toString()
     );
   });
 

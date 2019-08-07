@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
+import { catchError, retry } from 'rxjs/operators';
 import { IPage } from '../../../../common/__types__/IPage';
 import { LoggerService } from '../logger/logger.service';
 import { ConfigService } from '../config/config.service';
@@ -31,7 +31,10 @@ export class ContentRetrieverService {
       } else {
         this.http
           .get<IPage>(this.config.getConfig().spadeAPI)
-          .pipe(catchError(this.handleError.bind(this)))
+          .pipe(
+            retry(3),
+            catchError(this.handleError.bind(this))
+          )
           .subscribe((result) => {
             if (this.runtime.isServer()) {
               this.transferState.set(KEY, result);
@@ -44,7 +47,7 @@ export class ContentRetrieverService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    this.logger.error(error);
+    this.logger.error(error, 'ContentRetrieverService - getContent error');
     return of({
       title: 'Stuff',
       content: [
