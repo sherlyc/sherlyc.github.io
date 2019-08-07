@@ -8,11 +8,13 @@ import { WeatherLocations } from '../../../../common/WeatherLocations';
 import { ConfigService } from '../config/config.service';
 import { mockService, ServiceMock } from '../mocks/MockService';
 import * as weatherResponse from './__fixtures__/weatherData.json';
+import { LoggerService } from '../logger/logger.service';
 
 describe('Weather Retriever', () => {
   let weatherRetrieverService: WeatherRetrieverService;
   let httpMock: HttpTestingController;
   let configServiceMock: ServiceMock<ConfigService>;
+  let loggerService: ServiceMock<LoggerService>;
   const weatherAPI = 'http://localhost';
 
   beforeEach(() => {
@@ -22,6 +24,10 @@ describe('Weather Retriever', () => {
         {
           provide: ConfigService,
           useClass: mockService(ConfigService)
+        },
+        {
+          provide: LoggerService,
+          useClass: mockService(LoggerService)
         }
       ]
     });
@@ -29,6 +35,7 @@ describe('Weather Retriever', () => {
     weatherRetrieverService = TestBed.get(WeatherRetrieverService);
     httpMock = TestBed.get(HttpTestingController);
     configServiceMock = TestBed.get(ConfigService);
+    loggerService = TestBed.get(LoggerService);
     configServiceMock.getConfig.mockReturnValue({ weatherAPI });
   });
 
@@ -47,11 +54,12 @@ describe('Weather Retriever', () => {
     req.flush(weatherResponse);
   });
 
-  it('should return error if unable to fetch weather data', (done) => {
+  it('should log warning and return error if unable to fetch weather data', (done) => {
     weatherRetrieverService.getWeather(WeatherLocations.Auckland).subscribe(
       () => {},
       (error) => {
         expect(error).toBeTruthy();
+        expect(loggerService.warn).toHaveBeenCalled();
         done();
       }
     );

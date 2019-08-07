@@ -39,7 +39,7 @@ export class AdService {
             manifest.url
           );
         } else {
-          this.logger.error(new Error('No adnostic URL'));
+          this.logger.error(new Error('AdService - no adnostic URL'));
         }
         resolve();
       } catch (e) {

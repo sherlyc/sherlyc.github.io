@@ -28,7 +28,10 @@ async function requestTopStoriesLayout(params: IParams): Promise<LayoutType> {
   const response = await http(params).get<ISectionLayout>(config.layoutAPI);
 
   if (!isValid(response)) {
-    logger.error(params.apiRequestId, 'Failed to fetch layout');
+    logger.error(
+      params.apiRequestId,
+      `Layout API - Failed to fetch layout - Status: ${response.status} Data: ${response.data}`
+    );
     return LayoutType.DEFAULT;
   }
 
