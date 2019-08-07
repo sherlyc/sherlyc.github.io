@@ -22,7 +22,7 @@ describe('AuhtenticationService', () => {
   const libraryUrl = 'http://libraryurl.com';
   const authProvider = 'https://my.preprod.stuff.co.nz';
   const clientId = 'c0f1b219-297b-4104-8300-94c4636768da';
-  const signinRedirectPath = '/spade/signin-callback-v2.html';
+  const signinRedirectPath = '/spade/signin-callback-v2';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
