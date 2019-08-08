@@ -127,6 +127,10 @@ app.get(['/', '/spade/signin-callback-v2'], (req, res) => {
   res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });
 });
 
+app.get(['/', '/spade/signin-callback'], (req, res) => {
+  res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });
+});
+
 // Start up the Node server
 app.listen(PORT, () => {
   console.log(

@@ -5,6 +5,10 @@ import { SigninCallbackComponent } from './shared/components/authentication/sign
 
 const routes: Routes = [
   {
+    path: 'spade/signin-callback',
+    component: SigninCallbackComponent
+  },
+  {
     path: 'spade/signin-callback-v2',
     component: SigninCallbackComponent
   },
