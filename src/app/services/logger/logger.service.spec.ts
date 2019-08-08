@@ -77,7 +77,7 @@ describe('LoggerService', () => {
 
     expect(console.error).toHaveBeenCalledWith(
       JSON.stringify(correlationInfo),
-      error.toString()
+      expect.stringContaining(error.toString())
     );
   });
 

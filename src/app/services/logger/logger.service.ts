@@ -43,7 +43,17 @@ export class LoggerService implements ErrorHandler {
       (console as ISpadeConsole)[logLevel].call(
         console,
         JSON.stringify(this.correlationService.getCorrelation()),
-        ...rest.map((item) => `${item}`)
+        ...rest.map((item) => {
+          if (item instanceof Error) {
+            return `${item.name} ${item.message} ${JSON.stringify(
+              item.stack
+            )} ${item.toString && item.toString()}`;
+          } else if (typeof item === 'string') {
+            return item;
+          } else {
+            return JSON.stringify(item);
+          }
+        })
       );
     }
   }
