@@ -22,7 +22,8 @@ describe('Feature Handler', () => {
 
     const expectedResult: IFeatureContainer = {
       type: ContentBlockType.FeatureContainer,
-      name: FeatureName.Fake,
+      // @ts-ignore
+      name: 'fake',
       content: [fakeBlock]
     };
 
@@ -30,7 +31,8 @@ describe('Feature Handler', () => {
       handlerRunnerMock,
       {
         type: HandlerInputType.Feature,
-        name: FeatureName.Fake,
+        // @ts-ignore
+        name: 'fake',
         content: {
           type: HandlerInputType.ExternalContent,
           url: '/abc',

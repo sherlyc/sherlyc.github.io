@@ -86,6 +86,7 @@ describe('FeatureSwitchService', () => {
     await service.setup();
 
     Object.keys(FeatureName).forEach(async (feature) => {
+      // @ts-ignore
       const featureValue = await service.getFeature(feature as FeatureName);
       expect(featureValue).toEqual(true);
     });
@@ -99,6 +100,7 @@ describe('FeatureSwitchService', () => {
     await service.setup();
 
     Object.keys(FeatureName).forEach(async (feature) => {
+      // @ts-ignore
       const featureValue = await service.getFeature(feature as FeatureName);
       expect(featureValue).toEqual(false);
     });
@@ -108,6 +110,7 @@ describe('FeatureSwitchService', () => {
     runtimeService.isServer.mockReturnValue(true);
 
     Object.keys(FeatureName).forEach(async (feature) => {
+      // @ts-ignore
       const featureValue = await service.getFeature(feature as FeatureName);
       expect(featureValue).toEqual(false);
     });

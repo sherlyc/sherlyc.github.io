@@ -48,7 +48,11 @@ export class ContentBlockDirective implements OnChanges {
       componentRef.instance.input = input;
       componentRef.instance.index = index;
     } else {
-      this.logger.error(new Error(`No Component found for ${input.type} type`));
+      this.logger.error(
+        new Error(
+          `ContentBlockDirective - no component found for ${input.type} type`
+        )
+      );
     }
   }
 }

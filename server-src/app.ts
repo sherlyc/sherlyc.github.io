@@ -27,7 +27,10 @@ const setUpNewRelicCustomAttribute = (params: IParams) => {
     try {
       global.newrelic.addCustomAttribute('apiRequestId', params.apiRequestId);
     } catch (err) {
-      logger.error(params.apiRequestId, err);
+      logger.error(
+        params.apiRequestId,
+        `App - failed to set NewRelic custom attribute - ${err}`
+      );
     }
   }
 };

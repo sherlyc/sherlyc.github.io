@@ -158,7 +158,7 @@ export class AnalyticsService implements IAnalyticsService {
         .getWindow()
         .digitalData.events.push(AnalyticsService.transformEvent(event));
     } catch (err) {
-      this.logger.error(err);
+      this.logger.error(err, 'AnalyticsService - pushEvent error');
     }
   }
 
@@ -182,7 +182,7 @@ export class AnalyticsService implements IAnalyticsService {
         .record()
         .post();
     } catch (err) {
-      this.logger.error(err);
+      this.logger.error(err, 'AnalyticsService - trackPageByNielsen error');
     }
   }
 }

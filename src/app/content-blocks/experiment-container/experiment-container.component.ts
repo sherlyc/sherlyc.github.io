@@ -36,7 +36,7 @@ export class ExperimentContainerComponent
       } else {
         this.loggerService.error(
           new Error(
-            `missing variant: ${this.variant}, in experiment: ${this.input.name}`
+            `ExperimentContainer - missing variant: ${this.variant}, in experiment: ${this.input.name}`
           )
         );
       }
