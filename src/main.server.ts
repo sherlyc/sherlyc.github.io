@@ -123,11 +123,7 @@ app.get('/adnostic/*', (req, res) => {
   return res.send('');
 });
 // All regular routes use the Universal engine
-app.get(['/', '/spade/signin-callback-v2'], (req, res) => {
-  res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });
-});
-
-app.get(['/', '/spade/signin-callback'], (req, res) => {
+app.get(['/', '/spade/signin-callback', '/spade/signin-callback-v2'], (req, res) => {
   res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });
 });
 
