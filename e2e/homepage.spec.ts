@@ -32,8 +32,8 @@ describe('Homepage', () => {
       const content = await article.getText();
       expect(content.trim().length).toBeTruthy();
 
-      const image = await article.findElement(By.css('img'));
-      expect(image).toBeTruthy();
+      const title = await article.findElement(By.css('.title'));
+      expect(title).toBeTruthy();
     }
   });
 
@@ -66,7 +66,7 @@ describe('Homepage', () => {
   //   expect(adUrl).toBeTruthy();
   // });
 
-  it('should change video player url when selecting a video from playlist', async () => {
+  xit('should change video player url when selecting a video from playlist', async () => {
     await driver.wait(until.elementLocated(By.css('.video-js video')));
     const videoPlayer = await driver.findElement(By.css('.video-js video'));
     const initialUrl = await videoPlayer.getAttribute('src');
