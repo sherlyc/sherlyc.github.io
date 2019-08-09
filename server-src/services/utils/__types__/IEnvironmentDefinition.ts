@@ -6,11 +6,6 @@ export interface IEnvironmentDefinition {
   retryTimeout: number;
   requestTimeout: number;
   jsonFeedAPI: string;
-  midStripListAssetId: string;
-  miniMidStripListAssetId: string;
-  editorsPickAssetId: string;
-  topStoriesListAssetId: string;
-  dailyFixAssetId: string;
   weatherAPI: string;
   breakingNewsApi: string;
   layoutAPI: string;
