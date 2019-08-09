@@ -4,7 +4,7 @@ import { Strap } from '../../strap';
 
 export interface IMiniMidStripHandlerInput {
   type: HandlerInputType.MiniMidStrip;
-  sourceId: ListAsset.MiniMidStrip | Strap.MiniMidStrip;
+  sourceId: Strap.MiniMidStrip;
   strapName: string;
   totalArticles?: number;
 }

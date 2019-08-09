@@ -1,11 +1,9 @@
 import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { getListAsset } from '../../adapters/jsonfeed';
 import { handlerRunnerFunction } from '../runner';
 import { IImageLinkUnit } from '../../../../common/__types__/IImageLinkUnit';
 import { IParams } from '../../__types__/IParams';
 import { IMiniMidStripHandlerInput } from '../__types__/IMiniMidStripHandlerInput';
-import { ListAsset } from '../../listAsset';
 import { Strap } from '../../strap';
 import { getStrapArticles } from '../../adapters/strap-list-service';
 
@@ -14,23 +12,11 @@ export default async function(
   { totalArticles, strapName, sourceId }: IMiniMidStripHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const sourceIsAStrap = Object.values(Strap).includes(sourceId);
-  let rawArticles;
-
-  if (sourceIsAStrap) {
-    rawArticles = await getStrapArticles(
-      params,
-      sourceId as Strap,
-      totalArticles
-    );
-  } else {
-    rawArticles = await getListAsset(
-      params,
-      ListAsset.MiniMidStrip,
-      totalArticles
-    );
-  }
-
+  const rawArticles = await getStrapArticles(
+    params,
+    sourceId as Strap,
+    totalArticles
+  );
   const miniMidStripArticles = rawArticles.slice(0, totalArticles);
 
   return [
