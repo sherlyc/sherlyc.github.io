@@ -4,7 +4,6 @@ import { IParams } from '../../__types__/IParams';
 import { HandlerInputType } from '../__types__/HandlerInputType';
 import { getStrapArticles } from '../../adapters/strap-list-service';
 import { Strap } from '../../strap';
-import { ListAsset } from '../../listAsset';
 
 jest.mock('../../adapters/strap-list-service');
 jest.mock('../../adapters/jsonfeed');

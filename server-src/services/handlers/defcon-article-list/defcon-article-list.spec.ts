@@ -2,8 +2,6 @@ import { IRawArticle } from '../../adapters/__types__/IRawArticle';
 import { IDefconArticleListHandlerInput } from '../__types__/IDefconArticleListHandlerInput';
 import { HandlerInputType } from '../__types__/HandlerInputType';
 import handlerRunner from '../runner';
-import { ListAsset } from '../../listAsset';
-import * as jsonfeed from '../../adapters/jsonfeed';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 import { IParams } from '../../__types__/IParams';
 import defconArticleList from './defcon-article-list';
@@ -75,7 +73,7 @@ describe('DefconArticleList', () => {
     jest.resetModules();
   });
 
-  it('should return first article as defcon and others as basic articles when input ListAsset.TopStories', async () => {
+  it('should return first article as defcon and others as basic articles when input is TopStories Strap', async () => {
     const handlerInput: IDefconArticleListHandlerInput = {
       type: HandlerInputType.DefconArticleList,
       sourceId: Strap.TopStories,
@@ -102,7 +100,7 @@ describe('DefconArticleList', () => {
     expect(contentBlocks).toEqual(expectedContentBlocks);
   });
 
-  it('should return first article as defcon and others as basic articles when input Strap.TopStories', async () => {
+  it('should return first article as defcon and others as basic articles when input is TopStories Strap', async () => {
     const handlerInput: IDefconArticleListHandlerInput = {
       type: HandlerInputType.DefconArticleList,
       sourceId: Strap.TopStories,

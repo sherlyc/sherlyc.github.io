@@ -1,5 +1,4 @@
 import { HandlerInputType } from './HandlerInputType';
-import { ListAsset } from '../../../services/listAsset';
 import { Strap } from '../../strap';
 
 export interface IDefconArticleListHandlerInput {
