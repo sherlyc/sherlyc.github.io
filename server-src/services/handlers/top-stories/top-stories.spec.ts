@@ -4,7 +4,6 @@ import topStoriesHandler from './top-stories';
 import { ITopStoriesHandlerInput } from '../__types__/ITopStoriesHandlerInput';
 import * as layoutRetriever from '../../../services/adapters/layout-retriever';
 import { LayoutType } from '../../adapters/__types__/LayoutType';
-import { ListAsset } from '../../listAsset';
 import { IBasicArticleListHandlerInput } from '../__types__/IBasicArticleListHandlerInput';
 import { IDefconArticleListHandlerInput } from '../__types__/IDefconArticleListHandlerInput';
 import logger from '../../utils/logger';
@@ -21,14 +20,14 @@ describe('TopStoriesHandler', () => {
     const handlerFunction = jest.fn();
     const handlerInput: ITopStoriesHandlerInput = {
       type: HandlerInputType.TopStories,
-      sourceId: ListAsset.TopStories,
+      sourceId: Strap.TopStories,
       strapName: strapName,
       totalBasicArticlesUnit: 3,
       totalBasicArticleTitleUnit: 3
     };
     const basicArticleListInput: IBasicArticleListHandlerInput = {
       type: HandlerInputType.ArticleList,
-      sourceId: ListAsset.TopStories,
+      sourceId: Strap.TopStories,
       strapName,
       layout: LayoutType.DEFAULT,
       totalBasicArticlesUnit: 3,
