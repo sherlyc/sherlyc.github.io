@@ -1,13 +1,12 @@
 import basicArticleListHandler from './basic-article-list';
-import { Section } from '../../section';
 import { getStrapArticles } from '../../adapters/strap-list-service';
-import { getArticleList, getListAsset } from '../../adapters/jsonfeed';
 import { IParams } from '../../__types__/IParams';
 import { HandlerInputType } from '../__types__/HandlerInputType';
-import { ListAsset } from '../../listAsset';
 import { IRawArticle } from '../../adapters/__types__/IRawArticle';
 import { LayoutType } from '../../adapters/__types__/LayoutType';
 import { Strap } from '../../strap';
+import { Section } from '../../section';
+import { getSectionArticleList } from '../../adapters/jsonfeed';
 
 jest.mock('../../adapters/jsonfeed');
 jest.mock('../../adapters/strap-list-service');
@@ -81,7 +80,7 @@ describe('BasicArticleListHandler', () => {
   it('should get a list of basic article units and ad units', async () => {
     const totalArticles = 1;
     const totalAdUnits = 2;
-    (getArticleList as jest.Mock).mockResolvedValue(rawArticleList);
+    (getSectionArticleList as jest.Mock).mockResolvedValue([articleNumberOne]);
 
     const handlerRunnerMock = jest.fn();
 
@@ -109,7 +108,7 @@ describe('BasicArticleListHandler', () => {
   it('should get a list of basic article units and ad units not exceeding the maximum length', async () => {
     const totalArticles = 2;
     const totalAdUnits = 3;
-    (getArticleList as jest.Mock).mockResolvedValue(rawArticleList);
+    (getStrapArticles as jest.Mock).mockResolvedValue(rawArticleList);
 
     const handlerRunnerMock = jest.fn();
 
@@ -118,7 +117,7 @@ describe('BasicArticleListHandler', () => {
       {
         type: HandlerInputType.ArticleList,
         strapName: 'business',
-        sourceId: Section.Business,
+        sourceId: Strap.Business,
         totalBasicArticlesUnit: 2
       },
       params
@@ -141,7 +140,7 @@ describe('BasicArticleListHandler', () => {
     const totalBasicArticleTitleUnit = 1;
 
     const totalAdUnits = 3;
-    (getArticleList as jest.Mock).mockResolvedValue(rawArticleList);
+    (getStrapArticles as jest.Mock).mockResolvedValue(rawArticleList);
 
     const handlerRunnerMock = jest.fn();
 
@@ -150,7 +149,7 @@ describe('BasicArticleListHandler', () => {
       {
         type: HandlerInputType.ArticleList,
         strapName: 'business',
-        sourceId: Section.Business,
+        sourceId: Strap.Business,
         totalBasicArticlesUnit,
         totalBasicArticleTitleUnit
       },
@@ -176,7 +175,7 @@ describe('BasicArticleListHandler', () => {
     const totalAdUnits = 3;
     const rawEditorsPick = [articleNumberOne, articleNumberTwo];
 
-    (getListAsset as jest.Mock).mockResolvedValue(rawEditorsPick);
+    (getStrapArticles as jest.Mock).mockResolvedValue(rawEditorsPick);
 
     const contentBlocks = await basicArticleListHandler(
       jest.fn(),
@@ -185,7 +184,7 @@ describe('BasicArticleListHandler', () => {
         strapName: 'business',
         totalBasicArticlesUnit: 1,
         totalBasicArticleTitleUnit: 1,
-        sourceId: ListAsset.EditorPicks
+        sourceId: Strap.EditorPicks
       },
       params
     );
@@ -240,7 +239,7 @@ describe('BasicArticleListHandler', () => {
       articleNumberTwo,
       articleNumberOne
     ];
-    (getListAsset as jest.Mock).mockResolvedValue(rawTopStories);
+    (getStrapArticles as jest.Mock).mockResolvedValue(rawTopStories);
     const expectedContentBlocks = [
       basicAdUnit,
       articleNumberTwoAsBasicArticle,
@@ -256,7 +255,7 @@ describe('BasicArticleListHandler', () => {
       {
         type: HandlerInputType.ArticleList,
         strapName: 'business',
-        sourceId: ListAsset.TopStories,
+        sourceId: Strap.TopStories,
         layout: LayoutType.DEFAULT,
         totalBasicArticlesUnit: 3
       },
@@ -268,7 +267,7 @@ describe('BasicArticleListHandler', () => {
 
   it('should return article as is if there is only one article', async () => {
     const rawTopStories = [articleNumberOne];
-    (getListAsset as jest.Mock).mockResolvedValue(rawTopStories);
+    (getStrapArticles as jest.Mock).mockResolvedValue(rawTopStories);
     const expectedContentBlocks = [
       basicAdUnit,
       articleNumberOneAsBasicArticle,
@@ -280,7 +279,7 @@ describe('BasicArticleListHandler', () => {
       {
         type: HandlerInputType.ArticleList,
         strapName: 'business',
-        sourceId: ListAsset.TopStories,
+        sourceId: Strap.TopStories,
         layout: LayoutType.DEFAULT,
         totalBasicArticlesUnit: 1
       },
@@ -296,7 +295,7 @@ describe('BasicArticleListHandler', () => {
       articleNumberTwo,
       articleNumberOne
     ];
-    (getListAsset as jest.Mock).mockResolvedValue(rawTopStories);
+    (getStrapArticles as jest.Mock).mockResolvedValue(rawTopStories);
     const expectedContentBlocks = [
       basicAdUnit,
       articleNumberOneAsBasicArticle,
@@ -312,7 +311,7 @@ describe('BasicArticleListHandler', () => {
       {
         type: HandlerInputType.ArticleList,
         strapName: 'business',
-        sourceId: ListAsset.TopStories,
+        sourceId: Strap.TopStories,
         layout: LayoutType.BIG_HEADLINE,
         totalBasicArticlesUnit: 3
       },
@@ -324,7 +323,7 @@ describe('BasicArticleListHandler', () => {
 
   it('should throw error when failing to retrieve articles for section', async () => {
     const error = new Error('failed to retrieve');
-    (getArticleList as jest.Mock).mockRejectedValue(error);
+    (getStrapArticles as jest.Mock).mockRejectedValue(error);
 
     await expect(
       basicArticleListHandler(
@@ -332,7 +331,7 @@ describe('BasicArticleListHandler', () => {
         {
           type: HandlerInputType.ArticleList,
           strapName: 'business',
-          sourceId: Section.Business,
+          sourceId: Strap.Business,
           totalBasicArticlesUnit: 3
         },
         params
@@ -342,7 +341,7 @@ describe('BasicArticleListHandler', () => {
 
   it('should throw error when failing to retrieve list assets', async () => {
     const error = new Error('failed to retrieve');
-    (getListAsset as jest.Mock).mockRejectedValue(error);
+    (getStrapArticles as jest.Mock).mockRejectedValue(error);
 
     await expect(
       basicArticleListHandler(
@@ -350,7 +349,7 @@ describe('BasicArticleListHandler', () => {
         {
           type: HandlerInputType.ArticleList,
           strapName: 'business',
-          sourceId: ListAsset.TopStories,
+          sourceId: Strap.TopStories,
           totalBasicArticlesUnit: 3
         },
         params
