@@ -28,15 +28,11 @@ export class HttpInterceptorService implements HttpInterceptor {
     let url = req.url;
     const isRelativePath = url.startsWith('/');
     if (isRelativePath) {
-      const protocol =
-        this.request.get('x-orig-proto') ||
-        this.request.get('x-forwarded-proto') ||
-        (this.request.secure ? 'https' : 'http');
       const host =
         this.request.get('x-forwarded-host') || this.request.get('host');
 
       url = /stuff\.co\.nz/.test(host!)
-        ? `${protocol}://${host}${req.url}`
+        ? `https://${host}${req.url}`
         : `http://localhost:4000${req.url}`;
     }
 
