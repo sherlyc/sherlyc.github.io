@@ -58,7 +58,7 @@ app.use(
     '/spade/*.js.map': 'max-age=31536000', // 1 year
     '/spade/*.js': 'max-age=31536000', // 1 year
     '/spade/*.css': 'max-age=31536000', // 1 year
-    '/spade/signin-callback*': 'max-age=2592000', // 30 days
+    '/spade/signin-callback*': 'max-age=300', // 5 minutes
     '/spade/manifest.webmanifest': 'max-age=600', // 10 minutes
     '/spade/**': 'max-age=180', // 3 minutes
     '/*.json': 'max-age=180', // 3 minutes
@@ -123,7 +123,7 @@ app.get('/adnostic/*', (req, res) => {
   return res.send('');
 });
 // All regular routes use the Universal engine
-app.get(['/', '/spade/signin-callback'], (req, res) => {
+app.get(['/', '/spade/signin-callback', '/spade/signin-callback-v2'], (req, res) => {
   res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });
 });
 

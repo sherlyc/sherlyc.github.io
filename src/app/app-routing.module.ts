@@ -9,6 +9,10 @@ const routes: Routes = [
     component: SigninCallbackComponent
   },
   {
+    path: 'spade/signin-callback-v2',
+    component: SigninCallbackComponent
+  },
+  {
     path: '**',
     component: PageComponent
   }
