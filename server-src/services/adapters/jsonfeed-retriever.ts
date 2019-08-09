@@ -7,31 +7,29 @@ import { URL } from 'url';
 import { IParams } from '../__types__/IParams';
 import { IListAsset } from './__types__/IListAsset';
 
-async function requestArticleList(
+async function requestSectionArticleList(
   section: Section,
   total: number,
   params: IParams
 ): Promise<IJsonFeedArticleList> {
-  // Adding extra query string to force retrieve new data from jsonfeed
   const url: URL = new URL(
-    `${config.jsonFeedAPI}/${section}?limit=${total}&from=spade`
+    `${config.jsonFeedAPI}/${section}?limit=${total}`
   );
   const response = await http(params).get<IJsonFeedArticleList>(url.href);
   return response.data;
 }
 
-export const retrieveArticleList = async (
+export const retrieveSectionList = async (
   section: Section,
   total: number,
   params: IParams
-) => retry(() => requestArticleList(section, total, params), params);
+) => retry(() => requestSectionArticleList(section, total, params), params);
 
 async function requestListAsset(
   params: IParams,
   listAssetId: string,
   total?: number
 ): Promise<IListAsset> {
-  // Adding extra query string to force retrieve new data from jsonfeed
   const url: URL = new URL(`${config.jsonFeedAPI}/listasset/${listAssetId}`);
   const response = await http(params).get<IListAsset>(url.href);
 
