@@ -13,17 +13,14 @@ import { join } from 'path';
 import 'source-map-support/register';
 import api from '../server-src/app';
 import * as helmet from 'helmet';
-import {
-  requestLogger,
-  winstonLogger
-} from '../server-src/services/utils/logger';
+import { requestLogger } from '../server-src/services/utils/logger';
 import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
 import { cacheControl } from './middlewares/cache-control';
-import { logger } from 'express-winston';
-export { AppServerModule } from './app/app.server.module';
-
 // @ts-ignore
 import * as xhr2 from 'xhr2';
+
+export { AppServerModule } from './app/app.server.module';
+
 // we need to this hacking so that we can set cookie in the request by
 // Angular Http client, see also HttpInterceptorService and
 // https://github.com/angular/angular/issues/15730
