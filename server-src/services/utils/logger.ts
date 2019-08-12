@@ -3,6 +3,7 @@ import { Logger } from 'winston';
 import * as logform from 'logform';
 import config from './config';
 import { ILogger } from './__types__/ILogger';
+import { logger } from 'express-winston';
 
 function getFormat(name: string): logform.Format {
   return name === 'json'
@@ -23,6 +24,23 @@ export const winstonLogger: Logger = winston.createLogger({
     })
   ],
   exitOnError: false
+});
+
+const headerBlacklist = ['authorization', 'cookie'];
+export const requestLogger = logger({
+  winstonInstance: winstonLogger,
+  requestFilter: (req, propName) =>
+    propName !== 'headers'
+      ? req[propName]
+      : Object.keys(req[propName])
+          .filter((key) => !headerBlacklist.includes(key))
+          .reduce(
+            (filteredHeaders, key) => ({
+              ...filteredHeaders,
+              [key]: req.headers[key]
+            }),
+            {} as any
+          )
 });
 
 const wrappedLogger: ILogger = {
