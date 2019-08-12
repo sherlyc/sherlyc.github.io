@@ -5,7 +5,9 @@
     <div class="row">
       <div class="col-md-2 col-sm-3 col-xs-4 column" *ngIf="input.imageSrc">
         <div class="image">
-          <img itemprop="image" (error)="input.imageSrc = null" src="{{ input.imageSrc }}" alt="{{ input.indexHeadline }}" loading="auto" [attr.srcset]="input.imageSrcSet ? input.imageSrcSet : null" />
+          <img itemprop="image" (error)="input.imageSrc = null" src="{{ input.imageSrc }}"
+               alt="{{ input.indexHeadline }}" loading="auto"
+               [attr.srcset]="input.imageSrcSet ? input.imageSrcSet : null"/>
         </div>
       </div>
       <div class="column">
