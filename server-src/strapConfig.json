@@ -81,7 +81,7 @@
     },
     "strapClimateChange": {
       "ids": ["74545269"],
-      "toDedupe": true
+      "toDedupe": false
     },
     "strapWellGood": {
       "ids": ["62547807"],
@@ -125,7 +125,7 @@
     },
     "strapMetro": {
       "ids": ["112352326"],
-      "toDedupe": true
+      "toDedupe": false
     },
     "strapTarana": {
       "ids": ["104747808"],

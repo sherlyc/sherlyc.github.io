@@ -5,7 +5,7 @@
     "jsonFeedAPI": "https://i.stuff.co.nz/_json",
     "weatherAPI": "https://www.stuff.co.nz/do/weather_for_location",
     "breakingNewsApi": "https://api.stuff.co.nz/isomorphic-api/breakingNews?field=state",
-    "layoutAPI": "https://www.stuff.co.nz/_json/layout/jcr:content",
+    "layoutAPI": "https://i.stuff.co.nz/_json/layout/jcr:content",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
       "level": "info",
@@ -25,7 +25,7 @@
     "jsonFeedAPI": "https://i-preprod.stuff.co.nz/_json",
     "weatherAPI": "https://www-preprod.stuff.co.nz/do/weather_for_location",
     "breakingNewsApi": "https://api-preprod.stuff.co.nz/isomorphic-api/breakingNews?field=state",
-    "layoutAPI": "https://www-preprod.stuff.co.nz/_json/layout/jcr:content",
+    "layoutAPI": "https://i-preprod.stuff.co.nz/_json/layout/jcr:content",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
       "level": "info",
@@ -45,7 +45,7 @@
     "jsonFeedAPI": "https://i.stuff.co.nz/_json",
     "weatherAPI": "https://www-preprod.stuff.co.nz/do/weather_for_location",
     "breakingNewsApi": "https://api.stuff.co.nz/isomorphic-api/breakingNews?field=state",
-    "layoutAPI": "https://www-preprod.stuff.co.nz/_json/layout/jcr:content",
+    "layoutAPI": "https://i-preprod.stuff.co.nz/_json/layout/jcr:content",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
       "level": "debug",
@@ -65,7 +65,7 @@
     "jsonFeedAPI": "https://i.stuff.co.nz/_json",
     "weatherAPI": "https://www.stuff.co.nz/do/weather_for_location",
     "breakingNewsApi": "https://api.stuff.co.nz/isomorphic-api/breakingNews?field=state",
-    "layoutAPI": "https://www.stuff.co.nz/_json/layout/jcr:content",
+    "layoutAPI": "https://i.stuff.co.nz/_json/layout/jcr:content",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
       "level": "debug",
@@ -85,7 +85,7 @@
     "jsonFeedAPI": "https://i.stuff.co.nz/_json",
     "weatherAPI": "https://www-preprod.stuff.co.nz/do/weather_for_location",
     "breakingNewsApi": "https://api.stuff.co.nz/isomorphic-api/breakingNews?field=state",
-    "layoutAPI": "https://www-preprod.stuff.co.nz/_json/layout/jcr:content",
+    "layoutAPI": "https://i-preprod.stuff.co.nz/_json/layout/jcr:content",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
       "level": "debug",
