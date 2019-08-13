@@ -13,14 +13,14 @@ import { join } from 'path';
 import 'source-map-support/register';
 import api from '../server-src/app';
 import * as helmet from 'helmet';
-import { winstonLogger } from '../server-src/services/utils/logger';
+import { requestLogger } from '../server-src/services/utils/logger';
 import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
 import { cacheControl } from './middlewares/cache-control';
-import { logger } from 'express-winston';
-export { AppServerModule } from './app/app.server.module';
-
 // @ts-ignore
 import * as xhr2 from 'xhr2';
+
+export { AppServerModule } from './app/app.server.module';
+
 // we need to this hacking so that we can set cookie in the request by
 // Angular Http client, see also HttpInterceptorService and
 // https://github.com/angular/angular/issues/15730
@@ -32,11 +32,7 @@ enableProdMode();
 // Express server
 const app = express();
 
-app.use(
-  logger({
-    winstonInstance: winstonLogger
-  })
-);
+app.use(requestLogger);
 
 app.disable('x-powered-by');
 app.use(
@@ -123,9 +119,12 @@ app.get('/adnostic/*', (req, res) => {
   return res.send('');
 });
 // All regular routes use the Universal engine
-app.get(['/', '/spade/signin-callback', '/spade/signin-callback-v2'], (req, res) => {
-  res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });
-});
+app.get(
+  ['/', '/spade/signin-callback', '/spade/signin-callback-v2'],
+  (req, res) => {
+    res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });
+  }
+);
 
 // Start up the Node server
 app.listen(PORT, () => {
