@@ -1,7 +1,7 @@
 <div class="breaking-news" *ngIf="!shouldHide">
   <a class="link" [href]="input.link" (click)="[onClickOrDismiss(), sendAnalytics(false)]">
     <h1 class="title">Breaking news</h1>
-    <div>{{ input.text }}</div>
+    <div class="text">{{ input.text }}</div>
   </a>
   <a class="dismiss" (click)="[onClickOrDismiss(), sendAnalytics(true)]" aria-label="Dismiss"></a>
 </div>
