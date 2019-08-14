@@ -8,7 +8,7 @@ export const getWeather = async (
   res: Response,
   params: IParams
 ) => {
-  const location = req.query.location;
+  const location = req.query.location || req.params.location;
   if (location) {
     try {
       const weatherData = await weatherService(location, params);
