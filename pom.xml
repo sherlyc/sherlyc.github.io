@@ -21,6 +21,7 @@
     <tile-deploy.nodeVersionRange>[10,11)</tile-deploy.nodeVersionRange>
     <tile-deploy.autocannon.timeoutMillis>3600000</tile-deploy.autocannon.timeoutMillis>
     <tile-deploy.image.name>${tile-deploy.docker.registry}/${organisation.domain}/${organisation.group}/${project.artifactId}:${project.version}</tile-deploy.image.name>
+    <tile-deploy.gcrio.name>gcr.io/shared-218200/${project.artifactId}:${project.version}</tile-deploy.gcrio.name>
     <tile-deploy.autocannon.image.name>${tile-deploy.docker.registry}/nz.stuff/yokohama/yokohama-autocannon:1.3</tile-deploy.autocannon.image.name>
 
   </properties>
@@ -224,6 +225,43 @@
           </execution>
 
           <execution>
+            <id>build-gcr-image</id>
+            <goals>
+              <goal>build</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <showLogs>true</showLogs>
+              <images>
+                <image>
+                  <alias>experience-frontend-container</alias>
+                  <name>${tile-deploy.gcrio.name}</name>
+
+                  <build>
+                    <dockerFile>${project.build.directory}/docker/build/Dockerfile</dockerFile>
+                    <assembly>
+
+                      <basedir>/</basedir>
+
+                      <inline>
+                        <fileSets>
+                          <fileSet>
+                            <fileMode>0755</fileMode>
+                            <outputDirectory>.</outputDirectory>
+                            <directory>${project.build.directory}/docker/resources</directory>
+                          </fileSet>
+                        </fileSets>
+                      </inline>
+                    </assembly>
+
+                  </build>
+
+                </image>
+              </images>
+            </configuration>
+          </execution>
+
+          <execution>
             <id>push-docker-image</id>
             <goals>
               <goal>push</goal>
@@ -235,6 +273,24 @@
                 <image>
                   <alias>application</alias>
                   <name>${tile-deploy.image.name}</name>
+                  <build />
+                </image>
+              </images>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>push-gcr-docker-image</id>
+            <goals>
+              <goal>push</goal>
+            </goals>
+            <phase>deploy</phase>
+            <configuration>
+              <showLogs>true</showLogs>
+              <images>
+                <image>
+                  <alias>application</alias>
+                  <name>${tile-deploy.gcrio.name}</name>
                   <build />
                 </image>
               </images>
