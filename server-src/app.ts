@@ -41,10 +41,13 @@ app.get(`${spadeApiPath}/content`, async (req, res) => {
   await getContent(req, res, params);
 });
 
-app.get(`${spadeApiPath}/weather`, async (req, res) => {
-  const params: IParams = extractParams(req);
-  await getWeather(req, res, params);
-});
+app.get(
+  [`${spadeApiPath}/weather`, `${spadeApiPath}/weather/:location`],
+  async (req, res) => {
+    const params: IParams = extractParams(req);
+    await getWeather(req, res, params);
+  }
+);
 
 app.get(
   `${spadeApiPath}/experiment/:experimentName/:lotteryNumber`,
