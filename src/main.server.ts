@@ -49,7 +49,8 @@ app.use(cookieParser());
 
 app.use(
   cacheControl({
-    '/spade/api/weather**': 'max-age=600', // 10 minutes
+    '/spade/api/weather': 'max-age=600', // 10 minutes
+    '/spade/api/weather/**': 'max-age=600', // 10 minutes
     '/spade/api/feature/**': 'max-age=600', // 10 minutes
     '/spade/api/experiment/**': 'max-age=600', // 10 minutes
     '/spade/api/**': 'max-age=60', // 1 minute

@@ -19,7 +19,7 @@ export class WeatherRetrieverService {
   getWeather(location: string): Observable<IWeatherResponse> {
     return this.http
       .get<IWeatherResponse>(
-        `${this.config.getConfig().weatherAPI}?location=${location}`
+        `${this.config.getConfig().weatherAPI}/${location}`
       )
       .pipe(
         catchError((error: HttpErrorResponse) => {

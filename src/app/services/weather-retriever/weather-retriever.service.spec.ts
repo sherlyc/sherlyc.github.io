@@ -48,7 +48,7 @@ describe('Weather Retriever', () => {
       });
 
     const req = httpMock.expectOne(
-      `${weatherAPI}?location=${WeatherLocations.Auckland}`
+      `${weatherAPI}/${WeatherLocations.Auckland}`
     );
     expect(req.request.method).toBe('GET');
     req.flush(weatherResponse);
@@ -65,7 +65,7 @@ describe('Weather Retriever', () => {
     );
 
     const req = httpMock.expectOne(
-      `${weatherAPI}?location=${WeatherLocations.Auckland}`
+      `${weatherAPI}/${WeatherLocations.Auckland}`
     );
     expect(req.request.method).toBe('GET');
     req.flush({}, { status: 500, statusText: 'Internal Server error' });
