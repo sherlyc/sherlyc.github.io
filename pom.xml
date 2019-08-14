@@ -202,43 +202,10 @@
 
                   <build>
                     <dockerFile>${project.build.directory}/docker/build/Dockerfile</dockerFile>
-                    <assembly>
-
-                      <basedir>/</basedir>
-
-                      <inline>
-                        <fileSets>
-                          <fileSet>
-                            <fileMode>0755</fileMode>
-                            <outputDirectory>.</outputDirectory>
-                            <directory>${project.build.directory}/docker/resources</directory>
-                          </fileSet>
-                        </fileSets>
-                      </inline>
-                    </assembly>
-
-                  </build>
-
-                </image>
-              </images>
-            </configuration>
-          </execution>
-
-          <execution>
-            <id>build-gcr-image</id>
-            <goals>
-              <goal>build</goal>
-            </goals>
-            <phase>package</phase>
-            <configuration>
-              <showLogs>true</showLogs>
-              <images>
-                <image>
-                  <alias>experience-frontend-container</alias>
-                  <name>${tile-deploy.gcrio.name}</name>
-
-                  <build>
-                    <dockerFile>${project.build.directory}/docker/build/Dockerfile</dockerFile>
+                    <tags>
+                      <tag>${tile-deploy.image.name}</tag>
+                      <tag>${tile-deploy.gcrio.name}</tag>
+                    </tags>
                     <assembly>
 
                       <basedir>/</basedir>
