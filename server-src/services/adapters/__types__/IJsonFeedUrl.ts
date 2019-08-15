@@ -8,7 +8,9 @@ export interface IJsonFeedUrl {
   asset_type: JsonFeedAssetType.URL;
   headline_flags: HeadlineFlags[];
   title: string;
+  alt_headline: string;
   alt_intro: string;
+  isHeadlineOverrideApplied: boolean;
   url: string;
   images?: Array<{
     [key: string]: any;

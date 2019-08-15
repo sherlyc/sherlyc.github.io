@@ -10,6 +10,8 @@ export interface IJsonFeedArticle {
   sponsored: boolean;
   path: string;
   title: string;
+  alt_headline: string;
+  isHeadlineOverrideApplied: boolean;
   datetime_iso8601: string;
   alt_intro: string;
   images?: Array<{
