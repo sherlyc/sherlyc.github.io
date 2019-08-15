@@ -1,7 +1,6 @@
 import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 import { IParams } from '../../../services/__types__/IParams';
 import { IDefconArticleListHandlerInput } from '../__types__/IDefconArticleListHandlerInput';
-import { getListAsset } from '../../../services/adapters/jsonfeed';
 import { IBasicAdUnit } from '../../../../common/__types__/IBasicAdUnit';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 import { IRawArticle } from '../../../services/adapters/__types__/IRawArticle';
@@ -10,7 +9,6 @@ import { IDefconArticleUnit } from '../../../../common/__types__/IDefconArticleU
 import { handlerRunnerFunction } from '../runner';
 import { Strap } from '../../strap';
 import { getStrapArticles } from '../../adapters/strap-list-service';
-import { ListAsset } from '../../listAsset';
 
 const createDefconArticleBlock = (
   article: IRawArticle,
@@ -48,22 +46,11 @@ export default async function(
   { sourceId, strapName, totalArticles = 0 }: IDefconArticleListHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  let rawArticles: IRawArticle[];
-  const sourceIsAStrap = Strap.TopStories === sourceId;
-
-  if (sourceIsAStrap) {
-    rawArticles = await getStrapArticles(
-      params,
-      Strap.TopStories,
-      totalArticles
-    );
-  } else {
-    rawArticles = await getListAsset(
-      params,
-      sourceId as ListAsset.TopStories,
-      totalArticles
-    );
-  }
+  const rawArticles = await getStrapArticles(
+    params,
+    Strap.TopStories,
+    totalArticles
+  );
 
   const basicAdUnit: IBasicAdUnit = {
     type: ContentBlockType.BasicAdUnit

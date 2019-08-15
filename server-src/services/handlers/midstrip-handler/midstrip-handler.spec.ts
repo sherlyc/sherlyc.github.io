@@ -4,8 +4,6 @@ import { IParams } from '../../__types__/IParams';
 import { HandlerInputType } from '../__types__/HandlerInputType';
 import { getStrapArticles } from '../../adapters/strap-list-service';
 import { Strap } from '../../strap';
-import { getListAsset } from '../../adapters/jsonfeed';
-import { ListAsset } from '../../listAsset';
 
 jest.mock('../../adapters/strap-list-service');
 jest.mock('../../adapters/jsonfeed');
@@ -153,7 +151,7 @@ describe('MidStripHandler', () => {
     it('should get a list of Image Links', async () => {
       const totalArticles = 2;
 
-      (getListAsset as jest.Mock).mockResolvedValue(rawMidStrip);
+      (getStrapArticles as jest.Mock).mockResolvedValue(rawMidStrip);
 
       const handlerRunnerMock = jest.fn();
 
@@ -161,7 +159,7 @@ describe('MidStripHandler', () => {
         handlerRunnerMock,
         {
           type: HandlerInputType.MidStrip,
-          sourceId: ListAsset.MidStrip,
+          sourceId: Strap.MidStrip,
           strapName: 'MidStrip',
           totalArticles
         },
@@ -203,7 +201,7 @@ describe('MidStripHandler', () => {
 
     it('should get a list of Image links not exceeding number of requested item', async () => {
       const totalArticles = 1;
-      (getListAsset as jest.Mock).mockResolvedValue(rawMidStrip);
+      (getStrapArticles as jest.Mock).mockResolvedValue(rawMidStrip);
 
       const handlerRunnerMock = jest.fn();
 
@@ -211,7 +209,7 @@ describe('MidStripHandler', () => {
         handlerRunnerMock,
         {
           type: HandlerInputType.MidStrip,
-          sourceId: ListAsset.MidStrip,
+          sourceId: Strap.MidStrip,
           strapName: 'MidStrip',
           totalArticles
         },
@@ -243,14 +241,14 @@ describe('MidStripHandler', () => {
 
     it('should throw error when failing to retrieve articles', async () => {
       const error = new Error('failed to retrieve');
-      (getListAsset as jest.Mock).mockRejectedValue(error);
+      (getStrapArticles as jest.Mock).mockRejectedValue(error);
 
       await expect(
         midstripHandler(
           jest.fn(),
           {
             type: HandlerInputType.MidStrip,
-            sourceId: ListAsset.MidStrip,
+            sourceId: Strap.MidStrip,
             strapName: 'MidStrip',
             totalArticles: 2
           },

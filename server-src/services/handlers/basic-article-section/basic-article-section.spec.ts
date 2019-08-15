@@ -1,9 +1,9 @@
 import basicArticleSectionHandler from './basic-article-section';
 import { Section } from '../../section';
-import { ListAsset } from '../../listAsset';
 import { IBasicArticleSectionHandlerInput } from '../__types__/IBasicArticleSectionHandlerInput';
 import { IParams } from '../../__types__/IParams';
 import { HandlerInputType } from '../__types__/HandlerInputType';
+import { Strap } from '../../strap';
 
 jest.mock('../runner');
 
@@ -93,7 +93,7 @@ describe('BasicArticleSectionHandler', () => {
       displayName: 'business',
       displayNameColor: 'red',
       articleList: {
-        sourceId: ListAsset.EditorPicks,
+        sourceId: Strap.EditorPicks,
         totalBasicArticlesUnit,
         totalBasicArticleTitleUnit,
         strapName: 'business'
@@ -129,7 +129,7 @@ describe('BasicArticleSectionHandler', () => {
     expect(handlerRunnerMock).toHaveBeenCalledWith(
       {
         type: HandlerInputType.ArticleList,
-        sourceId: ListAsset.EditorPicks,
+        sourceId: Strap.EditorPicks,
         strapName: 'business',
         totalBasicArticlesUnit,
         totalBasicArticleTitleUnit

@@ -2,17 +2,16 @@ import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 import { IBasicAdUnit } from '../../../../common/__types__/IBasicAdUnit';
-import { getArticleList, getListAsset } from '../../adapters/jsonfeed';
 import { IBasicArticleListHandlerInput } from '../__types__/IBasicArticleListHandlerInput';
 import { handlerRunnerFunction } from '../runner';
 import { IParams } from '../../__types__/IParams';
 import { IBasicArticleTitleUnit } from '../../../../common/__types__/IBasicArticleTitleUnit';
 import { IRawArticle } from '../../adapters/__types__/IRawArticle';
-import { Section } from '../../section';
-import { ListAsset } from '../../listAsset';
 import { LayoutType } from '../../adapters/__types__/LayoutType';
 import { Strap } from '../../strap';
 import { getStrapArticles } from '../../adapters/strap-list-service';
+import { Section } from '../../section';
+import { getSectionArticleList } from '../../adapters/jsonfeed';
 
 const createBasicArticleUnitBlock = (
   article: IRawArticle,
@@ -69,38 +68,30 @@ const formatAsArticleBlocks = (
 };
 
 const getRawArticles = async (
-  sourceId: Section | ListAsset | Strap,
+  sourceId: Section | Strap,
   totalArticles: number,
   layout: LayoutType,
   params: IParams
 ) => {
   const sourceIsASection = Object.values(Section).includes(sourceId);
+  let rawArticles;
 
   if (sourceIsASection) {
-    return (await getArticleList(
+    return (await getSectionArticleList(
       sourceId as Section,
       totalArticles,
       params
     )).slice(0, totalArticles);
-  }
-  const sourceIsAStrap = Object.values(Strap).includes(sourceId);
-  let rawArticles;
-  if (sourceIsAStrap) {
+  } else {
     rawArticles = await getStrapArticles(
       params,
       sourceId as Strap,
       totalArticles
     );
-  } else {
-    rawArticles = await getListAsset(
-      params,
-      sourceId as ListAsset,
-      totalArticles
-    );
   }
 
-  return (sourceId === Strap.TopStories || sourceId === ListAsset.TopStories) &&
-    layout === LayoutType.DEFAULT
+  return (sourceId === Strap.TopStories || sourceId === Section.Latest) &&
+  layout === LayoutType.DEFAULT
     ? [rawArticles[1], rawArticles[0], ...rawArticles.slice(2)].filter(Boolean)
     : rawArticles;
 };
