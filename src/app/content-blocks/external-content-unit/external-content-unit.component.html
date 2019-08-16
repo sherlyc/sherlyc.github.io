@@ -1,1 +1,3 @@
-<iframe [src]="getUrl()" *ngIf="input" title="External Content" [ngStyle]="{ width: input.width, height: input.height }" frameborder="0"></iframe>
+<div [ngStyle]="{ width: input.width, paddingBottom: input.height }" *ngIf="input">
+  <iframe [src]="getUrl()" title="External Content"></iframe>
+</div>
