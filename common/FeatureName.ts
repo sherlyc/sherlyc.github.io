@@ -1,1 +1,3 @@
-export enum FeatureName {}
+export enum FeatureName {
+  playStuffWidget = 'playStuffWidget'
+}
