@@ -6,7 +6,7 @@ export const isFeatureEnabled = (
 ): boolean => {
   switch (feature) {
     case FeatureName.playStuffWidget:
-      return false;
+      return true;
     default:
       return false;
   }
