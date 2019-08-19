@@ -32,4 +32,31 @@ describe('ExternalContentHandler', () => {
 
     expect(externalContent).toEqual(expectedResult);
   });
+
+  it('should handle scrolling', async () => {
+    const handlerRunnerMock = jest.fn();
+    const externalContent = (await externalContentHandler(
+      handlerRunnerMock,
+      {
+        type: HandlerInputType.ExternalContent,
+        width: '100%',
+        height: '300px',
+        scrollable: true,
+        url: 'https://example.com'
+      },
+      params
+    )) as IExternalContentUnit[];
+
+    const expectedResult: IContentBlock[] = [
+      {
+        type: ContentBlockType.ExternalContentUnit,
+        width: '100%',
+        height: '300px',
+        scrollable: true,
+        url: 'https://example.com'
+      } as IExternalContentUnit
+    ];
+
+    expect(externalContent).toEqual(expectedResult);
+  });
 });

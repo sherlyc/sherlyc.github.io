@@ -35,5 +35,24 @@ describe('ExternalContentUnitComponent', () => {
 
     fixture.detectChanges();
     expect(component).toBeTruthy();
+    expect(
+      fixture.debugElement.nativeElement.querySelector('[scrolling=no]')
+    ).toBeTruthy();
+  });
+
+  it('should set scrolling attribute', () => {
+    component.input = {
+      type: ContentBlockType.ExternalContentUnit,
+      url: 'https://example.com',
+      height: '100px',
+      scrollable: true,
+      width: '100%'
+    };
+
+    fixture.detectChanges();
+    expect(component).toBeTruthy();
+    expect(
+      fixture.debugElement.nativeElement.querySelector('[scrolling=yes]')
+    ).toBeTruthy();
   });
 });
