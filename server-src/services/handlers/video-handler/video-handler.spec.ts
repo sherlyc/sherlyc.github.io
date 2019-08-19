@@ -25,7 +25,7 @@ describe('VideoHandler', () => {
         items: [
           {
             type: ContentBlockType.ExternalContentUnit,
-            height: 'calc(56% + 200px)',
+            height: 'calc(56% + 215px)',
             width: '100%',
             url:
               'https://www.playwidget.stuff.co.nz/hshelf/5d3a9a3fa0e845001c7c998a'
