@@ -25,7 +25,9 @@ export default (
 function mapArticleAsset(item: IJsonFeedArticle): IRawArticle {
   return {
     id: String(item.id),
-    indexHeadline: item.title,
+    indexHeadline: item.isHeadlineOverrideApplied
+      ? item.alt_headline
+      : item.title,
     introText: item.alt_intro,
     linkUrl: item.path,
     imageSrc: getImageSrc(item),
@@ -39,7 +41,9 @@ function mapArticleAsset(item: IJsonFeedArticle): IRawArticle {
 function mapUrlAsset(item: IJsonFeedUrl): IRawArticle {
   return {
     id: String(item.id),
-    indexHeadline: item.title,
+    indexHeadline: item.isHeadlineOverrideApplied
+      ? item.alt_headline
+      : item.title,
     introText: item.alt_intro,
     linkUrl: getLinkUrl(item),
     imageSrc: getImageSrc(item),

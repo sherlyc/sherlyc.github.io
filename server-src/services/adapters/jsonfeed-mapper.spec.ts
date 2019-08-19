@@ -1,5 +1,6 @@
 import * as jsonfeed from './__fixtures__/jsonfeed/jsonfeed.json';
 import * as rawArticles from './__fixtures__/jsonfeed/raw-article-list.json';
+import * as temporaryRawArticles from './__fixtures__/jsonfeed/temporal-raw-articles.json';
 import map from './jsonfeed-mapper';
 import { IJsonFeedArticleList } from './__types__/IJsonFeedArticleList';
 import { cloneDeep } from 'lodash';
@@ -12,6 +13,19 @@ describe('JsonFeed Mapper', () => {
       jsonfeed as IJsonFeedArticleList
     );
     expect(map(data.stories)).toEqual(rawArticles);
+  });
+
+  it('should map jsonfeed articles and url assets alt headline to spade index headline based on flag', () => {
+    const data: IJsonFeedArticleList = cloneDeep(
+      jsonfeed as IJsonFeedArticleList
+    );
+    data.stories[0].isHeadlineOverrideApplied = true;
+    data.stories[0].alt_headline = 'article alt headline';
+
+    data.stories[1].isHeadlineOverrideApplied = true;
+    data.stories[1].alt_headline = 'url alt headline';
+
+    expect(map(data.stories)).toEqual(temporaryRawArticles);
   });
 
   describe('images', () => {
