@@ -12,6 +12,7 @@ import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 import { By, TransferState } from '@angular/platform-browser';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
+import { OpenExternalLinkDirective } from '../../shared/directives/open-external-link/open-external-link.directive';
 
 describe('basic article section', () => {
   let component: BasicArticleSectionComponent;
@@ -42,6 +43,7 @@ describe('basic article section', () => {
     registry['FakeContentBlockComponent'] = FakeContentBlockComponent;
     await TestBed.configureTestingModule({
       declarations: [
+        OpenExternalLinkDirective,
         BasicArticleSectionComponent,
         FakeContentBlockComponent,
         ContentBlockDirective
