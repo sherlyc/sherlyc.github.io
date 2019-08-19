@@ -1,21 +1,19 @@
 import { IJsonFeedArticleList } from './__types__/IJsonFeedArticleList';
 import config from '../utils/config';
 import retry from '../utils/retry';
-import http from '../utils/http';
 import { Section } from '../section';
 import { URL } from 'url';
 import { IParams } from '../__types__/IParams';
 import { IListAsset } from './__types__/IListAsset';
+import cacheHttp from '../utils/cache-http';
 
 async function requestSectionArticleList(
   section: Section,
   total: number,
   params: IParams
 ): Promise<IJsonFeedArticleList> {
-  const url: URL = new URL(
-    `${config.jsonFeedAPI}/${section}?limit=${total}`
-  );
-  const response = await http(params).get<IJsonFeedArticleList>(url.href);
+  const url: URL = new URL(`${config.jsonFeedAPI}/${section}?limit=${total}`);
+  const response = await cacheHttp(params, url.href);
   return response.data;
 }
 
@@ -31,7 +29,7 @@ async function requestListAsset(
   total?: number
 ): Promise<IListAsset> {
   const url: URL = new URL(`${config.jsonFeedAPI}/listasset/${listAssetId}`);
-  const response = await http(params).get<IListAsset>(url.href);
+  const response = await cacheHttp(params, url.href);
 
   return total
     ? {

@@ -1,14 +1,14 @@
 import { IParams } from '../__types__/IParams';
-import http from '../utils/http';
+import cacheHttp from '../utils/cache-http';
 import logger from '../utils/logger';
 import { layoutRetriever } from './layout-retriever';
 import { LayoutType } from './__types__/LayoutType';
 
 jest.mock('../utils/config');
-jest.mock('../utils/http');
+jest.mock('../utils/cache-http');
 
 beforeAll(() => {
-  (http as jest.Mock).mockReturnValue({
+  (cacheHttp as jest.Mock).mockReturnValue({
     get: jest.fn(),
     post: jest.fn()
   });
@@ -36,7 +36,7 @@ describe('layout retriever', () => {
         }
       ]
     };
-    (http(params).get as jest.Mock).mockResolvedValue({
+    (cacheHttp as jest.Mock).mockResolvedValue({
       status: 200,
       data: layoutInfo
     });
@@ -63,7 +63,7 @@ describe('layout retriever', () => {
         }
       ]
     };
-    (http(params).get as jest.Mock).mockResolvedValue({
+    (cacheHttp as jest.Mock).mockResolvedValue({
       status: 200,
       data: layoutInfo
     });
@@ -90,7 +90,7 @@ describe('layout retriever', () => {
         }
       ]
     };
-    (http(params).get as jest.Mock).mockResolvedValue({
+    (cacheHttp as jest.Mock).mockResolvedValue({
       status: 200,
       data: layoutInfo
     });
@@ -99,7 +99,7 @@ describe('layout retriever', () => {
   });
 
   it('should log error and return default layout when the request is unsuccessful', async () => {
-    (http(params).get as jest.Mock).mockResolvedValue({ status: 500 });
+    (cacheHttp as jest.Mock).mockResolvedValue({ status: 500 });
     const loggerSpy = jest.spyOn(logger, 'error');
 
     const layout = await layoutRetriever(params);
@@ -114,7 +114,7 @@ describe('layout retriever', () => {
       title: null,
       layouts: []
     };
-    (http(params).get as jest.Mock).mockResolvedValue({
+    (cacheHttp as jest.Mock).mockResolvedValue({
       status: 200,
       data: layoutInfo
     });

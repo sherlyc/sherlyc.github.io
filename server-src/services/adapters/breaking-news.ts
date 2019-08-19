@@ -1,14 +1,11 @@
 import config from '../utils/config';
 import { IBreakingNewsResponse } from './__types__/IBreakingNewsResponse';
 import retry from '../utils/retry';
-import http from '../utils/http';
+import cacheHttp from '../utils/cache-http';
 import { IParams } from '../__types__/IParams';
-import { IIsomophicApiBreakingNews } from './__types__/IIsomophicApiBreakingNews';
 
 async function apiCall(params: IParams): Promise<IBreakingNewsResponse> {
-  const response = await http(params).get<IIsomophicApiBreakingNews>(
-    config.breakingNewsApi
-  );
+  const response = await cacheHttp(params, config.breakingNewsApi);
   return response.data.breakingNews.breakingNewsData;
 }
 

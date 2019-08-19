@@ -1,7 +1,7 @@
 import { IWeather } from './__types__/IWeather';
 import config from '../utils/config';
 import retry from '../utils/retry';
-import http from '../utils/http';
+import cacheHttp from '../utils/cache-http';
 import { URL } from 'url';
 import { IParams } from '../__types__/IParams';
 import { AxiosResponse } from 'axios';
@@ -24,7 +24,7 @@ async function requestWeatherData(
   params: IParams
 ): Promise<IWeather> {
   const url: URL = new URL(`${config.weatherAPI}?location=${location}`);
-  const response = await http(params).get<IWeather>(url.href);
+  const response = await cacheHttp(params, url.href);
   validate(response);
   return response.data;
 }

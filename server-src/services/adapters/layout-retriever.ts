@@ -1,6 +1,6 @@
 import { ISectionLayout } from './__types__/ISectionLayout';
 import config from '../utils/config';
-import http from '../utils/http';
+import cacheHttp from '../utils/cache-http';
 import retry from '../utils/retry';
 import { IParams } from '../__types__/IParams';
 import { LayoutType } from './__types__/LayoutType';
@@ -25,7 +25,7 @@ const mapTopStoriesLayout = (data: ISectionLayout) => {
 };
 
 async function requestTopStoriesLayout(params: IParams): Promise<LayoutType> {
-  const response = await http(params).get<ISectionLayout>(config.layoutAPI);
+  const response = await cacheHttp(params, config.layoutAPI);
 
   if (!isValid(response)) {
     logger.error(

@@ -1,22 +1,22 @@
 import { weatherRetriever } from './weather-retriever';
-import http from '../utils/http';
+import cacheHttp from '../utils/cache-http';
 import { IParams } from '../__types__/IParams';
 import * as weatherJson from './__fixtures__/weather/weather.json';
 
-jest.mock('../utils/http');
+jest.mock('../utils/cache-http');
 
 describe('Weather Retriever', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
 
   beforeAll(() => {
-    (http as jest.Mock).mockReturnValue({
+    (cacheHttp as jest.Mock).mockReturnValue({
       get: jest.fn(),
       post: jest.fn()
     });
   });
 
   it('should respond with weather info when request is successful', async () => {
-    (http(params).get as jest.Mock).mockResolvedValue({
+    (cacheHttp as jest.Mock).mockResolvedValue({
       status: 200,
       data: weatherJson
     });
@@ -24,7 +24,7 @@ describe('Weather Retriever', () => {
   });
 
   it('should throw error when response data contains error', async () => {
-    (http(params).get as jest.Mock).mockResolvedValue({
+    (cacheHttp as jest.Mock).mockResolvedValue({
       status: 200,
       data: { error: 'bad location', status: 'error' }
     });
@@ -34,7 +34,7 @@ describe('Weather Retriever', () => {
   });
 
   it('should throw error when response status code is not successful', async () => {
-    (http(params).get as jest.Mock).mockResolvedValue({
+    (cacheHttp as jest.Mock).mockResolvedValue({
       status: 500
     });
     await expect(weatherRetriever('auckland', params)).rejects.toEqual(
@@ -43,7 +43,7 @@ describe('Weather Retriever', () => {
   });
 
   it('should throw error when response data does not have forecasts', async () => {
-    (http(params).get as jest.Mock).mockResolvedValue({
+    (cacheHttp as jest.Mock).mockResolvedValue({
       status: 200,
       data: { ...weatherJson, oneword_forecasts: [] }
     });
