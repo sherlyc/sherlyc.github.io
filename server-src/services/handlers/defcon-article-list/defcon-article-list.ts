@@ -14,7 +14,7 @@ const createDefconArticleBlock = (
   article: IRawArticle,
   strapName: string
 ): IDefconArticleUnit => ({
-  type: ContentBlockType.DefconArticleUnit,
+  type: ContentBlockType.GrayDefconArticleUnit,
   id: article.id,
   strapName,
   indexHeadline: article.indexHeadline,

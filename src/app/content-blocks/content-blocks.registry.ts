@@ -17,8 +17,10 @@ import { WeatherUnitComponent } from './weather-unit/weather-unit.component';
 import { BasicArticleTitleUnitComponent } from './basic-article-title-unit/basic-article-title-unit.component';
 import { ExperimentContainerComponent } from './experiment-container/experiment-container.component';
 import { FeatureContainerComponent } from './feature-container/feature-container.component';
+import { GrayDefconArticleUnitComponent } from './gray-defcon-article-unit/gray-defcon-article-unit.component';
 
 export const contentBlockComponents = [
+  GrayDefconArticleUnitComponent,
   DefconArticleUnitComponent,
   BasicArticleUnitComponent,
   BasicArticleSectionComponent,
@@ -41,6 +43,7 @@ export const contentBlockComponents = [
 const registry: {
   [key: string]: Type<IContentBlockComponent>;
 } = {
+  GrayDefconArticleUnitComponent,
   DefconArticleUnitComponent,
   BasicArticleUnitComponent,
   BasicArticleSectionComponent,
