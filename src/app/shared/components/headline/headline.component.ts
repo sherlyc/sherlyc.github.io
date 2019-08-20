@@ -10,4 +10,5 @@ export class HeadlineComponent {
   @Input() headline?: string;
   @Input() timeStamp?: number;
   @Input() headlineFlags?: HeadlineFlags[];
+  @Input() textColor?: string;
 }
