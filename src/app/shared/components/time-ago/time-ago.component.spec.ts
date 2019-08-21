@@ -103,4 +103,14 @@ describe('TimeAgoComponent', () => {
       separatorSpan.nativeElement
     );
   });
+
+  it('should set text color on div', () => {
+    component.textColor = 'white';
+
+    fixture.detectChanges();
+
+    const div = fixture.debugElement.query(By.css('div'));
+
+    expect(div.nativeElement.style.color).toBe('white');
+  });
 });

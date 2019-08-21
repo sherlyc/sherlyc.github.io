@@ -70,4 +70,13 @@ describe('Headline Component', () => {
 
     expect(timeAgo).toBeFalsy();
   });
+
+  it('should set text color on h3', () => {
+    component.textColor = 'white';
+
+    fixture.detectChanges();
+    const h3 = fixture.debugElement.query(By.css('h3'));
+
+    expect(h3.nativeElement.style.color).toBe('white');
+  });
 });
