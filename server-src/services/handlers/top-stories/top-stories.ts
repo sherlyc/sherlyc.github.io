@@ -8,17 +8,16 @@ import { LayoutType } from '../../adapters/__types__/LayoutType';
 import logger from '../../utils/logger';
 
 const retrieveLayout = async (params: IParams): Promise<LayoutType> => {
-  // try {
-  //   return await layoutRetriever(params);
-  // } catch (error) {
-  //   logger.error(
-  //     params.apiRequestId,
-  //     `Top Stories Handler - retrieveLayout error - ${error.message}`
-  //   );
-  //   return LayoutType.DEFAULT;
-  // }
-   return LayoutType.DEFCON;
-
+  try {
+    return await layoutRetriever(params);
+  } catch (error) {
+    logger.error(
+      params.apiRequestId,
+      `Top Stories Handler - retrieveLayout error - ${error.message}`
+    );
+    return LayoutType.DEFAULT;
+  }
+  return LayoutType.DEFCON;
 };
 
 export default async function(
