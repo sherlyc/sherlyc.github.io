@@ -17,7 +17,6 @@ const retrieveLayout = async (params: IParams): Promise<LayoutType> => {
     );
     return LayoutType.DEFAULT;
   }
-  return LayoutType.DEFCON;
 };
 
 export default async function(
