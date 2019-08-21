@@ -96,6 +96,11 @@ function getDefconSrc(item: IJsonFeedArticle | IJsonFeedUrl): string | null {
   const defconImage = findImage(item, JsonFeedImageType.DEFCON_IMAGE);
   if (defconImage) {
     return defconImage.src;
+  } else {
+    const standardImage = findImage(item, JsonFeedImageType.STANDARD_IMAGE);
+    if (standardImage) {
+      return standardImage.src;
+    }
   }
   return null;
 }

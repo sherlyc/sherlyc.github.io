@@ -18,11 +18,13 @@ import { BasicArticleTitleUnitComponent } from './basic-article-title-unit/basic
 import { ExperimentContainerComponent } from './experiment-container/experiment-container.component';
 import { FeatureContainerComponent } from './feature-container/feature-container.component';
 import { GrayDefconArticleUnitComponent } from './gray-defcon-article-unit/gray-defcon-article-unit.component';
+import { BigImageArticleUnitComponent } from './big-image-article-unit/big-image-article-unit.component';
 
 export const contentBlockComponents = [
   GrayDefconArticleUnitComponent,
   DefconArticleUnitComponent,
   BasicArticleUnitComponent,
+  BigImageArticleUnitComponent,
   BasicArticleSectionComponent,
   BasicArticleTitleUnitComponent,
   ImageLinkUnitComponent,
@@ -46,6 +48,7 @@ const registry: {
   GrayDefconArticleUnitComponent,
   DefconArticleUnitComponent,
   BasicArticleUnitComponent,
+  BigImageArticleUnitComponent,
   BasicArticleSectionComponent,
   BasicArticleTitleUnitComponent,
   ImageLinkUnitComponent,

@@ -91,7 +91,7 @@ const getRawArticles = async (
   }
 
   return (sourceId === Strap.TopStories || sourceId === Section.Latest) &&
-  layout === LayoutType.DEFAULT
+    layout === LayoutType.DEFAULT
     ? [rawArticles[1], rawArticles[0], ...rawArticles.slice(2)].filter(Boolean)
     : rawArticles;
 };

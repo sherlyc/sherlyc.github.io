@@ -87,6 +87,18 @@ describe('JsonFeed Mapper', () => {
         'https://resources.stuff.co.nz/1547607024623.jpg 180w';
       expect(result[0].imageSrcSet).toBe(imageSourceSet);
     });
+
+    it('should fallback to standard image when defcon image is not provided', () => {
+      const data: IJsonFeedArticleList = cloneDeep(
+        jsonfeed as IJsonFeedArticleList
+      );
+
+      const standardImage =
+        // tslint:disable-next-line:max-line-length
+        'https://resources.stuff.co.nz/content/dam/images/1/t/f/z/u/4/image.related.StuffLandscapeSixteenByNine.620x349.1tdmj0.png/1547601996972.jpg';
+      const result = map(data.stories);
+      expect(result[4].defconSrc).toBe(standardImage);
+    });
   });
 
   describe('headline flags', () => {
