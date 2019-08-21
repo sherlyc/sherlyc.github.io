@@ -5,9 +5,9 @@
       <img itemprop="image" src="{{ input.imageSrc }}" alt="{{ input.indexHeadline }}" loading="auto" />
     </div>
     <div class="wrapper">
-      <app-headline textColor="white" [headline]="input.indexHeadline" [headlineFlags]="input.headlineFlags"></app-headline>
+      <app-headline textColor="#fff" [headline]="input.indexHeadline" [headlineFlags]="input.headlineFlags"></app-headline>
       <p>
-        <app-time-ago [timestamp]="input.lastPublishedTime"></app-time-ago>
+        <app-time-ago textColor="#fff" [timestamp]="input.lastPublishedTime"></app-time-ago>
         <span class="intro">{{ input.introText }}</span>
       </p>
     </div>
