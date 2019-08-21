@@ -1,0 +1,43 @@
+:host {
+  display: block;
+  border-bottom: 1px solid #edeef1;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  margin-bottom: 10px;
+  color: #000;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.row {
+  flex-wrap: nowrap;
+}
+
+.column {
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+img {
+  width: 100%;
+  margin-bottom: -4px;
+}
+
+.image {
+  overflow: hidden;
+}
+
+.intro {
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+p {
+  margin: 0;
+}
