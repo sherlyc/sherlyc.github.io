@@ -65,19 +65,36 @@ export default async function(
           strapName,
           layout: LayoutType.BIG_HEADLINE,
           totalBasicArticlesUnit,
-          totalBasicArticleTitleUnit
+          totalBasicArticleTitleUnit,
+          variant: 'control'
         },
         params
       );
     default:
       return handlerRunner(
         {
-          type: HandlerInputType.ArticleList,
-          sourceId,
-          strapName,
-          layout: LayoutType.DEFAULT,
-          totalBasicArticlesUnit,
-          totalBasicArticleTitleUnit
+          type: HandlerInputType.Experiment,
+          name: 'TopStoriesVisualExperiment',
+          variants: {
+            control: {
+              type: HandlerInputType.ArticleList,
+              sourceId: Strap.TopStories,
+              strapName,
+              layout: LayoutType.DEFAULT,
+              totalBasicArticlesUnit,
+              totalBasicArticleTitleUnit,
+              variant: 'control'
+            },
+            groupOne: {
+              type: HandlerInputType.ArticleList,
+              sourceId: Strap.TopStories,
+              strapName,
+              layout: LayoutType.DEFAULT,
+              totalBasicArticlesUnit,
+              totalBasicArticleTitleUnit,
+              variant: 'groupOne'
+            }
+          }
         },
         params
       );
