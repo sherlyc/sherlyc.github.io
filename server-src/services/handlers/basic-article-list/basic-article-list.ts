@@ -17,7 +17,7 @@ const createBasicArticleUnitBlock = (
   article: IRawArticle,
   strapName: string
 ): IBasicArticleUnit => ({
-  type: ContentBlockType.BasicArticleUnit,
+  type: ContentBlockType.BigImageArticleUnit,
   id: article.id,
   strapName: strapName,
   indexHeadline: article.indexHeadline,

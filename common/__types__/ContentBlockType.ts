@@ -3,6 +3,7 @@ export enum ContentBlockType {
   GrayDefconArticleUnit = 'GrayDefconArticleUnit',
   DefconArticleUnit = 'DefconArticleUnit',
   BasicArticleUnit = 'BasicArticleUnit',
+  BigImageArticleUnit = 'BigImageArticleUnit',
   BasicArticleTitleUnit = 'BasicArticleTitleUnit',
   ImageLinkUnit = 'ImageLinkUnit',
   BasicAdUnit = 'BasicAdUnit',
