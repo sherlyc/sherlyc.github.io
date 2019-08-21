@@ -8,6 +8,7 @@ import { IBasicArticleListHandlerInput } from '../__types__/IBasicArticleListHan
 import { IDefconArticleListHandlerInput } from '../__types__/IDefconArticleListHandlerInput';
 import logger from '../../utils/logger';
 import { Strap } from '../../strap';
+import { IExperimentHandlerInput } from '../__types__/IExperimentHandlerInput';
 
 describe('TopStoriesHandler', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
@@ -65,32 +66,6 @@ describe('TopStoriesHandler', () => {
     expect(handlerFunction).toHaveBeenCalledWith(basicArticleListInput, params);
   });
 
-  it('should create defcon article list when layout retrieved is defcon', async () => {
-    jest
-      .spyOn(layoutRetriever, 'layoutRetriever')
-      .mockResolvedValue(LayoutType.DEFCON);
-    const handlerFunction = jest.fn();
-    const handlerInput: ITopStoriesHandlerInput = {
-      type: HandlerInputType.TopStories,
-      sourceId: Strap.TopStories,
-      strapName: strapName,
-      totalBasicArticlesUnit: 3
-    };
-    const defconArticleListInput: IDefconArticleListHandlerInput = {
-      type: HandlerInputType.DefconArticleList,
-      sourceId: Strap.TopStories,
-      strapName,
-      totalArticles: 3
-    };
-
-    await topStoriesHandler(handlerFunction, handlerInput, params);
-
-    expect(handlerFunction).toHaveBeenCalledWith(
-      defconArticleListInput,
-      params
-    );
-  });
-
   it('should create basic article list with default layout and log error when failing to retrieve layout', async () => {
     jest
       .spyOn(layoutRetriever, 'layoutRetriever')
@@ -117,5 +92,39 @@ describe('TopStoriesHandler', () => {
 
     expect(handlerFunction).toHaveBeenCalledWith(basicArticleListInput, params);
     expect(loggerSpy).toHaveBeenCalled();
+  });
+
+  describe('when layout is defcon', () => {
+    it('should return experiment container with defcon and basic articles for control variant', async () => {
+      jest
+        .spyOn(layoutRetriever, 'layoutRetriever')
+        .mockResolvedValue(LayoutType.DEFCON);
+      const handlerFunction = jest.fn();
+      const handlerInput: ITopStoriesHandlerInput = {
+        type: HandlerInputType.TopStories,
+        sourceId: Strap.TopStories,
+        strapName: strapName,
+        totalBasicArticlesUnit: 3
+      };
+      const experimentHandlerInput: IExperimentHandlerInput = {
+        type: HandlerInputType.Experiment,
+        name: 'TopStoriesVisualExperiment',
+        variants: {
+          control: {
+            type: HandlerInputType.DefconArticleList,
+            sourceId: Strap.TopStories,
+            strapName,
+            totalArticles: 3
+          }
+        }
+      };
+
+      await topStoriesHandler(handlerFunction, handlerInput, params);
+
+      expect(handlerFunction).toHaveBeenCalledWith(
+        experimentHandlerInput,
+        params
+      );
+    });
   });
 });
