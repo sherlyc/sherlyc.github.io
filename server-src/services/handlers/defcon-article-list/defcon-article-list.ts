@@ -64,7 +64,8 @@ export default async function(
   const basicAdUnit: IBasicAdUnit = {
     type: ContentBlockType.BasicAdUnit
   };
-  const formattedArticles = rawArticles.reduce(
+
+  return rawArticles.reduce(
     (final, article, index) => {
       if (index === 0) {
         return [
@@ -101,6 +102,4 @@ export default async function(
     },
     [] as IContentBlock[]
   );
-
-  return formattedArticles;
 }
