@@ -7,6 +7,7 @@ import { layoutRetriever } from '../../adapters/layout-retriever';
 import { LayoutType } from '../../adapters/__types__/LayoutType';
 import logger from '../../utils/logger';
 import { Strap } from '../../strap';
+import { Experiments } from '../../../../common/Experiments';
 
 const retrieveLayout = async (params: IParams): Promise<LayoutType> => {
   try {
@@ -36,13 +37,21 @@ export default async function(
       return handlerRunner(
         {
           type: HandlerInputType.Experiment,
-          name: 'TopStoriesVisualExperiment',
+          name: Experiments.TopStoriesVisualExperiment,
           variants: {
             control: {
               type: HandlerInputType.DefconArticleList,
               sourceId: Strap.TopStories,
               strapName,
-              totalArticles: totalBasicArticlesUnit
+              totalArticles: totalBasicArticlesUnit,
+              variant: 'control'
+            },
+            groupOne: {
+              type: HandlerInputType.DefconArticleList,
+              sourceId: Strap.TopStories,
+              strapName,
+              totalArticles: 3,
+              variant: 'groupOne'
             }
           }
         },

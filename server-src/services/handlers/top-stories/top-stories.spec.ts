@@ -95,7 +95,7 @@ describe('TopStoriesHandler', () => {
   });
 
   describe('when layout is defcon', () => {
-    it('should return experiment container with defcon and basic articles for control variant', async () => {
+    it('should return experiment container with control and group one variant', async () => {
       jest
         .spyOn(layoutRetriever, 'layoutRetriever')
         .mockResolvedValue(LayoutType.DEFCON);
@@ -114,7 +114,15 @@ describe('TopStoriesHandler', () => {
             type: HandlerInputType.DefconArticleList,
             sourceId: Strap.TopStories,
             strapName,
-            totalArticles: 3
+            totalArticles: 3,
+            variant: 'control'
+          },
+          groupOne: {
+            type: HandlerInputType.DefconArticleList,
+            sourceId: Strap.TopStories,
+            strapName,
+            totalArticles: 3,
+            variant: 'groupOne'
           }
         }
       };
