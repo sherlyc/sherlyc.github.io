@@ -63,6 +63,32 @@ describe('BasicArticleListHandler', () => {
     linkUrl: '/link2',
     type: 'BasicArticleUnit'
   };
+
+  const articleNumberOneAsBigImageArticle = {
+    id: '1',
+    strapName: '',
+    headlineFlags: [],
+    imageSrc: '1.jpg',
+    imageSrcSet: '1.jpg 1w',
+    indexHeadline: 'Headline 1',
+    introText: 'Intro 1',
+    lastPublishedTime: 1,
+    linkUrl: '/link1',
+    type: 'BigImageArticleUnit'
+  };
+  const articleNumberTwoAsBigImageArticle = {
+    id: '2',
+    strapName: '',
+    headlineFlags: [],
+    imageSrc: '2.jpg',
+    imageSrcSet: '2.jpg 2w',
+    indexHeadline: 'Headline 2',
+    introText: 'Intro 2',
+    lastPublishedTime: 2,
+    linkUrl: '/link2',
+    type: 'BigImageArticleUnit'
+  };
+
   const articleNumberTwoAsBasicArticleTitle = {
     id: '2',
     strapName: 'business',
@@ -90,7 +116,8 @@ describe('BasicArticleListHandler', () => {
         type: HandlerInputType.ArticleList,
         strapName: 'business',
         sourceId: Section.Business,
-        totalBasicArticlesUnit: 1
+        totalBasicArticlesUnit: 1,
+        variant: 'control'
       },
       params
     );
@@ -118,7 +145,8 @@ describe('BasicArticleListHandler', () => {
         type: HandlerInputType.ArticleList,
         strapName: 'business',
         sourceId: Strap.Business,
-        totalBasicArticlesUnit: 2
+        totalBasicArticlesUnit: 2,
+        variant: 'control'
       },
       params
     );
@@ -151,7 +179,8 @@ describe('BasicArticleListHandler', () => {
         strapName: 'business',
         sourceId: Strap.Business,
         totalBasicArticlesUnit,
-        totalBasicArticleTitleUnit
+        totalBasicArticleTitleUnit,
+        variant: 'control'
       },
       params
     );
@@ -184,7 +213,8 @@ describe('BasicArticleListHandler', () => {
         strapName: 'business',
         totalBasicArticlesUnit: 1,
         totalBasicArticleTitleUnit: 1,
-        sourceId: Strap.EditorPicks
+        sourceId: Strap.EditorPicks,
+        variant: 'control'
       },
       params
     );
@@ -213,7 +243,8 @@ describe('BasicArticleListHandler', () => {
         strapName: 'business',
         totalBasicArticlesUnit: 2,
         totalBasicArticleTitleUnit: 2,
-        sourceId: Strap.EditorPicks
+        sourceId: Strap.EditorPicks,
+        variant: 'control'
       },
       params
     );
@@ -257,7 +288,8 @@ describe('BasicArticleListHandler', () => {
         strapName: 'business',
         sourceId: Strap.TopStories,
         layout: LayoutType.DEFAULT,
-        totalBasicArticlesUnit: 3
+        totalBasicArticlesUnit: 3,
+        variant: 'control'
       },
       params
     );
@@ -281,7 +313,8 @@ describe('BasicArticleListHandler', () => {
         strapName: 'business',
         sourceId: Strap.TopStories,
         layout: LayoutType.DEFAULT,
-        totalBasicArticlesUnit: 1
+        totalBasicArticlesUnit: 1,
+        variant: 'control'
       },
       params
     );
@@ -313,7 +346,8 @@ describe('BasicArticleListHandler', () => {
         strapName: 'business',
         sourceId: Strap.TopStories,
         layout: LayoutType.BIG_HEADLINE,
-        totalBasicArticlesUnit: 3
+        totalBasicArticlesUnit: 3,
+        variant: 'control'
       },
       params
     );
@@ -332,7 +366,8 @@ describe('BasicArticleListHandler', () => {
           type: HandlerInputType.ArticleList,
           strapName: 'business',
           sourceId: Strap.Business,
-          totalBasicArticlesUnit: 3
+          totalBasicArticlesUnit: 3,
+          variant: 'control'
         },
         params
       )
@@ -348,12 +383,45 @@ describe('BasicArticleListHandler', () => {
         jest.fn(),
         {
           type: HandlerInputType.ArticleList,
-          strapName: 'business',
+          strapName: '',
           sourceId: Strap.TopStories,
-          totalBasicArticlesUnit: 3
+          totalBasicArticlesUnit: 3,
+          variant: 'control'
         },
         params
       )
     ).rejects.toEqual(error);
+  });
+
+  it('should return big image articles when variant is groupOne for top stories', async () => {
+    const totalArticles = 2;
+    const totalAdUnits = 3;
+
+    (getStrapArticles as jest.Mock).mockResolvedValue(rawArticleList);
+
+    const handlerRunnerMock = jest.fn();
+
+    const contentBlocks = await basicArticleListHandler(
+      handlerRunnerMock,
+      {
+        type: HandlerInputType.ArticleList,
+        strapName: '',
+        sourceId: Strap.TopStories,
+        totalBasicArticlesUnit: 3,
+        variant: 'groupOne'
+      },
+      params
+    );
+
+    expect(contentBlocks.length).toBe(totalArticles + totalAdUnits);
+
+    const expectedContentBlocks = [
+      basicAdUnit,
+      articleNumberTwoAsBigImageArticle,
+      basicAdUnit,
+      articleNumberOneAsBigImageArticle,
+      basicAdUnit
+    ];
+    expect(contentBlocks).toEqual(expectedContentBlocks);
   });
 });
