@@ -9,7 +9,6 @@ import MiniMidStrip from './mini-midstrip-handler/mini-midstrip-handler';
 import ExternalContent from './external-content/external-content';
 import Weather from './weather/weather';
 import Page from './page/page';
-import Video from './video-handler/video-handler';
 import Experiment from './experiment-handler/experiment-handler';
 import Feature from './feature-handler/feature-handler';
 import { handlerRunnerFunction } from './runner';
@@ -33,7 +32,6 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   BreakingNews,
   Page,
   Weather,
-  Video,
   Experiment,
   Feature
 };

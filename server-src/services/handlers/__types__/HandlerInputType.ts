@@ -9,7 +9,6 @@ export enum HandlerInputType {
   ExternalContent = 'ExternalContent',
   Page = 'Page',
   Weather = 'Weather',
-  Video = 'Video',
   Experiment = 'Experiment',
   Feature = 'Feature'
 }
