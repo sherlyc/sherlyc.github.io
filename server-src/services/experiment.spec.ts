@@ -2,7 +2,16 @@ import { getExperimentVariant } from './experiment';
 import { Experiments } from '../../common/Experiments';
 
 describe('Experiment service', () => {
-  it('should return TopStoriesVisualExperiment when lottery number is 404', () => {
+  it('should return control when lottery number is not 404 for Users', () => {
+    const variant = 'control';
+    const experimentName = Experiments.Users;
+    const lotteryNumber = 1;
+    expect(getExperimentVariant(experimentName, lotteryNumber)).toEqual(
+      variant
+    );
+  });
+
+  it('should return TopStoriesVisualExperiment when lottery number is 404 for Users', () => {
     const experimentName = Experiments.Users;
     const lotteryNumber = 404;
     expect(getExperimentVariant(experimentName, lotteryNumber)).toEqual(
