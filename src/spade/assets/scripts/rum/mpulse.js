@@ -1,5 +1,6 @@
 /**
  * Official Akamai Mpulse implementation - https://developer.akamai.com/tools/boomerang#Implementation
+ * This implementation adds BOOMR_API_key not present in documentation but needed for it to work
  */
 (function() {
   // Boomerang Loader Snippet version 12
@@ -8,17 +9,13 @@
   }
 
   window.BOOMR = window.BOOMR || {};
+  window.BOOMR_API_key = 'R9YSD-XHS3U-KQGGF-8W2UT-K37B7';
   window.BOOMR.snippetStart = new Date().getTime();
   window.BOOMR.snippetExecuted = true;
   window.BOOMR.snippetVersion = 12;
+  window.BOOMR.url = '//c.go-mpulse.net/boomerang/' + window.BOOMR_API_key;
 
-  // NOTE: Set mPulse API Key
-  window.BOOMR.url =
-    '//c.go-mpulse.net/boomerang/' + 'R9YSD-XHS3U-KQGGF-8W2UT-K37B7';
-
-  var // document.currentScript is supported in all browsers other than IE
-    where =
-      document.currentScript || document.getElementsByTagName('script')[0],
+  var where = document.currentScript || document.getElementsByTagName('script')[0],
     // Whether or not Preload method has worked
     promoted = false,
     // How long to wait for Preload to work before falling back to iframe method
