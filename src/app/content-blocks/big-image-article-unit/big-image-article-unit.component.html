@@ -7,7 +7,7 @@
           <img itemprop="image" (error)="input.imageSrc = null" src="{{ input.imageSrc }}" alt="{{ input.indexHeadline }}" loading="auto" [attr.srcset]="input.imageSrcSet ? input.imageSrcSet : null" />
         </div>
       </div>
-      <app-headline [headline]="input.indexHeadline" [headlineFlags]="input.headlineFlags"></app-headline>
+      <app-headline class="headline" [headline]="input.indexHeadline" [headlineFlags]="input.headlineFlags"></app-headline>
       <p>
         <app-time-ago [timestamp]="input.lastPublishedTime"></app-time-ago>
         <span class="intro">{{ input.introText }}</span>
