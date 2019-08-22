@@ -6,5 +6,5 @@ export interface IDefconArticleListHandlerInput {
   sourceId: Strap.TopStories;
   strapName: string;
   totalArticles?: number;
-  variant: string;
+  variant?: string;
 }

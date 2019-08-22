@@ -51,7 +51,7 @@ export default async function(
     sourceId,
     strapName,
     totalArticles = 0,
-    variant
+    variant = 'control'
   }: IDefconArticleListHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
