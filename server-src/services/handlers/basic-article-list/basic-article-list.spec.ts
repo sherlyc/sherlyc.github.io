@@ -7,6 +7,9 @@ import { LayoutType } from '../../adapters/__types__/LayoutType';
 import { Strap } from '../../strap';
 import { Section } from '../../section';
 import { getSectionArticleList } from '../../adapters/jsonfeed';
+import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
+import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
+import { IBasicArticleTitleUnit } from '../../../../common/__types__/IBasicArticleTitleUnit';
 
 jest.mock('../../adapters/jsonfeed');
 jest.mock('../../adapters/strap-list-service');
@@ -39,7 +42,7 @@ describe('BasicArticleListHandler', () => {
     headlineFlags: []
   };
   const rawArticleList: IRawArticle[] = [articleNumberOne, articleNumberTwo];
-  const articleNumberOneAsBasicArticle = {
+  const articleNumberOneAsBasicArticle: IBasicArticleUnit = {
     id: '1',
     strapName: 'business',
     headlineFlags: [],
@@ -49,9 +52,9 @@ describe('BasicArticleListHandler', () => {
     introText: 'Intro 1',
     lastPublishedTime: 1,
     linkUrl: '/link1',
-    type: 'BasicArticleUnit'
+    type: ContentBlockType.BasicArticleUnit
   };
-  const articleNumberTwoAsBasicArticle = {
+  const articleNumberTwoAsBasicArticle: IBasicArticleUnit = {
     id: '2',
     strapName: 'business',
     headlineFlags: [],
@@ -61,10 +64,10 @@ describe('BasicArticleListHandler', () => {
     introText: 'Intro 2',
     lastPublishedTime: 2,
     linkUrl: '/link2',
-    type: 'BasicArticleUnit'
+    type: ContentBlockType.BasicArticleUnit
   };
 
-  const articleNumberOneAsBigImageArticle = {
+  const articleNumberOneAsBigImageArticle: IBasicArticleUnit = {
     id: '1',
     strapName: '',
     headlineFlags: [],
@@ -74,9 +77,9 @@ describe('BasicArticleListHandler', () => {
     introText: 'Intro 1',
     lastPublishedTime: 1,
     linkUrl: '/link1',
-    type: 'BigImageArticleUnit'
+    type: ContentBlockType.BigImageArticleUnit
   };
-  const articleNumberTwoAsBigImageArticle = {
+  const articleNumberTwoAsBigImageArticle: IBasicArticleUnit = {
     id: '2',
     strapName: '',
     headlineFlags: [],
@@ -86,17 +89,17 @@ describe('BasicArticleListHandler', () => {
     introText: 'Intro 2',
     lastPublishedTime: 2,
     linkUrl: '/link2',
-    type: 'BigImageArticleUnit'
+    type: ContentBlockType.BigImageArticleUnit
   };
 
-  const articleNumberTwoAsBasicArticleTitle = {
+  const articleNumberTwoAsBasicArticleTitle: IBasicArticleTitleUnit = {
     id: '2',
     strapName: 'business',
     headlineFlags: [],
     indexHeadline: 'Headline 2',
     lastPublishedTime: 2,
     linkUrl: '/link2',
-    type: 'BasicArticleTitleUnit'
+    type: ContentBlockType.BasicArticleTitleUnit
   };
 
   beforeEach(() => {
