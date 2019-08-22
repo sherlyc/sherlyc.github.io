@@ -22,7 +22,14 @@ describe('api test', () => {
           type: 'Container',
           items: expect.arrayContaining([
             expect.objectContaining({ type: 'BasicAdUnit' }),
-            expect.objectContaining({ type: 'BasicArticleUnit' }),
+            expect.objectContaining({
+              type: 'ExperimentContainer',
+              variants: expect.objectContaining({
+                control: expect.arrayContaining([
+                  expect.objectContaining({ type: 'BasicArticleUnit' })
+                ])
+              })
+            }),
             expect.objectContaining({ type: 'ColumnContainer' }),
             expect.objectContaining({ type: 'BasicArticleSection' })
           ])
