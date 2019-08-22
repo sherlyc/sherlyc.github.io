@@ -19,12 +19,14 @@ import { ExperimentContainerComponent } from './experiment-container/experiment-
 import { FeatureContainerComponent } from './feature-container/feature-container.component';
 import { GrayDefconArticleUnitComponent } from './gray-defcon-article-unit/gray-defcon-article-unit.component';
 import { BigImageArticleUnitComponent } from './big-image-article-unit/big-image-article-unit.component';
+import { HalfWidthImageArticleUnitComponent } from './half-width-image-article-unit/half-width-image-article-unit.component';
 
 export const contentBlockComponents = [
   GrayDefconArticleUnitComponent,
   DefconArticleUnitComponent,
   BasicArticleUnitComponent,
   BigImageArticleUnitComponent,
+  HalfWidthImageArticleUnitComponent,
   BasicArticleSectionComponent,
   BasicArticleTitleUnitComponent,
   ImageLinkUnitComponent,
@@ -49,6 +51,7 @@ const registry: {
   DefconArticleUnitComponent,
   BasicArticleUnitComponent,
   BigImageArticleUnitComponent,
+  HalfWidthImageArticleUnitComponent,
   BasicArticleSectionComponent,
   BasicArticleTitleUnitComponent,
   ImageLinkUnitComponent,

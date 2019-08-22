@@ -2,7 +2,10 @@ import { ContentBlockType } from './ContentBlockType';
 import { HeadlineFlags } from '../HeadlineFlags';
 
 export interface IBasicArticleUnit {
-  type: ContentBlockType.BasicArticleUnit | ContentBlockType.BigImageArticleUnit;
+  type:
+    | ContentBlockType.BasicArticleUnit
+    | ContentBlockType.BigImageArticleUnit
+    | ContentBlockType.HalfWidthImageArticleUnit;
   id: string;
   strapName: string;
   indexHeadline: string;
