@@ -1,4 +1,3 @@
-import { VideoUnitComponent } from './video-unit/video-unit.component';
 import { Type } from '@angular/core';
 import { DefconArticleUnitComponent } from './defcon-article-unit/defcon-article-unit.component';
 import { BasicArticleUnitComponent } from './basic-article-unit/basic-article-unit.component';
@@ -38,7 +37,6 @@ export const contentBlockComponents = [
   HeaderComponent,
   ExternalContentUnitComponent,
   WeatherUnitComponent,
-  VideoUnitComponent,
   ExperimentContainerComponent,
   FeatureContainerComponent,
   FooterComponent
@@ -63,7 +61,6 @@ const registry: {
   HeaderComponent,
   ExternalContentUnitComponent,
   WeatherUnitComponent,
-  VideoUnitComponent,
   ExperimentContainerComponent,
   FeatureContainerComponent,
   FooterComponent
