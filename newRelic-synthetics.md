@@ -7,7 +7,10 @@ Currently this will run every 5 minutes to check for elements on i.stuff.co.nz.
 
 ```javascript
 const assert = require('assert');
-const blackListed = ['https://somniture.stuff.co.nz'];
+const blackListed = [
+  'https://somniture.stuff.co.nz',
+  'https://fonts.googleapis.com'
+];
 $browser.addHostnamesToBlacklist(blackListed);
 
 const getCssElement = (selector) => {
@@ -47,7 +50,9 @@ const shouldContainBasicAdUnit = async () => {
 const shouldContainTopStories = async () => {
   console.log('checking top stories');
   const elements = await $browser.findElements(
-    $driver.By.css('.container > app-basic-article-unit')
+    $driver.By.css(
+      '.container > app-experiment-container > app-basic-article-unit'
+    )
   );
   console.log('articles found: ', elements.length);
   return assert(
