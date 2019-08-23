@@ -15,9 +15,10 @@ import { getSectionArticleList } from '../../adapters/jsonfeed';
 
 const createBasicArticleUnitBlock = (
   article: IRawArticle,
-  strapName: string
+  strapName: string,
+  type: ContentBlockType.BasicArticleUnit | ContentBlockType.BigImageArticleUnit
 ): IBasicArticleUnit => ({
-  type: ContentBlockType.BasicArticleUnit,
+  type,
   id: article.id,
   strapName: strapName,
   indexHeadline: article.indexHeadline,
@@ -46,14 +47,25 @@ const formatAsArticleBlocks = (
   rawArticles: IRawArticle[],
   totalBasicArticleUnits: number,
   strapName: string,
-  basicAdUnit: IBasicAdUnit
+  basicAdUnit: IBasicAdUnit,
+  variant: string
 ) => {
   return rawArticles.reduce(
     (final, article, index) => {
       if (index < totalBasicArticleUnits) {
         return [
           ...final,
-          createBasicArticleUnitBlock(article, strapName),
+          variant === 'control'
+            ? createBasicArticleUnitBlock(
+                article,
+                strapName,
+                ContentBlockType.BasicArticleUnit
+              )
+            : createBasicArticleUnitBlock(
+                article,
+                strapName,
+                ContentBlockType.BigImageArticleUnit
+              ),
           basicAdUnit
         ];
       }
@@ -103,7 +115,8 @@ export default async function(
     totalBasicArticlesUnit = 0,
     totalBasicArticleTitleUnit = 0,
     strapName,
-    layout = LayoutType.DEFAULT
+    layout = LayoutType.DEFAULT,
+    variant = 'control'
   }: IBasicArticleListHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
@@ -121,6 +134,7 @@ export default async function(
     rawArticles,
     totalBasicArticlesUnit,
     strapName,
-    basicAdUnit
+    basicAdUnit,
+    variant
   );
 }

@@ -6,6 +6,8 @@ import { HandlerInputType } from '../__types__/HandlerInputType';
 import { layoutRetriever } from '../../adapters/layout-retriever';
 import { LayoutType } from '../../adapters/__types__/LayoutType';
 import logger from '../../utils/logger';
+import { Strap } from '../../strap';
+import { Experiments } from '../../../../common/Experiments';
 
 const retrieveLayout = async (params: IParams): Promise<LayoutType> => {
   try {
@@ -34,10 +36,24 @@ export default async function(
     case LayoutType.DEFCON:
       return handlerRunner(
         {
-          type: HandlerInputType.DefconArticleList,
-          sourceId,
-          strapName,
-          totalArticles: totalBasicArticlesUnit
+          type: HandlerInputType.Experiment,
+          name: Experiments.TopStoriesVisualExperiment,
+          variants: {
+            control: {
+              type: HandlerInputType.DefconArticleList,
+              sourceId: Strap.TopStories,
+              strapName,
+              totalArticles: totalBasicArticlesUnit,
+              variant: 'control'
+            },
+            groupOne: {
+              type: HandlerInputType.DefconArticleList,
+              sourceId: Strap.TopStories,
+              strapName,
+              totalArticles: 3,
+              variant: 'groupOne'
+            }
+          }
         },
         params
       );
@@ -49,19 +65,36 @@ export default async function(
           strapName,
           layout: LayoutType.BIG_HEADLINE,
           totalBasicArticlesUnit,
-          totalBasicArticleTitleUnit
+          totalBasicArticleTitleUnit,
+          variant: 'control'
         },
         params
       );
     default:
       return handlerRunner(
         {
-          type: HandlerInputType.ArticleList,
-          sourceId,
-          strapName,
-          layout: LayoutType.DEFAULT,
-          totalBasicArticlesUnit,
-          totalBasicArticleTitleUnit
+          type: HandlerInputType.Experiment,
+          name: 'TopStoriesVisualExperiment',
+          variants: {
+            control: {
+              type: HandlerInputType.ArticleList,
+              sourceId: Strap.TopStories,
+              strapName,
+              layout: LayoutType.DEFAULT,
+              totalBasicArticlesUnit,
+              totalBasicArticleTitleUnit,
+              variant: 'control'
+            },
+            groupOne: {
+              type: HandlerInputType.ArticleList,
+              sourceId: Strap.TopStories,
+              strapName,
+              layout: LayoutType.DEFAULT,
+              totalBasicArticlesUnit,
+              totalBasicArticleTitleUnit,
+              variant: 'groupOne'
+            }
+          }
         },
         params
       );

@@ -12,9 +12,12 @@ import { getStrapArticles } from '../../adapters/strap-list-service';
 
 const createDefconArticleBlock = (
   article: IRawArticle,
-  strapName: string
+  strapName: string,
+  type:
+    | ContentBlockType.DefconArticleUnit
+    | ContentBlockType.GrayDefconArticleUnit
 ): IDefconArticleUnit => ({
-  type: ContentBlockType.DefconArticleUnit,
+  type,
   id: article.id,
   strapName,
   indexHeadline: article.indexHeadline,
@@ -27,9 +30,10 @@ const createDefconArticleBlock = (
 
 const createBasicArticleBlock = (
   article: IRawArticle,
-  strapName: string
+  strapName: string,
+  type: ContentBlockType.BasicArticleUnit | ContentBlockType.BigImageArticleUnit
 ): IBasicArticleUnit => ({
-  type: ContentBlockType.BasicArticleUnit,
+  type,
   id: article.id,
   strapName,
   indexHeadline: article.indexHeadline,
@@ -43,7 +47,12 @@ const createBasicArticleBlock = (
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  { sourceId, strapName, totalArticles = 0 }: IDefconArticleListHandlerInput,
+  {
+    sourceId,
+    strapName,
+    totalArticles = 0,
+    variant = 'control'
+  }: IDefconArticleListHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   const rawArticles = await getStrapArticles(
@@ -55,23 +64,42 @@ export default async function(
   const basicAdUnit: IBasicAdUnit = {
     type: ContentBlockType.BasicAdUnit
   };
-  const formattedArticles = rawArticles.reduce(
+
+  return rawArticles.reduce(
     (final, article, index) => {
       if (index === 0) {
         return [
           ...final,
-          createDefconArticleBlock(article, strapName),
+          variant === 'control'
+            ? createDefconArticleBlock(
+                article,
+                strapName,
+                ContentBlockType.DefconArticleUnit
+              )
+            : createDefconArticleBlock(
+                article,
+                strapName,
+                ContentBlockType.GrayDefconArticleUnit
+              ),
           basicAdUnit
         ];
       }
       return [
         ...final,
-        createBasicArticleBlock(article, strapName),
+        variant === 'control'
+          ? createBasicArticleBlock(
+              article,
+              strapName,
+              ContentBlockType.BasicArticleUnit
+            )
+          : createBasicArticleBlock(
+              article,
+              strapName,
+              ContentBlockType.BigImageArticleUnit
+            ),
         basicAdUnit
       ];
     },
     [] as IContentBlock[]
   );
-
-  return formattedArticles;
 }

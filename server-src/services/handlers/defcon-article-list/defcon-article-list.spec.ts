@@ -56,8 +56,33 @@ describe('DefconArticleList', () => {
     headlineFlags: []
   };
 
+  const articleOneAsGrayDefconArticle: IDefconArticleUnit = {
+    type: ContentBlockType.GrayDefconArticleUnit,
+    strapName,
+    id: '1',
+    indexHeadline: 'Defcon Headline',
+    introText: 'Defcon Intro',
+    linkUrl: '/link1',
+    imageSrc: 'defcon.jpg',
+    lastPublishedTime: 1,
+    headlineFlags: []
+  };
+
   const articleTwoAsBasicArticle: IBasicArticleUnit = {
     type: ContentBlockType.BasicArticleUnit,
+    strapName,
+    id: '2',
+    indexHeadline: 'An Article',
+    introText: 'Article Text',
+    linkUrl: '/link1',
+    imageSrc: 'article.jpg',
+    imageSrcSet: 'article.jpg 1w',
+    lastPublishedTime: 1,
+    headlineFlags: []
+  };
+
+  const articleTwoAsBigImageArticle: IBasicArticleUnit = {
+    type: ContentBlockType.BigImageArticleUnit,
     strapName,
     id: '2',
     indexHeadline: 'An Article',
@@ -73,73 +98,108 @@ describe('DefconArticleList', () => {
     jest.resetModules();
   });
 
-  it('should return first article as defcon and others as basic articles when input is TopStories Strap', async () => {
-    const handlerInput: IDefconArticleListHandlerInput = {
-      type: HandlerInputType.DefconArticleList,
-      sourceId: Strap.TopStories,
-      strapName,
-      totalArticles: 2
-    };
-    const rawArticles = [articleOne, articleTwo];
+  describe('Control variant', () => {
+    it('should return first article as defcon and others as basic articles when input is TopStories Strap', async () => {
+      const handlerInput: IDefconArticleListHandlerInput = {
+        type: HandlerInputType.DefconArticleList,
+        sourceId: Strap.TopStories,
+        strapName,
+        totalArticles: 2,
+        variant: 'control'
+      };
+      const rawArticles = [articleOne, articleTwo];
 
-    (getStrapArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
+      (getStrapArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
 
-    const expectedContentBlocks = [
-      articleOneAsDefconArticle,
-      basicAdUnit,
-      articleTwoAsBasicArticle,
-      basicAdUnit
-    ];
+      const expectedContentBlocks = [
+        articleOneAsDefconArticle,
+        basicAdUnit,
+        articleTwoAsBasicArticle,
+        basicAdUnit
+      ];
 
-    const contentBlocks = await defconArticleList(
-      handlerRunner,
-      handlerInput,
-      params
-    );
+      const contentBlocks = await defconArticleList(
+        handlerRunner,
+        handlerInput,
+        params
+      );
 
-    expect(contentBlocks).toEqual(expectedContentBlocks);
+      expect(contentBlocks).toEqual(expectedContentBlocks);
+    });
+
+    it('should throw error when failing to retrieve articles', async () => {
+      const error = new Error('failed to retrieve');
+      const handlerInput: IDefconArticleListHandlerInput = {
+        type: HandlerInputType.DefconArticleList,
+        sourceId: Strap.TopStories,
+        strapName,
+        totalArticles: 2,
+        variant: 'control'
+      };
+
+      (getStrapArticles as jest.Mock).mockRejectedValue(error);
+
+      await expect(
+        defconArticleList(handlerRunner, handlerInput, params)
+      ).rejects.toEqual(error);
+    });
+
+    it('should return first article as defcon and others as basic articles when input is TopStories Strap', async () => {
+      const handlerInput: IDefconArticleListHandlerInput = {
+        type: HandlerInputType.DefconArticleList,
+        sourceId: Strap.TopStories,
+        strapName,
+        totalArticles: 2,
+        variant: 'control'
+      };
+      const rawArticles = [articleOne, articleTwo];
+
+      (getStrapArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
+
+      const expectedContentBlocks = [
+        articleOneAsDefconArticle,
+        basicAdUnit,
+        articleTwoAsBasicArticle,
+        basicAdUnit
+      ];
+
+      const contentBlocks = await defconArticleList(
+        handlerRunner,
+        handlerInput,
+        params
+      );
+
+      expect(contentBlocks).toEqual(expectedContentBlocks);
+    });
   });
 
-  it('should return first article as defcon and others as basic articles when input is TopStories Strap', async () => {
-    const handlerInput: IDefconArticleListHandlerInput = {
-      type: HandlerInputType.DefconArticleList,
-      sourceId: Strap.TopStories,
-      strapName,
-      totalArticles: 2
-    };
-    const rawArticles = [articleOne, articleTwo];
+  describe('Group one variant', () => {
+    it('should return first article as gray defcon and others as big image article', async () => {
+      const handlerInput: IDefconArticleListHandlerInput = {
+        type: HandlerInputType.DefconArticleList,
+        sourceId: Strap.TopStories,
+        strapName,
+        totalArticles: 2,
+        variant: 'groupOne'
+      };
+      const rawArticles = [articleOne, articleTwo];
 
-    (getStrapArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
+      (getStrapArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
 
-    const expectedContentBlocks = [
-      articleOneAsDefconArticle,
-      basicAdUnit,
-      articleTwoAsBasicArticle,
-      basicAdUnit
-    ];
+      const expectedContentBlocks = [
+        articleOneAsGrayDefconArticle,
+        basicAdUnit,
+        articleTwoAsBigImageArticle,
+        basicAdUnit
+      ];
 
-    const contentBlocks = await defconArticleList(
-      handlerRunner,
-      handlerInput,
-      params
-    );
+      const contentBlocks = await defconArticleList(
+        handlerRunner,
+        handlerInput,
+        params
+      );
 
-    expect(contentBlocks).toEqual(expectedContentBlocks);
-  });
-
-  it('should throw error when failing to retrieve articles', async () => {
-    const error = new Error('failed to retrieve');
-    const handlerInput: IDefconArticleListHandlerInput = {
-      type: HandlerInputType.DefconArticleList,
-      sourceId: Strap.TopStories,
-      strapName,
-      totalArticles: 2
-    };
-
-    (getStrapArticles as jest.Mock).mockRejectedValue(error);
-
-    await expect(
-      defconArticleList(handlerRunner, handlerInput, params)
-    ).rejects.toEqual(error);
+      expect(contentBlocks).toEqual(expectedContentBlocks);
+    });
   });
 });
