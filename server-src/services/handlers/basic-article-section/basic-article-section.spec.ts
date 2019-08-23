@@ -40,7 +40,8 @@ describe('BasicArticleSectionHandler', () => {
       linkUrl: '/business',
       displayName: 'business',
       displayNameColor: 'red',
-      articleList: {
+      content: {
+        type: HandlerInputType.ArticleList,
         sourceId: Section.Business,
         totalBasicArticlesUnit,
         strapName: 'business'
@@ -92,7 +93,8 @@ describe('BasicArticleSectionHandler', () => {
       type: 'ArticleSection',
       displayName: 'business',
       displayNameColor: 'red',
-      articleList: {
+      content: {
+        type: HandlerInputType.ArticleList,
         sourceId: Strap.EditorPicks,
         totalBasicArticlesUnit,
         totalBasicArticleTitleUnit,
