@@ -3,7 +3,6 @@ import { ContentBlockType } from '../../../../common/__types__/ContentBlockType'
 import { IBasicArticleSectionHandlerInput } from '../__types__/IBasicArticleSectionHandlerInput';
 import { handlerRunnerFunction } from '../runner';
 import { IParams } from '../../__types__/IParams';
-import { HandlerInputType } from '../__types__/HandlerInputType';
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -11,12 +10,7 @@ export default async function(
     displayName,
     displayNameColor,
     linkUrl,
-    articleList: {
-      sourceId,
-      strapName,
-      totalBasicArticlesUnit,
-      totalBasicArticleTitleUnit
-    }
+    content
   }: IBasicArticleSectionHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
@@ -26,16 +20,7 @@ export default async function(
       displayName,
       displayNameColor,
       linkUrl,
-      items: await handlerRunner(
-        {
-          type: HandlerInputType.ArticleList,
-          sourceId,
-          strapName,
-          totalBasicArticlesUnit,
-          totalBasicArticleTitleUnit
-        },
-        params
-      )
+      items: await handlerRunner(content, params)
     },
     { type: ContentBlockType.BasicAdUnit }
   ];

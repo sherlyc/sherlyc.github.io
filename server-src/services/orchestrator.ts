@@ -62,7 +62,8 @@ export default async (params: IParams): Promise<IPage> => {
               type: HandlerInputType.ArticleSection,
               displayName: `Editors' Picks`,
               displayNameColor: 'darkblue',
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.EditorPicks,
                 strapName: `Editors' Picks`,
                 totalBasicArticlesUnit:
@@ -84,7 +85,8 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'National',
               displayNameColor: 'darkblue',
               linkUrl: '/' + Section.National,
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.National,
                 strapName: 'National',
                 totalBasicArticlesUnit: 2,
@@ -92,18 +94,25 @@ export default async (params: IParams): Promise<IPage> => {
               }
             },
             {
-              type: HandlerInputType.ExternalContent,
-              height: 'calc(56% + 216px)',
-              width: '100%',
-              url:
-                'https://www.playwidget.stuff.co.nz/hshelf/5d3a9a3fa0e845001c7c998a'
+              type: HandlerInputType.ArticleSection,
+              displayName: 'Video',
+              displayNameColor: 'teal',
+              linkUrl: 'https://play.stuff.co.nz',
+              content: {
+                type: HandlerInputType.ExternalContent,
+                height: 'calc(56% + 216px)',
+                width: '100%',
+                url:
+                  'https://www.playwidget.stuff.co.nz/hshelf/5d3a9a3fa0e845001c7c998a'
+              }
             },
             {
               type: HandlerInputType.ArticleSection,
               displayName: 'Climate Change',
               displayNameColor: 'darkblue',
               linkUrl: '/' + Section.ClimateChange,
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.ClimateChange,
                 strapName: 'Climate Change',
                 totalBasicArticlesUnit: 2,
@@ -115,7 +124,8 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Business',
               displayNameColor: 'royalblue',
               linkUrl: '/' + Section.Business,
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.Business,
                 strapName: 'Business',
                 totalBasicArticlesUnit: 2,
@@ -127,7 +137,8 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Travel',
               displayNameColor: 'yellowsea',
               linkUrl: '/' + Section.Travel,
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.Travel,
                 strapName: 'Travel',
                 totalBasicArticlesUnit: 2,
@@ -139,7 +150,8 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Premium',
               displayNameColor: 'premiumdark',
               linkUrl: '/' + Section.Premium,
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.Premium,
                 strapName: 'Premium',
                 totalBasicArticlesUnit: 2,
@@ -151,7 +163,8 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'World',
               displayNameColor: 'azureblue',
               linkUrl: '/' + Section.World,
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.World,
                 strapName: 'World',
                 totalBasicArticlesUnit: 2,
@@ -169,7 +182,8 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Property',
               displayNameColor: 'royalblue',
               linkUrl: '/' + Section.Property,
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.Property,
                 strapName: 'Property',
                 totalBasicArticlesUnit: 2,
@@ -180,7 +194,8 @@ export default async (params: IParams): Promise<IPage> => {
               type: HandlerInputType.ArticleSection,
               displayName: 'Daily Fix',
               displayNameColor: 'navyblue',
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.DailyFix,
                 strapName: 'Daily Fix',
                 totalBasicArticlesUnit: 3
@@ -191,7 +206,8 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Homed',
               displayNameColor: 'keppel',
               linkUrl: '/' + Section.Homed,
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.Homed,
                 strapName: 'Homed',
                 totalBasicArticlesUnit: 2,
@@ -203,7 +219,8 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Life & Style',
               displayNameColor: 'amaranth',
               linkUrl: '/' + Section.LifeStyle,
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.LifeStyle,
                 strapName: 'Life & Style',
                 totalBasicArticlesUnit: 2,
@@ -215,7 +232,8 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Well & Good',
               displayNameColor: 'sunglow',
               linkUrl: '/' + Section.WellGood,
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.WellGood,
                 strapName: 'Well & Good',
                 totalBasicArticlesUnit: 2,
@@ -227,7 +245,8 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Entertainment',
               displayNameColor: 'purpleheart',
               linkUrl: '/' + Section.Entertainment,
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.Entertainment,
                 strapName: 'Entertainment',
                 totalBasicArticlesUnit: 2,
@@ -239,7 +258,8 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Bravo',
               displayNameColor: 'purpleheart',
               linkUrl: '/' + Section.Bravo,
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.Bravo,
                 strapName: 'Bravo',
                 totalBasicArticlesUnit: 2,
@@ -251,7 +271,8 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Technology',
               displayNameColor: 'carribeangreen',
               linkUrl: '/' + Section.Technology,
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.Technology,
                 strapName: 'Technology',
                 totalBasicArticlesUnit: 2,
@@ -263,7 +284,8 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Opinion',
               displayNameColor: 'dingley',
               linkUrl: '/' + Section.Opinion,
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.Opinion,
                 strapName: 'Opinion',
                 totalBasicArticlesUnit: 2,
@@ -275,7 +297,8 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Good Reads',
               displayNameColor: 'mediumslateblue',
               linkUrl: '/' + Section.GoodReads,
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.GoodReads,
                 strapName: 'Good Reads',
                 totalBasicArticlesUnit: 2,
@@ -287,7 +310,8 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Motoring',
               displayNameColor: 'pizzaz',
               linkUrl: '/' + Section.Motoring,
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.Motoring,
                 strapName: 'Motoring',
                 totalBasicArticlesUnit: 2,
@@ -299,7 +323,8 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Stuff Nation',
               displayNameColor: 'woodsmoke',
               linkUrl: '/' + Section.StuffNation,
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.StuffNation,
                 strapName: 'Stuff Nation',
                 totalBasicArticlesUnit: 2,
@@ -311,7 +336,8 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Sport',
               displayNameColor: 'scarlet',
               linkUrl: '/' + Section.Sport,
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.Sport,
                 strapName: 'Sport',
                 totalBasicArticlesUnit: 2,
@@ -323,7 +349,8 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Noted',
               displayNameColor: 'darkblue',
               linkUrl: '/' + Section.Noted,
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.Noted,
                 strapName: 'Noted',
                 totalBasicArticlesUnit: 2
@@ -334,7 +361,8 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Now to Love',
               displayNameColor: 'amaranth',
               linkUrl: '/' + Section.NowToLove,
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.NowToLove,
                 strapName: 'Now to Love',
                 totalBasicArticlesUnit: 2
@@ -345,7 +373,8 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Homes to Love',
               displayNameColor: 'amaranth',
               linkUrl: '/' + Section.HomesToLove,
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.HomesToLove,
                 strapName: 'Homes to Love',
                 totalBasicArticlesUnit: 2
@@ -356,7 +385,8 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Food to Love',
               displayNameColor: 'amaranth',
               linkUrl: '/' + Section.FoodToLove,
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.FoodToLove,
                 strapName: 'Food to Love',
                 totalBasicArticlesUnit: 2
@@ -367,7 +397,8 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'BeautyHeaven',
               displayNameColor: 'amaranth',
               linkUrl: '/' + Section.BeautyHeaven,
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.BeautyHeaven,
                 strapName: 'BeautyHeaven',
                 totalBasicArticlesUnit: 2
@@ -378,7 +409,8 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Metro',
               displayNameColor: 'amaranth',
               linkUrl: '/' + Section.Metro,
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.Metro,
                 strapName: 'Metro',
                 totalBasicArticlesUnit: 2
@@ -389,7 +421,8 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Newsroom.co.nz',
               displayNameColor: 'darkblue',
               linkUrl: '/' + Section.Newsroom,
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.Newsroom,
                 strapName: 'Newsroom.co.nz',
                 totalBasicArticlesUnit: 3
@@ -400,7 +433,8 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Tarana',
               displayNameColor: 'scarlet',
               linkUrl: '/' + Section.Tarana,
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.Tarana,
                 strapName: 'Tarana',
                 totalBasicArticlesUnit: 2,
@@ -412,7 +446,8 @@ export default async (params: IParams): Promise<IPage> => {
               displayName: 'Sponsored Content',
               displayNameColor: 'darkblue',
               linkUrl: '/' + Section.SponsoredContent,
-              articleList: {
+              content: {
+                type: HandlerInputType.ArticleList,
                 sourceId: Strap.SponsoredContent,
                 strapName: 'Sponsored Content',
                 totalBasicArticlesUnit: 2
