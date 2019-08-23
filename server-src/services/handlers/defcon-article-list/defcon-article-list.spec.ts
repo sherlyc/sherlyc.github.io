@@ -94,6 +94,32 @@ describe('DefconArticleList', () => {
     headlineFlags: []
   };
 
+  const articleAsBigImageArticle: IBasicArticleUnit = {
+    type: ContentBlockType.BigImageArticleUnit,
+    strapName,
+    id: '1',
+    indexHeadline: 'Defcon Headline',
+    introText: 'Defcon Intro',
+    linkUrl: '/link1',
+    imageSrc: 'article.jpg',
+    imageSrcSet: 'article.jpg 1w',
+    lastPublishedTime: 1,
+    headlineFlags: []
+  };
+
+  const articleAsHalfWidthImageArticle: IBasicArticleUnit = {
+    type: ContentBlockType.HalfWidthImageArticleUnit,
+    strapName,
+    id: '1',
+    indexHeadline: 'Defcon Headline',
+    introText: 'Defcon Intro',
+    linkUrl: '/link1',
+    imageSrc: 'article.jpg',
+    imageSrcSet: 'article.jpg 1w',
+    lastPublishedTime: 1,
+    headlineFlags: []
+  };
+
   beforeEach(() => {
     jest.resetModules();
   });
@@ -190,6 +216,51 @@ describe('DefconArticleList', () => {
         articleOneAsGrayDefconArticle,
         basicAdUnit,
         articleTwoAsBigImageArticle,
+        basicAdUnit
+      ];
+
+      const contentBlocks = await defconArticleList(
+        handlerRunner,
+        handlerInput,
+        params
+      );
+
+      expect(contentBlocks).toEqual(expectedContentBlocks);
+    });
+  });
+
+  describe('Group two variant', () => {
+    it('should return gray defcon, two big image article and 3 half width image article units', async () => {
+      const handlerInput: IDefconArticleListHandlerInput = {
+        type: HandlerInputType.DefconArticleList,
+        sourceId: Strap.TopStories,
+        strapName,
+        totalArticles: 6,
+        variant: 'groupTwo'
+      };
+      const rawArticles = [
+        articleOne,
+        articleOne,
+        articleOne,
+        articleOne,
+        articleOne,
+        articleOne
+      ];
+
+      (getStrapArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
+
+      const expectedContentBlocks = [
+        articleOneAsGrayDefconArticle,
+        basicAdUnit,
+        articleAsBigImageArticle,
+        basicAdUnit,
+        articleAsBigImageArticle,
+        basicAdUnit,
+        articleAsHalfWidthImageArticle,
+        basicAdUnit,
+        articleAsHalfWidthImageArticle,
+        basicAdUnit,
+        articleAsHalfWidthImageArticle,
         basicAdUnit
       ];
 
