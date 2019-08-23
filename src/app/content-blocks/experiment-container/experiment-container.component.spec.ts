@@ -163,14 +163,22 @@ describe('ExperimentContainerComponent', () => {
     expect(controlVariantBlocks).toHaveLength(0);
   });
 
-  it('should not render any variant in server', async () => {
+  it('should render control variant in server', async () => {
     runtimeService.isBrowser.mockReturnValue(false);
     component.input = experimentContainer;
 
     await component.ngOnInit();
     fixture.detectChanges();
 
-    expect(component.contentBlocks).toHaveLength(0);
+    const controlVariantBlocks = fixture.debugElement.queryAll(
+      By.directive(ControlVariantContentBlockComponent)
+    );
+    const otherVariantBlocks = fixture.debugElement.queryAll(
+      By.directive(OtherVariantContentBlockComponent)
+    );
+
+    expect(controlVariantBlocks).toHaveLength(1);
+    expect(otherVariantBlocks).toHaveLength(0);
   });
 
   it('should log error when variant does not exist', async () => {

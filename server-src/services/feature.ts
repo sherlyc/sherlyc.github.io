@@ -5,8 +5,6 @@ export const isFeatureEnabled = (
   lotteryNumber: number
 ): boolean => {
   switch (feature) {
-    case FeatureName.playStuffWidget:
-      return true;
     default:
       return false;
   }
