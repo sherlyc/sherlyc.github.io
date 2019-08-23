@@ -52,33 +52,4 @@ describe('Homepage', () => {
     const ads = await getElements(driver, 'app-basic-ad-unit');
     expect(ads.length).toBeGreaterThan(0);
   });
-
-  // it('should display ad when video is clicked', async () => {
-  //   // TODO: Need to force ads to play in test environment. See EX-505.
-  //   const button = await getElement(driver, '.vjs-big-play-button');
-  //   await button.click();
-  //
-  //   const adVideoPlayer = driver.findElement(
-  //     By.css('.vjs-ima3-ad-container video')
-  //   );
-  //   await driver.wait(until.elementIsVisible(adVideoPlayer), 6000);
-  //   const adUrl = await adVideoPlayer.getAttribute('src');
-  //   expect(adUrl).toBeTruthy();
-  // });
-
-  xit('should change video player url when selecting a video from playlist', async () => {
-    await driver.wait(until.elementLocated(By.css('.video-js video')));
-    const videoPlayer = await driver.findElement(By.css('.video-js video'));
-    const initialUrl = await videoPlayer.getAttribute('src');
-
-    const playlistItems = await driver.findElements(
-      By.css('.vjs-playlist-item')
-    );
-    const randomPlaylistItem = playlistItems[2];
-    await randomPlaylistItem.click();
-    const newUrl = await videoPlayer.getAttribute('src');
-
-    expect(newUrl).toBeTruthy();
-    expect(initialUrl).not.toEqual(newUrl);
-  });
 });

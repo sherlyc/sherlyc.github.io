@@ -21,7 +21,7 @@ const createBasicArticleUnitBlock = (
     | ContentBlockType.BigImageArticleUnit
     | ContentBlockType.HalfWidthImageArticleUnit
 ): IBasicArticleUnit => ({
-  type: ContentBlockType.HalfWidthImageArticleUnit,
+  type,
   id: article.id,
   strapName: strapName,
   indexHeadline: article.indexHeadline,
