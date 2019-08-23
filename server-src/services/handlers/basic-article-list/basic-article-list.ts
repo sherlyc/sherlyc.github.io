@@ -13,6 +13,10 @@ import { getStrapArticles } from '../../adapters/strap-list-service';
 import { Section } from '../../section';
 import { getSectionArticleList } from '../../adapters/jsonfeed';
 
+const basicAdUnit: IBasicAdUnit = {
+  type: ContentBlockType.BasicAdUnit
+};
+
 const createBasicArticleUnitBlock = (
   article: IRawArticle,
   strapName: string,
@@ -46,35 +50,80 @@ const createBasicTitleArticleBlock = (
   headlineFlags: article.headlineFlags
 });
 
-const formatAsArticleBlocks = (
+const controlGroupArticleBlocks = (
   rawArticles: IRawArticle[],
   totalBasicArticleUnits: number,
-  strapName: string,
-  basicAdUnit: IBasicAdUnit,
-  variant: string
+  strapName: string
 ) => {
   return rawArticles.reduce(
     (final, article, index) => {
       if (index < totalBasicArticleUnits) {
         return [
           ...final,
-          variant === 'control'
-            ? createBasicArticleUnitBlock(
-                article,
-                strapName,
-                ContentBlockType.BasicArticleUnit
-              )
-            : createBasicArticleUnitBlock(
-                article,
-                strapName,
-                ContentBlockType.BigImageArticleUnit
-              ),
+          createBasicArticleUnitBlock(
+            article,
+            strapName,
+            ContentBlockType.BasicArticleUnit
+          ),
           basicAdUnit
         ];
       }
       return [
         ...final,
         createBasicTitleArticleBlock(article, strapName),
+        basicAdUnit
+      ];
+    },
+    [basicAdUnit] as IContentBlock[]
+  );
+};
+
+const groupOneArticleBlocks = (
+  rawArticles: IRawArticle[],
+  totalBasicArticleUnits: number,
+  strapName: string
+) => {
+  return rawArticles.reduce(
+    (final, article) => {
+      return [
+        ...final,
+        createBasicArticleUnitBlock(
+          article,
+          strapName,
+          ContentBlockType.BigImageArticleUnit
+        ),
+        basicAdUnit
+      ];
+    },
+    [basicAdUnit] as IContentBlock[]
+  );
+};
+
+const groupTwoArticleBlocks = (
+  rawArticles: IRawArticle[],
+  totalBasicArticleUnits: number,
+  strapName: string
+) => {
+  return rawArticles.reduce(
+    (final, article, index) => {
+      if (index < 3) {
+        return [
+          ...final,
+          createBasicArticleUnitBlock(
+            article,
+            strapName,
+            ContentBlockType.BigImageArticleUnit
+          ),
+          basicAdUnit
+        ];
+      }
+      return [
+        ...final,
+        createBasicArticleUnitBlock(
+          article,
+          strapName,
+          ContentBlockType.HalfWidthImageArticleUnit
+        ),
         basicAdUnit
       ];
     },
@@ -123,9 +172,6 @@ export default async function(
   }: IBasicArticleListHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const basicAdUnit: IBasicAdUnit = {
-    type: ContentBlockType.BasicAdUnit
-  };
   const totalArticles = totalBasicArticlesUnit + totalBasicArticleTitleUnit;
   const rawArticles = await getRawArticles(
     sourceId,
@@ -133,11 +179,23 @@ export default async function(
     layout,
     params
   );
-  return formatAsArticleBlocks(
+
+  if (variant === 'groupOne') {
+    return groupOneArticleBlocks(
+      rawArticles,
+      totalBasicArticlesUnit,
+      strapName
+    );
+  } else if (variant === 'groupTwo') {
+    return groupTwoArticleBlocks(
+      rawArticles,
+      totalBasicArticlesUnit,
+      strapName
+    );
+  }
+  return controlGroupArticleBlocks(
     rawArticles,
     totalBasicArticlesUnit,
-    strapName,
-    basicAdUnit,
-    variant
+    strapName
   );
 }
