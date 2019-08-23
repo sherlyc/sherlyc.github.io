@@ -5,7 +5,6 @@ import { ITopStoriesHandlerInput } from '../__types__/ITopStoriesHandlerInput';
 import * as layoutRetriever from '../../../services/adapters/layout-retriever';
 import { LayoutType } from '../../adapters/__types__/LayoutType';
 import { IBasicArticleListHandlerInput } from '../__types__/IBasicArticleListHandlerInput';
-import { IDefconArticleListHandlerInput } from '../__types__/IDefconArticleListHandlerInput';
 import logger from '../../utils/logger';
 import { Strap } from '../../strap';
 import { IExperimentHandlerInput } from '../__types__/IExperimentHandlerInput';

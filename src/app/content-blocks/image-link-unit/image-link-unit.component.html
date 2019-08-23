@@ -5,6 +5,6 @@
         <img src="{{ input.imageSrc }}" (error)="input.imageSrc = null" alt="{{ input.indexHeadline }}" loading="auto" [attr.srcset]="input.imageSrcSet ? input.imageSrcSet : null" />
       </div>
     </div>
-    <app-headline [headline]="input.indexHeadline" [headlineFlags]="input.headlineFlags"></app-headline>
+    <app-headline class="headline" [headline]="input.indexHeadline" [headlineFlags]="input.headlineFlags"></app-headline>
   </a>
 </article>

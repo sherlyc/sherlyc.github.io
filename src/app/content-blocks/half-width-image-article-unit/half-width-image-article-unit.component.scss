@@ -1,6 +1,11 @@
 :host {
   display: block;
   border-bottom: 1px solid #edeef1;
+  margin-top: 10px;
+}
+
+.wrapper {
+  padding: 14px 10px 0;
 }
 
 a {
@@ -23,12 +28,8 @@ a {
 }
 
 img {
-  width: 100%;
+  max-width: 100%;
   margin-bottom: -4px;
-}
-
-.headline {
-  margin: 10px 0;
 }
 
 .image {

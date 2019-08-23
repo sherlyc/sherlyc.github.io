@@ -16,7 +16,10 @@ import { getSectionArticleList } from '../../adapters/jsonfeed';
 const createBasicArticleUnitBlock = (
   article: IRawArticle,
   strapName: string,
-  type: ContentBlockType.BasicArticleUnit | ContentBlockType.BigImageArticleUnit
+  type:
+    | ContentBlockType.BasicArticleUnit
+    | ContentBlockType.BigImageArticleUnit
+    | ContentBlockType.HalfWidthImageArticleUnit
 ): IBasicArticleUnit => ({
   type,
   id: article.id,
