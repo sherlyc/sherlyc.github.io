@@ -10,6 +10,10 @@ import { handlerRunnerFunction } from '../runner';
 import { Strap } from '../../strap';
 import { getStrapArticles } from '../../adapters/strap-list-service';
 
+const basicAdUnit: IBasicAdUnit = {
+  type: ContentBlockType.BasicAdUnit
+};
+
 const createDefconArticleBlock = (
   article: IRawArticle,
   strapName: string,
@@ -48,11 +52,7 @@ const createBasicArticleBlock = (
   headlineFlags: article.headlineFlags
 });
 
-function controlGroupArticles(
-  rawArticles: IRawArticle[],
-  strapName: string,
-  basicAdUnit: IBasicAdUnit
-) {
+const controlGroupArticles = (rawArticles: IRawArticle[], strapName: string) => {
   return rawArticles.reduce(
     (final, article, index) => {
       if (index === 0) {
@@ -80,11 +80,7 @@ function controlGroupArticles(
   );
 }
 
-function groupOneArticles(
-  rawArticles: IRawArticle[],
-  strapName: string,
-  basicAdUnit: IBasicAdUnit
-) {
+const groupOneArticles = (rawArticles: IRawArticle[], strapName: string) => {
   return rawArticles.reduce(
     (final, article, index) => {
       if (index === 0) {
@@ -112,11 +108,7 @@ function groupOneArticles(
   );
 }
 
-function groupTwoArticles(
-  rawArticles: IRawArticle[],
-  strapName: string,
-  basicAdUnit: IBasicAdUnit
-) {
+const groupTwoArticles = (rawArticles: IRawArticle[], strapName: string) => {
   return rawArticles.reduce(
     (final, article, index) => {
       if (index === 0) {
@@ -173,15 +165,11 @@ export default async function(
     totalArticles
   );
 
-  const basicAdUnit: IBasicAdUnit = {
-    type: ContentBlockType.BasicAdUnit
-  };
-
   if (variant === 'groupOne') {
-    return groupOneArticles(rawArticles, strapName, basicAdUnit);
+    return groupOneArticles(rawArticles, strapName);
   } else if (variant === 'groupTwo') {
-    return groupTwoArticles(rawArticles, strapName, basicAdUnit);
+    return groupTwoArticles(rawArticles, strapName);
   }
 
-  return controlGroupArticles(rawArticles, strapName, basicAdUnit);
+  return controlGroupArticles(rawArticles, strapName);
 }
