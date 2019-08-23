@@ -28,18 +28,18 @@ export class ExperimentContainerComponent
   async ngOnInit() {
     if (this.runtimeService.isBrowser()) {
       this.variant = await this.experimentService.getVariant(this.input.name);
-      if (this.input.variants[this.variant]) {
-        this.contentBlocks = this.input.variants[this.variant];
-        if (this.contentBlocks.length > 0) {
-          this.sendAnalytics();
-        }
-      } else {
-        this.loggerService.error(
-          new Error(
-            `ExperimentContainer - missing variant: ${this.variant}, in experiment: ${this.input.name}`
-          )
-        );
+    }
+    if (this.input.variants[this.variant]) {
+      this.contentBlocks = this.input.variants[this.variant];
+      if (this.contentBlocks.length > 0) {
+        this.sendAnalytics();
       }
+    } else {
+      this.loggerService.error(
+        new Error(
+          `ExperimentContainer - missing variant: ${this.variant}, in experiment: ${this.input.name}`
+        )
+      );
     }
   }
 
