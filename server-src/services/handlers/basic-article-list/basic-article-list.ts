@@ -78,11 +78,7 @@ const controlGroupArticleBlocks = (
   );
 };
 
-const groupOneArticleBlocks = (
-  rawArticles: IRawArticle[],
-  totalBasicArticleUnits: number,
-  strapName: string
-) => {
+const groupOneArticleBlocks = (rawArticles: IRawArticle[], strapName: string) => {
   return rawArticles.reduce(
     (final, article) => {
       return [
@@ -99,11 +95,7 @@ const groupOneArticleBlocks = (
   );
 };
 
-const groupTwoArticleBlocks = (
-  rawArticles: IRawArticle[],
-  totalBasicArticleUnits: number,
-  strapName: string
-) => {
+const groupTwoArticleBlocks = (rawArticles: IRawArticle[], strapName: string) => {
   return rawArticles.reduce(
     (final, article, index) => {
       if (index < 3) {
@@ -181,17 +173,9 @@ export default async function(
   );
 
   if (variant === 'groupOne') {
-    return groupOneArticleBlocks(
-      rawArticles,
-      totalBasicArticlesUnit,
-      strapName
-    );
+    return groupOneArticleBlocks(rawArticles, strapName);
   } else if (variant === 'groupTwo') {
-    return groupTwoArticleBlocks(
-      rawArticles,
-      totalBasicArticlesUnit,
-      strapName
-    );
+    return groupTwoArticleBlocks(rawArticles, strapName);
   }
   return controlGroupArticleBlocks(
     rawArticles,
