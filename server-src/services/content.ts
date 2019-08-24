@@ -1,18 +1,13 @@
 import orchestrate from './orchestrator';
 import logger from './utils/logger';
-import { IParams } from './__types__/IParams';
 import { Request, Response } from 'express';
 
-export const getContent = async (
-  req: Request,
-  res: Response,
-  params: IParams
-) => {
+export const getContent = async (req: Request, res: Response) => {
   try {
-    res.json(await orchestrate(params));
+    res.json(await orchestrate(req.spadeParams));
     res.end();
   } catch (e) {
-    logger.error(params.apiRequestId, `Content Api Error - ${e}`);
+    logger.error(req.spadeParams.apiRequestId, `Content Api Error - ${e}`);
     res.sendStatus(500);
   }
 };

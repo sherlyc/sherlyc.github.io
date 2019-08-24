@@ -9,69 +9,65 @@ import { healthCheck } from './api/health-controller';
 import { featureController } from './api/feature-controller';
 import { getContent } from './services/content';
 
+declare const global: {
+  newrelic: any;
+};
+
+declare global {
+  namespace Express {
+    // tslint:disable-next-line:interface-name
+    export interface Request {
+      spadeParams: IParams;
+    }
+  }
+}
+
 const app = express();
 app.disable('x-powered-by');
 
 app.use(cookieParser());
 
-app.get('/robots.txt', (req, res) => res.send(''));
-
-declare const global: {
-  newrelic: any;
-};
-
 const spadeApiPath = '/spade/api';
 
-const setUpNewRelicCustomAttribute = (params: IParams) => {
+app.use((req, res, next) => {
+  req.spadeParams = extractParams(req);
   if (global.newrelic) {
     try {
-      global.newrelic.addCustomAttribute('apiRequestId', params.apiRequestId);
+      global.newrelic.addCustomAttribute(
+        'apiRequestId',
+        req.spadeParams.apiRequestId
+      );
     } catch (err) {
       logger.error(
-        params.apiRequestId,
+        req.spadeParams.apiRequestId,
         `App - failed to set NewRelic custom attribute - ${err}`
       );
     }
   }
-};
-
-app.get(`${spadeApiPath}/content`, async (req, res) => {
-  const params: IParams = extractParams(req);
-  setUpNewRelicCustomAttribute(params);
-  await getContent(req, res, params);
+  next();
 });
+
+app.get(`${spadeApiPath}/content`, getContent);
 
 app.get(
   [`${spadeApiPath}/weather`, `${spadeApiPath}/weather/:location`],
-  async (req, res) => {
-    const params: IParams = extractParams(req);
-    await getWeather(req, res, params);
-  }
+  getWeather
 );
 
 app.get(
   `${spadeApiPath}/experiment/:experimentName/:lotteryNumber`,
-  async (req, res) => {
-    const params: IParams = extractParams(req);
-    await experimentController(req, res, params);
-  }
+  experimentController
 );
 
 app.get(
   `${spadeApiPath}/feature/:featureName/:lotteryNumber`,
-  async (req, res) => {
-    const params: IParams = extractParams(req);
-    await featureController(req, res, params);
-  }
+  featureController
 );
 
-app.use('/health/:type', async (req, res) => {
-  const params: IParams = extractParams(req);
-  await healthCheck(req, res, params);
-});
+app.use('/health/:type', healthCheck);
 
-app.use('/version', (req, res) => {
-  res.send(`experience-frontend-${process.env.SPADE_VERSION || 'SNAPSHOT'}`);
-});
+app.use('/version', (req, res) =>
+  res.send(`experience-frontend-${process.env.SPADE_VERSION || 'SNAPSHOT'}`)
+);
 
 export default app;

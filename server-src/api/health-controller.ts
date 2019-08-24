@@ -16,18 +16,14 @@ const fullHealthCheck = async (params: IParams) => {
   ]);
 };
 
-export const healthCheck = async (
-  req: Request,
-  res: Response,
-  params: IParams
-) => {
+export const healthCheck = async (req: Request, res: Response) => {
   if (req.params.type === 'full') {
     try {
-      await fullHealthCheck(params);
+      await fullHealthCheck(req.spadeParams);
       res.status(200).send('Full Health Check Successful');
     } catch (err) {
       logger.error(
-        params.apiRequestId,
+        req.spadeParams.apiRequestId,
         `Health check level error - ${err.message}`
       );
       res.sendStatus(500);
