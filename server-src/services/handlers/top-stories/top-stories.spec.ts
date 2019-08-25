@@ -46,6 +46,15 @@ describe('TopStoriesHandler', () => {
           totalBasicArticlesUnit: 3,
           totalBasicArticleTitleUnit: 3,
           variant: 'groupOne'
+        },
+        groupTwo: {
+          type: HandlerInputType.ArticleList,
+          sourceId: Strap.TopStories,
+          strapName,
+          layout: LayoutType.DEFAULT,
+          totalBasicArticlesUnit: 3,
+          totalBasicArticleTitleUnit: 3,
+          variant: 'groupTwo'
         }
       }
     };
@@ -86,6 +95,13 @@ describe('TopStoriesHandler', () => {
           strapName,
           totalArticles: 3,
           variant: 'groupOne'
+        },
+        groupTwo: {
+          type: HandlerInputType.DefconArticleList,
+          sourceId: Strap.TopStories,
+          strapName,
+          totalArticles: 3,
+          variant: 'groupTwo'
         }
       }
     };
@@ -159,6 +175,15 @@ describe('TopStoriesHandler', () => {
           totalBasicArticlesUnit: 3,
           totalBasicArticleTitleUnit: 1,
           variant: 'groupOne'
+        },
+        groupTwo: {
+          type: HandlerInputType.ArticleList,
+          sourceId: Strap.TopStories,
+          strapName,
+          layout: LayoutType.DEFAULT,
+          totalBasicArticlesUnit: 3,
+          totalBasicArticleTitleUnit: 1,
+          variant: 'groupTwo'
         }
       }
     };

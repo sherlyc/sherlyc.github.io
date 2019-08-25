@@ -28,10 +28,19 @@ describe('Experiment service', () => {
     );
   });
 
-  it('should return control when lottery number is not 404 for TopStoriesVisualExperiment', () => {
+  it('should return control when lottery number is not 404 or 505 for TopStoriesVisualExperiment', () => {
     const variant = 'control';
     const experimentName = Experiments.TopStoriesVisualExperiment;
     const lotteryNumber = 1;
+    expect(getExperimentVariant(experimentName, lotteryNumber)).toEqual(
+      variant
+    );
+  });
+
+  it('should return groupTwo when lottery number is 505 for TopStoriesVisualExperiment', () => {
+    const variant = 'groupTwo';
+    const experimentName = Experiments.TopStoriesVisualExperiment;
+    const lotteryNumber = 505;
     expect(getExperimentVariant(experimentName, lotteryNumber)).toEqual(
       variant
     );

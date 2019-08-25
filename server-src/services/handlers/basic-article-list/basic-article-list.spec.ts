@@ -102,6 +102,32 @@ describe('BasicArticleListHandler', () => {
     type: ContentBlockType.BasicArticleTitleUnit
   };
 
+  const articleAsBigImageArticle: IBasicArticleUnit = {
+    id: '1',
+    strapName: '',
+    indexHeadline: 'Headline 1',
+    introText: 'Intro 1',
+    linkUrl: '/link1',
+    imageSrc: '1.jpg',
+    imageSrcSet: '1.jpg 1w',
+    lastPublishedTime: 1,
+    headlineFlags: [],
+    type: ContentBlockType.BigImageArticleUnit
+  };
+
+  const articleAsHalfWidthImageArticle: IBasicArticleUnit = {
+    id: '1',
+    strapName: '',
+    indexHeadline: 'Headline 1',
+    introText: 'Intro 1',
+    linkUrl: '/link1',
+    imageSrc: '1.jpg',
+    imageSrcSet: '1.jpg 1w',
+    lastPublishedTime: 1,
+    headlineFlags: [],
+    type: ContentBlockType.HalfWidthImageArticleUnit
+  };
+
   beforeEach(() => {
     jest.resetModules();
   });
@@ -428,6 +454,56 @@ describe('BasicArticleListHandler', () => {
         articleNumberTwoAsBigImageArticle,
         basicAdUnit,
         articleNumberOneAsBigImageArticle,
+        basicAdUnit
+      ];
+      expect(contentBlocks).toEqual(expectedContentBlocks);
+    });
+  });
+
+  describe('GroupTwo Variant', () => {
+    it('should return 3 big images and 3 half width images articles', async () => {
+      const totalArticles = 6;
+      const totalAdUnits = 7;
+      const sixArticleList = [
+        articleNumberOne,
+        articleNumberOne,
+        articleNumberOne,
+        articleNumberOne,
+        articleNumberOne,
+        articleNumberOne
+      ];
+
+      (getStrapArticles as jest.Mock).mockResolvedValue(sixArticleList);
+
+      const handlerRunnerMock = jest.fn();
+
+      const contentBlocks = await basicArticleListHandler(
+        handlerRunnerMock,
+        {
+          type: HandlerInputType.ArticleList,
+          strapName: '',
+          sourceId: Strap.TopStories,
+          totalBasicArticlesUnit: 6,
+          variant: 'groupTwo'
+        },
+        params
+      );
+
+      expect(contentBlocks.length).toBe(totalArticles + totalAdUnits);
+
+      const expectedContentBlocks = [
+        basicAdUnit,
+        articleAsBigImageArticle,
+        basicAdUnit,
+        articleAsBigImageArticle,
+        basicAdUnit,
+        articleAsBigImageArticle,
+        basicAdUnit,
+        articleAsHalfWidthImageArticle,
+        basicAdUnit,
+        articleAsHalfWidthImageArticle,
+        basicAdUnit,
+        articleAsHalfWidthImageArticle,
         basicAdUnit
       ];
       expect(contentBlocks).toEqual(expectedContentBlocks);

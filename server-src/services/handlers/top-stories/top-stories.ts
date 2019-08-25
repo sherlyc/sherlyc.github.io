@@ -52,6 +52,13 @@ export default async function(
               strapName,
               totalArticles: 3,
               variant: 'groupOne'
+            },
+            groupTwo: {
+              type: HandlerInputType.DefconArticleList,
+              sourceId: Strap.TopStories,
+              strapName,
+              totalArticles: 3,
+              variant: 'groupTwo'
             }
           }
         },
@@ -93,6 +100,15 @@ export default async function(
               totalBasicArticlesUnit,
               totalBasicArticleTitleUnit,
               variant: 'groupOne'
+            },
+            groupTwo: {
+              type: HandlerInputType.ArticleList,
+              sourceId: Strap.TopStories,
+              strapName,
+              layout: LayoutType.DEFAULT,
+              totalBasicArticlesUnit,
+              totalBasicArticleTitleUnit,
+              variant: 'groupTwo'
             }
           }
         },

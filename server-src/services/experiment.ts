@@ -11,7 +11,12 @@ export const getExperimentVariant = (
       }
       return 'control';
     case Experiments.TopStoriesVisualExperiment:
-      return lotteryNumber === 404 ? 'groupOne' : 'control';
+      if (lotteryNumber === 404) {
+        return 'groupOne';
+      } else if (lotteryNumber === 505) {
+        return 'groupTwo';
+      }
+      return 'control';
     default:
       return 'control';
   }

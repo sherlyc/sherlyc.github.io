@@ -10,6 +10,10 @@ import { handlerRunnerFunction } from '../runner';
 import { Strap } from '../../strap';
 import { getStrapArticles } from '../../adapters/strap-list-service';
 
+const basicAdUnit: IBasicAdUnit = {
+  type: ContentBlockType.BasicAdUnit
+};
+
 const createDefconArticleBlock = (
   article: IRawArticle,
   strapName: string,
@@ -31,7 +35,10 @@ const createDefconArticleBlock = (
 const createBasicArticleBlock = (
   article: IRawArticle,
   strapName: string,
-  type: ContentBlockType.BasicArticleUnit | ContentBlockType.BigImageArticleUnit
+  type:
+    | ContentBlockType.BasicArticleUnit
+    | ContentBlockType.BigImageArticleUnit
+    | ContentBlockType.HalfWidthImageArticleUnit
 ): IBasicArticleUnit => ({
   type,
   id: article.id,
@@ -44,6 +51,106 @@ const createBasicArticleBlock = (
   lastPublishedTime: article.lastPublishedTime,
   headlineFlags: article.headlineFlags
 });
+
+const controlGroupArticles = (
+  rawArticles: IRawArticle[],
+  strapName: string
+) => {
+  return rawArticles.reduce(
+    (final, article, index) => {
+      if (index === 0) {
+        return [
+          ...final,
+          createDefconArticleBlock(
+            article,
+            strapName,
+            ContentBlockType.DefconArticleUnit
+          ),
+          basicAdUnit
+        ];
+      }
+      return [
+        ...final,
+        createBasicArticleBlock(
+          article,
+          strapName,
+          ContentBlockType.BasicArticleUnit
+        ),
+        basicAdUnit
+      ];
+    },
+    [] as IContentBlock[]
+  );
+};
+
+const groupOneArticles = (rawArticles: IRawArticle[], strapName: string) => {
+  return rawArticles.reduce(
+    (final, article, index) => {
+      if (index === 0) {
+        return [
+          ...final,
+          createDefconArticleBlock(
+            article,
+            strapName,
+            ContentBlockType.GrayDefconArticleUnit
+          ),
+          basicAdUnit
+        ];
+      }
+      return [
+        ...final,
+        createBasicArticleBlock(
+          article,
+          strapName,
+          ContentBlockType.BigImageArticleUnit
+        ),
+        basicAdUnit
+      ];
+    },
+    [] as IContentBlock[]
+  );
+};
+
+const groupTwoArticles = (rawArticles: IRawArticle[], strapName: string) => {
+  return rawArticles.reduce(
+    (final, article, index) => {
+      if (index === 0) {
+        return [
+          ...final,
+          createDefconArticleBlock(
+            article,
+            strapName,
+            ContentBlockType.GrayDefconArticleUnit
+          ),
+          basicAdUnit
+        ];
+      }
+
+      if (index === 1 || index === 2) {
+        return [
+          ...final,
+          createBasicArticleBlock(
+            article,
+            strapName,
+            ContentBlockType.BigImageArticleUnit
+          ),
+          basicAdUnit
+        ];
+      }
+
+      return [
+        ...final,
+        createBasicArticleBlock(
+          article,
+          strapName,
+          ContentBlockType.HalfWidthImageArticleUnit
+        ),
+        basicAdUnit
+      ];
+    },
+    [] as IContentBlock[]
+  );
+};
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -61,45 +168,11 @@ export default async function(
     totalArticles
   );
 
-  const basicAdUnit: IBasicAdUnit = {
-    type: ContentBlockType.BasicAdUnit
-  };
+  if (variant === 'groupOne') {
+    return groupOneArticles(rawArticles, strapName);
+  } else if (variant === 'groupTwo') {
+    return groupTwoArticles(rawArticles, strapName);
+  }
 
-  return rawArticles.reduce(
-    (final, article, index) => {
-      if (index === 0) {
-        return [
-          ...final,
-          variant === 'control'
-            ? createDefconArticleBlock(
-                article,
-                strapName,
-                ContentBlockType.DefconArticleUnit
-              )
-            : createDefconArticleBlock(
-                article,
-                strapName,
-                ContentBlockType.GrayDefconArticleUnit
-              ),
-          basicAdUnit
-        ];
-      }
-      return [
-        ...final,
-        variant === 'control'
-          ? createBasicArticleBlock(
-              article,
-              strapName,
-              ContentBlockType.BasicArticleUnit
-            )
-          : createBasicArticleBlock(
-              article,
-              strapName,
-              ContentBlockType.BigImageArticleUnit
-            ),
-        basicAdUnit
-      ];
-    },
-    [] as IContentBlock[]
-  );
+  return controlGroupArticles(rawArticles, strapName);
 }
