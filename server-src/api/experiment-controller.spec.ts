@@ -7,6 +7,7 @@ jest.mock('../services/experiment');
 
 describe('Experiment controller', () => {
   const req = {
+    spadeParams: { apiRequestId: '33498' },
     params: { experimentName: '', lotteryNumber: 1 },
     cookies: {}
   } as Request;
@@ -20,7 +21,7 @@ describe('Experiment controller', () => {
     req.params.experimentName = '';
     req.params.lotteryNumber = -1;
 
-    experimentController(req, res, { apiRequestId: '5335k' });
+    experimentController(req, res);
 
     assert400StatusAndMessage(res, req);
   });
@@ -29,7 +30,7 @@ describe('Experiment controller', () => {
     req.params.experimentName = 'afjdjafia';
     req.params.lotteryNumber = -8;
 
-    experimentController(req, res, { apiRequestId: '33498' });
+    experimentController(req, res);
 
     assert400StatusAndMessage(res, req);
   });
@@ -38,7 +39,7 @@ describe('Experiment controller', () => {
     req.params.experimentName = Experiments.Users;
     req.params.lotteryNumber = '';
 
-    experimentController(req, res, { apiRequestId: '845478' });
+    experimentController(req, res);
 
     assert400StatusAndMessage(res, req);
   });
@@ -49,7 +50,7 @@ describe('Experiment controller', () => {
     const variant = 'Variant A';
     (getExperimentVariant as jest.Mock).mockReturnValue(variant);
 
-    experimentController(req, res, { apiRequestId: '34585' });
+    experimentController(req, res);
 
     expect(res.send).toHaveBeenCalledWith(variant);
   });
@@ -60,7 +61,7 @@ describe('Experiment controller', () => {
     const variant = 'control';
     (getExperimentVariant as jest.Mock).mockReturnValue(variant);
 
-    experimentController(req, res, { apiRequestId: '3454' });
+    experimentController(req, res);
 
     expect(res.send).toHaveBeenCalledWith(variant);
   });

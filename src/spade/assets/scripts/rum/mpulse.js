@@ -15,7 +15,8 @@
   window.BOOMR.snippetVersion = 12;
   window.BOOMR.url = '//c.go-mpulse.net/boomerang/' + window.BOOMR_API_key;
 
-  var where = document.currentScript || document.getElementsByTagName('script')[0],
+  var where =
+      document.currentScript || document.getElementsByTagName('script')[0],
     // Whether or not Preload method has worked
     promoted = false,
     // How long to wait for Preload to work before falling back to iframe method

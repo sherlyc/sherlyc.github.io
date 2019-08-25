@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import { getExperimentVariant } from '../services/experiment';
 import logger from '../services/utils/logger';
-import { IParams } from '../services/__types__/IParams';
 
 function validateRequest(name: string, lotteryNumber: number) {
   if (!name || !lotteryNumber || lotteryNumber < 0) {
@@ -10,23 +9,15 @@ function validateRequest(name: string, lotteryNumber: number) {
   }
 }
 
-export const experimentController = function(
-  req: Request,
-  res: Response,
-  params: IParams
-) {
+export const experimentController = function(req: Request, res: Response) {
   const { experimentName, lotteryNumber } = req.params;
 
   try {
     validateRequest(experimentName, lotteryNumber);
-    const variant = getExperimentVariant(
-      experimentName,
-      parseInt(lotteryNumber, 10)
-    );
-    res.send(variant);
+    res.send(getExperimentVariant(experimentName, parseInt(lotteryNumber, 10)));
   } catch (e) {
     logger.error(
-      params.apiRequestId,
+      req.spadeParams.apiRequestId,
       `Experiment controller level error - ${e.message}`
     );
     res.status(400).send(e.message);

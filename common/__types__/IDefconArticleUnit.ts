@@ -1,7 +1,9 @@
 import { ContentBlockType } from './ContentBlockType';
 
 export interface IDefconArticleUnit {
-  type: ContentBlockType.DefconArticleUnit | ContentBlockType.GrayDefconArticleUnit;
+  type:
+    | ContentBlockType.DefconArticleUnit
+    | ContentBlockType.GrayDefconArticleUnit;
   id: string;
   strapName: string;
   indexHeadline: string;
