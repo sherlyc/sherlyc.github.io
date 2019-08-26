@@ -35,7 +35,8 @@ export default async (params: IParams): Promise<IPage> => {
               type: HandlerInputType.ExternalContent,
               height: '50px',
               width: '100%',
-              url: 'https://interactives.stuff.co.nz/play-stuff/PlayStuff.htm'
+              url:
+                'https://interactives.stuff.co.nz/2019/circuit/infinite-evil-uber.html'
             },
             {
               type: HandlerInputType.TopStories,
