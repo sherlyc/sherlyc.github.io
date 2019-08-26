@@ -28,7 +28,7 @@ export default async (params: IParams): Promise<IPage> => {
               type: HandlerInputType.ExternalContent,
               height: '40px',
               width: '100%',
-              marginBottom: '3px',
+              margin: '0 0 3px 0',
               url:
                 'https://interactives.stuff.co.nz/voyager/2019/2019-mobile.html'
             },
@@ -36,7 +36,7 @@ export default async (params: IParams): Promise<IPage> => {
               type: HandlerInputType.ExternalContent,
               height: '50px',
               width: '100%',
-              marginBottom: '10px',
+              margin: '0 0 10px 0',
               url:
                 'https://interactives.stuff.co.nz/2019/circuit/infinite-evil-uber.html'
             },
@@ -58,7 +58,7 @@ export default async (params: IParams): Promise<IPage> => {
               type: HandlerInputType.ExternalContent,
               height: '215px',
               width: '100%',
-              marginBottom: '30px',
+              margin: '0 0 30px 0',
               url:
                 'https://www.playwidget.stuff.co.nz/shelf/5d06caa81de1c4001f81a46e'
             },
@@ -106,7 +106,7 @@ export default async (params: IParams): Promise<IPage> => {
                 type: HandlerInputType.ExternalContent,
                 height: 'calc(56% + 216px)',
                 width: '100%',
-                marginBottom: '10px',
+                margin: '0 0 10px 0',
                 url:
                   'https://www.playwidget.stuff.co.nz/hshelf/5d3a9a3fa0e845001c7c998a'
               }
@@ -180,7 +180,7 @@ export default async (params: IParams): Promise<IPage> => {
               type: HandlerInputType.ExternalContent,
               height: '570px',
               width: '100%',
-              marginBottom: '3px',
+              margin: '0 0 3px 0',
               url: 'https://cdn.neighbourly.co.nz/stuff/strap/empty'
             },
             {
@@ -463,7 +463,7 @@ export default async (params: IParams): Promise<IPage> => {
               type: HandlerInputType.ExternalContent,
               height: '580px',
               width: '100%',
-              marginBottom: '3px',
+              margin: '0 0 3px 0',
               url: 'https://cdn.neighbourly.co.nz/stuff/933/homepage'
             }
           ]

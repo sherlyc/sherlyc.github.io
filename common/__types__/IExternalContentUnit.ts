@@ -5,6 +5,6 @@ export interface IExternalContentUnit {
   url: string;
   width: string;
   height: string;
-  marginBottom: string;
+  margin: string;
   scrollable?: boolean;
 }

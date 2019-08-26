@@ -31,7 +31,7 @@ describe('ExternalContentUnitComponent', () => {
       url: 'https://example.com',
       height: '100px',
       width: '100%',
-      marginBottom: '3px'
+      margin: '0 0 3px 0'
     };
 
     fixture.detectChanges();
@@ -48,7 +48,7 @@ describe('ExternalContentUnitComponent', () => {
       height: '100px',
       scrollable: true,
       width: '100%',
-      marginBottom: '3px'
+      margin: '0 0 3px 0'
     };
 
     fixture.detectChanges();
