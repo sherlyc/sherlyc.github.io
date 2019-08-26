@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, retry } from 'rxjs/operators';
@@ -7,6 +7,8 @@ import { LoggerService } from '../logger/logger.service';
 import { ConfigService } from '../config/config.service';
 import { RuntimeService } from '../runtime/runtime.service';
 import { makeStateKey, TransferState } from '@angular/platform-browser';
+import { RESPONSE } from '@nguniversal/express-engine/tokens';
+import { Response } from 'express';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +19,7 @@ export class ContentRetrieverService {
     private logger: LoggerService,
     private runtime: RuntimeService,
     private config: ConfigService,
+    @Inject(RESPONSE) @Optional() private response: Response,
     private transferState: TransferState
   ) {}
 
@@ -48,6 +51,9 @@ export class ContentRetrieverService {
 
   private handleError(error: HttpErrorResponse) {
     this.logger.error(error, 'ContentRetrieverService - getContent error');
+    if (this.runtime.isServer() && this.response) {
+      this.response.sendStatus(500);
+    }
     return of({
       title: 'Stuff',
       content: [
