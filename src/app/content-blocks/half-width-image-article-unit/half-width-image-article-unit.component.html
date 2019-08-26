@@ -11,11 +11,13 @@
         <app-headline [headline]="input.indexHeadline" [headlineFlags]="input.headlineFlags"></app-headline>
       </div>
     </div>
-    <div class="row wrapper">
-      <p>
-        <app-time-ago [timestamp]="input.lastPublishedTime"></app-time-ago>
-        <span class="intro">{{ input.introText }}</span>
-      </p>
+    <div class="row">
+      <div class="column">
+        <p>
+          <app-time-ago [timestamp]="input.lastPublishedTime"></app-time-ago>
+          <span class="intro">{{ input.introText }}</span>
+        </p>
+      </div>
     </div>
   </a>
 </article>

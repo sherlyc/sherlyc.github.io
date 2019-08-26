@@ -1,7 +1,6 @@
 a {
   display: block;
   text-decoration: none;
-  margin: 10px 0;
   color: #000;
   &:hover {
     text-decoration: none;
@@ -14,12 +13,9 @@ img {
   height: 100%;
 }
 
-.headline {
-  margin: 10px 0;
-}
-
 .image {
   width: 100%;
+  margin-bottom: 10px;
 }
 
 .row {
