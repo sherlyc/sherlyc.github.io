@@ -6,7 +6,7 @@ import { IExternalContentHandlerInput } from '../__types__/IExternalContentHandl
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  { url, height, width, scrollable }: IExternalContentHandlerInput,
+  { url, height, width, marginBottom, scrollable }: IExternalContentHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   return [
@@ -15,6 +15,7 @@ export default async function(
       url,
       width,
       height,
+      marginBottom,
       scrollable
     }
   ];
