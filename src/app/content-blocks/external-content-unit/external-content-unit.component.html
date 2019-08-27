@@ -1,3 +1,3 @@
-<div [ngStyle]="{ width: input.width, paddingBottom: input.height }" *ngIf="input">
+<div [ngStyle]="{ width: input.width, paddingBottom: input.height, margin: input.margin }" *ngIf="input">
   <iframe [src]="getUrl()" title="External Content" [attr.scrolling]="input.scrollable ? 'yes' : 'no'"></iframe>
 </div>

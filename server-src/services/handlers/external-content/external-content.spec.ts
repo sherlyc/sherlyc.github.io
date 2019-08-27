@@ -16,7 +16,8 @@ describe('ExternalContentHandler', () => {
         type: HandlerInputType.ExternalContent,
         width: '100%',
         height: '300px',
-        url: 'https://example.com'
+        url: 'https://example.com',
+        margin: '10px'
       },
       params
     )) as IExternalContentUnit[];
@@ -26,7 +27,8 @@ describe('ExternalContentHandler', () => {
         type: ContentBlockType.ExternalContentUnit,
         width: '100%',
         height: '300px',
-        url: 'https://example.com'
+        url: 'https://example.com',
+        margin: '10px'
       } as IExternalContentUnit
     ];
 
@@ -41,6 +43,7 @@ describe('ExternalContentHandler', () => {
         type: HandlerInputType.ExternalContent,
         width: '100%',
         height: '300px',
+        margin: '10px',
         scrollable: true,
         url: 'https://example.com'
       },
@@ -52,6 +55,7 @@ describe('ExternalContentHandler', () => {
         type: ContentBlockType.ExternalContentUnit,
         width: '100%',
         height: '300px',
+        margin: '10px',
         scrollable: true,
         url: 'https://example.com'
       } as IExternalContentUnit

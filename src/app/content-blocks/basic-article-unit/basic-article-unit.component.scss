@@ -1,12 +1,12 @@
 :host {
   display: block;
   border-bottom: 1px solid #edeef1;
+  margin-bottom: 10px;
 }
 
 a {
   display: block;
   text-decoration: none;
-  margin-bottom: 10px;
   color: #000;
   &:hover {
     text-decoration: none;
@@ -27,12 +27,9 @@ img {
   margin-bottom: -4px;
 }
 
-.headline {
-  margin: 10px 0;
-}
-
 .image {
   overflow: hidden;
+  margin-bottom: 10px;
 }
 
 .intro {
@@ -43,5 +40,5 @@ img {
 }
 
 p {
-  margin: 0;
+  margin: 0 0 10px 0;
 }

@@ -30,7 +30,8 @@ describe('ExternalContentUnitComponent', () => {
       type: ContentBlockType.ExternalContentUnit,
       url: 'https://example.com',
       height: '100px',
-      width: '100%'
+      width: '100%',
+      margin: '0 0 3px 0'
     };
 
     fixture.detectChanges();
@@ -46,7 +47,8 @@ describe('ExternalContentUnitComponent', () => {
       url: 'https://example.com',
       height: '100px',
       scrollable: true,
-      width: '100%'
+      width: '100%',
+      margin: '0 0 3px 0'
     };
 
     fixture.detectChanges();

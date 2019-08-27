@@ -5,5 +5,6 @@ export interface IExternalContentHandlerInput {
   url: string;
   width: string;
   height: string;
+  margin: string;
   scrollable?: boolean;
 }
