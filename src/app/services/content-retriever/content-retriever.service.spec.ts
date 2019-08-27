@@ -10,6 +10,7 @@ import { LoggerService } from '../logger/logger.service';
 import { RuntimeService } from '../runtime/runtime.service';
 import { TransferState } from '@angular/platform-browser';
 import { mockService, ServiceMock } from '../mocks/MockService';
+import { RESPONSE } from '@nguniversal/express-engine/tokens';
 
 describe('ContentRetrieverService', () => {
   let contentRetrieverService: ContentRetrieverService;
@@ -19,6 +20,10 @@ describe('ContentRetrieverService', () => {
   let transferStateMock: ServiceMock<TransferState>;
 
   const spadeAPI = 'http://localhost';
+
+  const responseMock = {
+    sendStatus: jest.fn()
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -39,6 +44,10 @@ describe('ContentRetrieverService', () => {
         {
           provide: TransferState,
           useClass: mockService(TransferState)
+        },
+        {
+          provide: RESPONSE,
+          useFactory: () => responseMock
         }
       ]
     });
@@ -48,6 +57,7 @@ describe('ContentRetrieverService', () => {
     configServiceMock = TestBed.get(ConfigService);
     runtimeMock = TestBed.get(RuntimeService);
     transferStateMock = TestBed.get(TransferState);
+    responseMock.sendStatus.mockReset();
   });
 
   describe('in browser', () => {
@@ -83,6 +93,22 @@ describe('ContentRetrieverService', () => {
       configServiceMock.getConfig.mockReturnValue({ spadeAPI });
       runtimeMock.isServer.mockReturnValue(true);
       runtimeMock.isBrowser.mockReturnValue(false);
+    });
+
+    it('should set http 500 when error', (done) => {
+      responseMock.sendStatus = jest.fn();
+      contentRetrieverService.getContent().subscribe(() => {
+        expect(responseMock.sendStatus).toHaveBeenCalledWith(500);
+        done();
+      });
+      let req = httpMock.expectOne(spadeAPI);
+      req.error({} as ErrorEvent, { status: 500, statusText: 'Server Error' });
+      req = httpMock.expectOne(spadeAPI);
+      req.error({} as ErrorEvent, { status: 500, statusText: 'Server Error' });
+      req = httpMock.expectOne(spadeAPI);
+      req.error({} as ErrorEvent, { status: 500, statusText: 'Server Error' });
+      req = httpMock.expectOne(spadeAPI);
+      req.error({} as ErrorEvent, { status: 500, statusText: 'Server Error' });
     });
 
     it('should add result to transfer-state', (done) => {

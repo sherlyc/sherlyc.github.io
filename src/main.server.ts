@@ -97,7 +97,7 @@ app.engine('html', async (_, options: any, callback) =>
         },
         {
           provide: RESPONSE,
-          useValue: options.res
+          useValue: options.req.res
         }
       ]
     })
