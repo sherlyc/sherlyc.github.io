@@ -2,6 +2,7 @@ export enum HandlerInputType {
   TopStories = 'TopStories',
   DefconArticleList = 'DefconArticleList',
   ArticleList = 'ArticleList',
+  Banner = 'Banner',
   ArticleSection = 'ArticleSection',
   BreakingNews = 'BreakingNews',
   MidStrip = 'MidStrip',
