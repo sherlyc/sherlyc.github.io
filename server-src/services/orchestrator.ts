@@ -181,7 +181,7 @@ export default async (params: IParams): Promise<IPage> => {
               height: '570px',
               width: '100%',
               margin: '0 0 3px 0',
-              url: 'https://cdn.neighbourly.co.nz/stuff/strap/empty'
+              url: 'https://www.neighbourly.co.nz/stuff/strap'
             },
             {
               type: HandlerInputType.ArticleSection,
