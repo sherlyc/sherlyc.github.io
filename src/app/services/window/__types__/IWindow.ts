@@ -1,5 +1,6 @@
 import { IDigitalData } from '../../analytics/__types__/IDigitalData';
 import { IStuffLogin } from '../../authentication/__types__/IStuffLogin';
+import { ShieldedSite } from '../../../content-blocks/footer/__types__/ShieldedSite';
 
 export interface IWindow {
   digitalData: IDigitalData;
@@ -16,4 +17,5 @@ export interface IWindow {
     };
   };
   StuffLogin: IStuffLogin;
+  ds07o6pcmkorn: ShieldedSite;
 }

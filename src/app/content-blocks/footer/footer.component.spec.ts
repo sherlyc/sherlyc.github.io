@@ -101,8 +101,8 @@ describe('Footer', () => {
       expect(link).toBeTruthy();
     });
 
-    it('should load and inject shielded site script into window onload when initialising', async () => {
-      const window = { onload: null };
+    it('should load shielded site script when component is initialised', async () => {
+      const window = { onload: jest.fn() };
       windowService.getWindow.mockReturnValue(window);
 
       await fixture.componentInstance.ngOnInit();
@@ -112,7 +112,21 @@ describe('Footer', () => {
         'https://d3f5l8ze0o4j2m.cloudfront.net/m87/k33spt.js',
         Position.BOTTOM
       );
-      expect(window.onload).toBeTruthy();
+    });
+
+    it('should inject function that initialises the shielded site into window when component is initialised', async () => {
+      const window = {
+        onload: jest.fn(),
+        ds07o6pcmkorn: jest.fn().mockImplementation(() => {
+          return { init: jest.fn() };
+        })
+      };
+      windowService.getWindow.mockReturnValue(window);
+
+      await fixture.componentInstance.ngOnInit();
+      window.onload();
+
+      expect(window.ds07o6pcmkorn).toHaveBeenCalled();
     });
   });
 });

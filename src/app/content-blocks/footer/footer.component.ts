@@ -36,9 +36,10 @@ export class FooterComponent implements IContentBlockComponent, OnInit {
     );
 
     const shieldedSiteId = this.shieldedSiteId;
-    this.windowService.getWindow().onload = function() {
-      // @ts-ignore
-      const shieldedSiteFrame = new ds07o6pcmkorn({
+    const window = this.windowService.getWindow();
+
+    window.onload = function() {
+      const shieldedSiteFrame = new window.ds07o6pcmkorn({
         openElementId: `#${shieldedSiteId}`
       });
       shieldedSiteFrame.init();
