@@ -78,7 +78,10 @@ const controlGroupArticleBlocks = (
   );
 };
 
-const groupOneArticleBlocks = (rawArticles: IRawArticle[], strapName: string) => {
+const groupOneArticleBlocks = (
+  rawArticles: IRawArticle[],
+  strapName: string
+) => {
   return rawArticles.reduce(
     (final, article) => {
       return [
@@ -95,7 +98,10 @@ const groupOneArticleBlocks = (rawArticles: IRawArticle[], strapName: string) =>
   );
 };
 
-const groupTwoArticleBlocks = (rawArticles: IRawArticle[], strapName: string) => {
+const groupTwoArticleBlocks = (
+  rawArticles: IRawArticle[],
+  strapName: string
+) => {
   return rawArticles.reduce(
     (final, article, index) => {
       if (index < 3) {

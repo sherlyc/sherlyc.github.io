@@ -7,6 +7,9 @@ import { RuntimeService } from '../runtime/runtime.service';
 import { LottoService } from '../lotto/lotto.service';
 import { HttpClient } from '@angular/common/http';
 import { LoggerService } from '../logger/logger.service';
+import * as Bowser from 'bowser';
+
+const defaultParse = Bowser.parse;
 
 describe('ExperimentService', () => {
   const experimentAPI = '/spade/api/experiment';
@@ -53,6 +56,10 @@ describe('ExperimentService', () => {
     jest.clearAllMocks();
   });
 
+  afterEach(() => {
+    (Bowser as any).parse = defaultParse;
+  });
+
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
@@ -86,10 +93,35 @@ describe('ExperimentService', () => {
     lottoService.getLotteryNumber.mockReturnValue(1);
     http.get.mockReturnValueOnce(of('control'));
 
+    (Bowser as any).parse = () => ({
+      platform: {
+        type: ''
+      }
+    });
+
     await service.setup();
 
     expect(http.get).toHaveBeenCalledWith(
       '/spade/api/experiment/Users/1/unknown',
+      { responseType: 'text' }
+    );
+  });
+
+  it('should call api with deviceType', async () => {
+    runtimeService.isServer.mockReturnValue(false);
+    lottoService.getLotteryNumber.mockReturnValue(1);
+    http.get.mockReturnValueOnce(of('control'));
+
+    (Bowser as any).parse = () => ({
+      platform: {
+        type: 'mobile'
+      }
+    });
+
+    await service.setup();
+
+    expect(http.get).toHaveBeenCalledWith(
+      '/spade/api/experiment/Users/1/mobile',
       { responseType: 'text' }
     );
   });
