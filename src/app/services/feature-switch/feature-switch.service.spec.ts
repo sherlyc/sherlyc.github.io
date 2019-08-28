@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { RuntimeService } from '../runtime/runtime.service';
 import { LottoService } from '../lotto/lotto.service';
 import { of } from 'rxjs/internal/observable/of';
-import { FeatureName } from '../../../../common/FeatureName';
+import * as features from '../../../../common/FeatureName';
 import { throwError } from 'rxjs';
 import { LoggerService } from '../logger/logger.service';
 
@@ -63,6 +63,9 @@ describe('FeatureSwitchService', () => {
     loggerService = TestBed.get(LoggerService);
 
     service = TestBed.get(FeatureSwitchService);
+    (features as any).FeatureName = {
+      TEST: 'TEST'
+    };
   });
 
   it('should be created', () => {
@@ -85,7 +88,7 @@ describe('FeatureSwitchService', () => {
 
     await service.setup();
 
-    Object.keys(FeatureName).forEach(async (feature) => {
+    Object.keys(features.FeatureName).map(async (feature) => {
       // @ts-ignore
       const featureValue = await service.getFeature(feature as FeatureName);
       expect(featureValue).toEqual(true);
@@ -99,7 +102,7 @@ describe('FeatureSwitchService', () => {
 
     await service.setup();
 
-    Object.keys(FeatureName).forEach(async (feature) => {
+    Object.keys(features.FeatureName).map(async (feature) => {
       // @ts-ignore
       const featureValue = await service.getFeature(feature as FeatureName);
       expect(featureValue).toEqual(false);
@@ -109,7 +112,7 @@ describe('FeatureSwitchService', () => {
   it('should return false for all features while running in server', async () => {
     runtimeService.isServer.mockReturnValue(true);
 
-    Object.keys(FeatureName).forEach(async (feature) => {
+    Object.keys(features.FeatureName).map(async (feature) => {
       // @ts-ignore
       const featureValue = await service.getFeature(feature as FeatureName);
       expect(featureValue).toEqual(false);
