@@ -77,9 +77,7 @@ function getImageSrcSet(item: IJsonFeedArticle | IJsonFeedUrl) {
   const strapImages = findImage(item, JsonFeedImageType.STRAP_IMAGE);
   if (strapImages && strapImages.urls) {
     const imageUrls = strapImages.urls;
-    return Object.entries(imageUrls)
-      .map(([size, src]) => `${src} ${getImageWidth(size)}`)
-      .join(', ');
+    return getImageSrcSetString(imageUrls);
   } else {
     const smallThumbnailImages = findImage(
       item,
@@ -87,12 +85,16 @@ function getImageSrcSet(item: IJsonFeedArticle | IJsonFeedUrl) {
     );
     if (smallThumbnailImages && smallThumbnailImages.urls) {
       const imageUrls = smallThumbnailImages.urls;
-      return Object.entries(imageUrls)
-        .map(([size, src]) => `${src} ${getImageWidth(size)}`)
-        .join(', ');
+      return getImageSrcSetString(imageUrls);
     }
   }
   return null;
+}
+
+function getImageSrcSetString(imageUrls: Object[]) {
+  return Object.entries(imageUrls)
+    .map(([size, src]) => `${src} ${getImageWidth(size)}`)
+    .join(', ');
 }
 
 function getImageSrc(item: IJsonFeedArticle | IJsonFeedUrl): string | null {
