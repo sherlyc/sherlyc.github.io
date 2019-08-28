@@ -50,7 +50,6 @@ export class ExperimentService {
         Experiments.Users
       );
       const deviceType: DeviceType = this.getDeviceType();
-      console.log('deviceType', '#############', deviceType);
       const experimentName = await this.retrieveVariant(
         Experiments.Users,
         userLotteryNumber,
