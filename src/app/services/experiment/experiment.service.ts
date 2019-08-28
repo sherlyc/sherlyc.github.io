@@ -8,6 +8,9 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs/internal/observable/of';
 import { LoggerService } from '../logger/logger.service';
+import { parse } from 'bowser';
+import { WindowService } from '../window/window.service';
+import { DeviceType } from '../../../../common/DeviceType';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +26,7 @@ export class ExperimentService {
     private runtimeService: RuntimeService,
     private lottoService: LottoService,
     private http: HttpClient,
+    private windowService: WindowService,
     private logger: LoggerService
   ) {}
 
@@ -33,14 +37,24 @@ export class ExperimentService {
     this.experiment = this.loadExperiment();
   }
 
+  private getDeviceType(): DeviceType {
+    return (
+      (parse(this.windowService.getWindow().navigator.userAgent).platform
+        .type as DeviceType) || DeviceType.unknown
+    );
+  }
+
   private loadExperiment() {
     return new Promise<{ name: string; variant: string }>(async (resolve) => {
       const userLotteryNumber = this.lottoService.getLotteryNumber(
         Experiments.Users
       );
+      const deviceType: DeviceType = this.getDeviceType();
+      console.log('deviceType', '#############', deviceType);
       const experimentName = await this.retrieveVariant(
         Experiments.Users,
-        userLotteryNumber
+        userLotteryNumber,
+        deviceType
       ).toPromise();
       if (experimentName === 'control') {
         resolve({
@@ -54,7 +68,8 @@ export class ExperimentService {
       );
       const variant = await this.retrieveVariant(
         experimentName,
-        experimentLotteryNumber
+        experimentLotteryNumber,
+        deviceType
       ).toPromise();
       resolve({
         name: experimentName,
@@ -76,13 +91,14 @@ export class ExperimentService {
 
   retrieveVariant(
     experiment: string,
-    lotteryNumber: number
+    lotteryNumber: number,
+    deviceType: DeviceType
   ): Observable<string> {
     return this.http
       .get<string>(
         `${
           this.config.getConfig().experimentAPI
-        }/${experiment}/${lotteryNumber}`,
+        }/${experiment}/${lotteryNumber}/${deviceType}`,
         {
           responseType: 'text'
         } as Object

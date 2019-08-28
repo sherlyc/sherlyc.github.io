@@ -1,8 +1,10 @@
 import { Experiments } from '../../common/Experiments';
+import { DeviceType } from '../../common/DeviceType';
 
 export const getExperimentVariant = (
   name: string,
-  lotteryNumber: number
+  lotteryNumber: number,
+  deviceType: DeviceType
 ): string => {
   switch (name) {
     case Experiments.Users:
