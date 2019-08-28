@@ -1,22 +1,49 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
 import { IFooter } from '../../../../common/__types__/IFooter';
 import { AnalyticsService } from '../../services/analytics/analytics.service';
 import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
 import { CookieService } from '../../services/cookie/cookie.service';
+import { ScriptInjectorService } from '../../services/script-injector/script-injector.service';
+import { ScriptId } from '../../services/script-injector/__types__/ScriptId';
+import { Position } from '../../services/script-injector/__types__/Position';
+import { WindowService } from '../../services/window/window.service';
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })
-export class FooterComponent implements IContentBlockComponent {
+export class FooterComponent implements IContentBlockComponent, OnInit {
   constructor(
     private analyticsService: AnalyticsService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private scriptInjectorService: ScriptInjectorService,
+    private windowService: WindowService
   ) {}
-
   @Input() input!: IFooter;
+  shieldedSiteId = 'shielded-site';
+
+  ngOnInit() {
+    this.setupShieldedSite();
+  }
+
+  async setupShieldedSite() {
+    await this.scriptInjectorService.load(
+      ScriptId.shieldedSite,
+      'https://d3f5l8ze0o4j2m.cloudfront.net/m87/k33spt.js',
+      Position.BOTTOM
+    );
+
+    const shieldedSiteId = this.shieldedSiteId;
+    this.windowService.getWindow().onload = function() {
+      // @ts-ignore
+      const shieldedSiteFrame = new ds07o6pcmkorn({
+        openElementId: `#${shieldedSiteId}`
+      });
+      shieldedSiteFrame.init();
+    };
+  }
 
   sendLinkAnalytics(name: string) {
     this.analyticsService.pushEvent({

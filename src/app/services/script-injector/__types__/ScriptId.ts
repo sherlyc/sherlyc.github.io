@@ -3,5 +3,6 @@ export enum ScriptId {
   adnostic = 'aad-sdk',
   neighbourlyTopStories = 'neighbourlyTopStories',
   neighbourlyLocalStories = 'neighbourlyLocalStories',
-  loginSdk = 'login-sdk'
+  loginSdk = 'login-sdk',
+  shieldedSite = 'shieldedSite'
 }
