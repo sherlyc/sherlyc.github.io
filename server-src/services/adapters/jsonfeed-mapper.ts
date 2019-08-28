@@ -74,20 +74,39 @@ function getImageWidth(dimensions: string) {
 }
 
 function getImageSrcSet(item: IJsonFeedArticle | IJsonFeedUrl) {
-  const thumbnailImages = findImage(item, JsonFeedImageType.SMALL_THUMBNAIL);
-  if (thumbnailImages && thumbnailImages.urls) {
-    const imageUrls = thumbnailImages.urls;
+  const strapImages = findImage(item, JsonFeedImageType.STRAP_IMAGE);
+  if (strapImages && strapImages.urls) {
+    const imageUrls = strapImages.urls;
     return Object.entries(imageUrls)
       .map(([size, src]) => `${src} ${getImageWidth(size)}`)
       .join(', ');
+  } else {
+    const smallThumbnailImages = findImage(
+      item,
+      JsonFeedImageType.SMALL_THUMBNAIL
+    );
+    if (smallThumbnailImages && smallThumbnailImages.urls) {
+      const imageUrls = smallThumbnailImages.urls;
+      return Object.entries(imageUrls)
+        .map(([size, src]) => `${src} ${getImageWidth(size)}`)
+        .join(', ');
+    }
   }
   return null;
 }
 
 function getImageSrc(item: IJsonFeedArticle | IJsonFeedUrl): string | null {
-  const thumbnailImages = findImage(item, JsonFeedImageType.SMALL_THUMBNAIL);
-  if (thumbnailImages) {
-    return thumbnailImages.src;
+  const strapImage = findImage(item, JsonFeedImageType.STRAP_IMAGE);
+  if (strapImage) {
+    return strapImage.src;
+  } else {
+    const smallThumbnailImage = findImage(
+      item,
+      JsonFeedImageType.SMALL_THUMBNAIL
+    );
+    if (smallThumbnailImage) {
+      return smallThumbnailImage.src;
+    }
   }
   return null;
 }

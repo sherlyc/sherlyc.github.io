@@ -6,6 +6,7 @@ import { IJsonFeedArticleList } from './__types__/IJsonFeedArticleList';
 import { cloneDeep } from 'lodash';
 import { IRawArticle } from './__types__/IRawArticle';
 import { HeadlineFlags } from '../../../common/HeadlineFlags';
+import { JsonFeedImageType } from './__types__/JsonFeedImageType';
 
 describe('JsonFeed Mapper', () => {
   it('should map jsonfeed articles and url assets to rawArticles json format', () => {
@@ -47,14 +48,25 @@ describe('JsonFeed Mapper', () => {
       expect(map(data.stories)).toEqual(expected);
     });
 
-    it('should always get thumbnail image', () => {
+    it('should always get strap image', () => {
+      const data: IJsonFeedArticleList = cloneDeep(
+        jsonfeed as IJsonFeedArticleList
+      );
+      const result = map(data.stories);
+      const strapImageUrl =
+        'https://resources.stuff.co.nz/content/dam/images' +
+        '/1/t/g/v/e/d/image.related.StuffLandscapeThreeByTwo.300x200.1tgvdg.png/1547607024623.jpg';
+      expect(result[0].imageSrc).toBe(strapImageUrl);
+    });
+
+    it('should return thumbnail image when strap image is not provided', () => {
       const data: IJsonFeedArticleList = cloneDeep(
         jsonfeed as IJsonFeedArticleList
       );
       const result = map(data.stories);
       const thumbnailImageUrl =
-        'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffThumbnail.90x60.1tgvdg.png/1547607024623.jpg';
-      expect(result[0].imageSrc).toBe(thumbnailImageUrl);
+        'https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.90x60.11z4e0.png/1439844947411.jpg';
+      expect(result[3].imageSrc).toBe(thumbnailImageUrl);
     });
 
     it('should generate image source set', () => {
@@ -66,25 +78,25 @@ describe('JsonFeed Mapper', () => {
 
       const imageSourceSet =
         'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/' +
-        'image.related.StuffThumbnail.90x60.1tgvdg.png/1547607024623.jpg 90w, ' +
+        'image.related.StuffLandscapeThreeByTwo.300x200.1tgvdg.png/1547607024623.jpg 300w, ' +
         'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/' +
-        'image.related.StuffThumbnail.180x120.1tgvdg.png/1547607024623.jpg 180w';
+        'image.related.StuffLandscapeThreeByTwo.600x400.1tgvdg.png/1547607024623.jpg 600w';
       expect(result[0].imageSrcSet).toBe(imageSourceSet);
     });
 
-    it('should generate image source set when first image does not have thumbnail variant', () => {
+    it('should generate image source set from next image in the same article when first image does not have strap variant', () => {
       const data: IJsonFeedArticleList = cloneDeep(
         jsonfeed as IJsonFeedArticleList
       );
       data.stories[0].images[0].variants = data.stories[0].images[0].variants.filter(
-        (variant: any) => variant.layout !== 'Small Thumbnail'
+        (variant: any) => variant.layout !== JsonFeedImageType.STRAP_IMAGE
       );
 
       const result = map(data.stories);
 
       const imageSourceSet =
-        'https://resources.stuff.co.nz/1547607024623.jpg 90w, ' +
-        'https://resources.stuff.co.nz/1547607024623.jpg 180w';
+        'https://resources.stuff.co.nz/1547607024623.jpg 300w, ' +
+        'https://resources.stuff.co.nz/1547607024623.jpg 600w';
       expect(result[0].imageSrcSet).toBe(imageSourceSet);
     });
 

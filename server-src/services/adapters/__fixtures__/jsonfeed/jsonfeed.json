@@ -120,6 +120,19 @@
                 "180x120": "https://resources.stuff.co.nz/1547607024623.jpg"
               },
               "image_type_id": "StuffThumbnail"
+            },
+            {
+              "id": 109965337,
+              "layout": "Strap Image",
+              "src": "https://resources.stuff.co.nz/1547607024623.jpg",
+              "media_type": "Photo",
+              "width": "300",
+              "height": "200",
+              "urls": {
+                "300x200": "https://resources.stuff.co.nz/1547607024623.jpg",
+                "600x400": "https://resources.stuff.co.nz/1547607024623.jpg"
+              },
+              "image_type_id": "StuffLandscapeThreeByTwo"
             }
           ]
         },
