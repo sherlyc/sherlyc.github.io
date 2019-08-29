@@ -33,6 +33,7 @@ export class HeaderComponent
   isLoggedIn = false;
   profileUrl!: string;
   imgSrc!: string;
+  displayPunaLogo = false;
 
   @Input() input!: IHeader;
   navigationVisible = false;
@@ -92,6 +93,9 @@ export class HeaderComponent
   ];
 
   ngOnInit() {
+    this.displayPunaLogo =
+      Date.now() > new Date('2019-09-08T17:00:00.000Z').getTime() &&
+      Date.now() < new Date('2019-09-15T12:00:00.000Z').getTime();
     this.authenticationService.setup();
     this.authenticationService.authenticationStateChange.subscribe(
       (user: IStuffLoginUser) => {
