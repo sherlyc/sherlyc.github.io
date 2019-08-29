@@ -178,7 +178,7 @@ export default async (params: IParams): Promise<IPage> => {
             },
             {
               type: HandlerInputType.ExternalContent,
-              height: '570px',
+              height: '270px',
               width: '100%',
               margin: '0 0 20px 0',
               url: 'https://www.neighbourly.co.nz/stuff/strap'
