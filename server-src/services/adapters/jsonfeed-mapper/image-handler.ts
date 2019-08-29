@@ -36,9 +36,7 @@ export function getDefconSrc(
 export function getImageSrc(
   item: IJsonFeedArticle | IJsonFeedUrl
 ): string | null {
-  const image =
-    findImage(item, JsonFeedImageType.STRAP_IMAGE) ||
-    findImage(item, JsonFeedImageType.SMALL_THUMBNAIL);
+  const image = findImage(item, JsonFeedImageType.SMALL_THUMBNAIL);
 
   return image ? image.src : null;
 }

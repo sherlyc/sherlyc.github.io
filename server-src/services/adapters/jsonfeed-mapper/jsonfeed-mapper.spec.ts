@@ -48,15 +48,14 @@ describe('JsonFeed Mapper', () => {
       expect(map(data.stories)).toEqual(expected);
     });
 
-    it('should always get strap image', () => {
+    it('should always get thumbnail image', () => {
       const data: IJsonFeedArticleList = cloneDeep(
         jsonfeed as IJsonFeedArticleList
       );
       const result = map(data.stories);
-      const strapImageUrl =
-        'https://resources.stuff.co.nz/content/dam/images' +
-        '/1/t/g/v/e/d/image.related.StuffLandscapeThreeByTwo.300x200.1tgvdg.png/1547607024623.jpg';
-      expect(result[0].imageSrc).toBe(strapImageUrl);
+      const thumbnailImageUrl =
+        'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffThumbnail.90x60.1tgvdg.png/1547607024623.jpg';
+      expect(result[0].imageSrc).toBe(thumbnailImageUrl);
     });
 
     it('should return thumbnail image when strap image is not provided', () => {
