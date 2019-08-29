@@ -1,7 +1,6 @@
 import getBanner from '../../adapters/banner';
 import { IBannerResponse } from '../../adapters/__types__/IBannerResponse';
 import bannerHandler from './banner';
-import { IBreakingNewsHandlerInput } from '../__types__/IBreakingNewsHandlerInput';
 import { IParams } from '../../__types__/IParams';
 import logger from '../../utils/logger';
 import { IBannerHandlerInput } from '../__types__/IBannerHandlerInput';
