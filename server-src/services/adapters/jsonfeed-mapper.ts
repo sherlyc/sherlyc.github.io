@@ -74,21 +74,11 @@ function getImageWidth(dimensions: string) {
 }
 
 function getImageSrcSet(item: IJsonFeedArticle | IJsonFeedUrl) {
-  const strapImages = findImage(item, JsonFeedImageType.STRAP_IMAGE);
-  if (strapImages && strapImages.urls) {
-    const imageUrls = strapImages.urls;
-    return getImageSrcSetString(imageUrls);
-  } else {
-    const smallThumbnailImages = findImage(
-      item,
-      JsonFeedImageType.SMALL_THUMBNAIL
-    );
-    if (smallThumbnailImages && smallThumbnailImages.urls) {
-      const imageUrls = smallThumbnailImages.urls;
-      return getImageSrcSetString(imageUrls);
-    }
-  }
-  return null;
+  const images =
+    findImage(item, JsonFeedImageType.STRAP_IMAGE) ||
+    findImage(item, JsonFeedImageType.SMALL_THUMBNAIL);
+
+  return images && images.urls ? getImageSrcSetString(images.urls) : null;
 }
 
 function getImageSrcSetString(imageUrls: Object[]) {
@@ -98,40 +88,20 @@ function getImageSrcSetString(imageUrls: Object[]) {
 }
 
 function getImageSrc(item: IJsonFeedArticle | IJsonFeedUrl): string | null {
-  const strapImage = findImage(item, JsonFeedImageType.STRAP_IMAGE);
-  if (strapImage) {
-    return strapImage.src;
-  } else {
-    const smallThumbnailImage = findImage(
-      item,
-      JsonFeedImageType.SMALL_THUMBNAIL
-    );
-    if (smallThumbnailImage) {
-      return smallThumbnailImage.src;
-    }
-  }
-  return null;
+  const image =
+    findImage(item, JsonFeedImageType.STRAP_IMAGE) ||
+    findImage(item, JsonFeedImageType.SMALL_THUMBNAIL);
+
+  return image ? image.src : null;
 }
 
 function getDefconSrc(item: IJsonFeedArticle | IJsonFeedUrl): string | null {
-  const defconImage = findImage(item, JsonFeedImageType.DEFCON_IMAGE);
-  if (defconImage) {
-    return defconImage.src;
-  } else {
-    const strapImage = findImage(item, JsonFeedImageType.STRAP_IMAGE);
-    if (strapImage) {
-      return strapImage.src;
-    } else {
-      const smallThumbnailImage = findImage(
-        item,
-        JsonFeedImageType.SMALL_THUMBNAIL
-      );
-      if (smallThumbnailImage) {
-        return smallThumbnailImage.src;
-      }
-    }
-  }
-  return null;
+  const image =
+    findImage(item, JsonFeedImageType.DEFCON_IMAGE) ||
+    findImage(item, JsonFeedImageType.STRAP_IMAGE) ||
+    findImage(item, JsonFeedImageType.SMALL_THUMBNAIL);
+
+  return image ? image.src : null;
 }
 
 function findImage(
