@@ -118,9 +118,17 @@ function getDefconSrc(item: IJsonFeedArticle | IJsonFeedUrl): string | null {
   if (defconImage) {
     return defconImage.src;
   } else {
-    const standardImage = findImage(item, JsonFeedImageType.STANDARD_IMAGE);
-    if (standardImage) {
-      return standardImage.src;
+    const strapImage = findImage(item, JsonFeedImageType.STRAP_IMAGE);
+    if (strapImage) {
+      return strapImage.src;
+    } else {
+      const smallThumbnailImage = findImage(
+        item,
+        JsonFeedImageType.SMALL_THUMBNAIL
+      );
+      if (smallThumbnailImage) {
+        return smallThumbnailImage.src;
+      }
     }
   }
   return null;
