@@ -4,6 +4,7 @@ import DefconArticleList from './defcon-article-list/defcon-article-list';
 import ArticleList from './basic-article-list/basic-article-list';
 import ArticleSection from './basic-article-section/basic-article-section';
 import BreakingNews from './breaking-news/breaking-news';
+import Banner from './banner/banner';
 import MidStrip from './midstrip-handler/midstrip-handler';
 import MiniMidStrip from './mini-midstrip-handler/mini-midstrip-handler';
 import ExternalContent from './external-content/external-content';
@@ -25,6 +26,7 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   TopStories,
   DefconArticleList,
   ArticleList,
+  Banner,
   MidStrip,
   MiniMidStrip,
   ExternalContent,

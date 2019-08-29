@@ -7,6 +7,7 @@ export interface IEnvironmentDefinition {
   jsonFeedAPI: string;
   weatherAPI: string;
   breakingNewsApi: string;
+  bannerApi: string;
   layoutAPI: string;
   maxArticlesToRetrieve: number;
   loggerOptions: ILoggerOptions;
