@@ -1,5 +1,5 @@
 import { HandlerInputType } from './HandlerInputType';
 
 export interface IBannerHandlerInput {
-  type: HandlerInputType.Banner
+  type: HandlerInputType.Banner;
 }
