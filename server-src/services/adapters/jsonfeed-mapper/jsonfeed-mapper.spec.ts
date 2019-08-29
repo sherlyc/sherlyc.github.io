@@ -1,12 +1,12 @@
-import * as jsonfeed from './__fixtures__/jsonfeed/jsonfeed.json';
-import * as rawArticles from './__fixtures__/jsonfeed/raw-article-list.json';
-import * as temporaryRawArticles from './__fixtures__/jsonfeed/temporal-raw-articles.json';
+import * as jsonfeed from '../__fixtures__/jsonfeed/jsonfeed.json';
+import * as rawArticles from '../__fixtures__/jsonfeed/raw-article-list.json';
+import * as temporaryRawArticles from '../__fixtures__/jsonfeed/temporal-raw-articles.json';
 import map from './jsonfeed-mapper';
-import { IJsonFeedArticleList } from './__types__/IJsonFeedArticleList';
+import { IJsonFeedArticleList } from '../__types__/IJsonFeedArticleList';
 import { cloneDeep } from 'lodash';
-import { IRawArticle } from './__types__/IRawArticle';
-import { HeadlineFlags } from '../../../common/HeadlineFlags';
-import { JsonFeedImageType } from './__types__/JsonFeedImageType';
+import { IRawArticle } from '../__types__/IRawArticle';
+import { HeadlineFlags } from '../../../../common/HeadlineFlags';
+import { JsonFeedImageType } from '../__types__/JsonFeedImageType';
 
 describe('JsonFeed Mapper', () => {
   it('should map jsonfeed articles and url assets to rawArticles json format', () => {
