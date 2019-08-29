@@ -77,28 +77,28 @@ describe('JsonFeed Mapper', () => {
 
       const imageSourceSet =
         'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/' +
-        'image.related.StuffLandscapeThreeByTwo.300x200.1tgvdg.png/1547607024623.jpg 300w, ' +
+        'image.related.StuffThumbnail.90x60.1tgvdg.png/1547607024623.jpg 90w, ' +
         'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/' +
-        'image.related.StuffLandscapeThreeByTwo.600x400.1tgvdg.png/1547607024623.jpg 600w';
+        'image.related.StuffThumbnail.180x120.1tgvdg.png/1547607024623.jpg 180w';
       expect(result[0].imageSrcSet).toBe(imageSourceSet);
     });
 
-    it('should generate image source set from next image in the same article when first image does not have strap variant', () => {
+    it('should generate image source set from next image in the same article when first image does not have thumbnail variant', () => {
       const data: IJsonFeedArticleList = cloneDeep(
         jsonfeed as IJsonFeedArticleList
       );
 
-      const variantsWithoutStrapImage = data.stories[0].images[0].variants.filter(
-        (variant: any) => variant.layout !== JsonFeedImageType.STRAP_IMAGE
+      const variantsWithoutThumbnail = data.stories[0].images[0].variants.filter(
+        (variant: any) => variant.layout !== JsonFeedImageType.SMALL_THUMBNAIL
       );
 
-      data.stories[0].images[0].variants = variantsWithoutStrapImage;
+      data.stories[0].images[0].variants = variantsWithoutThumbnail;
 
       const result = map(data.stories);
 
       const imageSourceSet =
-        'https://resources.stuff.co.nz/1547607024623.jpg 300w, ' +
-        'https://resources.stuff.co.nz/1547607024623.jpg 600w';
+        'https://resources.stuff.co.nz/1547607024623.jpg 90w, ' +
+        'https://resources.stuff.co.nz/1547607024623.jpg 180w';
       expect(result[0].imageSrcSet).toBe(imageSourceSet);
     });
 

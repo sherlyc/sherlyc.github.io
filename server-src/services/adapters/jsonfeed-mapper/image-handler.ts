@@ -52,9 +52,7 @@ function getImageSrcSetString(imageUrls: Object[]) {
 }
 
 export function getImageSrcSet(item: IJsonFeedArticle | IJsonFeedUrl) {
-  const images =
-    findImage(item, JsonFeedImageType.STRAP_IMAGE) ||
-    findImage(item, JsonFeedImageType.SMALL_THUMBNAIL);
+  const images = findImage(item, JsonFeedImageType.SMALL_THUMBNAIL);
 
   return images && images.urls ? getImageSrcSetString(images.urls) : null;
 }
