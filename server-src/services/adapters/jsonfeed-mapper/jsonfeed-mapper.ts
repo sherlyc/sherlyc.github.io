@@ -6,6 +6,7 @@ import { IJsonFeedUrl } from '../__types__/IJsonFeedUrl';
 import { IJsonFeedQuery } from '../__types__/IJsonFeedQuery';
 import { HeadlineFlags } from '../../../../common/HeadlineFlags';
 import { getDefconSrc, getImageSrc, getImageSrcSet } from './image-handler';
+import { JsonFeedImageType } from '../__types__/JsonFeedImageType';
 
 export default (
   articles: Array<IJsonFeedArticle | IJsonFeedUrl | IJsonFeedQuery>
@@ -29,8 +30,10 @@ function mapArticleAsset(item: IJsonFeedArticle): IRawArticle {
       : item.title,
     introText: item.alt_intro,
     linkUrl: item.path,
-    imageSrc: getImageSrc(item),
-    imageSrcSet: getImageSrcSet(item),
+    imageSrc: getImageSrc(item, JsonFeedImageType.SMALL_THUMBNAIL ),
+    imageSrcSet: getImageSrcSet(item, JsonFeedImageType.SMALL_THUMBNAIL),
+    strapImageSrc: getImageSrc(item, JsonFeedImageType.STRAP_IMAGE),
+    strapImageSrcSet: getImageSrcSet(item, JsonFeedImageType.STRAP_IMAGE),
     defconSrc: getDefconSrc(item),
     lastPublishedTime: moment(item.datetime_iso8601).unix(),
     headlineFlags: getHeadlineFlags(item)
@@ -45,8 +48,10 @@ function mapUrlAsset(item: IJsonFeedUrl): IRawArticle {
       : item.title,
     introText: item.alt_intro,
     linkUrl: getLinkUrl(item),
-    imageSrc: getImageSrc(item),
-    imageSrcSet: getImageSrcSet(item),
+    imageSrc: getImageSrc(item, JsonFeedImageType.SMALL_THUMBNAIL),
+    imageSrcSet: getImageSrcSet(item, JsonFeedImageType.SMALL_THUMBNAIL),
+    strapImageSrc: getImageSrc(item, JsonFeedImageType.STRAP_IMAGE),
+    strapImageSrcSet: getImageSrcSet(item, JsonFeedImageType.STRAP_IMAGE),
     defconSrc: getDefconSrc(item),
     lastPublishedTime: moment(item.datetime_iso8601).unix(),
     headlineFlags: getHeadlineFlags(item)

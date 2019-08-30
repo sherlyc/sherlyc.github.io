@@ -43,6 +43,8 @@ describe('JsonFeed Mapper', () => {
         article.defconSrc = null;
         article.imageSrc = null;
         article.imageSrcSet = null;
+        article.strapImageSrc = null;
+        article.strapImageSrcSet = null;
       });
 
       expect(map(data.stories)).toEqual(expected);

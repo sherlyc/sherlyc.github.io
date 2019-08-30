@@ -34,9 +34,10 @@ export function getDefconSrc(
 }
 
 export function getImageSrc(
-  item: IJsonFeedArticle | IJsonFeedUrl
+  item: IJsonFeedArticle | IJsonFeedUrl,
+  type: JsonFeedImageType
 ): string | null {
-  const image = findImage(item, JsonFeedImageType.SMALL_THUMBNAIL);
+  const image = findImage(item, type);
 
   return image ? image.src : null;
 }
@@ -51,8 +52,10 @@ function getImageSrcSetString(imageUrls: Object[]) {
     .join(', ');
 }
 
-export function getImageSrcSet(item: IJsonFeedArticle | IJsonFeedUrl) {
-  const images = findImage(item, JsonFeedImageType.SMALL_THUMBNAIL);
+export function getImageSrcSet(
+  item: IJsonFeedArticle | IJsonFeedUrl,
+  type: JsonFeedImageType) {
+  const images = findImage(item, type);
 
   return images && images.urls ? getImageSrcSetString(images.urls) : null;
 }
