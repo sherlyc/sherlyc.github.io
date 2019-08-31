@@ -20,10 +20,7 @@ const basicAdUnit: IBasicAdUnit = {
 const createBasicArticleUnitBlock = (
   article: IRawArticle,
   strapName: string,
-  type:
-    | ContentBlockType.BasicArticleUnit
-    | ContentBlockType.BigImageArticleUnit
-    | ContentBlockType.HalfWidthImageArticleUnit
+  type: ContentBlockType.BasicArticleUnit
 ): IBasicArticleUnit => ({
   type,
   id: article.id,
@@ -32,6 +29,25 @@ const createBasicArticleUnitBlock = (
   introText: article.introText,
   imageSrc: article.imageSrc,
   imageSrcSet: article.imageSrcSet,
+  linkUrl: article.linkUrl,
+  lastPublishedTime: article.lastPublishedTime,
+  headlineFlags: article.headlineFlags
+});
+
+const createArticleUnitBlockWithStrapImage = (
+  article: IRawArticle,
+  strapName: string,
+  type:
+    | ContentBlockType.BigImageArticleUnit
+    | ContentBlockType.HalfWidthImageArticleUnit
+): IBasicArticleUnit => ({
+  type,
+  id: article.id,
+  strapName: strapName,
+  indexHeadline: article.indexHeadline,
+  introText: article.introText,
+  imageSrc: article.strapImageSrc,
+  imageSrcSet: article.strapImageSrcSet,
   linkUrl: article.linkUrl,
   lastPublishedTime: article.lastPublishedTime,
   headlineFlags: article.headlineFlags
@@ -83,7 +99,7 @@ const groupOneArticleBlocks = (rawArticles: IRawArticle[], strapName: string) =>
     (final, article) => {
       return [
         ...final,
-        createBasicArticleUnitBlock(
+        createArticleUnitBlockWithStrapImage(
           article,
           strapName,
           ContentBlockType.BigImageArticleUnit
@@ -101,7 +117,7 @@ const groupTwoArticleBlocks = (rawArticles: IRawArticle[], strapName: string) =>
       if (index < 3) {
         return [
           ...final,
-          createBasicArticleUnitBlock(
+          createArticleUnitBlockWithStrapImage(
             article,
             strapName,
             ContentBlockType.BigImageArticleUnit
@@ -111,7 +127,7 @@ const groupTwoArticleBlocks = (rawArticles: IRawArticle[], strapName: string) =>
       }
       return [
         ...final,
-        createBasicArticleUnitBlock(
+        createArticleUnitBlockWithStrapImage(
           article,
           strapName,
           ContentBlockType.HalfWidthImageArticleUnit
