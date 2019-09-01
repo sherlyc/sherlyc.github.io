@@ -12,9 +12,8 @@ const basicAdUnit: IBasicAdUnit = {
 const defconArticleUnit = (
   article: IRawArticle,
   strapName: string,
-  type: ContentBlockType.DefconArticleUnit
 ): IDefconArticleUnit => ({
-  type,
+  type: ContentBlockType.DefconArticleUnit,
   id: article.id,
   strapName,
   indexHeadline: article.indexHeadline,
@@ -28,9 +27,8 @@ const defconArticleUnit = (
 const basicArticleUnit = (
   article: IRawArticle,
   strapName: string,
-  type: ContentBlockType.BasicArticleUnit
 ): IBasicArticleUnit => ({
-  type,
+  type: ContentBlockType.BasicArticleUnit,
   id: article.id,
   strapName,
   indexHeadline: article.indexHeadline,
@@ -51,21 +49,13 @@ export const controlGroupArticles = (
       if (index === 0) {
         return [
           ...final,
-          defconArticleUnit(
-            article,
-            strapName,
-            ContentBlockType.DefconArticleUnit
-          ),
+          defconArticleUnit(article, strapName),
           basicAdUnit
         ];
       }
       return [
         ...final,
-        basicArticleUnit(
-          article,
-          strapName,
-          ContentBlockType.BasicArticleUnit
-        ),
+        basicArticleUnit(article, strapName),
         basicAdUnit
       ];
     },

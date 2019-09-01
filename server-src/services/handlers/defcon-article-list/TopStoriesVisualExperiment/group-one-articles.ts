@@ -12,9 +12,8 @@ const basicAdUnit: IBasicAdUnit = {
 const grayDefconArticleUnit = (
   article: IRawArticle,
   strapName: string,
-  type: ContentBlockType.GrayDefconArticleUnit
 ): IGrayDefconArticleUnit => ({
-  type,
+  type: ContentBlockType.GrayDefconArticleUnit,
   id: article.id,
   strapName,
   indexHeadline: article.indexHeadline,
@@ -28,9 +27,8 @@ const grayDefconArticleUnit = (
 const bigImageArticleUnit = (
   article: IRawArticle,
   strapName: string,
-  type: ContentBlockType.BigImageArticleUnit
 ): IBigImageArticleUnit => ({
-  type,
+  type: ContentBlockType.BigImageArticleUnit,
   id: article.id,
   strapName,
   indexHeadline: article.indexHeadline,
@@ -48,21 +46,13 @@ export const groupOneArticles = (rawArticles: IRawArticle[], strapName: string) 
       if (index === 0) {
         return [
           ...final,
-          grayDefconArticleUnit(
-            article,
-            strapName,
-            ContentBlockType.GrayDefconArticleUnit
-          ),
+          grayDefconArticleUnit(article, strapName),
           basicAdUnit
         ];
       }
       return [
         ...final,
-        bigImageArticleUnit(
-          article,
-          strapName,
-          ContentBlockType.BigImageArticleUnit
-        ),
+        bigImageArticleUnit(article, strapName),
         basicAdUnit
       ];
     },

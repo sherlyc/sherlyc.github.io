@@ -13,9 +13,8 @@ const basicAdUnit: IBasicAdUnit = {
 const grayDefconArticleUnit = (
   article: IRawArticle,
   strapName: string,
-  type: ContentBlockType.GrayDefconArticleUnit
 ): IGrayDefconArticleUnit => ({
-  type,
+  type: ContentBlockType.GrayDefconArticleUnit,
   id: article.id,
   strapName,
   indexHeadline: article.indexHeadline,
@@ -29,9 +28,8 @@ const grayDefconArticleUnit = (
 const bigImageArticleUnit = (
   article: IRawArticle,
   strapName: string,
-  type: ContentBlockType.BigImageArticleUnit
 ): IBigImageArticleUnit => ({
-  type,
+  type: ContentBlockType.BigImageArticleUnit,
   id: article.id,
   strapName,
   indexHeadline: article.indexHeadline,
@@ -46,9 +44,8 @@ const bigImageArticleUnit = (
 const halfWidthImageArticleUnit = (
   article: IRawArticle,
   strapName: string,
-  type: ContentBlockType.HalfWidthImageArticleUnit
 ): IHalfWidthImageArticleUnit => ({
-  type,
+  type : ContentBlockType.HalfWidthImageArticleUnit,
   id: article.id,
   strapName,
   indexHeadline: article.indexHeadline,
@@ -66,11 +63,7 @@ export const groupTwoArticles = (rawArticles: IRawArticle[], strapName: string) 
       if (index === 0) {
         return [
           ...final,
-          grayDefconArticleUnit(
-            article,
-            strapName,
-            ContentBlockType.GrayDefconArticleUnit
-          ),
+          grayDefconArticleUnit(article, strapName),
           basicAdUnit
         ];
       }
@@ -78,22 +71,14 @@ export const groupTwoArticles = (rawArticles: IRawArticle[], strapName: string) 
       if (index === 1 || index === 2) {
         return [
           ...final,
-          bigImageArticleUnit(
-            article,
-            strapName,
-            ContentBlockType.BigImageArticleUnit
-          ),
+          bigImageArticleUnit(article, strapName),
           basicAdUnit
         ];
       }
 
       return [
         ...final,
-        halfWidthImageArticleUnit(
-          article,
-          strapName,
-          ContentBlockType.HalfWidthImageArticleUnit
-        ),
+        halfWidthImageArticleUnit(article, strapName),
         basicAdUnit
       ];
     },

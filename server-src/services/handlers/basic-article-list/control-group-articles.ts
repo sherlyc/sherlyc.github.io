@@ -25,9 +25,8 @@ const basicArticleTitleUnit = (
 const basicArticleUnit = (
   article: IRawArticle,
   strapName: string,
-  type: ContentBlockType.BasicArticleUnit
 ): IBasicArticleUnit => ({
-  type,
+  type: ContentBlockType.BasicArticleUnit,
   id: article.id,
   strapName: strapName,
   indexHeadline: article.indexHeadline,
@@ -49,11 +48,7 @@ export const controlGroupArticles = (
       if (index < totalBasicArticleUnits) {
         return [
           ...final,
-          basicArticleUnit(
-            article,
-            strapName,
-            ContentBlockType.BasicArticleUnit
-          ),
+          basicArticleUnit(article, strapName),
           basicAdUnit
         ];
       }
