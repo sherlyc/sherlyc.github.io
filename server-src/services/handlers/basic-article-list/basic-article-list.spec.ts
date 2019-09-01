@@ -27,6 +27,8 @@ describe('BasicArticleListHandler', () => {
     defconSrc: null,
     imageSrc: '1.jpg',
     imageSrcSet: '1.jpg 1w',
+    strapImageSrc: 'strap1.jpg',
+    strapImageSrcSet: 'strap1.jpg 1w',
     lastPublishedTime: 1,
     headlineFlags: []
   };
@@ -38,6 +40,8 @@ describe('BasicArticleListHandler', () => {
     defconSrc: null,
     imageSrc: '2.jpg',
     imageSrcSet: '2.jpg 2w',
+    strapImageSrc: 'strap2.jpg',
+    strapImageSrcSet: 'strap2.jpg 1w',
     lastPublishedTime: 2,
     headlineFlags: []
   };
@@ -71,8 +75,8 @@ describe('BasicArticleListHandler', () => {
     id: '1',
     strapName: '',
     headlineFlags: [],
-    imageSrc: '1.jpg',
-    imageSrcSet: '1.jpg 1w',
+    imageSrc: 'strap1.jpg',
+    imageSrcSet: 'strap1.jpg 1w',
     indexHeadline: 'Headline 1',
     introText: 'Intro 1',
     lastPublishedTime: 1,
@@ -83,8 +87,8 @@ describe('BasicArticleListHandler', () => {
     id: '2',
     strapName: '',
     headlineFlags: [],
-    imageSrc: '2.jpg',
-    imageSrcSet: '2.jpg 2w',
+    imageSrc: 'strap2.jpg',
+    imageSrcSet: 'strap2.jpg 1w',
     indexHeadline: 'Headline 2',
     introText: 'Intro 2',
     lastPublishedTime: 2,
@@ -108,8 +112,8 @@ describe('BasicArticleListHandler', () => {
     indexHeadline: 'Headline 1',
     introText: 'Intro 1',
     linkUrl: '/link1',
-    imageSrc: '1.jpg',
-    imageSrcSet: '1.jpg 1w',
+    imageSrc: 'strap1.jpg',
+    imageSrcSet: 'strap1.jpg 1w',
     lastPublishedTime: 1,
     headlineFlags: [],
     type: ContentBlockType.BigImageArticleUnit
@@ -121,8 +125,8 @@ describe('BasicArticleListHandler', () => {
     indexHeadline: 'Headline 1',
     introText: 'Intro 1',
     linkUrl: '/link1',
-    imageSrc: '1.jpg',
-    imageSrcSet: '1.jpg 1w',
+    imageSrc: 'strap1.jpg',
+    imageSrcSet: 'strap1.jpg 1w',
     lastPublishedTime: 1,
     headlineFlags: [],
     type: ContentBlockType.HalfWidthImageArticleUnit

@@ -120,6 +120,19 @@
                 "180x120": "https://resources.stuff.co.nz/1547607024623.jpg"
               },
               "image_type_id": "StuffThumbnail"
+            },
+            {
+              "id": 109965337,
+              "layout": "Strap Image",
+              "src": "https://resources.stuff.co.nz/1547607024623.jpg",
+              "media_type": "Photo",
+              "width": "300",
+              "height": "200",
+              "urls": {
+                "300x200": "https://resources.stuff.co.nz/1547607024623.jpg",
+                "600x400": "https://resources.stuff.co.nz/1547607024623.jpg"
+              },
+              "image_type_id": "StuffLandscapeThreeByTwo"
             }
           ]
         },
@@ -580,16 +593,16 @@
           "variants": [
             {
               "id": 109922005,
-              "layout": "Standard Image",
-              "src": "https://resources.stuff.co.nz/content/dam/images/1/t/g/0/d/1/image.related.StuffLandscapeSixteenByNine.620x349.1tdmj0.png/1547601996972.jpg",
+              "layout": "Strap Image",
+              "src": "https://resources.stuff.co.nz/content/dam/images/1/t/g/0/d/1/image.related.StuffLandscapeThreeByTwo.620x349.1tdmj0.png/1547601996972.jpg",
               "media_type": "Photo",
               "width": "620",
               "height": "349",
               "urls": {
-                "620x349": "https://resources.stuff.co.nz/content/dam/images/1/t/g/0/d/1/image.related.StuffLandscapeSixteenByNine.620x349.1tdmj0.png/1547601996972.jpg",
-                "850x400": "https://resources.stuff.co.nz/content/dam/images/1/t/g/0/d/1/image.related.StuffLandscapeSixteenByNine.850x400.1tdmj0.png/1547601996972.jpg"
+                "620x349": "https://resources.stuff.co.nz/content/dam/images/1/t/g/0/d/1/image.related.StuffLandscapeThreeByTwo.620x349.1tdmj0.png/1547601996972.jpg",
+                "850x400": "https://resources.stuff.co.nz/content/dam/images/1/t/g/0/d/1/image.related.StuffLandscapeThreeByTwo.850x400.1tdmj0.png/1547601996972.jpg"
               },
-              "image_type_id": "StuffStandardImage"
+              "image_type_id": "StuffLandscapeThreeByTwo"
             }
           ]
         }

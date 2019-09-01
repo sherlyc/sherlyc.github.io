@@ -1,5 +1,5 @@
 import { retrieveSectionList, retrieveListAsset } from './jsonfeed-retriever';
-import mapToRawArticleList from './jsonfeed-mapper';
+import mapToRawArticleList from './jsonfeed-mapper/jsonfeed-mapper';
 import { IJsonFeedArticleList } from './__types__/IJsonFeedArticleList';
 import { IRawArticle } from './__types__/IRawArticle';
 import { Section } from '../section';
