@@ -9,6 +9,9 @@ import { IDefconArticleUnit } from '../../../../common/__types__/IDefconArticleU
 import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
 import { getStrapArticles } from '../../adapters/strap-list-service';
 import { Strap } from '../../strap';
+import { IBigImageArticleUnit } from '../../../../common/__types__/IBigImageArticleUnit';
+import { IHalfWidthImageArticleUnit } from '../../../../common/__types__/IHalfWidthImageArticleUnit';
+import { IGrayDefconArticleUnit } from '../../../../common/__types__/IGrayDefconArticleUnit';
 
 jest.mock('../../adapters/strap-list-service');
 
@@ -60,7 +63,7 @@ describe('DefconArticleList', () => {
     headlineFlags: []
   };
 
-  const articleOneAsGrayDefconArticle: IDefconArticleUnit = {
+  const articleOneAsGrayDefconArticle: IGrayDefconArticleUnit = {
     type: ContentBlockType.GrayDefconArticleUnit,
     strapName,
     id: '1',
@@ -85,7 +88,7 @@ describe('DefconArticleList', () => {
     headlineFlags: []
   };
 
-  const articleTwoAsBigImageArticle: IBasicArticleUnit = {
+  const articleTwoAsBigImageArticle: IBigImageArticleUnit = {
     type: ContentBlockType.BigImageArticleUnit,
     strapName,
     id: '2',
@@ -98,7 +101,7 @@ describe('DefconArticleList', () => {
     headlineFlags: []
   };
 
-  const articleAsBigImageArticle: IBasicArticleUnit = {
+  const articleAsBigImageArticle: IBigImageArticleUnit = {
     type: ContentBlockType.BigImageArticleUnit,
     strapName,
     id: '1',
@@ -111,7 +114,7 @@ describe('DefconArticleList', () => {
     headlineFlags: []
   };
 
-  const articleAsHalfWidthImageArticle: IBasicArticleUnit = {
+  const articleAsHalfWidthImageArticle: IHalfWidthImageArticleUnit = {
     type: ContentBlockType.HalfWidthImageArticleUnit,
     strapName,
     id: '1',

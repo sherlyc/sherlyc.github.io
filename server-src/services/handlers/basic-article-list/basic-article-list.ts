@@ -12,12 +12,14 @@ import { Strap } from '../../strap';
 import { getStrapArticles } from '../../adapters/strap-list-service';
 import { Section } from '../../section';
 import { getSectionArticleList } from '../../adapters/jsonfeed';
+import { IBigImageArticleUnit } from '../../../../common/__types__/IBigImageArticleUnit';
+import { IHalfWidthImageArticleUnit } from '../../../../common/__types__/IHalfWidthImageArticleUnit';
 
 const basicAdUnit: IBasicAdUnit = {
   type: ContentBlockType.BasicAdUnit
 };
 
-const createBasicArticleUnitBlock = (
+const basicArticleUnit = (
   article: IRawArticle,
   strapName: string,
   type: ContentBlockType.BasicArticleUnit
@@ -34,16 +36,14 @@ const createBasicArticleUnitBlock = (
   headlineFlags: article.headlineFlags
 });
 
-const createArticleUnitBlockWithStrapImage = (
+const bigImageArticleUnit = (
   article: IRawArticle,
   strapName: string,
-  type:
-    | ContentBlockType.BigImageArticleUnit
-    | ContentBlockType.HalfWidthImageArticleUnit
-): IBasicArticleUnit => ({
+  type: ContentBlockType.BigImageArticleUnit
+): IBigImageArticleUnit => ({
   type,
   id: article.id,
-  strapName: strapName,
+  strapName,
   indexHeadline: article.indexHeadline,
   introText: article.introText,
   imageSrc: article.strapImageSrc,
@@ -53,7 +53,24 @@ const createArticleUnitBlockWithStrapImage = (
   headlineFlags: article.headlineFlags
 });
 
-const createBasicTitleArticleBlock = (
+const halfWidthImageArticleUnit = (
+  article: IRawArticle,
+  strapName: string,
+  type: ContentBlockType.HalfWidthImageArticleUnit
+): IHalfWidthImageArticleUnit => ({
+  type,
+  id: article.id,
+  strapName,
+  indexHeadline: article.indexHeadline,
+  introText: article.introText,
+  imageSrc: article.strapImageSrc,
+  imageSrcSet: article.strapImageSrcSet,
+  linkUrl: article.linkUrl,
+  lastPublishedTime: article.lastPublishedTime,
+  headlineFlags: article.headlineFlags
+});
+
+const basicArticleTitleUnit = (
   article: IRawArticle,
   strapName: string
 ): IBasicArticleTitleUnit => ({
@@ -76,7 +93,7 @@ const controlGroupArticleBlocks = (
       if (index < totalBasicArticleUnits) {
         return [
           ...final,
-          createBasicArticleUnitBlock(
+          basicArticleUnit(
             article,
             strapName,
             ContentBlockType.BasicArticleUnit
@@ -86,7 +103,7 @@ const controlGroupArticleBlocks = (
       }
       return [
         ...final,
-        createBasicTitleArticleBlock(article, strapName),
+        basicArticleTitleUnit(article, strapName),
         basicAdUnit
       ];
     },
@@ -99,7 +116,7 @@ const groupOneArticleBlocks = (rawArticles: IRawArticle[], strapName: string) =>
     (final, article) => {
       return [
         ...final,
-        createArticleUnitBlockWithStrapImage(
+        bigImageArticleUnit(
           article,
           strapName,
           ContentBlockType.BigImageArticleUnit
@@ -117,7 +134,7 @@ const groupTwoArticleBlocks = (rawArticles: IRawArticle[], strapName: string) =>
       if (index < 3) {
         return [
           ...final,
-          createArticleUnitBlockWithStrapImage(
+          bigImageArticleUnit(
             article,
             strapName,
             ContentBlockType.BigImageArticleUnit
@@ -127,7 +144,7 @@ const groupTwoArticleBlocks = (rawArticles: IRawArticle[], strapName: string) =>
       }
       return [
         ...final,
-        createArticleUnitBlockWithStrapImage(
+        halfWidthImageArticleUnit(
           article,
           strapName,
           ContentBlockType.HalfWidthImageArticleUnit
