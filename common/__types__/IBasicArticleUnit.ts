@@ -1,15 +1,6 @@
 import { ContentBlockType } from './ContentBlockType';
-import { HeadlineFlags } from '../HeadlineFlags';
+import { IArticle } from './IArticle';
 
-export interface IBasicArticleUnit {
+export interface IBasicArticleUnit extends IArticle {
   type: ContentBlockType.BasicArticleUnit;
-  id: string;
-  strapName: string;
-  indexHeadline: string;
-  introText: string;
-  linkUrl: string;
-  imageSrc: string | null;
-  imageSrcSet: string | null;
-  lastPublishedTime: number;
-  headlineFlags: HeadlineFlags[];
 }
