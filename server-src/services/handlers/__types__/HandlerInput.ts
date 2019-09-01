@@ -10,11 +10,13 @@ import { IExperimentHandlerInput } from './IExperimentHandlerInput';
 import { ITopStoriesHandlerInput } from './ITopStoriesHandlerInput';
 import { IDefconArticleListHandlerInput } from './IDefconArticleListHandlerInput';
 import { IFeatureHandlerInput } from './IFeatureHandlerInput';
+import { IBannerHandlerInput } from './IBannerHandlerInput';
 
 export type HandlerInput =
   | ITopStoriesHandlerInput
   | IDefconArticleListHandlerInput
   | IBasicArticleListHandlerInput
+  | IBannerHandlerInput
   | IMidStripHandlerInput
   | IMiniMidStripHandlerInput
   | IBasicArticleSectionHandlerInput

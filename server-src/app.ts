@@ -56,7 +56,10 @@ app.get(
 );
 
 app.get(
-  `${spadeApiPath}/experiment/:experimentName/:lotteryNumber`,
+  [
+    `${spadeApiPath}/experiment/:experimentName/:lotteryNumber`,
+    `${spadeApiPath}/experiment/:experimentName/:lotteryNumber/:deviceType`
+  ],
   experimentController
 );
 

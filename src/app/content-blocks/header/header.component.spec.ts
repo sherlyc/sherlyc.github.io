@@ -11,6 +11,8 @@ import { AuthenticationService } from '../../services/authentication/authenticat
 import { Subject } from 'rxjs';
 import { IStuffLoginUser } from '../../services/authentication/__types__/IStuffLoginUser';
 
+const OriginalNow = global.Date.now;
+
 describe('Header', () => {
   let fixture: ComponentFixture<HeaderComponent>;
   let analyticsService: ServiceMock<AnalyticsService>;
@@ -41,6 +43,10 @@ describe('Header', () => {
       birthdate: '1992'
     }
   } as IStuffLoginUser;
+
+  afterEach(() => {
+    global.Date.now = OriginalNow;
+  });
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -86,6 +92,22 @@ describe('Header', () => {
 
     navigation = fixture.debugElement.query(By.css('.navigation'));
     expect(navigation).toBeTruthy();
+  });
+
+  it('should display stuff logo by default', () => {
+    (global as any).Date.now = () =>
+      new Date('2019-01-01T00:00:00.000Z').getTime();
+    fixture.detectChanges();
+    expect(fixture.debugElement.query(By.css('.stuffLogo'))).toBeTruthy();
+    expect(fixture.debugElement.query(By.css('.punaLogo'))).toBeFalsy();
+  });
+
+  it('should display puna logo', () => {
+    (global as any).Date.now = () =>
+      new Date('2019-09-09T17:00:00.000Z').getTime();
+    fixture.detectChanges();
+    expect(fixture.debugElement.query(By.css('.stuffLogo'))).toBeFalsy();
+    expect(fixture.debugElement.query(By.css('.punaLogo'))).toBeTruthy();
   });
 
   describe('Analytics', () => {

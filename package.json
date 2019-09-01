@@ -59,6 +59,7 @@
     "@types/jest": "^24.0.17",
     "@types/store": "^2.0.2",
     "axios": "^0.19.0",
+    "bowser": "^2.5.3",
     "browserstack-local": "^1.4.2",
     "classlist.js": "^1.1.20150312",
     "cookie": "^0.4.0",
