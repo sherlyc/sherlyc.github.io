@@ -9,17 +9,18 @@ import { IDefconArticleUnit } from '../../../../common/__types__/IDefconArticleU
 import { handlerRunnerFunction } from '../runner';
 import { Strap } from '../../strap';
 import { getStrapArticles } from '../../adapters/strap-list-service';
+import { IGrayDefconArticleUnit } from '../../../../common/__types__/IGrayDefconArticleUnit';
+import { IBigImageArticleUnit } from '../../../../common/__types__/IBigImageArticleUnit';
+import { IHalfWidthImageArticleUnit } from '../../../../common/__types__/IHalfWidthImageArticleUnit';
 
 const basicAdUnit: IBasicAdUnit = {
   type: ContentBlockType.BasicAdUnit
 };
 
-const createDefconArticleBlock = (
+const defconArticleUnit = (
   article: IRawArticle,
   strapName: string,
-  type:
-    | ContentBlockType.DefconArticleUnit
-    | ContentBlockType.GrayDefconArticleUnit
+  type: ContentBlockType.DefconArticleUnit
 ): IDefconArticleUnit => ({
   type,
   id: article.id,
@@ -32,7 +33,23 @@ const createDefconArticleBlock = (
   headlineFlags: article.headlineFlags
 });
 
-const createBasicArticleBlock = (
+const grayDefconArticleUnit = (
+  article: IRawArticle,
+  strapName: string,
+  type: ContentBlockType.GrayDefconArticleUnit
+): IGrayDefconArticleUnit => ({
+  type,
+  id: article.id,
+  strapName,
+  indexHeadline: article.indexHeadline,
+  introText: article.introText,
+  imageSrc: article.defconSrc,
+  linkUrl: article.linkUrl,
+  lastPublishedTime: article.lastPublishedTime,
+  headlineFlags: article.headlineFlags
+});
+
+const basicArticleUnit = (
   article: IRawArticle,
   strapName: string,
   type: ContentBlockType.BasicArticleUnit
@@ -49,25 +66,39 @@ const createBasicArticleBlock = (
   headlineFlags: article.headlineFlags
 });
 
-const createArticleBlockWithStrapImage = (
+const bigImageArticleUnit = (
   article: IRawArticle,
   strapName: string,
-  type:
-    | ContentBlockType.BigImageArticleUnit
-    | ContentBlockType.HalfWidthImageArticleUnit
-): IBasicArticleUnit => ({
-    type,
-    id: article.id,
-    strapName,
-    indexHeadline: article.indexHeadline,
-    introText: article.introText,
-    imageSrc: article.strapImageSrc,
-    imageSrcSet: article.strapImageSrcSet,
-    linkUrl: article.linkUrl,
-    lastPublishedTime: article.lastPublishedTime,
-    headlineFlags: article.headlineFlags
-  }
-);
+  type: ContentBlockType.BigImageArticleUnit
+): IBigImageArticleUnit => ({
+  type,
+  id: article.id,
+  strapName,
+  indexHeadline: article.indexHeadline,
+  introText: article.introText,
+  imageSrc: article.strapImageSrc,
+  imageSrcSet: article.strapImageSrcSet,
+  linkUrl: article.linkUrl,
+  lastPublishedTime: article.lastPublishedTime,
+  headlineFlags: article.headlineFlags
+});
+
+const halfWidthImageArticleUnit = (
+  article: IRawArticle,
+  strapName: string,
+  type: ContentBlockType.HalfWidthImageArticleUnit
+): IHalfWidthImageArticleUnit => ({
+  type,
+  id: article.id,
+  strapName,
+  indexHeadline: article.indexHeadline,
+  introText: article.introText,
+  imageSrc: article.strapImageSrc,
+  imageSrcSet: article.strapImageSrcSet,
+  linkUrl: article.linkUrl,
+  lastPublishedTime: article.lastPublishedTime,
+  headlineFlags: article.headlineFlags
+});
 
 const controlGroupArticles = (
   rawArticles: IRawArticle[],
@@ -78,7 +109,7 @@ const controlGroupArticles = (
       if (index === 0) {
         return [
           ...final,
-          createDefconArticleBlock(
+          defconArticleUnit(
             article,
             strapName,
             ContentBlockType.DefconArticleUnit
@@ -88,7 +119,7 @@ const controlGroupArticles = (
       }
       return [
         ...final,
-        createBasicArticleBlock(
+        basicArticleUnit(
           article,
           strapName,
           ContentBlockType.BasicArticleUnit
@@ -106,7 +137,7 @@ const groupOneArticles = (rawArticles: IRawArticle[], strapName: string) => {
       if (index === 0) {
         return [
           ...final,
-          createDefconArticleBlock(
+          grayDefconArticleUnit(
             article,
             strapName,
             ContentBlockType.GrayDefconArticleUnit
@@ -114,10 +145,9 @@ const groupOneArticles = (rawArticles: IRawArticle[], strapName: string) => {
           basicAdUnit
         ];
       }
-      console.log('strapImageSrc###', article.strapImageSrc);
       return [
         ...final,
-        createArticleBlockWithStrapImage(
+        bigImageArticleUnit(
           article,
           strapName,
           ContentBlockType.BigImageArticleUnit
@@ -135,7 +165,7 @@ const groupTwoArticles = (rawArticles: IRawArticle[], strapName: string) => {
       if (index === 0) {
         return [
           ...final,
-          createDefconArticleBlock(
+          grayDefconArticleUnit(
             article,
             strapName,
             ContentBlockType.GrayDefconArticleUnit
@@ -147,7 +177,7 @@ const groupTwoArticles = (rawArticles: IRawArticle[], strapName: string) => {
       if (index === 1 || index === 2) {
         return [
           ...final,
-          createArticleBlockWithStrapImage(
+          bigImageArticleUnit(
             article,
             strapName,
             ContentBlockType.BigImageArticleUnit
@@ -158,7 +188,7 @@ const groupTwoArticles = (rawArticles: IRawArticle[], strapName: string) => {
 
       return [
         ...final,
-        createArticleBlockWithStrapImage(
+        halfWidthImageArticleUnit(
           article,
           strapName,
           ContentBlockType.HalfWidthImageArticleUnit

@@ -1,8 +1,8 @@
 import { ContentBlockType } from './ContentBlockType';
 import { HeadlineFlags } from '../HeadlineFlags';
 
-export interface IBasicArticleUnit {
-  type: ContentBlockType.BasicArticleUnit;
+export interface IBigImageArticleUnit {
+  type: ContentBlockType.BigImageArticleUnit;
   id: string;
   strapName: string;
   indexHeadline: string;

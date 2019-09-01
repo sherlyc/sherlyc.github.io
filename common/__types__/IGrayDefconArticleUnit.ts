@@ -1,15 +1,13 @@
 import { ContentBlockType } from './ContentBlockType';
-import { HeadlineFlags } from '../HeadlineFlags';
 
-export interface IBasicArticleUnit {
-  type: ContentBlockType.BasicArticleUnit;
+export interface IGrayDefconArticleUnit {
+  type: ContentBlockType.GrayDefconArticleUnit;
   id: string;
   strapName: string;
   indexHeadline: string;
   introText: string;
   linkUrl: string;
   imageSrc: string | null;
-  imageSrcSet: string | null;
   lastPublishedTime: number;
-  headlineFlags: HeadlineFlags[];
+  headlineFlags: string[];
 }
