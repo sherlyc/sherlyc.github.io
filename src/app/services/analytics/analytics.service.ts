@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DeviceType } from './__types__/DeviceType';
+import { DeviceType } from '../../../../common/DeviceType';
 import { AnalyticsEventsType } from './__types__/AnalyticsEventsType';
 import { IAdobeAnalyticsEvent } from './__types__/IAdobeAnalyticsEvent';
 import { LoggerService } from '../logger/logger.service';

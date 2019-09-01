@@ -6,11 +6,17 @@ import { AnalyticsEventsType } from '../../services/analytics/__types__/Analytic
 import { AnalyticsService } from '../../services/analytics/analytics.service';
 import { mockService, ServiceMock } from '../../services/mocks/MockService';
 import { CookieService } from '../../services/cookie/cookie.service';
+import { ScriptInjectorService } from '../../services/script-injector/script-injector.service';
+import { WindowService } from '../../services/window/window.service';
+import { ScriptId } from '../../services/script-injector/__types__/ScriptId';
+import { Position } from '../../services/script-injector/__types__/Position';
 
 describe('Footer', () => {
   let fixture: ComponentFixture<FooterComponent>;
   let analyticsService: ServiceMock<AnalyticsService>;
   let cookieService: ServiceMock<CookieService>;
+  let scriptInjectorService: ServiceMock<ScriptInjectorService>;
+  let windowService: ServiceMock<WindowService>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -23,12 +29,23 @@ describe('Footer', () => {
         {
           provide: CookieService,
           useClass: mockService(CookieService)
+        },
+        {
+          provide: ScriptInjectorService,
+          useClass: mockService(ScriptInjectorService)
+        },
+        {
+          provide: WindowService,
+          useClass: mockService(WindowService)
         }
       ]
     }).compileComponents();
-    fixture = TestBed.createComponent(FooterComponent);
     analyticsService = TestBed.get(AnalyticsService);
     cookieService = TestBed.get(CookieService);
+    scriptInjectorService = TestBed.get(ScriptInjectorService);
+    windowService = TestBed.get(WindowService);
+
+    fixture = TestBed.createComponent(FooterComponent);
   });
 
   it('push analytics event when twitter link is clicked', () => {
@@ -73,6 +90,43 @@ describe('Footer', () => {
       domain: '.stuff.co.nz',
       expires: expect.any(Date),
       path: '/'
+    });
+  });
+
+  describe('Shielded Site', () => {
+    it('should have shielded-site as id on link that opens dialog', () => {
+      fixture.detectChanges();
+      const link = fixture.debugElement.query(By.css('#shielded-site'));
+
+      expect(link).toBeTruthy();
+    });
+
+    it('should load shielded site script when component is initialised', async () => {
+      const window = { onload: jest.fn() };
+      windowService.getWindow.mockReturnValue(window);
+
+      await fixture.componentInstance.ngOnInit();
+
+      expect(scriptInjectorService.load).toHaveBeenCalledWith(
+        ScriptId.shieldedSite,
+        'https://d3f5l8ze0o4j2m.cloudfront.net/m87/k33spt.js',
+        Position.BOTTOM
+      );
+    });
+
+    it('should inject function that initialises the shielded site into window when component is initialised', async () => {
+      const window = {
+        onload: jest.fn(),
+        ds07o6pcmkorn: jest.fn().mockImplementation(() => {
+          return { init: jest.fn() };
+        })
+      };
+      windowService.getWindow.mockReturnValue(window);
+
+      await fixture.componentInstance.ngOnInit();
+      window.onload();
+
+      expect(window.ds07o6pcmkorn).toHaveBeenCalled();
     });
   });
 });
