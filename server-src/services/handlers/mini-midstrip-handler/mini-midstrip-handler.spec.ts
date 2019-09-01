@@ -23,6 +23,8 @@ describe('MiniMidStripHandler', () => {
       defconSrc: null,
       imageSrc: '1.jpg',
       imageSrcSet: '1.jpg 1w',
+      strapImageSrc: '1.jpg',
+      strapImageSrcSet: '1.jpg 1w',
       lastPublishedTime: 1,
       headlineFlags: []
     },
@@ -34,6 +36,8 @@ describe('MiniMidStripHandler', () => {
       defconSrc: null,
       imageSrc: '2.jpg',
       imageSrcSet: '2.jpg 2w',
+      strapImageSrc: '2.jpg',
+      strapImageSrcSet: '2.jpg 2w',
       lastPublishedTime: 2,
       headlineFlags: []
     }
