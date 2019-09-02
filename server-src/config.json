@@ -7,6 +7,7 @@
     "breakingNewsApi": "https://api.stuff.co.nz/isomorphic-api/breakingNews?field=state",
     "bannerApi": "https://assets.stuff.co.nz/static/spade/banner.json",
     "layoutAPI": "https://i.stuff.co.nz/_json/layout/jcr:content",
+    "experimentsConfigUrl": "https://assets.stuff.co.nz/static/spade/experiments.json",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
       "level": "info",
@@ -21,6 +22,7 @@
     "breakingNewsApi": "https://api-preprod.stuff.co.nz/isomorphic-api/breakingNews?field=state",
     "bannerApi": "https://assets.stuff.co.nz/static/spade/banner.json",
     "layoutAPI": "https://i-preprod.stuff.co.nz/_json/layout/jcr:content",
+    "experimentsConfigUrl": "https://assets.stuff.co.nz/static/spade/experiments.json",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
       "level": "info",
@@ -35,6 +37,7 @@
     "breakingNewsApi": "https://api.stuff.co.nz/isomorphic-api/breakingNews?field=state",
     "bannerApi": "https://assets.stuff.co.nz/static/spade/banner.json",
     "layoutAPI": "https://i-preprod.stuff.co.nz/_json/layout/jcr:content",
+    "experimentsConfigUrl": "https://assets.stuff.co.nz/static/spade/experiments.json",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
       "level": "debug",
@@ -49,6 +52,7 @@
     "breakingNewsApi": "https://api.stuff.co.nz/isomorphic-api/breakingNews?field=state",
     "bannerApi": "https://assets.stuff.co.nz/static/spade/banner.json",
     "layoutAPI": "https://i.stuff.co.nz/_json/layout/jcr:content",
+    "experimentsConfigUrl": "https://assets.stuff.co.nz/static/spade/experiments.json",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
       "level": "debug",
@@ -63,6 +67,7 @@
     "breakingNewsApi": "https://api.stuff.co.nz/isomorphic-api/breakingNews?field=state",
     "bannerApi": "https://assets.stuff.co.nz/static/spade/banner.json",
     "layoutAPI": "https://i-preprod.stuff.co.nz/_json/layout/jcr:content",
+    "experimentsConfigUrl": "https://assets.stuff.co.nz/static/spade/experiments.json",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
       "level": "debug",

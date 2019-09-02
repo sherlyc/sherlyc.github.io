@@ -1,9 +1,7 @@
-import * as experimentsConfig from '../experimentsConfig.json';
-import { DeviceType } from '../../common/DeviceType';
-import {
-  IExperimentsConfig,
-  IExperimentVariantConfig
-} from './__types__/IExperimentsConfig';
+import { DeviceType } from '../../../common/DeviceType';
+import { IExperimentVariantConfig } from '../__types__/IExperimentsConfig';
+import { IParams } from '../__types__/IParams';
+import { retrieveExperimentsConfig } from './experiments-config-retriever';
 
 const isSelectedForVariant = (
   lotteryNumber: number,
@@ -22,12 +20,13 @@ const isSelectedForVariant = (
   return variantConfig.internal === lotteryNumber;
 };
 
-export const getExperimentVariant = (
+export const getExperimentVariant = async (
   experimentName: string,
   lotteryNumber: number,
-  deviceType: DeviceType
-): string => {
-  const config = experimentsConfig as IExperimentsConfig;
+  deviceType: DeviceType,
+  params: IParams
+): Promise<string> => {
+  const config = await retrieveExperimentsConfig(params);
   const experiment = config[experimentName] || {};
 
   const variants = Object.keys(experiment);

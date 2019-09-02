@@ -1,9 +1,10 @@
 import { Request, Response } from 'express';
 import { experimentController } from './experiment-controller';
-import { getExperimentVariant } from '../services/experiment';
+import { getExperimentVariant } from '../services/adapters/experiment';
 import { Experiments } from '../../common/Experiments';
+import { DeviceType } from '../../common/DeviceType';
 
-jest.mock('../services/experiment');
+jest.mock('../services/adapters/experiment');
 
 describe('Experiment controller', () => {
   const req = {
@@ -17,68 +18,80 @@ describe('Experiment controller', () => {
     res.status.mockReturnValue(res);
   });
 
-  it('should return 400 and message in body when provided with empty name and negative lottery number', () => {
-    req.params.experimentName = '';
-    req.params.lotteryNumber = '-1';
-
-    experimentController(req, res);
-
-    assert400StatusAndMessage(res, req);
-  });
-
-  it('should return 400 and message in body when provided with invalid experiment and lottery number', () => {
-    req.params.experimentName = 'afjdjafia';
-    req.params.lotteryNumber = '-8';
-
-    experimentController(req, res);
-
-    assert400StatusAndMessage(res, req);
-  });
-
-  it('should return 400 and message in body when provided with valid experiment and empty lottery number', () => {
-    req.params.experimentName = Experiments.Users;
-    req.params.lotteryNumber = '';
-
-    experimentController(req, res);
-
-    assert400StatusAndMessage(res, req);
-  });
-
-  it('should respond with variant', () => {
+  it('should respond with variant', async () => {
     req.params.experimentName = Experiments.Users;
     req.params.lotteryNumber = '27';
     const variant = 'Variant A';
     (getExperimentVariant as jest.Mock).mockReturnValue(variant);
 
-    experimentController(req, res);
+    await experimentController(req, res);
 
     expect(res.send).toHaveBeenCalledWith(variant);
   });
 
-  it('should respond with control variant when experiment does not exist', () => {
+  it('should respond with control variant when experiment does not exist', async () => {
     req.params.experimentName = 'Random';
     req.params.lotteryNumber = '27';
     const variant = 'control';
     (getExperimentVariant as jest.Mock).mockReturnValue(variant);
 
-    experimentController(req, res);
+    await experimentController(req, res);
 
     expect(res.send).toHaveBeenCalledWith(variant);
   });
 
-  it('should provide the deviceType to getExperiment function', () => {
+  it('should pass experimentName, lotteryNumber, deviceType and spadeParams to getExperimentVariant function', async () => {
     req.params.experimentName = 'Random';
     req.params.lotteryNumber = '27';
     req.params.deviceType = 'mobile';
-    experimentController(req, res);
-    expect(getExperimentVariant).toHaveBeenCalledWith('Random', 27, 'mobile');
+
+    await experimentController(req, res);
+
+    expect(getExperimentVariant).toHaveBeenCalledWith(
+      'Random',
+      27,
+      'mobile',
+      req.spadeParams
+    );
   });
 
-  it('should return 400 and message in body when provided with invalid deviceType', () => {
+  it('should return 400 and message in body when lottery number is not a number', async () => {
+    req.params.experimentName = Experiments.Users;
+    req.params.lotteryNumber = '%#@#$';
+    req.params.deviceType = DeviceType.tablet;
+
+    await experimentController(req, res);
+
+    assert400StatusAndMessage(res, req);
+  });
+
+  it('should return 400 and message in body when provided with lottery number less than or equal to zero', async () => {
+    req.params.experimentName = Experiments.Users;
+    req.params.lotteryNumber = '0';
+    req.params.deviceType = DeviceType.tablet;
+
+    await experimentController(req, res);
+
+    assert400StatusAndMessage(res, req);
+  });
+
+  it('should return 400 and message in body when provided with invalid deviceType', async () => {
     req.params.experimentName = Experiments.Users;
     req.params.lotteryNumber = '27';
     req.params.deviceType = 'asdfasdf';
-    experimentController(req, res);
+
+    await experimentController(req, res);
+
+    assert400StatusAndMessage(res, req);
+  });
+
+  it('should return 400 and message in body when provided deviceType is not provided', async () => {
+    req.params.experimentName = Experiments.Users;
+    req.params.lotteryNumber = '27';
+    req.params.deviceType = '';
+
+    await experimentController(req, res);
+
     assert400StatusAndMessage(res, req);
   });
 });

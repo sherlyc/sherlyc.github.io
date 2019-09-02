@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getExperimentVariant } from '../services/experiment';
+import { getExperimentVariant } from '../services/adapters/experiment';
 import logger from '../services/utils/logger';
 import { DeviceType } from '../../common/DeviceType';
 
@@ -10,10 +10,8 @@ function validateRequest(
 ) {
   const parsedLotto = Number(lotteryNumber);
   if (
-    !name ||
-    !lotteryNumber ||
     isNaN(parsedLotto) ||
-    parsedLotto < 0 ||
+    parsedLotto <= 0 ||
     !Object.keys(DeviceType).includes(deviceType)
   ) {
     throw new Error(`Invalid experiment data provided,
@@ -21,21 +19,27 @@ function validateRequest(
   }
 }
 
-export const experimentController = function(req: Request, res: Response) {
+export const experimentController = async function(
+  req: Request,
+  res: Response
+) {
   const {
     experimentName,
     lotteryNumber,
     deviceType = DeviceType.unknown
   } = req.params;
+
   try {
     validateRequest(experimentName, lotteryNumber, deviceType);
-    res.send(
-      getExperimentVariant(
-        experimentName,
-        parseInt(lotteryNumber, 10),
-        deviceType as DeviceType
-      )
+
+    const variant = await getExperimentVariant(
+      experimentName,
+      parseInt(lotteryNumber, 10),
+      deviceType as DeviceType,
+      req.spadeParams
     );
+
+    res.send(variant);
   } catch (e) {
     logger.error(
       req.spadeParams.apiRequestId,

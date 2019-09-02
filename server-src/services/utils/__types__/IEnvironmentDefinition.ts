@@ -9,6 +9,7 @@ export interface IEnvironmentDefinition {
   breakingNewsApi: string;
   bannerApi: string;
   layoutAPI: string;
+  experimentsConfigUrl: string;
   maxArticlesToRetrieve: number;
   loggerOptions: ILoggerOptions;
   strapConfig: IStrapConfigDefinition;
