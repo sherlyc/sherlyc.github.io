@@ -10,10 +10,9 @@ const basicAdUnit: IBasicAdUnit = {
 
 const bigImageArticleUnit = (
   article: IRawArticle,
-  strapName: string,
-  type: ContentBlockType.BigImageArticleUnit
+  strapName: string
 ): IBigImageArticleUnit => ({
-  type,
+  type: ContentBlockType.BigImageArticleUnit,
   id: article.id,
   strapName,
   indexHeadline: article.indexHeadline,
@@ -25,18 +24,13 @@ const bigImageArticleUnit = (
   headlineFlags: article.headlineFlags
 });
 
-export const groupOneArticles = (rawArticles: IRawArticle[], strapName: string) => {
+export const groupOneArticles = (
+  rawArticles: IRawArticle[],
+  strapName: string
+) => {
   return rawArticles.reduce(
     (final, article) => {
-      return [
-        ...final,
-        bigImageArticleUnit(
-          article,
-          strapName,
-          ContentBlockType.BigImageArticleUnit
-        ),
-        basicAdUnit
-      ];
+      return [...final, bigImageArticleUnit(article, strapName), basicAdUnit];
     },
     [basicAdUnit] as IContentBlock[]
   );

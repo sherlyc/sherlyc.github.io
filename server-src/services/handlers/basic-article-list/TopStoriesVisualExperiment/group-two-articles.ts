@@ -11,10 +11,9 @@ const basicAdUnit: IBasicAdUnit = {
 
 const bigImageArticleUnit = (
   article: IRawArticle,
-  strapName: string,
-  type: ContentBlockType.BigImageArticleUnit
+  strapName: string
 ): IBigImageArticleUnit => ({
-  type,
+  type: ContentBlockType.BigImageArticleUnit,
   id: article.id,
   strapName,
   indexHeadline: article.indexHeadline,
@@ -28,10 +27,9 @@ const bigImageArticleUnit = (
 
 const halfWidthImageArticleUnit = (
   article: IRawArticle,
-  strapName: string,
-  type: ContentBlockType.HalfWidthImageArticleUnit
+  strapName: string
 ): IHalfWidthImageArticleUnit => ({
-  type,
+  type: ContentBlockType.HalfWidthImageArticleUnit,
   id: article.id,
   strapName,
   indexHeadline: article.indexHeadline,
@@ -43,27 +41,18 @@ const halfWidthImageArticleUnit = (
   headlineFlags: article.headlineFlags
 });
 
-export const groupTwoArticles = (rawArticles: IRawArticle[], strapName: string) => {
+export const groupTwoArticles = (
+  rawArticles: IRawArticle[],
+  strapName: string
+) => {
   return rawArticles.reduce(
     (final, article, index) => {
       if (index < 3) {
-        return [
-          ...final,
-          bigImageArticleUnit(
-            article,
-            strapName,
-            ContentBlockType.BigImageArticleUnit
-          ),
-          basicAdUnit
-        ];
+        return [...final, bigImageArticleUnit(article, strapName), basicAdUnit];
       }
       return [
         ...final,
-        halfWidthImageArticleUnit(
-          article,
-          strapName,
-          ContentBlockType.HalfWidthImageArticleUnit
-        ),
+        halfWidthImageArticleUnit(article, strapName),
         basicAdUnit
       ];
     },
