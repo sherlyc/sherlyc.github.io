@@ -45,8 +45,8 @@
     "linkUrl": "http://i.stuff.co.nz/life-style/puzzles",
     "imageSrc": "https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.90x60.11z4e0.png/1439844947411.jpg",
     "imageSrcSet": "https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.90x60.11z4e0.png/1439844947411.jpg 90w, https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.180x120.11z4e0.png/1439844947411.jpg 180w",
-    "strapImageSrc": null,
-    "strapImageSrcSet": null,
+    "strapImageSrc": "https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.90x60.11z4e0.png/1439844947411.jpg",
+    "strapImageSrcSet": "https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.90x60.11z4e0.png/1439844947411.jpg 90w, https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.180x120.11z4e0.png/1439844947411.jpg 180w",
     "defconSrc": "https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.90x60.11z4e0.png/1439844947411.jpg",
     "lastPublishedTime": 1439844947,
     "headlineFlags": []

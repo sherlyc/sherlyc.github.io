@@ -33,11 +33,20 @@ export function getDefconSrc(
   return image ? image.src : null;
 }
 
-export function getImageSrc(
-  item: IJsonFeedArticle | IJsonFeedUrl,
-  type: JsonFeedImageType
+export function getThumbnailSrc(
+  item: IJsonFeedArticle | IJsonFeedUrl
 ): string | null {
-  const image = findImage(item, type);
+  const image = findImage(item, JsonFeedImageType.SMALL_THUMBNAIL);
+
+  return image ? image.src : null;
+}
+
+export function getStrapImageSrc(
+  item: IJsonFeedArticle | IJsonFeedUrl
+): string | null {
+  const image =
+    findImage(item, JsonFeedImageType.STRAP_IMAGE) ||
+    findImage(item, JsonFeedImageType.SMALL_THUMBNAIL);
 
   return image ? image.src : null;
 }
@@ -52,10 +61,16 @@ function getImageSrcSetString(imageUrls: Object[]) {
     .join(', ');
 }
 
-export function getImageSrcSet(
-  item: IJsonFeedArticle | IJsonFeedUrl,
-  type: JsonFeedImageType) {
-  const images = findImage(item, type);
+export function getThumbnailSrcSet(item: IJsonFeedArticle | IJsonFeedUrl) {
+  const images = findImage(item, JsonFeedImageType.SMALL_THUMBNAIL);
+
+  return images && images.urls ? getImageSrcSetString(images.urls) : null;
+}
+
+export function getStrapImageSrcSet(item: IJsonFeedArticle | IJsonFeedUrl) {
+  const images =
+    findImage(item, JsonFeedImageType.STRAP_IMAGE) ||
+    findImage(item, JsonFeedImageType.SMALL_THUMBNAIL);
 
   return images && images.urls ? getImageSrcSetString(images.urls) : null;
 }

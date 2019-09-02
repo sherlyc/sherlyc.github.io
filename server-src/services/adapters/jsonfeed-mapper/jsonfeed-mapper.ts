@@ -5,8 +5,13 @@ import { JsonFeedAssetType } from '../__types__/JsonFeedAssetType';
 import { IJsonFeedUrl } from '../__types__/IJsonFeedUrl';
 import { IJsonFeedQuery } from '../__types__/IJsonFeedQuery';
 import { HeadlineFlags } from '../../../../common/HeadlineFlags';
-import { getDefconSrc, getImageSrc, getImageSrcSet } from './image-handler';
-import { JsonFeedImageType } from '../__types__/JsonFeedImageType';
+import {
+  getDefconSrc,
+  getStrapImageSrc,
+  getStrapImageSrcSet,
+  getThumbnailSrc,
+  getThumbnailSrcSet
+} from './image-handler';
 
 export default (
   articles: Array<IJsonFeedArticle | IJsonFeedUrl | IJsonFeedQuery>
@@ -30,10 +35,10 @@ function mapArticleAsset(item: IJsonFeedArticle): IRawArticle {
       : item.title,
     introText: item.alt_intro,
     linkUrl: item.path,
-    imageSrc: getImageSrc(item, JsonFeedImageType.SMALL_THUMBNAIL ),
-    imageSrcSet: getImageSrcSet(item, JsonFeedImageType.SMALL_THUMBNAIL),
-    strapImageSrc: getImageSrc(item, JsonFeedImageType.STRAP_IMAGE),
-    strapImageSrcSet: getImageSrcSet(item, JsonFeedImageType.STRAP_IMAGE),
+    imageSrc: getThumbnailSrc(item),
+    imageSrcSet: getThumbnailSrcSet(item),
+    strapImageSrc: getStrapImageSrc(item),
+    strapImageSrcSet: getStrapImageSrcSet(item),
     defconSrc: getDefconSrc(item),
     lastPublishedTime: moment(item.datetime_iso8601).unix(),
     headlineFlags: getHeadlineFlags(item)
@@ -48,10 +53,10 @@ function mapUrlAsset(item: IJsonFeedUrl): IRawArticle {
       : item.title,
     introText: item.alt_intro,
     linkUrl: getLinkUrl(item),
-    imageSrc: getImageSrc(item, JsonFeedImageType.SMALL_THUMBNAIL),
-    imageSrcSet: getImageSrcSet(item, JsonFeedImageType.SMALL_THUMBNAIL),
-    strapImageSrc: getImageSrc(item, JsonFeedImageType.STRAP_IMAGE),
-    strapImageSrcSet: getImageSrcSet(item, JsonFeedImageType.STRAP_IMAGE),
+    imageSrc: getThumbnailSrc(item),
+    imageSrcSet: getThumbnailSrcSet(item),
+    strapImageSrc: getStrapImageSrc(item),
+    strapImageSrcSet: getStrapImageSrcSet(item),
     defconSrc: getDefconSrc(item),
     lastPublishedTime: moment(item.datetime_iso8601).unix(),
     headlineFlags: getHeadlineFlags(item)
