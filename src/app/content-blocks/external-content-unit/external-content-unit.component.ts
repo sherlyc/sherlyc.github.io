@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  Input,
+  OnInit
+} from '@angular/core';
 import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
 import { IExternalContentUnit } from '../../../../common/__types__/IExternalContentUnit';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -9,10 +15,15 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./external-content-unit.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ExternalContentUnitComponent implements IContentBlockComponent {
+export class ExternalContentUnitComponent
+  implements IContentBlockComponent, OnInit {
   @Input() input!: IExternalContentUnit;
-
+  @HostBinding('style.margin') margin = '0';
   constructor(private sanitizer: DomSanitizer) {}
+
+  ngOnInit(): void {
+    this.margin = this.input.margin;
+  }
 
   getUrl() {
     return this.sanitizer.bypassSecurityTrustResourceUrl(this.input.url);
