@@ -56,10 +56,7 @@ export class HeaderComponent
         { label: 'Politics', link: '/national/politics' },
         { label: 'Premium', link: '/national/premium' },
         { label: 'Homed', link: '/life-style/homed' },
-        {
-          label: 'KEA Kids News',
-          link: 'https://www.stuff.co.nz/national/kea-kids-news'
-        },
+        { label: 'KEA Kids News', link: '/national/kea-kids-news' },
         { label: 'Well & Good', link: '/life-style/well-good' },
         { label: 'Food & Wine', link: '/life-style/food-wine' },
         { label: 'Parenting', link: '/life-style/parenting' },
