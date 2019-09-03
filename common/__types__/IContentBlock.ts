@@ -14,11 +14,17 @@ import { IWeatherUnit } from './IWeatherUnit';
 import { IBasicArticleTitleUnit } from './IBasicArticleTitleUnit';
 import { IExperimentContainer } from './IExperimentContainer';
 import { IFeatureContainer } from './IFeatureContainer';
+import { IGrayDefconArticleUnit } from './IGrayDefconArticleUnit';
+import { IBigImageArticleUnit } from './IBigImageArticleUnit';
+import { IHalfWidthImageArticleUnit } from './IHalfWidthImageArticleUnit';
 
 export type IContentBlock =
   | IDefconArticleUnit
+  | IGrayDefconArticleUnit
   | IBasicArticleUnit
   | IBasicArticleTitleUnit
+  | IBigImageArticleUnit
+  | IHalfWidthImageArticleUnit
   | IBasicArticleSection
   | IImageLinkUnit
   | IBasicAdUnit

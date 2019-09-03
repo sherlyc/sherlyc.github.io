@@ -10,6 +10,8 @@ import { getSectionArticleList } from '../../adapters/jsonfeed';
 import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 import { IBasicArticleTitleUnit } from '../../../../common/__types__/IBasicArticleTitleUnit';
+import { IBigImageArticleUnit } from '../../../../common/__types__/IBigImageArticleUnit';
+import { IHalfWidthImageArticleUnit } from '../../../../common/__types__/IHalfWidthImageArticleUnit';
 
 jest.mock('../../adapters/jsonfeed');
 jest.mock('../../adapters/strap-list-service');
@@ -71,7 +73,7 @@ describe('BasicArticleListHandler', () => {
     type: ContentBlockType.BasicArticleUnit
   };
 
-  const articleNumberOneAsBigImageArticle: IBasicArticleUnit = {
+  const articleNumberOneAsBigImageArticle: IBigImageArticleUnit = {
     id: '1',
     strapName: '',
     headlineFlags: [],
@@ -83,7 +85,7 @@ describe('BasicArticleListHandler', () => {
     linkUrl: '/link1',
     type: ContentBlockType.BigImageArticleUnit
   };
-  const articleNumberTwoAsBigImageArticle: IBasicArticleUnit = {
+  const articleNumberTwoAsBigImageArticle: IBigImageArticleUnit = {
     id: '2',
     strapName: '',
     headlineFlags: [],
@@ -106,7 +108,7 @@ describe('BasicArticleListHandler', () => {
     type: ContentBlockType.BasicArticleTitleUnit
   };
 
-  const articleAsBigImageArticle: IBasicArticleUnit = {
+  const articleAsBigImageArticle: IBigImageArticleUnit = {
     id: '1',
     strapName: '',
     indexHeadline: 'Headline 1',
@@ -119,7 +121,7 @@ describe('BasicArticleListHandler', () => {
     type: ContentBlockType.BigImageArticleUnit
   };
 
-  const articleAsHalfWidthImageArticle: IBasicArticleUnit = {
+  const articleAsHalfWidthImageArticle: IHalfWidthImageArticleUnit = {
     id: '1',
     strapName: '',
     indexHeadline: 'Headline 1',
