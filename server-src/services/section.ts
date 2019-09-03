@@ -23,6 +23,7 @@ export enum Section {
   BeautyHeaven = 'life-style/beauty-heaven',
   Metro = 'life-style/metro',
   Newsroom = 'national/newsroom',
+  KeaKidsNews = 'national/kea-kids-news',
   SponsoredContent = 'sponsored-content',
   Tarana = 'tarana',
   Bravo = 'entertainment/bravo',

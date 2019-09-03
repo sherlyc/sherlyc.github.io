@@ -4,6 +4,7 @@ export enum Strap {
   MiniMidStrip = 'strapMiniMidStrip',
   TopStories = 'strapTopStories',
   DailyFix = 'strapDailyFix',
+  KeaKidsNews = 'strapKeaKidsNews',
   Travel = 'strapTravel',
   National = 'strapNational',
   ClimateChange = 'strapClimateChange',

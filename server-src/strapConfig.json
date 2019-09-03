@@ -138,6 +138,10 @@
     "strapProperty": {
       "ids": ["85424401"],
       "toDedupe": false
+    },
+    "strapKeaKidsNews": {
+      "ids": [],
+      "toDedupe": false
     }
   },
   "overrides": {
