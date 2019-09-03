@@ -64,19 +64,6 @@ export default async function(
         },
         params
       );
-    case LayoutType.BIG_HEADLINE:
-      return handlerRunner(
-        {
-          type: HandlerInputType.ArticleList,
-          sourceId,
-          strapName,
-          layout: LayoutType.BIG_HEADLINE,
-          totalBasicArticlesUnit,
-          totalBasicArticleTitleUnit,
-          variant: 'control'
-        },
-        params
-      );
     default:
       return handlerRunner(
         {
@@ -87,7 +74,7 @@ export default async function(
               type: HandlerInputType.ArticleList,
               sourceId: Strap.TopStories,
               strapName,
-              layout: LayoutType.DEFAULT,
+              layout,
               totalBasicArticlesUnit,
               totalBasicArticleTitleUnit,
               variant: 'control'
@@ -96,7 +83,7 @@ export default async function(
               type: HandlerInputType.ArticleList,
               sourceId: Strap.TopStories,
               strapName,
-              layout: LayoutType.DEFAULT,
+              layout,
               totalBasicArticlesUnit,
               totalBasicArticleTitleUnit,
               variant: 'groupOne'
@@ -105,7 +92,7 @@ export default async function(
               type: HandlerInputType.ArticleList,
               sourceId: Strap.TopStories,
               strapName,
-              layout: LayoutType.DEFAULT,
+              layout,
               totalBasicArticlesUnit,
               totalBasicArticleTitleUnit,
               variant: 'groupTwo'
