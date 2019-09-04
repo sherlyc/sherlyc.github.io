@@ -15,38 +15,47 @@ describe('Experiment API', () => {
     expect(text).toBe('control');
   });
 
-  it('should return TopStoriesVisualExperiment when lottery number is 404 for Users', async () => {
-    const response: supertest.Response = await supertest(app).get(
-      `${experimentApi}/Users/404`
-    );
+  test.each([[1], [100]])(
+    'lottery number %i should return TopStoriesVisualExperiment variant for Users experiment for mobile',
+    async (lotteryNumber: number) => {
+      const response: supertest.Response = await supertest(app).get(
+        `${experimentApi}/Users/${lotteryNumber}/mobile`
+      );
 
-    const { text, status } = response;
+      const { text, status } = response;
 
-    expect(status).toBe(200);
-    expect(text).toBe('TopStoriesVisualExperiment');
-  });
+      expect(status).toBe(200);
+      expect(text).toBe('TopStoriesVisualExperiment');
+    }
+  );
 
-  it('should return groupOne when lottery number is 404 and device is mobile for TopStoriesVisualExperiment', async () => {
-    const response: supertest.Response = await supertest(app).get(
-      `${experimentApi}/TopStoriesVisualExperiment/404/mobile`
-    );
+  test.each([[1], [34], [404]])(
+    'lottery number %i should return groupOne when it is between 1 and 34 or is 404 and device is mobile for TopStoriesVisualExperiment',
+    async (lotteryNumber: number) => {
+      const response: supertest.Response = await supertest(app).get(
+        `${experimentApi}/TopStoriesVisualExperiment/${lotteryNumber}/mobile`
+      );
 
-    const { text, status } = response;
+      const { text, status } = response;
 
-    expect(status).toBe(200);
-    expect(text).toBe('groupOne');
-  });
+      expect(status).toBe(200);
+      expect(text).toBe('groupOne');
+    }
+  );
 
-  it('should return groupTwo when lottery number is 505 and device is mobile for TopStoriesVisualExperiment', async () => {
-    const response: supertest.Response = await supertest(app).get(
-      `${experimentApi}/TopStoriesVisualExperiment/505/mobile`
-    );
+  test.each([[35], [68], [505]])(
+    'lottery number %i should return groupTwo when it is between 35 and 68 or is 505 and device is mobile for TopStoriesVisualExperiment',
+    async (lotteryNumber: number) => {
+      const response: supertest.Response = await supertest(app).get(
+        `${experimentApi}/TopStoriesVisualExperiment/${lotteryNumber}/mobile`
+      );
 
-    const { text, status } = response;
+      const { text, status } = response;
 
-    expect(status).toBe(200);
-    expect(text).toBe('groupTwo');
-  });
+      expect(status).toBe(200);
+      expect(text).toBe('groupTwo');
+    }
+  );
 
   it('should return control when device is not mobile for TopStoriesVisualExperiment', async () => {
     const response: supertest.Response = await supertest(app).get(
@@ -59,9 +68,9 @@ describe('Experiment API', () => {
     expect(text).toBe('control');
   });
 
-  it('should return control when lottery number is not 404 or 505 for TopStoriesVisualExperiment', async () => {
+  it('should return control when lottery number is between 69 to 100 and is not 404 or 505 for TopStoriesVisualExperiment', async () => {
     const response: supertest.Response = await supertest(app).get(
-      `${experimentApi}/TopStoriesVisualExperiment/10/mobile`
+      `${experimentApi}/TopStoriesVisualExperiment/69/mobile`
     );
 
     const { text, status } = response;
