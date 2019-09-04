@@ -211,7 +211,7 @@ export default async (params: IParams): Promise<IPage> => {
                 type: HandlerInputType.ArticleList,
                 sourceId: Strap.KeaKidsNews,
                 strapName: 'KEA Kids News',
-                totalBasicArticlesUnit: 3
+                totalBasicArticlesUnit: 2
               }
             },
             {
