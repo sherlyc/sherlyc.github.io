@@ -204,6 +204,18 @@ export default async (params: IParams): Promise<IPage> => {
             },
             {
               type: HandlerInputType.ArticleSection,
+              displayName: 'KEA Kids News',
+              displayNameColor: 'darkblue',
+              linkUrl: '/' + Section.KeaKidsNews,
+              content: {
+                type: HandlerInputType.ArticleList,
+                sourceId: Strap.KeaKidsNews,
+                strapName: 'KEA Kids News',
+                totalBasicArticlesUnit: 2
+              }
+            },
+            {
+              type: HandlerInputType.ArticleSection,
               displayName: 'Homed',
               displayNameColor: 'keppel',
               linkUrl: '/' + Section.Homed,
