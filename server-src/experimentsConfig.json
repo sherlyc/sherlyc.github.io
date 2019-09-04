@@ -1,6 +1,7 @@
 {
   "Users": {
     "TopStoriesVisualExperiment": {
+      "devices": ["mobile"],
       "public": {
         "min": 1,
         "max": 100
