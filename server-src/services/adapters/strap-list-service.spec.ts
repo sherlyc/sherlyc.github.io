@@ -10,30 +10,25 @@ import { IStrapConfigDefinition } from '../utils/__types__/IStrapConfigDefinitio
 jest.mock('./jsonfeed');
 
 describe('The strap list service', () => {
-  let parameters: IParams;
+  const parameters: IParams = {
+    apiRequestId: 'request-id-for-testing'
+  };
 
   beforeEach(() => {
-    parameters = {
-      apiRequestId: 'request-id-for-testing',
-      strapArticlesCache: {}
-    };
-  });
-
-  beforeAll(() => {
     config.strapConfig = {
       dedupeList: ['strapEditorPicks'],
       homepageStraps: {
         strapEditorPicks: {
           ids: ['63868237'],
-          toDedupe: false
+          shouldDedupe: false
         },
         strapDailyFix: {
           ids: ['63868237', '63768623'],
-          toDedupe: false
+          shouldDedupe: false
         },
         strapTopStories: {
           ids: ['63868237', '63784884'],
-          toDedupe: true
+          shouldDedupe: true
         }
       }
     } as IStrapConfigDefinition;
@@ -75,25 +70,66 @@ describe('The strap list service', () => {
     expect(result).toMatchObject(rawSecondList);
   });
 
-  it('should save strapArticles to cache', async () => {
+  it('should dedupe against dedupeList while respecting totalArticlesWithImages as limit', async () => {
+    const limit = 2;
+    config.strapConfig = {
+      dedupeList: ['strapEditorPicks'],
+      homepageStraps: {
+        strapEditorPicks: {
+          ids: ['60000000'],
+          totalArticlesWithImages: limit,
+          shouldDedupe: false
+        },
+        strapDailyFix: {
+          ids: ['90000000'],
+          totalArticlesWithImages: limit,
+          shouldDedupe: true
+        }
+      }
+    } as IStrapConfigDefinition;
+
+    const dailyFixArticles = [{ id: 3 }, { id: 4 }, { id: 5 }, { id: 6 }];
+    const editorPicksArticles = [{ id: 1 }, { id: 2 }, { id: 3 }];
+    const expectedArticles = [{ id: 3 }, { id: 4 }];
+
     (getListAssetById as jest.Mock)
-      .mockResolvedValueOnce(rawList)
-      .mockResolvedValueOnce(rawSecondList)
-      .mockResolvedValueOnce(rawList);
+      .mockResolvedValueOnce(dailyFixArticles)
+      .mockResolvedValueOnce(editorPicksArticles);
 
-    await getStrapArticles(parameters, Strap.TopStories);
-    const topStoriesCache = parameters.strapArticlesCache!['strapTopStories'];
+    const result = await getStrapArticles(parameters, Strap.DailyFix, limit);
 
-    expect(await topStoriesCache).toMatchObject(rawSecondList);
+    expect(result).toMatchObject(expectedArticles);
   });
 
-  it('should read strapArticles from cache', async () => {
-    parameters.strapArticlesCache!['strapTopStories'] = Promise.resolve(
-      rawSecondList
-    );
-    const topStoriesCache = parameters.strapArticlesCache!['strapTopStories'];
-    const result = await getStrapArticles(parameters, Strap.TopStories);
+  it('should dedupe against dedupeList while respecting totalArticlesWithImages and totalTitleArticles as limit', async () => {
+    config.strapConfig = {
+      dedupeList: ['strapEditorPicks'],
+      homepageStraps: {
+        strapEditorPicks: {
+          ids: ['60000000'],
+          totalArticlesWithImages: 2,
+          totalTitleArticles: 1,
+          shouldDedupe: false
+        },
+        strapDailyFix: {
+          ids: ['90000000'],
+          totalArticlesWithImages: 2,
+          totalTitleArticles: 1,
+          shouldDedupe: true
+        }
+      }
+    } as IStrapConfigDefinition;
 
-    expect(result).toBe(await topStoriesCache);
+    const dailyFixArticles = [{ id: 3 }, { id: 4 }, { id: 5 }, { id: 6 }];
+    const editorPicksArticles = [{ id: 1 }, { id: 2 }, { id: 3 }];
+    const expectedArticles = [{ id: 4 }, { id: 5 }, { id: 6 }];
+
+    (getListAssetById as jest.Mock)
+      .mockResolvedValueOnce(dailyFixArticles)
+      .mockResolvedValueOnce(editorPicksArticles);
+
+    const result = await getStrapArticles(parameters, Strap.DailyFix, 3);
+
+    expect(result).toMatchObject(expectedArticles);
   });
 });

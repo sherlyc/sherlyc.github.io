@@ -41,7 +41,7 @@ describe('Cache Request', () => {
   it('should not save to cache and return cached request if request was cached for less than 10 seconds', () => {
     const cachedRequest = Promise.resolve();
     const cachedResult = {
-      timestamp: Date.now() - 9999,
+      timestamp: Date.now() - 9000,
       promise: cachedRequest
     };
     (loadFromCache as jest.Mock).mockReturnValue(cachedResult);

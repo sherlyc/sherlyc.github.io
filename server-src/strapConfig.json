@@ -9,154 +9,154 @@
     "strapTopStories": {
       "ids": ["63768623"],
       "totalArticlesWithImages": 6,
-      "toDedupe": false
+      "shouldDedupe": false
     },
     "strapEditorPicks": {
       "ids": ["63868237"],
       "totalArticlesWithImages": 2,
       "totalTitleArticles": 6,
-      "toDedupe": false
+      "shouldDedupe": false
     },
     "strapMidStrip": {
       "ids": ["63769065"],
       "totalArticlesWithImages": 6,
-      "toDedupe": false
+      "shouldDedupe": false
     },
     "strapMiniMidStrip": {
       "ids": ["63768876"],
       "totalArticlesWithImages": 2,
-      "toDedupe": false
+      "shouldDedupe": false
     },
     "strapDailyFix": {
       "ids": ["63784884"],
-      "toDedupe": false
+      "shouldDedupe": false
     },
     "strapTravel": {
       "ids": ["60860998"],
-      "toDedupe": true
+      "shouldDedupe": true
     },
     "strapNational": {
       "ids": ["62950252", "62926368"],
-      "toDedupe": true
+      "shouldDedupe": true
     },
     "strapSport": {
       "ids": ["62922196", "62919098"],
-      "toDedupe": true
+      "shouldDedupe": true
     },
     "strapWorld": {
       "ids": ["60844362"],
-      "toDedupe": true
+      "shouldDedupe": true
     },
     "strapBusiness": {
       "ids": ["63060863"],
-      "toDedupe": true
+      "shouldDedupe": true
     },
     "strapOpinion": {
       "ids": ["91706224"],
-      "toDedupe": true
+      "shouldDedupe": true
     },
     "strapTechnology": {
       "ids": ["60119046"],
-      "toDedupe": true
+      "shouldDedupe": true
     },
     "strapHomed": {
       "ids": ["91738058", "91738163"],
-      "toDedupe": true
+      "shouldDedupe": true
     },
     "strapLifeStyle": {
       "ids": ["62546009", "62546149"],
-      "toDedupe": true
+      "shouldDedupe": true
     },
     "strapEntertainment": {
       "ids": ["62497979", "62498297"],
-      "toDedupe": true
+      "shouldDedupe": true
     },
     "strapMotoring": {
       "ids": ["62925442"],
-      "toDedupe": true
+      "shouldDedupe": true
     },
     "strapStuffNation": {
       "ids": ["90804478"],
-      "toDedupe": true
+      "shouldDedupe": true
     },
     "strapClimateChange": {
       "ids": ["74545269"],
-      "toDedupe": false
+      "shouldDedupe": false
     },
     "strapWellGood": {
       "ids": ["62547807"],
-      "toDedupe": true
+      "shouldDedupe": true
     },
     "strapPremium": {
       "ids": ["95972272"],
-      "toDedupe": false
+      "shouldDedupe": false
     },
     "strapGoodReads": {
       "ids": ["63587628"],
-      "toDedupe": true
+      "shouldDedupe": true
     },
     "strapNoted": {
       "ids": ["108728445"],
-      "toDedupe": true
+      "shouldDedupe": true
     },
     "strapNowToLove": {
       "ids": ["108720459"],
-      "toDedupe": true
+      "shouldDedupe": true
     },
     "strapHomesToLove": {
       "ids": ["108727583"],
-      "toDedupe": true
+      "shouldDedupe": true
     },
     "strapFoodToLove": {
       "ids": ["108721752"],
-      "toDedupe": true
+      "shouldDedupe": true
     },
     "strapBeautyHeaven": {
       "ids": ["108724149"],
-      "toDedupe": true
+      "shouldDedupe": true
     },
     "strapNewsroom": {
       "ids": ["108729104"],
-      "toDedupe": true
+      "shouldDedupe": true
     },
     "strapSponsoredContent": {
       "ids": ["112451426"],
-      "toDedupe": true
+      "shouldDedupe": true
     },
     "strapMetro": {
       "ids": ["112352326"],
-      "toDedupe": false
+      "shouldDedupe": false
     },
     "strapTarana": {
       "ids": ["104747808"],
-      "toDedupe": true
+      "shouldDedupe": true
     },
     "strapBravo": {
       "ids": ["114265840"],
-      "toDedupe": true
+      "shouldDedupe": true
     },
     "strapProperty": {
       "ids": ["85424401"],
-      "toDedupe": false
+      "shouldDedupe": false
     },
     "strapKeaKidsNews": {
       "ids": ["115468303"],
-      "toDedupe": false
+      "shouldDedupe": false
     }
   },
   "overrides": {
     "staging": {
       "strapSponsoredContent": {
         "ids": ["63868237"],
-        "toDedupe": false
+        "shouldDedupe": false
       },
       "strapMetro": {
         "ids": ["63868237"],
-        "toDedupe": false
+        "shouldDedupe": false
       },
       "strapBravo": {
         "ids": ["63868237"],
-        "toDedupe": false
+        "shouldDedupe": false
       }
     }
   }

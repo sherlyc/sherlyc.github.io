@@ -5,91 +5,56 @@ import { getListAssetById } from './jsonfeed';
 import { IRawArticle } from './__types__/IRawArticle';
 import { flatten } from 'lodash';
 
-export const saveStrapArticlesToCache = (
-  params: IParams,
-  strap: Strap,
-  strapLoadedPromise: Promise<IRawArticle[]>
-) => {
-  params.strapArticlesCache = params.strapArticlesCache || {};
-  params.strapArticlesCache[strap] = strapLoadedPromise;
-};
-
-export const getStrapArticlesFromCache = (
-  params: IParams,
-  strap: Strap
-): Promise<IRawArticle[]> | undefined => {
-  const { strapArticlesCache } = params;
-
-  return strapArticlesCache && strapArticlesCache[strap]
-    ? strapArticlesCache[strap]
-    : undefined;
-};
-
-function deduplicate(
+const deduplicate = (
   articles: IRawArticle[],
   dedupeSource: IRawArticle[]
-): IRawArticle[] {
+): IRawArticle[] => {
   const dupeSet = new Set();
   dedupeSource.forEach((article) => dupeSet.add(article.id));
-
   return articles.filter((asset) => !dupeSet.has(asset.id));
-}
+};
 
-function getDeduplicationLists(params: IParams, strap: Strap) {
-  const hasDedupe = config.strapConfig.homepageStraps[strap].toDedupe;
-  const deduplicateSources = config.strapConfig.dedupeList;
+const getArticlesInListAssets = async (
+  listAssetIds: string[],
+  params: IParams,
+  limit?: number
+): Promise<IRawArticle[]> => {
+  const articlesList = await Promise.all(
+    listAssetIds.map((listAssetId: string) =>
+      getListAssetById(params, listAssetId)
+    )
+  );
 
-  if (hasDedupe && deduplicateSources) {
-    return Promise.all(
-      deduplicateSources.map((strapToDedupeFrom) => {
-        const dedupeFrom = config.strapConfig.homepageStraps[strapToDedupeFrom];
-        const limit =
-          (dedupeFrom.totalArticlesWithImages || 0) +
-          (dedupeFrom.totalTitleArticles || 0);
+  return limit ? flatten(articlesList).slice(0, limit) : flatten(articlesList);
+};
 
-        return getStrapArticles(params, strapToDedupeFrom as Strap, limit);
-      })
-    );
-  }
-  return Promise.resolve([[]]);
-}
+const dedupe = async (params: IParams, articles: IRawArticle[]) => {
+  const { dedupeList, homepageStraps } = config.strapConfig;
+
+  const dedupeArticles = await Promise.all(
+    dedupeList.map((strapName) => {
+      const {
+        ids,
+        totalArticlesWithImages,
+        totalTitleArticles
+      } = homepageStraps[strapName];
+      const limit = (totalArticlesWithImages || 0) + (totalTitleArticles || 0);
+      return getArticlesInListAssets(ids, params, limit);
+    })
+  );
+  return deduplicate(articles, flatten(dedupeArticles));
+};
 
 export const getStrapArticles = async (
   params: IParams,
   strap: Strap,
   total?: number
 ): Promise<IRawArticle[]> => {
-  const cachedStrapArticles = getStrapArticlesFromCache(params, strap);
+  const { ids, shouldDedupe } = config.strapConfig.homepageStraps[strap];
 
-  if (cachedStrapArticles) {
-    return cachedStrapArticles;
-  }
-
-  let resolveStrapCachedPromise: Function = () => {};
-  saveStrapArticlesToCache(
-    params,
-    strap,
-    new Promise((resolve) => (resolveStrapCachedPromise = resolve))
-  );
-
-  const strapArticlesIds = config.strapConfig.homepageStraps[strap].ids;
-
-  const strapArticlesPromise = Promise.all(
-    strapArticlesIds.map((listAssetId) => getListAssetById(params, listAssetId))
-  );
-
-  const dedupeSourcePromise = getDeduplicationLists(params, strap);
-
-  const [nestedStrapArticles, nestedDedupeSource] = await Promise.all([
-    strapArticlesPromise,
-    dedupeSourcePromise
-  ]);
-  const strapArticles = flatten(nestedStrapArticles);
-  const deduplicationSource = flatten(nestedDedupeSource);
-
-  const strapResult = deduplicate(strapArticles, deduplicationSource);
-  const limitedStrapResult = total ? strapResult.slice(0, total) : strapResult;
-
-  resolveStrapCachedPromise(limitedStrapResult);
-  return limitedStrapResult;
+  const strapArticles = await getArticlesInListAssets(ids, params);
+  const uniqueArticles = shouldDedupe
+    ? await dedupe(params, strapArticles)
+    : strapArticles;
+  return uniqueArticles.slice(0, total);
 };
