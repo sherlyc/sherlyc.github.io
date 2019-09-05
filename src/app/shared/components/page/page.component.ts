@@ -32,7 +32,6 @@ export class PageComponent implements OnInit {
   contentBlocks: IContentBlock[] = [];
 
   ngOnInit() {
-    this.analyticsService.pushEvent({ type: AnalyticsEventsType.PAGE_LOAD });
     this.getData();
     this.navigationStartSubject.subscribe(() => {
       this.getData();

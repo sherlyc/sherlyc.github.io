@@ -196,17 +196,6 @@ describe('PageComponent', () => {
     });
   });
 
-  it('should send analytics when page starts to load', () => {
-    contentRetrieverMock.getContent.mockReturnValue(
-      of({ title: '', content: mockContentBlocks, apiRequestId: '' })
-    );
-    component.ngOnInit();
-
-    expect(analyticsServiceMock.pushEvent).toHaveBeenCalledWith({
-      type: AnalyticsEventsType.PAGE_LOAD
-    });
-  });
-
   function assertsForSuccessfulRetrieval() {
     expect(component.contentBlocks).toHaveLength(mockContentBlocks.length);
     (component.contentBlocks as Array<{ type: string }>).forEach(
