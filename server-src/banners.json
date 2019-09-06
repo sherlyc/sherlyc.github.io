@@ -1,0 +1,18 @@
+[
+  {
+    "startDateTimeUTC": "2019-08-01T00:00:00",
+    "endDateTimeUTC": "2019-09-08T17:00:00",
+    "banner": {
+      "height": "65px",
+      "url": "https://interactives.stuff.co.nz/2019/kea-kidz/kea-kids-2.html"
+    }
+  },
+  {
+    "startDateTimeUTC": "2019-09-08T17:00:01",
+    "endDateTimeUTC": "2019-09-15T11:00:00",
+    "banner": {
+      "height": "50px",
+      "url": "https://interactives.stuff.co.nz/2019/08/learn-te-reo/learn-te-reo-uber.html"
+    }
+  }
+]

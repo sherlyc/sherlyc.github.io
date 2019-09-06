@@ -4,7 +4,7 @@ import cacheHttp from '../utils/cache-http';
 import { IParams } from '../__types__/IParams';
 import { IBannerResponse } from './__types__/IBannerResponse';
 
-async function apiCall(params: IParams): Promise<IBannerResponse> {
+async function apiCall(params: IParams): Promise<IBannerResponse[]> {
   const response = await cacheHttp(params, config.bannerApi);
   return response.data;
 }

@@ -5,6 +5,20 @@ import getBanner from '../../adapters/banner';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 import { IExternalContentUnit } from '../../../../common/__types__/IExternalContentUnit';
 import logger from '../../utils/logger';
+import * as moment from 'moment';
+import { IBannerResponse } from '../../adapters/__types__/IBannerResponse';
+
+const getActiveBanner = (banners: IBannerResponse[]) => {
+  const currentTime = moment.utc();
+  return banners.find(({ startDateTimeUTC, endDateTimeUTC }) =>
+    currentTime.isBetween(
+      moment.utc(startDateTimeUTC),
+      moment.utc(endDateTimeUTC),
+      'ms',
+      '[]'
+    )
+  );
+};
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -18,8 +32,11 @@ export default async function(
     margin: '0 0 10px 0'
   };
   try {
-    const banner = await getBanner(params);
-    return [{ ...defaultBanner, ...banner } as IExternalContentUnit];
+    const banners = await getBanner(params);
+    const activeBanner = getActiveBanner(banners);
+    return activeBanner
+      ? [{ ...defaultBanner, ...activeBanner.banner } as IExternalContentUnit]
+      : [];
   } catch (e) {
     logger.error(params.apiRequestId, `Banner handler error - ${e}`);
     return [];

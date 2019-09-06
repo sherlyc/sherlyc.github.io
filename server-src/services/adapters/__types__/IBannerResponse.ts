@@ -1,4 +1,8 @@
 export interface IBannerResponse {
-  url: string;
-  height?: string;
+  startDateTimeUTC: string;
+  endDateTimeUTC: string;
+  banner: {
+    url: string;
+    height?: string;
+  };
 }
