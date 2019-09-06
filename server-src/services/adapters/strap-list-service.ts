@@ -28,11 +28,16 @@ const getArticlesInListAssets = async (
   return limit ? flatten(articlesList).slice(0, limit) : flatten(articlesList);
 };
 
-const dedupe = async (params: IParams, articles: IRawArticle[]) => {
-  const { dedupeList, homepageStraps } = config.strapConfig;
+const getBaseDedupeArticles = async (strap: Strap, params: IParams) => {
+  const { baseDedupeList, homepageStraps } = config.strapConfig;
+  const { dedupeFromBaseList } = homepageStraps[strap].dedupeRules;
+
+  if (!dedupeFromBaseList) {
+    return [];
+  }
 
   const dedupeArticles = await Promise.all(
-    dedupeList.map((strapName) => {
+    baseDedupeList.map((strapName) => {
       const {
         ids,
         totalArticlesWithImages,
@@ -42,7 +47,34 @@ const dedupe = async (params: IParams, articles: IRawArticle[]) => {
       return getArticlesInListAssets(ids, params, limit);
     })
   );
-  return deduplicate(articles, flatten(dedupeArticles));
+  return flatten(dedupeArticles);
+};
+
+const getExtraDedupeArticles = async (strap: Strap, params: IParams) => {
+  const { extraDedupeList = [] } = config.strapConfig.homepageStraps[
+    strap
+  ].dedupeRules;
+
+  const extraDedupeArticles = await Promise.all(
+    extraDedupeList.map((dedupeRule) => {
+      const { id, limit } = dedupeRule;
+      return getArticlesInListAssets([id], params, limit);
+    })
+  );
+
+  return flatten(extraDedupeArticles);
+};
+
+const getDedupeArticles = async (
+  params: IParams,
+  strap: Strap
+): Promise<IRawArticle[]> => {
+  const [baseDedupeArticles, extraDedupeArticles] = await Promise.all([
+    getBaseDedupeArticles(strap, params),
+    getExtraDedupeArticles(strap, params)
+  ]);
+
+  return baseDedupeArticles.concat(extraDedupeArticles);
 };
 
 export const getStrapArticles = async (
@@ -50,11 +82,10 @@ export const getStrapArticles = async (
   strap: Strap,
   total?: number
 ): Promise<IRawArticle[]> => {
-  const { ids, shouldDedupe } = config.strapConfig.homepageStraps[strap];
+  const { ids } = config.strapConfig.homepageStraps[strap];
 
   const strapArticles = await getArticlesInListAssets(ids, params);
-  const uniqueArticles = shouldDedupe
-    ? await dedupe(params, strapArticles)
-    : strapArticles;
-  return uniqueArticles.slice(0, total);
+  const dedupeArticles = await getDedupeArticles(params, strap);
+
+  return deduplicate(strapArticles, dedupeArticles).slice(0, total);
 };

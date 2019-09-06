@@ -15,7 +15,6 @@ export enum Section {
   ClimateChange = 'environment/climate-news',
   WellGood = 'life-style/well-good',
   Premium = 'national/premium',
-  GoodReads = 'good-reads',
   Noted = 'national/noted',
   NowToLove = 'life-style/now-to-love',
   HomesToLove = 'life-style/homes-to-love',

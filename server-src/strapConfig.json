@@ -1,5 +1,5 @@
 {
-  "dedupeList": [
+  "baseDedupeList": [
     "strapEditorPicks",
     "strapTopStories",
     "strapMidStrip",
@@ -9,154 +9,256 @@
     "strapTopStories": {
       "ids": ["63768623"],
       "totalArticlesWithImages": 6,
-      "shouldDedupe": false
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
     },
     "strapEditorPicks": {
       "ids": ["63868237"],
       "totalArticlesWithImages": 2,
       "totalTitleArticles": 6,
-      "shouldDedupe": false
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
     },
     "strapMidStrip": {
       "ids": ["63769065"],
       "totalArticlesWithImages": 6,
-      "shouldDedupe": false
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
     },
     "strapMiniMidStrip": {
       "ids": ["63768876"],
       "totalArticlesWithImages": 2,
-      "shouldDedupe": false
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
     },
     "strapDailyFix": {
       "ids": ["63784884"],
-      "shouldDedupe": false
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
     },
     "strapTravel": {
       "ids": ["60860998"],
-      "shouldDedupe": true
+      "dedupeRules": {
+        "dedupeFromBaseList": true
+      }
     },
     "strapNational": {
       "ids": ["62950252", "62926368"],
-      "shouldDedupe": true
+      "dedupeRules": {
+        "dedupeFromBaseList": true
+      }
     },
     "strapSport": {
       "ids": ["62922196", "62919098"],
-      "shouldDedupe": true
+      "dedupeRules": {
+        "dedupeFromBaseList": true
+      }
     },
     "strapWorld": {
       "ids": ["60844362"],
-      "shouldDedupe": true
+      "dedupeRules": {
+        "dedupeFromBaseList": true,
+        "extraDedupeList": [
+          {
+            "id": "62950252",
+            "limit": 5
+          }
+        ]
+      }
     },
     "strapBusiness": {
       "ids": ["63060863"],
-      "shouldDedupe": true
+      "dedupeRules": {
+        "dedupeFromBaseList": true
+      }
     },
     "strapOpinion": {
       "ids": ["91706224"],
-      "shouldDedupe": true
+      "dedupeRules": {
+        "dedupeFromBaseList": true
+      }
     },
     "strapTechnology": {
       "ids": ["60119046"],
-      "shouldDedupe": true
+      "dedupeRules": {
+        "dedupeFromBaseList": true,
+        "extraDedupeList": [
+          {
+            "id": "63060863",
+            "limit": 5
+          }
+        ]
+      }
     },
     "strapHomed": {
       "ids": ["91738058", "91738163"],
-      "shouldDedupe": true
+      "dedupeRules": {
+        "dedupeFromBaseList": true,
+        "extraDedupeList": [
+          {
+            "id": "85424401",
+            "limit": 5
+          }
+        ]
+      }
     },
     "strapLifeStyle": {
       "ids": ["62546009", "62546149"],
-      "shouldDedupe": true
+      "dedupeRules": {
+        "dedupeFromBaseList": true,
+        "extraDedupeList": [
+          {
+            "id": "91738058",
+            "limit": 5
+          }
+        ]
+      }
     },
     "strapEntertainment": {
       "ids": ["62497979", "62498297"],
-      "shouldDedupe": true
+      "dedupeRules": {
+        "dedupeFromBaseList": true
+      }
     },
     "strapMotoring": {
       "ids": ["62925442"],
-      "shouldDedupe": true
+      "dedupeRules": {
+        "dedupeFromBaseList": true
+      }
     },
     "strapStuffNation": {
       "ids": ["90804478"],
-      "shouldDedupe": true
+      "dedupeRules": {
+        "dedupeFromBaseList": true
+      }
     },
     "strapClimateChange": {
       "ids": ["74545269"],
-      "shouldDedupe": false
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
     },
     "strapWellGood": {
       "ids": ["62547807"],
-      "shouldDedupe": true
+      "dedupeRules": {
+        "dedupeFromBaseList": true,
+        "extraDedupeList": [
+          {
+            "id": "62546009",
+            "limit": 5
+          }
+        ]
+      }
     },
     "strapPremium": {
       "ids": ["95972272"],
-      "shouldDedupe": false
-    },
-    "strapGoodReads": {
-      "ids": ["63587628"],
-      "shouldDedupe": true
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
     },
     "strapNoted": {
       "ids": ["108728445"],
-      "shouldDedupe": true
+      "dedupeRules": {
+        "dedupeFromBaseList": true
+      }
     },
     "strapNowToLove": {
       "ids": ["108720459"],
-      "shouldDedupe": true
+      "dedupeRules": {
+        "dedupeFromBaseList": true
+      }
     },
     "strapHomesToLove": {
       "ids": ["108727583"],
-      "shouldDedupe": true
+      "dedupeRules": {
+        "dedupeFromBaseList": true
+      }
     },
     "strapFoodToLove": {
       "ids": ["108721752"],
-      "shouldDedupe": true
+      "dedupeRules": {
+        "dedupeFromBaseList": true
+      }
     },
     "strapBeautyHeaven": {
       "ids": ["108724149"],
-      "shouldDedupe": true
+      "dedupeRules": {
+        "dedupeFromBaseList": true
+      }
     },
     "strapNewsroom": {
       "ids": ["108729104"],
-      "shouldDedupe": true
+      "dedupeRules": {
+        "dedupeFromBaseList": true
+      }
     },
     "strapSponsoredContent": {
       "ids": ["112451426"],
-      "shouldDedupe": true
+      "dedupeRules": {
+        "dedupeFromBaseList": true
+      }
     },
     "strapMetro": {
       "ids": ["112352326"],
-      "shouldDedupe": false
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
     },
     "strapTarana": {
       "ids": ["104747808"],
-      "shouldDedupe": true
+      "dedupeRules": {
+        "dedupeFromBaseList": true
+      }
     },
     "strapBravo": {
       "ids": ["114265840"],
-      "shouldDedupe": true
+      "dedupeRules": {
+        "dedupeFromBaseList": true
+      }
     },
     "strapProperty": {
       "ids": ["85424401"],
-      "shouldDedupe": false
+      "dedupeRules": {
+        "dedupeFromBaseList": false,
+        "extraDedupeList": [
+          {
+            "id": "63060863",
+            "limit": 5
+          }
+        ]
+      }
     },
     "strapKeaKidsNews": {
       "ids": ["115468303"],
-      "shouldDedupe": false
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
     }
   },
   "overrides": {
     "staging": {
       "strapSponsoredContent": {
         "ids": ["63868237"],
-        "shouldDedupe": false
+        "dedupeRules": {
+          "dedupeFromBaseList": false
+        }
       },
       "strapMetro": {
         "ids": ["63868237"],
-        "shouldDedupe": false
+        "dedupeRules": {
+          "dedupeFromBaseList": false
+        }
       },
       "strapBravo": {
         "ids": ["63868237"],
-        "shouldDedupe": false
+        "dedupeRules": {
+          "dedupeFromBaseList": false
+        }
       }
     }
   }

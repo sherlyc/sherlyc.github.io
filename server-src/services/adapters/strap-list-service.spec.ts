@@ -16,19 +16,25 @@ describe('The strap list service', () => {
 
   beforeEach(() => {
     config.strapConfig = {
-      dedupeList: ['strapEditorPicks'],
+      baseDedupeList: ['strapEditorPicks'],
       homepageStraps: {
         strapEditorPicks: {
           ids: ['63868237'],
-          shouldDedupe: false
+          dedupeRules: {
+            dedupeFromBaseList: false
+          }
         },
         strapDailyFix: {
           ids: ['63868237', '63768623'],
-          shouldDedupe: false
+          dedupeRules: {
+            dedupeFromBaseList: false
+          }
         },
         strapTopStories: {
           ids: ['63868237', '63784884'],
-          shouldDedupe: true
+          dedupeRules: {
+            dedupeFromBaseList: true
+          }
         }
       }
     } as IStrapConfigDefinition;
@@ -70,20 +76,24 @@ describe('The strap list service', () => {
     expect(result).toMatchObject(rawSecondList);
   });
 
-  it('should dedupe against dedupeList while respecting totalArticlesWithImages as limit', async () => {
+  it('should dedupe against baseDedupeList while respecting totalArticlesWithImages as limit', async () => {
     const limit = 2;
     config.strapConfig = {
-      dedupeList: ['strapEditorPicks'],
+      baseDedupeList: ['strapEditorPicks'],
       homepageStraps: {
         strapEditorPicks: {
           ids: ['60000000'],
           totalArticlesWithImages: limit,
-          shouldDedupe: false
+          dedupeRules: {
+            dedupeFromBaseList: false
+          }
         },
         strapDailyFix: {
           ids: ['90000000'],
           totalArticlesWithImages: limit,
-          shouldDedupe: true
+          dedupeRules: {
+            dedupeFromBaseList: true
+          }
         }
       }
     } as IStrapConfigDefinition;
@@ -101,21 +111,25 @@ describe('The strap list service', () => {
     expect(result).toMatchObject(expectedArticles);
   });
 
-  it('should dedupe against dedupeList while respecting totalArticlesWithImages and totalTitleArticles as limit', async () => {
+  it('should dedupe against baseDedupeList while respecting totalArticlesWithImages and totalTitleArticles as limit', async () => {
     config.strapConfig = {
-      dedupeList: ['strapEditorPicks'],
+      baseDedupeList: ['strapEditorPicks'],
       homepageStraps: {
         strapEditorPicks: {
           ids: ['60000000'],
           totalArticlesWithImages: 2,
           totalTitleArticles: 1,
-          shouldDedupe: false
+          dedupeRules: {
+            dedupeFromBaseList: false
+          }
         },
         strapDailyFix: {
           ids: ['90000000'],
           totalArticlesWithImages: 2,
           totalTitleArticles: 1,
-          shouldDedupe: true
+          dedupeRules: {
+            dedupeFromBaseList: true
+          }
         }
       }
     } as IStrapConfigDefinition;
@@ -129,6 +143,52 @@ describe('The strap list service', () => {
       .mockResolvedValueOnce(editorPicksArticles);
 
     const result = await getStrapArticles(parameters, Strap.DailyFix, 3);
+
+    expect(result).toMatchObject(expectedArticles);
+  });
+
+  it('should dedupe against baseDedupeList and extraDedupeList', async () => {
+    config.strapConfig = {
+      baseDedupeList: ['strapEditorPicks'],
+      homepageStraps: {
+        strapEditorPicks: {
+          ids: ['60000000'],
+          dedupeRules: {
+            dedupeFromBaseList: false
+          }
+        },
+        strapBravo: {
+          ids: ['700000000'],
+          dedupeRules: {
+            dedupeFromBaseList: false
+          }
+        },
+        strapDailyFix: {
+          ids: ['90000000'],
+          dedupeRules: {
+            dedupeFromBaseList: true,
+            extraDedupeList: [
+              {
+                id: '700000000',
+                limit: 1
+              }
+            ]
+          }
+        }
+      }
+    } as IStrapConfigDefinition;
+
+    const dailyFixArticles = [{ id: 1 }, { id: 3 }, { id: 5 }, { id: 8 }];
+    const editorPicksArticles = [{ id: 1 }, { id: 2 }];
+    const bravoArticles = [{ id: 3 }, { id: 8 }];
+    const expectedArticles = [{ id: 5 }, { id: 8 }];
+
+    (getListAssetById as jest.Mock)
+      .mockResolvedValueOnce(dailyFixArticles)
+      .mockResolvedValueOnce(editorPicksArticles)
+      .mockResolvedValueOnce(bravoArticles);
+
+    const result = await getStrapArticles(parameters, Strap.DailyFix);
 
     expect(result).toMatchObject(expectedArticles);
   });

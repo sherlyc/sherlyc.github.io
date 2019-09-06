@@ -307,19 +307,6 @@ export default async (params: IParams): Promise<IPage> => {
             },
             {
               type: HandlerInputType.ArticleSection,
-              displayName: 'Good Reads',
-              displayNameColor: 'mediumslateblue',
-              linkUrl: '/' + Section.GoodReads,
-              content: {
-                type: HandlerInputType.ArticleList,
-                sourceId: Strap.GoodReads,
-                strapName: 'Good Reads',
-                totalBasicArticlesUnit: 2,
-                totalBasicArticleTitleUnit: 2
-              }
-            },
-            {
-              type: HandlerInputType.ArticleSection,
               displayName: 'Motoring',
               displayNameColor: 'pizzaz',
               linkUrl: '/' + Section.Motoring,
