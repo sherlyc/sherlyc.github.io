@@ -1,16 +1,7 @@
-import { DeviceType } from '../../../common/DeviceType';
+import { ISwitchConfig } from './ISwitchConfig';
 
 export interface IExperimentsConfig {
   [experiment: string]: {
-    [variant: string]: IExperimentVariantConfig;
+    [variant: string]: ISwitchConfig;
   };
-}
-
-export interface IExperimentVariantConfig {
-  devices?: DeviceType[];
-  public: {
-    min: number;
-    max: number;
-  };
-  internal: number;
 }

@@ -5,7 +5,11 @@ describe('Feature Controller', () => {
   it('should return false', () => {
     const req = {
       spadeParams: { apiRequestId: '33498' },
-      params: { featureName: '', lotteryNumber: 1 },
+      params: {
+        featureName: 'someFeature',
+        lotteryNumber: 1,
+        deviceType: 'mobile'
+      },
       cookies: {}
     } as Request;
     const res = { send: jest.fn() } as any;
@@ -18,7 +22,7 @@ describe('Feature Controller', () => {
   it('should return 400 and message in body when provided with negative lottery number', () => {
     const req = {
       spadeParams: { apiRequestId: '33498' },
-      params: { featureName: '', lotteryNumber: -1 },
+      params: { featureName: '', lotteryNumber: '-1', deviceType: 'mobile' },
       cookies: {}
     } as Request;
     const res = { send: jest.fn(), status: jest.fn() } as any;
@@ -28,6 +32,42 @@ describe('Feature Controller', () => {
 
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.send).toHaveBeenCalledWith(`Invalid feature data provided,
-     featureName [], lotteryNumber [-1]`);
+     featureName [], lotteryNumber [-1], deviceType [mobile]`);
+  });
+
+  it('should return 400 and message in body when provided with invalid lottery number', () => {
+    const req = {
+      spadeParams: { apiRequestId: '33498' },
+      params: {
+        featureName: '',
+        lotteryNumber: 'abcd',
+        deviceType: 'mobile'
+      },
+      cookies: {}
+    } as Request;
+    const res = { send: jest.fn(), status: jest.fn() } as any;
+    res.status.mockReturnValue(res);
+
+    featureController(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.send).toHaveBeenCalledWith(`Invalid feature data provided,
+     featureName [], lotteryNumber [abcd], deviceType [mobile]`);
+  });
+
+  it('should return 400 and message in body when provided with invalid device', () => {
+    const req = {
+      spadeParams: { apiRequestId: '33498' },
+      params: { featureName: '', lotteryNumber: '1', deviceType: 'blahblah' },
+      cookies: {}
+    } as Request;
+    const res = { send: jest.fn(), status: jest.fn() } as any;
+    res.status.mockReturnValue(res);
+
+    featureController(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.send).toHaveBeenCalledWith(`Invalid feature data provided,
+     featureName [], lotteryNumber [1], deviceType [blahblah]`);
   });
 });

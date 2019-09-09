@@ -1,24 +1,7 @@
 import { DeviceType } from '../../../common/DeviceType';
-import { IExperimentVariantConfig } from '../__types__/IExperimentsConfig';
 import { IParams } from '../__types__/IParams';
 import { retrieveExperimentsConfig } from './experiments-config-retriever';
-
-const isSelectedForVariant = (
-  lotteryNumber: number,
-  deviceType: DeviceType,
-  variantConfig: IExperimentVariantConfig
-) => {
-  if (variantConfig.devices && !variantConfig.devices.includes(deviceType)) {
-    return false;
-  }
-  if (
-    lotteryNumber >= variantConfig.public.min &&
-    lotteryNumber <= variantConfig.public.max
-  ) {
-    return true;
-  }
-  return variantConfig.internal === lotteryNumber;
-};
+import { isSwitchedOn } from './switch-resolver';
 
 export const getExperimentVariant = async (
   experimentName: string,
@@ -31,7 +14,7 @@ export const getExperimentVariant = async (
 
   const variants = Object.keys(experiment);
   const selectedVariant = variants.find((variant) =>
-    isSelectedForVariant(lotteryNumber, deviceType, experiment[variant])
+    isSwitchedOn(lotteryNumber, deviceType, experiment[variant])
   );
 
   return selectedVariant || 'control';

@@ -64,7 +64,10 @@ app.get(
 );
 
 app.get(
-  `${spadeApiPath}/feature/:featureName/:lotteryNumber`,
+  [
+    `${spadeApiPath}/feature/:featureName/:lotteryNumber`,
+    `${spadeApiPath}/feature/:featureName/:lotteryNumber/:deviceType`
+  ],
   featureController
 );
 
