@@ -2,6 +2,30 @@
   flex: 1 0 auto;
   display: block;
 }
+
+.container {
+  margin: 0;
+  padding: 0 3px;
+}
+
 .content {
-  margin: 58px 10px 10px 10px;
+  display: flex;
+  margin: 58px 0 10px 0;
+}
+
+.rich-media-top {
+  height: 15px;
+  background-color: #1a1e20;
+}
+
+.rich-media-left {
+  flex: 1;
+  min-width: 10px;
+  background-color: #1a1e20;
+}
+
+.rich-media-right {
+  flex: 1;
+  min-width: 10px;
+  background-color: #1a1e20;
 }
