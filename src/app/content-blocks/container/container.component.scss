@@ -1,7 +1,21 @@
 :host {
   flex: 1 0 auto;
   display: block;
+  margin-top: 50px;
 }
+
+.container {
+  margin: 10px;
+}
+
 .content {
-  margin: 58px 10px 10px 10px;
+  display: flex;
+}
+
+.rich-media-left {
+  flex: 1;
+}
+
+.rich-media-right {
+  flex: 1;
 }

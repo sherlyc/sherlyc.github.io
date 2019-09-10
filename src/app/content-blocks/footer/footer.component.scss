@@ -1,6 +1,5 @@
 :host {
   display: block;
-  padding-bottom: 10px;
 }
 svg {
   width: 40px;
@@ -49,4 +48,7 @@ svg {
     border-right: 1px solid #ccc;
     padding-right: 20px;
   }
+}
+.container {
+  margin-bottom: 10px;
 }
