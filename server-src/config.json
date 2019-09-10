@@ -8,6 +8,7 @@
     "bannerApi": "https://assets.stuff.co.nz/static/spade/banners.json",
     "layoutAPI": "https://i.stuff.co.nz/_json/layout/jcr:content",
     "experimentsConfigUrl": "https://assets.stuff.co.nz/static/spade/experiments.json",
+    "featuresConfigUrl": "https://assets.stuff.co.nz/static/spade/features.json",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
       "level": "info",
@@ -23,6 +24,7 @@
     "bannerApi": "https://assets.stuff.co.nz/static/spade/banners.json",
     "layoutAPI": "https://i-preprod.stuff.co.nz/_json/layout/jcr:content",
     "experimentsConfigUrl": "https://assets.stuff.co.nz/static/spade/experiments.json",
+    "featuresConfigUrl": "https://assets.stuff.co.nz/static/spade/features.json",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
       "level": "info",
@@ -38,6 +40,7 @@
     "bannerApi": "https://assets.stuff.co.nz/static/spade/banners.json",
     "layoutAPI": "https://i-preprod.stuff.co.nz/_json/layout/jcr:content",
     "experimentsConfigUrl": "https://assets.stuff.co.nz/static/spade/experiments.json",
+    "featuresConfigUrl": "https://assets.stuff.co.nz/static/spade/features.json",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
       "level": "debug",
@@ -53,6 +56,7 @@
     "bannerApi": "https://assets.stuff.co.nz/static/spade/banners.json",
     "layoutAPI": "https://i.stuff.co.nz/_json/layout/jcr:content",
     "experimentsConfigUrl": "https://assets.stuff.co.nz/static/spade/experiments.json",
+    "featuresConfigUrl": "https://assets.stuff.co.nz/static/spade/features.json",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
       "level": "debug",
@@ -68,6 +72,7 @@
     "bannerApi": "https://assets.stuff.co.nz/static/spade/banners.json",
     "layoutAPI": "https://i-preprod.stuff.co.nz/_json/layout/jcr:content",
     "experimentsConfigUrl": "https://assets.stuff.co.nz/static/spade/experiments.json",
+    "featuresConfigUrl": "https://assets.stuff.co.nz/static/spade/features.json",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
       "level": "debug",

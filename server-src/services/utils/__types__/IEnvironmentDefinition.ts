@@ -10,6 +10,7 @@ export interface IEnvironmentDefinition {
   bannerApi: string;
   layoutAPI: string;
   experimentsConfigUrl: string;
+  featuresConfigUrl: string;
   maxArticlesToRetrieve: number;
   loggerOptions: ILoggerOptions;
   strapConfig: IStrapConfigDefinition;

@@ -19,7 +19,7 @@ function validateRequest(
   }
 }
 
-export const featureController = function(req: Request, res: Response) {
+export const featureController = async function(req: Request, res: Response) {
   const {
     featureName,
     lotteryNumber,
@@ -27,9 +27,13 @@ export const featureController = function(req: Request, res: Response) {
   } = req.params;
   try {
     validateRequest(featureName, lotteryNumber, deviceType);
-    res.send(
-      isFeatureEnabled(featureName, parseInt(lotteryNumber, 10), deviceType)
+    const isEnabled = await isFeatureEnabled(
+      featureName,
+      parseInt(lotteryNumber, 10),
+      deviceType,
+      req.spadeParams
     );
+    res.send(isEnabled);
   } catch (error) {
     logger.error(
       req.spadeParams.apiRequestId,

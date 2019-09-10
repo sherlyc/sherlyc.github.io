@@ -1,19 +1,20 @@
 import { IExperimentsConfig } from '../__types__/IExperimentsConfig';
 import { IParams } from '../__types__/IParams';
 import cacheHttp from '../utils/cache-http';
-import config from '../utils/config';
 import logger from '../utils/logger';
+import { IFeaturesConfig } from '../__types__/IFeaturesConfig';
 
-export const retrieveExperimentsConfig = async (
+export const retrieveConfig = async (
+  url: string,
   params: IParams
-): Promise<IExperimentsConfig> => {
+): Promise<IExperimentsConfig | IFeaturesConfig> => {
   try {
-    const response = await cacheHttp(params, config.experimentsConfigUrl);
+    const response = await cacheHttp(params, url);
     return response.data;
   } catch (error) {
     logger.error(
       params.apiRequestId,
-      `ExperimentsConfigRetriever - failed to load config - ${error}`
+      `SwitchesConfigRetriever - failed to load config - ${error}`
     );
     return {};
   }

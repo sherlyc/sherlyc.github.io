@@ -1,7 +1,9 @@
 import { DeviceType } from '../../../common/DeviceType';
 import { IParams } from '../__types__/IParams';
-import { retrieveExperimentsConfig } from './experiments-config-retriever';
+import { retrieveConfig } from './switches-config-retriever';
 import { isSwitchedOn } from './switch-resolver';
+import config from '../utils/config';
+import { IExperimentsConfig } from '../__types__/IExperimentsConfig';
 
 export const getExperimentVariant = async (
   experimentName: string,
@@ -9,8 +11,11 @@ export const getExperimentVariant = async (
   deviceType: DeviceType,
   params: IParams
 ): Promise<string> => {
-  const config = await retrieveExperimentsConfig(params);
-  const experiment = config[experimentName] || {};
+  const experimentsConfig = (await retrieveConfig(
+    config.experimentsConfigUrl,
+    params
+  )) as IExperimentsConfig;
+  const experiment = experimentsConfig[experimentName] || {};
 
   const variants = Object.keys(experiment);
   const selectedVariant = variants.find((variant) =>
