@@ -1,6 +1,8 @@
-import { Component, ElementRef, Host, HostBinding, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
 import { IBasicAdUnit } from '../../../../common/__types__/IBasicAdUnit';
+import { ClassNameService } from '../../services/class-name/class-name.service';
+
 
 @Component({
   selector: 'app-basic-ad-unit',
@@ -10,10 +12,9 @@ import { IBasicAdUnit } from '../../../../common/__types__/IBasicAdUnit';
 export class BasicAdUnitComponent implements IContentBlockComponent, OnInit {
   @Input() input!: IBasicAdUnit;
 
-
   @HostBinding('class') className?: string;
 
   ngOnInit() {
-    this.className = this.input.context;
+    this.className = ClassNameService.generateClassName(this.input.context);
   }
 }
