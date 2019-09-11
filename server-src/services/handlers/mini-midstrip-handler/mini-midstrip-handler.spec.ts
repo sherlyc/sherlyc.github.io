@@ -5,15 +5,18 @@ import { HandlerInputType } from '../__types__/HandlerInputType';
 import { IRawArticle } from '../../adapters/__types__/IRawArticle';
 import { Strap } from '../../strap';
 import { getStrapArticles } from '../../adapters/strap-list-service';
+import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 
 jest.mock('../../adapters/strap-list-service');
 jest.mock('../../adapters/jsonfeed');
 
 describe('MiniMidStripHandler', () => {
+  const basicAdUnit = {
+    type: ContentBlockType.BasicAdUnit,
+    context: 'MiniMidStrip'
+  };
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
-  beforeEach(() => {
-    jest.resetModules();
-  });
+
   const rawMiniMidStrip: IRawArticle[] = [
     {
       id: '1',
@@ -42,6 +45,10 @@ describe('MiniMidStripHandler', () => {
       headlineFlags: []
     }
   ];
+
+  beforeEach(() => {
+    jest.resetModules();
+  });
 
   describe('when source is strap', () => {
     it('should get a list of Image Links', async () => {
@@ -89,7 +96,7 @@ describe('MiniMidStripHandler', () => {
             }
           ]
         },
-        { type: 'BasicAdUnit' }
+        basicAdUnit
       ]);
     });
 
@@ -158,7 +165,7 @@ describe('MiniMidStripHandler', () => {
             }
           ]
         },
-        { type: 'BasicAdUnit' }
+        basicAdUnit
       ]);
     });
 
