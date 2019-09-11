@@ -6,13 +6,14 @@ import { IGrayDefconArticleUnit } from '../../../../../common/__types__/IGrayDef
 import { IBigImageArticleUnit } from '../../../../../common/__types__/IBigImageArticleUnit';
 import { IHalfWidthImageArticleUnit } from '../../../../../common/__types__/IHalfWidthImageArticleUnit';
 
-const basicAdUnit: IBasicAdUnit = {
-  type: ContentBlockType.BasicAdUnit
-};
+const basicAdUnit = (context: string): IBasicAdUnit => ({
+  type: ContentBlockType.BasicAdUnit,
+  context
+});
 
 const grayDefconArticleUnit = (
   article: IRawArticle,
-  strapName: string,
+  strapName: string
 ): IGrayDefconArticleUnit => ({
   type: ContentBlockType.GrayDefconArticleUnit,
   id: article.id,
@@ -27,7 +28,7 @@ const grayDefconArticleUnit = (
 
 const bigImageArticleUnit = (
   article: IRawArticle,
-  strapName: string,
+  strapName: string
 ): IBigImageArticleUnit => ({
   type: ContentBlockType.BigImageArticleUnit,
   id: article.id,
@@ -43,9 +44,9 @@ const bigImageArticleUnit = (
 
 const halfWidthImageArticleUnit = (
   article: IRawArticle,
-  strapName: string,
+  strapName: string
 ): IHalfWidthImageArticleUnit => ({
-  type : ContentBlockType.HalfWidthImageArticleUnit,
+  type: ContentBlockType.HalfWidthImageArticleUnit,
   id: article.id,
   strapName,
   indexHeadline: article.indexHeadline,
@@ -57,14 +58,17 @@ const halfWidthImageArticleUnit = (
   headlineFlags: article.headlineFlags
 });
 
-export const groupTwoArticles = (rawArticles: IRawArticle[], strapName: string) => {
+export const groupTwoArticles = (
+  rawArticles: IRawArticle[],
+  strapName: string
+) => {
   return rawArticles.reduce(
     (final, article, index) => {
       if (index === 0) {
         return [
           ...final,
           grayDefconArticleUnit(article, strapName),
-          basicAdUnit
+          basicAdUnit(strapName)
         ];
       }
 
@@ -72,14 +76,14 @@ export const groupTwoArticles = (rawArticles: IRawArticle[], strapName: string) 
         return [
           ...final,
           bigImageArticleUnit(article, strapName),
-          basicAdUnit
+          basicAdUnit(strapName)
         ];
       }
 
       return [
         ...final,
         halfWidthImageArticleUnit(article, strapName),
-        basicAdUnit
+        basicAdUnit(strapName)
       ];
     },
     [] as IContentBlock[]

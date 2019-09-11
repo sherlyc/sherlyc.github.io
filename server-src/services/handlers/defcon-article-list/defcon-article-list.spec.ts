@@ -20,7 +20,8 @@ describe('DefconArticleList', () => {
   const strapName = 'Latest';
 
   const basicAdUnit = {
-    type: 'BasicAdUnit'
+    type: 'BasicAdUnit',
+    context: strapName
   };
 
   const articleOne: IRawArticle = {

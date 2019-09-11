@@ -5,13 +5,14 @@ import { IBasicAdUnit } from '../../../../common/__types__/IBasicAdUnit';
 import { IDefconArticleUnit } from '../../../../common/__types__/IDefconArticleUnit';
 import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
 
-const basicAdUnit: IBasicAdUnit = {
-  type: ContentBlockType.BasicAdUnit
-};
+const basicAdUnit = (context: string): IBasicAdUnit => ({
+  type: ContentBlockType.BasicAdUnit,
+  context
+});
 
 const defconArticleUnit = (
   article: IRawArticle,
-  strapName: string,
+  strapName: string
 ): IDefconArticleUnit => ({
   type: ContentBlockType.DefconArticleUnit,
   id: article.id,
@@ -26,7 +27,7 @@ const defconArticleUnit = (
 
 const basicArticleUnit = (
   article: IRawArticle,
-  strapName: string,
+  strapName: string
 ): IBasicArticleUnit => ({
   type: ContentBlockType.BasicArticleUnit,
   id: article.id,
@@ -50,13 +51,13 @@ export const controlGroupArticles = (
         return [
           ...final,
           defconArticleUnit(article, strapName),
-          basicAdUnit
+          basicAdUnit(strapName)
         ];
       }
       return [
         ...final,
         basicArticleUnit(article, strapName),
-        basicAdUnit
+        basicAdUnit(strapName)
       ];
     },
     [] as IContentBlock[]
