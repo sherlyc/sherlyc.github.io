@@ -10,7 +10,6 @@ import { IBasicAdUnit } from '../../../../common/__types__/IBasicAdUnit';
 export class BasicAdUnitComponent implements IContentBlockComponent, OnInit {
   @Input() input!: IBasicAdUnit;
 
-
   @HostBinding('class') className?: string;
 
   ngOnInit() {
