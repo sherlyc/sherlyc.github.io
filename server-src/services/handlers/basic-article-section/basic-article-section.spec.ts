@@ -4,13 +4,15 @@ import { IBasicArticleSectionHandlerInput } from '../__types__/IBasicArticleSect
 import { IParams } from '../../__types__/IParams';
 import { HandlerInputType } from '../__types__/HandlerInputType';
 import { Strap } from '../../strap';
+import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 
 jest.mock('../runner');
 
 describe('BasicArticleSectionHandler', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
   const basicAdUnit = {
-    type: 'BasicAdUnit'
+    type: ContentBlockType.BasicAdUnit,
+    context: 'business'
   };
   const basicArticleUnit = {
     id: '1',
