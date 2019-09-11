@@ -4,7 +4,6 @@ import { IParams } from '../../__types__/IParams';
 import { HandlerInputType } from '../__types__/HandlerInputType';
 import { getStrapArticles } from '../../adapters/strap-list-service';
 import { Strap } from '../../strap';
-import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 
 jest.mock('../../adapters/strap-list-service');
