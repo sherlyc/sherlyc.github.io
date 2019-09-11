@@ -4,7 +4,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ClassNameService {
-  public generateClassName(text: string): string {
-    return text.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+  public static generateClassName(text: string): string {
+    const camelCaseToDash = text.replace(/([a-z])([A-Z])/g, '$1-$2');
+    const apostropheSpaceToDash = camelCaseToDash.replace(/(\w)[\&\'\s]+(\w)/g, '$1-$2');
+
+    return apostropheSpaceToDash.toLowerCase();
   }
 }
+
