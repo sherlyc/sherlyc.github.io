@@ -1,16 +1,39 @@
-import { TestBed } from '@angular/core/testing';
 import { ClassNameService } from './class-name.service';
 
 describe('ClassNameService', () => {
-  let classNameService: ClassNameService;
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    classNameService = TestBed.get(ClassNameService);
-  });
-
-  it('should generate the class name using dashCase', () => {
+  it('should add dash to camel case text', () => {
     const camelCaseText = 'camelCaseText';
     const result = 'camel-case-text';
-    expect(classNameService.generateClassName(camelCaseText)).toEqual(result);
+
+    expect(ClassNameService.generateClassName(camelCaseText)).toEqual(result);
+  });
+
+  it('should add dash to camel case variant two', () => {
+    const camelCaseText = 'camelKCaseText';
+    const result = 'camel-kcase-text';
+
+    expect(ClassNameService.generateClassName(camelCaseText)).toEqual(result);
+  });
+
+  it('should add dash to text with apostrophe', () => {
+    const sourceText = `Editors' Picks`;
+    const result = 'editors-picks';
+
+    expect(ClassNameService.generateClassName(sourceText)).toEqual(result);
+  });
+
+  it('should add dash to text with ampersand', () => {
+    const sourceText = `Life & Style`;
+    const result = 'life-style';
+
+    expect(ClassNameService.generateClassName(sourceText)).toEqual(result);
+  });
+
+
+  it('should add dash to text with space', () => {
+    const sourceText = `Top Picks`;
+    const result = 'top-picks';
+
+    expect(ClassNameService.generateClassName(sourceText)).toEqual(result);
   });
 });
