@@ -259,6 +259,12 @@
         "dedupeRules": {
           "dedupeFromBaseList": false
         }
+      },
+      "strapKeaKidsNews": {
+        "ids": ["63868237"],
+        "dedupeRules": {
+          "dedupeFromBaseList": false
+        }
       }
     }
   }
