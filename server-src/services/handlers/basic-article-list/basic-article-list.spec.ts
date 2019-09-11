@@ -18,9 +18,16 @@ jest.mock('../../adapters/strap-list-service');
 
 describe('BasicArticleListHandler', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
-  const basicAdUnit = {
-    type: 'BasicAdUnit'
+  const defaultBasicAdUnit = {
+    type: 'BasicAdUnit',
+    context: ''
   };
+
+  const businessBasicAdUnit = {
+    type: 'BasicAdUnit',
+    context: 'business'
+  };
+
   const articleNumberOne = {
     id: '1',
     indexHeadline: 'Headline 1',
@@ -34,6 +41,7 @@ describe('BasicArticleListHandler', () => {
     lastPublishedTime: 1,
     headlineFlags: []
   };
+
   const articleNumberTwo = {
     id: '2',
     indexHeadline: 'Headline 2',
@@ -47,7 +55,9 @@ describe('BasicArticleListHandler', () => {
     lastPublishedTime: 2,
     headlineFlags: []
   };
+
   const rawArticleList: IRawArticle[] = [articleNumberOne, articleNumberTwo];
+
   const articleNumberOneAsBasicArticle: IBasicArticleUnit = {
     id: '1',
     strapName: 'business',
@@ -60,6 +70,7 @@ describe('BasicArticleListHandler', () => {
     linkUrl: '/link1',
     type: ContentBlockType.BasicArticleUnit
   };
+
   const articleNumberTwoAsBasicArticle: IBasicArticleUnit = {
     id: '2',
     strapName: 'business',
@@ -85,6 +96,7 @@ describe('BasicArticleListHandler', () => {
     linkUrl: '/link1',
     type: ContentBlockType.BigImageArticleUnit
   };
+
   const articleNumberTwoAsBigImageArticle: IBigImageArticleUnit = {
     id: '2',
     strapName: '',
@@ -163,9 +175,9 @@ describe('BasicArticleListHandler', () => {
       expect(contentBlocks.length).toBe(totalArticles + totalAdUnits);
 
       const expectedContentBlocks = [
-        basicAdUnit,
+        businessBasicAdUnit,
         articleNumberOneAsBasicArticle,
-        basicAdUnit
+        businessBasicAdUnit
       ];
       expect(contentBlocks).toEqual(expectedContentBlocks);
     });
@@ -192,11 +204,11 @@ describe('BasicArticleListHandler', () => {
       expect(contentBlocks.length).toBe(totalArticles + totalAdUnits);
 
       const expectedContentBlocks = [
-        basicAdUnit,
+        businessBasicAdUnit,
         articleNumberOneAsBasicArticle,
-        basicAdUnit,
+        businessBasicAdUnit,
         articleNumberTwoAsBasicArticle,
-        basicAdUnit
+        businessBasicAdUnit
       ];
       expect(contentBlocks).toEqual(expectedContentBlocks);
     });
@@ -228,11 +240,11 @@ describe('BasicArticleListHandler', () => {
       );
 
       const expectContentBlocks = [
-        basicAdUnit,
+        businessBasicAdUnit,
         articleNumberOneAsBasicArticle,
-        basicAdUnit,
+        businessBasicAdUnit,
         articleNumberTwoAsBasicArticleTitle,
-        basicAdUnit
+        businessBasicAdUnit
       ];
       expect(contentBlocks).toEqual(expectContentBlocks);
     });
@@ -259,11 +271,11 @@ describe('BasicArticleListHandler', () => {
 
       expect(contentBlocks.length).toBe(totalArticles + totalAdUnits);
       const expectedContentBlocks = [
-        basicAdUnit,
+        businessBasicAdUnit,
         articleNumberOneAsBasicArticle,
-        basicAdUnit,
+        businessBasicAdUnit,
         articleNumberTwoAsBasicArticleTitle,
-        basicAdUnit
+        businessBasicAdUnit
       ];
       expect(contentBlocks).toEqual(expectedContentBlocks);
     });
@@ -289,15 +301,15 @@ describe('BasicArticleListHandler', () => {
 
       expect(contentBlocks.length).toBe(totalArticles + totalAdUnits);
       const expectedContentBlocks = [
-        basicAdUnit,
+        businessBasicAdUnit,
         articleNumberTwoAsBasicArticle,
-        basicAdUnit,
+        businessBasicAdUnit,
         articleNumberTwoAsBasicArticle,
-        basicAdUnit,
+        businessBasicAdUnit,
         articleNumberTwoAsBasicArticleTitle,
-        basicAdUnit,
+        businessBasicAdUnit,
         articleNumberTwoAsBasicArticleTitle,
-        basicAdUnit
+        businessBasicAdUnit
       ];
       expect(contentBlocks).toEqual(expectedContentBlocks);
     });
@@ -310,13 +322,13 @@ describe('BasicArticleListHandler', () => {
       ];
       (getStrapArticles as jest.Mock).mockResolvedValue(rawTopStories);
       const expectedContentBlocks = [
-        basicAdUnit,
+        businessBasicAdUnit,
         articleNumberTwoAsBasicArticle,
-        basicAdUnit,
+        businessBasicAdUnit,
         articleNumberOneAsBasicArticle,
-        basicAdUnit,
+        businessBasicAdUnit,
         articleNumberOneAsBasicArticle,
-        basicAdUnit
+        businessBasicAdUnit
       ];
 
       const contentBlocks = await basicArticleListHandler(
@@ -339,9 +351,9 @@ describe('BasicArticleListHandler', () => {
       const rawTopStories = [articleNumberOne];
       (getStrapArticles as jest.Mock).mockResolvedValue(rawTopStories);
       const expectedContentBlocks = [
-        basicAdUnit,
+        businessBasicAdUnit,
         articleNumberOneAsBasicArticle,
-        basicAdUnit
+        businessBasicAdUnit
       ];
 
       const contentBlocks = await basicArticleListHandler(
@@ -368,13 +380,13 @@ describe('BasicArticleListHandler', () => {
       ];
       (getStrapArticles as jest.Mock).mockResolvedValue(rawTopStories);
       const expectedContentBlocks = [
-        basicAdUnit,
+        businessBasicAdUnit,
         articleNumberOneAsBasicArticle,
-        basicAdUnit,
+        businessBasicAdUnit,
         articleNumberTwoAsBasicArticle,
-        basicAdUnit,
+        businessBasicAdUnit,
         articleNumberOneAsBasicArticle,
-        basicAdUnit
+        businessBasicAdUnit
       ];
 
       const contentBlocks = await basicArticleListHandler(
@@ -456,11 +468,11 @@ describe('BasicArticleListHandler', () => {
       expect(contentBlocks.length).toBe(totalArticles + totalAdUnits);
 
       const expectedContentBlocks = [
-        basicAdUnit,
+        defaultBasicAdUnit,
         articleNumberTwoAsBigImageArticle,
-        basicAdUnit,
+        defaultBasicAdUnit,
         articleNumberOneAsBigImageArticle,
-        basicAdUnit
+        defaultBasicAdUnit
       ];
       expect(contentBlocks).toEqual(expectedContentBlocks);
     });
@@ -498,19 +510,19 @@ describe('BasicArticleListHandler', () => {
       expect(contentBlocks.length).toBe(totalArticles + totalAdUnits);
 
       const expectedContentBlocks = [
-        basicAdUnit,
+        defaultBasicAdUnit,
         articleAsBigImageArticle,
-        basicAdUnit,
+        defaultBasicAdUnit,
         articleAsBigImageArticle,
-        basicAdUnit,
+        defaultBasicAdUnit,
         articleAsBigImageArticle,
-        basicAdUnit,
+        defaultBasicAdUnit,
         articleAsHalfWidthImageArticle,
-        basicAdUnit,
+        defaultBasicAdUnit,
         articleAsHalfWidthImageArticle,
-        basicAdUnit,
+        defaultBasicAdUnit,
         articleAsHalfWidthImageArticle,
-        basicAdUnit
+        defaultBasicAdUnit
       ];
       expect(contentBlocks).toEqual(expectedContentBlocks);
     });
