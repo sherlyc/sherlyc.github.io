@@ -166,11 +166,11 @@ describe('ExperimentService', () => {
   });
 
   it('should get a control variant when the experiment is in control group', async () => {
-    const experimentName = 'AnotherFakeExperiment';
+    const experimentName = 'FakeExperiment';
     const getExperiment = jest.fn();
     getExperiment.mockResolvedValue({
       name: 'FakeExperiment',
-      variant: 'A'
+      variant: 'control'
     });
     service.getExperiment = getExperiment;
 
@@ -179,11 +179,11 @@ describe('ExperimentService', () => {
     expect(variant).toEqual('control');
   });
 
-  it('should get a control variant when experiment does not exist', async () => {
+  it('should get a no-experiment-assigned variant when experiment does not exist', async () => {
     const experimentName = 'AnotherFakeExperiment';
 
     const variant = await service.getVariant(experimentName);
 
-    expect(variant).toEqual('control');
+    expect(variant).toEqual('no-experiment-assigned');
   });
 });

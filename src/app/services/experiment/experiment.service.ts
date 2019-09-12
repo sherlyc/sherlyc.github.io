@@ -81,7 +81,7 @@ export class ExperimentService {
     const experiment = await this.getExperiment();
     return experiment && experiment.name === experimentName
       ? experiment.variant
-      : 'control';
+      : 'no-experiment-assigned';
   }
 
   getExperiment() {
