@@ -9,6 +9,7 @@ export enum Strap {
   National = 'strapNational',
   ClimateChange = 'strapClimateChange',
   Premium = 'strapPremium',
+  RugbyWorldCup = 'strapRugbyWorldCup',
   World = 'strapWorld',
   Business = 'strapBusiness',
   Opinion = 'strapOpinion',

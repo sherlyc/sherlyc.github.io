@@ -81,6 +81,19 @@ export default async (params: IParams): Promise<IPage> => {
             },
             {
               type: HandlerInputType.ArticleSection,
+              displayName: 'Rugby World Cup',
+              displayNameColor: 'black',
+              linkUrl: '/' + Section.RugbyWorldCup,
+              content: {
+                type: HandlerInputType.ArticleList,
+                sourceId: Strap.RugbyWorldCup,
+                strapName: 'Rugby World Cup',
+                totalBasicArticlesUnit: 2,
+                totalBasicArticleTitleUnit: 3
+              }
+            },
+            {
+              type: HandlerInputType.ArticleSection,
               displayName: 'National',
               displayNameColor: 'darkblue',
               linkUrl: '/' + Section.National,

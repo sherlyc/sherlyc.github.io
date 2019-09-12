@@ -47,6 +47,12 @@
         "dedupeFromBaseList": true
       }
     },
+    "strapRugbyWorldCup": {
+      "ids": ["107504603"],
+      "dedupeRules": {
+        "dedupeFromBaseList": true
+      }
+    },
     "strapNational": {
       "ids": ["62950252", "62926368"],
       "dedupeRules": {

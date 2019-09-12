@@ -169,6 +169,13 @@ a {
   }
 }
 
+.black {
+  h3 {
+    color: #000000;
+    border-bottom-color: #000000;
+  }
+}
+
 @media only screen and (min-width: 48em) {
   .more-button {
     display: inline-block;
