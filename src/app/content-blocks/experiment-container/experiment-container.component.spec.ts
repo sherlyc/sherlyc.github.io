@@ -198,7 +198,7 @@ describe('ExperimentContainerComponent', () => {
   it('should render control when no-experiment-assigned returned', async () => {
     runtimeService.isBrowser.mockReturnValue(true);
     (experimentService.getVariant as jest.Mock).mockResolvedValue(
-      'no-experiment-assigned'
+      experimentService.noExperimentAssigned
     );
     component.input = experimentContainer;
 
