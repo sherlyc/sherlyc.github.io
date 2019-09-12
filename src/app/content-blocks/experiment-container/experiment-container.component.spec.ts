@@ -247,7 +247,7 @@ describe('ExperimentContainerComponent', () => {
     it('should send analytics when variant is no-experiment-assigned', async () => {
       runtimeService.isBrowser.mockReturnValue(true);
       (experimentService.getVariant as jest.Mock).mockResolvedValue(
-        'no-experiment-assigned'
+        experimentService.noExperimentAssigned
       );
       component.input = {
         ...experimentContainer,
@@ -258,8 +258,8 @@ describe('ExperimentContainerComponent', () => {
 
       expect(analyticsService.pushEvent).toHaveBeenCalledWith({
         type: AnalyticsEventsType.EXPERIMENT,
-        variant: 'no-experiment-assigned',
-        experiment: 'no-experiment-assigned'
+        variant: experimentService.noExperimentAssigned,
+        experiment: experimentService.noExperimentAssigned
       });
     });
   });
