@@ -34,6 +34,8 @@ export class ExperimentContainerComponent
       if (this.contentBlocks.length > 0) {
         this.sendAnalytics();
       }
+    } else if (this.variant === 'no-experiment-assigned') {
+      this.contentBlocks = this.input.variants.control;
     } else {
       this.loggerService.error(
         new Error(
