@@ -22,6 +22,13 @@ describe('ClassNameService', () => {
     expect(ClassNameService.generateClassName(sourceText)).toEqual(result);
   });
 
+  it('should add dash to text with apostrophe', () => {
+    const sourceText = `Editor's Picks`;
+    const result = 'editors-picks';
+
+    expect(ClassNameService.generateClassName(sourceText)).toEqual(result);
+  });
+
   it('should add dash to text with ampersand', () => {
     const sourceText = `Life & Style`;
     const result = 'life-style';
@@ -29,10 +36,23 @@ describe('ClassNameService', () => {
     expect(ClassNameService.generateClassName(sourceText)).toEqual(result);
   });
 
-
   it('should add dash to text with space', () => {
-    const sourceText = `Top Picks`;
+    const sourceText = `Top   Picks`;
     const result = 'top-picks';
+
+    expect(ClassNameService.generateClassName(sourceText)).toEqual(result);
+  });
+
+  it('should remove dots from text', () => {
+    const sourceText = `newsroom.co.nz`;
+    const result = 'newsroomconz';
+
+    expect(ClassNameService.generateClassName(sourceText)).toEqual(result);
+  });
+
+  it('should add dash to text with numbers', () => {
+    const sourceText = `news. 123`;
+    const result = 'news-123';
 
     expect(ClassNameService.generateClassName(sourceText)).toEqual(result);
   });
