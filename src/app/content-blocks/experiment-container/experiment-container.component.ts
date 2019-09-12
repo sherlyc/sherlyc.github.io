@@ -36,6 +36,9 @@ export class ExperimentContainerComponent
       }
     } else if (this.variant === 'no-experiment-assigned') {
       this.contentBlocks = this.input.variants.control;
+      if (this.contentBlocks.length > 0) {
+        this.sendAnalytics();
+      }
     } else {
       this.loggerService.error(
         new Error(
@@ -49,7 +52,7 @@ export class ExperimentContainerComponent
     this.analyticsService.pushEvent({
       type: AnalyticsEventsType.EXPERIMENT,
       variant: this.variant,
-      experiment: this.input.name
+      experiment: this.variant === 'no-experiment-assigned' ? this.variant : this.input.name
     });
   }
 }

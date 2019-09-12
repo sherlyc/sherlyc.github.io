@@ -244,7 +244,7 @@ describe('ExperimentContainerComponent', () => {
       expect(analyticsService.pushEvent).not.toHaveBeenCalled();
     });
 
-    it('should not send analytics when variant is no-experiment-assigned', async () => {
+    it('should send analytics when variant is no-experiment-assigned', async () => {
       runtimeService.isBrowser.mockReturnValue(true);
       (experimentService.getVariant as jest.Mock).mockResolvedValue(
         'no-experiment-assigned'
@@ -256,7 +256,11 @@ describe('ExperimentContainerComponent', () => {
 
       await component.ngOnInit();
 
-      expect(analyticsService.pushEvent).not.toHaveBeenCalled();
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+        type: AnalyticsEventsType.EXPERIMENT,
+        variant: 'no-experiment-assigned',
+        experiment: 'no-experiment-assigned'
+      });
     });
   });
 });
