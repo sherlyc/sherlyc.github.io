@@ -34,6 +34,11 @@ export class ExperimentContainerComponent
       if (this.contentBlocks.length > 0) {
         this.sendAnalytics();
       }
+    } else if (this.variant === this.experimentService.noExperimentAssigned) {
+      this.contentBlocks = this.input.variants.control;
+      if (this.contentBlocks.length > 0) {
+        this.sendAnalytics();
+      }
     } else {
       this.loggerService.error(
         new Error(
@@ -47,7 +52,7 @@ export class ExperimentContainerComponent
     this.analyticsService.pushEvent({
       type: AnalyticsEventsType.EXPERIMENT,
       variant: this.variant,
-      experiment: this.input.name
+      experiment: this.variant === this.experimentService.noExperimentAssigned ? this.variant : this.input.name
     });
   }
 }

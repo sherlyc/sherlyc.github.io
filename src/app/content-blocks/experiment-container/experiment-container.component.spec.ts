@@ -195,6 +195,27 @@ describe('ExperimentContainerComponent', () => {
     expect(loggerService.error).toHaveBeenCalled();
   });
 
+  it('should render control when no-experiment-assigned returned', async () => {
+    runtimeService.isBrowser.mockReturnValue(true);
+    (experimentService.getVariant as jest.Mock).mockResolvedValue(
+      experimentService.noExperimentAssigned
+    );
+    component.input = experimentContainer;
+
+    await component.ngOnInit();
+    fixture.detectChanges();
+
+    const controlVariantBlocks = fixture.debugElement.queryAll(
+      By.directive(ControlVariantContentBlockComponent)
+    );
+    const otherVariantBlocks = fixture.debugElement.queryAll(
+      By.directive(OtherVariantContentBlockComponent)
+    );
+
+    expect(controlVariantBlocks).toHaveLength(1);
+    expect(otherVariantBlocks).toHaveLength(0);
+  });
+
   describe('Analytics', () => {
     it('should send analytics when experiment is displayed', async () => {
       runtimeService.isBrowser.mockReturnValue(true);
@@ -221,6 +242,25 @@ describe('ExperimentContainerComponent', () => {
       await component.ngOnInit();
 
       expect(analyticsService.pushEvent).not.toHaveBeenCalled();
+    });
+
+    it('should send analytics when variant is no-experiment-assigned', async () => {
+      runtimeService.isBrowser.mockReturnValue(true);
+      (experimentService.getVariant as jest.Mock).mockResolvedValue(
+        experimentService.noExperimentAssigned
+      );
+      component.input = {
+        ...experimentContainer,
+        variants: { ...experimentContainer.variants, red: [] }
+      };
+
+      await component.ngOnInit();
+
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+        type: AnalyticsEventsType.EXPERIMENT,
+        variant: experimentService.noExperimentAssigned,
+        experiment: experimentService.noExperimentAssigned
+      });
     });
   });
 });

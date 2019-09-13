@@ -16,6 +16,8 @@ import { DeviceType } from '../../../../common/DeviceType';
   providedIn: 'root'
 })
 export class ExperimentService {
+  public readonly noExperimentAssigned = 'no-experiment-assigned';
+
   private experiment!: Promise<{
     name: string;
     variant: string;
@@ -62,6 +64,7 @@ export class ExperimentService {
         });
         return;
       }
+
       const experimentLotteryNumber = this.lottoService.getLotteryNumber(
         experimentName
       );
@@ -81,7 +84,7 @@ export class ExperimentService {
     const experiment = await this.getExperiment();
     return experiment && experiment.name === experimentName
       ? experiment.variant
-      : 'control';
+      : this.noExperimentAssigned;
   }
 
   getExperiment() {
