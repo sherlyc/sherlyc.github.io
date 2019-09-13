@@ -64,6 +64,7 @@ export class ExperimentService {
         });
         return;
       }
+
       const experimentLotteryNumber = this.lottoService.getLotteryNumber(
         experimentName
       );

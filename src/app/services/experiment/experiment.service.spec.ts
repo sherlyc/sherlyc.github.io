@@ -186,4 +186,14 @@ describe('ExperimentService', () => {
 
     expect(variant).toEqual('no-experiment-assigned');
   });
+
+  it('should get no-experiment-assigned when not assigned to an experiment', async () => {
+    lottoService.getLotteryNumber.mockReturnValue(1);
+    http.get.mockReturnValueOnce(of('control'));
+
+    await service.setup();
+    const variant = await service.getVariant('TopStoriesExperiment');
+
+    expect(variant).toEqual('no-experiment-assigned');
+  });
 });
