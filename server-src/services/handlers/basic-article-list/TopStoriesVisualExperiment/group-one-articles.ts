@@ -4,9 +4,10 @@ import { IContentBlock } from '../../../../../common/__types__/IContentBlock';
 import { IBasicAdUnit } from '../../../../../common/__types__/IBasicAdUnit';
 import { IBigImageArticleUnit } from '../../../../../common/__types__/IBigImageArticleUnit';
 
-const basicAdUnit: IBasicAdUnit = {
-  type: ContentBlockType.BasicAdUnit
-};
+const basicAdUnit = (context: string): IBasicAdUnit => ({
+  type: ContentBlockType.BasicAdUnit,
+  context
+});
 
 const bigImageArticleUnit = (
   article: IRawArticle,
@@ -30,8 +31,12 @@ export const groupOneArticles = (
 ) => {
   return rawArticles.reduce(
     (final, article) => {
-      return [...final, bigImageArticleUnit(article, strapName), basicAdUnit];
+      return [
+        ...final,
+        bigImageArticleUnit(article, strapName),
+        basicAdUnit(strapName)
+      ];
     },
-    [basicAdUnit] as IContentBlock[]
+    [basicAdUnit(strapName)] as IContentBlock[]
   );
 };

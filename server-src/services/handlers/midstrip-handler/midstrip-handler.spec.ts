@@ -4,11 +4,16 @@ import { IParams } from '../../__types__/IParams';
 import { HandlerInputType } from '../__types__/HandlerInputType';
 import { getStrapArticles } from '../../adapters/strap-list-service';
 import { Strap } from '../../strap';
+import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 
 jest.mock('../../adapters/strap-list-service');
 jest.mock('../../adapters/jsonfeed');
 
 describe('MidStripHandler', () => {
+  const basicAdUnit = {
+    type: ContentBlockType.BasicAdUnit,
+    context: 'MidStrip'
+  };
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
   const rawMidStrip = [
     {
@@ -84,7 +89,7 @@ describe('MidStripHandler', () => {
             }
           ]
         },
-        { type: 'BasicAdUnit' }
+        basicAdUnit
       ]);
     });
 
@@ -124,7 +129,7 @@ describe('MidStripHandler', () => {
             }
           ]
         },
-        { type: 'BasicAdUnit' }
+        basicAdUnit
       ]);
     });
 
@@ -195,7 +200,7 @@ describe('MidStripHandler', () => {
             }
           ]
         },
-        { type: 'BasicAdUnit' }
+        basicAdUnit
       ]);
     });
 
@@ -235,7 +240,7 @@ describe('MidStripHandler', () => {
             }
           ]
         },
-        { type: 'BasicAdUnit' }
+        basicAdUnit
       ]);
     });
 

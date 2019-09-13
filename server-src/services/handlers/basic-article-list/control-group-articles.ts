@@ -5,9 +5,10 @@ import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUni
 import { IBasicAdUnit } from '../../../../common/__types__/IBasicAdUnit';
 import { IBasicArticleTitleUnit } from '../../../../common/__types__/IBasicArticleTitleUnit';
 
-const basicAdUnit: IBasicAdUnit = {
-  type: ContentBlockType.BasicAdUnit
-};
+const basicAdUnit = (context: string): IBasicAdUnit => ({
+  type: ContentBlockType.BasicAdUnit,
+  context
+});
 
 const basicArticleTitleUnit = (
   article: IRawArticle,
@@ -24,7 +25,7 @@ const basicArticleTitleUnit = (
 
 const basicArticleUnit = (
   article: IRawArticle,
-  strapName: string,
+  strapName: string
 ): IBasicArticleUnit => ({
   type: ContentBlockType.BasicArticleUnit,
   id: article.id,
@@ -49,15 +50,15 @@ export const controlGroupArticles = (
         return [
           ...final,
           basicArticleUnit(article, strapName),
-          basicAdUnit
+          basicAdUnit(strapName)
         ];
       }
       return [
         ...final,
         basicArticleTitleUnit(article, strapName),
-        basicAdUnit
+        basicAdUnit(strapName)
       ];
     },
-    [basicAdUnit] as IContentBlock[]
+    [basicAdUnit(strapName)] as IContentBlock[]
   );
 };

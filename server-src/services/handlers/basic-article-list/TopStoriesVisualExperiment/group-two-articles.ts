@@ -5,9 +5,10 @@ import { IBasicAdUnit } from '../../../../../common/__types__/IBasicAdUnit';
 import { IBigImageArticleUnit } from '../../../../../common/__types__/IBigImageArticleUnit';
 import { IHalfWidthImageArticleUnit } from '../../../../../common/__types__/IHalfWidthImageArticleUnit';
 
-const basicAdUnit: IBasicAdUnit = {
-  type: ContentBlockType.BasicAdUnit
-};
+const basicAdUnit = (context: string): IBasicAdUnit => ({
+  type: ContentBlockType.BasicAdUnit,
+  context
+});
 
 const bigImageArticleUnit = (
   article: IRawArticle,
@@ -48,14 +49,18 @@ export const groupTwoArticles = (
   return rawArticles.reduce(
     (final, article, index) => {
       if (index < 3) {
-        return [...final, bigImageArticleUnit(article, strapName), basicAdUnit];
+        return [
+          ...final,
+          bigImageArticleUnit(article, strapName),
+          basicAdUnit(strapName)
+        ];
       }
       return [
         ...final,
         halfWidthImageArticleUnit(article, strapName),
-        basicAdUnit
+        basicAdUnit(strapName)
       ];
     },
-    [basicAdUnit] as IContentBlock[]
+    [basicAdUnit(strapName)] as IContentBlock[]
   );
 };

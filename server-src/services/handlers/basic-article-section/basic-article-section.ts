@@ -22,6 +22,6 @@ export default async function(
       linkUrl,
       items: await handlerRunner(content, params)
     },
-    { type: ContentBlockType.BasicAdUnit }
+    { type: ContentBlockType.BasicAdUnit, context: displayName }
   ];
 }

@@ -5,13 +5,14 @@ import { IBasicAdUnit } from '../../../../../common/__types__/IBasicAdUnit';
 import { IGrayDefconArticleUnit } from '../../../../../common/__types__/IGrayDefconArticleUnit';
 import { IBigImageArticleUnit } from '../../../../../common/__types__/IBigImageArticleUnit';
 
-const basicAdUnit: IBasicAdUnit = {
-  type: ContentBlockType.BasicAdUnit
-};
+const basicAdUnit = (context: string): IBasicAdUnit => ({
+  type: ContentBlockType.BasicAdUnit,
+  context
+});
 
 const grayDefconArticleUnit = (
   article: IRawArticle,
-  strapName: string,
+  strapName: string
 ): IGrayDefconArticleUnit => ({
   type: ContentBlockType.GrayDefconArticleUnit,
   id: article.id,
@@ -26,7 +27,7 @@ const grayDefconArticleUnit = (
 
 const bigImageArticleUnit = (
   article: IRawArticle,
-  strapName: string,
+  strapName: string
 ): IBigImageArticleUnit => ({
   type: ContentBlockType.BigImageArticleUnit,
   id: article.id,
@@ -40,20 +41,23 @@ const bigImageArticleUnit = (
   headlineFlags: article.headlineFlags
 });
 
-export const groupOneArticles = (rawArticles: IRawArticle[], strapName: string) => {
+export const groupOneArticles = (
+  rawArticles: IRawArticle[],
+  strapName: string
+) => {
   return rawArticles.reduce(
     (final, article, index) => {
       if (index === 0) {
         return [
           ...final,
           grayDefconArticleUnit(article, strapName),
-          basicAdUnit
+          basicAdUnit(strapName)
         ];
       }
       return [
         ...final,
         bigImageArticleUnit(article, strapName),
-        basicAdUnit
+        basicAdUnit(strapName)
       ];
     },
     [] as IContentBlock[]

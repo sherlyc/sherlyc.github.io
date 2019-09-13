@@ -39,6 +39,6 @@ export default async function(
         [] as IContentBlock[]
       )
     },
-    { type: ContentBlockType.BasicAdUnit }
+    { type: ContentBlockType.BasicAdUnit, context: strapName }
   ];
 }
