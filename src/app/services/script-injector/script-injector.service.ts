@@ -37,7 +37,7 @@ export class ScriptInjectorService {
     const promise = new Promise<void>((resolve, reject) => {
       scriptElement.addEventListener('load', () => {
         this.logger.info(`${id} has been loaded`);
-        setTimeout(resolve, 100);
+        setTimeout(resolve, 10);
       });
       scriptElement.addEventListener('error', (err) => {
         this.logger.warn(`${id} fails to be loaded: ${err}`);
