@@ -50,14 +50,14 @@ export default async function(
               type: HandlerInputType.DefconArticleList,
               sourceId: Strap.TopStories,
               strapName,
-              totalArticles: 3,
+              totalArticles: totalBasicArticlesUnit,
               variant: 'groupOne'
             },
             groupTwo: {
               type: HandlerInputType.DefconArticleList,
               sourceId: Strap.TopStories,
               strapName,
-              totalArticles: 3,
+              totalArticles: totalBasicArticlesUnit,
               variant: 'groupTwo'
             }
           }
