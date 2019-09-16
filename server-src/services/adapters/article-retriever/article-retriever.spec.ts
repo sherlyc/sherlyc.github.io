@@ -7,7 +7,7 @@ import * as strapListService from '../strap-list-service';
 import { Strap } from '../../strap';
 import { IRawArticle } from '../__types__/IRawArticle';
 
-describe('Raw article retriever', () => {
+describe('Article retriever', () => {
   const params: IParams = { apiRequestId: '123123' };
 
   it('it should call getSectionArticleList when source is a section', async () => {
