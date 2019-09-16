@@ -88,6 +88,7 @@ describe('TopStoriesHandler', () => {
           type: HandlerInputType.DefconArticleList,
           sourceId: Strap.TopStories,
           strapName,
+          layoutType: LayoutType.DEFCON,
           totalArticles: handlerInput.totalBasicArticlesUnit,
           variant: 'control'
         },
@@ -95,6 +96,7 @@ describe('TopStoriesHandler', () => {
           type: HandlerInputType.DefconArticleList,
           sourceId: Strap.TopStories,
           strapName,
+          layoutType: LayoutType.DEFCON,
           totalArticles: handlerInput.totalBasicArticlesUnit,
           variant: 'groupOne'
         },
@@ -102,6 +104,7 @@ describe('TopStoriesHandler', () => {
           type: HandlerInputType.DefconArticleList,
           sourceId: Strap.TopStories,
           strapName,
+          layoutType: LayoutType.DEFCON,
           totalArticles: handlerInput.totalBasicArticlesUnit,
           variant: 'groupTwo'
         }

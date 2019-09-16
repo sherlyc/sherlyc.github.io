@@ -43,6 +43,7 @@ export default async function(
               type: HandlerInputType.DefconArticleList,
               sourceId: Strap.TopStories,
               strapName,
+              layoutType: LayoutType.DEFCON,
               totalArticles: totalBasicArticlesUnit,
               variant: 'control'
             },
@@ -50,6 +51,7 @@ export default async function(
               type: HandlerInputType.DefconArticleList,
               sourceId: Strap.TopStories,
               strapName,
+              layoutType: LayoutType.DEFCON,
               totalArticles: totalBasicArticlesUnit,
               variant: 'groupOne'
             },
@@ -57,6 +59,7 @@ export default async function(
               type: HandlerInputType.DefconArticleList,
               sourceId: Strap.TopStories,
               strapName,
+              layoutType: LayoutType.DEFCON,
               totalArticles: totalBasicArticlesUnit,
               variant: 'groupTwo'
             }

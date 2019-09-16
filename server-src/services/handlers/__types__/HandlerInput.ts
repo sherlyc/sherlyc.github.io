@@ -8,13 +8,13 @@ import { IWeatherHandlerInput } from './IWeatherHandlerInput';
 import { IMiniMidStripHandlerInput } from './IMiniMidStripHandlerInput';
 import { IExperimentHandlerInput } from './IExperimentHandlerInput';
 import { ITopStoriesHandlerInput } from './ITopStoriesHandlerInput';
-import { IDefconArticleListHandlerInput } from './IDefconArticleListHandlerInput';
+import { ITopStoriesArticleListHandlerInput } from './ITopStoriesArticleListHandlerInput';
 import { IFeatureHandlerInput } from './IFeatureHandlerInput';
 import { IBannerHandlerInput } from './IBannerHandlerInput';
 
 export type HandlerInput =
   | ITopStoriesHandlerInput
-  | IDefconArticleListHandlerInput
+  | ITopStoriesArticleListHandlerInput
   | IBasicArticleListHandlerInput
   | IBannerHandlerInput
   | IMidStripHandlerInput

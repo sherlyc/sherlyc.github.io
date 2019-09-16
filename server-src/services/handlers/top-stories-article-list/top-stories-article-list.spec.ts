@@ -1,5 +1,5 @@
 import { IRawArticle } from '../../adapters/__types__/IRawArticle';
-import { IDefconArticleListHandlerInput } from '../__types__/IDefconArticleListHandlerInput';
+import { ITopStoriesArticleListHandlerInput } from '../__types__/ITopStoriesArticleListHandlerInput';
 import { HandlerInputType } from '../__types__/HandlerInputType';
 import handlerRunner from '../runner';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
@@ -12,6 +12,7 @@ import { Strap } from '../../strap';
 import { IBigImageArticleUnit } from '../../../../common/__types__/IBigImageArticleUnit';
 import { IHalfWidthImageArticleUnit } from '../../../../common/__types__/IHalfWidthImageArticleUnit';
 import { IGrayDefconArticleUnit } from '../../../../common/__types__/IGrayDefconArticleUnit';
+import { LayoutType } from '../../adapters/__types__/LayoutType';
 
 jest.mock('../../adapters/strap-list-service');
 
@@ -134,10 +135,11 @@ describe('DefconArticleList', () => {
 
   describe('Control variant', () => {
     it('should return first article as defcon and others as basic articles when input is TopStories Strap', async () => {
-      const handlerInput: IDefconArticleListHandlerInput = {
+      const handlerInput: ITopStoriesArticleListHandlerInput = {
         type: HandlerInputType.DefconArticleList,
         sourceId: Strap.TopStories,
         strapName,
+        layoutType: LayoutType.DEFCON,
         totalArticles: 2,
         variant: 'control'
       };
@@ -163,10 +165,11 @@ describe('DefconArticleList', () => {
 
     it('should throw error when failing to retrieve articles', async () => {
       const error = new Error('failed to retrieve');
-      const handlerInput: IDefconArticleListHandlerInput = {
+      const handlerInput: ITopStoriesArticleListHandlerInput = {
         type: HandlerInputType.DefconArticleList,
         sourceId: Strap.TopStories,
         strapName,
+        layoutType: LayoutType.DEFCON,
         totalArticles: 2,
         variant: 'control'
       };
@@ -179,10 +182,11 @@ describe('DefconArticleList', () => {
     });
 
     it('should return first article as defcon and others as basic articles when input is TopStories Strap', async () => {
-      const handlerInput: IDefconArticleListHandlerInput = {
+      const handlerInput: ITopStoriesArticleListHandlerInput = {
         type: HandlerInputType.DefconArticleList,
         sourceId: Strap.TopStories,
         strapName,
+        layoutType: LayoutType.DEFCON,
         totalArticles: 2,
         variant: 'control'
       };
@@ -209,10 +213,11 @@ describe('DefconArticleList', () => {
 
   describe('Group one variant', () => {
     it('should return first article as gray defcon and others as big image article', async () => {
-      const handlerInput: IDefconArticleListHandlerInput = {
+      const handlerInput: ITopStoriesArticleListHandlerInput = {
         type: HandlerInputType.DefconArticleList,
         sourceId: Strap.TopStories,
         strapName,
+        layoutType: LayoutType.DEFCON,
         totalArticles: 2,
         variant: 'groupOne'
       };
@@ -239,10 +244,11 @@ describe('DefconArticleList', () => {
 
   describe('Group two variant', () => {
     it('should return gray defcon, two big image article and 3 half width image article units', async () => {
-      const handlerInput: IDefconArticleListHandlerInput = {
+      const handlerInput: ITopStoriesArticleListHandlerInput = {
         type: HandlerInputType.DefconArticleList,
         sourceId: Strap.TopStories,
         strapName,
+        layoutType: LayoutType.DEFCON,
         totalArticles: 6,
         variant: 'groupTwo'
       };
