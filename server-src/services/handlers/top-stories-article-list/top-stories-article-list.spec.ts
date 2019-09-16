@@ -28,8 +28,8 @@ describe('Top Stories Article List', () => {
 
   const articleOne: IRawArticle = {
     id: '1',
-    indexHeadline: 'Defcon Headline',
-    introText: 'Defcon Intro',
+    indexHeadline: 'Article One',
+    introText: 'Article One Intro',
     linkUrl: '/link1',
     imageSrc: 'article.jpg',
     imageSrcSet: 'article.jpg 1w',
@@ -54,305 +54,115 @@ describe('Top Stories Article List', () => {
     headlineFlags: []
   };
 
-  const articleOneAsBasicArticle: IBasicArticleUnit = {
-    type: ContentBlockType.BasicArticleUnit,
-    id: '1',
-    strapName: 'Latest',
-    indexHeadline: 'Defcon Headline',
-    introText: 'Defcon Intro',
-    imageSrc: 'article.jpg',
-    imageSrcSet: 'article.jpg 1w',
-    linkUrl: '/link1',
-    lastPublishedTime: 1,
-    headlineFlags: []
-  };
-
-  const articleOneAsDefconArticle: IDefconArticleUnit = {
+  const AsDefconArticle = (article: IRawArticle): IDefconArticleUnit => ({
     type: ContentBlockType.DefconArticleUnit,
-    strapName,
-    id: '1',
-    indexHeadline: 'Defcon Headline',
-    introText: 'Defcon Intro',
-    linkUrl: '/link1',
-    imageSrc: 'defcon.jpg',
-    lastPublishedTime: 1,
-    headlineFlags: []
-  };
+    id: article.id,
+    strapName: strapName,
+    indexHeadline: article.indexHeadline,
+    introText: article.introText,
+    linkUrl: article.linkUrl,
+    imageSrc: article.defconSrc,
+    lastPublishedTime: article.lastPublishedTime,
+    headlineFlags: article.headlineFlags
+  });
 
-  const articleOneAsGrayDefconArticle: IGrayDefconArticleUnit = {
-    type: ContentBlockType.GrayDefconArticleUnit,
-    strapName,
-    id: '1',
-    indexHeadline: 'Defcon Headline',
-    introText: 'Defcon Intro',
-    linkUrl: '/link1',
-    imageSrc: 'defcon.jpg',
-    lastPublishedTime: 1,
-    headlineFlags: []
-  };
-
-  const articleTwoAsBasicArticle: IBasicArticleUnit = {
+  const AsBasicArticle = (article: IRawArticle): IBasicArticleUnit => ({
     type: ContentBlockType.BasicArticleUnit,
-    strapName,
-    id: '2',
-    indexHeadline: 'An Article',
-    introText: 'Article Text',
-    linkUrl: '/link1',
-    imageSrc: 'article.jpg',
-    imageSrcSet: 'article.jpg 1w',
-    lastPublishedTime: 1,
-    headlineFlags: []
-  };
-
-  const articleTwoAsDefconArticle: IDefconArticleUnit = {
-    type: ContentBlockType.DefconArticleUnit,
-    id: '2',
-    strapName: 'Latest',
-    indexHeadline: 'An Article',
-    introText: 'Article Text',
-    imageSrc: null,
-    linkUrl: '/link1',
-    lastPublishedTime: 1,
-    headlineFlags: []
-  };
-
-  const articleTwoAsBigImageArticle: IBigImageArticleUnit = {
-    type: ContentBlockType.BigImageArticleUnit,
-    strapName,
-    id: '2',
-    indexHeadline: 'An Article',
-    introText: 'Article Text',
-    linkUrl: '/link1',
-    imageSrc: 'strap2.jpg',
-    imageSrcSet: 'strap2.jpg 1w',
-    lastPublishedTime: 1,
-    headlineFlags: []
-  };
-
-  const articleAsBigImageArticle: IBigImageArticleUnit = {
-    type: ContentBlockType.BigImageArticleUnit,
-    strapName,
-    id: '1',
-    indexHeadline: 'Defcon Headline',
-    introText: 'Defcon Intro',
-    linkUrl: '/link1',
-    imageSrc: 'strap1.jpg',
-    imageSrcSet: 'strap1.jpg 1w',
-    lastPublishedTime: 1,
-    headlineFlags: []
-  };
-
-  const articleAsHalfWidthImageArticle: IHalfWidthImageArticleUnit = {
-    type: ContentBlockType.HalfWidthImageArticleUnit,
-    strapName,
-    id: '1',
-    indexHeadline: 'Defcon Headline',
-    introText: 'Defcon Intro',
-    linkUrl: '/link1',
-    imageSrc: 'strap1.jpg',
-    imageSrcSet: 'strap1.jpg 1w',
-    lastPublishedTime: 1,
-    headlineFlags: []
-  };
+    id: article.id,
+    strapName: strapName,
+    indexHeadline: article.indexHeadline,
+    introText: article.introText,
+    linkUrl: article.linkUrl,
+    imageSrc: article.imageSrc,
+    imageSrcSet: article.imageSrcSet,
+    lastPublishedTime: article.lastPublishedTime,
+    headlineFlags: article.headlineFlags
+  });
 
   beforeEach(() => {
     jest.resetModules();
   });
 
-  describe('Control variant', () => {
-    it('should swap first and second articles when layout is default', async () => {
-      jest
-        .spyOn(layoutRetriever, 'layoutRetriever')
-        .mockResolvedValue(LayoutType.DEFAULT);
+  it('should swap first and second articles and return them as basic articles when layout is default', async () => {
+    jest
+      .spyOn(layoutRetriever, 'layoutRetriever')
+      .mockResolvedValue(LayoutType.DEFAULT);
 
-      const handlerInput: ITopStoriesArticleListHandlerInput = {
-        type: HandlerInputType.TopStoriesArticleList,
-        sourceId: Strap.TopStories,
-        strapName,
-        totalArticles: 2,
-        variant: 'control'
-      };
-      const rawArticles = [articleOne, articleTwo];
+    const handlerInput: ITopStoriesArticleListHandlerInput = {
+      type: HandlerInputType.TopStoriesArticleList,
+      sourceId: Strap.TopStories,
+      strapName,
+      totalArticles: 2,
+      variant: 'control'
+    };
+    const rawArticles = [articleOne, articleTwo];
 
-      (getRawArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
+    (getRawArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
 
-      const expectedContentBlocks = [
-        articleTwoAsDefconArticle,
-        basicAdUnit,
-        articleOneAsBasicArticle,
-        basicAdUnit
-      ];
+    const expectedContentBlocks = [
+      AsBasicArticle(articleTwo),
+      basicAdUnit,
+      AsBasicArticle(articleOne),
+      basicAdUnit
+    ];
 
-      const contentBlocks = await defconArticleList(
-        handlerRunner,
-        handlerInput,
-        params
-      );
+    const contentBlocks = await defconArticleList(
+      handlerRunner,
+      handlerInput,
+      params
+    );
 
-      expect(contentBlocks).toEqual(expectedContentBlocks);
-    });
-
-    it('should return first article as defcon and others as basic articles when input is TopStories Strap', async () => {
-      jest
-        .spyOn(layoutRetriever, 'layoutRetriever')
-        .mockResolvedValue(LayoutType.DEFCON);
-      const handlerInput: ITopStoriesArticleListHandlerInput = {
-        type: HandlerInputType.TopStoriesArticleList,
-        sourceId: Strap.TopStories,
-        strapName,
-        totalArticles: 2,
-        variant: 'control'
-      };
-      const rawArticles = [articleOne, articleTwo];
-
-      (getRawArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
-
-      const expectedContentBlocks = [
-        articleOneAsDefconArticle,
-        basicAdUnit,
-        articleTwoAsBasicArticle,
-        basicAdUnit
-      ];
-
-      const contentBlocks = await defconArticleList(
-        handlerRunner,
-        handlerInput,
-        params
-      );
-
-      expect(contentBlocks).toEqual(expectedContentBlocks);
-    });
-
-    it('should throw error when failing to retrieve articles', async () => {
-      jest
-        .spyOn(layoutRetriever, 'layoutRetriever')
-        .mockResolvedValue(LayoutType.DEFCON);
-      const error = new Error('failed to retrieve');
-      const handlerInput: ITopStoriesArticleListHandlerInput = {
-        type: HandlerInputType.TopStoriesArticleList,
-        sourceId: Strap.TopStories,
-        strapName,
-        totalArticles: 2,
-        variant: 'control'
-      };
-
-      (getRawArticles as jest.Mock).mockRejectedValue(error);
-
-      await expect(
-        defconArticleList(handlerRunner, handlerInput, params)
-      ).rejects.toEqual(error);
-    });
-
-    it('should return first article as defcon and others as basic articles when input is TopStories Strap', async () => {
-      jest
-        .spyOn(layoutRetriever, 'layoutRetriever')
-        .mockResolvedValue(LayoutType.DEFCON);
-      const handlerInput: ITopStoriesArticleListHandlerInput = {
-        type: HandlerInputType.TopStoriesArticleList,
-        sourceId: Strap.TopStories,
-        strapName,
-        totalArticles: 2,
-        variant: 'control'
-      };
-      const rawArticles = [articleOne, articleTwo];
-
-      (getRawArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
-
-      const expectedContentBlocks = [
-        articleOneAsDefconArticle,
-        basicAdUnit,
-        articleTwoAsBasicArticle,
-        basicAdUnit
-      ];
-
-      const contentBlocks = await defconArticleList(
-        handlerRunner,
-        handlerInput,
-        params
-      );
-
-      expect(contentBlocks).toEqual(expectedContentBlocks);
-    });
+    expect(contentBlocks).toEqual(expectedContentBlocks);
   });
 
-  describe('Group one variant', () => {
-    it('should return first article as gray defcon and others as big image article', async () => {
-      jest
-        .spyOn(layoutRetriever, 'layoutRetriever')
-        .mockResolvedValue(LayoutType.DEFCON);
-      const handlerInput: ITopStoriesArticleListHandlerInput = {
-        type: HandlerInputType.TopStoriesArticleList,
-        sourceId: Strap.TopStories,
-        strapName,
-        totalArticles: 2,
-        variant: 'groupOne'
-      };
-      const rawArticles = [articleOne, articleTwo];
+  it('should return first article as defcon and others as basic articles when layout is defcon', async () => {
+    jest
+      .spyOn(layoutRetriever, 'layoutRetriever')
+      .mockResolvedValue(LayoutType.DEFCON);
+    const handlerInput: ITopStoriesArticleListHandlerInput = {
+      type: HandlerInputType.TopStoriesArticleList,
+      sourceId: Strap.TopStories,
+      strapName,
+      totalArticles: 2,
+      variant: 'control'
+    };
+    const rawArticles = [articleOne, articleTwo];
 
-      (getRawArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
+    (getRawArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
 
-      const expectedContentBlocks = [
-        articleOneAsGrayDefconArticle,
-        basicAdUnit,
-        articleTwoAsBigImageArticle,
-        basicAdUnit
-      ];
+    const expectedContentBlocks = [
+      AsDefconArticle(articleOne),
+      basicAdUnit,
+      AsBasicArticle(articleTwo),
+      basicAdUnit
+    ];
 
-      const contentBlocks = await defconArticleList(
-        handlerRunner,
-        handlerInput,
-        params
-      );
+    const contentBlocks = await defconArticleList(
+      handlerRunner,
+      handlerInput,
+      params
+    );
 
-      expect(contentBlocks).toEqual(expectedContentBlocks);
-    });
+    expect(contentBlocks).toEqual(expectedContentBlocks);
   });
 
-  describe('Group two variant', () => {
-    it('should return gray defcon, two big image article and 3 half width image article units', async () => {
-      jest
-        .spyOn(layoutRetriever, 'layoutRetriever')
-        .mockResolvedValue(LayoutType.DEFCON);
-      const handlerInput: ITopStoriesArticleListHandlerInput = {
-        type: HandlerInputType.TopStoriesArticleList,
-        sourceId: Strap.TopStories,
-        strapName,
-        totalArticles: 6,
-        variant: 'groupTwo'
-      };
-      const rawArticles = [
-        articleOne,
-        articleOne,
-        articleOne,
-        articleOne,
-        articleOne,
-        articleOne
-      ];
+  it('should throw error when failing to retrieve articles', async () => {
+    jest
+      .spyOn(layoutRetriever, 'layoutRetriever')
+      .mockResolvedValue(LayoutType.DEFCON);
+    const error = new Error('failed to retrieve');
+    const handlerInput: ITopStoriesArticleListHandlerInput = {
+      type: HandlerInputType.TopStoriesArticleList,
+      sourceId: Strap.TopStories,
+      strapName,
+      totalArticles: 2,
+      variant: 'control'
+    };
 
-      (getRawArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
+    (getRawArticles as jest.Mock).mockRejectedValue(error);
 
-      const expectedContentBlocks = [
-        articleOneAsGrayDefconArticle,
-        basicAdUnit,
-        articleAsBigImageArticle,
-        basicAdUnit,
-        articleAsBigImageArticle,
-        basicAdUnit,
-        articleAsHalfWidthImageArticle,
-        basicAdUnit,
-        articleAsHalfWidthImageArticle,
-        basicAdUnit,
-        articleAsHalfWidthImageArticle,
-        basicAdUnit
-      ];
-
-      const contentBlocks = await defconArticleList(
-        handlerRunner,
-        handlerInput,
-        params
-      );
-
-      expect(contentBlocks).toEqual(expectedContentBlocks);
-    });
+    await expect(
+      defconArticleList(handlerRunner, handlerInput, params)
+    ).rejects.toEqual(error);
   });
 });

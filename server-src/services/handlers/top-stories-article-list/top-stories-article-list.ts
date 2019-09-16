@@ -11,6 +11,67 @@ import { layoutRetriever } from '../../adapters/layout-retriever';
 import logger from '../../utils/logger';
 import { Strap } from '../../strap';
 import { Section } from '../../section';
+import { IBasicAdUnit } from '../../../../common/__types__/IBasicAdUnit';
+import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
+import { IRawArticle } from '../../adapters/__types__/IRawArticle';
+import { IDefconArticleUnit } from '../../../../common/__types__/IDefconArticleUnit';
+import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
+
+const basicAdUnit = (context: string): IBasicAdUnit => ({
+  type: ContentBlockType.BasicAdUnit,
+  context
+});
+
+const defconArticleUnit = (
+  article: IRawArticle,
+  strapName: string
+): IDefconArticleUnit => ({
+  type: ContentBlockType.DefconArticleUnit,
+  id: article.id,
+  strapName,
+  indexHeadline: article.indexHeadline,
+  introText: article.introText,
+  imageSrc: article.defconSrc,
+  linkUrl: article.linkUrl,
+  lastPublishedTime: article.lastPublishedTime,
+  headlineFlags: article.headlineFlags
+});
+
+const basicArticleUnit = (
+  article: IRawArticle,
+  strapName: string
+): IBasicArticleUnit => ({
+  type: ContentBlockType.BasicArticleUnit,
+  id: article.id,
+  strapName,
+  indexHeadline: article.indexHeadline,
+  introText: article.introText,
+  imageSrc: article.imageSrc,
+  imageSrcSet: article.imageSrcSet,
+  linkUrl: article.linkUrl,
+  lastPublishedTime: article.lastPublishedTime,
+  headlineFlags: article.headlineFlags
+});
+
+const mapToArticleBlocks = (articles: IRawArticle[], strapName: string, layoutType: LayoutType) => {
+  return articles.reduce(
+    (final, article, index) => {
+      if (index === 0 && layoutType === LayoutType.DEFCON) {
+        return [
+          ...final,
+          defconArticleUnit(article, strapName),
+          basicAdUnit(strapName)
+        ];
+      }
+      return [
+        ...final,
+        basicArticleUnit(article, strapName),
+        basicAdUnit(strapName)
+      ];
+    },
+    [] as IContentBlock[]
+  );
+};
 
 const retrieveLayout = async (params: IParams): Promise<LayoutType> => {
   try {
@@ -35,17 +96,9 @@ export default async function(
   params: IParams
 ): Promise<IContentBlock[]> {
   const layout = await retrieveLayout(params);
-  let rawArticles = await getRawArticles(
-    sourceId,
-    totalArticles,
-    layout,
-    params
-  );
+  let rawArticles = await getRawArticles(sourceId, totalArticles, params);
 
-  if (
-    (sourceId === Strap.TopStories || sourceId === Section.Latest) &&
-    layout === LayoutType.DEFAULT
-  ) {
+  if (layout === LayoutType.DEFAULT) {
     rawArticles = [
       rawArticles[1],
       rawArticles[0],
@@ -53,11 +106,5 @@ export default async function(
     ].filter(Boolean);
   }
 
-  if (variant === 'groupOne') {
-    return groupOneArticles(rawArticles, strapName);
-  } else if (variant === 'groupTwo') {
-    return groupTwoArticles(rawArticles, strapName);
-  }
-
-  return controlGroupArticles(rawArticles, strapName);
+  return mapToArticleBlocks(rawArticles, strapName, layout);
 }

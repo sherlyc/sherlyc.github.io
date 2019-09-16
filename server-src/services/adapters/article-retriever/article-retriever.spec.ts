@@ -15,7 +15,7 @@ describe('Article retriever', () => {
     const section = Section.Latest;
     const totalArticles = 3;
 
-    await getRawArticles(section, totalArticles, LayoutType.DEFAULT, params);
+    await getRawArticles(section, totalArticles, params);
 
     expect(getSectionArticleList).toHaveBeenCalledWith(
       section,
@@ -29,7 +29,7 @@ describe('Article retriever', () => {
     const strap = Strap.TopStories;
     const totalArticles = 3;
 
-    await getRawArticles(strap, totalArticles, LayoutType.DEFAULT, params);
+    await getRawArticles(strap, totalArticles, params);
 
     expect(getStrapArticles).toHaveBeenCalledWith(params, strap, totalArticles);
   });
