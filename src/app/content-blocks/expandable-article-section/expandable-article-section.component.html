@@ -10,6 +10,6 @@
   <ng-container [appContentBlock]="input.visibleItems"></ng-container>
   <ng-container *ngIf="showHiddenItems" [appContentBlock]="input.hiddenItems"></ng-container>
   <div *ngIf="input.linkUrl">
-    <a class="more-button" (click)="[sendAnalytics(), toggleHiddenItems()]">More {{ input.displayName }}</a>
+    <a class="more-button" (click)="[sendAnalytics(), toggleHiddenItems()]">{{ showHiddenItems ? 'Less' : 'More' }} {{ input.displayName }}</a>
   </div>
 </div>

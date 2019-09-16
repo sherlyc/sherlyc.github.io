@@ -197,4 +197,20 @@ describe('expandable article section', () => {
     );
     expect(hiddenBlocksAfterClick.length).toEqual(0);
   });
+
+  it('button should change from showing More to Less after clicking More button', () => {
+    component.input = sectionArticleData;
+    fixture.detectChanges();
+
+    const button = fixture.debugElement.query(By.css('.more-button'));
+    expect(button.nativeElement.textContent).toContain(
+      `More ${sectionArticleData.displayName}`
+    );
+    button.nativeElement.click();
+    fixture.detectChanges();
+
+    expect(button.nativeElement.textContent).toContain(
+      `Less ${sectionArticleData.displayName}`
+    );
+  });
 });
