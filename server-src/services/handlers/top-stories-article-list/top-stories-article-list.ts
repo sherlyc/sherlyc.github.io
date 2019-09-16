@@ -11,7 +11,6 @@ import { layoutRetriever } from '../../adapters/layout-retriever';
 import logger from '../../utils/logger';
 import { Strap } from '../../strap';
 import { Section } from '../../section';
-import { raw } from 'express';
 
 const retrieveLayout = async (params: IParams): Promise<LayoutType> => {
   try {
