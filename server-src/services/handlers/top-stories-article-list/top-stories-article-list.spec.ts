@@ -61,7 +61,7 @@ describe('Top Stories Article List', () => {
     indexHeadline: article.indexHeadline,
     introText: article.introText,
     linkUrl: article.linkUrl,
-    imageSrc: article.imageSrc,
+    imageSrc: article.defconSrc,
     lastPublishedTime: article.lastPublishedTime,
     headlineFlags: article.headlineFlags
   });
@@ -83,7 +83,7 @@ describe('Top Stories Article List', () => {
     jest.resetModules();
   });
 
-  it('should swap first and second articles when layout is default', async () => {
+  it('should swap first and second articles and return them as basic articles when layout is default', async () => {
     jest
       .spyOn(layoutRetriever, 'layoutRetriever')
       .mockResolvedValue(LayoutType.DEFAULT);
@@ -111,38 +111,6 @@ describe('Top Stories Article List', () => {
       handlerInput,
       params
     );
-
-    expect(contentBlocks).toEqual(expectedContentBlocks);
-  });
-
-  it('should return basic articles when layout is default', async () => {
-    jest
-      .spyOn(layoutRetriever, 'layoutRetriever')
-      .mockResolvedValue(LayoutType.DEFAULT);
-    const handlerInput: ITopStoriesArticleListHandlerInput = {
-      type: HandlerInputType.TopStoriesArticleList,
-      sourceId: Strap.TopStories,
-      strapName,
-      totalArticles: 2,
-      variant: 'control'
-    };
-    const rawArticles = [articleOne, articleTwo];
-
-    (getRawArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
-
-    const expectedContentBlocks = [
-      AsBasicArticle(articleOne),
-      basicAdUnit,
-      AsBasicArticle(articleTwo),
-      basicAdUnit
-    ];
-
-    const contentBlocks = await defconArticleList(
-      handlerRunner,
-      handlerInput,
-      params
-    );
-    console.log(contentBlocks);
 
     expect(contentBlocks).toEqual(expectedContentBlocks);
   });
@@ -197,5 +165,4 @@ describe('Top Stories Article List', () => {
       defconArticleList(handlerRunner, handlerInput, params)
     ).rejects.toEqual(error);
   });
-
 });
