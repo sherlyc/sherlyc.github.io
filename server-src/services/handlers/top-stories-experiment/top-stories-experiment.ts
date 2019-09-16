@@ -18,9 +18,6 @@ export default async function(
   }: ITopStoriesHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const totalArticles = totalBasicArticlesUnit + totalBasicArticleTitleUnit;
-  const rawArticles = await getRawArticles(sourceId, totalArticles, params);
-
   return handlerRunner(
     {
       type: HandlerInputType.Experiment,
