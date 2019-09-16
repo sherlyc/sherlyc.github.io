@@ -2,20 +2,16 @@ import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 import { IParams } from '../../__types__/IParams';
 import { ITopStoriesArticleListHandlerInput } from '../__types__/ITopStoriesArticleListHandlerInput';
 import { handlerRunnerFunction } from '../runner';
-import { controlGroupArticles } from './control-group-articles';
-import { groupOneArticles } from './TopStoriesVisualExperiment/group-one-articles';
-import { groupTwoArticles } from './TopStoriesVisualExperiment/group-two-articles';
 import { getRawArticles } from '../../adapters/article-retriever/article-retriever';
 import { LayoutType } from '../../adapters/__types__/LayoutType';
 import { layoutRetriever } from '../../adapters/layout-retriever';
 import logger from '../../utils/logger';
-import { Strap } from '../../strap';
-import { Section } from '../../section';
 import { IBasicAdUnit } from '../../../../common/__types__/IBasicAdUnit';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 import { IRawArticle } from '../../adapters/__types__/IRawArticle';
 import { IDefconArticleUnit } from '../../../../common/__types__/IDefconArticleUnit';
 import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
+import { Strap } from '../../strap';
 
 const basicAdUnit = (context: string): IBasicAdUnit => ({
   type: ContentBlockType.BasicAdUnit,
@@ -88,15 +84,13 @@ const retrieveLayout = async (params: IParams): Promise<LayoutType> => {
 export default async function(
   handlerRunner: handlerRunnerFunction,
   {
-    sourceId,
     strapName,
     totalArticles = 0,
-    variant = 'control'
   }: ITopStoriesArticleListHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   const layout = await retrieveLayout(params);
-  let rawArticles = await getRawArticles(sourceId, totalArticles, params);
+  let rawArticles = await getRawArticles(Strap.TopStories, totalArticles, params);
 
   if (layout === LayoutType.DEFAULT) {
     rawArticles = [
