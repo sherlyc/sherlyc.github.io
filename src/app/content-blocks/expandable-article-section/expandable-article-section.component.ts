@@ -12,7 +12,7 @@ import { IExpandableArticleSection } from '../../../../common/__types__/IExpanda
 export class ExpandableArticleSectionComponent
   implements IContentBlockComponent {
   @Input() input!: IExpandableArticleSection;
-  showHiddenItems: boolean = false;
+  showHiddenItems = false;
 
   constructor(private analyticsService: AnalyticsService) {}
 
