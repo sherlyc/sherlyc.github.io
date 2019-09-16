@@ -12,6 +12,7 @@ import { IExpandableArticleSection } from '../../../../common/__types__/IExpanda
 export class ExpandableArticleSectionComponent
   implements IContentBlockComponent {
   @Input() input!: IExpandableArticleSection;
+  showHiddenItems: boolean = false;
 
   constructor(private analyticsService: AnalyticsService) {}
 
@@ -20,5 +21,9 @@ export class ExpandableArticleSectionComponent
       type: AnalyticsEventsType.MORE_BUTTON_CLICKED,
       url: this.input.linkUrl!
     });
+  }
+
+  toggleHiddenItems() {
+    this.showHiddenItems = !this.showHiddenItems;
   }
 }

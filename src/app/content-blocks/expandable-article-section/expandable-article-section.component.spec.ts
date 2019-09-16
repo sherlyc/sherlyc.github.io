@@ -19,33 +19,47 @@ describe('expandable article section', () => {
   let analyticsService: ServiceMock<AnalyticsService>;
 
   // @ts-ignore
-  const input = {
-    type: 'FakeContentBlock'
+  const visibleBlock = {
+    type: 'FakeVisibleBlock'
   } as IContentBlock;
 
   @Component({
-    selector: 'app-fake-content-block',
+    selector: 'app-fake-visible-block',
     template: ''
   })
-  class FakeContentBlockComponent {}
+  class FakeVisibleBlockComponent {}
+
+  // @ts-ignore
+  const hiddenBlock = {
+    type: 'FakeHiddenBlock'
+  } as IContentBlock;
+
+  @Component({
+    selector: 'app-fake-hidden-block',
+    template: ''
+  })
+  class FakeHiddenBlockComponent {}
 
   const sectionArticleData: IExpandableArticleSection = {
     type: ContentBlockType.ExpandableArticleSection,
     displayName: `National`,
     displayNameColor: 'scarlet',
-    totalVisibleArticles: 5,
-    items: [],
+    visibleItems: [],
+    hiddenItems: [],
     linkUrl: '/national'
   };
 
   beforeEach(async () => {
     // @ts-ignore
-    registry['FakeContentBlockComponent'] = FakeContentBlockComponent;
+    registry['FakeVisibleBlockComponent'] = FakeVisibleBlockComponent;
+    // @ts-ignore
+    registry['FakeHiddenBlockComponent'] = FakeHiddenBlockComponent;
     await TestBed.configureTestingModule({
       declarations: [
         OpenExternalLinkDirective,
         ExpandableArticleSectionComponent,
-        FakeContentBlockComponent,
+        FakeVisibleBlockComponent,
+        FakeHiddenBlockComponent,
         ContentBlockDirective
       ],
       providers: [
@@ -62,7 +76,7 @@ describe('expandable article section', () => {
     })
       .overrideModule(BrowserDynamicTestingModule, {
         set: {
-          entryComponents: [FakeContentBlockComponent]
+          entryComponents: [FakeVisibleBlockComponent, FakeHiddenBlockComponent]
         }
       })
       .compileComponents();
@@ -110,5 +124,56 @@ describe('expandable article section', () => {
       type: AnalyticsEventsType.MORE_BUTTON_CLICKED,
       url: '/national'
     });
+  });
+
+  it('should only display visibleItems', () => {
+    component.input = {
+      ...sectionArticleData,
+      visibleItems: [visibleBlock, visibleBlock],
+      hiddenItems: [hiddenBlock, hiddenBlock]
+    };
+    fixture.detectChanges();
+
+    const visibleBlocks = fixture.debugElement.queryAll(
+      By.css('app-fake-visible-block')
+    );
+
+    expect(visibleBlocks.length).toEqual(2);
+  });
+
+  it('should hide hiddenItems initially', () => {
+    component.input = {
+      ...sectionArticleData,
+      visibleItems: [visibleBlock, visibleBlock],
+      hiddenItems: [hiddenBlock, hiddenBlock]
+    };
+    fixture.detectChanges();
+
+    const hiddenBlocks = fixture.debugElement.queryAll(
+      By.css('app-fake-hidden-block')
+    );
+
+    expect(hiddenBlocks.length).toEqual(0);
+  });
+
+  it('should show hiddenItems when clicking More button', () => {
+    component.input = {
+      ...sectionArticleData,
+      visibleItems: [visibleBlock, visibleBlock],
+      hiddenItems: [hiddenBlock, hiddenBlock]
+    };
+    fixture.detectChanges();
+
+    const hiddenBlocksBeforeClick = fixture.debugElement.queryAll(
+      By.css('app-fake-hidden-block')
+    );
+    expect(hiddenBlocksBeforeClick.length).toEqual(0);
+    fixture.debugElement.query(By.css('.more-button')).nativeElement.click();
+    fixture.detectChanges();
+
+    const hiddenBlocksAfterClick = fixture.debugElement.queryAll(
+      By.css('app-fake-hidden-block')
+    );
+    expect(hiddenBlocksAfterClick.length).toEqual(2);
   });
 });

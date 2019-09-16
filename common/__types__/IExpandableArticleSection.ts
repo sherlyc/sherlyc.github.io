@@ -6,6 +6,6 @@ export interface IExpandableArticleSection {
   displayName: string;
   displayNameColor: string;
   linkUrl?: string;
-  items: IContentBlock[];
-  totalVisibleArticles: number;
+  visibleItems: IContentBlock[];
+  hiddenItems: IContentBlock[];
 }
