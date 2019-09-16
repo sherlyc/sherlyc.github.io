@@ -40,26 +40,23 @@ export default async function(
           name: Experiments.TopStoriesVisualExperiment,
           variants: {
             control: {
-              type: HandlerInputType.DefconArticleList,
+              type: HandlerInputType.TopStoriesArticleList,
               sourceId: Strap.TopStories,
               strapName,
-              layoutType: LayoutType.DEFCON,
               totalArticles: totalBasicArticlesUnit,
               variant: 'control'
             },
             groupOne: {
-              type: HandlerInputType.DefconArticleList,
+              type: HandlerInputType.TopStoriesArticleList,
               sourceId: Strap.TopStories,
               strapName,
-              layoutType: LayoutType.DEFCON,
               totalArticles: totalBasicArticlesUnit,
               variant: 'groupOne'
             },
             groupTwo: {
-              type: HandlerInputType.DefconArticleList,
+              type: HandlerInputType.TopStoriesArticleList,
               sourceId: Strap.TopStories,
               strapName,
-              layoutType: LayoutType.DEFCON,
               totalArticles: totalBasicArticlesUnit,
               variant: 'groupTwo'
             }

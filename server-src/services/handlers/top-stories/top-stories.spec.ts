@@ -85,26 +85,23 @@ describe('TopStoriesHandler', () => {
       name: 'TopStoriesVisualExperiment',
       variants: {
         control: {
-          type: HandlerInputType.DefconArticleList,
+          type: HandlerInputType.TopStoriesArticleList,
           sourceId: Strap.TopStories,
           strapName,
-          layoutType: LayoutType.DEFCON,
           totalArticles: handlerInput.totalBasicArticlesUnit,
           variant: 'control'
         },
         groupOne: {
-          type: HandlerInputType.DefconArticleList,
+          type: HandlerInputType.TopStoriesArticleList,
           sourceId: Strap.TopStories,
           strapName,
-          layoutType: LayoutType.DEFCON,
           totalArticles: handlerInput.totalBasicArticlesUnit,
           variant: 'groupOne'
         },
         groupTwo: {
-          type: HandlerInputType.DefconArticleList,
+          type: HandlerInputType.TopStoriesArticleList,
           sourceId: Strap.TopStories,
           strapName,
-          layoutType: LayoutType.DEFCON,
           totalArticles: handlerInput.totalBasicArticlesUnit,
           variant: 'groupTwo'
         }

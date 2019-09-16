@@ -12,11 +12,12 @@ import { Strap } from '../../strap';
 import { IBigImageArticleUnit } from '../../../../common/__types__/IBigImageArticleUnit';
 import { IHalfWidthImageArticleUnit } from '../../../../common/__types__/IHalfWidthImageArticleUnit';
 import { IGrayDefconArticleUnit } from '../../../../common/__types__/IGrayDefconArticleUnit';
+import * as layoutRetriever from '../../../services/adapters/layout-retriever';
 import { LayoutType } from '../../adapters/__types__/LayoutType';
 
 jest.mock('../../adapters/strap-list-service');
 
-describe('DefconArticleList', () => {
+describe('Top Stories Article List', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
   const strapName = 'Latest';
 
@@ -135,11 +136,13 @@ describe('DefconArticleList', () => {
 
   describe('Control variant', () => {
     it('should return first article as defcon and others as basic articles when input is TopStories Strap', async () => {
+      jest
+        .spyOn(layoutRetriever, 'layoutRetriever')
+        .mockResolvedValue(LayoutType.DEFCON);
       const handlerInput: ITopStoriesArticleListHandlerInput = {
-        type: HandlerInputType.DefconArticleList,
+        type: HandlerInputType.TopStoriesArticleList,
         sourceId: Strap.TopStories,
         strapName,
-        layoutType: LayoutType.DEFCON,
         totalArticles: 2,
         variant: 'control'
       };
@@ -164,12 +167,14 @@ describe('DefconArticleList', () => {
     });
 
     it('should throw error when failing to retrieve articles', async () => {
+      jest
+        .spyOn(layoutRetriever, 'layoutRetriever')
+        .mockResolvedValue(LayoutType.DEFCON);
       const error = new Error('failed to retrieve');
       const handlerInput: ITopStoriesArticleListHandlerInput = {
-        type: HandlerInputType.DefconArticleList,
+        type: HandlerInputType.TopStoriesArticleList,
         sourceId: Strap.TopStories,
         strapName,
-        layoutType: LayoutType.DEFCON,
         totalArticles: 2,
         variant: 'control'
       };
@@ -182,11 +187,13 @@ describe('DefconArticleList', () => {
     });
 
     it('should return first article as defcon and others as basic articles when input is TopStories Strap', async () => {
+      jest
+        .spyOn(layoutRetriever, 'layoutRetriever')
+        .mockResolvedValue(LayoutType.DEFCON);
       const handlerInput: ITopStoriesArticleListHandlerInput = {
-        type: HandlerInputType.DefconArticleList,
+        type: HandlerInputType.TopStoriesArticleList,
         sourceId: Strap.TopStories,
         strapName,
-        layoutType: LayoutType.DEFCON,
         totalArticles: 2,
         variant: 'control'
       };
@@ -213,11 +220,13 @@ describe('DefconArticleList', () => {
 
   describe('Group one variant', () => {
     it('should return first article as gray defcon and others as big image article', async () => {
+      jest
+        .spyOn(layoutRetriever, 'layoutRetriever')
+        .mockResolvedValue(LayoutType.DEFCON);
       const handlerInput: ITopStoriesArticleListHandlerInput = {
-        type: HandlerInputType.DefconArticleList,
+        type: HandlerInputType.TopStoriesArticleList,
         sourceId: Strap.TopStories,
         strapName,
-        layoutType: LayoutType.DEFCON,
         totalArticles: 2,
         variant: 'groupOne'
       };
@@ -244,11 +253,13 @@ describe('DefconArticleList', () => {
 
   describe('Group two variant', () => {
     it('should return gray defcon, two big image article and 3 half width image article units', async () => {
+      jest
+        .spyOn(layoutRetriever, 'layoutRetriever')
+        .mockResolvedValue(LayoutType.DEFCON);
       const handlerInput: ITopStoriesArticleListHandlerInput = {
-        type: HandlerInputType.DefconArticleList,
+        type: HandlerInputType.TopStoriesArticleList,
         sourceId: Strap.TopStories,
         strapName,
-        layoutType: LayoutType.DEFCON,
         totalArticles: 6,
         variant: 'groupTwo'
       };
