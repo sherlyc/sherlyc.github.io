@@ -41,24 +41,18 @@ export default async function(
           variants: {
             control: {
               type: HandlerInputType.TopStoriesArticleList,
-              sourceId: Strap.TopStories,
               strapName,
-              totalArticles: totalBasicArticlesUnit,
-              variant: 'control'
+              totalArticles: totalBasicArticlesUnit
             },
             groupOne: {
               type: HandlerInputType.TopStoriesArticleList,
-              sourceId: Strap.TopStories,
               strapName,
-              totalArticles: totalBasicArticlesUnit,
-              variant: 'groupOne'
+              totalArticles: totalBasicArticlesUnit
             },
             groupTwo: {
               type: HandlerInputType.TopStoriesArticleList,
-              sourceId: Strap.TopStories,
               strapName,
-              totalArticles: totalBasicArticlesUnit,
-              variant: 'groupTwo'
+              totalArticles: totalBasicArticlesUnit
             }
           }
         },

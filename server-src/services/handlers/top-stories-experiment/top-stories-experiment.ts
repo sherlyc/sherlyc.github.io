@@ -2,11 +2,8 @@ import { handlerRunnerFunction } from '../runner';
 import { ITopStoriesHandlerInput } from '../__types__/ITopStoriesHandlerInput';
 import { IParams } from '../../__types__/IParams';
 import { IContentBlock } from '../../../../common/__types__/IContentBlock';
-import { getRawArticles } from '../../adapters/article-retriever/article-retriever';
-import { LayoutType } from '../../adapters/__types__/LayoutType';
 import { HandlerInputType } from '../__types__/HandlerInputType';
 import { Experiments } from '../../../../common/Experiments';
-import { Strap } from '../../strap';
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -25,24 +22,18 @@ export default async function(
       variants: {
         control: {
           type: HandlerInputType.TopStoriesArticleList,
-          sourceId: Strap.TopStories,
           strapName,
-          totalArticles: totalBasicArticlesUnit,
-          variant: 'control'
+          totalArticles: totalBasicArticlesUnit
         },
         groupOne: {
           type: HandlerInputType.TopStoriesArticleList,
-          sourceId: Strap.TopStories,
           strapName,
-          totalArticles: totalBasicArticlesUnit,
-          variant: 'groupOne'
+          totalArticles: totalBasicArticlesUnit
         },
         groupTwo: {
           type: HandlerInputType.TopStoriesArticleList,
-          sourceId: Strap.TopStories,
           strapName,
-          totalArticles: totalBasicArticlesUnit,
-          variant: 'groupTwo'
+          totalArticles: totalBasicArticlesUnit
         }
       }
     },

@@ -86,24 +86,18 @@ describe('TopStoriesHandler', () => {
       variants: {
         control: {
           type: HandlerInputType.TopStoriesArticleList,
-          sourceId: Strap.TopStories,
           strapName,
-          totalArticles: handlerInput.totalBasicArticlesUnit,
-          variant: 'control'
+          totalArticles: handlerInput.totalBasicArticlesUnit
         },
         groupOne: {
           type: HandlerInputType.TopStoriesArticleList,
-          sourceId: Strap.TopStories,
           strapName,
-          totalArticles: handlerInput.totalBasicArticlesUnit,
-          variant: 'groupOne'
+          totalArticles: handlerInput.totalBasicArticlesUnit
         },
         groupTwo: {
           type: HandlerInputType.TopStoriesArticleList,
-          sourceId: Strap.TopStories,
           strapName,
-          totalArticles: handlerInput.totalBasicArticlesUnit,
-          variant: 'groupTwo'
+          totalArticles: handlerInput.totalBasicArticlesUnit
         }
       }
     };

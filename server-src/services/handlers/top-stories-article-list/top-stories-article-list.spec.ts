@@ -7,10 +7,6 @@ import { IParams } from '../../__types__/IParams';
 import defconArticleList from './top-stories-article-list';
 import { IDefconArticleUnit } from '../../../../common/__types__/IDefconArticleUnit';
 import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
-import { Strap } from '../../strap';
-import { IBigImageArticleUnit } from '../../../../common/__types__/IBigImageArticleUnit';
-import { IHalfWidthImageArticleUnit } from '../../../../common/__types__/IHalfWidthImageArticleUnit';
-import { IGrayDefconArticleUnit } from '../../../../common/__types__/IGrayDefconArticleUnit';
 import * as layoutRetriever from '../../../services/adapters/layout-retriever';
 import { LayoutType } from '../../adapters/__types__/LayoutType';
 import { getRawArticles } from '../../adapters/article-retriever/article-retriever';
@@ -90,10 +86,8 @@ describe('Top Stories Article List', () => {
 
     const handlerInput: ITopStoriesArticleListHandlerInput = {
       type: HandlerInputType.TopStoriesArticleList,
-      sourceId: Strap.TopStories,
       strapName,
-      totalArticles: 2,
-      variant: 'control'
+      totalArticles: 2
     };
     const rawArticles = [articleOne, articleTwo];
 
@@ -121,10 +115,8 @@ describe('Top Stories Article List', () => {
       .mockResolvedValue(LayoutType.DEFCON);
     const handlerInput: ITopStoriesArticleListHandlerInput = {
       type: HandlerInputType.TopStoriesArticleList,
-      sourceId: Strap.TopStories,
       strapName,
-      totalArticles: 2,
-      variant: 'control'
+      totalArticles: 2
     };
     const rawArticles = [articleOne, articleTwo];
 
@@ -153,10 +145,8 @@ describe('Top Stories Article List', () => {
     const error = new Error('failed to retrieve');
     const handlerInput: ITopStoriesArticleListHandlerInput = {
       type: HandlerInputType.TopStoriesArticleList,
-      sourceId: Strap.TopStories,
       strapName,
-      totalArticles: 2,
-      variant: 'control'
+      totalArticles: 2
     };
 
     (getRawArticles as jest.Mock).mockRejectedValue(error);
