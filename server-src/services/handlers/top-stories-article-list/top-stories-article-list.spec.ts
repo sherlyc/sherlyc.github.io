@@ -4,7 +4,7 @@ import { HandlerInputType } from '../__types__/HandlerInputType';
 import handlerRunner from '../runner';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 import { IParams } from '../../__types__/IParams';
-import defconArticleList from './defcon-article-list';
+import defconArticleList from './top-stories-article-list';
 import { IDefconArticleUnit } from '../../../../common/__types__/IDefconArticleUnit';
 import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
 import { getStrapArticles } from '../../adapters/strap-list-service';
