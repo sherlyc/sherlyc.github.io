@@ -35,12 +35,7 @@ export default async function(
   params: IParams
 ): Promise<IContentBlock[]> {
   const layout = await retrieveLayout(params);
-  let rawArticles = await getRawArticles(
-    sourceId,
-    totalArticles,
-    layout,
-    params
-  );
+  let rawArticles = await getRawArticles(sourceId, totalArticles, params);
 
   if (
     (sourceId === Strap.TopStories || sourceId === Section.Latest) &&

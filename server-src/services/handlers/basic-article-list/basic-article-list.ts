@@ -57,12 +57,7 @@ export default async function(
   params: IParams
 ): Promise<IContentBlock[]> {
   const totalArticles = totalBasicArticlesUnit + totalBasicArticleTitleUnit;
-  const rawArticles = await getRawArticles(
-    sourceId,
-    totalArticles,
-    layout,
-    params
-  );
+  const rawArticles = await getRawArticles(sourceId, totalArticles, params);
 
   return rawArticles.reduce(
     (final, article, index) => {

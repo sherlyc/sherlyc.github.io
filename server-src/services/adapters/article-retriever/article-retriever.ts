@@ -1,6 +1,5 @@
 import { Section } from '../../section';
 import { Strap } from '../../strap';
-import { LayoutType } from '../__types__/LayoutType';
 import { IParams } from '../../__types__/IParams';
 import { getSectionArticleList } from '../jsonfeed';
 import { getStrapArticles } from '../strap-list-service';
@@ -8,7 +7,6 @@ import { getStrapArticles } from '../strap-list-service';
 export const getRawArticles = async (
   sourceId: Section | Strap,
   totalArticles: number,
-  layout: LayoutType,
   params: IParams
 ) => {
   const sourceIsASection = Object.values(Section).includes(sourceId);
