@@ -7,15 +7,15 @@ import { IParams } from '../../__types__/IParams';
 import defconArticleList from './top-stories-article-list';
 import { IDefconArticleUnit } from '../../../../common/__types__/IDefconArticleUnit';
 import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
-import { getStrapArticles } from '../../adapters/strap-list-service';
 import { Strap } from '../../strap';
 import { IBigImageArticleUnit } from '../../../../common/__types__/IBigImageArticleUnit';
 import { IHalfWidthImageArticleUnit } from '../../../../common/__types__/IHalfWidthImageArticleUnit';
 import { IGrayDefconArticleUnit } from '../../../../common/__types__/IGrayDefconArticleUnit';
 import * as layoutRetriever from '../../../services/adapters/layout-retriever';
 import { LayoutType } from '../../adapters/__types__/LayoutType';
+import { getRawArticles } from '../../adapters/article-retriever/article-retriever';
 
-jest.mock('../../adapters/strap-list-service');
+jest.mock('../../adapters/article-retriever/article-retriever');
 
 describe('Top Stories Article List', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
@@ -54,6 +54,19 @@ describe('Top Stories Article List', () => {
     headlineFlags: []
   };
 
+  const articleOneAsBasicArticle: IBasicArticleUnit = {
+    type: ContentBlockType.BasicArticleUnit,
+    id: '1',
+    strapName: 'Latest',
+    indexHeadline: 'Defcon Headline',
+    introText: 'Defcon Intro',
+    imageSrc: 'article.jpg',
+    imageSrcSet: 'article.jpg 1w',
+    linkUrl: '/link1',
+    lastPublishedTime: 1,
+    headlineFlags: []
+  };
+
   const articleOneAsDefconArticle: IDefconArticleUnit = {
     type: ContentBlockType.DefconArticleUnit,
     strapName,
@@ -87,6 +100,18 @@ describe('Top Stories Article List', () => {
     linkUrl: '/link1',
     imageSrc: 'article.jpg',
     imageSrcSet: 'article.jpg 1w',
+    lastPublishedTime: 1,
+    headlineFlags: []
+  };
+
+  const articleTwoAsDefconArticle: IDefconArticleUnit = {
+    type: ContentBlockType.DefconArticleUnit,
+    id: '2',
+    strapName: 'Latest',
+    indexHeadline: 'An Article',
+    introText: 'Article Text',
+    imageSrc: null,
+    linkUrl: '/link1',
     lastPublishedTime: 1,
     headlineFlags: []
   };
@@ -135,6 +160,38 @@ describe('Top Stories Article List', () => {
   });
 
   describe('Control variant', () => {
+    it('should swap first and second articles when layout is default', async () => {
+      jest
+        .spyOn(layoutRetriever, 'layoutRetriever')
+        .mockResolvedValue(LayoutType.DEFAULT);
+
+      const handlerInput: ITopStoriesArticleListHandlerInput = {
+        type: HandlerInputType.TopStoriesArticleList,
+        sourceId: Strap.TopStories,
+        strapName,
+        totalArticles: 2,
+        variant: 'control'
+      };
+      const rawArticles = [articleOne, articleTwo];
+
+      (getRawArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
+
+      const expectedContentBlocks = [
+        articleTwoAsDefconArticle,
+        basicAdUnit,
+        articleOneAsBasicArticle,
+        basicAdUnit
+      ];
+
+      const contentBlocks = await defconArticleList(
+        handlerRunner,
+        handlerInput,
+        params
+      );
+
+      expect(contentBlocks).toEqual(expectedContentBlocks);
+    });
+
     it('should return first article as defcon and others as basic articles when input is TopStories Strap', async () => {
       jest
         .spyOn(layoutRetriever, 'layoutRetriever')
@@ -148,7 +205,7 @@ describe('Top Stories Article List', () => {
       };
       const rawArticles = [articleOne, articleTwo];
 
-      (getStrapArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
+      (getRawArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
 
       const expectedContentBlocks = [
         articleOneAsDefconArticle,
@@ -179,7 +236,7 @@ describe('Top Stories Article List', () => {
         variant: 'control'
       };
 
-      (getStrapArticles as jest.Mock).mockRejectedValue(error);
+      (getRawArticles as jest.Mock).mockRejectedValue(error);
 
       await expect(
         defconArticleList(handlerRunner, handlerInput, params)
@@ -199,7 +256,7 @@ describe('Top Stories Article List', () => {
       };
       const rawArticles = [articleOne, articleTwo];
 
-      (getStrapArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
+      (getRawArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
 
       const expectedContentBlocks = [
         articleOneAsDefconArticle,
@@ -232,7 +289,7 @@ describe('Top Stories Article List', () => {
       };
       const rawArticles = [articleOne, articleTwo];
 
-      (getStrapArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
+      (getRawArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
 
       const expectedContentBlocks = [
         articleOneAsGrayDefconArticle,
@@ -272,7 +329,7 @@ describe('Top Stories Article List', () => {
         articleOne
       ];
 
-      (getStrapArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
+      (getRawArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
 
       const expectedContentBlocks = [
         articleOneAsGrayDefconArticle,

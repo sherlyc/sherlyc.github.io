@@ -9,6 +9,9 @@ import { getRawArticles } from '../../adapters/article-retriever/article-retriev
 import { LayoutType } from '../../adapters/__types__/LayoutType';
 import { layoutRetriever } from '../../adapters/layout-retriever';
 import logger from '../../utils/logger';
+import { Strap } from '../../strap';
+import { Section } from '../../section';
+import { raw } from 'express';
 
 const retrieveLayout = async (params: IParams): Promise<LayoutType> => {
   try {
@@ -33,12 +36,23 @@ export default async function(
   params: IParams
 ): Promise<IContentBlock[]> {
   const layout = await retrieveLayout(params);
-  const rawArticles = await getRawArticles(
+  let rawArticles = await getRawArticles(
     sourceId,
     totalArticles,
     layout,
     params
   );
+
+  if (
+    (sourceId === Strap.TopStories || sourceId === Section.Latest) &&
+    layout === LayoutType.DEFAULT
+  ) {
+    rawArticles = [
+      rawArticles[1],
+      rawArticles[0],
+      ...rawArticles.slice(2)
+    ].filter(Boolean);
+  }
 
   if (variant === 'groupOne') {
     return groupOneArticles(rawArticles, strapName);

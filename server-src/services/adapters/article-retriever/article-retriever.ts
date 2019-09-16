@@ -12,7 +12,6 @@ export const getRawArticles = async (
   params: IParams
 ) => {
   const sourceIsASection = Object.values(Section).includes(sourceId);
-  let rawArticles;
 
   if (sourceIsASection) {
     return (await getSectionArticleList(
@@ -20,16 +19,6 @@ export const getRawArticles = async (
       totalArticles,
       params
     )).slice(0, totalArticles);
-  } else {
-    rawArticles = await getStrapArticles(
-      params,
-      sourceId as Strap,
-      totalArticles
-    );
   }
-
-  return (sourceId === Strap.TopStories || sourceId === Section.Latest) &&
-    layout === LayoutType.DEFAULT
-    ? [rawArticles[1], rawArticles[0], ...rawArticles.slice(2)].filter(Boolean)
-    : rawArticles;
+  return await getStrapArticles(params, sourceId as Strap, totalArticles);
 };
