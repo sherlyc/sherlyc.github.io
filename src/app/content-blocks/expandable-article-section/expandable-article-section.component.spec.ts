@@ -176,4 +176,25 @@ describe('expandable article section', () => {
     );
     expect(hiddenBlocksAfterClick.length).toEqual(2);
   });
+
+  it('should hide hiddenItems when clicking Less button', () => {
+    component.input = {
+      ...sectionArticleData,
+      hiddenItems: [hiddenBlock, hiddenBlock]
+    };
+    component.showHiddenItems = true;
+    fixture.detectChanges();
+
+    const hiddenBlocksBeforeClick = fixture.debugElement.queryAll(
+      By.css('app-fake-hidden-block')
+    );
+    expect(hiddenBlocksBeforeClick.length).toEqual(2);
+    fixture.debugElement.query(By.css('.more-button')).nativeElement.click();
+    fixture.detectChanges();
+
+    const hiddenBlocksAfterClick = fixture.debugElement.queryAll(
+      By.css('app-fake-hidden-block')
+    );
+    expect(hiddenBlocksAfterClick.length).toEqual(0);
+  });
 });
