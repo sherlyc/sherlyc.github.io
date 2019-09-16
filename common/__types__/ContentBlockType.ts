@@ -12,6 +12,7 @@ export enum ContentBlockType {
   ColumnContainer = 'ColumnContainer',
   Footer = 'Footer',
   BasicArticleSection = 'BasicArticleSection',
+  ExpandableArticleSection = 'ExpandableArticleSection',
   Header = 'Header',
   BreakingNews = 'BreakingNews',
   ExternalContentUnit = 'ExternalContentUnit',

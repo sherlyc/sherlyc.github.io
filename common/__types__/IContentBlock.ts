@@ -17,6 +17,7 @@ import { IFeatureContainer } from './IFeatureContainer';
 import { IGrayDefconArticleUnit } from './IGrayDefconArticleUnit';
 import { IBigImageArticleUnit } from './IBigImageArticleUnit';
 import { IHalfWidthImageArticleUnit } from './IHalfWidthImageArticleUnit';
+import { IExpandableArticleSection } from './IExpandableArticleSection';
 
 export type IContentBlock =
   | IDefconArticleUnit
@@ -26,6 +27,7 @@ export type IContentBlock =
   | IBigImageArticleUnit
   | IHalfWidthImageArticleUnit
   | IBasicArticleSection
+  | IExpandableArticleSection
   | IImageLinkUnit
   | IBasicAdUnit
   | IErrorBlock
