@@ -1,5 +1,4 @@
 import { handlerRunnerFunction } from '../runner';
-import { ITopStoriesArticleListGroupOneHandlerInput } from '../__types__/ITopStoriesArticleListGroupOne';
 import { IParams } from '../../__types__/IParams';
 import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 import { getRawArticles } from '../../adapters/article-retriever/article-retriever';
