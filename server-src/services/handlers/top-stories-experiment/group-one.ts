@@ -66,34 +66,29 @@ export default async function(
   params: IParams
 ): Promise<IContentBlock[]> {
   const layout = await retrieveLayout(params);
-  const rawArticles = await getRawArticles(
+  let rawArticles = await getRawArticles(
     Strap.TopStories,
     totalArticles,
     params
   );
 
-  if (layout === LayoutType.DEFCON) {
-    return rawArticles.reduce(
-      (final, article, index) => {
-        if (index === 0) {
-          return [
-            ...final,
-            grayDefconArticleUnit(article, strapName),
-            basicAdUnit(strapName)
-          ];
-        }
-        return [
-          ...final,
-          bigImageArticleUnit(article, strapName),
-          basicAdUnit(strapName)
-        ];
-      },
-      [basicAdUnit(strapName)] as IContentBlock[]
-    );
+  if (layout === LayoutType.DEFAULT) {
+    rawArticles = [
+      rawArticles[1],
+      rawArticles[0],
+      ...rawArticles.slice(2)
+    ].filter(Boolean);
   }
 
   return rawArticles.reduce(
-    (final, article) => {
+    (final, article, index) => {
+      if (index === 0 && layout === LayoutType.DEFCON) {
+        return [
+          ...final,
+          grayDefconArticleUnit(article, strapName),
+          basicAdUnit(strapName)
+        ];
+      }
       return [
         ...final,
         bigImageArticleUnit(article, strapName),
