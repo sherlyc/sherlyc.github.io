@@ -3,6 +3,7 @@
  * This implementation adds BOOMR_API_key not present in documentation but needed for it to work
  */
 (function() {
+  window.spade = 1;
   // Boomerang Loader Snippet version 12
   if (window.BOOMR && (window.BOOMR.version || window.BOOMR.snippetExecuted)) {
     return;
