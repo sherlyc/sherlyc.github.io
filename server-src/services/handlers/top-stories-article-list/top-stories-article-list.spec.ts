@@ -4,7 +4,7 @@ import { HandlerInputType } from '../__types__/HandlerInputType';
 import handlerRunner from '../runner';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 import { IParams } from '../../__types__/IParams';
-import defconArticleList from './top-stories-article-list';
+import topStoriesListHandler from './top-stories-article-list';
 import { IDefconArticleUnit } from '../../../../common/__types__/IDefconArticleUnit';
 import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
 import * as layoutRetriever from '../../../services/adapters/layout-retriever';
@@ -100,7 +100,7 @@ describe('Top Stories Article List', () => {
       basicAdUnit
     ];
 
-    const contentBlocks = await defconArticleList(
+    const contentBlocks = await topStoriesListHandler(
       handlerRunner,
       handlerInput,
       params
@@ -113,6 +113,7 @@ describe('Top Stories Article List', () => {
     jest
       .spyOn(layoutRetriever, 'layoutRetriever')
       .mockResolvedValue(LayoutType.DEFCON);
+
     const handlerInput: ITopStoriesArticleListHandlerInput = {
       type: HandlerInputType.TopStoriesArticleList,
       strapName,
@@ -129,7 +130,7 @@ describe('Top Stories Article List', () => {
       basicAdUnit
     ];
 
-    const contentBlocks = await defconArticleList(
+    const contentBlocks = await topStoriesListHandler(
       handlerRunner,
       handlerInput,
       params
@@ -152,7 +153,7 @@ describe('Top Stories Article List', () => {
     (getRawArticles as jest.Mock).mockRejectedValue(error);
 
     await expect(
-      defconArticleList(handlerRunner, handlerInput, params)
+      topStoriesListHandler(handlerRunner, handlerInput, params)
     ).rejects.toEqual(error);
   });
 });
