@@ -36,10 +36,27 @@ a {
   font-size: 14px;
   letter-spacing: 2px;
 
+  .arrow {
+    fill: #4fb7ec;
+  }
+
   &:hover {
     background-color: #4fb7ec;
     color: #fff;
+    .arrow {
+      fill: #ffffff;
+    }
   }
+}
+
+.dropdown {
+  width: 16px;
+  height: 11px;
+  transition: all 0.5s ease;
+}
+
+.arrow-up {
+  transform: rotate(180deg);
 }
 
 //Colours for section straps

@@ -19,6 +19,7 @@ import { FeatureContainerComponent } from './feature-container/feature-container
 import { GrayDefconArticleUnitComponent } from './gray-defcon-article-unit/gray-defcon-article-unit.component';
 import { BigImageArticleUnitComponent } from './big-image-article-unit/big-image-article-unit.component';
 import { HalfWidthImageArticleUnitComponent } from './half-width-image-article-unit/half-width-image-article-unit.component';
+import { ExpandableArticleSectionComponent } from './expandable-article-section/expandable-article-section.component';
 
 export const contentBlockComponents = [
   GrayDefconArticleUnitComponent,
@@ -27,6 +28,7 @@ export const contentBlockComponents = [
   BigImageArticleUnitComponent,
   HalfWidthImageArticleUnitComponent,
   BasicArticleSectionComponent,
+  ExpandableArticleSectionComponent,
   BasicArticleTitleUnitComponent,
   ImageLinkUnitComponent,
   BasicAdUnitComponent,
@@ -51,6 +53,7 @@ const registry: {
   BigImageArticleUnitComponent,
   HalfWidthImageArticleUnitComponent,
   BasicArticleSectionComponent,
+  ExpandableArticleSectionComponent,
   BasicArticleTitleUnitComponent,
   ImageLinkUnitComponent,
   BasicAdUnitComponent,

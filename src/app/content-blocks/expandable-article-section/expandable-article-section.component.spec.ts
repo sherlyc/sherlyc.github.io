@@ -111,7 +111,7 @@ describe('expandable article section', () => {
     expect(
       fixture.debugElement.query(By.css('.more-button')).nativeElement
         .textContent
-    ).toBe('More National');
+    ).toContain('More National');
   });
 
   it('should send right analytics when button `More National` is clicked', () => {
