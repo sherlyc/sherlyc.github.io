@@ -40,25 +40,19 @@ export default async function(
           name: Experiments.TopStoriesVisualExperiment,
           variants: {
             control: {
-              type: HandlerInputType.DefconArticleList,
-              sourceId: Strap.TopStories,
+              type: HandlerInputType.TopStoriesArticleList,
               strapName,
-              totalArticles: totalBasicArticlesUnit,
-              variant: 'control'
+              totalArticles: totalBasicArticlesUnit
             },
             groupOne: {
-              type: HandlerInputType.DefconArticleList,
-              sourceId: Strap.TopStories,
+              type: HandlerInputType.TopStoriesArticleList,
               strapName,
-              totalArticles: totalBasicArticlesUnit,
-              variant: 'groupOne'
+              totalArticles: totalBasicArticlesUnit
             },
             groupTwo: {
-              type: HandlerInputType.DefconArticleList,
-              sourceId: Strap.TopStories,
+              type: HandlerInputType.TopStoriesArticleList,
               strapName,
-              totalArticles: totalBasicArticlesUnit,
-              variant: 'groupTwo'
+              totalArticles: totalBasicArticlesUnit
             }
           }
         },
@@ -76,8 +70,7 @@ export default async function(
               strapName,
               layout,
               totalBasicArticlesUnit,
-              totalBasicArticleTitleUnit,
-              variant: 'control'
+              totalBasicArticleTitleUnit
             },
             groupOne: {
               type: HandlerInputType.ArticleList,
@@ -85,8 +78,7 @@ export default async function(
               strapName,
               layout,
               totalBasicArticlesUnit,
-              totalBasicArticleTitleUnit,
-              variant: 'groupOne'
+              totalBasicArticleTitleUnit
             },
             groupTwo: {
               type: HandlerInputType.ArticleList,
@@ -94,8 +86,7 @@ export default async function(
               strapName,
               layout,
               totalBasicArticlesUnit,
-              totalBasicArticleTitleUnit,
-              variant: 'groupTwo'
+              totalBasicArticleTitleUnit
             }
           }
         },
