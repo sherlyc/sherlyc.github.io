@@ -94,6 +94,7 @@ describe('Top Stories Article List', () => {
     (getRawArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
 
     const expectedContentBlocks = [
+      basicAdUnit,
       AsBasicArticle(articleTwo),
       basicAdUnit,
       AsBasicArticle(articleOne),
@@ -123,6 +124,7 @@ describe('Top Stories Article List', () => {
     (getRawArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
 
     const expectedContentBlocks = [
+      basicAdUnit,
       AsDefconArticle(articleOne),
       basicAdUnit,
       AsBasicArticle(articleTwo),

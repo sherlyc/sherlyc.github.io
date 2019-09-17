@@ -49,26 +49,6 @@ const basicArticleUnit = (
   headlineFlags: article.headlineFlags
 });
 
-const mapToArticleBlocks = (articles: IRawArticle[], strapName: string, layoutType: LayoutType) => {
-  return articles.reduce(
-    (final, article, index) => {
-      if (index === 0 && layoutType === LayoutType.DEFCON) {
-        return [
-          ...final,
-          defconArticleUnit(article, strapName),
-          basicAdUnit(strapName)
-        ];
-      }
-      return [
-        ...final,
-        basicArticleUnit(article, strapName),
-        basicAdUnit(strapName)
-      ];
-    },
-    [] as IContentBlock[]
-  );
-};
-
 const retrieveLayout = async (params: IParams): Promise<LayoutType> => {
   try {
     return await layoutRetriever(params);
@@ -83,14 +63,15 @@ const retrieveLayout = async (params: IParams): Promise<LayoutType> => {
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  {
-    strapName,
-    totalArticles = 0,
-  }: ITopStoriesArticleListHandlerInput,
+  { strapName, totalArticles = 0 }: ITopStoriesArticleListHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   const layout = await retrieveLayout(params);
-  let rawArticles = await getRawArticles(Strap.TopStories, totalArticles, params);
+  let rawArticles = await getRawArticles(
+    Strap.TopStories,
+    totalArticles,
+    params
+  );
 
   if (layout === LayoutType.DEFAULT) {
     rawArticles = [
@@ -100,5 +81,21 @@ export default async function(
     ].filter(Boolean);
   }
 
-  return mapToArticleBlocks(rawArticles, strapName, layout);
+  return rawArticles.reduce(
+    (final, article, index) => {
+      if (index === 0 && layout === LayoutType.DEFCON) {
+        return [
+          ...final,
+          defconArticleUnit(article, strapName),
+          basicAdUnit(strapName)
+        ];
+      }
+      return [
+        ...final,
+        basicArticleUnit(article, strapName),
+        basicAdUnit(strapName)
+      ];
+    },
+    [basicAdUnit(strapName)] as IContentBlock[]
+  );
 }
