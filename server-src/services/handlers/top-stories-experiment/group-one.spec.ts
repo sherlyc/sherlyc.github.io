@@ -88,7 +88,7 @@ describe('Experiment: GroupOne Variant', () => {
     headlineFlags: []
   };
 
-  it('should return big image articles when variant is groupOne for top stories', async () => {
+  it('should swap the first and second article and return them as big image articles when layout is default', async () => {
     jest
       .spyOn(layoutRetriever, 'layoutRetriever')
       .mockResolvedValue(LayoutType.DEFAULT);
@@ -114,9 +114,9 @@ describe('Experiment: GroupOne Variant', () => {
 
     const expectedContentBlocks = [
       basicAdUnit,
-      articleNumberOneAsBigImageArticle,
-      basicAdUnit,
       articleNumberTwoAsBigImageArticle,
+      basicAdUnit,
+      articleNumberOneAsBigImageArticle,
       basicAdUnit,
       articleNumberOneAsBigImageArticle,
       basicAdUnit
@@ -124,7 +124,7 @@ describe('Experiment: GroupOne Variant', () => {
     expect(contentBlocks).toEqual(expectedContentBlocks);
   });
 
-  it('should return first article as gray defcon and others as big image article', async () => {
+  it('should return first article as gray defcon and others as big image article when layout is defcon', async () => {
     jest
       .spyOn(layoutRetriever, 'layoutRetriever')
       .mockResolvedValue(LayoutType.DEFCON);
