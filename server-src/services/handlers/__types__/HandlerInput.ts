@@ -12,11 +12,13 @@ import { ITopStoriesArticleListHandlerInput } from './ITopStoriesArticleListHand
 import { IFeatureHandlerInput } from './IFeatureHandlerInput';
 import { IBannerHandlerInput } from './IBannerHandlerInput';
 import { ITopStoriesArticleListGroupOneHandlerInput } from './ITopStoriesArticleListGroupOne';
+import { ITopStoriesArticleListGroupTwoHandlerInput } from './ITopStoriesArticleListGroupTwo';
 
 export type HandlerInput =
   | ITopStoriesHandlerInput
   | ITopStoriesArticleListHandlerInput
   | ITopStoriesArticleListGroupOneHandlerInput
+  | ITopStoriesArticleListGroupTwoHandlerInput
   | IBasicArticleListHandlerInput
   | IBannerHandlerInput
   | IMidStripHandlerInput
