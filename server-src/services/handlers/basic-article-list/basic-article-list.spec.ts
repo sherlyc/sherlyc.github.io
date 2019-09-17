@@ -153,9 +153,7 @@ describe('BasicArticleListHandler', () => {
   it('should get a list of basic article units and ad units', async () => {
     const totalArticles = 1;
     const totalAdUnits = 2;
-    (getRawArticles as jest.Mock).mockResolvedValue([
-      articleNumberOne
-    ]);
+    (getRawArticles as jest.Mock).mockResolvedValue([articleNumberOne]);
 
     const handlerRunnerMock = jest.fn();
 
@@ -165,8 +163,7 @@ describe('BasicArticleListHandler', () => {
         type: HandlerInputType.ArticleList,
         strapName: 'business',
         sourceId: Section.Business,
-        totalBasicArticlesUnit: 1,
-        variant: 'control'
+        totalBasicArticlesUnit: 1
       },
       params
     );
@@ -194,8 +191,7 @@ describe('BasicArticleListHandler', () => {
         type: HandlerInputType.ArticleList,
         strapName: 'business',
         sourceId: Strap.Business,
-        totalBasicArticlesUnit: 2,
-        variant: 'control'
+        totalBasicArticlesUnit: 2
       },
       params
     );
@@ -228,8 +224,7 @@ describe('BasicArticleListHandler', () => {
         strapName: 'business',
         sourceId: Strap.Business,
         totalBasicArticlesUnit,
-        totalBasicArticleTitleUnit,
-        variant: 'control'
+        totalBasicArticleTitleUnit
       },
       params
     );
@@ -262,8 +257,7 @@ describe('BasicArticleListHandler', () => {
         strapName: 'business',
         totalBasicArticlesUnit: 1,
         totalBasicArticleTitleUnit: 1,
-        sourceId: Strap.EditorPicks,
-        variant: 'control'
+        sourceId: Strap.EditorPicks
       },
       params
     );
@@ -292,8 +286,7 @@ describe('BasicArticleListHandler', () => {
         strapName: 'business',
         totalBasicArticlesUnit: 2,
         totalBasicArticleTitleUnit: 2,
-        sourceId: Strap.EditorPicks,
-        variant: 'control'
+        sourceId: Strap.EditorPicks
       },
       params
     );
@@ -329,8 +322,7 @@ describe('BasicArticleListHandler', () => {
         strapName: 'business',
         sourceId: Strap.TopStories,
         layout: LayoutType.DEFAULT,
-        totalBasicArticlesUnit: 1,
-        variant: 'control'
+        totalBasicArticlesUnit: 1
       },
       params
     );
@@ -349,8 +341,7 @@ describe('BasicArticleListHandler', () => {
           type: HandlerInputType.ArticleList,
           strapName: 'business',
           sourceId: Strap.Business,
-          totalBasicArticlesUnit: 3,
-          variant: 'control'
+          totalBasicArticlesUnit: 3
         },
         params
       )
@@ -368,8 +359,7 @@ describe('BasicArticleListHandler', () => {
           type: HandlerInputType.ArticleList,
           strapName: '',
           sourceId: Strap.TopStories,
-          totalBasicArticlesUnit: 3,
-          variant: 'control'
+          totalBasicArticlesUnit: 3
         },
         params
       )

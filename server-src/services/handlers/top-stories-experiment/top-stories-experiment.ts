@@ -26,7 +26,7 @@ export default async function(
           totalArticles: totalBasicArticlesUnit
         },
         groupOne: {
-          type: HandlerInputType.TopStoriesArticleList,
+          type: HandlerInputType.TopStoriesArticleListGroupOne,
           strapName,
           totalArticles: totalBasicArticlesUnit
         },
