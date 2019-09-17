@@ -7,12 +7,7 @@ import { Experiments } from '../../../../common/Experiments';
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  {
-    strapName,
-    totalBasicArticlesUnit = 0,
-    totalBasicArticleTitleUnit = 0,
-    sourceId
-  }: ITopStoriesHandlerInput,
+  { strapName, totalArticles }: ITopStoriesHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   return handlerRunner(
@@ -23,17 +18,17 @@ export default async function(
         control: {
           type: HandlerInputType.TopStoriesArticleList,
           strapName,
-          totalArticles: totalBasicArticlesUnit
+          totalArticles
         },
         groupOne: {
           type: HandlerInputType.TopStoriesArticleListGroupOne,
           strapName,
-          totalArticles: totalBasicArticlesUnit
+          totalArticles
         },
         groupTwo: {
-          type: HandlerInputType.TopStoriesArticleList,
+          type: HandlerInputType.TopStoriesArticleListGroupTwo,
           strapName,
-          totalArticles: totalBasicArticlesUnit
+          totalArticles
         }
       }
     },
