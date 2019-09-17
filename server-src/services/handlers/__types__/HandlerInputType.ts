@@ -1,4 +1,5 @@
 export enum HandlerInputType {
+  TopStoriesArticleListGroupOne = 'TopStoriesArticleListGroupOne',
   TopStories = 'TopStories',
   TopStoriesArticleList = 'TopStoriesArticleList',
   ArticleList = 'ArticleList',
