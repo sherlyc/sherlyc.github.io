@@ -52,7 +52,6 @@ export default async function(
     totalBasicArticleTitleUnit = 0,
     strapName,
     layout = LayoutType.DEFAULT,
-    variant = 'control'
   }: IBasicArticleListHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {

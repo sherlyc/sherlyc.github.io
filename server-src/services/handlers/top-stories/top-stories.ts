@@ -70,8 +70,7 @@ export default async function(
               strapName,
               layout,
               totalBasicArticlesUnit,
-              totalBasicArticleTitleUnit,
-              variant: 'control'
+              totalBasicArticleTitleUnit
             },
             groupOne: {
               type: HandlerInputType.ArticleList,
@@ -79,8 +78,7 @@ export default async function(
               strapName,
               layout,
               totalBasicArticlesUnit,
-              totalBasicArticleTitleUnit,
-              variant: 'groupOne'
+              totalBasicArticleTitleUnit
             },
             groupTwo: {
               type: HandlerInputType.ArticleList,
@@ -88,8 +86,7 @@ export default async function(
               strapName,
               layout,
               totalBasicArticlesUnit,
-              totalBasicArticleTitleUnit,
-              variant: 'groupTwo'
+              totalBasicArticleTitleUnit
             }
           }
         },

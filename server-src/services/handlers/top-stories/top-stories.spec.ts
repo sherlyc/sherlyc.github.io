@@ -36,8 +36,7 @@ describe('TopStoriesHandler', () => {
             strapName,
             layout: layoutType,
             totalBasicArticlesUnit: handlerInput.totalBasicArticlesUnit,
-            totalBasicArticleTitleUnit: handlerInput.totalBasicArticleTitleUnit,
-            variant: 'control'
+            totalBasicArticleTitleUnit: handlerInput.totalBasicArticleTitleUnit
           },
           groupOne: {
             type: HandlerInputType.ArticleList,
@@ -45,8 +44,7 @@ describe('TopStoriesHandler', () => {
             strapName,
             layout: layoutType,
             totalBasicArticlesUnit: handlerInput.totalBasicArticlesUnit,
-            totalBasicArticleTitleUnit: handlerInput.totalBasicArticleTitleUnit,
-            variant: 'groupOne'
+            totalBasicArticleTitleUnit: handlerInput.totalBasicArticleTitleUnit
           },
           groupTwo: {
             type: HandlerInputType.ArticleList,
@@ -54,8 +52,7 @@ describe('TopStoriesHandler', () => {
             strapName,
             layout: layoutType,
             totalBasicArticlesUnit: handlerInput.totalBasicArticlesUnit,
-            totalBasicArticleTitleUnit: handlerInput.totalBasicArticleTitleUnit,
-            variant: 'groupTwo'
+            totalBasicArticleTitleUnit: handlerInput.totalBasicArticleTitleUnit
           }
         }
       };
@@ -133,8 +130,7 @@ describe('TopStoriesHandler', () => {
           strapName,
           layout: LayoutType.DEFAULT,
           totalBasicArticlesUnit: handlerInput.totalBasicArticlesUnit,
-          totalBasicArticleTitleUnit: handlerInput.totalBasicArticleTitleUnit,
-          variant: 'control'
+          totalBasicArticleTitleUnit: handlerInput.totalBasicArticleTitleUnit
         },
         groupOne: {
           type: HandlerInputType.ArticleList,
@@ -142,8 +138,7 @@ describe('TopStoriesHandler', () => {
           strapName,
           layout: LayoutType.DEFAULT,
           totalBasicArticlesUnit: handlerInput.totalBasicArticlesUnit,
-          totalBasicArticleTitleUnit: handlerInput.totalBasicArticleTitleUnit,
-          variant: 'groupOne'
+          totalBasicArticleTitleUnit: handlerInput.totalBasicArticleTitleUnit
         },
         groupTwo: {
           type: HandlerInputType.ArticleList,
@@ -151,8 +146,7 @@ describe('TopStoriesHandler', () => {
           strapName,
           layout: LayoutType.DEFAULT,
           totalBasicArticlesUnit: handlerInput.totalBasicArticlesUnit,
-          totalBasicArticleTitleUnit: handlerInput.totalBasicArticleTitleUnit,
-          variant: 'groupTwo'
+          totalBasicArticleTitleUnit: handlerInput.totalBasicArticleTitleUnit
         }
       }
     };

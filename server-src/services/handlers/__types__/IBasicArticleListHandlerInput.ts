@@ -10,5 +10,4 @@ export interface IBasicArticleListHandlerInput {
   layout?: LayoutType;
   totalBasicArticlesUnit?: number;
   totalBasicArticleTitleUnit?: number;
-  variant?: string;
 }
