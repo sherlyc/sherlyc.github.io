@@ -8,7 +8,9 @@
     <h3>{{ input.displayName }}</h3>
   </ng-template>
   <ng-container [appContentBlock]="input.visibleItems"></ng-container>
-  <ng-container *ngIf="showHiddenItems" [appContentBlock]="input.hiddenItems"></ng-container>
+  <div appResizeObserver (resize)="onResize($event)">
+    <ng-container *ngIf="showHiddenItems" [appContentBlock]="input.hiddenItems"></ng-container>
+  </div>
   <div *ngIf="input.linkUrl">
     <a class="more-button" (click)="[sendAnalytics(), toggleHiddenItems()]"
       >{{ showHiddenItems ? 'Less' : 'More' }} {{ input.displayName }}
@@ -18,3 +20,5 @@
     </a>
   </div>
 </div>
+
+
