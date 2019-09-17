@@ -11,7 +11,7 @@ import { RuntimeService } from '../../../services/runtime/runtime.service';
 @Directive({ selector: '[appResizeObserver]' })
 export class ResizeObserverDirective implements OnDestroy {
   static entriesMap = new WeakMap();
-  static resizeObserver: any;
+  static resizeObserver: ResizeObserver;
 
   @Output()
   resize = new EventEmitter();
@@ -21,6 +21,7 @@ export class ResizeObserverDirective implements OnDestroy {
       ResizeObserverDirective.resizeObserver =
         ResizeObserverDirective.resizeObserver ||
         new ResizeObserver(ResizeObserverDirective.emitAll);
+
       const target = this.el.nativeElement;
       ResizeObserverDirective.entriesMap.set(target, this);
       ResizeObserverDirective.resizeObserver.observe(target);
