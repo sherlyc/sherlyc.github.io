@@ -114,47 +114,99 @@ describe('Group two top stories', () => {
     headlineFlags: []
   };
 
-  it('should swap 1st and 2nd article and render the first 3 as big image and others as half width articles when layout is default', async () => {
-    jest
-      .spyOn(layoutRetriever, 'layoutRetriever')
-      .mockResolvedValue(LayoutType.DEFAULT);
+  it(
+    'should swap 1st and 2nd article and render the first 3 as big image and others as half width articles ' +
+      'when layout is default',
+    async () => {
+      jest
+        .spyOn(layoutRetriever, 'layoutRetriever')
+        .mockResolvedValue(LayoutType.DEFAULT);
 
-    const expectedArticles = [
-      basicAdUnit,
-      articleTwoAsBigImageArticle,
-      basicAdUnit,
-      articleOneAsBigImageArticle,
-      basicAdUnit,
-      articleOneAsBigImageArticle,
-      basicAdUnit,
-      articleOneAsHalfWidthImageArticle,
-      basicAdUnit,
-      articleOneAsHalfWidthImageArticle,
-      basicAdUnit,
-      articleOneAsHalfWidthImageArticle,
-      basicAdUnit
-    ];
-    const rawArticles = [
-      articleOne,
-      articleTwo,
-      articleOne,
-      articleOne,
-      articleOne,
-      articleOne
-    ];
-    (getRawArticles as jest.Mock).mockResolvedValue(rawArticles);
+      const expectedArticles = [
+        basicAdUnit,
+        articleTwoAsBigImageArticle,
+        basicAdUnit,
+        articleOneAsBigImageArticle,
+        basicAdUnit,
+        articleOneAsBigImageArticle,
+        basicAdUnit,
+        articleOneAsHalfWidthImageArticle,
+        basicAdUnit,
+        articleOneAsHalfWidthImageArticle,
+        basicAdUnit,
+        articleOneAsHalfWidthImageArticle,
+        basicAdUnit
+      ];
+      const rawArticles = [
+        articleOne,
+        articleTwo,
+        articleOne,
+        articleOne,
+        articleOne,
+        articleOne
+      ];
+      (getRawArticles as jest.Mock).mockResolvedValue(rawArticles);
 
-    const handlerInput: ITopStoriesArticleListGroupTwoHandlerInput = {
-      type: HandlerInputType.TopStoriesArticleListGroupTwo,
-      strapName,
-      totalArticles: 6
-    };
-    const result = await groupTwoTopStories(
-      handlerRunner,
-      handlerInput,
-      params
-    );
+      const handlerInput: ITopStoriesArticleListGroupTwoHandlerInput = {
+        type: HandlerInputType.TopStoriesArticleListGroupTwo,
+        strapName,
+        totalArticles: 6
+      };
+      const result = await groupTwoTopStories(
+        handlerRunner,
+        handlerInput,
+        params
+      );
 
-    expect(result).toEqual(expectedArticles);
-  });
+      expect(result).toEqual(expectedArticles);
+    }
+  );
+
+  it(
+    'should render the 1st article as defcon, 2nd and 3rd as big image and others as half width articles ' +
+      'when layout is defcon',
+    async () => {
+      jest
+        .spyOn(layoutRetriever, 'layoutRetriever')
+        .mockResolvedValue(LayoutType.DEFCON);
+
+      const expectedArticles = [
+        basicAdUnit,
+        articleOneAsGrayDefconArticle,
+        basicAdUnit,
+        articleTwoAsBigImageArticle,
+        basicAdUnit,
+        articleOneAsBigImageArticle,
+        basicAdUnit,
+        articleOneAsHalfWidthImageArticle,
+        basicAdUnit,
+        articleOneAsHalfWidthImageArticle,
+        basicAdUnit,
+        articleOneAsHalfWidthImageArticle,
+        basicAdUnit
+      ];
+      const rawArticles = [
+        articleOne,
+        articleTwo,
+        articleOne,
+        articleOne,
+        articleOne,
+        articleOne
+      ];
+      (getRawArticles as jest.Mock).mockResolvedValue(rawArticles);
+
+      const handlerInput: ITopStoriesArticleListGroupTwoHandlerInput = {
+        type: HandlerInputType.TopStoriesArticleListGroupTwo,
+        strapName,
+        totalArticles: 6
+      };
+      const result = await groupTwoTopStories(
+        handlerRunner,
+        handlerInput,
+        params
+      );
+
+      expect(result).toEqual(expectedArticles);
+    }
+  );
 });
