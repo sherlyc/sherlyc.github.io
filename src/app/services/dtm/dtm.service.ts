@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { ScriptInjectorService } from '../script-injector/script-injector.service';
 import { ScriptId } from '../script-injector/__types__/ScriptId';
 import { ConfigService } from '../config/config.service';
 import { WindowService } from '../window/window.service';
 import { RuntimeService } from '../runtime/runtime.service';
 import { LoadedEvent } from './__types__/LoadedEvent';
+import { DOCUMENT } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class DtmService {
     private scriptInjectorService: ScriptInjectorService,
     private config: ConfigService,
     private runtime: RuntimeService,
+    @Inject(DOCUMENT) private document: Document,
     private windowService: WindowService
   ) {}
 
@@ -40,9 +42,7 @@ export class DtmService {
   private initLoadedPromises() {
     Object.values(LoadedEvent).forEach((event) => {
       this.loadedPromises[event] = new Promise<void>((resolve) => {
-        document.addEventListener(event, () => {
-          resolve();
-        });
+        this.document.addEventListener(event, () => setTimeout(resolve, 10));
       });
     });
   }
