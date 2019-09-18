@@ -5,43 +5,44 @@ import { mockService, ServiceMock } from '../../../services/mocks/MockService';
 import { ResizeObserverDirective } from './resize-observer.directive';
 import { By } from '@angular/platform-browser';
 
-const constructorMock = jest.fn();
-const observeMock = jest.fn();
-const unobserveMock = jest.fn();
-const resizeMock = jest.fn();
+const onResizeCallback = jest.fn();
+let triggerResize: Function;
 
 jest.mock('resize-observer-polyfill', () => ({
   default: class FakeResizeObserver {
+    observed: any[] = [];
+    callback: Function;
+
     constructor(callback: Function) {
-      constructorMock(callback);
+      this.callback = callback;
+
+      triggerResize = () => {
+        this.fakeTriggerResize();
+      };
+    }
+
+    fakeTriggerResize() {
+      this.callback(
+        this.observed.map((observedElement) => ({ target: observedElement }))
+      );
     }
 
     observe(target: Element): void {
-      observeMock(target);
+      this.observed.push(target);
     }
 
-    unobserve(target: Element): void {
-      unobserveMock(target);
-    }
+    unobserve(target: Element): void {}
   }
 }));
 
 @Component({
   selector: 'app-fake-component',
-  template: `
-    <div *ngIf="shouldShow">
-      <div id="fake-component" appResizeObserver (resize)="onResize($event)">
-        fake data
-      </div>
-    </div>
-  `
+  template:
+    '<div id="fake-component" appResizeObserver (resize)="onResize($event)">fake data</div>'
 })
 class FakeExpandableComponent {
-  shouldShow = false;
-
-  onResize(entry: ResizeObserverEntry) {
-    console.log('lol');
-    resizeMock(entry);
+  onResize(entry: any) {
+    onResizeCallback(entry);
   }
 }
 
@@ -60,16 +61,16 @@ describe('Resize Observer', () => {
     runtimeService = TestBed.get(RuntimeService);
   });
 
-  it('should start observing target element when initialise', () => {
+  it('should call the resizeCallBack when resized', () => {
     runtimeService.isBrowser.mockReturnValue(true);
     fixture = TestBed.createComponent(FakeExpandableComponent);
     component = fixture.componentInstance;
-    component.shouldShow = true;
-    fixture.detectChanges();
 
-    expect(constructorMock).toHaveBeenCalledWith(expect.any(Function));
-    expect(observeMock).toHaveBeenCalledWith(
-      fixture.debugElement.query(By.css('#fake-component')).nativeElement
-    );
+    triggerResize();
+
+    const observedElement = fixture.debugElement.query(
+      By.css('#fake-component')
+    ).nativeElement;
+    expect(onResizeCallback).toHaveBeenCalledWith({ target: observedElement });
   });
 });
