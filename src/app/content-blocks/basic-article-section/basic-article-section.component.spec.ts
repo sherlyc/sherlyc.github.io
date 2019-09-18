@@ -151,4 +151,15 @@ describe('basic article section', () => {
       url: '/national'
     });
   });
+
+  it('should render content blocks', () => {
+    component.input = sectionData;
+    fixture.detectChanges();
+
+    const fakeContentBlocks = fixture.debugElement.queryAll(
+      By.css('app-fake-content-block')
+    );
+
+    expect(fakeContentBlocks.length).toBe(4);
+  });
 });
