@@ -6,7 +6,7 @@ jest.mock('../services/feature');
 
 describe('Feature Controller', () => {
   it('should return value from feature service', async () => {
-    const req = {
+    const req = ({
       spadeParams: { apiRequestId: '33498' },
       params: {
         featureName: 'someFeature',
@@ -14,7 +14,7 @@ describe('Feature Controller', () => {
         deviceType: 'mobile'
       },
       cookies: {}
-    } as Request;
+    } as any) as Request;
     const res = { send: jest.fn() } as any;
 
     (isFeatureEnabled as jest.Mock).mockReturnValue(false);
@@ -25,11 +25,11 @@ describe('Feature Controller', () => {
   });
 
   it('should return 400 and message in body when provided with negative lottery number', async () => {
-    const req = {
+    const req = ({
       spadeParams: { apiRequestId: '33498' },
       params: { featureName: '', lotteryNumber: '-1', deviceType: 'mobile' },
       cookies: {}
-    } as Request;
+    } as any) as Request;
     const res = { send: jest.fn(), status: jest.fn() } as any;
     res.status.mockReturnValue(res);
 
@@ -41,7 +41,7 @@ describe('Feature Controller', () => {
   });
 
   it('should return 400 and message in body when provided with invalid lottery number', async () => {
-    const req = {
+    const req = ({
       spadeParams: { apiRequestId: '33498' },
       params: {
         featureName: '',
@@ -49,7 +49,7 @@ describe('Feature Controller', () => {
         deviceType: 'mobile'
       },
       cookies: {}
-    } as Request;
+    } as any) as Request;
     const res = { send: jest.fn(), status: jest.fn() } as any;
     res.status.mockReturnValue(res);
 
@@ -61,11 +61,11 @@ describe('Feature Controller', () => {
   });
 
   it('should return 400 and message in body when provided with invalid device', async () => {
-    const req = {
+    const req = ({
       spadeParams: { apiRequestId: '33498' },
       params: { featureName: '', lotteryNumber: '1', deviceType: 'blahblah' },
       cookies: {}
-    } as Request;
+    } as any) as Request;
     const res = { send: jest.fn(), status: jest.fn() } as any;
     res.status.mockReturnValue(res);
 

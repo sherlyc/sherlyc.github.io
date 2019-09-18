@@ -27,12 +27,12 @@ describe('Weather Api', () => {
   });
 
   it('should support path params', async () => {
-    const req = {
+    const req = ({
       spadeParams: { apiRequestId: '33498' },
       query: {},
       params: { location: 'auckland' },
       cookies: {}
-    } as Request;
+    } as any) as Request;
 
     const res = {
       json: jest.fn(),

@@ -7,11 +7,11 @@ import { DeviceType } from '../../common/DeviceType';
 jest.mock('../services/adapters/experiment');
 
 describe('Experiment controller', () => {
-  const req = {
+  const req = ({
     spadeParams: { apiRequestId: '33498' },
     params: { experimentName: '', lotteryNumber: '1', deviceType: 'unknown' },
     cookies: {}
-  } as Request;
+  } as any) as Request;
   const res = { send: jest.fn(), status: jest.fn(), end: jest.fn() } as any;
 
   beforeEach(() => {
