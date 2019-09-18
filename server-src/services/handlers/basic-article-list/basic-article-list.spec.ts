@@ -381,7 +381,7 @@ describe('BasicArticleListHandler', () => {
   //       {
   //         type: HandlerInputType.ArticleList,
   //         strapName: '',
-  //         sourceId: Strap.TopStories,
+  //         sourceId: Strap.TopStoriesExperiment,
   //         totalBasicArticlesUnit: 3,
   //         variant: 'groupOne'
   //       },
@@ -423,7 +423,7 @@ describe('BasicArticleListHandler', () => {
   //       {
   //         type: HandlerInputType.ArticleList,
   //         strapName: '',
-  //         sourceId: Strap.TopStories,
+  //         sourceId: Strap.TopStoriesExperiment,
   //         totalBasicArticlesUnit: 6,
   //         variant: 'groupTwo'
   //       },

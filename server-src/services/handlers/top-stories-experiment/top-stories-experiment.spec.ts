@@ -11,7 +11,7 @@ describe('Top Stories Experiment', () => {
   it('should return experiment container with control, groupOne and groupTwo handlers', async () => {
     const handlerRunner = jest.fn();
     const handlerInput: ITopStoriesHandlerInput = {
-      type: HandlerInputType.TopStories,
+      type: HandlerInputType.TopStoriesExperiment,
       strapName,
       totalArticles: 6
     };
