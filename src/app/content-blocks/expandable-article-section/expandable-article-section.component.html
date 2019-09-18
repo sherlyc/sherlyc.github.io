@@ -8,7 +8,7 @@
     <h3>{{ input.displayName }}</h3>
   </ng-template>
   <ng-container [appContentBlock]="input.visibleItems"></ng-container>
-  <div class="more-content" [ngStyle]="{ height: showHiddenItems ? height + 'px' : 0 }">
+  <div class="more-content" [ngStyle]="{ height: showHiddenItems ? height + 'px' : '0px' }">
     <div appResizeObserver (resize)="onResize($event)">
       <ng-container *ngIf="showHiddenItems" [appContentBlock]="input.hiddenItems"></ng-container>
     </div>

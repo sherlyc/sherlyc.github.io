@@ -228,4 +228,29 @@ describe('expandable article section', () => {
 
     expect(component.height).toEqual(100);
   });
+
+  it('should set height of more content when it is shown', () => {
+    component.input = sectionArticleData;
+    component.showHiddenItems = true;
+    component.height = 50;
+    fixture.detectChanges();
+
+    const moreContentDivStyles = fixture.debugElement.query(
+      By.css('.more-content')
+    ).styles;
+
+    expect(moreContentDivStyles['height']).toEqual('50px');
+  });
+
+  it('should default to 0 height for more content when it is hidden', () => {
+    component.input = sectionArticleData;
+    component.showHiddenItems = false;
+    fixture.detectChanges();
+
+    const moreContentDivStyles = fixture.debugElement.query(
+      By.css('.more-content')
+    ).styles;
+
+    expect(moreContentDivStyles['height']).toEqual('0px');
+  });
 });
