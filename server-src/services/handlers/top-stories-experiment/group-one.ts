@@ -62,7 +62,7 @@ const retrieveLayout = async (params: IParams): Promise<LayoutType> => {
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  { strapName, totalArticles = 0 }: ITopStoriesArticleListGroupOneHandlerInput,
+  { strapName, totalArticles }: ITopStoriesArticleListGroupOneHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   const layout = await retrieveLayout(params);

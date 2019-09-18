@@ -2,9 +2,7 @@ import { HandlerInputType } from './HandlerInputType';
 import { Strap } from '../../strap';
 
 export interface ITopStoriesHandlerInput {
-  type: HandlerInputType.TopStories;
-  sourceId: Strap.TopStories;
+  type: HandlerInputType.TopStoriesExperiment;
   strapName: string;
-  totalBasicArticlesUnit?: number;
-  totalBasicArticleTitleUnit?: number;
+  totalArticles: number;
 }
