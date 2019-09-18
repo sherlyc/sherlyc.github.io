@@ -13,8 +13,7 @@ export class ResizeObserverDirective implements OnDestroy {
   static entriesMap = new WeakMap();
   static resizeObserver: ResizeObserver;
 
-  @Output()
-  resize = new EventEmitter();
+  @Output() resize = new EventEmitter();
 
   constructor(private el: ElementRef, private runtime: RuntimeService) {
     if (this.runtime.isBrowser()) {
@@ -28,13 +27,17 @@ export class ResizeObserverDirective implements OnDestroy {
     }
   }
 
-  private static emitAll(entries: any[]) {
-    for (const entry of entries) {
-      if (ResizeObserverDirective.entriesMap.has(entry.target)) {
-        const component = ResizeObserverDirective.entriesMap.get(entry.target);
-        component.resize.emit(entry);
-      }
-    }
+  private static emitAll(observedElements: ResizeObserverEntry[]) {
+    observedElements
+      .filter((element) =>
+        ResizeObserverDirective.entriesMap.has(element.target)
+      )
+      .forEach((element) => {
+        const directiveInstance = ResizeObserverDirective.entriesMap.get(
+          element.target
+        );
+        directiveInstance.resize.emit(element);
+      });
   }
 
   ngOnDestroy() {
