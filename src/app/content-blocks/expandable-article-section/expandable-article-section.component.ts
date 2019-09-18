@@ -13,6 +13,7 @@ export class ExpandableArticleSectionComponent
   implements IContentBlockComponent {
   @Input() input!: IExpandableArticleSection;
   showHiddenItems = false;
+  height = 0;
 
   constructor(private analyticsService: AnalyticsService) {}
 
@@ -25,5 +26,9 @@ export class ExpandableArticleSectionComponent
 
   toggleHiddenItems() {
     this.showHiddenItems = !this.showHiddenItems;
+  }
+
+  onResize(event: ResizeObserverEntry) {
+    this.height = event.contentRect.height;
   }
 }

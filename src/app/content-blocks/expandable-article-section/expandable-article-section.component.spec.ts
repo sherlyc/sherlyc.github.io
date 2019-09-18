@@ -213,4 +213,19 @@ describe('expandable article section', () => {
       `Less ${sectionArticleData.displayName}`
     );
   });
+
+  it('should change component height when onResize is triggered', () => {
+    component.input = sectionArticleData;
+    fixture.detectChanges();
+
+    const mockResizeObserverEntry = {
+      contentRect: {
+        height: 100
+      } as any
+    } as ResizeObserverEntry;
+    component.onResize(mockResizeObserverEntry);
+    fixture.detectChanges();
+
+    expect(component.height).toEqual(100);
+  });
 });
