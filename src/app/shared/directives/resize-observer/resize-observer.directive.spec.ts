@@ -32,7 +32,7 @@ jest.mock('resize-observer-polyfill', () => ({
     }
 
     unobserve(target: Element): void {
-      observed = observed.filter((element) => element != target);
+      observed = observed.filter((element) => element !== target);
       unobserveMock(target);
     }
   }
