@@ -50,7 +50,7 @@ describe('Experiment: GroupOne Variant', () => {
     headlineFlags: []
   };
 
-  const articleNumberTwoAsBigImageArticle: IBigImageArticleUnit = {
+  const articleTwoAsBigImageArticle: IBigImageArticleUnit = {
     id: '2',
     strapName,
     headlineFlags: [],
@@ -63,7 +63,7 @@ describe('Experiment: GroupOne Variant', () => {
     type: ContentBlockType.BigImageArticleUnit
   };
 
-  const articleNumberOneAsBigImageArticle: IBigImageArticleUnit = {
+  const articleOneAsBigImageArticle: IBigImageArticleUnit = {
     id: '1',
     strapName,
     headlineFlags: [],
@@ -76,7 +76,7 @@ describe('Experiment: GroupOne Variant', () => {
     type: ContentBlockType.BigImageArticleUnit
   };
 
-  const articleNumberOneAsGrayDefconArticle: IGrayDefconArticleUnit = {
+  const articleOneAsGrayDefconArticle: IGrayDefconArticleUnit = {
     type: ContentBlockType.GrayDefconArticleUnit,
     id: '1',
     strapName,
@@ -114,11 +114,11 @@ describe('Experiment: GroupOne Variant', () => {
 
     const expectedContentBlocks = [
       basicAdUnit,
-      articleNumberTwoAsBigImageArticle,
+      articleTwoAsBigImageArticle,
       basicAdUnit,
-      articleNumberOneAsBigImageArticle,
+      articleOneAsBigImageArticle,
       basicAdUnit,
-      articleNumberOneAsBigImageArticle,
+      articleOneAsBigImageArticle,
       basicAdUnit
     ];
     expect(contentBlocks).toEqual(expectedContentBlocks);
@@ -150,11 +150,11 @@ describe('Experiment: GroupOne Variant', () => {
 
     const expectedContentBlocks = [
       basicAdUnit,
-      articleNumberOneAsGrayDefconArticle,
+      articleOneAsGrayDefconArticle,
       basicAdUnit,
-      articleNumberTwoAsBigImageArticle,
+      articleTwoAsBigImageArticle,
       basicAdUnit,
-      articleNumberOneAsBigImageArticle,
+      articleOneAsBigImageArticle,
       basicAdUnit
     ];
     expect(contentBlocks).toEqual(expectedContentBlocks);
