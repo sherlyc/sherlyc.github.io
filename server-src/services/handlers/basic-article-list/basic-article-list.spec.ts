@@ -139,7 +139,7 @@ describe('BasicArticleListHandler', () => {
     expect(contentBlocks).toEqual(expectedContentBlocks);
   });
 
-  it('should get a list of basic article units, basic article title units, and ad units', async () => {
+  it('should get one basic article unit, one basic article title unit, and ad units', async () => {
     const expectContentBlocks = [
       adUnitWithContext,
       articleOneAsBasicArticle,
@@ -165,36 +165,6 @@ describe('BasicArticleListHandler', () => {
     );
 
     expect(contentBlocks).toEqual(expectContentBlocks);
-  });
-
-  it('should get one basic article units and one basic article title unit', async () => {
-    const totalArticles = 2;
-    const totalAdUnits = 3;
-    const rawEditorsPick = [articleOne, articleTwo];
-
-    (getRawArticles as jest.Mock).mockResolvedValue(rawEditorsPick);
-
-    const contentBlocks = await basicArticleListHandler(
-      jest.fn(),
-      {
-        type: HandlerInputType.ArticleList,
-        sourceId: Strap.EditorPicks,
-        strapName,
-        totalBasicArticlesUnit: 1,
-        totalBasicArticleTitleUnit: 1
-      },
-      params
-    );
-
-    expect(contentBlocks.length).toBe(totalArticles + totalAdUnits);
-    const expectedContentBlocks = [
-      adUnitWithContext,
-      articleOneAsBasicArticle,
-      adUnitWithContext,
-      articleTwoAsBasicArticleTitle,
-      adUnitWithContext
-    ];
-    expect(contentBlocks).toEqual(expectedContentBlocks);
   });
 
   it('should get multiple basic article units and multiple articles title units', async () => {
