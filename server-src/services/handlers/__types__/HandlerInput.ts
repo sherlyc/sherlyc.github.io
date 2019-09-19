@@ -8,13 +8,17 @@ import { IWeatherHandlerInput } from './IWeatherHandlerInput';
 import { IMiniMidStripHandlerInput } from './IMiniMidStripHandlerInput';
 import { IExperimentHandlerInput } from './IExperimentHandlerInput';
 import { ITopStoriesHandlerInput } from './ITopStoriesHandlerInput';
-import { IDefconArticleListHandlerInput } from './IDefconArticleListHandlerInput';
+import { ITopStoriesArticleListHandlerInput } from './ITopStoriesArticleListHandlerInput';
 import { IFeatureHandlerInput } from './IFeatureHandlerInput';
 import { IBannerHandlerInput } from './IBannerHandlerInput';
+import { ITopStoriesArticleListGroupOneHandlerInput } from './ITopStoriesArticleListGroupOne';
+import { ITopStoriesArticleListGroupTwoHandlerInput } from './ITopStoriesArticleListGroupTwo';
 
 export type HandlerInput =
   | ITopStoriesHandlerInput
-  | IDefconArticleListHandlerInput
+  | ITopStoriesArticleListHandlerInput
+  | ITopStoriesArticleListGroupOneHandlerInput
+  | ITopStoriesArticleListGroupTwoHandlerInput
   | IBasicArticleListHandlerInput
   | IBannerHandlerInput
   | IMidStripHandlerInput

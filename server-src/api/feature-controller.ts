@@ -30,7 +30,7 @@ export const featureController = async function(req: Request, res: Response) {
     const isEnabled = await isFeatureEnabled(
       featureName,
       parseInt(lotteryNumber, 10),
-      deviceType,
+      deviceType as DeviceType,
       req.spadeParams
     );
     res.send(isEnabled);

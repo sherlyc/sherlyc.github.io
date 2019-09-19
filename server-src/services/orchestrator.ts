@@ -36,11 +36,9 @@ export default async (params: IParams): Promise<IPage> => {
               type: HandlerInputType.Banner
             },
             {
-              type: HandlerInputType.TopStories,
+              type: HandlerInputType.TopStoriesExperiment,
               strapName: 'Latest',
-              sourceId: Strap.TopStories,
-              totalBasicArticlesUnit:
-                homepageStrapsConfig[Strap.TopStories].totalArticlesWithImages
+              totalArticles: 6
             },
             {
               type: HandlerInputType.MiniMidStrip,
