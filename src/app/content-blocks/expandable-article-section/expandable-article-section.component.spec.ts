@@ -114,7 +114,7 @@ describe('expandable article section', () => {
     ).toContain('More National');
   });
 
-  it('should send right analytics when button `More National` is clicked', () => {
+  it('should send analytics with url when More button is clicked', () => {
     component.input = sectionArticleData;
     fixture.detectChanges();
 
@@ -156,7 +156,7 @@ describe('expandable article section', () => {
     expect(hiddenBlocks.length).toEqual(0);
   });
 
-  it('should show hiddenItems when clicking More button', () => {
+  it('should show hiddenItems when More button is clicked', () => {
     component.input = {
       ...sectionArticleData,
       visibleItems: [visibleBlock, visibleBlock],
@@ -177,7 +177,7 @@ describe('expandable article section', () => {
     expect(hiddenBlocksAfterClick.length).toEqual(2);
   });
 
-  it('should hide hiddenItems when clicking Less button', () => {
+  it('should hide hiddenItems when Less button is clicked', () => {
     component.input = {
       ...sectionArticleData,
       hiddenItems: [hiddenBlock, hiddenBlock]
@@ -198,7 +198,7 @@ describe('expandable article section', () => {
     expect(hiddenBlocksAfterClick.length).toEqual(0);
   });
 
-  it('button should change from showing More to Less after clicking More button', () => {
+  it('button text should change from More to Less after clicking it', () => {
     component.input = sectionArticleData;
     fixture.detectChanges();
 
@@ -229,7 +229,7 @@ describe('expandable article section', () => {
     expect(component.height).toEqual(100);
   });
 
-  it('should set height of more content when it is shown', () => {
+  it('should set height of more content container when it is shown', () => {
     component.input = sectionArticleData;
     component.showHiddenItems = true;
     component.height = 50;
@@ -242,7 +242,7 @@ describe('expandable article section', () => {
     expect(moreContentDivStyles['height']).toEqual('50px');
   });
 
-  it('should default to 0 height for more content when it is hidden', () => {
+  it('should default to 0 height for more content container when it is hidden', () => {
     component.input = sectionArticleData;
     component.showHiddenItems = false;
     fixture.detectChanges();
