@@ -1,18 +1,10 @@
 [
   {
-    "startDateTimeUTC": "2019-09-08T17:00:01",
-    "endDateTimeUTC": "2019-09-15T20:00:00",
+    "startDateTimeUTC": "2019-09-19T12:00:00",
+    "endDateTimeUTC": "2019-11-01T23:59:59",
     "banner": {
       "height": "50px",
-      "url": "https://interactives.stuff.co.nz/2019/08/learn-te-reo/learn-te-reo-uber.html"
-    }
-  },
-  {
-    "startDateTimeUTC": "2019-09-15T20:00:01",
-    "endDateTimeUTC": "2099-09-15T11:00:00",
-    "banner": {
-      "height": "48px",
-      "url": "https://interactives.stuff.co.nz/2019/05/save-the-planet/qstp-small-uber.html"
+      "url": "https://interactives.stuff.co.nz/2019/sport-pointers/rugby-world-cup/rugby-world-cup-uber.html"
     }
   }
 ]

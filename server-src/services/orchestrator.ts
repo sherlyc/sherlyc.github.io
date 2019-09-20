@@ -51,9 +51,17 @@ export default async (params: IParams): Promise<IPage> => {
               type: HandlerInputType.ExternalContent,
               height: '215px',
               width: '100%',
-              margin: '0 0 30px 0',
+              margin: '0 0 20px 0',
               url:
                 'https://www.playwidget.stuff.co.nz/shelf/5d06caa81de1c4001f81a46e'
+            },
+            {
+              type: HandlerInputType.ExternalContent,
+              height: '300px',
+              width: '100%',
+              margin: '0 0 20px 0',
+              url:
+                'https://interactives.stuff.co.nz/2019/rugby-world-cup/mood-o-meter/'
             },
             {
               type: HandlerInputType.ArticleSection,
@@ -116,6 +124,14 @@ export default async (params: IParams): Promise<IPage> => {
                 url:
                   'https://www.playwidget.stuff.co.nz/hshelf/5d3a9a3fa0e845001c7c998a'
               }
+            },
+            {
+              type: HandlerInputType.ExternalContent,
+              height: '48px',
+              width: '100%',
+              margin: '0 0 20px 0',
+              url:
+                'https://interactives.stuff.co.nz/2019/05/save-the-planet/qstp-small-uber.html'
             },
             {
               type: HandlerInputType.ArticleSection,
