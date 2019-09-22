@@ -4,45 +4,10 @@ import { RuntimeService } from '../../../services/runtime/runtime.service';
 import { mockService, ServiceMock } from '../../../services/mocks/MockService';
 import { ResizeDirective } from './resize.directive';
 import { By } from '@angular/platform-browser';
-
-let triggerResize: Function;
-let observed: any[] = [];
-const unobserveMock = jest.fn();
-
-jest.mock('resize-observer-polyfill', () => ({
-  default: class FakeResizeObserver {
-    callback: Function;
-
-    constructor(callback: Function) {
-      this.callback = callback;
-
-      triggerResize = () => {
-        this.fakeTriggerResize();
-      };
-    }
-
-    fakeTriggerResize() {
-      this.callback(
-        observed.map((observedElement) => ({ target: observedElement }))
-      );
-    }
-
-    observe(target: Element): void {
-      observed.push(target);
-    }
-
-    unobserve(target: Element): void {
-      observed = observed.filter((element) => element !== target);
-      unobserveMock(target);
-    }
-  }
-}));
-
-const clearObservedElements = () => {
-  observed = [];
-};
+import { ResizeObserverService } from '../../../services/resize-observer/resize-observer.service';
 
 const onResizeMock = jest.fn();
+
 @Component({
   selector: 'app-fake-component',
   template:
@@ -50,6 +15,7 @@ const onResizeMock = jest.fn();
 })
 class FakeExpandableComponent {
   toShow = false;
+
   onResize(entry: any) {
     onResizeMock(entry);
   }
@@ -59,21 +25,28 @@ describe('Resize Observer', () => {
   let fixture: ComponentFixture<FakeExpandableComponent>;
   let component: FakeExpandableComponent;
   let runtimeService: ServiceMock<RuntimeService>;
+  let resizeObserverService: ServiceMock<ResizeObserverService>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [FakeExpandableComponent, ResizeDirective],
       providers: [
-        { provide: RuntimeService, useClass: mockService(RuntimeService) }
+        { provide: RuntimeService, useClass: mockService(RuntimeService) },
+        { provide: ResizeObserverService, useClass: mockService(ResizeObserverService) }
       ]
     }).compileComponents();
     runtimeService = TestBed.get(RuntimeService);
+    resizeObserverService = TestBed.get(ResizeObserverService);
   });
 
-  afterEach(() => {
-    clearObservedElements();
-    onResizeMock.mockClear();
-    unobserveMock.mockClear();
+  it('should observe an element when initialized', () => {
+    runtimeService.isBrowser.mockReturnValue(true);
+    fixture = TestBed.createComponent(FakeExpandableComponent);
+    component = fixture.componentInstance;
+    component.toShow = true;
+    fixture.detectChanges();
+
+    expect(resizeObserverService.observe).toHaveBeenCalled();
   });
 
   it('should call the resizeCallBack when resized', () => {
@@ -83,11 +56,12 @@ describe('Resize Observer', () => {
     component.toShow = true;
     fixture.detectChanges();
 
-    triggerResize();
-
     const observedElement = fixture.debugElement.query(
       By.css('#fake-component')
     ).nativeElement;
+
+    const directiveInstance = fixture.debugElement.query(By.directive(ResizeDirective)).injector.get(ResizeDirective);
+    directiveInstance.resize.emit({ target: observedElement });
     expect(onResizeMock).toHaveBeenCalledTimes(1);
     expect(onResizeMock).toHaveBeenCalledWith({ target: observedElement });
   });
@@ -101,8 +75,7 @@ describe('Resize Observer', () => {
     fixture.detectChanges();
     component.toShow = false;
     fixture.detectChanges();
-    triggerResize();
 
-    expect(onResizeMock).not.toHaveBeenCalled();
+    expect(resizeObserverService.unobserve).toHaveBeenCalled();
   });
 });
