@@ -6,7 +6,7 @@ import ResizeObserver from 'resize-observer-polyfill';
 })
 export class ResizeObserverService {
   private entriesMap: WeakMap<Element, EventEmitter<any>>;
-  resizeObserver: ResizeObserver;
+  private resizeObserver: ResizeObserver;
 
   constructor() {
     this.entriesMap = new WeakMap();
