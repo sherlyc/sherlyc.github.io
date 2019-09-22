@@ -10,14 +10,14 @@ import { SigninCallbackComponent } from './components/authentication/signin-call
 import { HeadlineFlagComponent } from './components/headline-flag/headline-flag.component';
 import { TimeAgoComponent } from './components/time-ago/time-ago.component';
 import { WeatherIconComponent } from './components/weather-icon/weather-icon.component';
-import { ResizeObserverDirective } from './directives/resize-observer/resize-observer.directive';
+import { ResizeDirective } from './directives/resize/resize.directive';
 
 @NgModule({
   imports: [CommonModule],
   declarations: [
     PageComponent,
     HideHeaderDirective,
-    ResizeObserverDirective,
+    ResizeDirective,
     ContentBlockDirective,
     OpenExternalLinkDirective,
     CopyrightComponent,
@@ -30,7 +30,7 @@ import { ResizeObserverDirective } from './directives/resize-observer/resize-obs
   exports: [
     PageComponent,
     HideHeaderDirective,
-    ResizeObserverDirective,
+    ResizeDirective,
     ContentBlockDirective,
     OpenExternalLinkDirective,
     CopyrightComponent,

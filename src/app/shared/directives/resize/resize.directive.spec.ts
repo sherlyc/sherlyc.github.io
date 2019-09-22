@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RuntimeService } from '../../../services/runtime/runtime.service';
 import { mockService, ServiceMock } from '../../../services/mocks/MockService';
-import { ResizeObserverDirective } from './resize-observer.directive';
+import { ResizeDirective } from './resize.directive';
 import { By } from '@angular/platform-browser';
 
 let triggerResize: Function;
@@ -62,7 +62,7 @@ describe('Resize Observer', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FakeExpandableComponent, ResizeObserverDirective],
+      declarations: [FakeExpandableComponent, ResizeDirective],
       providers: [
         { provide: RuntimeService, useClass: mockService(RuntimeService) }
       ]
