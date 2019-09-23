@@ -93,18 +93,11 @@ describe('expandable article section', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render section headline as link when linkUrl is provided', () => {
+  it('should render section headline as link', () => {
     component.input = sectionArticleData;
     fixture.detectChanges();
 
     expect(fixture.debugElement.query(By.css('.headline-link'))).toBeTruthy();
-  });
-
-  it('should not render section headline as link when linkUrl is not provided', () => {
-    component.input = { ...sectionArticleData, linkUrl: undefined };
-    fixture.detectChanges();
-
-    expect(fixture.debugElement.query(By.css('.headline-link'))).toBeFalsy();
   });
 
   it('should render more button', () => {
@@ -152,11 +145,16 @@ describe('expandable article section', () => {
     };
     fixture.detectChanges();
 
-    const hiddenBlocks = fixture.debugElement.queryAll(
+    const allHiddenBlocks = fixture.debugElement.queryAll(
       By.css('app-fake-hidden-block')
     );
+    const hiddenBlocksInMoreContent = fixture.debugElement.queryAll(
+      By.css('.more-content > div > app-fake-hidden-block')
+    );
+    const moreContent = fixture.debugElement.query(By.css('.more-content'));
 
-    expect(hiddenBlocks.length).toEqual(0);
+    expect(hiddenBlocksInMoreContent.length).toEqual(allHiddenBlocks.length);
+    expect(moreContent.styles['height']).toEqual('0px');
   });
 
   it('should show hiddenItems when More button is clicked', () => {
@@ -165,40 +163,44 @@ describe('expandable article section', () => {
       visibleItems: [visibleBlock, visibleBlock],
       hiddenItems: [hiddenBlock, hiddenBlock]
     };
+    component.showHiddenItems = false;
     fixture.detectChanges();
 
-    const hiddenBlocksBeforeClick = fixture.debugElement.queryAll(
-      By.css('app-fake-hidden-block')
+    const moreContentBeforeClick = fixture.debugElement.query(
+      By.css('.more-content')
     );
-    expect(hiddenBlocksBeforeClick.length).toEqual(0);
+    expect(moreContentBeforeClick.styles['height']).toEqual('0px');
     fixture.debugElement.query(By.css('.more-button')).nativeElement.click();
+    component.height = 100;
     fixture.detectChanges();
 
-    const hiddenBlocksAfterClick = fixture.debugElement.queryAll(
-      By.css('app-fake-hidden-block')
+    const moreContentAfterClick = fixture.debugElement.query(
+      By.css('.more-content')
     );
-    expect(hiddenBlocksAfterClick.length).toEqual(2);
+    expect(moreContentAfterClick.styles['height']).toEqual('100px');
   });
 
   it('should hide hiddenItems when Less button is clicked', () => {
     component.input = {
       ...sectionArticleData,
+      visibleItems: [visibleBlock, visibleBlock],
       hiddenItems: [hiddenBlock, hiddenBlock]
     };
+    component.height = 100;
     component.showHiddenItems = true;
     fixture.detectChanges();
 
-    const hiddenBlocksBeforeClick = fixture.debugElement.queryAll(
-      By.css('app-fake-hidden-block')
+    const moreContentBeforeClick = fixture.debugElement.query(
+      By.css('.more-content')
     );
-    expect(hiddenBlocksBeforeClick.length).toEqual(2);
+    expect(moreContentBeforeClick.styles['height']).toEqual('100px');
     fixture.debugElement.query(By.css('.more-button')).nativeElement.click();
     fixture.detectChanges();
 
-    const hiddenBlocksAfterClick = fixture.debugElement.queryAll(
-      By.css('app-fake-hidden-block')
+    const moreContentAfterClick = fixture.debugElement.query(
+      By.css('.more-content')
     );
-    expect(hiddenBlocksAfterClick.length).toEqual(0);
+    expect(moreContentAfterClick.styles['height']).toEqual('0px');
   });
 
   it('button text should change from More to Less after clicking it', () => {
