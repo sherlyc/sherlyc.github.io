@@ -69,6 +69,9 @@
             </goals>
             <phase>compile</phase>
             <configuration>
+              <environmentVariables>
+                <SPADE_VERSION>${project.version}</SPADE_VERSION>
+              </environmentVariables>
               <workingDirectory>${basedir}</workingDirectory>
               <executable>npm</executable>
               <arguments>
