@@ -1,11 +1,12 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import ResizeObserver from 'resize-observer-polyfill';
+import { Observable, Subscriber } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ResizeObserverService {
-  private entriesMap: WeakMap<Element, EventEmitter<any>>;
+  private entriesMap: WeakMap<Element, Subscriber<ResizeObserverEntry>>;
   private resizeObserver: ResizeObserver;
 
   constructor() {
@@ -17,20 +18,21 @@ export class ResizeObserverService {
     observedElements
       .filter((entry: ResizeObserverEntry) => this.entriesMap.has(entry.target))
       .forEach((entry: ResizeObserverEntry) => {
-        const emitter = this.entriesMap.get(entry.target);
-        if (emitter) {
-          emitter.emit(entry);
+        const subscriber = this.entriesMap.get(entry.target);
+        if (subscriber) {
+          subscriber.next(entry);
         }
       });
   }
 
-  observe(element: Element, emitter: EventEmitter<any>) {
-    this.entriesMap.set(element, emitter);
-    this.resizeObserver.observe(element);
-  }
-
-  unobserve(element: Element) {
-    this.resizeObserver.unobserve(element);
-    this.entriesMap.delete(element);
+  observe(element: Element): Observable<ResizeObserverEntry> {
+    return new Observable((subscriber) => {
+      this.entriesMap.set(element, subscriber);
+      this.resizeObserver.observe(element);
+      return () => {
+        this.resizeObserver.unobserve(element);
+        this.entriesMap.delete(element);
+      };
+    });
   }
 }

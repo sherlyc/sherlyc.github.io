@@ -3,6 +3,7 @@ import { mockService, ServiceMock } from '../mocks/MockService';
 import { RuntimeService } from '../runtime/runtime.service';
 import { ResizeObserverService } from './resize-observer.service';
 import { EventEmitter } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 
 let triggerResize: Function;
 let observed: any[] = [];
@@ -39,7 +40,6 @@ const clearObservedElements = () => {
   observed = [];
 };
 
-
 describe('Resize Observer', () => {
   let runtimeService: ServiceMock<RuntimeService>;
   let resizeObserverService: ServiceMock<ResizeObserverService>;
@@ -62,28 +62,29 @@ describe('Resize Observer', () => {
     expect(resizeObserverService).toBeTruthy();
   });
 
-  it('should emit an event when observed element is resized', () => {
+  it('should emit an event when observed element is resized', (done) => {
     const service: ResizeObserverService = TestBed.get(ResizeObserverService);
     const ele = {} as Element;
-    const emitter = new EventEmitter();
-    spyOn(emitter, 'emit');
 
-    service.observe(ele, emitter);
+    service.observe(ele).subscribe((event: ResizeObserverEntry) => {
+      expect(event).toBeTruthy();
+      done();
+    });
+
     triggerResize();
-
-    expect(emitter.emit).toHaveBeenCalled();
   });
 
   it('should not emit an event when an unobserved element is resized', () => {
     const service: ResizeObserverService = TestBed.get(ResizeObserverService);
     const ele = {} as Element;
-    const emitter = new EventEmitter();
-    spyOn(emitter, 'emit');
 
-    service.unobserve(ele);
+    const observable = service
+      .observe(ele)
+      .subscribe((event: ResizeObserverEntry) => {
+        fail('should not happen');
+      });
+
+    observable.unsubscribe();
     triggerResize();
-
-    expect(emitter.emit).not.toHaveBeenCalled();
   });
 });
-

@@ -5,6 +5,7 @@ import { mockService, ServiceMock } from '../../../services/mocks/MockService';
 import { ResizeDirective } from './resize.directive';
 import { By } from '@angular/platform-browser';
 import { ResizeObserverService } from '../../../services/resize-observer/resize-observer.service';
+import { Observable, Subject, Subscription } from 'rxjs';
 
 const onResizeMock = jest.fn();
 
@@ -21,7 +22,7 @@ class FakeExpandableComponent {
   }
 }
 
-describe('Resize Observer', () => {
+describe('Resize Directive', () => {
   let fixture: ComponentFixture<FakeExpandableComponent>;
   let component: FakeExpandableComponent;
   let runtimeService: ServiceMock<RuntimeService>;
@@ -32,24 +33,19 @@ describe('Resize Observer', () => {
       declarations: [FakeExpandableComponent, ResizeDirective],
       providers: [
         { provide: RuntimeService, useClass: mockService(RuntimeService) },
-        { provide: ResizeObserverService, useClass: mockService(ResizeObserverService) }
+        {
+          provide: ResizeObserverService,
+          useClass: mockService(ResizeObserverService)
+        }
       ]
     }).compileComponents();
     runtimeService = TestBed.get(RuntimeService);
     resizeObserverService = TestBed.get(ResizeObserverService);
   });
 
-  it('should observe an element when initialized', () => {
-    runtimeService.isBrowser.mockReturnValue(true);
-    fixture = TestBed.createComponent(FakeExpandableComponent);
-    component = fixture.componentInstance;
-    component.toShow = true;
-    fixture.detectChanges();
-
-    expect(resizeObserverService.observe).toHaveBeenCalled();
-  });
-
   it('should call the resizeCallBack when resized', () => {
+    const observable = new Subject<ResizeObserverEntry>();
+    resizeObserverService.observe.mockReturnValue(observable);
     runtimeService.isBrowser.mockReturnValue(true);
     fixture = TestBed.createComponent(FakeExpandableComponent);
     component = fixture.componentInstance;
@@ -60,22 +56,29 @@ describe('Resize Observer', () => {
       By.css('#fake-component')
     ).nativeElement;
 
-    const directiveInstance = fixture.debugElement.query(By.directive(ResizeDirective)).injector.get(ResizeDirective);
-    directiveInstance.resize.emit({ target: observedElement });
+    observable.next({ target: observedElement } as ResizeObserverEntry);
     expect(onResizeMock).toHaveBeenCalledTimes(1);
     expect(onResizeMock).toHaveBeenCalledWith({ target: observedElement });
   });
 
-  it('should unobserve when destroyed', () => {
+  it('should unsubscribe when destroyed', () => {
+    const observable = new Subject<ResizeObserverEntry>();
+    resizeObserverService.observe.mockReturnValue(observable);
     runtimeService.isBrowser.mockReturnValue(true);
     fixture = TestBed.createComponent(FakeExpandableComponent);
     component = fixture.componentInstance;
-
     component.toShow = true;
     fixture.detectChanges();
+
+    const directiveInstance = fixture.debugElement
+      .query(By.directive(ResizeDirective))
+      .injector.get(ResizeDirective);
+    const subscription: Subscription = directiveInstance.subscription;
+    spyOn(subscription, 'unsubscribe');
+
     component.toShow = false;
     fixture.detectChanges();
 
-    expect(resizeObserverService.unobserve).toHaveBeenCalled();
+    expect(subscription.unsubscribe).toHaveBeenCalled();
   });
 });
