@@ -4,6 +4,7 @@ import { BrowserClient, Hub } from '@sentry/browser';
 import { RewriteFrames } from '@sentry/integrations';
 import { CorrelationService } from '../correlation/correlation.service';
 import { RuntimeService } from '../runtime/runtime.service';
+import { environment } from '../../../environments/environment';
 interface ISpadeConsole extends Console {
   [key: string]: Function;
 }
@@ -22,7 +23,8 @@ export class LoggerService implements ErrorHandler {
     this.client = new Hub(
       new BrowserClient({
         ...config.getConfig().sentryIO,
-        integrations: [new RewriteFrames()]
+        integrations: [new RewriteFrames()],
+        release: environment.version
       })
     );
   }
