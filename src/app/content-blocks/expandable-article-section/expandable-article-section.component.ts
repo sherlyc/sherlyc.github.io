@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input } from '@angular/core';
 import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
 import { AnalyticsService } from '../../services/analytics/analytics.service';
 import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
 import { IExpandableArticleSection } from '../../../../common/__types__/IExpandableArticleSection';
+import { WindowService } from '../../services/window/window.service';
 
 @Component({
   selector: 'app-expandable-article-section',
@@ -15,7 +16,11 @@ export class ExpandableArticleSectionComponent
   showHiddenItems = false;
   height = 0;
 
-  constructor(private analyticsService: AnalyticsService) {}
+  constructor(
+    private analyticsService: AnalyticsService,
+    private elementRef: ElementRef,
+    private windowService: WindowService
+  ) {}
 
   sendAnalytics() {
     this.analyticsService.pushEvent({
@@ -25,7 +30,36 @@ export class ExpandableArticleSectionComponent
   }
 
   toggleHiddenItems() {
+    if (this.showHiddenItems) {
+      this.onCloseHiddenItems();
+    }
     this.showHiddenItems = !this.showHiddenItems;
+  }
+
+  onCloseHiddenItems() {
+    const moreButton = this.elementRef.nativeElement.querySelector(
+      '.more-button'
+    );
+    const elementOffSetTop =
+      moreButton.offsetTop - this.windowService.getWindow().scrollY;
+    const startAnimationTime = Date.now();
+    const endAnimationTime = startAnimationTime + 500;
+    this.animateScroll(endAnimationTime, moreButton, elementOffSetTop);
+  }
+
+  animateScroll(
+    endAnimationTime: number,
+    element: any,
+    elementOffSetTop: number
+  ) {
+    requestAnimationFrame(() => {
+      this.windowService
+        .getWindow()
+        .scroll(0, element.offsetTop - elementOffSetTop);
+      if (Date.now() <= endAnimationTime) {
+        this.animateScroll(endAnimationTime, element, elementOffSetTop);
+      }
+    });
   }
 
   onResize(event: ResizeObserverEntry) {

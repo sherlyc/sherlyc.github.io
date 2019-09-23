@@ -12,11 +12,13 @@ import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/t
 import { OpenExternalLinkDirective } from '../../shared/directives/open-external-link/open-external-link.directive';
 import { IExpandableArticleSection } from '../../../../common/__types__/IExpandableArticleSection';
 import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
+import { WindowService } from '../../services/window/window.service';
 
 describe('expandable article section', () => {
   let component: ExpandableArticleSectionComponent;
   let fixture: ComponentFixture<ExpandableArticleSectionComponent>;
   let analyticsService: ServiceMock<AnalyticsService>;
+  let windowService: ServiceMock<WindowService>;
 
   // @ts-ignore
   const visibleBlock = {
@@ -82,6 +84,7 @@ describe('expandable article section', () => {
       .compileComponents();
 
     analyticsService = TestBed.get(AnalyticsService);
+    windowService = TestBed.get(WindowService);
     fixture = TestBed.createComponent(ExpandableArticleSectionComponent);
     component = fixture.componentInstance;
   });
@@ -252,5 +255,35 @@ describe('expandable article section', () => {
     ).styles;
 
     expect(moreContentDivStyles['height']).toEqual('0px');
+  });
+
+  it('should call onCloseHiddenItems to animate after clicking Less button', () => {
+    component.input = sectionArticleData;
+    component.showHiddenItems = true;
+    fixture.detectChanges();
+    jest.spyOn(component, 'onCloseHiddenItems');
+
+    fixture.debugElement.query(By.css('.more-button')).nativeElement.click();
+
+    expect(component.onCloseHiddenItems).toHaveBeenCalledTimes(1);
+  });
+
+  it('should not call onCloseHiddenItems to animate after clicking More button', () => {
+    component.input = sectionArticleData;
+    component.showHiddenItems = false;
+    fixture.detectChanges();
+    jest.spyOn(component, 'onCloseHiddenItems');
+
+    fixture.debugElement.query(By.css('.more-button')).nativeElement.click();
+
+    expect(component.onCloseHiddenItems).not.toHaveBeenCalled();
+  });
+
+  it('should call animateScroll when onCloseHiddenItems is triggered', () => {
+    jest.spyOn(component, 'animateScroll');
+
+    component.onCloseHiddenItems();
+
+    expect(component.animateScroll).toHaveBeenCalled();
   });
 });
