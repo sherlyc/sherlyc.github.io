@@ -79,6 +79,7 @@
     "newrelic": "^5.11.0",
     "p-retry": "^4.1.0",
     "polyfill-array-includes": "^2.0.0",
+    "resize-observer-polyfill": "^1.5.1",
     "rxjs": "^6.5.3",
     "source-map-support": "^0.5.13",
     "store": "^2.0.12",
