@@ -5,7 +5,7 @@ export interface IExpandableArticleSection {
   type: ContentBlockType.ExpandableArticleSection;
   displayName: string;
   displayNameColor: string;
-  linkUrl?: string;
+  linkUrl: string;
   visibleItems: IContentBlock[];
   hiddenItems: IContentBlock[];
 }

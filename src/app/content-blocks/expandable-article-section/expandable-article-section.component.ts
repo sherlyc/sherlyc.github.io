@@ -25,7 +25,7 @@ export class ExpandableArticleSectionComponent
   sendAnalytics() {
     this.analyticsService.pushEvent({
       type: AnalyticsEventsType.MORE_BUTTON_CLICKED,
-      url: this.input.linkUrl!
+      url: this.input.linkUrl
     });
   }
 
