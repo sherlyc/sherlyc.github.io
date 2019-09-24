@@ -11,6 +11,9 @@ import { ITopStoriesHandlerInput } from './ITopStoriesHandlerInput';
 import { ITopStoriesArticleListHandlerInput } from './ITopStoriesArticleListHandlerInput';
 import { IFeatureHandlerInput } from './IFeatureHandlerInput';
 import { IBannerHandlerInput } from './IBannerHandlerInput';
+import { IExpandableArticleListHandlerInput } from './IExpandableArticleListHandlerInput';
+import { IExpandableArticleSectionHandlerInput } from './IExpandableArticleSectionHandlerInput';
+import { IMoreSectionExperimentHandlerInput } from './IMoreSectionExperimentHandlerInput';
 import { ITopStoriesArticleListGroupOneHandlerInput } from './ITopStoriesArticleListGroupOne';
 import { ITopStoriesArticleListGroupTwoHandlerInput } from './ITopStoriesArticleListGroupTwo';
 
@@ -24,6 +27,9 @@ export type HandlerInput =
   | IMidStripHandlerInput
   | IMiniMidStripHandlerInput
   | IBasicArticleSectionHandlerInput
+  | IExpandableArticleListHandlerInput
+  | IExpandableArticleSectionHandlerInput
+  | IMoreSectionExperimentHandlerInput
   | IBreakingNewsHandlerInput
   | IExternalContentHandlerInput
   | IPageHandlerInput

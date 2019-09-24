@@ -101,7 +101,7 @@ describe('expandable article section', () => {
   });
 
   it('should render more button', () => {
-    component.input = sectionArticleData;
+    component.input = { ...sectionArticleData, hiddenItems: [hiddenBlock] };
     fixture.detectChanges();
 
     expect(
@@ -110,8 +110,17 @@ describe('expandable article section', () => {
     ).toContain('More National');
   });
 
-  it('should send analytics with url when More button is clicked', () => {
+  it('should hide More button when hiddenItems are empty', () => {
     component.input = sectionArticleData;
+    fixture.detectChanges();
+
+    const moreButton = fixture.debugElement.query(By.css('.more-button'));
+
+    expect(moreButton).toBeFalsy();
+  });
+
+  it('should send analytics with url when More button is clicked', () => {
+    component.input = { ...sectionArticleData, hiddenItems: [hiddenBlock] };
     fixture.detectChanges();
 
     fixture.debugElement.query(By.css('.more-button')).nativeElement.click();
@@ -204,7 +213,7 @@ describe('expandable article section', () => {
   });
 
   it('button text should change from More to Less after clicking it', () => {
-    component.input = sectionArticleData;
+    component.input = { ...sectionArticleData, hiddenItems: [hiddenBlock] };
     fixture.detectChanges();
 
     const button = fixture.debugElement.query(By.css('.more-button'));
@@ -260,7 +269,7 @@ describe('expandable article section', () => {
   });
 
   it('should call onCloseHiddenItems to animate after clicking Less button', () => {
-    component.input = sectionArticleData;
+    component.input = { ...sectionArticleData, hiddenItems: [hiddenBlock] };
     component.showHiddenItems = true;
     fixture.detectChanges();
     jest.spyOn(component, 'onCloseHiddenItems');
@@ -271,7 +280,7 @@ describe('expandable article section', () => {
   });
 
   it('should not call onCloseHiddenItems to animate after clicking More button', () => {
-    component.input = sectionArticleData;
+    component.input = { ...sectionArticleData, hiddenItems: [hiddenBlock] };
     component.showHiddenItems = false;
     fixture.detectChanges();
     jest.spyOn(component, 'onCloseHiddenItems');
@@ -282,6 +291,9 @@ describe('expandable article section', () => {
   });
 
   it('should call animateScroll when onCloseHiddenItems is triggered', () => {
+    component.input = { ...sectionArticleData, hiddenItems: [hiddenBlock] };
+    component.showHiddenItems = true;
+    fixture.detectChanges();
     jest.spyOn(component, 'animateScroll');
 
     component.onCloseHiddenItems();

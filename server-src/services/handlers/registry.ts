@@ -5,6 +5,9 @@ import TopStoriesArticleListGroupOne from './top-stories-experiment/group-one';
 import TopStoriesArticleListGroupTwo from './top-stories-experiment/group-two';
 import ArticleList from './basic-article-list/basic-article-list';
 import ArticleSection from './basic-article-section/basic-article-section';
+import MoreSectionExperiment from './more-section-experiment/more-section-experiment';
+import ExpandableArticleSection from './more-section-experiment/expandable-article-section';
+import ExpandableArticleList from './more-section-experiment/expandable-article-list';
 import BreakingNews from './breaking-news/breaking-news';
 import Banner from './banner/banner';
 import MidStrip from './midstrip-handler/midstrip-handler';
@@ -30,6 +33,9 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   TopStoriesArticleListGroupOne,
   TopStoriesArticleListGroupTwo,
   ArticleList,
+  MoreSectionExperiment,
+  ExpandableArticleSection,
+  ExpandableArticleList,
   Banner,
   MidStrip,
   MiniMidStrip,
