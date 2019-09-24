@@ -1,4 +1,5 @@
 export enum Experiments {
   Users = 'Users',
-  TopStoriesVisualExperiment = 'TopStoriesVisualExperiment'
+  TopStoriesVisualExperiment = 'TopStoriesVisualExperiment',
+  MoreSection = 'MoreSection'
 }

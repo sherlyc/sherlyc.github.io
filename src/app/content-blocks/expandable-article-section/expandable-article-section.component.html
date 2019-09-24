@@ -10,7 +10,7 @@
       <ng-container [appContentBlock]="input.hiddenItems"></ng-container>
     </div>
   </div>
-  <div>
+  <div *ngIf="input.hiddenItems.length > 0">
     <a class="more-button" (click)="[sendAnalytics(), toggleHiddenItems()]"
       >{{ showHiddenItems ? 'Less' : 'More' }} {{ input.displayName }}
       <svg class="dropdown" [ngClass]="{ 'arrow-up': showHiddenItems }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 17">

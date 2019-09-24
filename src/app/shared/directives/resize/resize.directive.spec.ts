@@ -5,9 +5,7 @@ import { mockService, ServiceMock } from '../../../services/mocks/MockService';
 import { ResizeDirective } from './resize.directive';
 import { By } from '@angular/platform-browser';
 import { ResizeObserverService } from '../../../services/resize-observer/resize-observer.service';
-import { Observable, Subject, Subscription } from 'rxjs';
-
-const onResizeMock = jest.fn();
+import { Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-fake-component',
@@ -17,9 +15,7 @@ const onResizeMock = jest.fn();
 class FakeExpandableComponent {
   toShow = false;
 
-  onResize(entry: any) {
-    onResizeMock(entry);
-  }
+  onResize(entry: any) {}
 }
 
 describe('Resize Directive', () => {
@@ -50,15 +46,18 @@ describe('Resize Directive', () => {
     fixture = TestBed.createComponent(FakeExpandableComponent);
     component = fixture.componentInstance;
     component.toShow = true;
+    jest.spyOn(component, 'onResize');
     fixture.detectChanges();
 
     const observedElement = fixture.debugElement.query(
       By.css('#fake-component')
     ).nativeElement;
-
     observable.next({ target: observedElement } as ResizeObserverEntry);
-    expect(onResizeMock).toHaveBeenCalledTimes(1);
-    expect(onResizeMock).toHaveBeenCalledWith({ target: observedElement });
+
+    expect(component.onResize).toHaveBeenCalledTimes(1);
+    expect(component.onResize).toHaveBeenCalledWith({
+      target: observedElement
+    });
   });
 
   it('should unsubscribe when destroyed', () => {
@@ -74,7 +73,7 @@ describe('Resize Directive', () => {
       .query(By.directive(ResizeDirective))
       .injector.get(ResizeDirective);
     const subscription: Subscription = directiveInstance.subscription;
-    spyOn(subscription, 'unsubscribe');
+    jest.spyOn(subscription, 'unsubscribe');
 
     component.toShow = false;
     fixture.detectChanges();
