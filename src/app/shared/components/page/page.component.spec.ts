@@ -12,7 +12,8 @@ import { AdService } from '../../../services/ad/ad.service';
 import { CorrelationService } from '../../../services/correlation/correlation.service';
 import { EventsService } from '../../../services/events/events.service';
 import { AnalyticsService } from '../../../services/analytics/analytics.service';
-import { AnalyticsEventsType } from '../../../services/analytics/__types__/AnalyticsEventsType';
+import { LoggerService } from '../../../services/logger/logger.service';
+import { environment } from '../../../../environments/environment';
 
 describe('PageComponent', () => {
   let component: PageComponent;
@@ -22,6 +23,7 @@ describe('PageComponent', () => {
   let adServiceMock: ServiceMock<AdService>;
   let eventsServiceMock: ServiceMock<EventsService>;
   let analyticsServiceMock: ServiceMock<AnalyticsService>;
+  let loggerService: ServiceMock<LoggerService>;
 
   const mockContentBlocks: IContentBlock[] = ([
     {
@@ -65,6 +67,10 @@ describe('PageComponent', () => {
         {
           provide: AnalyticsService,
           useClass: mockService(AnalyticsService)
+        },
+        {
+          provide: LoggerService,
+          useClass: mockService(LoggerService)
         }
       ],
       schemas: [NO_ERRORS_SCHEMA]
@@ -87,6 +93,7 @@ describe('PageComponent', () => {
     contentRetrieverMock = TestBed.get(ContentRetrieverService);
     adServiceMock = TestBed.get(AdService);
     analyticsServiceMock = TestBed.get(AnalyticsService);
+    loggerService = TestBed.get(LoggerService);
   });
 
   afterEach(() => {
@@ -104,7 +111,12 @@ describe('PageComponent', () => {
 
   it('should render a list of content block', () => {
     contentRetrieverMock.getContent.mockReturnValue(
-      of({ title: '', content: mockContentBlocks, apiRequestId: '' })
+      of({
+        title: '',
+        version: '',
+        content: mockContentBlocks,
+        apiRequestId: ''
+      })
     );
 
     component.getData();
@@ -115,7 +127,12 @@ describe('PageComponent', () => {
 
   it('should render a list of content block when router navigates to "/"', () => {
     contentRetrieverMock.getContent.mockReturnValue(
-      of({ title: '', content: mockContentBlocks, apiRequestId: '' })
+      of({
+        title: '',
+        version: '',
+        content: mockContentBlocks,
+        apiRequestId: ''
+      })
     );
     const getDataSpy = jest.spyOn(component, 'getData');
 
@@ -169,7 +186,12 @@ describe('PageComponent', () => {
 
   it('should notify ad sdk when page finish render', () => {
     contentRetrieverMock.getContent.mockReturnValue(
-      of({ title: '', content: mockContentBlocks, apiRequestId: '' })
+      of({
+        title: '',
+        version: '',
+        content: mockContentBlocks,
+        apiRequestId: ''
+      })
     );
     fixture.detectChanges(); // input updated
     setTimeout(() => {
@@ -180,7 +202,12 @@ describe('PageComponent', () => {
   it('should render the page when ad sdk fail loading', () => {
     adServiceMock.load = Promise.reject();
     contentRetrieverMock.getContent.mockReturnValue(
-      of({ title: '', content: mockContentBlocks, apiRequestId: '' })
+      of({
+        title: '',
+        version: '',
+        content: mockContentBlocks,
+        apiRequestId: ''
+      })
     );
     fixture.detectChanges(); // input updated
     setTimeout(() => assertsForSuccessfulRetrieval());
@@ -188,12 +215,45 @@ describe('PageComponent', () => {
 
   it('should post nielsen tracking record when the page rendering finishes', () => {
     contentRetrieverMock.getContent.mockReturnValue(
-      of({ title: '', content: mockContentBlocks, apiRequestId: '' })
+      of({
+        title: '',
+        version: '',
+        content: mockContentBlocks,
+        apiRequestId: ''
+      })
     );
     fixture.detectChanges();
     setTimeout(() => {
       expect(analyticsServiceMock.trackPageByNielsen).toHaveBeenCalled();
     });
+  });
+
+  it('should log version mismatch', () => {
+    contentRetrieverMock.getContent.mockReturnValue(
+      of({
+        title: '',
+        version: '123',
+        content: mockContentBlocks,
+        apiRequestId: ''
+      })
+    );
+    fixture.detectChanges();
+    expect(loggerService.error).toHaveBeenCalledWith(
+      new Error('spade version mismatch FE:SNAPSHOT BE:123')
+    );
+  });
+
+  it('should not log version mismatch when versions are equal', () => {
+    contentRetrieverMock.getContent.mockReturnValue(
+      of({
+        title: '',
+        version: 'SNAPSHOT',
+        content: mockContentBlocks,
+        apiRequestId: ''
+      })
+    );
+    fixture.detectChanges();
+    expect(loggerService.error).not.toHaveBeenCalled();
   });
 
   function assertsForSuccessfulRetrieval() {

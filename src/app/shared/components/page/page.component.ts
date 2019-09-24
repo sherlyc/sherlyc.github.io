@@ -9,7 +9,8 @@ import { EventsService } from '../../../services/events/events.service';
 import { Subject } from 'rxjs';
 import { NavigationStart } from '@angular/router';
 import { AnalyticsService } from '../../../services/analytics/analytics.service';
-import { AnalyticsEventsType } from '../../../services/analytics/__types__/AnalyticsEventsType';
+import { environment } from '../../../../environments/environment';
+import { LoggerService } from '../../../services/logger/logger.service';
 
 @Component({
   selector: 'app-page',
@@ -24,6 +25,7 @@ export class PageComponent implements OnInit {
     private title: Title,
     private correlationService: CorrelationService,
     private eventsService: EventsService,
+    private loggerService: LoggerService,
     private analyticsService: AnalyticsService
   ) {
     this.navigationStartSubject = this.eventsService.getEventSubject().NavigationStart;
@@ -41,6 +43,14 @@ export class PageComponent implements OnInit {
   getData() {
     this.correlationService.generatePageScopedId();
     this.contentRetriever.getContent().subscribe(async (page: IPage) => {
+      if (page.version !== environment.version) {
+        this.loggerService.error(
+          new Error(
+            `spade version mismatch FE:${environment.version} BE:${page.version}`
+          )
+        );
+      }
+
       this.correlationService.setApiRequestId(page.apiRequestId);
       this.title.setTitle(page.title);
       try {

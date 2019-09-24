@@ -17,7 +17,12 @@ describe('Content Controller', () => {
     const req = { spadeParams: {} } as Request;
     const res = { json: jest.fn(), end: jest.fn() } as any;
 
-    const result = { apiRequestId: '123', title: 'Title', content: [] };
+    const result = {
+      apiRequestId: '123',
+      title: 'Title',
+      version: '',
+      content: []
+    };
     jest.spyOn(orchestrate, 'default').mockResolvedValue(result);
 
     await getContent(req, res);

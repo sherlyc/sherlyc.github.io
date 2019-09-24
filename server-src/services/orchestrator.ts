@@ -14,6 +14,7 @@ export default async (params: IParams): Promise<IPage> => {
     return {
       apiRequestId: params.apiRequestId,
       title: 'Latest breaking news NZ | Stuff.co.nz | New Zealand',
+      version: process.env.SPADE_VERSION || 'SNAPSHOT',
       content: await handlerRunner(
         {
           type: HandlerInputType.Page,
