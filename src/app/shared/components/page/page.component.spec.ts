@@ -16,6 +16,7 @@ import { LoggerService } from '../../../services/logger/logger.service';
 import { environment } from '../../../../environments/environment';
 
 describe('PageComponent', () => {
+  const originalVersion = environment.version;
   let component: PageComponent;
   let fixture: ComponentFixture<PageComponent>;
 
@@ -98,6 +99,7 @@ describe('PageComponent', () => {
 
   afterEach(() => {
     jest.resetAllMocks();
+    environment.version = originalVersion;
   });
 
   it('should create', () => {
@@ -229,6 +231,8 @@ describe('PageComponent', () => {
   });
 
   it('should log version mismatch', () => {
+    environment.version = '13jkhjh3';
+
     contentRetrieverMock.getContent.mockReturnValue(
       of({
         title: '',
@@ -239,7 +243,7 @@ describe('PageComponent', () => {
     );
     fixture.detectChanges();
     expect(loggerService.error).toHaveBeenCalledWith(
-      new Error('spade version mismatch FE:SNAPSHOT BE:123')
+      new Error('spade version mismatch FE:13jkhjh3 BE:123')
     );
   });
 
