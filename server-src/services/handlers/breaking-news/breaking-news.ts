@@ -14,22 +14,16 @@ export default async function(
   params: IParams
 ): Promise<IContentBlock[]> {
   try {
-    const {
-      id,
-      text,
-      link,
-      enabled
-    }: IBreakingNewsResponse = await getBreakingNews(params);
-    return enabled
-      ? [
-          {
-            type: ContentBlockType.BreakingNews,
-            id,
-            text,
-            link
-          } as IBreakingNews
-        ]
-      : [];
+    const breakingNews: IBreakingNewsResponse = await getBreakingNews(params);
+
+    if (breakingNews && breakingNews.enabled) {
+      const { id, text, link } = breakingNews;
+      return [
+        { type: ContentBlockType.BreakingNews, id, text, link } as IBreakingNews
+      ];
+    }
+
+    return [];
   } catch (e) {
     logger.error(params.apiRequestId, `Breaking News handler error - ${e}`);
     return [];
