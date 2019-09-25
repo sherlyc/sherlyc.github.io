@@ -230,23 +230,6 @@ describe('PageComponent', () => {
     });
   });
 
-  it('should log version mismatch', () => {
-    environment.version = '13jkhjh3';
-
-    contentRetrieverMock.getContent.mockReturnValue(
-      of({
-        title: '',
-        version: '123',
-        content: mockContentBlocks,
-        apiRequestId: ''
-      })
-    );
-    fixture.detectChanges();
-    expect(loggerService.error).toHaveBeenCalledWith(
-      new Error('spade version mismatch FE:13jkhjh3 BE:123')
-    );
-  });
-
   it('should not log version mismatch when versions are equal', () => {
     contentRetrieverMock.getContent.mockReturnValue(
       of({

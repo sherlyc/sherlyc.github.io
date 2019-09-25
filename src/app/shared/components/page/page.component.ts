@@ -43,14 +43,6 @@ export class PageComponent implements OnInit {
   getData() {
     this.correlationService.generatePageScopedId();
     this.contentRetriever.getContent().subscribe(async (page: IPage) => {
-      if (page.version !== environment.version) {
-        this.loggerService.error(
-          new Error(
-            `spade version mismatch FE:${environment.version} BE:${page.version}`
-          )
-        );
-      }
-
       this.correlationService.setApiRequestId(page.apiRequestId);
       this.title.setTitle(page.title);
       try {
