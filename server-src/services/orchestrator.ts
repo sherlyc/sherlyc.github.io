@@ -87,24 +87,30 @@ export default async (params: IParams): Promise<IPage> => {
                 homepageStrapsConfig[Strap.MidStrip].totalArticlesWithImages
             },
             {
-              type: HandlerInputType.MoreSectionExperimentHandlerInput,
-              linkUrl: '/' + Section.RugbyWorldCup,
+              type: HandlerInputType.ArticleSection,
               displayName: 'Rugby World Cup',
               displayNameColor: 'black',
-              sourceId: Strap.RugbyWorldCup,
-              strapName: 'Rugby World Cup',
-              totalBasicArticlesUnit: 2,
-              totalBasicArticleTitleUnit: 3
+              linkUrl: '/' + Section.RugbyWorldCup,
+              content: {
+                type: HandlerInputType.ArticleList,
+                sourceId: Strap.RugbyWorldCup,
+                strapName: 'Rugby World Cup',
+                totalBasicArticlesUnit: 2,
+                totalBasicArticleTitleUnit: 3
+              }
             },
             {
-              type: HandlerInputType.MoreSectionExperimentHandlerInput,
-              linkUrl: '/' + Section.National,
+              type: HandlerInputType.ArticleSection,
               displayName: 'National',
               displayNameColor: 'darkblue',
-              sourceId: Strap.National,
-              strapName: 'National',
-              totalBasicArticlesUnit: 2,
-              totalBasicArticleTitleUnit: 3
+              linkUrl: '/' + Section.National,
+              content: {
+                type: HandlerInputType.ArticleList,
+                sourceId: Strap.National,
+                strapName: 'National',
+                totalBasicArticlesUnit: 2,
+                totalBasicArticleTitleUnit: 3
+              }
             },
             {
               type: HandlerInputType.ArticleSection,
@@ -129,54 +135,69 @@ export default async (params: IParams): Promise<IPage> => {
                 'https://interactives.stuff.co.nz/2019/05/save-the-planet/qstp-small-uber.html'
             },
             {
-              type: HandlerInputType.MoreSectionExperimentHandlerInput,
-              linkUrl: '/' + Section.ClimateChange,
+              type: HandlerInputType.ArticleSection,
               displayName: 'Climate Change',
               displayNameColor: 'darkblue',
-              sourceId: Strap.ClimateChange,
-              strapName: 'Climate Change',
-              totalBasicArticlesUnit: 2,
-              totalBasicArticleTitleUnit: 3
+              linkUrl: '/' + Section.ClimateChange,
+              content: {
+                type: HandlerInputType.ArticleList,
+                sourceId: Strap.ClimateChange,
+                strapName: 'Climate Change',
+                totalBasicArticlesUnit: 2,
+                totalBasicArticleTitleUnit: 3
+              }
             },
             {
-              type: HandlerInputType.MoreSectionExperimentHandlerInput,
-              linkUrl: '/' + Section.Business,
+              type: HandlerInputType.ArticleSection,
               displayName: 'Business',
               displayNameColor: 'royalblue',
-              sourceId: Strap.Business,
-              strapName: 'Business',
-              totalBasicArticlesUnit: 2,
-              totalBasicArticleTitleUnit: 3
+              linkUrl: '/' + Section.Business,
+              content: {
+                type: HandlerInputType.ArticleList,
+                sourceId: Strap.Business,
+                strapName: 'Business',
+                totalBasicArticlesUnit: 2,
+                totalBasicArticleTitleUnit: 3
+              }
             },
             {
-              type: HandlerInputType.MoreSectionExperimentHandlerInput,
-              linkUrl: '/' + Section.Travel,
+              type: HandlerInputType.ArticleSection,
               displayName: 'Travel',
               displayNameColor: 'yellowsea',
-              sourceId: Strap.Travel,
-              strapName: 'Travel',
-              totalBasicArticlesUnit: 2,
-              totalBasicArticleTitleUnit: 3
+              linkUrl: '/' + Section.Travel,
+              content: {
+                type: HandlerInputType.ArticleList,
+                sourceId: Strap.Travel,
+                strapName: 'Travel',
+                totalBasicArticlesUnit: 2,
+                totalBasicArticleTitleUnit: 3
+              }
             },
             {
-              type: HandlerInputType.MoreSectionExperimentHandlerInput,
-              linkUrl: '/' + Section.Premium,
+              type: HandlerInputType.ArticleSection,
               displayName: 'Premium',
               displayNameColor: 'premiumdark',
-              sourceId: Strap.Premium,
-              strapName: 'Premium',
-              totalBasicArticlesUnit: 2,
-              totalBasicArticleTitleUnit: 3
+              linkUrl: '/' + Section.Premium,
+              content: {
+                type: HandlerInputType.ArticleList,
+                sourceId: Strap.Premium,
+                strapName: 'Premium',
+                totalBasicArticlesUnit: 2,
+                totalBasicArticleTitleUnit: 3
+              }
             },
             {
-              type: HandlerInputType.MoreSectionExperimentHandlerInput,
-              linkUrl: '/' + Section.World,
+              type: HandlerInputType.ArticleSection,
               displayName: 'World',
               displayNameColor: 'azureblue',
-              sourceId: Strap.World,
-              strapName: 'World',
-              totalBasicArticlesUnit: 2,
-              totalBasicArticleTitleUnit: 3
+              linkUrl: '/' + Section.World,
+              content: {
+                type: HandlerInputType.ArticleList,
+                sourceId: Strap.World,
+                strapName: 'World',
+                totalBasicArticlesUnit: 2,
+                totalBasicArticleTitleUnit: 3
+              }
             },
             {
               type: HandlerInputType.ExternalContent,
@@ -186,14 +207,17 @@ export default async (params: IParams): Promise<IPage> => {
               url: 'https://www.neighbourly.co.nz/stuff/strap'
             },
             {
-              type: HandlerInputType.MoreSectionExperimentHandlerInput,
-              linkUrl: '/' + Section.Property,
+              type: HandlerInputType.ArticleSection,
               displayName: 'Property',
               displayNameColor: 'royalblue',
-              sourceId: Strap.Property,
-              strapName: 'Property',
-              totalBasicArticlesUnit: 2,
-              totalBasicArticleTitleUnit: 3
+              linkUrl: '/' + Section.Property,
+              content: {
+                type: HandlerInputType.ArticleList,
+                sourceId: Strap.Property,
+                strapName: 'Property',
+                totalBasicArticlesUnit: 2,
+                totalBasicArticleTitleUnit: 3
+              }
             },
             {
               type: HandlerInputType.ArticleSection,
@@ -219,64 +243,82 @@ export default async (params: IParams): Promise<IPage> => {
               }
             },
             {
-              type: HandlerInputType.MoreSectionExperimentHandlerInput,
-              linkUrl: '/' + Section.Homed,
+              type: HandlerInputType.ArticleSection,
               displayName: 'Homed',
               displayNameColor: 'keppel',
-              sourceId: Strap.Homed,
-              strapName: 'Homed',
-              totalBasicArticlesUnit: 2,
-              totalBasicArticleTitleUnit: 3
+              linkUrl: '/' + Section.Homed,
+              content: {
+                type: HandlerInputType.ArticleList,
+                sourceId: Strap.Homed,
+                strapName: 'Homed',
+                totalBasicArticlesUnit: 2,
+                totalBasicArticleTitleUnit: 3
+              }
             },
             {
-              type: HandlerInputType.MoreSectionExperimentHandlerInput,
-              linkUrl: '/' + Section.LifeStyle,
+              type: HandlerInputType.ArticleSection,
               displayName: 'Life & Style',
               displayNameColor: 'amaranth',
-              sourceId: Strap.LifeStyle,
-              strapName: 'Life & Style',
-              totalBasicArticlesUnit: 2,
-              totalBasicArticleTitleUnit: 3
+              linkUrl: '/' + Section.LifeStyle,
+              content: {
+                type: HandlerInputType.ArticleList,
+                sourceId: Strap.LifeStyle,
+                strapName: 'Life & Style',
+                totalBasicArticlesUnit: 2,
+                totalBasicArticleTitleUnit: 3
+              }
             },
             {
-              type: HandlerInputType.MoreSectionExperimentHandlerInput,
-              linkUrl: '/' + Section.WellGood,
+              type: HandlerInputType.ArticleSection,
               displayName: 'Well & Good',
               displayNameColor: 'sunglow',
-              sourceId: Strap.WellGood,
-              strapName: 'Well & Good',
-              totalBasicArticlesUnit: 2,
-              totalBasicArticleTitleUnit: 3
+              linkUrl: '/' + Section.WellGood,
+              content: {
+                type: HandlerInputType.ArticleList,
+                sourceId: Strap.WellGood,
+                strapName: 'Well & Good',
+                totalBasicArticlesUnit: 2,
+                totalBasicArticleTitleUnit: 3
+              }
             },
             {
-              type: HandlerInputType.MoreSectionExperimentHandlerInput,
-              linkUrl: '/' + Section.Entertainment,
+              type: HandlerInputType.ArticleSection,
               displayName: 'Entertainment',
               displayNameColor: 'purpleheart',
-              sourceId: Strap.Entertainment,
-              strapName: 'Entertainment',
-              totalBasicArticlesUnit: 2,
-              totalBasicArticleTitleUnit: 3
+              linkUrl: '/' + Section.Entertainment,
+              content: {
+                type: HandlerInputType.ArticleList,
+                sourceId: Strap.Entertainment,
+                strapName: 'Entertainment',
+                totalBasicArticlesUnit: 2,
+                totalBasicArticleTitleUnit: 3
+              }
             },
             {
-              type: HandlerInputType.MoreSectionExperimentHandlerInput,
-              linkUrl: '/' + Section.Bravo,
+              type: HandlerInputType.ArticleSection,
               displayName: 'Bravo',
               displayNameColor: 'purpleheart',
-              sourceId: Strap.Bravo,
-              strapName: 'Bravo',
-              totalBasicArticlesUnit: 2,
-              totalBasicArticleTitleUnit: 3
+              linkUrl: '/' + Section.Bravo,
+              content: {
+                type: HandlerInputType.ArticleList,
+                sourceId: Strap.Bravo,
+                strapName: 'Bravo',
+                totalBasicArticlesUnit: 2,
+                totalBasicArticleTitleUnit: 3
+              }
             },
             {
-              type: HandlerInputType.MoreSectionExperimentHandlerInput,
-              linkUrl: '/' + Section.Technology,
+              type: HandlerInputType.ArticleSection,
               displayName: 'Technology',
               displayNameColor: 'carribeangreen',
-              sourceId: Strap.Technology,
-              strapName: 'Technology',
-              totalBasicArticlesUnit: 2,
-              totalBasicArticleTitleUnit: 3
+              linkUrl: '/' + Section.Technology,
+              content: {
+                type: HandlerInputType.ArticleList,
+                sourceId: Strap.Technology,
+                strapName: 'Technology',
+                totalBasicArticlesUnit: 2,
+                totalBasicArticleTitleUnit: 3
+              }
             },
             {
               type: HandlerInputType.ArticleSection,
@@ -292,34 +334,43 @@ export default async (params: IParams): Promise<IPage> => {
               }
             },
             {
-              type: HandlerInputType.MoreSectionExperimentHandlerInput,
-              linkUrl: '/' + Section.Motoring,
+              type: HandlerInputType.ArticleSection,
               displayName: 'Motoring',
               displayNameColor: 'pizzaz',
-              sourceId: Strap.Motoring,
-              strapName: 'Motoring',
-              totalBasicArticlesUnit: 2,
-              totalBasicArticleTitleUnit: 3
+              linkUrl: '/' + Section.Motoring,
+              content: {
+                type: HandlerInputType.ArticleList,
+                sourceId: Strap.Motoring,
+                strapName: 'Motoring',
+                totalBasicArticlesUnit: 2,
+                totalBasicArticleTitleUnit: 3
+              }
             },
             {
-              type: HandlerInputType.MoreSectionExperimentHandlerInput,
-              linkUrl: '/' + Section.StuffNation,
+              type: HandlerInputType.ArticleSection,
               displayName: 'Stuff Nation',
               displayNameColor: 'woodsmoke',
-              sourceId: Strap.StuffNation,
-              strapName: 'Stuff Nation',
-              totalBasicArticlesUnit: 2,
-              totalBasicArticleTitleUnit: 3
+              linkUrl: '/' + Section.StuffNation,
+              content: {
+                type: HandlerInputType.ArticleList,
+                sourceId: Strap.StuffNation,
+                strapName: 'Stuff Nation',
+                totalBasicArticlesUnit: 2,
+                totalBasicArticleTitleUnit: 3
+              }
             },
             {
-              type: HandlerInputType.MoreSectionExperimentHandlerInput,
-              linkUrl: '/' + Section.Sport,
+              type: HandlerInputType.ArticleSection,
               displayName: 'Sport',
               displayNameColor: 'scarlet',
-              sourceId: Strap.Sport,
-              strapName: 'Sport',
-              totalBasicArticlesUnit: 2,
-              totalBasicArticleTitleUnit: 3
+              linkUrl: '/' + Section.Sport,
+              content: {
+                type: HandlerInputType.ArticleList,
+                sourceId: Strap.Sport,
+                strapName: 'Sport',
+                totalBasicArticlesUnit: 2,
+                totalBasicArticleTitleUnit: 3
+              }
             },
             {
               type: HandlerInputType.ArticleSection,
