@@ -59,13 +59,9 @@ export class PageComponent implements OnInit {
         );
       }
 
-      try {
-        await this.adService.load;
-      } finally {
-        this.contentBlocks = page.content;
-        this.adService.notify();
-        this.analyticsService.trackPageByNielsen();
-      }
+      this.contentBlocks = page.content;
+      this.adService.notify();
+      this.analyticsService.trackPageByNielsen();
     });
   }
 }

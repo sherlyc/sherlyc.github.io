@@ -49,15 +49,19 @@ export class AdService {
   }
 
   async notify() {
-    await this.load;
-    this.zone.runOutsideAngular(() => {
-      if ('name' in Event.prototype.constructor) {
-        this.document.dispatchEvent(new Event('NavigationEnd'));
-      } else {
-        const e = this.document.createEvent('Event');
-        e.initEvent('NavigationEnd', true, true);
-        this.document.dispatchEvent(e);
-      }
-    });
+    try {
+      await this.load;
+      this.zone.runOutsideAngular(() => {
+        if ('name' in Event.prototype.constructor) {
+          this.document.dispatchEvent(new Event('NavigationEnd'));
+        } else {
+          const e = this.document.createEvent('Event');
+          e.initEvent('NavigationEnd', true, true);
+          this.document.dispatchEvent(e);
+        }
+      });
+    } catch (e) {
+      this.logger.error(e);
+    }
   }
 }
