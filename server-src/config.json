@@ -7,7 +7,7 @@
     "breakingNewsApi": "https://api.stuff.co.nz/isomorphic-api/breakingNews?field=state",
     "bannerApi": "https://assets.stuff.co.nz/static/spade/banners.json",
     "layoutAPI": "https://i.stuff.co.nz/_json/layout/jcr:content",
-    "experimentsConfigUrl": "https://assets.stuff.co.nz/static/spade/experiments.json",
+    "experimentsConfigUrl": "https://assets.stuff.co.nz/static/spade/experiments-prod.json",
     "featuresConfigUrl": "https://assets.stuff.co.nz/static/spade/features.json",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
@@ -23,7 +23,7 @@
     "breakingNewsApi": "https://api-preprod.stuff.co.nz/isomorphic-api/breakingNews?field=state",
     "bannerApi": "https://assets.stuff.co.nz/static/spade/banners.json",
     "layoutAPI": "https://i-preprod.stuff.co.nz/_json/layout/jcr:content",
-    "experimentsConfigUrl": "https://assets.stuff.co.nz/static/spade/experiments.json",
+    "experimentsConfigUrl": "https://assets.stuff.co.nz/static/spade/experiments-staging.json",
     "featuresConfigUrl": "https://assets.stuff.co.nz/static/spade/features.json",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
@@ -39,7 +39,7 @@
     "breakingNewsApi": "https://api.stuff.co.nz/isomorphic-api/breakingNews?field=state",
     "bannerApi": "https://assets.stuff.co.nz/static/spade/banners.json",
     "layoutAPI": "https://i-preprod.stuff.co.nz/_json/layout/jcr:content",
-    "experimentsConfigUrl": "https://assets.stuff.co.nz/static/spade/experiments.json",
+    "experimentsConfigUrl": "https://assets.stuff.co.nz/static/spade/experiments-dev.json",
     "featuresConfigUrl": "https://assets.stuff.co.nz/static/spade/features.json",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
@@ -55,7 +55,7 @@
     "breakingNewsApi": "https://api.stuff.co.nz/isomorphic-api/breakingNews?field=state",
     "bannerApi": "https://assets.stuff.co.nz/static/spade/banners.json",
     "layoutAPI": "https://i.stuff.co.nz/_json/layout/jcr:content",
-    "experimentsConfigUrl": "https://assets.stuff.co.nz/static/spade/experiments.json",
+    "experimentsConfigUrl": "https://assets.stuff.co.nz/static/spade/experiments-dev.json",
     "featuresConfigUrl": "https://assets.stuff.co.nz/static/spade/features.json",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {
@@ -71,7 +71,7 @@
     "breakingNewsApi": "https://api.stuff.co.nz/isomorphic-api/breakingNews?field=state",
     "bannerApi": "https://assets.stuff.co.nz/static/spade/banners.json",
     "layoutAPI": "https://i-preprod.stuff.co.nz/_json/layout/jcr:content",
-    "experimentsConfigUrl": "https://assets.stuff.co.nz/static/spade/experiments.json",
+    "experimentsConfigUrl": "https://assets.stuff.co.nz/static/spade/experiments-dev.json",
     "featuresConfigUrl": "https://assets.stuff.co.nz/static/spade/features.json",
     "maxArticlesToRetrieve": 6,
     "loggerOptions": {

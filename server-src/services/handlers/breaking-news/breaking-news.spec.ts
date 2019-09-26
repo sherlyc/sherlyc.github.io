@@ -52,6 +52,18 @@ describe('BreakingNewsHandler', () => {
     expect(contentBlocks).toHaveLength(0);
   });
 
+  it('should get an empty content block list when breaking news is null', async () => {
+    const breakingNewsResponse = null;
+    (getBreakingNews as jest.Mock).mockResolvedValue(breakingNewsResponse);
+
+    const contentBlocks = await breakingNewsHandler(
+      handlerRunnerMock,
+      {} as IBreakingNewsHandlerInput,
+      params
+    );
+    expect(contentBlocks).toHaveLength(0);
+  });
+
   it('should get an empty content block list and log error when breaking news api fails', async () => {
     const error = new Error();
     const loggerSpy = jest.spyOn(logger, 'error');
