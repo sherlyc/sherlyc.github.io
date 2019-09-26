@@ -11,6 +11,7 @@ import { NavigationStart } from '@angular/router';
 import { AnalyticsService } from '../../../services/analytics/analytics.service';
 import { environment } from '../../../../environments/environment';
 import { LoggerService } from '../../../services/logger/logger.service';
+import { RuntimeService } from '../../../services/runtime/runtime.service';
 
 @Component({
   selector: 'app-page',
@@ -26,6 +27,7 @@ export class PageComponent implements OnInit {
     private correlationService: CorrelationService,
     private eventsService: EventsService,
     private loggerService: LoggerService,
+    private runtimeService: RuntimeService,
     private analyticsService: AnalyticsService
   ) {
     this.navigationStartSubject = this.eventsService.getEventSubject().NavigationStart;
@@ -45,6 +47,18 @@ export class PageComponent implements OnInit {
     this.contentRetriever.getContent().subscribe(async (page: IPage) => {
       this.correlationService.setApiRequestId(page.apiRequestId);
       this.title.setTitle(page.title);
+
+      if (
+        this.runtimeService.isBrowser() &&
+        page.version !== environment.version
+      ) {
+        this.loggerService.error(
+          new Error(
+            `spade version mismatch FE:${environment.version} BE:${page.version}`
+          )
+        );
+      }
+
       try {
         await this.adService.load;
       } finally {

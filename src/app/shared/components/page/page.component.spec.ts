@@ -14,6 +14,7 @@ import { EventsService } from '../../../services/events/events.service';
 import { AnalyticsService } from '../../../services/analytics/analytics.service';
 import { LoggerService } from '../../../services/logger/logger.service';
 import { environment } from '../../../../environments/environment';
+import { RuntimeService } from '../../../services/runtime/runtime.service';
 
 describe('PageComponent', () => {
   const originalVersion = environment.version;
@@ -25,6 +26,7 @@ describe('PageComponent', () => {
   let eventsServiceMock: ServiceMock<EventsService>;
   let analyticsServiceMock: ServiceMock<AnalyticsService>;
   let loggerService: ServiceMock<LoggerService>;
+  let runtimeService: ServiceMock<RuntimeService>;
 
   const mockContentBlocks: IContentBlock[] = ([
     {
@@ -70,6 +72,10 @@ describe('PageComponent', () => {
           useClass: mockService(AnalyticsService)
         },
         {
+          provide: RuntimeService,
+          useClass: mockService(RuntimeService)
+        },
+        {
           provide: LoggerService,
           useClass: mockService(LoggerService)
         }
@@ -95,6 +101,7 @@ describe('PageComponent', () => {
     adServiceMock = TestBed.get(AdService);
     analyticsServiceMock = TestBed.get(AnalyticsService);
     loggerService = TestBed.get(LoggerService);
+    runtimeService = TestBed.get(RuntimeService);
   });
 
   afterEach(() => {
@@ -230,7 +237,40 @@ describe('PageComponent', () => {
     });
   });
 
+  it('should log version mismatch in browser', () => {
+    runtimeService.isBrowser.mockReturnValue(true);
+    environment.version = '13jkhjh3';
+    contentRetrieverMock.getContent.mockReturnValue(
+      of({
+        title: '',
+        version: '123',
+        content: mockContentBlocks,
+        apiRequestId: ''
+      })
+    );
+    fixture.detectChanges();
+    expect(loggerService.error).toHaveBeenCalledWith(
+      new Error('spade version mismatch FE:13jkhjh3 BE:123')
+    );
+  });
+
+  it('should not log version mismatch in server', () => {
+    runtimeService.isBrowser.mockReturnValue(false);
+    environment.version = '13jkhjh3';
+    contentRetrieverMock.getContent.mockReturnValue(
+      of({
+        title: '',
+        version: '123',
+        content: mockContentBlocks,
+        apiRequestId: ''
+      })
+    );
+    fixture.detectChanges();
+    expect(loggerService.error).not.toHaveBeenCalled();
+  });
+
   it('should not log version mismatch when versions are equal', () => {
+    runtimeService.isBrowser.mockReturnValue(true);
     contentRetrieverMock.getContent.mockReturnValue(
       of({
         title: '',
