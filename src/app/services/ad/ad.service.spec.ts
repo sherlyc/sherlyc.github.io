@@ -4,7 +4,7 @@ import { ConfigService } from '../config/config.service';
 import { mockService, ServiceMock } from '../mocks/MockService';
 import { ScriptInjectorService } from '../script-injector/script-injector.service';
 import { DOCUMENT } from '@angular/common';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { LoggerService } from '../logger/logger.service';
 import { RuntimeService } from '../runtime/runtime.service';
@@ -13,6 +13,7 @@ describe('AdService', () => {
   let scriptInjectorService: ServiceMock<ScriptInjectorService>;
   let configMock: ServiceMock<ConfigService>;
   let httpClient: ServiceMock<HttpClient>;
+  let logger: ServiceMock<LoggerService>;
   let adService: AdService;
 
   beforeEach(() => {
@@ -44,6 +45,7 @@ describe('AdService', () => {
     scriptInjectorService = TestBed.get(ScriptInjectorService);
     httpClient = TestBed.get(HttpClient);
     configMock = TestBed.get(ConfigService);
+    logger = TestBed.get(LoggerService);
     adService = TestBed.get(AdService);
   });
 
@@ -96,5 +98,17 @@ describe('AdService', () => {
       true
     );
     expect(document.dispatchEvent).toHaveBeenCalledWith(fakeEvent);
+  });
+
+  it('should log error when fails to load ads config', async () => {
+    const manifestUrl = 'http://manifest_url/';
+    configMock.getConfig.mockReturnValue({ aadSdkUrl: manifestUrl });
+    const errorMsg = 'Failed to retrieve ads config';
+    (httpClient.get as jest.Mock).mockReturnValue(throwError(errorMsg));
+
+    await adService.setup();
+    await adService.notify();
+
+    expect(logger.error).toHaveBeenCalledWith(errorMsg);
   });
 });
