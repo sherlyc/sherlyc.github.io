@@ -148,19 +148,19 @@ describe('PageComponent', () => {
 
     eventsServiceMock
       .getEventSubject()
-      .NavigationStart.next(new NavigationStart(0, '/')); // emit an event before subscription
+      .NavigationStart.next(new NavigationStart(0, '/'));
     expect(getDataSpy).not.toHaveBeenCalled();
 
-    fixture.detectChanges(); // ngOnInit() and subscribe
+    fixture.detectChanges();
     expect(getDataSpy).toBeCalledTimes(1);
     expect(contentRetrieverMock.getContent).toBeCalledTimes(1);
 
     eventsServiceMock
       .getEventSubject()
-      .NavigationStart.next(new NavigationStart(0, '/')); // emit an event
+      .NavigationStart.next(new NavigationStart(0, '/'));
     expect(getDataSpy).toBeCalledTimes(2);
     expect(contentRetrieverMock.getContent).toBeCalledTimes(2);
-    fixture.detectChanges(); // input updated
+    fixture.detectChanges();
 
     assertsForSuccessfulRetrieval();
   });
@@ -183,16 +183,16 @@ describe('PageComponent', () => {
 
     eventsServiceMock
       .getEventSubject()
-      .NavigationStart.next(new NavigationStart(0, '/')); // emit an event before subscription
+      .NavigationStart.next(new NavigationStart(0, '/'));
     expect(getDataSpy).not.toHaveBeenCalled();
 
-    fixture.detectChanges(); // ngOnInit() and subscribe
+    fixture.detectChanges();
     expect(getDataSpy).toHaveBeenCalled();
     expect(contentRetrieverMock.getContent).toHaveBeenCalled();
 
     eventsServiceMock
       .getEventSubject()
-      .NavigationStart.next(new NavigationStart(0, '/')); // emit an event
+      .NavigationStart.next(new NavigationStart(0, '/'));
 
     assertsForFailedRetrieval();
   });
@@ -206,7 +206,7 @@ describe('PageComponent', () => {
         apiRequestId: ''
       })
     );
-    fixture.detectChanges(); // input updated
+    fixture.detectChanges();
 
     expect(adServiceMock.notify).toHaveBeenCalled();
   });
