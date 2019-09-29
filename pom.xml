@@ -337,7 +337,7 @@
         <extensions>true</extensions>
         <configuration>
           <tiles>
-            <tile>nz.stuff.stable.yokohama:yokohama-tile-distribution:1.7</tile>
+            <tile>nz.stuff.stable.yokohama:yokohama-tile-distribution:[1,2)</tile>
             <tile>io.practiv.stable.tile:practiv-tile-buildinfo:[2,3)</tile>
             <tile>io.practiv.stable.tile:practiv-tile-release:[2,3)</tile>
             <tile>io.practiv.stable.tile:practiv-tile-kubernetes-application:[2,3)</tile>
