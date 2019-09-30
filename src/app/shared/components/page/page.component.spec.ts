@@ -130,8 +130,9 @@ describe('PageComponent', () => {
 
     component.getData();
 
-    fixture.detectChanges(); // input updated
-    setTimeout(() => assertsForSuccessfulRetrieval());
+    fixture.detectChanges();
+
+    assertsForSuccessfulRetrieval();
   });
 
   it('should render a list of content block when router navigates to "/"', () => {
@@ -147,20 +148,21 @@ describe('PageComponent', () => {
 
     eventsServiceMock
       .getEventSubject()
-      .NavigationStart.next(new NavigationStart(0, '/')); // emit an event before subscription
+      .NavigationStart.next(new NavigationStart(0, '/'));
     expect(getDataSpy).not.toHaveBeenCalled();
 
-    fixture.detectChanges(); // ngOnInit() and subscribe
+    fixture.detectChanges();
     expect(getDataSpy).toBeCalledTimes(1);
     expect(contentRetrieverMock.getContent).toBeCalledTimes(1);
 
     eventsServiceMock
       .getEventSubject()
-      .NavigationStart.next(new NavigationStart(0, '/')); // emit an event
+      .NavigationStart.next(new NavigationStart(0, '/'));
     expect(getDataSpy).toBeCalledTimes(2);
     expect(contentRetrieverMock.getContent).toBeCalledTimes(2);
-    fixture.detectChanges(); // input updated
-    setTimeout(() => assertsForSuccessfulRetrieval());
+    fixture.detectChanges();
+
+    assertsForSuccessfulRetrieval();
   });
 
   it('should not render any content block when the retriever fails to get content', () => {
@@ -169,6 +171,7 @@ describe('PageComponent', () => {
     );
 
     component.getData();
+
     assertsForFailedRetrieval();
   });
 
@@ -180,16 +183,17 @@ describe('PageComponent', () => {
 
     eventsServiceMock
       .getEventSubject()
-      .NavigationStart.next(new NavigationStart(0, '/')); // emit an event before subscription
+      .NavigationStart.next(new NavigationStart(0, '/'));
     expect(getDataSpy).not.toHaveBeenCalled();
 
-    fixture.detectChanges(); // ngOnInit() and subscribe
+    fixture.detectChanges();
     expect(getDataSpy).toHaveBeenCalled();
     expect(contentRetrieverMock.getContent).toHaveBeenCalled();
 
     eventsServiceMock
       .getEventSubject()
-      .NavigationStart.next(new NavigationStart(0, '/')); // emit an event
+      .NavigationStart.next(new NavigationStart(0, '/'));
+
     assertsForFailedRetrieval();
   });
 
@@ -202,24 +206,9 @@ describe('PageComponent', () => {
         apiRequestId: ''
       })
     );
-    fixture.detectChanges(); // input updated
-    setTimeout(() => {
-      expect(adServiceMock.notify).toHaveBeenCalled();
-    });
-  });
+    fixture.detectChanges();
 
-  it('should render the page when ad sdk fail loading', () => {
-    adServiceMock.load = Promise.reject();
-    contentRetrieverMock.getContent.mockReturnValue(
-      of({
-        title: '',
-        version: '',
-        content: mockContentBlocks,
-        apiRequestId: ''
-      })
-    );
-    fixture.detectChanges(); // input updated
-    setTimeout(() => assertsForSuccessfulRetrieval());
+    expect(adServiceMock.notify).toHaveBeenCalled();
   });
 
   it('should post nielsen tracking record when the page rendering finishes', () => {
@@ -232,9 +221,8 @@ describe('PageComponent', () => {
       })
     );
     fixture.detectChanges();
-    setTimeout(() => {
-      expect(analyticsServiceMock.trackPageByNielsen).toHaveBeenCalled();
-    });
+
+    expect(analyticsServiceMock.trackPageByNielsen).toHaveBeenCalled();
   });
 
   it('should log version mismatch in browser', () => {
