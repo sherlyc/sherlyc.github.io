@@ -10,7 +10,7 @@ module.exports = {
   },
   plugins: [
     new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /locale/),
-    new webpack.EnvironmentPlugin(['SPADE_VERSION']),
+    new webpack.EnvironmentPlugin({ SPADE_VERSION: 'SNAPSHOT' }),
     new webpack.SourceMapDevToolPlugin({
       noSources: true
     })
