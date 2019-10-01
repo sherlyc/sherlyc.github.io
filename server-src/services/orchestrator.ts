@@ -58,11 +58,11 @@ export default async (params: IParams): Promise<IPage> => {
             },
             {
               type: HandlerInputType.ExternalContent,
-              height: '315px',
+              height: '250px',
               width: '100%',
               margin: '0 0 20px 0',
               url:
-                'https://interactives.stuff.co.nz/2019/rugby-world-cup/power-rankings/next3-slim.html'
+                'https://interactives.stuff.co.nz/live/homepage/widget/index.html'
             },
             {
               type: HandlerInputType.ArticleSection,
