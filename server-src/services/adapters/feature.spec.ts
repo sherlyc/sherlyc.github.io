@@ -1,28 +1,25 @@
 import { isFeatureEnabled } from './feature';
-import { retrieveConfig } from './adapters/switches-config-retriever';
-import { DeviceType } from '../../common/DeviceType';
-import { IFeaturesConfig } from './__types__/IFeaturesConfig';
-import { IParams } from './__types__/IParams';
-import config from './utils/config';
+import cacheHttp from '../utils/cache-http';
+import { DeviceType } from '../../../common/DeviceType';
+import { IFeaturesConfig } from '../__types__/IFeaturesConfig';
+import { IParams } from '../__types__/IParams';
+import config from '../utils/config';
 
-jest.mock('./adapters/switches-config-retriever');
+jest.mock('../utils/cache-http');
 
 describe('Feature service', () => {
   const params: IParams = { apiRequestId: '123123' };
 
-  it('should call config retriever with features config url', async () => {
-    (retrieveConfig as jest.Mock).mockReturnValue({});
+  it('should call cacheHttp with features config url', async () => {
+    (cacheHttp as jest.Mock).mockReturnValue({ data: {} });
 
     await isFeatureEnabled('featureName', 50, DeviceType.mobile, params);
 
-    expect(retrieveConfig).toHaveBeenCalledWith(
-      config.featuresConfigUrl,
-      params
-    );
+    expect(cacheHttp).toHaveBeenCalledWith(params, config.featuresConfigUrl);
   });
 
   it('should return false if config is empty', async () => {
-    (retrieveConfig as jest.Mock).mockReturnValue({});
+    (cacheHttp as jest.Mock).mockReturnValue({ data: {} });
 
     const result = await isFeatureEnabled(
       'featureName',
@@ -53,7 +50,7 @@ describe('Feature service', () => {
           internal: 123
         }
       };
-      (retrieveConfig as jest.Mock).mockReturnValue(config);
+      (cacheHttp as jest.Mock).mockReturnValue({ data: config });
 
       const result = await isFeatureEnabled(
         featureName as string,
@@ -77,7 +74,7 @@ describe('Feature service', () => {
         internal: 123
       }
     };
-    (retrieveConfig as jest.Mock).mockReturnValue(config);
+    (cacheHttp as jest.Mock).mockReturnValue({ data: config });
 
     const result = await isFeatureEnabled(
       'featureOne',
@@ -100,7 +97,7 @@ describe('Feature service', () => {
         internal: 123
       }
     };
-    (retrieveConfig as jest.Mock).mockReturnValue(config);
+    (cacheHttp as jest.Mock).mockReturnValue({ data: config });
 
     const result = await isFeatureEnabled(
       'featureOne',
@@ -122,7 +119,7 @@ describe('Feature service', () => {
         internal: 123
       }
     };
-    (retrieveConfig as jest.Mock).mockReturnValue(config);
+    (cacheHttp as jest.Mock).mockReturnValue({ data: config });
 
     const result = await isFeatureEnabled(
       'featureOne',
@@ -144,7 +141,7 @@ describe('Feature service', () => {
         internal: 123
       }
     };
-    (retrieveConfig as jest.Mock).mockReturnValue(config);
+    (cacheHttp as jest.Mock).mockReturnValue({ data: config });
 
     const result = await isFeatureEnabled(
       'someOtherFeature',

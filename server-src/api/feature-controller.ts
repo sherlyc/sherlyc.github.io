@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { isFeatureEnabled } from '../services/feature';
+import { isFeatureEnabled } from '../services/adapters/feature';
 import logger from '../services/utils/logger';
 import { DeviceType } from '../../common/DeviceType';
 
