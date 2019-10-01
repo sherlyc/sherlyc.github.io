@@ -1,10 +1,10 @@
 import { getExperimentVariant } from './experiment';
 import { DeviceType } from '../../../common/DeviceType';
 import { IParams } from '../__types__/IParams';
-import { retrieveConfig } from './switches-config-retriever';
+import cacheHttp from '../utils/cache-http';
 import { IExperimentsConfig } from '../__types__/IExperimentsConfig';
 
-jest.mock('./switches-config-retriever');
+jest.mock('../utils/cache-http');
 
 describe('Experiment service', () => {
   const params: IParams = { apiRequestId: '123123' };
@@ -24,7 +24,7 @@ describe('Experiment service', () => {
           }
         }
       };
-      (retrieveConfig as jest.Mock).mockResolvedValueOnce(config);
+      (cacheHttp as jest.Mock).mockResolvedValueOnce({ data: config });
 
       const experimentVariant = await getExperimentVariant(
         'FunnyExperiment',
@@ -52,7 +52,7 @@ describe('Experiment service', () => {
           }
         }
       };
-      (retrieveConfig as jest.Mock).mockResolvedValueOnce(config);
+      (cacheHttp as jest.Mock).mockResolvedValueOnce({ data: config });
 
       const experimentVariant = await getExperimentVariant(
         'FunnyExperiment',
@@ -80,7 +80,7 @@ describe('Experiment service', () => {
         }
       }
     };
-    (retrieveConfig as jest.Mock).mockResolvedValueOnce(config);
+    (cacheHttp as jest.Mock).mockResolvedValueOnce({ data: config });
 
     const experimentVariant = await getExperimentVariant(
       'FunnyExperiment',
@@ -105,7 +105,7 @@ describe('Experiment service', () => {
         }
       }
     };
-    (retrieveConfig as jest.Mock).mockResolvedValueOnce(config);
+    (cacheHttp as jest.Mock).mockResolvedValueOnce({ data: config });
 
     const experimentVariant = await getExperimentVariant(
       'FunnyExperiment',
@@ -127,7 +127,7 @@ describe('Experiment service', () => {
         }
       }
     };
-    (retrieveConfig as jest.Mock).mockResolvedValueOnce(config);
+    (cacheHttp as jest.Mock).mockResolvedValueOnce({ data: config });
 
     const experimentVariant = await getExperimentVariant(
       'FunnyExperiment',
@@ -145,7 +145,7 @@ describe('Experiment service', () => {
         variantOne: { internal: 123 }
       }
     };
-    (retrieveConfig as jest.Mock).mockResolvedValueOnce(config);
+    (cacheHttp as jest.Mock).mockResolvedValueOnce({ data: config });
 
     const experimentVariant = await getExperimentVariant(
       'NotFunnyExperiment',
