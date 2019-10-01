@@ -3,5 +3,6 @@ export enum DeviceType {
   mobile = 'mobile',
   desktop = 'desktop',
   tv = 'tv',
-  unknown = 'unknown'
+  unknown = 'unknown',
+  bot = 'bot'
 }
