@@ -18,6 +18,7 @@ export class ExperimentContainerComponent
   @Input() input!: IExperimentContainer;
   contentBlocks: IContentBlock[] = [];
   variant = 'control';
+  assignedExperiment?: { name: string; variant: string };
 
   constructor(
     private experimentService: ExperimentService,
@@ -27,18 +28,22 @@ export class ExperimentContainerComponent
   ) {}
 
   async ngOnInit() {
-    if (this.runtimeService.isBrowser()) {
-      this.variant = await this.experimentService.getVariant(this.input.name);
+    if (this.runtimeService.isServer()) {
+      return;
     }
-    if (this.input.variants[this.variant]) {
-      this.contentBlocks = this.input.variants[this.variant];
-      if (this.contentBlocks.length > 0) {
-        this.sendAnalytics();
-      }
+
+    this.assignedExperiment = await this.experimentService.getExperiment();
+
+    if (
+      this.input.name === this.assignedExperiment.name &&
+      this.input.variants[this.assignedExperiment.variant]
+    ) {
+      this.contentBlocks = this.input.variants[this.assignedExperiment.variant];
+      this.sendAnalytics(this.assignedExperiment.variant);
     } else if (this.variant === Experiments.NotAssigned) {
       this.contentBlocks = this.input.variants.control;
       if (this.contentBlocks.length > 0) {
-        this.sendAnalytics();
+        this.sendAnalytics(this.assignedExperiment.variant);
       }
     } else {
       this.loggerService.error(
@@ -47,16 +52,14 @@ export class ExperimentContainerComponent
         )
       );
     }
+    this.contentBlocks = this.input.variants[this.variant];
   }
 
-  private sendAnalytics() {
+  private sendAnalytics(variant: string) {
     this.analyticsService.pushEvent({
       type: AnalyticsEventsType.EXPERIMENT,
-      variant: this.variant,
-      experiment:
-        this.variant === Experiments.NotAssigned
-          ? this.variant
-          : this.input.name
+      experiment: this.input.name,
+      variant
     });
   }
 }

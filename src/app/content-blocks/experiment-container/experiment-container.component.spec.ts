@@ -6,7 +6,7 @@ import { ContentBlockType } from '../../../../common/__types__/ContentBlockType'
 import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 import { ContentBlockDirective } from '../../shared/directives/content-block/content-block.directive';
 import { Component } from '@angular/core';
-import { TransferState, By } from '@angular/platform-browser';
+import { By, TransferState } from '@angular/platform-browser';
 import { mockService } from '../../services/mocks/MockService';
 import registry from '../content-blocks.registry';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
@@ -127,10 +127,11 @@ describe('ExperimentContainerComponent', () => {
   });
 
   describe('when in server', () => {
-    beforeAll(() => {
-      runtimeService.isBrowser.mockReturnValue(false);
+    beforeEach(() => {
+      runtimeService.isServer.mockReturnValue(true);
     });
-    it('should not call experiment service', async () => {
+
+    it('should not call assignedExperiment service', async () => {
       component.input = experimentContainer;
 
       await component.ngOnInit();
@@ -157,14 +158,27 @@ describe('ExperimentContainerComponent', () => {
   });
 
   describe('when in browser', () => {
-    beforeAll(() => {
-      runtimeService.isBrowser.mockReturnValue(true);
+    beforeEach(() => {
+      runtimeService.isServer.mockReturnValue(false);
     });
 
-    it('should render control variant', async () => {
-      runtimeService.isBrowser.mockReturnValue(true);
-      (experimentService.getVariant as jest.Mock).mockResolvedValue('control');
-      component.input = experimentContainer;
+    it.only('should render control variant and send analytics when user is assigned to the container experiment', async () => {
+      const assignedExperiment = {
+        name: 'ExperimentOne',
+        variant: 'control'
+      };
+      const container: IExperimentContainer = {
+        type: ContentBlockType.ExperimentContainer,
+        name: 'ExperimentOne',
+        variants: {
+          control: [controlVariantContentBlock] as IContentBlock[],
+          groupOne: [otherVariantContentBlock] as IContentBlock[]
+        }
+      };
+      (experimentService.getExperiment as jest.Mock).mockResolvedValue(
+        assignedExperiment
+      );
+      component.input = container;
 
       await component.ngOnInit();
       fixture.detectChanges();
@@ -178,10 +192,47 @@ describe('ExperimentContainerComponent', () => {
 
       expect(controlVariantBlocks).toHaveLength(1);
       expect(otherVariantBlocks).toHaveLength(0);
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+        type: AnalyticsEventsType.EXPERIMENT,
+        experiment: 'ExperimentOne',
+        variant: 'control'
+      });
+    });
+
+    it.only('should render control and not send analytics when user is not assigned to the container experiment', async () => {
+      const assignedExperiment = {
+        name: 'ExperimentTwo',
+        variant: 'groupTwo'
+      };
+      const container: IExperimentContainer = {
+        type: ContentBlockType.ExperimentContainer,
+        name: 'ExperimentOne',
+        variants: {
+          control: [controlVariantContentBlock] as IContentBlock[],
+          groupOne: [otherVariantContentBlock] as IContentBlock[]
+        }
+      };
+      (experimentService.getExperiment as jest.Mock).mockResolvedValue(
+        assignedExperiment
+      );
+      component.input = container;
+
+      await component.ngOnInit();
+      fixture.detectChanges();
+
+      const controlVariantBlocks = fixture.debugElement.queryAll(
+        By.directive(ControlVariantContentBlockComponent)
+      );
+      const otherVariantBlocks = fixture.debugElement.queryAll(
+        By.directive(OtherVariantContentBlockComponent)
+      );
+
+      expect(controlVariantBlocks).toHaveLength(1);
+      expect(otherVariantBlocks).toHaveLength(0);
+      expect(analyticsService.pushEvent).not.toHaveBeenCalled();
     });
 
     it('should render other variant', async () => {
-      runtimeService.isBrowser.mockReturnValue(true);
       (experimentService.getVariant as jest.Mock).mockResolvedValue('red');
       component.input = experimentContainer;
 
@@ -200,7 +251,6 @@ describe('ExperimentContainerComponent', () => {
     });
 
     it('should log error when variant does not exist', async () => {
-      runtimeService.isBrowser.mockReturnValue(true);
       (experimentService.getVariant as jest.Mock).mockResolvedValue(
         'invalidVariant'
       );
@@ -213,8 +263,7 @@ describe('ExperimentContainerComponent', () => {
       expect(loggerService.error).toHaveBeenCalled();
     });
 
-    it('should render control when no-experiment-assigned returned', async () => {
-      runtimeService.isBrowser.mockReturnValue(true);
+    it('should render control when no-assignedExperiment-assigned returned', async () => {
       (experimentService.getVariant as jest.Mock).mockResolvedValue(
         Experiments.NotAssigned
       );
@@ -235,8 +284,7 @@ describe('ExperimentContainerComponent', () => {
     });
 
     describe('analytics', () => {
-      it('should send when experiment is displayed', async () => {
-        runtimeService.isBrowser.mockReturnValue(true);
+      it('should send when assignedExperiment is displayed', async () => {
         (experimentService.getVariant as jest.Mock).mockResolvedValue('red');
         component.input = experimentContainer;
 
@@ -250,7 +298,6 @@ describe('ExperimentContainerComponent', () => {
       });
 
       it('should not send when content block is empty', async () => {
-        runtimeService.isBrowser.mockReturnValue(true);
         (experimentService.getVariant as jest.Mock).mockResolvedValue('red');
         component.input = {
           ...experimentContainer,
@@ -262,7 +309,7 @@ describe('ExperimentContainerComponent', () => {
         expect(analyticsService.pushEvent).not.toHaveBeenCalled();
       });
 
-      it('should not send when user is not assigned to experiment in this container', async () => {
+      it('should not send when user is not assigned to assignedExperiment in this container', async () => {
         const input: IExperimentContainer = {
           type: ContentBlockType.ExperimentContainer,
           name: 'ExperimentOne',
@@ -275,7 +322,6 @@ describe('ExperimentContainerComponent', () => {
           ...input,
           variants: { ...input.variants, red: [] }
         };
-        runtimeService.isBrowser.mockReturnValue(true);
         (experimentService.getVariant as jest.Mock).mockResolvedValue(
           Experiments.NotAssigned
         );
