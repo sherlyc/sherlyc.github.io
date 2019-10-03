@@ -15,6 +15,7 @@ import { RuntimeService } from 'src/app/services/runtime/runtime.service';
 import { LoggerService } from 'src/app/services/logger/logger.service';
 import { AnalyticsService } from '../../services/analytics/analytics.service';
 import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
+import { Experiments } from '../../../../common/Experiments';
 
 describe('ExperimentContainerComponent', () => {
   let component: ExperimentContainerComponent;
@@ -198,7 +199,7 @@ describe('ExperimentContainerComponent', () => {
   it('should render control when no-experiment-assigned returned', async () => {
     runtimeService.isBrowser.mockReturnValue(true);
     (experimentService.getVariant as jest.Mock).mockResolvedValue(
-      experimentService.noExperimentAssigned
+      Experiments.NotAssigned
     );
     component.input = experimentContainer;
 
@@ -244,10 +245,10 @@ describe('ExperimentContainerComponent', () => {
       expect(analyticsService.pushEvent).not.toHaveBeenCalled();
     });
 
-    it('should send analytics when variant is no-experiment-assigned', async () => {
+    it('should send analytics when there is experiment is not assigned', async () => {
       runtimeService.isBrowser.mockReturnValue(true);
       (experimentService.getVariant as jest.Mock).mockResolvedValue(
-        experimentService.noExperimentAssigned
+        Experiments.NotAssigned
       );
       component.input = {
         ...experimentContainer,
@@ -258,8 +259,8 @@ describe('ExperimentContainerComponent', () => {
 
       expect(analyticsService.pushEvent).toHaveBeenCalledWith({
         type: AnalyticsEventsType.EXPERIMENT,
-        variant: experimentService.noExperimentAssigned,
-        experiment: experimentService.noExperimentAssigned
+        variant: Experiments.NotAssigned,
+        experiment: Experiments.NotAssigned
       });
     });
   });
