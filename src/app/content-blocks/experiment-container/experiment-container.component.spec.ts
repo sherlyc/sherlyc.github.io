@@ -162,92 +162,143 @@ describe('ExperimentContainerComponent', () => {
       runtimeService.isServer.mockReturnValue(false);
     });
 
-    it.only('should render control variant and send analytics when user is assigned to the container experiment', async () => {
-      const assignedExperiment = {
-        name: 'ExperimentOne',
-        variant: 'control'
-      };
-      const container: IExperimentContainer = {
-        type: ContentBlockType.ExperimentContainer,
-        name: 'ExperimentOne',
-        variants: {
-          control: [controlVariantContentBlock] as IContentBlock[],
-          groupOne: [otherVariantContentBlock] as IContentBlock[]
-        }
-      };
-      (experimentService.getExperiment as jest.Mock).mockResolvedValue(
-        assignedExperiment
-      );
-      component.input = container;
+    describe('when user is assigned to the container experiment', () => {
+      it.only('should render variant that the user is assigned to and send analytics', async () => {
+        const assignedExperiment = {
+          name: 'ExperimentOne',
+          variant: 'groupOne'
+        };
+        const container: IExperimentContainer = {
+          type: ContentBlockType.ExperimentContainer,
+          name: 'ExperimentOne',
+          variants: {
+            control: [controlVariantContentBlock] as IContentBlock[],
+            groupOne: [otherVariantContentBlock] as IContentBlock[]
+          }
+        };
+        (experimentService.getExperiment as jest.Mock).mockResolvedValue(
+          assignedExperiment
+        );
+        component.input = container;
 
-      await component.ngOnInit();
-      fixture.detectChanges();
+        await component.ngOnInit();
+        fixture.detectChanges();
 
-      const controlVariantBlocks = fixture.debugElement.queryAll(
-        By.directive(ControlVariantContentBlockComponent)
-      );
-      const otherVariantBlocks = fixture.debugElement.queryAll(
-        By.directive(OtherVariantContentBlockComponent)
-      );
+        const otherVariantBlocks = fixture.debugElement.queryAll(
+          By.directive(OtherVariantContentBlockComponent)
+        );
+        const controlVariantBlocks = fixture.debugElement.queryAll(
+          By.directive(ControlVariantContentBlockComponent)
+        );
 
-      expect(controlVariantBlocks).toHaveLength(1);
-      expect(otherVariantBlocks).toHaveLength(0);
-      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
-        type: AnalyticsEventsType.EXPERIMENT,
-        experiment: 'ExperimentOne',
-        variant: 'control'
+        expect(otherVariantBlocks).toHaveLength(1);
+        expect(controlVariantBlocks).toHaveLength(0);
+      });
+
+      it.only('should render control variant and send analytics', async () => {
+        const assignedExperiment = {
+          name: 'ExperimentOne',
+          variant: 'control'
+        };
+        const container: IExperimentContainer = {
+          type: ContentBlockType.ExperimentContainer,
+          name: 'ExperimentOne',
+          variants: {
+            control: [controlVariantContentBlock] as IContentBlock[],
+            groupOne: [otherVariantContentBlock] as IContentBlock[]
+          }
+        };
+        (experimentService.getExperiment as jest.Mock).mockResolvedValue(
+          assignedExperiment
+        );
+        component.input = container;
+
+        await component.ngOnInit();
+        fixture.detectChanges();
+
+        const controlVariantBlocks = fixture.debugElement.queryAll(
+          By.directive(ControlVariantContentBlockComponent)
+        );
+        const otherVariantBlocks = fixture.debugElement.queryAll(
+          By.directive(OtherVariantContentBlockComponent)
+        );
+
+        expect(controlVariantBlocks).toHaveLength(1);
+        expect(otherVariantBlocks).toHaveLength(0);
+        expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+          type: AnalyticsEventsType.EXPERIMENT,
+          experiment: 'ExperimentOne',
+          variant: 'control'
+        });
       });
     });
 
-    it.only('should render control and not send analytics when user is not assigned to the container experiment', async () => {
-      const assignedExperiment = {
-        name: 'ExperimentTwo',
-        variant: 'groupTwo'
-      };
-      const container: IExperimentContainer = {
-        type: ContentBlockType.ExperimentContainer,
-        name: 'ExperimentOne',
-        variants: {
-          control: [controlVariantContentBlock] as IContentBlock[],
-          groupOne: [otherVariantContentBlock] as IContentBlock[]
-        }
-      };
-      (experimentService.getExperiment as jest.Mock).mockResolvedValue(
-        assignedExperiment
-      );
-      component.input = container;
+    describe('when user is not assigned to container experiment', () => {
+      it.only('should render control and not send analytics when user is in a different experiment', async () => {
+        const assignedExperiment = {
+          name: 'ExperimentTwo',
+          variant: 'groupTwo'
+        };
+        const container: IExperimentContainer = {
+          type: ContentBlockType.ExperimentContainer,
+          name: 'ExperimentOne',
+          variants: {
+            control: [controlVariantContentBlock] as IContentBlock[],
+            groupOne: [otherVariantContentBlock] as IContentBlock[]
+          }
+        };
+        (experimentService.getExperiment as jest.Mock).mockResolvedValue(
+          assignedExperiment
+        );
+        component.input = container;
 
-      await component.ngOnInit();
-      fixture.detectChanges();
+        await component.ngOnInit();
+        fixture.detectChanges();
 
-      const controlVariantBlocks = fixture.debugElement.queryAll(
-        By.directive(ControlVariantContentBlockComponent)
-      );
-      const otherVariantBlocks = fixture.debugElement.queryAll(
-        By.directive(OtherVariantContentBlockComponent)
-      );
+        const controlVariantBlocks = fixture.debugElement.queryAll(
+          By.directive(ControlVariantContentBlockComponent)
+        );
+        const otherVariantBlocks = fixture.debugElement.queryAll(
+          By.directive(OtherVariantContentBlockComponent)
+        );
 
-      expect(controlVariantBlocks).toHaveLength(1);
-      expect(otherVariantBlocks).toHaveLength(0);
-      expect(analyticsService.pushEvent).not.toHaveBeenCalled();
-    });
+        expect(controlVariantBlocks).toHaveLength(1);
+        expect(otherVariantBlocks).toHaveLength(0);
+        expect(analyticsService.pushEvent).not.toHaveBeenCalled();
+      });
 
-    it('should render other variant', async () => {
-      (experimentService.getVariant as jest.Mock).mockResolvedValue('red');
-      component.input = experimentContainer;
+      it.only('should render control and not send analytics when user is not assigned an experiment', async () => {
+        const assignedExperiment = {
+          name: Experiments.NotAssigned,
+          variant: Experiments.NotAssigned
+        };
+        const container: IExperimentContainer = {
+          type: ContentBlockType.ExperimentContainer,
+          name: 'ExperimentOne',
+          variants: {
+            control: [controlVariantContentBlock] as IContentBlock[],
+            groupOne: [otherVariantContentBlock] as IContentBlock[]
+          }
+        };
+        (experimentService.getExperiment as jest.Mock).mockResolvedValue(
+          assignedExperiment
+        );
+        component.input = container;
 
-      await component.ngOnInit();
-      fixture.detectChanges();
+        await component.ngOnInit();
+        fixture.detectChanges();
 
-      const otherVariantBlocks = fixture.debugElement.queryAll(
-        By.directive(OtherVariantContentBlockComponent)
-      );
-      const controlVariantBlocks = fixture.debugElement.queryAll(
-        By.directive(ControlVariantContentBlockComponent)
-      );
+        const controlVariantBlocks = fixture.debugElement.queryAll(
+          By.directive(ControlVariantContentBlockComponent)
+        );
+        const otherVariantBlocks = fixture.debugElement.queryAll(
+          By.directive(OtherVariantContentBlockComponent)
+        );
 
-      expect(otherVariantBlocks).toHaveLength(1);
-      expect(controlVariantBlocks).toHaveLength(0);
+        expect(controlVariantBlocks).toHaveLength(1);
+        expect(otherVariantBlocks).toHaveLength(0);
+        expect(analyticsService.pushEvent).not.toHaveBeenCalled();
+      });
     });
 
     it('should log error when variant does not exist', async () => {

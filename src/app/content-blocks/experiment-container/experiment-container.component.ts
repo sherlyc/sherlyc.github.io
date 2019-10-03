@@ -40,6 +40,7 @@ export class ExperimentContainerComponent
     ) {
       this.contentBlocks = this.input.variants[this.assignedExperiment.variant];
       this.sendAnalytics(this.assignedExperiment.variant);
+      return;
     } else if (this.variant === Experiments.NotAssigned) {
       this.contentBlocks = this.input.variants.control;
       if (this.contentBlocks.length > 0) {
