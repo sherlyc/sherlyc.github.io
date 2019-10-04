@@ -320,7 +320,7 @@
           </execution>
           <execution>
             <id>stop-docker-image</id>
-            <phase>pre-integration-test</phase>
+            <phase>verify</phase>
             <goals>
               <goal>stop</goal>
             </goals>
