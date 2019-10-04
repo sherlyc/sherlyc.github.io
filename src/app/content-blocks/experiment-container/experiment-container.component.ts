@@ -7,7 +7,6 @@ import { RuntimeService } from '../../services/runtime/runtime.service';
 import { LoggerService } from '../../services/logger/logger.service';
 import { AnalyticsService } from '../../services/analytics/analytics.service';
 import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
-import { Experiments } from '../../../../common/Experiments';
 
 @Component({
   selector: 'app-experiment-container',
@@ -34,27 +33,31 @@ export class ExperimentContainerComponent
     }
 
     this.assignedExperiment = await this.experimentService.getExperiment();
+    this.setContentBlocksForVariant(this.assignedExperiment);
+  }
 
-    if (
-      this.input.name === this.assignedExperiment.name &&
-      this.input.variants[this.assignedExperiment.variant]
-    ) {
-      this.contentBlocks = this.input.variants[this.assignedExperiment.variant];
-      this.sendAnalytics(this.assignedExperiment.variant);
-      return;
-    } else if (this.variant === Experiments.NotAssigned) {
-      this.contentBlocks = this.input.variants.control;
-      if (this.contentBlocks.length > 0) {
-        this.sendAnalytics(this.assignedExperiment.variant);
-      }
-    } else {
-      this.loggerService.error(
-        new Error(
-          `ExperimentContainer - missing variant: ${this.variant}, in experiment: ${this.input.name}`
-        )
-      );
-    }
+  private setContentBlocksForVariant(assignedExperiment: {
+    name: string;
+    variant: string;
+  }) {
+    const assignedToContainerExperiment =
+      this.input.name === assignedExperiment.name;
+    const variantExists = this.input.variants[assignedExperiment.variant];
+
     this.contentBlocks = this.input.variants[this.variant];
+
+    if (assignedToContainerExperiment) {
+      if (variantExists) {
+        this.contentBlocks = this.input.variants[assignedExperiment.variant];
+        this.sendAnalytics(assignedExperiment.variant);
+      } else {
+        this.loggerService.error(
+          new Error(
+            `ExperimentContainer - missing variant: ${this.variant}, in experiment: ${this.input.name}`
+          )
+        );
+      }
+    }
   }
 
   private sendAnalytics(variant: string) {
