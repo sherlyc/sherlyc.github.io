@@ -131,7 +131,7 @@ describe('ExperimentContainerComponent', () => {
       runtimeService.isServer.mockReturnValue(true);
     });
 
-    it('should not call assignedExperiment service', async () => {
+    it('should not call experiment service', async () => {
       component.input = experimentContainer;
 
       await component.ngOnInit();
@@ -163,7 +163,7 @@ describe('ExperimentContainerComponent', () => {
     });
 
     describe('when user is assigned to the container experiment', () => {
-      it.only('should render variant that the user is assigned to and send analytics', async () => {
+      it('should render variant that the user is assigned to and send analytics', async () => {
         const assignedExperiment = {
           name: 'ExperimentOne',
           variant: 'groupOne'
@@ -195,7 +195,7 @@ describe('ExperimentContainerComponent', () => {
         expect(controlVariantBlocks).toHaveLength(0);
       });
 
-      it.only('should render control variant and send analytics', async () => {
+      it('should render control variant and send analytics', async () => {
         const assignedExperiment = {
           name: 'ExperimentOne',
           variant: 'control'
@@ -234,7 +234,7 @@ describe('ExperimentContainerComponent', () => {
     });
 
     describe('when user is not assigned to container experiment', () => {
-      it.only('should render control and not send analytics when user is in a different experiment', async () => {
+      it('should render control and not send analytics when user is in a different experiment', async () => {
         const assignedExperiment = {
           name: 'ExperimentTwo',
           variant: 'groupTwo'
@@ -267,7 +267,7 @@ describe('ExperimentContainerComponent', () => {
         expect(analyticsService.pushEvent).not.toHaveBeenCalled();
       });
 
-      it.only('should render control and not send analytics when user is not assigned an experiment', async () => {
+      it('should render control and not send analytics when user is not assigned an experiment', async () => {
         const assignedExperiment = {
           name: Experiments.NotAssigned,
           variant: Experiments.NotAssigned
@@ -301,24 +301,23 @@ describe('ExperimentContainerComponent', () => {
       });
     });
 
-    it('should log error when variant does not exist', async () => {
-      (experimentService.getVariant as jest.Mock).mockResolvedValue(
-        'invalidVariant'
+    it('should render control, not send analytics and log error when variant assigned is not specified by container', async () => {
+      const assignedExperiment = {
+        name: 'ExperimentOne',
+        variant: 'GroupThree'
+      };
+      const container: IExperimentContainer = {
+        type: ContentBlockType.ExperimentContainer,
+        name: 'ExperimentOne',
+        variants: {
+          control: [controlVariantContentBlock] as IContentBlock[],
+          groupOne: [otherVariantContentBlock] as IContentBlock[]
+        }
+      };
+      (experimentService.getExperiment as jest.Mock).mockResolvedValue(
+        assignedExperiment
       );
-      component.input = { ...experimentContainer, variants: { control: [] } };
-
-      await component.ngOnInit();
-      fixture.detectChanges();
-
-      expect(component.contentBlocks).toHaveLength(0);
-      expect(loggerService.error).toHaveBeenCalled();
-    });
-
-    it('should render control when no-assignedExperiment-assigned returned', async () => {
-      (experimentService.getVariant as jest.Mock).mockResolvedValue(
-        Experiments.NotAssigned
-      );
-      component.input = experimentContainer;
+      component.input = container;
 
       await component.ngOnInit();
       fixture.detectChanges();
@@ -332,59 +331,8 @@ describe('ExperimentContainerComponent', () => {
 
       expect(controlVariantBlocks).toHaveLength(1);
       expect(otherVariantBlocks).toHaveLength(0);
-    });
-
-    describe('analytics', () => {
-      it('should send when assignedExperiment is displayed', async () => {
-        (experimentService.getVariant as jest.Mock).mockResolvedValue('red');
-        component.input = experimentContainer;
-
-        await component.ngOnInit();
-
-        expect(analyticsService.pushEvent).toHaveBeenCalledWith({
-          type: AnalyticsEventsType.EXPERIMENT,
-          variant: 'red',
-          experiment: 'ExperimentName'
-        });
-      });
-
-      it('should not send when content block is empty', async () => {
-        (experimentService.getVariant as jest.Mock).mockResolvedValue('red');
-        component.input = {
-          ...experimentContainer,
-          variants: { ...experimentContainer.variants, red: [] }
-        };
-
-        await component.ngOnInit();
-
-        expect(analyticsService.pushEvent).not.toHaveBeenCalled();
-      });
-
-      it('should not send when user is not assigned to assignedExperiment in this container', async () => {
-        const input: IExperimentContainer = {
-          type: ContentBlockType.ExperimentContainer,
-          name: 'ExperimentOne',
-          variants: {
-            control: [controlVariantContentBlock] as IContentBlock[],
-            red: [otherVariantContentBlock] as IContentBlock[]
-          }
-        };
-        component.input = {
-          ...input,
-          variants: { ...input.variants, red: [] }
-        };
-        (experimentService.getVariant as jest.Mock).mockResolvedValue(
-          Experiments.NotAssigned
-        );
-
-        await component.ngOnInit();
-
-        expect(analyticsService.pushEvent).toHaveBeenCalledWith({
-          type: AnalyticsEventsType.EXPERIMENT,
-          variant: Experiments.NotAssigned,
-          experiment: Experiments.NotAssigned
-        });
-      });
+      expect(analyticsService.pushEvent).not.toHaveBeenCalled();
+      expect(loggerService.error).toHaveBeenCalled();
     });
   });
 });

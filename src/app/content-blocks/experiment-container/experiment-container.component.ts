@@ -29,6 +29,7 @@ export class ExperimentContainerComponent
 
   async ngOnInit() {
     if (this.runtimeService.isServer()) {
+      this.contentBlocks = this.input.variants[this.variant];
       return;
     }
 
