@@ -141,9 +141,21 @@ describe('ExperimentService', () => {
         expect(experiment.variant).toEqual(Experiments.NotAssigned);
       });
 
-      it('should return NotAssigned if api fails', async () => {
+      it('should return NotAssigned if api fails when retrieving the experiment for user', async () => {
         lottoService.getLotteryNumber.mockReturnValue(1);
         http.get.mockReturnValue(throwError(of('Internal Server Error')));
+
+        await service.setup();
+        const experiment = await service.getExperiment();
+
+        expect(experiment.name).toEqual(Experiments.NotAssigned);
+        expect(experiment.variant).toEqual(Experiments.NotAssigned);
+      });
+
+      it('should return NotAssigned if api fails when retrieving variant', async () => {
+        lottoService.getLotteryNumber.mockReturnValue(1);
+        http.get.mockReturnValueOnce(of('ExperimentOne'));
+        http.get.mockReturnValueOnce(throwError(of('Internal Server Error')));
 
         await service.setup();
         const experiment = await service.getExperiment();

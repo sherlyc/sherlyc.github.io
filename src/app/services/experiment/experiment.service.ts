@@ -56,7 +56,10 @@ export class ExperimentService {
         userLotteryNumber,
         deviceType
       ).toPromise();
-      if (experimentName === 'control') {
+      if (
+        experimentName === Experiments.NotAssigned ||
+        experimentName === 'control'
+      ) {
         resolve({
           name: Experiments.NotAssigned,
           variant: Experiments.NotAssigned
@@ -72,6 +75,13 @@ export class ExperimentService {
         experimentLotteryNumber,
         deviceType
       ).toPromise();
+      if (variant === Experiments.NotAssigned) {
+        resolve({
+          name: Experiments.NotAssigned,
+          variant: Experiments.NotAssigned
+        });
+        return;
+      }
       resolve({
         name: experimentName,
         variant
@@ -107,7 +117,7 @@ export class ExperimentService {
       .pipe(
         catchError((error: HttpErrorResponse) => {
           this.logger.warn(`Experiment Service Error - ${error}`);
-          return of('control');
+          return of(Experiments.NotAssigned);
         })
       );
   }
