@@ -109,17 +109,15 @@ describe('ExperimentContainerComponent', () => {
     type: 'OtherVariantContentBlock'
   } as IContentBlock;
 
-  const experimentContainer: IExperimentContainer = {
-    type: ContentBlockType.ExperimentContainer,
-    name: 'ExperimentName',
-    variants: {
-      control: [controlVariantContentBlock] as IContentBlock[],
-      red: [otherVariantContentBlock] as IContentBlock[]
-    }
-  };
-
   it('should create', () => {
-    component.input = experimentContainer;
+    component.input = {
+      type: ContentBlockType.ExperimentContainer,
+      name: 'ExperimentName',
+      variants: {
+        control: [controlVariantContentBlock] as IContentBlock[],
+        red: [otherVariantContentBlock] as IContentBlock[]
+      }
+    };
 
     fixture.detectChanges();
 
@@ -131,6 +129,15 @@ describe('ExperimentContainerComponent', () => {
       runtimeService.isServer.mockReturnValue(true);
     });
 
+    const experimentContainer: IExperimentContainer = {
+      type: ContentBlockType.ExperimentContainer,
+      name: 'ExperimentName',
+      variants: {
+        control: [controlVariantContentBlock] as IContentBlock[],
+        red: [otherVariantContentBlock] as IContentBlock[]
+      }
+    };
+
     it('should not call experiment service', async () => {
       component.input = experimentContainer;
 
@@ -139,7 +146,7 @@ describe('ExperimentContainerComponent', () => {
       expect(experimentService.getVariant).not.toHaveBeenCalled();
     });
 
-    it('should render control variant', async () => {
+    it('should render control variant and not send analytics', async () => {
       component.input = experimentContainer;
 
       await component.ngOnInit();
@@ -154,6 +161,7 @@ describe('ExperimentContainerComponent', () => {
 
       expect(controlVariantBlocks).toHaveLength(1);
       expect(otherVariantBlocks).toHaveLength(0);
+      expect(analyticsService.pushEvent).not.toHaveBeenCalled();
     });
   });
 
@@ -168,7 +176,7 @@ describe('ExperimentContainerComponent', () => {
           name: 'ExperimentOne',
           variant: 'groupOne'
         };
-        const container: IExperimentContainer = {
+        component.input = {
           type: ContentBlockType.ExperimentContainer,
           name: 'ExperimentOne',
           variants: {
@@ -179,7 +187,6 @@ describe('ExperimentContainerComponent', () => {
         (experimentService.getExperiment as jest.Mock).mockResolvedValue(
           assignedExperiment
         );
-        component.input = container;
 
         await component.ngOnInit();
         fixture.detectChanges();
@@ -193,6 +200,11 @@ describe('ExperimentContainerComponent', () => {
 
         expect(otherVariantBlocks).toHaveLength(1);
         expect(controlVariantBlocks).toHaveLength(0);
+        expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+          type: AnalyticsEventsType.EXPERIMENT,
+          experiment: 'ExperimentOne',
+          variant: 'groupOne'
+        });
       });
 
       it('should render control variant and send analytics', async () => {
@@ -200,7 +212,7 @@ describe('ExperimentContainerComponent', () => {
           name: 'ExperimentOne',
           variant: 'control'
         };
-        const container: IExperimentContainer = {
+        component.input = {
           type: ContentBlockType.ExperimentContainer,
           name: 'ExperimentOne',
           variants: {
@@ -211,7 +223,6 @@ describe('ExperimentContainerComponent', () => {
         (experimentService.getExperiment as jest.Mock).mockResolvedValue(
           assignedExperiment
         );
-        component.input = container;
 
         await component.ngOnInit();
         fixture.detectChanges();
@@ -239,7 +250,7 @@ describe('ExperimentContainerComponent', () => {
           name: 'ExperimentTwo',
           variant: 'groupTwo'
         };
-        const container: IExperimentContainer = {
+        component.input = {
           type: ContentBlockType.ExperimentContainer,
           name: 'ExperimentOne',
           variants: {
@@ -250,7 +261,6 @@ describe('ExperimentContainerComponent', () => {
         (experimentService.getExperiment as jest.Mock).mockResolvedValue(
           assignedExperiment
         );
-        component.input = container;
 
         await component.ngOnInit();
         fixture.detectChanges();
@@ -272,7 +282,7 @@ describe('ExperimentContainerComponent', () => {
           name: Experiments.NotAssigned,
           variant: Experiments.NotAssigned
         };
-        const container: IExperimentContainer = {
+        component.input = {
           type: ContentBlockType.ExperimentContainer,
           name: 'ExperimentOne',
           variants: {
@@ -283,7 +293,6 @@ describe('ExperimentContainerComponent', () => {
         (experimentService.getExperiment as jest.Mock).mockResolvedValue(
           assignedExperiment
         );
-        component.input = container;
 
         await component.ngOnInit();
         fixture.detectChanges();
