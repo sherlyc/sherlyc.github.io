@@ -17,7 +17,6 @@ export class ExperimentContainerComponent
   @Input() input!: IExperimentContainer;
   contentBlocks: IContentBlock[] = [];
   variant = 'control';
-  assignedExperiment?: { name: string; variant: string };
 
   constructor(
     private experimentService: ExperimentService,
@@ -32,21 +31,21 @@ export class ExperimentContainerComponent
       return;
     }
 
-    this.assignedExperiment = await this.experimentService.getExperiment();
-    this.setContentBlocksForVariant(this.assignedExperiment);
+    const assignedExperiment = await this.experimentService.getExperiment();
+    this.setContentBlocksForVariant(assignedExperiment);
   }
 
   private setContentBlocksForVariant(assignedExperiment: {
     name: string;
     variant: string;
   }) {
-    const assignedToContainerExperiment =
+    const isAssignedToThisExperiment =
       this.input.name === assignedExperiment.name;
     const variantExists = this.input.variants[assignedExperiment.variant];
 
     this.contentBlocks = this.input.variants[this.variant];
 
-    if (assignedToContainerExperiment) {
+    if (isAssignedToThisExperiment) {
       if (variantExists) {
         this.contentBlocks = this.input.variants[assignedExperiment.variant];
         this.sendAnalytics(assignedExperiment.variant);
