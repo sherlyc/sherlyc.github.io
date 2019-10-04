@@ -38,4 +38,24 @@ describe('api test', () => {
       ])
     );
   });
+
+  it('should accept requests with no version', async () => {
+    const app = require('../app').default;
+    const response: supertest.Response = await supertest(app)
+      .get('/spade/api/content')
+      .set('Accept', 'application/json');
+
+    expect(response.ok).toBeTruthy();
+    expect(response.header['content-type']).toMatch(/application\/json/);
+  });
+
+  it('should accept requests with version', async () => {
+    const app = require('../app').default;
+    const response: supertest.Response = await supertest(app)
+      .get('/spade/api/1.0/content')
+      .set('Accept', 'application/json');
+
+    expect(response.ok).toBeTruthy();
+    expect(response.header['content-type']).toMatch(/application\/json/);
+  });
 });
