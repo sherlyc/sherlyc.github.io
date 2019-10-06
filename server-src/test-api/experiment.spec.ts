@@ -29,7 +29,7 @@ describe('Experiment API', () => {
     }
   );
 
-  test.each([[1], [33], [65], [100], [404]])(
+  test.each([[1], [100], [404]])(
     'lottery number %i should return groupOne when it is between 1 and 100 or is 404 and device is mobile for TopStoriesVisualExperiment',
     async (lotteryNumber: number) => {
       const response: supertest.Response = await supertest(app).get(
