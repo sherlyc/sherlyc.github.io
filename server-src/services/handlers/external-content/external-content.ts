@@ -6,7 +6,6 @@ import { IExternalContentHandlerInput } from '../__types__/IExternalContentHandl
 import cacheHttp from '../../utils/cache-http';
 import logger from '../../utils/logger';
 
-
 export default async function(
   handlerRunner: handlerRunnerFunction,
   { url, height, width, margin, scrollable }: IExternalContentHandlerInput,
