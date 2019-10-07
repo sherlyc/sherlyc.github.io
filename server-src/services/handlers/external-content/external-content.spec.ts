@@ -4,11 +4,26 @@ import { HandlerInputType } from '../__types__/HandlerInputType';
 import { IExternalContentUnit } from '../../../../common/__types__/IExternalContentUnit';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 import { IContentBlock } from '../../../../common/__types__/IContentBlock';
+import cacheHttp from '../../utils/cache-http';
+
+jest.mock('../../utils/cache-http');
 
 describe('ExternalContentHandler', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
+  const goodData = {};
+
+  beforeAll(() => {
+    (cacheHttp as jest.Mock).mockReturnValue({
+      get: jest.fn(),
+      post: jest.fn()
+    });
+  });
 
   it('should return ExternalContentUnit', async () => {
+    (cacheHttp as jest.Mock).mockResolvedValue({
+      status: 200,
+      data: goodData
+    });
     const handlerRunnerMock = jest.fn();
     const externalContent = (await externalContentHandler(
       handlerRunnerMock,
@@ -36,6 +51,10 @@ describe('ExternalContentHandler', () => {
   });
 
   it('should handle scrolling', async () => {
+    (cacheHttp as jest.Mock).mockResolvedValue({
+      status: 200,
+      data: goodData
+    });
     const handlerRunnerMock = jest.fn();
     const externalContent = (await externalContentHandler(
       handlerRunnerMock,
@@ -61,6 +80,27 @@ describe('ExternalContentHandler', () => {
       } as IExternalContentUnit
     ];
 
+    expect(externalContent).toEqual(expectedResult);
+  });
+
+  it('should not return ExternalContentUnit when url returns an error', async () => {
+    (cacheHttp as jest.Mock).mockRejectedValue(new Error());
+
+    const handlerRunnerMock = jest.fn();
+    const externalContent = (await externalContentHandler(
+      handlerRunnerMock,
+      {
+        type: HandlerInputType.ExternalContent,
+        width: '100%',
+        height: '300px',
+        margin: '10px',
+        scrollable: true,
+        url: 'https://bbc.com'
+      },
+      params
+    )) as IExternalContentUnit[];
+
+    const expectedResult: IContentBlock[] = [];
     expect(externalContent).toEqual(expectedResult);
   });
 });
