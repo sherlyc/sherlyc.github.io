@@ -29,8 +29,8 @@ describe('Experiment API', () => {
     }
   );
 
-  test.each([[1], [100], [404]])(
-    'lottery number %i should return groupOne when it is between 1 and 100 or is 404 and device is mobile for TopStoriesVisualExperiment',
+  test.each([[1], [34], [65], [100], [404]])(
+    'should return groupOne variant for all numbers for TopStoriesVisualExperiment - lottery number %i',
     async (lotteryNumber: number) => {
       const response: supertest.Response = await supertest(app).get(
         `${experimentApi}/TopStoriesVisualExperiment/${lotteryNumber}/mobile`
