@@ -26,33 +26,44 @@ export class ExperimentContainerComponent
   ) {}
 
   async ngOnInit() {
-    if (this.runtimeService.isBrowser()) {
-      this.variant = await this.experimentService.getVariant(this.input.name);
-    }
-    if (this.input.variants[this.variant]) {
+    if (this.runtimeService.isServer()) {
       this.contentBlocks = this.input.variants[this.variant];
-      if (this.contentBlocks.length > 0) {
-        this.sendAnalytics();
+      return;
+    }
+
+    const assignedExperiment = await this.experimentService.getExperiment();
+    this.setContentBlocksForVariant(assignedExperiment);
+  }
+
+  private setContentBlocksForVariant(assignedExperiment: {
+    name: string;
+    variant: string;
+  }) {
+    const isAssignedToThisExperiment =
+      this.input.name === assignedExperiment.name;
+    const variantExists = this.input.variants[assignedExperiment.variant];
+
+    this.contentBlocks = this.input.variants[this.variant];
+
+    if (isAssignedToThisExperiment) {
+      if (variantExists) {
+        this.contentBlocks = this.input.variants[assignedExperiment.variant];
+        this.sendAnalytics(assignedExperiment.variant);
+      } else {
+        this.loggerService.error(
+          new Error(
+            `ExperimentContainer - missing variant: ${this.variant}, in experiment: ${this.input.name}`
+          )
+        );
       }
-    } else if (this.variant === this.experimentService.noExperimentAssigned) {
-      this.contentBlocks = this.input.variants.control;
-      if (this.contentBlocks.length > 0) {
-        this.sendAnalytics();
-      }
-    } else {
-      this.loggerService.error(
-        new Error(
-          `ExperimentContainer - missing variant: ${this.variant}, in experiment: ${this.input.name}`
-        )
-      );
     }
   }
 
-  private sendAnalytics() {
+  private sendAnalytics(variant: string) {
     this.analyticsService.pushEvent({
       type: AnalyticsEventsType.EXPERIMENT,
-      variant: this.variant,
-      experiment: this.variant === this.experimentService.noExperimentAssigned ? this.variant : this.input.name
+      experiment: this.input.name,
+      variant
     });
   }
 }
