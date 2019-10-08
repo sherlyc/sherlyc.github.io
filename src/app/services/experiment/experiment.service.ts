@@ -16,8 +16,6 @@ import { DeviceType } from '../../../../common/DeviceType';
   providedIn: 'root'
 })
 export class ExperimentService {
-  public readonly noExperimentAssigned = 'no-experiment-assigned';
-
   private experiment!: Promise<{
     name: string;
     variant: string;
@@ -52,15 +50,19 @@ export class ExperimentService {
         Experiments.Users
       );
       const deviceType: DeviceType = this.getDeviceType();
+
       const experimentName = await this.retrieveVariant(
         Experiments.Users,
         userLotteryNumber,
         deviceType
       ).toPromise();
-      if (experimentName === 'control') {
+      if (
+        experimentName === Experiments.NotAssigned ||
+        experimentName === 'control'
+      ) {
         resolve({
-          name: 'control',
-          variant: 'control'
+          name: Experiments.NotAssigned,
+          variant: Experiments.NotAssigned
         });
         return;
       }
@@ -73,6 +75,13 @@ export class ExperimentService {
         experimentLotteryNumber,
         deviceType
       ).toPromise();
+      if (variant === Experiments.NotAssigned) {
+        resolve({
+          name: Experiments.NotAssigned,
+          variant: Experiments.NotAssigned
+        });
+        return;
+      }
       resolve({
         name: experimentName,
         variant
@@ -84,7 +93,7 @@ export class ExperimentService {
     const experiment = await this.getExperiment();
     return experiment && experiment.name === experimentName
       ? experiment.variant
-      : this.noExperimentAssigned;
+      : Experiments.NotAssigned;
   }
 
   getExperiment() {
@@ -108,7 +117,7 @@ export class ExperimentService {
       .pipe(
         catchError((error: HttpErrorResponse) => {
           this.logger.warn(`Experiment Service Error - ${error}`);
-          return of('control');
+          return of(Experiments.NotAssigned);
         })
       );
   }
