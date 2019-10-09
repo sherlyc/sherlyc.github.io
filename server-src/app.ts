@@ -9,6 +9,7 @@ import { experimentController } from './api/experiment-controller';
 import { healthCheck } from './api/health-controller';
 import { featureController } from './api/feature-controller';
 import { getContent } from './services/content';
+import spadeApi from './spade-api';
 
 declare const global: {
   newrelic: any;
@@ -28,8 +29,6 @@ app.disable('x-powered-by');
 
 app.use(cookieParser());
 
-const spadeApiPath = '/spade/api';
-
 app.use((req, res, next) => {
   req.spadeParams = extractParams(req);
   if (global.newrelic) {
@@ -48,28 +47,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get(`${spadeApiPath}/content`, getContent);
-
-app.get(
-  [`${spadeApiPath}/weather`, `${spadeApiPath}/weather/:location`],
-  getWeather
-);
-
-app.get(
-  [
-    `${spadeApiPath}/experiment/:experimentName/:lotteryNumber`,
-    `${spadeApiPath}/experiment/:experimentName/:lotteryNumber/:deviceType`
-  ],
-  experimentController
-);
-
-app.get(
-  [
-    `${spadeApiPath}/feature/:featureName/:lotteryNumber`,
-    `${spadeApiPath}/feature/:featureName/:lotteryNumber/:deviceType`
-  ],
-  featureController
-);
+app.use('/spade/api', spadeApi);
 
 app.use('/health/:type', healthCheck);
 
