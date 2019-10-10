@@ -7,6 +7,7 @@ export interface IEnvironmentDefinition {
   jsonFeedAPI: string;
   weatherAPI: string;
   breakingNewsApi: string;
+  recommendationsApi: string;
   bannerApi: string;
   layoutAPI: string;
   experimentsConfigUrl: string;
