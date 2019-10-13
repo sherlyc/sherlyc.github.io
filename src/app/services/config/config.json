@@ -6,6 +6,7 @@
     "weatherAPI": "/spade/api/weather",
     "experimentAPI": "/spade/api/experiment",
     "featureAPI": "/spade/api/feature",
+    "recommendationsAPI": "/spade/api/recommendations",
     "loggerOptions": {
       "level": "warn",
       "format": "json"
@@ -31,6 +32,7 @@
     "weatherAPI": "/spade/api/weather",
     "experimentAPI": "/spade/api/experiment",
     "featureAPI": "/spade/api/feature",
+    "recommendationsAPI": "/spade/api/recommendations",
     "loggerOptions": {
       "level": "info",
       "format": "json"
@@ -56,6 +58,7 @@
     "weatherAPI": "/spade/api/weather",
     "experimentAPI": "/spade/api/experiment",
     "featureAPI": "/spade/api/feature",
+    "recommendationsAPI": "/spade/api/recommendations",
     "loggerOptions": {
       "level": "debug",
       "format": "text"
@@ -81,6 +84,7 @@
     "weatherAPI": "/spade/api/weather",
     "experimentAPI": "/spade/api/experiment",
     "featureAPI": "/spade/api/feature",
+    "recommendationsAPI": "/spade/api/recommendations",
     "loggerOptions": {
       "level": "debug",
       "format": "text"
@@ -106,6 +110,7 @@
     "weatherAPI": "/spade/api/weather",
     "experimentAPI": "/spade/api/experiment",
     "featureAPI": "/spade/api/feature",
+    "recommendationsAPI": "/spade/api/recommendations",
     "loggerOptions": {
       "level": "debug",
       "format": "text"

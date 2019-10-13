@@ -9,6 +9,7 @@ export interface IEnvironmentDefinition {
   weatherAPI: string;
   experimentAPI: string;
   featureAPI: string;
+  recommendationsAPI: string;
   loggerOptions: ILoggerOptions;
   aadSdkUrl: string;
   sentryIO: { dsn: string; sampleRate: number; environment: string };
