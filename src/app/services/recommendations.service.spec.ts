@@ -5,22 +5,20 @@ import { mockService, ServiceMock } from './mocks/MockService';
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from './config/config.service';
 import { CookieService } from './cookie/cookie.service';
-import {
-  HttpClientTestingModule,
-  HttpTestingController
-} from '@angular/common/http/testing';
+import { RuntimeService } from './runtime/runtime.service';
+import { of } from 'rxjs';
 
 describe('RecommendationsService', () => {
-  const recommendationsAPI = 'http://locahost:1234/recommendations';
+  const recommendationsAPI = 'http://localhost/recommendations';
 
   let recommendationsService: RecommendationsService;
   let configService: ServiceMock<ConfigService>;
   let cookieService: ServiceMock<CookieService>;
-  let httpMock: HttpTestingController;
+  let httpMock: ServiceMock<HttpClient>;
+  let runtimeService: ServiceMock<RuntimeService>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
       providers: [
         {
           provide: ConfigService,
@@ -33,18 +31,29 @@ describe('RecommendationsService', () => {
         {
           provide: HttpClient,
           useClass: mockService(HttpClient)
+        },
+        {
+          provide: RuntimeService,
+          useClass: mockService(RuntimeService)
         }
       ]
     });
     configService = TestBed.get(ConfigService);
     cookieService = TestBed.get(CookieService);
-    httpMock = TestBed.get(HttpTestingController);
+    httpMock = TestBed.get(HttpClient);
     configService.getConfig.mockReturnValue({ recommendationsAPI });
+    runtimeService = TestBed.get(RuntimeService);
     recommendationsService = TestBed.get(RecommendationsService);
   });
 
   it('should be created', () => {
-    const service: RecommendationsService = TestBed.get(RecommendationsService);
-    expect(service).toBeTruthy();
+    expect(recommendationsService).toBeTruthy();
+  });
+
+  it('should get recommendation', async () => {
+    httpMock.get.mockReturnValue(of('sample'));
+
+    await recommendationsService.getRecommendations();
+    expect(httpMock.get).toHaveBeenCalled();
   });
 });
