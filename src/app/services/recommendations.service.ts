@@ -3,8 +3,8 @@ import { CookieService } from './cookie/cookie.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { ConfigService } from './config/config.service';
-import { RuntimeService } from './runtime/runtime.service';
 import { catchError } from 'rxjs/operators';
+import { LoggerService } from './logger/logger.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class RecommendationsService {
     private cookieService: CookieService,
     private http: HttpClient,
     private configService: ConfigService,
-    private runtimeService: RuntimeService
+    private loggerService: LoggerService
   ) {}
 
   getRecommendations(): Observable<string> {
@@ -22,7 +22,7 @@ export class RecommendationsService {
       .get<string>(this.configService.getConfig().recommendationsAPI)
       .pipe(
         catchError((error: HttpErrorResponse) => {
-          console.log('thrown error');
+          this.loggerService.warn(`RecommendationsService - API failed - ${error}`);
           return throwError(error);
         })
       );
