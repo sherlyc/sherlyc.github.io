@@ -20,6 +20,7 @@ import { GrayDefconArticleUnitComponent } from './gray-defcon-article-unit/gray-
 import { BigImageArticleUnitComponent } from './big-image-article-unit/big-image-article-unit.component';
 import { HalfWidthImageArticleUnitComponent } from './half-width-image-article-unit/half-width-image-article-unit.component';
 import { ExpandableArticleSectionComponent } from './expandable-article-section/expandable-article-section.component';
+import { RecommendationsComponent } from './recommendations/recommendations.component';
 
 export const contentBlockComponents = [
   GrayDefconArticleUnitComponent,
@@ -41,7 +42,8 @@ export const contentBlockComponents = [
   WeatherUnitComponent,
   ExperimentContainerComponent,
   FeatureContainerComponent,
-  FooterComponent
+  FooterComponent,
+  RecommendationsComponent
 ];
 
 const registry: {
@@ -66,7 +68,8 @@ const registry: {
   WeatherUnitComponent,
   ExperimentContainerComponent,
   FeatureContainerComponent,
-  FooterComponent
+  FooterComponent,
+  RecommendationsComponent
 };
 
 export default registry;
