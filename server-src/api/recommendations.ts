@@ -1,10 +1,11 @@
-import { Request } from 'express';
+import { Request, Response } from 'express';
 import cacheHttp from '../services/utils/cache-http';
 import config from '../services/utils/config';
 
-export const getHomePageRecommendations = async (
+export const getHomePageRecommendations = async function(
   req: Request,
   res: Response
-) => {
-  const response = await cacheHttp(req.spadeParams, config.recommendationsApi);
+) {
+  await cacheHttp(req.spadeParams, config.recommendationsApi);
+  res.sendStatus(200);
 };
