@@ -8,6 +8,7 @@ export interface IEnvironmentDefinition {
   weatherAPI: string;
   breakingNewsApi: string;
   recommendationsApi: string;
+  recommendationsCookie: string;
   bannerApi: string;
   layoutAPI: string;
   experimentsConfigUrl: string;

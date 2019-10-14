@@ -12,17 +12,31 @@ describe('Recommendations', () => {
     end: jest.fn()
   } as any;
 
+  beforeAll(() => {
+    (cacheHttp as jest.Mock).mockReturnValue({
+      get: jest.fn
+    });
+  });
+
   it('should get recommended articles from recommendations api', async () => {
     const req = {
       spadeParams: { apiRequestId: '123123' },
-      cookies: {}
+      cookies: {
+        [config.recommendationsCookie]:
+          'geo=akl;geo=aklr;rt=nanz;enth=amuh;rt=nbnsu;rt=tsv'
+      }
     } as Request;
+
+    (cacheHttp as jest.Mock).mockResolvedValueOnce({
+      status: 200,
+      data: [123, 456, 789]
+    });
 
     await getHomePageRecommendations(req, res);
 
     expect(cacheHttp).toHaveBeenCalledWith(
       req.spadeParams,
-      config.recommendationsApi
+      `${config.recommendationsApi}?segment=rt%3Dnanz%3Benth%3Damuh%3Brt%3Dnbnsu&limit=5`
     );
   });
 });

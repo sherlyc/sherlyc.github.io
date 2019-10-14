@@ -1,11 +1,12 @@
 import { Request, Response } from 'express';
-import cacheHttp from '../services/utils/cache-http';
+import { getRecommendedArticles } from '../services/adapters/recommendations/recommendations.service';
 import config from '../services/utils/config';
 
-export const getHomePageRecommendations = async function(
+export const getHomePageRecommendations = async (
   req: Request,
   res: Response
-) {
-  await cacheHttp(req.spadeParams, config.recommendationsApi);
-  res.sendStatus(200);
+) => {
+  const cookie = req.cookies[config.recommendationsCookie];
+  const ids = await getRecommendedArticles(cookie, req.spadeParams);
+  res.json(ids);
 };
