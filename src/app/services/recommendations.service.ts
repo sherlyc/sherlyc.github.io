@@ -19,15 +19,10 @@ export class RecommendationsService {
   ) {}
 
   getRecommendations(): Observable<string> {
-    const {
-      name,
-      segments,
-      maxCount
-    } = this.configService.getConfig().recommendationsCookie;
-    const cookie = this.cookieService.get(name);
-
-    console.log(cookie, segments);
-    const parsedSegments = this.parseCookie(cookie, segments, maxCount);
+    const cookie = this.cookieService.get(
+      this.configService.getConfig().recommendationsCookie.name
+    );
+    const parsedSegments = this.parseCookie(cookie);
 
     return this.http
       .get<string>(this.configService.getConfig().recommendationsAPI, {
@@ -45,8 +40,13 @@ export class RecommendationsService {
       );
   }
 
-  parseCookie = (cookie: string, keys: string[], maxCount: number) =>
-    flow(
+  parseCookie(cookie: string): string {
+    const {
+      segments,
+      maxCount
+    } = this.configService.getConfig().recommendationsCookie;
+
+    return flow(
       split(';'),
       groupBy(
         flow(
@@ -54,8 +54,9 @@ export class RecommendationsService {
           take(1)
         )
       ),
-      pick(keys),
+      pick(segments),
       flatMap(take(maxCount)),
       join(';')
     )(cookie);
+  }
 }

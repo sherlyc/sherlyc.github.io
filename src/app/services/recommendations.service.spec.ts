@@ -40,7 +40,14 @@ describe('RecommendationsService', () => {
     configService = TestBed.get(ConfigService);
     cookieService = TestBed.get(CookieService);
     httpMock = TestBed.get(HttpTestingController);
-    configService.getConfig.mockReturnValue({ recommendationsAPI });
+    configService.getConfig.mockReturnValue({
+      recommendationsAPI,
+      recommendationsCookie: {
+        name: 'abc',
+        segments: ['a', 'b'],
+        maxCount: 1
+      }
+    });
     loggerService = TestBed.get(LoggerService);
 
     recommendationsService = TestBed.get(RecommendationsService);
@@ -52,13 +59,6 @@ describe('RecommendationsService', () => {
   });
 
   it('should get recommendations', () => {
-    configService.getConfig.mockReturnValue({
-      recommendationsCookie: {
-        name: 'abc',
-        segments: ['a', 'b'],
-        maxCount: 1
-      }
-    });
     cookieService.get.mockReturnValue('a=123;b=456;c=789');
     const articles = ['article one'];
 
@@ -70,11 +70,7 @@ describe('RecommendationsService', () => {
       .expectOne((req) => {
         expect(req.method).toBe('GET');
         expect(req.url).toBe(recommendationsAPI);
-        expect(req.params).toBe({
-          params: {
-            segments: 'a=123;b=456'
-          }
-        });
+        expect(req.params.get('segments')).toBe('a=123;b=456');
         return true;
       })
       .flush(articles);
@@ -99,9 +95,15 @@ describe('RecommendationsService', () => {
   describe('parseCookie', () => {
     it.each`
       keys                   | maxCount | input                                                   | output
-      ${['enth', 'rt', 'x']} | ${1}     | ${'geo=akl;geo=aklr;rt=nanz;enth=amuh;rt=nbnsu;rt=tsv'} | ${'rt=nanz;enth=amuh'}
+      ${['enth', 'rt', 'x']} | ${1}     | ${'geo=akl;geo=aklr;rt=nanz;enth=amuh;rt=nbnsu;rt=tsv'} | ${'enth=amuh;rt=nanz'}
     `('works with $output', ({ keys, maxCount, input, output }) => {
-      expect(parseCookie(keys, maxCount)(input)).toBe(output);
+      configService.getConfig.mockReturnValue({
+        recommendationsCookie: {
+          segments: keys,
+          maxCount
+        }
+      });
+      expect(recommendationsService.parseCookie(input)).toBe(output);
     });
   });
 });
