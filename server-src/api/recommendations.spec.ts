@@ -3,7 +3,6 @@ import { Request } from 'express';
 import cacheHttp from '../services/utils/cache-http';
 import config from '../services/utils/config';
 
-const { name } = config.recommendationsCookie;
 const { url, limit } = config.recommendationsApi;
 
 jest.mock('../services/utils/cache-http');
@@ -24,10 +23,10 @@ describe('Recommendations', () => {
   it('should get recommended articles from recommendations api', async () => {
     const req = {
       spadeParams: { apiRequestId: '123123' },
-      cookies: {
-        [name]: 'geo=akl;geo=aklr;rt=nanz;enth=amuh;rt=nbnsu;rt=tsv'
+      params: {
+        segments: 'rt=nanz;enth=amuh'
       }
-    } as Request;
+    } as any;
 
     (cacheHttp as jest.Mock).mockResolvedValueOnce({
       status: 200,
@@ -38,7 +37,7 @@ describe('Recommendations', () => {
 
     expect(cacheHttp).toHaveBeenCalledWith(
       req.spadeParams,
-      `${url}?segment=rt%3Dnanz%3Benth%3Damuh%3Brt%3Dnbnsu&limit=${limit}`
+      `${url}?segment=rt%3Dnanz%3Benth%3Damuh&limit=${limit}`
     );
   });
 });

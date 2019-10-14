@@ -11,11 +11,6 @@ export interface IEnvironmentDefinition {
     url: string;
     limit: number;
   };
-  recommendationsCookie: {
-    name: string;
-    segments: string[];
-    maxCount: number;
-  };
   bannerApi: string;
   layoutAPI: string;
   experimentsConfigUrl: string;

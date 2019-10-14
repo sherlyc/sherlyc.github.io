@@ -9,11 +9,6 @@
       "url": "https://recommender.datadevint.shift21.ffx.nz/recommend",
       "limit": 9
     },
-    "recommendationsCookie": {
-      "name": "aamffx",
-      "segments": ["enth", "rt", "x"],
-      "maxCount": 2
-    },
     "bannerApi": "https://i.stuff.co.nz/static/spade/banners.json",
     "layoutAPI": "https://i.stuff.co.nz/_json/layout/jcr:content",
     "experimentsConfigUrl": "https://i.stuff.co.nz/static/spade/experiments-prod.json",
@@ -33,11 +28,6 @@
     "recommendationsApi": {
       "url": "https://recommender.datadevint.shift21.ffx.nz/recommend",
       "limit": 9
-    },
-    "recommendationsCookie": {
-      "name": "aamffx",
-      "segments": ["enth", "rt", "x"],
-      "maxCount": 2
     },
     "bannerApi": "https://i.stuff.co.nz/static/spade/banners.json",
     "layoutAPI": "https://i-preprod.stuff.co.nz/_json/layout/jcr:content",
@@ -59,11 +49,6 @@
       "url": "https://recommender.datadevint.shift21.ffx.nz/recommend",
       "limit": 9
     },
-    "recommendationsCookie": {
-      "name": "aamffx",
-      "segments": ["enth", "rt", "x"],
-      "maxCount": 2
-    },
     "bannerApi": "https://i.stuff.co.nz/static/spade/banners.json",
     "layoutAPI": "https://i-preprod.stuff.co.nz/_json/layout/jcr:content",
     "experimentsConfigUrl": "https://i.stuff.co.nz/static/spade/experiments-dev.json",
@@ -84,11 +69,6 @@
       "url": "https://recommender.datadevint.shift21.ffx.nz/recommend",
       "limit": 9
     },
-    "recommendationsCookie": {
-      "name": "aamffx",
-      "segments": ["enth", "rt", "x"],
-      "maxCount": 2
-    },
     "bannerApi": "https://i.stuff.co.nz/static/spade/banners.json",
     "layoutAPI": "https://i.stuff.co.nz/_json/layout/jcr:content",
     "experimentsConfigUrl": "https://i.stuff.co.nz/static/spade/experiments-dev.json",
@@ -108,11 +88,6 @@
     "recommendationsApi": {
       "url": "https://recommender.datadevint.shift21.ffx.nz/recommend",
       "limit": 9
-    },
-    "recommendationsCookie": {
-      "name": "aamffx",
-      "segments": ["enth", "rt", "x"],
-      "maxCount": 2
     },
     "bannerApi": "https://i.stuff.co.nz/static/spade/banners.json",
     "layoutAPI": "https://i-preprod.stuff.co.nz/_json/layout/jcr:content",
