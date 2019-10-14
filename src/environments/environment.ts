@@ -5,9 +5,7 @@
 
 export const environment = {
   production: false,
-  serverBase: 'http://localhost:4000',
-  version: 'SNAPSHOT',
-  backendUrl: '/api/content'
+  version: 'SNAPSHOT'
 };
 
 /*

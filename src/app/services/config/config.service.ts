@@ -2,7 +2,7 @@ import * as config from './config.json';
 import { Injectable } from '@angular/core';
 import { IEnvironmentDefinition } from './__types__/IEnvironmentDefinition';
 import { RuntimeService } from '../runtime/runtime.service';
-const defaultsDeep = require('lodash/defaultsDeep');
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,23 +10,34 @@ const defaultsDeep = require('lodash/defaultsDeep');
 export class ConfigService {
   constructor(private runtime: RuntimeService) {}
 
+  private parseUrlVersion(
+    environmentConfig: IEnvironmentDefinition & { [key: string]: any }
+  ) {
+    Object.keys(environmentConfig).forEach((configKey) => {
+      const configValue = environmentConfig[configKey];
+      if (
+        typeof configValue === 'string' &&
+        configValue.includes('{{version}}')
+      ) {
+        environmentConfig[configKey] = configValue
+          .split('{{version}}')
+          .join(environment.version);
+      }
+    });
+  }
+
   getConfig(): IEnvironmentDefinition {
     const environments: { [key: string]: IEnvironmentDefinition } = config;
+
     const environmentName = this.runtime.getEnvironmentVariable(
       'SPADE_ENV',
       'production'
     );
-    let environment =
-      environments[environmentName] || environments['production'];
-    if (this.runtime.isServer() && environment.serverOverrides) {
-      environment = defaultsDeep(environment.serverOverrides, environment);
-    }
-    if (this.runtime.isBrowser() && environment.browserOverrides) {
-      environment = defaultsDeep(environment.browserOverrides, environment);
-    }
-    delete environment.browserOverrides;
-    delete environment.serverOverrides;
 
-    return environment;
+    const environmentConfig =
+      environments[environmentName] || environments['production'];
+
+    this.parseUrlVersion(environmentConfig);
+    return environmentConfig;
   }
 }
