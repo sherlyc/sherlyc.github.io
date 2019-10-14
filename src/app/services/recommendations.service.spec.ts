@@ -1,14 +1,13 @@
+import {
+  HttpClientTestingModule,
+  HttpTestingController
+} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-
-import { RecommendationsService } from './recommendations.service';
-import { mockService, ServiceMock } from './mocks/MockService';
-import { HttpClient } from '@angular/common/http';
 import { ConfigService } from './config/config.service';
 import { CookieService } from './cookie/cookie.service';
-import { of, throwError } from 'rxjs';
 import { LoggerService } from './logger/logger.service';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import {log} from "util";
+import { mockService, ServiceMock } from './mocks/MockService';
+import { RecommendationsService } from './recommendations.service';
 
 describe('RecommendationsService', () => {
   const recommendationsAPI = 'httpMock://localhost/recommendations';
@@ -54,12 +53,12 @@ describe('RecommendationsService', () => {
   it('should get recommendations', () => {
     const articles = ['article one'];
 
-    recommendationsService.getRecommendations().subscribe(res => {
+    recommendationsService.getRecommendations().subscribe((res) => {
       expect(res).toEqual(articles);
     });
 
     httpMock
-      .expectOne(req => {
+      .expectOne((req) => {
         expect(req.method).toBe('GET');
         expect(req.url).toBe(recommendationsAPI);
         return true;
@@ -69,20 +68,17 @@ describe('RecommendationsService', () => {
     httpMock.verify();
   });
 
-
-  it('should log warning and throw error when api fails', async() => {
-    await recommendationsService.getRecommendations().toPromise();
+  it('should log warning and throw error when api fails', (done) => {
+    recommendationsService.getRecommendations().subscribe({
+      error: () => {
+        expect(loggerService.warn).toHaveBeenCalled();
+        done();
+      }
+    });
 
     httpMock
-      .expectOne(req => {
-        // expect(req.method).toBe('GET');
-        // expect(req.url).toBe(recommendationsAPI);
-        return true;
-      })
-      .flush(null, { status: 500, statusText: 'Internal Server Error'});
-
-
+      .expectOne((req) => true)
+      .flush(null, { status: 500, statusText: 'Internal Server Error' });
     httpMock.verify();
-    expect(loggerService.warn).toHaveBeenCalled();
   });
 });
