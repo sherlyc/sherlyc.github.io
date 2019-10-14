@@ -18,12 +18,6 @@ export interface IEnvironmentDefinition {
   loggerOptions: ILoggerOptions;
   aadSdkUrl: string;
   sentryIO: { dsn: string; sampleRate: number; environment: string };
-  serverOverrides?: Partial<
-    Omit<IEnvironmentDefinition, 'serverOverrides' | 'browserOverrides'>
-  >;
-  browserOverrides?: Partial<
-    Omit<IEnvironmentDefinition, 'serverOverrides' | 'browserOverrides'>
-  >;
   dtmUrl: string;
   loginLibrary: ILoginLibraryConfig;
 }

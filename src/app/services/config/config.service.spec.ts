@@ -3,12 +3,14 @@ import { TestBed } from '@angular/core/testing';
 import { ConfigService } from './config.service';
 import { RuntimeService } from '../runtime/runtime.service';
 import { mockService, ServiceMock } from '../mocks/MockService';
+import { environment } from '../../../environments/environment';
 
 describe('Config Service', () => {
   let configService: ConfigService;
   let runtimeServiceMock: ServiceMock<RuntimeService>;
 
   beforeEach(() => {
+    environment.version = 'FAKE_VERSION';
     TestBed.configureTestingModule({
       providers: [
         ConfigService,
@@ -68,5 +70,16 @@ describe('Config Service', () => {
     runtimeServiceMock.getEnvironmentVariable.mockReturnValue('something_else');
 
     expect(configService.getConfig()).toEqual(configJson['production']);
+  });
+
+  it('should parse url version', () => {
+    expect(configService.getConfig()).toEqual(
+      expect.objectContaining({
+        spadeAPI: '/spade/api/FAKE_VERSION/content',
+        weatherAPI: '/spade/api/FAKE_VERSION/weather',
+        experimentAPI: '/spade/api/FAKE_VERSION/experiment',
+        featureAPI: '/spade/api/FAKE_VERSION/feature'
+      })
+    );
   });
 });
