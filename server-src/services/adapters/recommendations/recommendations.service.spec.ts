@@ -2,6 +2,8 @@ import { parseCookie, getRecommendedArticles } from './recommendations.service';
 import cacheHttp from '../../utils/cache-http';
 import config from '../../utils/config';
 
+const { url, limit } = config.recommendationsApi;
+
 jest.mock('../../utils/cache-http');
 
 describe('Recommendations Service', () => {
@@ -29,7 +31,7 @@ describe('Recommendations Service', () => {
       );
       expect(cacheHttp).toHaveBeenCalledWith(
         spadeParams,
-        `${config.recommendationsApi}?segment=rt%3Dnanz%3Benth%3Damuh%3Brt%3Dnbnsu&limit=5`
+        `${url}?segment=rt%3Dnanz%3Benth%3Damuh%3Brt%3Dnbnsu&limit=${limit}`
       );
       expect(response).toEqual(mockIdList);
     });

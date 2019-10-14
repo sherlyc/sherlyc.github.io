@@ -3,7 +3,10 @@ import cacheHttp from '../../utils/cache-http';
 import config from '../../utils/config';
 import { IRecommendationsResponse } from '../__types__/IRecommendationsResponse';
 
-export const parseCookie = (keys: string[], maxCount: number) => (
+const { segments, maxCount } = config.recommendationsCookie;
+const { url, limit } = config.recommendationsApi;
+
+export const parseCookie = (keys: string[], count: number) => (
   cookie: string
 ): string => {
   const pattern = new RegExp(`(${keys.join('|')})=([^;]+)`, 'g');
@@ -15,7 +18,7 @@ export const parseCookie = (keys: string[], maxCount: number) => (
   let matches;
   while ((matches = pattern.exec(cookie))) {
     const [pair, key] = matches;
-    if (counter[key] < maxCount) {
+    if (counter[key] < count) {
       counter[key]++;
       result.push(pair);
     }
@@ -23,7 +26,7 @@ export const parseCookie = (keys: string[], maxCount: number) => (
   return result.join(';');
 };
 
-const parseCookieWithConfig = parseCookie(['enth', 'rt', 'x'], 2);
+const parseCookieWithConfig = parseCookie(segments, maxCount);
 
 export const getRecommendedArticles = async (
   cookie: string,
@@ -33,7 +36,7 @@ export const getRecommendedArticles = async (
   const encodedSegment = encodeURIComponent(segment);
   const { data: ids } = await cacheHttp<IRecommendationsResponse>(
     spadeParams,
-    `${config.recommendationsApi}?segment=${encodedSegment}&limit=5`
+    `${url}?segment=${encodedSegment}&limit=${limit}`
   );
   return ids;
 };

@@ -6,7 +6,7 @@ export const getHomePageRecommendations = async (
   req: Request,
   res: Response
 ) => {
-  const cookie = req.cookies[config.recommendationsCookie];
+  const cookie = req.cookies[config.recommendationsCookie.name];
   const ids = await getRecommendedArticles(cookie, req.spadeParams);
   res.json(ids);
 };
