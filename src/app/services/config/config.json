@@ -7,6 +7,11 @@
     "experimentAPI": "/spade/api/experiment",
     "featureAPI": "/spade/api/feature",
     "recommendationsAPI": "/spade/api/recommendations",
+    "recommendationsCookie": {
+      "name": "aamffx",
+      "segments": ["enth", "rt", "x"],
+      "maxCount": 2
+    },
     "loggerOptions": {
       "level": "warn",
       "format": "json"
@@ -33,6 +38,11 @@
     "experimentAPI": "/spade/api/experiment",
     "featureAPI": "/spade/api/feature",
     "recommendationsAPI": "/spade/api/recommendations",
+    "recommendationsCookie": {
+      "name": "aamffx",
+      "segments": ["enth", "rt", "x"],
+      "maxCount": 2
+    },
     "loggerOptions": {
       "level": "info",
       "format": "json"
@@ -59,6 +69,11 @@
     "experimentAPI": "/spade/api/experiment",
     "featureAPI": "/spade/api/feature",
     "recommendationsAPI": "/spade/api/recommendations",
+    "recommendationsCookie": {
+      "name": "aamffx",
+      "segments": ["enth", "rt", "x"],
+      "maxCount": 2
+    },
     "loggerOptions": {
       "level": "debug",
       "format": "text"
@@ -85,6 +100,11 @@
     "experimentAPI": "/spade/api/experiment",
     "featureAPI": "/spade/api/feature",
     "recommendationsAPI": "/spade/api/recommendations",
+    "recommendationsCookie": {
+      "name": "aamffx",
+      "segments": ["enth", "rt", "x"],
+      "maxCount": 2
+    },
     "loggerOptions": {
       "level": "debug",
       "format": "text"
@@ -111,6 +131,11 @@
     "experimentAPI": "/spade/api/experiment",
     "featureAPI": "/spade/api/feature",
     "recommendationsAPI": "/spade/api/recommendations",
+    "recommendationsCookie": {
+      "name": "aamffx",
+      "segments": ["enth", "rt", "x"],
+      "maxCount": 2
+    },
     "loggerOptions": {
       "level": "debug",
       "format": "text"

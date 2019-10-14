@@ -5,6 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { ConfigService } from './config/config.service';
 import { catchError } from 'rxjs/operators';
 import { LoggerService } from './logger/logger.service';
+import { split, flow, pick, flatMap, join, groupBy, take } from 'lodash/fp';
 
 @Injectable({
   providedIn: 'root'
@@ -18,13 +19,43 @@ export class RecommendationsService {
   ) {}
 
   getRecommendations(): Observable<string> {
+    const {
+      name,
+      segments,
+      maxCount
+    } = this.configService.getConfig().recommendationsCookie;
+    const cookie = this.cookieService.get(name);
+
+    console.log(cookie, segments);
+    const parsedSegments = this.parseCookie(cookie, segments, maxCount);
+
     return this.http
-      .get<string>(this.configService.getConfig().recommendationsAPI)
+      .get<string>(this.configService.getConfig().recommendationsAPI, {
+        params: {
+          segments: parsedSegments
+        }
+      })
       .pipe(
         catchError((error: HttpErrorResponse) => {
-          this.loggerService.warn(`RecommendationsService - API failed - ${error}`);
+          this.loggerService.warn(
+            `RecommendationsService - API failed - ${error}`
+          );
           return throwError(error);
         })
       );
   }
+
+  parseCookie = (cookie: string, keys: string[], maxCount: number) =>
+    flow(
+      split(';'),
+      groupBy(
+        flow(
+          split('='),
+          take(1)
+        )
+      ),
+      pick(keys),
+      flatMap(take(maxCount)),
+      join(';')
+    )(cookie);
 }

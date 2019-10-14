@@ -8,6 +8,7 @@ import { CookieService } from './cookie/cookie.service';
 import { LoggerService } from './logger/logger.service';
 import { mockService, ServiceMock } from './mocks/MockService';
 import { RecommendationsService } from './recommendations.service';
+import { parseCookie } from '../../../server-src/services/adapters/recommendations/recommendations.service';
 
 describe('RecommendationsService', () => {
   const recommendationsAPI = 'httpMock://localhost/recommendations';
@@ -51,6 +52,14 @@ describe('RecommendationsService', () => {
   });
 
   it('should get recommendations', () => {
+    configService.getConfig.mockReturnValue({
+      recommendationsCookie: {
+        name: 'abc',
+        segments: ['a', 'b'],
+        maxCount: 1
+      }
+    });
+    cookieService.get.mockReturnValue('a=123;b=456;c=789');
     const articles = ['article one'];
 
     recommendationsService.getRecommendations().subscribe((res) => {
@@ -61,6 +70,11 @@ describe('RecommendationsService', () => {
       .expectOne((req) => {
         expect(req.method).toBe('GET');
         expect(req.url).toBe(recommendationsAPI);
+        expect(req.params).toBe({
+          params: {
+            segments: 'a=123;b=456'
+          }
+        });
         return true;
       })
       .flush(articles);
@@ -80,5 +94,14 @@ describe('RecommendationsService', () => {
       .expectOne((req) => true)
       .flush(null, { status: 500, statusText: 'Internal Server Error' });
     httpMock.verify();
+  });
+
+  describe('parseCookie', () => {
+    it.each`
+      keys                   | maxCount | input                                                   | output
+      ${['enth', 'rt', 'x']} | ${1}     | ${'geo=akl;geo=aklr;rt=nanz;enth=amuh;rt=nbnsu;rt=tsv'} | ${'rt=nanz;enth=amuh'}
+    `('works with $output', ({ keys, maxCount, input, output }) => {
+      expect(parseCookie(keys, maxCount)(input)).toBe(output);
+    });
   });
 });
