@@ -23,11 +23,13 @@ export const parseCookie = (keys: string[], maxCount: number) => (
   return result.join(';');
 };
 
+const parseCookieWithConfig = parseCookie(['enth', 'rt', 'x'], 2);
+
 export const getRecommendedArticles = async (
   cookie: string,
   spadeParams: IParams
 ): Promise<IRecommendationsResponse> => {
-  const segment = parseCookie(['enth', 'rt', 'x'], 2)(cookie);
+  const segment = parseCookieWithConfig(cookie);
   const encodedSegment = encodeURIComponent(segment);
   const { data: ids } = await cacheHttp<IRecommendationsResponse>(
     spadeParams,
