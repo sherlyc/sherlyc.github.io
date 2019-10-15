@@ -8,7 +8,6 @@ import { CookieService } from './cookie/cookie.service';
 import { LoggerService } from './logger/logger.service';
 import { mockService, ServiceMock } from './mocks/MockService';
 import { RecommendationsService } from './recommendations.service';
-import { parseCookie } from '../../../server-src/services/adapters/recommendations/recommendations.service';
 
 describe('RecommendationsService', () => {
   const recommendationsAPI = 'httpMock://localhost/recommendations';
