@@ -81,15 +81,15 @@ describe('JsonFeed Retriever', () => {
       headline_flags: [],
       sponsored: false,
       path: '/link',
-      title: 'Article Title',
-      alt_headline: 'Alt headline',
+      title: 'title',
+      alt_headline: 'headline',
       isHeadlineOverrideApplied: true,
       datetime_iso8601: '123235345',
-      alt_intro: 'Hello'
+      alt_intro: 'intro'
     } as IJsonFeedArticle;
     (cacheHttp as jest.Mock).mockResolvedValue({ data: article });
 
-    const result = await retrieveArticle('123123', params);
+    const result = await retrieveArticle(123123, params);
 
     expect(cacheHttp).toHaveBeenCalledWith(
       params,

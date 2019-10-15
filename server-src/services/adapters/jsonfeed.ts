@@ -53,7 +53,7 @@ export const getListAssetById = async (
 
 export const getArticleById = async (
   params: IParams,
-  articleId: string
+  articleId: number
 ): Promise<IRawArticle> => {
   const article = await retrieveArticle(articleId, params);
   const rawArticle = mapArticleAsset(article);

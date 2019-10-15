@@ -5,9 +5,9 @@ export const getHomePageRecommendations = async (
   req: Request,
   res: Response
 ) => {
-  const ids = await getRecommendedArticles(
+  const articles = await getRecommendedArticles(
     req.params.segments,
     req.spadeParams
   );
-  res.json(ids);
+  res.json(articles);
 };
