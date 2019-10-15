@@ -1,7 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { RecommendationsComponent } from './recommendations.component';
-import { CookieService } from '../../services/cookie/cookie.service';
 import { mockService, ServiceMock } from '../../services/mocks/MockService';
 import { RecommendationsService } from '../../services/recommendations.service';
 import { of } from 'rxjs';
@@ -36,8 +34,7 @@ describe('RecommendationsComponent', () => {
   });
 
   it('should display articles from recommendations service', async () => {
-    const articles = [
-      {
+    const article = {
         id: 'abcd',
         indexHeadline: 'abcd',
         introText: 'abcd',
@@ -49,12 +46,15 @@ describe('RecommendationsComponent', () => {
         strapImageSrcSet: '123123',
         lastPublishedTime: 123123,
         headlineFlags: []
-      }
-    ];
+      };
+
+    const articles = [ article, article, article ];
+
     recommendationsService.getRecommendations.mockReturnValue(of(articles));
 
     await component.ngOnInit();
 
     expect(recommendationsService.getRecommendations).toHaveBeenCalled();
+    expect(component.articles).toEqual(articles);
   });
 });
