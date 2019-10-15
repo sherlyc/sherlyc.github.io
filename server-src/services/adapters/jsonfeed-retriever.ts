@@ -6,14 +6,18 @@ import { URL } from 'url';
 import { IParams } from '../__types__/IParams';
 import { IListAsset } from './__types__/IListAsset';
 import cacheHttp from '../utils/cache-http';
+import { IRawArticle } from './__types__/IRawArticle';
+import { IJsonFeedArticle } from './__types__/IJsonFeedArticle';
 
 async function requestSectionArticleList(
   section: Section,
   total: number,
   params: IParams
 ): Promise<IJsonFeedArticleList> {
-  const url: URL = new URL(`${config.jsonFeedAPI}/${section}?limit=${total}`);
-  const response = await cacheHttp(params, url.href);
+  const response = await cacheHttp(
+    params,
+    `${config.jsonFeedAPI}/${section}?limit=${total}`
+  );
   return response.data;
 }
 
@@ -28,8 +32,10 @@ async function requestListAsset(
   listAssetId: string,
   total?: number
 ): Promise<IListAsset> {
-  const url: URL = new URL(`${config.jsonFeedAPI}/listasset/${listAssetId}`);
-  const response = await cacheHttp(params, url.href);
+  const response = await cacheHttp(
+    params,
+    `${config.jsonFeedAPI}/listasset/${listAssetId}`
+  );
 
   return total
     ? {
@@ -43,3 +49,17 @@ export const retrieveListAsset = (listAssetId: string) => async (
   params: IParams,
   total: number
 ) => retry(() => requestListAsset(params, listAssetId, total), params);
+
+async function requestArticle(
+  params: IParams,
+  articleId: string
+): Promise<IJsonFeedArticle> {
+  const { data } = await cacheHttp(
+    params,
+    `${config.jsonFeedAPI}/article/${articleId}`
+  );
+  return data;
+}
+
+export const retrieveArticle = (articleId: string) => async (params: IParams) =>
+  retry(() => requestArticle(params, articleId), params);

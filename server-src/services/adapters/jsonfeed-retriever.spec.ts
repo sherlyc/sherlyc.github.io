@@ -1,9 +1,16 @@
-import { retrieveSectionList, retrieveListAsset } from './jsonfeed-retriever';
+import {
+  retrieveSectionList,
+  retrieveListAsset,
+  retrieveArticle
+} from './jsonfeed-retriever';
 import * as jsonfeed from './__fixtures__/jsonfeed/jsonfeed.json';
 import * as midStripData from './__fixtures__/mid-strip/mid-strip.json';
 import cacheHttp from '../utils/cache-http';
 import { Section } from '../section';
 import { IParams } from '../__types__/IParams';
+import { JsonFeedAssetType } from './__types__/JsonFeedAssetType';
+import { IJsonFeedArticle } from './__types__/IJsonFeedArticle';
+import config from '../utils/config';
 
 jest.mock('../utils/cache-http');
 
@@ -65,5 +72,29 @@ describe('JsonFeed Retriever', () => {
 
     const articles = midStripJsonFeed.assets;
     expect(articles.length).toEqual(2);
+  });
+
+  it('should retrieve single article by id', async () => {
+    const article = {
+      id: 1,
+      asset_type: JsonFeedAssetType.ARTICLE,
+      headline_flags: [],
+      sponsored: false,
+      path: '/link',
+      title: 'Article Title',
+      alt_headline: 'Alt headline',
+      isHeadlineOverrideApplied: true,
+      datetime_iso8601: '123235345',
+      alt_intro: 'Hello'
+    } as IJsonFeedArticle;
+    (cacheHttp as jest.Mock).mockResolvedValue({ data: article });
+
+    const result = await retrieveArticle('123123')(params);
+
+    expect(cacheHttp).toHaveBeenCalledWith(
+      params,
+      `${config.jsonFeedAPI}/article/123123`
+    );
+    expect(result).toEqual(article);
   });
 });
