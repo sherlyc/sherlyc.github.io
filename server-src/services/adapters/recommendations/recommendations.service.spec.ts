@@ -13,7 +13,7 @@ jest.mock('../../utils/logger');
 
 describe('getRecommendedArticles', () => {
   const spadeParams = { apiRequestId: '123123' };
-  const mockArticle = {
+  const rawArticle = {
     id: '1',
     indexHeadline: 'a',
     introText: 'a',
@@ -42,7 +42,7 @@ describe('getRecommendedArticles', () => {
       status: 200,
       data: [1]
     });
-    (getArticleById as jest.Mock).mockResolvedValue(mockArticle);
+    (getArticleById as jest.Mock).mockResolvedValue(rawArticle);
 
     const articles = await getRecommendedArticles(
       'rt=nanz;enth=amuh',
@@ -53,7 +53,7 @@ describe('getRecommendedArticles', () => {
       spadeParams,
       `${url}?segments=rt%3Dnanz%3Benth%3Damuh&limit=${limit}`
     );
-    expect(articles).toEqual([mockArticle]);
+    expect(articles).toEqual([rawArticle]);
   });
 
   it('should log warning and return empty list of articles if recommendations API fails', async () => {
@@ -77,7 +77,7 @@ describe('getRecommendedArticles', () => {
       status: 200,
       data: [1, 2]
     });
-    (getArticleById as jest.Mock).mockResolvedValue(mockArticle);
+    (getArticleById as jest.Mock).mockResolvedValue(rawArticle);
     (getArticleById as jest.Mock).mockRejectedValue(
       new Error('Failed to retrieve article')
     );

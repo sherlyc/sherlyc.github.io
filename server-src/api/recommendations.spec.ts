@@ -18,7 +18,7 @@ describe('Recommendations', () => {
         segments: 'rt=nanz;enth=amuh'
       }
     } as any;
-    const mockArticle = {
+    const rawArticle = {
       id: '1',
       indexHeadline: 'a',
       introText: 'a',
@@ -32,10 +32,10 @@ describe('Recommendations', () => {
       headlineFlags: []
     } as IRawArticle;
 
-    (getRecommendedArticles as jest.Mock).mockResolvedValue([mockArticle]);
+    (getRecommendedArticles as jest.Mock).mockResolvedValue([rawArticle]);
 
     await getHomePageRecommendations(req, res);
 
-    expect(res.json).toHaveBeenCalledWith([mockArticle]);
+    expect(res.json).toHaveBeenCalledWith([rawArticle]);
   });
 });
