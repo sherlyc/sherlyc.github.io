@@ -53,11 +53,12 @@ async function requestArticle(
   params: IParams,
   articleId: string
 ): Promise<IJsonFeedArticle> {
-  const { data } = await cacheHttp(
+  const response = await cacheHttp(
     params,
     `${config.jsonFeedAPI}/article/${articleId}`
   );
-  return data;
+  console.log(response);
+  return response.data;
 }
 
 export const retrieveArticle = async (articleId: string, params: IParams) =>

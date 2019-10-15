@@ -1,3 +1,5 @@
+import { IRawArticle } from '../services/adapters/__types__/IRawArticle';
+import { getRecommendedArticles } from '../services/adapters/recommendations/recommendations.service';
 import { getHomePageRecommendations } from './recommendations';
 import { Request } from 'express';
 import cacheHttp from '../services/utils/cache-http';
@@ -5,7 +7,7 @@ import config from '../services/utils/config';
 
 const { url, limit } = config.recommendationsApi;
 
-jest.mock('../services/utils/cache-http');
+jest.mock('../services/adapters/recommendations/recommendations.service');
 
 describe('Recommendations', () => {
   const res = {
@@ -14,12 +16,6 @@ describe('Recommendations', () => {
     end: jest.fn()
   } as any;
 
-  beforeAll(() => {
-    (cacheHttp as jest.Mock).mockReturnValue({
-      get: jest.fn
-    });
-  });
-
   it('should get recommended articles from recommendations api', async () => {
     const req = {
       spadeParams: { apiRequestId: '123123' },
@@ -27,17 +23,24 @@ describe('Recommendations', () => {
         segments: 'rt=nanz;enth=amuh'
       }
     } as any;
+    const mockArticle = {
+      id: '1',
+      indexHeadline: 'a',
+      introText: 'a',
+      linkUrl: 'asdf',
+      defconSrc: 'asdf',
+      imageSrc: 'asdf',
+      strapImageSrc: 'asdf',
+      imageSrcSet: 'asdf',
+      strapImageSrcSet: 'asdf',
+      lastPublishedTime: 34567,
+      headlineFlags: []
+    } as IRawArticle;
 
-    (cacheHttp as jest.Mock).mockResolvedValueOnce({
-      status: 200,
-      data: [123, 456, 789]
-    });
+    (getRecommendedArticles as jest.Mock).mockResolvedValue([mockArticle]);
 
     await getHomePageRecommendations(req, res);
 
-    expect(cacheHttp).toHaveBeenCalledWith(
-      req.spadeParams,
-      `${url}?segment=rt%3Dnanz%3Benth%3Damuh&limit=${limit}`
-    );
+    expect(res.json).toHaveBeenCalledWith([mockArticle]);
   });
 });
