@@ -5,6 +5,10 @@
     "jsonFeedAPI": "https://i.stuff.co.nz/_json",
     "weatherAPI": "https://i.stuff.co.nz/do/weather_for_location",
     "breakingNewsApi": "https://api.stuff.co.nz/isomorphic-api/breakingNews?field=state",
+    "recommendationsApi": {
+      "url": "https://recommender.datadevint.shift21.ffx.nz/recommend",
+      "limit": 9
+    },
     "bannerApi": "https://i.stuff.co.nz/static/spade/banners.json",
     "layoutAPI": "https://i.stuff.co.nz/_json/layout/jcr:content",
     "experimentsConfigUrl": "https://i.stuff.co.nz/static/spade/experiments-prod.json",
@@ -21,6 +25,10 @@
     "jsonFeedAPI": "https://i-preprod.stuff.co.nz/_json",
     "weatherAPI": "https://i-preprod.stuff.co.nz/do/weather_for_location",
     "breakingNewsApi": "https://api-preprod.stuff.co.nz/isomorphic-api/breakingNews?field=state",
+    "recommendationsApi": {
+      "url": "https://recommender.datadevint.shift21.ffx.nz/recommend",
+      "limit": 9
+    },
     "bannerApi": "https://i.stuff.co.nz/static/spade/banners.json",
     "layoutAPI": "https://i-preprod.stuff.co.nz/_json/layout/jcr:content",
     "experimentsConfigUrl": "https://i.stuff.co.nz/static/spade/experiments-staging.json",
@@ -37,6 +45,10 @@
     "jsonFeedAPI": "https://i.stuff.co.nz/_json",
     "weatherAPI": "https://i-preprod.stuff.co.nz/do/weather_for_location",
     "breakingNewsApi": "https://api.stuff.co.nz/isomorphic-api/breakingNews?field=state",
+    "recommendationsApi": {
+      "url": "https://recommender.datadevint.shift21.ffx.nz/recommend",
+      "limit": 9
+    },
     "bannerApi": "https://i.stuff.co.nz/static/spade/banners.json",
     "layoutAPI": "https://i-preprod.stuff.co.nz/_json/layout/jcr:content",
     "experimentsConfigUrl": "https://i.stuff.co.nz/static/spade/experiments-dev.json",
@@ -53,6 +65,10 @@
     "jsonFeedAPI": "https://i.stuff.co.nz/_json",
     "weatherAPI": "https://i.stuff.co.nz/do/weather_for_location",
     "breakingNewsApi": "https://api.stuff.co.nz/isomorphic-api/breakingNews?field=state",
+    "recommendationsApi": {
+      "url": "https://recommender.datadevint.shift21.ffx.nz/recommend",
+      "limit": 9
+    },
     "bannerApi": "https://i.stuff.co.nz/static/spade/banners.json",
     "layoutAPI": "https://i.stuff.co.nz/_json/layout/jcr:content",
     "experimentsConfigUrl": "https://i.stuff.co.nz/static/spade/experiments-dev.json",
@@ -69,6 +85,10 @@
     "jsonFeedAPI": "https://i.stuff.co.nz/_json",
     "weatherAPI": "https://i-preprod.stuff.co.nz/do/weather_for_location",
     "breakingNewsApi": "https://api.stuff.co.nz/isomorphic-api/breakingNews?field=state",
+    "recommendationsApi": {
+      "url": "https://recommender.datadevint.shift21.ffx.nz/recommend",
+      "limit": 9
+    },
     "bannerApi": "https://i.stuff.co.nz/static/spade/banners.json",
     "layoutAPI": "https://i-preprod.stuff.co.nz/_json/layout/jcr:content",
     "experimentsConfigUrl": "https://i.stuff.co.nz/static/spade/experiments-dev.json",

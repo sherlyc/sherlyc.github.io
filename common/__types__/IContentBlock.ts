@@ -18,6 +18,7 @@ import { IGrayDefconArticleUnit } from './IGrayDefconArticleUnit';
 import { IBigImageArticleUnit } from './IBigImageArticleUnit';
 import { IHalfWidthImageArticleUnit } from './IHalfWidthImageArticleUnit';
 import { IExpandableArticleSection } from './IExpandableArticleSection';
+import { IRecommendations } from './IRecommendations';
 
 export type IContentBlock =
   | IDefconArticleUnit
@@ -39,4 +40,5 @@ export type IContentBlock =
   | IHeader
   | IWeatherUnit
   | IExperimentContainer
-  | IFeatureContainer;
+  | IFeatureContainer
+  | IRecommendations;

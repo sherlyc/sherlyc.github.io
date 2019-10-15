@@ -6,6 +6,12 @@
     "weatherAPI": "/spade/api/{{version}}/weather",
     "experimentAPI": "/spade/api/{{version}}/experiment",
     "featureAPI": "/spade/api/{{version}}/feature",
+    "recommendationsAPI": "/spade/api/{{version}}/recommendations",
+    "recommendationsCookie": {
+      "name": "aamffx",
+      "segments": ["enth", "rt", "x"],
+      "maxCount": 2
+    },
     "loggerOptions": {
       "level": "warn",
       "format": "json"
@@ -31,6 +37,12 @@
     "weatherAPI": "/spade/api/{{version}}/weather",
     "experimentAPI": "/spade/api/{{version}}/experiment",
     "featureAPI": "/spade/api/{{version}}/feature",
+    "recommendationsAPI": "/spade/api/{{version}}/recommendations",
+    "recommendationsCookie": {
+      "name": "aamffx",
+      "segments": ["enth", "rt", "x"],
+      "maxCount": 2
+    },
     "loggerOptions": {
       "level": "info",
       "format": "json"
@@ -56,6 +68,12 @@
     "weatherAPI": "/spade/api/{{version}}/weather",
     "experimentAPI": "/spade/api/{{version}}/experiment",
     "featureAPI": "/spade/api/{{version}}/feature",
+    "recommendationsAPI": "/spade/api/{{version}}/recommendations",
+    "recommendationsCookie": {
+      "name": "aamffx",
+      "segments": ["enth", "rt", "x"],
+      "maxCount": 2
+    },
     "loggerOptions": {
       "level": "debug",
       "format": "text"
@@ -81,6 +99,12 @@
     "weatherAPI": "/spade/api/{{version}}/weather",
     "experimentAPI": "/spade/api/{{version}}/experiment",
     "featureAPI": "/spade/api/{{version}}/feature",
+    "recommendationsAPI": "/spade/api/{{version}}/recommendations",
+    "recommendationsCookie": {
+      "name": "aamffx",
+      "segments": ["enth", "rt", "x"],
+      "maxCount": 2
+    },
     "loggerOptions": {
       "level": "debug",
       "format": "text"
@@ -106,6 +130,12 @@
     "weatherAPI": "/spade/api/{{version}}/weather",
     "experimentAPI": "/spade/api/{{version}}/experiment",
     "featureAPI": "/spade/api/{{version}}/feature",
+    "recommendationsAPI": "/spade/api/{{version}}/recommendations",
+    "recommendationsCookie": {
+      "name": "aamffx",
+      "segments": ["enth", "rt", "x"],
+      "maxCount": 2
+    },
     "loggerOptions": {
       "level": "debug",
       "format": "text"

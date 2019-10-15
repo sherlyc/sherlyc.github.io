@@ -3,6 +3,7 @@ import { getContent } from './services/content';
 import { getWeather } from './api/weather';
 import { experimentController } from './api/experiment-controller';
 import { featureController } from './api/feature-controller';
+import { getHomePageRecommendations } from './api/recommendations';
 
 const versionedRouter = express.Router();
 versionedRouter.get('/content', getContent);
@@ -33,6 +34,7 @@ spadeRouter.get(
   ],
   featureController
 );
+spadeRouter.get('/recommendations', getHomePageRecommendations);
 
 spadeRouter.use(
   '/:version',

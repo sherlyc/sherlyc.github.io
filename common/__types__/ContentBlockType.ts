@@ -18,5 +18,6 @@ export enum ContentBlockType {
   ExternalContentUnit = 'ExternalContentUnit',
   WeatherUnit = 'WeatherUnit',
   ExperimentContainer = 'ExperimentContainer',
-  FeatureContainer = 'FeatureContainer'
+  FeatureContainer = 'FeatureContainer',
+  Recommendations = 'Recommendations'
 }
