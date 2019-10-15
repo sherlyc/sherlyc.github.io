@@ -42,7 +42,7 @@ describe('JsonFeed Retriever', () => {
   it('should respond with a list data given a list id', async () => {
     (cacheHttp as jest.Mock).mockResolvedValue({ data: midStripData });
 
-    expect(await retrieveListAsset('34934820')(params, 2)).toEqual(
+    expect(await retrieveListAsset('34934820', params, 2)).toEqual(
       midStripData
     );
   });
@@ -51,7 +51,7 @@ describe('JsonFeed Retriever', () => {
     const error = new Error('AJAX error');
     (cacheHttp as jest.Mock).mockRejectedValue(error);
 
-    await expect(retrieveListAsset('34934820')(params, 2)).rejects.toEqual(
+    await expect(retrieveListAsset('34934820', params, 2)).rejects.toEqual(
       error
     );
   });
@@ -59,7 +59,7 @@ describe('JsonFeed Retriever', () => {
   it('should retrieve specified number of articles', async () => {
     (cacheHttp as jest.Mock).mockResolvedValue({ data: midStripData });
 
-    const midStripJsonFeed = await retrieveListAsset('34934820')(params, 1);
+    const midStripJsonFeed = await retrieveListAsset('34934820', params, 1);
 
     const articles = midStripJsonFeed.assets;
     expect(articles.length).toEqual(1);
@@ -68,7 +68,7 @@ describe('JsonFeed Retriever', () => {
   it('should retrieve all articles if specifed total is more than number of articles received', async () => {
     (cacheHttp as jest.Mock).mockResolvedValue({ data: midStripData });
 
-    const midStripJsonFeed = await retrieveListAsset('34934820')(params, 5);
+    const midStripJsonFeed = await retrieveListAsset('34934820', params, 5);
 
     const articles = midStripJsonFeed.assets;
     expect(articles.length).toEqual(2);
@@ -89,7 +89,7 @@ describe('JsonFeed Retriever', () => {
     } as IJsonFeedArticle;
     (cacheHttp as jest.Mock).mockResolvedValue({ data: article });
 
-    const result = await retrieveArticle('123123')(params);
+    const result = await retrieveArticle('123123', params);
 
     expect(cacheHttp).toHaveBeenCalledWith(
       params,

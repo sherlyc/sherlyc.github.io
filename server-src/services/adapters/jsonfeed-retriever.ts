@@ -43,7 +43,8 @@ async function requestListAsset(
     : response.data;
 }
 
-export const retrieveListAsset = (listAssetId: string) => async (
+export const retrieveListAsset = async (
+  listAssetId: string,
   params: IParams,
   total: number
 ) => retry(() => requestListAsset(params, listAssetId, total), params);
@@ -59,5 +60,5 @@ async function requestArticle(
   return data;
 }
 
-export const retrieveArticle = (articleId: string) => async (params: IParams) =>
+export const retrieveArticle = async (articleId: string, params: IParams) =>
   retry(() => requestArticle(params, articleId), params);

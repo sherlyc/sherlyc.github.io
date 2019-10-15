@@ -1,4 +1,8 @@
-import { getSectionArticleList, getListAssetById, getArticleById } from './jsonfeed';
+import {
+  getSectionArticleList,
+  getListAssetById,
+  getArticleById
+} from './jsonfeed';
 import http from '../utils/http';
 import * as jsonfeed from './__fixtures__/jsonfeed/jsonfeed.json';
 import * as midStripData from './__fixtures__/mid-strip/mid-strip.json';
@@ -7,12 +11,15 @@ import { IParams } from '../__types__/IParams';
 import { IRawArticle } from './__types__/IRawArticle';
 import { JsonFeedAssetType } from './__types__/JsonFeedAssetType';
 import { IJsonFeedArticle } from './__types__/IJsonFeedArticle';
-import { retrieveArticle, retrieveListAsset, retrieveSectionList } from './jsonfeed-retriever';
+import {
+  retrieveArticle,
+  retrieveListAsset,
+  retrieveSectionList
+} from './jsonfeed-retriever';
 
 jest.mock('./jsonfeed-retriever');
 
 describe('json feed service', () => {
-
   afterEach(() => {
     jest.resetAllMocks();
   });
@@ -28,7 +35,7 @@ describe('json feed service', () => {
   });
 
   it('should provide list asset data given the json feed list id', async () => {
-    (retrieveListAsset as jest.Mock).mockReturnValue(() => Promise.resolve(midStripData));
+    (retrieveListAsset as jest.Mock).mockReturnValue(midStripData);
 
     const midStripArticles = await getListAssetById(params, '8438437', 2);
 
@@ -56,26 +63,32 @@ describe('json feed service', () => {
           creditline: 'SUPPLIED',
           source_code: '1national-newsroom',
           source_name: 'Stuff',
-          caption: 'Two children from the travelling family help themselves to the Christmas tree at Caltex Albany.',
+          caption:
+            'Two children from the travelling family help themselves to the Christmas tree at Caltex Albany.',
           variants: [
             {
               id: 109962229,
               layout: 'Small Thumbnail',
-              src: 'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffThumbnail.90x60.1tgvdg.png/1547607024623.jpg',
+              src:
+                'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffThumbnail.90x60.1tgvdg.png/1547607024623.jpg',
               media_type: 'Photo',
               width: 90,
               height: 60,
-              urls: [{
-                '90x60': 'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffThumbnail.90x60.1tgvdg.png/1547607024623.jpg',
-                '180x120': 'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffThumbnail.180x120.1tgvdg.png/1547607024623.jpg'
-              }],
+              urls: [
+                {
+                  '90x60':
+                    'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffThumbnail.90x60.1tgvdg.png/1547607024623.jpg',
+                  '180x120':
+                    'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffThumbnail.180x120.1tgvdg.png/1547607024623.jpg'
+                }
+              ],
               image_type_id: 'StuffThumbnail'
             }
           ]
-        },
-      ],
+        }
+      ]
     } as IJsonFeedArticle;
-    (retrieveArticle as jest.Mock).mockReturnValue(() => Promise.resolve(jsonFeedArticle));
+    (retrieveArticle as jest.Mock).mockReturnValue(jsonFeedArticle);
 
     const article = await getArticleById(params, '1234');
     verifyArticles([article]);

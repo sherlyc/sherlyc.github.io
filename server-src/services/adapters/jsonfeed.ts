@@ -1,5 +1,12 @@
-import { retrieveSectionList, retrieveListAsset, retrieveArticle } from './jsonfeed-retriever';
-import { mapToRawArticleList, mapArticleAsset } from './jsonfeed-mapper/jsonfeed-mapper';
+import {
+  retrieveSectionList,
+  retrieveListAsset,
+  retrieveArticle
+} from './jsonfeed-retriever';
+import {
+  mapToRawArticleList,
+  mapArticleAsset
+} from './jsonfeed-mapper/jsonfeed-mapper';
 import { IJsonFeedArticleList } from './__types__/IJsonFeedArticleList';
 import { IRawArticle } from './__types__/IRawArticle';
 import { Section } from '../section';
@@ -38,7 +45,7 @@ export const getListAssetById = async (
   listAssetId: string,
   total: number = 0
 ): Promise<IRawArticle[]> => {
-  const articles = await retrieveListAsset(listAssetId)(params, total);
+  const articles = await retrieveListAsset(listAssetId, params, total);
   const listAssetArticles = mapToRawArticleList(articles.assets);
   warnIfMissingImages(listAssetArticles, params);
   return listAssetArticles;
@@ -48,10 +55,8 @@ export const getArticleById = async (
   params: IParams,
   articleId: string
 ): Promise<IRawArticle> => {
-  const article = await retrieveArticle(articleId)(params);
+  const article = await retrieveArticle(articleId, params);
   const rawArticle = mapArticleAsset(article);
   warnIfMissingImages([rawArticle], params);
   return rawArticle;
 };
-
-
