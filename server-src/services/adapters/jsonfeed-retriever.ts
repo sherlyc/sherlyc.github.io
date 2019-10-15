@@ -51,15 +51,14 @@ export const retrieveListAsset = async (
 
 async function requestArticle(
   params: IParams,
-  articleId: string
+  articleId: number
 ): Promise<IJsonFeedArticle> {
   const response = await cacheHttp(
     params,
     `${config.jsonFeedAPI}/article/${articleId}`
   );
-  console.log(response);
   return response.data;
 }
 
-export const retrieveArticle = async (articleId: string, params: IParams) =>
+export const retrieveArticle = async (articleId: number, params: IParams) =>
   retry(() => requestArticle(params, articleId), params);
