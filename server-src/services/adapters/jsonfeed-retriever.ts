@@ -2,11 +2,9 @@ import { IJsonFeedArticleList } from './__types__/IJsonFeedArticleList';
 import config from '../utils/config';
 import retry from '../utils/retry';
 import { Section } from '../section';
-import { URL } from 'url';
 import { IParams } from '../__types__/IParams';
 import { IListAsset } from './__types__/IListAsset';
 import cacheHttp from '../utils/cache-http';
-import { IRawArticle } from './__types__/IRawArticle';
 import { IJsonFeedArticle } from './__types__/IJsonFeedArticle';
 
 async function requestSectionArticleList(

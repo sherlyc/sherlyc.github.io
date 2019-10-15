@@ -1,7 +1,7 @@
 import * as jsonfeed from '../__fixtures__/jsonfeed/jsonfeed.json';
 import * as rawArticles from '../__fixtures__/jsonfeed/raw-article-list.json';
 import * as temporaryRawArticles from '../__fixtures__/jsonfeed/temporal-raw-articles.json';
-import map from './jsonfeed-mapper';
+import { mapToRawArticleList } from './jsonfeed-mapper';
 import { IJsonFeedArticleList } from '../__types__/IJsonFeedArticleList';
 import { cloneDeep } from 'lodash';
 import { IRawArticle } from '../__types__/IRawArticle';
@@ -13,7 +13,7 @@ describe('JsonFeed Mapper', () => {
     const data: IJsonFeedArticleList = cloneDeep(
       jsonfeed as IJsonFeedArticleList
     );
-    expect(map(data.stories)).toEqual(rawArticles);
+    expect(mapToRawArticleList(data.stories)).toEqual(rawArticles);
   });
 
   it('should map jsonfeed articles and url assets alt headline to spade index headline based on flag', () => {
@@ -26,7 +26,7 @@ describe('JsonFeed Mapper', () => {
     data.stories[1].isHeadlineOverrideApplied = true;
     data.stories[1].alt_headline = 'url alt headline';
 
-    expect(map(data.stories)).toEqual(temporaryRawArticles);
+    expect(mapToRawArticleList(data.stories)).toEqual(temporaryRawArticles);
   });
 
   describe('images', () => {
@@ -47,14 +47,14 @@ describe('JsonFeed Mapper', () => {
         article.strapImageSrcSet = null;
       });
 
-      expect(map(data.stories)).toEqual(expected);
+      expect(mapToRawArticleList(data.stories)).toEqual(expected);
     });
 
     it('should always get thumbnail image', () => {
       const data: IJsonFeedArticleList = cloneDeep(
         jsonfeed as IJsonFeedArticleList
       );
-      const result = map(data.stories);
+      const result = mapToRawArticleList(data.stories);
       const thumbnailImageUrl =
         'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffThumbnail.90x60.1tgvdg.png/1547607024623.jpg';
       expect(result[0].imageSrc).toBe(thumbnailImageUrl);
@@ -64,7 +64,7 @@ describe('JsonFeed Mapper', () => {
       const data: IJsonFeedArticleList = cloneDeep(
         jsonfeed as IJsonFeedArticleList
       );
-      const result = map(data.stories);
+      const result = mapToRawArticleList(data.stories);
       const thumbnailImageUrl =
         'https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.90x60.11z4e0.png/1439844947411.jpg';
       expect(result[3].imageSrc).toBe(thumbnailImageUrl);
@@ -75,7 +75,7 @@ describe('JsonFeed Mapper', () => {
         jsonfeed as IJsonFeedArticleList
       );
 
-      const result = map(data.stories);
+      const result = mapToRawArticleList(data.stories);
 
       const imageSourceSet =
         'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/' +
@@ -96,7 +96,7 @@ describe('JsonFeed Mapper', () => {
 
       data.stories[0].images[0].variants = variantsWithoutThumbnail;
 
-      const result = map(data.stories);
+      const result = mapToRawArticleList(data.stories);
 
       const imageSourceSet =
         'https://resources.stuff.co.nz/1547607024623.jpg 90w, ' +
@@ -119,7 +119,7 @@ describe('JsonFeed Mapper', () => {
         (variant: any) => variant.layout === JsonFeedImageType.STRAP_IMAGE
       );
 
-      const result = map(data.stories);
+      const result = mapToRawArticleList(data.stories);
 
       expect(result[0].defconSrc).toBe(variantsOnlyHaveStrap.src);
     });
@@ -139,7 +139,7 @@ describe('JsonFeed Mapper', () => {
         }
       ];
 
-      const articles = map(data.stories);
+      const articles = mapToRawArticleList(data.stories);
       expect(articles[0].defconSrc).toBe(variantsOnlyHaveThumbnail.src);
     });
   });
@@ -154,7 +154,7 @@ describe('JsonFeed Mapper', () => {
         story.headline_flags = [HeadlineFlags.PHOTO];
       });
 
-      const result = map(data.stories);
+      const result = mapToRawArticleList(data.stories);
 
       result.forEach((article) => {
         expect(
@@ -175,7 +175,7 @@ describe('JsonFeed Mapper', () => {
         story.headline_flags = [HeadlineFlags.VIDEO];
       });
 
-      const result = map(data.stories);
+      const result = mapToRawArticleList(data.stories);
 
       result.forEach((article) => {
         expect(
