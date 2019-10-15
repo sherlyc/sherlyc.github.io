@@ -1,11 +1,6 @@
 import { IRawArticle } from '../services/adapters/__types__/IRawArticle';
 import { getRecommendedArticles } from '../services/adapters/recommendations/recommendations.service';
 import { getHomePageRecommendations } from './recommendations';
-import { Request } from 'express';
-import cacheHttp from '../services/utils/cache-http';
-import config from '../services/utils/config';
-
-const { url, limit } = config.recommendationsApi;
 
 jest.mock('../services/adapters/recommendations/recommendations.service');
 

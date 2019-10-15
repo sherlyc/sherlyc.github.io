@@ -41,6 +41,7 @@ describe('getRecommendedArticles', () => {
       'rt=nanz;enth=amuh',
       spadeParams
     );
+
     expect(cacheHttp).toHaveBeenCalledWith(
       spadeParams,
       `${url}?segment=rt%3Dnanz%3Benth%3Damuh&limit=${limit}`
