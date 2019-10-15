@@ -6,6 +6,7 @@ import { ConfigService } from './config/config.service';
 import { catchError } from 'rxjs/operators';
 import { LoggerService } from './logger/logger.service';
 import { split, flow, pick, flatMap, join, groupBy, take } from 'lodash/fp';
+import { IRawArticle } from '../../../server-src/services/adapters/__types__/IRawArticle';
 
 @Injectable({
   providedIn: 'root'
@@ -18,14 +19,14 @@ export class RecommendationsService {
     private loggerService: LoggerService
   ) {}
 
-  getRecommendations(): Observable<string> {
+  getRecommendations(): Observable<IRawArticle[]> {
     const cookie = this.cookieService.get(
       this.configService.getConfig().recommendationsCookie.name
     );
     const parsedSegments = this.parseCookie(cookie);
 
     return this.http
-      .get<string>(this.configService.getConfig().recommendationsAPI, {
+      .get<IRawArticle[]>(this.configService.getConfig().recommendationsAPI, {
         params: {
           segments: parsedSegments
         }
