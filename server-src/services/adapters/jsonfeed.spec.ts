@@ -90,7 +90,7 @@ describe('json feed service', () => {
     } as IJsonFeedArticle;
     (retrieveArticle as jest.Mock).mockReturnValue(jsonFeedArticle);
 
-    const article = await getArticleById(params, '1234');
+    const article = await getArticleById(params, 1234);
     verifyArticles([article]);
   });
 });
