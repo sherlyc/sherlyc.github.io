@@ -16,11 +16,18 @@ describe('Recommendations', () => {
     end: jest.fn()
   } as any;
 
+  afterEach(() => {
+    jest.resetAllMocks();
+  });
+
   it('should get recommended articles as content blocks from recommendations api', async () => {
     const req = {
       spadeParams: { apiRequestId: '123123' },
       query: {
-        segment: 'rt=nanz;enth=amuh'
+        segment: 'rt=nanz;enth=amuh',
+        strapName: 'Recommendations',
+        totalBasicArticlesUnit: 1,
+        totalBasicArticleTitleUnit: 2
       }
     } as any;
 
@@ -78,10 +85,100 @@ describe('Recommendations', () => {
       adUnit,
       articleAsBasicArticle,
       adUnit,
-      articleAsBasicArticle,
+      articleAsTitleArticle,
       adUnit,
       articleAsTitleArticle,
       adUnit
     ]);
+  });
+
+  it('should return 2 basic articles and 3 title articles by default', async () => {
+    const req = {
+      spadeParams: { apiRequestId: '123123' },
+      query: {
+        segment: 'rt=nanz;enth=amuh',
+        strapName: 'Recommendations'
+      }
+    } as any;
+
+    const rawArticle = {
+      id: '1',
+      indexHeadline: 'a',
+      introText: 'a',
+      linkUrl: 'asdf',
+      defconSrc: 'asdf',
+      imageSrc: 'asdf',
+      strapImageSrc: 'asdf',
+      imageSrcSet: 'asdf',
+      strapImageSrcSet: 'asdf',
+      lastPublishedTime: 34567,
+      headlineFlags: []
+    } as IRawArticle;
+
+    const articleAsBasicArticle: IBasicArticleUnit = {
+      type: ContentBlockType.BasicArticleUnit,
+      id: '1',
+      strapName: 'Recommendations',
+      indexHeadline: 'a',
+      introText: 'a',
+      linkUrl: 'asdf',
+      imageSrc: 'asdf',
+      imageSrcSet: 'asdf',
+      lastPublishedTime: 34567,
+      headlineFlags: []
+    };
+
+    const articleAsTitleArticle: IBasicArticleTitleUnit = {
+      type: ContentBlockType.BasicArticleTitleUnit,
+      id: '1',
+      strapName: 'Recommendations',
+      indexHeadline: 'a',
+      linkUrl: 'asdf',
+      lastPublishedTime: 34567,
+      headlineFlags: []
+    };
+
+    const adUnit: IBasicAdUnit = {
+      type: ContentBlockType.BasicAdUnit,
+      context: 'Recommendations'
+    };
+
+    (getRecommendedArticles as jest.Mock).mockResolvedValue(
+      new Array(5).fill(rawArticle)
+    );
+
+    await getHomePageRecommendations(req, res);
+
+    expect(res.json).toHaveBeenCalledWith([
+      adUnit,
+      articleAsBasicArticle,
+      adUnit,
+      articleAsBasicArticle,
+      adUnit,
+      articleAsTitleArticle,
+      adUnit,
+      articleAsTitleArticle,
+      adUnit,
+      articleAsTitleArticle,
+      adUnit
+    ]);
+  });
+
+  it('should return empty content blocks if recommendation API returns nothing', async () => {
+    const req = {
+      spadeParams: { apiRequestId: '123123' },
+      query: {
+        segment: 'rt=nanz;enth=amuh',
+        strapName: 'Recommendations',
+        totalBasicArticlesUnit: 2,
+        totalBasicArticleTitleUnit: 3
+      }
+    } as any;
+
+    (getRecommendedArticles as jest.Mock).mockResolvedValue([]);
+
+    await getHomePageRecommendations(req, res);
+
+    expect(res.json).toHaveBeenCalledWith([]);
   });
 });

@@ -4,5 +4,6 @@ import { IContentBlock } from './IContentBlock';
 export interface IRecommendations {
   type: ContentBlockType.Recommendations;
   strapName: string;
-  totalArticles: number;
+  totalBasicArticlesUnit: number;
+  totalBasicArticleTitleUnit: number;
 }

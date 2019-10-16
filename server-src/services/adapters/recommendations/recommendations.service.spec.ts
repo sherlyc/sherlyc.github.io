@@ -5,8 +5,6 @@ import { getArticleById } from '../jsonfeed';
 import { getRecommendedArticles } from './recommendations.service';
 import logger from '../../utils/logger';
 
-const { url, limit } = config.recommendationsApi;
-
 jest.mock('../../utils/cache-http');
 jest.mock('../jsonfeed');
 jest.mock('../../utils/logger');
@@ -46,12 +44,13 @@ describe('getRecommendedArticles', () => {
 
     const articles = await getRecommendedArticles(
       'rt=nanz;enth=amuh',
+      5,
       spadeParams
     );
 
     expect(cacheHttp).toHaveBeenCalledWith(
       spadeParams,
-      `${url}?segment=rt%3Dnanz%3Benth%3Damuh&limit=${limit}`
+      `${config.recommendationsApi}?segment=rt%3Dnanz%3Benth%3Damuh&limit=5`
     );
     expect(articles).toEqual([rawArticle]);
   });
@@ -61,11 +60,11 @@ describe('getRecommendedArticles', () => {
       new Error('Internal Server Error')
     );
 
-    const articles = await getRecommendedArticles('rt=nanz', spadeParams);
+    const articles = await getRecommendedArticles('rt=nanz', 5, spadeParams);
 
     expect(cacheHttp).toHaveBeenCalledWith(
       spadeParams,
-      `${url}?segment=rt%3Dnanz&limit=${limit}`
+      `${config.recommendationsApi}?segment=rt%3Dnanz&limit=5`
     );
     expect(logger.warn).toHaveBeenCalled();
     expect(logger.warn).toHaveBeenCalledTimes(1);
@@ -82,11 +81,11 @@ describe('getRecommendedArticles', () => {
       new Error('Failed to retrieve article')
     );
 
-    const articles = await getRecommendedArticles('rt=nanz', spadeParams);
+    const articles = await getRecommendedArticles('rt=nanz', 5, spadeParams);
 
     expect(cacheHttp).toHaveBeenCalledWith(
       spadeParams,
-      `${url}?segment=rt%3Dnanz&limit=${limit}`
+      `${config.recommendationsApi}?segment=rt%3Dnanz&limit=5`
     );
     expect(logger.warn).toHaveBeenCalled();
     expect(articles).toEqual([]);

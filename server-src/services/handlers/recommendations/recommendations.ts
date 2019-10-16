@@ -6,14 +6,19 @@ import { ContentBlockType } from '../../../../common/__types__/ContentBlockType'
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  { strapName, totalArticles }: IRecommendationsHandlerInput,
+  {
+    strapName,
+    totalBasicArticlesUnit,
+    totalBasicArticleTitleUnit
+  }: IRecommendationsHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   return [
     {
       type: ContentBlockType.Recommendations,
       strapName,
-      totalArticles
+      totalBasicArticlesUnit,
+      totalBasicArticleTitleUnit
     }
   ];
 }

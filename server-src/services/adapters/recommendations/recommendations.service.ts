@@ -5,11 +5,11 @@ import { IRawArticle } from '../__types__/IRawArticle';
 import { getArticleById } from '../jsonfeed';
 import logger from '../../utils/logger';
 
-const { url, limit } = config.recommendationsApi;
 type ArticleId = number;
 
 export const getRecommendedArticles = async (
   segment: string,
+  limit: number,
   spadeParams: IParams
 ): Promise<IRawArticle[]> => {
   const encodedSegment = encodeURIComponent(segment);
@@ -17,7 +17,7 @@ export const getRecommendedArticles = async (
   try {
     const response = await cacheHttp<ArticleId[]>(
       spadeParams,
-      `${url}?segment=${encodedSegment}&limit=${limit}`
+      `${config.recommendationsApi}?segment=${encodedSegment}&limit=${limit}`
     );
 
     return await Promise.all(

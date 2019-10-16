@@ -45,24 +45,39 @@ export const getHomePageRecommendations = async (
   req: Request,
   res: Response
 ) => {
+  const {
+    segment,
+    strapName,
+    totalBasicArticlesUnit = 2,
+    totalBasicArticleTitleUnit = 3
+  } = req.query;
   const articles = await getRecommendedArticles(
-    req.query.segment,
+    segment,
+    totalBasicArticlesUnit + totalBasicArticleTitleUnit,
     req.spadeParams
   );
 
-  const strapName = 'Recommendations';
-  const totalBasicArticles = 2;
+  res.json(
+    articles.length
+      ? formatArticles(articles, strapName, totalBasicArticlesUnit)
+      : []
+  );
+};
+
+function formatArticles(
+  articles: IRawArticle[],
+  strapName: string,
+  totalBasicArticlesUnit: number
+) {
   const basicArticles = articles
-    .slice(0, totalBasicArticles)
+    .slice(0, totalBasicArticlesUnit)
     .map((article) => basicArticleUnit(article, strapName));
   const titleArticles = articles
-    .slice(totalBasicArticles)
+    .slice(totalBasicArticlesUnit)
     .map((article) => basicArticleTitleUnit(article, strapName));
 
-  const articlesWithAds = [...basicArticles, ...titleArticles].reduce(
+  return [...basicArticles, ...titleArticles].reduce(
     (acc, article) => [...acc, article, basicAdUnit(strapName)],
     [basicAdUnit(strapName)] as IContentBlock[]
   );
-
-  res.json(articlesWithAds);
-};
+}

@@ -12,7 +12,8 @@ describe('Recommendations', () => {
     const handlerInput: IRecommendationsHandlerInput = {
       type: HandlerInputType.Recommendations,
       strapName: 'Recommendations',
-      totalArticles: 5
+      totalBasicArticlesUnit: 2,
+      totalBasicArticleTitleUnit: 3
     };
 
     const result = await recommendations(handlerRunner, handlerInput, params);
@@ -21,7 +22,8 @@ describe('Recommendations', () => {
       {
         type: ContentBlockType.Recommendations,
         strapName: handlerInput.strapName,
-        totalArticles: handlerInput.totalArticles
+        totalBasicArticlesUnit: handlerInput.totalBasicArticlesUnit,
+        totalBasicArticleTitleUnit: handlerInput.totalBasicArticleTitleUnit
       }
     ]);
   });
