@@ -3,10 +3,10 @@ import {
   HttpTestingController
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { ConfigService } from './config/config.service';
-import { CookieService } from './cookie/cookie.service';
-import { LoggerService } from './logger/logger.service';
-import { mockService, ServiceMock } from './mocks/MockService';
+import { ConfigService } from '../config/config.service';
+import { CookieService } from '../cookie/cookie.service';
+import { LoggerService } from '../logger/logger.service';
+import { mockService, ServiceMock } from '../mocks/MockService';
 import { RecommendationsService } from './recommendations.service';
 
 describe('RecommendationsService', () => {

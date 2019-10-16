@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { CookieService } from './cookie/cookie.service';
+import { CookieService } from '../cookie/cookie.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { ConfigService } from './config/config.service';
+import { ConfigService } from '../config/config.service';
 import { catchError } from 'rxjs/operators';
-import { LoggerService } from './logger/logger.service';
+import { LoggerService } from '../logger/logger.service';
 import { split, flow, pick, flatMap, join, groupBy, take } from 'lodash/fp';
 
 @Injectable({

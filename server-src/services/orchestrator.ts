@@ -81,7 +81,7 @@ export default async (params: IParams): Promise<IPage> => {
             },
             {
               type: HandlerInputType.Recommendations,
-              strapName: 'Recommendations',
+              strapName: 'Recommendations for you',
               totalBasicArticlesUnit: 2,
               totalBasicArticleTitleUnit: 3
             },
