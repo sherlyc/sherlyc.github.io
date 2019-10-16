@@ -47,7 +47,6 @@ export const getHomePageRecommendations = async (
 ) => {
   const {
     segment,
-    strapName,
     totalBasicArticlesUnit = 2,
     totalBasicArticleTitleUnit = 3
   } = req.query;
@@ -58,26 +57,24 @@ export const getHomePageRecommendations = async (
   );
 
   res.json(
-    articles.length
-      ? formatArticles(articles, strapName, totalBasicArticlesUnit)
-      : []
+    articles.length ? formatArticles(articles, totalBasicArticlesUnit) : []
   );
 };
 
 function formatArticles(
   articles: IRawArticle[],
-  strapName: string,
   totalBasicArticlesUnit: number
 ) {
+  const context = 'Recommendations';
   const basicArticles = articles
     .slice(0, totalBasicArticlesUnit)
-    .map((article) => basicArticleUnit(article, strapName));
+    .map((article) => basicArticleUnit(article, context));
   const titleArticles = articles
     .slice(totalBasicArticlesUnit)
-    .map((article) => basicArticleTitleUnit(article, strapName));
+    .map((article) => basicArticleTitleUnit(article, context));
 
   return [...basicArticles, ...titleArticles].reduce(
-    (acc, article) => [...acc, article, basicAdUnit(strapName)],
-    [basicAdUnit(strapName)] as IContentBlock[]
+    (acc, article) => [...acc, article, basicAdUnit(context)],
+    [basicAdUnit(context)] as IContentBlock[]
   );
 }

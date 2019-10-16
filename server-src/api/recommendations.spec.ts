@@ -66,7 +66,6 @@ describe('Recommendations', () => {
       spadeParams: { apiRequestId: '123123' },
       query: {
         segment: 'rt=nanz;enth=amuh',
-        strapName: 'Recommendations',
         totalBasicArticlesUnit: 1,
         totalBasicArticleTitleUnit: 2
       }
@@ -95,8 +94,7 @@ describe('Recommendations', () => {
     const req = {
       spadeParams: { apiRequestId: '123123' },
       query: {
-        segment: 'rt=nanz;enth=amuh',
-        strapName: 'Recommendations'
+        segment: 'rt=nanz;enth=amuh'
       }
     } as any;
 
@@ -126,7 +124,6 @@ describe('Recommendations', () => {
       spadeParams: { apiRequestId: '123123' },
       query: {
         segment: 'rt=nanz;enth=amuh',
-        strapName: 'Recommendations',
         totalBasicArticlesUnit: 2,
         totalBasicArticleTitleUnit: 3
       }
