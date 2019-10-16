@@ -1,8 +1,11 @@
+import { ContentBlockType } from '../../common/__types__/ContentBlockType';
+import { IBasicAdUnit } from '../../common/__types__/IBasicAdUnit';
+import { IBasicArticleTitleUnit } from '../../common/__types__/IBasicArticleTitleUnit';
+import { IBasicArticleUnit } from '../../common/__types__/IBasicArticleUnit';
+import { HeadlineFlags } from '../../common/HeadlineFlags';
 import { IRawArticle } from '../services/adapters/__types__/IRawArticle';
 import { getRecommendedArticles } from '../services/adapters/recommendations/recommendations.service';
 import { getHomePageRecommendations } from './recommendations';
-import { IBasicArticleUnit } from '../../common/__types__/IBasicArticleUnit';
-import { ContentBlockType } from '../../common/__types__/ContentBlockType';
 
 jest.mock('../services/adapters/recommendations/recommendations.service');
 
@@ -48,10 +51,37 @@ describe('Recommendations', () => {
       headlineFlags: []
     };
 
-    (getRecommendedArticles as jest.Mock).mockResolvedValue([rawArticle]);
+    const articleAsTitleArticle: IBasicArticleTitleUnit = {
+      type: ContentBlockType.BasicArticleTitleUnit,
+      id: '1',
+      strapName: 'Recommendations',
+      indexHeadline: 'a',
+      linkUrl: 'asdf',
+      lastPublishedTime: 34567,
+      headlineFlags: []
+    };
+
+    const adUnit: IBasicAdUnit = {
+      type: ContentBlockType.BasicAdUnit,
+      context: 'Recommendations'
+    };
+
+    (getRecommendedArticles as jest.Mock).mockResolvedValue([
+      rawArticle,
+      rawArticle,
+      rawArticle
+    ]);
 
     await getHomePageRecommendations(req, res);
 
-    expect(res.json).toHaveBeenCalledWith([articleAsBasicArticle]);
+    expect(res.json).toHaveBeenCalledWith([
+      adUnit,
+      articleAsBasicArticle,
+      adUnit,
+      articleAsBasicArticle,
+      adUnit,
+      articleAsTitleArticle,
+      adUnit
+    ]);
   });
 });
