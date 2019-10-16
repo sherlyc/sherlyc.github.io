@@ -3,7 +3,6 @@ import {
   getListAssetById,
   getArticleById
 } from './jsonfeed';
-import http from '../utils/http';
 import * as jsonfeed from './__fixtures__/jsonfeed/jsonfeed.json';
 import * as midStripData from './__fixtures__/mid-strip/mid-strip.json';
 import { Section } from '../section';
