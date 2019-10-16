@@ -2,7 +2,6 @@ import { ContentBlockType } from '../../common/__types__/ContentBlockType';
 import { IBasicAdUnit } from '../../common/__types__/IBasicAdUnit';
 import { IBasicArticleTitleUnit } from '../../common/__types__/IBasicArticleTitleUnit';
 import { IBasicArticleUnit } from '../../common/__types__/IBasicArticleUnit';
-import { HeadlineFlags } from '../../common/HeadlineFlags';
 import { IRawArticle } from '../services/adapters/__types__/IRawArticle';
 import { getRecommendedArticles } from '../services/adapters/recommendations/recommendations.service';
 import { getHomePageRecommendations } from './recommendations';
@@ -15,6 +14,48 @@ describe('Recommendations', () => {
     sendStatus: jest.fn(),
     end: jest.fn()
   } as any;
+
+  const rawArticle = {
+    id: '1',
+    indexHeadline: 'a',
+    introText: 'a',
+    linkUrl: 'asdf',
+    defconSrc: 'asdf',
+    imageSrc: 'asdf',
+    strapImageSrc: 'asdf',
+    imageSrcSet: 'asdf',
+    strapImageSrcSet: 'asdf',
+    lastPublishedTime: 34567,
+    headlineFlags: []
+  } as IRawArticle;
+
+  const articleAsBasicArticle: IBasicArticleUnit = {
+    type: ContentBlockType.BasicArticleUnit,
+    id: '1',
+    strapName: 'Recommendations',
+    indexHeadline: 'a',
+    introText: 'a',
+    linkUrl: 'asdf',
+    imageSrc: 'asdf',
+    imageSrcSet: 'asdf',
+    lastPublishedTime: 34567,
+    headlineFlags: []
+  };
+
+  const articleAsTitleArticle: IBasicArticleTitleUnit = {
+    type: ContentBlockType.BasicArticleTitleUnit,
+    id: '1',
+    strapName: 'Recommendations',
+    indexHeadline: 'a',
+    linkUrl: 'asdf',
+    lastPublishedTime: 34567,
+    headlineFlags: []
+  };
+
+  const adUnit: IBasicAdUnit = {
+    type: ContentBlockType.BasicAdUnit,
+    context: 'Recommendations'
+  };
 
   afterEach(() => {
     jest.resetAllMocks();
@@ -30,48 +71,6 @@ describe('Recommendations', () => {
         totalBasicArticleTitleUnit: 2
       }
     } as any;
-
-    const rawArticle = {
-      id: '1',
-      indexHeadline: 'a',
-      introText: 'a',
-      linkUrl: 'asdf',
-      defconSrc: 'asdf',
-      imageSrc: 'asdf',
-      strapImageSrc: 'asdf',
-      imageSrcSet: 'asdf',
-      strapImageSrcSet: 'asdf',
-      lastPublishedTime: 34567,
-      headlineFlags: []
-    } as IRawArticle;
-
-    const articleAsBasicArticle: IBasicArticleUnit = {
-      type: ContentBlockType.BasicArticleUnit,
-      id: '1',
-      strapName: 'Recommendations',
-      indexHeadline: 'a',
-      introText: 'a',
-      linkUrl: 'asdf',
-      imageSrc: 'asdf',
-      imageSrcSet: 'asdf',
-      lastPublishedTime: 34567,
-      headlineFlags: []
-    };
-
-    const articleAsTitleArticle: IBasicArticleTitleUnit = {
-      type: ContentBlockType.BasicArticleTitleUnit,
-      id: '1',
-      strapName: 'Recommendations',
-      indexHeadline: 'a',
-      linkUrl: 'asdf',
-      lastPublishedTime: 34567,
-      headlineFlags: []
-    };
-
-    const adUnit: IBasicAdUnit = {
-      type: ContentBlockType.BasicAdUnit,
-      context: 'Recommendations'
-    };
 
     (getRecommendedArticles as jest.Mock).mockResolvedValue([
       rawArticle,
@@ -100,48 +99,6 @@ describe('Recommendations', () => {
         strapName: 'Recommendations'
       }
     } as any;
-
-    const rawArticle = {
-      id: '1',
-      indexHeadline: 'a',
-      introText: 'a',
-      linkUrl: 'asdf',
-      defconSrc: 'asdf',
-      imageSrc: 'asdf',
-      strapImageSrc: 'asdf',
-      imageSrcSet: 'asdf',
-      strapImageSrcSet: 'asdf',
-      lastPublishedTime: 34567,
-      headlineFlags: []
-    } as IRawArticle;
-
-    const articleAsBasicArticle: IBasicArticleUnit = {
-      type: ContentBlockType.BasicArticleUnit,
-      id: '1',
-      strapName: 'Recommendations',
-      indexHeadline: 'a',
-      introText: 'a',
-      linkUrl: 'asdf',
-      imageSrc: 'asdf',
-      imageSrcSet: 'asdf',
-      lastPublishedTime: 34567,
-      headlineFlags: []
-    };
-
-    const articleAsTitleArticle: IBasicArticleTitleUnit = {
-      type: ContentBlockType.BasicArticleTitleUnit,
-      id: '1',
-      strapName: 'Recommendations',
-      indexHeadline: 'a',
-      linkUrl: 'asdf',
-      lastPublishedTime: 34567,
-      headlineFlags: []
-    };
-
-    const adUnit: IBasicAdUnit = {
-      type: ContentBlockType.BasicAdUnit,
-      context: 'Recommendations'
-    };
 
     (getRecommendedArticles as jest.Mock).mockResolvedValue(
       new Array(5).fill(rawArticle)
