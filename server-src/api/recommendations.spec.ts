@@ -16,8 +16,8 @@ describe('Recommendations', () => {
   it('should get recommended articles as content blocks from recommendations api', async () => {
     const req = {
       spadeParams: { apiRequestId: '123123' },
-      params: {
-        segments: 'rt=nanz;enth=amuh'
+      query: {
+        segment: 'rt=nanz;enth=amuh'
       }
     } as any;
 

@@ -25,12 +25,13 @@ export const getHomePageRecommendations = async (
   res: Response
 ) => {
   const articles = await getRecommendedArticles(
-    req.params.segments,
+    req.query.segment,
     req.spadeParams
   );
 
-  const articlesAsBasicArticles = articles.map(
-    (article) => basicArticleUnit(article, 'Recommendations'));
+  const articlesAsBasicArticles = articles.map((article) =>
+    basicArticleUnit(article, 'Recommendations')
+  );
 
   res.json(articlesAsBasicArticles);
 };

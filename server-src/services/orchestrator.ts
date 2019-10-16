@@ -80,6 +80,11 @@ export default async (params: IParams): Promise<IPage> => {
               }
             },
             {
+              type: HandlerInputType.Recommendations,
+              strapName: 'Recommendations',
+              totalArticles: 5
+            },
+            {
               type: HandlerInputType.MidStrip,
               strapName: 'MidStrip',
               sourceId: Strap.MidStrip,

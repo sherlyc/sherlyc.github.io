@@ -51,7 +51,7 @@ describe('getRecommendedArticles', () => {
 
     expect(cacheHttp).toHaveBeenCalledWith(
       spadeParams,
-      `${url}?segments=rt%3Dnanz%3Benth%3Damuh&limit=${limit}`
+      `${url}?segment=rt%3Dnanz%3Benth%3Damuh&limit=${limit}`
     );
     expect(articles).toEqual([rawArticle]);
   });
@@ -65,7 +65,7 @@ describe('getRecommendedArticles', () => {
 
     expect(cacheHttp).toHaveBeenCalledWith(
       spadeParams,
-      `${url}?segments=rt%3Dnanz&limit=${limit}`
+      `${url}?segment=rt%3Dnanz&limit=${limit}`
     );
     expect(logger.warn).toHaveBeenCalled();
     expect(logger.warn).toHaveBeenCalledTimes(1);
@@ -86,7 +86,7 @@ describe('getRecommendedArticles', () => {
 
     expect(cacheHttp).toHaveBeenCalledWith(
       spadeParams,
-      `${url}?segments=rt%3Dnanz&limit=${limit}`
+      `${url}?segment=rt%3Dnanz&limit=${limit}`
     );
     expect(logger.warn).toHaveBeenCalled();
     expect(articles).toEqual([]);

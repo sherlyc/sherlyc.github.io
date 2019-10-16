@@ -9,15 +9,15 @@ const { url, limit } = config.recommendationsApi;
 type ArticleId = number;
 
 export const getRecommendedArticles = async (
-  segments: string,
+  segment: string,
   spadeParams: IParams
 ): Promise<IRawArticle[]> => {
-  const encodedSegment = encodeURIComponent(segments);
+  const encodedSegment = encodeURIComponent(segment);
 
   try {
     const response = await cacheHttp<ArticleId[]>(
       spadeParams,
-      `${url}?segments=${encodedSegment}&limit=${limit}`
+      `${url}?segment=${encodedSegment}&limit=${limit}`
     );
 
     return await Promise.all(
