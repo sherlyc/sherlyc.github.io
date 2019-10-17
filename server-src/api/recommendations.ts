@@ -50,7 +50,8 @@ export const getHomePageRecommendations = async (
   } = req.query;
   const articles = await getRecommendedArticles(
     segment,
-    totalBasicArticlesUnit + totalBasicArticleTitleUnit,
+    parseInt(totalBasicArticlesUnit, 10) +
+      parseInt(totalBasicArticleTitleUnit, 10),
     req.spadeParams
   );
 
