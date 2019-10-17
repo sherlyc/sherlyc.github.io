@@ -16,6 +16,7 @@ versionedRouter.get(
   '/feature/:featureName/:lotteryNumber/:deviceType',
   featureController
 );
+versionedRouter.get('/recommendations', getHomePageRecommendations);
 
 const spadeRouter = express.Router();
 spadeRouter.get('/content', getContent);
@@ -34,7 +35,6 @@ spadeRouter.get(
   ],
   featureController
 );
-spadeRouter.get('/recommendations', getHomePageRecommendations);
 
 spadeRouter.use(
   '/:version',
