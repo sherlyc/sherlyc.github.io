@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 import { IRecommendations } from '../../../../common/__types__/IRecommendations';
+import { RecommendationsService } from '../../services/recommendations/recommendations.service';
+import { RuntimeService } from '../../services/runtime/runtime.service';
 
 @Component({
   selector: 'app-recommendations',
@@ -9,7 +12,27 @@ import { IRecommendations } from '../../../../common/__types__/IRecommendations'
 export class RecommendationsComponent implements OnInit {
   @Input() input!: IRecommendations;
 
-  constructor() {}
+  loading = true;
+  contentBlocks: IContentBlock[] = [];
 
-  ngOnInit() {}
+  constructor(
+    private runtimeService: RuntimeService,
+    private recommendationsService: RecommendationsService
+  ) {}
+
+  ngOnInit() {
+    if (this.runtimeService.isBrowser()) {
+      this.recommendationsService
+        .getRecommendations(
+          this.input.totalBasicArticlesUnit,
+          this.input.totalBasicArticleTitleUnit
+        )
+        .subscribe({
+          next: (recommendations) => {
+            this.contentBlocks = recommendations;
+            this.loading = false;
+          }
+        });
+    }
+  }
 }
