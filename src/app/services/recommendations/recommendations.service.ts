@@ -31,7 +31,7 @@ export class RecommendationsService {
     return this.http
       .get<IContentBlock[]>(this.configService.getConfig().recommendationsAPI, {
         params: {
-          segments: encodeURIComponent(parsedSegments),
+          segments: parsedSegments,
           totalBasicArticlesUnit: String(totalBasicArticlesUnit),
           totalBasicArticleTitleUnit: String(totalBasicArticleTitleUnit)
         }

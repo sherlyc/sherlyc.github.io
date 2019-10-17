@@ -84,7 +84,7 @@ describe('RecommendationsService', () => {
       .expectOne((req) => {
         expect(req.method).toBe('GET');
         expect(req.url).toBe(recommendationsAPI);
-        expect(req.params.get('segments')).toBe('a%3D123%3Bb%3D456');
+        expect(req.params.get('segments')).toBe('a=123;b=456');
         expect(req.params.get('totalBasicArticlesUnit')).toBe('2');
         expect(req.params.get('totalBasicArticleTitleUnit')).toBe('3');
         return true;
