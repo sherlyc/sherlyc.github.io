@@ -11,7 +11,8 @@ describe('Recommendations', () => {
   it('should return recommendations content block', async () => {
     const handlerInput: IRecommendationsHandlerInput = {
       type: HandlerInputType.Recommendations,
-      strapName: 'Recommendations',
+      displayName: 'Recommended for You',
+      displayNameColor: 'darkblue',
       totalBasicArticlesUnit: 2,
       totalBasicArticleTitleUnit: 3
     };
@@ -21,7 +22,8 @@ describe('Recommendations', () => {
     expect(result).toEqual([
       {
         type: ContentBlockType.Recommendations,
-        strapName: handlerInput.strapName,
+        displayName: handlerInput.displayName,
+        displayNameColor: handlerInput.displayNameColor,
         totalBasicArticlesUnit: handlerInput.totalBasicArticlesUnit,
         totalBasicArticleTitleUnit: handlerInput.totalBasicArticleTitleUnit
       }

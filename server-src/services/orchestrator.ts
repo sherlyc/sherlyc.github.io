@@ -81,7 +81,8 @@ export default async (params: IParams): Promise<IPage> => {
             },
             {
               type: HandlerInputType.Recommendations,
-              strapName: 'Recommendations for you',
+              displayName: 'Recommended for You',
+              displayNameColor: 'darkblue',
               totalBasicArticlesUnit: 2,
               totalBasicArticleTitleUnit: 3
             },

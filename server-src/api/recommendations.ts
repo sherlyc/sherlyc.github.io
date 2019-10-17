@@ -7,13 +7,12 @@ import { IRawArticle } from '../services/adapters/__types__/IRawArticle';
 import { IBasicArticleUnit } from '../../common/__types__/IBasicArticleUnit';
 import { ContentBlockType } from '../../common/__types__/ContentBlockType';
 
-const basicArticleUnit = (
-  article: IRawArticle,
-  strapName: string
-): IBasicArticleUnit => ({
+const strapName = 'Recommendations';
+
+const basicArticleUnit = (article: IRawArticle): IBasicArticleUnit => ({
   type: ContentBlockType.BasicArticleUnit,
   id: article.id,
-  strapName: strapName,
+  strapName,
   indexHeadline: article.indexHeadline,
   introText: article.introText,
   imageSrc: article.imageSrc,
@@ -23,18 +22,17 @@ const basicArticleUnit = (
   headlineFlags: article.headlineFlags
 });
 
-const basicAdUnit = (context: string): IBasicAdUnit => ({
+const basicAdUnit = (): IBasicAdUnit => ({
   type: ContentBlockType.BasicAdUnit,
-  context
+  context: strapName
 });
 
 const basicArticleTitleUnit = (
-  article: IRawArticle,
-  strapName: string
+  article: IRawArticle
 ): IBasicArticleTitleUnit => ({
   type: ContentBlockType.BasicArticleTitleUnit,
   id: article.id,
-  strapName: strapName,
+  strapName,
   indexHeadline: article.indexHeadline,
   linkUrl: article.linkUrl,
   lastPublishedTime: article.lastPublishedTime,
@@ -65,16 +63,15 @@ function formatArticles(
   articles: IRawArticle[],
   totalBasicArticlesUnit: number
 ) {
-  const context = 'Recommendations';
   const basicArticles = articles
     .slice(0, totalBasicArticlesUnit)
-    .map((article) => basicArticleUnit(article, context));
+    .map((article) => basicArticleUnit(article));
   const titleArticles = articles
     .slice(totalBasicArticlesUnit)
-    .map((article) => basicArticleTitleUnit(article, context));
+    .map((article) => basicArticleTitleUnit(article));
 
   return [...basicArticles, ...titleArticles].reduce(
-    (acc, article) => [...acc, article, basicAdUnit(context)],
-    [basicAdUnit(context)] as IContentBlock[]
+    (acc, article) => [...acc, article, basicAdUnit()],
+    [basicAdUnit()] as IContentBlock[]
   );
 }
