@@ -66,8 +66,8 @@ describe('Recommendations', () => {
       spadeParams: { apiRequestId: '123123' },
       query: {
         segment: 'rt=nanz;enth=amuh',
-        totalBasicArticlesUnit: 1,
-        totalBasicArticleTitleUnit: 2
+        totalBasicArticlesUnit: '1',
+        totalBasicArticleTitleUnit: '2'
       }
     } as any;
 
@@ -124,8 +124,8 @@ describe('Recommendations', () => {
       spadeParams: { apiRequestId: '123123' },
       query: {
         segment: 'rt=nanz;enth=amuh',
-        totalBasicArticlesUnit: 2,
-        totalBasicArticleTitleUnit: 3
+        totalBasicArticlesUnit: '2',
+        totalBasicArticleTitleUnit: '3'
       }
     } as any;
 
