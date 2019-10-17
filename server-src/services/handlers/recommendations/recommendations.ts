@@ -7,7 +7,8 @@ import { ContentBlockType } from '../../../../common/__types__/ContentBlockType'
 export default async function(
   handlerRunner: handlerRunnerFunction,
   {
-    strapName,
+    displayName,
+    displayNameColor,
     totalBasicArticlesUnit,
     totalBasicArticleTitleUnit
   }: IRecommendationsHandlerInput,
@@ -16,7 +17,8 @@ export default async function(
   return [
     {
       type: ContentBlockType.Recommendations,
-      strapName,
+      displayName,
+      displayNameColor,
       totalBasicArticlesUnit,
       totalBasicArticleTitleUnit
     }
