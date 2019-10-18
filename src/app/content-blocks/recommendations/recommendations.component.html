@@ -1,4 +1,1 @@
-<div class="{{ input.displayNameColor }}" [class.loading]="loading">
-  <h3>{{ input.displayName }}</h3>
-  <ng-container [appContentBlock]="contentBlocks"></ng-container>
-</div>
+<ng-container [appContentBlock]="contentBlocks" [class.hidden]="hidden"></ng-container>

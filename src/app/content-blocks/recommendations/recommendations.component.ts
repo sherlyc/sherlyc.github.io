@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
+import { IBasicArticleSection } from '../../../../common/__types__/IBasicArticleSection';
 import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 import { IRecommendations } from '../../../../common/__types__/IRecommendations';
 import { RecommendationsService } from '../../services/recommendations/recommendations.service';
@@ -12,7 +14,6 @@ import { RuntimeService } from '../../services/runtime/runtime.service';
 export class RecommendationsComponent implements OnInit {
   @Input() input!: IRecommendations;
 
-  loading = true;
   contentBlocks: IContentBlock[] = [];
 
   constructor(
@@ -22,17 +23,29 @@ export class RecommendationsComponent implements OnInit {
 
   ngOnInit() {
     if (this.runtimeService.isBrowser()) {
+      const { totalBasicArticlesUnit, totalBasicArticleTitleUnit } = this.input;
       this.recommendationsService
-        .getRecommendations(
-          this.input.totalBasicArticlesUnit,
-          this.input.totalBasicArticleTitleUnit
-        )
+        .getRecommendations(totalBasicArticlesUnit, totalBasicArticleTitleUnit)
         .subscribe({
-          next: (recommendations) => {
-            this.contentBlocks = recommendations;
-            this.loading = false;
-          }
+          next: (recommendations) =>
+            (this.contentBlocks = this.createArticleSection(recommendations))
         });
     }
+  }
+
+  get hidden() {
+    return this.contentBlocks.length === 0;
+  }
+
+  private createArticleSection(items: IContentBlock[]): IBasicArticleSection[] {
+    const { displayName, displayNameColor } = this.input;
+    return [
+      {
+        type: ContentBlockType.BasicArticleSection,
+        displayName,
+        displayNameColor,
+        items
+      }
+    ];
   }
 }
