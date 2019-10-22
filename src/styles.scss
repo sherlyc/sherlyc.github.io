@@ -50,23 +50,28 @@ body {
     #8130e4 87%
   );
 }
+
 @media only screen and (min-width: 48em) {
   .container {
     width: 47rem;
+    max-width: 47rem;
   }
 }
 
 @media only screen and (min-width: 64em) {
   .container {
     width: 63rem;
+    max-width: 63rem;
   }
 }
 @media only screen and (min-width: 75em) {
   .container {
     width: 74rem;
+    max-width: 74rem;
   }
 }
 
+app-basic-ad-unit,
 app-basic-ad-unit iframe {
   max-width: 100%;
 }
