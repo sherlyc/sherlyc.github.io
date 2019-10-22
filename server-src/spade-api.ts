@@ -46,7 +46,7 @@ spadeRouter.use(
     req.spadeParams.version = feVersion;
 
     if (beVersion !== feVersion) {
-      logger.info(
+      logger.warn(
         req.spadeParams.apiRequestId,
         `spade version mismatch FE:${feVersion} BE:${beVersion}`,
         {
