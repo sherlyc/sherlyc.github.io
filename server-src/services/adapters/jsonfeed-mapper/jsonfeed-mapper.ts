@@ -13,9 +13,9 @@ import {
   getThumbnailSrcSet
 } from './image-handler';
 
-export default (
+export function mapToRawArticleList(
   articles: Array<IJsonFeedArticle | IJsonFeedUrl | IJsonFeedQuery>
-): IRawArticle[] => {
+): IRawArticle[] {
   return articles
     .map((article) => {
       if (article.asset_type === JsonFeedAssetType.ARTICLE) {
@@ -25,9 +25,9 @@ export default (
       }
     })
     .filter(Boolean) as IRawArticle[];
-};
+}
 
-function mapArticleAsset(item: IJsonFeedArticle): IRawArticle {
+export function mapArticleAsset(item: IJsonFeedArticle): IRawArticle {
   return {
     id: String(item.id),
     indexHeadline: item.isHeadlineOverrideApplied

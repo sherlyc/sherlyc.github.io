@@ -4,6 +4,7 @@ import { IPageHandlerInput } from './IPageHandlerInput';
 import { IBreakingNewsHandlerInput } from './IBreakingNewsHandlerInput';
 import { IMidStripHandlerInput } from './IMidStripHandlerInput';
 import { IExternalContentHandlerInput } from './IExternalContentHandlerInput';
+import { IRecommendationsHandlerInput } from './IRecommendationsHandlerInput';
 import { IWeatherHandlerInput } from './IWeatherHandlerInput';
 import { IMiniMidStripHandlerInput } from './IMiniMidStripHandlerInput';
 import { IExperimentHandlerInput } from './IExperimentHandlerInput';
@@ -35,4 +36,5 @@ export type HandlerInput =
   | IPageHandlerInput
   | IWeatherHandlerInput
   | IExperimentHandlerInput
-  | IFeatureHandlerInput;
+  | IFeatureHandlerInput
+  | IRecommendationsHandlerInput;

@@ -1,7 +1,9 @@
 import { ContentBlockType } from './ContentBlockType';
-import { IContentBlock } from './IContentBlock';
 
 export interface IRecommendations {
   type: ContentBlockType.Recommendations;
-  articles: IContentBlock[];
+  displayName: string;
+  displayNameColor: string;
+  totalBasicArticlesUnit: number;
+  totalBasicArticleTitleUnit: number;
 }

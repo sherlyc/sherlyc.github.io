@@ -17,6 +17,7 @@ import Weather from './weather/weather';
 import Page from './page/page';
 import Experiment from './experiment-handler/experiment-handler';
 import Feature from './feature-handler/feature-handler';
+import Recommendations from './recommendations/recommendations';
 import { handlerRunnerFunction } from './runner';
 import { IParams } from '../__types__/IParams';
 import { HandlerInputType } from './__types__/HandlerInputType';
@@ -45,7 +46,8 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   Page,
   Weather,
   Experiment,
-  Feature
+  Feature,
+  Recommendations
 };
 
 export default handlerRegistry;
