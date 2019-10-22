@@ -4,6 +4,7 @@ import { getWeather } from './api/weather';
 import { experimentController } from './api/experiment-controller';
 import { featureController } from './api/feature-controller';
 import { getHomePageRecommendations } from './api/recommendations';
+import logger from './services/utils/logger';
 
 const versionedRouter = express.Router();
 versionedRouter.get('/content', getContent);
@@ -39,7 +40,21 @@ spadeRouter.get('/recommendations', getHomePageRecommendations);
 spadeRouter.use(
   '/:version',
   (req, res, next) => {
-    req.spadeParams.version = req.params.version;
+    const beVersion = process.env.SPADE_VERSION || 'SNAPSHOT';
+    const feVersion = req.params.version || 'SNAPSHOT';
+
+    req.spadeParams.version = feVersion;
+
+    if (beVersion !== feVersion) {
+      logger.warn(
+        req.spadeParams.apiRequestId,
+        `spade version mismatch FE:${feVersion} BE:${beVersion}`,
+        {
+          beVersion,
+          feVersion
+        }
+      );
+    }
     next();
   },
   versionedRouter

@@ -21,7 +21,8 @@ export const winstonLogger: Logger = winston.createLogger({
   transports: [
     new winston.transports.Console({
       handleExceptions: true,
-      stderrLevels: ['error']
+      stderrLevels: ['error'],
+      consoleWarnLevels: ['warn']
     })
   ],
   exitOnError: false
