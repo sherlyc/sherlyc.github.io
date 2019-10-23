@@ -27,8 +27,12 @@ export class RecommendationsComponent implements OnInit {
       this.recommendationsService
         .getRecommendations(totalBasicArticlesUnit, totalBasicArticleTitleUnit)
         .subscribe({
-          next: (recommendations) =>
-            (this.contentBlocks = this.createArticleSection(recommendations))
+          next: (recommendations) => {
+            const hidden = recommendations.length === 0;
+            this.contentBlocks = hidden
+              ? []
+              : this.createArticleSection(recommendations);
+          }
         });
     }
   }

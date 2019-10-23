@@ -85,9 +85,11 @@ describe('RecommendationsComponent', () => {
     ]);
   });
 
-  it('should be hidden before articles are loaded', () => {
+  it('should only show after recommended articles are loaded', () => {
     expect(component.contentBlocks).toEqual([]);
+
     fixture.detectChanges();
+
     expect(component.contentBlocks).toEqual([
       {
         type: ContentBlockType.BasicArticleSection,
@@ -96,5 +98,15 @@ describe('RecommendationsComponent', () => {
         items: mockContentBlocks
       } as IBasicArticleSection
     ]);
+  });
+
+  it('should be hidden if no recommended articles are loaded', () => {
+    getRecommendationsSpy = jest
+      .spyOn(recommendationsService, 'getRecommendations')
+      .mockReturnValue(of([]));
+
+    fixture.detectChanges();
+
+    expect(component.contentBlocks).toEqual([]);
   });
 });
