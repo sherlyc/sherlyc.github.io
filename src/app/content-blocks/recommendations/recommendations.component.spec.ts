@@ -15,9 +15,7 @@ describe('RecommendationsComponent', () => {
   let component: RecommendationsComponent;
   let fixture: ComponentFixture<RecommendationsComponent>;
   let recommendationsService: ServiceMock<RecommendationsService>;
-  let getRecommendationsSpy: jest.SpyInstance;
   let runtime: ServiceMock<RuntimeService>;
-  let isBrowserSpy: jest.SpyInstance;
 
   const recommendationsData: IRecommendations = {
     type: ContentBlockType.Recommendations,
@@ -50,11 +48,7 @@ describe('RecommendationsComponent', () => {
       .compileComponents();
 
     runtime = TestBed.get(RuntimeService);
-    isBrowserSpy = jest.spyOn(runtime, 'isBrowser').mockReturnValue(true);
     recommendationsService = TestBed.get(RecommendationsService);
-    getRecommendationsSpy = jest
-      .spyOn(recommendationsService, 'getRecommendations')
-      .mockReturnValue(of(mockContentBlocks));
 
     fixture = TestBed.createComponent(RecommendationsComponent);
     component = fixture.componentInstance;
@@ -65,48 +59,75 @@ describe('RecommendationsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('calls recommendations service', () => {
-    fixture.detectChanges();
-    expect(getRecommendationsSpy).toHaveBeenCalledWith(
-      recommendationsData.totalBasicArticlesUnit,
-      recommendationsData.totalBasicArticleTitleUnit
-    );
+  describe('in server', () => {
+    beforeEach(() => {
+      runtime.isBrowser.mockReturnValue(false);
+    });
+
+    it('should not get recommendations', () => {
+      expect(recommendationsService.getRecommendations).not.toHaveBeenCalled();
+    });
   });
 
-  it('wraps articles in a basic article section', () => {
-    fixture.detectChanges();
-    expect(component.contentBlocks).toEqual([
-      {
-        type: ContentBlockType.BasicArticleSection,
-        displayName: recommendationsData.displayName,
-        displayNameColor: recommendationsData.displayNameColor,
-        items: mockContentBlocks
-      } as IBasicArticleSection
-    ]);
-  });
+  describe('in browser', () => {
+    beforeEach(() => {
+      runtime.isBrowser.mockReturnValue(true);
+    });
 
-  it('should only show after recommended articles are loaded', () => {
-    expect(component.contentBlocks).toEqual([]);
+    it('should get recommendations', () => {
+      recommendationsService.getRecommendations.mockReturnValue(
+        of(mockContentBlocks)
+      );
 
-    fixture.detectChanges();
+      fixture.detectChanges();
 
-    expect(component.contentBlocks).toEqual([
-      {
-        type: ContentBlockType.BasicArticleSection,
-        displayName: recommendationsData.displayName,
-        displayNameColor: recommendationsData.displayNameColor,
-        items: mockContentBlocks
-      } as IBasicArticleSection
-    ]);
-  });
+      expect(recommendationsService.getRecommendations).toHaveBeenCalledWith(
+        recommendationsData.totalBasicArticlesUnit,
+        recommendationsData.totalBasicArticleTitleUnit
+      );
+    });
 
-  it('should be hidden if no recommended articles are loaded', () => {
-    getRecommendationsSpy = jest
-      .spyOn(recommendationsService, 'getRecommendations')
-      .mockReturnValue(of([]));
+    it('should wrap articles in a basic article section', () => {
+      recommendationsService.getRecommendations.mockReturnValue(
+        of(mockContentBlocks)
+      );
 
-    fixture.detectChanges();
+      fixture.detectChanges();
 
-    expect(component.contentBlocks).toEqual([]);
+      expect(component.contentBlocks).toEqual([
+        {
+          type: ContentBlockType.BasicArticleSection,
+          displayName: recommendationsData.displayName,
+          displayNameColor: recommendationsData.displayNameColor,
+          items: mockContentBlocks
+        } as IBasicArticleSection
+      ]);
+    });
+
+    it('should only show after recommended articles are loaded', () => {
+      expect(component.contentBlocks).toEqual([]);
+
+      recommendationsService.getRecommendations.mockReturnValue(
+        of(mockContentBlocks)
+      );
+      fixture.detectChanges();
+
+      expect(component.contentBlocks).toEqual([
+        {
+          type: ContentBlockType.BasicArticleSection,
+          displayName: recommendationsData.displayName,
+          displayNameColor: recommendationsData.displayNameColor,
+          items: mockContentBlocks
+        } as IBasicArticleSection
+      ]);
+    });
+
+    it('should be hidden if no recommended articles are loaded', () => {
+      recommendationsService.getRecommendations.mockReturnValue(of([]));
+
+      fixture.detectChanges();
+
+      expect(component.contentBlocks).toEqual([]);
+    });
   });
 });
