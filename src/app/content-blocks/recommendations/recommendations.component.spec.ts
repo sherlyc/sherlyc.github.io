@@ -86,8 +86,15 @@ describe('RecommendationsComponent', () => {
   });
 
   it('should be hidden before articles are loaded', () => {
-    expect(component.hidden).toBe(true);
+    expect(component.contentBlocks).toEqual([]);
     fixture.detectChanges();
-    expect(component.hidden).toBe(false);
+    expect(component.contentBlocks).toEqual([
+      {
+        type: ContentBlockType.BasicArticleSection,
+        displayName: recommendationsData.displayName,
+        displayNameColor: recommendationsData.displayNameColor,
+        items: mockContentBlocks
+      } as IBasicArticleSection
+    ]);
   });
 });

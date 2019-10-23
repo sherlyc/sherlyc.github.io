@@ -33,10 +33,6 @@ export class RecommendationsComponent implements OnInit {
     }
   }
 
-  get hidden() {
-    return this.contentBlocks.length === 0;
-  }
-
   private createArticleSection(items: IContentBlock[]): IBasicArticleSection[] {
     const { displayName, displayNameColor } = this.input;
     return [
