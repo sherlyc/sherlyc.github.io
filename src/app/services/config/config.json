@@ -10,7 +10,7 @@
     "recommendationsCookie": {
       "name": "aamffx",
       "segments": ["enth", "rt", "x"],
-      "maxCount": 2
+      "limitPerSegment": 1
     },
     "loggerOptions": {
       "level": "warn",
@@ -41,7 +41,7 @@
     "recommendationsCookie": {
       "name": "aamffx",
       "segments": ["enth", "rt", "x"],
-      "maxCount": 2
+      "limitPerSegment": 1
     },
     "loggerOptions": {
       "level": "info",
@@ -72,7 +72,7 @@
     "recommendationsCookie": {
       "name": "aamffx",
       "segments": ["enth", "rt", "x"],
-      "maxCount": 2
+      "limitPerSegment": 1
     },
     "loggerOptions": {
       "level": "debug",
@@ -103,7 +103,7 @@
     "recommendationsCookie": {
       "name": "aamffx",
       "segments": ["enth", "rt", "x"],
-      "maxCount": 2
+      "limitPerSegment": 1
     },
     "loggerOptions": {
       "level": "debug",
@@ -134,7 +134,7 @@
     "recommendationsCookie": {
       "name": "aamffx",
       "segments": ["enth", "rt", "x"],
-      "maxCount": 2
+      "limitPerSegment": 1
     },
     "loggerOptions": {
       "level": "debug",

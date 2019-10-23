@@ -43,7 +43,7 @@ export class RecommendationsService {
   parseCookie(cookie: string): string {
     const {
       segments,
-      maxCount
+      limitPerSegment
     } = this.configService.getConfig().recommendationsCookie;
 
     return flow(
@@ -55,7 +55,7 @@ export class RecommendationsService {
         )
       ),
       pick(segments),
-      flatMap(take(maxCount)),
+      flatMap(take(limitPerSegment)),
       join(';')
     )(cookie);
   }
