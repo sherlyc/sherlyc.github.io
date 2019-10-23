@@ -23,7 +23,10 @@ export class WeatherRetrieverService {
       )
       .pipe(
         catchError((error: HttpErrorResponse) => {
-          this.logger.warn(error, 'WeatherRetrieverService - getWeather error');
+          this.logger.warn(
+            error,
+            `WeatherRetrieverService - getWeather error for location: ${location}`
+          );
           return throwError(error);
         })
       );

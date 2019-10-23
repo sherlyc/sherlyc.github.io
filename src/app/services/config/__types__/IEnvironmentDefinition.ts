@@ -1,5 +1,4 @@
 import { ILoggerOptions } from '../../../../../common/__types__/ILoggerOptions';
-import { Omit } from 'utility-types';
 import { ILoginLibraryConfig } from '../../authentication/__types__/ILoginLibraryConfig';
 
 export interface IEnvironmentDefinition {
@@ -13,7 +12,7 @@ export interface IEnvironmentDefinition {
   recommendationsCookie: {
     name: string;
     segments: string[];
-    maxCount: number;
+    limitPerSegment: number;
   };
   loggerOptions: ILoggerOptions;
   aadSdkUrl: string;

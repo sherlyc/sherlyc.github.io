@@ -59,7 +59,7 @@ describe('RecommendationsService', () => {
       recommendationsCookie: {
         name: 'abc',
         segments: ['a', 'b'],
-        maxCount: 1
+        limitPerSegment: 1
       }
     });
     loggerService = TestBed.get(LoggerService);
@@ -94,6 +94,26 @@ describe('RecommendationsService', () => {
     httpMock.verify();
   });
 
+  it('should get recommendations when cookie is undefined', () => {
+    cookieService.get.mockReturnValue(undefined);
+    const articles = ['article one'];
+
+    recommendationsService.getRecommendations().subscribe((res) => {
+      expect(res).toEqual(articles);
+    });
+
+    httpMock
+      .expectOne((req) => {
+        expect(req.method).toBe('GET');
+        expect(req.url).toBe(recommendationsAPI);
+        expect(req.params.get('segments')).toBe('');
+        return true;
+      })
+      .flush(articles);
+
+    httpMock.verify();
+  });
+
   it('should log warning and throw error when api fails', (done) => {
     recommendationsService.getRecommendations(2, 3).subscribe({
       error: () => {
@@ -109,17 +129,48 @@ describe('RecommendationsService', () => {
   });
 
   describe('parseCookie', () => {
-    it.each`
-      keys                   | maxCount | input                                                   | output
-      ${['enth', 'rt', 'x']} | ${1}     | ${'geo=akl;geo=aklr;rt=nanz;enth=amuh;rt=nbnsu;rt=tsv'} | ${'enth=amuh;rt=nanz'}
-    `('works with $output', ({ keys, maxCount, input, output }) => {
-      configService.getConfig.mockReturnValue({
-        recommendationsCookie: {
-          segments: keys,
-          maxCount
+    describe('should only parse selected segments', () => {
+      test.each`
+        segments               | input                                          | expected
+        ${['enth', 'rt', 'x']} | ${'geo=akl;rt=nanz;enth=amuh;rt=nbnsu'}        | ${'enth=amuh;rt=nanz'}
+        ${['enth', 'geo']}     | ${'geo=akl;rt=nanz;enth=amuh;rt=nbnsu;rt=tsv'} | ${'enth=amuh;geo=akl'}
+        ${['x']}               | ${'geo=akl;enth=amuh;rt=nbnsu;rt=tsv'}         | ${''}
+        ${[]}                  | ${'geo=akl;enth=amuh'}                         | ${''}
+      `(
+        'for $segments - $input returns $expected',
+        ({ segments, input, expected }) => {
+          configService.getConfig.mockReturnValue({
+            recommendationsCookie: {
+              segments,
+              limitPerSegment: 1
+            }
+          });
+
+          expect(recommendationsService.parseCookie(input)).toBe(expected);
         }
-      });
-      expect(recommendationsService.parseCookie(input)).toBe(output);
+      );
+    });
+
+    describe('should parse up to the limitPerSegment for each segment', () => {
+      test.each`
+        segments          | limitPerSegment | input                               | expected
+        ${['enth']}       | ${0}            | ${'enth=aaa;enth=bbb;geo=akl'}      | ${''}
+        ${['enth']}       | ${1}            | ${'enth=aaa;enth=bbb;geo=akl'}      | ${'enth=aaa'}
+        ${['enth']}       | ${2}            | ${'enth=aaa;enth=bbb;geo=akl'}      | ${'enth=aaa;enth=bbb'}
+        ${['enth', 'rt']} | ${2}            | ${'geo=akl;rt=aaa;enth=aaa;rt=bbb'} | ${'enth=aaa;rt=aaa;rt=bbb'}
+      `(
+        'for limitPerSegment of $limitPerSegment and selected segments ($segments) - $input returns $expected',
+        ({ segments, limitPerSegment, input, expected }) => {
+          configService.getConfig.mockReturnValue({
+            recommendationsCookie: {
+              segments,
+              limitPerSegment
+            }
+          });
+
+          expect(recommendationsService.parseCookie(input)).toBe(expected);
+        }
+      );
     });
   });
 });
