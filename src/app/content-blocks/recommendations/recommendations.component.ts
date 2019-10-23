@@ -8,8 +8,7 @@ import { RuntimeService } from '../../services/runtime/runtime.service';
 
 @Component({
   selector: 'app-recommendations',
-  templateUrl: './recommendations.component.html',
-  styleUrls: ['./recommendations.component.scss']
+  templateUrl: './recommendations.component.html'
 })
 export class RecommendationsComponent implements OnInit {
   @Input() input!: IRecommendations;
