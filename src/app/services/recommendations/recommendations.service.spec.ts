@@ -8,6 +8,8 @@ import { CookieService } from '../cookie/cookie.service';
 import { LoggerService } from '../logger/logger.service';
 import { mockService, ServiceMock } from '../mocks/MockService';
 import { RecommendationsService } from './recommendations.service';
+import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
+import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 
 describe('RecommendationsService', () => {
   const recommendationsAPI = 'httpMock://localhost/recommendations';
@@ -17,6 +19,19 @@ describe('RecommendationsService', () => {
   let cookieService: ServiceMock<CookieService>;
   let httpMock: HttpTestingController;
   let loggerService: ServiceMock<LoggerService>;
+
+  const basicArticleUnit: IBasicArticleUnit = {
+    type: ContentBlockType.BasicArticleUnit,
+    id: '1',
+    strapName: 'yup',
+    indexHeadline: 'yup',
+    introText: 'yup',
+    linkUrl: 'yup',
+    imageSrc: 'yup',
+    imageSrcSet: 'yup',
+    lastPublishedTime: 123,
+    headlineFlags: []
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -59,9 +74,9 @@ describe('RecommendationsService', () => {
 
   it('should get recommendations', () => {
     cookieService.get.mockReturnValue('a=123;b=456;c=789');
-    const articles = ['article one'];
+    const articles = [basicArticleUnit, basicArticleUnit];
 
-    recommendationsService.getRecommendations().subscribe((res) => {
+    recommendationsService.getRecommendations(2, 3).subscribe((res) => {
       expect(res).toEqual(articles);
     });
 
@@ -70,6 +85,8 @@ describe('RecommendationsService', () => {
         expect(req.method).toBe('GET');
         expect(req.url).toBe(recommendationsAPI);
         expect(req.params.get('segments')).toBe('a=123;b=456');
+        expect(req.params.get('totalBasicArticlesUnit')).toBe('2');
+        expect(req.params.get('totalBasicArticleTitleUnit')).toBe('3');
         return true;
       })
       .flush(articles);
@@ -81,7 +98,7 @@ describe('RecommendationsService', () => {
     cookieService.get.mockReturnValue(undefined);
     const articles = ['article one'];
 
-    recommendationsService.getRecommendations().subscribe((res) => {
+    recommendationsService.getRecommendations(2, 3).subscribe((res) => {
       expect(res).toEqual(articles);
     });
 
@@ -98,7 +115,7 @@ describe('RecommendationsService', () => {
   });
 
   it('should log warning and throw error when api fails', (done) => {
-    recommendationsService.getRecommendations().subscribe({
+    recommendationsService.getRecommendations(2, 3).subscribe({
       error: () => {
         expect(loggerService.warn).toHaveBeenCalled();
         done();
