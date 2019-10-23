@@ -98,7 +98,7 @@ describe('RecommendationsService', () => {
     cookieService.get.mockReturnValue(undefined);
     const articles = ['article one'];
 
-    recommendationsService.getRecommendations().subscribe((res) => {
+    recommendationsService.getRecommendations(2, 3).subscribe((res) => {
       expect(res).toEqual(articles);
     });
 
