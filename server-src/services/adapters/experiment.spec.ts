@@ -6,7 +6,7 @@ import { IExperimentsConfig } from '../__types__/IExperimentsConfig';
 
 jest.mock('../utils/cache-http');
 
-describe('Experiment service', () => {
+xdescribe('Experiment service', () => {
   const params: IParams = { apiRequestId: '123123' };
 
   test.each([['variantOne', 10], ['variantTwo', 11]])(
