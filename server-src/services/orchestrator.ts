@@ -1,11 +1,12 @@
 import { IPage } from '../../common/__types__/IPage';
-import handlerRunner from './handlers/runner';
-import { Section } from './section';
+import { FeatureName } from '../../common/FeatureName';
 import { IParams } from './__types__/IParams';
 import { HandlerInputType } from './handlers/__types__/HandlerInputType';
-import logger from './utils/logger';
+import handlerRunner from './handlers/runner';
+import { Section } from './section';
 import { Strap } from './strap';
 import config from './utils/config';
+import logger from './utils/logger';
 
 const homepageStrapsConfig = config.strapConfig!.homepageStraps;
 
@@ -77,6 +78,17 @@ export default async (params: IParams): Promise<IPage> => {
                     .totalArticlesWithImages,
                 totalBasicArticleTitleUnit:
                   homepageStrapsConfig[Strap.EditorPicks].totalTitleArticles
+              }
+            },
+            {
+              type: HandlerInputType.Feature,
+              name: FeatureName.Recommendation,
+              content: {
+                type: HandlerInputType.Recommendations,
+                displayName: 'Recommended for You',
+                displayNameColor: 'darkblue',
+                totalBasicArticlesUnit: 2,
+                totalBasicArticleTitleUnit: 3
               }
             },
             {

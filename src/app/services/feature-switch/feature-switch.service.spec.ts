@@ -11,9 +11,11 @@ import { of } from 'rxjs/internal/observable/of';
 import * as features from '../../../../common/FeatureName';
 import { throwError } from 'rxjs';
 import { LoggerService } from '../logger/logger.service';
+import { FeatureName } from '../../../../common/FeatureName';
+import { WindowService } from '../window/window.service';
 
 describe('FeatureSwitchService', () => {
-  const experimentAPI = '/spade/api/experiment';
+  const featureAPI = '/spade/api/feature';
   let service: FeatureSwitchService;
 
   let configServiceMock: ServiceMock<ConfigService>;
@@ -22,6 +24,7 @@ describe('FeatureSwitchService', () => {
   let runtimeService: ServiceMock<RuntimeService>;
   let lottoService: ServiceMock<LottoService>;
   let loggerService: ServiceMock<LoggerService>;
+  let windowService: ServiceMock<WindowService>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -50,17 +53,25 @@ describe('FeatureSwitchService', () => {
         {
           provide: LoggerService,
           useClass: mockService(LoggerService)
+        },
+        {
+          provide: WindowService,
+          useClass: mockService(WindowService)
         }
       ]
     });
 
     configServiceMock = TestBed.get(ConfigService);
-    configServiceMock.getConfig.mockReturnValue({ experimentAPI });
     storeService = TestBed.get(StoreService);
     httpClient = TestBed.get(HttpClient);
     runtimeService = TestBed.get(RuntimeService);
     lottoService = TestBed.get(LottoService);
     loggerService = TestBed.get(LoggerService);
+    windowService = TestBed.get(WindowService);
+    configServiceMock.getConfig.mockReturnValue({ featureAPI });
+    windowService.getWindow.mockReturnValue({
+      navigator: { userAgent: 'Unknown' }
+    });
 
     service = TestBed.get(FeatureSwitchService);
     (features as any).FeatureName = {
@@ -79,6 +90,27 @@ describe('FeatureSwitchService', () => {
 
     expect(lottoService.getLotteryNumber).not.toHaveBeenCalled();
     expect(httpClient.get).not.toHaveBeenCalled();
+  });
+
+  it('should make call to feature API with featureName, lotteryNumber and deviceType', async () => {
+    const lotteryNumber = 123;
+    const mobileAgent =
+      'Mozilla/5.0 (Linux; Android 4.4.2; Nexus 4 Build/KOT49H)';
+
+    runtimeService.isServer.mockReturnValue(false);
+    lottoService.getLotteryNumber.mockReturnValue(lotteryNumber);
+    httpClient.get.mockReturnValue(of(true));
+    windowService.getWindow.mockReturnValue({
+      navigator: { userAgent: mobileAgent }
+    });
+
+    await service.setup();
+
+    Object.keys(features.FeatureName).map(async (feature) => {
+      expect(httpClient.get).toHaveBeenCalledWith(
+        `${featureAPI}/${feature}/${lotteryNumber}/mobile`
+      );
+    });
   });
 
   it('should return features as enabled when all features are on', async () => {

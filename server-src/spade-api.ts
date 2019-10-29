@@ -30,10 +30,7 @@ spadeRouter.get(
   experimentController
 );
 spadeRouter.get(
-  [
-    '/feature/:featureName/:lotteryNumber',
-    '/feature/:featureName/:lotteryNumber/:deviceType'
-  ],
+  '/feature/:featureName/:lotteryNumber/:deviceType',
   featureController
 );
 

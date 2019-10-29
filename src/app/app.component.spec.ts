@@ -119,9 +119,9 @@ describe('AppComponent', () => {
     analyticsService.setup.mockImplementation(() => {
       serviceCallOrder.push('analyticsService');
     });
-    dtmService.setup.mockImplementation(() => {
+    dtmService.setup.mockImplementation(async () => {
       serviceCallOrder.push('dtmService');
-      return null;
+      return;
     });
 
     const fixture = TestBed.createComponent(AppComponent);

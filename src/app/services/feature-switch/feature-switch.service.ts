@@ -6,38 +6,48 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { RuntimeService } from '../runtime/runtime.service';
 import { LottoService } from '../lotto/lotto.service';
 import { LoggerService } from '../logger/logger.service';
+import { WindowService } from '../window/window.service';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { DeviceType } from '../../../../common/DeviceType';
+import { parse } from 'bowser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FeatureSwitchService {
   constructor(
-    private runtimeService: RuntimeService,
-    private storeService: StoreService,
+    private runtime: RuntimeService,
+    private store: StoreService,
     private config: ConfigService,
     private http: HttpClient,
     private lotto: LottoService,
-    private logger: LoggerService
+    private logger: LoggerService,
+    private window: WindowService
   ) {}
 
   private features!: Promise<{ [key in FeatureName]: boolean }>;
 
   setup() {
-    if (this.runtimeService.isServer()) {
+    if (this.runtime.isServer()) {
       return;
     }
     this.features = this.loadFeatures();
   }
 
-  async getFeature(featureName: FeatureName) {
-    if (this.runtimeService.isServer()) {
+  async getFeature(featureName: FeatureName): Promise<boolean> {
+    if (this.runtime.isServer()) {
       return false;
     }
     const features = await this.features;
-    // @ts-ignore
     return features[featureName];
+  }
+
+  private getDeviceType(): DeviceType {
+    return (
+      (parse(this.window.getWindow().navigator.userAgent).platform
+        .type as DeviceType) || DeviceType.unknown
+    );
   }
 
   private async loadFeatures() {
@@ -46,7 +56,8 @@ export class FeatureSwitchService {
         const lotteryNumber = this.lotto.getLotteryNumber(featureName);
         const isFeatureEnabled = await this.isFeatureEnabled(
           featureName,
-          lotteryNumber
+          lotteryNumber,
+          this.getDeviceType()
         ).toPromise();
         return {
           [featureName]: isFeatureEnabled
@@ -59,13 +70,16 @@ export class FeatureSwitchService {
     ) as { [key in FeatureName]: boolean };
   }
 
-  isFeatureEnabled(
+  private isFeatureEnabled(
     featureName: string,
-    lotteryNumber: number
+    lotteryNumber: number,
+    deviceType: string
   ): Observable<boolean> {
     return this.http
       .get<boolean>(
-        `${this.config.getConfig().featureAPI}/${featureName}/${lotteryNumber}`
+        `${
+          this.config.getConfig().featureAPI
+        }/${featureName}/${lotteryNumber}/${deviceType}`
       )
       .pipe(
         catchError((error: HttpErrorResponse) => {
