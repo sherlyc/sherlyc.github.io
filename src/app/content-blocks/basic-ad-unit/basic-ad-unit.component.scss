@@ -6,5 +6,8 @@
     padding: 0 0 10px 0;
     margin-bottom: 10px;
     left: 0 !important;
+    &.interscroller {
+      width: 100% !important;
+    }
   }
 }
