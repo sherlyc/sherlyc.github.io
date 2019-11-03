@@ -58,14 +58,6 @@ export default async (params: IParams): Promise<IPage> => {
                 'https://www.playwidget.stuff.co.nz/shelf/5d06caa81de1c4001f81a46e'
             },
             {
-              type: HandlerInputType.ExternalContent,
-              height: '250px',
-              width: '100%',
-              margin: '0 0 20px 0',
-              url:
-                'https://interactives.stuff.co.nz/live/homepage/widget/index.html'
-            },
-            {
               type: HandlerInputType.ArticleSection,
               displayName: `Editors' Picks`,
               displayNameColor: 'darkblue',
