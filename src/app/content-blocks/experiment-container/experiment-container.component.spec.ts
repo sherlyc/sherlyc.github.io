@@ -15,7 +15,7 @@ import { RuntimeService } from 'src/app/services/runtime/runtime.service';
 import { LoggerService } from 'src/app/services/logger/logger.service';
 import { AnalyticsService } from '../../services/analytics/analytics.service';
 import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
-import { Experiments } from '../../../../common/Experiments';
+import { ExperimentName } from '../../../../common/ExperimentName';
 
 describe('ExperimentContainerComponent', () => {
   let component: ExperimentContainerComponent;
@@ -279,8 +279,8 @@ describe('ExperimentContainerComponent', () => {
 
       it('should render control and not send analytics when user is not assigned an experiment', async () => {
         const assignedExperiment = {
-          name: Experiments.NotAssigned,
-          variant: Experiments.NotAssigned
+          name: ExperimentName.NotAssigned,
+          variant: ExperimentName.NotAssigned
         };
         component.input = {
           type: ContentBlockType.ExperimentContainer,

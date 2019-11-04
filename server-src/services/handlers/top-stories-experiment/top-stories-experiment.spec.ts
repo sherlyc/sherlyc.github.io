@@ -2,7 +2,7 @@ import topStoriesExperiment from './top-stories-experiment';
 import { ITopStoriesHandlerInput } from '../__types__/ITopStoriesHandlerInput';
 import { HandlerInputType } from '../__types__/HandlerInputType';
 import { IParams } from '../../__types__/IParams';
-import { Experiments } from '../../../../common/Experiments';
+import { ExperimentName } from '../../../../common/ExperimentName';
 
 describe('Top Stories Experiment', () => {
   const params: IParams = { apiRequestId: '123123' };
@@ -18,7 +18,7 @@ describe('Top Stories Experiment', () => {
 
     const expectedContainer = {
       type: HandlerInputType.Experiment,
-      name: Experiments.TopStoriesVisualExperiment,
+      name: ExperimentName.TopStoriesVisualExperiment,
       variants: {
         control: {
           type: HandlerInputType.TopStoriesArticleList,

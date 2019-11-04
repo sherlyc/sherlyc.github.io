@@ -2,9 +2,10 @@ import { isSwitchedOn } from './switch-resolver';
 import { DeviceType } from '../../../common/DeviceType';
 import { IFeaturesConfig } from '../__types__/IFeaturesConfig';
 import * as features from '../../features.json';
+import { FeatureName } from '../../../common/FeatureName';
 
 export const isFeatureEnabled = async (
-  feature: string,
+  feature: FeatureName,
   lotteryNumber: number,
   deviceType: DeviceType
 ): Promise<boolean> => {

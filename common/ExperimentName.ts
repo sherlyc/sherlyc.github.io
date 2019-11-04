@@ -1,4 +1,4 @@
-export enum Experiments {
+export enum ExperimentName {
   Users = 'Users',
   TopStoriesVisualExperiment = 'TopStoriesVisualExperiment',
   MoreSection = 'MoreSection',

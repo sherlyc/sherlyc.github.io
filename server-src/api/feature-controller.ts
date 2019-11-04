@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { isFeatureEnabled } from '../services/adapters/feature';
 import logger from '../services/utils/logger';
 import { DeviceType } from '../../common/DeviceType';
+import { FeatureName } from '../../common/FeatureName';
 
 function validateRequest(
   name: string,
@@ -12,7 +13,8 @@ function validateRequest(
   if (
     isNaN(parsedLotto) ||
     parsedLotto <= 0 ||
-    !Object.keys(DeviceType).includes(deviceType)
+    !Object.keys(DeviceType).includes(deviceType) ||
+    !Object.keys(FeatureName).includes(name)
   ) {
     throw new Error(`Invalid feature data provided,
      featureName [${name}], lotteryNumber [${lotteryNumber}], deviceType [${deviceType}]`);
@@ -28,7 +30,7 @@ export const featureController = async function(req: Request, res: Response) {
   try {
     validateRequest(featureName, lotteryNumber, deviceType);
     const isEnabled = await isFeatureEnabled(
-      featureName,
+      featureName as FeatureName,
       parseInt(lotteryNumber, 10),
       deviceType as DeviceType
     );

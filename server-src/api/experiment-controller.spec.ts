@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { experimentController } from './experiment-controller';
 import { getExperimentVariant } from '../services/adapters/experiment';
-import { Experiments } from '../../common/Experiments';
+import { ExperimentName } from '../../common/ExperimentName';
 import { DeviceType } from '../../common/DeviceType';
 
 jest.mock('../services/adapters/experiment');
@@ -15,11 +15,12 @@ describe('Experiment controller', () => {
   const res = { send: jest.fn(), status: jest.fn(), end: jest.fn() } as any;
 
   beforeEach(() => {
+    jest.resetAllMocks();
     res.status.mockReturnValue(res);
   });
 
   it('should respond with variant', async () => {
-    req.params.experimentName = Experiments.Users;
+    req.params.experimentName = ExperimentName.Users;
     req.params.lotteryNumber = '27';
     const variant = 'Variant A';
     (getExperimentVariant as jest.Mock).mockReturnValue(variant);
@@ -30,6 +31,8 @@ describe('Experiment controller', () => {
   });
 
   it('should respond with control variant when experiment does not exist', async () => {
+    (ExperimentName as any).Random = 'Random';
+
     req.params.experimentName = 'Random';
     req.params.lotteryNumber = '27';
     const variant = 'control';
@@ -38,6 +41,20 @@ describe('Experiment controller', () => {
     await experimentController(req, res);
 
     expect(res.send).toHaveBeenCalledWith(variant);
+  });
+
+  it('should respond with error when experiment name is not recognized', async () => {
+    req.params.experimentName = 'ExperimentThatDoesNotExist';
+    req.params.lotteryNumber = '27';
+    const variant = 'control';
+    (getExperimentVariant as jest.Mock).mockReturnValue(variant);
+
+    await experimentController(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.send).toHaveBeenCalledWith(
+      expect.stringContaining('Invalid experiment data provided')
+    );
   });
 
   it('should pass experimentName, lotteryNumber, deviceType and spadeParams to getExperimentVariant function', async () => {
@@ -56,7 +73,7 @@ describe('Experiment controller', () => {
   });
 
   it('should return 400 and message in body when lottery number is not a number', async () => {
-    req.params.experimentName = Experiments.Users;
+    req.params.experimentName = ExperimentName.Users;
     req.params.lotteryNumber = '%#@#$';
     req.params.deviceType = DeviceType.tablet;
 
@@ -66,7 +83,7 @@ describe('Experiment controller', () => {
   });
 
   it('should return 400 and message in body when provided with lottery number less than or equal to zero', async () => {
-    req.params.experimentName = Experiments.Users;
+    req.params.experimentName = ExperimentName.Users;
     req.params.lotteryNumber = '0';
     req.params.deviceType = DeviceType.tablet;
 
@@ -76,7 +93,7 @@ describe('Experiment controller', () => {
   });
 
   it('should return 400 and message in body when provided with invalid deviceType', async () => {
-    req.params.experimentName = Experiments.Users;
+    req.params.experimentName = ExperimentName.Users;
     req.params.lotteryNumber = '27';
     req.params.deviceType = 'asdfasdf';
 
@@ -86,7 +103,7 @@ describe('Experiment controller', () => {
   });
 
   it('should return 400 and message in body when provided deviceType is not provided', async () => {
-    req.params.experimentName = Experiments.Users;
+    req.params.experimentName = ExperimentName.Users;
     req.params.lotteryNumber = '27';
     req.params.deviceType = '';
 

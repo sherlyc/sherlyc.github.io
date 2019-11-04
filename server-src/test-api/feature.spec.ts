@@ -5,15 +5,14 @@ describe('Feature API', () => {
   const featureApi = '/spade/api/feature';
   const app = require('../app').default;
 
-  it('should return false by default when feature name and valid lottery number is provided', async () => {
+  it('should return 400 when feature name is not recognized', async () => {
     const response: supertest.Response = await supertest(app).get(
       `${featureApi}/Feature/50/unknown`
     );
 
     const { body, status } = response;
 
-    expect(status).toBe(200);
-    expect(body).toBe(false);
+    expect(status).toBe(400);
   });
 
   describe('Recommendations', () => {

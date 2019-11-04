@@ -1,5 +1,4 @@
 import { ISwitchConfig } from './ISwitchConfig';
+import { FeatureName } from '../../../common/FeatureName';
 
-export interface IFeaturesConfig {
-  [featureName: string]: ISwitchConfig;
-}
+export type IFeaturesConfig = { [key in FeatureName]: ISwitchConfig };

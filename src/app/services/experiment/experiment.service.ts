@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ConfigService } from '../config/config.service';
 import { RuntimeService } from '../runtime/runtime.service';
 import { LottoService } from '../lotto/lotto.service';
-import { Experiments } from '../../../../common/Experiments';
+import { ExperimentName } from '../../../../common/ExperimentName';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
@@ -47,22 +47,22 @@ export class ExperimentService {
   private loadExperiment() {
     return new Promise<{ name: string; variant: string }>(async (resolve) => {
       const userLotteryNumber = this.lottoService.getLotteryNumber(
-        Experiments.Users
+        ExperimentName.Users
       );
       const deviceType: DeviceType = this.getDeviceType();
 
       const experimentName = await this.retrieveVariant(
-        Experiments.Users,
+        ExperimentName.Users,
         userLotteryNumber,
         deviceType
       ).toPromise();
       if (
-        experimentName === Experiments.NotAssigned ||
+        experimentName === ExperimentName.NotAssigned ||
         experimentName === 'control'
       ) {
         resolve({
-          name: Experiments.NotAssigned,
-          variant: Experiments.NotAssigned
+          name: ExperimentName.NotAssigned,
+          variant: ExperimentName.NotAssigned
         });
         return;
       }
@@ -75,10 +75,10 @@ export class ExperimentService {
         experimentLotteryNumber,
         deviceType
       ).toPromise();
-      if (variant === Experiments.NotAssigned) {
+      if (variant === ExperimentName.NotAssigned) {
         resolve({
-          name: Experiments.NotAssigned,
-          variant: Experiments.NotAssigned
+          name: ExperimentName.NotAssigned,
+          variant: ExperimentName.NotAssigned
         });
         return;
       }
@@ -93,7 +93,7 @@ export class ExperimentService {
     const experiment = await this.getExperiment();
     return experiment && experiment.name === experimentName
       ? experiment.variant
-      : Experiments.NotAssigned;
+      : ExperimentName.NotAssigned;
   }
 
   getExperiment() {
@@ -117,7 +117,7 @@ export class ExperimentService {
       .pipe(
         catchError((error: HttpErrorResponse) => {
           this.logger.warn(`Experiment Service Error - ${error}`);
-          return of(Experiments.NotAssigned);
+          return of(ExperimentName.NotAssigned);
         })
       );
   }

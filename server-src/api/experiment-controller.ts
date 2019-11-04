@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { getExperimentVariant } from '../services/adapters/experiment';
 import logger from '../services/utils/logger';
 import { DeviceType } from '../../common/DeviceType';
+import { ExperimentName } from '../../common/ExperimentName';
 
 function validateRequest(
   name: string,
@@ -12,7 +13,8 @@ function validateRequest(
   if (
     isNaN(parsedLotto) ||
     parsedLotto <= 0 ||
-    !Object.keys(DeviceType).includes(deviceType)
+    !Object.keys(DeviceType).includes(deviceType) ||
+    !Object.keys(ExperimentName).includes(name)
   ) {
     throw new Error(`Invalid experiment data provided,
      name [${name}], lotteryNumber [${lotteryNumber}], deviceType [${deviceType}]`);
@@ -33,7 +35,7 @@ export const experimentController = async function(
     validateRequest(experimentName, lotteryNumber, deviceType);
 
     const variant = await getExperimentVariant(
-      experimentName,
+      experimentName as ExperimentName,
       parseInt(lotteryNumber, 10),
       deviceType as DeviceType,
       req.spadeParams

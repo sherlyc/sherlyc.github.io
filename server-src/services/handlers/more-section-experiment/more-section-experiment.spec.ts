@@ -3,7 +3,7 @@ import moreSectionExperiment from './more-section-experiment';
 import { IMoreSectionExperimentHandlerInput } from '../__types__/IMoreSectionExperimentHandlerInput';
 import { HandlerInputType } from '../__types__/HandlerInputType';
 import { Section } from '../../section';
-import { Experiments } from '../../../../common/Experiments';
+import { ExperimentName } from '../../../../common/ExperimentName';
 
 describe('More section experiment', () => {
   it('should return experiment container with control, groupOne and groupTwo', () => {
@@ -25,7 +25,7 @@ describe('More section experiment', () => {
     expect(handlerRunner).toHaveBeenCalledWith(
       {
         type: HandlerInputType.Experiment,
-        name: Experiments.MoreSection,
+        name: ExperimentName.MoreSection,
         variants: {
           control: {
             type: HandlerInputType.ArticleSection,

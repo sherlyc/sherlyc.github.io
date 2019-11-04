@@ -1,7 +1,8 @@
 import { ISwitchConfig } from './ISwitchConfig';
+import { ExperimentName } from '../../../common/ExperimentName';
 
-export interface IExperimentsConfig {
-  [experiment: string]: {
+export type IExperimentsConfig = {
+  [experiment in ExperimentName]?: {
     [variant: string]: ISwitchConfig;
   };
-}
+};

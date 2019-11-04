@@ -3,7 +3,7 @@ import { ITopStoriesHandlerInput } from '../__types__/ITopStoriesHandlerInput';
 import { IParams } from '../../__types__/IParams';
 import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 import { HandlerInputType } from '../__types__/HandlerInputType';
-import { Experiments } from '../../../../common/Experiments';
+import { ExperimentName } from '../../../../common/ExperimentName';
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -13,7 +13,7 @@ export default async function(
   return handlerRunner(
     {
       type: HandlerInputType.Experiment,
-      name: Experiments.TopStoriesVisualExperiment,
+      name: ExperimentName.TopStoriesVisualExperiment,
       variants: {
         control: {
           type: HandlerInputType.TopStoriesArticleList,

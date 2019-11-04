@@ -8,7 +8,7 @@ import { LottoService } from '../lotto/lotto.service';
 import { HttpClient } from '@angular/common/http';
 import { LoggerService } from '../logger/logger.service';
 import * as Bowser from 'bowser';
-import { Experiments } from '../../../../common/Experiments';
+import { ExperimentName } from '../../../../common/ExperimentName';
 
 const defaultParse = Bowser.parse;
 
@@ -137,8 +137,8 @@ describe('ExperimentService', () => {
         await service.setup();
         const experiment = await service.getExperiment();
 
-        expect(experiment.name).toEqual(Experiments.NotAssigned);
-        expect(experiment.variant).toEqual(Experiments.NotAssigned);
+        expect(experiment.name).toEqual(ExperimentName.NotAssigned);
+        expect(experiment.variant).toEqual(ExperimentName.NotAssigned);
       });
 
       it('should return NotAssigned if api fails when retrieving the experiment for user', async () => {
@@ -148,8 +148,8 @@ describe('ExperimentService', () => {
         await service.setup();
         const experiment = await service.getExperiment();
 
-        expect(experiment.name).toEqual(Experiments.NotAssigned);
-        expect(experiment.variant).toEqual(Experiments.NotAssigned);
+        expect(experiment.name).toEqual(ExperimentName.NotAssigned);
+        expect(experiment.variant).toEqual(ExperimentName.NotAssigned);
       });
 
       it('should return NotAssigned if api fails when retrieving variant', async () => {
@@ -160,8 +160,8 @@ describe('ExperimentService', () => {
         await service.setup();
         const experiment = await service.getExperiment();
 
-        expect(experiment.name).toEqual(Experiments.NotAssigned);
-        expect(experiment.variant).toEqual(Experiments.NotAssigned);
+        expect(experiment.name).toEqual(ExperimentName.NotAssigned);
+        expect(experiment.variant).toEqual(ExperimentName.NotAssigned);
       });
     });
 
@@ -209,13 +209,13 @@ describe('ExperimentService', () => {
 
         const variant = await service.getVariant('ExperimentTwo');
 
-        expect(variant).toEqual(Experiments.NotAssigned);
+        expect(variant).toEqual(ExperimentName.NotAssigned);
       });
 
       it('should get a NotAssigned variant when experiment does not exist', async () => {
         const variant = await service.getVariant('NoExistentExperiment');
 
-        expect(variant).toEqual(Experiments.NotAssigned);
+        expect(variant).toEqual(ExperimentName.NotAssigned);
       });
 
       it('should get NotAssigned when not assigned to an experiment', async () => {
@@ -225,7 +225,7 @@ describe('ExperimentService', () => {
         await service.setup();
         const variant = await service.getVariant('TopStoriesExperiment');
 
-        expect(variant).toEqual(Experiments.NotAssigned);
+        expect(variant).toEqual(ExperimentName.NotAssigned);
       });
     });
   });
