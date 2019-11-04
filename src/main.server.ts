@@ -122,6 +122,12 @@ app.get(
   (req, res) => res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req })
 );
 
+app.get('/spade/signin-callback-v3', (req, res) => {
+  res.sendFile(
+    join(DIST_FOLDER, 'browser', 'spade/assets/signin-callback.html')
+  );
+});
+
 app.listen(PORT, () =>
   console.log(
     `🍺 Node server listening on http://localhost:${PORT}`,

@@ -9,10 +9,12 @@ import { WindowService } from '../window/window.service';
 import { AnalyticsService } from '../analytics/analytics.service';
 import { IStuffLogin } from './__types__/IStuffLogin';
 import { IStuffLoginUser } from './__types__/IStuffLoginUser';
+import { FeatureSwitchService } from '../feature-switch/feature-switch.service';
 
-describe('AuhtenticationService', () => {
+describe('AuthenticationService', () => {
   let authenticationService: AuthenticationService;
   let runtimeService: ServiceMock<RuntimeService>;
+  let featureSwitchService: ServiceMock<FeatureSwitchService>;
   let scriptInjectorService: ServiceMock<ScriptInjectorService>;
   let configService: ServiceMock<ConfigService>;
   let windowService: ServiceMock<WindowService>;
@@ -30,6 +32,10 @@ describe('AuhtenticationService', () => {
         {
           provide: RuntimeService,
           useClass: mockService(RuntimeService)
+        },
+        {
+          provide: FeatureSwitchService,
+          useClass: mockService(FeatureSwitchService)
         },
         {
           provide: ScriptInjectorService,
@@ -50,8 +56,8 @@ describe('AuhtenticationService', () => {
       ]
     });
 
-    authenticationService = TestBed.get(AuthenticationService);
     runtimeService = TestBed.get(RuntimeService);
+    featureSwitchService = TestBed.get(FeatureSwitchService);
     scriptInjectorService = TestBed.get(ScriptInjectorService);
     configService = TestBed.get(ConfigService);
     windowService = TestBed.get(WindowService);
@@ -66,6 +72,8 @@ describe('AuhtenticationService', () => {
       getUser: jest.fn()
     } as IStuffLogin;
 
+    featureSwitchService.getFeature.mockResolvedValue(false);
+
     windowService.getWindow.mockReturnValue({
       StuffLogin,
       location: {
@@ -79,9 +87,12 @@ describe('AuhtenticationService', () => {
         libraryUrl: libraryUrl,
         authProvider: authProvider,
         clientId: clientId,
-        signinRedirectPath: signinRedirectPath
+        signinRedirectPath: signinRedirectPath,
+        newSigninRedirectPath: '/spade/signin-callback-v3'
       }
     });
+
+    authenticationService = TestBed.get(AuthenticationService);
   });
 
   it('should be created', () => {
@@ -164,5 +175,27 @@ describe('AuhtenticationService', () => {
     await authenticationService.signinCallback();
 
     expect(StuffLogin.signinCallback).toHaveBeenCalled();
+  });
+
+  it('should use old redirect url when feature is off', async () => {
+    featureSwitchService.getFeature.mockResolvedValue(false);
+    await authenticationService.setup();
+
+    expect(StuffLogin.init).toHaveBeenCalledWith(
+      expect.objectContaining({
+        redirect_uri: 'https://www.stuff.co.nz/spade/signin-callback-v2'
+      })
+    );
+  });
+
+  it('should use new redirect url when feature is on', async () => {
+    featureSwitchService.getFeature.mockResolvedValue(true);
+    await authenticationService.setup();
+
+    expect(StuffLogin.init).toHaveBeenCalledWith(
+      expect.objectContaining({
+        redirect_uri: 'https://www.stuff.co.nz/spade/signin-callback-v3'
+      })
+    );
   });
 });

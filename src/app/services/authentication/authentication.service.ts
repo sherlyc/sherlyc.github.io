@@ -9,6 +9,8 @@ import { IStuffLogin } from './__types__/IStuffLogin';
 import { Subject } from 'rxjs';
 import { AnalyticsService } from '../analytics/analytics.service';
 import { IStuffLoginUser } from './__types__/IStuffLoginUser';
+import { FeatureSwitchService } from '../feature-switch/feature-switch.service';
+import { FeatureName } from '../../../../common/FeatureName';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +21,7 @@ export class AuthenticationService {
     private scriptInjectorService: ScriptInjectorService,
     private config: ConfigService,
     private window: WindowService,
+    private featureSwitchService: FeatureSwitchService,
     private analyticsService: AnalyticsService
   ) {}
 
@@ -36,16 +39,25 @@ export class AuthenticationService {
     this.StuffLogin = this.window.getWindow().StuffLogin;
   }
 
-  private initialiseLibrary() {
+  private async initialiseLibrary() {
     const {
       clientId,
       signinRedirectPath,
+      newSigninRedirectPath,
       authProvider
     } = this.config.getConfig().loginLibrary;
 
     const protocol = this.window.getWindow().location.protocol;
     const host = this.window.getWindow().location.host;
-    const redirect_uri = `${protocol}//${host}${signinRedirectPath}`;
+
+    const loginFlow = await this.featureSwitchService.getFeature(
+      FeatureName.LoginFlow
+    );
+
+    const redirect_uri =
+      loginFlow && newSigninRedirectPath
+        ? `${protocol}//${host}${newSigninRedirectPath}`
+        : `${protocol}//${host}${signinRedirectPath}`;
 
     this.StuffLogin.init({
       client_id: clientId,
@@ -89,7 +101,7 @@ export class AuthenticationService {
     }
 
     await this.injectScript();
-    this.initialiseLibrary();
+    await this.initialiseLibrary();
     this.registerAuthStateChangeCallbacks();
     await this.processCurrentAuthState();
   }

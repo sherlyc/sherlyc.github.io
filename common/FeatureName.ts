@@ -1,4 +1,5 @@
 export enum FeatureName {
   Recommendation = 'Recommendation',
-  RecommendationDisplay = 'RecommendationDisplay'
+  RecommendationDisplay = 'RecommendationDisplay',
+  LoginFlow = 'LoginFlow'
 }
