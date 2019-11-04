@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+  expfrontend:
+    image: ${DOCKER_URL}
+    ports:
+      - '4000:4000'
+    networks:
+      - shared
+  puppet:
+    build: ./smoke-test
+    networks:
+      - shared
+networks:
+  shared:
