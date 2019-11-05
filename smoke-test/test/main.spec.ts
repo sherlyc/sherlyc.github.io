@@ -1,20 +1,46 @@
 import config from './environment-config';
 jest.setTimeout(60000);
 
-const getPage = async () => {
-  const { username, password } = config;
-  await page.authenticate({ username, password });
-  return page;
-};
-
 describe('Mobile Homepage', () => {
   beforeAll(async () => {
-    const authenticatedPage = await getPage();
-    await authenticatedPage.goto(config.url, { waitUntil: 'networkidle0' });
+    await page.goto(config.url, { waitUntil: 'networkidle0' });
   });
 
   it('should have correct title', async () => {
     const title = await page.title();
     expect(title).toBe('Latest breaking news NZ | Stuff.co.nz | New Zealand');
+  });
+
+  it('should contain header', async () => {
+    const header = await page.$('app-header');
+    expect(header).toBeTruthy();
+  });
+
+  it('should contain footer', async () => {
+    const footer = await page.$('app-footer');
+    expect(footer).toBeTruthy();
+  });
+
+  it('should contain text in a basic article', async () => {
+    const basicArticle = await page.$('app-basic-article-unit');
+    const articleText = await page.evaluate(
+      (element) => element.textContent,
+      basicArticle
+    );
+
+    expect(basicArticle).toBeTruthy();
+    expect(articleText).toBeTruthy();
+  });
+
+  it('should contain an ad unit', async () => {
+    const adUnit = await page.$('app-basic-ad-unit');
+    expect(adUnit).toBeTruthy();
+  });
+
+  it('should contain at least 5 basic top stories', async () => {
+    const topStories = await page.$$(
+      '.container > app-experiment-container > app-basic-article-unit'
+    );
+    expect(topStories.length).toBeGreaterThanOrEqual(5);
   });
 });
