@@ -23,10 +23,6 @@
   "scripts": {
     "test": "jest --config jest.config.json"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@bitbucket.org/fairfax/stuff-experience-regression-suite.git"
-  },
   "author": "",
   "license": "ISC",
   "homepage": "https://bitbucket.org/fairfax/stuff-experience-regression-suite#readme"
