@@ -8,12 +8,15 @@ import { of, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { LoggerService } from '../logger/logger.service';
 import { RuntimeService } from '../runtime/runtime.service';
+import { FeatureSwitchService } from '../feature-switch/feature-switch.service';
+import { FeatureName } from '../../../../common/FeatureName';
 
 describe('AdService', () => {
   let scriptInjectorService: ServiceMock<ScriptInjectorService>;
   let configMock: ServiceMock<ConfigService>;
   let httpClient: ServiceMock<HttpClient>;
   let logger: ServiceMock<LoggerService>;
+  let featureSwitch: ServiceMock<FeatureSwitchService>;
   let adService: AdService;
 
   beforeEach(() => {
@@ -38,6 +41,10 @@ describe('AdService', () => {
         {
           provide: RuntimeService,
           useClass: mockService(RuntimeService)
+        },
+        {
+          provide: FeatureSwitchService,
+          useClass: mockService(FeatureSwitchService)
         }
       ]
     });
@@ -47,6 +54,7 @@ describe('AdService', () => {
     configMock = TestBed.get(ConfigService);
     logger = TestBed.get(LoggerService);
     adService = TestBed.get(AdService);
+    featureSwitch = TestBed.get(FeatureSwitchService);
   });
 
   it('should be created', () => {
@@ -72,10 +80,14 @@ describe('AdService', () => {
   it('should notify the adnostic sdk', async () => {
     const document: Document = TestBed.get(DOCUMENT);
     document.dispatchEvent = jest.fn();
+
     await adService.notify();
 
     const fakeEvent = new Event('NavigationEnd');
     expect(document.dispatchEvent).toHaveBeenCalledWith(fakeEvent);
+    expect(featureSwitch.getFeature).toHaveBeenCalledWith(
+      FeatureName.AdsRelativePositioning
+    );
   });
 
   it('should notify the adnostic sdk in IE11', async () => {
@@ -98,6 +110,9 @@ describe('AdService', () => {
       true
     );
     expect(document.dispatchEvent).toHaveBeenCalledWith(fakeEvent);
+    expect(featureSwitch.getFeature).toHaveBeenCalledWith(
+      FeatureName.AdsRelativePositioning
+    );
   });
 
   it('should log error when fails to load ads config', async () => {

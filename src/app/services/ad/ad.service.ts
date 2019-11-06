@@ -7,6 +7,8 @@ import { ScriptId } from '../script-injector/__types__/ScriptId';
 import { HttpClient } from '@angular/common/http';
 import { LoggerService } from '../logger/logger.service';
 import { RuntimeService } from '../runtime/runtime.service';
+import { FeatureSwitchService } from '../feature-switch/feature-switch.service';
+import { FeatureName } from '../../../../common/FeatureName';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +21,7 @@ export class AdService {
     private http: HttpClient,
     private runtime: RuntimeService,
     private logger: LoggerService,
+    private featureSwitch: FeatureSwitchService,
     private zone: NgZone
   ) {}
 
@@ -51,6 +54,9 @@ export class AdService {
   async notify() {
     try {
       await this.load;
+      const legacyConfig = await this.featureSwitch.getFeature(
+        FeatureName.AdsRelativePositioning
+      );
       this.zone.runOutsideAngular(() => {
         if ('name' in Event.prototype.constructor) {
           this.document.dispatchEvent(new Event('NavigationEnd'));
