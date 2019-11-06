@@ -95,7 +95,7 @@ describe('AdService', () => {
       featureSwitch.getFeature.mockResolvedValue(isFeatureOn);
     });
 
-    it('should notify the adnostic sdk', async () => {
+    it('should notify the adnostic sdk with custom event', async () => {
       const document: Document = TestBed.get(DOCUMENT);
       document.dispatchEvent = jest.fn();
 
@@ -111,7 +111,7 @@ describe('AdService', () => {
       });
     });
 
-    it('should notify the adnostic sdk in IE11', async () => {
+    it('should notify the adnostic sdk in IE11 initialised custom event', async () => {
       const document: ServiceMock<Document> = TestBed.get(DOCUMENT);
       document.dispatchEvent = jest.fn();
       document.createEvent = jest.fn();
@@ -139,7 +139,7 @@ describe('AdService', () => {
       featureSwitch.getFeature.mockResolvedValue(false);
     });
 
-    it('should notify the adnostic sdk', async () => {
+    it('should notify the adnostic sdk with event', async () => {
       const document: Document = TestBed.get(DOCUMENT);
       document.dispatchEvent = jest.fn();
 
@@ -152,7 +152,7 @@ describe('AdService', () => {
       expect((dispatchedEvent as Event).type).toBe('NavigationEnd');
     });
 
-    it('should notify the adnostic sdk in IE11', async () => {
+    it('should notify the adnostic sdk in IE11 initialised event', async () => {
       const document: ServiceMock<Document> = TestBed.get(DOCUMENT);
       document.dispatchEvent = jest.fn();
       document.createEvent = jest.fn();
