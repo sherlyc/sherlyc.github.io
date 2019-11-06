@@ -1,9 +1,20 @@
+import puppeteer from 'puppeteer';
+import puppeteerConfig from '../puppeteer-config';
 import config from './environment-config';
 jest.setTimeout(60000);
 
 describe('Mobile Homepage', () => {
+  let browser: puppeteer.Browser;
+  let page: puppeteer.Page;
+
   beforeAll(async () => {
+    browser = await puppeteer.launch(puppeteerConfig);
+    page = await browser.newPage();
     await page.goto(config.url, { waitUntil: 'networkidle0' });
+  });
+
+  afterAll(async () => {
+    await browser.close();
   });
 
   it('should have correct title', async () => {
