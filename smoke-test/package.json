@@ -27,7 +27,7 @@
     "typescript": "^3.6.4"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest --config jest.config.json"
   },
   "repository": {
     "type": "git",
