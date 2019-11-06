@@ -9,7 +9,6 @@ import { HttpClient } from '@angular/common/http';
 import { LoggerService } from '../logger/logger.service';
 import { RuntimeService } from '../runtime/runtime.service';
 import { FeatureSwitchService } from '../feature-switch/feature-switch.service';
-import { FeatureName } from '../../../../common/FeatureName';
 
 describe('AdService', () => {
   let scriptInjectorService: ServiceMock<ScriptInjectorService>;
@@ -77,23 +76,6 @@ describe('AdService', () => {
     );
   });
 
-  it('should notify the adnostic sdk with a custom event containing the feature switch value', async () => {
-    const isFeatureOn = true;
-    const dispatchEvent = jest.fn();
-    featureSwitch.getFeature.mockResolvedValue(isFeatureOn);
-    const document: Document = TestBed.get(DOCUMENT);
-    document.dispatchEvent = dispatchEvent;
-
-    await adService.notify();
-
-    expect(document.dispatchEvent).toHaveBeenCalledTimes(1);
-    const [[dispatchedEvent]] = dispatchEvent.mock.calls;
-    expect((dispatchedEvent as CustomEvent).type).toBe('NavigationEnd');
-    expect((dispatchedEvent as CustomEvent).detail).toEqual({
-      relativePositioning: isFeatureOn
-    });
-  });
-
   it('should log error when fails to load ads config', async () => {
     const manifestUrl = 'http://manifest_url/';
     configMock.getConfig.mockReturnValue({ aadSdkUrl: manifestUrl });
@@ -104,5 +86,66 @@ describe('AdService', () => {
     await adService.notify();
 
     expect(logger.error).toHaveBeenCalledWith(errorMsg);
+  });
+
+  describe('when AdsRelativePositioning feature is on', () => {
+    const isFeatureOn = true;
+
+    beforeEach(() => {
+      featureSwitch.getFeature.mockResolvedValue(isFeatureOn);
+    });
+
+    it('should notify the adnostic sdk with a custom event containing the feature switch value', async () => {
+      const dispatchEvent = jest.fn();
+      const document: Document = TestBed.get(DOCUMENT);
+      document.dispatchEvent = dispatchEvent;
+
+      await adService.notify();
+
+      expect(document.dispatchEvent).toHaveBeenCalledTimes(1);
+      const [[dispatchedEvent]] = dispatchEvent.mock.calls;
+      expect((dispatchedEvent as CustomEvent).type).toBe('NavigationEnd');
+      expect((dispatchedEvent as CustomEvent).detail).toEqual({
+        relativePositioning: isFeatureOn
+      });
+    });
+  });
+
+  describe('when AdsRelativePositioning feature is off', () => {
+    beforeEach(() => {
+      featureSwitch.getFeature.mockResolvedValue(false);
+    });
+
+    it('should notify the adnostic sdk', async () => {
+      const document: Document = TestBed.get(DOCUMENT);
+      const dispatchEvent = jest.fn();
+      document.dispatchEvent = dispatchEvent;
+      await adService.notify();
+
+      expect(document.dispatchEvent).toHaveBeenCalledTimes(1);
+      const [[dispatchedEvent]] = dispatchEvent.mock.calls;
+      expect((dispatchedEvent as Event).type).toBe('NavigationEnd');
+    });
+
+    it('should notify the adnostic sdk in IE11', async () => {
+      const document: ServiceMock<Document> = TestBed.get(DOCUMENT);
+      document.dispatchEvent = jest.fn();
+      document.createEvent = jest.fn();
+      const fakeEvent = {
+        initEvent: jest.fn()
+      };
+      document.createEvent.mockReturnValue(fakeEvent);
+      (window as any).Event = { prototype: { constructor: {} } };
+
+      await adService.notify();
+
+      expect(document.createEvent).toHaveBeenCalledWith('Event');
+      expect(fakeEvent.initEvent).toHaveBeenCalledWith(
+        'NavigationEnd',
+        true,
+        true
+      );
+      expect(document.dispatchEvent).toHaveBeenCalledWith(fakeEvent);
+    });
   });
 });

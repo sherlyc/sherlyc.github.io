@@ -58,13 +58,31 @@ export class AdService {
         FeatureName.AdsRelativePositioning
       );
       this.zone.runOutsideAngular(() => {
-        const event = new CustomEvent('NavigationEnd', {
-          detail: { relativePositioning: isRelativePositioningOn }
-        });
-        this.document.dispatchEvent(event);
+        if (isRelativePositioningOn) {
+          this.sendCustomEventWithValue(isRelativePositioningOn);
+        } else {
+          this.sendEvent();
+        }
       });
     } catch (e) {
       this.logger.error(e);
+    }
+  }
+
+  private sendCustomEventWithValue(isRelativePositioningOn: boolean) {
+    const event = new CustomEvent('NavigationEnd', {
+      detail: { relativePositioning: isRelativePositioningOn }
+    });
+    this.document.dispatchEvent(event);
+  }
+
+  private sendEvent() {
+    if ('name' in Event.prototype.constructor) {
+      this.document.dispatchEvent(new Event('NavigationEnd'));
+    } else {
+      const event = this.document.createEvent('Event');
+      event.initEvent('NavigationEnd', true, true);
+      this.document.dispatchEvent(event);
     }
   }
 }
