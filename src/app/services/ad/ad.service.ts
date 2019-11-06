@@ -54,17 +54,14 @@ export class AdService {
   async notify() {
     try {
       await this.load;
-      const legacyConfig = await this.featureSwitch.getFeature(
+      const isRelativePositioningOn = await this.featureSwitch.getFeature(
         FeatureName.AdsRelativePositioning
       );
       this.zone.runOutsideAngular(() => {
-        if ('name' in Event.prototype.constructor) {
-          this.document.dispatchEvent(new Event('NavigationEnd'));
-        } else {
-          const e = this.document.createEvent('Event');
-          e.initEvent('NavigationEnd', true, true);
-          this.document.dispatchEvent(e);
-        }
+        const event = new CustomEvent('NavigationEnd', {
+          detail: { relativePositioning: isRelativePositioningOn }
+        });
+        this.document.dispatchEvent(event);
       });
     } catch (e) {
       this.logger.error(e);
