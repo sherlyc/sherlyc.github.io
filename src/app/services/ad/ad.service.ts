@@ -59,7 +59,7 @@ export class AdService {
       );
       this.zone.runOutsideAngular(() => {
         if (isRelativePositioningOn) {
-          this.sendCustomEventWithValue(isRelativePositioningOn);
+          this.sendCustomEventWithValue();
         } else {
           this.sendEvent();
         }
@@ -69,11 +69,15 @@ export class AdService {
     }
   }
 
-  private sendCustomEventWithValue(isRelativePositioningOn: boolean) {
-    const event = new CustomEvent('NavigationEnd', {
-      detail: { relativePositioning: isRelativePositioningOn }
-    });
-    this.document.dispatchEvent(event);
+  private sendCustomEventWithValue() {
+    const detail = { relativePositioning: true };
+    if ('name' in CustomEvent.prototype.constructor) {
+      this.document.dispatchEvent(new CustomEvent('NavigationEnd', { detail }));
+    } else {
+      const event = this.document.createEvent('CustomEvent');
+      event.initCustomEvent('NavigationEnd', true, true, detail);
+      this.document.dispatchEvent(event);
+    }
   }
 
   private sendEvent() {

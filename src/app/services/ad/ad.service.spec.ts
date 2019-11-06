@@ -95,19 +95,42 @@ describe('AdService', () => {
       featureSwitch.getFeature.mockResolvedValue(isFeatureOn);
     });
 
-    it('should notify the adnostic sdk with a custom event containing the feature switch value', async () => {
-      const dispatchEvent = jest.fn();
+    it('should notify the adnostic sdk', async () => {
       const document: Document = TestBed.get(DOCUMENT);
-      document.dispatchEvent = dispatchEvent;
+      document.dispatchEvent = jest.fn();
 
       await adService.notify();
 
       expect(document.dispatchEvent).toHaveBeenCalledTimes(1);
-      const [[dispatchedEvent]] = dispatchEvent.mock.calls;
+      const [
+        [dispatchedEvent]
+      ] = (document.dispatchEvent as jest.Mock).mock.calls;
       expect((dispatchedEvent as CustomEvent).type).toBe('NavigationEnd');
       expect((dispatchedEvent as CustomEvent).detail).toEqual({
-        relativePositioning: isFeatureOn
+        relativePositioning: true
       });
+    });
+
+    it('should notify the adnostic sdk in IE11', async () => {
+      const document: ServiceMock<Document> = TestBed.get(DOCUMENT);
+      document.dispatchEvent = jest.fn();
+      document.createEvent = jest.fn();
+      const fakeEvent = {
+        initCustomEvent: jest.fn()
+      } as any;
+      document.createEvent.mockReturnValue(fakeEvent);
+      (window as any).CustomEvent = { prototype: { constructor: {} } };
+
+      await adService.notify();
+
+      expect(document.createEvent).toHaveBeenCalledWith('CustomEvent');
+      expect(fakeEvent.initCustomEvent).toHaveBeenCalledWith(
+        'NavigationEnd',
+        true,
+        true,
+        { relativePositioning: true }
+      );
+      expect(document.dispatchEvent).toHaveBeenCalledWith(fakeEvent);
     });
   });
 
@@ -118,12 +141,14 @@ describe('AdService', () => {
 
     it('should notify the adnostic sdk', async () => {
       const document: Document = TestBed.get(DOCUMENT);
-      const dispatchEvent = jest.fn();
-      document.dispatchEvent = dispatchEvent;
+      document.dispatchEvent = jest.fn();
+
       await adService.notify();
 
       expect(document.dispatchEvent).toHaveBeenCalledTimes(1);
-      const [[dispatchedEvent]] = dispatchEvent.mock.calls;
+      const [
+        [dispatchedEvent]
+      ] = (document.dispatchEvent as jest.Mock).mock.calls;
       expect((dispatchedEvent as Event).type).toBe('NavigationEnd');
     });
 
