@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { LoggerService } from '../logger/logger.service';
 import { RuntimeService } from '../runtime/runtime.service';
 import { FeatureSwitchService } from '../feature-switch/feature-switch.service';
+import { FeatureName } from '../../../../common/FeatureName';
 
 describe('AdService', () => {
   let scriptInjectorService: ServiceMock<ScriptInjectorService>;
@@ -95,7 +96,7 @@ describe('AdService', () => {
       featureSwitch.getFeature.mockResolvedValue(isFeatureOn);
     });
 
-    it('should notify the adnostic sdk with custom event', async () => {
+    it('should notify the adnostic sdk with a custom event that has relativePositioning switched on', async () => {
       const document: Document = TestBed.get(DOCUMENT);
       document.dispatchEvent = jest.fn();
 
@@ -109,28 +110,6 @@ describe('AdService', () => {
       expect((dispatchedEvent as CustomEvent).detail).toEqual({
         relativePositioning: true
       });
-    });
-
-    it('should notify the adnostic sdk in IE11 initialised custom event', async () => {
-      const document: ServiceMock<Document> = TestBed.get(DOCUMENT);
-      document.dispatchEvent = jest.fn();
-      document.createEvent = jest.fn();
-      const fakeEvent = {
-        initCustomEvent: jest.fn()
-      } as any;
-      document.createEvent.mockReturnValue(fakeEvent);
-      (window as any).CustomEvent = { prototype: { constructor: {} } };
-
-      await adService.notify();
-
-      expect(document.createEvent).toHaveBeenCalledWith('CustomEvent');
-      expect(fakeEvent.initCustomEvent).toHaveBeenCalledWith(
-        'NavigationEnd',
-        true,
-        true,
-        { relativePositioning: true }
-      );
-      expect(document.dispatchEvent).toHaveBeenCalledWith(fakeEvent);
     });
   });
 

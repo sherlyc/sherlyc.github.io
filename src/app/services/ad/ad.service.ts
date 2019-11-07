@@ -70,14 +70,10 @@ export class AdService {
   }
 
   private sendCustomEventWithValue() {
-    const detail = { relativePositioning: true };
-    if ('name' in CustomEvent.prototype.constructor) {
-      this.document.dispatchEvent(new CustomEvent('NavigationEnd', { detail }));
-    } else {
-      const event = this.document.createEvent('CustomEvent');
-      event.initCustomEvent('NavigationEnd', true, true, detail);
-      this.document.dispatchEvent(event);
-    }
+    const event = new CustomEvent('NavigationEnd', {
+      detail: { relativePositioning: true }
+    });
+    this.document.dispatchEvent(event);
   }
 
   private sendEvent() {
