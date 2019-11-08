@@ -5,31 +5,19 @@ def String getDockerImageUrl() {
   packageJson = readJSON file:'package.json'
   organisationGroup = packageJson.name.split('-')[1]
   projectName = packageJson.name
+  env.PROJECT_NAME = projectName
   echo "organisationGroup : ${organisationGroup}, with projectName: ${projectName}"
 
   // Get Version(this version need to be the same as previous step: buildImage())
   readMavenPom = readMavenPom()
   contractVersion = readMavenPom.version.split(".999")[0]
   tagPrefix = "${readMavenPom.artifactId}-${contractVersion}"
-  projectVersion = getProjectVersion()
-  echo "derivedTag: ${derivedTag}, and project verion: ${projectVersion}"
+  projectVersion = "${SPADE_VERSION}".tokenize('-').last()
 
   dockerRegistry = "gcr.io/shared-218200"
-  return "${dockerRegistry}/nz.stuff/${organisationGroup}/${projectName}:${projectVersion}"
+  return "${dockerRegistry}/nz.stuff/experience/${projectName}:${projectVersion}"
 }
 
-def String getProjectVersion() {
-  // Get Last Git Tag
-  derivedTag = sh (
-    script: "git tag --list '${tagPrefix}.*' | sort  -t '.' -k1,1 -k2,2 -k3,3 -g | tail -n 1",
-    returnStdout: true
-  ).trim()
-  echo "derivedTag: ${derivedTag}"
-  projectVersion = derivedTag.tokenize('-').last()
-  return projectVersion
-}
-
-buildImage()
 pipeline {
   agent {
     kubernetes {
@@ -40,16 +28,38 @@ pipeline {
   }
 
   stages {
-    stage('Prepare'){
-      when {
-        branch 'master'
-      }
+    stage('Prepare') {
       steps {
         container('jnlp') {
           checkoutWithTags()
           script {
+            env.SPADE_VERSION = "stuff-${prepareVersion()}"
             env.DOCKER_URL = getDockerImageUrl()
-            env.SPADE_VERSION = getProjectVersion()
+            echo "git tag: ${SPADE_VERSION}"
+            echo "docker url: ${DOCKER_URL}"
+          }
+        }
+      }
+    }
+    stage('Install') {
+      steps {
+        container('node') {
+          script {
+            sh '''
+            npm ci
+            '''
+          }
+        }
+      }
+    }
+    stage('Test') {
+      steps {
+        container('node') {
+          script {
+            sh '''
+            npm run test
+            npm run integration-test
+            '''
           }
         }
       }
@@ -62,6 +72,7 @@ pipeline {
         container("dind") {
           withCredentials([
             string(credentialsId: "gcr-service-account", variable: 'DOCKER_LOGIN'),
+            usernamePassword(credentialsId: "JenkinsOnFairfaxBitbucket", passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')
           ]) {
             sh '''
             set +x
@@ -69,6 +80,7 @@ pipeline {
             set -x
             echo "build image: ${DOCKER_URL}"
             docker build . -t ${DOCKER_URL} --build-arg spade_version=${SPADE_VERSION}
+            git push https://${GIT_USERNAME}:${GIT_PASSWORD}@bitbucket.org/fairfax/${PROJECT_NAME}.git ${SPADE_VERSION}
             docker push ${DOCKER_URL}
             '''
           }
