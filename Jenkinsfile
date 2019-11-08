@@ -1,5 +1,4 @@
 #!/usr/bin/env groovy
-import org.apache.maven.model.Model
 def String getDockerImageUrl() {
   // Get project name, organisation group from package.json
   packageJson = readJSON file:'package.json'
@@ -70,18 +69,30 @@ pipeline {
       }
       steps {
         container("dind") {
-          withCredentials([
-            string(credentialsId: "gcr-service-account", variable: 'DOCKER_LOGIN'),
-            usernamePassword(credentialsId: "JenkinsOnFairfaxBitbucket", passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')
-          ]) {
+          withCredentials([string(credentialsId: "gcr-service-account", variable: 'DOCKER_LOGIN')]) {
             sh '''
             set +x
             docker login https://gcr.io -u _json_key -p "${DOCKER_LOGIN}"
             set -x
             echo "build image: ${DOCKER_URL}"
             docker build . -t ${DOCKER_URL} --build-arg spade_version=${SPADE_VERSION}
-            git push https://${GIT_USERNAME}:${GIT_PASSWORD}@bitbucket.org/fairfax/${PROJECT_NAME}.git ${SPADE_VERSION}
             docker push ${DOCKER_URL}
+            '''
+          }
+        }
+      }
+    }
+    stage('Push tag') {
+      when {
+        branch 'master'
+      }
+      steps {
+        container("jnlp") {
+          withCredentials([
+            usernamePassword(credentialsId: "JenkinsOnFairfaxBitbucket", passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')
+          ]) {
+            sh '''
+            git push https://${GIT_USERNAME}:${GIT_PASSWORD}@bitbucket.org/fairfax/${PROJECT_NAME}.git ${SPADE_VERSION}
             '''
           }
         }
