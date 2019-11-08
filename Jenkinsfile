@@ -92,6 +92,7 @@ pipeline {
             usernamePassword(credentialsId: "JenkinsOnFairfaxBitbucket", passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')
           ]) {
             sh '''
+            git tag -a -m'jenkins' ${SPADE_VERSION}
             git push https://${GIT_USERNAME}:${GIT_PASSWORD}@bitbucket.org/fairfax/${PROJECT_NAME}.git ${SPADE_VERSION}
             '''
           }
