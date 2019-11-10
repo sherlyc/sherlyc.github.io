@@ -2,11 +2,11 @@ import { handlerRunnerFunction } from '../runner';
 import { IBannerHandlerInput } from '../__types__/IBannerHandlerInput';
 import { IParams } from '../../__types__/IParams';
 import getBanner from '../../adapters/banner';
-import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { IExternalContentUnit } from '../../../../common/__types__/IExternalContentUnit';
 import logger from '../../utils/logger';
 import * as moment from 'moment';
 import { IBannerResponse } from '../../adapters/__types__/IBannerResponse';
+import { HandlerInputType } from '../__types__/HandlerInputType';
+import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 
 const getActiveBanner = (banners: IBannerResponse[]) => {
   const currentTime = moment.utc();
@@ -24,18 +24,21 @@ export default async function(
   handlerRunner: handlerRunnerFunction,
   {  }: IBannerHandlerInput,
   params: IParams
-): Promise<IExternalContentUnit[]> {
-  const defaultBanner: Partial<IExternalContentUnit> = {
-    type: ContentBlockType.ExternalContentUnit,
-    height: '50px',
-    width: '100%',
-    margin: '0 0 10px 0'
-  };
+): Promise<IContentBlock[]> {
   try {
     const banners = await getBanner(params);
     const activeBanner = getActiveBanner(banners);
     return activeBanner
-      ? [{ ...defaultBanner, ...activeBanner.banner } as IExternalContentUnit]
+      ? await handlerRunner(
+          {
+            type: HandlerInputType.ExternalContent,
+            width: '100%',
+            margin: '0 0 10px 0',
+            height: activeBanner.banner.height || '50px',
+            url: activeBanner.banner.url
+          },
+          params
+        )
       : [];
   } catch (e) {
     logger.error(params.apiRequestId, `Banner handler error - ${e}`);
