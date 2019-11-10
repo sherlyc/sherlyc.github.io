@@ -4,7 +4,7 @@ WORKDIR /app
 COPY package.json package-lock.json /app/
 RUN npm ci
 COPY . /app/
-RUN npm run build
+RUN npm run test && npm run build
 
 FROM node:10.15.3-alpine AS release
 ENV TZ Pacific/Auckland
