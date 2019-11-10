@@ -33,6 +33,27 @@
         <version>1.6.0</version>
         <executions>
           <execution>
+            <id>npm-config-cache-path</id>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <phase>generate-resources</phase>
+            <configuration>
+              <environmentVariables>
+                <HOME>${basedir}</HOME>
+              </environmentVariables>
+              <workingDirectory>${basedir}</workingDirectory>
+              <executable>npm</executable>
+              <arguments>
+                <argument>config</argument>
+                <argument>set</argument>
+                <argument>cache</argument>
+                <argument>${basedir}/.npm</argument>
+              </arguments>
+            </configuration>
+          </execution>
+
+          <execution>
             <id>npm-install</id>
             <goals>
               <goal>exec</goal>
