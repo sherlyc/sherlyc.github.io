@@ -16,7 +16,7 @@ def String getDockerImageUrl() {
   dockerRegistry = "gcr.io/shared-218200"
   return "${dockerRegistry}/nz.stuff/experience/${projectName}:${projectVersion}"
 }
-
+buildImage()
 pipeline {
   agent {
     kubernetes {
