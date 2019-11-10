@@ -29,6 +29,18 @@ spec:
       command:
         - sh
       tty: true
+    - name: practiv-maven
+        command:
+          - cat
+        image: docker.ci.shift21.ffx.nz/io.practiv/build/practiv-build-maven-seeded:3.2
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: DOCKER_HOST
+            value: tcp://localhost:2375
+        securityContext:
+          runAsUser: 10000
+          fsGroup: 10000
+        tty: true
   volumes:
     - name: dind-storage
       emptyDir: {}
