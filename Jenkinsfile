@@ -41,6 +41,9 @@ pipeline {
       }
     }
     stage('Install') {
+      when {
+        branch 'master'
+      }
       steps {
         container('node') {
           script {
@@ -52,6 +55,9 @@ pipeline {
       }
     }
     stage('Test') {
+      when {
+        branch 'master'
+      }
       steps {
         container('node') {
           script {
