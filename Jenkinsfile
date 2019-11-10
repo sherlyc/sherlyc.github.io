@@ -69,14 +69,33 @@ pipeline {
         }
       }
     }
-    stage('Push image & Practiv deploy') {
+    stage('Push image') {
 //      when {
 //        branch 'master'
 //      }
       steps {
-        container('practiv-maven') {
-          script {
-            echo "hello"
+        container('dind') {
+          withCredentials([string(credentialsId: "gcr-service-account", variable: 'DOCKER_LOGIN')]) {
+            sh '''
+            set +x
+            docker login https://gcr.io -u _json_key -p "${DOCKER_LOGIN}"
+            set -x
+            echo "build image: ${DOCKER_URL}"
+            docker build . -t ${DOCKER_URL} --build-arg spade_version=${SPADE_VERSION}
+            docker push ${DOCKER_URL}
+            '''
+          }
+        }
+      }
+    }
+    stage('Practiv deploy') {
+//      when {
+//        branch 'master'
+//      }
+      steps {
+        container('maven') {
+          configFileProvider([configFile(fileId: 'maven-settings-for-stuff', targetLocation: 'maven/settings.xml')]) {
+            mavenDeploy()
           }
         }
       }
