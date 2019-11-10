@@ -28,7 +28,6 @@ def String getProjectVersion() {
   projectVersion = derivedTag.tokenize('-').last()
   return projectVersion
 }
-
 buildImage()
 pipeline {
   agent {
