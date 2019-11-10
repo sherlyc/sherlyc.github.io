@@ -74,7 +74,7 @@ pipeline {
 //        branch 'master'
 //      }
       steps {
-        container("practiv-maven") {
+        container("dind") {
           withCredentials([string(credentialsId: "gcr-service-account", variable: 'DOCKER_LOGIN')]) {
             script {
               sh '''
