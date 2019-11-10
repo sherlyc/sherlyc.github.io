@@ -21,7 +21,7 @@ pipeline {
   agent {
     kubernetes {
       cloud 'Practiv BUILD'
-      defaultContainer 'jnlp'
+      defaultContainer 'dind'
       yamlFile 'experience-build.yaml'
     }
   }
@@ -76,9 +76,16 @@ pipeline {
       steps {
         container("practiv-maven") {
           withCredentials([string(credentialsId: "gcr-service-account", variable: 'DOCKER_LOGIN')]) {
-            sh '''
-            echo "hello"
-            '''
+            script {
+              sh '''
+              set +x
+              docker login https://gcr.io -u _json_key -p "${DOCKER_LOGIN}"
+              set -x
+              echo "build image: ${DOCKER_URL}"
+              docker build . -t ${DOCKER_URL} --build-arg spade_version=${SPADE_VERSION}
+              docker push ${DOCKER_URL}
+              '''
+            }
           }
           configFileProvider([configFile(fileId: 'maven-settings-for-stuff', targetLocation: 'maven/settings.xml')]) {
             mavenDeploy()

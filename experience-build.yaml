@@ -36,11 +36,20 @@ spec:
       tty: true
       imagePullPolicy: IfNotPresent
       env:
+        - name: QT_QPA_PLATFORM
+          value: offscreen
         - name: DOCKER_HOST
           value: tcp://localhost:2375
       securityContext:
         runAsUser: 10000
         fsGroup: 10000
+      resources:
+        limits:
+          cpu: 2
+          memory: 4Gi
+        requests:
+          cpu: 250m
+          memory: 1Gi
   volumes:
     - name: dind-storage
       emptyDir: {}
