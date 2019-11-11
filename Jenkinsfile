@@ -17,14 +17,12 @@ def String getDockerImageUrl() {
   return "${dockerRegistry}/nz.stuff/experience/${projectName}:${projectVersion}"
 }
 
-def mavenDeployment() {
+def uploadKubernetesArtifacts() {
   practivImageForgeDinD() {
     def nextTag = prepareVersion()
     mavenDeploy(nextTag)
   }
 }
-
-mavenDeployment()
 
 pipeline {
   agent {
@@ -110,4 +108,7 @@ pipeline {
     }
   }
 }
+
+uploadKubernetesArtifacts()
+
 buildCascade(["stuff-raster-spade"])
