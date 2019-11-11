@@ -39,7 +39,7 @@ pipeline {
         container('jnlp') {
           checkoutWithTags()
           script {
-            env.SPADE_VERSION = "stuff-${prepareVersion()}"
+            env.SPADE_VERSION = prepareVersion()
             env.DOCKER_URL = getDockerImageUrl()
             echo "git tag: ${SPADE_VERSION}"
             echo "docker url: ${DOCKER_URL}"
