@@ -29,7 +29,7 @@ pipeline {
   stages {
     stage('Prepare') {
       steps {
-        container('practiv-maven') {
+        container('jnlp') {
           checkoutWithTags()
           script {
             env.SPADE_VERSION = "stuff-${prepareVersion()}"
