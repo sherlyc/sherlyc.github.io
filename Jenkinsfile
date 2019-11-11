@@ -70,6 +70,33 @@ pipeline {
         }
       }
     }
+    stage('Build Image') {
+      steps {
+        container("dind") {
+          script {
+            sh '''
+            echo "build image: ${DOCKER_URL}"
+            docker build . -t ${DOCKER_URL} --build-arg spade_version=${SPADE_VERSION}
+            '''
+          }
+        }
+      }
+    }
+    stage('Smoke test') {
+      steps {
+        container("dind") {
+          script {
+            sh '''
+            echo "docker version"
+            docker version
+            
+            echo "Run smoke test"
+            docker run --rm --env DOCKER_URL=${DOCKER_URL} -v /var/run/docker.sock:/var/run/docker.sock -v "$PWD:$PWD" -w="$PWD" docker/compose:1.25.0-rc4-alpine up --build --exit-code-from puppet
+            '''
+          }
+        }
+      }
+    }
     stage('Push Image To GCR') {
       when {
         branch 'master'
@@ -81,8 +108,6 @@ pipeline {
             set +x
             docker login https://gcr.io -u _json_key -p "${DOCKER_LOGIN}"
             set -x
-            echo "build image: ${DOCKER_URL}"
-            docker build . -t ${DOCKER_URL} --build-arg spade_version=${SPADE_VERSION}
             docker push ${DOCKER_URL}
             '''
           }
