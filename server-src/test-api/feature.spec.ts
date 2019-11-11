@@ -60,4 +60,27 @@ describe('Feature API', () => {
       }
     );
   });
+
+  describe('Ads Relative Positioning', () => {
+    const url = `${featureApi}/${FeatureName.AdsRelativePositioning}`;
+
+    it('should return true for internal lottery number 604', async () => {
+      const response: supertest.Response = await supertest(app).get(
+        `${url}/604/unknown`
+      );
+
+      expect(response.body).toBe(true);
+    });
+
+    it.each([[1], [100]])(
+      'should return false for public lottery number %i',
+      async (lotteryNumber: number) => {
+        const response: supertest.Response = await supertest(app).get(
+          `${url}/${lotteryNumber}/unknown`
+        );
+
+        expect(response.body).toBe(false);
+      }
+    );
+  });
 });
