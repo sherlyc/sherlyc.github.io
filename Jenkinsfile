@@ -21,7 +21,7 @@ pipeline {
   agent {
     kubernetes {
       cloud 'Practiv BUILD'
-      defaultContainer 'dind'
+      defaultContainer 'jnlp'
       yamlFile 'experience-build.yaml'
     }
   }
