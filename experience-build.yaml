@@ -29,6 +29,25 @@ spec:
       command:
         - sh
       tty: true
+    - name: practiv-maven
+      command:
+        - cat
+      image: docker.ci.shift21.ffx.nz/io.practiv/build/practiv-build-maven-seeded:3.2
+      imagePullPolicy: IfNotPresent
+      env:
+        - name: QT_QPA_PLATFORM
+          value: offscreen
+      securityContext:
+        runAsUser: 10000
+        fsGroup: 10000
+        resources:
+          limits:
+            cpu: 2
+            memory: 4Gi
+          requests:
+            cpu: 250m
+            memory: 1Gi
+      tty: true
   volumes:
     - name: dind-storage
       emptyDir: {}
