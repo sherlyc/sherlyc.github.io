@@ -26,8 +26,8 @@ spec:
           mountPath: /var/lib/docker
     - name: node
       image: node:10.15.3-alpine
-      command:
-        - sh
+      command: ['/bin/bash', '-c', '--']
+      args: ['while true; do sleep 30; done;']
       tty: true
     - name: practiv-maven
       command:
