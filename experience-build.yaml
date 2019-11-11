@@ -17,6 +17,11 @@ spec:
           cpu: 1
           memory: 1Gi
       imagePullPolicy: Always
+    - name: node
+      image: node:10.15.3-alpine
+      command:
+        - sh
+      tty: true
     - name: dind
       image: docker:18.05-dind
       securityContext:
