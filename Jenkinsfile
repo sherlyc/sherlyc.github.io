@@ -2,7 +2,7 @@
 import java.security.MessageDigest
 
 GString yamlString() {
-  return ```
+  return '''
 apiVersion: v1
 kind: Pod
 metadata:
@@ -80,8 +80,7 @@ spec:
   volumes:
     - name: dind-storage
       emptyDir: {}
-
-```
+'''
 }
 def String getDockerImageUrl() {
   // Get project name, organisation group from package.json
