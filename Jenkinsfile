@@ -1,4 +1,88 @@
 #!/usr/bin/env groovy
+import java.security.MessageDigest
+
+GString yamlString() {
+  return ```
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    jenkins/kube-default: true
+    app: jenkins
+    component: agent
+spec:
+  containers:
+    - name: jnlp
+      image: jenkinsci/jnlp-slave
+      resources:
+        limits:
+          cpu: 1
+          memory: 1Gi
+        requests:
+          cpu: 1
+          memory: 1Gi
+      imagePullPolicy: Always
+    - name: node
+      image: node:10.15.3-alpine
+      command:
+        - sh
+      tty: true
+    - name: practiv-maven
+      command:
+        - cat
+      image: docker.ci.shift21.ffx.nz/io.practiv/build/practiv-build-maven-seeded:3.2
+      imagePullPolicy: IfNotPresent
+      env:
+        - name: QT_QPA_PLATFORM
+          value: offscreen
+        - name: DOCKER_HOST
+          value: tcp://localhost:2375
+      securityContext:
+        runAsUser: 10000
+        fsGroup: 10000
+      resources:
+        limits:
+          cpu: 2
+          memory: 4Gi
+        requests:
+          cpu: 250m
+          memory: 1Gi
+      tty: true
+    - name: docker-client
+      image: docker:18.06.0-ce
+      env:
+        - name: DOCKER_HOST
+          value: 'tcp://localhost:2375'
+      resources:
+        requests:
+          cpu: 100m
+          memory: 512Mi
+      command:
+        - cat
+      tty: true
+    - name: dind-daemon
+      image: docker:18.06.0-ce-dind
+      resources:
+        requests:
+          cpu: 100m
+          memory: 512Mi
+      securityContext:
+        privileged: true
+      volumeMounts:
+        - name: dind-storage
+          mountPath: /var/lib/docker
+  dnsPolicy: ClusterFirst
+  imagePullSecrets:
+    - name: docker.ci.shift21.ffx.nz
+  restartPolicy: Never
+  securityContext: {}
+  terminationGracePeriodSeconds: 30
+  volumes:
+    - name: dind-storage
+      emptyDir: {}
+
+```
+}
 def String getDockerImageUrl() {
   // Get project name, organisation group from package.json
   packageJson = readJSON file:'package.json'
@@ -17,12 +101,17 @@ def String getDockerImageUrl() {
   return "${dockerRegistry}/nz.stuff/experience/${projectName}:${projectVersion}"
 }
 
+GString yamlHash() {
+  return MessageDigest.getInstance("MD5").digest(yamlString().bytes).encodeHex().toString()
+}
+
 pipeline {
   agent {
     kubernetes {
       cloud 'Practiv BUILD'
       defaultContainer 'jnlp'
-      yamlFile 'experience-build.yaml'
+      label yamlHash()
+      yaml yamlString()
     }
   }
 
