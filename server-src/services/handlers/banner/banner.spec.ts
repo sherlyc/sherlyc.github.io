@@ -29,7 +29,9 @@ describe('BannerHandler', () => {
       url: 'https://uber2.html'
     }
   };
-  const defaultExternalContentHandlerInput: Partial<IExternalContentUnit> = {
+  const withinBannerOneDateRange = '2019-09-08T16:59:59+00:00';
+  const outsideOfAnyDateRange = '2019-09-15T11:00:01+00:00';
+  const defaultExternalContentBlock: Partial<IExternalContentUnit> = {
     type: ContentBlockType.ExternalContentUnit,
     height: '50px',
     width: '100%',
@@ -47,13 +49,12 @@ describe('BannerHandler', () => {
   it('should get currently active banner based on current time', async () => {
     const handlerRunnerMock = jest.fn();
     const bannerResponse: IBannerResponse[] = [bannerOne, bannerTwo];
-    const withinBannerOneDateRange = '2019-09-08T16:59:59+00:00';
     (global as any).Date.now = () =>
       new Date(withinBannerOneDateRange).getTime();
     (getBanner as jest.Mock).mockResolvedValue(bannerResponse);
     handlerRunnerMock.mockResolvedValue([
       {
-        ...defaultExternalContentHandlerInput,
+        ...defaultExternalContentBlock,
         url: bannerOne.banner.url,
         height: bannerOne.banner.height
       }
@@ -67,28 +68,50 @@ describe('BannerHandler', () => {
 
     expect(contentBlocks).toHaveLength(1);
     expect(contentBlocks[0]).toEqual({
-      type: 'ExternalContentUnit',
+      type: ContentBlockType.ExternalContentUnit,
       height: bannerOne.banner.height,
-      margin: '0 0 10px 0',
       url: bannerOne.banner.url,
+      margin: '0 0 10px 0',
       width: '100%'
     });
+  });
+
+  it('should delegate creation of ExternalContentUnit', async () => {
+    const handlerRunnerMock = jest.fn();
+    const bannerResponse: IBannerResponse[] = [bannerOne];
+    (global as any).Date.now = () =>
+      new Date(withinBannerOneDateRange).getTime();
+    (getBanner as jest.Mock).mockResolvedValue(bannerResponse);
+
+    const externalContentBlocks = [
+      {
+        ...defaultExternalContentBlock,
+        url: bannerOne.banner.url,
+        height: bannerOne.banner.height
+      }
+    ];
+    handlerRunnerMock.mockResolvedValue(externalContentBlocks);
+
+    await bannerHandler(handlerRunnerMock, {} as IBannerHandlerInput, params);
+
+    expect(handlerRunnerMock).toHaveBeenCalledTimes(1);
+    expect(handlerRunnerMock).toHaveBeenCalledWith(
+      {
+        type: HandlerInputType.ExternalContent,
+        width: '100%',
+        margin: '0 0 10px 0',
+        height: bannerOne.banner.height,
+        url: bannerOne.banner.url
+      },
+      params
+    );
   });
 
   it('should return an empty content block when there is no active banner', async () => {
     const handlerRunnerMock = jest.fn();
     const bannerResponse: IBannerResponse[] = [bannerOne, bannerTwo];
-    const withinBannerTwoDateRange = '2019-09-15T11:00:01+00:00';
-    (global as any).Date.now = () =>
-      new Date(withinBannerTwoDateRange).getTime();
+    (global as any).Date.now = () => new Date(outsideOfAnyDateRange).getTime();
     (getBanner as jest.Mock).mockResolvedValue(bannerResponse);
-    handlerRunnerMock.mockResolvedValue([
-      {
-        ...defaultExternalContentHandlerInput,
-        url: bannerTwo.banner.url,
-        height: bannerTwo.banner.height
-      }
-    ]);
 
     const contentBlocks = await bannerHandler(
       handlerRunnerMock,
@@ -113,42 +136,5 @@ describe('BannerHandler', () => {
 
     expect(contentBlocks).toHaveLength(0);
     expect(loggerSpy).toHaveBeenCalled();
-  });
-
-  it('should delegate creation of ExternalContentUnit', async () => {
-    const handlerRunnerMock = jest.fn();
-    const bannerResponse: IBannerResponse[] = [bannerOne];
-    const withinBannerOneDateRange = '2019-09-08T16:59:59+00:00';
-    (global as any).Date.now = () =>
-      new Date(withinBannerOneDateRange).getTime();
-    (getBanner as jest.Mock).mockResolvedValue(bannerResponse);
-
-    const externalContentBlocks = [
-      {
-        ...defaultExternalContentHandlerInput,
-        url: bannerOne.banner.url,
-        height: bannerOne.banner.height
-      }
-    ];
-    handlerRunnerMock.mockResolvedValue(externalContentBlocks);
-
-    const contentBlocks = await bannerHandler(
-      handlerRunnerMock,
-      {} as IBannerHandlerInput,
-      params
-    );
-
-    expect(handlerRunnerMock).toHaveBeenCalledTimes(1);
-    expect(handlerRunnerMock).toHaveBeenCalledWith(
-      {
-        type: HandlerInputType.ExternalContent,
-        width: '100%',
-        margin: '0 0 10px 0',
-        height: bannerOne.banner.height,
-        url: bannerOne.banner.url
-      },
-      params
-    );
-    expect(contentBlocks).toEqual(externalContentBlocks);
   });
 });
