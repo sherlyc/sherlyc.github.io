@@ -48,6 +48,12 @@ spec:
             cpu: 250m
             memory: 1Gi
       tty: true
+  dnsPolicy: ClusterFirst
+  imagePullSecrets:
+    - name: docker.ci.shift21.ffx.nz
+  restartPolicy: Never
+  securityContext: {}
+  terminationGracePeriodSeconds: 30
   volumes:
     - name: dind-storage
       emptyDir: {}
