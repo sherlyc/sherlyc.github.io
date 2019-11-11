@@ -29,7 +29,7 @@ pipeline {
   stages {
     stage('Prepare') {
       steps {
-        container('jnlp') {
+        container('practiv-maven') {
           checkoutWithTags()
           script {
             env.SPADE_VERSION = "stuff-${prepareVersion()}"
@@ -93,7 +93,7 @@ pipeline {
 //        branch 'master'
 //      }
       steps {
-        container('maven') {
+        container('practiv-maven') {
           configFileProvider([configFile(fileId: 'maven-settings-for-stuff', targetLocation: 'maven/settings.xml')]) {
             mavenDeploy()
           }
@@ -105,7 +105,7 @@ pipeline {
         branch 'master'
       }
       steps {
-        container("jnlp") {
+        container("practiv-maven") {
           withCredentials([
             usernamePassword(credentialsId: "JenkinsOnFairfaxBitbucket", passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')
           ]) {

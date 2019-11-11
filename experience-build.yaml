@@ -29,11 +29,6 @@ spec:
       command:
         - sh
       tty: true
-    - name: maven
-      image: maven:3.6.2-jdk-11-slim
-      command:
-        - sh
-      tty: true
   volumes:
     - name: dind-storage
       emptyDir: {}
