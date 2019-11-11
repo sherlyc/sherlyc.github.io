@@ -19,7 +19,8 @@ def String getDockerImageUrl() {
 
 def mavenDeployment() {
   practivImageForgeDinD() {
-    mavenDeploy()
+    def nextTag = prepareVersion()
+    mavenDeploy(nextTag)
   }
 }
 
