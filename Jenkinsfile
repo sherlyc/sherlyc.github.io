@@ -18,6 +18,14 @@ def String getDockerImageUrl() {
   return "${dockerRegistry}/nz.stuff/experience/${projectName}:${projectVersion}"
 }
 
+def mavenDeployment() {
+  practivImageForgeDinD() {
+    mavenDeploy()
+  }
+}
+
+mavenDeployment()
+
 pipeline {
   agent {
     kubernetes {
