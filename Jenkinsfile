@@ -123,6 +123,13 @@ pipeline {
   }
 
   stages {
+    stage("pre-prepare") {
+      steps {
+        script {
+          System.setProperty("org.jenkinsci.plugins.durabletask.BourneShellScript.LAUNCH_DIAGNOSTICS", true);
+        }
+      }
+    }
     stage('Prepare') {
       steps {
         container('practiv-maven') {
