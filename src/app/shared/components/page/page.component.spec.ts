@@ -225,52 +225,6 @@ describe('PageComponent', () => {
     expect(analyticsServiceMock.trackPageByNielsen).toHaveBeenCalled();
   });
 
-  it('should log version mismatch in browser', () => {
-    runtimeService.isBrowser.mockReturnValue(true);
-    environment.version = '13jkhjh3';
-    contentRetrieverMock.getContent.mockReturnValue(
-      of({
-        title: '',
-        version: '123',
-        content: mockContentBlocks,
-        apiRequestId: ''
-      })
-    );
-    fixture.detectChanges();
-    expect(loggerService.error).toHaveBeenCalledWith(
-      new Error('spade version mismatch FE:13jkhjh3 BE:123')
-    );
-  });
-
-  it('should not log version mismatch in server', () => {
-    runtimeService.isBrowser.mockReturnValue(false);
-    environment.version = '13jkhjh3';
-    contentRetrieverMock.getContent.mockReturnValue(
-      of({
-        title: '',
-        version: '123',
-        content: mockContentBlocks,
-        apiRequestId: ''
-      })
-    );
-    fixture.detectChanges();
-    expect(loggerService.error).not.toHaveBeenCalled();
-  });
-
-  it('should not log version mismatch when versions are equal', () => {
-    runtimeService.isBrowser.mockReturnValue(true);
-    contentRetrieverMock.getContent.mockReturnValue(
-      of({
-        title: '',
-        version: 'SNAPSHOT',
-        content: mockContentBlocks,
-        apiRequestId: ''
-      })
-    );
-    fixture.detectChanges();
-    expect(loggerService.error).not.toHaveBeenCalled();
-  });
-
   function assertsForSuccessfulRetrieval() {
     expect(component.contentBlocks).toHaveLength(mockContentBlocks.length);
     (component.contentBlocks as Array<{ type: string }>).forEach(
