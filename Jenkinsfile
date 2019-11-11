@@ -26,10 +26,18 @@ pipeline {
     }
   }
 
+  options {
+    timestamps()
+    buildDiscarder(logRotator(numToKeepStr: '10'))
+    ansiColor('xterm')
+    lock(resource: env.JOB_NAME.split('/')[1], inversePrecedence: true)
+    timeout(30)
+  }
+
   stages {
     stage('Prepare') {
       steps {
-        container('jnlp') {
+        container('practiv-maven') {
           checkoutWithTags()
           script {
             env.SPADE_VERSION = "stuff-${prepareVersion()}"
@@ -69,51 +77,31 @@ pipeline {
         }
       }
     }
-    stage('Push image') {
-//      when {
-//        branch 'master'
-//      }
-      steps {
-        container('dind') {
-          withCredentials([string(credentialsId: "gcr-service-account", variable: 'DOCKER_LOGIN')]) {
-            sh '''
-            set +x
-            docker login https://gcr.io -u _json_key -p "${DOCKER_LOGIN}"
-            set -x
-            echo "build image: ${DOCKER_URL}"
-            docker build . -t ${DOCKER_URL} --build-arg spade_version=${SPADE_VERSION}
-            docker push ${DOCKER_URL}
-            '''
-          }
-        }
-      }
-    }
-    stage('Practiv deploy') {
+    stage('Push image and Tag') {
 //      when {
 //        branch 'master'
 //      }
       steps {
         container('practiv-maven') {
-          configFileProvider([configFile(fileId: 'maven-settings-for-stuff', targetLocation: 'maven/settings.xml')]) {
-            mavenDeploy()
+          withCredentials([string(credentialsId: "gcr-service-account", variable: 'DOCKER_LOGIN'),
+          usernamePassword(credentialsId: "JenkinsOnFairfaxBitbucket", passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')
+          ]) {
+            script {
+              sh '''
+              git tag -a -m'jenkins' ${SPADE_VERSION}
+              set +x
+              docker login https://gcr.io -u _json_key -p "${DOCKER_LOGIN}"
+              set -x
+              echo "build image: ${DOCKER_URL}"
+              docker build . -t ${DOCKER_URL} --build-arg spade_version=${SPADE_VERSION}
+              docker push ${DOCKER_URL}
+              git push https://${GIT_USERNAME}:${GIT_PASSWORD}@bitbucket.org/fairfax/${PROJECT_NAME}.git ${SPADE_VERSION}
+              '''
+            }
           }
         }
-      }
-    }
-    stage('Push tag') {
-      when {
-        branch 'master'
-      }
-      steps {
-        container("practiv-maven") {
-          withCredentials([
-            usernamePassword(credentialsId: "JenkinsOnFairfaxBitbucket", passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')
-          ]) {
-            sh '''
-            git tag -a -m'jenkins' ${SPADE_VERSION}
-            git push https://${GIT_USERNAME}:${GIT_PASSWORD}@bitbucket.org/fairfax/${PROJECT_NAME}.git ${SPADE_VERSION}
-            '''
-          }
+        configFileProvider([configFile(fileId: 'maven-settings-for-stuff', targetLocation: 'maven/settings.xml')]) {
+          mavenDeploy()
         }
       }
     }
