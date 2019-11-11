@@ -1,5 +1,4 @@
 #!/usr/bin/env groovy
-
 def String getDockerImageUrl() {
   // Get project name, organisation group from package.json
   packageJson = readJSON file:'package.json'

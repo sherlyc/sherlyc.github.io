@@ -144,4 +144,20 @@ describe('AppComponent', () => {
 
     expect(serviceCallOrder).toEqual(['analyticsService', 'pwaService']);
   });
+
+  it('should setup feature service before ad service', () => {
+    const serviceCallOrder: string[] = [];
+    featureSwitchService.setup.mockImplementation(() => {
+      serviceCallOrder.push('featureSwitchService');
+    });
+    adService.setup.mockImplementation(() => {
+      serviceCallOrder.push('adService');
+      return;
+    });
+
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+
+    expect(serviceCallOrder).toEqual(['featureSwitchService', 'adService']);
+  });
 });

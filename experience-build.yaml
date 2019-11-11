@@ -17,61 +17,13 @@ spec:
           cpu: 1
           memory: 1Gi
       imagePullPolicy: Always
-    - name: node
-      image: node:10.15.3-alpine
-      command:
-        - sh
-      tty: true
-    - name: practiv-maven
-      command:
-        - cat
-      image: docker.ci.shift21.ffx.nz/io.practiv/build/practiv-build-maven-seeded:3.2
-      imagePullPolicy: IfNotPresent
-      env:
-        - name: QT_QPA_PLATFORM
-          value: offscreen
-        - name: DOCKER_HOST
-          value: tcp://localhost:2375
-      securityContext:
-        runAsUser: 10000
-        fsGroup: 10000
-      resources:
-        limits:
-          cpu: 2
-          memory: 4Gi
-        requests:
-          cpu: 250m
-          memory: 1Gi
-      tty: true
-    - name: docker-client
-      image: docker:18.06.0-ce
-      env:
-        - name: DOCKER_HOST
-          value: 'tcp://localhost:2375'
-      resources:
-        requests:
-          cpu: 100m
-          memory: 512Mi
-      command:
-        - cat
-      tty: true
-    - name: dind-daemon
-      image: docker:18.06.0-ce-dind
-      resources:
-        requests:
-          cpu: 100m
-          memory: 512Mi
+    - name: dind
+      image: docker:18.05-dind
       securityContext:
         privileged: true
       volumeMounts:
         - name: dind-storage
           mountPath: /var/lib/docker
-  dnsPolicy: ClusterFirst
-  imagePullSecrets:
-    - name: docker.ci.shift21.ffx.nz
-  restartPolicy: Never
-  securityContext: {}
-  terminationGracePeriodSeconds: 30
   volumes:
     - name: dind-storage
       emptyDir: {}

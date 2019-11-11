@@ -29,6 +29,7 @@ export class AppComponent {
     private pwaService: PwaService
   ) {
     this.experimentService.setup();
+    this.featureSwitchService.setup();
     this.analyticsService.setup();
     this.adService.setup();
     this.eventsService.setup();
@@ -36,7 +37,6 @@ export class AppComponent {
     this.browserOverride.setup();
     this.neighbourlyService.setup();
     this.metaTagsService.setup();
-    this.featureSwitchService.setup();
     this.pwaService.setup();
   }
 }

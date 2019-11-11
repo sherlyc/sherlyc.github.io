@@ -248,6 +248,18 @@
   },
   "overrides": {
     "staging": {
+      "strapMotoring": {
+        "ids": ["63868237"],
+        "dedupeRules": {
+          "dedupeFromBaseList": true
+        }
+      },
+      "strapSport": {
+        "ids": ["62922196"],
+        "dedupeRules": {
+          "dedupeFromBaseList": true
+        }
+      },
       "strapSponsoredContent": {
         "ids": ["63868237"],
         "dedupeRules": {
