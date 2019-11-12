@@ -1,34 +1,29 @@
 #!/usr/bin/env groovy
-import org.apache.maven.model.Model
 def String getDockerImageUrl() {
   // Get project name, organisation group from package.json
   packageJson = readJSON file:'package.json'
   organisationGroup = packageJson.name.split('-')[1]
   projectName = packageJson.name
+  env.PROJECT_NAME = projectName
   echo "organisationGroup : ${organisationGroup}, with projectName: ${projectName}"
 
   // Get Version(this version need to be the same as previous step: buildImage())
   readMavenPom = readMavenPom()
   contractVersion = readMavenPom.version.split(".999")[0]
   tagPrefix = "${readMavenPom.artifactId}-${contractVersion}"
-  projectVersion = getProjectVersion()
-  echo "derivedTag: ${derivedTag}, and project verion: ${projectVersion}"
+  projectVersion = "${SPADE_VERSION}".tokenize('-').last()
 
   dockerRegistry = "gcr.io/shared-218200"
-  return "${dockerRegistry}/nz.stuff/${organisationGroup}/${projectName}:${projectVersion}"
+  return "${dockerRegistry}/nz.stuff/experience/${projectName}:${projectVersion}"
 }
 
-def String getProjectVersion() {
-  // Get Last Git Tag
-  derivedTag = sh (
-    script: "git tag --list '${tagPrefix}.*' | sort  -t '.' -k1,1 -k2,2 -k3,3 -g | tail -n 1",
-    returnStdout: true
-  ).trim()
-  echo "derivedTag: ${derivedTag}"
-  projectVersion = derivedTag.tokenize('-').last()
-  return projectVersion
+def uploadKubernetesArtifacts() {
+  practivImageForgeDinD() {
+    def nextTag = prepareVersion()
+    mavenDeploy(nextTag)
+  }
 }
-buildImage()
+
 pipeline {
   agent {
     kubernetes {
@@ -39,16 +34,65 @@ pipeline {
   }
 
   stages {
-    stage('Prepare'){
-      when {
-        branch 'master'
-      }
+    stage('Prepare') {
       steps {
         container('jnlp') {
           checkoutWithTags()
           script {
+            env.SPADE_VERSION = "stuff-${prepareVersion()}"
             env.DOCKER_URL = getDockerImageUrl()
-            env.SPADE_VERSION = getProjectVersion()
+            echo "git tag: ${SPADE_VERSION}"
+            echo "docker url: ${DOCKER_URL}"
+          }
+        }
+      }
+    }
+    stage('Install') {
+      steps {
+        container('node') {
+          script {
+            sh '''
+            npm ci
+            '''
+          }
+        }
+      }
+    }
+    stage('Test') {
+      steps {
+        container('node') {
+          script {
+            sh '''
+            npm run test
+            npm run integration-test
+            '''
+          }
+        }
+      }
+    }
+    stage('Build Image') {
+      steps {
+        container("dind") {
+          script {
+            sh '''
+            echo "build image: ${DOCKER_URL}"
+            docker build . -t ${DOCKER_URL} --build-arg spade_version=${SPADE_VERSION}
+            '''
+          }
+        }
+      }
+    }
+    stage('Smoke test') {
+      steps {
+        container("dind") {
+          script {
+            sh '''
+            echo "docker version"
+            docker version
+            
+            echo "Run smoke test"
+            docker run --rm --env DOCKER_URL=${DOCKER_URL} -v /var/run/docker.sock:/var/run/docker.sock -v "$PWD:$PWD" -w="$PWD" docker/compose:1.25.0-rc4-alpine up --build --exit-code-from puppet
+            '''
           }
         }
       }
@@ -59,16 +103,29 @@ pipeline {
       }
       steps {
         container("dind") {
-          withCredentials([
-            string(credentialsId: "gcr-service-account", variable: 'DOCKER_LOGIN'),
-          ]) {
+          withCredentials([string(credentialsId: "gcr-service-account", variable: 'DOCKER_LOGIN')]) {
             sh '''
             set +x
             docker login https://gcr.io -u _json_key -p "${DOCKER_LOGIN}"
             set -x
-            echo "build image: ${DOCKER_URL}"
-            docker build . -t ${DOCKER_URL} --build-arg spade_version=${SPADE_VERSION}
             docker push ${DOCKER_URL}
+            '''
+          }
+        }
+      }
+    }
+    stage('Push tag') {
+      when {
+        branch 'master'
+      }
+      steps {
+        container("jnlp") {
+          withCredentials([
+            usernamePassword(credentialsId: "JenkinsOnFairfaxBitbucket", passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')
+          ]) {
+            sh '''
+            git tag -a -m'jenkins' ${SPADE_VERSION}
+            git push https://${GIT_USERNAME}:${GIT_PASSWORD}@bitbucket.org/fairfax/${PROJECT_NAME}.git ${SPADE_VERSION}
             '''
           }
         }
@@ -76,4 +133,7 @@ pipeline {
     }
   }
 }
+
+uploadKubernetesArtifacts()
+
 buildCascade(["stuff-raster-spade"])
