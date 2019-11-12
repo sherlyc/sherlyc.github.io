@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { IBannerResponse } from '../../adapters/__types__/IBannerResponse';
 import { HandlerInputType } from '../__types__/HandlerInputType';
 import { IContentBlock } from '../../../../common/__types__/IContentBlock';
+import { IExternalContentHandlerInput } from '../__types__/IExternalContentHandlerInput';
 
 const getActiveBanner = (banners: IBannerResponse[]) => {
   const currentTime = moment.utc();
@@ -20,6 +21,15 @@ const getActiveBanner = (banners: IBannerResponse[]) => {
   );
 };
 
+const defaultExternalContentHandlerInput: Partial<
+  IExternalContentHandlerInput
+> = {
+  type: HandlerInputType.ExternalContent,
+  width: '100%',
+  margin: '0 0 10px 0',
+  height: '50px'
+};
+
 export default async function(
   handlerRunner: handlerRunnerFunction,
   {  }: IBannerHandlerInput,
@@ -31,12 +41,9 @@ export default async function(
     return activeBanner
       ? await handlerRunner(
           {
-            type: HandlerInputType.ExternalContent,
-            width: '100%',
-            margin: '0 0 10px 0',
-            height: activeBanner.banner.height || '50px',
-            url: activeBanner.banner.url
-          },
+            ...defaultExternalContentHandlerInput,
+            ...activeBanner.banner
+          } as IExternalContentHandlerInput,
           params
         )
       : [];
