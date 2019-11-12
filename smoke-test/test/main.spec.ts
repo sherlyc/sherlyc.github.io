@@ -10,7 +10,7 @@ describe('Mobile Homepage', () => {
   beforeAll(async () => {
     browser = await puppeteer.launch(puppeteerConfig);
     page = await browser.newPage();
-    await page.goto(config.url, { waitUntil: 'networkidle0' });
+    await page.goto(config.url, { waitUntil: 'networkidle0', timeout: 60000 });
   });
 
   afterAll(async () => {
