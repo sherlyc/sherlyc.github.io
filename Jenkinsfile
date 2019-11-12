@@ -39,6 +39,7 @@ pipeline {
             env.PROJECT_NAME = getProjectName()
             env.SPADE_VERSION = prepareVersion()
             env.DOCKER_URL = getDockerImageUrl()
+            echo "project name: ${PROJECT_NAME}"
             echo "git tag: ${SPADE_VERSION}"
             echo "docker url: ${DOCKER_URL}"
           }
@@ -68,7 +69,7 @@ pipeline {
         }
       }
     }
-    stage('build Image') {
+    stage('build image') {
       steps {
         container("dind") {
           script {
