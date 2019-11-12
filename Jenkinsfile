@@ -1,20 +1,17 @@
 #!/usr/bin/env groovy
-def String getDockerImageUrl() {
-  // Get project name, organisation group from package.json
+def getProjectName() {
   packageJson = readJSON file:'package.json'
-  organisationGroup = packageJson.name.split('-')[1]
-  projectName = packageJson.name
-  env.PROJECT_NAME = projectName
-  echo "organisationGroup : ${organisationGroup}, with projectName: ${projectName}"
+  return packageJson.name
+}
 
-  // Get Version(this version need to be the same as previous step: buildImage())
+def String getDockerImageUrl() {
   readMavenPom = readMavenPom()
-  contractVersion = readMavenPom.version.split(".999")[0]
-  tagPrefix = "${readMavenPom.artifactId}-${contractVersion}"
-  projectVersion = "${SPADE_VERSION}".tokenize('-').last()
 
   dockerRegistry = "gcr.io/shared-218200"
-  return "${dockerRegistry}/nz.stuff/experience/${projectName}:${projectVersion}"
+  projectVersion = "${SPADE_VERSION}".tokenize('-').last()
+  tagPrefix = "${readMavenPom.artifactId}-${projectVersion}"
+
+  return "${dockerRegistry}/nz.stuff/experience/${tagPrefix}"
 }
 
 def uploadKubernetesArtifacts() {
@@ -34,11 +31,12 @@ pipeline {
   }
 
   stages {
-    stage('Prepare') {
+    stage('setup env') {
       steps {
         container('jnlp') {
           checkoutWithTags()
           script {
+            env.PROJECT_NAME = getProjectName()
             env.SPADE_VERSION = prepareVersion()
             env.DOCKER_URL = getDockerImageUrl()
             echo "git tag: ${SPADE_VERSION}"
@@ -47,7 +45,7 @@ pipeline {
         }
       }
     }
-    stage('Install') {
+    stage('install') {
       steps {
         container('node') {
           script {
@@ -58,7 +56,7 @@ pipeline {
         }
       }
     }
-    stage('Test') {
+    stage('test') {
       steps {
         container('node') {
           script {
@@ -70,7 +68,7 @@ pipeline {
         }
       }
     }
-    stage('Build Image') {
+    stage('build Image') {
       steps {
         container("dind") {
           script {
@@ -82,7 +80,7 @@ pipeline {
         }
       }
     }
-    stage('Smoke test') {
+    stage('smoke test') {
       steps {
         container("dind") {
           script {
@@ -97,7 +95,7 @@ pipeline {
         }
       }
     }
-    stage('Push Image To GCR') {
+    stage('push image to GCR') {
       when {
         branch 'master'
       }
@@ -114,7 +112,7 @@ pipeline {
         }
       }
     }
-    stage('Push tag') {
+    stage('push tag') {
       when {
         branch 'master'
       }

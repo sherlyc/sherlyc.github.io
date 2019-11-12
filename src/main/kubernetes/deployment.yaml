@@ -33,7 +33,7 @@ spec:
         - name: gcr.io-shared-218200
       containers:
         - name: stuff-experience-frontend
-          image: gcr.io/shared-218200/nz.stuff/experience/stuff-experience-frontend:${project.version}
+          image: gcr.io/shared-218200/nz.stuff/experience/experience-frontend:${project.version}
           ports:
             - containerPort: 4000
           env:
