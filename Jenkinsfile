@@ -10,14 +10,29 @@ def String getDockerImageUrl() {
   dockerRegistry = "gcr.io/shared-218200"
   projectVersion = "${SPADE_VERSION}".tokenize('-').last()
   tagPrefix = "${readMavenPom.artifactId}-${projectVersion}"
+  sh "echo $projectVersion, $tagPrefix"
 
   return "${dockerRegistry}/nz.stuff/experience/${tagPrefix}"
 }
 
+def getLatestGitTag() {
+  mavenPom = readMavenPom()
+  majorVersion = mavenPom.version.split(".999")[0]
+  tagPrefix = "${mavenPom.artifactId}-${majorVersion}"
+  def mostRecentGitTag = sh (
+    script: "git tag --list '${tagPrefix}.*' | sort  -t '.' -k1,1 -k2,2 -k3,3 -g | tail -n 1",
+    returnStdout: true
+  ).trim().tokenize('-').last()
+  return mostRecentGitTag
+}
+
 def uploadKubernetesArtifacts() {
   practivImageForgeDinD() {
-    def nextTag = prepareVersion()
-    mavenDeploy(nextTag)
+    // IMPORTANT: Only do this after you have incremented the git tag.
+    latestGitTag = getLatestGitTag()
+    echo "latestGitTag: ${latestGitTag}"
+    updatePom(latestGitTag)
+    mavenDeploy(latestGitTag)
   }
 }
 
