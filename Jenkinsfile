@@ -9,7 +9,7 @@ def String getDockerImageUrl() {
 
   dockerRegistry = "gcr.io/shared-218200"
   projectVersion = "${SPADE_VERSION}".tokenize('-').last()
-  tagPrefix = "${readMavenPom.artifactId}-${projectVersion}"
+  tagPrefix = "${readMavenPom.artifactId}:${projectVersion}"
   sh "echo $projectVersion, $tagPrefix"
 
   return "${dockerRegistry}/nz.stuff/experience/${tagPrefix}"
