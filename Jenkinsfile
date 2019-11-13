@@ -8,9 +8,8 @@ def String getDockerImageUrl() {
   readMavenPom = readMavenPom()
 
   dockerRegistry = "gcr.io/shared-218200"
-  projectVersion = "${SPADE_VERSION}".tokenize('-').last()
-  tagPrefix = "${readMavenPom.artifactId}:${projectVersion}"
-  sh "echo $projectVersion, $tagPrefix"
+  tagPrefix = "${readMavenPom.artifactId}:${SPADE_VERSION}"
+  sh "echo $tagPrefix"
 
   return "${dockerRegistry}/nz.stuff/experience/${tagPrefix}"
 }
@@ -52,10 +51,13 @@ pipeline {
           checkoutWithTags()
           script {
             env.PROJECT_NAME = getProjectName()
-            env.SPADE_VERSION = prepareVersion()
+            env.GIT_TAG = prepareVersion()
+            env.SPADE_VERSION = "${GIT_TAG}".tokenize('-').last()
             env.DOCKER_URL = getDockerImageUrl()
+
             echo "project name: ${PROJECT_NAME}"
-            echo "git tag: ${SPADE_VERSION}"
+            echo "git tag: ${GIT_TAG}"
+            echo "spade version: ${SPADE_VERSION}"
             echo "docker url: ${DOCKER_URL}"
           }
         }
@@ -123,8 +125,8 @@ pipeline {
             usernamePassword(credentialsId: "JenkinsOnFairfaxBitbucket", passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')
           ]) {
             sh '''
-            git tag -a -m'jenkins' ${SPADE_VERSION}
-            git push https://${GIT_USERNAME}:${GIT_PASSWORD}@bitbucket.org/fairfax/${PROJECT_NAME}.git ${SPADE_VERSION}
+            git tag -a -m'jenkins' ${GIT_TAG}
+            git push https://${GIT_USERNAME}:${GIT_PASSWORD}@bitbucket.org/fairfax/${PROJECT_NAME}.git ${GIT_TAG}
             '''
           }
         }
