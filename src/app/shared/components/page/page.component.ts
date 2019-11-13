@@ -47,18 +47,6 @@ export class PageComponent implements OnInit {
     this.contentRetriever.getContent().subscribe(async (page: IPage) => {
       this.correlationService.setApiRequestId(page.apiRequestId);
       this.title.setTitle(page.title);
-
-      if (
-        this.runtimeService.isBrowser() &&
-        page.version !== environment.version
-      ) {
-        this.loggerService.error(
-          new Error(
-            `spade version mismatch FE:${environment.version} BE:${page.version}`
-          )
-        );
-      }
-
       this.contentBlocks = page.content;
       this.adService.notify();
       this.analyticsService.trackPageByNielsen();
