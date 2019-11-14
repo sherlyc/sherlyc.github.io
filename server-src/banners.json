@@ -1,7 +1,7 @@
 [
   {
     "startDateTimeUTC": "2019-11-07T16:00:00",
-    "endDateTimeUTC": "2019-11-15T08:59:59",
+    "endDateTimeUTC": "2040-11-15T08:59:59",
     "banner": {
       "height": "50px",
       "url": "https://interactives.stuff.co.nz/live/homepage/uber/index.html?t=1573142400"
