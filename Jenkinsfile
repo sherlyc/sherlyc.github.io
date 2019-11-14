@@ -99,6 +99,9 @@ pipeline {
       }
     }
     stage('smoke test') {
+      when {
+        not { branch 'master' }
+      }
       steps {
         container("dind") {
           script {
