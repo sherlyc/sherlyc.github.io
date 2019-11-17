@@ -9,7 +9,6 @@ import { HttpClient } from '@angular/common/http';
 import { LoggerService } from '../logger/logger.service';
 import { RuntimeService } from '../runtime/runtime.service';
 import { FeatureSwitchService } from '../feature-switch/feature-switch.service';
-import { FeatureName } from '../../../../common/FeatureName';
 
 describe('AdService', () => {
   let scriptInjectorService: ServiceMock<ScriptInjectorService>;
@@ -62,31 +61,14 @@ describe('AdService', () => {
   });
 
   it('should delegate to script injector to load the script on setup', async () => {
-    const manifestUrl = 'http://manifest_url/';
     const aadSdkUrl = 'http://whatever_url/';
-
-    configMock.getConfig.mockReturnValue({ aadSdkUrl: manifestUrl });
-
+    configMock.getConfig.mockReturnValue({ aadSdkUrl });
     httpClient.get.mockReturnValue(of({ url: aadSdkUrl }));
-
     await adService.setup();
-
     expect(scriptInjectorService.load).toHaveBeenCalledWith(
       'aad-sdk',
       aadSdkUrl
     );
-  });
-
-  it('should log error when fails to load ads config', async () => {
-    const manifestUrl = 'http://manifest_url/';
-    configMock.getConfig.mockReturnValue({ aadSdkUrl: manifestUrl });
-    const errorMsg = 'Failed to retrieve ads config';
-    (httpClient.get as jest.Mock).mockReturnValue(throwError(errorMsg));
-
-    await adService.setup();
-    await adService.notify();
-
-    expect(logger.error).toHaveBeenCalledWith(errorMsg);
   });
 
   describe('when AdsRelativePositioning feature is on', () => {
