@@ -65,7 +65,7 @@ describe('Recommendations', () => {
     const req = {
       spadeParams: { apiRequestId: '123123' },
       query: {
-        segment: 'rt=nanz;enth=amuh',
+        segments: 'rt=nanz;enth=amuh',
         totalBasicArticlesUnit: '1',
         totalBasicArticleTitleUnit: '2'
       }
@@ -78,6 +78,12 @@ describe('Recommendations', () => {
     ]);
 
     await getHomePageRecommendations(req, res);
+
+    expect(getRecommendedArticles).toHaveBeenCalledWith(
+      req.query.segments,
+      3,
+      req.spadeParams
+    );
 
     expect(res.json).toHaveBeenCalledWith([
       adUnit,
@@ -94,7 +100,7 @@ describe('Recommendations', () => {
     const req = {
       spadeParams: { apiRequestId: '123123' },
       query: {
-        segment: 'rt=nanz;enth=amuh'
+        segments: 'rt=nanz;enth=amuh'
       }
     } as any;
 
@@ -123,7 +129,7 @@ describe('Recommendations', () => {
     const req = {
       spadeParams: { apiRequestId: '123123' },
       query: {
-        segment: 'rt=nanz;enth=amuh',
+        segments: 'rt=nanz;enth=amuh',
         totalBasicArticlesUnit: '2',
         totalBasicArticleTitleUnit: '3'
       }

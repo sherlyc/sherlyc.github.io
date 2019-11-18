@@ -44,12 +44,12 @@ export const getHomePageRecommendations = async (
   res: Response
 ) => {
   const {
-    segment,
+    segments,
     totalBasicArticlesUnit = 2,
     totalBasicArticleTitleUnit = 3
   } = req.query;
   const articles = await getRecommendedArticles(
-    segment,
+    segments,
     parseInt(totalBasicArticlesUnit, 10) +
       parseInt(totalBasicArticleTitleUnit, 10),
     req.spadeParams
