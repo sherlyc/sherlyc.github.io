@@ -32,8 +32,8 @@ export class RecommendationsService {
       .get<IContentBlock[]>(this.configService.getConfig().recommendationsAPI, {
         params: {
           segments: parsedSegments,
-          totalBasicArticlesUnit: String(totalBasicArticlesUnit),
-          totalBasicArticleTitleUnit: String(totalBasicArticleTitleUnit)
+          totalBasicArticlesUnit: `${totalBasicArticlesUnit}`,
+          totalBasicArticleTitleUnit: `${totalBasicArticleTitleUnit}`
         }
       })
       .pipe(
