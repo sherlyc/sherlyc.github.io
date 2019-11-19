@@ -33,14 +33,9 @@ export class AdService {
     }
     this.load = new Promise(async (resolve, reject) => {
       try {
-        const manifest = await this.http
-          .get<{ url: string }>(this.config.getConfig().aadSdkUrl)
-          .toPromise();
-        if (manifest && manifest.url) {
-          await this.scriptInjectorService.load(
-            ScriptId.adnostic,
-            manifest.url
-          );
+        const { aadSdkUrl } = this.config.getConfig();
+        if (aadSdkUrl) {
+          await this.scriptInjectorService.load(ScriptId.adnostic, aadSdkUrl);
         } else {
           this.logger.error(new Error('AdService - no adnostic URL'));
         }

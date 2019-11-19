@@ -7,7 +7,7 @@ describe('Feature service', () => {
     it('should return true for internal lottery number 303', async () => {
       const result = await isFeatureEnabled(
         FeatureName.Recommendation,
-        303,
+        404,
         DeviceType.unknown
       );
 
@@ -32,7 +32,7 @@ describe('Feature service', () => {
     it('should return true for internal lottery number 304', async () => {
       const result = await isFeatureEnabled(
         FeatureName.RecommendationDisplay,
-        304,
+        404,
         DeviceType.unknown
       );
 

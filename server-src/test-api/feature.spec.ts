@@ -18,9 +18,9 @@ describe('Feature API', () => {
   describe('Recommendations', () => {
     const url = `${featureApi}/${FeatureName.Recommendation}`;
 
-    it('should return true for internal lottery number 303', async () => {
+    it('should return true for internal lottery number 404', async () => {
       const response: supertest.Response = await supertest(app).get(
-        `${url}/303/unknown`
+        `${url}/404/unknown`
       );
 
       expect(response.body).toBe(true);
@@ -41,9 +41,9 @@ describe('Feature API', () => {
   describe('Recommendations Display', () => {
     const url = `${featureApi}/${FeatureName.RecommendationDisplay}`;
 
-    it('should return true for internal lottery number 304', async () => {
+    it('should return true for internal lottery number 404', async () => {
       const response: supertest.Response = await supertest(app).get(
-        `${url}/304/unknown`
+        `${url}/404/unknown`
       );
 
       expect(response.body).toBe(true);
@@ -64,9 +64,9 @@ describe('Feature API', () => {
   describe('Ads Relative Positioning', () => {
     const url = `${featureApi}/${FeatureName.AdsRelativePositioning}`;
 
-    it('should return true for internal lottery number 604', async () => {
+    it('should return true for internal lottery number 404', async () => {
       const response: supertest.Response = await supertest(app).get(
-        `${url}/604/unknown`
+        `${url}/404/unknown`
       );
 
       expect(response.body).toBe(true);
