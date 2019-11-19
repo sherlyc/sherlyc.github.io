@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
+import { CustomHttpParamsCodec } from '../../shared/custom-http-params-codec';
 import { CookieService } from '../cookie/cookie.service';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpParams
+} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { ConfigService } from '../config/config.service';
 import { catchError } from 'rxjs/operators';
@@ -30,11 +35,14 @@ export class RecommendationsService {
 
     return this.http
       .get<IContentBlock[]>(this.configService.getConfig().recommendationsAPI, {
-        params: {
-          segments: parsedSegments,
-          totalBasicArticlesUnit: `${totalBasicArticlesUnit}`,
-          totalBasicArticleTitleUnit: `${totalBasicArticleTitleUnit}`
-        }
+        params: new HttpParams({
+          encoder: new CustomHttpParamsCodec(),
+          fromObject: {
+            segments: parsedSegments,
+            totalBasicArticlesUnit: `${totalBasicArticlesUnit}`,
+            totalBasicArticleTitleUnit: `${totalBasicArticleTitleUnit}`
+          }
+        })
       })
       .pipe(
         catchError((error: HttpErrorResponse) => {
