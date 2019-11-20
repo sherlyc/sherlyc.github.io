@@ -162,96 +162,79 @@ describe('JsonFeed Mapper', () => {
 
       const expected: IRawArticle[] = [rawArticle(feedArticle)];
 
-      Object.values(expected).forEach((expectedArticle: IRawArticle) => {
-        expectedArticle.defconSrc = null;
-        expectedArticle.imageSrc = null;
-        expectedArticle.imageSrcSet = null;
-        expectedArticle.strapImageSrc = null;
-        expectedArticle.strapImageSrcSet = null;
+      Object.values(expected).forEach((article: IRawArticle) => {
+        article.defconSrc = null;
+        article.imageSrc = null;
+        article.imageSrcSet = null;
+        article.strapImageSrc = null;
+        article.strapImageSrcSet = null;
       });
 
       expect(mapToRawArticleList(data.stories)).toEqual(expected);
     });
 
-    it('should return thumbnail image when strap image is not provided', () => {
+    it('should always get thumbnail image', () => {
       const thumbnailImageUrl =
-        'https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.90x60.11z4e0.png/1439844947411.jpg';
-      const article: IJsonFeedUrl = {
-        id: '63784440',
-        title: 'Puzzles',
-        alt_headline: 'Alt headline',
-        isHeadlineOverrideApplied: true,
-        alt_intro: 'Test your mind with our puzzles',
-        datetime_display: '08:55 18/08/2015',
-        asset_type: JsonFeedAssetType.URL,
-        headline_flags: [],
-        sponsored: false,
-        datetime_iso8601: '20150818T085547+1200',
-        url: 'http://www.stuff.co.nz/life-style/puzzles',
-        images: [
-          {
-            id: 63784214,
-            datetime_iso8601: '20150818T085547+1200',
-            datetime_display: '08:55 18/08/2015',
-            creditline: '',
-            caption: 'x',
-            variants: [
-              {
-                id: 63784214,
-                layout: JsonFeedImageType.SMALL_THUMBNAIL,
-                src: thumbnailImageUrl,
-                media_type: 'Photo',
-                width: '90',
-                height: '60',
-                urls: {
-                  '90x60': 'https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.90x60.11z4e0.png/1439844947411.jpg',
-                  '180x120': 'https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.180x120.11z4e0.png/1439844947411.jpg'
-                },
-                image_type_id: 'StuffThumbnail'
-              }
-            ],
-            asset_type: 'IMAGE'
-          }
-        ],
-      };
-      const data: IJsonFeedArticleList = { stories: [ article ] };
-      const [result] = mapToRawArticleList(data.stories);
-      expect(result.imageSrc).toBe(thumbnailImageUrl);
-    });
-
-    it('should generate image source set', () => {
-      const expectedImageSourceSet =
-        'www.example.com/thumbnail.90x60.jpg 90w, ' +
-        'www.example.com/thumbnail.180x120.jpg 180w';
+        'http://www.example.com/thumbnail.jpeg';
 
       const feedArticle = jsonFeedArticle();
       feedArticle.images = [{
-        id: 63784214,
-        datetime_iso8601: '20150818T085547+1200',
-        datetime_display: '08:55 18/08/2015',
-        creditline: '',
-        caption: 'x',
+        id: 112150634,
+        datetime_iso8601: '20190422T000100+1200',
+        datetime_display: '00:01 22/04/2019',
+        creditline: 'Iain McGregor/Stuff',
+        source_code: 'the-press',
+        source_name: 'The Press',
+        caption: 'Ōpārara Basin.',
         variants: [
           {
-            id: 63784214,
+            id: 112150634,
             layout: JsonFeedImageType.SMALL_THUMBNAIL,
-            src: 'www.example.com/thumbnail.90x60.jpg',
+            src: thumbnailImageUrl,
             media_type: 'Photo',
             width: '90',
             height: '60',
-            urls: {
-              '90x60': 'www.example.com/thumbnail.90x60.jpg',
-              '180x120': 'www.example.com/thumbnail.180x120.jpg'
-            },
+            urls: [{
+              '90x60': 'http://www.example.com/thumbnail90x60.jpeg',
+              '130x86': 'http://www.example.com/thumbnail130x86.jpeg',
+              '140x93': 'http://www.example.com/thumbnail140x93.jpeg',
+              '240x160': 'http://www.example.com/thumbnail240x160.jpeg'
+            }],
             image_type_id: 'StuffThumbnail'
           }
         ],
-        asset_type: 'IMAGE'
+        asset_type: JsonFeedImageType.SMALL_THUMBNAIL
       }];
       const data: IJsonFeedArticleList = { stories: [feedArticle] };
 
-      const [result] = mapToRawArticleList(data.stories);
-      expect(result.imageSrcSet).toBe(expectedImageSourceSet);
+      const result = mapToRawArticleList(data.stories);
+
+      expect(result[0].imageSrc).toBe(thumbnailImageUrl);
+    });
+
+    it('should return thumbnail image when strap image is not provided', () => {
+      const data: IJsonFeedArticleList = cloneDeep(
+        jsonfeed as IJsonFeedArticleList
+      );
+      const result = mapToRawArticleList(data.stories);
+      const thumbnailImageUrl =
+        'https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.90x60.11z4e0.png/1439844947411.jpg';
+      expect(result[3].imageSrc).toBe(thumbnailImageUrl);
+    });
+
+    it('should generate image source set', () => {
+      const data: IJsonFeedArticleList = cloneDeep(
+        jsonfeed as IJsonFeedArticleList
+      );
+
+      const result = mapToRawArticleList(data.stories);
+
+      const imageSourceSet =
+        'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/' +
+        'image.related.StuffThumbnail.90x60.1tgvdg.png/1547607024623.jpg 90w, ' +
+        'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/' +
+        'image.related.StuffThumbnail.180x120.1tgvdg.png/1547607024623.jpg 180w';
+      expect(result[0].imageSrcSet).toBe(imageSourceSet);
     });
 
     it('should generate image source set from next image in the same article when first image does not have thumbnail variant', () => {
