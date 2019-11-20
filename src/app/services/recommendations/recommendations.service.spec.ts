@@ -25,6 +25,7 @@ describe('RecommendationsService', () => {
     id: '1',
     strapName: 'yup',
     indexHeadline: 'yup',
+    title: 'yup',
     introText: 'yup',
     linkUrl: 'yup',
     imageSrc: 'yup',

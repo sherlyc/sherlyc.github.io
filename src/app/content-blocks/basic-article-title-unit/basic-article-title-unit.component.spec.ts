@@ -50,6 +50,7 @@ describe('BasicArticleTitleUnitComponent', () => {
       id: '123123123',
       strapName: 'Top stories',
       indexHeadline: headline,
+      title: 'Title',
       linkUrl: '/headline/top-news',
       headlineFlags,
       lastPublishedTime: timeStamp
@@ -80,6 +81,7 @@ describe('BasicArticleTitleUnitComponent', () => {
       type: ContentBlockType.BasicArticleTitleUnit,
       id: '123123123',
       indexHeadline: 'Headline',
+      title: 'Title',
       strapName: 'Top stories',
       linkUrl,
       headlineFlags: [],
@@ -101,6 +103,7 @@ describe('BasicArticleTitleUnitComponent', () => {
       id: articleId,
       strapName,
       indexHeadline,
+      title: 'Title',
       linkUrl,
       headlineFlags: [],
       lastPublishedTime: 1

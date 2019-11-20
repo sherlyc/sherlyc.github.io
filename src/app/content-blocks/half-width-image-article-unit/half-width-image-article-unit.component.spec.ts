@@ -26,6 +26,7 @@ describe('BigImageArticleUnitComponent', () => {
     strapName: 'National',
     indexHeadline: 'Dummy Headline',
     introText: 'Dummy intro text',
+    title: 'Title',
     linkUrl: 'https://dummyurl.com',
     imageSrc: 'https://dummyimagesrc.com',
     imageSrcSet: 'https://dummyimagesrc.com 1w',
