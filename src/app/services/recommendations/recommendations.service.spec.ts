@@ -90,7 +90,6 @@ describe('RecommendationsService', () => {
 
     httpMock
       .expectOne((req) => {
-        console.log(req.params);
         expect(req.method).toBe('GET');
         expect(req.url).toBe(recommendationsAPI);
         expect(req.params.get('segments')).toBe('a=123;b=456');
@@ -132,7 +131,7 @@ describe('RecommendationsService', () => {
     });
 
     httpMock
-      .expectOne((req) => true)
+      .expectOne(() => true)
       .flush(null, { status: 500, statusText: 'Internal Server Error' });
     httpMock.verify();
   });
