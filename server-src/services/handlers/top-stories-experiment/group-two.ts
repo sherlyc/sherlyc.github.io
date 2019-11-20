@@ -27,6 +27,7 @@ const grayDefconArticleUnit = (
   id: article.id,
   strapName,
   indexHeadline: article.indexHeadline,
+  title: article.title,
   introText: article.introText,
   imageSrc: article.defconSrc,
   linkUrl: article.linkUrl,

@@ -1,6 +1,4 @@
 import * as jsonfeed from '../__fixtures__/jsonfeed/jsonfeed.json';
-import * as rawArticles from '../__fixtures__/jsonfeed/raw-article-list.json';
-import * as temporaryRawArticles from '../__fixtures__/jsonfeed/temporal-raw-articles.json';
 import { mapToRawArticleList } from './jsonfeed-mapper';
 import { IJsonFeedArticleList } from '../__types__/IJsonFeedArticleList';
 import { cloneDeep } from 'lodash';

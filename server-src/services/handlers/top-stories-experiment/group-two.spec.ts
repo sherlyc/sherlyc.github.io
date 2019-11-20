@@ -26,6 +26,7 @@ describe('Group two top stories', () => {
   const articleOne: IRawArticle = {
     id: '1',
     indexHeadline: 'Article One',
+    title: 'Title One',
     introText: 'Article One Intro',
     linkUrl: '/link1',
     imageSrc: 'article.jpg',
@@ -40,6 +41,7 @@ describe('Group two top stories', () => {
   const articleTwo: IRawArticle = {
     id: '2',
     indexHeadline: 'An Article',
+    title: 'Title Two',
     introText: 'Article Text',
     linkUrl: '/link2',
     imageSrc: 'article.jpg',
@@ -56,6 +58,7 @@ describe('Group two top stories', () => {
     id: '1',
     strapName,
     indexHeadline: 'Article One',
+    title: 'Title One',
     introText: 'Article One Intro',
     linkUrl: '/link1',
     imageSrc: 'defcon.jpg',
@@ -68,6 +71,7 @@ describe('Group two top stories', () => {
     id: '2',
     strapName,
     indexHeadline: 'An Article',
+    title: 'Title Two',
     introText: 'Article Text',
     linkUrl: '/link2',
     imageSrc: 'defcon.jpg',
