@@ -86,7 +86,7 @@ describe('ImageLinkUnitComponent', () => {
   });
 
   it('should send analytics when clicked', () => {
-    const { strapName, indexHeadline, id } = articleData;
+    const { strapName, title, id } = articleData;
     component.input = articleData;
 
     fixture.detectChanges();
@@ -97,7 +97,7 @@ describe('ImageLinkUnitComponent', () => {
     expect(analyticsService.pushEvent).toHaveBeenCalledWith({
       type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
       strapName,
-      articleHeadline: indexHeadline,
+      articleHeadline: title,
       articleId: id
     });
   });

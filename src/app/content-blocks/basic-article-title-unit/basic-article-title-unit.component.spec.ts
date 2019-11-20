@@ -94,17 +94,17 @@ describe('BasicArticleTitleUnitComponent', () => {
   });
 
   it('should send analytics when clicked', () => {
-    const linkUrl = '/national/top-news';
     const strapName = 'National';
-    const indexHeadline = 'Headline';
     const articleId = '123123123';
+    const title = 'Title';
+
     component.input = {
       type: ContentBlockType.BasicArticleTitleUnit,
       id: articleId,
       strapName,
-      indexHeadline,
-      title: 'Title',
-      linkUrl,
+      indexHeadline: 'Headline',
+      title,
+      linkUrl: '/national',
       headlineFlags: [],
       lastPublishedTime: 1
     };
@@ -112,10 +112,11 @@ describe('BasicArticleTitleUnitComponent', () => {
 
     const anchorTag = fixture.debugElement.query(By.css('a')).nativeElement;
     anchorTag.click();
+
     expect(analyticsService.pushEvent).toBeCalledWith({
       type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
       strapName,
-      articleHeadline: indexHeadline,
+      articleHeadline: title,
       articleId: articleId
     });
   });
