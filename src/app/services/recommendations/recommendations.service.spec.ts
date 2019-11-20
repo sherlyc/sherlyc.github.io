@@ -3,6 +3,7 @@ import {
   HttpTestingController
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { CustomHttpParamsCodec } from '../../shared/custom-http-params-codec';
 import { ConfigService } from '../config/config.service';
 import { CookieService } from '../cookie/cookie.service';
 import { LoggerService } from '../logger/logger.service';
@@ -10,6 +11,8 @@ import { mockService, ServiceMock } from '../mocks/MockService';
 import { RecommendationsService } from './recommendations.service';
 import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
+
+jest.mock('../../shared/custom-http-params-codec');
 
 describe('RecommendationsService', () => {
   const recommendationsAPI = 'httpMock://localhost/recommendations';
@@ -72,6 +75,11 @@ describe('RecommendationsService', () => {
     expect(recommendationsService).toBeTruthy();
   });
 
+  it('should encode segments parameter when getting recommendations', () => {
+    recommendationsService.getRecommendations(2, 3);
+    expect(CustomHttpParamsCodec).toHaveBeenCalled();
+  });
+
   it('should get recommendations', () => {
     cookieService.get.mockReturnValue('a=123;b=456;c=789');
     const articles = [basicArticleUnit, basicArticleUnit];
@@ -123,7 +131,7 @@ describe('RecommendationsService', () => {
     });
 
     httpMock
-      .expectOne((req) => true)
+      .expectOne(() => true)
       .flush(null, { status: 500, statusText: 'Internal Server Error' });
     httpMock.verify();
   });
