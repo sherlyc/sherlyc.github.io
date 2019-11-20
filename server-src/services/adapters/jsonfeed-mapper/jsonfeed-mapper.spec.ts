@@ -8,6 +8,7 @@ import { JsonFeedImageType } from '../__types__/JsonFeedImageType';
 import * as moment from 'moment';
 import { IJsonFeedArticle } from '../__types__/IJsonFeedArticle';
 import { JsonFeedAssetType } from '../__types__/JsonFeedAssetType';
+import { IJsonFeedUrl } from '../__types__/IJsonFeedUrl';
 
 describe('JsonFeed Mapper', () => {
   const jsonFeedArticle = (): IJsonFeedArticle => ({
@@ -38,6 +39,21 @@ describe('JsonFeed Mapper', () => {
     galleries: []
   });
 
+  const jsonFeedUrlAsset = (): IJsonFeedUrl => ({
+    id: '112150655',
+    asset_type: JsonFeedAssetType.URL,
+    headline_flags: [],
+    sponsored: false,
+    alt_headline: 'Paving',
+    title: 'Paving over paradise',
+    isHeadlineOverrideApplied: true,
+    url: 'https://interactives.stuff.co.nz/2019/04/the-tourist-trap/#section-wS1QFb7arf',
+    datetime_display: '00:01 22/04/2019',
+    alt_intro: 'The ancient, beautiful Ōpārara Basin is the subject of development plans.',
+    images: [],
+    datetime_iso8601: '20190422T000100+1200'
+  });
+
   const rawArticle = (article: IJsonFeedArticle): IRawArticle => ({
     id: `${article.id}`,
     indexHeadline: article.alt_headline,
@@ -53,13 +69,28 @@ describe('JsonFeed Mapper', () => {
     headlineFlags: article.headline_flags
   });
 
-  it('should map json feed article to raw article', () => {
-    const feedArticle = jsonFeedArticle();
-    const expectedArticle = rawArticle(feedArticle);
-    expect(mapToRawArticleList([feedArticle])).toEqual([expectedArticle]);
+  const rawUrlArticle = (article: IJsonFeedUrl): IRawArticle => ({
+    id: `${article.id}`,
+    indexHeadline: article.alt_headline,
+    title: article.title,
+    introText: article.alt_intro,
+    linkUrl: article.url,
+    defconSrc: null,
+    imageSrc: null,
+    strapImageSrc: null,
+    imageSrcSet: null,
+    strapImageSrcSet: null,
+    lastPublishedTime: moment(article.datetime_iso8601).unix(),
+    headlineFlags: article.headline_flags
   });
 
-  describe(('article headline'), () => {
+  describe('article asset', () => {
+    it('should map json feed article to raw article', () => {
+      const feedArticle = jsonFeedArticle();
+      const expectedArticle = rawArticle(feedArticle);
+      expect(mapToRawArticleList([feedArticle])).toEqual([expectedArticle]);
+    });
+
     it('should map alt_headline to indexHeadline when override is true', () => {
       const expectedHeadline = 'Alt headline';
 
@@ -87,6 +118,40 @@ describe('JsonFeed Mapper', () => {
     });
   });
 
+  describe('url asset', () => {
+    it('should map json feed url asset to raw article', () => {
+      const urlAsset = jsonFeedUrlAsset();
+      const expectedArticle = rawUrlArticle(urlAsset);
+      expect(mapToRawArticleList([urlAsset])).toEqual([expectedArticle]);
+    });
+
+    it('should map alt_headline to indexHeadline when override is true', () => {
+      const expectedHeadline = 'Alt headline';
+
+      const urlAsset = jsonFeedUrlAsset();
+      urlAsset.isHeadlineOverrideApplied = true;
+      urlAsset.alt_headline = expectedHeadline;
+
+      const expectedArticle = rawUrlArticle(urlAsset);
+      expectedArticle.indexHeadline = expectedHeadline;
+
+      expect(mapToRawArticleList([urlAsset])).toEqual([expectedArticle]);
+    });
+
+    it('should map title to indexHeadline when override is false', () => {
+      const expectedTitle = 'Title';
+
+      const urlAsset = jsonFeedUrlAsset();
+      urlAsset.isHeadlineOverrideApplied = false;
+      urlAsset.title = expectedTitle;
+
+      const expectedArticle = rawUrlArticle(urlAsset);
+      expectedArticle.indexHeadline = expectedTitle;
+
+      expect(mapToRawArticleList([urlAsset])).toEqual([expectedArticle]);
+    });
+  });
+
   describe('images', () => {
     it('should handle empty image value', () => {
       const feedArticle = jsonFeedArticle();
@@ -109,12 +174,41 @@ describe('JsonFeed Mapper', () => {
     });
 
     it('should always get thumbnail image', () => {
-      const data: IJsonFeedArticleList = cloneDeep(
-        jsonfeed as IJsonFeedArticleList
-      );
-      const result = mapToRawArticleList(data.stories);
       const thumbnailImageUrl =
-        'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffThumbnail.90x60.1tgvdg.png/1547607024623.jpg';
+        'http://www.example.com/thumbnail.jpeg';
+
+      const feedArticle = jsonFeedArticle();
+      feedArticle.images = [{
+        id: 112150634,
+        datetime_iso8601: '20190422T000100+1200',
+        datetime_display: '00:01 22/04/2019',
+        creditline: 'Iain McGregor/Stuff',
+        source_code: 'the-press',
+        source_name: 'The Press',
+        caption: 'Ōpārara Basin.',
+        variants: [
+          {
+            id: 112150634,
+            layout: JsonFeedImageType.SMALL_THUMBNAIL,
+            src: thumbnailImageUrl,
+            media_type: 'Photo',
+            width: '90',
+            height: '60',
+            urls: [{
+              '90x60': 'http://www.example.com/thumbnail90x60.jpeg',
+              '130x86': 'http://www.example.com/thumbnail130x86.jpeg',
+              '140x93': 'http://www.example.com/thumbnail140x93.jpeg',
+              '240x160': 'http://www.example.com/thumbnail240x160.jpeg'
+            }],
+            image_type_id: 'StuffThumbnail'
+          }
+        ],
+        asset_type: JsonFeedImageType.SMALL_THUMBNAIL
+      }];
+      const data: IJsonFeedArticleList = { stories: [feedArticle] };
+
+      const result = mapToRawArticleList(data.stories);
+
       expect(result[0].imageSrc).toBe(thumbnailImageUrl);
     });
 
