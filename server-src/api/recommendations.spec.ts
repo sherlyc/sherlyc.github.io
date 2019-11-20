@@ -18,6 +18,7 @@ describe('Recommendations', () => {
   const rawArticle = {
     id: '1',
     indexHeadline: 'a',
+    title: 'a',
     introText: 'a',
     linkUrl: 'asdf',
     defconSrc: 'asdf',
@@ -34,6 +35,7 @@ describe('Recommendations', () => {
     id: '1',
     strapName: 'Recommendations',
     indexHeadline: 'a',
+    title: 'a',
     introText: 'a',
     linkUrl: 'asdf',
     imageSrc: 'asdf',
@@ -47,6 +49,7 @@ describe('Recommendations', () => {
     id: '1',
     strapName: 'Recommendations',
     indexHeadline: 'a',
+    title: 'a',
     linkUrl: 'asdf',
     lastPublishedTime: 34567,
     headlineFlags: []
