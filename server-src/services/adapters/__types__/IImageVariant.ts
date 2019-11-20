@@ -5,8 +5,8 @@ export interface IImageVariant {
 
   src: string;
   layout: JsonFeedImageType;
-  urls: Array<{
+  urls: {
     [key: string]: string;
-  }>;
+  };
   image_type_id: string;
 }
