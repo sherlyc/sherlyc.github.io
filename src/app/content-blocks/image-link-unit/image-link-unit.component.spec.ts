@@ -21,6 +21,7 @@ describe('ImageLinkUnitComponent', () => {
     id: '123123',
     strapName: 'National',
     indexHeadline: 'Dummy Headline',
+    title: 'Title Headline',
     linkUrl: 'https://dummyurl.com',
     imageSrc: 'https://dummyimagesrc.com',
     imageSrcSet: 'https://dummyimagesrc.com 1w',
