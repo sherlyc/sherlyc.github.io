@@ -176,34 +176,45 @@ describe('JsonFeed Mapper', () => {
     it('should return thumbnail image when strap image is not provided', () => {
       const thumbnailImageUrl =
         'https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.90x60.11z4e0.png/1439844947411.jpg';
-      const feedArticle = jsonFeedArticle();
-      feedArticle.images = [
-        {
-          id: 63784214,
-          datetime_iso8601: '20150818T085547+1200',
-          datetime_display: '08:55 18/08/2015',
-          creditline: '',
-          caption: 'x',
-          variants: [
-            {
-              id: 63784214,
-              layout: JsonFeedImageType.SMALL_THUMBNAIL,
-              src: thumbnailImageUrl,
-              media_type: 'Photo',
-              width: '90',
-              height: '60',
-              urls: {
-                '90x60': 'https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.90x60.11z4e0.png/1439844947411.jpg',
-                '180x120': 'https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.180x120.11z4e0.png/1439844947411.jpg'
-              },
-              image_type_id: 'StuffThumbnail'
-            }
-          ],
-          asset_type: 'IMAGE'
-        }
-      ];
-
-      const data: IJsonFeedArticleList = { stories: [ feedArticle ] };
+      const article: IJsonFeedUrl = {
+        id: '63784440',
+        title: 'Puzzles',
+        alt_headline: 'Alt headline',
+        isHeadlineOverrideApplied: true,
+        alt_intro: 'Test your mind with our puzzles',
+        datetime_display: '08:55 18/08/2015',
+        asset_type: JsonFeedAssetType.URL,
+        headline_flags: [],
+        sponsored: false,
+        datetime_iso8601: '20150818T085547+1200',
+        url: 'http://www.stuff.co.nz/life-style/puzzles',
+        images: [
+          {
+            id: 63784214,
+            datetime_iso8601: '20150818T085547+1200',
+            datetime_display: '08:55 18/08/2015',
+            creditline: '',
+            caption: 'x',
+            variants: [
+              {
+                id: 63784214,
+                layout: JsonFeedImageType.SMALL_THUMBNAIL,
+                src: thumbnailImageUrl,
+                media_type: 'Photo',
+                width: '90',
+                height: '60',
+                urls: {
+                  '90x60': 'https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.90x60.11z4e0.png/1439844947411.jpg',
+                  '180x120': 'https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.180x120.11z4e0.png/1439844947411.jpg'
+                },
+                image_type_id: 'StuffThumbnail'
+              }
+            ],
+            asset_type: 'IMAGE'
+          }
+        ],
+      };
+      const data: IJsonFeedArticleList = { stories: [ article ] };
       const [result] = mapToRawArticleList(data.stories);
       expect(result.imageSrc).toBe(thumbnailImageUrl);
     });
@@ -244,128 +255,61 @@ describe('JsonFeed Mapper', () => {
     });
 
     it('should generate image source set from next image in the same article when first image does not have thumbnail variant', () => {
-      const expectedImageSourceSet =
-        'www.example.com/thumbnail.90x60.jpg 90w, ' +
-        'www.example.com/thumbnail.180x120.jpg 180w';
+      const data: IJsonFeedArticleList = cloneDeep(
+        jsonfeed as IJsonFeedArticleList
+      );
 
-      const feedArticle = jsonFeedArticle();
-      feedArticle.images = [{
-        id: 63784214,
-        datetime_iso8601: '20150818T085547+1200',
-        datetime_display: '08:55 18/08/2015',
-        creditline: '',
-        caption: 'x',
-        variants: [
-          {
-            id: 63784214,
-            layout: JsonFeedImageType.DEFCON_IMAGE,
-            src: 'www.example.com/defcon.90x60.jpg',
-            media_type: 'Photo',
-            width: '90',
-            height: '60',
-            urls: {
-              '90x60': 'www.example.com/defcon.90x60.jpg',
-              '180x120': 'www.example.com/defcon.180x120.jpg'
-            },
-            image_type_id: 'Defcon'
-          }
-        ],
-        asset_type: 'IMAGE'
-      },
-      {
-        id: 63784214,
-        datetime_iso8601: '20150818T085547+1200',
-        datetime_display: '08:55 18/08/2015',
-        creditline: '',
-        caption: 'x',
-        variants: [
-          {
-            id: 63784214,
-            layout: JsonFeedImageType.SMALL_THUMBNAIL,
-            src: 'www.example.com/thumbnail.90x60.jpg',
-            media_type: 'Photo',
-            width: '90',
-            height: '60',
-            urls: {
-              '90x60': 'www.example.com/thumbnail.90x60.jpg',
-              '180x120': 'www.example.com/thumbnail.180x120.jpg'
-            },
-            image_type_id: 'StuffThumbnail'
-          }
-        ],
-        asset_type: 'IMAGE'
-      }];
-      const data: IJsonFeedArticleList = { stories: [feedArticle] };
+      const variantsWithoutThumbnail = data.stories[0].images[0].variants.filter(
+        (variant: any) => variant.layout !== JsonFeedImageType.SMALL_THUMBNAIL
+      );
 
-      const [result] = mapToRawArticleList(data.stories);
+      data.stories[0].images[0].variants = variantsWithoutThumbnail;
 
-      expect(result.imageSrcSet).toBe(expectedImageSourceSet);
+      const result = mapToRawArticleList(data.stories);
+
+      const imageSourceSet =
+        'https://resources.stuff.co.nz/1547607024623.jpg 90w, ' +
+        'https://resources.stuff.co.nz/1547607024623.jpg 180w';
+      expect(result[0].imageSrcSet).toBe(imageSourceSet);
     });
 
     it('should fallback to strap image when defcon image is not provided', () => {
-      const feedArticle = jsonFeedArticle();
-      const expectedDefconSrc = 'www.example.com/defcon.90x60.jpg';
-      feedArticle.images = [{
-        id: 63784214,
-        datetime_iso8601: '20150818T085547+1200',
-        datetime_display: '08:55 18/08/2015',
-        creditline: '',
-        caption: 'x',
-        variants: [
-          {
-            id: 63784214,
-            layout: JsonFeedImageType.STRAP_IMAGE,
-            src: expectedDefconSrc,
-            media_type: 'Photo',
-            width: '90',
-            height: '60',
-            urls: {
-              '90x60': 'www.example.com/defcon.90x60.jpg',
-              '180x120': 'www.example.com/defcon.180x120.jpg'
-            },
-            image_type_id: 'Defcon'
-          }
-        ],
-        asset_type: 'IMAGE'
-      }];
-      const data: IJsonFeedArticleList = { stories: [feedArticle] };
+      const data: IJsonFeedArticleList = cloneDeep(
+        jsonfeed as IJsonFeedArticleList
+      );
 
-      const [result] = mapToRawArticleList(data.stories);
+      const variantsWithoutDefcon = data.stories[0].images[0].variants.filter(
+        (variant: any) => variant.layout !== JsonFeedImageType.DEFCON_IMAGE
+      );
 
-      expect(result.defconSrc).toBe(expectedDefconSrc);
+      data.stories[0].images[0].variants = variantsWithoutDefcon;
+
+      const variantsOnlyHaveStrap = data.stories[0].images[0].variants.find(
+        (variant: any) => variant.layout === JsonFeedImageType.STRAP_IMAGE
+      );
+
+      const result = mapToRawArticleList(data.stories);
+
+      expect(result[0].defconSrc).toBe(variantsOnlyHaveStrap.src);
     });
 
     it('should fallback to thumbnail image when defcon image and strap images are not provided', () => {
-      const feedArticle = jsonFeedArticle();
-      const expectedDefconSrc = 'www.example.com/defcon.90x60.jpg';
-      feedArticle.images = [{
-        id: 63784214,
-        datetime_iso8601: '20150818T085547+1200',
-        datetime_display: '08:55 18/08/2015',
-        creditline: '',
-        caption: 'x',
-        variants: [
-          {
-            id: 63784214,
-            layout: JsonFeedImageType.SMALL_THUMBNAIL,
-            src: expectedDefconSrc,
-            media_type: 'Photo',
-            width: '90',
-            height: '60',
-            urls: {
-              '90x60': 'www.example.com/defcon.90x60.jpg',
-              '180x120': 'www.example.com/defcon.180x120.jpg'
-            },
-            image_type_id: 'Defcon'
-          }
-        ],
-        asset_type: 'IMAGE'
-      }];
-      const data: IJsonFeedArticleList = { stories: [feedArticle] };
+      const data: IJsonFeedArticleList = cloneDeep(
+        jsonfeed as IJsonFeedArticleList
+      );
 
-      const [result] = mapToRawArticleList(data.stories);
+      const variantsOnlyHaveThumbnail = data.stories[0].images[0].variants.find(
+        (variant: any) => variant.layout === JsonFeedImageType.SMALL_THUMBNAIL
+      );
 
-      expect(result.defconSrc).toBe(expectedDefconSrc);
+      data.stories[0].images = [
+        {
+          variants: [variantsOnlyHaveThumbnail]
+        }
+      ];
+
+      const articles = mapToRawArticleList(data.stories);
+      expect(articles[0].defconSrc).toBe(variantsOnlyHaveThumbnail.src);
     });
   });
 
