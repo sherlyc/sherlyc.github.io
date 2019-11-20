@@ -1,7 +1,5 @@
-import * as jsonfeed from '../__fixtures__/jsonfeed/jsonfeed.json';
 import { mapToRawArticleList } from './jsonfeed-mapper';
 import { IJsonFeedArticleList } from '../__types__/IJsonFeedArticleList';
-import { cloneDeep } from 'lodash';
 import { IRawArticle } from '../__types__/IRawArticle';
 import { HeadlineFlags } from '../../../../common/HeadlineFlags';
 import { JsonFeedImageType } from '../__types__/JsonFeedImageType';
@@ -16,13 +14,16 @@ describe('JsonFeed Mapper', () => {
     asset_type: JsonFeedAssetType.ARTICLE,
     headline_flags: [],
     sponsored: false,
-    path: '/national/109962196/cctv-shows-unruly-travelling-family-taking-christmas-tree-from-auckland-caltex',
-    url: 'http://www.stuff.co.nz/_json/national/109962196/cctv-shows-unruly-travelling-family-taking-christmas-tree-from-auckland-caltex',
+    path:
+      '/national/109962196/cctv-shows-unruly-travelling-family-taking-christmas-tree-from-auckland-caltex',
+    url:
+      'http://www.stuff.co.nz/_json/national/109962196/cctv-shows-unruly-travelling-family-taking-christmas-tree-from-auckland-caltex',
     section: 'National',
     'section-home': 'National',
     'section-top-level': 'National',
     layout: 'landscape-image',
-    title: 'CCTV shows unruly travelling family taking Christmas tree from Auckland Caltex',
+    title:
+      'CCTV shows unruly travelling family taking Christmas tree from Auckland Caltex',
     alt_headline: 'Not even Christmas is safe',
     isHeadlineOverrideApplied: true,
     datetime_iso8601: '20190116T154002+1300',
@@ -30,8 +31,10 @@ describe('JsonFeed Mapper', () => {
     byline: 'BRAD FLAHIVE',
     source_code: '1national-newsroom',
     source_name: 'Stuff',
-    intro: 'An unruly family travelling New Zealand has been causing mayhem for more than a month, and not even the Christmas trees were safe. ',
-    alt_intro: 'Unruly travelling family hit an Auckland Caltex four times. They even took the Christmas tree.',
+    intro:
+      'An unruly family travelling New Zealand has been causing mayhem for more than a month, and not even the Christmas trees were safe. ',
+    alt_intro:
+      'Unruly travelling family hit an Auckland Caltex four times. They even took the Christmas tree.',
     body: '<p>Hello</p>',
     images: [],
     videos: [],
@@ -47,9 +50,11 @@ describe('JsonFeed Mapper', () => {
     alt_headline: 'Paving',
     title: 'Paving over paradise',
     isHeadlineOverrideApplied: true,
-    url: 'https://interactives.stuff.co.nz/2019/04/the-tourist-trap/#section-wS1QFb7arf',
+    url:
+      'https://interactives.stuff.co.nz/2019/04/the-tourist-trap/#section-wS1QFb7arf',
     datetime_display: '00:01 22/04/2019',
-    alt_intro: 'The ancient, beautiful Ōpārara Basin is the subject of development plans.',
+    alt_intro:
+      'The ancient, beautiful Ōpārara Basin is the subject of development plans.',
     images: [],
     datetime_iso8601: '20190422T000100+1200'
   });
@@ -193,8 +198,10 @@ describe('JsonFeed Mapper', () => {
               width: '90',
               height: '60',
               urls: {
-                '90x60': 'https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.90x60.11z4e0.png/1439844947411.jpg',
-                '180x120': 'https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.180x120.11z4e0.png/1439844947411.jpg'
+                '90x60':
+                  'https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.90x60.11z4e0.png/1439844947411.jpg',
+                '180x120':
+                  'https://resources.stuff.co.nz/content/dam/images/1/1/z/4/7/q/image.related.StuffThumbnail.180x120.11z4e0.png/1439844947411.jpg'
               },
               image_type_id: 'StuffThumbnail'
             }
@@ -203,7 +210,7 @@ describe('JsonFeed Mapper', () => {
         }
       ];
 
-      const data: IJsonFeedArticleList = { stories: [ feedArticle ] };
+      const data: IJsonFeedArticleList = { stories: [feedArticle] };
       const [result] = mapToRawArticleList(data.stories);
       expect(result.imageSrc).toBe(thumbnailImageUrl);
     });
@@ -214,29 +221,31 @@ describe('JsonFeed Mapper', () => {
         'www.example.com/thumbnail.180x120.jpg 180w';
 
       const feedArticle = jsonFeedArticle();
-      feedArticle.images = [{
-        id: 63784214,
-        datetime_iso8601: '20150818T085547+1200',
-        datetime_display: '08:55 18/08/2015',
-        creditline: '',
-        caption: 'x',
-        variants: [
-          {
-            id: 63784214,
-            layout: JsonFeedImageType.SMALL_THUMBNAIL,
-            src: 'www.example.com/thumbnail.90x60.jpg',
-            media_type: 'Photo',
-            width: '90',
-            height: '60',
-            urls: {
-              '90x60': 'www.example.com/thumbnail.90x60.jpg',
-              '180x120': 'www.example.com/thumbnail.180x120.jpg'
-            },
-            image_type_id: 'StuffThumbnail'
-          }
-        ],
-        asset_type: 'IMAGE'
-      }];
+      feedArticle.images = [
+        {
+          id: 63784214,
+          datetime_iso8601: '20150818T085547+1200',
+          datetime_display: '08:55 18/08/2015',
+          creditline: '',
+          caption: 'x',
+          variants: [
+            {
+              id: 63784214,
+              layout: JsonFeedImageType.SMALL_THUMBNAIL,
+              src: 'www.example.com/thumbnail.90x60.jpg',
+              media_type: 'Photo',
+              width: '90',
+              height: '60',
+              urls: {
+                '90x60': 'www.example.com/thumbnail.90x60.jpg',
+                '180x120': 'www.example.com/thumbnail.180x120.jpg'
+              },
+              image_type_id: 'StuffThumbnail'
+            }
+          ],
+          asset_type: 'IMAGE'
+        }
+      ];
       const data: IJsonFeedArticleList = { stories: [feedArticle] };
 
       const [result] = mapToRawArticleList(data.stories);
@@ -249,52 +258,54 @@ describe('JsonFeed Mapper', () => {
         'www.example.com/thumbnail.180x120.jpg 180w';
 
       const feedArticle = jsonFeedArticle();
-      feedArticle.images = [{
-        id: 63784214,
-        datetime_iso8601: '20150818T085547+1200',
-        datetime_display: '08:55 18/08/2015',
-        creditline: '',
-        caption: 'x',
-        variants: [
-          {
-            id: 63784214,
-            layout: JsonFeedImageType.DEFCON_IMAGE,
-            src: 'www.example.com/defcon.90x60.jpg',
-            media_type: 'Photo',
-            width: '90',
-            height: '60',
-            urls: {
-              '90x60': 'www.example.com/defcon.90x60.jpg',
-              '180x120': 'www.example.com/defcon.180x120.jpg'
-            },
-            image_type_id: 'Defcon'
-          }
-        ],
-        asset_type: 'IMAGE'
-      },
-      {
-        id: 63784214,
-        datetime_iso8601: '20150818T085547+1200',
-        datetime_display: '08:55 18/08/2015',
-        creditline: '',
-        caption: 'x',
-        variants: [
-          {
-            id: 63784214,
-            layout: JsonFeedImageType.SMALL_THUMBNAIL,
-            src: 'www.example.com/thumbnail.90x60.jpg',
-            media_type: 'Photo',
-            width: '90',
-            height: '60',
-            urls: {
-              '90x60': 'www.example.com/thumbnail.90x60.jpg',
-              '180x120': 'www.example.com/thumbnail.180x120.jpg'
-            },
-            image_type_id: 'StuffThumbnail'
-          }
-        ],
-        asset_type: 'IMAGE'
-      }];
+      feedArticle.images = [
+        {
+          id: 63784214,
+          datetime_iso8601: '20150818T085547+1200',
+          datetime_display: '08:55 18/08/2015',
+          creditline: '',
+          caption: 'x',
+          variants: [
+            {
+              id: 63784214,
+              layout: JsonFeedImageType.DEFCON_IMAGE,
+              src: 'www.example.com/defcon.90x60.jpg',
+              media_type: 'Photo',
+              width: '90',
+              height: '60',
+              urls: {
+                '90x60': 'www.example.com/defcon.90x60.jpg',
+                '180x120': 'www.example.com/defcon.180x120.jpg'
+              },
+              image_type_id: 'Defcon'
+            }
+          ],
+          asset_type: 'IMAGE'
+        },
+        {
+          id: 63784214,
+          datetime_iso8601: '20150818T085547+1200',
+          datetime_display: '08:55 18/08/2015',
+          creditline: '',
+          caption: 'x',
+          variants: [
+            {
+              id: 63784214,
+              layout: JsonFeedImageType.SMALL_THUMBNAIL,
+              src: 'www.example.com/thumbnail.90x60.jpg',
+              media_type: 'Photo',
+              width: '90',
+              height: '60',
+              urls: {
+                '90x60': 'www.example.com/thumbnail.90x60.jpg',
+                '180x120': 'www.example.com/thumbnail.180x120.jpg'
+              },
+              image_type_id: 'StuffThumbnail'
+            }
+          ],
+          asset_type: 'IMAGE'
+        }
+      ];
       const data: IJsonFeedArticleList = { stories: [feedArticle] };
 
       const [result] = mapToRawArticleList(data.stories);
@@ -305,29 +316,31 @@ describe('JsonFeed Mapper', () => {
     it('should fallback to strap image when defcon image is not provided', () => {
       const feedArticle = jsonFeedArticle();
       const expectedDefconSrc = 'www.example.com/defcon.90x60.jpg';
-      feedArticle.images = [{
-        id: 63784214,
-        datetime_iso8601: '20150818T085547+1200',
-        datetime_display: '08:55 18/08/2015',
-        creditline: '',
-        caption: 'x',
-        variants: [
-          {
-            id: 63784214,
-            layout: JsonFeedImageType.STRAP_IMAGE,
-            src: expectedDefconSrc,
-            media_type: 'Photo',
-            width: '90',
-            height: '60',
-            urls: {
-              '90x60': 'www.example.com/defcon.90x60.jpg',
-              '180x120': 'www.example.com/defcon.180x120.jpg'
-            },
-            image_type_id: 'Defcon'
-          }
-        ],
-        asset_type: 'IMAGE'
-      }];
+      feedArticle.images = [
+        {
+          id: 63784214,
+          datetime_iso8601: '20150818T085547+1200',
+          datetime_display: '08:55 18/08/2015',
+          creditline: '',
+          caption: 'x',
+          variants: [
+            {
+              id: 63784214,
+              layout: JsonFeedImageType.STRAP_IMAGE,
+              src: expectedDefconSrc,
+              media_type: 'Photo',
+              width: '90',
+              height: '60',
+              urls: {
+                '90x60': 'www.example.com/defcon.90x60.jpg',
+                '180x120': 'www.example.com/defcon.180x120.jpg'
+              },
+              image_type_id: 'Defcon'
+            }
+          ],
+          asset_type: 'IMAGE'
+        }
+      ];
       const data: IJsonFeedArticleList = { stories: [feedArticle] };
 
       const [result] = mapToRawArticleList(data.stories);
@@ -338,29 +351,31 @@ describe('JsonFeed Mapper', () => {
     it('should fallback to thumbnail image when defcon image and strap images are not provided', () => {
       const feedArticle = jsonFeedArticle();
       const expectedDefconSrc = 'www.example.com/defcon.90x60.jpg';
-      feedArticle.images = [{
-        id: 63784214,
-        datetime_iso8601: '20150818T085547+1200',
-        datetime_display: '08:55 18/08/2015',
-        creditline: '',
-        caption: 'x',
-        variants: [
-          {
-            id: 63784214,
-            layout: JsonFeedImageType.SMALL_THUMBNAIL,
-            src: expectedDefconSrc,
-            media_type: 'Photo',
-            width: '90',
-            height: '60',
-            urls: {
-              '90x60': 'www.example.com/defcon.90x60.jpg',
-              '180x120': 'www.example.com/defcon.180x120.jpg'
-            },
-            image_type_id: 'Defcon'
-          }
-        ],
-        asset_type: 'IMAGE'
-      }];
+      feedArticle.images = [
+        {
+          id: 63784214,
+          datetime_iso8601: '20150818T085547+1200',
+          datetime_display: '08:55 18/08/2015',
+          creditline: '',
+          caption: 'x',
+          variants: [
+            {
+              id: 63784214,
+              layout: JsonFeedImageType.SMALL_THUMBNAIL,
+              src: expectedDefconSrc,
+              media_type: 'Photo',
+              width: '90',
+              height: '60',
+              urls: {
+                '90x60': 'www.example.com/defcon.90x60.jpg',
+                '180x120': 'www.example.com/defcon.180x120.jpg'
+              },
+              image_type_id: 'Defcon'
+            }
+          ],
+          asset_type: 'IMAGE'
+        }
+      ];
       const data: IJsonFeedArticleList = { stories: [feedArticle] };
 
       const [result] = mapToRawArticleList(data.stories);
@@ -371,45 +386,31 @@ describe('JsonFeed Mapper', () => {
 
   describe('headline flags', () => {
     it('should include sponsored flag in headline flags when sponsored field is true', () => {
-      const data: IJsonFeedArticleList = cloneDeep(
-        jsonfeed as IJsonFeedArticleList
-      );
-      data.stories.forEach((story) => {
-        story.sponsored = true;
-        story.headline_flags = [HeadlineFlags.PHOTO];
-      });
+      const feedArticle = jsonFeedArticle();
+      feedArticle.sponsored = true;
+      feedArticle.headline_flags = [HeadlineFlags.PHOTO];
+      const data: IJsonFeedArticleList = { stories: [feedArticle] };
 
-      const result = mapToRawArticleList(data.stories);
+      const [result] = mapToRawArticleList(data.stories);
 
-      result.forEach((article) => {
-        expect(
-          article.headlineFlags.includes(HeadlineFlags.PHOTO)
-        ).toBeTruthy();
-        expect(
-          article.headlineFlags.includes(HeadlineFlags.SPONSORED)
-        ).toBeTruthy();
-      });
+      expect(result.headlineFlags.includes(HeadlineFlags.PHOTO)).toBeTruthy();
+      expect(
+        result.headlineFlags.includes(HeadlineFlags.SPONSORED)
+      ).toBeTruthy();
     });
 
     it('should not include sponsored flag in headline flags when sponsored field is false', () => {
-      const data: IJsonFeedArticleList = cloneDeep(
-        jsonfeed as IJsonFeedArticleList
-      );
-      data.stories.forEach((story) => {
-        story.sponsored = false;
-        story.headline_flags = [HeadlineFlags.VIDEO];
-      });
+      const feedArticle = jsonFeedArticle();
+      feedArticle.sponsored = false;
+      feedArticle.headline_flags = [HeadlineFlags.VIDEO];
+      const data: IJsonFeedArticleList = { stories: [feedArticle] };
 
-      const result = mapToRawArticleList(data.stories);
+      const [result] = mapToRawArticleList(data.stories);
 
-      result.forEach((article) => {
-        expect(
-          article.headlineFlags.includes(HeadlineFlags.VIDEO)
-        ).toBeTruthy();
-        expect(
-          article.headlineFlags.includes(HeadlineFlags.SPONSORED)
-        ).toBeFalsy();
-      });
+      expect(result.headlineFlags.includes(HeadlineFlags.VIDEO)).toBeTruthy();
+      expect(
+        result.headlineFlags.includes(HeadlineFlags.SPONSORED)
+      ).toBeFalsy();
     });
   });
 });
