@@ -22,6 +22,7 @@ describe('BasicArticleListHandler', () => {
   const articleOne = {
     id: '1',
     indexHeadline: 'Headline 1',
+    title: 'Title One',
     introText: 'Intro 1',
     linkUrl: '/link1',
     defconSrc: null,
@@ -36,6 +37,7 @@ describe('BasicArticleListHandler', () => {
   const articleTwo = {
     id: '2',
     indexHeadline: 'Headline 2',
+    title: 'Title Two',
     introText: 'Intro 2',
     linkUrl: '/link2',
     defconSrc: null,
@@ -52,6 +54,7 @@ describe('BasicArticleListHandler', () => {
     id: '1',
     strapName,
     indexHeadline: 'Headline 1',
+    title: 'Title One',
     introText: 'Intro 1',
     linkUrl: '/link1',
     imageSrc: '1.jpg',
@@ -65,6 +68,7 @@ describe('BasicArticleListHandler', () => {
     id: '2',
     strapName,
     indexHeadline: 'Headline 2',
+    title: 'Title Two',
     introText: 'Intro 2',
     linkUrl: '/link2',
     imageSrc: '2.jpg',
@@ -78,6 +82,7 @@ describe('BasicArticleListHandler', () => {
     id: '2',
     strapName,
     indexHeadline: 'Headline 2',
+    title: 'Title Two',
     lastPublishedTime: 2,
     linkUrl: '/link2',
     headlineFlags: []
