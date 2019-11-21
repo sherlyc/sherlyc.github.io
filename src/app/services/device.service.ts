@@ -11,6 +11,6 @@ export class DeviceService {
 
   getDevice() {
     return parse(this.windowService.getWindow().navigator.userAgent).platform
-      .type as DeviceType;
+      .type as DeviceType || DeviceType.unknown;
   }
 }
