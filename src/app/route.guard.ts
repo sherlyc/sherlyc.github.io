@@ -1,4 +1,8 @@
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  RouterStateSnapshot
+} from '@angular/router';
 import { Injectable } from '@angular/core';
 import { CookieService } from './services/cookie/cookie.service';
 import { WindowService } from './services/window/window.service';
@@ -31,7 +35,7 @@ export class RouteGuard implements CanActivate {
       return false;
     }
 
-    if (device === DeviceType.mobile) {
+    if (device === DeviceType.mobile || device === DeviceType.tablet) {
       this.cookieService.set(siteViewCookieKey, mobileCookie);
       return true;
     }
