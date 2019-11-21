@@ -22,7 +22,10 @@ export class RouteGuard implements CanActivate {
     const siteViewCookie = this.cookieService.get('site-view');
     if (siteViewCookie === 'i') {
       return true;
+    } else if (siteViewCookie === 'd') {
+      return false;
     }
+
     if (device === DeviceType.mobile) {
       return true;
     }

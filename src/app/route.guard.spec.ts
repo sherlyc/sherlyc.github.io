@@ -65,21 +65,28 @@ describe('RouteGuard', () => {
     });
   });
 
-  describe('when site view is set to mobile', () => {
-    beforeEach(() => {
-      cookieService.get.mockReturnValue('i');
-    });
 
-    it.each([
-      [DeviceType.mobile], [DeviceType.desktop], [DeviceType.tablet], [DeviceType.unknown]
-    ])('should return true when device is %s', (deviceType: DeviceType) => {
-      deviceService.getDevice.mockReturnValue(deviceType);
-      const routeGuard = new RouteGuard(cookieService, windowService, runtimeService, deviceService);
+  it.each([
+    [DeviceType.mobile], [DeviceType.desktop], [DeviceType.tablet], [DeviceType.unknown]
+  ])('when site view is mobile, it should return true when device is %s', (deviceType: DeviceType) => {
+    cookieService.get.mockReturnValue('i');
+    deviceService.getDevice.mockReturnValue(deviceType);
+    const routeGuard = new RouteGuard(cookieService, windowService, runtimeService, deviceService);
 
-      const result = routeGuard.canActivate(new ActivatedRouteSnapshot(), <RouterStateSnapshot>{});
+    const result = routeGuard.canActivate(new ActivatedRouteSnapshot(), <RouterStateSnapshot>{});
 
-      expect(result).toBeTruthy();
-    });
+    expect(result).toBeTruthy();
   });
 
+  it.each([
+    [DeviceType.mobile], [DeviceType.desktop], [DeviceType.tablet], [DeviceType.unknown]
+  ])('when site view is desktop, it should return false when device is %s', (deviceType: DeviceType) => {
+    cookieService.get.mockReturnValue('d');
+    deviceService.getDevice.mockReturnValue(deviceType);
+    const routeGuard = new RouteGuard(cookieService, windowService, runtimeService, deviceService);
+
+    const result = routeGuard.canActivate(new ActivatedRouteSnapshot(), <RouterStateSnapshot>{});
+
+    expect(result).toBeFalsy();
+  });
 });
