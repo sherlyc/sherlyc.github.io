@@ -58,12 +58,13 @@ describe('RouteGuard', () => {
       expect(result).toBeFalsy();
     });
 
-    it('should return true if device is mobile', () => {
+    it('should return true, and set site-view to mobile if device is mobile', () => {
       deviceService.getDevice.mockReturnValue(DeviceType.mobile);
       const routeGuard = new RouteGuard(cookieService, windowService, runtimeService, deviceService);
 
       const result = routeGuard.canActivate(new ActivatedRouteSnapshot(), <RouterStateSnapshot>{});
 
+      expect(cookieService.set).toHaveBeenCalledWith('site-view', 'i');
       expect(result).toBeTruthy();
     });
   });
