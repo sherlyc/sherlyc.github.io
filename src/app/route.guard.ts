@@ -1,8 +1,4 @@
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  RouterStateSnapshot
-} from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { CookieService } from './services/cookie/cookie.service';
 import { WindowService } from './services/window/window.service';
@@ -22,26 +18,32 @@ export class RouteGuard implements CanActivate {
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const device = this.deviceService.getDevice();
     const siteViewCookieKey = 'site-view';
-    const siteViewCookie = this.cookieService.get(siteViewCookieKey);
     const mobileCookie = 'i';
     const desktopCookie = 'd';
 
-    if (siteViewCookie === mobileCookie) {
-      return true;
-    } else if (siteViewCookie === desktopCookie) {
+    const device = this.deviceService.getDevice();
+    const siteViewCookie = this.cookieService.get(siteViewCookieKey);
+
+    if (this.shouldRedirect(device, siteViewCookie)) {
+      this.cookieService.set(siteViewCookieKey, desktopCookie);
       this.windowService.getWindow().location.href = 'https://www.stuff.co.nz';
       return false;
     }
 
-    if (device === DeviceType.mobile || device === DeviceType.tablet) {
-      this.cookieService.set(siteViewCookieKey, mobileCookie);
+    this.cookieService.set(siteViewCookieKey, mobileCookie);
+    return true;
+  }
+
+  private shouldRedirect(device: DeviceType, siteViewCookie: string) {
+    if (siteViewCookie === 'd') {
       return true;
     }
 
-    this.cookieService.set(siteViewCookieKey, desktopCookie);
-    this.windowService.getWindow().location.href = 'https://www.stuff.co.nz';
+    if (!siteViewCookie && device !== DeviceType.mobile && device !== DeviceType.tablet) {
+      return true;
+    }
+
     return false;
   }
 }
