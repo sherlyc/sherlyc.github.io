@@ -1,12 +1,12 @@
-import { RouteGuard } from './route.guard';
-import { TestBed } from '@angular/core/testing';
-import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { mockService, ServiceMock } from './services/mocks/MockService';
-import { CookieService } from './services/cookie/cookie.service';
-import { WindowService } from './services/window/window.service';
-import { RuntimeService } from './services/runtime/runtime.service';
-import { DeviceService } from './services/device.service';
-import { DeviceType } from '../../common/DeviceType';
+import {RouteGuard} from './route.guard';
+import {TestBed} from '@angular/core/testing';
+import {ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
+import {mockService, ServiceMock} from './services/mocks/MockService';
+import {CookieService} from './services/cookie/cookie.service';
+import {WindowService} from './services/window/window.service';
+import {RuntimeService} from './services/runtime/runtime.service';
+import {DeviceService} from './services/device.service';
+import {DeviceType} from '../../common/DeviceType';
 
 describe('RouteGuard', () => {
   let cookieService: ServiceMock<CookieService>;
@@ -46,8 +46,8 @@ describe('RouteGuard', () => {
       cookieService.get.mockReturnValue(null);
     });
 
-    it('should return false, set the site view to desktop and redirect to www.stuff if device is not mobile', () => {
-      deviceService.getDevice.mockReturnValue(DeviceType.unknown);
+    it('should return false, set the site view to desktop and redirect to www.stuff if device is desktop', () => {
+      deviceService.getDevice.mockReturnValue(DeviceType.desktop);
       windowService.getWindow.mockReturnValue({
         location: { href: 'https://i.stuff.co.nz' }
       });
@@ -69,7 +69,7 @@ describe('RouteGuard', () => {
       expect(result).toBeFalsy();
     });
 
-    it.each([[DeviceType.mobile], [DeviceType.tablet]])(
+    it.each([[DeviceType.mobile], [DeviceType.tablet], [DeviceType.unknown]])(
       'should return true, and set site-view to mobile if device is %s',
       (deviceType: DeviceType) => {
         deviceService.getDevice.mockReturnValue(deviceType);

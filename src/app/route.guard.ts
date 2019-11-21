@@ -39,11 +39,6 @@ export class RouteGuard implements CanActivate {
     if (siteViewCookie === 'd') {
       return true;
     }
-
-    if (!siteViewCookie && device !== DeviceType.mobile && device !== DeviceType.tablet) {
-      return true;
-    }
-
-    return false;
+    return !siteViewCookie && device === DeviceType.desktop;
   }
 }
