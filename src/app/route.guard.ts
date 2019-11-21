@@ -1,10 +1,10 @@
-import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot} from '@angular/router';
-import {Injectable} from '@angular/core';
-import {CookieService} from './services/cookie/cookie.service';
-import {WindowService} from './services/window/window.service';
-import {RuntimeService} from './services/runtime/runtime.service';
-import {DeviceService} from "./services/device.service";
-import {DeviceType} from "../../common/DeviceType";
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { CookieService } from './services/cookie/cookie.service';
+import { WindowService } from './services/window/window.service';
+import { RuntimeService } from './services/runtime/runtime.service';
+import { DeviceService } from './services/device.service';
+import { DeviceType } from '../../common/DeviceType';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +19,10 @@ export class RouteGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const device = this.deviceService.getDevice();
+    const siteViewCookie = this.cookieService.get('site-view');
+    if (siteViewCookie === 'i') {
+      return true;
+    }
     if (device === DeviceType.mobile) {
       return true;
     }

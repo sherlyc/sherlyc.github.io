@@ -65,4 +65,21 @@ describe('RouteGuard', () => {
     });
   });
 
+  describe('when site view is set to mobile', () => {
+    beforeEach(() => {
+      cookieService.get.mockReturnValue('i');
+    });
+
+    it.each([
+      [DeviceType.mobile], [DeviceType.desktop], [DeviceType.tablet], [DeviceType.unknown]
+    ])('should return true when device is %s', (deviceType: DeviceType) => {
+      deviceService.getDevice.mockReturnValue(deviceType);
+      const routeGuard = new RouteGuard(cookieService, windowService, runtimeService, deviceService);
+
+      const result = routeGuard.canActivate(new ActivatedRouteSnapshot(), <RouterStateSnapshot>{});
+
+      expect(result).toBeTruthy();
+    });
+  });
+
 });
