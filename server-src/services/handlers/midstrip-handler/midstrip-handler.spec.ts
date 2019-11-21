@@ -19,6 +19,7 @@ describe('MidStripHandler', () => {
     {
       id: '1',
       indexHeadline: 'Headline 1',
+      title: 'Title 1',
       introText: 'Intro 1',
       linkUrl: '/link1',
       imageSrc: '1.jpg',
@@ -30,6 +31,7 @@ describe('MidStripHandler', () => {
       id: '2',
       indexHeadline: 'Headline 2',
       introText: 'Intro 2',
+      title: 'Title 2',
       linkUrl: '/link2',
       imageSrc: '2.jpg',
       imageSrcSet: '2.jpg 2w',
@@ -74,6 +76,7 @@ describe('MidStripHandler', () => {
               imageSrc: '1.jpg',
               imageSrcSet: '1.jpg 1w',
               indexHeadline: 'Headline 1',
+              title: 'Title 1',
               linkUrl: '/link1',
               type: 'ImageLinkUnit'
             },
@@ -84,6 +87,7 @@ describe('MidStripHandler', () => {
               imageSrc: '2.jpg',
               imageSrcSet: '2.jpg 2w',
               indexHeadline: 'Headline 2',
+              title: 'Title 2',
               linkUrl: '/link2',
               type: 'ImageLinkUnit'
             }
@@ -124,6 +128,7 @@ describe('MidStripHandler', () => {
               imageSrc: '1.jpg',
               imageSrcSet: '1.jpg 1w',
               indexHeadline: 'Headline 1',
+              title: 'Title 1',
               linkUrl: '/link1',
               type: 'ImageLinkUnit'
             }
@@ -185,6 +190,7 @@ describe('MidStripHandler', () => {
               imageSrc: '1.jpg',
               imageSrcSet: '1.jpg 1w',
               indexHeadline: 'Headline 1',
+              title: 'Title 1',
               linkUrl: '/link1',
               type: 'ImageLinkUnit'
             },
@@ -195,6 +201,7 @@ describe('MidStripHandler', () => {
               imageSrc: '2.jpg',
               imageSrcSet: '2.jpg 2w',
               indexHeadline: 'Headline 2',
+              title: 'Title 2',
               linkUrl: '/link2',
               type: 'ImageLinkUnit'
             }
@@ -235,6 +242,7 @@ describe('MidStripHandler', () => {
               imageSrc: '1.jpg',
               imageSrcSet: '1.jpg 1w',
               indexHeadline: 'Headline 1',
+              title: 'Title 1',
               linkUrl: '/link1',
               type: 'ImageLinkUnit'
             }

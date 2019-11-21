@@ -3,6 +3,7 @@ import { HeadlineFlags } from '../../../../common/HeadlineFlags';
 export interface IRawArticle {
   id: string;
   indexHeadline: string;
+  title: string;
   introText: string;
   linkUrl: string;
   defconSrc: string | null;

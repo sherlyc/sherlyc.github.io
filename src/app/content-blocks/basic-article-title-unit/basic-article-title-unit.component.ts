@@ -16,12 +16,12 @@ export class BasicArticleTitleUnitComponent implements IContentBlockComponent {
   constructor(private analyticsService: AnalyticsService) {}
 
   sendAnalytics() {
-    const { strapName, indexHeadline, id } = this.input;
+    const { strapName, title, id } = this.input;
 
     this.analyticsService.pushEvent({
       type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
       strapName,
-      articleHeadline: indexHeadline,
+      articleHeadline: title,
       articleId: id
     });
   }

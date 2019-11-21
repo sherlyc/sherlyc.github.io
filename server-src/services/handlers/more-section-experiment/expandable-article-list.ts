@@ -18,6 +18,7 @@ const basicArticleUnit = (
   id: article.id,
   strapName: strapName,
   indexHeadline: article.indexHeadline,
+  title: article.title,
   introText: article.introText,
   imageSrc: article.imageSrc,
   imageSrcSet: article.imageSrcSet,
@@ -34,6 +35,7 @@ const basicArticleTitleUnit = (
   id: article.id,
   strapName: strapName,
   indexHeadline: article.indexHeadline,
+  title: article.title,
   linkUrl: article.linkUrl,
   lastPublishedTime: article.lastPublishedTime,
   headlineFlags: article.headlineFlags

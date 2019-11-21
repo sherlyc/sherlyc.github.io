@@ -1,44 +1,207 @@
 import * as jsonfeed from '../__fixtures__/jsonfeed/jsonfeed.json';
-import * as rawArticles from '../__fixtures__/jsonfeed/raw-article-list.json';
-import * as temporaryRawArticles from '../__fixtures__/jsonfeed/temporal-raw-articles.json';
 import { mapToRawArticleList } from './jsonfeed-mapper';
 import { IJsonFeedArticleList } from '../__types__/IJsonFeedArticleList';
 import { cloneDeep } from 'lodash';
 import { IRawArticle } from '../__types__/IRawArticle';
 import { HeadlineFlags } from '../../../../common/HeadlineFlags';
 import { JsonFeedImageType } from '../__types__/JsonFeedImageType';
+import * as moment from 'moment';
+import { IJsonFeedArticle } from '../__types__/IJsonFeedArticle';
+import { JsonFeedAssetType } from '../__types__/JsonFeedAssetType';
+import { IJsonFeedUrl } from '../__types__/IJsonFeedUrl';
+import { IJsonFeedQuery } from '../__types__/IJsonFeedQuery';
 
 describe('JsonFeed Mapper', () => {
-  it('should map jsonfeed articles and url assets to rawArticles json format', () => {
-    const data: IJsonFeedArticleList = cloneDeep(
-      jsonfeed as IJsonFeedArticleList
-    );
-    expect(mapToRawArticleList(data.stories)).toEqual(rawArticles);
+  const jsonFeedArticle = (): IJsonFeedArticle => ({
+    id: 109962196,
+    asset_type: JsonFeedAssetType.ARTICLE,
+    headline_flags: [],
+    sponsored: false,
+    path: '/national/109962196/cctv-shows-unruly-travelling-family-taking-christmas-tree-from-auckland-caltex',
+    url: 'http://www.stuff.co.nz/_json/national/109962196/cctv-shows-unruly-travelling-family-taking-christmas-tree-from-auckland-caltex',
+    section: 'National',
+    'section-home': 'National',
+    'section-top-level': 'National',
+    layout: 'landscape-image',
+    title: 'CCTV shows unruly travelling family taking Christmas tree from Auckland Caltex',
+    alt_headline: 'Not even Christmas is safe',
+    isHeadlineOverrideApplied: true,
+    datetime_iso8601: '20190116T154002+1300',
+    datetime_display: '15:40 16/01/2019',
+    byline: 'BRAD FLAHIVE',
+    source_code: '1national-newsroom',
+    source_name: 'Stuff',
+    intro: 'An unruly family travelling New Zealand has been causing mayhem for more than a month, and not even the Christmas trees were safe. ',
+    alt_intro: 'Unruly travelling family hit an Auckland Caltex four times. They even took the Christmas tree.',
+    body: '<p>Hello</p>',
+    images: [],
+    videos: [],
+    html_assets: [],
+    galleries: []
   });
 
-  it('should map jsonfeed articles and url assets alt headline to spade index headline based on flag', () => {
-    const data: IJsonFeedArticleList = cloneDeep(
-      jsonfeed as IJsonFeedArticleList
-    );
-    data.stories[0].isHeadlineOverrideApplied = true;
-    data.stories[0].alt_headline = 'article alt headline';
+  const jsonFeedUrlAsset = (): IJsonFeedUrl => ({
+    id: '109962196',
+    asset_type: JsonFeedAssetType.URL,
+    headline_flags: [],
+    sponsored: false,
+    path: '/national/109962196/cctv-shows-unruly-travelling-family-taking-christmas-tree-from-auckland-caltex',
+    url: 'http://i.stuff.co.nz/_json/national/109962196/cctv-shows-unruly-travelling-family-taking-christmas-tree-from-auckland-caltex',
+    section: 'National',
+    'section-home': 'National',
+    'section-top-level': 'National',
+    layout: 'landscape-image',
+    title: 'CCTV shows unruly travelling family taking Christmas tree from Auckland Caltex',
+    alt_headline: 'Not even Christmas is safe',
+    isHeadlineOverrideApplied: true,
+    datetime_iso8601: '20190116T154002+1300',
+    datetime_display: '15:40 16/01/2019',
+    byline: 'BRAD FLAHIVE',
+    source_code: '1national-newsroom',
+    source_name: 'Stuff',
+    intro: 'An unruly family travelling New Zealand has been causing mayhem for more than a month, and not even the Christmas trees were safe. ',
+    alt_intro: 'Unruly travelling family hit an Auckland Caltex four times. They even took the Christmas tree.',
+    body: '<p>Hello</p>',
+    images: [],
+    videos: [],
+    html_assets: [],
+    galleries: []
+  });
 
-    data.stories[1].isHeadlineOverrideApplied = true;
-    data.stories[1].alt_headline = 'url alt headline';
+  const jsonFeedQueryAsset = (): IJsonFeedQuery => ({
+    id: 110706741,
+      asset_type: JsonFeedAssetType.QUERY,
+    datetime_iso8601: '20190322T085041+1300'
+  });
 
-    expect(mapToRawArticleList(data.stories)).toEqual(temporaryRawArticles);
+  const rawFeedArticle = (article: IJsonFeedArticle): IRawArticle => ({
+    id: `${article.id}`,
+    indexHeadline: article.alt_headline,
+    title: article.title,
+    introText: article.alt_intro,
+    linkUrl: article.path,
+    defconSrc: null,
+    imageSrc: null,
+    strapImageSrc: null,
+    imageSrcSet: null,
+    strapImageSrcSet: null,
+    lastPublishedTime: moment(article.datetime_iso8601).unix(),
+    headlineFlags: article.headline_flags
+  });
+
+  const rawUrlArticle = (article: IJsonFeedUrl): IRawArticle => ({
+    id: `${article.id}`,
+    indexHeadline: article.alt_headline,
+    title: article.title,
+    introText: article.alt_intro,
+    linkUrl: article.url,
+    defconSrc: null,
+    imageSrc: null,
+    strapImageSrc: null,
+    imageSrcSet: null,
+    strapImageSrcSet: null,
+    lastPublishedTime: moment(article.datetime_iso8601).unix(),
+    headlineFlags: article.headline_flags
+  });
+
+  it('should filter out query assets', () => {
+    const feedArticle: IJsonFeedArticle = jsonFeedArticle();
+    const urlAsset: IJsonFeedUrl = jsonFeedUrlAsset();
+    const queryAsset: IJsonFeedQuery = jsonFeedQueryAsset();
+
+    const expectedArticles = [ rawFeedArticle(feedArticle), rawUrlArticle(urlAsset) ];
+    const stories = [ feedArticle, urlAsset, queryAsset ];
+
+    expect(mapToRawArticleList(stories)).toEqual(expectedArticles);
+  });
+
+  describe('json feed article', () => {
+    it('should map to raw article', () => {
+      const feedArticle = jsonFeedArticle();
+      const expectedArticle = rawFeedArticle(feedArticle);
+      expect(mapToRawArticleList([feedArticle])).toEqual([expectedArticle]);
+    });
+
+    it('should map alt_headline to indexHeadline when override is true', () => {
+      const expectedHeadline = 'Alt headline';
+
+      const feedArticle = jsonFeedArticle();
+      feedArticle.isHeadlineOverrideApplied = true;
+      feedArticle.alt_headline = expectedHeadline;
+
+      const expectedArticle = rawFeedArticle(feedArticle);
+      expectedArticle.indexHeadline = expectedHeadline;
+
+      expect(mapToRawArticleList([feedArticle])).toEqual([expectedArticle]);
+    });
+
+    it('should map title to indexHeadline when override is false', () => {
+      const expectedTitle = 'Title';
+
+      const feedArticle = jsonFeedArticle();
+      feedArticle.isHeadlineOverrideApplied = false;
+      feedArticle.title = expectedTitle;
+
+      const expectedArticle = rawFeedArticle(feedArticle);
+      expectedArticle.indexHeadline = expectedTitle;
+
+      expect(mapToRawArticleList([feedArticle])).toEqual([expectedArticle]);
+    });
+  });
+
+  describe('json feed url asset', () => {
+    it('should map to raw article', () => {
+      const urlAsset = jsonFeedUrlAsset();
+      const expectedArticle = rawUrlArticle(urlAsset);
+      expect(mapToRawArticleList([urlAsset])).toEqual([expectedArticle]);
+    });
+
+    it('should map alt_headline to indexHeadline when override is true', () => {
+      const expectedHeadline = 'Alt headline';
+
+      const urlAsset = jsonFeedUrlAsset();
+      urlAsset.isHeadlineOverrideApplied = true;
+      urlAsset.alt_headline = expectedHeadline;
+
+      const expectedArticle = rawUrlArticle(urlAsset);
+      expectedArticle.indexHeadline = expectedHeadline;
+
+      expect(mapToRawArticleList([urlAsset])).toEqual([expectedArticle]);
+    });
+
+    it('should map title to indexHeadline when override is false', () => {
+      const expectedTitle = 'Title';
+
+      const feedArticle = jsonFeedUrlAsset();
+      feedArticle.isHeadlineOverrideApplied = false;
+      feedArticle.title = expectedTitle;
+
+      const expectedArticle = rawUrlArticle(feedArticle);
+      expectedArticle.indexHeadline = expectedTitle;
+
+      expect(mapToRawArticleList([feedArticle])).toEqual([expectedArticle]);
+    });
+
+    it('should change www.stuff url to i.stuff url', () => {
+      const urlArticle: IJsonFeedUrl = jsonFeedUrlAsset();
+      urlArticle.url = 'www.stuff.co.nz/urlAsset1';
+
+      const [result] = mapToRawArticleList([ urlArticle ]);
+
+      expect(result.linkUrl.startsWith('i.stuff.co.nz')).toBeTruthy();
+    });
   });
 
   describe('images', () => {
     it('should handle empty image value', () => {
-      const data: IJsonFeedArticleList = cloneDeep(
-        jsonfeed as IJsonFeedArticleList
-      );
+      const feedArticle = jsonFeedArticle();
+      const data: IJsonFeedArticleList = { stories: [feedArticle] };
       data.stories.forEach((story) => {
         story.images = [];
       });
 
-      const expected: IRawArticle[] = cloneDeep(rawArticles);
+      const expected: IRawArticle[] = [rawFeedArticle(feedArticle)];
+
       Object.values(expected).forEach((article: IRawArticle) => {
         article.defconSrc = null;
         article.imageSrc = null;
