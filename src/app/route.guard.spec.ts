@@ -1,12 +1,12 @@
-import {RouteGuard} from './route.guard';
-import {TestBed} from '@angular/core/testing';
-import {ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
-import {mockService, ServiceMock} from './services/mocks/MockService';
-import {CookieService} from './services/cookie/cookie.service';
-import {WindowService} from './services/window/window.service';
-import {RuntimeService} from './services/runtime/runtime.service';
-import {DeviceService} from './services/device.service';
-import {DeviceType} from '../../common/DeviceType';
+import { RouteGuard } from './route.guard';
+import { TestBed } from '@angular/core/testing';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { mockService, ServiceMock } from './services/mocks/MockService';
+import { CookieService } from './services/cookie/cookie.service';
+import { WindowService } from './services/window/window.service';
+import { RuntimeService } from './services/runtime/runtime.service';
+import { DeviceService } from './services/device.service';
+import { DeviceType } from '../../common/DeviceType';
 
 describe('RouteGuard', () => {
   let cookieService: ServiceMock<CookieService>;
@@ -41,8 +41,25 @@ describe('RouteGuard', () => {
     deviceService = TestBed.get(DeviceService);
   });
 
+  it('should not do anything when in server', () => {
+    runtimeService.isServer.mockReturnValue(true);
+    const routeGuard = new RouteGuard(
+      cookieService,
+      windowService,
+      runtimeService,
+      deviceService
+    );
+
+    const result = routeGuard.canActivate(new ActivatedRouteSnapshot(), <
+      RouterStateSnapshot
+      >{});
+
+    expect(result).toBeTruthy();
+  });
+
   describe('when site view is not set', () => {
     beforeEach(() => {
+      runtimeService.isServer.mockReturnValue(false);
       cookieService.get.mockReturnValue(null);
     });
 
@@ -91,6 +108,10 @@ describe('RouteGuard', () => {
   });
 
   describe('when site view is set', () => {
+    beforeEach(() => {
+      runtimeService.isServer.mockReturnValue(false);
+    });
+
     it.each([
       [DeviceType.mobile],
       [DeviceType.desktop],

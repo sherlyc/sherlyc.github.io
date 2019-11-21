@@ -2,6 +2,7 @@ import { PageComponent } from './shared/components/page/page.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SigninCallbackComponent } from './shared/components/authentication/signin-callback.component';
+import { RouteGuard } from './route.guard';
 
 const routes: Routes = [
   {
@@ -14,7 +15,10 @@ const routes: Routes = [
   },
   {
     path: '**',
-    component: PageComponent
+    component: PageComponent,
+    canActivate: [
+      RouteGuard
+    ]
   }
 ];
 

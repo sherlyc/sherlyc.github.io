@@ -18,6 +18,10 @@ export class RouteGuard implements CanActivate {
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    if (this.runtimeService.isServer()) {
+      return true;
+    }
+
     const siteViewCookieKey = 'site-view';
     const mobileCookie = 'i';
     const desktopCookie = 'd';
@@ -26,11 +30,13 @@ export class RouteGuard implements CanActivate {
     const siteViewCookie = this.cookieService.get(siteViewCookieKey);
 
     if (this.shouldRedirect(device, siteViewCookie)) {
+      console.log('redirecting', device, siteViewCookie);
       this.cookieService.set(siteViewCookieKey, desktopCookie);
       this.windowService.getWindow().location.href = 'https://www.stuff.co.nz';
       return false;
     }
 
+    console.log('not redirecting', device, siteViewCookie);
     this.cookieService.set(siteViewCookieKey, mobileCookie);
     return true;
   }
