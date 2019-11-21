@@ -69,28 +69,31 @@ describe('RouteGuard', () => {
     });
   });
 
+  describe('when site view is set', () => {
+    it.each([
+      [DeviceType.mobile], [DeviceType.desktop], [DeviceType.tablet], [DeviceType.unknown]
+    ])('when site view is mobile, it should return true when device is %s', (deviceType: DeviceType) => {
+      cookieService.get.mockReturnValue('i');
+      deviceService.getDevice.mockReturnValue(deviceType);
+      const routeGuard = new RouteGuard(cookieService, windowService, runtimeService, deviceService);
 
-  it.each([
-    [DeviceType.mobile], [DeviceType.desktop], [DeviceType.tablet], [DeviceType.unknown]
-  ])('when site view is mobile, it should return true when device is %s', (deviceType: DeviceType) => {
-    cookieService.get.mockReturnValue('i');
-    deviceService.getDevice.mockReturnValue(deviceType);
-    const routeGuard = new RouteGuard(cookieService, windowService, runtimeService, deviceService);
+      const result = routeGuard.canActivate(new ActivatedRouteSnapshot(), <RouterStateSnapshot>{});
 
-    const result = routeGuard.canActivate(new ActivatedRouteSnapshot(), <RouterStateSnapshot>{});
+      expect(result).toBeTruthy();
+    });
 
-    expect(result).toBeTruthy();
-  });
+    it.each([
+      [DeviceType.mobile], [DeviceType.desktop], [DeviceType.tablet], [DeviceType.unknown]
+    ])('when site view is desktop, it should return false and redirect to www.stuff when device is %s', (deviceType: DeviceType) => {
+      cookieService.get.mockReturnValue('d');
+      deviceService.getDevice.mockReturnValue(deviceType);
+      windowService.getWindow.mockReturnValue({ location: { href: 'https://i.stuff.co.nz'}});
+      const routeGuard = new RouteGuard(cookieService, windowService, runtimeService, deviceService);
 
-  it.each([
-    [DeviceType.mobile], [DeviceType.desktop], [DeviceType.tablet], [DeviceType.unknown]
-  ])('when site view is desktop, it should return false when device is %s', (deviceType: DeviceType) => {
-    cookieService.get.mockReturnValue('d');
-    deviceService.getDevice.mockReturnValue(deviceType);
-    const routeGuard = new RouteGuard(cookieService, windowService, runtimeService, deviceService);
+      const result = routeGuard.canActivate(new ActivatedRouteSnapshot(), <RouterStateSnapshot>{});
 
-    const result = routeGuard.canActivate(new ActivatedRouteSnapshot(), <RouterStateSnapshot>{});
-
-    expect(result).toBeFalsy();
+      expect(windowService.getWindow().location.href).toBe('https://www.stuff.co.nz');
+      expect(result).toBeFalsy();
+    });
   });
 });
