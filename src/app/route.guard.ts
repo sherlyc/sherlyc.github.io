@@ -29,6 +29,9 @@ export class RouteGuard implements CanActivate {
     if (device === DeviceType.mobile) {
       return true;
     }
+
+    this.cookieService.set('site-view', 'd');
+    this.windowService.getWindow().location.href = 'https://www.stuff.co.nz';
     return false;
   }
 }

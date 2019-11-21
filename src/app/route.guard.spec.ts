@@ -46,12 +46,15 @@ describe('RouteGuard', () => {
       cookieService.get.mockReturnValue(null);
     });
 
-    it('should return false if device is not mobile', () => {
+    it('should return false, set the site view to desktop and redirect to www.stuff if device is not mobile', () => {
       deviceService.getDevice.mockReturnValue(DeviceType.unknown);
+      windowService.getWindow.mockReturnValue({ location: { href: 'https://i.stuff.co.nz'}});
       const routeGuard = new RouteGuard(cookieService, windowService, runtimeService, deviceService);
 
       const result = routeGuard.canActivate(new ActivatedRouteSnapshot(), <RouterStateSnapshot>{});
 
+      expect(cookieService.set).toHaveBeenCalledWith('site-view', 'd');
+      expect(windowService.getWindow().location.href).toBe('https://www.stuff.co.nz');
       expect(result).toBeFalsy();
     });
 
