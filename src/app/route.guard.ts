@@ -31,25 +31,28 @@ export class RouteGuard implements CanActivate {
     const siteViewCookie = this.cookieService.get(siteViewCookieKey);
 
     if (this.shouldRedirect(device, siteViewCookie)) {
-      console.log('redirecting', device, siteViewCookie);
-
       if (!siteViewCookie) {
-        const expiryDate = moment();
-        expiryDate.add(1, 'year');
-        this.cookieService.set(siteViewCookieKey, desktopCookie, { domain: '.stuff.co.nz', path: '/', expires: expiryDate.toDate() });
+        this.setSiteViewCookie(siteViewCookieKey, desktopCookie);
       }
 
       this.windowService.getWindow().location.href = 'https://www.stuff.co.nz';
       return false;
     }
 
-    console.log('not redirecting', device, siteViewCookie);
     if (!siteViewCookie) {
-      const expiryDate = moment();
-      expiryDate.add(1, 'year');
-      this.cookieService.set(siteViewCookieKey, mobileCookie, { domain: '.stuff.co.nz', path: '/', expires: expiryDate.toDate() });
+      this.setSiteViewCookie(siteViewCookieKey, mobileCookie);
     }
     return true;
+  }
+
+  private setSiteViewCookie(key: string, value: string) {
+    const expiryDate = moment();
+    expiryDate.add(1, 'year');
+    this.cookieService.set(key, value, {
+      domain: '.stuff.co.nz',
+      path: '/',
+      expires: expiryDate.toDate()
+    });
   }
 
   private shouldRedirect(device: DeviceType, siteViewCookie: string) {
