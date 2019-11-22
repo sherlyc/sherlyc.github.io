@@ -30,14 +30,13 @@ export class RouteGuard implements CanActivate {
     const device = this.deviceService.getDevice();
     const siteViewCookie = this.cookieService.get(siteViewCookieKey);
 
-    const cookieNotSet = !siteViewCookie;
     const shouldContinueToMobile = this.shouldContinueToMobile(device, siteViewCookie);
     if (shouldContinueToMobile) {
-      if (cookieNotSet) {
+      if (!siteViewCookie) {
         this.setSiteViewCookie(siteViewCookieKey, mobileCookie);
       }
     } else {
-      if (cookieNotSet) {
+      if (!siteViewCookie) {
         this.setSiteViewCookie(siteViewCookieKey, desktopCookie);
       }
       this.redirectToDesktop();
@@ -51,10 +50,12 @@ export class RouteGuard implements CanActivate {
   }
 
   private setSiteViewCookie(key: string, value: string) {
+    const hostname = this.windowService.getWindow().location.hostname;
+    const cookieDomain = hostname.includes('stuff.co.nz') ? '.stuff.co.nz' : hostname;
     const expiryDate = moment();
     expiryDate.add(1, 'year');
     this.cookieService.set(key, value, {
-      domain: '.stuff.co.nz',
+      domain: cookieDomain,
       path: '/',
       expires: expiryDate.toDate()
     });
