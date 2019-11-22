@@ -30,19 +30,24 @@ export class RouteGuard implements CanActivate {
     const device = this.deviceService.getDevice();
     const siteViewCookie = this.cookieService.get(siteViewCookieKey);
 
-    if (this.shouldRedirect(device, siteViewCookie)) {
-      if (!siteViewCookie) {
+    const cookieNotSet = !siteViewCookie;
+    const shouldRedirect = this.shouldRedirect(device, siteViewCookie);
+    if (shouldRedirect) {
+      if (cookieNotSet) {
         this.setSiteViewCookie(siteViewCookieKey, desktopCookie);
       }
-
-      this.windowService.getWindow().location.href = 'https://www.stuff.co.nz';
-      return false;
+      this.redirectToDesktop();
+    } else {
+      if (cookieNotSet) {
+        this.setSiteViewCookie(siteViewCookieKey, mobileCookie);
+      }
     }
 
-    if (!siteViewCookie) {
-      this.setSiteViewCookie(siteViewCookieKey, mobileCookie);
-    }
-    return true;
+    return !shouldRedirect;
+  }
+
+  private redirectToDesktop() {
+    this.windowService.getWindow().location.href = 'https://www.stuff.co.nz';
   }
 
   private setSiteViewCookie(key: string, value: string) {
