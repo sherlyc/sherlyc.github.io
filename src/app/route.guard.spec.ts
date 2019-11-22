@@ -8,6 +8,8 @@ import { RuntimeService } from './services/runtime/runtime.service';
 import { DeviceService } from './services/device.service';
 import { DeviceType } from '../../common/DeviceType';
 
+const OriginalNow = global.Date.now;
+
 describe('RouteGuard', () => {
   let cookieService: ServiceMock<CookieService>;
   let windowService: ServiceMock<WindowService>;
@@ -41,6 +43,10 @@ describe('RouteGuard', () => {
     deviceService = TestBed.get(DeviceService);
   });
 
+  afterEach(() => {
+    global.Date.now = OriginalNow;
+  });
+
   it('should not do anything when in server', () => {
     runtimeService.isServer.mockReturnValue(true);
     const routeGuard = new RouteGuard(
@@ -55,16 +61,18 @@ describe('RouteGuard', () => {
       >{});
 
     expect(result).toBeTruthy();
+    expect(cookieService.set).not.toHaveBeenCalled();
+    expect(windowService.getWindow).not.toHaveBeenCalled();
+    expect(deviceService.getDevice).not.toHaveBeenCalled();
   });
 
-  describe('when site view is not set', () => {
+  describe('when redirecting', () => {
     beforeEach(() => {
       runtimeService.isServer.mockReturnValue(false);
-      cookieService.get.mockReturnValue(null);
     });
 
-    it('should return false, set the site view to desktop and redirect to www.stuff if device is desktop', () => {
-      deviceService.getDevice.mockReturnValue(DeviceType.desktop);
+    it('should not set cookie when site-view cookie is desktop', () => {
+      cookieService.get.mockReturnValue('d');
       windowService.getWindow.mockReturnValue({
         location: { href: 'https://i.stuff.co.nz' }
       });
@@ -77,95 +85,93 @@ describe('RouteGuard', () => {
 
       const result = routeGuard.canActivate(new ActivatedRouteSnapshot(), <
         RouterStateSnapshot
-      >{});
+        >{});
 
-      expect(cookieService.set).toHaveBeenCalledWith('site-view', 'd');
-      expect(windowService.getWindow().location.href).toBe(
-        'https://www.stuff.co.nz'
-      );
+      expect(windowService.getWindow().location.href).toBe('https://www.stuff.co.nz');
+      expect(cookieService.set).not.toHaveBeenCalled();
       expect(result).toBeFalsy();
     });
 
-    it.each([[DeviceType.mobile], [DeviceType.tablet], [DeviceType.unknown]])(
-      'should return true, and set site-view to mobile if device is %s',
-      (deviceType: DeviceType) => {
-        deviceService.getDevice.mockReturnValue(deviceType);
-        const routeGuard = new RouteGuard(
-          cookieService,
-          windowService,
-          runtimeService,
-          deviceService
-        );
+    it('should set cookie when site-view cookie is not set and device is desktop', () => {
+      cookieService.get.mockReturnValue(null);
+      deviceService.getDevice.mockReturnValue(DeviceType.desktop);
+      windowService.getWindow.mockReturnValue({
+        location: { href: 'https://i.stuff.co.nz' }
+      });
 
-        const result = routeGuard.canActivate(new ActivatedRouteSnapshot(), <
-          RouterStateSnapshot
+      const date = new Date('2019-01-01T00:00:00.000Z');
+      const oneYearFromNow = new Date('2020-01-01T00:00:00.000Z');
+      (global as any).Date.now = () => date;
+
+      const routeGuard = new RouteGuard(
+        cookieService,
+        windowService,
+        runtimeService,
+        deviceService
+      );
+
+      const result = routeGuard.canActivate(new ActivatedRouteSnapshot(), <
+        RouterStateSnapshot
         >{});
 
-        expect(cookieService.set).toHaveBeenCalledWith('site-view', 'i');
-        expect(result).toBeTruthy();
-      }
-    );
+      expect(windowService.getWindow().location.href).toBe('https://www.stuff.co.nz');
+      expect(cookieService.set).toHaveBeenCalledWith('site-view', 'd', { domain: '.stuff.co.nz', path: '/', expires: oneYearFromNow });
+      expect(result).toBeFalsy();
+    });
   });
 
-  describe('when site view is set', () => {
+  describe('when not redirecting', () => {
     beforeEach(() => {
       runtimeService.isServer.mockReturnValue(false);
     });
 
-    it.each([
-      [DeviceType.mobile],
-      [DeviceType.desktop],
-      [DeviceType.tablet],
-      [DeviceType.unknown]
-    ])(
-      'when site view is mobile, it should return true when device is %s',
-      (deviceType: DeviceType) => {
-        cookieService.get.mockReturnValue('i');
-        deviceService.getDevice.mockReturnValue(deviceType);
-        const routeGuard = new RouteGuard(
-          cookieService,
-          windowService,
-          runtimeService,
-          deviceService
-        );
+    it('should not set cookie when site-view cookie is mobile', () => {
+      cookieService.get.mockReturnValue('i');
+      windowService.getWindow.mockReturnValue({
+        location: { href: 'https://i.stuff.co.nz' }
+      });
+      const routeGuard = new RouteGuard(
+        cookieService,
+        windowService,
+        runtimeService,
+        deviceService
+      );
 
-        const result = routeGuard.canActivate(new ActivatedRouteSnapshot(), <
-          RouterStateSnapshot
+      const result = routeGuard.canActivate(new ActivatedRouteSnapshot(), <
+        RouterStateSnapshot
         >{});
 
-        expect(result).toBeTruthy();
-      }
-    );
+      expect(windowService.getWindow().location.href).toBe('https://i.stuff.co.nz');
+      expect(cookieService.set).not.toHaveBeenCalled();
+      expect(result).toBeTruthy();
+    });
 
     it.each([
-      [DeviceType.mobile],
-      [DeviceType.desktop],
-      [DeviceType.tablet],
-      [DeviceType.unknown]
-    ])(
-      'when site view is desktop, it should return false and redirect to www.stuff when device is %s',
-      (deviceType: DeviceType) => {
-        cookieService.get.mockReturnValue('d');
-        deviceService.getDevice.mockReturnValue(deviceType);
-        windowService.getWindow.mockReturnValue({
-          location: { href: 'https://i.stuff.co.nz' }
-        });
-        const routeGuard = new RouteGuard(
-          cookieService,
-          windowService,
-          runtimeService,
-          deviceService
-        );
+      [DeviceType.mobile], [DeviceType.tablet], [DeviceType.unknown]
+    ])('should set cookie when site-view cookie is not set and device is %s', (deviceType: DeviceType) => {
+      cookieService.get.mockReturnValue(null);
+      windowService.getWindow.mockReturnValue({
+        location: { href: 'https://i.stuff.co.nz' }
+      });
+      const date = new Date('2019-01-01T00:00:00.000Z');
+      const oneYearFromNow = new Date('2020-01-01T00:00:00.000Z');
+      (global as any).Date.now = () => date;
 
-        const result = routeGuard.canActivate(new ActivatedRouteSnapshot(), <
-          RouterStateSnapshot
+      deviceService.getDevice.mockReturnValue(deviceType);
+      const routeGuard = new RouteGuard(
+        cookieService,
+        windowService,
+        runtimeService,
+        deviceService
+      );
+
+      const result = routeGuard.canActivate(new ActivatedRouteSnapshot(), <
+        RouterStateSnapshot
         >{});
 
-        expect(windowService.getWindow().location.href).toBe(
-          'https://www.stuff.co.nz'
-        );
-        expect(result).toBeFalsy();
-      }
-    );
+      expect(windowService.getWindow().location.href).toBe('https://i.stuff.co.nz');
+      expect(cookieService.set).toHaveBeenCalledWith('site-view', 'i', { domain: '.stuff.co.nz', path: '/', expires: oneYearFromNow });
+      expect(result).toBeTruthy();
+    });
   });
 });

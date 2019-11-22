@@ -5,6 +5,7 @@ import { WindowService } from './services/window/window.service';
 import { RuntimeService } from './services/runtime/runtime.service';
 import { DeviceService } from './services/device.service';
 import { DeviceType } from '../../common/DeviceType';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -31,13 +32,23 @@ export class RouteGuard implements CanActivate {
 
     if (this.shouldRedirect(device, siteViewCookie)) {
       console.log('redirecting', device, siteViewCookie);
-      this.cookieService.set(siteViewCookieKey, desktopCookie);
+
+      if (!siteViewCookie) {
+        const expiryDate = moment();
+        expiryDate.add(1, 'year');
+        this.cookieService.set(siteViewCookieKey, desktopCookie, { domain: '.stuff.co.nz', path: '/', expires: expiryDate.toDate() });
+      }
+
       this.windowService.getWindow().location.href = 'https://www.stuff.co.nz';
       return false;
     }
 
     console.log('not redirecting', device, siteViewCookie);
-    this.cookieService.set(siteViewCookieKey, mobileCookie);
+    if (!siteViewCookie) {
+      const expiryDate = moment();
+      expiryDate.add(1, 'year');
+      this.cookieService.set(siteViewCookieKey, mobileCookie, { domain: '.stuff.co.nz', path: '/', expires: expiryDate.toDate() });
+    }
     return true;
   }
 
