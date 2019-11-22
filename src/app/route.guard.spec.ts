@@ -5,7 +5,7 @@ import { mockService, ServiceMock } from './services/mocks/MockService';
 import { CookieService } from './services/cookie/cookie.service';
 import { WindowService } from './services/window/window.service';
 import { RuntimeService } from './services/runtime/runtime.service';
-import { DeviceService } from './services/device.service';
+import { DeviceService } from './services/device/device.service';
 import { DeviceType } from '../../common/DeviceType';
 
 const OriginalNow = global.Date.now;
@@ -58,7 +58,7 @@ describe('RouteGuard', () => {
 
     const result = routeGuard.canActivate(new ActivatedRouteSnapshot(), <
       RouterStateSnapshot
-      >{});
+    >{});
 
     expect(result).toBeTruthy();
     expect(cookieService.set).not.toHaveBeenCalled();
@@ -85,9 +85,11 @@ describe('RouteGuard', () => {
 
       const result = routeGuard.canActivate(new ActivatedRouteSnapshot(), <
         RouterStateSnapshot
-        >{});
+      >{});
 
-      expect(windowService.getWindow().location.href).toBe('https://www.stuff.co.nz');
+      expect(windowService.getWindow().location.href).toBe(
+        'https://www.stuff.co.nz'
+      );
       expect(cookieService.set).not.toHaveBeenCalled();
       expect(result).toBeFalsy();
     });
@@ -112,10 +114,16 @@ describe('RouteGuard', () => {
 
       const result = routeGuard.canActivate(new ActivatedRouteSnapshot(), <
         RouterStateSnapshot
-        >{});
+      >{});
 
-      expect(windowService.getWindow().location.href).toBe('https://www.stuff.co.nz');
-      expect(cookieService.set).toHaveBeenCalledWith('site-view', 'd', { domain: '.stuff.co.nz', path: '/', expires: oneYearFromNow });
+      expect(windowService.getWindow().location.href).toBe(
+        'https://www.stuff.co.nz'
+      );
+      expect(cookieService.set).toHaveBeenCalledWith('site-view', 'd', {
+        domain: '.stuff.co.nz',
+        path: '/',
+        expires: oneYearFromNow
+      });
       expect(result).toBeFalsy();
     });
   });
@@ -139,25 +147,70 @@ describe('RouteGuard', () => {
 
       const result = routeGuard.canActivate(new ActivatedRouteSnapshot(), <
         RouterStateSnapshot
-        >{});
+      >{});
 
-      expect(windowService.getWindow().location.href).toBe('https://i.stuff.co.nz');
+      expect(windowService.getWindow().location.href).toBe(
+        'https://i.stuff.co.nz'
+      );
       expect(cookieService.set).not.toHaveBeenCalled();
       expect(result).toBeTruthy();
     });
 
-    it.each([
-      [DeviceType.mobile], [DeviceType.tablet], [DeviceType.unknown]
-    ])('should set cookie when site-view cookie is not set and device is %s', (deviceType: DeviceType) => {
+    it.each([[DeviceType.mobile], [DeviceType.tablet], [DeviceType.unknown]])(
+      'should set cookie when site-view cookie is not set and device is %s',
+      (deviceType: DeviceType) => {
+        cookieService.get.mockReturnValue(null);
+        windowService.getWindow.mockReturnValue({
+          location: { href: 'https://i.stuff.co.nz', hostname: 'i.stuff.co.nz' }
+        });
+        const date = new Date('2019-01-01T00:00:00.000Z');
+        const oneYearFromNow = new Date('2020-01-01T00:00:00.000Z');
+        (global as any).Date.now = () => date;
+
+        deviceService.getDevice.mockReturnValue(deviceType);
+        const routeGuard = new RouteGuard(
+          cookieService,
+          windowService,
+          runtimeService,
+          deviceService
+        );
+
+        const result = routeGuard.canActivate(new ActivatedRouteSnapshot(), <
+          RouterStateSnapshot
+        >{});
+
+        expect(windowService.getWindow().location.href).toBe(
+          'https://i.stuff.co.nz'
+        );
+        expect(cookieService.set).toHaveBeenCalledWith('site-view', 'i', {
+          domain: '.stuff.co.nz',
+          path: '/',
+          expires: oneYearFromNow
+        });
+        expect(result).toBeTruthy();
+      }
+    );
+  });
+
+  it.each([
+    ['i.stuff.co.nz', '.stuff.co.nz'],
+    ['www.stuff.co.nz', '.stuff.co.nz'],
+    ['localhost', 'localhost'],
+    [
+      'experience.expproduction.shift21.ffx.nz',
+      'experience.expproduction.shift21.ffx.nz'
+    ]
+  ])(
+    'when hostname is %s, it should set cookie domain to %s',
+    (hostname: string, expectedCookieDomain: string) => {
+      runtimeService.isServer.mockReturnValue(false);
       cookieService.get.mockReturnValue(null);
       windowService.getWindow.mockReturnValue({
-        location: { href: 'https://i.stuff.co.nz', hostname: 'i.stuff.co.nz' }
+        location: { href: 'https://i.stuff.co.nz', hostname }
       });
       const date = new Date('2019-01-01T00:00:00.000Z');
       const oneYearFromNow = new Date('2020-01-01T00:00:00.000Z');
       (global as any).Date.now = () => date;
-
-      deviceService.getDevice.mockReturnValue(deviceType);
       const routeGuard = new RouteGuard(
         cookieService,
         windowService,
@@ -167,41 +220,17 @@ describe('RouteGuard', () => {
 
       const result = routeGuard.canActivate(new ActivatedRouteSnapshot(), <
         RouterStateSnapshot
-        >{});
-
-      expect(windowService.getWindow().location.href).toBe('https://i.stuff.co.nz');
-      expect(cookieService.set).toHaveBeenCalledWith('site-view', 'i', { domain: '.stuff.co.nz', path: '/', expires: oneYearFromNow });
-      expect(result).toBeTruthy();
-    });
-  });
-
-  it.each([
-    ['i.stuff.co.nz', '.stuff.co.nz'],
-    ['www.stuff.co.nz', '.stuff.co.nz'],
-    ['localhost', 'localhost'],
-    ['experience.expproduction.shift21.ffx.nz', 'experience.expproduction.shift21.ffx.nz'],
-  ])('when hostname is %s, it should set cookie domain to %s', (hostname: string, expectedCookieDomain: string) => {
-    runtimeService.isServer.mockReturnValue(false);
-    cookieService.get.mockReturnValue(null);
-    windowService.getWindow.mockReturnValue({
-      location: { href: 'https://i.stuff.co.nz', hostname }
-    });
-    const date = new Date('2019-01-01T00:00:00.000Z');
-    const oneYearFromNow = new Date('2020-01-01T00:00:00.000Z');
-    (global as any).Date.now = () => date;
-    const routeGuard = new RouteGuard(
-      cookieService,
-      windowService,
-      runtimeService,
-      deviceService
-    );
-
-    const result = routeGuard.canActivate(new ActivatedRouteSnapshot(), <
-      RouterStateSnapshot
       >{});
 
-    expect(windowService.getWindow().location.href).toBe('https://i.stuff.co.nz');
-    expect(cookieService.set).toHaveBeenCalledWith('site-view', 'i', { domain: expectedCookieDomain, path: '/', expires: oneYearFromNow });
-    expect(result).toBeTruthy();
-  });
+      expect(windowService.getWindow().location.href).toBe(
+        'https://i.stuff.co.nz'
+      );
+      expect(cookieService.set).toHaveBeenCalledWith('site-view', 'i', {
+        domain: expectedCookieDomain,
+        path: '/',
+        expires: oneYearFromNow
+      });
+      expect(result).toBeTruthy();
+    }
+  );
 });

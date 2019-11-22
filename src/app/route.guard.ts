@@ -1,9 +1,13 @@
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  RouterStateSnapshot
+} from '@angular/router';
 import { Injectable } from '@angular/core';
 import { CookieService } from './services/cookie/cookie.service';
 import { WindowService } from './services/window/window.service';
 import { RuntimeService } from './services/runtime/runtime.service';
-import { DeviceService } from './services/device.service';
+import { DeviceService } from './services/device/device.service';
 import { DeviceType } from '../../common/DeviceType';
 import * as moment from 'moment';
 
@@ -30,7 +34,10 @@ export class RouteGuard implements CanActivate {
     const device = this.deviceService.getDevice();
     const siteViewCookie = this.cookieService.get(siteViewCookieKey);
 
-    const shouldContinueToMobile = this.shouldContinueToMobile(device, siteViewCookie);
+    const shouldContinueToMobile = this.shouldContinueToMobile(
+      device,
+      siteViewCookie
+    );
     if (shouldContinueToMobile) {
       if (!siteViewCookie) {
         this.setSiteViewCookie(siteViewCookieKey, mobileCookie);
@@ -51,7 +58,9 @@ export class RouteGuard implements CanActivate {
 
   private setSiteViewCookie(key: string, value: string) {
     const hostname = this.windowService.getWindow().location.hostname;
-    const cookieDomain = hostname.includes('stuff.co.nz') ? '.stuff.co.nz' : hostname;
+    const cookieDomain = hostname.includes('stuff.co.nz')
+      ? '.stuff.co.nz'
+      : hostname;
     const expiryDate = moment();
     expiryDate.add(1, 'year');
     this.cookieService.set(key, value, {
