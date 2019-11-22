@@ -31,19 +31,19 @@ export class RouteGuard implements CanActivate {
     const siteViewCookie = this.cookieService.get(siteViewCookieKey);
 
     const cookieNotSet = !siteViewCookie;
-    const shouldRedirect = this.shouldRedirect(device, siteViewCookie);
-    if (shouldRedirect) {
+    const shouldContinueToMobile = this.shouldContinueToMobile(device, siteViewCookie);
+    if (shouldContinueToMobile) {
+      if (cookieNotSet) {
+        this.setSiteViewCookie(siteViewCookieKey, mobileCookie);
+      }
+    } else {
       if (cookieNotSet) {
         this.setSiteViewCookie(siteViewCookieKey, desktopCookie);
       }
       this.redirectToDesktop();
-    } else {
-      if (cookieNotSet) {
-        this.setSiteViewCookie(siteViewCookieKey, mobileCookie);
-      }
     }
 
-    return !shouldRedirect;
+    return shouldContinueToMobile;
   }
 
   private redirectToDesktop() {
@@ -60,10 +60,10 @@ export class RouteGuard implements CanActivate {
     });
   }
 
-  private shouldRedirect(device: DeviceType, siteViewCookie: string) {
-    if (siteViewCookie === 'd') {
+  private shouldContinueToMobile(device: DeviceType, siteViewCookie: string) {
+    if (siteViewCookie === 'i') {
       return true;
     }
-    return !siteViewCookie && device === DeviceType.desktop;
+    return !siteViewCookie && device !== DeviceType.desktop;
   }
 }
