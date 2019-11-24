@@ -3,5 +3,4 @@ export interface ILoginLibraryConfig {
   authProvider: string;
   clientId: string;
   signinRedirectPath: string;
-  newSigninRedirectPath: string;
 }
