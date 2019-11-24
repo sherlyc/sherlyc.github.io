@@ -60,6 +60,7 @@ describe('Experiment Handler', () => {
       strapName: 'fake',
       id: 'fake',
       indexHeadline: 'fake',
+      title: 'fake',
       introText: 'fake',
       linkUrl: 'fake',
       imageSrc: 'fake',

@@ -38,7 +38,7 @@ describe('Mobile Homepage', () => {
   it('should contain text in a basic article', async () => {
     const basicArticle = await page.$('app-basic-article-unit');
     const articleText = await page.evaluate(
-      (element) => element.textContent,
+      (element: Element) => element.textContent,
       basicArticle
     );
 

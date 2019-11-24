@@ -21,6 +21,7 @@ describe('MiniMidStripHandler', () => {
     {
       id: '1',
       indexHeadline: 'Headline 1',
+      title: 'Title 1',
       introText: 'Intro 1',
       linkUrl: '/link1',
       defconSrc: null,
@@ -34,6 +35,7 @@ describe('MiniMidStripHandler', () => {
     {
       id: '2',
       indexHeadline: 'Headline 2',
+      title: 'Title 2',
       introText: 'Intro 2',
       linkUrl: '/link2',
       defconSrc: null,
@@ -81,6 +83,7 @@ describe('MiniMidStripHandler', () => {
               imageSrc: '1.jpg',
               imageSrcSet: '1.jpg 1w',
               indexHeadline: `Headline 1`,
+              title: 'Title 1',
               linkUrl: '/link1',
               type: 'ImageLinkUnit'
             },
@@ -91,6 +94,7 @@ describe('MiniMidStripHandler', () => {
               imageSrc: '2.jpg',
               imageSrcSet: '2.jpg 2w',
               indexHeadline: `Headline 2`,
+              title: 'Title 2',
               linkUrl: '/link2',
               type: 'ImageLinkUnit'
             }
@@ -150,6 +154,7 @@ describe('MiniMidStripHandler', () => {
               imageSrc: '1.jpg',
               imageSrcSet: '1.jpg 1w',
               indexHeadline: `Headline 1`,
+              title: 'Title 1',
               linkUrl: '/link1',
               type: 'ImageLinkUnit'
             },
@@ -160,6 +165,7 @@ describe('MiniMidStripHandler', () => {
               imageSrc: '2.jpg',
               imageSrcSet: '2.jpg 2w',
               indexHeadline: `Headline 2`,
+              title: 'Title 2',
               linkUrl: '/link2',
               type: 'ImageLinkUnit'
             }

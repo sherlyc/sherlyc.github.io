@@ -21,6 +21,7 @@ describe('ImageLinkUnitComponent', () => {
     id: '123123',
     strapName: 'National',
     indexHeadline: 'Dummy Headline',
+    title: 'Title Headline',
     linkUrl: 'https://dummyurl.com',
     imageSrc: 'https://dummyimagesrc.com',
     imageSrcSet: 'https://dummyimagesrc.com 1w',
@@ -85,7 +86,7 @@ describe('ImageLinkUnitComponent', () => {
   });
 
   it('should send analytics when clicked', () => {
-    const { strapName, indexHeadline, id } = articleData;
+    const { strapName, title, id } = articleData;
     component.input = articleData;
 
     fixture.detectChanges();
@@ -96,7 +97,7 @@ describe('ImageLinkUnitComponent', () => {
     expect(analyticsService.pushEvent).toHaveBeenCalledWith({
       type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
       strapName,
-      articleHeadline: indexHeadline,
+      articleHeadline: title,
       articleId: id
     });
   });

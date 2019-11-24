@@ -25,6 +25,7 @@ describe('Top Stories Article List', () => {
   const articleOne: IRawArticle = {
     id: '1',
     indexHeadline: 'Article One',
+    title: 'Title One',
     introText: 'Article One Intro',
     linkUrl: '/link1',
     imageSrc: 'article.jpg',
@@ -39,6 +40,7 @@ describe('Top Stories Article List', () => {
   const articleTwo: IRawArticle = {
     id: '2',
     indexHeadline: 'An Article',
+    title: 'Title Two',
     introText: 'Article Text',
     linkUrl: '/link1',
     imageSrc: 'article.jpg',
@@ -55,6 +57,7 @@ describe('Top Stories Article List', () => {
     id: article.id,
     strapName: strapName,
     indexHeadline: article.indexHeadline,
+    title: article.title,
     introText: article.introText,
     linkUrl: article.linkUrl,
     imageSrc: article.defconSrc,
@@ -67,6 +70,7 @@ describe('Top Stories Article List', () => {
     id: article.id,
     strapName: strapName,
     indexHeadline: article.indexHeadline,
+    title: article.title,
     introText: article.introText,
     linkUrl: article.linkUrl,
     imageSrc: article.imageSrc,

@@ -1,7 +1,7 @@
 import {
-  getSectionArticleList,
+  getArticleById,
   getListAssetById,
-  getArticleById
+  getSectionArticleList
 } from './jsonfeed';
 import * as jsonfeed from './__fixtures__/jsonfeed/jsonfeed.json';
 import * as midStripData from './__fixtures__/mid-strip/mid-strip.json';
@@ -15,6 +15,7 @@ import {
   retrieveListAsset,
   retrieveSectionList
 } from './jsonfeed-retriever';
+import { JsonFeedImageType } from './__types__/JsonFeedImageType';
 
 jest.mock('./jsonfeed-retriever');
 
@@ -42,7 +43,7 @@ describe('json feed service', () => {
   });
 
   it('should get article and map it to raw article', async () => {
-    const jsonFeedArticle = {
+    const jsonFeedArticle: IJsonFeedArticle = {
       id: 1,
       asset_type: JsonFeedAssetType.ARTICLE,
       headline_flags: [],
@@ -67,26 +68,24 @@ describe('json feed service', () => {
           variants: [
             {
               id: 109962229,
-              layout: 'Small Thumbnail',
+              layout: JsonFeedImageType.SMALL_THUMBNAIL,
               src:
                 'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffThumbnail.90x60.1tgvdg.png/1547607024623.jpg',
               media_type: 'Photo',
               width: 90,
               height: 60,
-              urls: [
-                {
-                  '90x60':
-                    'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffThumbnail.90x60.1tgvdg.png/1547607024623.jpg',
-                  '180x120':
-                    'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffThumbnail.180x120.1tgvdg.png/1547607024623.jpg'
-                }
-              ],
+              urls: {
+                '90x60':
+                  'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffThumbnail.90x60.1tgvdg.png/1547607024623.jpg',
+                '180x120':
+                  'https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffThumbnail.180x120.1tgvdg.png/1547607024623.jpg'
+              },
               image_type_id: 'StuffThumbnail'
             }
           ]
         }
       ]
-    } as IJsonFeedArticle;
+    };
     (retrieveArticle as jest.Mock).mockReturnValue(jsonFeedArticle);
 
     const article = await getArticleById(params, 1234);

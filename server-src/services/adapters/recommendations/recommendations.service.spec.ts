@@ -14,6 +14,7 @@ describe('getRecommendedArticles', () => {
   const rawArticle = {
     id: '1',
     indexHeadline: 'a',
+    title: 'a',
     introText: 'a',
     linkUrl: 'asdf',
     defconSrc: 'asdf',
