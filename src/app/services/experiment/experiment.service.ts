@@ -8,9 +8,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs/internal/observable/of';
 import { LoggerService } from '../logger/logger.service';
-import { parse } from 'bowser';
-import { WindowService } from '../window/window.service';
 import { DeviceType } from '../../../../common/DeviceType';
+import { DeviceService } from '../device/device.service';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +25,8 @@ export class ExperimentService {
     private runtimeService: RuntimeService,
     private lottoService: LottoService,
     private http: HttpClient,
-    private windowService: WindowService,
-    private logger: LoggerService
+    private logger: LoggerService,
+    private device: DeviceService
   ) {}
 
   async setup() {
@@ -37,19 +36,12 @@ export class ExperimentService {
     this.experiment = this.loadExperiment();
   }
 
-  private getDeviceType(): DeviceType {
-    return (
-      (parse(this.windowService.getWindow().navigator.userAgent).platform
-        .type as DeviceType) || DeviceType.unknown
-    );
-  }
-
   private loadExperiment() {
     return new Promise<{ name: string; variant: string }>(async (resolve) => {
       const userLotteryNumber = this.lottoService.getLotteryNumber(
         ExperimentName.Users
       );
-      const deviceType: DeviceType = this.getDeviceType();
+      const deviceType: DeviceType = this.device.getDevice();
 
       const experimentName = await this.retrieveVariant(
         ExperimentName.Users,
