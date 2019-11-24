@@ -87,8 +87,7 @@ describe('AuthenticationService', () => {
         libraryUrl: libraryUrl,
         authProvider: authProvider,
         clientId: clientId,
-        signinRedirectPath: signinRedirectPath,
-        newSigninRedirectPath: '/spade/signin-callback-v3'
+        signinRedirectPath: signinRedirectPath
       }
     });
 
@@ -175,27 +174,5 @@ describe('AuthenticationService', () => {
     await authenticationService.signinCallback();
 
     expect(StuffLogin.signinCallback).toHaveBeenCalled();
-  });
-
-  it('should use old redirect url when feature is off', async () => {
-    featureSwitchService.getFeature.mockResolvedValue(false);
-    await authenticationService.setup();
-
-    expect(StuffLogin.init).toHaveBeenCalledWith(
-      expect.objectContaining({
-        redirect_uri: 'https://www.stuff.co.nz/spade/signin-callback-v2'
-      })
-    );
-  });
-
-  it('should use new redirect url when feature is on', async () => {
-    featureSwitchService.getFeature.mockResolvedValue(true);
-    await authenticationService.setup();
-
-    expect(StuffLogin.init).toHaveBeenCalledWith(
-      expect.objectContaining({
-        redirect_uri: 'https://www.stuff.co.nz/spade/signin-callback-v3'
-      })
-    );
   });
 });
