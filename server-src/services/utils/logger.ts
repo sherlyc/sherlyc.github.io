@@ -4,7 +4,6 @@ import * as logform from 'logform';
 import config from './config';
 import { ILogger } from './__types__/ILogger';
 import { logger } from 'express-winston';
-import * as extension from './__types__/express-winston-extension';
 
 function getFormat(name: string): logform.Format {
   return name === 'json'
