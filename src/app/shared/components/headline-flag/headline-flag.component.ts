@@ -1,7 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { HeadlineFlags } from '../../../../../common/HeadlineFlags';
-import { FeatureSwitchService } from '../../../services/feature-switch/feature-switch.service';
-import { FeatureName } from '../../../../../common/FeatureName';
 
 @Component({
   selector: 'app-headline-flag',
