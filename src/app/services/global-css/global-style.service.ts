@@ -5,12 +5,12 @@ import * as cxs from 'cxs';
 @Injectable({
   providedIn: 'root'
 })
-export class GlobalCssService {
+export class GlobalStyleService {
   constructor() {
     cxs.prefix('s_');
   }
 
-  public injectCss(...args: any[]) {
+  public injectStyle(...args: any[]) {
     return cxs(...args);
   }
 }
