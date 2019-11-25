@@ -6,6 +6,7 @@ export interface IBasicArticleTitleUnit {
   id: string;
   strapName: string;
   indexHeadline: string;
+  title: string;
   linkUrl: string;
   lastPublishedTime: number;
   headlineFlags: HeadlineFlags[];

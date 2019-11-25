@@ -55,7 +55,7 @@ function getImageWidth(dimensions: string) {
   return `${dimensions.split('x')[0]}w`;
 }
 
-function getImageSrcSetString(imageUrls: Object[]) {
+function getImageSrcSetString(imageUrls: Object) {
   return Object.entries(imageUrls)
     .map(([size, src]) => `${src} ${getImageWidth(size)}`)
     .join(', ');

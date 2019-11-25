@@ -19,4 +19,5 @@ export interface IEnvironmentDefinition {
   sentryIO: { dsn: string; sampleRate: number; environment: string };
   dtmUrl: string;
   loginLibrary: ILoginLibraryConfig;
+  redirectUrl: string;
 }

@@ -12,10 +12,10 @@ describe('Mobile Homepage', () => {
     page = await browser.newPage();
     const cookieDomain = new URL(config.url).hostname;
     await page.setCookie({
-      name: "site-view",
-      value: "i",
+      name: 'site-view',
+      value: 'i',
       domain: cookieDomain,
-      path: "/"
+      path: '/'
     });
     await page.goto(config.url, {
       waitUntil: 'domcontentloaded',
@@ -45,7 +45,7 @@ describe('Mobile Homepage', () => {
   it('should contain text in a basic article', async () => {
     const basicArticle = await page.$('app-basic-article-unit');
     const articleText = await page.evaluate(
-      (element) => element.textContent,
+      (element: Element) => element.textContent,
       basicArticle
     );
 

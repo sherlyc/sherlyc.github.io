@@ -26,6 +26,7 @@ describe('BigImageArticleUnitComponent', () => {
     strapName: 'National',
     indexHeadline: 'Dummy Headline',
     introText: 'Dummy intro text',
+    title: 'Title',
     linkUrl: 'https://dummyurl.com',
     imageSrc: 'https://dummyimagesrc.com',
     imageSrcSet: 'https://dummyimagesrc.com 1w',
@@ -94,7 +95,7 @@ describe('BigImageArticleUnitComponent', () => {
   });
 
   it('should send analytics when clicked', () => {
-    const { strapName, indexHeadline, id } = articleData;
+    const { strapName, title, id } = articleData;
     component.input = articleData;
     fixture.detectChanges();
 
@@ -104,7 +105,7 @@ describe('BigImageArticleUnitComponent', () => {
     expect(analyticsService.pushEvent).toHaveBeenCalledWith({
       type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
       strapName,
-      articleHeadline: indexHeadline,
+      articleHeadline: title,
       articleId: id
     });
   });

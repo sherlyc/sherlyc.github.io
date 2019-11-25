@@ -7,6 +7,7 @@ import { getRawArticles } from '../../adapters/article-retriever/article-retriev
 import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 import { IBasicArticleTitleUnit } from '../../../../common/__types__/IBasicArticleTitleUnit';
+import { IRawArticle } from '../../adapters/__types__/IRawArticle';
 
 jest.mock('../../adapters/article-retriever/article-retriever');
 
@@ -14,14 +15,10 @@ describe('Expandable article list', () => {
   const params: IParams = { apiRequestId: '123' };
   const strapName = 'property';
 
-  const adUnitWithContext = {
-    type: 'BasicAdUnit',
-    context: strapName
-  };
-
-  const articleOne = {
+  const articleOne: IRawArticle = {
     id: '1',
     indexHeadline: 'Headline 1',
+    title: 'Title 1',
     introText: 'Intro 1',
     linkUrl: '/link1',
     defconSrc: null,
@@ -33,9 +30,10 @@ describe('Expandable article list', () => {
     headlineFlags: []
   };
 
-  const articleTwo = {
+  const articleTwo: IRawArticle = {
     id: '2',
     indexHeadline: 'Headline 2',
+    title: 'Title 2',
     introText: 'Intro 2',
     linkUrl: '/link2',
     defconSrc: null,
@@ -52,6 +50,7 @@ describe('Expandable article list', () => {
     id: '1',
     strapName,
     indexHeadline: 'Headline 1',
+    title: 'Title 1',
     introText: 'Intro 1',
     linkUrl: '/link1',
     imageSrc: '1.jpg',
@@ -65,6 +64,7 @@ describe('Expandable article list', () => {
     id: '2',
     strapName,
     indexHeadline: 'Headline 2',
+    title: 'Title 2',
     lastPublishedTime: 2,
     linkUrl: '/link2',
     headlineFlags: []

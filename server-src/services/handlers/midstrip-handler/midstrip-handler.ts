@@ -31,6 +31,7 @@ export default async function(
             id: article.id,
             strapName: strapName,
             indexHeadline: article.indexHeadline,
+            title: article.title,
             imageSrc: article.imageSrc,
             imageSrcSet: article.imageSrcSet,
             linkUrl: article.linkUrl,

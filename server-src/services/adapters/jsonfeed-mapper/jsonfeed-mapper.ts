@@ -33,6 +33,7 @@ export function mapArticleAsset(item: IJsonFeedArticle): IRawArticle {
     indexHeadline: item.isHeadlineOverrideApplied
       ? item.alt_headline
       : item.title,
+    title: item.title,
     introText: item.alt_intro,
     linkUrl: item.path,
     imageSrc: getThumbnailSrc(item),
@@ -51,6 +52,7 @@ function mapUrlAsset(item: IJsonFeedUrl): IRawArticle {
     indexHeadline: item.isHeadlineOverrideApplied
       ? item.alt_headline
       : item.title,
+    title: item.title,
     introText: item.alt_intro,
     linkUrl: getLinkUrl(item),
     imageSrc: getThumbnailSrc(item),

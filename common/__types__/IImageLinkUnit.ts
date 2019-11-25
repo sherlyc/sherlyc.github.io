@@ -6,6 +6,7 @@ export interface IImageLinkUnit {
   id: string;
   strapName: string;
   indexHeadline: string;
+  title: string;
   linkUrl: string;
   imageSrc: string | null;
   imageSrcSet: string | null;
