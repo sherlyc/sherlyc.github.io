@@ -118,7 +118,6 @@ describe('FeatureSwitchService', () => {
 
     await Promise.all(
       Object.keys(features.FeatureName).map(async (feature) => {
-        // @ts-ignore
         const featureValue = await service.getFeature(feature as FeatureName);
         expect(featureValue).toEqual(true);
       })
@@ -134,7 +133,6 @@ describe('FeatureSwitchService', () => {
 
     await Promise.all(
       Object.keys(features.FeatureName).map(async (feature) => {
-        // @ts-ignore
         const featureValue = await service.getFeature(feature as FeatureName);
         expect(featureValue).toEqual(false);
       })
@@ -146,7 +144,6 @@ describe('FeatureSwitchService', () => {
 
     await Promise.all(
       Object.keys(features.FeatureName).map(async (feature) => {
-        // @ts-ignore
         const featureValue = await service.getFeature(feature as FeatureName);
         expect(featureValue).toEqual(false);
       })
