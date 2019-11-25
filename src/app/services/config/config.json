@@ -29,7 +29,8 @@
       "clientId": "c93d66ab-a7cf-4538-83fa-75c71622c458",
       "signinRedirectPath": "/spade/signin-callback-v2",
       "newSigninRedirectPath": "/spade/signin-callback-v3"
-    }
+    },
+    "redirectUrl": "https://www.stuff.co.nz"
   },
   "staging": {
     "retryTimeout": 1000,
@@ -61,7 +62,8 @@
       "clientId": "c0f1b219-297b-4104-8300-94c4636768da",
       "signinRedirectPath": "/spade/signin-callback-v2",
       "newSigninRedirectPath": "/spade/signin-callback-v3"
-    }
+    },
+    "redirectUrl": "https://www-preprod.stuff.co.nz"
   },
   "development": {
     "retryTimeout": 500,
@@ -93,7 +95,8 @@
       "clientId": "c0f1b219-297b-4104-8300-94c4636768da",
       "signinRedirectPath": "/spade/signin-callback-v2",
       "newSigninRedirectPath": "/spade/signin-callback-v3"
-    }
+    },
+    "redirectUrl": "http://localhost:4000/spade/assets/fake-desktop.html"
   },
   "localhost": {
     "retryTimeout": 500,
@@ -125,7 +128,8 @@
       "clientId": "c0f1b219-297b-4104-8300-94c4636768da",
       "signinRedirectPath": "/spade/signin-callback-v2",
       "newSigninRedirectPath": "/spade/signin-callback-v3"
-    }
+    },
+    "redirectUrl": "http://localhost:4000/spade/assets/fake-desktop.html"
   },
   "test": {
     "retryTimeout": 1,
@@ -157,6 +161,7 @@
       "clientId": "c0f1b219-297b-4104-8300-94c4636768da",
       "signinRedirectPath": "/spade/signin-callback-v2",
       "newSigninRedirectPath": "/spade/signin-callback-v3"
-    }
+    },
+    "redirectUrl": "http://localhost:4000/spade/assets/fake-desktop.html"
   }
 }
