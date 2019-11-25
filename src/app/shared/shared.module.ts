@@ -11,6 +11,7 @@ import { HeadlineFlagComponent } from './components/headline-flag/headline-flag.
 import { TimeAgoComponent } from './components/time-ago/time-ago.component';
 import { WeatherIconComponent } from './components/weather-icon/weather-icon.component';
 import { ResizeDirective } from './directives/resize/resize.directive';
+import { GlobalStyleDirective } from './directives/global-style/global-style.directive';
 
 @NgModule({
   imports: [CommonModule],
@@ -20,6 +21,7 @@ import { ResizeDirective } from './directives/resize/resize.directive';
     ResizeDirective,
     ContentBlockDirective,
     OpenExternalLinkDirective,
+    GlobalStyleDirective,
     CopyrightComponent,
     HeadlineComponent,
     SigninCallbackComponent,
@@ -33,6 +35,7 @@ import { ResizeDirective } from './directives/resize/resize.directive';
     ResizeDirective,
     ContentBlockDirective,
     OpenExternalLinkDirective,
+    GlobalStyleDirective,
     CopyrightComponent,
     HeadlineComponent,
     SigninCallbackComponent,
