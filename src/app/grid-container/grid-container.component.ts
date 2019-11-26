@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import * as cxs from 'cxs';
 import {
   IGridBlock,
   IGridConfig,
