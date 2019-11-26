@@ -113,18 +113,19 @@ describe('Experiment service', () => {
       expect(experimentVariant).toBe('groupTwo');
     });
 
-    it.each([
-      [1], [50], [100]
-    ])('should return control variant for numbers 1 to 100 - lottery number %i', async (lotteryNumber: number) => {
-      const experimentVariant = await getExperimentVariant(
-        ExperimentName.MoreSection,
-        lotteryNumber,
-        DeviceType.desktop,
-        params
-      );
+    it.each([[1], [50], [100]])(
+      'should return control variant for numbers 1 to 100 - lottery number %i',
+      async (lotteryNumber: number) => {
+        const experimentVariant = await getExperimentVariant(
+          ExperimentName.MoreSection,
+          lotteryNumber,
+          DeviceType.mobile,
+          params
+        );
 
-      expect(experimentVariant).toBe('control');
-    });
+        expect(experimentVariant).toBe('control');
+      }
+    );
 
     it.each([[DeviceType.desktop], [DeviceType.tablet], [DeviceType.unknown]])(
       'should return control with %s device',
