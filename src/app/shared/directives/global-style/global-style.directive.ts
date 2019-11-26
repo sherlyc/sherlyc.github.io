@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, OnInit, OnChanges } from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges } from '@angular/core';
 import { GlobalStyleService } from '../../../services/global-style/global-style.service';
 
 @Directive({ selector: '[appGlobalStyle]' })
