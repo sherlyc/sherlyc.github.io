@@ -96,7 +96,7 @@
       "signinRedirectPath": "/spade/signin-callback-v2",
       "newSigninRedirectPath": "/spade/signin-callback-v3"
     },
-    "redirectUrl": "http://localhost:4000/spade/assets/fake-desktop.html"
+    "redirectUrl": "/spade/assets/fake-desktop.html"
   },
   "localhost": {
     "retryTimeout": 500,
@@ -129,7 +129,7 @@
       "signinRedirectPath": "/spade/signin-callback-v2",
       "newSigninRedirectPath": "/spade/signin-callback-v3"
     },
-    "redirectUrl": "http://localhost:4000/spade/assets/fake-desktop.html"
+    "redirectUrl": "/spade/assets/fake-desktop.html"
   },
   "test": {
     "retryTimeout": 1,
