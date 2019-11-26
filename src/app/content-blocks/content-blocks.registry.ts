@@ -21,6 +21,7 @@ import { BigImageArticleUnitComponent } from './big-image-article-unit/big-image
 import { HalfWidthImageArticleUnitComponent } from './half-width-image-article-unit/half-width-image-article-unit.component';
 import { ExpandableArticleSectionComponent } from './expandable-article-section/expandable-article-section.component';
 import { RecommendationsComponent } from './recommendations/recommendations.component';
+import { GridContainerComponent } from '../grid-container/grid-container.component';
 
 export const contentBlockComponents = [
   GrayDefconArticleUnitComponent,
@@ -43,7 +44,8 @@ export const contentBlockComponents = [
   ExperimentContainerComponent,
   FeatureContainerComponent,
   FooterComponent,
-  RecommendationsComponent
+  RecommendationsComponent,
+  GridContainerComponent
 ];
 
 const registry: {
@@ -69,7 +71,8 @@ const registry: {
   ExperimentContainerComponent,
   FeatureContainerComponent,
   FooterComponent,
-  RecommendationsComponent
+  RecommendationsComponent,
+  GridContainerComponent
 };
 
 export default registry;

@@ -21,6 +21,10 @@ export default async (params: IParams): Promise<IPage> => {
           type: HandlerInputType.Page,
           items: [
             {
+              type: HandlerInputType.GridContainer,
+              sourceId: Strap.TopStories
+            },
+            {
               type: HandlerInputType.Weather
             },
             {
