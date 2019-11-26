@@ -21,7 +21,7 @@ describe('Experiment service', () => {
 
   describe('Users', () => {
     it.each([[1], [50], [100], [404]])(
-      'lottery numbers 1 to 100 and 404 should return TopStoriesVisualExperiment variant on mobile - number %i',
+      'should return TopStoriesVisualExperiment variant on mobile for numbers 1 to 100 and 404 - lottery number %i',
       async (lotteryNumber: number) => {
         const experimentVariant = await getExperimentVariant(
           ExperimentName.Users,
@@ -34,7 +34,7 @@ describe('Experiment service', () => {
       }
     );
 
-    it('should return MoreSection variant with lottery number 505 on mobile', async () => {
+    it('should return MoreSection variant with number 505 on mobile', async () => {
       const experimentVariant = await getExperimentVariant(
         ExperimentName.Users,
         505,
@@ -62,7 +62,7 @@ describe('Experiment service', () => {
 
   describe('TopStoriesVisualExperiment', () => {
     test.each([[1], [34], [65], [100], [404]])(
-      'should return groupOne variant for all numbers - lottery number %i',
+      'should return groupOne variant for numbers 1 to 100 and 404 - lottery number %i',
       async (lotteryNumber: number) => {
         const experimentVariant = await getExperimentVariant(
           ExperimentName.TopStoriesVisualExperiment,
@@ -75,19 +75,23 @@ describe('Experiment service', () => {
       }
     );
 
-    it('should return control when device is not mobile', async () => {
-      const experimentVariant = await getExperimentVariant(
-        ExperimentName.TopStoriesVisualExperiment,
-        100,
-        DeviceType.desktop,
-        params
-      );
-      expect(experimentVariant).toBe('control');
-    });
+    it.each([[DeviceType.desktop], [DeviceType.tablet], [DeviceType.unknown]])(
+      'should return control with %s device',
+      async (deviceType: DeviceType) => {
+        const experimentVariant = await getExperimentVariant(
+          ExperimentName.TopStoriesVisualExperiment,
+          100,
+          deviceType,
+          params
+        );
+
+        expect(experimentVariant).toBe('control');
+      }
+    );
   });
 
   describe('MoreSection', () => {
-    it('should return groupOne variant with lottery number 404 for Users experiment on mobile', async () => {
+    it('should return groupOne variant with number 404 for Users experiment on mobile', async () => {
       const experimentVariant = await getExperimentVariant(
         ExperimentName.MoreSection,
         404,
@@ -98,7 +102,7 @@ describe('Experiment service', () => {
       expect(experimentVariant).toBe('groupOne');
     });
 
-    it('should return groupTwo variant with lottery number 505 for Users experiment on mobile', async () => {
+    it('should return groupTwo variant with number 505 for Users experiment on mobile', async () => {
       const experimentVariant = await getExperimentVariant(
         ExperimentName.MoreSection,
         505,
@@ -109,15 +113,31 @@ describe('Experiment service', () => {
       expect(experimentVariant).toBe('groupTwo');
     });
 
-    it('should return control variant for non-mobile devices', async () => {
+    it.each([
+      [1], [50], [100]
+    ])('should return control variant for numbers 1 to 100 - lottery number %i', async (lotteryNumber: number) => {
       const experimentVariant = await getExperimentVariant(
         ExperimentName.MoreSection,
-        505,
+        lotteryNumber,
         DeviceType.desktop,
         params
       );
 
       expect(experimentVariant).toBe('control');
     });
+
+    it.each([[DeviceType.desktop], [DeviceType.tablet], [DeviceType.unknown]])(
+      'should return control with %s device',
+      async (deviceType: DeviceType) => {
+        const experimentVariant = await getExperimentVariant(
+          ExperimentName.MoreSection,
+          505,
+          deviceType,
+          params
+        );
+
+        expect(experimentVariant).toBe('control');
+      }
+    );
   });
 });
