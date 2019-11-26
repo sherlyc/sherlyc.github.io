@@ -42,6 +42,6 @@ describe('Global Style Directive', () => {
 
     const classNames = fixture.debugElement.query(By.css('.something'))
       .nativeElement.className;
-    expect(classNames).toBe('something s_01 s_02');
+    expect(classNames).toContain('s_01 s_02');
   });
 });
