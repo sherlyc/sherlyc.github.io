@@ -16,7 +16,6 @@ export class GrayDefconArticleUnitComponent implements IContentBlockComponent {
   constructor(private analyticsService: AnalyticsService) {}
 
   sendAnalytics() {
-
     const { strapName, title, id } = this.input;
 
     console.log('sending gray defcon', strapName, title, id);

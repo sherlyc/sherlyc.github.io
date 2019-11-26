@@ -6,11 +6,9 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { RuntimeService } from '../runtime/runtime.service';
 import { LottoService } from '../lotto/lotto.service';
 import { LoggerService } from '../logger/logger.service';
-import { WindowService } from '../window/window.service';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { DeviceType } from '../../../../common/DeviceType';
-import { parse } from 'bowser';
+import { DeviceService } from '../device/device.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +21,7 @@ export class FeatureSwitchService {
     private http: HttpClient,
     private lotto: LottoService,
     private logger: LoggerService,
-    private window: WindowService
+    private device: DeviceService
   ) {}
 
   private features!: Promise<{ [key in FeatureName]: boolean }>;
@@ -43,13 +41,6 @@ export class FeatureSwitchService {
     return features[featureName];
   }
 
-  private getDeviceType(): DeviceType {
-    return (
-      (parse(this.window.getWindow().navigator.userAgent).platform
-        .type as DeviceType) || DeviceType.unknown
-    );
-  }
-
   private async loadFeatures() {
     const featurePromises = Object.keys(FeatureName).map(
       async (featureName) => {
@@ -57,7 +48,7 @@ export class FeatureSwitchService {
         const isFeatureEnabled = await this.isFeatureEnabled(
           featureName,
           lotteryNumber,
-          this.getDeviceType()
+          this.device.getDevice()
         ).toPromise();
         return {
           [featureName]: isFeatureEnabled

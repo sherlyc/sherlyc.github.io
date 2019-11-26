@@ -12,7 +12,8 @@ import * as features from '../../../../common/FeatureName';
 import { throwError } from 'rxjs';
 import { LoggerService } from '../logger/logger.service';
 import { FeatureName } from '../../../../common/FeatureName';
-import { WindowService } from '../window/window.service';
+import { DeviceService } from '../device/device.service';
+import { DeviceType } from '../../../../common/DeviceType';
 
 describe('FeatureSwitchService', () => {
   const featureAPI = '/spade/api/feature';
@@ -24,7 +25,7 @@ describe('FeatureSwitchService', () => {
   let runtimeService: ServiceMock<RuntimeService>;
   let lottoService: ServiceMock<LottoService>;
   let loggerService: ServiceMock<LoggerService>;
-  let windowService: ServiceMock<WindowService>;
+  let deviceService: ServiceMock<DeviceService>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -55,8 +56,8 @@ describe('FeatureSwitchService', () => {
           useClass: mockService(LoggerService)
         },
         {
-          provide: WindowService,
-          useClass: mockService(WindowService)
+          provide: DeviceService,
+          useClass: mockService(DeviceService)
         }
       ]
     });
@@ -67,11 +68,8 @@ describe('FeatureSwitchService', () => {
     runtimeService = TestBed.get(RuntimeService);
     lottoService = TestBed.get(LottoService);
     loggerService = TestBed.get(LoggerService);
-    windowService = TestBed.get(WindowService);
+    deviceService = TestBed.get(DeviceService);
     configServiceMock.getConfig.mockReturnValue({ featureAPI });
-    windowService.getWindow.mockReturnValue({
-      navigator: { userAgent: 'Unknown' }
-    });
 
     service = TestBed.get(FeatureSwitchService);
     (features as any).FeatureName = {
@@ -94,23 +92,21 @@ describe('FeatureSwitchService', () => {
 
   it('should make call to feature API with featureName, lotteryNumber and deviceType', async () => {
     const lotteryNumber = 123;
-    const mobileAgent =
-      'Mozilla/5.0 (Linux; Android 4.4.2; Nexus 4 Build/KOT49H)';
 
     runtimeService.isServer.mockReturnValue(false);
     lottoService.getLotteryNumber.mockReturnValue(lotteryNumber);
     httpClient.get.mockReturnValue(of(true));
-    windowService.getWindow.mockReturnValue({
-      navigator: { userAgent: mobileAgent }
-    });
+    deviceService.getDevice.mockReturnValue(DeviceType.mobile);
 
     await service.setup();
 
-    Object.keys(features.FeatureName).map(async (feature) => {
-      expect(httpClient.get).toHaveBeenCalledWith(
-        `${featureAPI}/${feature}/${lotteryNumber}/mobile`
-      );
-    });
+    await Promise.all(
+      Object.keys(features.FeatureName).map(async (feature) => {
+        expect(httpClient.get).toHaveBeenCalledWith(
+          `${featureAPI}/${feature}/${lotteryNumber}/mobile`
+        );
+      })
+    );
   });
 
   it('should return features as enabled when all features are on', async () => {
@@ -120,11 +116,12 @@ describe('FeatureSwitchService', () => {
 
     await service.setup();
 
-    Object.keys(features.FeatureName).map(async (feature) => {
-      // @ts-ignore
-      const featureValue = await service.getFeature(feature as FeatureName);
-      expect(featureValue).toEqual(true);
-    });
+    await Promise.all(
+      Object.keys(features.FeatureName).map(async (feature) => {
+        const featureValue = await service.getFeature(feature as FeatureName);
+        expect(featureValue).toEqual(true);
+      })
+    );
   });
 
   it('should return features as disabled when api fails', async () => {
@@ -134,20 +131,22 @@ describe('FeatureSwitchService', () => {
 
     await service.setup();
 
-    Object.keys(features.FeatureName).map(async (feature) => {
-      // @ts-ignore
-      const featureValue = await service.getFeature(feature as FeatureName);
-      expect(featureValue).toEqual(false);
-    });
+    await Promise.all(
+      Object.keys(features.FeatureName).map(async (feature) => {
+        const featureValue = await service.getFeature(feature as FeatureName);
+        expect(featureValue).toEqual(false);
+      })
+    );
   });
 
   it('should return false for all features while running in server', async () => {
     runtimeService.isServer.mockReturnValue(true);
 
-    Object.keys(features.FeatureName).map(async (feature) => {
-      // @ts-ignore
-      const featureValue = await service.getFeature(feature as FeatureName);
-      expect(featureValue).toEqual(false);
-    });
+    await Promise.all(
+      Object.keys(features.FeatureName).map(async (feature) => {
+        const featureValue = await service.getFeature(feature as FeatureName);
+        expect(featureValue).toEqual(false);
+      })
+    );
   });
 });
