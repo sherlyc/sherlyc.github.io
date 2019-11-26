@@ -12,6 +12,6 @@ export class GlobalStyleDirective implements OnInit {
 
   ngOnInit() {
     const className = this.globalStyleService.injectStyle(this.inputStyle);
-    this.el.nativeElement.classList.add(className);
+    this.el.nativeElement.classList.add(...className.split(' '));
   }
 }
