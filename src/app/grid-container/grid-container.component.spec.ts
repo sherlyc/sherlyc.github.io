@@ -1,5 +1,11 @@
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TransferState } from '@angular/platform-browser';
+import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { ContentBlockType } from '../../../common/__types__/ContentBlockType';
+import { IContentBlock } from '../../../common/__types__/IContentBlock';
+import registry from '../content-blocks/content-blocks.registry';
+import { ContentBlockDirective } from '../shared/directives/content-block/content-block.directive';
 import { GlobalStyleDirective } from '../shared/directives/global-style/global-style.directive';
 import { GridContainerComponent } from './grid-container.component';
 
@@ -7,10 +13,35 @@ describe('GridContainerComponent', () => {
   let component: GridContainerComponent;
   let fixture: ComponentFixture<GridContainerComponent>;
 
+  const input = ({
+    type: 'FakeContentBlock'
+  } as unknown) as IContentBlock;
+
+  @Component({
+    selector: 'app-fake-content-block',
+    template: ''
+  })
+  class FakeContentBlockComponent {}
+
   beforeEach(async () => {
+    // @ts-ignore
+    registry['FakeContentBlockComponent'] = FakeContentBlockComponent;
+
     await TestBed.configureTestingModule({
-      declarations: [GlobalStyleDirective, GridContainerComponent]
-    }).compileComponents();
+      declarations: [
+        GlobalStyleDirective,
+        GridContainerComponent,
+        ContentBlockDirective,
+        FakeContentBlockComponent
+      ],
+      providers: [TransferState]
+    })
+      .overrideModule(BrowserDynamicTestingModule, {
+        set: {
+          entryComponents: [FakeContentBlockComponent]
+        }
+      })
+      .compileComponents();
 
     fixture = TestBed.createComponent(GridContainerComponent);
     component = fixture.componentInstance;
@@ -23,7 +54,7 @@ describe('GridContainerComponent', () => {
   it('applies the grid configuration', () => {
     component.input = {
       type: ContentBlockType.GridContainer,
-      content: [],
+      items: new Array(4).fill(input),
       mobile: { gridTemplateColumns: '1fr', gridGap: '20px', gridBlocks: [] },
       tablet: {
         gridTemplateColumns: '1fr 1fr 1fr 1fr',

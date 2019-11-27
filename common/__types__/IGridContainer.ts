@@ -16,7 +16,7 @@ export interface IGridConfig {
 
 export interface IGridContainer {
   type: ContentBlockType.GridContainer;
-  content: IContentBlock[];
+  items: IContentBlock[];
   mobile: IGridConfig;
   tablet: IGridConfig;
   desktop: IGridConfig;
