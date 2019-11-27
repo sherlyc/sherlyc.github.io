@@ -1,8 +1,8 @@
-import { IParams } from '../__types__/IParams';
-import { Strap } from '../strap';
-import config from '../utils/config';
-import { getListAssetById } from './jsonfeed/jsonfeed';
-import { IRawArticle } from './__types__/IRawArticle';
+import { IParams } from '../../__types__/IParams';
+import { Strap } from '../../strap';
+import config from '../../utils/config';
+import { getListAssetById } from '../jsonfeed/jsonfeed';
+import { IRawArticle } from '../__types__/IRawArticle';
 import { flatten } from 'lodash';
 
 const deduplicate = (
