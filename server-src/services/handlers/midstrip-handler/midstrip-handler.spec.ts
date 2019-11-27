@@ -5,9 +5,11 @@ import { HandlerInputType } from '../__types__/HandlerInputType';
 import { getStrapArticles } from '../../adapters/strap-list-service';
 import { Strap } from '../../strap';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
+import wrappedLogger from "../../utils/logger";
 
 jest.mock('../../adapters/strap-list-service');
 jest.mock('../../adapters/jsonfeed');
+jest.mock("../../utils/logger");
 
 describe('MidStripHandler', () => {
   const basicAdUnit = {
@@ -253,6 +255,7 @@ describe('MidStripHandler', () => {
     });
 
     it('should throw error when failing to retrieve articles', async () => {
+      const sourceId = Strap.MidStrip;
       const error = new Error('failed to retrieve');
       (getStrapArticles as jest.Mock).mockRejectedValue(error);
 
@@ -261,13 +264,14 @@ describe('MidStripHandler', () => {
           jest.fn(),
           {
             type: HandlerInputType.MidStrip,
-            sourceId: Strap.MidStrip,
+            sourceId,
             strapName: 'MidStrip',
             totalArticles: 2
           },
           params
         )
       ).rejects.toEqual(error);
+      expect(wrappedLogger.error).toHaveBeenCalledWith(params.apiRequestId, expect.stringContaining(sourceId));
     });
   });
 });
