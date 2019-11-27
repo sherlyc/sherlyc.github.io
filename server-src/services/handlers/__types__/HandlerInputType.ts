@@ -17,6 +17,5 @@ export enum HandlerInputType {
   Weather = 'Weather',
   Experiment = 'Experiment',
   Feature = 'Feature',
-  Recommendations = 'Recommendations',
-  GridContainer = 'GridContainer'
+  Recommendations = 'Recommendations'
 }
