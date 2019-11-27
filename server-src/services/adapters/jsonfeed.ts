@@ -6,7 +6,7 @@ import {
 import {
   mapToRawArticleList,
   mapArticleAsset
-} from './jsonfeed-mapper/jsonfeed-mapper';
+} from './jsonfeed/jsonfeed-mapper';
 import { IJsonFeedArticleList } from './__types__/IJsonFeedArticleList';
 import { IRawArticle } from './__types__/IRawArticle';
 import { Section } from '../section';
