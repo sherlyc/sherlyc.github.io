@@ -100,6 +100,10 @@ describe('GridContainerComponent', () => {
           "gridColumnStart": 1,
           "gridRowEnd": "span 1",
           "gridRowStart": 1,
+          "msGridColumn": 1,
+          "msGridColumnSpan": 1,
+          "msGridRow": 1,
+          "msGridRowSpan": 1,
         },
         "@media only screen and (min-width: 64em)": Object {
           " div:nth-child(1)": Object {
@@ -107,10 +111,15 @@ describe('GridContainerComponent', () => {
             "gridColumnStart": 1,
             "gridRowEnd": "span 2",
             "gridRowStart": 1,
+            "msGridColumn": 1,
+            "msGridColumnSpan": 2,
+            "msGridRow": 1,
+            "msGridRowSpan": 2,
           },
           "display": "grid",
           "gridGap": "20px",
           "gridTemplateColumns": "1fr 1fr 1fr 1fr",
+          "msGridColumn": "1fr 1fr 1fr 1fr",
         },
         "@media only screen and (min-width: 75em)": Object {
           " div:nth-child(1)": Object {
@@ -118,14 +127,20 @@ describe('GridContainerComponent', () => {
             "gridColumnStart": 1,
             "gridRowEnd": "span 2",
             "gridRowStart": 1,
+            "msGridColumn": 1,
+            "msGridColumnSpan": 2,
+            "msGridRow": 1,
+            "msGridRowSpan": 2,
           },
           "display": "grid",
           "gridGap": "20px",
           "gridTemplateColumns": "1fr 1fr 1fr 1fr 200px",
+          "msGridColumn": "1fr 1fr 1fr 1fr 200px",
         },
         "display": "grid",
         "gridGap": "20px",
         "gridTemplateColumns": "1fr",
+        "msGridColumn": "1fr",
       }
     `);
   });
