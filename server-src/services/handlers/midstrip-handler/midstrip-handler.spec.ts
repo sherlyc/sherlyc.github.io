@@ -5,11 +5,11 @@ import { HandlerInputType } from '../__types__/HandlerInputType';
 import { getStrapArticles } from '../../adapters/strap-list-service';
 import { Strap } from '../../strap';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import wrappedLogger from "../../utils/logger";
+import wrappedLogger from '../../utils/logger';
 
 jest.mock('../../adapters/strap-list-service');
 jest.mock('../../adapters/jsonfeed');
-jest.mock("../../utils/logger");
+jest.mock('../../utils/logger');
 
 describe('MidStripHandler', () => {
   const basicAdUnit = {
@@ -271,7 +271,10 @@ describe('MidStripHandler', () => {
           params
         )
       ).rejects.toEqual(error);
-      expect(wrappedLogger.error).toHaveBeenCalledWith(params.apiRequestId, expect.stringContaining(sourceId));
+      expect(wrappedLogger.error).toHaveBeenCalledWith(
+        params.apiRequestId,
+        expect.stringContaining(sourceId)
+      );
     });
   });
 });

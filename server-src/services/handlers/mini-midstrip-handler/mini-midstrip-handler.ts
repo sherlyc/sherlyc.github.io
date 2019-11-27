@@ -6,7 +6,7 @@ import { IParams } from '../../__types__/IParams';
 import { IMiniMidStripHandlerInput } from '../__types__/IMiniMidStripHandlerInput';
 import { Strap } from '../../strap';
 import { getStrapArticles } from '../../adapters/strap-list-service';
-import wrappedLogger from "../../utils/logger";
+import wrappedLogger from '../../utils/logger';
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -45,7 +45,10 @@ export default async function(
       { type: ContentBlockType.BasicAdUnit, context: strapName }
     ];
   } catch (error) {
-    wrappedLogger.error(params.apiRequestId, `Mini mid-strip handler error - ${sourceId} - ${error}`);
+    wrappedLogger.error(
+      params.apiRequestId,
+      `Mini mid-strip handler error - ${sourceId} - ${error}`
+    );
     throw error;
   }
 }

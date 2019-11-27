@@ -12,7 +12,7 @@ import { Strap } from '../../strap';
 import { ITopStoriesArticleListGroupOneHandlerInput } from '../__types__/ITopStoriesArticleListGroupOne';
 import { IGrayDefconArticleUnit } from '../../../../common/__types__/IGrayDefconArticleUnit';
 import { IBigImageArticleUnit } from '../../../../common/__types__/IBigImageArticleUnit';
-import wrappedLogger from "../../utils/logger";
+import wrappedLogger from '../../utils/logger';
 
 const basicAdUnit = (context: string): IBasicAdUnit => ({
   type: ContentBlockType.BasicAdUnit,
@@ -102,7 +102,10 @@ export default async function(
       [basicAdUnit(strapName)] as IContentBlock[]
     );
   } catch (error) {
-    wrappedLogger.error(params.apiRequestId, `Group one top stories handler error - ${Strap.TopStories} - ${error}`);
+    wrappedLogger.error(
+      params.apiRequestId,
+      `Group one top stories handler error - ${Strap.TopStories} - ${error}`
+    );
     throw error;
   }
 }
