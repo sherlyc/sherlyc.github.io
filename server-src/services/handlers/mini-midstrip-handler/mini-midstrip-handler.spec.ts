@@ -8,7 +8,7 @@ import { getStrapArticles } from '../../adapters/strap-list-service';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 
 jest.mock('../../adapters/strap-list-service');
-jest.mock('../../adapters/jsonfeed');
+jest.mock('../../adapters/jsonfeed/jsonfeed');
 
 describe('MiniMidStripHandler', () => {
   const basicAdUnit = {

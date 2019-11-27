@@ -3,16 +3,16 @@ import {
   retrieveListAsset,
   retrieveArticle
 } from './jsonfeed-retriever';
-import * as jsonfeed from './__fixtures__/jsonfeed/jsonfeed.json';
-import * as midStripData from './__fixtures__/mid-strip/mid-strip.json';
-import cacheHttp from '../utils/cache-http';
-import { Section } from '../section';
-import { IParams } from '../__types__/IParams';
-import { JsonFeedAssetType } from './__types__/JsonFeedAssetType';
-import { IJsonFeedArticle } from './__types__/IJsonFeedArticle';
-import config from '../utils/config';
+import * as jsonfeed from '../__fixtures__/jsonfeed/jsonfeed.json';
+import * as midStripData from '../__fixtures__/mid-strip/mid-strip.json';
+import cacheHttp from '../../utils/cache-http';
+import { Section } from '../../section';
+import { IParams } from '../../__types__/IParams';
+import { JsonFeedAssetType } from '../__types__/JsonFeedAssetType';
+import { IJsonFeedArticle } from '../__types__/IJsonFeedArticle';
+import config from '../../utils/config';
 
-jest.mock('../utils/cache-http');
+jest.mock('../../utils/cache-http');
 
 describe('JsonFeed Retriever', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };

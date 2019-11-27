@@ -7,7 +7,7 @@ import { Strap } from '../../strap';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 
 jest.mock('../../adapters/strap-list-service');
-jest.mock('../../adapters/jsonfeed');
+jest.mock('../../adapters/jsonfeed/jsonfeed');
 
 describe('MidStripHandler', () => {
   const basicAdUnit = {

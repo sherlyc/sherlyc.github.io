@@ -1,7 +1,7 @@
 import { getRawArticles } from './article-retriever';
 import { Section } from '../../section';
 import { IParams } from '../../__types__/IParams';
-import * as jsonFeed from '../jsonfeed';
+import * as jsonFeed from '../jsonfeed/jsonfeed';
 import * as strapListService from '../strap-list-service';
 import { Strap } from '../../strap';
 
