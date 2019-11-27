@@ -55,27 +55,70 @@ describe('GridContainerComponent', () => {
     component.input = {
       type: ContentBlockType.GridContainer,
       items: new Array(4).fill(input),
-      mobile: { gridTemplateColumns: '1fr', gridGap: '20px', gridBlocks: [] },
+      mobile: {
+        gridTemplateColumns: '1fr',
+        gridGap: '20px',
+        gridBlocks: [
+          {
+            rowStart: 1,
+            rowSpan: 1,
+            columnStart: 1,
+            columnSpan: 1
+          }
+        ]
+      },
       tablet: {
         gridTemplateColumns: '1fr 1fr 1fr 1fr',
         gridGap: '20px',
-        gridBlocks: []
+        gridBlocks: [
+          {
+            rowStart: 1,
+            rowSpan: 2,
+            columnStart: 1,
+            columnSpan: 2
+          }
+        ]
       },
       desktop: {
         gridTemplateColumns: '1fr 1fr 1fr 1fr 200px',
         gridGap: '20px',
-        gridBlocks: []
+        gridBlocks: [
+          {
+            rowStart: 1,
+            rowSpan: 2,
+            columnStart: 1,
+            columnSpan: 2
+          }
+        ]
       }
     };
     fixture.detectChanges();
     expect(fixture.componentInstance.style).toMatchInlineSnapshot(`
       Object {
+        " div:nth-child(1)": Object {
+          "gridColumnEnd": "span 1",
+          "gridColumnStart": 1,
+          "gridRowEnd": "span 1",
+          "gridRowStart": 1,
+        },
         "@media only screen and (min-width: 64em)": Object {
+          " div:nth-child(1)": Object {
+            "gridColumnEnd": "span 2",
+            "gridColumnStart": 1,
+            "gridRowEnd": "span 2",
+            "gridRowStart": 1,
+          },
           "display": "grid",
           "gridGap": "20px",
           "gridTemplateColumns": "1fr 1fr 1fr 1fr",
         },
         "@media only screen and (min-width: 75em)": Object {
+          " div:nth-child(1)": Object {
+            "gridColumnEnd": "span 2",
+            "gridColumnStart": 1,
+            "gridRowEnd": "span 2",
+            "gridRowStart": 1,
+          },
           "display": "grid",
           "gridGap": "20px",
           "gridTemplateColumns": "1fr 1fr 1fr 1fr 200px",
