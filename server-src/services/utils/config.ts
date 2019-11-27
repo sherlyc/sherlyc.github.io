@@ -7,7 +7,8 @@ import { IEnvironmentDefinition } from './__types__/IEnvironmentDefinition';
 import { IStrapConfigDefinition } from './__types__/IStrapConfigDefinition';
 import { IFeaturesConfig } from '../__types__/IFeaturesConfig';
 
-const environmentName: string = process.env.SPADE_ENV || 'production';
+const productionEnvName = 'production';
+const environmentName: string = process.env.SPADE_ENV || productionEnvName;
 
 const loadStrapConfig = (): IStrapConfigDefinition => {
   const strapConfig = strapConfiguration as IStrapConfigDefinition;
@@ -28,7 +29,7 @@ const featuresConfigs: { [key: string]: IFeaturesConfig } = {
 };
 
 const loadFeatures = (): IFeaturesConfig => {
-  return featuresConfigs[environmentName] || featuresConfigs['production'];
+  return featuresConfigs[environmentName] || featuresConfigs[productionEnvName];
 };
 
 const loadConfig = (): IEnvironmentDefinition => {
@@ -36,7 +37,7 @@ const loadConfig = (): IEnvironmentDefinition => {
     [key: string]: Partial<IEnvironmentDefinition>;
   };
   const environmentConfig =
-    environments[environmentName] || environments['production'];
+    environments[environmentName] || environments[productionEnvName];
   environmentConfig.strapConfig = loadStrapConfig();
   environmentConfig.features = loadFeatures();
   return environmentConfig as IEnvironmentDefinition;
