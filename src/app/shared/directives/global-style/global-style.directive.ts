@@ -15,17 +15,16 @@ export class GlobalStyleDirective implements OnChanges {
       this.globalStyleService.injectStyle(this.inputStyle) || '';
     const nonInjectedClasses = this.getNonInjectedClasses();
 
-    this.el.nativeElement.className = nonInjectedClasses.concat(
-      ' ',
-      classesToInject
-    );
+    this.el.nativeElement.className = `${nonInjectedClasses} ${classesToInject}`;
   }
 
   private getNonInjectedClasses() {
     const stylePrefix = this.globalStyleService.stylePrefix();
-    const existingClasses = this.el.nativeElement.className.split(' ');
-    return existingClasses
-      .filter((existingClass) => !existingClass.startsWith(stylePrefix))
-      .join(' ');
+    const startsWithPrefix = `\\s*${stylePrefix}\\S+`;
+
+    return this.el.nativeElement.className.replace(
+      new RegExp(startsWithPrefix, 'g'),
+      ''
+    );
   }
 }
