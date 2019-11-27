@@ -1,9 +1,9 @@
 import getBanner from './banner';
-import cacheHttp from '../utils/cache-http';
-import { IParams } from '../__types__/IParams';
+import cacheHttp from '../../utils/cache-http';
+import { IParams } from '../../__types__/IParams';
 
-jest.mock('../utils/config');
-jest.mock('../utils/cache-http');
+jest.mock('../../utils/config');
+jest.mock('../../utils/cache-http');
 
 describe('Banner service', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
