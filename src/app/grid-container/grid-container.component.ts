@@ -27,8 +27,13 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
   private gridCss(gridConfig: IGridConfig) {
     return {
       display: 'grid',
+
+      msGridColumn: gridConfig.gridTemplateColumns,
       gridTemplateColumns: gridConfig.gridTemplateColumns,
+
+      // TODO: simulate grid gap in IE
       gridGap: gridConfig.gridGap,
+
       ...this.gridBlocks(gridConfig.gridBlocks)
     };
   }
@@ -48,9 +53,16 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
 
   private gridBlockCss(gridBlock: IGridBlock) {
     return {
+      msGridRow: gridBlock.rowStart,
       gridRowStart: gridBlock.rowStart,
+
+      msGridRowSpan: gridBlock.rowSpan,
       gridRowEnd: `span ${gridBlock.rowSpan}`,
+
+      msGridColumn: gridBlock.columnStart,
       gridColumnStart: gridBlock.columnStart,
+
+      msGridColumnSpan: gridBlock.columnSpan,
       gridColumnEnd: `span ${gridBlock.columnSpan}`
     };
   }
