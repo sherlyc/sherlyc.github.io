@@ -1,6 +1,6 @@
 import { isFeatureEnabled } from './feature';
-import { DeviceType } from '../../../common/DeviceType';
-import { FeatureName } from '../../../common/FeatureName';
+import { DeviceType } from '../../../../common/DeviceType';
+import { FeatureName } from '../../../../common/FeatureName';
 
 describe('Feature service', () => {
   describe('Recommendations', () => {
