@@ -18,8 +18,6 @@ export class GrayDefconArticleUnitComponent implements IContentBlockComponent {
   sendAnalytics() {
     const { strapName, title, id } = this.input;
 
-    console.log('sending gray defcon', strapName, title, id);
-
     this.analyticsService.pushEvent({
       type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
       strapName,

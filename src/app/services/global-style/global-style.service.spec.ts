@@ -17,7 +17,7 @@ describe('Global Css service', () => {
   });
 
   it('should load with the correct style prefix', () => {
-    const stylePrefix = 's_';
+    const stylePrefix = globalStyleService.stylePrefix();
 
     expect(cxs.prefix).toHaveBeenCalledWith(stylePrefix);
   });
