@@ -1,9 +1,9 @@
-import { IWeather } from './__types__/IWeather';
-import config from '../utils/config';
-import retry from '../utils/retry';
-import cacheHttp from '../utils/cache-http';
+import { IWeather } from '../__types__/IWeather';
+import config from '../../utils/config';
+import retry from '../../utils/retry';
+import cacheHttp from '../../utils/cache-http';
 import { URL } from 'url';
-import { IParams } from '../__types__/IParams';
+import { IParams } from '../../__types__/IParams';
 import { AxiosResponse } from 'axios';
 
 const validate = (weatherResponse: AxiosResponse<IWeather>) => {
