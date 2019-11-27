@@ -1,4 +1,4 @@
-import { isSwitchedOn } from '../switch-resolver';
+import { isSwitchedOn } from '../switch-resolver/switch-resolver';
 import { DeviceType } from '../../../../common/DeviceType';
 import { IFeaturesConfig } from '../../__types__/IFeaturesConfig';
 import * as features from '../../../features.json';
