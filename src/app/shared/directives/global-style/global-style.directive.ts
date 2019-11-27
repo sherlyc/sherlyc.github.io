@@ -11,9 +11,21 @@ export class GlobalStyleDirective implements OnChanges {
   ) {}
 
   ngOnChanges() {
-    const className = this.globalStyleService.injectStyle(this.inputStyle);
-    if (className) {
-      this.el.nativeElement.classList.add(...className.split(' '));
-    }
+    const classesToInject =
+      this.globalStyleService.injectStyle(this.inputStyle) || '';
+    const nonInjectedClasses = this.getNonInjectedClasses();
+
+    this.el.nativeElement.className = nonInjectedClasses.concat(
+      ' ',
+      classesToInject
+    );
+  }
+
+  private getNonInjectedClasses() {
+    const stylePrefix = this.globalStyleService.stylePrefix();
+    const existingClasses = this.el.nativeElement.className.split(' ');
+    return existingClasses
+      .filter((existingClass) => !existingClass.startsWith(stylePrefix))
+      .join(' ');
   }
 }

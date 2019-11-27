@@ -6,8 +6,14 @@ import * as cxs from 'cxs';
   providedIn: 'root'
 })
 export class GlobalStyleService {
+  private prefix = 'spade_';
+
   constructor() {
-    cxs.prefix('s_');
+    cxs.prefix(this.prefix);
+  }
+
+  public stylePrefix(): string {
+    return this.prefix;
   }
 
   public injectStyle(...args: any[]) {
