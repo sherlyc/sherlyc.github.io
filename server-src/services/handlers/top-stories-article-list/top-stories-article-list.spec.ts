@@ -7,7 +7,7 @@ import { IParams } from '../../__types__/IParams';
 import topStoriesListHandler from './top-stories-article-list';
 import { IDefconArticleUnit } from '../../../../common/__types__/IDefconArticleUnit';
 import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
-import * as layoutRetriever from '../../../services/adapters/layout-retriever';
+import * as layoutRetriever from '../../adapters/layout/layout-retriever';
 import { LayoutType } from '../../adapters/__types__/LayoutType';
 import { getRawArticles } from '../../adapters/article-retriever/article-retriever';
 
