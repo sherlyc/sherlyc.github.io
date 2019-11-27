@@ -3,8 +3,8 @@ import {
   IGridBlock,
   IGridConfig,
   IGridContainer
-} from '../../../common/__types__/IGridContainer';
-import { IContentBlockComponent } from '../content-blocks/__types__/IContentBlockComponent';
+} from '../../../../common/__types__/IGridContainer';
+import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
 
 @Component({
   selector: 'app-grid-container',

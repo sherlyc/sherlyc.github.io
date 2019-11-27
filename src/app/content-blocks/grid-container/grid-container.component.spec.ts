@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TransferState } from '@angular/platform-browser';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { ContentBlockType } from '../../../common/__types__/ContentBlockType';
-import { IContentBlock } from '../../../common/__types__/IContentBlock';
-import registry from '../content-blocks/content-blocks.registry';
-import { ContentBlockDirective } from '../shared/directives/content-block/content-block.directive';
-import { GlobalStyleDirective } from '../shared/directives/global-style/global-style.directive';
+import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
+import { IContentBlock } from '../../../../common/__types__/IContentBlock';
+import registry from '../content-blocks.registry';
+import { ContentBlockDirective } from '../../shared/directives/content-block/content-block.directive';
+import { GlobalStyleDirective } from '../../shared/directives/global-style/global-style.directive';
 import { GridContainerComponent } from './grid-container.component';
 
 describe('GridContainerComponent', () => {
