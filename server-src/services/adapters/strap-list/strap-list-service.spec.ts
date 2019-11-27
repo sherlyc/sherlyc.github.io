@@ -2,8 +2,8 @@ import { getStrapArticles } from './strap-list-service';
 import { Strap } from '../../strap';
 import { IParams } from '../../__types__/IParams';
 import { getListAssetById } from '../jsonfeed/jsonfeed';
-import * as rawList from '../__fixtures__/strap-list-service/raw-article-list.json';
-import * as rawSecondList from '../__fixtures__/strap-list-service/raw-second-article-list.json';
+import * as rawList from './__fixtures__/raw-article-list.json';
+import * as rawSecondList from './__fixtures__/raw-second-article-list.json';
 import config from '../../utils/config';
 import { IStrapConfigDefinition } from '../../utils/__types__/IStrapConfigDefinition';
 

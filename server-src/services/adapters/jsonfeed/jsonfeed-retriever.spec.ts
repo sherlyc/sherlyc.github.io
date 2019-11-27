@@ -3,8 +3,8 @@ import {
   retrieveListAsset,
   retrieveArticle
 } from './jsonfeed-retriever';
-import * as jsonfeed from '../__fixtures__/jsonfeed/jsonfeed.json';
-import * as midStripData from '../__fixtures__/mid-strip/mid-strip.json';
+import * as jsonfeed from './__fixtures__/jsonfeed.json';
+import * as midStripData from './__fixtures__/mid-strip.json';
 import cacheHttp from '../../utils/cache-http';
 import { Section } from '../../section';
 import { IParams } from '../../__types__/IParams';
