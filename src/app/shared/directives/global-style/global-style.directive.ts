@@ -1,8 +1,8 @@
-import { Directive, ElementRef, Input, OnInit } from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges } from '@angular/core';
 import { GlobalStyleService } from '../../../services/global-style/global-style.service';
 
 @Directive({ selector: '[appGlobalStyle]' })
-export class GlobalStyleDirective implements OnInit {
+export class GlobalStyleDirective implements OnChanges {
   @Input('appGlobalStyle') inputStyle?: object;
 
   constructor(
@@ -10,8 +10,10 @@ export class GlobalStyleDirective implements OnInit {
     private globalStyleService: GlobalStyleService
   ) {}
 
-  ngOnInit() {
+  ngOnChanges() {
     const className = this.globalStyleService.injectStyle(this.inputStyle);
-    this.el.nativeElement.classList.add(...className.split(' '));
+    if (className) {
+      this.el.nativeElement.classList.add(...className.split(' '));
+    }
   }
 }

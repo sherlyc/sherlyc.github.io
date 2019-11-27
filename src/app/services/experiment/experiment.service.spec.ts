@@ -7,10 +7,9 @@ import { RuntimeService } from '../runtime/runtime.service';
 import { LottoService } from '../lotto/lotto.service';
 import { HttpClient } from '@angular/common/http';
 import { LoggerService } from '../logger/logger.service';
-import * as Bowser from 'bowser';
 import { ExperimentName } from '../../../../common/ExperimentName';
-
-const defaultParse = Bowser.parse;
+import { DeviceService } from '../device/device.service';
+import { DeviceType } from '../../../../common/DeviceType';
 
 describe('ExperimentService', () => {
   const experimentAPI = '/spade/api/experiment';
@@ -20,6 +19,7 @@ describe('ExperimentService', () => {
   let lottoService: ServiceMock<LottoService>;
   let http: ServiceMock<HttpClient>;
   let loggerService: ServiceMock<LoggerService>;
+  let deviceService: ServiceMock<DeviceService>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -44,21 +44,22 @@ describe('ExperimentService', () => {
         {
           provide: LoggerService,
           useClass: mockService(LoggerService)
+        },
+        {
+          provide: DeviceService,
+          useClass: mockService(DeviceService)
         }
       ]
     });
     configServiceMock = TestBed.get(ConfigService);
     configServiceMock.getConfig.mockReturnValue({ experimentAPI });
+    deviceService = TestBed.get(DeviceService);
     service = TestBed.get(ExperimentService);
     runtimeService = TestBed.get(RuntimeService);
     lottoService = TestBed.get(LottoService);
     http = TestBed.get(HttpClient);
     loggerService = TestBed.get(LoggerService);
     jest.clearAllMocks();
-  });
-
-  afterEach(() => {
-    (Bowser as any).parse = defaultParse;
   });
 
   it('should be created', () => {
@@ -82,37 +83,29 @@ describe('ExperimentService', () => {
     it('should call api with unknown deviceType when not provided', async () => {
       lottoService.getLotteryNumber.mockReturnValue(1);
       http.get.mockReturnValueOnce(of('control'));
-
-      (Bowser as any).parse = () => ({
-        platform: {
-          type: ''
-        }
-      });
+      deviceService.getDevice.mockReturnValue(DeviceType.unknown);
 
       await service.setup();
 
-      expect(http.get).toHaveBeenCalledWith(
-        '/spade/api/experiment/Users/1/unknown',
-        { responseType: 'text' }
-      );
+      expect(
+        http.get
+      ).toHaveBeenCalledWith('/spade/api/experiment/Users/1/unknown', {
+        responseType: 'text'
+      });
     });
 
     it('should call api with deviceType', async () => {
       lottoService.getLotteryNumber.mockReturnValue(1);
       http.get.mockReturnValueOnce(of('control'));
-
-      (Bowser as any).parse = () => ({
-        platform: {
-          type: 'mobile'
-        }
-      });
+      deviceService.getDevice.mockReturnValue(DeviceType.mobile);
 
       await service.setup();
 
-      expect(http.get).toHaveBeenCalledWith(
-        '/spade/api/experiment/Users/1/mobile',
-        { responseType: 'text' }
-      );
+      expect(
+        http.get
+      ).toHaveBeenCalledWith('/spade/api/experiment/Users/1/mobile', {
+        responseType: 'text'
+      });
     });
 
     describe('when getting an experiment', () => {
