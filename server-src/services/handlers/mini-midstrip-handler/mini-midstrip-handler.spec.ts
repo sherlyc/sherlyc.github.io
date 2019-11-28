@@ -6,7 +6,9 @@ import { IRawArticle } from '../../adapters/__types__/IRawArticle';
 import { Strap } from '../../strap';
 import { getStrapArticles } from '../../adapters/strap-list/strap-list-service';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
+import wrappedLogger from '../../utils/logger';
 
+jest.mock('../../utils/logger');
 jest.mock('../../adapters/strap-list/strap-list-service');
 jest.mock('../../adapters/jsonfeed/jsonfeed');
 
@@ -175,7 +177,8 @@ describe('MiniMidStripHandler', () => {
       ]);
     });
 
-    it('should throw error when failing to retrieve articles', async () => {
+    it('should log and throw error when failing to retrieve articles', async () => {
+      const sourceId = Strap.MiniMidStrip;
       const error = new Error('failed to retrieve');
       (getStrapArticles as jest.Mock).mockRejectedValue(error);
 
@@ -184,13 +187,17 @@ describe('MiniMidStripHandler', () => {
           jest.fn(),
           {
             type: HandlerInputType.MiniMidStrip,
-            sourceId: Strap.MiniMidStrip,
+            sourceId,
             strapName: 'MidStrip',
             totalArticles: 2
           },
           params
         )
       ).rejects.toEqual(error);
+      expect(wrappedLogger.error).toHaveBeenCalledWith(
+        params.apiRequestId,
+        expect.stringContaining(sourceId)
+      );
     });
   });
 });

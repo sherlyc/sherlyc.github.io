@@ -13,11 +13,9 @@ export const getRawArticles = async (
   const sourceIsASection = Object.values(Section).includes(sourceId as Section);
 
   if (sourceIsASection) {
-    return (await getSectionArticleList(
-      sourceId as Section,
-      totalArticles,
-      params
-    )).slice(0, totalArticles);
+    return (
+      await getSectionArticleList(sourceId as Section, totalArticles, params)
+    ).slice(0, totalArticles);
   }
   return await getStrapArticles(params, sourceId as Strap, totalArticles);
 };

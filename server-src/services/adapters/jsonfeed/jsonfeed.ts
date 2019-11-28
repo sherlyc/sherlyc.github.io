@@ -3,10 +3,7 @@ import {
   retrieveListAsset,
   retrieveArticle
 } from './jsonfeed-retriever';
-import {
-  mapToRawArticleList,
-  mapArticleAsset
-} from './jsonfeed-mapper';
+import { mapToRawArticleList, mapArticleAsset } from './jsonfeed-mapper';
 import { IJsonFeedArticleList } from '../__types__/IJsonFeedArticleList';
 import { IRawArticle } from '../__types__/IRawArticle';
 import { Section } from '../../section';

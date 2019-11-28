@@ -10,7 +10,7 @@ import logger from '../../utils/logger';
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  {  }: IBreakingNewsHandlerInput,
+  {}: IBreakingNewsHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   try {
