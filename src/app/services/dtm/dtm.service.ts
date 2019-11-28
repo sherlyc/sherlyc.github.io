@@ -6,6 +6,8 @@ import { WindowService } from '../window/window.service';
 import { RuntimeService } from '../runtime/runtime.service';
 import { LoadedEvent } from './__types__/LoadedEvent';
 import { DOCUMENT } from '@angular/common';
+import { FeatureSwitchService } from '../feature-switch/feature-switch.service';
+import { FeatureName } from '../../../../common/FeatureName';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,8 @@ export class DtmService {
     private config: ConfigService,
     private runtime: RuntimeService,
     @Inject(DOCUMENT) private document: Document,
-    private windowService: WindowService
+    private windowService: WindowService,
+    private featureSwitch: FeatureSwitchService
   ) {}
 
   private loadedPromises: { [key: string]: Promise<void> } = {};
@@ -28,10 +31,20 @@ export class DtmService {
 
     this.initLoadedPromises();
 
-    await this.scriptInjectorService.load(
-      ScriptId.dtm,
-      this.config.getConfig().dtmUrl
+    const shouldLoadLaunch = await this.featureSwitch.getFeature(
+      FeatureName.AdobeLaunch
     );
+    if (shouldLoadLaunch) {
+      await this.scriptInjectorService.load(
+        ScriptId.launch,
+        this.config.getConfig().launchUrl
+      );
+    } else {
+      await this.scriptInjectorService.load(
+        ScriptId.dtm,
+        this.config.getConfig().dtmUrl
+      );
+    }
 
     const satellite = this.windowService.getWindow()._satellite;
     if (satellite && satellite.pageBottom) {
