@@ -27,6 +27,9 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
   private gridCss(gridConfig: IGridConfig) {
     return {
       display: 'grid',
+      '@media all and (-ms-high-contrast:none)': {
+        display: '-ms-grid'
+      },
 
       msGridColumn: gridConfig.gridTemplateColumns,
       gridTemplateColumns: gridConfig.gridTemplateColumns,
@@ -41,7 +44,7 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
   private gridBlocks(gridBlocks: IGridBlock[]) {
     return gridBlocks.reduce(
       (prev: { [key: string]: string }, current: IGridBlock, index: number) => {
-        const blockCssKey = ` div:nth-child(${index + 1})`;
+        const blockCssKey = ` > :nth-child(${index + 1})`;
         return {
           ...prev,
           [blockCssKey]: this.gridBlockCss(current)

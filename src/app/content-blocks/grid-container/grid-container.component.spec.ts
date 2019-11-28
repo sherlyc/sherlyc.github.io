@@ -95,7 +95,7 @@ describe('GridContainerComponent', () => {
     fixture.detectChanges();
     expect(fixture.componentInstance.style).toMatchInlineSnapshot(`
       Object {
-        " div:nth-child(1)": Object {
+        " > :nth-child(1)": Object {
           "gridColumnEnd": "span 1",
           "gridColumnStart": 1,
           "gridRowEnd": "span 1",
@@ -105,8 +105,11 @@ describe('GridContainerComponent', () => {
           "msGridRow": 1,
           "msGridRowSpan": 1,
         },
+        "@media all and (-ms-high-contrast:none)": Object {
+          "display": "-ms-grid",
+        },
         "@media only screen and (min-width: 64em)": Object {
-          " div:nth-child(1)": Object {
+          " > :nth-child(1)": Object {
             "gridColumnEnd": "span 2",
             "gridColumnStart": 1,
             "gridRowEnd": "span 2",
@@ -116,13 +119,16 @@ describe('GridContainerComponent', () => {
             "msGridRow": 1,
             "msGridRowSpan": 2,
           },
+          "@media all and (-ms-high-contrast:none)": Object {
+            "display": "-ms-grid",
+          },
           "display": "grid",
           "gridGap": "20px",
           "gridTemplateColumns": "1fr 1fr 1fr 1fr",
           "msGridColumn": "1fr 1fr 1fr 1fr",
         },
         "@media only screen and (min-width: 75em)": Object {
-          " div:nth-child(1)": Object {
+          " > :nth-child(1)": Object {
             "gridColumnEnd": "span 2",
             "gridColumnStart": 1,
             "gridRowEnd": "span 2",
@@ -131,6 +137,9 @@ describe('GridContainerComponent', () => {
             "msGridColumnSpan": 2,
             "msGridRow": 1,
             "msGridRowSpan": 2,
+          },
+          "@media all and (-ms-high-contrast:none)": Object {
+            "display": "-ms-grid",
           },
           "display": "grid",
           "gridGap": "20px",
