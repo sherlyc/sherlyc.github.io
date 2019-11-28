@@ -16,7 +16,7 @@ export default async function(
   } catch (e) {
     logger.warn(
       params.apiRequestId,
-      `External content handler error - ${url} ${e.message}`
+      `External content handler error - ${url} - ${e.message}`
     );
 
     return [];

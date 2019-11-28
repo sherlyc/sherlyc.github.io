@@ -5,8 +5,10 @@ import { IExternalContentUnit } from '../../../../common/__types__/IExternalCont
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 import cacheHttp from '../../utils/cache-http';
+import wrappedLogger from '../../utils/logger';
 
 jest.mock('../../utils/cache-http');
+jest.mock('../../utils/logger');
 
 describe('ExternalContentHandler', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
@@ -83,10 +85,12 @@ describe('ExternalContentHandler', () => {
     expect(externalContent).toEqual(expectedResult);
   });
 
-  it('should not return ExternalContentUnit when url returns an error', async () => {
-    (cacheHttp as jest.Mock).mockRejectedValue(new Error());
+  it('should return empty and log warning with url when failing to retrieve content', async () => {
+    const url = 'https://bbc.com';
 
+    (cacheHttp as jest.Mock).mockRejectedValue(new Error());
     const handlerRunnerMock = jest.fn();
+
     const externalContent = (await externalContentHandler(
       handlerRunnerMock,
       {
@@ -95,12 +99,15 @@ describe('ExternalContentHandler', () => {
         height: '300px',
         margin: '10px',
         scrollable: true,
-        url: 'https://bbc.com'
+        url
       },
       params
     )) as IExternalContentUnit[];
 
-    const expectedResult: IContentBlock[] = [];
-    expect(externalContent).toEqual(expectedResult);
+    expect(externalContent).toEqual([]);
+    expect(wrappedLogger.warn).toHaveBeenCalledWith(
+      params.apiRequestId,
+      expect.stringContaining(url)
+    );
   });
 });
