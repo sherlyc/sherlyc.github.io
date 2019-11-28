@@ -1,11 +1,11 @@
-import { IParams } from '../__types__/IParams';
-import cacheHttp from '../utils/cache-http';
-import logger from '../utils/logger';
+import { IParams } from '../../__types__/IParams';
+import cacheHttp from '../../utils/cache-http';
+import logger from '../../utils/logger';
 import { layoutRetriever } from './layout-retriever';
-import { LayoutType } from './__types__/LayoutType';
+import { LayoutType } from '../__types__/LayoutType';
 
-jest.mock('../utils/config');
-jest.mock('../utils/cache-http');
+jest.mock('../../utils/config');
+jest.mock('../../utils/cache-http');
 
 beforeAll(() => {
   (cacheHttp as jest.Mock).mockReturnValue({

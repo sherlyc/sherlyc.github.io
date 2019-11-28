@@ -1,7 +1,7 @@
 import { handlerRunnerFunction } from '../runner';
 import { IBannerHandlerInput } from '../__types__/IBannerHandlerInput';
 import { IParams } from '../../__types__/IParams';
-import getBanner from '../../adapters/banner';
+import getBanner from '../../adapters/banner/banner';
 import logger from '../../utils/logger';
 import * as moment from 'moment';
 import { IBannerResponse } from '../../adapters/__types__/IBannerResponse';
@@ -21,9 +21,7 @@ const getActiveBanner = (banners: IBannerResponse[]) => {
   );
 };
 
-const defaultExternalContentHandlerInput: Partial<
-  IExternalContentHandlerInput
-> = {
+const defaultExternalContentHandlerInput: Partial<IExternalContentHandlerInput> = {
   type: HandlerInputType.ExternalContent,
   width: '100%',
   margin: '0 0 10px 0',
@@ -32,7 +30,7 @@ const defaultExternalContentHandlerInput: Partial<
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  {  }: IBannerHandlerInput,
+  {}: IBannerHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   try {

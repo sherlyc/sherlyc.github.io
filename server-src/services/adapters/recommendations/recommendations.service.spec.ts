@@ -1,12 +1,12 @@
 import cacheHttp from '../../utils/cache-http';
 import config from '../../utils/config';
 import { IRawArticle } from '../__types__/IRawArticle';
-import { getArticleById } from '../jsonfeed';
+import { getArticleById } from '../jsonfeed/jsonfeed';
 import { getRecommendedArticles } from './recommendations.service';
 import logger from '../../utils/logger';
 
 jest.mock('../../utils/cache-http');
-jest.mock('../jsonfeed');
+jest.mock('../jsonfeed/jsonfeed');
 jest.mock('../../utils/logger');
 
 describe('getRecommendedArticles', () => {

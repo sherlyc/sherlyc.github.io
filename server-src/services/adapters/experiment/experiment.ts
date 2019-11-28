@@ -1,9 +1,9 @@
-import { DeviceType } from '../../../common/DeviceType';
-import { IParams } from '../__types__/IParams';
-import { isSwitchedOn } from './switch-resolver';
-import { IExperimentsConfig } from '../__types__/IExperimentsConfig';
-import * as experimentJson from '../../experimentsConfig/experiments-prod.json';
-import { ExperimentName } from '../../../common/ExperimentName';
+import { DeviceType } from '../../../../common/DeviceType';
+import { IParams } from '../../__types__/IParams';
+import { isSwitchedOn } from '../switch-resolver/switch-resolver';
+import { IExperimentsConfig } from '../../__types__/IExperimentsConfig';
+import * as experimentJson from '../../../experimentsConfig/experiments-prod.json';
+import { ExperimentName } from '../../../../common/ExperimentName';
 
 export const getExperimentVariant = async (
   experimentName: ExperimentName,

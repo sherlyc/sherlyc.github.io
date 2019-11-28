@@ -4,7 +4,7 @@ import groupOneTopStoriesListHandler from './group-one';
 import { getRawArticles } from '../../adapters/article-retriever/article-retriever';
 import { IParams } from '../../__types__/IParams';
 import { IRawArticle } from '../../adapters/__types__/IRawArticle';
-import * as layoutRetriever from '../../adapters/layout-retriever';
+import * as layoutRetriever from '../../adapters/layout/layout-retriever';
 import { LayoutType } from '../../adapters/__types__/LayoutType';
 import handlerRunner from '../runner';
 import { IBigImageArticleUnit } from '../../../../common/__types__/IBigImageArticleUnit';
@@ -172,15 +172,20 @@ describe('Experiment: GroupOne Variant', () => {
     const error = new Error('failed to retrieve');
     (getRawArticles as jest.Mock).mockRejectedValue(error);
 
-    await expect(groupOneTopStoriesListHandler(
-      handlerRunner,
-      {
-        type: HandlerInputType.TopStoriesArticleListGroupOne,
-        strapName,
-        totalArticles: 4
-      },
-      params
-    )).rejects.toEqual(error);
-    expect(wrappedLogger.error).toHaveBeenCalledWith(params.apiRequestId, expect.stringContaining(Strap.TopStories));
+    await expect(
+      groupOneTopStoriesListHandler(
+        handlerRunner,
+        {
+          type: HandlerInputType.TopStoriesArticleListGroupOne,
+          strapName,
+          totalArticles: 4
+        },
+        params
+      )
+    ).rejects.toEqual(error);
+    expect(wrappedLogger.error).toHaveBeenCalledWith(
+      params.apiRequestId,
+      expect.stringContaining(Strap.TopStories)
+    );
   });
 });

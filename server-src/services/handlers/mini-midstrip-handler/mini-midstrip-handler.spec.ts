@@ -4,13 +4,13 @@ import { IParams } from '../../__types__/IParams';
 import { HandlerInputType } from '../__types__/HandlerInputType';
 import { IRawArticle } from '../../adapters/__types__/IRawArticle';
 import { Strap } from '../../strap';
-import { getStrapArticles } from '../../adapters/strap-list-service';
+import { getStrapArticles } from '../../adapters/strap-list/strap-list-service';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 import wrappedLogger from '../../utils/logger';
 
-jest.mock('../../adapters/strap-list-service');
-jest.mock('../../adapters/jsonfeed');
 jest.mock('../../utils/logger');
+jest.mock('../../adapters/strap-list/strap-list-service');
+jest.mock('../../adapters/jsonfeed/jsonfeed');
 
 describe('MiniMidStripHandler', () => {
   const basicAdUnit = {
@@ -194,7 +194,10 @@ describe('MiniMidStripHandler', () => {
           params
         )
       ).rejects.toEqual(error);
-      expect(wrappedLogger.error).toHaveBeenCalledWith(params.apiRequestId, expect.stringContaining(sourceId));
+      expect(wrappedLogger.error).toHaveBeenCalledWith(
+        params.apiRequestId,
+        expect.stringContaining(sourceId)
+      );
     });
   });
 });

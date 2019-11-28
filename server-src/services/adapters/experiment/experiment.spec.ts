@@ -1,9 +1,9 @@
 import { getExperimentVariant } from './experiment';
-import { DeviceType } from '../../../common/DeviceType';
-import { IParams } from '../__types__/IParams';
-import { ExperimentName } from '../../../common/ExperimentName';
+import { DeviceType } from '../../../../common/DeviceType';
+import { IParams } from '../../__types__/IParams';
+import { ExperimentName } from '../../../../common/ExperimentName';
 
-jest.mock('../utils/cache-http');
+jest.mock('../../utils/cache-http');
 
 describe('Experiment service', () => {
   const params: IParams = { apiRequestId: '123123' };

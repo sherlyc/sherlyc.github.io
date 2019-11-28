@@ -3,7 +3,7 @@ import { IParams } from '../../__types__/IParams';
 import { ITopStoriesArticleListGroupTwoHandlerInput } from '../__types__/ITopStoriesArticleListGroupTwo';
 import { HandlerInputType } from '../__types__/HandlerInputType';
 import { IRawArticle } from '../../adapters/__types__/IRawArticle';
-import * as layoutRetriever from '../../adapters/layout-retriever';
+import * as layoutRetriever from '../../adapters/layout/layout-retriever';
 import { LayoutType } from '../../adapters/__types__/LayoutType';
 import { getRawArticles } from '../../adapters/article-retriever/article-retriever';
 import { IGrayDefconArticleUnit } from '../../../../common/__types__/IGrayDefconArticleUnit';

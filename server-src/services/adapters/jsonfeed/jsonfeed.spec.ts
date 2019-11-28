@@ -3,19 +3,19 @@ import {
   getListAssetById,
   getSectionArticleList
 } from './jsonfeed';
-import * as jsonfeed from './__fixtures__/jsonfeed/jsonfeed.json';
-import * as midStripData from './__fixtures__/mid-strip/mid-strip.json';
-import { Section } from '../section';
-import { IParams } from '../__types__/IParams';
-import { IRawArticle } from './__types__/IRawArticle';
-import { JsonFeedAssetType } from './__types__/JsonFeedAssetType';
-import { IJsonFeedArticle } from './__types__/IJsonFeedArticle';
+import * as jsonfeed from './__fixtures__/jsonfeed.json';
+import * as midStripData from './__fixtures__/mid-strip.json';
+import { Section } from '../../section';
+import { IParams } from '../../__types__/IParams';
+import { IRawArticle } from '../__types__/IRawArticle';
+import { JsonFeedAssetType } from '../__types__/JsonFeedAssetType';
+import { IJsonFeedArticle } from '../__types__/IJsonFeedArticle';
 import {
   retrieveArticle,
   retrieveListAsset,
   retrieveSectionList
 } from './jsonfeed-retriever';
-import { JsonFeedImageType } from './__types__/JsonFeedImageType';
+import { JsonFeedImageType } from '../__types__/JsonFeedImageType';
 
 jest.mock('./jsonfeed-retriever');
 

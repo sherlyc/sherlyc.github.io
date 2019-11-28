@@ -1,11 +1,11 @@
-import getBreakingNews from '../../adapters/breaking-news';
+import getBreakingNews from '../../adapters/breaking-news/breaking-news';
 import { IBreakingNewsResponse } from '../../adapters/__types__/IBreakingNewsResponse';
 import breakingNewsHandler from './breaking-news';
 import { IBreakingNewsHandlerInput } from '../__types__/IBreakingNewsHandlerInput';
 import { IParams } from '../../__types__/IParams';
 import logger from '../../utils/logger';
 
-jest.mock('../../adapters/breaking-news');
+jest.mock('../../adapters/breaking-news/breaking-news');
 
 describe('BreakingNewsHandler', () => {
   const handlerRunnerMock = jest.fn();

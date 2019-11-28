@@ -1,10 +1,10 @@
 import getBreakingNews from './breaking-news';
-import cacheHttp from '../utils/cache-http';
-import config from '../utils/config';
-import { IParams } from '../__types__/IParams';
+import cacheHttp from '../../utils/cache-http';
+import config from '../../utils/config';
+import { IParams } from '../../__types__/IParams';
 
-jest.mock('../utils/config');
-jest.mock('../utils/cache-http');
+jest.mock('../../utils/config');
+jest.mock('../../utils/cache-http');
 
 describe('Breaking news service', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };

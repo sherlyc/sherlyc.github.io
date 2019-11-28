@@ -1,9 +1,9 @@
 import { weatherRetriever } from './weather-retriever';
-import cacheHttp from '../utils/cache-http';
-import { IParams } from '../__types__/IParams';
-import * as weatherJson from './__fixtures__/weather/weather.json';
+import cacheHttp from '../../utils/cache-http';
+import { IParams } from '../../__types__/IParams';
+import * as weatherJson from './__fixtures__/weather.json';
 
-jest.mock('../utils/cache-http');
+jest.mock('../../utils/cache-http');
 
 describe('Weather Retriever', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };

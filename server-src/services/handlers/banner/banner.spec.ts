@@ -1,4 +1,4 @@
-import getBanner from '../../adapters/banner';
+import getBanner from '../../adapters/banner/banner';
 import { IBannerResponse } from '../../adapters/__types__/IBannerResponse';
 import bannerHandler from './banner';
 import { IParams } from '../../__types__/IParams';
@@ -8,7 +8,7 @@ import { ContentBlockType } from '../../../../common/__types__/ContentBlockType'
 import { IExternalContentUnit } from '../../../../common/__types__/IExternalContentUnit';
 import { HandlerInputType } from '../__types__/HandlerInputType';
 
-jest.mock('../../adapters/banner');
+jest.mock('../../adapters/banner/banner');
 const OriginalNow = global.Date.now;
 
 describe('BannerHandler', () => {
