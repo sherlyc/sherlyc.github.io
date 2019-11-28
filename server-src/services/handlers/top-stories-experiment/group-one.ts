@@ -3,7 +3,7 @@ import { IParams } from '../../__types__/IParams';
 import { handlerRunnerFunction } from '../runner';
 import { getRawArticles } from '../../adapters/article-retriever/article-retriever';
 import { LayoutType } from '../../adapters/__types__/LayoutType';
-import { layoutRetriever } from '../../adapters/layout-retriever';
+import { layoutRetriever } from '../../adapters/layout/layout-retriever';
 import logger from '../../utils/logger';
 import { IBasicAdUnit } from '../../../../common/__types__/IBasicAdUnit';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';

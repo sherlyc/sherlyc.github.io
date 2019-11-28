@@ -4,7 +4,7 @@ import { IContentBlock } from '../../../../common/__types__/IContentBlock';
 import { getRawArticles } from '../../adapters/article-retriever/article-retriever';
 import { Strap } from '../../strap';
 import { LayoutType } from '../../adapters/__types__/LayoutType';
-import { layoutRetriever } from '../../adapters/layout-retriever';
+import { layoutRetriever } from '../../adapters/layout/layout-retriever';
 import logger from '../../utils/logger';
 import { IRawArticle } from '../../adapters/__types__/IRawArticle';
 import { IBigImageArticleUnit } from '../../../../common/__types__/IBigImageArticleUnit';

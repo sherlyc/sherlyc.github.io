@@ -1,8 +1,8 @@
 import { Section } from '../../section';
 import { Strap } from '../../strap';
 import { IParams } from '../../__types__/IParams';
-import { getSectionArticleList } from '../jsonfeed';
-import { getStrapArticles } from '../strap-list-service';
+import { getSectionArticleList } from '../jsonfeed/jsonfeed';
+import { getStrapArticles } from '../strap-list/strap-list-service';
 import { IRawArticle } from '../__types__/IRawArticle';
 
 export const getRawArticles = async (

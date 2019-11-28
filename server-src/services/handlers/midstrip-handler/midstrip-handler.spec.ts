@@ -2,12 +2,12 @@ import midstripHandler from './midstrip-handler';
 import { IColumnContainer } from 'common/__types__/IColumnContainer';
 import { IParams } from '../../__types__/IParams';
 import { HandlerInputType } from '../__types__/HandlerInputType';
-import { getStrapArticles } from '../../adapters/strap-list-service';
+import { getStrapArticles } from '../../adapters/strap-list/strap-list-service';
 import { Strap } from '../../strap';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 
-jest.mock('../../adapters/strap-list-service');
-jest.mock('../../adapters/jsonfeed');
+jest.mock('../../adapters/strap-list/strap-list-service');
+jest.mock('../../adapters/jsonfeed/jsonfeed');
 
 describe('MidStripHandler', () => {
   const basicAdUnit = {

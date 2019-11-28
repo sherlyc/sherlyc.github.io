@@ -1,9 +1,9 @@
 import { featureController } from './feature-controller';
-import { isFeatureEnabled } from '../services/adapters/feature';
+import { isFeatureEnabled } from '../services/adapters/feature/feature';
 import { FeatureName } from '../../common/FeatureName';
 import { Request } from 'express';
 
-jest.mock('../services/adapters/feature');
+jest.mock('../services/adapters/feature/feature');
 
 describe('Feature Controller', () => {
   it('should return value from feature service', async () => {

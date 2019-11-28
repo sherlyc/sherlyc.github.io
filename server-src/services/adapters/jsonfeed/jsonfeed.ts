@@ -6,12 +6,12 @@ import {
 import {
   mapToRawArticleList,
   mapArticleAsset
-} from './jsonfeed-mapper/jsonfeed-mapper';
-import { IJsonFeedArticleList } from './__types__/IJsonFeedArticleList';
-import { IRawArticle } from './__types__/IRawArticle';
-import { Section } from '../section';
-import { IParams } from '../__types__/IParams';
-import logger from '../utils/logger';
+} from './jsonfeed-mapper';
+import { IJsonFeedArticleList } from '../__types__/IJsonFeedArticleList';
+import { IRawArticle } from '../__types__/IRawArticle';
+import { Section } from '../../section';
+import { IParams } from '../../__types__/IParams';
+import logger from '../../utils/logger';
 
 const warnIfMissingImages = (articles: IRawArticle[], params: IParams) => {
   articles.forEach((article) => {
