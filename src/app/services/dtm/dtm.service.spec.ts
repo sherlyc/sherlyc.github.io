@@ -54,8 +54,11 @@ describe('DtmService', () => {
     expect(dtmService).toBeTruthy();
   });
 
-  it('should do nothing when running in ssr', () => {
+  it('should do nothing when running in ssr', async () => {
     runtimeService.isServer.mockReturnValue(true);
+
+    await dtmService.setup();
+
     expect(windowService.getWindow).not.toHaveBeenCalled();
     expect(scriptInjectorService.load).not.toHaveBeenCalled();
   });
