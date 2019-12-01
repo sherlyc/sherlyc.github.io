@@ -25,7 +25,8 @@ export class RedirectRouteGuard implements CanActivate {
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.runtimeService.isServer()) {
+    const hostname = this.windowService.getWindow().location.hostname;
+    if (this.runtimeService.isServer() || !hostname.includes('stuff.co.nz')) {
       return true;
     }
 
