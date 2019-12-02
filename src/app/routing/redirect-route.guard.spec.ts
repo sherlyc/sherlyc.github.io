@@ -56,13 +56,7 @@ describe('RouteGuard', () => {
 
   it('should not do anything when in server', () => {
     runtimeService.isServer.mockReturnValue(true);
-
-    windowService.getWindow.mockReturnValue({
-      location: {
-        href: 'https://i.stuff.co.nz/',
-        hostname: 'i.stuff.co.nz'
-      }
-    });
+    windowService.getWindow.mockReturnValue({});
 
     const routeGuard = new RedirectRouteGuard(
       cookieService,
