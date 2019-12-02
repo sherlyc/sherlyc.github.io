@@ -83,6 +83,7 @@ describe('RouteGuard', () => {
   });
 
   it('should not do anything when domain does not have stuff.co.nz', () => {
+    runtimeService.isServer.mockReturnValue(false);
     windowService.getWindow.mockReturnValue({
       location: {
         href: 'https://experience.expstaging.shift21.ffx.nz/',
