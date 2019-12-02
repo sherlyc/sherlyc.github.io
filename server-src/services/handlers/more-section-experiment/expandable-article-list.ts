@@ -46,15 +46,12 @@ const createArticlesForPage = (
   basicArticlesPerPage: number,
   strapName: string
 ) =>
-  articles.reduce(
-    (final, article, index) => {
-      if (index < basicArticlesPerPage) {
-        return [...final, basicArticleUnit(article, strapName)];
-      }
-      return [...final, basicArticleTitleUnit(article, strapName)];
-    },
-    [] as IContentBlock[]
-  );
+  articles.reduce((final, article, index) => {
+    if (index < basicArticlesPerPage) {
+      return [...final, basicArticleUnit(article, strapName)];
+    }
+    return [...final, basicArticleTitleUnit(article, strapName)];
+  }, [] as IContentBlock[]);
 
 const formatArticleBlocks = (
   articles: IRawArticle[],

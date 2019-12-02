@@ -19,5 +19,6 @@ export enum ContentBlockType {
   WeatherUnit = 'WeatherUnit',
   ExperimentContainer = 'ExperimentContainer',
   FeatureContainer = 'FeatureContainer',
-  Recommendations = 'Recommendations'
+  Recommendations = 'Recommendations',
+  GridContainer = 'GridContainer'
 }

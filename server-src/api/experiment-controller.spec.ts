@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import { experimentController } from './experiment-controller';
-import { getExperimentVariant } from '../services/adapters/experiment';
+import { getExperimentVariant } from '../services/adapters/experiment/experiment';
 import { ExperimentName } from '../../common/ExperimentName';
 import { DeviceType } from '../../common/DeviceType';
 
-jest.mock('../services/adapters/experiment');
+jest.mock('../services/adapters/experiment/experiment');
 
 describe('Experiment controller', () => {
   const req = ({

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { weatherService } from '../services/adapters/weather';
+import { weatherService } from '../services/adapters/weather/weather';
 import logger from '../services/utils/logger';
 
 export const getWeather = async (req: Request, res: Response) => {

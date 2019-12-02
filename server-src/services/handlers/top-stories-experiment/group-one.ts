@@ -3,7 +3,7 @@ import { IParams } from '../../__types__/IParams';
 import { handlerRunnerFunction } from '../runner';
 import { getRawArticles } from '../../adapters/article-retriever/article-retriever';
 import { LayoutType } from '../../adapters/__types__/LayoutType';
-import { layoutRetriever } from '../../adapters/layout-retriever';
+import { layoutRetriever } from '../../adapters/layout/layout-retriever';
 import logger from '../../utils/logger';
 import { IBasicAdUnit } from '../../../../common/__types__/IBasicAdUnit';
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
@@ -12,6 +12,7 @@ import { Strap } from '../../strap';
 import { ITopStoriesArticleListGroupOneHandlerInput } from '../__types__/ITopStoriesArticleListGroupOne';
 import { IGrayDefconArticleUnit } from '../../../../common/__types__/IGrayDefconArticleUnit';
 import { IBigImageArticleUnit } from '../../../../common/__types__/IBigImageArticleUnit';
+import wrappedLogger from '../../utils/logger';
 
 const basicAdUnit = (context: string): IBasicAdUnit => ({
   type: ContentBlockType.BasicAdUnit,
@@ -67,36 +68,44 @@ export default async function(
   { strapName, totalArticles }: ITopStoriesArticleListGroupOneHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const layout = await retrieveLayout(params);
-  let rawArticles = await getRawArticles(
-    Strap.TopStories,
-    totalArticles,
-    params
-  );
+  try {
+    const layout = await retrieveLayout(params);
+    let rawArticles = await getRawArticles(
+      Strap.TopStories,
+      totalArticles,
+      params
+    );
 
-  if (layout === LayoutType.DEFAULT) {
-    rawArticles = [
-      rawArticles[1],
-      rawArticles[0],
-      ...rawArticles.slice(2)
-    ].filter(Boolean);
-  }
+    if (layout === LayoutType.DEFAULT) {
+      rawArticles = [
+        rawArticles[1],
+        rawArticles[0],
+        ...rawArticles.slice(2)
+      ].filter(Boolean);
+    }
 
-  return rawArticles.reduce(
-    (final, article, index) => {
-      if (index === 0 && layout === LayoutType.DEFCON) {
+    return rawArticles.reduce(
+      (final, article, index) => {
+        if (index === 0 && layout === LayoutType.DEFCON) {
+          return [
+            ...final,
+            grayDefconArticleUnit(article, strapName),
+            basicAdUnit(strapName)
+          ];
+        }
         return [
           ...final,
-          grayDefconArticleUnit(article, strapName),
+          bigImageArticleUnit(article, strapName),
           basicAdUnit(strapName)
         ];
-      }
-      return [
-        ...final,
-        bigImageArticleUnit(article, strapName),
-        basicAdUnit(strapName)
-      ];
-    },
-    [basicAdUnit(strapName)] as IContentBlock[]
-  );
+      },
+      [basicAdUnit(strapName)] as IContentBlock[]
+    );
+  } catch (error) {
+    wrappedLogger.error(
+      params.apiRequestId,
+      `Group one top stories handler error - ${Strap.TopStories} - ${error}`
+    );
+    throw error;
+  }
 }

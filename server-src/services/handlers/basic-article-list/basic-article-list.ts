@@ -9,6 +9,7 @@ import { ContentBlockType } from '../../../../common/__types__/ContentBlockType'
 import { IRawArticle } from '../../adapters/__types__/IRawArticle';
 import { IBasicArticleTitleUnit } from '../../../../common/__types__/IBasicArticleTitleUnit';
 import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
+import wrappedLogger from '../../utils/logger';
 
 const basicAdUnit = (context: string): IBasicAdUnit => ({
   type: ContentBlockType.BasicAdUnit,
@@ -57,24 +58,32 @@ export default async function(
   }: IBasicArticleListHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const totalArticles = totalBasicArticlesUnit + totalBasicArticleTitleUnit;
-  const rawArticles = await getRawArticles(sourceId, totalArticles, params);
+  try {
+    const totalArticles = totalBasicArticlesUnit + totalBasicArticleTitleUnit;
+    const rawArticles = await getRawArticles(sourceId, totalArticles, params);
 
-  return rawArticles.reduce(
-    (final, article, index) => {
-      if (index < totalBasicArticlesUnit) {
+    return rawArticles.reduce(
+      (final, article, index) => {
+        if (index < totalBasicArticlesUnit) {
+          return [
+            ...final,
+            basicArticleUnit(article, strapName),
+            basicAdUnit(strapName)
+          ];
+        }
         return [
           ...final,
-          basicArticleUnit(article, strapName),
+          basicArticleTitleUnit(article, strapName),
           basicAdUnit(strapName)
         ];
-      }
-      return [
-        ...final,
-        basicArticleTitleUnit(article, strapName),
-        basicAdUnit(strapName)
-      ];
-    },
-    [basicAdUnit(strapName)] as IContentBlock[]
-  );
+      },
+      [basicAdUnit(strapName)] as IContentBlock[]
+    );
+  } catch (error) {
+    wrappedLogger.error(
+      params.apiRequestId,
+      `Basic article list handler error - ${sourceId} - ${error}`
+    );
+    throw error;
+  }
 }

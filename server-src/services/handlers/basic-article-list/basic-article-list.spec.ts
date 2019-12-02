@@ -7,8 +7,10 @@ import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUni
 import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
 import { IBasicArticleTitleUnit } from '../../../../common/__types__/IBasicArticleTitleUnit';
 import { getRawArticles } from '../../adapters/article-retriever/article-retriever';
+import logger from '../../utils/logger';
 
 jest.mock('../../adapters/article-retriever/article-retriever');
+jest.mock('../../utils/logger');
 
 describe('BasicArticleListHandler', () => {
   const params: IParams = { apiRequestId: 'request-id-for-testing' };
@@ -202,9 +204,10 @@ describe('BasicArticleListHandler', () => {
     expect(contentBlocks).toEqual(expectedContentBlocks);
   });
 
-  it('should throw error when failing to retrieve articles', async () => {
+  it('should log sourceId and throw error when failing to retrieve articles', async () => {
     const error = new Error('failed to retrieve');
     (getRawArticles as jest.Mock).mockRejectedValue(error);
+    const sourceId = Strap.Business;
 
     await expect(
       basicArticleListHandler(
@@ -212,11 +215,15 @@ describe('BasicArticleListHandler', () => {
         {
           type: HandlerInputType.ArticleList,
           strapName,
-          sourceId: Strap.Business,
+          sourceId,
           totalBasicArticlesUnit: 3
         },
         params
       )
     ).rejects.toEqual(error);
+    expect(logger.error).toHaveBeenCalledWith(
+      params.apiRequestId,
+      expect.stringContaining(sourceId)
+    );
   });
 });

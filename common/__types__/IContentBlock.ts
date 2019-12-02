@@ -19,6 +19,7 @@ import { IBigImageArticleUnit } from './IBigImageArticleUnit';
 import { IHalfWidthImageArticleUnit } from './IHalfWidthImageArticleUnit';
 import { IExpandableArticleSection } from './IExpandableArticleSection';
 import { IRecommendations } from './IRecommendations';
+import { IGridContainer } from './IGridContainer';
 
 export type IContentBlock =
   | IDefconArticleUnit
@@ -41,4 +42,5 @@ export type IContentBlock =
   | IWeatherUnit
   | IExperimentContainer
   | IFeatureContainer
-  | IRecommendations;
+  | IRecommendations
+  | IGridContainer;
