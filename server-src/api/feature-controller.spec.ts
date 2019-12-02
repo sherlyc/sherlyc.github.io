@@ -48,6 +48,8 @@ describe('Feature Controller', () => {
     expect(res.send).toHaveBeenCalledWith(
       expect.stringContaining('Invalid feature data provided')
     );
+    expect(res.send).toHaveBeenCalledTimes(1);
+    expect(res.status).toHaveBeenCalledTimes(1);
   });
 
   it('should return 400 and message in body when provided with negative lottery number', async () => {
@@ -64,6 +66,8 @@ describe('Feature Controller', () => {
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.send).toHaveBeenCalledWith(`Invalid feature data provided,
      featureName [], lotteryNumber [-1], deviceType [mobile]`);
+    expect(res.send).toHaveBeenCalledTimes(1);
+    expect(res.status).toHaveBeenCalledTimes(1);
   });
 
   it('should return 400 and message in body when provided with invalid lottery number', async () => {
@@ -84,6 +88,8 @@ describe('Feature Controller', () => {
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.send).toHaveBeenCalledWith(`Invalid feature data provided,
      featureName [], lotteryNumber [abcd], deviceType [mobile]`);
+    expect(res.send).toHaveBeenCalledTimes(1);
+    expect(res.status).toHaveBeenCalledTimes(1);
   });
 
   it('should return 400 and message in body when provided with invalid device', async () => {
@@ -100,5 +106,7 @@ describe('Feature Controller', () => {
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.send).toHaveBeenCalledWith(`Invalid feature data provided,
      featureName [], lotteryNumber [1], deviceType [blahblah]`);
+    expect(res.send).toHaveBeenCalledTimes(1);
+    expect(res.status).toHaveBeenCalledTimes(1);
   });
 });
