@@ -56,6 +56,8 @@ describe('RouteGuard', () => {
 
   it('should not do anything when in server', () => {
     runtimeService.isServer.mockReturnValue(true);
+    windowService.getWindow.mockReturnValue({});
+
     const routeGuard = new RedirectRouteGuard(
       cookieService,
       windowService,
@@ -71,7 +73,33 @@ describe('RouteGuard', () => {
 
     expect(result).toBeTruthy();
     expect(cookieService.set).not.toHaveBeenCalled();
-    expect(windowService.getWindow).not.toHaveBeenCalled();
+    expect(deviceService.getDevice).not.toHaveBeenCalled();
+  });
+
+  it('should not do anything when domain does not have stuff.co.nz', () => {
+    runtimeService.isServer.mockReturnValue(false);
+    windowService.getWindow.mockReturnValue({
+      location: {
+        href: 'https://experience.expstaging.shift21.ffx.nz/',
+        hostname: 'experience.expstaging.shift21.ffx.nz'
+      }
+    });
+
+    const routeGuard = new RedirectRouteGuard(
+      cookieService,
+      windowService,
+      runtimeService,
+      deviceService,
+      configService
+    );
+
+    const result = routeGuard.canActivate(
+      new ActivatedRouteSnapshot(),
+      <RouterStateSnapshot>{}
+    );
+
+    expect(result).toBeTruthy();
+    expect(cookieService.set).not.toHaveBeenCalled();
     expect(deviceService.getDevice).not.toHaveBeenCalled();
   });
 
@@ -86,7 +114,7 @@ describe('RouteGuard', () => {
     it('should not set cookie when site-view cookie is desktop', () => {
       cookieService.get.mockReturnValue('d');
       windowService.getWindow.mockReturnValue({
-        location: { href: 'https://i.stuff.co.nz' }
+        location: { href: 'https://i.stuff.co.nz', hostname: 'i.stuff.co.nz' }
       });
       const routeGuard = new RedirectRouteGuard(
         cookieService,
@@ -217,19 +245,14 @@ describe('RouteGuard', () => {
 
   it.each([
     ['i.stuff.co.nz', '.stuff.co.nz'],
-    ['www.stuff.co.nz', '.stuff.co.nz'],
-    ['localhost', 'localhost'],
-    [
-      'experience.expproduction.shift21.ffx.nz',
-      'experience.expproduction.shift21.ffx.nz'
-    ]
+    ['i-preprod.stuff.co.nz', '.stuff.co.nz']
   ])(
     'when hostname is %s, it should set cookie domain to %s',
     (hostname: string, expectedCookieDomain: string) => {
       runtimeService.isServer.mockReturnValue(false);
       cookieService.get.mockReturnValue(null);
       windowService.getWindow.mockReturnValue({
-        location: { href: 'https://i.stuff.co.nz', hostname }
+        location: { href: 'https://' + hostname, hostname }
       });
       const date = new Date('2019-01-01T00:00:00.000Z');
       const oneYearFromNow = new Date('2020-01-01T00:00:00.000Z');
@@ -247,9 +270,6 @@ describe('RouteGuard', () => {
         <RouterStateSnapshot>{}
       );
 
-      expect(windowService.getWindow().location.href).toBe(
-        'https://i.stuff.co.nz'
-      );
       expect(cookieService.set).toHaveBeenCalledWith('site-view', 'i', {
         domain: expectedCookieDomain,
         path: '/',
@@ -267,7 +287,7 @@ describe('RouteGuard', () => {
       redirectUrl
     });
     windowService.getWindow.mockReturnValue({
-      location: { href: 'https://i.stuff.co.nz' }
+      location: { href: 'https://i.stuff.co.nz', hostname: 'i.stuff.co.nz' }
     });
     const routeGuard = new RedirectRouteGuard(
       cookieService,
