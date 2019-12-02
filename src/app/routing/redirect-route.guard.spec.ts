@@ -245,8 +245,6 @@ describe('RouteGuard', () => {
 
   it.each([
     ['i.stuff.co.nz', '.stuff.co.nz'],
-    ['www.stuff.co.nz', '.stuff.co.nz'],
-    ['www-preprod.stuff.co.nz', '.stuff.co.nz'],
     ['i-preprod.stuff.co.nz', '.stuff.co.nz']
   ])(
     'when hostname is %s, it should set cookie domain to %s',

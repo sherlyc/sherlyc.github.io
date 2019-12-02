@@ -29,8 +29,17 @@ export class RedirectRouteGuard implements CanActivate {
     return hostname.includes('stuff.co.nz');
   }
 
+  isDesktopDomain() {
+    const { hostname } = this.windowService.getWindow().location;
+    return hostname.includes('www');
+  }
+
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.runtimeService.isServer() || !this.isStuffDomain()) {
+    if (
+      this.runtimeService.isServer() ||
+      this.isDesktopDomain() ||
+      !this.isStuffDomain()
+    ) {
       return true;
     }
 
