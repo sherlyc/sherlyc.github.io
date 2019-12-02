@@ -23,7 +23,7 @@
       "environment": "production"
     },
     "dtmUrl": "https://assets.adobedtm.com/10d15a330ba9eec67033fb8a57223f1f239d36eb/satelliteLib-8ff0ef0f82e3dfb69c3732fec2854ff9506f9f38.js",
-    "launchUrl": "https://assets.adobedtm.com/23f51728685d/6200c30b6543/launch-81c85d43ee59-development.min.js",
+    "launchUrl": "https://assets.adobedtm.com/launch-ENc2c0d9c06c2d4b1a877b126c3b8fc473.min.js",
     "loginLibrary": {
       "libraryUrl": "https://www.stuff.co.nz/static/stuff-login-browser-sdk/1.2.0/stuff-login-sdk.js",
       "authProvider": "https://my.stuff.co.nz",
@@ -57,7 +57,7 @@
       "environment": "staging"
     },
     "dtmUrl": "https://assets.adobedtm.com/10d15a330ba9eec67033fb8a57223f1f239d36eb/satelliteLib-8ff0ef0f82e3dfb69c3732fec2854ff9506f9f38-staging.js",
-    "launchUrl": "https://assets.adobedtm.com/23f51728685d/6200c30b6543/launch-81c85d43ee59-development.min.js",
+    "launchUrl": "https://assets.adobedtm.com/launch-EN945d016c7be74c878756b7c7e072359a-staging.min.js",
     "loginLibrary": {
       "libraryUrl": "https://www.stuff.co.nz/static/stuff-login-browser-sdk/1.2.0/stuff-login-sdk.js",
       "authProvider": "https://my.preprod.stuff.co.nz",
@@ -91,7 +91,7 @@
       "environment": "development"
     },
     "dtmUrl": "https://assets.adobedtm.com/10d15a330ba9eec67033fb8a57223f1f239d36eb/satelliteLib-8ff0ef0f82e3dfb69c3732fec2854ff9506f9f38-staging.js",
-    "launchUrl": "https://assets.adobedtm.com/23f51728685d/6200c30b6543/launch-81c85d43ee59-development.min.js",
+    "launchUrl": "https://assets.adobedtm.com/launch-ENfddc076c16434419b7d647cdd03b3e18-development.min.js",
     "loginLibrary": {
       "libraryUrl": "https://www.stuff.co.nz/static/stuff-login-browser-sdk/1.2.0/stuff-login-sdk.js",
       "authProvider": "https://my.preprod.stuff.co.nz",
@@ -159,7 +159,7 @@
       "environment": "test"
     },
     "dtmUrl": "https://assets.adobedtm.com/10d15a330ba9eec67033fb8a57223f1f239d36eb/satelliteLib-8ff0ef0f82e3dfb69c3732fec2854ff9506f9f38-staging.js",
-    "launchUrl": "https://assets.adobedtm.com/23f51728685d/6200c30b6543/launch-81c85d43ee59-development.min.js",
+    "launchUrl": "https://assets.adobedtm.com/launch-ENfddc076c16434419b7d647cdd03b3e18-development.min.js",
     "loginLibrary": {
       "libraryUrl": "https://www.stuff.co.nz/static/stuff-login-browser-sdk/1.2.0/stuff-login-sdk.js",
       "authProvider": "https://my.preprod.stuff.co.nz",
