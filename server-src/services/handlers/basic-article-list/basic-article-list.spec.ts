@@ -221,6 +221,9 @@ describe('BasicArticleListHandler', () => {
         params
       )
     ).rejects.toEqual(error);
-    expect(logger.error).toHaveBeenCalledWith(params.apiRequestId, expect.stringContaining(sourceId));
+    expect(logger.error).toHaveBeenCalledWith(
+      params.apiRequestId,
+      expect.stringContaining(sourceId)
+    );
   });
 });
