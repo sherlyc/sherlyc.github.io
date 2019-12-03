@@ -1,4 +1,7 @@
 #!/usr/bin/env groovy
+
+import java.security.MessageDigest;
+
 def getProjectName() {
   packageJson = readJSON file:'package.json'
   return packageJson.name
@@ -35,12 +38,59 @@ def uploadKubernetesArtifacts() {
   }
 }
 
+GString yamlString() {
+  return '''
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    jenkins/kube-default: true
+    app: jenkins
+    component: agent
+spec:
+  containers:
+    - name: jnlp
+      image: jenkinsci/jnlp-slave
+      resources:
+        limits:
+          cpu: 1
+          memory: 1Gi
+        requests:
+          cpu: 1
+          memory: 1Gi
+      imagePullPolicy: Always
+    - name: node
+      image: node:10.15.3-alpine
+      command:
+        - sh
+      tty: true
+    - name: dind
+      image: docker:19-dind
+      securityContext:
+        privileged: true
+      volumeMounts:
+        - name: dind-storage
+          mountPath: /var/lib/docker
+  volumes:
+    - name: dind-storage
+      emptyDir: {}
+
+'''
+}
+
+GString yamlHash() {
+  return 'stuff-experience-frontend' + MessageDigest.getInstance("MD5").digest(yamlString().bytes).encodeHex().toString()
+}
+
 pipeline {
   agent {
     kubernetes {
       cloud 'Practiv BUILD'
+      label yamlHash()
       defaultContainer 'dind'
-      yamlFile 'experience-build.yaml'
+      instanceCap 2
+      idleMinutes 120
+      yaml yamlString()
     }
   }
 
