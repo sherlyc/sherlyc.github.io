@@ -3,7 +3,7 @@ import {
   IGridBlock
 } from '../../../../common/__types__/IGridContainer';
 
-export default function(config: IGridConfig) {
+export default function(config: IGridConfig): IGridConfig {
   const {
     gridTemplateColumns,
     gridTemplateRows = '',
@@ -18,7 +18,7 @@ export default function(config: IGridConfig) {
   };
 }
 
-function gridGapHandler(gridTemplateValues: string, gridGap: string) {
+function gridGapHandler(gridTemplateValues: string, gridGap: string): string {
   const arrGridTemplate = gridTemplateValues.split(' ');
   const arrGridTemplateWithGap = arrGridTemplate.map((e, i) =>
     i < arrGridTemplate.length - 1 ? [e, gridGap] : [e]
@@ -27,7 +27,7 @@ function gridGapHandler(gridTemplateValues: string, gridGap: string) {
   return ([] as any[]).concat(...arrGridTemplateWithGap).join(' ');
 }
 
-function gridBlocksHandler(gridBlocks: IGridBlock[]) {
+function gridBlocksHandler(gridBlocks: IGridBlock[]): IGridBlock[] {
   return gridBlocks.map((grid) => {
     const { rowStart, rowSpan, columnStart, columnSpan } = grid;
     return {
@@ -39,6 +39,6 @@ function gridBlocksHandler(gridBlocks: IGridBlock[]) {
   });
 }
 
-function getNewLineNumber(lineNumber: number) {
+function getNewLineNumber(lineNumber: number): number {
   return Math.max(0, lineNumber * 2 - 1);
 }
