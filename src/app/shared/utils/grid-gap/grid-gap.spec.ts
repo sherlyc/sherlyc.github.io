@@ -1,5 +1,5 @@
 import gridGap from './grid-gap';
-import { IGridConfig } from '../../../../common/__types__/IGridContainer';
+import { IGridConfig } from '../../../../../common/__types__/IGridContainer';
 
 describe('grip gap helper', () => {
   it('should add grip gap to grid template rows and columns', () => {

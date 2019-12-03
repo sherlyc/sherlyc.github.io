@@ -1,7 +1,7 @@
 import {
   IGridConfig,
   IGridBlock
-} from '../../../../common/__types__/IGridContainer';
+} from '../../../../../common/__types__/IGridContainer';
 
 export default function(config: IGridConfig): IGridConfig {
   const {
