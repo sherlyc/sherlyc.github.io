@@ -19,14 +19,12 @@ export default function(config: IGridConfig) {
 }
 
 function gridGapHandler(gridTemplateValues: string, gridGap: string) {
-  if (gridTemplateValues) {
-    const arrGridTemplate = gridTemplateValues.split(' ');
-    const arrGridTemplateWithGap = arrGridTemplate.map((e, i) =>
-      i < arrGridTemplate.length - 1 ? [e, gridGap] : [e]
-    );
+  const arrGridTemplate = gridTemplateValues.split(' ');
+  const arrGridTemplateWithGap = arrGridTemplate.map((e, i) =>
+    i < arrGridTemplate.length - 1 ? [e, gridGap] : [e]
+  );
 
-    return ([] as any[]).concat(...arrGridTemplateWithGap).join(' ');
-  }
+  return ([] as any[]).concat(...arrGridTemplateWithGap).join(' ');
 }
 
 function gridBlocksHandler(gridBlocks: IGridBlock[]) {
