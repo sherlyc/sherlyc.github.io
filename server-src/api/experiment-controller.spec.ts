@@ -115,6 +115,9 @@ describe('Experiment controller', () => {
 
 function assert400StatusAndMessage(res: Response, req: Request) {
   expect(res.status).toHaveBeenCalledWith(400);
+  expect(res.status).toHaveBeenCalledTimes(1);
+
   expect(res.send).toHaveBeenCalledWith(`Invalid experiment data provided,
      name [${req.params.experimentName}], lotteryNumber [${req.params.lotteryNumber}], deviceType [${req.params.deviceType}]`);
+  expect(res.send).toHaveBeenCalledTimes(1);
 }
