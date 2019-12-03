@@ -81,6 +81,7 @@ describe('GridContainerComponent', () => {
       },
       desktop: {
         gridTemplateColumns: '1fr 1fr 1fr 1fr 200px',
+        gridTemplateRows: 'auto auto',
         gridGap: '20px',
         gridBlocks: [
           {
