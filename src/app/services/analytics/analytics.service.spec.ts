@@ -387,4 +387,13 @@ describe('AnalyticsService', () => {
     expect(dtmService.getLoadedPromise).toHaveBeenCalled();
     expect(windowService.getWindow().nol_t).toHaveBeenCalled();
   });
+
+  it('should set window.spade as 1', () => {
+    const fakeWindow: any = {};
+    windowService.getWindow.mockReturnValue(fakeWindow);
+
+    expect(fakeWindow.spade).toBeFalsy();
+    analyticsService.setup();
+    expect(fakeWindow.spade).toBe(1);
+  });
 });

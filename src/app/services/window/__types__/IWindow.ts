@@ -10,4 +10,5 @@ export interface IWindow {
   nol_t: NielsenAnalytics;
   StuffLogin: IStuffLogin;
   ds07o6pcmkorn: ShieldedSite;
+  spade: number;
 }
