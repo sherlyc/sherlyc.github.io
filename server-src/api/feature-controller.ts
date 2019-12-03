@@ -29,6 +29,16 @@ export const featureController = async function(req: Request, res: Response) {
   } = req.params;
   try {
     validateRequest(featureName, lotteryNumber, deviceType);
+  } catch (error) {
+    logger.info(
+      req.spadeParams.apiRequestId,
+      `Feature controller level error - ${error.message}`
+    );
+    res.status(400).send(error.message);
+    return;
+  }
+
+  try {
     const isEnabled = await isFeatureEnabled(
       featureName as FeatureName,
       parseInt(lotteryNumber, 10),

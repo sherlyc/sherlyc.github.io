@@ -33,14 +33,22 @@ export const experimentController = async function(
 
   try {
     validateRequest(experimentName, lotteryNumber, deviceType);
+  } catch (e) {
+    logger.info(
+      req.spadeParams.apiRequestId,
+      `Experiment controller level error - ${e.message}`
+    );
+    res.status(400).send(e.message);
+    return;
+  }
 
+  try {
     const variant = await getExperimentVariant(
       experimentName as ExperimentName,
       parseInt(lotteryNumber, 10),
       deviceType as DeviceType,
       req.spadeParams
     );
-
     res.send(variant);
   } catch (e) {
     logger.error(
