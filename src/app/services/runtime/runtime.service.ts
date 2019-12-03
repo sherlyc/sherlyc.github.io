@@ -1,16 +1,16 @@
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser, isPlatformServer } from '@angular/common';
-import { makeStateKey, TransferState } from '@angular/platform-browser';
-import { WindowService } from '../window/window.service';
+import { Inject, Injectable, PLATFORM_ID } from "@angular/core";
+import { isPlatformBrowser, isPlatformServer } from "@angular/common";
+import { makeStateKey, TransferState } from "@angular/platform-browser";
+import { WindowService } from "../window/window.service";
 
-export type EnvironmentName = 'SPADE_ENV';
+export type EnvironmentName = "SPADE_ENV";
 
 declare const process: {
   env: { [key in EnvironmentName]: string };
 };
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class RuntimeService {
   constructor(
@@ -22,10 +22,10 @@ export class RuntimeService {
   domainsByEnvironment: {
     [key: string]: string[];
   } = {
-    production: ['i.stuff.co.nz', 'experience.expproduction.shift21.ffx.nz'],
-    staging: ['i-preprod.stuff.co.nz', 'experience.expstaging.shift21.ffx.nz'],
-    development: ['experience.expdevint.shift21.ffx.nz'],
-    localhost: ['localhost', '127.0.0.1']
+    production: ["i.stuff.co.nz", "experience.expproduction.shift21.ffx.nz"],
+    staging: ["i-preprod.stuff.co.nz", "experience.expstaging.shift21.ffx.nz"],
+    development: ["experience.expdevint.shift21.ffx.nz"],
+    localhost: ["localhost", "127.0.0.1"]
   };
 
   isBrowser(): boolean {

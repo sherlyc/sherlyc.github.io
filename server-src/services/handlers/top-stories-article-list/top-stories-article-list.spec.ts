@@ -1,53 +1,53 @@
-import { IRawArticle } from '../../adapters/__types__/IRawArticle';
-import { ITopStoriesArticleListHandlerInput } from '../__types__/ITopStoriesArticleListHandlerInput';
-import { HandlerInputType } from '../__types__/HandlerInputType';
-import handlerRunner from '../runner';
-import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { IParams } from '../../__types__/IParams';
-import topStoriesListHandler from './top-stories-article-list';
-import { IDefconArticleUnit } from '../../../../common/__types__/IDefconArticleUnit';
-import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
-import * as layoutRetriever from '../../adapters/layout/layout-retriever';
-import { LayoutType } from '../../adapters/__types__/LayoutType';
-import { getRawArticles } from '../../adapters/article-retriever/article-retriever';
+import { IRawArticle } from "../../adapters/__types__/IRawArticle";
+import { ITopStoriesArticleListHandlerInput } from "../__types__/ITopStoriesArticleListHandlerInput";
+import { HandlerInputType } from "../__types__/HandlerInputType";
+import handlerRunner from "../runner";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IParams } from "../../__types__/IParams";
+import topStoriesListHandler from "./top-stories-article-list";
+import { IDefconArticleUnit } from "../../../../common/__types__/IDefconArticleUnit";
+import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
+import * as layoutRetriever from "../../adapters/layout/layout-retriever";
+import { LayoutType } from "../../adapters/__types__/LayoutType";
+import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
 
-jest.mock('../../adapters/article-retriever/article-retriever');
+jest.mock("../../adapters/article-retriever/article-retriever");
 
-describe('Top Stories Article List', () => {
-  const params: IParams = { apiRequestId: 'request-id-for-testing' };
-  const strapName = 'Latest';
+describe("Top Stories Article List", () => {
+  const params: IParams = { apiRequestId: "request-id-for-testing" };
+  const strapName = "Latest";
 
   const basicAdUnit = {
-    type: 'BasicAdUnit',
+    type: "BasicAdUnit",
     context: strapName
   };
 
   const articleOne: IRawArticle = {
-    id: '1',
-    indexHeadline: 'Article One',
-    title: 'Title One',
-    introText: 'Article One Intro',
-    linkUrl: '/link1',
-    imageSrc: 'article.jpg',
-    imageSrcSet: 'article.jpg 1w',
-    defconSrc: 'defcon.jpg',
-    strapImageSrc: 'strap1.jpg',
-    strapImageSrcSet: 'strap1.jpg 1w',
+    id: "1",
+    indexHeadline: "Article One",
+    title: "Title One",
+    introText: "Article One Intro",
+    linkUrl: "/link1",
+    imageSrc: "article.jpg",
+    imageSrcSet: "article.jpg 1w",
+    defconSrc: "defcon.jpg",
+    strapImageSrc: "strap1.jpg",
+    strapImageSrcSet: "strap1.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: []
   };
 
   const articleTwo: IRawArticle = {
-    id: '2',
-    indexHeadline: 'An Article',
-    title: 'Title Two',
-    introText: 'Article Text',
-    linkUrl: '/link1',
-    imageSrc: 'article.jpg',
-    imageSrcSet: 'article.jpg 1w',
+    id: "2",
+    indexHeadline: "An Article",
+    title: "Title Two",
+    introText: "Article Text",
+    linkUrl: "/link1",
+    imageSrc: "article.jpg",
+    imageSrcSet: "article.jpg 1w",
     defconSrc: null,
-    strapImageSrc: 'strap2.jpg',
-    strapImageSrcSet: 'strap2.jpg 1w',
+    strapImageSrc: "strap2.jpg",
+    strapImageSrcSet: "strap2.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: []
   };
@@ -83,9 +83,9 @@ describe('Top Stories Article List', () => {
     jest.resetModules();
   });
 
-  it('should swap first and second articles and return them as basic articles when layout is default', async () => {
+  it("should swap first and second articles and return them as basic articles when layout is default", async () => {
     jest
-      .spyOn(layoutRetriever, 'layoutRetriever')
+      .spyOn(layoutRetriever, "layoutRetriever")
       .mockResolvedValue(LayoutType.DEFAULT);
 
     const handlerInput: ITopStoriesArticleListHandlerInput = {
@@ -114,9 +114,9 @@ describe('Top Stories Article List', () => {
     expect(contentBlocks).toEqual(expectedContentBlocks);
   });
 
-  it('should return first article as defcon and others as basic articles when layout is defcon', async () => {
+  it("should return first article as defcon and others as basic articles when layout is defcon", async () => {
     jest
-      .spyOn(layoutRetriever, 'layoutRetriever')
+      .spyOn(layoutRetriever, "layoutRetriever")
       .mockResolvedValue(LayoutType.DEFCON);
 
     const handlerInput: ITopStoriesArticleListHandlerInput = {
@@ -145,11 +145,11 @@ describe('Top Stories Article List', () => {
     expect(contentBlocks).toEqual(expectedContentBlocks);
   });
 
-  it('should throw error when failing to retrieve articles', async () => {
+  it("should throw error when failing to retrieve articles", async () => {
     jest
-      .spyOn(layoutRetriever, 'layoutRetriever')
+      .spyOn(layoutRetriever, "layoutRetriever")
       .mockResolvedValue(LayoutType.DEFCON);
-    const error = new Error('failed to retrieve');
+    const error = new Error("failed to retrieve");
     const handlerInput: ITopStoriesArticleListHandlerInput = {
       type: HandlerInputType.TopStoriesArticleList,
       strapName,

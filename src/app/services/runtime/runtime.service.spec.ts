@@ -1,11 +1,11 @@
-import { TestBed } from '@angular/core/testing';
-import { RuntimeService } from './runtime.service';
-import { TransferState } from '@angular/platform-browser';
-import { PLATFORM_ID } from '@angular/core';
-import { mockService, ServiceMock } from '../mocks/MockService';
-import { WindowService } from '../window/window.service';
+import { TestBed } from "@angular/core/testing";
+import { RuntimeService } from "./runtime.service";
+import { TransferState } from "@angular/platform-browser";
+import { PLATFORM_ID } from "@angular/core";
+import { mockService, ServiceMock } from "../mocks/MockService";
+import { WindowService } from "../window/window.service";
 
-describe('RuntimeService', () => {
+describe("RuntimeService", () => {
   let runtimeService: RuntimeService;
   let transferState: ServiceMock<TransferState>;
   let windowService: ServiceMock<WindowService>;
@@ -34,7 +34,7 @@ describe('RuntimeService', () => {
 
     windowService.getWindow.mockReturnValue({
       location: {
-        hostname: 'example.com'
+        hostname: "example.com"
       }
     });
   });
@@ -43,61 +43,61 @@ describe('RuntimeService', () => {
     process.env = {};
   });
 
-  it('should get env variable in server when env var is set', () => {
-    process.env = { SPADE_ENV: 'whatever' };
+  it("should get env variable in server when env var is set", () => {
+    process.env = { SPADE_ENV: "whatever" };
 
-    const isServerSpy = jest.spyOn(runtimeService, 'isServer');
+    const isServerSpy = jest.spyOn(runtimeService, "isServer");
     isServerSpy.mockReturnValue(true);
 
     const envVar = runtimeService.getEnvironmentVariable(
-      'SPADE_ENV',
-      'defaultValue'
+      "SPADE_ENV",
+      "defaultValue"
     );
 
-    expect(envVar).toEqual('whatever');
+    expect(envVar).toEqual("whatever");
   });
 
-  it('should get env variable in browser when the domain matches', () => {
+  it("should get env variable in browser when the domain matches", () => {
     runtimeService.domainsByEnvironment = {
-      whatever: ['example.com']
+      whatever: ["example.com"]
     };
 
-    const isServerSpy = jest.spyOn(runtimeService, 'isServer');
+    const isServerSpy = jest.spyOn(runtimeService, "isServer");
     isServerSpy.mockReturnValue(false);
 
     const envVar = runtimeService.getEnvironmentVariable(
-      'SPADE_ENV',
-      'defaultValue'
+      "SPADE_ENV",
+      "defaultValue"
     );
 
-    expect(envVar).toEqual('whatever');
+    expect(envVar).toEqual("whatever");
   });
 
-  it('should get default env variable in server when env var is not set', () => {
-    const isServerSpy = jest.spyOn(runtimeService, 'isServer');
+  it("should get default env variable in server when env var is not set", () => {
+    const isServerSpy = jest.spyOn(runtimeService, "isServer");
     isServerSpy.mockReturnValue(true);
 
     const envVar = runtimeService.getEnvironmentVariable(
-      'SPADE_ENV',
-      'defaultValue'
+      "SPADE_ENV",
+      "defaultValue"
     );
 
-    expect(envVar).toEqual('defaultValue');
+    expect(envVar).toEqual("defaultValue");
   });
 
-  it('should get env variable in browser when the domain does not match any environment', () => {
+  it("should get env variable in browser when the domain does not match any environment", () => {
     runtimeService.domainsByEnvironment = {
       whatever: []
     };
 
-    const isServerSpy = jest.spyOn(runtimeService, 'isServer');
+    const isServerSpy = jest.spyOn(runtimeService, "isServer");
     isServerSpy.mockReturnValue(false);
 
     const envVar = runtimeService.getEnvironmentVariable(
-      'SPADE_ENV',
-      'defaultValue'
+      "SPADE_ENV",
+      "defaultValue"
     );
 
-    expect(envVar).toEqual('defaultValue');
+    expect(envVar).toEqual("defaultValue");
   });
 });

@@ -1,27 +1,27 @@
-import cacheHttp from '../../utils/cache-http';
-import config from '../../utils/config';
-import { IRawArticle } from '../__types__/IRawArticle';
-import { getArticleById } from '../jsonfeed/jsonfeed';
-import { getRecommendedArticles } from './recommendations.service';
-import logger from '../../utils/logger';
+import cacheHttp from "../../utils/cache-http";
+import config from "../../utils/config";
+import { IRawArticle } from "../__types__/IRawArticle";
+import { getArticleById } from "../jsonfeed/jsonfeed";
+import { getRecommendedArticles } from "./recommendations.service";
+import logger from "../../utils/logger";
 
-jest.mock('../../utils/cache-http');
-jest.mock('../jsonfeed/jsonfeed');
-jest.mock('../../utils/logger');
+jest.mock("../../utils/cache-http");
+jest.mock("../jsonfeed/jsonfeed");
+jest.mock("../../utils/logger");
 
-describe('getRecommendedArticles', () => {
-  const spadeParams = { apiRequestId: '123123' };
+describe("getRecommendedArticles", () => {
+  const spadeParams = { apiRequestId: "123123" };
   const rawArticle = {
-    id: '1',
-    indexHeadline: 'a',
-    title: 'a',
-    introText: 'a',
-    linkUrl: 'asdf',
-    defconSrc: 'asdf',
-    imageSrc: 'asdf',
-    strapImageSrc: 'asdf',
-    imageSrcSet: 'asdf',
-    strapImageSrcSet: 'asdf',
+    id: "1",
+    indexHeadline: "a",
+    title: "a",
+    introText: "a",
+    linkUrl: "asdf",
+    defconSrc: "asdf",
+    imageSrc: "asdf",
+    strapImageSrc: "asdf",
+    imageSrcSet: "asdf",
+    strapImageSrcSet: "asdf",
     lastPublishedTime: 34567,
     headlineFlags: []
   } as IRawArticle;
@@ -36,7 +36,7 @@ describe('getRecommendedArticles', () => {
     jest.resetAllMocks();
   });
 
-  it('should get recommended articles from recommended API', async () => {
+  it("should get recommended articles from recommended API", async () => {
     (cacheHttp as jest.Mock).mockResolvedValue({
       status: 200,
       data: [1]
@@ -44,7 +44,7 @@ describe('getRecommendedArticles', () => {
     (getArticleById as jest.Mock).mockResolvedValue(rawArticle);
 
     const articles = await getRecommendedArticles(
-      'rt=nanz;enth=amuh',
+      "rt=nanz;enth=amuh",
       5,
       spadeParams
     );
@@ -56,12 +56,12 @@ describe('getRecommendedArticles', () => {
     expect(articles).toEqual([rawArticle]);
   });
 
-  it('should log warning and return empty list of articles if recommendations API fails', async () => {
+  it("should log warning and return empty list of articles if recommendations API fails", async () => {
     (cacheHttp as jest.Mock).mockRejectedValueOnce(
-      new Error('Internal Server Error')
+      new Error("Internal Server Error")
     );
 
-    const articles = await getRecommendedArticles('rt=nanz', 5, spadeParams);
+    const articles = await getRecommendedArticles("rt=nanz", 5, spadeParams);
 
     expect(cacheHttp).toHaveBeenCalledWith(
       spadeParams,
@@ -72,17 +72,17 @@ describe('getRecommendedArticles', () => {
     expect(articles).toEqual([]);
   });
 
-  it('should log warning and return empty list if failing to retrieve articles', async () => {
+  it("should log warning and return empty list if failing to retrieve articles", async () => {
     (cacheHttp as jest.Mock).mockResolvedValue({
       status: 200,
       data: [1, 2]
     });
     (getArticleById as jest.Mock).mockResolvedValue(rawArticle);
     (getArticleById as jest.Mock).mockRejectedValue(
-      new Error('Failed to retrieve article')
+      new Error("Failed to retrieve article")
     );
 
-    const articles = await getRecommendedArticles('rt=nanz', 5, spadeParams);
+    const articles = await getRecommendedArticles("rt=nanz", 5, spadeParams);
 
     expect(cacheHttp).toHaveBeenCalledWith(
       spadeParams,

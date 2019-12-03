@@ -1,18 +1,18 @@
-import { Injectable } from '@angular/core';
-import { ConfigService } from '../config/config.service';
-import { RuntimeService } from '../runtime/runtime.service';
-import { LottoService } from '../lotto/lotto.service';
-import { ExperimentName } from '../../../../common/ExperimentName';
-import { Observable } from 'rxjs';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-import { of } from 'rxjs/internal/observable/of';
-import { LoggerService } from '../logger/logger.service';
-import { DeviceType } from '../../../../common/DeviceType';
-import { DeviceService } from '../device/device.service';
+import { Injectable } from "@angular/core";
+import { ConfigService } from "../config/config.service";
+import { RuntimeService } from "../runtime/runtime.service";
+import { LottoService } from "../lotto/lotto.service";
+import { ExperimentName } from "../../../../common/ExperimentName";
+import { Observable } from "rxjs";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { catchError } from "rxjs/operators";
+import { of } from "rxjs/internal/observable/of";
+import { LoggerService } from "../logger/logger.service";
+import { DeviceType } from "../../../../common/DeviceType";
+import { DeviceService } from "../device/device.service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class ExperimentService {
   private experiment!: Promise<{
@@ -50,7 +50,7 @@ export class ExperimentService {
       ).toPromise();
       if (
         experimentName === ExperimentName.NotAssigned ||
-        experimentName === 'control'
+        experimentName === "control"
       ) {
         resolve({
           name: ExperimentName.NotAssigned,
@@ -103,7 +103,7 @@ export class ExperimentService {
           this.config.getConfig().experimentAPI
         }/${experiment}/${lotteryNumber}/${deviceType}`,
         {
-          responseType: 'text'
+          responseType: "text"
         } as Object
       )
       .pipe(

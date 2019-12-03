@@ -1,6 +1,6 @@
 export enum FeatureName {
-  Recommendation = 'Recommendation',
-  RecommendationDisplay = 'RecommendationDisplay',
-  AdsRelativePositioning = 'AdsRelativePositioning',
-  AdobeLaunch = 'AdobeLaunch'
+  Recommendation = "Recommendation",
+  RecommendationDisplay = "RecommendationDisplay",
+  AdsRelativePositioning = "AdsRelativePositioning",
+  AdobeLaunch = "AdobeLaunch"
 }

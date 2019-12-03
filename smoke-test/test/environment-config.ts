@@ -1,4 +1,4 @@
-import * as dotenv from 'dotenv';
+import * as dotenv from "dotenv";
 dotenv.config();
 
 interface IEnvironmentConfig {
@@ -6,5 +6,5 @@ interface IEnvironmentConfig {
 }
 
 export default {
-  url: process.env.URL || 'http://localhost:4000/'
+  url: process.env.URL || "http://localhost:4000/"
 } as IEnvironmentConfig;

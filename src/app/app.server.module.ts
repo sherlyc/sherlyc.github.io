@@ -1,21 +1,21 @@
 /* istanbul ignore file */
-import { NgModule } from '@angular/core';
+import { NgModule } from "@angular/core";
 import {
   ServerModule,
   ServerTransferStateModule
-} from '@angular/platform-server';
-import { ModuleMapLoaderModule } from '@nguniversal/module-map-ngfactory-loader';
+} from "@angular/platform-server";
+import { ModuleMapLoaderModule } from "@nguniversal/module-map-ngfactory-loader";
 
-import { AppModule } from './app.module';
-import { AppComponent } from './app.component';
-import { CookieService } from './services/cookie/cookie.service';
-import { ServerCookieService } from './services/cookie/server-cookie.service';
-import { StoreService } from './services/store/store.service';
-import { ServerStoreService } from './services/store/server-store.service';
+import { AppModule } from "./app.module";
+import { AppComponent } from "./app.component";
+import { CookieService } from "./services/cookie/cookie.service";
+import { ServerCookieService } from "./services/cookie/server-cookie.service";
+import { StoreService } from "./services/store/store.service";
+import { ServerStoreService } from "./services/store/server-store.service";
 import {
   WindowService,
   ServerWindowService
-} from './services/window/window.service';
+} from "./services/window/window.service";
 
 @NgModule({
   imports: [

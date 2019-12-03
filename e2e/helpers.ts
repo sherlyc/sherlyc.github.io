@@ -1,4 +1,4 @@
-import { By, until, WebDriver } from 'selenium-webdriver';
+import { By, until, WebDriver } from "selenium-webdriver";
 
 export const getElement = async (driver: WebDriver, selector: string) => {
   await driver.wait(until.elementLocated(By.css(selector)));

@@ -1,9 +1,9 @@
-import { TestBed } from '@angular/core/testing';
-import { mockService, ServiceMock } from '../mocks/MockService';
-import { WindowService } from '../window/window.service';
-import { BrowserOverrideService } from './browser-override.service';
+import { TestBed } from "@angular/core/testing";
+import { mockService, ServiceMock } from "../mocks/MockService";
+import { WindowService } from "../window/window.service";
+import { BrowserOverrideService } from "./browser-override.service";
 
-describe('Browser Override Service', () => {
+describe("Browser Override Service", () => {
   let windowService: ServiceMock<WindowService>;
   let browserOverrideService: ServiceMock<BrowserOverrideService>;
   beforeEach(() => {
@@ -20,7 +20,7 @@ describe('Browser Override Service', () => {
     browserOverrideService = TestBed.get(BrowserOverrideService);
   });
 
-  it('should override native browser functions', () => {
+  it("should override native browser functions", () => {
     const window = windowService.getWindow();
     expect(window.alert).toBeFalsy();
     expect(window.confirm).toBeFalsy();

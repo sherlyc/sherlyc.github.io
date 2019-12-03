@@ -1,12 +1,12 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { HttpInterceptorService } from './http-interceptor.service';
-import { RuntimeService } from '../runtime/runtime.service';
-import { mockService, ServiceMock } from '../mocks/MockService';
-import { HttpHandler, HttpRequest } from '@angular/common/http';
-import { REQUEST } from '@nguniversal/express-engine/tokens';
+import { HttpInterceptorService } from "./http-interceptor.service";
+import { RuntimeService } from "../runtime/runtime.service";
+import { mockService, ServiceMock } from "../mocks/MockService";
+import { HttpHandler, HttpRequest } from "@angular/common/http";
+import { REQUEST } from "@nguniversal/express-engine/tokens";
 
-describe('HttpInterceptorService', () => {
+describe("HttpInterceptorService", () => {
   const requestMock = {
     header: jest.fn()
   };
@@ -32,12 +32,12 @@ describe('HttpInterceptorService', () => {
     requestMock.header.mockReset();
   });
 
-  it('should prefix url with localhost in ssr', () => {
+  it("should prefix url with localhost in ssr", () => {
     runtimeService.isServer.mockReturnValue(true);
     runtimeService.isBrowser.mockReturnValue(false);
 
     const fakeHttpRequest = {
-      url: '/spade/api/content',
+      url: "/spade/api/content",
       clone: function(extra: any) {
         return { ...this, ...extra };
       }
@@ -51,19 +51,19 @@ describe('HttpInterceptorService', () => {
 
     expect(fakeHttpHandler.handle).toHaveBeenCalledWith(
       expect.objectContaining({
-        url: 'http://localhost:4000/spade/api/content'
+        url: "http://localhost:4000/spade/api/content"
       })
     );
   });
 
-  it('should add Authorization headers', () => {
+  it("should add Authorization headers", () => {
     runtimeService.isServer.mockReturnValue(true);
     runtimeService.isBrowser.mockReturnValue(false);
 
-    requestMock.header.mockReturnValue('fakeAuthHeader');
+    requestMock.header.mockReturnValue("fakeAuthHeader");
 
     const fakeHttpRequest = {
-      url: '/spade/api/content',
+      url: "/spade/api/content",
       clone: function(extra: any) {
         return { ...this, ...extra };
       }
@@ -78,7 +78,7 @@ describe('HttpInterceptorService', () => {
     expect(fakeHttpHandler.handle).toHaveBeenCalledWith(
       expect.objectContaining({
         withCredentials: true,
-        setHeaders: { Authorization: 'fakeAuthHeader' }
+        setHeaders: { Authorization: "fakeAuthHeader" }
       })
     );
   });

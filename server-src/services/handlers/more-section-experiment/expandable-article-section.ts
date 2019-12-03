@@ -1,10 +1,10 @@
-import { handlerRunnerFunction } from '../runner';
-import { IBasicArticleSectionHandlerInput } from '../__types__/IBasicArticleSectionHandlerInput';
-import { IParams } from '../../__types__/IParams';
-import { IContentBlock } from '../../../../common/__types__/IContentBlock';
-import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { IExpandableArticleSectionHandlerInput } from '../__types__/IExpandableArticleSectionHandlerInput';
-import { IBasicAdUnit } from '../../../../common/__types__/IBasicAdUnit';
+import { handlerRunnerFunction } from "../runner";
+import { IBasicArticleSectionHandlerInput } from "../__types__/IBasicArticleSectionHandlerInput";
+import { IParams } from "../../__types__/IParams";
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IExpandableArticleSectionHandlerInput } from "../__types__/IExpandableArticleSectionHandlerInput";
+import { IBasicAdUnit } from "../../../../common/__types__/IBasicAdUnit";
 
 const basicAdUnit = (context: string): IBasicAdUnit => ({
   type: ContentBlockType.BasicAdUnit,

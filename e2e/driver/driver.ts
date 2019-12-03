@@ -1,96 +1,96 @@
-import { Builder, Capabilities } from 'selenium-webdriver';
-import './fast-selenium.ts';
-import { startBrowserStackLocal } from './browserstack.local';
+import { Builder, Capabilities } from "selenium-webdriver";
+import "./fast-selenium.ts";
+import { startBrowserStackLocal } from "./browserstack.local";
 
 async function buildSpecificBrowserDriver(browser: string) {
   const account = process.env.BS_ACCOUNT;
   const key = process.env.BS_KEY;
 
   if (!key || !account) {
-    throw new Error('Provide Browser Stack BS_ACCOUNT and BS_KEY env vars.');
+    throw new Error("Provide Browser Stack BS_ACCOUNT and BS_KEY env vars.");
   }
 
   await startBrowserStackLocal(key, browser);
 
   let capabilities: any = {
-    'browserstack.local': 'true',
-    'browserstack.user': account,
-    'browserstack.key': key,
-    'browserstack.debug': true,
-    'browserstack.localIdentifier': browser,
-    name: 'SPADE'
+    "browserstack.local": "true",
+    "browserstack.user": account,
+    "browserstack.key": key,
+    "browserstack.debug": true,
+    "browserstack.localIdentifier": browser,
+    name: "SPADE"
   };
 
   switch (browser) {
-    case 'CHROME':
+    case "CHROME":
       capabilities = {
         ...capabilities,
-        browserName: 'Chrome',
-        browser_version: '62.0',
-        os: 'Windows',
-        os_version: '10',
-        resolution: '1024x768',
+        browserName: "Chrome",
+        browser_version: "62.0",
+        os: "Windows",
+        os_version: "10",
+        resolution: "1024x768",
         chromeOptions: {
-          args: ['--disable-plugins']
+          args: ["--disable-plugins"]
         }
       };
       break;
-    case 'IE11':
+    case "IE11":
       capabilities = {
         ...capabilities,
-        browserName: 'IE',
-        browser_version: '11.0',
-        os: 'Windows',
-        os_version: '8.1',
-        resolution: '1024x768'
+        browserName: "IE",
+        browser_version: "11.0",
+        os: "Windows",
+        os_version: "8.1",
+        resolution: "1024x768"
       };
       break;
-    case 'FIREFOX':
+    case "FIREFOX":
       capabilities = {
         ...capabilities,
-        browserName: 'Firefox',
-        browser_version: '67.0',
-        os: 'Windows',
-        os_version: '10',
-        resolution: '1024x768'
+        browserName: "Firefox",
+        browser_version: "67.0",
+        os: "Windows",
+        os_version: "10",
+        resolution: "1024x768"
       };
       break;
-    case 'SAFARI':
+    case "SAFARI":
       capabilities = {
         ...capabilities,
-        browserName: 'Safari',
-        browser_version: '12.0',
-        os: 'OS X',
-        os_version: 'Mojave',
-        resolution: '1024x768'
+        browserName: "Safari",
+        browser_version: "12.0",
+        os: "OS X",
+        os_version: "Mojave",
+        resolution: "1024x768"
       };
       break;
-    case 'EDGE':
+    case "EDGE":
       capabilities = {
         ...capabilities,
-        browserName: 'Edge',
-        browser_version: '18.0',
-        os: 'Windows',
-        os_version: '10',
-        resolution: '1024x768'
+        browserName: "Edge",
+        browser_version: "18.0",
+        os: "Windows",
+        os_version: "10",
+        resolution: "1024x768"
       };
       break;
-    case 'IOS':
+    case "IOS":
       capabilities = {
         ...capabilities,
-        browserName: 'iPhone',
-        device: 'iPhone 8',
-        realMobile: 'true',
-        os_version: '11'
+        browserName: "iPhone",
+        device: "iPhone 8",
+        realMobile: "true",
+        os_version: "11"
       };
       break;
-    case 'ANDROID':
+    case "ANDROID":
       capabilities = {
         ...capabilities,
-        browserName: 'android',
-        device: 'Samsung Galaxy S10',
-        realMobile: 'true',
-        os_version: '9.0'
+        browserName: "android",
+        device: "Samsung Galaxy S10",
+        realMobile: "true",
+        os_version: "9.0"
       };
       break;
     default:
@@ -98,18 +98,18 @@ async function buildSpecificBrowserDriver(browser: string) {
   }
 
   return await new Builder()
-    .usingServer('http://hub-cloud.browserstack.com/wd/hub')
+    .usingServer("http://hub-cloud.browserstack.com/wd/hub")
     .withCapabilities(capabilities)
     .build();
 }
 
 async function buildDefaultDriver() {
   const chromeCapabilities = Capabilities.chrome();
-  chromeCapabilities.set('chromeOptions', {
-    args: ['--headless', '--disable-gpu']
+  chromeCapabilities.set("chromeOptions", {
+    args: ["--headless", "--disable-gpu"]
   });
   return await new Builder()
-    .forBrowser('chrome')
+    .forBrowser("chrome")
     .withCapabilities(chromeCapabilities)
     .build();
 }

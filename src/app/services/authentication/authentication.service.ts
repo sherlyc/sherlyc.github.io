@@ -1,17 +1,17 @@
-import { Injectable } from '@angular/core';
-import { RuntimeService } from '../runtime/runtime.service';
-import { ScriptId } from '../script-injector/__types__/ScriptId';
-import { ScriptInjectorService } from '../script-injector/script-injector.service';
-import { ConfigService } from '../config/config.service';
-import { Position } from '../script-injector/__types__/Position';
-import { WindowService } from '../window/window.service';
-import { IStuffLogin } from './__types__/IStuffLogin';
-import { Subject } from 'rxjs';
-import { AnalyticsService } from '../analytics/analytics.service';
-import { IStuffLoginUser } from './__types__/IStuffLoginUser';
+import { Injectable } from "@angular/core";
+import { RuntimeService } from "../runtime/runtime.service";
+import { ScriptId } from "../script-injector/__types__/ScriptId";
+import { ScriptInjectorService } from "../script-injector/script-injector.service";
+import { ConfigService } from "../config/config.service";
+import { Position } from "../script-injector/__types__/Position";
+import { WindowService } from "../window/window.service";
+import { IStuffLogin } from "./__types__/IStuffLogin";
+import { Subject } from "rxjs";
+import { AnalyticsService } from "../analytics/analytics.service";
+import { IStuffLoginUser } from "./__types__/IStuffLoginUser";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class AuthenticationService {
   constructor(

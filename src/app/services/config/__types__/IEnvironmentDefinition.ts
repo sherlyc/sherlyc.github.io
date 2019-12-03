@@ -1,5 +1,5 @@
-import { ILoggerOptions } from '../../../../../common/__types__/ILoggerOptions';
-import { ILoginLibraryConfig } from '../../authentication/__types__/ILoginLibraryConfig';
+import { ILoggerOptions } from "../../../../../common/__types__/ILoggerOptions";
+import { ILoginLibraryConfig } from "../../authentication/__types__/ILoginLibraryConfig";
 
 export interface IEnvironmentDefinition {
   retryTimeout: number;

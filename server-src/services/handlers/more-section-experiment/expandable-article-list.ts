@@ -1,14 +1,14 @@
-import { handlerRunnerFunction } from '../runner';
-import { IParams } from '../../__types__/IParams';
-import { IContentBlock } from '../../../../common/__types__/IContentBlock';
-import { IExpandableArticleListHandlerInput } from '../__types__/IExpandableArticleListHandlerInput';
-import { getRawArticles } from '../../adapters/article-retriever/article-retriever';
-import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
-import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { IBasicArticleTitleUnit } from '../../../../common/__types__/IBasicArticleTitleUnit';
-import { IRawArticle } from '../../adapters/__types__/IRawArticle';
-import { IBasicAdUnit } from '../../../../common/__types__/IBasicAdUnit';
-import { chunk, flatten } from 'lodash';
+import { handlerRunnerFunction } from "../runner";
+import { IParams } from "../../__types__/IParams";
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import { IExpandableArticleListHandlerInput } from "../__types__/IExpandableArticleListHandlerInput";
+import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
+import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IBasicArticleTitleUnit } from "../../../../common/__types__/IBasicArticleTitleUnit";
+import { IRawArticle } from "../../adapters/__types__/IRawArticle";
+import { IBasicAdUnit } from "../../../../common/__types__/IBasicAdUnit";
+import { chunk, flatten } from "lodash";
 
 const basicArticleUnit = (
   article: IRawArticle,

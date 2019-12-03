@@ -1,6 +1,6 @@
-import orchestrate from './orchestrator';
-import logger from './utils/logger';
-import { Request, Response } from 'express';
+import orchestrate from "./orchestrator";
+import logger from "./utils/logger";
+import { Request, Response } from "express";
 
 export const getContent = async (req: Request, res: Response) => {
   try {

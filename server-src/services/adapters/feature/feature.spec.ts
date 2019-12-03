@@ -1,10 +1,10 @@
-import { isFeatureEnabled } from './feature';
-import { DeviceType } from '../../../../common/DeviceType';
-import { FeatureName } from '../../../../common/FeatureName';
+import { isFeatureEnabled } from "./feature";
+import { DeviceType } from "../../../../common/DeviceType";
+import { FeatureName } from "../../../../common/FeatureName";
 
-describe('Feature service', () => {
-  describe('Recommendations', () => {
-    it('should return true for internal lottery number 404', async () => {
+describe("Feature service", () => {
+  describe("Recommendations", () => {
+    it("should return true for internal lottery number 404", async () => {
       const result = await isFeatureEnabled(
         FeatureName.Recommendation,
         404,
@@ -15,7 +15,7 @@ describe('Feature service', () => {
     });
 
     it.each([[1], [100]])(
-      'should return false for public lottery number %i',
+      "should return false for public lottery number %i",
       async (lotteryNumber: number) => {
         const result = await isFeatureEnabled(
           FeatureName.Recommendation,
@@ -28,8 +28,8 @@ describe('Feature service', () => {
     );
   });
 
-  describe('Recommendations Display', () => {
-    it('should return true for internal lottery number 404', async () => {
+  describe("Recommendations Display", () => {
+    it("should return true for internal lottery number 404", async () => {
       const result = await isFeatureEnabled(
         FeatureName.RecommendationDisplay,
         404,
@@ -40,7 +40,7 @@ describe('Feature service', () => {
     });
 
     it.each([[1], [100]])(
-      'should return false for public lottery number %i',
+      "should return false for public lottery number %i",
       async (lotteryNumber: number) => {
         const result = await isFeatureEnabled(
           FeatureName.RecommendationDisplay,
@@ -53,8 +53,8 @@ describe('Feature service', () => {
     );
   });
 
-  describe('Load Adobe Launch script', () => {
-    it('should return true for internal lottery number 404', async () => {
+  describe("Load Adobe Launch script", () => {
+    it("should return true for internal lottery number 404", async () => {
       const result = await isFeatureEnabled(
         FeatureName.AdobeLaunch,
         404,
@@ -65,7 +65,7 @@ describe('Feature service', () => {
     });
 
     it.each([[1], [100]])(
-      'should return false for public lottery number %i',
+      "should return false for public lottery number %i",
       async (lotteryNumber: number) => {
         const result = await isFeatureEnabled(
           FeatureName.AdobeLaunch,

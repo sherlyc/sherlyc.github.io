@@ -1,4 +1,4 @@
-import { IContentBlock } from './IContentBlock';
+import { IContentBlock } from "./IContentBlock";
 
 export interface IPage {
   apiRequestId: string;

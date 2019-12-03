@@ -1,4 +1,4 @@
-import { IDedupeDefinition } from './IDedupeDefinition';
+import { IDedupeDefinition } from "./IDedupeDefinition";
 
 export interface IStrapDefinition {
   ids: string[];

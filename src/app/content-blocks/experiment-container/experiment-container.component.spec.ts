@@ -1,23 +1,23 @@
-import { ServiceMock } from 'src/app/services/mocks/MockService';
-import { ExperimentService } from '../../services/experiment/experiment.service';
-import { ExperimentContainerComponent } from './experiment-container.component';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { IContentBlock } from '../../../../common/__types__/IContentBlock';
-import { ContentBlockDirective } from '../../shared/directives/content-block/content-block.directive';
-import { Component } from '@angular/core';
-import { By, TransferState } from '@angular/platform-browser';
-import { mockService } from '../../services/mocks/MockService';
-import registry from '../content-blocks.registry';
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { IExperimentContainer } from '../../../../common/__types__/IExperimentContainer';
-import { RuntimeService } from 'src/app/services/runtime/runtime.service';
-import { LoggerService } from 'src/app/services/logger/logger.service';
-import { AnalyticsService } from '../../services/analytics/analytics.service';
-import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
-import { ExperimentName } from '../../../../common/ExperimentName';
+import { ServiceMock } from "src/app/services/mocks/MockService";
+import { ExperimentService } from "../../services/experiment/experiment.service";
+import { ExperimentContainerComponent } from "./experiment-container.component";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import { ContentBlockDirective } from "../../shared/directives/content-block/content-block.directive";
+import { Component } from "@angular/core";
+import { By, TransferState } from "@angular/platform-browser";
+import { mockService } from "../../services/mocks/MockService";
+import registry from "../content-blocks.registry";
+import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
+import { IExperimentContainer } from "../../../../common/__types__/IExperimentContainer";
+import { RuntimeService } from "src/app/services/runtime/runtime.service";
+import { LoggerService } from "src/app/services/logger/logger.service";
+import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { ExperimentName } from "../../../../common/ExperimentName";
 
-describe('ExperimentContainerComponent', () => {
+describe("ExperimentContainerComponent", () => {
   let component: ExperimentContainerComponent;
   let fixture: ComponentFixture<ExperimentContainerComponent>;
   let experimentService: ServiceMock<ExperimentService>;
@@ -26,25 +26,25 @@ describe('ExperimentContainerComponent', () => {
   let analyticsService: ServiceMock<AnalyticsService>;
 
   @Component({
-    selector: 'app-control-variant-content-block',
-    template: ''
+    selector: "app-control-variant-content-block",
+    template: ""
   })
   class ControlVariantContentBlockComponent {}
 
   @Component({
-    selector: 'app-other-variant-content-block',
-    template: ''
+    selector: "app-other-variant-content-block",
+    template: ""
   })
   class OtherVariantContentBlockComponent {}
 
   beforeAll(() => {
     // @ts-ignore
     registry[
-      'ControlVariantContentBlockComponent'
+      "ControlVariantContentBlockComponent"
     ] = ControlVariantContentBlockComponent;
     // @ts-ignore
     registry[
-      'OtherVariantContentBlockComponent'
+      "OtherVariantContentBlockComponent"
     ] = OtherVariantContentBlockComponent;
   });
 
@@ -102,17 +102,17 @@ describe('ExperimentContainerComponent', () => {
 
   // @ts-ignore
   const controlVariantContentBlock = {
-    type: 'ControlVariantContentBlock'
+    type: "ControlVariantContentBlock"
   } as IContentBlock;
   // @ts-ignore
   const otherVariantContentBlock = {
-    type: 'OtherVariantContentBlock'
+    type: "OtherVariantContentBlock"
   } as IContentBlock;
 
-  it('should create', () => {
+  it("should create", () => {
     component.input = {
       type: ContentBlockType.ExperimentContainer,
-      name: 'ExperimentName',
+      name: "ExperimentName",
       variants: {
         control: [controlVariantContentBlock] as IContentBlock[],
         red: [otherVariantContentBlock] as IContentBlock[]
@@ -124,21 +124,21 @@ describe('ExperimentContainerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('when in server', () => {
+  describe("when in server", () => {
     beforeEach(() => {
       runtimeService.isServer.mockReturnValue(true);
     });
 
     const experimentContainer: IExperimentContainer = {
       type: ContentBlockType.ExperimentContainer,
-      name: 'ExperimentName',
+      name: "ExperimentName",
       variants: {
         control: [controlVariantContentBlock] as IContentBlock[],
         red: [otherVariantContentBlock] as IContentBlock[]
       }
     };
 
-    it('should not call experiment service', async () => {
+    it("should not call experiment service", async () => {
       component.input = experimentContainer;
 
       await component.ngOnInit();
@@ -146,7 +146,7 @@ describe('ExperimentContainerComponent', () => {
       expect(experimentService.getVariant).not.toHaveBeenCalled();
     });
 
-    it('should render control variant and not send analytics', async () => {
+    it("should render control variant and not send analytics", async () => {
       component.input = experimentContainer;
 
       await component.ngOnInit();
@@ -165,20 +165,20 @@ describe('ExperimentContainerComponent', () => {
     });
   });
 
-  describe('when in browser', () => {
+  describe("when in browser", () => {
     beforeEach(() => {
       runtimeService.isServer.mockReturnValue(false);
     });
 
-    describe('when user is assigned to the container experiment', () => {
-      it('should render variant that the user is assigned to and send analytics', async () => {
+    describe("when user is assigned to the container experiment", () => {
+      it("should render variant that the user is assigned to and send analytics", async () => {
         const assignedExperiment = {
-          name: 'ExperimentOne',
-          variant: 'groupOne'
+          name: "ExperimentOne",
+          variant: "groupOne"
         };
         component.input = {
           type: ContentBlockType.ExperimentContainer,
-          name: 'ExperimentOne',
+          name: "ExperimentOne",
           variants: {
             control: [controlVariantContentBlock] as IContentBlock[],
             groupOne: [otherVariantContentBlock] as IContentBlock[]
@@ -202,19 +202,19 @@ describe('ExperimentContainerComponent', () => {
         expect(controlVariantBlocks).toHaveLength(0);
         expect(analyticsService.pushEvent).toHaveBeenCalledWith({
           type: AnalyticsEventsType.EXPERIMENT,
-          experiment: 'ExperimentOne',
-          variant: 'groupOne'
+          experiment: "ExperimentOne",
+          variant: "groupOne"
         });
       });
 
-      it('should render control variant and send analytics', async () => {
+      it("should render control variant and send analytics", async () => {
         const assignedExperiment = {
-          name: 'ExperimentOne',
-          variant: 'control'
+          name: "ExperimentOne",
+          variant: "control"
         };
         component.input = {
           type: ContentBlockType.ExperimentContainer,
-          name: 'ExperimentOne',
+          name: "ExperimentOne",
           variants: {
             control: [controlVariantContentBlock] as IContentBlock[],
             groupOne: [otherVariantContentBlock] as IContentBlock[]
@@ -238,21 +238,21 @@ describe('ExperimentContainerComponent', () => {
         expect(otherVariantBlocks).toHaveLength(0);
         expect(analyticsService.pushEvent).toHaveBeenCalledWith({
           type: AnalyticsEventsType.EXPERIMENT,
-          experiment: 'ExperimentOne',
-          variant: 'control'
+          experiment: "ExperimentOne",
+          variant: "control"
         });
       });
     });
 
-    describe('when user is not assigned to container experiment', () => {
-      it('should render control and not send analytics when user is in a different experiment', async () => {
+    describe("when user is not assigned to container experiment", () => {
+      it("should render control and not send analytics when user is in a different experiment", async () => {
         const assignedExperiment = {
-          name: 'ExperimentTwo',
-          variant: 'groupTwo'
+          name: "ExperimentTwo",
+          variant: "groupTwo"
         };
         component.input = {
           type: ContentBlockType.ExperimentContainer,
-          name: 'ExperimentOne',
+          name: "ExperimentOne",
           variants: {
             control: [controlVariantContentBlock] as IContentBlock[],
             groupOne: [otherVariantContentBlock] as IContentBlock[]
@@ -277,14 +277,14 @@ describe('ExperimentContainerComponent', () => {
         expect(analyticsService.pushEvent).not.toHaveBeenCalled();
       });
 
-      it('should render control and not send analytics when user is not assigned an experiment', async () => {
+      it("should render control and not send analytics when user is not assigned an experiment", async () => {
         const assignedExperiment = {
           name: ExperimentName.NotAssigned,
           variant: ExperimentName.NotAssigned
         };
         component.input = {
           type: ContentBlockType.ExperimentContainer,
-          name: 'ExperimentOne',
+          name: "ExperimentOne",
           variants: {
             control: [controlVariantContentBlock] as IContentBlock[],
             groupOne: [otherVariantContentBlock] as IContentBlock[]
@@ -310,14 +310,14 @@ describe('ExperimentContainerComponent', () => {
       });
     });
 
-    it('should render control, not send analytics and log error when variant assigned is not specified by container', async () => {
+    it("should render control, not send analytics and log error when variant assigned is not specified by container", async () => {
       const assignedExperiment = {
-        name: 'ExperimentOne',
-        variant: 'GroupThree'
+        name: "ExperimentOne",
+        variant: "GroupThree"
       };
       const container: IExperimentContainer = {
         type: ContentBlockType.ExperimentContainer,
-        name: 'ExperimentOne',
+        name: "ExperimentOne",
         variants: {
           control: [controlVariantContentBlock] as IContentBlock[],
           groupOne: [otherVariantContentBlock] as IContentBlock[]

@@ -1,5 +1,5 @@
-import { ContentBlockType } from './ContentBlockType';
-import { HeadlineFlags } from '../HeadlineFlags';
+import { ContentBlockType } from "./ContentBlockType";
+import { HeadlineFlags } from "../HeadlineFlags";
 
 export interface IImageLinkUnit {
   type: ContentBlockType.ImageLinkUnit;

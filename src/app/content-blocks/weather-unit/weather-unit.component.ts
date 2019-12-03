@@ -1,22 +1,22 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
-import { IWeatherUnit } from '../../../../common/__types__/IWeatherUnit';
-import { WeatherRetrieverService } from '../../services/weather-retriever/weather-retriever.service';
-import { AnalyticsService } from '../../services/analytics/analytics.service';
-import { IWeatherResponse } from '../../../../common/__types__/IWeatherResponse';
+import { Component, Input, OnInit } from "@angular/core";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
+import { IWeatherUnit } from "../../../../common/__types__/IWeatherUnit";
+import { WeatherRetrieverService } from "../../services/weather-retriever/weather-retriever.service";
+import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { IWeatherResponse } from "../../../../common/__types__/IWeatherResponse";
 import {
   weatherRegions,
   WeatherLocations
-} from '../../../../common/WeatherLocations';
-import { StoreService, StorageKeys } from '../../services/store/store.service';
-import { RuntimeService } from '../../services/runtime/runtime.service';
-import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
-import { WindowService } from '../../services/window/window.service';
+} from "../../../../common/WeatherLocations";
+import { StoreService, StorageKeys } from "../../services/store/store.service";
+import { RuntimeService } from "../../services/runtime/runtime.service";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { WindowService } from "../../services/window/window.service";
 
 @Component({
-  selector: 'app-weather-unit',
-  templateUrl: './weather-unit.component.html',
-  styleUrls: ['./weather-unit.component.scss']
+  selector: "app-weather-unit",
+  templateUrl: "./weather-unit.component.html",
+  styleUrls: ["./weather-unit.component.scss"]
 })
 export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
   constructor(

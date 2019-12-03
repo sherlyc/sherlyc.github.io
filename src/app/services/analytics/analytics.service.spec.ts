@@ -1,13 +1,13 @@
-import { TestBed } from '@angular/core/testing';
-import { AnalyticsService } from './analytics.service';
-import { mockService, ServiceMock } from '../mocks/MockService';
-import { AnalyticsEventsType } from './__types__/AnalyticsEventsType';
-import { WindowService } from '../window/window.service';
-import { LoggerService } from '../logger/logger.service';
-import { DtmService } from '../dtm/dtm.service';
-import { RuntimeService } from '../runtime/runtime.service';
+import { TestBed } from "@angular/core/testing";
+import { AnalyticsService } from "./analytics.service";
+import { mockService, ServiceMock } from "../mocks/MockService";
+import { AnalyticsEventsType } from "./__types__/AnalyticsEventsType";
+import { WindowService } from "../window/window.service";
+import { LoggerService } from "../logger/logger.service";
+import { DtmService } from "../dtm/dtm.service";
+import { RuntimeService } from "../runtime/runtime.service";
 
-describe('AnalyticsService', () => {
+describe("AnalyticsService", () => {
   let windowService: ServiceMock<WindowService>;
   let analyticsService: AnalyticsService;
   let dtmService: ServiceMock<DtmService>;
@@ -41,66 +41,66 @@ describe('AnalyticsService', () => {
     windowService.getWindow.mockReturnValue({});
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(analyticsService).toBeTruthy();
   });
 
-  it('should assign digitalData object to the window ', () => {
+  it("should assign digitalData object to the window ", () => {
     analyticsService.setup();
 
     expect(windowService.getWindow().digitalData).toBeTruthy();
   });
 
-  it('should inject correct values (section should be empty) into digitalData object for ads to work for production', () => {
-    runtimeService.getEnvironmentVariable.mockReturnValue('production');
+  it("should inject correct values (section should be empty) into digitalData object for ads to work for production", () => {
+    runtimeService.getEnvironmentVariable.mockReturnValue("production");
     analyticsService.setup();
 
     expect(windowService.getWindow().digitalData.page.ads).toEqual({
-      environment: 'prod',
-      exclusions: '',
+      environment: "prod",
+      exclusions: "",
       sections: []
     });
   });
 
-  it('should inject correct values (section should be empty) into digitalData object for ads to work for non-production', () => {
-    runtimeService.getEnvironmentVariable.mockReturnValue('staging');
+  it("should inject correct values (section should be empty) into digitalData object for ads to work for non-production", () => {
+    runtimeService.getEnvironmentVariable.mockReturnValue("staging");
     analyticsService.setup();
 
     expect(windowService.getWindow().digitalData.page.ads).toEqual({
-      environment: 'preprod',
-      exclusions: '',
+      environment: "preprod",
+      exclusions: "",
       sections: []
     });
   });
 
-  it('should push corresponding analytics when weather bar is closed with exit button', () => {
+  it("should push corresponding analytics when weather bar is closed with exit button", () => {
     analyticsService.setup();
     windowService.getWindow().digitalData.events.push = jest.fn();
 
     const event = {
-      event: 'weather.location.change',
-      'weather.location': 'Auckland'
+      event: "weather.location.change",
+      "weather.location": "Auckland"
     };
 
     analyticsService.pushEvent({
       type: AnalyticsEventsType.WEATHER_LOCATION_CHANGED,
-      location: 'Auckland'
+      location: "Auckland"
     });
 
     expect(
       windowService.getWindow().digitalData.events.push
     ).toHaveBeenCalledWith({
-      type: 'analytics',
+      type: "analytics",
       ...event
     });
   });
 
-  it('should push corresponding analytics when the stuff logo of top menu is clicked ', () => {
+  it("should push corresponding analytics when the stuff logo of top menu is clicked ", () => {
     analyticsService.setup();
     windowService.getWindow().digitalData.events.push = jest.fn();
 
     const event = {
-      event: 'stuff.logo'
+      event: "stuff.logo"
     };
     analyticsService.pushEvent({
       type: AnalyticsEventsType.STUFF_LOGO_CLICKED
@@ -109,38 +109,38 @@ describe('AnalyticsService', () => {
     expect(
       windowService.getWindow().digitalData.events.push
     ).toHaveBeenCalledWith({
-      type: 'analytics',
+      type: "analytics",
       ...event
     });
   });
 
-  it('should push corresponding analytics when a link on footer menu is clicked ', () => {
+  it("should push corresponding analytics when a link on footer menu is clicked ", () => {
     analyticsService.setup();
     windowService.getWindow().digitalData.events.push = jest.fn();
 
     const event = {
-      event: 'menu.footer',
-      'menu.link': 'twitter'
+      event: "menu.footer",
+      "menu.link": "twitter"
     };
     analyticsService.pushEvent({
       type: AnalyticsEventsType.FOOTER_MENU_CLICKED,
-      name: 'twitter'
+      name: "twitter"
     });
 
     expect(
       windowService.getWindow().digitalData.events.push
     ).toHaveBeenCalledWith({
-      type: 'analytics',
+      type: "analytics",
       ...event
     });
   });
 
-  it('should push corresponding analytics when the breaking news banner is open', () => {
+  it("should push corresponding analytics when the breaking news banner is open", () => {
     analyticsService.setup();
     windowService.getWindow().digitalData.events.push = jest.fn();
 
     const event = {
-      event: 'breaking.news.open'
+      event: "breaking.news.open"
     };
     analyticsService.pushEvent({
       type: AnalyticsEventsType.BREAKING_NEWS_OPENED
@@ -148,17 +148,17 @@ describe('AnalyticsService', () => {
     expect(
       windowService.getWindow().digitalData.events.push
     ).toHaveBeenCalledWith({
-      type: 'analytics',
+      type: "analytics",
       ...event
     });
   });
 
-  it('should push corresponding analytics when the breaking news banner is closed', () => {
+  it("should push corresponding analytics when the breaking news banner is closed", () => {
     analyticsService.setup();
     windowService.getWindow().digitalData.events.push = jest.fn();
 
     const event = {
-      event: 'breaking.news.close'
+      event: "breaking.news.close"
     };
     analyticsService.pushEvent({
       type: AnalyticsEventsType.BREAKING_NEWS_CLOSED
@@ -167,66 +167,66 @@ describe('AnalyticsService', () => {
     expect(
       windowService.getWindow().digitalData.events.push
     ).toHaveBeenCalledWith({
-      type: 'analytics',
+      type: "analytics",
       ...event
     });
   });
 
-  it('should push corresponding analytics when the more button is clicked', () => {
+  it("should push corresponding analytics when the more button is clicked", () => {
     analyticsService.setup();
     windowService.getWindow().digitalData.events.push = jest.fn();
 
     const event = {
-      event: 'more.content.button',
-      'more.content.url': '/national'
+      event: "more.content.button",
+      "more.content.url": "/national"
     };
     analyticsService.pushEvent({
       type: AnalyticsEventsType.MORE_BUTTON_CLICKED,
-      url: '/national'
+      url: "/national"
     });
 
     expect(
       windowService.getWindow().digitalData.events.push
     ).toHaveBeenCalledWith({
-      type: 'analytics',
+      type: "analytics",
       ...event
     });
   });
 
-  it('should push corresponding analytics when menu section is clicked', () => {
+  it("should push corresponding analytics when menu section is clicked", () => {
     analyticsService.setup();
     windowService.getWindow().digitalData.events.push = jest.fn();
 
     const event = {
-      event: 'menu.nav',
-      'menu.nav.section': 'Entertainment'
+      event: "menu.nav",
+      "menu.nav.section": "Entertainment"
     };
 
     analyticsService.pushEvent({
       type: AnalyticsEventsType.MENU_NAV_SECTION_CLICKED,
-      section: 'Entertainment'
+      section: "Entertainment"
     });
 
     expect(
       windowService.getWindow().digitalData.events.push
     ).toHaveBeenCalledWith({
-      type: 'analytics',
+      type: "analytics",
       ...event
     });
   });
 
-  it('should push corresponding analytics when homepage strap is clicked', () => {
+  it("should push corresponding analytics when homepage strap is clicked", () => {
     analyticsService.setup();
     windowService.getWindow().digitalData.events.push = jest.fn();
 
-    const strapName = 'National';
-    const headline = 'Headline';
-    const articleId = '123123';
+    const strapName = "National";
+    const headline = "Headline";
+    const articleId = "123123";
     const event = {
-      event: 'homepage.strap.click',
-      'homepage.strap': strapName,
-      'article.headline': headline,
-      'article.id': articleId
+      event: "homepage.strap.click",
+      "homepage.strap": strapName,
+      "article.headline": headline,
+      "article.id": articleId
     };
 
     analyticsService.pushEvent({
@@ -239,21 +239,21 @@ describe('AnalyticsService', () => {
     expect(
       windowService.getWindow().digitalData.events.push
     ).toHaveBeenCalledWith({
-      type: 'analytics',
+      type: "analytics",
       ...event
     });
   });
 
-  it('should push corresponding analytics for breaking news experiment', () => {
+  it("should push corresponding analytics for breaking news experiment", () => {
     analyticsService.setup();
     windowService.getWindow().digitalData.events.push = jest.fn();
 
-    const variant = 'purpleHeadline';
-    const experiment = 'Toucan';
+    const variant = "purpleHeadline";
+    const experiment = "Toucan";
     const event = {
-      event: 'ab.testing.event',
-      'ab.testing.segment.web': variant,
-      'ab.testing.experiment.name': experiment
+      event: "ab.testing.event",
+      "ab.testing.segment.web": variant,
+      "ab.testing.experiment.name": experiment
     };
 
     analyticsService.pushEvent({
@@ -265,18 +265,18 @@ describe('AnalyticsService', () => {
     expect(
       windowService.getWindow().digitalData.events.push
     ).toHaveBeenCalledWith({
-      type: 'analytics',
+      type: "analytics",
       ...event
     });
   });
 
-  it('should push corresponding analytics for login text clicked', () => {
+  it("should push corresponding analytics for login text clicked", () => {
     analyticsService.setup();
     windowService.getWindow().digitalData.events.push = jest.fn();
 
     const event = {
-      event: 'login.signup.click',
-      'login.signup.location': 'top'
+      event: "login.signup.click",
+      "login.signup.location": "top"
     };
 
     analyticsService.pushEvent({
@@ -286,17 +286,17 @@ describe('AnalyticsService', () => {
     expect(
       windowService.getWindow().digitalData.events.push
     ).toHaveBeenCalledWith({
-      type: 'analytics',
+      type: "analytics",
       ...event
     });
   });
 
-  it('should push corresponding analytics for login text clicked', () => {
+  it("should push corresponding analytics for login text clicked", () => {
     analyticsService.setup();
     windowService.getWindow().digitalData.events.push = jest.fn();
 
     const event = {
-      event: 'avatar.click'
+      event: "avatar.click"
     };
 
     analyticsService.pushEvent({
@@ -306,17 +306,17 @@ describe('AnalyticsService', () => {
     expect(
       windowService.getWindow().digitalData.events.push
     ).toHaveBeenCalledWith({
-      type: 'analytics',
+      type: "analytics",
       ...event
     });
   });
 
-  it('should push pwa download analytics', () => {
+  it("should push pwa download analytics", () => {
     analyticsService.setup();
     windowService.getWindow().digitalData.events.push = jest.fn();
 
     const event = {
-      event: 'pwa.download'
+      event: "pwa.download"
     };
 
     analyticsService.pushEvent({
@@ -326,12 +326,12 @@ describe('AnalyticsService', () => {
     expect(
       windowService.getWindow().digitalData.events.push
     ).toHaveBeenCalledWith({
-      type: 'analytics',
+      type: "analytics",
       ...event
     });
   });
 
-  it('should allow updating datalayer with user data', () => {
+  it("should allow updating datalayer with user data", () => {
     analyticsService.setup();
 
     analyticsService.setUserInDataLayer(null);
@@ -340,35 +340,35 @@ describe('AnalyticsService', () => {
     ).toBeNull();
 
     const user = {
-      id_token: 'yourIdToken',
-      access_token: 'yourAccessToken',
+      id_token: "yourIdToken",
+      access_token: "yourAccessToken",
       profile: {
-        sub: '11234',
+        sub: "11234",
         auth_time: 1508961560,
-        kid: 'sffx',
-        jti: '0fab3adc-6106-4b20-bec6-45144b721b31',
-        name: 'user123',
-        preferred_username: 'user123@mail.com',
-        given_name: 'firstName',
-        family_name: 'surname',
-        nickname: 'user123',
+        kid: "sffx",
+        jti: "0fab3adc-6106-4b20-bec6-45144b721b31",
+        name: "user123",
+        preferred_username: "user123@mail.com",
+        given_name: "firstName",
+        family_name: "surname",
+        nickname: "user123",
         profile:
-          'https://my.local.stuff.co.nz:8443/stuff-ssp-web//profile/user123',
+          "https://my.local.stuff.co.nz:8443/stuff-ssp-web//profile/user123",
         picture:
-          'https://static2.stuff.co.nz/145453/static/images/profile_avatar_n_sm.gif',
-        gender: 'm',
-        locale: 'en_NZ',
-        birthdate: '1992'
+          "https://static2.stuff.co.nz/145453/static/images/profile_avatar_n_sm.gif",
+        gender: "m",
+        locale: "en_NZ",
+        birthdate: "1992"
       }
     };
 
     analyticsService.setUserInDataLayer(user);
     expect(
       windowService.getWindow().digitalData.user[0].profile[0].profileInfo
-    ).toStrictEqual({ uid: '11234' });
+    ).toStrictEqual({ uid: "11234" });
   });
 
-  it('should not post nielsen page tracking record in SSR', async () => {
+  it("should not post nielsen page tracking record in SSR", async () => {
     runtimeService.isServer.mockReturnValue(true);
 
     await analyticsService.trackPageByNielsen();
@@ -376,7 +376,7 @@ describe('AnalyticsService', () => {
     expect(dtmService.getLoadedPromise).not.toHaveBeenCalled();
   });
 
-  it('should post nielsen page tracking record', async () => {
+  it("should post nielsen page tracking record", async () => {
     runtimeService.isServer.mockReturnValue(false);
     // @ts-ignore
     dtmService.getLoadedPromise.mockResolvedValue(undefined);
@@ -388,7 +388,7 @@ describe('AnalyticsService', () => {
     expect(windowService.getWindow().nol_t).toHaveBeenCalled();
   });
 
-  it('should set window.spade as 1', () => {
+  it("should set window.spade as 1", () => {
     const fakeWindow: any = {};
     windowService.getWindow.mockReturnValue(fakeWindow);
 

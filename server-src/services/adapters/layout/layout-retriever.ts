@@ -1,11 +1,11 @@
-import { ISectionLayout } from '../__types__/ISectionLayout';
-import config from '../../utils/config';
-import cacheHttp from '../../utils/cache-http';
-import retry from '../../utils/retry';
-import { IParams } from '../../__types__/IParams';
-import { LayoutType } from '../__types__/LayoutType';
-import { AxiosResponse } from 'axios';
-import logger from '../../utils/logger';
+import { ISectionLayout } from "../__types__/ISectionLayout";
+import config from "../../utils/config";
+import cacheHttp from "../../utils/cache-http";
+import retry from "../../utils/retry";
+import { IParams } from "../../__types__/IParams";
+import { LayoutType } from "../__types__/LayoutType";
+import { AxiosResponse } from "axios";
+import logger from "../../utils/logger";
 
 const isValid = (response: AxiosResponse<ISectionLayout>) => {
   if (!response.data || !response.data.layouts || !response.data.layouts[0]) {
@@ -16,9 +16,9 @@ const isValid = (response: AxiosResponse<ISectionLayout>) => {
 
 const mapTopStoriesLayout = (data: ISectionLayout) => {
   const topStoriesLayout = data.layouts[0].layout;
-  if (topStoriesLayout.includes('defcon')) {
+  if (topStoriesLayout.includes("defcon")) {
     return LayoutType.DEFCON;
-  } else if (topStoriesLayout.includes('big_headline')) {
+  } else if (topStoriesLayout.includes("big_headline")) {
     return LayoutType.BIG_HEADLINE;
   }
   return LayoutType.DEFAULT;

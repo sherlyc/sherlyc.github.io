@@ -1,104 +1,104 @@
-import { HandlerInputType } from '../__types__/HandlerInputType';
+import { HandlerInputType } from "../__types__/HandlerInputType";
 
-import groupOneTopStoriesListHandler from './group-one';
-import { getRawArticles } from '../../adapters/article-retriever/article-retriever';
-import { IParams } from '../../__types__/IParams';
-import { IRawArticle } from '../../adapters/__types__/IRawArticle';
-import * as layoutRetriever from '../../adapters/layout/layout-retriever';
-import { LayoutType } from '../../adapters/__types__/LayoutType';
-import handlerRunner from '../runner';
-import { IBigImageArticleUnit } from '../../../../common/__types__/IBigImageArticleUnit';
-import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { IGrayDefconArticleUnit } from '../../../../common/__types__/IGrayDefconArticleUnit';
-import wrappedLogger from '../../utils/logger';
-import { Strap } from '../../strap';
+import groupOneTopStoriesListHandler from "./group-one";
+import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
+import { IParams } from "../../__types__/IParams";
+import { IRawArticle } from "../../adapters/__types__/IRawArticle";
+import * as layoutRetriever from "../../adapters/layout/layout-retriever";
+import { LayoutType } from "../../adapters/__types__/LayoutType";
+import handlerRunner from "../runner";
+import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArticleUnit";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IGrayDefconArticleUnit } from "../../../../common/__types__/IGrayDefconArticleUnit";
+import wrappedLogger from "../../utils/logger";
+import { Strap } from "../../strap";
 
-jest.mock('../../adapters/article-retriever/article-retriever');
-jest.mock('../../utils/logger');
+jest.mock("../../adapters/article-retriever/article-retriever");
+jest.mock("../../utils/logger");
 
-describe('Experiment: GroupOne Variant', () => {
-  const params: IParams = { apiRequestId: 'request-id-for-testing' };
-  const strapName = 'Latest';
+describe("Experiment: GroupOne Variant", () => {
+  const params: IParams = { apiRequestId: "request-id-for-testing" };
+  const strapName = "Latest";
 
   const basicAdUnit = {
-    type: 'BasicAdUnit',
+    type: "BasicAdUnit",
     context: strapName
   };
 
   const articleOne: IRawArticle = {
-    id: '1',
-    indexHeadline: 'Article One',
-    title: 'Title One',
-    introText: 'Article One Intro',
-    linkUrl: '/link1',
-    imageSrc: 'article.jpg',
-    imageSrcSet: 'article.jpg 1w',
-    defconSrc: 'defcon.jpg',
-    strapImageSrc: 'strap1.jpg',
-    strapImageSrcSet: 'strap1.jpg 1w',
+    id: "1",
+    indexHeadline: "Article One",
+    title: "Title One",
+    introText: "Article One Intro",
+    linkUrl: "/link1",
+    imageSrc: "article.jpg",
+    imageSrcSet: "article.jpg 1w",
+    defconSrc: "defcon.jpg",
+    strapImageSrc: "strap1.jpg",
+    strapImageSrcSet: "strap1.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: []
   };
 
   const articleTwo: IRawArticle = {
-    id: '2',
-    indexHeadline: 'An Article',
-    title: 'Title Two',
-    introText: 'Article Text',
-    linkUrl: '/link2',
-    imageSrc: 'article.jpg',
-    imageSrcSet: 'article.jpg 1w',
+    id: "2",
+    indexHeadline: "An Article",
+    title: "Title Two",
+    introText: "Article Text",
+    linkUrl: "/link2",
+    imageSrc: "article.jpg",
+    imageSrcSet: "article.jpg 1w",
     defconSrc: null,
-    strapImageSrc: 'strap2.jpg',
-    strapImageSrcSet: 'strap2.jpg 1w',
+    strapImageSrc: "strap2.jpg",
+    strapImageSrcSet: "strap2.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: []
   };
 
   const articleTwoAsBigImageArticle: IBigImageArticleUnit = {
-    id: '2',
+    id: "2",
     strapName,
     headlineFlags: [],
-    imageSrc: 'strap2.jpg',
-    imageSrcSet: 'strap2.jpg 1w',
-    indexHeadline: 'An Article',
-    title: 'Title Two',
-    introText: 'Article Text',
+    imageSrc: "strap2.jpg",
+    imageSrcSet: "strap2.jpg 1w",
+    indexHeadline: "An Article",
+    title: "Title Two",
+    introText: "Article Text",
     lastPublishedTime: 1,
-    linkUrl: '/link2',
+    linkUrl: "/link2",
     type: ContentBlockType.BigImageArticleUnit
   };
 
   const articleOneAsBigImageArticle: IBigImageArticleUnit = {
-    id: '1',
+    id: "1",
     strapName,
     headlineFlags: [],
-    imageSrc: 'strap1.jpg',
-    imageSrcSet: 'strap1.jpg 1w',
-    indexHeadline: 'Article One',
-    title: 'Title One',
-    introText: 'Article One Intro',
+    imageSrc: "strap1.jpg",
+    imageSrcSet: "strap1.jpg 1w",
+    indexHeadline: "Article One",
+    title: "Title One",
+    introText: "Article One Intro",
     lastPublishedTime: 1,
-    linkUrl: '/link1',
+    linkUrl: "/link1",
     type: ContentBlockType.BigImageArticleUnit
   };
 
   const articleOneAsGrayDefconArticle: IGrayDefconArticleUnit = {
     type: ContentBlockType.GrayDefconArticleUnit,
-    id: '1',
+    id: "1",
     strapName,
-    indexHeadline: 'Article One',
-    title: 'Title One',
-    introText: 'Article One Intro',
-    linkUrl: '/link1',
-    imageSrc: 'defcon.jpg',
+    indexHeadline: "Article One",
+    title: "Title One",
+    introText: "Article One Intro",
+    linkUrl: "/link1",
+    imageSrc: "defcon.jpg",
     lastPublishedTime: 1,
     headlineFlags: []
   };
 
-  it('should swap the first and second article and return them as big image articles when layout is default', async () => {
+  it("should swap the first and second article and return them as big image articles when layout is default", async () => {
     jest
-      .spyOn(layoutRetriever, 'layoutRetriever')
+      .spyOn(layoutRetriever, "layoutRetriever")
       .mockResolvedValue(LayoutType.DEFAULT);
 
     const rawArticles = [articleOne, articleTwo, articleOne];
@@ -132,9 +132,9 @@ describe('Experiment: GroupOne Variant', () => {
     expect(contentBlocks).toEqual(expectedContentBlocks);
   });
 
-  it('should return first article as gray defcon and others as big image article when layout is defcon', async () => {
+  it("should return first article as gray defcon and others as big image article when layout is defcon", async () => {
     jest
-      .spyOn(layoutRetriever, 'layoutRetriever')
+      .spyOn(layoutRetriever, "layoutRetriever")
       .mockResolvedValue(LayoutType.DEFCON);
 
     const rawArticles = [articleOne, articleTwo, articleOne];
@@ -168,8 +168,8 @@ describe('Experiment: GroupOne Variant', () => {
     expect(contentBlocks).toEqual(expectedContentBlocks);
   });
 
-  it('should log sourceId and throw error', async () => {
-    const error = new Error('failed to retrieve');
+  it("should log sourceId and throw error", async () => {
+    const error = new Error("failed to retrieve");
     (getRawArticles as jest.Mock).mockRejectedValue(error);
 
     await expect(

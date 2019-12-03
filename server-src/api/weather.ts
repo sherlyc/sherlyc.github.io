@@ -1,6 +1,6 @@
-import { Request, Response } from 'express';
-import { weatherService } from '../services/adapters/weather/weather';
-import logger from '../services/utils/logger';
+import { Request, Response } from "express";
+import { weatherService } from "../services/adapters/weather/weather";
+import logger from "../services/utils/logger";
 
 export const getWeather = async (req: Request, res: Response) => {
   const location = req.query.location || req.params.location;

@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import * as uuidv4 from 'uuid/v4';
-import { ICorrelation } from './__types__/ICorrelation';
-import { StoreService, StorageKeys } from '../store/store.service';
-import { RuntimeService } from '../runtime/runtime.service';
+import { Injectable } from "@angular/core";
+import * as uuidv4 from "uuid/v4";
+import { ICorrelation } from "./__types__/ICorrelation";
+import { StoreService, StorageKeys } from "../store/store.service";
+import { RuntimeService } from "../runtime/runtime.service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class CorrelationService {
   private pageScopedId!: string;
@@ -38,7 +38,7 @@ export class CorrelationService {
 
   getDeviceId(): string {
     if (this.runtime.isServer()) {
-      return 'DeviceId is not supported in server';
+      return "DeviceId is not supported in server";
     }
     let deviceId = this.storeService.get<string>(StorageKeys.DeviceId);
     if (!deviceId) {

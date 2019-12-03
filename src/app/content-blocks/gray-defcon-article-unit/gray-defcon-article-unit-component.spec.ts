@@ -1,27 +1,27 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { GrayDefconArticleUnitComponent } from './gray-defcon-article-unit.component';
-import { SharedModule } from '../../shared/shared.module';
-import { By } from '@angular/platform-browser';
-import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
-import { AnalyticsService } from '../../services/analytics/analytics.service';
-import { mockService, ServiceMock } from '../../services/mocks/MockService';
-import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { IDefconArticleUnit } from '../../../../common/__types__/IDefconArticleUnit';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { GrayDefconArticleUnitComponent } from "./gray-defcon-article-unit.component";
+import { SharedModule } from "../../shared/shared.module";
+import { By } from "@angular/platform-browser";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { mockService, ServiceMock } from "../../services/mocks/MockService";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IDefconArticleUnit } from "../../../../common/__types__/IDefconArticleUnit";
 
-describe('GrayDefconArticleUnitComponent', () => {
+describe("GrayDefconArticleUnitComponent", () => {
   let component: GrayDefconArticleUnitComponent;
   let fixture: ComponentFixture<GrayDefconArticleUnitComponent>;
   let analyticsService: ServiceMock<AnalyticsService>;
 
   const articleData: IDefconArticleUnit = {
     type: ContentBlockType.DefconArticleUnit,
-    id: '123123',
-    strapName: 'National',
-    indexHeadline: 'Dummy Headline',
-    introText: 'Dummy intro text',
-    title: 'Title',
-    linkUrl: 'https://dummyurl.com',
-    imageSrc: 'https://dummyimagesrc.com',
+    id: "123123",
+    strapName: "National",
+    indexHeadline: "Dummy Headline",
+    introText: "Dummy intro text",
+    title: "Title",
+    linkUrl: "https://dummyurl.com",
+    imageSrc: "https://dummyimagesrc.com",
     lastPublishedTime: 123123,
     headlineFlags: []
   };
@@ -49,16 +49,16 @@ describe('GrayDefconArticleUnitComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('should send analytics when clicked', () => {
+  it("should send analytics when clicked", () => {
     const { strapName, title, id } = articleData;
     component.input = articleData;
     fixture.detectChanges();
 
-    const anchorTag = fixture.debugElement.query(By.css('a')).nativeElement;
+    const anchorTag = fixture.debugElement.query(By.css("a")).nativeElement;
     anchorTag.click();
 
     expect(analyticsService.pushEvent).toHaveBeenCalledWith({

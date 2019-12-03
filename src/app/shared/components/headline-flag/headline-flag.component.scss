@@ -17,7 +17,7 @@
   box-sizing: border-box;
   color: #fff;
   display: inline-block;
-  content: '';
+  content: "";
   position: relative;
   font-size: 10px;
   width: 14px;
@@ -25,7 +25,7 @@
 }
 
 .video-flag:before {
-  content: '';
+  content: "";
   border-top: 4px solid transparent;
   border-bottom: 4px solid transparent;
   border-left: 6px solid #fff;
@@ -44,6 +44,6 @@
   padding: 3px 7px 2px 7px;
   font-size: 10px;
   vertical-align: 4px;
-  font-family: 'Merriweather Sans', 'Open Sans', Helvetica, Arial, sans-serif;
+  font-family: "Merriweather Sans", "Open Sans", Helvetica, Arial, sans-serif;
   letter-spacing: 0.2px;
 }

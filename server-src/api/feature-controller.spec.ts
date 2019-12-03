@@ -1,20 +1,20 @@
-import { featureController } from './feature-controller';
-import { isFeatureEnabled } from '../services/adapters/feature/feature';
-import { FeatureName } from '../../common/FeatureName';
-import { Request } from 'express';
+import { featureController } from "./feature-controller";
+import { isFeatureEnabled } from "../services/adapters/feature/feature";
+import { FeatureName } from "../../common/FeatureName";
+import { Request } from "express";
 
-jest.mock('../services/adapters/feature/feature');
+jest.mock("../services/adapters/feature/feature");
 
-describe('Feature Controller', () => {
-  it('should return value from feature service', async () => {
-    (FeatureName as any)['someFeature'] = 'someFeature';
+describe("Feature Controller", () => {
+  it("should return value from feature service", async () => {
+    (FeatureName as any)["someFeature"] = "someFeature";
 
     const req = ({
-      spadeParams: { apiRequestId: '33498' },
+      spadeParams: { apiRequestId: "33498" },
       params: {
-        featureName: 'someFeature',
+        featureName: "someFeature",
         lotteryNumber: 1,
-        deviceType: 'mobile'
+        deviceType: "mobile"
       },
       cookies: {}
     } as any) as Request;
@@ -27,13 +27,13 @@ describe('Feature Controller', () => {
     expect(res.send).toHaveBeenCalledWith(false);
   });
 
-  it('should return error when feature name is not recognized', async () => {
+  it("should return error when feature name is not recognized", async () => {
     const req = ({
-      spadeParams: { apiRequestId: '33498' },
+      spadeParams: { apiRequestId: "33498" },
       params: {
-        featureName: 'FeatureThatDoesNotExist',
+        featureName: "FeatureThatDoesNotExist",
         lotteryNumber: 1,
-        deviceType: 'mobile'
+        deviceType: "mobile"
       },
       cookies: {}
     } as any) as Request;
@@ -46,16 +46,16 @@ describe('Feature Controller', () => {
 
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.send).toHaveBeenCalledWith(
-      expect.stringContaining('Invalid feature data provided')
+      expect.stringContaining("Invalid feature data provided")
     );
     expect(res.send).toHaveBeenCalledTimes(1);
     expect(res.status).toHaveBeenCalledTimes(1);
   });
 
-  it('should return 400 and message in body when provided with negative lottery number', async () => {
+  it("should return 400 and message in body when provided with negative lottery number", async () => {
     const req = ({
-      spadeParams: { apiRequestId: '33498' },
-      params: { featureName: '', lotteryNumber: '-1', deviceType: 'mobile' },
+      spadeParams: { apiRequestId: "33498" },
+      params: { featureName: "", lotteryNumber: "-1", deviceType: "mobile" },
       cookies: {}
     } as any) as Request;
     const res = { send: jest.fn(), status: jest.fn() } as any;
@@ -70,13 +70,13 @@ describe('Feature Controller', () => {
     expect(res.status).toHaveBeenCalledTimes(1);
   });
 
-  it('should return 400 and message in body when provided with invalid lottery number', async () => {
+  it("should return 400 and message in body when provided with invalid lottery number", async () => {
     const req = ({
-      spadeParams: { apiRequestId: '33498' },
+      spadeParams: { apiRequestId: "33498" },
       params: {
-        featureName: '',
-        lotteryNumber: 'abcd',
-        deviceType: 'mobile'
+        featureName: "",
+        lotteryNumber: "abcd",
+        deviceType: "mobile"
       },
       cookies: {}
     } as any) as Request;
@@ -92,10 +92,10 @@ describe('Feature Controller', () => {
     expect(res.status).toHaveBeenCalledTimes(1);
   });
 
-  it('should return 400 and message in body when provided with invalid device', async () => {
+  it("should return 400 and message in body when provided with invalid device", async () => {
     const req = ({
-      spadeParams: { apiRequestId: '33498' },
-      params: { featureName: '', lotteryNumber: '1', deviceType: 'blahblah' },
+      spadeParams: { apiRequestId: "33498" },
+      params: { featureName: "", lotteryNumber: "1", deviceType: "blahblah" },
       cookies: {}
     } as any) as Request;
     const res = { send: jest.fn(), status: jest.fn() } as any;

@@ -1,13 +1,13 @@
-import http from './http';
-import { loadFromCache, saveToCache } from './cache';
+import http from "./http";
+import { loadFromCache, saveToCache } from "./cache";
 
-jest.mock('./http');
+jest.mock("./http");
 
-describe('Cache', () => {
-  const params = { apiRequestId: '123123' };
-  const url = 'http://www.example.com';
+describe("Cache", () => {
+  const params = { apiRequestId: "123123" };
+  const url = "http://www.example.com";
 
-  it('should save to cache when called', async () => {
+  it("should save to cache when called", async () => {
     const getMock = jest.fn();
     (http as jest.Mock).mockReturnValue({ get: getMock });
     getMock.mockImplementationOnce(
@@ -20,7 +20,7 @@ describe('Cache', () => {
     expect(loadFromCache(url)).toBeTruthy();
   });
 
-  it('should remove from cache when request throws error', async () => {
+  it("should remove from cache when request throws error", async () => {
     const getMock = jest.fn();
     (http as jest.Mock).mockReturnValue({ get: getMock });
     getMock.mockImplementationOnce(

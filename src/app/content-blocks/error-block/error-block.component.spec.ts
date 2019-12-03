@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ErrorBlockComponent } from './error-block.component';
+import { ErrorBlockComponent } from "./error-block.component";
 
-describe('ErrorBlockComponent', () => {
+describe("ErrorBlockComponent", () => {
   let component: ErrorBlockComponent;
   let fixture: ComponentFixture<ErrorBlockComponent>;
 
@@ -17,7 +17,7 @@ describe('ErrorBlockComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

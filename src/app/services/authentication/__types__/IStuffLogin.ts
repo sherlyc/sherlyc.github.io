@@ -1,4 +1,4 @@
-import { IStuffLoginUser } from './IStuffLoginUser';
+import { IStuffLoginUser } from "./IStuffLoginUser";
 
 interface IStuffLoginConfig {
   client_id: string;

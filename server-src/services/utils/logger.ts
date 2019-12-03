@@ -1,12 +1,12 @@
-import * as winston from 'winston';
-import { Logger } from 'winston';
-import * as logform from 'logform';
-import config from './config';
-import { ILogger } from './__types__/ILogger';
-import { logger } from 'express-winston';
+import * as winston from "winston";
+import { Logger } from "winston";
+import * as logform from "logform";
+import config from "./config";
+import { ILogger } from "./__types__/ILogger";
+import { logger } from "express-winston";
 
 function getFormat(name: string): logform.Format {
-  return name === 'json'
+  return name === "json"
     ? winston.format.combine(winston.format.timestamp(), winston.format.json())
     : winston.format.combine(
         winston.format.colorize(),
@@ -20,7 +20,7 @@ export const winstonLogger: Logger = winston.createLogger({
   transports: [
     new winston.transports.Console({
       handleExceptions: true,
-      stderrLevels: ['error']
+      stderrLevels: ["error"]
     })
   ],
   exitOnError: false
@@ -28,7 +28,7 @@ export const winstonLogger: Logger = winston.createLogger({
 
 export const requestLogger = logger({
   winstonInstance: winstonLogger,
-  headerBlacklist: ['authorization', 'cookie']
+  headerBlacklist: ["authorization", "cookie"]
 });
 
 const wrappedLogger: ILogger = {

@@ -1,25 +1,25 @@
-import * as https from 'https';
-import * as http from 'http';
-import * as net from 'net';
-import { URL } from 'url';
-import * as httpProxy from 'http-proxy';
-import * as minimatch from 'minimatch';
-import { IncomingMessage, ServerResponse } from 'http';
+import * as https from "https";
+import * as http from "http";
+import * as net from "net";
+import { URL } from "url";
+import * as httpProxy from "http-proxy";
+import * as minimatch from "minimatch";
+import { IncomingMessage, ServerResponse } from "http";
 
 const proxy = httpProxy.createServer();
 
 const spade = [
-  '/',
-  '/assets/**',
-  '/*.js',
-  '/*.css',
-  '/*.map',
-  '/*.ico',
-  '/manifest.webmanifest',
-  '/ngsw.json*'
+  "/",
+  "/assets/**",
+  "/*.js",
+  "/*.css",
+  "/*.map",
+  "/*.ico",
+  "/manifest.webmanifest",
+  "/ngsw.json*"
 ];
 
-const proxyPatterns = ['/sics-assets/**', '/static/**'];
+const proxyPatterns = ["/sics-assets/**", "/static/**"];
 
 const options: https.ServerOptions = {
   key: `
@@ -86,15 +86,15 @@ const REDIRECTION_HTTP_SERVER_PORT = 3002;
 // raw socket server
 net
   .createServer((conn) => {
-    conn.on('error', () => {
+    conn.on("error", () => {
       conn.end();
     });
-    conn.once('data', (buf) => {
+    conn.once("data", (buf) => {
       const connection = net.createConnection(
         buf[0] === HTTPS_PAYLOAD_MSB
           ? PROXY_HTTPS_SERVER_PORT
           : REDIRECTION_HTTP_SERVER_PORT,
-        '0.0.0.0',
+        "0.0.0.0",
         () => {
           connection.write(buf);
           conn.pipe(connection).pipe(conn);
@@ -121,24 +121,24 @@ https
     );
 
     const patternLocal = spade.find((pattern) =>
-      minimatch(url.pathname || '', pattern)
+      minimatch(url.pathname || "", pattern)
     );
 
     const patternRemote = proxyPatterns.find((pattern) =>
-      minimatch(url.pathname || '', pattern)
+      minimatch(url.pathname || "", pattern)
     );
 
     const target =
       patternLocal && !patternRemote
-        ? 'http://localhost:4000'
-        : 'https://i.stuff.co.nz';
+        ? "http://localhost:4000"
+        : "https://i.stuff.co.nz";
 
     console.log(url.pathname, target);
 
     proxy.web(req, res, {
       target,
       headers: {
-        host: 'i.stuff.co.nz'
+        host: "i.stuff.co.nz"
       }
     });
   })

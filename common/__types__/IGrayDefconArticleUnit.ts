@@ -1,4 +1,4 @@
-import { ContentBlockType } from './ContentBlockType';
+import { ContentBlockType } from "./ContentBlockType";
 
 export interface IGrayDefconArticleUnit {
   type: ContentBlockType.GrayDefconArticleUnit;

@@ -1,40 +1,40 @@
-import { mapToRawArticleList } from './jsonfeed-mapper';
-import { IJsonFeedArticleList } from '../__types__/IJsonFeedArticleList';
-import { IRawArticle } from '../__types__/IRawArticle';
-import { HeadlineFlags } from '../../../../common/HeadlineFlags';
-import { JsonFeedImageType } from '../__types__/JsonFeedImageType';
-import * as moment from 'moment';
-import { IJsonFeedArticle } from '../__types__/IJsonFeedArticle';
-import { JsonFeedAssetType } from '../__types__/JsonFeedAssetType';
-import { IJsonFeedUrl } from '../__types__/IJsonFeedUrl';
+import { mapToRawArticleList } from "./jsonfeed-mapper";
+import { IJsonFeedArticleList } from "../__types__/IJsonFeedArticleList";
+import { IRawArticle } from "../__types__/IRawArticle";
+import { HeadlineFlags } from "../../../../common/HeadlineFlags";
+import { JsonFeedImageType } from "../__types__/JsonFeedImageType";
+import * as moment from "moment";
+import { IJsonFeedArticle } from "../__types__/IJsonFeedArticle";
+import { JsonFeedAssetType } from "../__types__/JsonFeedAssetType";
+import { IJsonFeedUrl } from "../__types__/IJsonFeedUrl";
 
-describe('JsonFeed Mapper', () => {
+describe("JsonFeed Mapper", () => {
   const jsonFeedArticle = (): IJsonFeedArticle => ({
     id: 109962196,
     asset_type: JsonFeedAssetType.ARTICLE,
     headline_flags: [],
     sponsored: false,
-    path: '/national/123123123/christmas-tree-caltex',
+    path: "/national/123123123/christmas-tree-caltex",
     url:
-      'http://www.stuff.co.nz/_json/national/109962196/christmas-tree-caltex',
-    section: 'National',
-    'section-home': 'National',
-    'section-top-level': 'National',
-    layout: 'landscape-image',
+      "http://www.stuff.co.nz/_json/national/109962196/christmas-tree-caltex",
+    section: "National",
+    "section-home": "National",
+    "section-top-level": "National",
+    layout: "landscape-image",
     title:
-      'CCTV shows unruly travelling family taking Christmas tree from Auckland Caltex',
-    alt_headline: 'Not even Christmas is safe',
+      "CCTV shows unruly travelling family taking Christmas tree from Auckland Caltex",
+    alt_headline: "Not even Christmas is safe",
     isHeadlineOverrideApplied: true,
-    datetime_iso8601: '20190116T154002+1300',
-    datetime_display: '15:40 16/01/2019',
-    byline: 'BRAD FLAHIVE',
-    source_code: '1national-newsroom',
-    source_name: 'Stuff',
+    datetime_iso8601: "20190116T154002+1300",
+    datetime_display: "15:40 16/01/2019",
+    byline: "BRAD FLAHIVE",
+    source_code: "1national-newsroom",
+    source_name: "Stuff",
     intro:
-      'An unruly family travelling New Zealand has been causing mayhem for more than a month.',
+      "An unruly family travelling New Zealand has been causing mayhem for more than a month.",
     alt_intro:
-      'Unruly travelling family hit an Auckland Caltex four times. They even took the Christmas tree.',
-    body: '<p>Hello</p>',
+      "Unruly travelling family hit an Auckland Caltex four times. They even took the Christmas tree.",
+    body: "<p>Hello</p>",
     images: [],
     videos: [],
     html_assets: [],
@@ -42,20 +42,20 @@ describe('JsonFeed Mapper', () => {
   });
 
   const jsonFeedUrlAsset = (): IJsonFeedUrl => ({
-    id: '112150655',
+    id: "112150655",
     asset_type: JsonFeedAssetType.URL,
     headline_flags: [],
     sponsored: false,
-    alt_headline: 'Paving',
-    title: 'Paving over paradise',
+    alt_headline: "Paving",
+    title: "Paving over paradise",
     isHeadlineOverrideApplied: true,
     url:
-      'https://interactives.stuff.co.nz/2019/04/the-tourist-trap/#section-wS1QFb7arf',
-    datetime_display: '00:01 22/04/2019',
+      "https://interactives.stuff.co.nz/2019/04/the-tourist-trap/#section-wS1QFb7arf",
+    datetime_display: "00:01 22/04/2019",
     alt_intro:
-      'The ancient, beautiful Ōpārara Basin is the subject of development plans.',
+      "The ancient, beautiful Ōpārara Basin is the subject of development plans.",
     images: [],
-    datetime_iso8601: '20190422T000100+1200'
+    datetime_iso8601: "20190422T000100+1200"
   });
 
   const rawFeedArticle = (article: IJsonFeedArticle): IRawArticle => ({
@@ -88,15 +88,15 @@ describe('JsonFeed Mapper', () => {
     headlineFlags: article.headline_flags
   });
 
-  describe('article asset', () => {
-    it('should map json feed article to raw article', () => {
+  describe("article asset", () => {
+    it("should map json feed article to raw article", () => {
       const feedArticle = jsonFeedArticle();
       const expectedArticle = rawFeedArticle(feedArticle);
       expect(mapToRawArticleList([feedArticle])).toEqual([expectedArticle]);
     });
 
-    it('should map alt_headline to indexHeadline when override is true', () => {
-      const expectedHeadline = 'Alt headline';
+    it("should map alt_headline to indexHeadline when override is true", () => {
+      const expectedHeadline = "Alt headline";
 
       const feedArticle = jsonFeedArticle();
       feedArticle.isHeadlineOverrideApplied = true;
@@ -108,8 +108,8 @@ describe('JsonFeed Mapper', () => {
       expect(mapToRawArticleList([feedArticle])).toEqual([expectedArticle]);
     });
 
-    it('should map title to indexHeadline when override is false', () => {
-      const expectedTitle = 'Title';
+    it("should map title to indexHeadline when override is false", () => {
+      const expectedTitle = "Title";
 
       const feedArticle = jsonFeedArticle();
       feedArticle.isHeadlineOverrideApplied = false;
@@ -122,15 +122,15 @@ describe('JsonFeed Mapper', () => {
     });
   });
 
-  describe('url asset', () => {
-    it('should map json feed url asset to raw article', () => {
+  describe("url asset", () => {
+    it("should map json feed url asset to raw article", () => {
       const urlAsset = jsonFeedUrlAsset();
       const expectedArticle = rawUrlArticle(urlAsset);
       expect(mapToRawArticleList([urlAsset])).toEqual([expectedArticle]);
     });
 
-    it('should map alt_headline to indexHeadline when override is true', () => {
-      const expectedHeadline = 'Alt headline';
+    it("should map alt_headline to indexHeadline when override is true", () => {
+      const expectedHeadline = "Alt headline";
 
       const urlAsset = jsonFeedUrlAsset();
       urlAsset.isHeadlineOverrideApplied = true;
@@ -142,8 +142,8 @@ describe('JsonFeed Mapper', () => {
       expect(mapToRawArticleList([urlAsset])).toEqual([expectedArticle]);
     });
 
-    it('should map title to indexHeadline when override is false', () => {
-      const expectedTitle = 'Title';
+    it("should map title to indexHeadline when override is false", () => {
+      const expectedTitle = "Title";
 
       const urlAsset = jsonFeedUrlAsset();
       urlAsset.isHeadlineOverrideApplied = false;
@@ -156,8 +156,8 @@ describe('JsonFeed Mapper', () => {
     });
   });
 
-  describe('images', () => {
-    it('should handle empty image value', () => {
+  describe("images", () => {
+    it("should handle empty image value", () => {
       const feedArticle = jsonFeedArticle();
       feedArticle.images = [];
 
@@ -173,32 +173,32 @@ describe('JsonFeed Mapper', () => {
       expect(mapToRawArticleList([feedArticle])).toEqual(expected);
     });
 
-    it('should return thumbnail image when strap image is not provided', () => {
-      const thumbnailImageUrl = 'www.example.com/thumbnail.90x60.jpg';
+    it("should return thumbnail image when strap image is not provided", () => {
+      const thumbnailImageUrl = "www.example.com/thumbnail.90x60.jpg";
       const feedArticle = jsonFeedArticle();
       feedArticle.images = [
         {
           id: 63784214,
-          datetime_iso8601: '20150818T085547+1200',
-          datetime_display: '08:55 18/08/2015',
-          creditline: '',
-          caption: 'x',
+          datetime_iso8601: "20150818T085547+1200",
+          datetime_display: "08:55 18/08/2015",
+          creditline: "",
+          caption: "x",
           variants: [
             {
               id: 63784214,
               layout: JsonFeedImageType.SMALL_THUMBNAIL,
               src: thumbnailImageUrl,
-              media_type: 'Photo',
-              width: '90',
-              height: '60',
+              media_type: "Photo",
+              width: "90",
+              height: "60",
               urls: {
-                '90x60': thumbnailImageUrl,
-                '180x120': 'www.example.com/thumbnail.180x120.jpg'
+                "90x60": thumbnailImageUrl,
+                "180x120": "www.example.com/thumbnail.180x120.jpg"
               },
-              image_type_id: 'StuffThumbnail'
+              image_type_id: "StuffThumbnail"
             }
           ],
-          asset_type: 'IMAGE'
+          asset_type: "IMAGE"
         }
       ];
 
@@ -207,35 +207,35 @@ describe('JsonFeed Mapper', () => {
       expect(result.imageSrc).toBe(thumbnailImageUrl);
     });
 
-    it('should generate image source set', () => {
+    it("should generate image source set", () => {
       const expectedImageSourceSet =
-        'www.example.com/thumbnail.90x60.jpg 90w, ' +
-        'www.example.com/thumbnail.180x120.jpg 180w';
+        "www.example.com/thumbnail.90x60.jpg 90w, " +
+        "www.example.com/thumbnail.180x120.jpg 180w";
 
       const feedArticle = jsonFeedArticle();
       feedArticle.images = [
         {
           id: 63784214,
-          datetime_iso8601: '20150818T085547+1200',
-          datetime_display: '08:55 18/08/2015',
-          creditline: '',
-          caption: 'x',
+          datetime_iso8601: "20150818T085547+1200",
+          datetime_display: "08:55 18/08/2015",
+          creditline: "",
+          caption: "x",
           variants: [
             {
               id: 63784214,
               layout: JsonFeedImageType.SMALL_THUMBNAIL,
-              src: 'www.example.com/thumbnail.90x60.jpg',
-              media_type: 'Photo',
-              width: '90',
-              height: '60',
+              src: "www.example.com/thumbnail.90x60.jpg",
+              media_type: "Photo",
+              width: "90",
+              height: "60",
               urls: {
-                '90x60': 'www.example.com/thumbnail.90x60.jpg',
-                '180x120': 'www.example.com/thumbnail.180x120.jpg'
+                "90x60": "www.example.com/thumbnail.90x60.jpg",
+                "180x120": "www.example.com/thumbnail.180x120.jpg"
               },
-              image_type_id: 'StuffThumbnail'
+              image_type_id: "StuffThumbnail"
             }
           ],
-          asset_type: 'IMAGE'
+          asset_type: "IMAGE"
         }
       ];
 
@@ -244,58 +244,58 @@ describe('JsonFeed Mapper', () => {
       expect(result.imageSrcSet).toBe(expectedImageSourceSet);
     });
 
-    it('should generate image source set from next image in the same article when first image does not have thumbnail variant', () => {
+    it("should generate image source set from next image in the same article when first image does not have thumbnail variant", () => {
       const expectedImageSourceSet =
-        'www.example.com/thumbnail.90x60.jpg 90w, ' +
-        'www.example.com/thumbnail.180x120.jpg 180w';
+        "www.example.com/thumbnail.90x60.jpg 90w, " +
+        "www.example.com/thumbnail.180x120.jpg 180w";
 
       const feedArticle = jsonFeedArticle();
       feedArticle.images = [
         {
           id: 63784214,
-          datetime_iso8601: '20150818T085547+1200',
-          datetime_display: '08:55 18/08/2015',
-          creditline: '',
-          caption: 'x',
+          datetime_iso8601: "20150818T085547+1200",
+          datetime_display: "08:55 18/08/2015",
+          creditline: "",
+          caption: "x",
           variants: [
             {
               id: 63784214,
               layout: JsonFeedImageType.DEFCON_IMAGE,
-              src: 'www.example.com/defcon.90x60.jpg',
-              media_type: 'Photo',
-              width: '90',
-              height: '60',
+              src: "www.example.com/defcon.90x60.jpg",
+              media_type: "Photo",
+              width: "90",
+              height: "60",
               urls: {
-                '90x60': 'www.example.com/defcon.90x60.jpg',
-                '180x120': 'www.example.com/defcon.180x120.jpg'
+                "90x60": "www.example.com/defcon.90x60.jpg",
+                "180x120": "www.example.com/defcon.180x120.jpg"
               },
-              image_type_id: 'Defcon'
+              image_type_id: "Defcon"
             }
           ],
-          asset_type: 'IMAGE'
+          asset_type: "IMAGE"
         },
         {
           id: 63784214,
-          datetime_iso8601: '20150818T085547+1200',
-          datetime_display: '08:55 18/08/2015',
-          creditline: '',
-          caption: 'x',
+          datetime_iso8601: "20150818T085547+1200",
+          datetime_display: "08:55 18/08/2015",
+          creditline: "",
+          caption: "x",
           variants: [
             {
               id: 63784214,
               layout: JsonFeedImageType.SMALL_THUMBNAIL,
-              src: 'www.example.com/thumbnail.90x60.jpg',
-              media_type: 'Photo',
-              width: '90',
-              height: '60',
+              src: "www.example.com/thumbnail.90x60.jpg",
+              media_type: "Photo",
+              width: "90",
+              height: "60",
               urls: {
-                '90x60': 'www.example.com/thumbnail.90x60.jpg',
-                '180x120': 'www.example.com/thumbnail.180x120.jpg'
+                "90x60": "www.example.com/thumbnail.90x60.jpg",
+                "180x120": "www.example.com/thumbnail.180x120.jpg"
               },
-              image_type_id: 'StuffThumbnail'
+              image_type_id: "StuffThumbnail"
             }
           ],
-          asset_type: 'IMAGE'
+          asset_type: "IMAGE"
         }
       ];
 
@@ -304,45 +304,45 @@ describe('JsonFeed Mapper', () => {
       expect(result.imageSrcSet).toBe(expectedImageSourceSet);
     });
 
-    it('should fallback to strap image when defcon image is not provided', () => {
+    it("should fallback to strap image when defcon image is not provided", () => {
       const feedArticle = jsonFeedArticle();
-      const expectedDefconSrc = 'www.example.com/defcon.90x60.jpg';
+      const expectedDefconSrc = "www.example.com/defcon.90x60.jpg";
       feedArticle.images = [
         {
           id: 63784214,
-          datetime_iso8601: '20150818T085547+1200',
-          datetime_display: '08:55 18/08/2015',
-          creditline: '',
-          caption: 'x',
+          datetime_iso8601: "20150818T085547+1200",
+          datetime_display: "08:55 18/08/2015",
+          creditline: "",
+          caption: "x",
           variants: [
             {
               id: 63784214,
               layout: JsonFeedImageType.SMALL_THUMBNAIL,
-              src: 'www.example.com/thumbnail.90x60.jpg',
-              media_type: 'Photo',
-              width: '90',
-              height: '60',
+              src: "www.example.com/thumbnail.90x60.jpg",
+              media_type: "Photo",
+              width: "90",
+              height: "60",
               urls: {
-                '90x60': 'www.example.com/thumbnail.90x60.jpg',
-                '180x120': 'www.example.com/thumbnail.180x120.jpg'
+                "90x60": "www.example.com/thumbnail.90x60.jpg",
+                "180x120": "www.example.com/thumbnail.180x120.jpg"
               },
-              image_type_id: 'StuffThumbnail'
+              image_type_id: "StuffThumbnail"
             },
             {
               id: 63784214,
               layout: JsonFeedImageType.STRAP_IMAGE,
               src: expectedDefconSrc,
-              media_type: 'Photo',
-              width: '90',
-              height: '60',
+              media_type: "Photo",
+              width: "90",
+              height: "60",
               urls: {
-                '90x60': 'www.example.com/defcon.90x60.jpg',
-                '180x120': 'www.example.com/defcon.180x120.jpg'
+                "90x60": "www.example.com/defcon.90x60.jpg",
+                "180x120": "www.example.com/defcon.180x120.jpg"
               },
-              image_type_id: 'Defcon'
+              image_type_id: "Defcon"
             }
           ],
-          asset_type: 'IMAGE'
+          asset_type: "IMAGE"
         }
       ];
 
@@ -351,32 +351,32 @@ describe('JsonFeed Mapper', () => {
       expect(result.defconSrc).toBe(expectedDefconSrc);
     });
 
-    it('should fallback to thumbnail image when defcon image and strap images are not provided', () => {
+    it("should fallback to thumbnail image when defcon image and strap images are not provided", () => {
       const feedArticle = jsonFeedArticle();
-      const expectedDefconSrc = 'www.example.com/defcon.90x60.jpg';
+      const expectedDefconSrc = "www.example.com/defcon.90x60.jpg";
       feedArticle.images = [
         {
           id: 63784214,
-          datetime_iso8601: '20150818T085547+1200',
-          datetime_display: '08:55 18/08/2015',
-          creditline: '',
-          caption: 'x',
+          datetime_iso8601: "20150818T085547+1200",
+          datetime_display: "08:55 18/08/2015",
+          creditline: "",
+          caption: "x",
           variants: [
             {
               id: 63784214,
               layout: JsonFeedImageType.SMALL_THUMBNAIL,
               src: expectedDefconSrc,
-              media_type: 'Photo',
-              width: '90',
-              height: '60',
+              media_type: "Photo",
+              width: "90",
+              height: "60",
               urls: {
-                '90x60': 'www.example.com/defcon.90x60.jpg',
-                '180x120': 'www.example.com/defcon.180x120.jpg'
+                "90x60": "www.example.com/defcon.90x60.jpg",
+                "180x120": "www.example.com/defcon.180x120.jpg"
               },
-              image_type_id: 'Defcon'
+              image_type_id: "Defcon"
             }
           ],
-          asset_type: 'IMAGE'
+          asset_type: "IMAGE"
         }
       ];
       const data: IJsonFeedArticleList = { stories: [feedArticle] };
@@ -387,8 +387,8 @@ describe('JsonFeed Mapper', () => {
     });
   });
 
-  describe('headline flags', () => {
-    it('should include sponsored flag in headline flags when sponsored field is true', () => {
+  describe("headline flags", () => {
+    it("should include sponsored flag in headline flags when sponsored field is true", () => {
       const feedArticle = jsonFeedArticle();
       feedArticle.sponsored = true;
       feedArticle.headline_flags = [HeadlineFlags.PHOTO];
@@ -400,7 +400,7 @@ describe('JsonFeed Mapper', () => {
       expect(headlineFlags.includes(HeadlineFlags.SPONSORED)).toBeTruthy();
     });
 
-    it('should not include sponsored flag in headline flags when sponsored field is false', () => {
+    it("should not include sponsored flag in headline flags when sponsored field is false", () => {
       const feedArticle = jsonFeedArticle();
       feedArticle.sponsored = false;
       feedArticle.headline_flags = [HeadlineFlags.VIDEO];

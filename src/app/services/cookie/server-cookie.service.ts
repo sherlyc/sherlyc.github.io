@@ -1,8 +1,8 @@
-import { Inject, Injectable } from '@angular/core';
-import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
-import { Request, Response } from 'express';
-import { parse, CookieSerializeOptions } from 'cookie';
-import { ICookieService } from './__types__/ICookieService';
+import { Inject, Injectable } from "@angular/core";
+import { REQUEST, RESPONSE } from "@nguniversal/express-engine/tokens";
+import { Request, Response } from "express";
+import { parse, CookieSerializeOptions } from "cookie";
+import { ICookieService } from "./__types__/ICookieService";
 
 @Injectable()
 export class ServerCookieService implements ICookieService {
@@ -20,6 +20,6 @@ export class ServerCookieService implements ICookieService {
   }
 
   getAll(): { [key: string]: string } {
-    return parse(this.request.headers.cookie || '');
+    return parse(this.request.headers.cookie || "");
   }
 }

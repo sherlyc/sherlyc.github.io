@@ -1,17 +1,17 @@
-import { IJsonFeedArticle } from '../__types__/IJsonFeedArticle';
-import * as moment from 'moment';
-import { IRawArticle } from '../__types__/IRawArticle';
-import { JsonFeedAssetType } from '../__types__/JsonFeedAssetType';
-import { IJsonFeedUrl } from '../__types__/IJsonFeedUrl';
-import { IJsonFeedQuery } from '../__types__/IJsonFeedQuery';
-import { HeadlineFlags } from '../../../../common/HeadlineFlags';
+import { IJsonFeedArticle } from "../__types__/IJsonFeedArticle";
+import * as moment from "moment";
+import { IRawArticle } from "../__types__/IRawArticle";
+import { JsonFeedAssetType } from "../__types__/JsonFeedAssetType";
+import { IJsonFeedUrl } from "../__types__/IJsonFeedUrl";
+import { IJsonFeedQuery } from "../__types__/IJsonFeedQuery";
+import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 import {
   getDefconSrc,
   getStrapImageSrc,
   getStrapImageSrcSet,
   getThumbnailSrc,
   getThumbnailSrcSet
-} from './image-handler';
+} from "./image-handler";
 
 export function mapToRawArticleList(
   articles: Array<IJsonFeedArticle | IJsonFeedUrl | IJsonFeedQuery>
@@ -69,8 +69,8 @@ function getLinkUrl(item: IJsonFeedUrl) {
   const { url } = item;
   const linkUrl = url.toLowerCase();
 
-  if (linkUrl.includes('www.stuff.co.nz')) {
-    return url.replace('www.stuff.co.nz', 'i.stuff.co.nz');
+  if (linkUrl.includes("www.stuff.co.nz")) {
+    return url.replace("www.stuff.co.nz", "i.stuff.co.nz");
   }
   return url;
 }

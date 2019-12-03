@@ -4,8 +4,8 @@ metadata:
   namespace: ${environment}
   annotations:
     kubernetes.io/ingress.class: nginx
-    kubernetes.io/tls-acme: 'true'
-    ingress.kubernetes.io/ssl-redirect: 'true'
+    kubernetes.io/tls-acme: "true"
+    ingress.kubernetes.io/ssl-redirect: "true"
   name: ${project.artifactId}
 spec:
   tls:

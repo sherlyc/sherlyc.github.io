@@ -1,14 +1,14 @@
-import { Component, ElementRef, Input } from '@angular/core';
-import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
-import { AnalyticsService } from '../../services/analytics/analytics.service';
-import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
-import { IExpandableArticleSection } from '../../../../common/__types__/IExpandableArticleSection';
-import { WindowService } from '../../services/window/window.service';
+import { Component, ElementRef, Input } from "@angular/core";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
+import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { IExpandableArticleSection } from "../../../../common/__types__/IExpandableArticleSection";
+import { WindowService } from "../../services/window/window.service";
 
 @Component({
-  selector: 'app-expandable-article-section',
-  templateUrl: './expandable-article-section.component.html',
-  styleUrls: ['./expandable-article-section.component.scss']
+  selector: "app-expandable-article-section",
+  templateUrl: "./expandable-article-section.component.html",
+  styleUrls: ["./expandable-article-section.component.scss"]
 })
 export class ExpandableArticleSectionComponent
   implements IContentBlockComponent {
@@ -38,7 +38,7 @@ export class ExpandableArticleSectionComponent
 
   onCloseHiddenItems() {
     const moreButton = this.elementRef.nativeElement.querySelector(
-      '.more-button'
+      ".more-button"
     );
     const elementOffSetTop =
       moreButton.offsetTop - this.windowService.getWindow().scrollY;

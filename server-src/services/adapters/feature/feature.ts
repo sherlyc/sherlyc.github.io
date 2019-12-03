@@ -1,7 +1,7 @@
-import { isSwitchedOn } from '../switch-resolver/switch-resolver';
-import { DeviceType } from '../../../../common/DeviceType';
-import config from '../../utils/config';
-import { FeatureName } from '../../../../common/FeatureName';
+import { isSwitchedOn } from "../switch-resolver/switch-resolver";
+import { DeviceType } from "../../../../common/DeviceType";
+import config from "../../utils/config";
+import { FeatureName } from "../../../../common/FeatureName";
 
 export const isFeatureEnabled = async (
   feature: FeatureName,

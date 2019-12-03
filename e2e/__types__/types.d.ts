@@ -1,1 +1,1 @@
-declare module 'browserstack-local';
+declare module "browserstack-local";

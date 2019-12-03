@@ -1,14 +1,14 @@
-import { Inject, Injectable, Optional } from '@angular/core';
+import { Inject, Injectable, Optional } from "@angular/core";
 import {
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
   HttpRequest
-} from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { RuntimeService } from '../runtime/runtime.service';
-import { REQUEST } from '@nguniversal/express-engine/tokens';
-import { Request } from 'express';
+} from "@angular/common/http";
+import { Observable } from "rxjs";
+import { RuntimeService } from "../runtime/runtime.service";
+import { REQUEST } from "@nguniversal/express-engine/tokens";
+import { Request } from "express";
 
 @Injectable()
 export class HttpInterceptorService implements HttpInterceptor {
@@ -25,13 +25,13 @@ export class HttpInterceptorService implements HttpInterceptor {
       return next.handle(req);
     }
     // in SSR, replace relative path with localhost
-    const isRelativePath = req.url.startsWith('/');
+    const isRelativePath = req.url.startsWith("/");
     const url = isRelativePath ? `http://localhost:4000${req.url}` : req.url;
     return next.handle(this.populateAuthorizationHeader(req.clone({ url })));
   }
 
   populateAuthorizationHeader(req: HttpRequest<any>): HttpRequest<any> {
-    const authorization = this.request.header('Authorization');
+    const authorization = this.request.header("Authorization");
     if (authorization) {
       return req.clone({
         withCredentials: true,

@@ -1,4 +1,4 @@
-import { IStoreService } from './__types__/IStoreService';
+import { IStoreService } from "./__types__/IStoreService";
 
 export class ServerStoreService implements IStoreService {
   get<T>(key: string): T | null {

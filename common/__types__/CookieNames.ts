@@ -1,3 +1,3 @@
 export enum CookieNames {
-  IGNORE_BREAKING_NEWS = 'breakingNewsID'
+  IGNORE_BREAKING_NEWS = "breakingNewsID"
 }

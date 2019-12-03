@@ -6,10 +6,10 @@ https://synthetics.newrelic.com/accounts/1406710/monitors/454add9d-3b29-4fad-9bc
 Currently this will run every 5 minutes to check for elements on i.stuff.co.nz.
 
 ```javascript
-const assert = require('assert');
+const assert = require("assert");
 const blackListed = [
-  'https://somniture.stuff.co.nz',
-  'https://fonts.googleapis.com'
+  "https://somniture.stuff.co.nz",
+  "https://fonts.googleapis.com"
 ];
 $browser.addHostnamesToBlacklist(blackListed);
 
@@ -18,57 +18,57 @@ const getCssElement = (selector) => {
 };
 
 const closeOLI = async () => {
-  console.log('checking oli, closing it if found');
+  console.log("checking oli, closing it if found");
   try {
     const OliCloseBtn = await $browser.waitForAndFindElement(
-      $driver.By.partialLinkText('close ad'),
+      $driver.By.partialLinkText("close ad"),
       10000
     );
     return OliCloseBtn.click();
   } catch (e) {
-    console.log('OLI was not found');
+    console.log("OLI was not found");
   }
 };
 
 const shouldContainBasicArticleUnits = async () => {
-  console.log('checking for article unit, no error means ok');
-  const element = await getCssElement('app-basic-article-unit');
-  return assert(element.getText() != null, 'app-basic-article-unit is null');
+  console.log("checking for article unit, no error means ok");
+  const element = await getCssElement("app-basic-article-unit");
+  return assert(element.getText() != null, "app-basic-article-unit is null");
 };
 
 const shouldContainHeader = async () => {
-  console.log('checking header, no error means ok');
-  const element = await getCssElement('app-header');
-  return assert(element != null, 'app-header element is null');
+  console.log("checking header, no error means ok");
+  const element = await getCssElement("app-header");
+  return assert(element != null, "app-header element is null");
 };
 
 const shouldContainBasicAdUnit = async () => {
-  const element = await getCssElement('app-basic-ad-unit[id] iframe');
-  return assert(element != null, 'no ad unit is found');
+  const element = await getCssElement("app-basic-ad-unit[id] iframe");
+  return assert(element != null, "no ad unit is found");
 };
 
 const shouldContainTopStories = async () => {
-  console.log('checking top stories');
+  console.log("checking top stories");
   const elements = await $browser.findElements(
     $driver.By.css(
-      '.container > app-experiment-container > app-basic-article-unit'
+      ".container > app-experiment-container > app-basic-article-unit"
     )
   );
-  console.log('articles found: ', elements.length);
+  console.log("articles found: ", elements.length);
   return assert(
     elements.length >= 5,
-    'top stories does not display a minimum of 5 articles'
+    "top stories does not display a minimum of 5 articles"
   );
 };
 
 const shouldContainFooter = async () => {
-  console.log('checking footer, no error means ok');
-  const element = await getCssElement('app-footer');
-  return assert(element != null, 'footer element is null');
+  console.log("checking footer, no error means ok");
+  const element = await getCssElement("app-footer");
+  return assert(element != null, "footer element is null");
 };
 
 $browser
-  .get('https://i.stuff.co.nz')
+  .get("https://i.stuff.co.nz")
   .then(closeOLI)
   .then(shouldContainBasicArticleUnits)
   .then(shouldContainHeader)

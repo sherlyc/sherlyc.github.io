@@ -1,17 +1,17 @@
-import { RedirectRouteGuard } from './redirect-route.guard';
-import { TestBed } from '@angular/core/testing';
-import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { mockService, ServiceMock } from '../services/mocks/MockService';
-import { CookieService } from '../services/cookie/cookie.service';
-import { WindowService } from '../services/window/window.service';
-import { RuntimeService } from '../services/runtime/runtime.service';
-import { DeviceService } from '../services/device/device.service';
-import { DeviceType } from '../../../common/DeviceType';
-import { ConfigService } from '../services/config/config.service';
+import { RedirectRouteGuard } from "./redirect-route.guard";
+import { TestBed } from "@angular/core/testing";
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
+import { mockService, ServiceMock } from "../services/mocks/MockService";
+import { CookieService } from "../services/cookie/cookie.service";
+import { WindowService } from "../services/window/window.service";
+import { RuntimeService } from "../services/runtime/runtime.service";
+import { DeviceService } from "../services/device/device.service";
+import { DeviceType } from "../../../common/DeviceType";
+import { ConfigService } from "../services/config/config.service";
 
 const OriginalNow = global.Date.now;
 
-describe('RouteGuard', () => {
+describe("RouteGuard", () => {
   let cookieService: ServiceMock<CookieService>;
   let windowService: ServiceMock<WindowService>;
   let runtimeService: ServiceMock<RuntimeService>;
@@ -54,7 +54,7 @@ describe('RouteGuard', () => {
     global.Date.now = OriginalNow;
   });
 
-  it('should not do anything when in server', () => {
+  it("should not do anything when in server", () => {
     runtimeService.isServer.mockReturnValue(true);
     windowService.getWindow.mockReturnValue({});
 
@@ -76,12 +76,12 @@ describe('RouteGuard', () => {
     expect(deviceService.getDevice).not.toHaveBeenCalled();
   });
 
-  it('should not do anything when domain does not have stuff.co.nz', () => {
+  it("should not do anything when domain does not have stuff.co.nz", () => {
     runtimeService.isServer.mockReturnValue(false);
     windowService.getWindow.mockReturnValue({
       location: {
-        href: 'https://experience.expstaging.shift21.ffx.nz/',
-        hostname: 'experience.expstaging.shift21.ffx.nz'
+        href: "https://experience.expstaging.shift21.ffx.nz/",
+        hostname: "experience.expstaging.shift21.ffx.nz"
       }
     });
 
@@ -103,18 +103,18 @@ describe('RouteGuard', () => {
     expect(deviceService.getDevice).not.toHaveBeenCalled();
   });
 
-  describe('when redirecting', () => {
+  describe("when redirecting", () => {
     beforeEach(() => {
       runtimeService.isServer.mockReturnValue(false);
       configService.getConfig.mockReturnValue({
-        redirectUrl: 'https://www.stuff.co.nz'
+        redirectUrl: "https://www.stuff.co.nz"
       });
     });
 
-    it('should not set cookie when site-view cookie is desktop', () => {
-      cookieService.get.mockReturnValue('d');
+    it("should not set cookie when site-view cookie is desktop", () => {
+      cookieService.get.mockReturnValue("d");
       windowService.getWindow.mockReturnValue({
-        location: { href: 'https://i.stuff.co.nz', hostname: 'i.stuff.co.nz' }
+        location: { href: "https://i.stuff.co.nz", hostname: "i.stuff.co.nz" }
       });
       const routeGuard = new RedirectRouteGuard(
         cookieService,
@@ -130,21 +130,21 @@ describe('RouteGuard', () => {
       );
 
       expect(windowService.getWindow().location.href).toBe(
-        'https://www.stuff.co.nz'
+        "https://www.stuff.co.nz"
       );
       expect(cookieService.set).not.toHaveBeenCalled();
       expect(result).toBeFalsy();
     });
 
-    it('should set cookie when site-view cookie is not set and device is desktop', () => {
+    it("should set cookie when site-view cookie is not set and device is desktop", () => {
       cookieService.get.mockReturnValue(null);
       deviceService.getDevice.mockReturnValue(DeviceType.desktop);
       windowService.getWindow.mockReturnValue({
-        location: { href: 'https://i.stuff.co.nz', hostname: 'i.stuff.co.nz' }
+        location: { href: "https://i.stuff.co.nz", hostname: "i.stuff.co.nz" }
       });
 
-      const date = new Date('2019-01-01T00:00:00.000Z');
-      const oneYearFromNow = new Date('2020-01-01T00:00:00.000Z');
+      const date = new Date("2019-01-01T00:00:00.000Z");
+      const oneYearFromNow = new Date("2020-01-01T00:00:00.000Z");
       (global as any).Date.now = () => date;
 
       const routeGuard = new RedirectRouteGuard(
@@ -161,29 +161,29 @@ describe('RouteGuard', () => {
       );
 
       expect(windowService.getWindow().location.href).toBe(
-        'https://www.stuff.co.nz'
+        "https://www.stuff.co.nz"
       );
-      expect(cookieService.set).toHaveBeenCalledWith('site-view', 'd', {
-        domain: '.stuff.co.nz',
-        path: '/',
+      expect(cookieService.set).toHaveBeenCalledWith("site-view", "d", {
+        domain: ".stuff.co.nz",
+        path: "/",
         expires: oneYearFromNow
       });
       expect(result).toBeFalsy();
     });
   });
 
-  describe('when not redirecting', () => {
+  describe("when not redirecting", () => {
     beforeEach(() => {
       runtimeService.isServer.mockReturnValue(false);
       configService.getConfig.mockReturnValue({
-        redirectUrl: 'https://www.stuff.co.nz'
+        redirectUrl: "https://www.stuff.co.nz"
       });
     });
 
-    it('should not set cookie when site-view cookie is mobile', () => {
-      cookieService.get.mockReturnValue('i');
+    it("should not set cookie when site-view cookie is mobile", () => {
+      cookieService.get.mockReturnValue("i");
       windowService.getWindow.mockReturnValue({
-        location: { href: 'https://i.stuff.co.nz', hostname: 'i.stuff.co.nz' }
+        location: { href: "https://i.stuff.co.nz", hostname: "i.stuff.co.nz" }
       });
       const routeGuard = new RedirectRouteGuard(
         cookieService,
@@ -199,21 +199,21 @@ describe('RouteGuard', () => {
       );
 
       expect(windowService.getWindow().location.href).toBe(
-        'https://i.stuff.co.nz'
+        "https://i.stuff.co.nz"
       );
       expect(cookieService.set).not.toHaveBeenCalled();
       expect(result).toBeTruthy();
     });
 
     it.each([[DeviceType.mobile], [DeviceType.tablet], [DeviceType.unknown]])(
-      'should set cookie when site-view cookie is not set and device is %s',
+      "should set cookie when site-view cookie is not set and device is %s",
       (deviceType: DeviceType) => {
         cookieService.get.mockReturnValue(null);
         windowService.getWindow.mockReturnValue({
-          location: { href: 'https://i.stuff.co.nz', hostname: 'i.stuff.co.nz' }
+          location: { href: "https://i.stuff.co.nz", hostname: "i.stuff.co.nz" }
         });
-        const date = new Date('2019-01-01T00:00:00.000Z');
-        const oneYearFromNow = new Date('2020-01-01T00:00:00.000Z');
+        const date = new Date("2019-01-01T00:00:00.000Z");
+        const oneYearFromNow = new Date("2020-01-01T00:00:00.000Z");
         (global as any).Date.now = () => date;
 
         deviceService.getDevice.mockReturnValue(deviceType);
@@ -231,11 +231,11 @@ describe('RouteGuard', () => {
         );
 
         expect(windowService.getWindow().location.href).toBe(
-          'https://i.stuff.co.nz'
+          "https://i.stuff.co.nz"
         );
-        expect(cookieService.set).toHaveBeenCalledWith('site-view', 'i', {
-          domain: '.stuff.co.nz',
-          path: '/',
+        expect(cookieService.set).toHaveBeenCalledWith("site-view", "i", {
+          domain: ".stuff.co.nz",
+          path: "/",
           expires: oneYearFromNow
         });
         expect(result).toBeTruthy();
@@ -244,18 +244,18 @@ describe('RouteGuard', () => {
   });
 
   it.each([
-    ['i.stuff.co.nz', '.stuff.co.nz'],
-    ['i-preprod.stuff.co.nz', '.stuff.co.nz']
+    ["i.stuff.co.nz", ".stuff.co.nz"],
+    ["i-preprod.stuff.co.nz", ".stuff.co.nz"]
   ])(
-    'when hostname is %s, it should set cookie domain to %s',
+    "when hostname is %s, it should set cookie domain to %s",
     (hostname: string, expectedCookieDomain: string) => {
       runtimeService.isServer.mockReturnValue(false);
       cookieService.get.mockReturnValue(null);
       windowService.getWindow.mockReturnValue({
-        location: { href: 'https://' + hostname, hostname }
+        location: { href: "https://" + hostname, hostname }
       });
-      const date = new Date('2019-01-01T00:00:00.000Z');
-      const oneYearFromNow = new Date('2020-01-01T00:00:00.000Z');
+      const date = new Date("2019-01-01T00:00:00.000Z");
+      const oneYearFromNow = new Date("2020-01-01T00:00:00.000Z");
       (global as any).Date.now = () => date;
       const routeGuard = new RedirectRouteGuard(
         cookieService,
@@ -270,24 +270,24 @@ describe('RouteGuard', () => {
         <RouterStateSnapshot>{}
       );
 
-      expect(cookieService.set).toHaveBeenCalledWith('site-view', 'i', {
+      expect(cookieService.set).toHaveBeenCalledWith("site-view", "i", {
         domain: expectedCookieDomain,
-        path: '/',
+        path: "/",
         expires: oneYearFromNow
       });
       expect(result).toBeTruthy();
     }
   );
 
-  it('should redirect to redirectUrl given by config service', () => {
+  it("should redirect to redirectUrl given by config service", () => {
     runtimeService.isServer.mockReturnValue(false);
-    cookieService.get.mockReturnValue('d');
-    const redirectUrl = 'https://www-preprod.stuff.co.nz';
+    cookieService.get.mockReturnValue("d");
+    const redirectUrl = "https://www-preprod.stuff.co.nz";
     configService.getConfig.mockReturnValue({
       redirectUrl
     });
     windowService.getWindow.mockReturnValue({
-      location: { href: 'https://i.stuff.co.nz', hostname: 'i.stuff.co.nz' }
+      location: { href: "https://i.stuff.co.nz", hostname: "i.stuff.co.nz" }
     });
     const routeGuard = new RedirectRouteGuard(
       cookieService,

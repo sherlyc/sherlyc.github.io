@@ -1,14 +1,14 @@
-import { ContentBlockType } from '../../common/__types__/ContentBlockType';
-import { IBasicAdUnit } from '../../common/__types__/IBasicAdUnit';
-import { IBasicArticleTitleUnit } from '../../common/__types__/IBasicArticleTitleUnit';
-import { IBasicArticleUnit } from '../../common/__types__/IBasicArticleUnit';
-import { IRawArticle } from '../services/adapters/__types__/IRawArticle';
-import { getRecommendedArticles } from '../services/adapters/recommendations/recommendations.service';
-import { getHomePageRecommendations } from './recommendations';
+import { ContentBlockType } from "../../common/__types__/ContentBlockType";
+import { IBasicAdUnit } from "../../common/__types__/IBasicAdUnit";
+import { IBasicArticleTitleUnit } from "../../common/__types__/IBasicArticleTitleUnit";
+import { IBasicArticleUnit } from "../../common/__types__/IBasicArticleUnit";
+import { IRawArticle } from "../services/adapters/__types__/IRawArticle";
+import { getRecommendedArticles } from "../services/adapters/recommendations/recommendations.service";
+import { getHomePageRecommendations } from "./recommendations";
 
-jest.mock('../services/adapters/recommendations/recommendations.service');
+jest.mock("../services/adapters/recommendations/recommendations.service");
 
-describe('Recommendations', () => {
+describe("Recommendations", () => {
   const res = {
     json: jest.fn(),
     sendStatus: jest.fn(),
@@ -16,61 +16,61 @@ describe('Recommendations', () => {
   } as any;
 
   const rawArticle = {
-    id: '1',
-    indexHeadline: 'a',
-    title: 'a',
-    introText: 'a',
-    linkUrl: 'asdf',
-    defconSrc: 'asdf',
-    imageSrc: 'asdf',
-    strapImageSrc: 'asdf',
-    imageSrcSet: 'asdf',
-    strapImageSrcSet: 'asdf',
+    id: "1",
+    indexHeadline: "a",
+    title: "a",
+    introText: "a",
+    linkUrl: "asdf",
+    defconSrc: "asdf",
+    imageSrc: "asdf",
+    strapImageSrc: "asdf",
+    imageSrcSet: "asdf",
+    strapImageSrcSet: "asdf",
     lastPublishedTime: 34567,
     headlineFlags: []
   } as IRawArticle;
 
   const articleAsBasicArticle: IBasicArticleUnit = {
     type: ContentBlockType.BasicArticleUnit,
-    id: '1',
-    strapName: 'Recommendations',
-    indexHeadline: 'a',
-    title: 'a',
-    introText: 'a',
-    linkUrl: 'asdf',
-    imageSrc: 'asdf',
-    imageSrcSet: 'asdf',
+    id: "1",
+    strapName: "Recommendations",
+    indexHeadline: "a",
+    title: "a",
+    introText: "a",
+    linkUrl: "asdf",
+    imageSrc: "asdf",
+    imageSrcSet: "asdf",
     lastPublishedTime: 34567,
     headlineFlags: []
   };
 
   const articleAsTitleArticle: IBasicArticleTitleUnit = {
     type: ContentBlockType.BasicArticleTitleUnit,
-    id: '1',
-    strapName: 'Recommendations',
-    indexHeadline: 'a',
-    title: 'a',
-    linkUrl: 'asdf',
+    id: "1",
+    strapName: "Recommendations",
+    indexHeadline: "a",
+    title: "a",
+    linkUrl: "asdf",
     lastPublishedTime: 34567,
     headlineFlags: []
   };
 
   const adUnit: IBasicAdUnit = {
     type: ContentBlockType.BasicAdUnit,
-    context: 'Recommendations'
+    context: "Recommendations"
   };
 
   afterEach(() => {
     jest.resetAllMocks();
   });
 
-  it('should get recommended articles as content blocks from recommendations api', async () => {
+  it("should get recommended articles as content blocks from recommendations api", async () => {
     const req = {
-      spadeParams: { apiRequestId: '123123' },
+      spadeParams: { apiRequestId: "123123" },
       query: {
-        segments: 'rt=nanz;enth=amuh',
-        totalBasicArticlesUnit: '1',
-        totalBasicArticleTitleUnit: '2'
+        segments: "rt=nanz;enth=amuh",
+        totalBasicArticlesUnit: "1",
+        totalBasicArticleTitleUnit: "2"
       }
     } as any;
 
@@ -99,11 +99,11 @@ describe('Recommendations', () => {
     ]);
   });
 
-  it('should return 2 basic articles and 3 title articles by default', async () => {
+  it("should return 2 basic articles and 3 title articles by default", async () => {
     const req = {
-      spadeParams: { apiRequestId: '123123' },
+      spadeParams: { apiRequestId: "123123" },
       query: {
-        segments: 'rt=nanz;enth=amuh'
+        segments: "rt=nanz;enth=amuh"
       }
     } as any;
 
@@ -128,13 +128,13 @@ describe('Recommendations', () => {
     ]);
   });
 
-  it('should return empty content blocks if recommendation API returns nothing', async () => {
+  it("should return empty content blocks if recommendation API returns nothing", async () => {
     const req = {
-      spadeParams: { apiRequestId: '123123' },
+      spadeParams: { apiRequestId: "123123" },
       query: {
-        segments: 'rt=nanz;enth=amuh',
-        totalBasicArticlesUnit: '2',
-        totalBasicArticleTitleUnit: '3'
+        segments: "rt=nanz;enth=amuh",
+        totalBasicArticlesUnit: "2",
+        totalBasicArticleTitleUnit: "3"
       }
     } as any;
 

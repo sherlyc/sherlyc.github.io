@@ -1,13 +1,13 @@
-import { handlerRunnerFunction } from '../runner';
-import { IBannerHandlerInput } from '../__types__/IBannerHandlerInput';
-import { IParams } from '../../__types__/IParams';
-import getBanner from '../../adapters/banner/banner';
-import logger from '../../utils/logger';
-import * as moment from 'moment';
-import { IBannerResponse } from '../../adapters/__types__/IBannerResponse';
-import { HandlerInputType } from '../__types__/HandlerInputType';
-import { IContentBlock } from '../../../../common/__types__/IContentBlock';
-import { IExternalContentHandlerInput } from '../__types__/IExternalContentHandlerInput';
+import { handlerRunnerFunction } from "../runner";
+import { IBannerHandlerInput } from "../__types__/IBannerHandlerInput";
+import { IParams } from "../../__types__/IParams";
+import getBanner from "../../adapters/banner/banner";
+import logger from "../../utils/logger";
+import * as moment from "moment";
+import { IBannerResponse } from "../../adapters/__types__/IBannerResponse";
+import { HandlerInputType } from "../__types__/HandlerInputType";
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import { IExternalContentHandlerInput } from "../__types__/IExternalContentHandlerInput";
 
 const getActiveBanner = (banners: IBannerResponse[]) => {
   const currentTime = moment.utc();
@@ -15,17 +15,17 @@ const getActiveBanner = (banners: IBannerResponse[]) => {
     currentTime.isBetween(
       moment.utc(startDateTimeUTC),
       moment.utc(endDateTimeUTC),
-      'ms',
-      '[]'
+      "ms",
+      "[]"
     )
   );
 };
 
 const defaultExternalContentHandlerInput: Partial<IExternalContentHandlerInput> = {
   type: HandlerInputType.ExternalContent,
-  width: '100%',
-  margin: '0 0 10px 0',
-  height: '50px'
+  width: "100%",
+  margin: "0 0 10px 0",
+  height: "50px"
 };
 
 export default async function(

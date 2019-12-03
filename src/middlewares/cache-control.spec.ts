@@ -1,16 +1,16 @@
-import { cacheControl } from './cache-control';
-import { RequestHandler, Request, Response } from 'express';
+import { cacheControl } from "./cache-control";
+import { RequestHandler, Request, Response } from "express";
 
-describe('cache control', () => {
-  it('should match rule', () => {
-    const fakeMaxAge = 'max-age=9999';
+describe("cache control", () => {
+  it("should match rule", () => {
+    const fakeMaxAge = "max-age=9999";
     const fakeConfig = {
-      '/fake/valid': fakeMaxAge
+      "/fake/valid": fakeMaxAge
     };
     const middleware: RequestHandler = cacheControl(fakeConfig);
 
     const fakeReq = {
-      path: '/fake/valid'
+      path: "/fake/valid"
     } as Request;
 
     const fakeRes: any = {
@@ -18,22 +18,22 @@ describe('cache control', () => {
     };
 
     const fakeNext = () => {
-      expect(fakeRes.set).toHaveBeenCalledWith('Cache-Control', 'max-age=9999');
+      expect(fakeRes.set).toHaveBeenCalledWith("Cache-Control", "max-age=9999");
     };
 
     middleware(fakeReq, fakeRes, fakeNext);
   });
 
-  it('should return default to default rule', () => {
-    const fakeMaxAge = 'max-age=9999';
+  it("should return default to default rule", () => {
+    const fakeMaxAge = "max-age=9999";
     const fakeConfig = {
-      '/fake/valid': 'max-age=11111',
+      "/fake/valid": "max-age=11111",
       default: fakeMaxAge
     };
     const middleware: RequestHandler = cacheControl(fakeConfig);
 
     const fakeReq = {
-      path: '/invalid/url'
+      path: "/invalid/url"
     } as Request;
 
     const fakeRes: any = {
@@ -41,7 +41,7 @@ describe('cache control', () => {
     };
 
     const fakeNext = () => {
-      expect(fakeRes.set).toHaveBeenCalledWith('Cache-Control', 'max-age=9999');
+      expect(fakeRes.set).toHaveBeenCalledWith("Cache-Control", "max-age=9999");
     };
 
     middleware(fakeReq, fakeRes, fakeNext);
