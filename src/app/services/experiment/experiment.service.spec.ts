@@ -87,11 +87,12 @@ describe('ExperimentService', () => {
 
       await service.setup();
 
-      expect(
-        http.get
-      ).toHaveBeenCalledWith('/spade/api/experiment/Users/1/unknown', {
-        responseType: 'text'
-      });
+      expect(http.get).toHaveBeenCalledWith(
+        '/spade/api/experiment/Users/1/unknown',
+        {
+          responseType: 'text'
+        }
+      );
     });
 
     it('should call api with deviceType', async () => {
@@ -101,11 +102,12 @@ describe('ExperimentService', () => {
 
       await service.setup();
 
-      expect(
-        http.get
-      ).toHaveBeenCalledWith('/spade/api/experiment/Users/1/mobile', {
-        responseType: 'text'
-      });
+      expect(http.get).toHaveBeenCalledWith(
+        '/spade/api/experiment/Users/1/mobile',
+        {
+          responseType: 'text'
+        }
+      );
     });
 
     describe('when getting an experiment', () => {

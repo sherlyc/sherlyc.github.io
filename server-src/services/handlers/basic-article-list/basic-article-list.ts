@@ -80,7 +80,10 @@ export default async function(
       [basicAdUnit(strapName)] as IContentBlock[]
     );
   } catch (error) {
-    wrappedLogger.error(params.apiRequestId, `Basic article list handler error - ${sourceId} - ${error}`);
+    wrappedLogger.error(
+      params.apiRequestId,
+      `Basic article list handler error - ${sourceId} - ${error}`
+    );
     throw error;
   }
 }
