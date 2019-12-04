@@ -79,7 +79,7 @@ spec:
 }
 
 GString yamlHash() {
-  return 'stuff-experience-frontend' + MessageDigest.getInstance("MD5").digest(yamlString().bytes).encodeHex().toString()
+  return 'stuff-experience-frontend-' + MessageDigest.getInstance("MD5").digest(yamlString().bytes).encodeHex().toString()
 }
 
 pipeline {
