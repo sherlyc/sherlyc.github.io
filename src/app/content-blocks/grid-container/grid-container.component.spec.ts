@@ -57,6 +57,7 @@ describe('GridContainerComponent', () => {
       items: new Array(4).fill(input),
       mobile: {
         gridTemplateColumns: '1fr',
+        gridTemplateRows: 'auto auto',
         gridGap: '20px',
         gridBlocks: [
           {
@@ -69,6 +70,7 @@ describe('GridContainerComponent', () => {
       },
       tablet: {
         gridTemplateColumns: '1fr 1fr 1fr 1fr',
+        gridTemplateRows: 'auto auto',
         gridGap: '20px',
         gridBlocks: [
           {
@@ -106,50 +108,53 @@ describe('GridContainerComponent', () => {
           "msGridRow": 1,
           "msGridRowSpan": 1,
         },
-        "@media all and (-ms-high-contrast:none)": Object {
+        "@media all": Object {
           "display": "-ms-grid",
         },
         "@media only screen and (min-width: 64em)": Object {
           " > :nth-child(1)": Object {
-            "gridColumnEnd": "span 2",
+            "gridColumnEnd": "span 3",
             "gridColumnStart": 1,
-            "gridRowEnd": "span 2",
+            "gridRowEnd": "span 3",
             "gridRowStart": 1,
             "msGridColumn": 1,
-            "msGridColumnSpan": 2,
+            "msGridColumnSpan": 3,
             "msGridRow": 1,
-            "msGridRowSpan": 2,
+            "msGridRowSpan": 3,
           },
-          "@media all and (-ms-high-contrast:none)": Object {
+          "@media all": Object {
             "display": "-ms-grid",
           },
           "display": "grid",
-          "gridGap": "20px",
-          "gridTemplateColumns": "1fr 1fr 1fr 1fr",
-          "msGridColumn": "1fr 1fr 1fr 1fr",
+          "gridGap": "0",
+          "gridTemplateColumns": "1fr 20px 1fr 20px 1fr 20px 1fr",
+          "gridTemplateRows": "auto 20px auto",
+          "msGridColumn": "1fr 20px 1fr 20px 1fr 20px 1fr",
         },
         "@media only screen and (min-width: 75em)": Object {
           " > :nth-child(1)": Object {
-            "gridColumnEnd": "span 2",
+            "gridColumnEnd": "span 3",
             "gridColumnStart": 1,
-            "gridRowEnd": "span 2",
+            "gridRowEnd": "span 3",
             "gridRowStart": 1,
             "msGridColumn": 1,
-            "msGridColumnSpan": 2,
+            "msGridColumnSpan": 3,
             "msGridRow": 1,
-            "msGridRowSpan": 2,
+            "msGridRowSpan": 3,
           },
-          "@media all and (-ms-high-contrast:none)": Object {
+          "@media all": Object {
             "display": "-ms-grid",
           },
           "display": "grid",
-          "gridGap": "20px",
-          "gridTemplateColumns": "1fr 1fr 1fr 1fr 200px",
-          "msGridColumn": "1fr 1fr 1fr 1fr 200px",
+          "gridGap": "0",
+          "gridTemplateColumns": "1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px",
+          "gridTemplateRows": "auto 20px auto",
+          "msGridColumn": "1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px",
         },
         "display": "grid",
-        "gridGap": "20px",
+        "gridGap": "0",
         "gridTemplateColumns": "1fr",
+        "gridTemplateRows": "auto 20px auto",
         "msGridColumn": "1fr",
       }
     `);

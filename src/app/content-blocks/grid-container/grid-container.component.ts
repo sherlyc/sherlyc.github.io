@@ -5,6 +5,7 @@ import {
   IGridContainer
 } from '../../../../common/__types__/IGridContainer';
 import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
+import applyGripGap from '../../shared/utils/grid-gap/grid-gap';
 
 @Component({
   selector: 'app-grid-container',
@@ -17,24 +18,27 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
 
   ngOnInit(): void {
     const { mobile, tablet, desktop } = this.input;
+    const mobileWithGap = applyGripGap(mobile);
+    const tabletWithGap = applyGripGap(tablet);
+    const desktopWithGap = applyGripGap(desktop);
+
     this.style = {
-      ...this.gridCss(mobile),
-      '@media only screen and (min-width: 64em)': this.gridCss(tablet),
-      '@media only screen and (min-width: 75em)': this.gridCss(desktop)
+      ...this.gridCss(mobileWithGap),
+      '@media only screen and (min-width: 64em)': this.gridCss(tabletWithGap),
+      '@media only screen and (min-width: 75em)': this.gridCss(desktopWithGap)
     };
   }
 
   private gridCss(gridConfig: IGridConfig) {
     return {
       display: 'grid',
-      '@media all and (-ms-high-contrast:none)': {
+      '@media all': {
         display: '-ms-grid'
       },
 
       msGridColumn: gridConfig.gridTemplateColumns,
       gridTemplateColumns: gridConfig.gridTemplateColumns,
-
-      // TODO: simulate grid gap in IE
+      gridTemplateRows: gridConfig.gridTemplateRows,
       gridGap: gridConfig.gridGap,
 
       ...this.gridBlocks(gridConfig.gridBlocks)
