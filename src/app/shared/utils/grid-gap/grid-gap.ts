@@ -2,6 +2,7 @@ import {
   IGridConfig,
   IGridBlock
 } from "../../../../../common/__types__/IGridContainer";
+import { flatten } from "lodash";
 
 export default function(config: IGridConfig): IGridConfig {
   const {
@@ -21,11 +22,12 @@ export default function(config: IGridConfig): IGridConfig {
 
 function gridGapHandler(gridTemplateValues: string, gridGap: string): string {
   const arrGridTemplate = gridTemplateValues.split(" ");
-  const arrGridTemplateWithGap = arrGridTemplate.map((e, i) =>
-    i < arrGridTemplate.length - 1 ? [e, gridGap] : [e]
-  );
+  const arrGridTemplateWithGap = arrGridTemplate.map((current, i) => {
+    const isNotLastElement = i < arrGridTemplate.length - 1;
+    return isNotLastElement ? [current, gridGap] : [current];
+  });
 
-  return ([] as any[]).concat(...arrGridTemplateWithGap).join(" ");
+  return flatten(arrGridTemplateWithGap).join(" ");
 }
 
 function gridBlocksHandler(gridBlocks: IGridBlock[]): IGridBlock[] {
