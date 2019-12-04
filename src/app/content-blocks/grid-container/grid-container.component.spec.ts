@@ -154,7 +154,7 @@ describe("GridContainerComponent", () => {
         "display": "grid",
         "gridGap": "0",
         "gridTemplateColumns": "1fr",
-        "gridTemplateRows": "auto 20px auto",
+        "gridTemplateRows": "auto",
         "msGridColumn": "1fr",
       }
     `);
