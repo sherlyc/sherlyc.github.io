@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
-import { namespace } from 'store';
-import { IStoreService } from './__types__/IStoreService';
+import { Injectable } from "@angular/core";
+import { namespace } from "store";
+import { IStoreService } from "./__types__/IStoreService";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class StoreService implements IStoreService {
   private store: StoreJsAPI;
   constructor() {
-    this.store = namespace('stuff-experience');
+    this.store = namespace("stuff-experience");
   }
 
   get<T>(key: string): T | null {
@@ -21,7 +21,7 @@ export class StoreService implements IStoreService {
 }
 
 export enum StorageKeys {
-  DeviceId = 'deviceId',
-  WeatherLocation = 'weatherLocation',
-  BreakingNewsId = 'breakingNewsID'
+  DeviceId = "deviceId",
+  WeatherLocation = "weatherLocation",
+  BreakingNewsId = "breakingNewsID"
 }

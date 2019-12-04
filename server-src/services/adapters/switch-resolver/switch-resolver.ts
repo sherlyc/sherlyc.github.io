@@ -1,5 +1,5 @@
-import { DeviceType } from '../../../../common/DeviceType';
-import { ISwitchConfig } from '../../__types__/ISwitchConfig';
+import { DeviceType } from "../../../../common/DeviceType";
+import { ISwitchConfig } from "../../__types__/ISwitchConfig";
 
 export const isSwitchedOn = (
   lotteryNumber: number,

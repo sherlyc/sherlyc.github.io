@@ -1,18 +1,18 @@
-import { handlerRunnerFunction } from '../runner';
-import { IParams } from '../../__types__/IParams';
-import { IContentBlock } from '../../../../common/__types__/IContentBlock';
-import { getRawArticles } from '../../adapters/article-retriever/article-retriever';
-import { Strap } from '../../strap';
-import { LayoutType } from '../../adapters/__types__/LayoutType';
-import { layoutRetriever } from '../../adapters/layout/layout-retriever';
-import logger from '../../utils/logger';
-import { IRawArticle } from '../../adapters/__types__/IRawArticle';
-import { IBigImageArticleUnit } from '../../../../common/__types__/IBigImageArticleUnit';
-import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { IHalfWidthImageArticleUnit } from '../../../../common/__types__/IHalfWidthImageArticleUnit';
-import { IGrayDefconArticleUnit } from '../../../../common/__types__/IGrayDefconArticleUnit';
-import { IBasicAdUnit } from '../../../../common/__types__/IBasicAdUnit';
-import { ITopStoriesArticleListGroupTwoHandlerInput } from '../__types__/ITopStoriesArticleListGroupTwo';
+import { handlerRunnerFunction } from "../runner";
+import { IParams } from "../../__types__/IParams";
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
+import { Strap } from "../../strap";
+import { LayoutType } from "../../adapters/__types__/LayoutType";
+import { layoutRetriever } from "../../adapters/layout/layout-retriever";
+import logger from "../../utils/logger";
+import { IRawArticle } from "../../adapters/__types__/IRawArticle";
+import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArticleUnit";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IHalfWidthImageArticleUnit } from "../../../../common/__types__/IHalfWidthImageArticleUnit";
+import { IGrayDefconArticleUnit } from "../../../../common/__types__/IGrayDefconArticleUnit";
+import { IBasicAdUnit } from "../../../../common/__types__/IBasicAdUnit";
+import { ITopStoriesArticleListGroupTwoHandlerInput } from "../__types__/ITopStoriesArticleListGroupTwo";
 
 const basicAdUnit = (context: string): IBasicAdUnit => ({
   type: ContentBlockType.BasicAdUnit,

@@ -1,4 +1,4 @@
-import { AnalyticsEvent } from './IAnalyticEvents';
+import { AnalyticsEvent } from "./IAnalyticEvents";
 
 export interface IAnalyticsService {
   setup(): void;

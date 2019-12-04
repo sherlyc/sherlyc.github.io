@@ -1,9 +1,9 @@
-import { IParams } from '../../__types__/IParams';
-import cacheHttp from '../../utils/cache-http';
-import config from '../../utils/config';
-import { IRawArticle } from '../__types__/IRawArticle';
-import { getArticleById } from '../jsonfeed/jsonfeed';
-import logger from '../../utils/logger';
+import { IParams } from "../../__types__/IParams";
+import cacheHttp from "../../utils/cache-http";
+import config from "../../utils/config";
+import { IRawArticle } from "../__types__/IRawArticle";
+import { getArticleById } from "../jsonfeed/jsonfeed";
+import logger from "../../utils/logger";
 
 type ArticleId = number;
 

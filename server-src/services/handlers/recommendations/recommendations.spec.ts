@@ -1,18 +1,18 @@
-import recommendations from './recommendations';
-import { IRecommendationsHandlerInput } from '../__types__/IRecommendationsHandlerInput';
-import { HandlerInputType } from '../__types__/HandlerInputType';
-import { IParams } from '../../__types__/IParams';
-import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
+import recommendations from "./recommendations";
+import { IRecommendationsHandlerInput } from "../__types__/IRecommendationsHandlerInput";
+import { HandlerInputType } from "../__types__/HandlerInputType";
+import { IParams } from "../../__types__/IParams";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 
-describe('Recommendations', () => {
+describe("Recommendations", () => {
   const handlerRunner = jest.fn();
-  const params: IParams = { apiRequestId: '123123' };
+  const params: IParams = { apiRequestId: "123123" };
 
-  it('should return recommendations content block', async () => {
+  it("should return recommendations content block", async () => {
     const handlerInput: IRecommendationsHandlerInput = {
       type: HandlerInputType.Recommendations,
-      displayName: 'Recommended for You',
-      displayNameColor: 'darkblue',
+      displayName: "Recommended for You",
+      displayNameColor: "darkblue",
       totalBasicArticlesUnit: 2,
       totalBasicArticleTitleUnit: 3
     };

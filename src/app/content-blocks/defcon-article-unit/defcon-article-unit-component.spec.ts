@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DefconArticleUnitComponent } from './defcon-article-unit.component';
-import { SharedModule } from '../../shared/shared.module';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { DefconArticleUnitComponent } from "./defcon-article-unit.component";
+import { SharedModule } from "../../shared/shared.module";
 
-describe('DefconArticleUnitComponent', () => {
+describe("DefconArticleUnitComponent", () => {
   let component: DefconArticleUnitComponent;
   let fixture: ComponentFixture<DefconArticleUnitComponent>;
 
@@ -18,7 +18,7 @@ describe('DefconArticleUnitComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

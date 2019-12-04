@@ -1,17 +1,17 @@
-import { Inject, Injectable, Optional } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError, retry } from 'rxjs/operators';
-import { IPage } from '../../../../common/__types__/IPage';
-import { LoggerService } from '../logger/logger.service';
-import { ConfigService } from '../config/config.service';
-import { RuntimeService } from '../runtime/runtime.service';
-import { makeStateKey, TransferState } from '@angular/platform-browser';
-import { RESPONSE } from '@nguniversal/express-engine/tokens';
-import { Response } from 'express';
+import { Inject, Injectable, Optional } from "@angular/core";
+import { Observable, of } from "rxjs";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { catchError, retry } from "rxjs/operators";
+import { IPage } from "../../../../common/__types__/IPage";
+import { LoggerService } from "../logger/logger.service";
+import { ConfigService } from "../config/config.service";
+import { RuntimeService } from "../runtime/runtime.service";
+import { makeStateKey, TransferState } from "@angular/platform-browser";
+import { RESPONSE } from "@nguniversal/express-engine/tokens";
+import { Response } from "express";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class ContentRetrieverService {
   constructor(
@@ -25,7 +25,7 @@ export class ContentRetrieverService {
 
   getContent(): Observable<IPage> {
     return new Observable<IPage>((subscriber) => {
-      const KEY = makeStateKey('KEY');
+      const KEY = makeStateKey("KEY");
       const stateContent = this.transferState.get(KEY, null);
       this.transferState.remove(KEY);
       if (stateContent) {
@@ -34,10 +34,7 @@ export class ContentRetrieverService {
       } else {
         this.http
           .get<IPage>(this.config.getConfig().spadeAPI)
-          .pipe(
-            retry(3),
-            catchError(this.handleError.bind(this))
-          )
+          .pipe(retry(3), catchError(this.handleError.bind(this)))
           .subscribe((result) => {
             if (this.runtime.isServer()) {
               this.transferState.set(KEY, result);
@@ -50,24 +47,24 @@ export class ContentRetrieverService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    this.logger.error(error, 'ContentRetrieverService - getContent error');
+    this.logger.error(error, "ContentRetrieverService - getContent error");
     if (this.runtime.isServer() && this.response) {
       this.response.sendStatus(500);
     }
     return of({
-      title: 'Stuff',
+      title: "Stuff",
       content: [
-        { type: 'Header' },
+        { type: "Header" },
         {
-          type: 'Container',
+          type: "Container",
           items: [
             {
-              type: 'ErrorBlock',
-              message: 'Something bad happened; please try again later.'
+              type: "ErrorBlock",
+              message: "Something bad happened; please try again later."
             }
           ]
         },
-        { type: 'Footer' }
+        { type: "Footer" }
       ]
     } as IPage);
   }

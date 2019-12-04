@@ -1,52 +1,52 @@
-import basicArticleSectionHandler from './basic-article-section';
-import { Section } from '../../section';
-import { IBasicArticleSectionHandlerInput } from '../__types__/IBasicArticleSectionHandlerInput';
-import { IParams } from '../../__types__/IParams';
-import { HandlerInputType } from '../__types__/HandlerInputType';
-import { Strap } from '../../strap';
-import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
+import basicArticleSectionHandler from "./basic-article-section";
+import { Section } from "../../section";
+import { IBasicArticleSectionHandlerInput } from "../__types__/IBasicArticleSectionHandlerInput";
+import { IParams } from "../../__types__/IParams";
+import { HandlerInputType } from "../__types__/HandlerInputType";
+import { Strap } from "../../strap";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 
-jest.mock('../runner');
+jest.mock("../runner");
 
-describe('BasicArticleSectionHandler', () => {
-  const params: IParams = { apiRequestId: 'request-id-for-testing' };
+describe("BasicArticleSectionHandler", () => {
+  const params: IParams = { apiRequestId: "request-id-for-testing" };
   const basicAdUnit = {
     type: ContentBlockType.BasicAdUnit,
-    context: 'business'
+    context: "business"
   };
   const basicArticleUnit = {
-    id: '1',
-    strapName: 'business',
+    id: "1",
+    strapName: "business",
     headlineFlags: [],
-    imageSrc: '1.jpg',
-    indexHeadline: 'Headline 1',
-    introText: 'Intro 1',
+    imageSrc: "1.jpg",
+    indexHeadline: "Headline 1",
+    introText: "Intro 1",
     lastPublishedTime: 1,
-    linkUrl: '/link1',
-    type: 'BasicArticleUnit'
+    linkUrl: "/link1",
+    type: "BasicArticleUnit"
   };
   const basicArticleTitleUnit = {
-    id: '2',
-    strapName: 'business',
+    id: "2",
+    strapName: "business",
     headlineFlags: [],
-    indexHeadline: 'Headline 2',
+    indexHeadline: "Headline 2",
     lastPublishedTime: 2,
-    linkUrl: '/link2',
-    type: 'BasicArticleTitleUnit'
+    linkUrl: "/link2",
+    type: "BasicArticleTitleUnit"
   };
 
-  it('should get a section content block with only basic article units', async () => {
+  it("should get a section content block with only basic article units", async () => {
     const totalBasicArticlesUnit = 2;
     const handlerInput = {
-      type: 'ArticleSection',
-      linkUrl: '/business',
-      displayName: 'business',
-      displayNameColor: 'red',
+      type: "ArticleSection",
+      linkUrl: "/business",
+      displayName: "business",
+      displayNameColor: "red",
       content: {
         type: HandlerInputType.ArticleList,
         sourceId: Section.Business,
         totalBasicArticlesUnit,
-        strapName: 'business'
+        strapName: "business"
       }
     } as IBasicArticleSectionHandlerInput;
 
@@ -69,10 +69,10 @@ describe('BasicArticleSectionHandler', () => {
 
     expect(contentBlocks).toEqual([
       {
-        type: 'BasicArticleSection',
-        displayName: 'business',
-        displayNameColor: 'red',
-        linkUrl: '/business',
+        type: "BasicArticleSection",
+        displayName: "business",
+        displayNameColor: "red",
+        linkUrl: "/business",
         items: basicArticleListItems
       },
       basicAdUnit
@@ -80,7 +80,7 @@ describe('BasicArticleSectionHandler', () => {
     expect(handlerRunnerMock).toHaveBeenCalledWith(
       {
         type: HandlerInputType.ArticleList,
-        strapName: 'business',
+        strapName: "business",
         sourceId: Section.Business,
         totalBasicArticlesUnit
       },
@@ -88,19 +88,19 @@ describe('BasicArticleSectionHandler', () => {
     );
   });
 
-  it('should get a section content block with basic article units and article title link', async () => {
+  it("should get a section content block with basic article units and article title link", async () => {
     const totalBasicArticlesUnit = 1;
     const totalBasicArticleTitleUnit = 1;
     const handlerInput = {
-      type: 'ArticleSection',
-      displayName: 'business',
-      displayNameColor: 'red',
+      type: "ArticleSection",
+      displayName: "business",
+      displayNameColor: "red",
       content: {
         type: HandlerInputType.ArticleList,
         sourceId: Strap.EditorPicks,
         totalBasicArticlesUnit,
         totalBasicArticleTitleUnit,
-        strapName: 'business'
+        strapName: "business"
       }
     } as IBasicArticleSectionHandlerInput;
 
@@ -123,9 +123,9 @@ describe('BasicArticleSectionHandler', () => {
 
     expect(contentBlocks).toEqual([
       {
-        type: 'BasicArticleSection',
-        displayName: 'business',
-        displayNameColor: 'red',
+        type: "BasicArticleSection",
+        displayName: "business",
+        displayNameColor: "red",
         items: basicArticleListItems
       },
       basicAdUnit
@@ -134,7 +134,7 @@ describe('BasicArticleSectionHandler', () => {
       {
         type: HandlerInputType.ArticleList,
         sourceId: Strap.EditorPicks,
-        strapName: 'business',
+        strapName: "business",
         totalBasicArticlesUnit,
         totalBasicArticleTitleUnit
       },

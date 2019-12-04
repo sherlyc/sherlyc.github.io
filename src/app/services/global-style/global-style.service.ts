@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import * as cxs from 'cxs';
+import { Injectable } from "@angular/core";
+import * as cxs from "cxs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class GlobalStyleService {
-  private prefix = 'spade_';
+  private prefix = "spade_";
 
   constructor() {
     cxs.prefix(this.prefix);

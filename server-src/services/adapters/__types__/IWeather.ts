@@ -1,4 +1,4 @@
-import { Forecasts } from '../../../../common/Forecasts';
+import { Forecasts } from "../../../../common/Forecasts";
 
 export interface IWeather {
   temperature_unit: string;

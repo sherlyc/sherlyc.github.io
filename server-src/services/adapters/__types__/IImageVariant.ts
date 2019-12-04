@@ -1,4 +1,4 @@
-import { JsonFeedImageType } from './JsonFeedImageType';
+import { JsonFeedImageType } from "./JsonFeedImageType";
 
 export interface IImageVariant {
   [key: string]: any;

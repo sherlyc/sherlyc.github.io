@@ -45,11 +45,11 @@ header {
     top: 20px;
 
     &::after {
-      content: '';
+      content: "";
       top: 6px;
     }
     &::before {
-      content: '';
+      content: "";
       top: -6px;
     }
   }

@@ -1,17 +1,17 @@
-import { TestBed } from '@angular/core/testing';
-import { AuthenticationService } from './authentication.service';
-import { RuntimeService } from '../runtime/runtime.service';
-import { ScriptInjectorService } from '../script-injector/script-injector.service';
-import { ConfigService } from '../config/config.service';
-import { mockService, ServiceMock } from '../mocks/MockService';
-import { Position } from '../script-injector/__types__/Position';
-import { WindowService } from '../window/window.service';
-import { AnalyticsService } from '../analytics/analytics.service';
-import { IStuffLogin } from './__types__/IStuffLogin';
-import { IStuffLoginUser } from './__types__/IStuffLoginUser';
-import { FeatureSwitchService } from '../feature-switch/feature-switch.service';
+import { TestBed } from "@angular/core/testing";
+import { AuthenticationService } from "./authentication.service";
+import { RuntimeService } from "../runtime/runtime.service";
+import { ScriptInjectorService } from "../script-injector/script-injector.service";
+import { ConfigService } from "../config/config.service";
+import { mockService, ServiceMock } from "../mocks/MockService";
+import { Position } from "../script-injector/__types__/Position";
+import { WindowService } from "../window/window.service";
+import { AnalyticsService } from "../analytics/analytics.service";
+import { IStuffLogin } from "./__types__/IStuffLogin";
+import { IStuffLoginUser } from "./__types__/IStuffLoginUser";
+import { FeatureSwitchService } from "../feature-switch/feature-switch.service";
 
-describe('AuthenticationService', () => {
+describe("AuthenticationService", () => {
   let authenticationService: AuthenticationService;
   let runtimeService: ServiceMock<RuntimeService>;
   let featureSwitchService: ServiceMock<FeatureSwitchService>;
@@ -21,10 +21,10 @@ describe('AuthenticationService', () => {
   let analyticsService: ServiceMock<AnalyticsService>;
 
   let StuffLogin: IStuffLogin;
-  const libraryUrl = 'http://libraryurl.com';
-  const authProvider = 'https://my.preprod.stuff.co.nz';
-  const clientId = 'c0f1b219-297b-4104-8300-94c4636768da';
-  const signinRedirectPath = '/spade/signin-callback-v2';
+  const libraryUrl = "http://libraryurl.com";
+  const authProvider = "https://my.preprod.stuff.co.nz";
+  const clientId = "c0f1b219-297b-4104-8300-94c4636768da";
+  const signinRedirectPath = "/spade/signin-callback-v2";
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -77,8 +77,8 @@ describe('AuthenticationService', () => {
     windowService.getWindow.mockReturnValue({
       StuffLogin,
       location: {
-        host: 'www.stuff.co.nz',
-        protocol: 'https:'
+        host: "www.stuff.co.nz",
+        protocol: "https:"
       }
     });
 
@@ -94,22 +94,22 @@ describe('AuthenticationService', () => {
     authenticationService = TestBed.get(AuthenticationService);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(authenticationService).toBeTruthy();
   });
 
-  it('should delegate to script injector to load the script on setup', async () => {
+  it("should delegate to script injector to load the script on setup", async () => {
     await authenticationService.setup();
 
     expect(scriptInjectorService.load).toHaveBeenCalledWith(
-      'login-sdk',
+      "login-sdk",
       libraryUrl,
       Position.HEAD,
       false
     );
   });
 
-  it('should initiate the library with configuration as part of setup', async () => {
+  it("should initiate the library with configuration as part of setup", async () => {
     await authenticationService.setup();
 
     expect(StuffLogin.init).toHaveBeenCalledWith({
@@ -119,27 +119,27 @@ describe('AuthenticationService', () => {
     });
   });
 
-  it('should get current authentication state on library initialisation', async () => {
+  it("should get current authentication state on library initialisation", async () => {
     const loggedInUser = {
-      id_token: 'yourIdToken',
-      access_token: 'yourAccessToken',
+      id_token: "yourIdToken",
+      access_token: "yourAccessToken",
       profile: {
-        sub: '1234',
+        sub: "1234",
         auth_time: 1508961560,
-        kid: 'sffx',
-        jti: '0fab3adc-6106-4b20-bec6-45144b721b31',
-        name: 'user123',
-        preferred_username: 'user123@mail.com',
-        given_name: 'firstName',
-        family_name: 'surname',
-        nickname: 'user123',
+        kid: "sffx",
+        jti: "0fab3adc-6106-4b20-bec6-45144b721b31",
+        name: "user123",
+        preferred_username: "user123@mail.com",
+        given_name: "firstName",
+        family_name: "surname",
+        nickname: "user123",
         profile:
-          'https://my.local.stuff.co.nz:8443/stuff-ssp-web//profile/user123',
+          "https://my.local.stuff.co.nz:8443/stuff-ssp-web//profile/user123",
         picture:
-          'https://static2.stuff.co.nz/145453/static/images/profile_avatar_n_sm.gif',
-        gender: 'm',
-        locale: 'en_NZ',
-        birthdate: '1992'
+          "https://static2.stuff.co.nz/145453/static/images/profile_avatar_n_sm.gif",
+        gender: "m",
+        locale: "en_NZ",
+        birthdate: "1992"
       }
     } as IStuffLoginUser;
 
@@ -156,13 +156,13 @@ describe('AuthenticationService', () => {
     );
   });
 
-  it('should register login/logout callbacks as part of setup', async () => {
+  it("should register login/logout callbacks as part of setup", async () => {
     await authenticationService.setup();
     expect(StuffLogin.onLogin).toHaveBeenCalled();
     expect(StuffLogin.onLogout).toHaveBeenCalled();
   });
 
-  it('should allow initiating login with underlying library', async () => {
+  it("should allow initiating login with underlying library", async () => {
     await authenticationService.setup();
 
     authenticationService.login();
@@ -170,7 +170,7 @@ describe('AuthenticationService', () => {
     expect(StuffLogin.login).toHaveBeenCalled();
   });
 
-  it('should allow do a signin callback with underlying library', async () => {
+  it("should allow do a signin callback with underlying library", async () => {
     await authenticationService.signinCallback();
 
     expect(StuffLogin.signinCallback).toHaveBeenCalled();

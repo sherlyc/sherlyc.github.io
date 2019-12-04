@@ -1,4 +1,4 @@
-import { IWindow } from './IWindow';
+import { IWindow } from "./IWindow";
 
 export interface IWindowService {
   getWindow(): IWindow & Window;

@@ -1,18 +1,18 @@
-import { TestBed } from '@angular/core/testing';
-import { LoggerService } from './logger.service';
-import { ConfigService } from '../config/config.service';
-import { mockService, ServiceMock } from '../mocks/MockService';
-import { CorrelationService } from '../correlation/correlation.service';
-import { ICorrelation } from '../correlation/__types__/ICorrelation';
-import { RuntimeService } from '../runtime/runtime.service';
+import { TestBed } from "@angular/core/testing";
+import { LoggerService } from "./logger.service";
+import { ConfigService } from "../config/config.service";
+import { mockService, ServiceMock } from "../mocks/MockService";
+import { CorrelationService } from "../correlation/correlation.service";
+import { ICorrelation } from "../correlation/__types__/ICorrelation";
+import { RuntimeService } from "../runtime/runtime.service";
 
-describe('LoggerService', () => {
+describe("LoggerService", () => {
   let configService: ServiceMock<ConfigService>;
   let correlationIdService: ServiceMock<CorrelationService>;
   const correlationInfo: ICorrelation = {
-    deviceId: 'deviceId',
-    apiRequestId: 'apiRequestId',
-    pageScopedId: 'pageScopedId'
+    deviceId: "deviceId",
+    apiRequestId: "apiRequestId",
+    pageScopedId: "pageScopedId"
   };
 
   beforeEach(() => {
@@ -35,44 +35,44 @@ describe('LoggerService', () => {
     correlationIdService.getCorrelation.mockReturnValue(correlationInfo);
   });
 
-  it('should log debug when configured log level is debug', () => {
+  it("should log debug when configured log level is debug", () => {
     configService.getConfig.mockReturnValue({
-      loggerOptions: { level: 'debug', format: 'json' }
+      loggerOptions: { level: "debug", format: "json" }
     });
 
     const service: LoggerService = TestBed.get(LoggerService);
-    spyOn(console, 'debug');
+    spyOn(console, "debug");
 
-    service.debug('This should be logged as debug');
+    service.debug("This should be logged as debug");
 
-    expect(console['debug']).toHaveBeenCalledWith(
+    expect(console["debug"]).toHaveBeenCalledWith(
       JSON.stringify(correlationInfo),
-      'This should be logged as debug'
+      "This should be logged as debug"
     );
   });
 
-  it('should not log debug when configured log level is higher than debug', () => {
+  it("should not log debug when configured log level is higher than debug", () => {
     configService.getConfig.mockReturnValue({
-      loggerOptions: { level: 'info', format: 'json' }
+      loggerOptions: { level: "info", format: "json" }
     });
 
     const service: LoggerService = TestBed.get(LoggerService);
-    spyOn(console, 'debug');
+    spyOn(console, "debug");
 
-    service.debug('This should not be logged as debug');
+    service.debug("This should not be logged as debug");
 
-    expect(console['debug']).not.toHaveBeenCalled();
+    expect(console["debug"]).not.toHaveBeenCalled();
   });
 
-  it('should log error when configured log level is error', () => {
+  it("should log error when configured log level is error", () => {
     configService.getConfig.mockReturnValue({
-      loggerOptions: { level: 'error', format: 'json' }
+      loggerOptions: { level: "error", format: "json" }
     });
 
     const service: LoggerService = TestBed.get(LoggerService);
-    spyOn(console, 'error');
+    spyOn(console, "error");
 
-    const error = new Error('This should be logged as an error');
+    const error = new Error("This should be logged as an error");
     service.error(error);
 
     expect(console.error).toHaveBeenCalledWith(
@@ -81,19 +81,19 @@ describe('LoggerService', () => {
     );
   });
 
-  it('should log warn when configured log level does not exist', () => {
+  it("should log warn when configured log level does not exist", () => {
     configService.getConfig.mockReturnValue({
-      loggerOptions: { level: 'non-existing-level', format: 'json' }
+      loggerOptions: { level: "non-existing-level", format: "json" }
     });
 
     const service: LoggerService = TestBed.get(LoggerService);
-    spyOn(console, 'warn');
+    spyOn(console, "warn");
 
-    service.warn('This should be logged as a warn');
+    service.warn("This should be logged as a warn");
 
     expect(console.warn).toHaveBeenCalledWith(
       JSON.stringify(correlationInfo),
-      'This should be logged as a warn'
+      "This should be logged as a warn"
     );
   });
 });

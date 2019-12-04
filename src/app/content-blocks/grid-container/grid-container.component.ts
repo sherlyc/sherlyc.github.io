@@ -1,14 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from "@angular/core";
 import {
   IGridBlock,
   IGridConfig,
   IGridContainer
-} from '../../../../common/__types__/IGridContainer';
-import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
+} from "../../../../common/__types__/IGridContainer";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
-  selector: 'app-grid-container',
-  templateUrl: './grid-container.component.html'
+  selector: "app-grid-container",
+  templateUrl: "./grid-container.component.html"
 })
 export class GridContainerComponent implements IContentBlockComponent, OnInit {
   @Input() input!: IGridContainer;
@@ -19,16 +19,16 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
     const { mobile, tablet, desktop } = this.input;
     this.style = {
       ...this.gridCss(mobile),
-      '@media only screen and (min-width: 64em)': this.gridCss(tablet),
-      '@media only screen and (min-width: 75em)': this.gridCss(desktop)
+      "@media only screen and (min-width: 64em)": this.gridCss(tablet),
+      "@media only screen and (min-width: 75em)": this.gridCss(desktop)
     };
   }
 
   private gridCss(gridConfig: IGridConfig) {
     return {
-      display: 'grid',
-      '@media all and (-ms-high-contrast:none)': {
-        display: '-ms-grid'
+      display: "grid",
+      "@media all and (-ms-high-contrast:none)": {
+        display: "-ms-grid"
       },
 
       msGridColumn: gridConfig.gridTemplateColumns,

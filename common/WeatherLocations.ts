@@ -1,57 +1,57 @@
 export enum WeatherLocations {
-  Auckland = 'Auckland',
-  Ashburton = 'Ashburton',
-  Christchurch = 'Christchurch',
-  Timaru = 'Timaru',
-  Rotorua = 'Rotorua',
-  Taupo = 'Taupo',
-  Tauranga = 'Tauranga',
-  Whakatane = 'Whakatane',
-  Gisborne = 'Gisborne',
-  Hastings = 'Hastings',
-  Napier = 'Napier',
-  Dannevirke = 'Dannevirke',
-  Levin = 'Levin',
-  PalmerstonNorth = 'Palmerston North',
-  Whanganui = 'Whanganui',
-  Blenheim = 'Blenheim',
-  Kaikoura = 'Kaikoura',
-  Motueka = 'Motueka',
-  Nelson = 'Nelson',
-  Dargaville = 'Dargaville',
-  Kaitaia = 'Kaitaia',
-  Paihia = 'Paihia',
-  Russell = 'Russell',
-  Whangarei = 'Whangarei',
-  Alexandra = 'Alexandra',
-  Dunedin = 'Dunedin',
-  Oamaru = 'Oamaru',
-  Queenstown = 'Queenstown',
-  Wanaka = 'Wanaka',
-  Gore = 'Gore',
-  Invercargill = 'Invercargill',
-  NewPlymouth = 'New Plymouth',
-  Taumarunui = 'Taumarunui',
-  Hamilton = 'Hamilton',
-  TeKuiti = 'Te Kuiti',
-  Thames = 'Thames',
-  Tokoroa = 'Tokoroa',
-  Masterton = 'Masterton',
-  Paraparaumu = 'Paraparaumu',
-  Wellington = 'Wellington',
-  Greymouth = 'Greymouth',
-  Hokitika = 'Hokitika',
-  Reefton = 'Reefton',
-  Westport = 'Westport'
+  Auckland = "Auckland",
+  Ashburton = "Ashburton",
+  Christchurch = "Christchurch",
+  Timaru = "Timaru",
+  Rotorua = "Rotorua",
+  Taupo = "Taupo",
+  Tauranga = "Tauranga",
+  Whakatane = "Whakatane",
+  Gisborne = "Gisborne",
+  Hastings = "Hastings",
+  Napier = "Napier",
+  Dannevirke = "Dannevirke",
+  Levin = "Levin",
+  PalmerstonNorth = "Palmerston North",
+  Whanganui = "Whanganui",
+  Blenheim = "Blenheim",
+  Kaikoura = "Kaikoura",
+  Motueka = "Motueka",
+  Nelson = "Nelson",
+  Dargaville = "Dargaville",
+  Kaitaia = "Kaitaia",
+  Paihia = "Paihia",
+  Russell = "Russell",
+  Whangarei = "Whangarei",
+  Alexandra = "Alexandra",
+  Dunedin = "Dunedin",
+  Oamaru = "Oamaru",
+  Queenstown = "Queenstown",
+  Wanaka = "Wanaka",
+  Gore = "Gore",
+  Invercargill = "Invercargill",
+  NewPlymouth = "New Plymouth",
+  Taumarunui = "Taumarunui",
+  Hamilton = "Hamilton",
+  TeKuiti = "Te Kuiti",
+  Thames = "Thames",
+  Tokoroa = "Tokoroa",
+  Masterton = "Masterton",
+  Paraparaumu = "Paraparaumu",
+  Wellington = "Wellington",
+  Greymouth = "Greymouth",
+  Hokitika = "Hokitika",
+  Reefton = "Reefton",
+  Westport = "Westport"
 }
 
 export const weatherRegions = [
   {
-    name: 'Auckland',
+    name: "Auckland",
     locations: [WeatherLocations.Auckland]
   },
   {
-    name: 'Canterbury',
+    name: "Canterbury",
     locations: [
       WeatherLocations.Ashburton,
       WeatherLocations.Christchurch,
@@ -59,7 +59,7 @@ export const weatherRegions = [
     ]
   },
   {
-    name: 'Central North Island',
+    name: "Central North Island",
     locations: [
       WeatherLocations.Rotorua,
       WeatherLocations.Taupo,
@@ -76,7 +76,7 @@ export const weatherRegions = [
     ]
   },
   {
-    name: 'Manawatu',
+    name: "Manawatu",
     locations: [
       WeatherLocations.Dannevirke,
       WeatherLocations.Levin,
@@ -85,15 +85,15 @@ export const weatherRegions = [
     ]
   },
   {
-    name: 'Marlborough',
+    name: "Marlborough",
     locations: [WeatherLocations.Blenheim, WeatherLocations.Kaikoura]
   },
   {
-    name: 'Nelson',
+    name: "Nelson",
     locations: [WeatherLocations.Motueka, WeatherLocations.Nelson]
   },
   {
-    name: 'Northland',
+    name: "Northland",
     locations: [
       WeatherLocations.Dargaville,
       WeatherLocations.Kaitaia,
@@ -103,7 +103,7 @@ export const weatherRegions = [
     ]
   },
   {
-    name: 'Wellington',
+    name: "Wellington",
     locations: [
       WeatherLocations.Paraparaumu,
       WeatherLocations.Masterton,
@@ -111,7 +111,7 @@ export const weatherRegions = [
     ]
   },
   {
-    name: 'Otago',
+    name: "Otago",
     locations: [
       WeatherLocations.Alexandra,
       WeatherLocations.Dunedin,
@@ -121,15 +121,15 @@ export const weatherRegions = [
     ]
   },
   {
-    name: 'Southland',
+    name: "Southland",
     locations: [WeatherLocations.Gore, WeatherLocations.Invercargill]
   },
   {
-    name: 'Taranaki',
+    name: "Taranaki",
     locations: [WeatherLocations.NewPlymouth, WeatherLocations.Taumarunui]
   },
   {
-    name: 'Waikato',
+    name: "Waikato",
     locations: [
       WeatherLocations.Hamilton,
       WeatherLocations.TeKuiti,
@@ -138,7 +138,7 @@ export const weatherRegions = [
     ]
   },
   {
-    name: 'West Coast',
+    name: "West Coast",
     locations: [
       WeatherLocations.Westport,
       WeatherLocations.Greymouth,

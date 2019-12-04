@@ -1,21 +1,21 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 import {
   HttpClientTestingModule,
   HttpTestingController
-} from '@angular/common/http/testing';
-import { WeatherRetrieverService } from './weather-retriever.service';
-import { WeatherLocations } from '../../../../common/WeatherLocations';
-import { ConfigService } from '../config/config.service';
-import { mockService, ServiceMock } from '../mocks/MockService';
-import * as weatherResponse from './__fixtures__/weatherData.json';
-import { LoggerService } from '../logger/logger.service';
+} from "@angular/common/http/testing";
+import { WeatherRetrieverService } from "./weather-retriever.service";
+import { WeatherLocations } from "../../../../common/WeatherLocations";
+import { ConfigService } from "../config/config.service";
+import { mockService, ServiceMock } from "../mocks/MockService";
+import * as weatherResponse from "./__fixtures__/weatherData.json";
+import { LoggerService } from "../logger/logger.service";
 
-describe('Weather Retriever', () => {
+describe("Weather Retriever", () => {
   let weatherRetrieverService: WeatherRetrieverService;
   let httpMock: HttpTestingController;
   let configServiceMock: ServiceMock<ConfigService>;
   let loggerService: ServiceMock<LoggerService>;
-  const weatherAPI = 'http://localhost';
+  const weatherAPI = "http://localhost";
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -39,7 +39,7 @@ describe('Weather Retriever', () => {
     configServiceMock.getConfig.mockReturnValue({ weatherAPI });
   });
 
-  it('should fetch weather data', (done) => {
+  it("should fetch weather data", (done) => {
     weatherRetrieverService
       .getWeather(WeatherLocations.Auckland)
       .subscribe((response) => {
@@ -50,11 +50,11 @@ describe('Weather Retriever', () => {
     const req = httpMock.expectOne(
       `${weatherAPI}/${WeatherLocations.Auckland}`
     );
-    expect(req.request.method).toBe('GET');
+    expect(req.request.method).toBe("GET");
     req.flush(weatherResponse);
   });
 
-  it('should log warning and return error if unable to fetch weather data', (done) => {
+  it("should log warning and return error if unable to fetch weather data", (done) => {
     weatherRetrieverService.getWeather(WeatherLocations.Auckland).subscribe(
       () => {},
       (error) => {
@@ -67,7 +67,7 @@ describe('Weather Retriever', () => {
     const req = httpMock.expectOne(
       `${weatherAPI}/${WeatherLocations.Auckland}`
     );
-    expect(req.request.method).toBe('GET');
-    req.flush({}, { status: 500, statusText: 'Internal Server error' });
+    expect(req.request.method).toBe("GET");
+    req.flush({}, { status: 500, statusText: "Internal Server error" });
   });
 });

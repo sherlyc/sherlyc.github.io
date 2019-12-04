@@ -1,10 +1,10 @@
-import * as supertest from 'supertest';
+import * as supertest from "supertest";
 
-describe('Experiment API', () => {
-  const experimentApi = '/spade/api/experiment';
-  const app = require('../app').default;
+describe("Experiment API", () => {
+  const experimentApi = "/spade/api/experiment";
+  const app = require("../app").default;
 
-  it('should return 400 when experiment name is not recognized', async () => {
+  it("should return 400 when experiment name is not recognized", async () => {
     const response: supertest.Response = await supertest(app).get(
       `${experimentApi}/Experiment/50`
     );
@@ -13,7 +13,7 @@ describe('Experiment API', () => {
   });
 
   test.each([[1], [100]])(
-    'lottery number %i should return TopStoriesVisualExperiment variant for Users experiment for mobile',
+    "lottery number %i should return TopStoriesVisualExperiment variant for Users experiment for mobile",
     async (lotteryNumber: number) => {
       const response: supertest.Response = await supertest(app).get(
         `${experimentApi}/Users/${lotteryNumber}/mobile`
@@ -22,12 +22,12 @@ describe('Experiment API', () => {
       const { text, status } = response;
 
       expect(status).toBe(200);
-      expect(text).toBe('TopStoriesVisualExperiment');
+      expect(text).toBe("TopStoriesVisualExperiment");
     }
   );
 
   test.each([[1], [34], [65], [100], [404]])(
-    'should return groupOne variant for all numbers for TopStoriesVisualExperiment - lottery number %i',
+    "should return groupOne variant for all numbers for TopStoriesVisualExperiment - lottery number %i",
     async (lotteryNumber: number) => {
       const response: supertest.Response = await supertest(app).get(
         `${experimentApi}/TopStoriesVisualExperiment/${lotteryNumber}/mobile`
@@ -36,11 +36,11 @@ describe('Experiment API', () => {
       const { text, status } = response;
 
       expect(status).toBe(200);
-      expect(text).toBe('groupOne');
+      expect(text).toBe("groupOne");
     }
   );
 
-  it('should return control when device is not mobile for TopStoriesVisualExperiment', async () => {
+  it("should return control when device is not mobile for TopStoriesVisualExperiment", async () => {
     const response: supertest.Response = await supertest(app).get(
       `${experimentApi}/TopStoriesVisualExperiment/404/tablet`
     );
@@ -48,6 +48,6 @@ describe('Experiment API', () => {
     const { text, status } = response;
 
     expect(status).toBe(200);
-    expect(text).toBe('control');
+    expect(text).toBe("control");
   });
 });

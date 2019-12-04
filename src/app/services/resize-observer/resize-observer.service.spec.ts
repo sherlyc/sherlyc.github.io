@@ -1,14 +1,14 @@
-import { TestBed } from '@angular/core/testing';
-import { mockService, ServiceMock } from '../mocks/MockService';
-import { RuntimeService } from '../runtime/runtime.service';
-import { ResizeObserverService } from './resize-observer.service';
-import { EventEmitter } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { TestBed } from "@angular/core/testing";
+import { mockService, ServiceMock } from "../mocks/MockService";
+import { RuntimeService } from "../runtime/runtime.service";
+import { ResizeObserverService } from "./resize-observer.service";
+import { EventEmitter } from "@angular/core";
+import { Observable, Subscription } from "rxjs";
 
 let triggerResize: Function;
 let observed: any[] = [];
 
-jest.mock('resize-observer-polyfill', () => ({
+jest.mock("resize-observer-polyfill", () => ({
   default: class FakeResizeObserver {
     callback: Function;
 
@@ -40,7 +40,7 @@ const clearObservedElements = () => {
   observed = [];
 };
 
-describe('Resize Observer', () => {
+describe("Resize Observer", () => {
   let runtimeService: ServiceMock<RuntimeService>;
   let resizeObserverService: ServiceMock<ResizeObserverService>;
 
@@ -58,11 +58,11 @@ describe('Resize Observer', () => {
     clearObservedElements();
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(resizeObserverService).toBeTruthy();
   });
 
-  it('should emit an event when observed element is resized', (done) => {
+  it("should emit an event when observed element is resized", (done) => {
     const service: ResizeObserverService = TestBed.get(ResizeObserverService);
     const ele = {} as Element;
 
@@ -74,14 +74,14 @@ describe('Resize Observer', () => {
     triggerResize();
   });
 
-  it('should not emit an event when an unobserved element is resized', () => {
+  it("should not emit an event when an unobserved element is resized", () => {
     const service: ResizeObserverService = TestBed.get(ResizeObserverService);
     const ele = {} as Element;
 
     const observable = service
       .observe(ele)
       .subscribe((event: ResizeObserverEntry) => {
-        fail('should not happen');
+        fail("should not happen");
       });
 
     observable.unsubscribe();

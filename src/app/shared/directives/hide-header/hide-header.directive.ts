@@ -1,8 +1,8 @@
-import { Directive, ElementRef, HostListener } from '@angular/core';
-import { RuntimeService } from '../../../services/runtime/runtime.service';
+import { Directive, ElementRef, HostListener } from "@angular/core";
+import { RuntimeService } from "../../../services/runtime/runtime.service";
 
 @Directive({
-  selector: '[appHideHeader]'
+  selector: "[appHideHeader]"
 })
 export class HideHeaderDirective {
   private windowScrollBefore = 0;
@@ -16,14 +16,14 @@ export class HideHeaderDirective {
 
     const style = this.element.style;
 
-    style.width = '100%';
-    style.position = 'fixed';
-    style.top = '0';
-    style.left = '0';
+    style.width = "100%";
+    style.position = "fixed";
+    style.top = "0";
+    style.left = "0";
     style.zIndex = 100;
   }
 
-  @HostListener('window:scroll') public windowScrolled() {
+  @HostListener("window:scroll") public windowScrolled() {
     if (this.isBrowser) {
       const elementHeight = this.element.offsetHeight;
       const windowScrollCurrent = window.pageYOffset;
@@ -37,7 +37,7 @@ export class HideHeaderDirective {
       } else {
         this.elementTop = Math.max(-elementHeight, newElementTop);
       }
-      this.element.style.transform = 'translateY(' + this.elementTop + 'px)';
+      this.element.style.transform = "translateY(" + this.elementTop + "px)";
       this.windowScrollBefore = windowScrollCurrent;
     }
   }

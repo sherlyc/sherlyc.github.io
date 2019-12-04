@@ -1,16 +1,16 @@
-import { TestBed } from '@angular/core/testing';
-import { AdService } from './ad.service';
-import { ConfigService } from '../config/config.service';
-import { mockService, ServiceMock } from '../mocks/MockService';
-import { ScriptInjectorService } from '../script-injector/script-injector.service';
-import { DOCUMENT } from '@angular/common';
-import { of, throwError } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { LoggerService } from '../logger/logger.service';
-import { RuntimeService } from '../runtime/runtime.service';
-import { FeatureSwitchService } from '../feature-switch/feature-switch.service';
+import { TestBed } from "@angular/core/testing";
+import { AdService } from "./ad.service";
+import { ConfigService } from "../config/config.service";
+import { mockService, ServiceMock } from "../mocks/MockService";
+import { ScriptInjectorService } from "../script-injector/script-injector.service";
+import { DOCUMENT } from "@angular/common";
+import { of, throwError } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { LoggerService } from "../logger/logger.service";
+import { RuntimeService } from "../runtime/runtime.service";
+import { FeatureSwitchService } from "../feature-switch/feature-switch.service";
 
-describe('AdService', () => {
+describe("AdService", () => {
   let scriptInjectorService: ServiceMock<ScriptInjectorService>;
   let configMock: ServiceMock<ConfigService>;
   let httpClient: ServiceMock<HttpClient>;
@@ -56,29 +56,29 @@ describe('AdService', () => {
     featureSwitch = TestBed.get(FeatureSwitchService);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(adService).toBeTruthy();
   });
 
-  it('should delegate to script injector to load the script on setup', async () => {
-    const aadSdkUrl = 'http://whatever_url/';
+  it("should delegate to script injector to load the script on setup", async () => {
+    const aadSdkUrl = "http://whatever_url/";
     configMock.getConfig.mockReturnValue({ aadSdkUrl });
     httpClient.get.mockReturnValue(of({ url: aadSdkUrl }));
     await adService.setup();
     expect(scriptInjectorService.load).toHaveBeenCalledWith(
-      'aad-sdk',
+      "aad-sdk",
       aadSdkUrl
     );
   });
 
-  describe('when AdsRelativePositioning feature is on', () => {
+  describe("when AdsRelativePositioning feature is on", () => {
     const isFeatureOn = true;
 
     beforeEach(() => {
       featureSwitch.getFeature.mockResolvedValue(isFeatureOn);
     });
 
-    it('should notify the adnostic sdk with a custom event that has relativePositioning switched on', async () => {
+    it("should notify the adnostic sdk with a custom event that has relativePositioning switched on", async () => {
       const document: Document = TestBed.get(DOCUMENT);
       document.dispatchEvent = jest.fn();
 
@@ -88,19 +88,19 @@ describe('AdService', () => {
       const [
         [dispatchedEvent]
       ] = (document.dispatchEvent as jest.Mock).mock.calls;
-      expect((dispatchedEvent as CustomEvent).type).toBe('NavigationEnd');
+      expect((dispatchedEvent as CustomEvent).type).toBe("NavigationEnd");
       expect((dispatchedEvent as CustomEvent).detail).toEqual({
         relativePositioning: true
       });
     });
   });
 
-  describe('when AdsRelativePositioning feature is off', () => {
+  describe("when AdsRelativePositioning feature is off", () => {
     beforeEach(() => {
       featureSwitch.getFeature.mockResolvedValue(false);
     });
 
-    it('should notify the adnostic sdk with event', async () => {
+    it("should notify the adnostic sdk with event", async () => {
       const document: Document = TestBed.get(DOCUMENT);
       document.dispatchEvent = jest.fn();
 
@@ -110,10 +110,10 @@ describe('AdService', () => {
       const [
         [dispatchedEvent]
       ] = (document.dispatchEvent as jest.Mock).mock.calls;
-      expect((dispatchedEvent as Event).type).toBe('NavigationEnd');
+      expect((dispatchedEvent as Event).type).toBe("NavigationEnd");
     });
 
-    it('should notify the adnostic sdk in IE11 initialised event', async () => {
+    it("should notify the adnostic sdk in IE11 initialised event", async () => {
       const document: ServiceMock<Document> = TestBed.get(DOCUMENT);
       document.dispatchEvent = jest.fn();
       document.createEvent = jest.fn();
@@ -125,9 +125,9 @@ describe('AdService', () => {
 
       await adService.notify();
 
-      expect(document.createEvent).toHaveBeenCalledWith('Event');
+      expect(document.createEvent).toHaveBeenCalledWith("Event");
       expect(fakeEvent.initEvent).toHaveBeenCalledWith(
-        'NavigationEnd',
+        "NavigationEnd",
         true,
         true
       );

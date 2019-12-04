@@ -1,18 +1,18 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
-import { IFooter } from '../../../../common/__types__/IFooter';
-import { AnalyticsService } from '../../services/analytics/analytics.service';
-import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
-import { CookieService } from '../../services/cookie/cookie.service';
-import { ScriptInjectorService } from '../../services/script-injector/script-injector.service';
-import { ScriptId } from '../../services/script-injector/__types__/ScriptId';
-import { Position } from '../../services/script-injector/__types__/Position';
-import { WindowService } from '../../services/window/window.service';
+import { Component, Input, OnInit } from "@angular/core";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
+import { IFooter } from "../../../../common/__types__/IFooter";
+import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { CookieService } from "../../services/cookie/cookie.service";
+import { ScriptInjectorService } from "../../services/script-injector/script-injector.service";
+import { ScriptId } from "../../services/script-injector/__types__/ScriptId";
+import { Position } from "../../services/script-injector/__types__/Position";
+import { WindowService } from "../../services/window/window.service";
 
 @Component({
-  selector: 'app-footer',
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss']
+  selector: "app-footer",
+  templateUrl: "./footer.component.html",
+  styleUrls: ["./footer.component.scss"]
 })
 export class FooterComponent implements IContentBlockComponent, OnInit {
   constructor(
@@ -22,7 +22,7 @@ export class FooterComponent implements IContentBlockComponent, OnInit {
     private windowService: WindowService
   ) {}
   @Input() input!: IFooter;
-  shieldedSiteId = 'shielded-site';
+  shieldedSiteId = "shielded-site";
 
   ngOnInit() {
     this.setupShieldedSite();
@@ -31,7 +31,7 @@ export class FooterComponent implements IContentBlockComponent, OnInit {
   async setupShieldedSite() {
     await this.scriptInjectorService.load(
       ScriptId.shieldedSite,
-      'https://d3f5l8ze0o4j2m.cloudfront.net/m87/k33spt.js',
+      "https://d3f5l8ze0o4j2m.cloudfront.net/m87/k33spt.js",
       Position.BOTTOM
     );
 
@@ -57,9 +57,9 @@ export class FooterComponent implements IContentBlockComponent, OnInit {
     const now = new Date();
     now.setFullYear(now.getFullYear() + 1);
 
-    this.cookieService.set('site-view', 'd', {
-      domain: '.stuff.co.nz',
-      path: '/',
+    this.cookieService.set("site-view", "d", {
+      domain: ".stuff.co.nz",
+      path: "/",
       expires: now
     });
   }

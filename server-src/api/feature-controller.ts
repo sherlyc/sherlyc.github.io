@@ -1,8 +1,8 @@
-import { Request, Response } from 'express';
-import { isFeatureEnabled } from '../services/adapters/feature/feature';
-import logger from '../services/utils/logger';
-import { DeviceType } from '../../common/DeviceType';
-import { FeatureName } from '../../common/FeatureName';
+import { Request, Response } from "express";
+import { isFeatureEnabled } from "../services/adapters/feature/feature";
+import logger from "../services/utils/logger";
+import { DeviceType } from "../../common/DeviceType";
+import { FeatureName } from "../../common/FeatureName";
 
 function validateRequest(
   name: string,

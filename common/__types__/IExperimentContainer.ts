@@ -1,5 +1,5 @@
-import { ContentBlockType } from './ContentBlockType';
-import { IContentBlock } from './IContentBlock';
+import { ContentBlockType } from "./ContentBlockType";
+import { IContentBlock } from "./IContentBlock";
 
 export interface IExperimentContainer {
   type: ContentBlockType.ExperimentContainer;

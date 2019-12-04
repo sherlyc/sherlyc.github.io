@@ -1,8 +1,8 @@
-import { IParams } from '../services/__types__/IParams';
-import { Request, Response } from 'express';
-import http from '../services/utils/http';
-import config from '../services/utils/config';
-import logger from '../services/utils/logger';
+import { IParams } from "../services/__types__/IParams";
+import { Request, Response } from "express";
+import http from "../services/utils/http";
+import config from "../services/utils/config";
+import logger from "../services/utils/logger";
 
 const fullHealthCheck = async (params: IParams) => {
   const jsonFeed: URL = new URL(`${config.jsonFeedAPI}?limit=1`);
@@ -17,10 +17,10 @@ const fullHealthCheck = async (params: IParams) => {
 };
 
 export const healthCheck = async (req: Request, res: Response) => {
-  if (req.params.type === 'full') {
+  if (req.params.type === "full") {
     try {
       await fullHealthCheck(req.spadeParams);
-      res.status(200).send('Full Health Check Successful');
+      res.status(200).send("Full Health Check Successful");
     } catch (err) {
       logger.error(
         req.spadeParams.apiRequestId,
@@ -28,7 +28,7 @@ export const healthCheck = async (req: Request, res: Response) => {
       );
       res.sendStatus(500);
     }
-  } else if (req.params.type === 'light') {
-    res.status(200).send('Light Health Check Successful');
+  } else if (req.params.type === "light") {
+    res.status(200).send("Light Health Check Successful");
   }
 };

@@ -1,13 +1,13 @@
-import { Request, Response } from 'express';
-import { IBasicAdUnit } from '../../common/__types__/IBasicAdUnit';
-import { IBasicArticleTitleUnit } from '../../common/__types__/IBasicArticleTitleUnit';
-import { IContentBlock } from '../../common/__types__/IContentBlock';
-import { getRecommendedArticles } from '../services/adapters/recommendations/recommendations.service';
-import { IRawArticle } from '../services/adapters/__types__/IRawArticle';
-import { IBasicArticleUnit } from '../../common/__types__/IBasicArticleUnit';
-import { ContentBlockType } from '../../common/__types__/ContentBlockType';
+import { Request, Response } from "express";
+import { IBasicAdUnit } from "../../common/__types__/IBasicAdUnit";
+import { IBasicArticleTitleUnit } from "../../common/__types__/IBasicArticleTitleUnit";
+import { IContentBlock } from "../../common/__types__/IContentBlock";
+import { getRecommendedArticles } from "../services/adapters/recommendations/recommendations.service";
+import { IRawArticle } from "../services/adapters/__types__/IRawArticle";
+import { IBasicArticleUnit } from "../../common/__types__/IBasicArticleUnit";
+import { ContentBlockType } from "../../common/__types__/ContentBlockType";
 
-const strapName = 'Recommendations';
+const strapName = "Recommendations";
 
 const basicArticleUnit = (article: IRawArticle): IBasicArticleUnit => ({
   type: ContentBlockType.BasicArticleUnit,

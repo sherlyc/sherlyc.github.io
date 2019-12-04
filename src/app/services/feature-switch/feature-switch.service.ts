@@ -1,17 +1,17 @@
-import { Injectable } from '@angular/core';
-import { FeatureName } from '../../../../common/FeatureName';
-import { StoreService } from '../store/store.service';
-import { ConfigService } from '../config/config.service';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { RuntimeService } from '../runtime/runtime.service';
-import { LottoService } from '../lotto/lotto.service';
-import { LoggerService } from '../logger/logger.service';
-import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { DeviceService } from '../device/device.service';
+import { Injectable } from "@angular/core";
+import { FeatureName } from "../../../../common/FeatureName";
+import { StoreService } from "../store/store.service";
+import { ConfigService } from "../config/config.service";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { RuntimeService } from "../runtime/runtime.service";
+import { LottoService } from "../lotto/lotto.service";
+import { LoggerService } from "../logger/logger.service";
+import { Observable, of } from "rxjs";
+import { catchError } from "rxjs/operators";
+import { DeviceService } from "../device/device.service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class FeatureSwitchService {
   constructor(

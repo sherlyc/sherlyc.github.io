@@ -1,7 +1,7 @@
-import { IJsonFeedArticle } from '../__types__/IJsonFeedArticle';
-import { IJsonFeedUrl } from '../__types__/IJsonFeedUrl';
-import { JsonFeedImageType } from '../__types__/JsonFeedImageType';
-import { IImageVariant } from '../__types__/IImageVariant';
+import { IJsonFeedArticle } from "../__types__/IJsonFeedArticle";
+import { IJsonFeedUrl } from "../__types__/IJsonFeedUrl";
+import { JsonFeedImageType } from "../__types__/JsonFeedImageType";
+import { IImageVariant } from "../__types__/IImageVariant";
 
 function findImage(
   item: IJsonFeedArticle | IJsonFeedUrl,
@@ -52,13 +52,13 @@ export function getStrapImageSrc(
 }
 
 function getImageWidth(dimensions: string) {
-  return `${dimensions.split('x')[0]}w`;
+  return `${dimensions.split("x")[0]}w`;
 }
 
 function getImageSrcSetString(imageUrls: Object) {
   return Object.entries(imageUrls)
     .map(([size, src]) => `${src} ${getImageWidth(size)}`)
-    .join(', ');
+    .join(", ");
 }
 
 export function getThumbnailSrcSet(item: IJsonFeedArticle | IJsonFeedUrl) {

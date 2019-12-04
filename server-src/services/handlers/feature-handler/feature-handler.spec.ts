@@ -1,29 +1,29 @@
-import featureHandler from './feature-handler';
-import { HandlerInputType } from '../__types__/HandlerInputType';
-import { IParams } from '../../__types__/IParams';
-import { IFeatureContainer } from '../../../../common/__types__/IFeatureContainer';
-import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { IExternalContentUnit } from '../../../../common/__types__/IExternalContentUnit';
-import { FeatureName } from '../../../../common/FeatureName';
-import { IExternalContentHandlerInput } from '../__types__/IExternalContentHandlerInput';
+import featureHandler from "./feature-handler";
+import { HandlerInputType } from "../__types__/HandlerInputType";
+import { IParams } from "../../__types__/IParams";
+import { IFeatureContainer } from "../../../../common/__types__/IFeatureContainer";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IExternalContentUnit } from "../../../../common/__types__/IExternalContentUnit";
+import { FeatureName } from "../../../../common/FeatureName";
+import { IExternalContentHandlerInput } from "../__types__/IExternalContentHandlerInput";
 
-describe('Feature Handler', () => {
-  const params: IParams = { apiRequestId: 'request-id-for-testing' };
+describe("Feature Handler", () => {
+  const params: IParams = { apiRequestId: "request-id-for-testing" };
 
-  it('should return specified content block', async () => {
+  it("should return specified content block", async () => {
     const handlerRunnerMock = jest.fn();
     const fakeBlock = {
       type: ContentBlockType.ExternalContentUnit,
-      url: '/abc',
-      width: '200px',
-      height: '100%'
+      url: "/abc",
+      width: "200px",
+      height: "100%"
     } as IExternalContentUnit;
     handlerRunnerMock.mockResolvedValue([fakeBlock]);
 
     const expectedResult: IFeatureContainer = {
       type: ContentBlockType.FeatureContainer,
       // @ts-ignore
-      name: 'fake',
+      name: "fake",
       content: [fakeBlock]
     };
 
@@ -32,12 +32,12 @@ describe('Feature Handler', () => {
       {
         type: HandlerInputType.Feature,
         // @ts-ignore
-        name: 'fake',
+        name: "fake",
         content: {
           type: HandlerInputType.ExternalContent,
-          url: '/abc',
-          width: '200px',
-          height: '100%'
+          url: "/abc",
+          width: "200px",
+          height: "100%"
         } as IExternalContentHandlerInput
       },
       params
