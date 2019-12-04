@@ -36,7 +36,7 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
         display: "-ms-grid"
       },
 
-      msGridColumn: gridConfig.gridTemplateColumns,
+      msGridColumns: gridConfig.gridTemplateColumns,
       gridTemplateColumns: gridConfig.gridTemplateColumns,
       gridTemplateRows: gridConfig.gridTemplateRows,
       gridGap: gridConfig.gridGap,

@@ -129,7 +129,7 @@ describe("GridContainerComponent", () => {
           "gridGap": "0",
           "gridTemplateColumns": "1fr 20px 1fr 20px 1fr 20px 1fr",
           "gridTemplateRows": "auto",
-          "msGridColumn": "1fr 20px 1fr 20px 1fr 20px 1fr",
+          "msGridColumns": "1fr 20px 1fr 20px 1fr 20px 1fr",
         },
         "@media only screen and (min-width: 75em)": Object {
           " > :nth-child(1)": Object {
@@ -149,13 +149,13 @@ describe("GridContainerComponent", () => {
           "gridGap": "0",
           "gridTemplateColumns": "1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px",
           "gridTemplateRows": "auto",
-          "msGridColumn": "1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px",
+          "msGridColumns": "1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px",
         },
         "display": "grid",
         "gridGap": "0",
         "gridTemplateColumns": "1fr",
         "gridTemplateRows": "auto",
-        "msGridColumn": "1fr",
+        "msGridColumns": "1fr",
       }
     `);
   });
