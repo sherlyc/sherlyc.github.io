@@ -1,13 +1,13 @@
-import { Component, Input } from '@angular/core';
-import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
-import { IDefconArticleUnit } from '../../../../common/__types__/IDefconArticleUnit';
-import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
-import { AnalyticsService } from '../../services/analytics/analytics.service';
+import { Component, Input } from "@angular/core";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
+import { IDefconArticleUnit } from "../../../../common/__types__/IDefconArticleUnit";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { AnalyticsService } from "../../services/analytics/analytics.service";
 
 @Component({
-  selector: 'app-gray-defcon-article-unit-component',
-  templateUrl: './gray-defcon-article-unit.component.html',
-  styleUrls: ['./gray-defcon-article-unit.component.scss']
+  selector: "app-gray-defcon-article-unit-component",
+  templateUrl: "./gray-defcon-article-unit.component.html",
+  styleUrls: ["./gray-defcon-article-unit.component.scss"]
 })
 export class GrayDefconArticleUnitComponent implements IContentBlockComponent {
   @Input() input!: IDefconArticleUnit;

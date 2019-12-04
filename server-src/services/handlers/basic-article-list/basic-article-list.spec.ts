@@ -1,92 +1,92 @@
-import basicArticleListHandler from './basic-article-list';
-import { IParams } from '../../__types__/IParams';
-import { HandlerInputType } from '../__types__/HandlerInputType';
-import { Strap } from '../../strap';
-import { Section } from '../../section';
-import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
-import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { IBasicArticleTitleUnit } from '../../../../common/__types__/IBasicArticleTitleUnit';
-import { getRawArticles } from '../../adapters/article-retriever/article-retriever';
-import logger from '../../utils/logger';
+import basicArticleListHandler from "./basic-article-list";
+import { IParams } from "../../__types__/IParams";
+import { HandlerInputType } from "../__types__/HandlerInputType";
+import { Strap } from "../../strap";
+import { Section } from "../../section";
+import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IBasicArticleTitleUnit } from "../../../../common/__types__/IBasicArticleTitleUnit";
+import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
+import logger from "../../utils/logger";
 
-jest.mock('../../adapters/article-retriever/article-retriever');
-jest.mock('../../utils/logger');
+jest.mock("../../adapters/article-retriever/article-retriever");
+jest.mock("../../utils/logger");
 
-describe('BasicArticleListHandler', () => {
-  const params: IParams = { apiRequestId: 'request-id-for-testing' };
-  const strapName = 'Example strap name';
+describe("BasicArticleListHandler", () => {
+  const params: IParams = { apiRequestId: "request-id-for-testing" };
+  const strapName = "Example strap name";
 
   const adUnitWithContext = {
-    type: 'BasicAdUnit',
+    type: "BasicAdUnit",
     context: strapName
   };
 
   const articleOne = {
-    id: '1',
-    indexHeadline: 'Headline 1',
-    title: 'Title One',
-    introText: 'Intro 1',
-    linkUrl: '/link1',
+    id: "1",
+    indexHeadline: "Headline 1",
+    title: "Title One",
+    introText: "Intro 1",
+    linkUrl: "/link1",
     defconSrc: null,
-    imageSrc: '1.jpg',
-    imageSrcSet: '1.jpg 1w',
-    strapImageSrc: 'strap1.jpg',
-    strapImageSrcSet: 'strap1.jpg 1w',
+    imageSrc: "1.jpg",
+    imageSrcSet: "1.jpg 1w",
+    strapImageSrc: "strap1.jpg",
+    strapImageSrcSet: "strap1.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: []
   };
 
   const articleTwo = {
-    id: '2',
-    indexHeadline: 'Headline 2',
-    title: 'Title Two',
-    introText: 'Intro 2',
-    linkUrl: '/link2',
+    id: "2",
+    indexHeadline: "Headline 2",
+    title: "Title Two",
+    introText: "Intro 2",
+    linkUrl: "/link2",
     defconSrc: null,
-    imageSrc: '2.jpg',
-    imageSrcSet: '2.jpg 2w',
-    strapImageSrc: 'strap2.jpg',
-    strapImageSrcSet: 'strap2.jpg 1w',
+    imageSrc: "2.jpg",
+    imageSrcSet: "2.jpg 2w",
+    strapImageSrc: "strap2.jpg",
+    strapImageSrcSet: "strap2.jpg 1w",
     lastPublishedTime: 2,
     headlineFlags: []
   };
 
   const articleOneAsBasicArticle: IBasicArticleUnit = {
     type: ContentBlockType.BasicArticleUnit,
-    id: '1',
+    id: "1",
     strapName,
-    indexHeadline: 'Headline 1',
-    title: 'Title One',
-    introText: 'Intro 1',
-    linkUrl: '/link1',
-    imageSrc: '1.jpg',
-    imageSrcSet: '1.jpg 1w',
+    indexHeadline: "Headline 1",
+    title: "Title One",
+    introText: "Intro 1",
+    linkUrl: "/link1",
+    imageSrc: "1.jpg",
+    imageSrcSet: "1.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: []
   };
 
   const articleTwoAsBasicArticle: IBasicArticleUnit = {
     type: ContentBlockType.BasicArticleUnit,
-    id: '2',
+    id: "2",
     strapName,
-    indexHeadline: 'Headline 2',
-    title: 'Title Two',
-    introText: 'Intro 2',
-    linkUrl: '/link2',
-    imageSrc: '2.jpg',
-    imageSrcSet: '2.jpg 2w',
+    indexHeadline: "Headline 2",
+    title: "Title Two",
+    introText: "Intro 2",
+    linkUrl: "/link2",
+    imageSrc: "2.jpg",
+    imageSrcSet: "2.jpg 2w",
     lastPublishedTime: 2,
     headlineFlags: []
   };
 
   const articleTwoAsBasicArticleTitle: IBasicArticleTitleUnit = {
     type: ContentBlockType.BasicArticleTitleUnit,
-    id: '2',
+    id: "2",
     strapName,
-    indexHeadline: 'Headline 2',
-    title: 'Title Two',
+    indexHeadline: "Headline 2",
+    title: "Title Two",
     lastPublishedTime: 2,
-    linkUrl: '/link2',
+    linkUrl: "/link2",
     headlineFlags: []
   };
 
@@ -94,7 +94,7 @@ describe('BasicArticleListHandler', () => {
     jest.resetModules();
   });
 
-  it('should get a list of basic article units and ad units', async () => {
+  it("should get a list of basic article units and ad units", async () => {
     const expectedContentBlocks = [
       adUnitWithContext,
       articleOneAsBasicArticle,
@@ -119,7 +119,7 @@ describe('BasicArticleListHandler', () => {
     expect(contentBlocks).toEqual(expectedContentBlocks);
   });
 
-  it('should get a list of basic article units and ad units not exceeding the maximum length', async () => {
+  it("should get a list of basic article units and ad units not exceeding the maximum length", async () => {
     const expectedContentBlocks = [
       adUnitWithContext,
       articleOneAsBasicArticle,
@@ -146,7 +146,7 @@ describe('BasicArticleListHandler', () => {
     expect(contentBlocks).toEqual(expectedContentBlocks);
   });
 
-  it('should get one basic article unit, one basic article title unit, and ad units', async () => {
+  it("should get one basic article unit, one basic article title unit, and ad units", async () => {
     const expectContentBlocks = [
       adUnitWithContext,
       articleOneAsBasicArticle,
@@ -174,7 +174,7 @@ describe('BasicArticleListHandler', () => {
     expect(contentBlocks).toEqual(expectContentBlocks);
   });
 
-  it('should get multiple basic article units and multiple articles title units', async () => {
+  it("should get multiple basic article units and multiple articles title units", async () => {
     const expectedContentBlocks = [
       adUnitWithContext,
       articleTwoAsBasicArticle,
@@ -204,8 +204,8 @@ describe('BasicArticleListHandler', () => {
     expect(contentBlocks).toEqual(expectedContentBlocks);
   });
 
-  it('should log sourceId and throw error when failing to retrieve articles', async () => {
-    const error = new Error('failed to retrieve');
+  it("should log sourceId and throw error when failing to retrieve articles", async () => {
+    const error = new Error("failed to retrieve");
     (getRawArticles as jest.Mock).mockRejectedValue(error);
     const sourceId = Strap.Business;
 

@@ -1,4 +1,4 @@
-import { HeadlineFlags } from '../../../../common/HeadlineFlags';
+import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 
 export interface IRawArticle {
   id: string;

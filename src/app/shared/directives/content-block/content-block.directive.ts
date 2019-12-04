@@ -5,17 +5,17 @@ import {
   OnChanges,
   SimpleChanges,
   ViewContainerRef
-} from '@angular/core';
-import { IContentBlock } from '../../../../../common/__types__/IContentBlock';
-import { LoggerService } from '../../../services/logger/logger.service';
-import registry from '../../../content-blocks/content-blocks.registry';
-import { IContentBlockComponent } from '../../../content-blocks/__types__/IContentBlockComponent';
+} from "@angular/core";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { LoggerService } from "../../../services/logger/logger.service";
+import registry from "../../../content-blocks/content-blocks.registry";
+import { IContentBlockComponent } from "../../../content-blocks/__types__/IContentBlockComponent";
 
 @Directive({
-  selector: '[appContentBlock]'
+  selector: "[appContentBlock]"
 })
 export class ContentBlockDirective implements OnChanges {
-  @Input('appContentBlock')
+  @Input("appContentBlock")
   input!: IContentBlock | IContentBlock[];
 
   constructor(
@@ -25,7 +25,7 @@ export class ContentBlockDirective implements OnChanges {
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.hasOwnProperty('input')) {
+    if (changes.hasOwnProperty("input")) {
       this.viewContainerRef.clear();
       const inputs = Array.isArray(this.input) ? this.input : [this.input];
       if (inputs.length > 0) {

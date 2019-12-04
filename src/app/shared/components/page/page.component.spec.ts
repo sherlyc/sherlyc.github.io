@@ -1,22 +1,22 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { PageComponent } from './page.component';
-import { ContentRetrieverService } from '../../../services/content-retriever/content-retriever.service';
-import { of, throwError, Subject } from 'rxjs';
-import { By } from '@angular/platform-browser';
-import { RouterTestingModule } from '@angular/router/testing';
-import { NavigationStart } from '@angular/router';
-import { IContentBlock } from '../../../../../common/__types__/IContentBlock';
-import { mockService, ServiceMock } from '../../../services/mocks/MockService';
-import { AdService } from '../../../services/ad/ad.service';
-import { CorrelationService } from '../../../services/correlation/correlation.service';
-import { EventsService } from '../../../services/events/events.service';
-import { AnalyticsService } from '../../../services/analytics/analytics.service';
-import { LoggerService } from '../../../services/logger/logger.service';
-import { environment } from '../../../../environments/environment';
-import { RuntimeService } from '../../../services/runtime/runtime.service';
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { PageComponent } from "./page.component";
+import { ContentRetrieverService } from "../../../services/content-retriever/content-retriever.service";
+import { of, throwError, Subject } from "rxjs";
+import { By } from "@angular/platform-browser";
+import { RouterTestingModule } from "@angular/router/testing";
+import { NavigationStart } from "@angular/router";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { mockService, ServiceMock } from "../../../services/mocks/MockService";
+import { AdService } from "../../../services/ad/ad.service";
+import { CorrelationService } from "../../../services/correlation/correlation.service";
+import { EventsService } from "../../../services/events/events.service";
+import { AnalyticsService } from "../../../services/analytics/analytics.service";
+import { LoggerService } from "../../../services/logger/logger.service";
+import { environment } from "../../../../environments/environment";
+import { RuntimeService } from "../../../services/runtime/runtime.service";
 
-describe('PageComponent', () => {
+describe("PageComponent", () => {
   const originalVersion = environment.version;
   let component: PageComponent;
   let fixture: ComponentFixture<PageComponent>;
@@ -30,19 +30,19 @@ describe('PageComponent', () => {
 
   const mockContentBlocks: IContentBlock[] = ([
     {
-      type: 'FakeContentBlock'
+      type: "FakeContentBlock"
     },
     {
-      type: 'FakeContentBlock'
+      type: "FakeContentBlock"
     },
     {
-      type: 'FakeContentBlock'
+      type: "FakeContentBlock"
     },
     {
-      type: 'FakeContentBlock'
+      type: "FakeContentBlock"
     },
     {
-      type: 'FakeContentBlock'
+      type: "FakeContentBlock"
     }
   ] as any) as IContentBlock[];
 
@@ -109,22 +109,22 @@ describe('PageComponent', () => {
     environment.version = originalVersion;
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
     // initial state
     expect(component.contentBlocks).toHaveLength(0);
     expect(
-      fixture.debugElement.queryAll(By.css('.app-fake-content-block'))
+      fixture.debugElement.queryAll(By.css(".app-fake-content-block"))
     ).toHaveLength(0);
   });
 
-  it('should render a list of content block', () => {
+  it("should render a list of content block", () => {
     contentRetrieverMock.getContent.mockReturnValue(
       of({
-        title: '',
-        version: '',
+        title: "",
+        version: "",
         content: mockContentBlocks,
-        apiRequestId: ''
+        apiRequestId: ""
       })
     );
 
@@ -138,17 +138,17 @@ describe('PageComponent', () => {
   it('should render a list of content block when router navigates to "/"', () => {
     contentRetrieverMock.getContent.mockReturnValue(
       of({
-        title: '',
-        version: '',
+        title: "",
+        version: "",
         content: mockContentBlocks,
-        apiRequestId: ''
+        apiRequestId: ""
       })
     );
-    const getDataSpy = jest.spyOn(component, 'getData');
+    const getDataSpy = jest.spyOn(component, "getData");
 
     eventsServiceMock
       .getEventSubject()
-      .NavigationStart.next(new NavigationStart(0, '/'));
+      .NavigationStart.next(new NavigationStart(0, "/"));
     expect(getDataSpy).not.toHaveBeenCalled();
 
     fixture.detectChanges();
@@ -157,7 +157,7 @@ describe('PageComponent', () => {
 
     eventsServiceMock
       .getEventSubject()
-      .NavigationStart.next(new NavigationStart(0, '/'));
+      .NavigationStart.next(new NavigationStart(0, "/"));
     expect(getDataSpy).toBeCalledTimes(2);
     expect(contentRetrieverMock.getContent).toBeCalledTimes(2);
     fixture.detectChanges();
@@ -165,9 +165,9 @@ describe('PageComponent', () => {
     assertsForSuccessfulRetrieval();
   });
 
-  it('should not render any content block when the retriever fails to get content', () => {
+  it("should not render any content block when the retriever fails to get content", () => {
     contentRetrieverMock.getContent.mockReturnValue(
-      throwError('Something wrong when retrieving the content')
+      throwError("Something wrong when retrieving the content")
     );
 
     component.getData();
@@ -177,13 +177,13 @@ describe('PageComponent', () => {
 
   it('should not render any content block when router navigates to "/" but the retriever fails to get content', () => {
     contentRetrieverMock.getContent.mockReturnValue(
-      throwError('Something wrong when retrieving the content')
+      throwError("Something wrong when retrieving the content")
     );
-    const getDataSpy = jest.spyOn(component, 'getData');
+    const getDataSpy = jest.spyOn(component, "getData");
 
     eventsServiceMock
       .getEventSubject()
-      .NavigationStart.next(new NavigationStart(0, '/'));
+      .NavigationStart.next(new NavigationStart(0, "/"));
     expect(getDataSpy).not.toHaveBeenCalled();
 
     fixture.detectChanges();
@@ -192,18 +192,18 @@ describe('PageComponent', () => {
 
     eventsServiceMock
       .getEventSubject()
-      .NavigationStart.next(new NavigationStart(0, '/'));
+      .NavigationStart.next(new NavigationStart(0, "/"));
 
     assertsForFailedRetrieval();
   });
 
-  it('should notify ad sdk when page finish render', () => {
+  it("should notify ad sdk when page finish render", () => {
     contentRetrieverMock.getContent.mockReturnValue(
       of({
-        title: '',
-        version: '',
+        title: "",
+        version: "",
         content: mockContentBlocks,
-        apiRequestId: ''
+        apiRequestId: ""
       })
     );
     fixture.detectChanges();
@@ -211,13 +211,13 @@ describe('PageComponent', () => {
     expect(adServiceMock.notify).toHaveBeenCalled();
   });
 
-  it('should post nielsen tracking record when the page rendering finishes', () => {
+  it("should post nielsen tracking record when the page rendering finishes", () => {
     contentRetrieverMock.getContent.mockReturnValue(
       of({
-        title: '',
-        version: '',
+        title: "",
+        version: "",
         content: mockContentBlocks,
-        apiRequestId: ''
+        apiRequestId: ""
       })
     );
     fixture.detectChanges();
@@ -229,12 +229,12 @@ describe('PageComponent', () => {
     expect(component.contentBlocks).toHaveLength(mockContentBlocks.length);
     (component.contentBlocks as Array<{ type: string }>).forEach(
       (contentBlock) => {
-        expect(contentBlock.type).toEqual('FakeContentBlock');
+        expect(contentBlock.type).toEqual("FakeContentBlock");
       }
     );
 
     expect(
-      fixture.debugElement.queryAll(By.css('.app-fake-content-block'))
+      fixture.debugElement.queryAll(By.css(".app-fake-content-block"))
     ).toHaveLength(mockContentBlocks.length);
   }
 
@@ -242,7 +242,7 @@ describe('PageComponent', () => {
     expect(component.contentBlocks).toHaveLength(0);
 
     expect(
-      fixture.debugElement.queryAll(By.css('.app-fake-content-block'))
+      fixture.debugElement.queryAll(By.css(".app-fake-content-block"))
     ).toHaveLength(0);
   }
 });

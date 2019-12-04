@@ -1,46 +1,46 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { mockService, ServiceMock } from '../../services/mocks/MockService';
-import { AnalyticsService } from '../../services/analytics/analytics.service';
-import { BasicArticleSectionComponent } from './basic-article-section.component';
-import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { IBasicArticleSection } from '../../../../common/__types__/IBasicArticleSection';
-import { Section } from '../../../../server-src/services/section';
-import { ContentBlockDirective } from '../../shared/directives/content-block/content-block.directive';
-import { Component } from '@angular/core';
-import registry from '../content-blocks.registry';
-import { IContentBlock } from '../../../../common/__types__/IContentBlock';
-import { By, TransferState } from '@angular/platform-browser';
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
-import { OpenExternalLinkDirective } from '../../shared/directives/open-external-link/open-external-link.directive';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { mockService, ServiceMock } from "../../services/mocks/MockService";
+import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { BasicArticleSectionComponent } from "./basic-article-section.component";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IBasicArticleSection } from "../../../../common/__types__/IBasicArticleSection";
+import { Section } from "../../../../server-src/services/section";
+import { ContentBlockDirective } from "../../shared/directives/content-block/content-block.directive";
+import { Component } from "@angular/core";
+import registry from "../content-blocks.registry";
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import { By, TransferState } from "@angular/platform-browser";
+import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { OpenExternalLinkDirective } from "../../shared/directives/open-external-link/open-external-link.directive";
 
-describe('basic article section', () => {
+describe("basic article section", () => {
   let component: BasicArticleSectionComponent;
   let fixture: ComponentFixture<BasicArticleSectionComponent>;
   let analyticsService: ServiceMock<AnalyticsService>;
 
   // @ts-ignore
   const input = {
-    type: 'FakeContentBlock'
+    type: "FakeContentBlock"
   } as IContentBlock;
 
   @Component({
-    selector: 'app-fake-content-block',
-    template: ''
+    selector: "app-fake-content-block",
+    template: ""
   })
   class FakeContentBlockComponent {}
 
   const sectionData: IBasicArticleSection = {
     type: ContentBlockType.BasicArticleSection,
-    displayName: 'National',
-    displayNameColor: 'toreabay',
-    linkUrl: '/' + Section.National,
+    displayName: "National",
+    displayNameColor: "toreabay",
+    linkUrl: "/" + Section.National,
     items: [input, input, input, input]
   };
 
   beforeEach(async () => {
     // @ts-ignore
-    registry['FakeContentBlockComponent'] = FakeContentBlockComponent;
+    registry["FakeContentBlockComponent"] = FakeContentBlockComponent;
     await TestBed.configureTestingModule({
       declarations: [
         OpenExternalLinkDirective,
@@ -72,92 +72,92 @@ describe('basic article section', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render section headline as link when linkUrl is provided', () => {
+  it("should render section headline as link when linkUrl is provided", () => {
     const sectionArticleData: IBasicArticleSection = {
       type: ContentBlockType.BasicArticleSection,
       displayName: `National`,
-      displayNameColor: 'scarlet',
-      linkUrl: '/national',
+      displayNameColor: "scarlet",
+      linkUrl: "/national",
       items: []
     };
 
     component.input = sectionArticleData;
     fixture.detectChanges();
-    expect(fixture.debugElement.query(By.css('.headline-link'))).toBeTruthy();
+    expect(fixture.debugElement.query(By.css(".headline-link"))).toBeTruthy();
   });
 
-  it('should not render section headline as link when linkUrl is not provided', () => {
+  it("should not render section headline as link when linkUrl is not provided", () => {
     const sectionArticleData: IBasicArticleSection = {
       type: ContentBlockType.BasicArticleSection,
       displayName: `Editor's Pick`,
-      displayNameColor: 'scarlet',
+      displayNameColor: "scarlet",
       items: []
     };
 
     component.input = sectionArticleData;
     fixture.detectChanges();
-    expect(fixture.debugElement.query(By.css('.headline-link'))).toBeFalsy();
+    expect(fixture.debugElement.query(By.css(".headline-link"))).toBeFalsy();
   });
 
-  it('should render more button when linkUrl is provided', () => {
+  it("should render more button when linkUrl is provided", () => {
     const sectionArticleData: IBasicArticleSection = {
       type: ContentBlockType.BasicArticleSection,
       displayName: `National`,
-      displayNameColor: 'scarlet',
-      linkUrl: '/national',
+      displayNameColor: "scarlet",
+      linkUrl: "/national",
       items: []
     };
 
     component.input = sectionArticleData;
     fixture.detectChanges();
-    expect(fixture.debugElement.query(By.css('.more-button'))).toBeTruthy();
+    expect(fixture.debugElement.query(By.css(".more-button"))).toBeTruthy();
   });
 
-  it('should not render more button when linkUrl is not provided', () => {
+  it("should not render more button when linkUrl is not provided", () => {
     const sectionArticleData: IBasicArticleSection = {
       type: ContentBlockType.BasicArticleSection,
       displayName: `Editor's Pick`,
-      displayNameColor: 'scarlet',
+      displayNameColor: "scarlet",
       items: []
     };
 
     component.input = sectionArticleData;
     fixture.detectChanges();
-    expect(fixture.debugElement.query(By.css('.more-button'))).toBeFalsy();
+    expect(fixture.debugElement.query(By.css(".more-button"))).toBeFalsy();
   });
 
-  it('button should show the text `More National`', () => {
+  it("button should show the text `More National`", () => {
     component.input = sectionData;
     fixture.detectChanges();
 
     expect(
-      fixture.debugElement.query(By.css('.more-button')).nativeElement
+      fixture.debugElement.query(By.css(".more-button")).nativeElement
         .textContent
-    ).toBe('More National');
+    ).toBe("More National");
   });
 
-  it('should send right analytics when button `More National` is clicked', () => {
+  it("should send right analytics when button `More National` is clicked", () => {
     component.input = sectionData;
     fixture.detectChanges();
 
-    fixture.debugElement.query(By.css('.more-button')).nativeElement.click();
+    fixture.debugElement.query(By.css(".more-button")).nativeElement.click();
 
     expect(analyticsService.pushEvent).toHaveBeenCalledWith({
       type: AnalyticsEventsType.MORE_BUTTON_CLICKED,
-      url: '/national'
+      url: "/national"
     });
   });
 
-  it('should render content blocks', () => {
+  it("should render content blocks", () => {
     component.input = sectionData;
     fixture.detectChanges();
 
     const fakeContentBlocks = fixture.debugElement.queryAll(
-      By.css('app-fake-content-block')
+      By.css("app-fake-content-block")
     );
 
     expect(fakeContentBlocks.length).toBe(4);

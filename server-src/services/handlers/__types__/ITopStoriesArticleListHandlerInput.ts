@@ -1,4 +1,4 @@
-import { HandlerInputType } from './HandlerInputType';
+import { HandlerInputType } from "./HandlerInputType";
 
 export interface ITopStoriesArticleListHandlerInput {
   type: HandlerInputType.TopStoriesArticleList;

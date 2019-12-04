@@ -1,9 +1,9 @@
-version: '3.7'
+version: "3.7"
 services:
   expfrontend:
     image: ${DOCKER_URL}
     ports:
-      - '4000:4000'
+      - "4000:4000"
   puppet:
     build: ./smoke-test
     environment:

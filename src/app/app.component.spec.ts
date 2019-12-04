@@ -1,20 +1,20 @@
-import { TestBed, async } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
-import { AdService } from './services/ad/ad.service';
-import { mockService, ServiceMock } from './services/mocks/MockService';
-import { DtmService } from './services/dtm/dtm.service';
-import { AnalyticsService } from './services/analytics/analytics.service';
-import { ExperimentService } from './services/experiment/experiment.service';
-import { EventsService } from './services/events/events.service';
-import { BrowserOverrideService } from './services/browser-override/browser-override.service';
-import { NeighbourlyService } from './services/neighbourly/neighbourly.service';
-import { MetaTagsService } from './services/meta-tags/meta-tags.service';
-import { AuthenticationService } from './services/authentication/authentication.service';
-import { FeatureSwitchService } from './services/feature-switch/feature-switch.service';
-import { PwaService } from './services/pwa/pwa.service';
+import { TestBed, async } from "@angular/core/testing";
+import { RouterTestingModule } from "@angular/router/testing";
+import { AppComponent } from "./app.component";
+import { AdService } from "./services/ad/ad.service";
+import { mockService, ServiceMock } from "./services/mocks/MockService";
+import { DtmService } from "./services/dtm/dtm.service";
+import { AnalyticsService } from "./services/analytics/analytics.service";
+import { ExperimentService } from "./services/experiment/experiment.service";
+import { EventsService } from "./services/events/events.service";
+import { BrowserOverrideService } from "./services/browser-override/browser-override.service";
+import { NeighbourlyService } from "./services/neighbourly/neighbourly.service";
+import { MetaTagsService } from "./services/meta-tags/meta-tags.service";
+import { AuthenticationService } from "./services/authentication/authentication.service";
+import { FeatureSwitchService } from "./services/feature-switch/feature-switch.service";
+import { PwaService } from "./services/pwa/pwa.service";
 
-describe('AppComponent', () => {
+describe("AppComponent", () => {
   let adService: ServiceMock<AdService>;
   let eventsService: ServiceMock<EventsService>;
   let analyticsService: ServiceMock<AnalyticsService>;
@@ -90,7 +90,7 @@ describe('AppComponent', () => {
     pwaService = TestBed.get(PwaService);
   });
 
-  it('should create the app and set up services', async(() => {
+  it("should create the app and set up services", async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
 
@@ -107,57 +107,57 @@ describe('AppComponent', () => {
     expect(pwaService.setup).toHaveBeenCalled();
   }));
 
-  it('should check router outlet is present', async(() => {
+  it("should check router outlet is present", async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('router-outlet')).toBeTruthy();
+    expect(compiled.querySelector("router-outlet")).toBeTruthy();
   }));
 
-  it('should setup data layer service before dtm service', () => {
+  it("should setup data layer service before dtm service", () => {
     const serviceCallOrder: string[] = [];
     analyticsService.setup.mockImplementation(() => {
-      serviceCallOrder.push('analyticsService');
+      serviceCallOrder.push("analyticsService");
     });
     dtmService.setup.mockImplementation(async () => {
-      serviceCallOrder.push('dtmService');
+      serviceCallOrder.push("dtmService");
       return;
     });
 
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
 
-    expect(serviceCallOrder).toEqual(['analyticsService', 'dtmService']);
+    expect(serviceCallOrder).toEqual(["analyticsService", "dtmService"]);
   });
 
-  it('should setup analytics service before pwa service', () => {
+  it("should setup analytics service before pwa service", () => {
     const serviceCallOrder: string[] = [];
     analyticsService.setup.mockImplementation(() => {
-      serviceCallOrder.push('analyticsService');
+      serviceCallOrder.push("analyticsService");
     });
     pwaService.setup.mockImplementation(() => {
-      serviceCallOrder.push('pwaService');
+      serviceCallOrder.push("pwaService");
     });
 
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
 
-    expect(serviceCallOrder).toEqual(['analyticsService', 'pwaService']);
+    expect(serviceCallOrder).toEqual(["analyticsService", "pwaService"]);
   });
 
-  it('should setup feature service before ad service', () => {
+  it("should setup feature service before ad service", () => {
     const serviceCallOrder: string[] = [];
     featureSwitchService.setup.mockImplementation(() => {
-      serviceCallOrder.push('featureSwitchService');
+      serviceCallOrder.push("featureSwitchService");
     });
     adService.setup.mockImplementation(() => {
-      serviceCallOrder.push('adService');
+      serviceCallOrder.push("adService");
       return;
     });
 
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
 
-    expect(serviceCallOrder).toEqual(['featureSwitchService', 'adService']);
+    expect(serviceCallOrder).toEqual(["featureSwitchService", "adService"]);
   });
 });

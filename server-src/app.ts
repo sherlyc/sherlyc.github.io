@@ -1,15 +1,15 @@
 /* istanbul ignore file */
-import * as express from 'express';
-import * as cookieParser from 'cookie-parser';
-import extractParams from './services/params-extractor';
-import { IParams } from './services/__types__/IParams';
-import { getWeather } from './api/weather';
-import logger from './services/utils/logger';
-import { experimentController } from './api/experiment-controller';
-import { healthCheck } from './api/health-controller';
-import { featureController } from './api/feature-controller';
-import { getContent } from './services/content';
-import spadeApi from './spade-api';
+import * as express from "express";
+import * as cookieParser from "cookie-parser";
+import extractParams from "./services/params-extractor";
+import { IParams } from "./services/__types__/IParams";
+import { getWeather } from "./api/weather";
+import logger from "./services/utils/logger";
+import { experimentController } from "./api/experiment-controller";
+import { healthCheck } from "./api/health-controller";
+import { featureController } from "./api/feature-controller";
+import { getContent } from "./services/content";
+import spadeApi from "./spade-api";
 
 declare const global: {
   newrelic: any;
@@ -25,7 +25,7 @@ declare global {
 }
 
 const app = express();
-app.disable('x-powered-by');
+app.disable("x-powered-by");
 
 app.use(cookieParser());
 
@@ -34,7 +34,7 @@ app.use((req, res, next) => {
   if (global.newrelic) {
     try {
       global.newrelic.addCustomAttribute(
-        'apiRequestId',
+        "apiRequestId",
         req.spadeParams.apiRequestId
       );
     } catch (err) {
@@ -47,12 +47,12 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/spade/api', spadeApi);
+app.use("/spade/api", spadeApi);
 
-app.use('/health/:type', healthCheck);
+app.use("/health/:type", healthCheck);
 
-app.use('/version', (req, res) =>
-  res.send(`experience-frontend-${process.env.SPADE_VERSION || 'SNAPSHOT'}`)
+app.use("/version", (req, res) =>
+  res.send(`experience-frontend-${process.env.SPADE_VERSION || "SNAPSHOT"}`)
 );
 
 export default app;

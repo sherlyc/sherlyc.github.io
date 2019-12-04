@@ -1,16 +1,16 @@
-import { Inject, Injectable } from '@angular/core';
-import { ScriptInjectorService } from '../script-injector/script-injector.service';
-import { ScriptId } from '../script-injector/__types__/ScriptId';
-import { ConfigService } from '../config/config.service';
-import { WindowService } from '../window/window.service';
-import { RuntimeService } from '../runtime/runtime.service';
-import { LoadedEvent } from './__types__/LoadedEvent';
-import { DOCUMENT } from '@angular/common';
-import { FeatureSwitchService } from '../feature-switch/feature-switch.service';
-import { FeatureName } from '../../../../common/FeatureName';
+import { Inject, Injectable } from "@angular/core";
+import { ScriptInjectorService } from "../script-injector/script-injector.service";
+import { ScriptId } from "../script-injector/__types__/ScriptId";
+import { ConfigService } from "../config/config.service";
+import { WindowService } from "../window/window.service";
+import { RuntimeService } from "../runtime/runtime.service";
+import { LoadedEvent } from "./__types__/LoadedEvent";
+import { DOCUMENT } from "@angular/common";
+import { FeatureSwitchService } from "../feature-switch/feature-switch.service";
+import { FeatureName } from "../../../../common/FeatureName";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class DtmService {
   constructor(

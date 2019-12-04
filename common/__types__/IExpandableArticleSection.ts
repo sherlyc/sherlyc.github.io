@@ -1,5 +1,5 @@
-import { IContentBlock } from './IContentBlock';
-import { ContentBlockType } from './ContentBlockType';
+import { IContentBlock } from "./IContentBlock";
+import { ContentBlockType } from "./ContentBlockType";
 
 export interface IExpandableArticleSection {
   type: ContentBlockType.ExpandableArticleSection;

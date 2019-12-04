@@ -1,13 +1,13 @@
-import * as config from '../../config.json';
-import * as strapConfiguration from '../../strapConfig.json';
-import * as featureProd from '../../featuresConfig/features-prod.json';
-import * as featureStaging from '../../featuresConfig/features-staging.json';
-import * as featureDev from '../../featuresConfig/features-dev.json';
-import { IEnvironmentDefinition } from './__types__/IEnvironmentDefinition';
-import { IStrapConfigDefinition } from './__types__/IStrapConfigDefinition';
-import { IFeaturesConfig } from '../__types__/IFeaturesConfig';
+import * as config from "../../config.json";
+import * as strapConfiguration from "../../strapConfig.json";
+import * as featureProd from "../../featuresConfig/features-prod.json";
+import * as featureStaging from "../../featuresConfig/features-staging.json";
+import * as featureDev from "../../featuresConfig/features-dev.json";
+import { IEnvironmentDefinition } from "./__types__/IEnvironmentDefinition";
+import { IStrapConfigDefinition } from "./__types__/IStrapConfigDefinition";
+import { IFeaturesConfig } from "../__types__/IFeaturesConfig";
 
-const productionEnvName = 'production';
+const productionEnvName = "production";
 const environmentName: string = process.env.SPADE_ENV || productionEnvName;
 
 const loadStrapConfig = (): IStrapConfigDefinition => {

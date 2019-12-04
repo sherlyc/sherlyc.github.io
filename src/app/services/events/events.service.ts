@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { Router, Event as RouteEvent, NavigationStart } from '@angular/router';
-import { Subject } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { Router, Event as RouteEvent, NavigationStart } from "@angular/router";
+import { Subject } from "rxjs";
+import { filter } from "rxjs/operators";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class EventsService {
   private routerEvents = {

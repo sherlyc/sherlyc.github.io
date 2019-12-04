@@ -1,10 +1,10 @@
-import { TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
+import { TestBed } from "@angular/core/testing";
+import { Router } from "@angular/router";
 
-import { EventsService } from './events.service';
-import { RouterMock } from '../mocks/router.mock';
+import { EventsService } from "./events.service";
+import { RouterMock } from "../mocks/router.mock";
 
-describe('EventsService', () => {
+describe("EventsService", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
@@ -16,7 +16,7 @@ describe('EventsService', () => {
     });
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     const service: EventsService = TestBed.get(EventsService);
     expect(service).toBeTruthy();
   });

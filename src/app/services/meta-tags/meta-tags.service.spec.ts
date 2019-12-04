@@ -1,10 +1,10 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { MetaTagsService } from './meta-tags.service';
-import { mockService } from '../mocks/MockService';
-import { Meta } from '@angular/platform-browser';
+import { MetaTagsService } from "./meta-tags.service";
+import { mockService } from "../mocks/MockService";
+import { Meta } from "@angular/platform-browser";
 
-describe('MetaTagsService', () => {
+describe("MetaTagsService", () => {
   let meta: Meta;
   let metaService: MetaTagsService;
 
@@ -23,20 +23,20 @@ describe('MetaTagsService', () => {
     metaService = TestBed.get(MetaTagsService);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     const service: MetaTagsService = TestBed.get(MetaTagsService);
     expect(service).toBeTruthy();
   });
 
-  it('should create the general meta tags', () => {
+  it("should create the general meta tags", () => {
     const mockGeneralTags = [
       {
-        name: 'description',
-        content: 'test description'
+        name: "description",
+        content: "test description"
       },
       {
-        name: 'theme-color',
-        content: '#000000'
+        name: "theme-color",
+        content: "#000000"
       }
     ];
     metaService.getGeneralMetaTag = jest.fn(() => mockGeneralTags);
@@ -47,15 +47,15 @@ describe('MetaTagsService', () => {
     expect(meta.addTags).toHaveBeenNthCalledWith(1, mockGeneralTags);
   });
 
-  it('should create the social meta tags', () => {
+  it("should create the social meta tags", () => {
     const mockSocialTags = [
       {
-        name: 'fb:app_id',
-        content: '207633159308175'
+        name: "fb:app_id",
+        content: "207633159308175"
       },
       {
-        name: 'fb:pages',
-        content: '21253884267'
+        name: "fb:pages",
+        content: "21253884267"
       }
     ];
     metaService.getSocialMetaTags = jest.fn(() => mockSocialTags);

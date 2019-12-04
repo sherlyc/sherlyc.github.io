@@ -1,16 +1,16 @@
-import { ErrorHandler, Injectable } from '@angular/core';
-import { ConfigService } from '../config/config.service';
-import { BrowserClient, Hub } from '@sentry/browser';
-import { RewriteFrames } from '@sentry/integrations';
-import { CorrelationService } from '../correlation/correlation.service';
-import { RuntimeService } from '../runtime/runtime.service';
-import { environment } from '../../../environments/environment';
+import { ErrorHandler, Injectable } from "@angular/core";
+import { ConfigService } from "../config/config.service";
+import { BrowserClient, Hub } from "@sentry/browser";
+import { RewriteFrames } from "@sentry/integrations";
+import { CorrelationService } from "../correlation/correlation.service";
+import { RuntimeService } from "../runtime/runtime.service";
+import { environment } from "../../../environments/environment";
 interface ISpadeConsole extends Console {
   [key: string]: Function;
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class LoggerService implements ErrorHandler {
   client: Hub;
@@ -29,7 +29,7 @@ export class LoggerService implements ErrorHandler {
     );
   }
 
-  logLevels = ['debug', 'info', 'warn', 'error'];
+  logLevels = ["debug", "info", "warn", "error"];
 
   private log(logLevel: string, ...rest: any[]) {
     let currentLogLevelIndex = this.logLevels.indexOf(
@@ -50,7 +50,7 @@ export class LoggerService implements ErrorHandler {
             return `${item.name} ${item.message} ${JSON.stringify(
               item.stack
             )} ${item.toString && item.toString()}`;
-          } else if (typeof item === 'string') {
+          } else if (typeof item === "string") {
             return item;
           } else {
             return JSON.stringify(item);
@@ -65,11 +65,11 @@ export class LoggerService implements ErrorHandler {
   }
 
   debug(...messages: any[]) {
-    this.log('debug', ...messages);
+    this.log("debug", ...messages);
   }
 
   info(...messages: any[]) {
-    this.log('info', ...messages);
+    this.log("info", ...messages);
   }
 
   error(error: Error, ...rest: any[]) {
@@ -78,10 +78,10 @@ export class LoggerService implements ErrorHandler {
       scope.setTags(correlation as any);
     });
     this.client.captureException(error);
-    this.log('error', error, ...rest);
+    this.log("error", error, ...rest);
   }
 
   warn(...messages: any[]) {
-    this.log('warn', ...messages);
+    this.log("warn", ...messages);
   }
 }

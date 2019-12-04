@@ -1,4 +1,4 @@
-import { IContentBlock } from '../../../../common/__types__/IContentBlock';
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 
 export interface IContentBlockComponent {
   input: IContentBlock;

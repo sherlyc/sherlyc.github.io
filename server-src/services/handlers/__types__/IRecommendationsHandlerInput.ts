@@ -1,4 +1,4 @@
-import { HandlerInputType } from './HandlerInputType';
+import { HandlerInputType } from "./HandlerInputType";
 
 export interface IRecommendationsHandlerInput {
   type: HandlerInputType.Recommendations;

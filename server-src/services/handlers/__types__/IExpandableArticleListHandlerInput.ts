@@ -1,6 +1,6 @@
-import { HandlerInputType } from './HandlerInputType';
-import { Section } from '../../section';
-import { Strap } from '../../strap';
+import { HandlerInputType } from "./HandlerInputType";
+import { Section } from "../../section";
+import { Strap } from "../../strap";
 
 export interface IExpandableArticleListHandlerInput {
   type: HandlerInputType.ExpandableArticleList;

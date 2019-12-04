@@ -1,21 +1,21 @@
 import {
   HttpClientTestingModule,
   HttpTestingController
-} from '@angular/common/http/testing';
-import { TestBed } from '@angular/core/testing';
-import { CustomHttpParamsCodec } from '../../shared/custom-http-params-codec';
-import { ConfigService } from '../config/config.service';
-import { CookieService } from '../cookie/cookie.service';
-import { LoggerService } from '../logger/logger.service';
-import { mockService, ServiceMock } from '../mocks/MockService';
-import { RecommendationsService } from './recommendations.service';
-import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
-import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
+} from "@angular/common/http/testing";
+import { TestBed } from "@angular/core/testing";
+import { CustomHttpParamsCodec } from "../../shared/custom-http-params-codec";
+import { ConfigService } from "../config/config.service";
+import { CookieService } from "../cookie/cookie.service";
+import { LoggerService } from "../logger/logger.service";
+import { mockService, ServiceMock } from "../mocks/MockService";
+import { RecommendationsService } from "./recommendations.service";
+import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 
-jest.mock('../../shared/custom-http-params-codec');
+jest.mock("../../shared/custom-http-params-codec");
 
-describe('RecommendationsService', () => {
-  const recommendationsAPI = 'httpMock://localhost/recommendations';
+describe("RecommendationsService", () => {
+  const recommendationsAPI = "httpMock://localhost/recommendations";
 
   let recommendationsService: RecommendationsService;
   let configService: ServiceMock<ConfigService>;
@@ -25,14 +25,14 @@ describe('RecommendationsService', () => {
 
   const basicArticleUnit: IBasicArticleUnit = {
     type: ContentBlockType.BasicArticleUnit,
-    id: '1',
-    strapName: 'yup',
-    indexHeadline: 'yup',
-    title: 'yup',
-    introText: 'yup',
-    linkUrl: 'yup',
-    imageSrc: 'yup',
-    imageSrcSet: 'yup',
+    id: "1",
+    strapName: "yup",
+    indexHeadline: "yup",
+    title: "yup",
+    introText: "yup",
+    linkUrl: "yup",
+    imageSrc: "yup",
+    imageSrcSet: "yup",
     lastPublishedTime: 123,
     headlineFlags: []
   };
@@ -61,8 +61,8 @@ describe('RecommendationsService', () => {
     configService.getConfig.mockReturnValue({
       recommendationsAPI,
       recommendationsCookie: {
-        name: 'abc',
-        segments: ['a', 'b'],
+        name: "abc",
+        segments: ["a", "b"],
         limitPerSegment: 1
       }
     });
@@ -72,17 +72,17 @@ describe('RecommendationsService', () => {
     jest.clearAllMocks();
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(recommendationsService).toBeTruthy();
   });
 
-  it('should encode segments parameter when getting recommendations', () => {
+  it("should encode segments parameter when getting recommendations", () => {
     recommendationsService.getRecommendations(2, 3);
     expect(CustomHttpParamsCodec).toHaveBeenCalled();
   });
 
-  it('should get recommendations', () => {
-    cookieService.get.mockReturnValue('a=123;b=456;c=789');
+  it("should get recommendations", () => {
+    cookieService.get.mockReturnValue("a=123;b=456;c=789");
     const articles = [basicArticleUnit, basicArticleUnit];
 
     recommendationsService.getRecommendations(2, 3).subscribe((res) => {
@@ -91,11 +91,11 @@ describe('RecommendationsService', () => {
 
     httpMock
       .expectOne((req) => {
-        expect(req.method).toBe('GET');
+        expect(req.method).toBe("GET");
         expect(req.url).toBe(recommendationsAPI);
-        expect(req.params.get('segments')).toBe('a=123;b=456');
-        expect(req.params.get('totalBasicArticlesUnit')).toBe('2');
-        expect(req.params.get('totalBasicArticleTitleUnit')).toBe('3');
+        expect(req.params.get("segments")).toBe("a=123;b=456");
+        expect(req.params.get("totalBasicArticlesUnit")).toBe("2");
+        expect(req.params.get("totalBasicArticleTitleUnit")).toBe("3");
         return true;
       })
       .flush(articles);
@@ -103,9 +103,9 @@ describe('RecommendationsService', () => {
     httpMock.verify();
   });
 
-  it('should get recommendations when cookie is undefined', () => {
+  it("should get recommendations when cookie is undefined", () => {
     cookieService.get.mockReturnValue(undefined);
-    const articles = ['article one'];
+    const articles = ["article one"];
 
     recommendationsService.getRecommendations(2, 3).subscribe((res) => {
       expect(res).toEqual(articles);
@@ -113,9 +113,9 @@ describe('RecommendationsService', () => {
 
     httpMock
       .expectOne((req) => {
-        expect(req.method).toBe('GET');
+        expect(req.method).toBe("GET");
         expect(req.url).toBe(recommendationsAPI);
-        expect(req.params.get('segments')).toBe('');
+        expect(req.params.get("segments")).toBe("");
         return true;
       })
       .flush(articles);
@@ -123,7 +123,7 @@ describe('RecommendationsService', () => {
     httpMock.verify();
   });
 
-  it('should log warning and throw error when api fails', (done) => {
+  it("should log warning and throw error when api fails", (done) => {
     recommendationsService.getRecommendations(2, 3).subscribe({
       error: () => {
         expect(loggerService.warn).toHaveBeenCalled();
@@ -133,20 +133,20 @@ describe('RecommendationsService', () => {
 
     httpMock
       .expectOne(() => true)
-      .flush(null, { status: 500, statusText: 'Internal Server Error' });
+      .flush(null, { status: 500, statusText: "Internal Server Error" });
     httpMock.verify();
   });
 
-  describe('parseCookie', () => {
-    describe('should only parse selected segments', () => {
+  describe("parseCookie", () => {
+    describe("should only parse selected segments", () => {
       test.each`
         segments               | input                                          | expected
-        ${['enth', 'rt', 'x']} | ${'geo=akl;rt=nanz;enth=amuh;rt=nbnsu'}        | ${'enth=amuh;rt=nanz'}
-        ${['enth', 'geo']}     | ${'geo=akl;rt=nanz;enth=amuh;rt=nbnsu;rt=tsv'} | ${'enth=amuh;geo=akl'}
-        ${['x']}               | ${'geo=akl;enth=amuh;rt=nbnsu;rt=tsv'}         | ${''}
-        ${[]}                  | ${'geo=akl;enth=amuh'}                         | ${''}
+        ${["enth", "rt", "x"]} | ${"geo=akl;rt=nanz;enth=amuh;rt=nbnsu"}        | ${"enth=amuh;rt=nanz"}
+        ${["enth", "geo"]}     | ${"geo=akl;rt=nanz;enth=amuh;rt=nbnsu;rt=tsv"} | ${"enth=amuh;geo=akl"}
+        ${["x"]}               | ${"geo=akl;enth=amuh;rt=nbnsu;rt=tsv"}         | ${""}
+        ${[]}                  | ${"geo=akl;enth=amuh"}                         | ${""}
       `(
-        'for $segments - $input returns $expected',
+        "for $segments - $input returns $expected",
         ({ segments, input, expected }) => {
           configService.getConfig.mockReturnValue({
             recommendationsCookie: {
@@ -160,15 +160,15 @@ describe('RecommendationsService', () => {
       );
     });
 
-    describe('should parse up to the limitPerSegment for each segment', () => {
+    describe("should parse up to the limitPerSegment for each segment", () => {
       test.each`
         segments          | limitPerSegment | input                               | expected
-        ${['enth']}       | ${0}            | ${'enth=aaa;enth=bbb;geo=akl'}      | ${''}
-        ${['enth']}       | ${1}            | ${'enth=aaa;enth=bbb;geo=akl'}      | ${'enth=aaa'}
-        ${['enth']}       | ${2}            | ${'enth=aaa;enth=bbb;geo=akl'}      | ${'enth=aaa;enth=bbb'}
-        ${['enth', 'rt']} | ${2}            | ${'geo=akl;rt=aaa;enth=aaa;rt=bbb'} | ${'enth=aaa;rt=aaa;rt=bbb'}
+        ${["enth"]}       | ${0}            | ${"enth=aaa;enth=bbb;geo=akl"}      | ${""}
+        ${["enth"]}       | ${1}            | ${"enth=aaa;enth=bbb;geo=akl"}      | ${"enth=aaa"}
+        ${["enth"]}       | ${2}            | ${"enth=aaa;enth=bbb;geo=akl"}      | ${"enth=aaa;enth=bbb"}
+        ${["enth", "rt"]} | ${2}            | ${"geo=akl;rt=aaa;enth=aaa;rt=bbb"} | ${"enth=aaa;rt=aaa;rt=bbb"}
       `(
-        'for limitPerSegment of $limitPerSegment and selected segments ($segments) - $input returns $expected',
+        "for limitPerSegment of $limitPerSegment and selected segments ($segments) - $input returns $expected",
         ({ segments, limitPerSegment, input, expected }) => {
           configService.getConfig.mockReturnValue({
             recommendationsCookie: {

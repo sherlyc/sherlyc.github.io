@@ -1,11 +1,11 @@
-import * as supertest from 'supertest';
-import { FeatureName } from '../../common/FeatureName';
+import * as supertest from "supertest";
+import { FeatureName } from "../../common/FeatureName";
 
-describe('Feature API', () => {
-  const featureApi = '/spade/api/feature';
-  const app = require('../app').default;
+describe("Feature API", () => {
+  const featureApi = "/spade/api/feature";
+  const app = require("../app").default;
 
-  it('should return 400 when feature name is not recognized', async () => {
+  it("should return 400 when feature name is not recognized", async () => {
     const response: supertest.Response = await supertest(app).get(
       `${featureApi}/Feature/50/unknown`
     );
@@ -15,10 +15,10 @@ describe('Feature API', () => {
     expect(status).toBe(400);
   });
 
-  describe('Recommendations', () => {
+  describe("Recommendations", () => {
     const url = `${featureApi}/${FeatureName.Recommendation}`;
 
-    it('should return true for internal lottery number 404', async () => {
+    it("should return true for internal lottery number 404", async () => {
       const response: supertest.Response = await supertest(app).get(
         `${url}/404/unknown`
       );
@@ -27,7 +27,7 @@ describe('Feature API', () => {
     });
 
     it.each([[1], [100]])(
-      'should return false for public lottery number %i',
+      "should return false for public lottery number %i",
       async (lotteryNumber: number) => {
         const response: supertest.Response = await supertest(app).get(
           `${url}/${lotteryNumber}/unknown`
@@ -38,10 +38,10 @@ describe('Feature API', () => {
     );
   });
 
-  describe('Recommendations Display', () => {
+  describe("Recommendations Display", () => {
     const url = `${featureApi}/${FeatureName.RecommendationDisplay}`;
 
-    it('should return true for internal lottery number 404', async () => {
+    it("should return true for internal lottery number 404", async () => {
       const response: supertest.Response = await supertest(app).get(
         `${url}/404/unknown`
       );
@@ -50,7 +50,7 @@ describe('Feature API', () => {
     });
 
     it.each([[1], [100]])(
-      'should return false for public lottery number %i',
+      "should return false for public lottery number %i",
       async (lotteryNumber: number) => {
         const response: supertest.Response = await supertest(app).get(
           `${url}/${lotteryNumber}/unknown`
@@ -61,10 +61,10 @@ describe('Feature API', () => {
     );
   });
 
-  describe('Ads Relative Positioning', () => {
+  describe("Ads Relative Positioning", () => {
     const url = `${featureApi}/${FeatureName.AdsRelativePositioning}`;
 
-    it('should return true for internal lottery number 404', async () => {
+    it("should return true for internal lottery number 404", async () => {
       const response: supertest.Response = await supertest(app).get(
         `${url}/404/unknown`
       );
@@ -73,7 +73,7 @@ describe('Feature API', () => {
     });
 
     it.each([[1], [100]])(
-      'should return false for public lottery number %i',
+      "should return false for public lottery number %i",
       async (lotteryNumber: number) => {
         const response: supertest.Response = await supertest(app).get(
           `${url}/${lotteryNumber}/unknown`

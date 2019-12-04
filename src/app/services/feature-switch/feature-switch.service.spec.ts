@@ -1,22 +1,22 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { FeatureSwitchService } from './feature-switch.service';
-import { ConfigService } from '../config/config.service';
-import { mockService, ServiceMock } from '../mocks/MockService';
-import { StoreService } from '../store/store.service';
-import { HttpClient } from '@angular/common/http';
-import { RuntimeService } from '../runtime/runtime.service';
-import { LottoService } from '../lotto/lotto.service';
-import { of } from 'rxjs/internal/observable/of';
-import * as features from '../../../../common/FeatureName';
-import { throwError } from 'rxjs';
-import { LoggerService } from '../logger/logger.service';
-import { FeatureName } from '../../../../common/FeatureName';
-import { DeviceService } from '../device/device.service';
-import { DeviceType } from '../../../../common/DeviceType';
+import { FeatureSwitchService } from "./feature-switch.service";
+import { ConfigService } from "../config/config.service";
+import { mockService, ServiceMock } from "../mocks/MockService";
+import { StoreService } from "../store/store.service";
+import { HttpClient } from "@angular/common/http";
+import { RuntimeService } from "../runtime/runtime.service";
+import { LottoService } from "../lotto/lotto.service";
+import { of } from "rxjs/internal/observable/of";
+import * as features from "../../../../common/FeatureName";
+import { throwError } from "rxjs";
+import { LoggerService } from "../logger/logger.service";
+import { FeatureName } from "../../../../common/FeatureName";
+import { DeviceService } from "../device/device.service";
+import { DeviceType } from "../../../../common/DeviceType";
 
-describe('FeatureSwitchService', () => {
-  const featureAPI = '/spade/api/feature';
+describe("FeatureSwitchService", () => {
+  const featureAPI = "/spade/api/feature";
   let service: FeatureSwitchService;
 
   let configServiceMock: ServiceMock<ConfigService>;
@@ -73,15 +73,15 @@ describe('FeatureSwitchService', () => {
 
     service = TestBed.get(FeatureSwitchService);
     (features as any).FeatureName = {
-      TEST: 'TEST'
+      TEST: "TEST"
     };
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(service).toBeTruthy();
   });
 
-  it('should not setup when running in server', async () => {
+  it("should not setup when running in server", async () => {
     runtimeService.isServer.mockReturnValue(true);
 
     await service.setup();
@@ -90,7 +90,7 @@ describe('FeatureSwitchService', () => {
     expect(httpClient.get).not.toHaveBeenCalled();
   });
 
-  it('should make call to feature API with featureName, lotteryNumber and deviceType', async () => {
+  it("should make call to feature API with featureName, lotteryNumber and deviceType", async () => {
     const lotteryNumber = 123;
 
     runtimeService.isServer.mockReturnValue(false);
@@ -109,7 +109,7 @@ describe('FeatureSwitchService', () => {
     );
   });
 
-  it('should return features as enabled when all features are on', async () => {
+  it("should return features as enabled when all features are on", async () => {
     runtimeService.isServer.mockReturnValue(false);
     lottoService.getLotteryNumber.mockReturnValue(1);
     httpClient.get.mockReturnValue(of(true));
@@ -124,10 +124,10 @@ describe('FeatureSwitchService', () => {
     );
   });
 
-  it('should return features as disabled when api fails', async () => {
+  it("should return features as disabled when api fails", async () => {
     runtimeService.isServer.mockReturnValue(false);
     lottoService.getLotteryNumber.mockReturnValue(1);
-    httpClient.get.mockReturnValue(throwError('Internal Server Error'));
+    httpClient.get.mockReturnValue(throwError("Internal Server Error"));
 
     await service.setup();
 
@@ -139,7 +139,7 @@ describe('FeatureSwitchService', () => {
     );
   });
 
-  it('should return false for all features while running in server', async () => {
+  it("should return false for all features while running in server", async () => {
     runtimeService.isServer.mockReturnValue(true);
 
     await Promise.all(

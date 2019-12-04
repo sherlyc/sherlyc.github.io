@@ -1,4 +1,4 @@
-import { IBreakingNewsResponse } from './IBreakingNewsResponse';
+import { IBreakingNewsResponse } from "./IBreakingNewsResponse";
 
 export interface IIsomophicApiBreakingNews {
   [key: string]: any;

@@ -1,8 +1,8 @@
-import { IContentBlock } from '../../../../common/__types__/IContentBlock';
-import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { IBasicArticleSectionHandlerInput } from '../__types__/IBasicArticleSectionHandlerInput';
-import { handlerRunnerFunction } from '../runner';
-import { IParams } from '../../__types__/IParams';
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IBasicArticleSectionHandlerInput } from "../__types__/IBasicArticleSectionHandlerInput";
+import { handlerRunnerFunction } from "../runner";
+import { IParams } from "../../__types__/IParams";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,

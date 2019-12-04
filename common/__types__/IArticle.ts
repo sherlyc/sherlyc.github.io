@@ -1,4 +1,4 @@
-import { HeadlineFlags } from '../HeadlineFlags';
+import { HeadlineFlags } from "../HeadlineFlags";
 
 export interface IArticle {
   id: string;

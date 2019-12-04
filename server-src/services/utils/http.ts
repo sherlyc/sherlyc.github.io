@@ -3,11 +3,11 @@ import axios, {
   AxiosInstance,
   AxiosRequestConfig,
   AxiosResponse
-} from 'axios';
-import { performance } from 'perf_hooks';
-import config from './config';
-import logger from './logger';
-import { IParams } from '../__types__/IParams';
+} from "axios";
+import { performance } from "perf_hooks";
+import config from "./config";
+import logger from "./logger";
+import { IParams } from "../__types__/IParams";
 
 const create = (params: IParams): AxiosInstance => {
   const httpClient: AxiosInstance = axios.create();
@@ -17,9 +17,9 @@ const create = (params: IParams): AxiosInstance => {
     return status >= 200 && status < 400;
   };
   httpClient.interceptors.request.use((request: AxiosRequestConfig & any) => {
-    request.headers['User-Agent'] = 'Stuff NZ SPADE; nz.co.stuff.spade';
+    request.headers["User-Agent"] = "Stuff NZ SPADE; nz.co.stuff.spade";
     if (params.authorization) {
-      request.headers['Authorization'] = params.authorization;
+      request.headers["Authorization"] = params.authorization;
     }
     request.ts = performance.now();
     return request;
@@ -42,7 +42,7 @@ const create = (params: IParams): AxiosInstance => {
         ${
           error.response
             ? `, STATUS ${error.response.status} ${error.response.data}`
-            : ''
+            : ""
         }`;
 
       logger.warn(params.apiRequestId, errMessage);

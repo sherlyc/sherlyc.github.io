@@ -1,11 +1,11 @@
-import { Inject, Injectable, NgZone } from '@angular/core';
-import { Position } from './__types__/Position';
-import { DOCUMENT } from '@angular/common';
-import { LoggerService } from '../logger/logger.service';
-import { ScriptId } from './__types__/ScriptId';
+import { Inject, Injectable, NgZone } from "@angular/core";
+import { Position } from "./__types__/Position";
+import { DOCUMENT } from "@angular/common";
+import { LoggerService } from "../logger/logger.service";
+import { ScriptId } from "./__types__/ScriptId";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class ScriptInjectorService {
   private promises: {
@@ -28,18 +28,18 @@ export class ScriptInjectorService {
       return this.promises[id];
     }
     const scriptElement: HTMLScriptElement = this.document.createElement(
-      'script'
+      "script"
     );
 
     scriptElement.id = id;
     scriptElement.src = src;
     scriptElement.async = async;
     const promise = new Promise<void>((resolve, reject) => {
-      scriptElement.addEventListener('load', () => {
+      scriptElement.addEventListener("load", () => {
         this.logger.info(`${id} has been loaded`);
         setTimeout(resolve, 10);
       });
-      scriptElement.addEventListener('error', (err) => {
+      scriptElement.addEventListener("error", (err) => {
         this.logger.warn(`${id} fails to be loaded: ${err}`);
         reject(err);
       });

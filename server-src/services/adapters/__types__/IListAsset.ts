@@ -1,4 +1,4 @@
-import { IJsonFeedArticle } from './IJsonFeedArticle';
+import { IJsonFeedArticle } from "./IJsonFeedArticle";
 
 export interface IListAsset {
   [key: string]: any;

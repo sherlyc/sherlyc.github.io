@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import * as random from 'math-random';
-import { HttpClient } from '@angular/common/http';
-import { ConfigService } from '../config/config.service';
-import { StoreService } from '../store/store.service';
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import * as random from "math-random";
+import { HttpClient } from "@angular/common/http";
+import { ConfigService } from "../config/config.service";
+import { StoreService } from "../store/store.service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class LottoService {
   constructor(

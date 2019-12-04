@@ -1,12 +1,12 @@
-import { TestBed } from '@angular/core/testing';
-import { WindowService } from '../window/window.service';
-import { mockService, ServiceMock } from '../mocks/MockService';
-import { RuntimeService } from '../runtime/runtime.service';
-import { AnalyticsService } from '../analytics/analytics.service';
-import { PwaService } from './pwa.service';
-import { AnalyticsEventsType } from '../analytics/__types__/AnalyticsEventsType';
+import { TestBed } from "@angular/core/testing";
+import { WindowService } from "../window/window.service";
+import { mockService, ServiceMock } from "../mocks/MockService";
+import { RuntimeService } from "../runtime/runtime.service";
+import { AnalyticsService } from "../analytics/analytics.service";
+import { PwaService } from "./pwa.service";
+import { AnalyticsEventsType } from "../analytics/__types__/AnalyticsEventsType";
 
-describe('PwaService', () => {
+describe("PwaService", () => {
   let pwaService: PwaService;
   let analyticsService: ServiceMock<AnalyticsService>;
   let windowService: ServiceMock<WindowService>;
@@ -37,11 +37,11 @@ describe('PwaService', () => {
     pwaService = TestBed.get(PwaService);
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(true).toBe(true);
   });
 
-  it('should push pwa downloaded event when app is installed in browser', async () => {
+  it("should push pwa downloaded event when app is installed in browser", async () => {
     runtimeService.isServer.mockReturnValue(false);
 
     const eventRegistry: any = {};
@@ -58,7 +58,7 @@ describe('PwaService', () => {
     });
   });
 
-  it('should not add event listener in server', async () => {
+  it("should not add event listener in server", async () => {
     runtimeService.isServer.mockReturnValue(true);
 
     const addEventListener = jest.fn();

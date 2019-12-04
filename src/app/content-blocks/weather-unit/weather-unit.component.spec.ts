@@ -1,22 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { WeatherUnitComponent } from './weather-unit.component';
-import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { By, TransferState } from '@angular/platform-browser';
-import { WeatherLocations } from '../../../../common/WeatherLocations';
-import { StoreService, StorageKeys } from '../../services/store/store.service';
-import { mockService, ServiceMock } from '../../services/mocks/MockService';
-import { RuntimeService } from '../../services/runtime/runtime.service';
-import { WeatherRetrieverService } from '../../services/weather-retriever/weather-retriever.service';
-import * as weatherDataJson from '../../services/weather-retriever/__fixtures__/weatherData.json';
-import { of, throwError } from 'rxjs';
-import { IWeatherResponse } from '../../../../common/__types__/IWeatherResponse';
-import { AnalyticsService } from 'src/app/services/analytics/analytics.service';
-import { DebugElement } from '@angular/core';
-import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
-import { WindowService } from 'src/app/services/window/window.service';
-import { WeatherIconComponent } from '../../shared/components/weather-icon/weather-icon.component';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { WeatherUnitComponent } from "./weather-unit.component";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { By, TransferState } from "@angular/platform-browser";
+import { WeatherLocations } from "../../../../common/WeatherLocations";
+import { StoreService, StorageKeys } from "../../services/store/store.service";
+import { mockService, ServiceMock } from "../../services/mocks/MockService";
+import { RuntimeService } from "../../services/runtime/runtime.service";
+import { WeatherRetrieverService } from "../../services/weather-retriever/weather-retriever.service";
+import * as weatherDataJson from "../../services/weather-retriever/__fixtures__/weatherData.json";
+import { of, throwError } from "rxjs";
+import { IWeatherResponse } from "../../../../common/__types__/IWeatherResponse";
+import { AnalyticsService } from "src/app/services/analytics/analytics.service";
+import { DebugElement } from "@angular/core";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { WindowService } from "src/app/services/window/window.service";
+import { WeatherIconComponent } from "../../shared/components/weather-icon/weather-icon.component";
 
-describe('WeatherUnitComponent', () => {
+describe("WeatherUnitComponent", () => {
   let storeService: ServiceMock<StoreService>;
   let runtimeService: ServiceMock<RuntimeService>;
   let weatherRetrieverService: ServiceMock<WeatherRetrieverService>;
@@ -75,73 +75,73 @@ describe('WeatherUnitComponent', () => {
     windowService.getWindow.mockReturnValue({ scrollTo: scrollToSpy });
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display region list when weather label is clicked', () => {
+  it("should display region list when weather label is clicked", () => {
     component.isDropdownOpen = false;
     expect(
-      fixture.debugElement.query(By.css('.location-list-visible'))
+      fixture.debugElement.query(By.css(".location-list-visible"))
     ).toBeFalsy();
 
-    fixture.debugElement.query(By.css('.weather-bar')).nativeElement.click();
+    fixture.debugElement.query(By.css(".weather-bar")).nativeElement.click();
     fixture.detectChanges();
 
     expect(
-      fixture.debugElement.query(By.css('.location-list-visible'))
+      fixture.debugElement.query(By.css(".location-list-visible"))
     ).toBeTruthy();
   });
 
-  it('should display 2 columns of region list when weather label is clicked', () => {
+  it("should display 2 columns of region list when weather label is clicked", () => {
     component.isDropdownOpen = false;
-    expect(fixture.debugElement.query(By.css('.regionsList'))).toBeFalsy();
+    expect(fixture.debugElement.query(By.css(".regionsList"))).toBeFalsy();
 
-    fixture.debugElement.query(By.css('.weather-bar')).nativeElement.click();
+    fixture.debugElement.query(By.css(".weather-bar")).nativeElement.click();
     fixture.detectChanges();
 
     expect(
-      fixture.debugElement.query(By.css('.location-list-left-col'))
+      fixture.debugElement.query(By.css(".location-list-left-col"))
     ).toBeTruthy();
     expect(
-      fixture.debugElement.query(By.css('.region-list-right-col'))
+      fixture.debugElement.query(By.css(".region-list-right-col"))
     ).toBeTruthy();
   });
 
-  it('should hide region list when weather label is clicked and region list is already displayed', () => {
+  it("should hide region list when weather label is clicked and region list is already displayed", () => {
     component.isDropdownOpen = true;
     fixture.detectChanges();
     expect(
-      fixture.debugElement.query(By.css('.location-list-visible'))
+      fixture.debugElement.query(By.css(".location-list-visible"))
     ).toBeTruthy();
 
-    fixture.debugElement.query(By.css('.weather-bar')).nativeElement.click();
+    fixture.debugElement.query(By.css(".weather-bar")).nativeElement.click();
     fixture.detectChanges();
 
     expect(
-      fixture.debugElement.query(By.css('.location-list-visible'))
+      fixture.debugElement.query(By.css(".location-list-visible"))
     ).toBeFalsy();
   });
 
-  it('should display tick for selected location', () => {
+  it("should display tick for selected location", () => {
     weatherRetrieverService.getWeather.mockReturnValue(of(weatherData));
     storeService.get.mockReturnValue(WeatherLocations.Auckland);
     component.regions = [
       {
-        name: 'Auckland',
+        name: "Auckland",
         locations: [WeatherLocations.Auckland]
       }
     ];
     component.isDropdownOpen = true;
     fixture.detectChanges();
 
-    expect(fixture.debugElement.query(By.css('.tick'))).toBeTruthy();
+    expect(fixture.debugElement.query(By.css(".tick"))).toBeTruthy();
   });
 
-  it('should not display tick for non-selected location', () => {
+  it("should not display tick for non-selected location", () => {
     component.regions = [
       {
-        name: 'Auckland',
+        name: "Auckland",
         locations: [WeatherLocations.Auckland]
       }
     ];
@@ -149,14 +149,14 @@ describe('WeatherUnitComponent', () => {
     component.selectedLocation = undefined;
     fixture.detectChanges();
 
-    expect(fixture.debugElement.query(By.css('.tick-icon'))).toBeFalsy();
+    expect(fixture.debugElement.query(By.css(".tick-icon"))).toBeFalsy();
   });
 
-  it('should save last selected location and retrieve weather data for that location', () => {
+  it("should save last selected location and retrieve weather data for that location", () => {
     weatherRetrieverService.getWeather.mockReturnValue(of(weatherData));
     component.regions = [
       {
-        name: 'Auckland',
+        name: "Auckland",
         locations: [WeatherLocations.Auckland]
       }
     ];
@@ -164,9 +164,9 @@ describe('WeatherUnitComponent', () => {
     fixture.detectChanges();
 
     const aucklandListElement = fixture.debugElement
-      .queryAll(By.css('.location-name'))
+      .queryAll(By.css(".location-name"))
       .find(
-        (element) => element.nativeElement.textContent === 'Auckland'
+        (element) => element.nativeElement.textContent === "Auckland"
       ) as DebugElement;
     aucklandListElement.nativeElement.click();
 
@@ -179,13 +179,13 @@ describe('WeatherUnitComponent', () => {
     );
   });
 
-  it('should retrieve last selected location on load if there is a location', () => {
+  it("should retrieve last selected location on load if there is a location", () => {
     storeService.get.mockReturnValue(WeatherLocations.Auckland);
     weatherRetrieverService.getWeather.mockReturnValue(of(weatherData));
     fixture.detectChanges();
 
     expect(
-      fixture.debugElement.query(By.css('.weatherLocationInfo'))
+      fixture.debugElement.query(By.css(".weatherLocationInfo"))
     ).toBeTruthy();
 
     expect(storeService.get).toHaveBeenCalledWith(StorageKeys.WeatherLocation);
@@ -194,11 +194,11 @@ describe('WeatherUnitComponent', () => {
     );
   });
 
-  it('should show the weather condition svg icon of current location', () => {
+  it("should show the weather condition svg icon of current location", () => {
     weatherRetrieverService.getWeather.mockReturnValue(of(weatherData));
     component.regions = [
       {
-        name: 'Auckland',
+        name: "Auckland",
         locations: [WeatherLocations.Auckland]
       }
     ];
@@ -206,25 +206,25 @@ describe('WeatherUnitComponent', () => {
     fixture.detectChanges();
 
     const aucklandListElement = fixture.debugElement
-      .queryAll(By.css('.location-name'))
+      .queryAll(By.css(".location-name"))
       .find(
-        (element) => element.nativeElement.textContent === 'Auckland'
+        (element) => element.nativeElement.textContent === "Auckland"
       ) as DebugElement;
     aucklandListElement.nativeElement.click();
     fixture.detectChanges();
 
-    const weatherIcon = fixture.debugElement.query(By.css('.weather-icon'));
+    const weatherIcon = fixture.debugElement.query(By.css(".weather-icon"));
     expect(weatherIcon).toBeTruthy();
   });
 
-  it('should display weather info on load if there is a selected location', () => {
+  it("should display weather info on load if there is a selected location", () => {
     weatherRetrieverService.getWeather.mockReturnValue(of(weatherData));
     storeService.get.mockReturnValue(WeatherLocations.Auckland);
     component.weatherData = weatherData;
     fixture.detectChanges();
 
     const weatherLocationInfo = fixture.debugElement.query(
-      By.css('.weatherLocationInfo')
+      By.css(".weatherLocationInfo")
     );
 
     expect(weatherLocationInfo.nativeElement.textContent).toContain(
@@ -241,199 +241,199 @@ describe('WeatherUnitComponent', () => {
     );
   });
 
-  it('should not retrieve last selected location on load if there is no location saved', () => {
-    storeService.get.mockReturnValue('');
+  it("should not retrieve last selected location on load if there is no location saved", () => {
+    storeService.get.mockReturnValue("");
     fixture.detectChanges();
 
     expect(
-      fixture.debugElement.query(By.css('.weatherLocationInfo'))
+      fixture.debugElement.query(By.css(".weatherLocationInfo"))
     ).toBeFalsy();
 
     expect(storeService.get).toHaveBeenCalledWith(StorageKeys.WeatherLocation);
     expect(weatherRetrieverService.getWeather).not.toHaveBeenCalled();
   });
 
-  it('should collapse location list after selecting a location', () => {
+  it("should collapse location list after selecting a location", () => {
     weatherRetrieverService.getWeather.mockReturnValue(of(weatherData));
     component.isDropdownOpen = true;
     fixture.detectChanges();
 
     const aucklandListElement = fixture.debugElement
-      .queryAll(By.css('.location-name'))
+      .queryAll(By.css(".location-name"))
       .find(
-        (element) => element.nativeElement.textContent === 'Auckland'
+        (element) => element.nativeElement.textContent === "Auckland"
       ) as DebugElement;
     aucklandListElement.nativeElement.click();
     fixture.detectChanges();
 
     expect(
-      fixture.debugElement.query(By.css('.location-list-visible'))
+      fixture.debugElement.query(By.css(".location-list-visible"))
     ).toBeFalsy();
     expect(
-      fixture.debugElement.query(By.css('.weatherLocationInfo'))
+      fixture.debugElement.query(By.css(".weatherLocationInfo"))
     ).toBeTruthy();
     expect(scrollToSpy).toHaveBeenCalled();
   });
 
-  it('should show weather unavailable if cannot retrieve selected weather info for returning user', () => {
+  it("should show weather unavailable if cannot retrieve selected weather info for returning user", () => {
     storeService.get.mockReturnValue(WeatherLocations.Auckland);
     weatherRetrieverService.getWeather.mockReturnValue(
-      throwError({ status: 500, statusText: 'Internal Server error' })
+      throwError({ status: 500, statusText: "Internal Server error" })
     );
     fixture.detectChanges();
 
     expect(
-      fixture.debugElement.query(By.css('.weatherError')).nativeElement
+      fixture.debugElement.query(By.css(".weatherError")).nativeElement
         .textContent
-    ).toContain('Weather is unavailable');
+    ).toContain("Weather is unavailable");
     expect(
-      fixture.debugElement.query(By.css('.weatherLocationInfo'))
+      fixture.debugElement.query(By.css(".weatherLocationInfo"))
     ).toBeFalsy();
     expect(
-      fixture.debugElement.query(By.css('.weatherCheckLabel'))
+      fixture.debugElement.query(By.css(".weatherCheckLabel"))
     ).toBeFalsy();
   });
 
-  it('should show weather unavailable if cannot retrieve selected weather info after selecting new location', () => {
+  it("should show weather unavailable if cannot retrieve selected weather info after selecting new location", () => {
     storeService.get.mockReturnValue(null);
     component.isDropdownOpen = true;
     component.regions = [
       {
-        name: 'Auckland',
+        name: "Auckland",
         locations: [WeatherLocations.Auckland]
       }
     ];
     fixture.detectChanges();
 
     weatherRetrieverService.getWeather.mockReturnValue(
-      throwError({ status: 500, statusText: 'Internal Server error' })
+      throwError({ status: 500, statusText: "Internal Server error" })
     );
     const aucklandListElement = fixture.debugElement
-      .queryAll(By.css('.location-name'))
+      .queryAll(By.css(".location-name"))
       .find(
-        (element) => element.nativeElement.textContent === 'Auckland'
+        (element) => element.nativeElement.textContent === "Auckland"
       ) as DebugElement;
     aucklandListElement.nativeElement.click();
     fixture.detectChanges();
 
     expect(
-      fixture.debugElement.query(By.css('.weatherError')).nativeElement
+      fixture.debugElement.query(By.css(".weatherError")).nativeElement
         .textContent
-    ).toContain('Weather is unavailable');
+    ).toContain("Weather is unavailable");
     expect(
-      fixture.debugElement.query(By.css('.weatherLocationInfo'))
+      fixture.debugElement.query(By.css(".weatherLocationInfo"))
     ).toBeFalsy();
     expect(
-      fixture.debugElement.query(By.css('.weatherCheckLabel'))
+      fixture.debugElement.query(By.css(".weatherCheckLabel"))
     ).toBeFalsy();
   });
 
-  it('when weather is unavailable, it should show weather info when it is available again', () => {
+  it("when weather is unavailable, it should show weather info when it is available again", () => {
     storeService.get.mockReturnValue(WeatherLocations.Auckland);
     weatherRetrieverService.getWeather.mockReturnValue(
-      throwError({ status: 500, statusText: 'Internal Server error' })
+      throwError({ status: 500, statusText: "Internal Server error" })
     );
     component.isDropdownOpen = true;
     component.regions = [
       {
-        name: 'Auckland',
+        name: "Auckland",
         locations: [WeatherLocations.Auckland]
       }
     ];
     fixture.detectChanges();
 
     expect(
-      fixture.debugElement.query(By.css('.weatherError')).nativeElement
+      fixture.debugElement.query(By.css(".weatherError")).nativeElement
         .textContent
-    ).toContain('Weather is unavailable');
+    ).toContain("Weather is unavailable");
     expect(
-      fixture.debugElement.query(By.css('.weatherLocationInfo'))
+      fixture.debugElement.query(By.css(".weatherLocationInfo"))
     ).toBeFalsy();
     expect(
-      fixture.debugElement.query(By.css('.weatherCheckLabel'))
+      fixture.debugElement.query(By.css(".weatherCheckLabel"))
     ).toBeFalsy();
 
     weatherRetrieverService.getWeather.mockReturnValue(of(weatherData));
     const aucklandListElement = fixture.debugElement
-      .queryAll(By.css('.location-name'))
+      .queryAll(By.css(".location-name"))
       .find(
-        (element) => element.nativeElement.textContent === 'Auckland'
+        (element) => element.nativeElement.textContent === "Auckland"
       ) as DebugElement;
     aucklandListElement.nativeElement.click();
     fixture.detectChanges();
 
     expect(
-      fixture.debugElement.query(By.css('.weatherLocationInfo')).nativeElement
+      fixture.debugElement.query(By.css(".weatherLocationInfo")).nativeElement
         .textContent
     ).toContain(weatherData.temperature);
     expect(
-      fixture.debugElement.query(By.css('.weatherLocationInfo')).nativeElement
+      fixture.debugElement.query(By.css(".weatherLocationInfo")).nativeElement
         .textContent
     ).toContain(weatherData.minTemp);
     expect(
-      fixture.debugElement.query(By.css('.weatherLocationInfo')).nativeElement
+      fixture.debugElement.query(By.css(".weatherLocationInfo")).nativeElement
         .textContent
     ).toContain(weatherData.maxTemp);
 
-    expect(fixture.debugElement.query(By.css('.weatherError'))).toBeFalsy();
+    expect(fixture.debugElement.query(By.css(".weatherError"))).toBeFalsy();
     expect(
-      fixture.debugElement.query(By.css('.weatherCheckLabel'))
+      fixture.debugElement.query(By.css(".weatherCheckLabel"))
     ).toBeFalsy();
   });
 
-  it('should show check weather if there is no selected location', () => {
+  it("should show check weather if there is no selected location", () => {
     storeService.get.mockReturnValue(null);
     fixture.detectChanges();
 
     expect(
-      fixture.debugElement.query(By.css('.weatherCheckLabel')).nativeElement
+      fixture.debugElement.query(By.css(".weatherCheckLabel")).nativeElement
         .textContent
-    ).toContain('Check your weather');
-    expect(fixture.debugElement.query(By.css('.weatherError'))).toBeFalsy();
+    ).toContain("Check your weather");
+    expect(fixture.debugElement.query(By.css(".weatherError"))).toBeFalsy();
     expect(
-      fixture.debugElement.query(By.css('.weatherLocationInfo'))
+      fixture.debugElement.query(By.css(".weatherLocationInfo"))
     ).toBeFalsy();
   });
 
-  it('should close region list when clicking exit button', () => {
+  it("should close region list when clicking exit button", () => {
     component.isDropdownOpen = true;
     fixture.detectChanges();
 
     expect(
-      fixture.debugElement.query(By.css('.location-list-visible'))
+      fixture.debugElement.query(By.css(".location-list-visible"))
     ).toBeTruthy();
 
-    fixture.debugElement.query(By.css('.close-button')).nativeElement.click();
+    fixture.debugElement.query(By.css(".close-button")).nativeElement.click();
     fixture.detectChanges();
 
     expect(
-      fixture.debugElement.query(By.css('.location-list-visible'))
+      fixture.debugElement.query(By.css(".location-list-visible"))
     ).toBeFalsy();
     expect(scrollToSpy).toHaveBeenCalled();
   });
 
-  describe('Analytics', () => {
-    it('should push analytic event when weather location is changed ', () => {
+  describe("Analytics", () => {
+    it("should push analytic event when weather location is changed ", () => {
       weatherRetrieverService.getWeather.mockReturnValue(of(weatherData));
       component.isDropdownOpen = true;
       component.regions = [
         {
-          name: 'Auckland',
+          name: "Auckland",
           locations: [WeatherLocations.Auckland]
         }
       ];
       fixture.detectChanges();
 
       const aucklandListElement = fixture.debugElement
-        .queryAll(By.css('.location-name'))
+        .queryAll(By.css(".location-name"))
         .find(
-          (element) => element.nativeElement.textContent === 'Auckland'
+          (element) => element.nativeElement.textContent === "Auckland"
         ) as DebugElement;
       aucklandListElement.nativeElement.click();
 
       expect(analyticsService.pushEvent).toHaveBeenCalledWith({
         type: AnalyticsEventsType.WEATHER_LOCATION_CHANGED,
-        location: 'Auckland'
+        location: "Auckland"
       });
     });
   });

@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { CopyrightComponent } from './copyright.component';
+import { CopyrightComponent } from "./copyright.component";
 
-describe('CopyrightComponent', () => {
+describe("CopyrightComponent", () => {
   let component: CopyrightComponent;
   let fixture: ComponentFixture<CopyrightComponent>;
 
@@ -18,7 +18,7 @@ describe('CopyrightComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

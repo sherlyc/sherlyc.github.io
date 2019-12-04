@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { WindowService } from '../window/window.service';
-import { parse } from 'bowser';
-import { DeviceType } from '../../../../common/DeviceType';
+import { Injectable } from "@angular/core";
+import { WindowService } from "../window/window.service";
+import { parse } from "bowser";
+import { DeviceType } from "../../../../common/DeviceType";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class DeviceService {
   constructor(private windowService: WindowService) {}

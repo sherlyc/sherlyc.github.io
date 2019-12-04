@@ -12,7 +12,7 @@
   </div>
   <div *ngIf="input.hiddenItems.length > 0">
     <a class="more-button" (click)="[sendAnalytics(), toggleHiddenItems()]"
-      >{{ showHiddenItems ? 'Less' : 'More' }} {{ input.displayName }}
+      >{{ showHiddenItems ? "Less" : "More" }} {{ input.displayName }}
       <svg class="dropdown" [ngClass]="{ 'arrow-up': showHiddenItems }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 17">
         <path class="arrow" d="M13.216 16.787L.688 2.841 2.803.726l10.413 11.576L23.699.726l2.085 2.086z"></path>
       </svg>

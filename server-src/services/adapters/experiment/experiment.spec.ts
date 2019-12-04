@@ -1,27 +1,27 @@
-import { getExperimentVariant } from './experiment';
-import { DeviceType } from '../../../../common/DeviceType';
-import { IParams } from '../../__types__/IParams';
-import { ExperimentName } from '../../../../common/ExperimentName';
+import { getExperimentVariant } from "./experiment";
+import { DeviceType } from "../../../../common/DeviceType";
+import { IParams } from "../../__types__/IParams";
+import { ExperimentName } from "../../../../common/ExperimentName";
 
-jest.mock('../../utils/cache-http');
+jest.mock("../../utils/cache-http");
 
-describe('Experiment service', () => {
-  const params: IParams = { apiRequestId: '123123' };
+describe("Experiment service", () => {
+  const params: IParams = { apiRequestId: "123123" };
 
-  it('should return control if experiment is not in the config', async () => {
+  it("should return control if experiment is not in the config", async () => {
     const experimentVariant = await getExperimentVariant(
-      'NotAnExperiment' as ExperimentName,
+      "NotAnExperiment" as ExperimentName,
       50,
       DeviceType.mobile,
       params
     );
 
-    expect(experimentVariant).toBe('control');
+    expect(experimentVariant).toBe("control");
   });
 
-  describe('Users', () => {
+  describe("Users", () => {
     it.each([[1], [50], [100], [404]])(
-      'should return TopStoriesVisualExperiment variant on mobile for numbers 1 to 100 and 404 - lottery number %i',
+      "should return TopStoriesVisualExperiment variant on mobile for numbers 1 to 100 and 404 - lottery number %i",
       async (lotteryNumber: number) => {
         const experimentVariant = await getExperimentVariant(
           ExperimentName.Users,
@@ -30,11 +30,11 @@ describe('Experiment service', () => {
           params
         );
 
-        expect(experimentVariant).toBe('TopStoriesVisualExperiment');
+        expect(experimentVariant).toBe("TopStoriesVisualExperiment");
       }
     );
 
-    it('should return MoreSection variant with number 505 on mobile', async () => {
+    it("should return MoreSection variant with number 505 on mobile", async () => {
       const experimentVariant = await getExperimentVariant(
         ExperimentName.Users,
         505,
@@ -42,11 +42,11 @@ describe('Experiment service', () => {
         params
       );
 
-      expect(experimentVariant).toBe('MoreSection');
+      expect(experimentVariant).toBe("MoreSection");
     });
 
     it.each([[DeviceType.desktop], [DeviceType.tablet], [DeviceType.unknown]])(
-      'should return control with %s device',
+      "should return control with %s device",
       async (deviceType: DeviceType) => {
         const experimentVariant = await getExperimentVariant(
           ExperimentName.Users,
@@ -55,14 +55,14 @@ describe('Experiment service', () => {
           params
         );
 
-        expect(experimentVariant).toBe('control');
+        expect(experimentVariant).toBe("control");
       }
     );
   });
 
-  describe('TopStoriesVisualExperiment', () => {
+  describe("TopStoriesVisualExperiment", () => {
     test.each([[1], [34], [65], [100], [404]])(
-      'should return groupOne variant for numbers 1 to 100 and 404 - lottery number %i',
+      "should return groupOne variant for numbers 1 to 100 and 404 - lottery number %i",
       async (lotteryNumber: number) => {
         const experimentVariant = await getExperimentVariant(
           ExperimentName.TopStoriesVisualExperiment,
@@ -71,12 +71,12 @@ describe('Experiment service', () => {
           params
         );
 
-        expect(experimentVariant).toBe('groupOne');
+        expect(experimentVariant).toBe("groupOne");
       }
     );
 
     it.each([[DeviceType.desktop], [DeviceType.tablet], [DeviceType.unknown]])(
-      'should return control with %s device',
+      "should return control with %s device",
       async (deviceType: DeviceType) => {
         const experimentVariant = await getExperimentVariant(
           ExperimentName.TopStoriesVisualExperiment,
@@ -85,13 +85,13 @@ describe('Experiment service', () => {
           params
         );
 
-        expect(experimentVariant).toBe('control');
+        expect(experimentVariant).toBe("control");
       }
     );
   });
 
-  describe('MoreSection', () => {
-    it('should return groupOne variant with number 404 for Users experiment on mobile', async () => {
+  describe("MoreSection", () => {
+    it("should return groupOne variant with number 404 for Users experiment on mobile", async () => {
       const experimentVariant = await getExperimentVariant(
         ExperimentName.MoreSection,
         404,
@@ -99,10 +99,10 @@ describe('Experiment service', () => {
         params
       );
 
-      expect(experimentVariant).toBe('groupOne');
+      expect(experimentVariant).toBe("groupOne");
     });
 
-    it('should return groupTwo variant with number 505 for Users experiment on mobile', async () => {
+    it("should return groupTwo variant with number 505 for Users experiment on mobile", async () => {
       const experimentVariant = await getExperimentVariant(
         ExperimentName.MoreSection,
         505,
@@ -110,11 +110,11 @@ describe('Experiment service', () => {
         params
       );
 
-      expect(experimentVariant).toBe('groupTwo');
+      expect(experimentVariant).toBe("groupTwo");
     });
 
     it.each([[1], [50], [100]])(
-      'should return control variant for numbers 1 to 100 - lottery number %i',
+      "should return control variant for numbers 1 to 100 - lottery number %i",
       async (lotteryNumber: number) => {
         const experimentVariant = await getExperimentVariant(
           ExperimentName.MoreSection,
@@ -123,12 +123,12 @@ describe('Experiment service', () => {
           params
         );
 
-        expect(experimentVariant).toBe('control');
+        expect(experimentVariant).toBe("control");
       }
     );
 
     it.each([[DeviceType.desktop], [DeviceType.tablet], [DeviceType.unknown]])(
-      'should return control with %s device',
+      "should return control with %s device",
       async (deviceType: DeviceType) => {
         const experimentVariant = await getExperimentVariant(
           ExperimentName.MoreSection,
@@ -137,7 +137,7 @@ describe('Experiment service', () => {
           params
         );
 
-        expect(experimentVariant).toBe('control');
+        expect(experimentVariant).toBe("control");
       }
     );
   });

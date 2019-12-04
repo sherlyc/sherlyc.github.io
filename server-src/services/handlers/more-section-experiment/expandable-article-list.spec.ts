@@ -1,76 +1,76 @@
-import expandableArticleList from './expandable-article-list';
-import { IExpandableArticleListHandlerInput } from '../__types__/IExpandableArticleListHandlerInput';
-import { HandlerInputType } from '../__types__/HandlerInputType';
-import { Strap } from '../../strap';
-import { IParams } from '../../__types__/IParams';
-import { getRawArticles } from '../../adapters/article-retriever/article-retriever';
-import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
-import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { IBasicArticleTitleUnit } from '../../../../common/__types__/IBasicArticleTitleUnit';
-import { IRawArticle } from '../../adapters/__types__/IRawArticle';
+import expandableArticleList from "./expandable-article-list";
+import { IExpandableArticleListHandlerInput } from "../__types__/IExpandableArticleListHandlerInput";
+import { HandlerInputType } from "../__types__/HandlerInputType";
+import { Strap } from "../../strap";
+import { IParams } from "../../__types__/IParams";
+import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
+import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IBasicArticleTitleUnit } from "../../../../common/__types__/IBasicArticleTitleUnit";
+import { IRawArticle } from "../../adapters/__types__/IRawArticle";
 
-jest.mock('../../adapters/article-retriever/article-retriever');
+jest.mock("../../adapters/article-retriever/article-retriever");
 
-describe('Expandable article list', () => {
-  const params: IParams = { apiRequestId: '123' };
-  const strapName = 'property';
+describe("Expandable article list", () => {
+  const params: IParams = { apiRequestId: "123" };
+  const strapName = "property";
 
   const articleOne: IRawArticle = {
-    id: '1',
-    indexHeadline: 'Headline 1',
-    title: 'Title 1',
-    introText: 'Intro 1',
-    linkUrl: '/link1',
+    id: "1",
+    indexHeadline: "Headline 1",
+    title: "Title 1",
+    introText: "Intro 1",
+    linkUrl: "/link1",
     defconSrc: null,
-    imageSrc: '1.jpg',
-    imageSrcSet: '1.jpg 1w',
-    strapImageSrc: 'strap1.jpg',
-    strapImageSrcSet: 'strap1.jpg 1w',
+    imageSrc: "1.jpg",
+    imageSrcSet: "1.jpg 1w",
+    strapImageSrc: "strap1.jpg",
+    strapImageSrcSet: "strap1.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: []
   };
 
   const articleTwo: IRawArticle = {
-    id: '2',
-    indexHeadline: 'Headline 2',
-    title: 'Title 2',
-    introText: 'Intro 2',
-    linkUrl: '/link2',
+    id: "2",
+    indexHeadline: "Headline 2",
+    title: "Title 2",
+    introText: "Intro 2",
+    linkUrl: "/link2",
     defconSrc: null,
-    imageSrc: '2.jpg',
-    imageSrcSet: '2.jpg 2w',
-    strapImageSrc: 'strap2.jpg',
-    strapImageSrcSet: 'strap2.jpg 1w',
+    imageSrc: "2.jpg",
+    imageSrcSet: "2.jpg 2w",
+    strapImageSrc: "strap2.jpg",
+    strapImageSrcSet: "strap2.jpg 1w",
     lastPublishedTime: 2,
     headlineFlags: []
   };
 
   const articleOneAsBasicArticle: IBasicArticleUnit = {
     type: ContentBlockType.BasicArticleUnit,
-    id: '1',
+    id: "1",
     strapName,
-    indexHeadline: 'Headline 1',
-    title: 'Title 1',
-    introText: 'Intro 1',
-    linkUrl: '/link1',
-    imageSrc: '1.jpg',
-    imageSrcSet: '1.jpg 1w',
+    indexHeadline: "Headline 1",
+    title: "Title 1",
+    introText: "Intro 1",
+    linkUrl: "/link1",
+    imageSrc: "1.jpg",
+    imageSrcSet: "1.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: []
   };
 
   const articleTwoAsBasicArticleTitle: IBasicArticleTitleUnit = {
     type: ContentBlockType.BasicArticleTitleUnit,
-    id: '2',
+    id: "2",
     strapName,
-    indexHeadline: 'Headline 2',
-    title: 'Title 2',
+    indexHeadline: "Headline 2",
+    title: "Title 2",
     lastPublishedTime: 2,
-    linkUrl: '/link2',
+    linkUrl: "/link2",
     headlineFlags: []
   };
 
-  it('should call getRawArticles with total number of articles for all pages', async () => {
+  it("should call getRawArticles with total number of articles for all pages", async () => {
     const handlerRunner = jest.fn();
     const handlerInput: IExpandableArticleListHandlerInput = {
       type: HandlerInputType.ExpandableArticleList,
@@ -87,7 +87,7 @@ describe('Expandable article list', () => {
     expect(getRawArticles).toHaveBeenCalledWith(Strap.Property, 10, params);
   });
 
-  it('should return articles as basic articles and title articles specified for a single page', async () => {
+  it("should return articles as basic articles and title articles specified for a single page", async () => {
     const handlerRunner = jest.fn();
     const handlerInput: IExpandableArticleListHandlerInput = {
       type: HandlerInputType.ExpandableArticleList,
@@ -114,7 +114,7 @@ describe('Expandable article list', () => {
     expect(contentBlocks).toEqual(expectedContentBlocks);
   });
 
-  it('should return two pages of basic articles and title articles', async () => {
+  it("should return two pages of basic articles and title articles", async () => {
     const handlerRunner = jest.fn();
     const handlerInput: IExpandableArticleListHandlerInput = {
       type: HandlerInputType.ExpandableArticleList,
@@ -152,7 +152,7 @@ describe('Expandable article list', () => {
     expect(contentBlocks).toEqual(expectedContentBlocks);
   });
 
-  it('should return two unequal pages of basic articles and title articles', async () => {
+  it("should return two unequal pages of basic articles and title articles", async () => {
     const handlerRunner = jest.fn();
     const handlerInput: IExpandableArticleListHandlerInput = {
       type: HandlerInputType.ExpandableArticleList,
@@ -181,7 +181,7 @@ describe('Expandable article list', () => {
     expect(contentBlocks).toEqual(expectedContentBlocks);
   });
 
-  it('should return a page of articles when api returns fewer than requested', async () => {
+  it("should return a page of articles when api returns fewer than requested", async () => {
     const handlerRunner = jest.fn();
     const handlerInput: IExpandableArticleListHandlerInput = {
       type: HandlerInputType.ExpandableArticleList,
