@@ -1,4 +1,9 @@
 @import "~normalize.css/normalize.css";
+
+.container {
+  width: 100%;
+}
+
 @import "~flexboxgrid";
 @import "spade/assets/fonts/merriweather.scss";
 @import "spade/assets/fonts/merriweather-sans.scss";
