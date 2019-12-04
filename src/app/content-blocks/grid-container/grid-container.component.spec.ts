@@ -57,7 +57,7 @@ describe("GridContainerComponent", () => {
       items: new Array(4).fill(input),
       mobile: {
         gridTemplateColumns: "1fr",
-        gridTemplateRows: "auto auto",
+        gridTemplateRows: "auto",
         gridGap: "20px",
         gridBlocks: [
           {
