@@ -5,7 +5,7 @@ describe("grip gap helper", () => {
   it("should add grip gap to grid template rows and columns", () => {
     const gridConfig = {
       gridTemplateColumns: "1fr 1fr 1fr 1fr 200px",
-      gridTemplateRows: "auto auto auto",
+      gridTemplateRows: "auto",
       gridGap: "20px",
       gridBlocks: [
         {
@@ -19,7 +19,7 @@ describe("grip gap helper", () => {
 
     const expectedConfig = {
       gridTemplateColumns: "1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px",
-      gridTemplateRows: "auto 20px auto 20px auto",
+      gridTemplateRows: "auto",
       gridGap: "0",
       gridBlocks: [
         {
@@ -37,7 +37,7 @@ describe("grip gap helper", () => {
   it("should handle multiple grid blocks", () => {
     const config = {
       gridTemplateColumns: "1fr 1fr 1fr 1fr",
-      gridTemplateRows: "1fr 1fr 1fr",
+      gridTemplateRows: "auto auto auto",
       gridGap: "100px",
       gridBlocks: [
         {
@@ -75,7 +75,7 @@ describe("grip gap helper", () => {
 
     const expected = {
       gridTemplateColumns: "1fr 100px 1fr 100px 1fr 100px 1fr",
-      gridTemplateRows: "1fr 100px 1fr 100px 1fr",
+      gridTemplateRows: "auto 100px auto 100px auto",
       gridGap: "0",
       gridBlocks: [
         {
