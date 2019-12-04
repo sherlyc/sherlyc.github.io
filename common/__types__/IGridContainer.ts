@@ -10,7 +10,7 @@ export interface IGridBlock {
 
 export interface IGridConfig {
   gridTemplateColumns: string;
-  gridTemplateRows?: string;
+  gridTemplateRows: string;
   gridGap: string;
   gridBlocks: IGridBlock[];
 }
