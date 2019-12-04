@@ -70,7 +70,7 @@ describe("GridContainerComponent", () => {
       },
       tablet: {
         gridTemplateColumns: "1fr 1fr 1fr 1fr",
-        gridTemplateRows: "auto auto",
+        gridTemplateRows: "auto",
         gridGap: "20px",
         gridBlocks: [
           {
@@ -83,7 +83,7 @@ describe("GridContainerComponent", () => {
       },
       desktop: {
         gridTemplateColumns: "1fr 1fr 1fr 1fr 200px",
-        gridTemplateRows: "auto auto",
+        gridTemplateRows: "auto",
         gridGap: "20px",
         gridBlocks: [
           {
@@ -128,7 +128,7 @@ describe("GridContainerComponent", () => {
           "display": "grid",
           "gridGap": "0",
           "gridTemplateColumns": "1fr 20px 1fr 20px 1fr 20px 1fr",
-          "gridTemplateRows": "auto 20px auto",
+          "gridTemplateRows": "auto",
           "msGridColumn": "1fr 20px 1fr 20px 1fr 20px 1fr",
         },
         "@media only screen and (min-width: 75em)": Object {
@@ -148,7 +148,7 @@ describe("GridContainerComponent", () => {
           "display": "grid",
           "gridGap": "0",
           "gridTemplateColumns": "1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px",
-          "gridTemplateRows": "auto 20px auto",
+          "gridTemplateRows": "auto",
           "msGridColumn": "1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px",
         },
         "display": "grid",
