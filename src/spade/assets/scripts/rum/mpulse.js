@@ -10,14 +10,14 @@
   }
 
   window.BOOMR = window.BOOMR || {};
-  window.BOOMR_API_key = 'R9YSD-XHS3U-KQGGF-8W2UT-K37B7';
+  window.BOOMR_API_key = "R9YSD-XHS3U-KQGGF-8W2UT-K37B7";
   window.BOOMR.snippetStart = new Date().getTime();
   window.BOOMR.snippetExecuted = true;
   window.BOOMR.snippetVersion = 12;
-  window.BOOMR.url = '//c.go-mpulse.net/boomerang/' + window.BOOMR_API_key;
+  window.BOOMR.url = "//c.go-mpulse.net/boomerang/" + window.BOOMR_API_key;
 
   var where =
-      document.currentScript || document.getElementsByTagName('script')[0],
+      document.currentScript || document.getElementsByTagName("script")[0],
     // Whether or not Preload method has worked
     promoted = false,
     // How long to wait for Preload to work before falling back to iframe method
@@ -29,8 +29,8 @@
       return;
     }
 
-    var script = document.createElement('script');
-    script.id = 'boomr-scr-as';
+    var script = document.createElement("script");
+    script.id = "boomr-scr-as";
     script.src = window.BOOMR.url;
 
     // Not really needed since dynamic scripts are async by default and the script is already in cache at this point,
@@ -54,12 +54,12 @@
       iframeStyle,
       win = window;
 
-    window.BOOMR.snippetMethod = wasFallback ? 'if' : 'i';
+    window.BOOMR.snippetMethod = wasFallback ? "if" : "i";
 
     // Adds Boomerang within the iframe
     bootstrap = function(parent, scriptId) {
-      var script = doc.createElement('script');
-      script.id = scriptId || 'boomr-if-as';
+      var script = doc.createElement("script");
+      script.id = scriptId || "boomr-if-as";
       script.src = window.BOOMR.url;
 
       BOOMR_lstart = new Date().getTime();
@@ -75,31 +75,31 @@
       window.attachEvent &&
       navigator.userAgent.match(/MSIE [67]\./)
     ) {
-      window.BOOMR.snippetMethod = 's';
+      window.BOOMR.snippetMethod = "s";
 
-      bootstrap(where.parentNode, 'boomr-async');
+      bootstrap(where.parentNode, "boomr-async");
       return;
     }
 
     // The rest of this function is IE8+ and other browsers that don't support Preload hints but will work with CSP & iframes
-    iframe = document.createElement('IFRAME');
+    iframe = document.createElement("IFRAME");
 
     // An empty frame
-    iframe.src = 'about:blank';
+    iframe.src = "about:blank";
 
     // We set title and role appropriately to play nicely with screen readers and other assistive technologies
-    iframe.title = '';
-    iframe.role = 'presentation';
+    iframe.title = "";
+    iframe.role = "presentation";
 
     // Ensure we're not loaded lazily
-    iframe.loading = 'eager';
+    iframe.loading = "eager";
 
     // Hide the iframe
     iframeStyle = (iframe.frameElement || iframe).style;
     iframeStyle.width = 0;
     iframeStyle.height = 0;
     iframeStyle.border = 0;
-    iframeStyle.display = 'none';
+    iframeStyle.display = "none";
 
     // Append to the end of the current block
     where.parentNode.appendChild(iframe);
@@ -134,7 +134,7 @@
 
       // Run our function at load.
       // Split the string so HTML code injectors don't get confused and add code here.
-      doc.write('<bo' + "dy onload='document._boomrl();'>");
+      doc.write("<bo" + "dy onload='document._boomrl();'>");
     } else {
       // document.domain hasn't changed, regular method should be OK
       win._boomrl = function() {
@@ -142,9 +142,9 @@
       };
 
       if (win.addEventListener) {
-        win.addEventListener('load', win._boomrl, false);
+        win.addEventListener("load", win._boomrl, false);
       } else if (win.attachEvent) {
-        win.attachEvent('onload', win._boomrl);
+        win.attachEvent("onload", win._boomrl);
       }
     }
 
@@ -153,24 +153,24 @@
   }
 
   // See if Preload is supported or not
-  var link = document.createElement('link');
+  var link = document.createElement("link");
 
   if (
     link.relList &&
-    typeof link.relList.supports === 'function' &&
-    link.relList.supports('preload') &&
-    'as' in link
+    typeof link.relList.supports === "function" &&
+    link.relList.supports("preload") &&
+    "as" in link
   ) {
-    window.BOOMR.snippetMethod = 'p';
+    window.BOOMR.snippetMethod = "p";
 
     // Set attributes to trigger a Preload
     link.href = window.BOOMR.url;
-    link.rel = 'preload';
-    link.as = 'script';
+    link.rel = "preload";
+    link.as = "script";
 
     // Add our script tag if successful, fallback to iframe if not
-    link.addEventListener('load', promote);
-    link.addEventListener('error', function() {
+    link.addEventListener("load", promote);
+    link.addEventListener("error", function() {
       iframeLoader(true);
     });
 
@@ -197,8 +197,8 @@
   }
 
   if (window.addEventListener) {
-    window.addEventListener('load', boomerangSaveLoadTime, false);
+    window.addEventListener("load", boomerangSaveLoadTime, false);
   } else if (window.attachEvent) {
-    window.attachEvent('onload', boomerangSaveLoadTime);
+    window.attachEvent("onload", boomerangSaveLoadTime);
   }
 })();

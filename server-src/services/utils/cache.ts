@@ -1,6 +1,6 @@
-import { IParams } from '../__types__/IParams';
-import { ICacheResult } from './__types__/ICacheResult';
-import http from './http';
+import { IParams } from "../__types__/IParams";
+import { ICacheResult } from "./__types__/ICacheResult";
+import http from "./http";
 
 const cache: {
   [key: string]: ICacheResult | undefined;

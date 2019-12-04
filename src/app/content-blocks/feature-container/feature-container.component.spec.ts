@@ -1,34 +1,34 @@
-import { ServiceMock } from 'src/app/services/mocks/MockService';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { IContentBlock } from '../../../../common/__types__/IContentBlock';
-import { ContentBlockDirective } from '../../shared/directives/content-block/content-block.directive';
-import { Component } from '@angular/core';
-import { mockService } from '../../services/mocks/MockService';
-import registry from '../content-blocks.registry';
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { RuntimeService } from 'src/app/services/runtime/runtime.service';
-import { FeatureContainerComponent } from './feature-container.component';
-import { FeatureSwitchService } from '../../services/feature-switch/feature-switch.service';
-import { IFeatureContainer } from '../../../../common/__types__/IFeatureContainer';
-import { By } from '@angular/platform-browser';
+import { ServiceMock } from "src/app/services/mocks/MockService";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import { ContentBlockDirective } from "../../shared/directives/content-block/content-block.directive";
+import { Component } from "@angular/core";
+import { mockService } from "../../services/mocks/MockService";
+import registry from "../content-blocks.registry";
+import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
+import { RuntimeService } from "src/app/services/runtime/runtime.service";
+import { FeatureContainerComponent } from "./feature-container.component";
+import { FeatureSwitchService } from "../../services/feature-switch/feature-switch.service";
+import { IFeatureContainer } from "../../../../common/__types__/IFeatureContainer";
+import { By } from "@angular/platform-browser";
 
-describe('FeatureContainerComponent', () => {
+describe("FeatureContainerComponent", () => {
   let component: FeatureContainerComponent;
   let fixture: ComponentFixture<FeatureContainerComponent>;
   let featureSwitchServiceServiceMock: ServiceMock<FeatureSwitchService>;
   let runtimeService: ServiceMock<RuntimeService>;
 
   @Component({
-    selector: 'app-feature-enabled-content-block',
-    template: ''
+    selector: "app-feature-enabled-content-block",
+    template: ""
   })
   class FeatureEnabledContentBlockComponent {}
 
   beforeAll(() => {
     // @ts-ignore
     registry[
-      'FeatureEnabledContentBlockComponent'
+      "FeatureEnabledContentBlockComponent"
     ] = FeatureEnabledContentBlockComponent;
   });
 
@@ -68,17 +68,17 @@ describe('FeatureContainerComponent', () => {
 
   // @ts-ignore
   const featureEnabledContentBlock = {
-    type: 'FeatureEnabledContentBlock'
+    type: "FeatureEnabledContentBlock"
   } as IContentBlock;
 
   const featureContainer: IFeatureContainer = {
     type: ContentBlockType.FeatureContainer,
     // @ts-ignore
-    name: 'FeatureName',
+    name: "FeatureName",
     content: [featureEnabledContentBlock] as IContentBlock[]
   };
 
-  it('should create', () => {
+  it("should create", () => {
     component.input = featureContainer;
 
     fixture.detectChanges();
@@ -86,7 +86,7 @@ describe('FeatureContainerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render feature enabled component', async () => {
+  it("should render feature enabled component", async () => {
     runtimeService.isBrowser.mockReturnValue(true);
     (featureSwitchServiceServiceMock.getFeature as jest.Mock).mockResolvedValue(
       true
@@ -103,7 +103,7 @@ describe('FeatureContainerComponent', () => {
     expect(controlVariantBlocks).toHaveLength(1);
   });
 
-  it('should not render feature disabled component', async () => {
+  it("should not render feature disabled component", async () => {
     runtimeService.isBrowser.mockReturnValue(true);
     (featureSwitchServiceServiceMock.getFeature as jest.Mock).mockResolvedValue(
       false
@@ -120,7 +120,7 @@ describe('FeatureContainerComponent', () => {
     expect(otherVariantBlocks).toHaveLength(0);
   });
 
-  it('should not render any feature enabled component in server', async () => {
+  it("should not render any feature enabled component in server", async () => {
     runtimeService.isBrowser.mockReturnValue(false);
     component.input = featureContainer;
 
@@ -130,7 +130,7 @@ describe('FeatureContainerComponent', () => {
     expect(component.contentBlocks).toHaveLength(0);
   });
 
-  it('should not render any component when feature enabled component does not exist', async () => {
+  it("should not render any component when feature enabled component does not exist", async () => {
     runtimeService.isBrowser.mockReturnValue(true);
     (featureSwitchServiceServiceMock.getFeature as jest.Mock).mockResolvedValue(
       true

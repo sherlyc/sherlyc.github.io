@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import ResizeObserver from 'resize-observer-polyfill';
-import { Observable, Subscriber } from 'rxjs';
+import { Injectable } from "@angular/core";
+import ResizeObserver from "resize-observer-polyfill";
+import { Observable, Subscriber } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class ResizeObserverService {
   private entriesMap: WeakMap<Element, Subscriber<ResizeObserverEntry>>;

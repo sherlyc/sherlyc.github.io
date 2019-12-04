@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { DeviceType } from '../../../../common/DeviceType';
-import { AnalyticsEventsType } from './__types__/AnalyticsEventsType';
-import { IAdobeAnalyticsEvent } from './__types__/IAdobeAnalyticsEvent';
-import { LoggerService } from '../logger/logger.service';
-import { IAnalyticsService } from './__types__/IAnalyticsService';
-import { WindowService } from '../window/window.service';
+import { Injectable } from "@angular/core";
+import { DeviceType } from "../../../../common/DeviceType";
+import { AnalyticsEventsType } from "./__types__/AnalyticsEventsType";
+import { IAdobeAnalyticsEvent } from "./__types__/IAdobeAnalyticsEvent";
+import { LoggerService } from "../logger/logger.service";
+import { IAnalyticsService } from "./__types__/IAnalyticsService";
+import { WindowService } from "../window/window.service";
 import {
   AnalyticsEvent,
   IExperimentAssigned,
@@ -13,16 +13,16 @@ import {
   IMenuNavSectionClicked,
   IMoreButtonClicked,
   IWeatherLocationChanged
-} from './__types__/IAnalyticEvents';
-import { IStuffLoginUser } from '../authentication/__types__/IStuffLoginUser';
-import { DtmService } from '../dtm/dtm.service';
-import { RuntimeService } from '../runtime/runtime.service';
-import { LoadedEvent } from '../dtm/__types__/LoadedEvent';
+} from "./__types__/IAnalyticEvents";
+import { IStuffLoginUser } from "../authentication/__types__/IStuffLoginUser";
+import { DtmService } from "../dtm/dtm.service";
+import { RuntimeService } from "../runtime/runtime.service";
+import { LoadedEvent } from "../dtm/__types__/LoadedEvent";
 
-const home = 'home';
+const home = "home";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class AnalyticsService implements IAnalyticsService {
   constructor(
@@ -35,32 +35,32 @@ export class AnalyticsService implements IAnalyticsService {
   private static transformEvent(event: AnalyticsEvent): IAdobeAnalyticsEvent {
     const eventTypesRegistry: { [key in AnalyticsEventsType]: Function } = {
       [AnalyticsEventsType.PWA_DOWNLOADED]: () => ({
-        event: 'pwa.download'
+        event: "pwa.download"
       }),
       [AnalyticsEventsType.WEATHER_LOCATION_CHANGED]: (
         analyticEvent: IWeatherLocationChanged
       ) => ({
-        event: 'weather.location.change',
-        'weather.location': analyticEvent!.location
+        event: "weather.location.change",
+        "weather.location": analyticEvent!.location
       }),
       [AnalyticsEventsType.MENU_NAV_OPENED]: () => ({
-        event: 'menu.nav'
+        event: "menu.nav"
       }),
       [AnalyticsEventsType.LOGIN_CLIKED]: () => ({
-        event: 'login.signup.click',
-        'login.signup.location': 'top'
+        event: "login.signup.click",
+        "login.signup.location": "top"
       }),
       [AnalyticsEventsType.AVATAR_CLICKED]: () => ({
-        event: 'avatar.click'
+        event: "avatar.click"
       }),
       [AnalyticsEventsType.STUFF_LOGO_CLICKED]: () => ({
-        event: 'stuff.logo'
+        event: "stuff.logo"
       }),
       [AnalyticsEventsType.FOOTER_MENU_CLICKED]: (
         analyticEvent: IFooterMenuClicked
       ) => ({
-        event: 'menu.footer',
-        'menu.link': analyticEvent.name
+        event: "menu.footer",
+        "menu.link": analyticEvent.name
       }),
       [AnalyticsEventsType.BREAKING_NEWS_OPENED]: () => ({
         event: `breaking.news.open`
@@ -71,52 +71,52 @@ export class AnalyticsService implements IAnalyticsService {
       [AnalyticsEventsType.MORE_BUTTON_CLICKED]: (
         analyticEvent: IMoreButtonClicked
       ) => ({
-        event: 'more.content.button',
-        'more.content.url': analyticEvent.url
+        event: "more.content.button",
+        "more.content.url": analyticEvent.url
       }),
       [AnalyticsEventsType.MENU_NAV_SECTION_CLICKED]: (
         analyticEvent: IMenuNavSectionClicked
       ) => ({
-        event: 'menu.nav',
-        'menu.nav.section': analyticEvent.section
+        event: "menu.nav",
+        "menu.nav.section": analyticEvent.section
       }),
       [AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED]: (
         analyticEvent: IHomepageStrapClicked
       ) => ({
-        event: 'homepage.strap.click',
-        'homepage.strap': analyticEvent.strapName,
-        'article.headline': analyticEvent.articleHeadline,
-        'article.id': analyticEvent.articleId
+        event: "homepage.strap.click",
+        "homepage.strap": analyticEvent.strapName,
+        "article.headline": analyticEvent.articleHeadline,
+        "article.id": analyticEvent.articleId
       }),
       [AnalyticsEventsType.EXPERIMENT]: (
         analyticEvent: IExperimentAssigned
       ) => ({
-        event: 'ab.testing.event',
-        'ab.testing.segment.web': analyticEvent.variant,
-        'ab.testing.experiment.name': analyticEvent.experiment
+        event: "ab.testing.event",
+        "ab.testing.segment.web": analyticEvent.variant,
+        "ab.testing.experiment.name": analyticEvent.experiment
       })
     };
     const adobeEvent = eventTypesRegistry[event.type](event);
-    return { type: 'analytics', ...adobeEvent };
+    return { type: "analytics", ...adobeEvent };
   }
 
   setup() {
     this.windowService.getWindow().spade = 1;
-    const productionEnv = 'production';
+    const productionEnv = "production";
     this.windowService.getWindow().digitalData = {
       page: {
         pageInfo: {
           pageID: home,
-          pageName: 'Stuff home',
+          pageName: "Stuff home",
           sysEnv: DeviceType.mobile,
-          variant: '1',
-          version: '1',
-          publisher: '',
-          articleID: '',
-          headline: '',
-          author: '',
-          source: '',
-          lastPublishedTime: ''
+          variant: "1",
+          version: "1",
+          publisher: "",
+          articleID: "",
+          headline: "",
+          author: "",
+          source: "",
+          lastPublishedTime: ""
         },
         category: {
           pageType: home,
@@ -124,11 +124,11 @@ export class AnalyticsService implements IAnalyticsService {
         },
         ads: {
           environment:
-            this.runtime.getEnvironmentVariable('SPADE_ENV', productionEnv) ===
+            this.runtime.getEnvironmentVariable("SPADE_ENV", productionEnv) ===
             productionEnv
-              ? 'prod'
-              : 'preprod',
-          exclusions: '',
+              ? "prod"
+              : "preprod",
+          exclusions: "",
           sections: []
         }
       },
@@ -137,7 +137,7 @@ export class AnalyticsService implements IAnalyticsService {
           profile: [
             {
               profileInfo: {
-                uid: ''
+                uid: ""
               }
             }
           ],
@@ -154,7 +154,7 @@ export class AnalyticsService implements IAnalyticsService {
         .getWindow()
         .digitalData.events.push(AnalyticsService.transformEvent(event));
     } catch (err) {
-      this.logger.error(err, 'AnalyticsService - pushEvent error');
+      this.logger.error(err, "AnalyticsService - pushEvent error");
     }
   }
 
@@ -174,11 +174,11 @@ export class AnalyticsService implements IAnalyticsService {
     try {
       this.windowService
         .getWindow()
-        .nol_t({ cid: 'nz-stuff', content: '0', server: 'secure-nz' })
+        .nol_t({ cid: "nz-stuff", content: "0", server: "secure-nz" })
         .record()
         .post();
     } catch (err) {
-      this.logger.error(err, 'AnalyticsService - trackPageByNielsen error');
+      this.logger.error(err, "AnalyticsService - trackPageByNielsen error");
     }
   }
 }

@@ -1,7 +1,7 @@
-@import '~normalize.css/normalize.css';
-@import '~flexboxgrid';
-@import 'spade/assets/fonts/merriweather.scss';
-@import 'spade/assets/fonts/merriweather-sans.scss';
+@import "~normalize.css/normalize.css";
+@import "~flexboxgrid";
+@import "spade/assets/fonts/merriweather.scss";
+@import "spade/assets/fonts/merriweather-sans.scss";
 
 :root {
   --title-size: 17px;
@@ -35,7 +35,7 @@ html,
 body {
   height: 100%;
   width: 100%;
-  font-family: 'Merriweather Sans', 'Open Sans', sans-serif;
+  font-family: "Merriweather Sans", "Open Sans", sans-serif;
   font-weight: 300;
 }
 

@@ -1,12 +1,12 @@
-import gridGap from './grid-gap';
-import { IGridConfig } from '../../../../../common/__types__/IGridContainer';
+import gridGap from "./grid-gap";
+import { IGridConfig } from "../../../../../common/__types__/IGridContainer";
 
-describe('grip gap helper', () => {
-  it('should add grip gap to grid template rows and columns', () => {
+describe("grip gap helper", () => {
+  it("should add grip gap to grid template rows and columns", () => {
     const gridConfig = {
-      gridTemplateColumns: '1fr 1fr 1fr 1fr 200px',
-      gridTemplateRows: 'auto auto auto',
-      gridGap: '20px',
+      gridTemplateColumns: "1fr 1fr 1fr 1fr 200px",
+      gridTemplateRows: "auto auto auto",
+      gridGap: "20px",
       gridBlocks: [
         {
           rowStart: 0,
@@ -18,9 +18,9 @@ describe('grip gap helper', () => {
     } as IGridConfig;
 
     const expectedConfig = {
-      gridTemplateColumns: '1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px',
-      gridTemplateRows: 'auto 20px auto 20px auto',
-      gridGap: '0',
+      gridTemplateColumns: "1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px",
+      gridTemplateRows: "auto 20px auto 20px auto",
+      gridGap: "0",
       gridBlocks: [
         {
           rowStart: 0,
@@ -34,11 +34,11 @@ describe('grip gap helper', () => {
     expect(gridGap(gridConfig)).toEqual(expectedConfig);
   });
 
-  it('should handle multiple grid blocks', () => {
+  it("should handle multiple grid blocks", () => {
     const config = {
-      gridTemplateColumns: '1fr 1fr 1fr 1fr',
-      gridTemplateRows: '1fr 1fr 1fr',
-      gridGap: '100px',
+      gridTemplateColumns: "1fr 1fr 1fr 1fr",
+      gridTemplateRows: "1fr 1fr 1fr",
+      gridGap: "100px",
       gridBlocks: [
         {
           rowStart: 1,
@@ -74,9 +74,9 @@ describe('grip gap helper', () => {
     } as IGridConfig;
 
     const expected = {
-      gridTemplateColumns: '1fr 100px 1fr 100px 1fr 100px 1fr',
-      gridTemplateRows: '1fr 100px 1fr 100px 1fr',
-      gridGap: '0',
+      gridTemplateColumns: "1fr 100px 1fr 100px 1fr 100px 1fr",
+      gridTemplateRows: "1fr 100px 1fr 100px 1fr",
+      gridGap: "0",
       gridBlocks: [
         {
           rowStart: 1,

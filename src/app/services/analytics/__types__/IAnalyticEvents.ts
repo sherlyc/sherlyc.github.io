@@ -1,4 +1,4 @@
-import { AnalyticsEventsType } from './AnalyticsEventsType';
+import { AnalyticsEventsType } from "./AnalyticsEventsType";
 
 export type AnalyticsEvent =
   | ISimpleAnalyticEvent

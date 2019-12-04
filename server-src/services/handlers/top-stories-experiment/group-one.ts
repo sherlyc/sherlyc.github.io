@@ -1,18 +1,18 @@
-import { IContentBlock } from '../../../../common/__types__/IContentBlock';
-import { IParams } from '../../__types__/IParams';
-import { handlerRunnerFunction } from '../runner';
-import { getRawArticles } from '../../adapters/article-retriever/article-retriever';
-import { LayoutType } from '../../adapters/__types__/LayoutType';
-import { layoutRetriever } from '../../adapters/layout/layout-retriever';
-import logger from '../../utils/logger';
-import { IBasicAdUnit } from '../../../../common/__types__/IBasicAdUnit';
-import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { IRawArticle } from '../../adapters/__types__/IRawArticle';
-import { Strap } from '../../strap';
-import { ITopStoriesArticleListGroupOneHandlerInput } from '../__types__/ITopStoriesArticleListGroupOne';
-import { IGrayDefconArticleUnit } from '../../../../common/__types__/IGrayDefconArticleUnit';
-import { IBigImageArticleUnit } from '../../../../common/__types__/IBigImageArticleUnit';
-import wrappedLogger from '../../utils/logger';
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import { IParams } from "../../__types__/IParams";
+import { handlerRunnerFunction } from "../runner";
+import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
+import { LayoutType } from "../../adapters/__types__/LayoutType";
+import { layoutRetriever } from "../../adapters/layout/layout-retriever";
+import logger from "../../utils/logger";
+import { IBasicAdUnit } from "../../../../common/__types__/IBasicAdUnit";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IRawArticle } from "../../adapters/__types__/IRawArticle";
+import { Strap } from "../../strap";
+import { ITopStoriesArticleListGroupOneHandlerInput } from "../__types__/ITopStoriesArticleListGroupOne";
+import { IGrayDefconArticleUnit } from "../../../../common/__types__/IGrayDefconArticleUnit";
+import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArticleUnit";
+import wrappedLogger from "../../utils/logger";
 
 const basicAdUnit = (context: string): IBasicAdUnit => ({
   type: ContentBlockType.BasicAdUnit,

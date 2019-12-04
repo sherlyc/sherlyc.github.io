@@ -1,4 +1,4 @@
-import { JsonFeedAssetType } from './JsonFeedAssetType';
+import { JsonFeedAssetType } from "./JsonFeedAssetType";
 
 export interface IJsonFeedQuery {
   [key: string]: any;

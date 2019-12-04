@@ -4,21 +4,21 @@ import {
   HostBinding,
   Input,
   OnInit
-} from '@angular/core';
-import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
-import { IExternalContentUnit } from '../../../../common/__types__/IExternalContentUnit';
-import { DomSanitizer } from '@angular/platform-browser';
+} from "@angular/core";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
+import { IExternalContentUnit } from "../../../../common/__types__/IExternalContentUnit";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
-  selector: 'app-external-content-unit',
-  templateUrl: './external-content-unit.component.html',
-  styleUrls: ['./external-content-unit.component.scss'],
+  selector: "app-external-content-unit",
+  templateUrl: "./external-content-unit.component.html",
+  styleUrls: ["./external-content-unit.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExternalContentUnitComponent
   implements IContentBlockComponent, OnInit {
   @Input() input!: IExternalContentUnit;
-  @HostBinding('style.margin') margin = '0';
+  @HostBinding("style.margin") margin = "0";
   constructor(private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {

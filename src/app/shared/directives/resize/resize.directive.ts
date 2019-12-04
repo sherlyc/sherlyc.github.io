@@ -5,12 +5,12 @@ import {
   EventEmitter,
   OnDestroy,
   Output
-} from '@angular/core';
-import { ResizeObserverService } from '../../../services/resize-observer/resize-observer.service';
-import { RuntimeService } from '../../../services/runtime/runtime.service';
-import { Subscription } from 'rxjs';
+} from "@angular/core";
+import { ResizeObserverService } from "../../../services/resize-observer/resize-observer.service";
+import { RuntimeService } from "../../../services/runtime/runtime.service";
+import { Subscription } from "rxjs";
 
-@Directive({ selector: '[appResizeObserver]' })
+@Directive({ selector: "[appResizeObserver]" })
 export class ResizeDirective implements OnDestroy, AfterViewInit {
   @Output() resize = new EventEmitter();
   subscription?: Subscription;

@@ -1,10 +1,10 @@
-import { TestBed } from '@angular/core/testing';
-import * as store from 'store';
-import { StoreService } from './store.service';
+import { TestBed } from "@angular/core/testing";
+import * as store from "store";
+import { StoreService } from "./store.service";
 
-jest.mock('store');
+jest.mock("store");
 
-describe('Store Service should', () => {
+describe("Store Service should", () => {
   let storeService: StoreService;
   const storeGetMock = jest.fn();
   const storeSetMock = jest.fn();
@@ -17,10 +17,10 @@ describe('Store Service should', () => {
     storeService = TestBed.get(StoreService);
   });
 
-  it('should get data from local storage', () => {
-    const key = 'itemKey';
-    const value = 'itemValue';
-    storeGetMock.mockReturnValue('itemValue');
+  it("should get data from local storage", () => {
+    const key = "itemKey";
+    const value = "itemValue";
+    storeGetMock.mockReturnValue("itemValue");
 
     const result = storeService.get(key);
 
@@ -28,9 +28,9 @@ describe('Store Service should', () => {
     expect(storeGetMock).toHaveBeenCalledWith(key);
   });
 
-  it('should save data to local storage', () => {
-    const key = 'itemKey';
-    const value = 'itemValue';
+  it("should save data to local storage", () => {
+    const key = "itemKey";
+    const value = "itemValue";
 
     storeService.set(key, value);
 

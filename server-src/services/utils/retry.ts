@@ -1,7 +1,7 @@
-import * as pRetry from 'p-retry';
-import config from './config';
-import logger from './logger';
-import { IParams } from '../__types__/IParams';
+import * as pRetry from "p-retry";
+import config from "./config";
+import logger from "./logger";
+import { IParams } from "../__types__/IParams";
 
 const defaultOptions = {
   retries: 2,

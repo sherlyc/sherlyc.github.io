@@ -1,15 +1,15 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { DtmService } from './dtm.service';
-import { ScriptInjectorService } from '../script-injector/script-injector.service';
-import { mockService, ServiceMock } from '../mocks/MockService';
-import { ConfigService } from '../config/config.service';
-import { WindowService } from '../window/window.service';
-import { RuntimeService } from '../runtime/runtime.service';
-import { FeatureSwitchService } from '../feature-switch/feature-switch.service';
-import { ScriptId } from '../script-injector/__types__/ScriptId';
+import { DtmService } from "./dtm.service";
+import { ScriptInjectorService } from "../script-injector/script-injector.service";
+import { mockService, ServiceMock } from "../mocks/MockService";
+import { ConfigService } from "../config/config.service";
+import { WindowService } from "../window/window.service";
+import { RuntimeService } from "../runtime/runtime.service";
+import { FeatureSwitchService } from "../feature-switch/feature-switch.service";
+import { ScriptId } from "../script-injector/__types__/ScriptId";
 
-describe('DtmService', () => {
+describe("DtmService", () => {
   let dtmService: DtmService;
   let scriptInjectorService: ServiceMock<ScriptInjectorService>;
   let configService: ServiceMock<ConfigService>;
@@ -50,11 +50,11 @@ describe('DtmService', () => {
     featureSwitchService = TestBed.get(FeatureSwitchService);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(dtmService).toBeTruthy();
   });
 
-  it('should do nothing when running in ssr', async () => {
+  it("should do nothing when running in ssr", async () => {
     runtimeService.isServer.mockReturnValue(true);
 
     await dtmService.setup();
@@ -63,7 +63,7 @@ describe('DtmService', () => {
     expect(scriptInjectorService.load).not.toHaveBeenCalled();
   });
 
-  it('should delegate to script injector to load dtm script on setup when feature switch is off', async () => {
+  it("should delegate to script injector to load dtm script on setup when feature switch is off", async () => {
     featureSwitchService.getFeature.mockResolvedValue(false);
     runtimeService.isServer.mockReturnValue(false);
     windowService.getWindow.mockReturnValue({});
@@ -71,7 +71,7 @@ describe('DtmService', () => {
       windowService.getWindow()._satellite = { pageBottom: jest.fn() };
       return Promise.resolve();
     });
-    const dtmUrl = 'http://example/dtm.js';
+    const dtmUrl = "http://example/dtm.js";
     configService.getConfig.mockReturnValue({
       dtmUrl
     });
@@ -85,7 +85,7 @@ describe('DtmService', () => {
     expect(windowService.getWindow()._satellite.pageBottom).toHaveBeenCalled();
   });
 
-  it('should delegate to script injector to load launch script on setup when feature switch is on', async () => {
+  it("should delegate to script injector to load launch script on setup when feature switch is on", async () => {
     featureSwitchService.getFeature.mockResolvedValue(true);
     runtimeService.isServer.mockReturnValue(false);
     windowService.getWindow.mockReturnValue({});
@@ -93,7 +93,7 @@ describe('DtmService', () => {
       windowService.getWindow()._satellite = { pageBottom: jest.fn() };
       return Promise.resolve();
     });
-    const launchUrl = 'http://example/launch.js';
+    const launchUrl = "http://example/launch.js";
     configService.getConfig.mockReturnValue({
       launchUrl
     });

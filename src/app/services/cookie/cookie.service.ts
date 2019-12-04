@@ -1,10 +1,10 @@
-import { Inject, Injectable } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
-import { parse, serialize, CookieSerializeOptions } from 'cookie';
-import { ICookieService } from './__types__/ICookieService';
+import { Inject, Injectable } from "@angular/core";
+import { DOCUMENT } from "@angular/common";
+import { parse, serialize, CookieSerializeOptions } from "cookie";
+import { ICookieService } from "./__types__/ICookieService";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class CookieService implements ICookieService {
   constructor(@Inject(DOCUMENT) private document: Document) {}

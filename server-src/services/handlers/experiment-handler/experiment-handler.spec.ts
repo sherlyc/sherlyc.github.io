@@ -1,28 +1,28 @@
-import { IContentBlock } from '../../../../common/__types__/IContentBlock';
-import experimentHandler from './experiment-handler';
-import { HandlerInputType } from '../__types__/HandlerInputType';
-import { IParams } from '../../__types__/IParams';
-import { IExperimentContainer } from '../../../../common/__types__/IExperimentContainer';
-import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { IBreakingNews } from '../../../../common/__types__/IBreakingNews';
-import { Section } from '../../section';
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import experimentHandler from "./experiment-handler";
+import { HandlerInputType } from "../__types__/HandlerInputType";
+import { IParams } from "../../__types__/IParams";
+import { IExperimentContainer } from "../../../../common/__types__/IExperimentContainer";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IBreakingNews } from "../../../../common/__types__/IBreakingNews";
+import { Section } from "../../section";
 
-describe('Experiment Handler', () => {
-  const params: IParams = { apiRequestId: 'request-id-for-testing' };
+describe("Experiment Handler", () => {
+  const params: IParams = { apiRequestId: "request-id-for-testing" };
 
-  it('should return Toucan content block when experiment name is Toucan', async () => {
+  it("should return Toucan content block when experiment name is Toucan", async () => {
     const handlerRunnerMock = jest.fn();
     const breakingNewsBlock = {
       type: ContentBlockType.BreakingNews,
-      id: 'fake',
-      text: 'fake',
-      link: 'fake'
+      id: "fake",
+      text: "fake",
+      link: "fake"
     } as IBreakingNews;
     handlerRunnerMock.mockResolvedValue([breakingNewsBlock]);
 
     const expectedResult: IExperimentContainer = {
       type: ContentBlockType.ExperimentContainer,
-      name: 'Toucan',
+      name: "Toucan",
       variants: {
         purpleHeadline: [breakingNewsBlock],
         orangeHeadline: [breakingNewsBlock],
@@ -34,7 +34,7 @@ describe('Experiment Handler', () => {
       handlerRunnerMock,
       {
         type: HandlerInputType.Experiment,
-        name: 'Toucan',
+        name: "Toucan",
         variants: {
           purpleHeadline: {
             type: HandlerInputType.BreakingNews
@@ -53,18 +53,18 @@ describe('Experiment Handler', () => {
     expect(result).toEqual([expectedResult]);
   });
 
-  it('should return Parrot content block when experiment name is Parrot', async () => {
+  it("should return Parrot content block when experiment name is Parrot", async () => {
     const handlerRunnerMock = jest.fn();
     const basicArticleUnit: IContentBlock = {
       type: ContentBlockType.BasicArticleUnit,
-      strapName: 'fake',
-      id: 'fake',
-      indexHeadline: 'fake',
-      title: 'fake',
-      introText: 'fake',
-      linkUrl: 'fake',
-      imageSrc: 'fake',
-      imageSrcSet: 'fake',
+      strapName: "fake",
+      id: "fake",
+      indexHeadline: "fake",
+      title: "fake",
+      introText: "fake",
+      linkUrl: "fake",
+      imageSrc: "fake",
+      imageSrcSet: "fake",
       lastPublishedTime: 0,
       headlineFlags: []
     };
@@ -72,7 +72,7 @@ describe('Experiment Handler', () => {
 
     const expectedResult: IExperimentContainer = {
       type: ContentBlockType.ExperimentContainer,
-      name: 'Parrot',
+      name: "Parrot",
       variants: {
         redHeadline: [basicArticleUnit, basicArticleUnit],
         greenHeadline: [basicArticleUnit, basicArticleUnit],
@@ -84,23 +84,23 @@ describe('Experiment Handler', () => {
       handlerRunnerMock,
       {
         type: HandlerInputType.Experiment,
-        name: 'Parrot',
+        name: "Parrot",
         variants: {
           redHeadline: {
             type: HandlerInputType.ArticleList,
-            strapName: 'fake',
+            strapName: "fake",
             sourceId: Section.Latest,
             totalBasicArticlesUnit: 2
           },
           greenHeadline: {
             type: HandlerInputType.ArticleList,
-            strapName: 'fake',
+            strapName: "fake",
             sourceId: Section.Latest,
             totalBasicArticlesUnit: 2
           },
           control: {
             type: HandlerInputType.ArticleList,
-            strapName: 'fake',
+            strapName: "fake",
             sourceId: Section.Latest,
             totalBasicArticlesUnit: 2
           }
@@ -112,8 +112,8 @@ describe('Experiment Handler', () => {
     expect(result).toEqual([expectedResult]);
   });
 
-  it('should throw error if content block rendered throws error', async () => {
-    const error = new Error('content block error');
+  it("should throw error if content block rendered throws error", async () => {
+    const error = new Error("content block error");
     const handlerRunnerMock = jest.fn();
     handlerRunnerMock.mockRejectedValue(error);
 
@@ -122,11 +122,11 @@ describe('Experiment Handler', () => {
         handlerRunnerMock,
         {
           type: HandlerInputType.Experiment,
-          name: 'Experiment',
+          name: "Experiment",
           variants: {
             control: {
               type: HandlerInputType.ArticleList,
-              strapName: 'fake',
+              strapName: "fake",
               sourceId: Section.Latest,
               totalBasicArticlesUnit: 0
             }

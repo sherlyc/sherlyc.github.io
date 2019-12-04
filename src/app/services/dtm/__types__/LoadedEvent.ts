@@ -1,3 +1,3 @@
 export enum LoadedEvent {
-  nielsenLoaded = 'nielsen_loaded'
+  nielsenLoaded = "nielsen_loaded"
 }

@@ -1,4 +1,4 @@
-import { DeviceType } from '../../../common/DeviceType';
+import { DeviceType } from "../../../common/DeviceType";
 
 export interface ISwitchConfig {
   devices?: DeviceType[];

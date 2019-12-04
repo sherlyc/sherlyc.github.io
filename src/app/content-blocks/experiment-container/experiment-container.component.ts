@@ -1,22 +1,22 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
-import { IExperimentContainer } from '../../../../common/__types__/IExperimentContainer';
-import { IContentBlock } from '../../../../common/__types__/IContentBlock';
-import { ExperimentService } from '../../services/experiment/experiment.service';
-import { RuntimeService } from '../../services/runtime/runtime.service';
-import { LoggerService } from '../../services/logger/logger.service';
-import { AnalyticsService } from '../../services/analytics/analytics.service';
-import { AnalyticsEventsType } from '../../services/analytics/__types__/AnalyticsEventsType';
+import { Component, Input, OnInit } from "@angular/core";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
+import { IExperimentContainer } from "../../../../common/__types__/IExperimentContainer";
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import { ExperimentService } from "../../services/experiment/experiment.service";
+import { RuntimeService } from "../../services/runtime/runtime.service";
+import { LoggerService } from "../../services/logger/logger.service";
+import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 
 @Component({
-  selector: 'app-experiment-container',
-  templateUrl: './experiment-container.component.html'
+  selector: "app-experiment-container",
+  templateUrl: "./experiment-container.component.html"
 })
 export class ExperimentContainerComponent
   implements OnInit, IContentBlockComponent {
   @Input() input!: IExperimentContainer;
   contentBlocks: IContentBlock[] = [];
-  variant = 'control';
+  variant = "control";
 
   constructor(
     private experimentService: ExperimentService,

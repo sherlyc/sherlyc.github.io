@@ -1,17 +1,17 @@
-import { IContentBlock } from '../../../../common/__types__/IContentBlock';
-import { IParams } from '../../__types__/IParams';
-import { ITopStoriesArticleListHandlerInput } from '../__types__/ITopStoriesArticleListHandlerInput';
-import { handlerRunnerFunction } from '../runner';
-import { getRawArticles } from '../../adapters/article-retriever/article-retriever';
-import { LayoutType } from '../../adapters/__types__/LayoutType';
-import { layoutRetriever } from '../../adapters/layout/layout-retriever';
-import logger from '../../utils/logger';
-import { IBasicAdUnit } from '../../../../common/__types__/IBasicAdUnit';
-import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { IRawArticle } from '../../adapters/__types__/IRawArticle';
-import { IDefconArticleUnit } from '../../../../common/__types__/IDefconArticleUnit';
-import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
-import { Strap } from '../../strap';
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import { IParams } from "../../__types__/IParams";
+import { ITopStoriesArticleListHandlerInput } from "../__types__/ITopStoriesArticleListHandlerInput";
+import { handlerRunnerFunction } from "../runner";
+import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
+import { LayoutType } from "../../adapters/__types__/LayoutType";
+import { layoutRetriever } from "../../adapters/layout/layout-retriever";
+import logger from "../../utils/logger";
+import { IBasicAdUnit } from "../../../../common/__types__/IBasicAdUnit";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IRawArticle } from "../../adapters/__types__/IRawArticle";
+import { IDefconArticleUnit } from "../../../../common/__types__/IDefconArticleUnit";
+import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
+import { Strap } from "../../strap";
 
 const basicAdUnit = (context: string): IBasicAdUnit => ({
   type: ContentBlockType.BasicAdUnit,

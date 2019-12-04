@@ -1,4 +1,4 @@
-import { ContentBlockType } from './ContentBlockType';
+import { ContentBlockType } from "./ContentBlockType";
 
 export interface IBreakingNews {
   type: ContentBlockType.BreakingNews;

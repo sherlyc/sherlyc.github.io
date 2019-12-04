@@ -1,15 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from "@angular/core";
 import {
   IGridBlock,
   IGridConfig,
   IGridContainer
-} from '../../../../common/__types__/IGridContainer';
-import { IContentBlockComponent } from '../__types__/IContentBlockComponent';
-import applyGripGap from '../../shared/utils/grid-gap/grid-gap';
+} from "../../../../common/__types__/IGridContainer";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
+import applyGripGap from "../../shared/utils/grid-gap/grid-gap";
 
 @Component({
-  selector: 'app-grid-container',
-  templateUrl: './grid-container.component.html'
+  selector: "app-grid-container",
+  templateUrl: "./grid-container.component.html"
 })
 export class GridContainerComponent implements IContentBlockComponent, OnInit {
   @Input() input!: IGridContainer;
@@ -24,16 +24,16 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
 
     this.style = {
       ...this.gridCss(mobileWithGap),
-      '@media only screen and (min-width: 64em)': this.gridCss(tabletWithGap),
-      '@media only screen and (min-width: 75em)': this.gridCss(desktopWithGap)
+      "@media only screen and (min-width: 64em)": this.gridCss(tabletWithGap),
+      "@media only screen and (min-width: 75em)": this.gridCss(desktopWithGap)
     };
   }
 
   private gridCss(gridConfig: IGridConfig) {
     return {
-      display: 'grid',
-      '@media all': {
-        display: '-ms-grid'
+      display: "grid",
+      "@media all": {
+        display: "-ms-grid"
       },
 
       msGridColumn: gridConfig.gridTemplateColumns,

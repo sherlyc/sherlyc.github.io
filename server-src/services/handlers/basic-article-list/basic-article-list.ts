@@ -1,15 +1,15 @@
-import { IContentBlock } from '../../../../common/__types__/IContentBlock';
-import { IBasicArticleListHandlerInput } from '../__types__/IBasicArticleListHandlerInput';
-import { handlerRunnerFunction } from '../runner';
-import { IParams } from '../../__types__/IParams';
-import { LayoutType } from '../../adapters/__types__/LayoutType';
-import { getRawArticles } from '../../adapters/article-retriever/article-retriever';
-import { IBasicAdUnit } from '../../../../common/__types__/IBasicAdUnit';
-import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { IRawArticle } from '../../adapters/__types__/IRawArticle';
-import { IBasicArticleTitleUnit } from '../../../../common/__types__/IBasicArticleTitleUnit';
-import { IBasicArticleUnit } from '../../../../common/__types__/IBasicArticleUnit';
-import wrappedLogger from '../../utils/logger';
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import { IBasicArticleListHandlerInput } from "../__types__/IBasicArticleListHandlerInput";
+import { handlerRunnerFunction } from "../runner";
+import { IParams } from "../../__types__/IParams";
+import { LayoutType } from "../../adapters/__types__/LayoutType";
+import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
+import { IBasicAdUnit } from "../../../../common/__types__/IBasicAdUnit";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IRawArticle } from "../../adapters/__types__/IRawArticle";
+import { IBasicArticleTitleUnit } from "../../../../common/__types__/IBasicArticleTitleUnit";
+import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
+import wrappedLogger from "../../utils/logger";
 
 const basicAdUnit = (context: string): IBasicAdUnit => ({
   type: ContentBlockType.BasicAdUnit,

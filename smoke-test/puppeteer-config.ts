@@ -1,6 +1,6 @@
-import { LaunchOptions } from 'puppeteer';
+import { LaunchOptions } from "puppeteer";
 
 export default {
   headless: true,
-  args: ['--no-sandbox', '--disable-setuid-sandbox']
+  args: ["--no-sandbox", "--disable-setuid-sandbox"]
 } as LaunchOptions;

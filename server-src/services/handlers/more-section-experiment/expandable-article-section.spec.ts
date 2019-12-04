@@ -1,16 +1,16 @@
-import expandableArticleSection from './expandable-article-section';
-import { IExpandableArticleSectionHandlerInput } from '../__types__/IExpandableArticleSectionHandlerInput';
-import { HandlerInputType } from '../__types__/HandlerInputType';
-import { Section } from '../../section';
-import { IContentBlock } from '../../../../common/__types__/IContentBlock';
-import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
+import expandableArticleSection from "./expandable-article-section";
+import { IExpandableArticleSectionHandlerInput } from "../__types__/IExpandableArticleSectionHandlerInput";
+import { HandlerInputType } from "../__types__/HandlerInputType";
+import { Section } from "../../section";
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 
-describe('Expandable article section', () => {
-  const params = { apiRequestId: '123' };
-  const strapName = 'Karen';
+describe("Expandable article section", () => {
+  const params = { apiRequestId: "123" };
+  const strapName = "Karen";
 
   const adUnitWithContext = {
-    type: 'BasicAdUnit',
+    type: "BasicAdUnit",
     context: strapName
   };
 
@@ -20,13 +20,13 @@ describe('Expandable article section', () => {
       id
     } as IContentBlock);
 
-  it('should call handlerRunner with content', async () => {
+  it("should call handlerRunner with content", async () => {
     const handlerRunner = jest.fn();
     const handlerInput: IExpandableArticleSectionHandlerInput = {
       type: HandlerInputType.ExpandableArticleSection,
-      displayName: 'Karen',
-      displayNameColor: 'pink',
-      linkUrl: 'karenxie.github.io',
+      displayName: "Karen",
+      displayNameColor: "pink",
+      linkUrl: "karenxie.github.io",
       content: {
         type: HandlerInputType.ExpandableArticleList,
         sourceId: Section.KeaKidsNews,
@@ -43,13 +43,13 @@ describe('Expandable article section', () => {
     expect(handlerRunner).toHaveBeenCalledWith(handlerInput.content, params);
   });
 
-  it('should return expandable article section content block with no hidden content block when multiplier is 1', async () => {
+  it("should return expandable article section content block with no hidden content block when multiplier is 1", async () => {
     const handlerRunner = jest.fn();
     const handlerInput: IExpandableArticleSectionHandlerInput = {
       type: HandlerInputType.ExpandableArticleSection,
-      displayName: 'Karen',
-      displayNameColor: 'pink',
-      linkUrl: 'karenxie.github.io',
+      displayName: "Karen",
+      displayNameColor: "pink",
+      linkUrl: "karenxie.github.io",
       content: {
         type: HandlerInputType.ExpandableArticleList,
         sourceId: Section.KeaKidsNews,
@@ -61,11 +61,11 @@ describe('Expandable article section', () => {
     };
 
     handlerRunner.mockResolvedValue([
-      contentBlock('1'),
-      contentBlock('2'),
-      contentBlock('3'),
-      contentBlock('4'),
-      contentBlock('5')
+      contentBlock("1"),
+      contentBlock("2"),
+      contentBlock("3"),
+      contentBlock("4"),
+      contentBlock("5")
     ]);
 
     const contentBlocks = await expandableArticleSection(
@@ -77,20 +77,20 @@ describe('Expandable article section', () => {
     expect(contentBlocks).toEqual([
       {
         type: ContentBlockType.ExpandableArticleSection,
-        displayName: 'Karen',
-        displayNameColor: 'pink',
-        linkUrl: 'karenxie.github.io',
+        displayName: "Karen",
+        displayNameColor: "pink",
+        linkUrl: "karenxie.github.io",
         visibleItems: [
           adUnitWithContext,
-          contentBlock('1'),
+          contentBlock("1"),
           adUnitWithContext,
-          contentBlock('2'),
+          contentBlock("2"),
           adUnitWithContext,
-          contentBlock('3'),
+          contentBlock("3"),
           adUnitWithContext,
-          contentBlock('4'),
+          contentBlock("4"),
           adUnitWithContext,
-          contentBlock('5'),
+          contentBlock("5"),
           adUnitWithContext
         ],
         hiddenItems: []
@@ -98,13 +98,13 @@ describe('Expandable article section', () => {
     ]);
   });
 
-  it('should return expandable article section content block with visible and hidden content blocks when multiplier is 2', async () => {
+  it("should return expandable article section content block with visible and hidden content blocks when multiplier is 2", async () => {
     const handlerRunner = jest.fn();
     const handlerInput: IExpandableArticleSectionHandlerInput = {
       type: HandlerInputType.ExpandableArticleSection,
-      displayName: 'Karen',
-      displayNameColor: 'pink',
-      linkUrl: 'karenxie.github.io',
+      displayName: "Karen",
+      displayNameColor: "pink",
+      linkUrl: "karenxie.github.io",
       content: {
         type: HandlerInputType.ExpandableArticleList,
         sourceId: Section.KeaKidsNews,
@@ -116,16 +116,16 @@ describe('Expandable article section', () => {
     };
 
     handlerRunner.mockResolvedValue([
-      contentBlock('1'),
-      contentBlock('2'),
-      contentBlock('3'),
-      contentBlock('4'),
-      contentBlock('5'),
-      contentBlock('6'),
-      contentBlock('7'),
-      contentBlock('8'),
-      contentBlock('9'),
-      contentBlock('10')
+      contentBlock("1"),
+      contentBlock("2"),
+      contentBlock("3"),
+      contentBlock("4"),
+      contentBlock("5"),
+      contentBlock("6"),
+      contentBlock("7"),
+      contentBlock("8"),
+      contentBlock("9"),
+      contentBlock("10")
     ]);
 
     const contentBlocks = await expandableArticleSection(
@@ -137,45 +137,45 @@ describe('Expandable article section', () => {
     expect(contentBlocks).toEqual([
       {
         type: ContentBlockType.ExpandableArticleSection,
-        displayName: 'Karen',
-        displayNameColor: 'pink',
-        linkUrl: 'karenxie.github.io',
+        displayName: "Karen",
+        displayNameColor: "pink",
+        linkUrl: "karenxie.github.io",
         visibleItems: [
           adUnitWithContext,
-          contentBlock('1'),
+          contentBlock("1"),
           adUnitWithContext,
-          contentBlock('2'),
+          contentBlock("2"),
           adUnitWithContext,
-          contentBlock('3'),
+          contentBlock("3"),
           adUnitWithContext,
-          contentBlock('4'),
+          contentBlock("4"),
           adUnitWithContext,
-          contentBlock('5'),
+          contentBlock("5"),
           adUnitWithContext
         ],
         hiddenItems: [
-          contentBlock('6'),
+          contentBlock("6"),
           adUnitWithContext,
-          contentBlock('7'),
+          contentBlock("7"),
           adUnitWithContext,
-          contentBlock('8'),
+          contentBlock("8"),
           adUnitWithContext,
-          contentBlock('9'),
+          contentBlock("9"),
           adUnitWithContext,
-          contentBlock('10'),
+          contentBlock("10"),
           adUnitWithContext
         ]
       }
     ]);
   });
 
-  it('should return expandable article section content block with visible and hidden content blocks when multiplier is 3', async () => {
+  it("should return expandable article section content block with visible and hidden content blocks when multiplier is 3", async () => {
     const handlerRunner = jest.fn();
     const handlerInput: IExpandableArticleSectionHandlerInput = {
       type: HandlerInputType.ExpandableArticleSection,
-      displayName: 'Karen',
-      displayNameColor: 'pink',
-      linkUrl: 'karenxie.github.io',
+      displayName: "Karen",
+      displayNameColor: "pink",
+      linkUrl: "karenxie.github.io",
       content: {
         type: HandlerInputType.ExpandableArticleList,
         sourceId: Section.KeaKidsNews,
@@ -187,21 +187,21 @@ describe('Expandable article section', () => {
     };
 
     handlerRunner.mockResolvedValue([
-      contentBlock('1'),
-      contentBlock('2'),
-      contentBlock('3'),
-      contentBlock('4'),
-      contentBlock('5'),
-      contentBlock('6'),
-      contentBlock('7'),
-      contentBlock('8'),
-      contentBlock('9'),
-      contentBlock('10'),
-      contentBlock('11'),
-      contentBlock('12'),
-      contentBlock('13'),
-      contentBlock('14'),
-      contentBlock('15')
+      contentBlock("1"),
+      contentBlock("2"),
+      contentBlock("3"),
+      contentBlock("4"),
+      contentBlock("5"),
+      contentBlock("6"),
+      contentBlock("7"),
+      contentBlock("8"),
+      contentBlock("9"),
+      contentBlock("10"),
+      contentBlock("11"),
+      contentBlock("12"),
+      contentBlock("13"),
+      contentBlock("14"),
+      contentBlock("15")
     ]);
 
     const contentBlocks = await expandableArticleSection(
@@ -213,55 +213,55 @@ describe('Expandable article section', () => {
     expect(contentBlocks).toEqual([
       {
         type: ContentBlockType.ExpandableArticleSection,
-        displayName: 'Karen',
-        displayNameColor: 'pink',
-        linkUrl: 'karenxie.github.io',
+        displayName: "Karen",
+        displayNameColor: "pink",
+        linkUrl: "karenxie.github.io",
         visibleItems: [
           adUnitWithContext,
-          contentBlock('1'),
+          contentBlock("1"),
           adUnitWithContext,
-          contentBlock('2'),
+          contentBlock("2"),
           adUnitWithContext,
-          contentBlock('3'),
+          contentBlock("3"),
           adUnitWithContext,
-          contentBlock('4'),
+          contentBlock("4"),
           adUnitWithContext,
-          contentBlock('5'),
+          contentBlock("5"),
           adUnitWithContext
         ],
         hiddenItems: [
-          contentBlock('6'),
+          contentBlock("6"),
           adUnitWithContext,
-          contentBlock('7'),
+          contentBlock("7"),
           adUnitWithContext,
-          contentBlock('8'),
+          contentBlock("8"),
           adUnitWithContext,
-          contentBlock('9'),
+          contentBlock("9"),
           adUnitWithContext,
-          contentBlock('10'),
+          contentBlock("10"),
           adUnitWithContext,
-          contentBlock('11'),
+          contentBlock("11"),
           adUnitWithContext,
-          contentBlock('12'),
+          contentBlock("12"),
           adUnitWithContext,
-          contentBlock('13'),
+          contentBlock("13"),
           adUnitWithContext,
-          contentBlock('14'),
+          contentBlock("14"),
           adUnitWithContext,
-          contentBlock('15'),
+          contentBlock("15"),
           adUnitWithContext
         ]
       }
     ]);
   });
 
-  it('should return expandable article section content block ignoring extra content blocks', async () => {
+  it("should return expandable article section content block ignoring extra content blocks", async () => {
     const handlerRunner = jest.fn();
     const handlerInput: IExpandableArticleSectionHandlerInput = {
       type: HandlerInputType.ExpandableArticleSection,
-      displayName: 'Karen',
-      displayNameColor: 'pink',
-      linkUrl: 'karenxie.github.io',
+      displayName: "Karen",
+      displayNameColor: "pink",
+      linkUrl: "karenxie.github.io",
       content: {
         type: HandlerInputType.ExpandableArticleList,
         sourceId: Section.KeaKidsNews,
@@ -273,11 +273,11 @@ describe('Expandable article section', () => {
     };
 
     handlerRunner.mockResolvedValue([
-      contentBlock('1'),
-      contentBlock('2'),
-      contentBlock('3'),
-      contentBlock('4'),
-      contentBlock('5')
+      contentBlock("1"),
+      contentBlock("2"),
+      contentBlock("3"),
+      contentBlock("4"),
+      contentBlock("5")
     ]);
 
     const contentBlocks = await expandableArticleSection(
@@ -289,16 +289,16 @@ describe('Expandable article section', () => {
     expect(contentBlocks).toEqual([
       {
         type: ContentBlockType.ExpandableArticleSection,
-        displayName: 'Karen',
-        displayNameColor: 'pink',
-        linkUrl: 'karenxie.github.io',
+        displayName: "Karen",
+        displayNameColor: "pink",
+        linkUrl: "karenxie.github.io",
         visibleItems: [
           adUnitWithContext,
-          contentBlock('1'),
+          contentBlock("1"),
           adUnitWithContext,
-          contentBlock('2'),
+          contentBlock("2"),
           adUnitWithContext,
-          contentBlock('3'),
+          contentBlock("3"),
           adUnitWithContext
         ],
         hiddenItems: []

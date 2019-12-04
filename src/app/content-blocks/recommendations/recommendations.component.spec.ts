@@ -1,16 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
-import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { IBasicArticleSection } from '../../../../common/__types__/IBasicArticleSection';
-import { IContentBlock } from '../../../../common/__types__/IContentBlock';
-import { IRecommendations } from '../../../../common/__types__/IRecommendations';
-import { FeatureSwitchService } from '../../services/feature-switch/feature-switch.service';
-import { mockService, ServiceMock } from '../../services/mocks/MockService';
-import { RecommendationsService } from '../../services/recommendations/recommendations.service';
-import { RuntimeService } from '../../services/runtime/runtime.service';
-import { RecommendationsComponent } from './recommendations.component';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { of } from "rxjs";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IBasicArticleSection } from "../../../../common/__types__/IBasicArticleSection";
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import { IRecommendations } from "../../../../common/__types__/IRecommendations";
+import { FeatureSwitchService } from "../../services/feature-switch/feature-switch.service";
+import { mockService, ServiceMock } from "../../services/mocks/MockService";
+import { RecommendationsService } from "../../services/recommendations/recommendations.service";
+import { RuntimeService } from "../../services/runtime/runtime.service";
+import { RecommendationsComponent } from "./recommendations.component";
 
-describe('RecommendationsComponent', () => {
+describe("RecommendationsComponent", () => {
   let component: RecommendationsComponent;
   let fixture: ComponentFixture<RecommendationsComponent>;
   let recommendationsService: ServiceMock<RecommendationsService>;
@@ -19,14 +19,14 @@ describe('RecommendationsComponent', () => {
 
   const recommendationsData: IRecommendations = {
     type: ContentBlockType.Recommendations,
-    displayName: 'Recommended for You',
-    displayNameColor: 'darkblue',
+    displayName: "Recommended for You",
+    displayNameColor: "darkblue",
     totalBasicArticlesUnit: 2,
     totalBasicArticleTitleUnit: 3
   };
 
   const mockContentBlocks = new Array(5).fill(({
-    type: 'FakeContentBlock'
+    type: "FakeContentBlock"
   } as any) as IContentBlock);
 
   beforeEach(async () => {
@@ -49,7 +49,7 @@ describe('RecommendationsComponent', () => {
     })
       .overrideComponent(RecommendationsComponent, {
         set: {
-          template: ''
+          template: ""
         }
       })
       .compileComponents();
@@ -63,7 +63,7 @@ describe('RecommendationsComponent', () => {
     component.input = recommendationsData;
   });
 
-  describe('when in browser', () => {
+  describe("when in browser", () => {
     beforeEach(() => {
       runtimeService.isBrowser.mockReturnValue(true);
       recommendationsService.getRecommendations.mockReturnValue(
@@ -71,12 +71,12 @@ describe('RecommendationsComponent', () => {
       );
     });
 
-    describe('when RecommendationDisplay feature flag is on', () => {
+    describe("when RecommendationDisplay feature flag is on", () => {
       beforeEach(() => {
         featureSwitchService.getFeature.mockResolvedValue(true);
       });
 
-      it('calls recommendations service', () => {
+      it("calls recommendations service", () => {
         fixture.detectChanges();
         expect(recommendationsService.getRecommendations).toHaveBeenCalledWith(
           recommendationsData.totalBasicArticlesUnit,
@@ -84,7 +84,7 @@ describe('RecommendationsComponent', () => {
         );
       });
 
-      it('wraps articles in a basic article section', async () => {
+      it("wraps articles in a basic article section", async () => {
         fixture.detectChanges();
         await fixture.whenStable();
         expect(component.contentBlocks).toEqual([
@@ -97,14 +97,14 @@ describe('RecommendationsComponent', () => {
         ]);
       });
 
-      it('should render when recommended articles loaded', async () => {
+      it("should render when recommended articles loaded", async () => {
         expect(component.contentBlocks.length).toBe(0);
         fixture.detectChanges();
         await fixture.whenStable();
         expect(component.contentBlocks.length).toBe(1);
       });
 
-      it('should not render when no recommended articles returned', async () => {
+      it("should not render when no recommended articles returned", async () => {
         (recommendationsService.getRecommendations as jest.Mock).mockReturnValueOnce(
           of([])
         );
@@ -114,12 +114,12 @@ describe('RecommendationsComponent', () => {
       });
     });
 
-    describe('when RecommendationDisplay feature flag is off', () => {
+    describe("when RecommendationDisplay feature flag is off", () => {
       beforeEach(() => {
         featureSwitchService.getFeature.mockResolvedValue(false);
       });
 
-      it('calls recommendations service', () => {
+      it("calls recommendations service", () => {
         fixture.detectChanges();
         expect(recommendationsService.getRecommendations).toHaveBeenCalledWith(
           recommendationsData.totalBasicArticlesUnit,
@@ -127,7 +127,7 @@ describe('RecommendationsComponent', () => {
         );
       });
 
-      it('should not render', async () => {
+      it("should not render", async () => {
         fixture.detectChanges();
         await fixture.whenStable();
         expect(component.contentBlocks.length).toBe(0);
@@ -135,12 +135,12 @@ describe('RecommendationsComponent', () => {
     });
   });
 
-  describe('when in server', () => {
+  describe("when in server", () => {
     beforeEach(() => {
       runtimeService.isBrowser.mockReturnValue(false);
     });
 
-    it('should skip execution', async () => {
+    it("should skip execution", async () => {
       (runtimeService.isBrowser as jest.Mock).mockReturnValueOnce(false);
       fixture.detectChanges();
       await fixture.whenStable();

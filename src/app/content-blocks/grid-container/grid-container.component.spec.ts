@@ -1,31 +1,31 @@
-import { Component } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TransferState } from '@angular/platform-browser';
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { ContentBlockType } from '../../../../common/__types__/ContentBlockType';
-import { IContentBlock } from '../../../../common/__types__/IContentBlock';
-import registry from '../content-blocks.registry';
-import { ContentBlockDirective } from '../../shared/directives/content-block/content-block.directive';
-import { GlobalStyleDirective } from '../../shared/directives/global-style/global-style.directive';
-import { GridContainerComponent } from './grid-container.component';
+import { Component } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { TransferState } from "@angular/platform-browser";
+import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import registry from "../content-blocks.registry";
+import { ContentBlockDirective } from "../../shared/directives/content-block/content-block.directive";
+import { GlobalStyleDirective } from "../../shared/directives/global-style/global-style.directive";
+import { GridContainerComponent } from "./grid-container.component";
 
-describe('GridContainerComponent', () => {
+describe("GridContainerComponent", () => {
   let component: GridContainerComponent;
   let fixture: ComponentFixture<GridContainerComponent>;
 
   const input = ({
-    type: 'FakeContentBlock'
+    type: "FakeContentBlock"
   } as unknown) as IContentBlock;
 
   @Component({
-    selector: 'app-fake-content-block',
-    template: ''
+    selector: "app-fake-content-block",
+    template: ""
   })
   class FakeContentBlockComponent {}
 
   beforeEach(async () => {
     // @ts-ignore
-    registry['FakeContentBlockComponent'] = FakeContentBlockComponent;
+    registry["FakeContentBlockComponent"] = FakeContentBlockComponent;
 
     await TestBed.configureTestingModule({
       declarations: [
@@ -47,18 +47,18 @@ describe('GridContainerComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 
-  it('applies the grid configuration', () => {
+  it("applies the grid configuration", () => {
     component.input = {
       type: ContentBlockType.GridContainer,
       items: new Array(4).fill(input),
       mobile: {
-        gridTemplateColumns: '1fr',
-        gridTemplateRows: 'auto auto',
-        gridGap: '20px',
+        gridTemplateColumns: "1fr",
+        gridTemplateRows: "auto auto",
+        gridGap: "20px",
         gridBlocks: [
           {
             rowStart: 1,
@@ -69,9 +69,9 @@ describe('GridContainerComponent', () => {
         ]
       },
       tablet: {
-        gridTemplateColumns: '1fr 1fr 1fr 1fr',
-        gridTemplateRows: 'auto auto',
-        gridGap: '20px',
+        gridTemplateColumns: "1fr 1fr 1fr 1fr",
+        gridTemplateRows: "auto auto",
+        gridGap: "20px",
         gridBlocks: [
           {
             rowStart: 1,
@@ -82,9 +82,9 @@ describe('GridContainerComponent', () => {
         ]
       },
       desktop: {
-        gridTemplateColumns: '1fr 1fr 1fr 1fr 200px',
-        gridTemplateRows: 'auto auto',
-        gridGap: '20px',
+        gridTemplateColumns: "1fr 1fr 1fr 1fr 200px",
+        gridTemplateRows: "auto auto",
+        gridGap: "20px",
         gridBlocks: [
           {
             rowStart: 1,

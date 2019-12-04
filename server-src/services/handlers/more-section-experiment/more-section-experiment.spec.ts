@@ -1,20 +1,20 @@
-import { IParams } from '../../__types__/IParams';
-import moreSectionExperiment from './more-section-experiment';
-import { IMoreSectionExperimentHandlerInput } from '../__types__/IMoreSectionExperimentHandlerInput';
-import { HandlerInputType } from '../__types__/HandlerInputType';
-import { Section } from '../../section';
-import { ExperimentName } from '../../../../common/ExperimentName';
+import { IParams } from "../../__types__/IParams";
+import moreSectionExperiment from "./more-section-experiment";
+import { IMoreSectionExperimentHandlerInput } from "../__types__/IMoreSectionExperimentHandlerInput";
+import { HandlerInputType } from "../__types__/HandlerInputType";
+import { Section } from "../../section";
+import { ExperimentName } from "../../../../common/ExperimentName";
 
-describe('More section experiment', () => {
-  it('should return experiment container with control, groupOne and groupTwo', () => {
+describe("More section experiment", () => {
+  it("should return experiment container with control, groupOne and groupTwo", () => {
     const handlerRunner = jest.fn();
-    const params: IParams = { apiRequestId: '123123' };
+    const params: IParams = { apiRequestId: "123123" };
     const handlerInput: IMoreSectionExperimentHandlerInput = {
       type: HandlerInputType.MoreSectionExperimentHandlerInput,
-      linkUrl: '/frank',
-      displayName: 'Frank',
-      displayNameColor: 'Pink',
-      strapName: 'Frank',
+      linkUrl: "/frank",
+      displayName: "Frank",
+      displayNameColor: "Pink",
+      strapName: "Frank",
       sourceId: Section.BeautyHeaven,
       totalBasicArticlesUnit: 2,
       totalBasicArticleTitleUnit: 3
