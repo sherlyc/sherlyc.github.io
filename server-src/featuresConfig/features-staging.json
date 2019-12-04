@@ -6,6 +6,13 @@
     },
     "internal": 404
   },
+  "LoginFlow": {
+    "public": {
+      "min": 0,
+      "max": 100
+    },
+    "internal": 404
+  },
   "RecommendationDisplay": {
     "public": {
       "min": -1,
