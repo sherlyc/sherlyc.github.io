@@ -10,6 +10,7 @@ export default function(config: IGridConfig): IGridConfig {
     gridGap,
     gridBlocks
   } = config;
+
   return {
     gridTemplateColumns: gridGapHandler(gridTemplateColumns, gridGap),
     gridTemplateRows: gridGapHandler(gridTemplateRows, gridGap),

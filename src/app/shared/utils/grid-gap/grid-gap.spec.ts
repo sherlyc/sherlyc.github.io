@@ -71,7 +71,7 @@ describe('grip gap helper', () => {
           columnSpan: 3
         }
       ]
-    };
+    } as IGridConfig;
 
     const expected = {
       gridTemplateColumns: '1fr 100px 1fr 100px 1fr 100px 1fr',
@@ -109,7 +109,7 @@ describe('grip gap helper', () => {
           columnSpan: 5
         }
       ]
-    };
+    } as IGridConfig;
 
     expect(gridGap(config)).toEqual(expected);
   });
