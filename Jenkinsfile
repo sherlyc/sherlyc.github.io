@@ -38,7 +38,7 @@ def uploadKubernetesArtifacts() {
   }
 }
 
-GString yamlString() {
+GString agentDefinition() {
   return '''
 apiVersion: v1
 kind: Pod
@@ -78,19 +78,19 @@ spec:
 '''
 }
 
-GString yamlHash() {
-  return 'stuff-experience-frontend-' + MessageDigest.getInstance("MD5").digest(yamlString().bytes).encodeHex().toString()
+GString agentLabel() {
+  return 'stuff-experience-frontend-' + MessageDigest.getInstance("MD5").digest(agentDefinition().bytes).encodeHex().toString()
 }
 
 pipeline {
   agent {
     kubernetes {
       cloud 'Practiv BUILD'
-      label yamlHash()
+      label agentLabel()
       defaultContainer 'dind'
       instanceCap 2
       idleMinutes 120
-      yaml yamlString()
+      yaml agentDefinition()
     }
   }
 
