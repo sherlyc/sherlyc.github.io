@@ -37,11 +37,6 @@ describe("Global Css service", () => {
   });
 
   describe("getStyles", () => {
-    it("clears cxs cache", () => {
-      globalStyleService.getStyles();
-      expect(cxs.reset).toHaveBeenCalled();
-    });
-
     it("returns css rules", () => {
       const fakeResult = "fakeResult";
       (cxs.css as jest.Mock).mockReturnValueOnce(fakeResult);

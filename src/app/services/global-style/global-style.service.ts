@@ -20,8 +20,6 @@ export class GlobalStyleService {
   }
 
   public getStyles(): string {
-    const css = cxs.css();
-    cxs.reset();
-    return css;
+    return cxs.css();
   }
 }
