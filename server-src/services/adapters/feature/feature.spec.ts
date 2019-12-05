@@ -73,7 +73,7 @@ describe("Feature service", () => {
           DeviceType.unknown
         );
 
-        expect(result).toBe(false);
+        expect(result).toBe(true);
       }
     );
   });
