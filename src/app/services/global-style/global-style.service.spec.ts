@@ -22,15 +22,31 @@ describe("Global Css service", () => {
     expect(cxs.prefix).toHaveBeenCalledWith(stylePrefix);
   });
 
-  it("should inject css via cxs", () => {
-    const fakeResult = "fakeResult";
+  describe("injectStyle", () => {
+    it("should inject css via cxs", () => {
+      const fakeResult = "fakeResult";
 
-    (cxs as jest.Mock).mockReturnValue(fakeResult);
+      (cxs as jest.Mock).mockReturnValue(fakeResult);
 
-    const style = {};
-    const result = globalStyleService.injectStyle(style);
+      const style = {};
+      const result = globalStyleService.injectStyle(style);
 
-    expect(cxs).toHaveBeenCalledWith(style);
-    expect(result).toEqual(fakeResult);
+      expect(cxs).toHaveBeenCalledWith(style);
+      expect(result).toEqual(fakeResult);
+    });
+  });
+
+  describe("getStyles", () => {
+    it("clears cxs cache", () => {
+      globalStyleService.getStyles();
+      expect(cxs.reset).toHaveBeenCalled();
+    });
+
+    it("returns css rules", () => {
+      const fakeResult = "fakeResult";
+      (cxs.css as jest.Mock).mockReturnValueOnce(fakeResult);
+      const result = globalStyleService.getStyles();
+      expect(result).toBe(fakeResult);
+    });
   });
 });

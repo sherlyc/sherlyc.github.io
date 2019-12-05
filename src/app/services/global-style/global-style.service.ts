@@ -18,4 +18,10 @@ export class GlobalStyleService {
   public injectStyle(...args: any[]) {
     return cxs(...args);
   }
+
+  public getStyles(): string {
+    const css = cxs.css();
+    cxs.reset();
+    return css;
+  }
 }
