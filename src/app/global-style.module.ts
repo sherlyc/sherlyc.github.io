@@ -10,7 +10,7 @@ import { GlobalStyleService } from "./services/global-style/global-style.service
       useFactory: (doc: Document, appId: string): GlobalStyleService => {
         const styleEl = doc.getElementById(`${appId}-global-style`);
         if (styleEl) {
-          styleEl.remove();
+          (styleEl.parentNode as HTMLElement).removeChild(styleEl);
         }
         return new GlobalStyleService();
       },
