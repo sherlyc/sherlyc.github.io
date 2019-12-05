@@ -5,16 +5,16 @@ import {
   ServerTransferStateModule
 } from "@angular/platform-server";
 import { ModuleMapLoaderModule } from "@nguniversal/module-map-ngfactory-loader";
-
-import { AppModule } from "./app.module";
 import { AppComponent } from "./app.component";
+import { AppModule } from "./app.module";
+import { ServerGlobalStyleModule } from "./global-style.module";
 import { CookieService } from "./services/cookie/cookie.service";
 import { ServerCookieService } from "./services/cookie/server-cookie.service";
-import { StoreService } from "./services/store/store.service";
 import { ServerStoreService } from "./services/store/server-store.service";
+import { StoreService } from "./services/store/store.service";
 import {
-  WindowService,
-  ServerWindowService
+  ServerWindowService,
+  WindowService
 } from "./services/window/window.service";
 
 @NgModule({
@@ -22,7 +22,8 @@ import {
     ServerTransferStateModule,
     AppModule,
     ServerModule,
-    ModuleMapLoaderModule
+    ModuleMapLoaderModule,
+    ServerGlobalStyleModule
   ],
   providers: [
     // Add universal-only providers here
