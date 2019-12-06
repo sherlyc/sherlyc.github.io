@@ -1,11 +1,12 @@
 FROM node:10.15.3-alpine AS base
-ARG spade_version
-ENV SPADE_VERSION=$spade_version
 
 WORKDIR /app
 COPY package.json package-lock.json /app/
 RUN npm ci
 COPY . /app/
+
+ARG spade_version
+ENV SPADE_VERSION=$spade_version
 RUN npm run build
 
 FROM node:10.15.3-alpine AS release
