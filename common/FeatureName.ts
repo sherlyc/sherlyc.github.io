@@ -3,5 +3,7 @@ export enum FeatureName {
   RecommendationDisplay = "RecommendationDisplay",
   AdsRelativePositioning = "AdsRelativePositioning",
   LoginFlow = "LoginFlow",
-  AdobeLaunch = "AdobeLaunch"
+  AdobeLaunch = "AdobeLaunch",
+  ShowOldLayout = "ShowOldLayout",
+  ShowNewLayout = "ShowNewLayout"
 }
