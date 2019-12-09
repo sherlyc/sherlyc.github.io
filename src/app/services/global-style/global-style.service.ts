@@ -1,13 +1,24 @@
-import { Injectable } from "@angular/core";
+import { DOCUMENT, isPlatformBrowser } from "@angular/common";
+import { APP_ID, Inject, Injectable, NgZone, PLATFORM_ID } from "@angular/core";
 import * as cxs from "cxs";
 
 @Injectable({
   providedIn: "root"
 })
 export class GlobalStyleService {
-  private prefix = "spade_";
+  private readonly prefix: string;
+  private readonly styleId: string;
 
-  constructor() {
+  constructor(
+    @Inject(DOCUMENT) private doc: Document,
+    @Inject(APP_ID) private appId: string,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    this.prefix = isPlatformBrowser(this.platformId)
+      ? "spade_"
+      : "spade_server_";
+    this.styleId = `${this.appId}-global-style`;
+    this.detachStyle();
     cxs.prefix(this.prefix);
   }
 
@@ -19,7 +30,17 @@ export class GlobalStyleService {
     return cxs(...args);
   }
 
-  public getStyles(): string {
-    return cxs.css();
+  public attachStyle(): void {
+    const style = this.doc.createElement("style");
+    style.id = this.styleId;
+    style.textContent = cxs.css();
+    this.doc.head.appendChild(style);
+  }
+
+  public detachStyle(): void {
+    const style = this.doc.getElementById(this.styleId);
+    if (style && style.parentNode) {
+      style.parentNode.removeChild(style);
+    }
   }
 }

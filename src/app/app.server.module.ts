@@ -1,15 +1,17 @@
 /* istanbul ignore file */
-import { NgModule } from "@angular/core";
+import { DOCUMENT } from "@angular/common";
+import { APP_ID, NgModule, PLATFORM_ID } from "@angular/core";
 import {
+  BEFORE_APP_SERIALIZED,
   ServerModule,
   ServerTransferStateModule
 } from "@angular/platform-server";
 import { ModuleMapLoaderModule } from "@nguniversal/module-map-ngfactory-loader";
 import { AppComponent } from "./app.component";
 import { AppModule } from "./app.module";
-import { ServerGlobalStyleModule } from "./global-style.module";
 import { CookieService } from "./services/cookie/cookie.service";
 import { ServerCookieService } from "./services/cookie/server-cookie.service";
+import { GlobalStyleService } from "./services/global-style/global-style.service";
 import { ServerStoreService } from "./services/store/server-store.service";
 import { StoreService } from "./services/store/store.service";
 import {
@@ -22,14 +24,20 @@ import {
     ServerTransferStateModule,
     AppModule,
     ServerModule,
-    ModuleMapLoaderModule,
-    ServerGlobalStyleModule
+    ModuleMapLoaderModule
   ],
   providers: [
     // Add universal-only providers here
     { provide: CookieService, useClass: ServerCookieService },
     { provide: StoreService, useClass: ServerStoreService },
-    { provide: WindowService, useClass: ServerWindowService }
+    { provide: WindowService, useClass: ServerWindowService },
+    {
+      provide: BEFORE_APP_SERIALIZED,
+      useFactory: (doc: Document, appId: string, platformId: Object) => () =>
+        new GlobalStyleService(doc, appId, platformId).attachStyle(),
+      deps: [DOCUMENT, APP_ID, PLATFORM_ID],
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
