@@ -65,7 +65,7 @@ describe("Feature service", () => {
     });
 
     it.each([[1], [100]])(
-      "should return false for public lottery number %i",
+      "should return true for public lottery number %i",
       async (lotteryNumber: number) => {
         const result = await isFeatureEnabled(
           FeatureName.AdobeLaunch,
@@ -73,7 +73,7 @@ describe("Feature service", () => {
           DeviceType.unknown
         );
 
-        expect(result).toBe(false);
+        expect(result).toBe(true);
       }
     );
   });
