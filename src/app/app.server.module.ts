@@ -1,6 +1,5 @@
 /* istanbul ignore file */
-import { DOCUMENT } from "@angular/common";
-import { APP_ID, NgModule, PLATFORM_ID } from "@angular/core";
+import { NgModule } from "@angular/core";
 import {
   BEFORE_APP_SERIALIZED,
   ServerModule,
@@ -33,9 +32,9 @@ import {
     { provide: WindowService, useClass: ServerWindowService },
     {
       provide: BEFORE_APP_SERIALIZED,
-      useFactory: (doc: Document, appId: string, platformId: Object) => () =>
-        new GlobalStyleService(doc, appId, platformId).attachStyle(),
-      deps: [DOCUMENT, APP_ID, PLATFORM_ID],
+      useFactory: (globalStyleService: GlobalStyleService) => () =>
+        globalStyleService.attachStyle(),
+      deps: [GlobalStyleService],
       multi: true
     }
   ],
