@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 import { IBasicArticleTitleUnit } from "../../../../common/__types__/IBasicArticleTitleUnit";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
@@ -7,7 +7,8 @@ import { AnalyticsEventsType } from "../../services/analytics/__types__/Analytic
 @Component({
   selector: "app-basic-article-title-unit",
   templateUrl: "./basic-article-title-unit.html",
-  styleUrls: ["./basic-article-title-unit.scss"]
+  styleUrls: ["./basic-article-title-unit.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BasicArticleTitleUnitComponent implements IContentBlockComponent {
   @Input() input!: IBasicArticleTitleUnit;
