@@ -8,16 +8,20 @@ export interface IGridBlock {
   columnSpan: number;
 }
 
+export interface IGridBlocks {
+  [key: string]: IGridBlock;
+}
+
 export interface IGridConfig {
   gridTemplateColumns: string;
   gridTemplateRows: string;
   gridGap: string;
-  gridBlocks: IGridBlock[];
+  gridBlocks: IGridBlocks;
 }
 
 export interface IGridContainer {
   type: ContentBlockType.GridContainer;
-  items: IContentBlock[];
+  items: { [key: string]: IContentBlock };
   mobile: IGridConfig;
   tablet: IGridConfig;
   desktop: IGridConfig;

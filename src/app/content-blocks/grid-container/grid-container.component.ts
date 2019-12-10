@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import {
   IGridBlock,
+  IGridBlocks,
   IGridConfig,
   IGridContainer
 } from "../../../../common/__types__/IGridContainer";
@@ -45,13 +46,13 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
     };
   }
 
-  private gridBlocks(gridBlocks: IGridBlock[]) {
-    return gridBlocks.reduce(
-      (prev: { [key: string]: string }, current: IGridBlock, index: number) => {
-        const blockCssKey = ` > :nth-child(${index + 1})`;
+  private gridBlocks(gridBlocks: IGridBlocks) {
+    return Object.keys(gridBlocks).reduce(
+      (prev: { [key: string]: Object }, key: string) => {
+        const blockCssKey = ` > ${key}`;
         return {
           ...prev,
-          [blockCssKey]: this.gridBlockCss(current)
+          [blockCssKey]: this.gridBlockCss(gridBlocks[key])
         };
       },
       {}
