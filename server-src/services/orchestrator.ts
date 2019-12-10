@@ -91,16 +91,20 @@ export default async (params: IParams): Promise<IPage> => {
                 homepageStrapsConfig[Strap.MidStrip].totalArticlesWithImages
             },
             {
-              type: HandlerInputType.ArticleSection,
-              displayName: "National",
-              displayNameColor: "darkblue",
-              linkUrl: "/" + Section.National,
+              type: HandlerInputType.Feature,
+              name: FeatureName.ShowOldLayout,
               content: {
-                type: HandlerInputType.ArticleList,
-                sourceId: Strap.National,
-                strapName: "National",
-                totalBasicArticlesUnit: 2,
-                totalBasicArticleTitleUnit: 3
+                type: HandlerInputType.ArticleSection,
+                displayName: "National",
+                displayNameColor: "darkblue",
+                linkUrl: "/" + Section.National,
+                content: {
+                  type: HandlerInputType.ArticleList,
+                  sourceId: Strap.National,
+                  strapName: "National",
+                  totalBasicArticlesUnit: 2,
+                  totalBasicArticleTitleUnit: 3
+                }
               }
             },
             {
