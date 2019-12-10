@@ -1,7 +1,6 @@
 /* istanbul ignore file */
-import { DOCUMENT } from "@angular/common";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
-import { APP_ID, ErrorHandler, NgModule, PLATFORM_ID } from "@angular/core";
+import { ErrorHandler, NgModule } from "@angular/core";
 import {
   BrowserModule,
   BrowserTransferStateModule
