@@ -12,7 +12,6 @@ import { AppComponent } from "./app.component";
 import { ContentBlocksModule } from "./content-blocks/content-blocks.module";
 import { AppRoutingModule } from "./routing/app-routing.module";
 import { CookieService } from "./services/cookie/cookie.service";
-import { GlobalStyleService } from "./services/global-style/global-style.service";
 import { HttpInterceptorService } from "./services/http-interceptor/http-interceptor.service";
 import { LoggerService } from "./services/logger/logger.service";
 import { WindowService } from "./services/window/window.service";
@@ -40,8 +39,7 @@ import { SharedModule } from "./shared/shared.module";
       multi: true
     },
     CookieService,
-    WindowService,
-    GlobalStyleService
+    WindowService
   ],
   bootstrap: [AppComponent]
 })
