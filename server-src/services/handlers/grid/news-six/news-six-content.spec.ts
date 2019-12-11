@@ -104,14 +104,17 @@ describe("News six content creator", () => {
   it("should throw error if fails to create content block", async () => {
     (getRawArticles as jest.Mock).mockResolvedValue([article]);
 
-    await expect(
-      newsSixContentCreator(
+    expect.assertions(1);
+    try {
+      await newsSixContentCreator(
         handlerInput.strapName,
         handlerInput.sourceId,
         params
-      )
-    ).rejects.toThrowError(
-      "News Six handler error: Insufficient number of articles: 1"
-    );
+      );
+    } catch (e) {
+      expect(e.message).toContain(
+        "News Six handler error: Insufficient number of articles: 1"
+      );
+    }
   });
 });
