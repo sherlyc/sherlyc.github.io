@@ -80,3 +80,8 @@ app-basic-ad-unit,
 app-basic-ad-unit iframe {
   max-width: 100%;
 }
+
+#pushdownbanner iframe {
+  display: block;
+  margin: 0 auto;
+}
