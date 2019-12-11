@@ -100,7 +100,7 @@ describe("GridContainerComponent", () => {
     fixture.detectChanges();
     expect(fixture.componentInstance.style).toMatchInlineSnapshot(`
       Object {
-        " > first-block": Object {
+        " > .first-block": Object {
           "gridColumnEnd": "span 1",
           "gridColumnStart": 1,
           "gridRowEnd": "span 1",
@@ -114,7 +114,7 @@ describe("GridContainerComponent", () => {
           "display": "-ms-grid",
         },
         "@media only screen and (min-width: 64em)": Object {
-          " > first-block": Object {
+          " > .first-block": Object {
             "gridColumnEnd": "span 3",
             "gridColumnStart": 1,
             "gridRowEnd": "span 3",
@@ -134,7 +134,7 @@ describe("GridContainerComponent", () => {
           "msGridColumns": "1fr 20px 1fr 20px 1fr 20px 1fr",
         },
         "@media only screen and (min-width: 75em)": Object {
-          " > first-block": Object {
+          " > .first-block": Object {
             "gridColumnEnd": "span 3",
             "gridColumnStart": 1,
             "gridRowEnd": "span 3",

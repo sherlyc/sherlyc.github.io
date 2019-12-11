@@ -49,7 +49,7 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
   private gridBlocks(gridBlocks: IGridBlocks) {
     return Object.keys(gridBlocks).reduce(
       (prev: { [key: string]: Object }, key: string) => {
-        const blockCssKey = ` > ${key}`;
+        const blockCssKey = ` > .${key}`;
         return {
           ...prev,
           [blockCssKey]: this.gridBlockCss(gridBlocks[key])
