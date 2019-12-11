@@ -132,6 +132,7 @@ describe("GridContainerComponent", () => {
           "gridTemplateColumns": "1fr 20px 1fr 20px 1fr 20px 1fr",
           "gridTemplateRows": "auto",
           "msGridColumns": "1fr 20px 1fr 20px 1fr 20px 1fr",
+          "msGridRows": "auto",
         },
         "@media only screen and (min-width: 75em)": Object {
           " > .first-block": Object {
@@ -152,12 +153,14 @@ describe("GridContainerComponent", () => {
           "gridTemplateColumns": "1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px",
           "gridTemplateRows": "auto",
           "msGridColumns": "1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px",
+          "msGridRows": "auto",
         },
         "display": "grid",
         "gridGap": "0",
         "gridTemplateColumns": "1fr",
         "gridTemplateRows": "auto",
         "msGridColumns": "1fr",
+        "msGridRows": "auto",
       }
     `);
   });

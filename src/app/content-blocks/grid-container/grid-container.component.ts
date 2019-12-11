@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import {
   IGridBlock,
   IGridBlocks,
+  IGridBlockStyle,
   IGridConfig,
   IGridContainer
 } from "../../../../common/__types__/IGridContainer";
@@ -39,6 +40,7 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
 
       msGridColumns: gridConfig.gridTemplateColumns,
       gridTemplateColumns: gridConfig.gridTemplateColumns,
+      msGridRows: gridConfig.gridTemplateRows,
       gridTemplateRows: gridConfig.gridTemplateRows,
       gridGap: gridConfig.gridGap,
 
@@ -48,18 +50,16 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
 
   private gridBlocks(gridBlocks: IGridBlocks) {
     return Object.keys(gridBlocks).reduce(
-      (prev: { [key: string]: Object }, key: string) => {
+      (final: { [key: string]: IGridBlockStyle }, key: string) => {
         const blockCssKey = ` > .${key}`;
-        return {
-          ...prev,
-          [blockCssKey]: this.gridBlockCss(gridBlocks[key])
-        };
+        final[blockCssKey] = this.gridBlockCss(gridBlocks[key]);
+        return final;
       },
       {}
     );
   }
 
-  private gridBlockCss(gridBlock: IGridBlock) {
+  private gridBlockCss(gridBlock: IGridBlock): IGridBlockStyle {
     return {
       msGridRow: gridBlock.rowStart,
       gridRowStart: gridBlock.rowStart,
