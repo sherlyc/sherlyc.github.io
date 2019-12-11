@@ -2,32 +2,17 @@ import { INewsSixHandlerInput } from "../../__types__/INewsSixHandlerInput";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { Strap } from "../../../strap";
 import { IParams } from "../../../__types__/IParams";
-import newsSixHandler, { NewsSixPositions } from "./news-six";
+import newsSixHandler from "./news-six";
+import newsSixContentCreator from "./news-six-content";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { IBasicArticleUnit } from "../../../../../common/__types__/IBasicArticleUnit";
-import { IBigImageArticleUnit } from "../../../../../common/__types__/IBigImageArticleUnit";
-import { IBasicArticleTitleUnit } from "../../../../../common/__types__/IBasicArticleTitleUnit";
 import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
+import { NewsSixPositions } from "./NewsSixPositions";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
+jest.mock("./news-six-content");
 
 describe("News six handler", () => {
-  const article = {
-    id: "1",
-    indexHeadline: "Headline 1",
-    title: "Title One",
-    introText: "Intro 1",
-    linkUrl: "/link1",
-    defconSrc: null,
-    imageSrc: "1.jpg",
-    imageSrcSet: "1.jpg 1w",
-    strapImageSrc: "strap1.jpg",
-    strapImageSrcSet: "strap1.jpg 1w",
-    lastPublishedTime: 1,
-    headlineFlags: []
-  };
-
   const articleAsBasicArticleUnit: IBasicArticleUnit = {
     type: ContentBlockType.BasicArticleUnit,
     id: "1",
@@ -42,31 +27,6 @@ describe("News six handler", () => {
     headlineFlags: []
   };
 
-  const articleAsBigImageArticleUnit: IBigImageArticleUnit = {
-    type: ContentBlockType.BigImageArticleUnit,
-    id: "1",
-    strapName: "Strap Name",
-    indexHeadline: "Headline 1",
-    title: "Title One",
-    introText: "Intro 1",
-    linkUrl: "/link1",
-    imageSrc: "strap1.jpg",
-    imageSrcSet: "strap1.jpg 1w",
-    lastPublishedTime: 1,
-    headlineFlags: []
-  };
-
-  const articleAsBasicArticleTitle: IBasicArticleTitleUnit = {
-    type: ContentBlockType.BasicArticleTitleUnit,
-    id: "1",
-    strapName: "Strap Name",
-    indexHeadline: "Headline 1",
-    title: "Title One",
-    lastPublishedTime: 1,
-    linkUrl: "/link1",
-    headlineFlags: []
-  };
-
   const handlerInput: INewsSixHandlerInput = {
     type: HandlerInputType.NewsSix,
     displayName: "Display Name",
@@ -77,14 +37,15 @@ describe("News six handler", () => {
 
   it("should return content blocks with correct type", async () => {
     const handlerRunner = jest.fn();
-    (getRawArticles as jest.Mock).mockResolvedValue([
-      article,
-      article,
-      article,
-      article,
-      article,
-      article
-    ]);
+    const gridItems = {
+      [NewsSixPositions.BigTopLeft]: articleAsBasicArticleUnit,
+      [NewsSixPositions.SmallTopRight]: articleAsBasicArticleUnit,
+      [NewsSixPositions.SmallBottomFirst]: articleAsBasicArticleUnit,
+      [NewsSixPositions.SmallBottomSecond]: articleAsBasicArticleUnit,
+      [NewsSixPositions.SmallBottomThird]: articleAsBasicArticleUnit,
+      [NewsSixPositions.SmallBottomFourth]: articleAsBasicArticleUnit
+    };
+    (newsSixContentCreator as jest.Mock).mockResolvedValue(gridItems);
 
     const contentBlocks = await newsSixHandler(
       handlerRunner,
@@ -132,14 +93,7 @@ describe("News six handler", () => {
     };
     const expectedGridContainer: IGridContainer = {
       type: ContentBlockType.GridContainer,
-      items: {
-        [NewsSixPositions.BigTopLeft]: articleAsBasicArticleUnit,
-        [NewsSixPositions.SmallTopRight]: articleAsBigImageArticleUnit,
-        [NewsSixPositions.SmallBottomFirst]: articleAsBasicArticleTitle,
-        [NewsSixPositions.SmallBottomSecond]: articleAsBasicArticleTitle,
-        [NewsSixPositions.SmallBottomThird]: articleAsBasicArticleTitle,
-        [NewsSixPositions.SmallBottomFourth]: articleAsBasicArticleTitle
-      },
+      items: gridItems,
       mobile: {
         gridGap: "0px",
         gridTemplateColumns: "1fr",
@@ -197,16 +151,5 @@ describe("News six handler", () => {
       }
     };
     expect(contentBlocks).toEqual([expectedGridContainer]);
-  });
-
-  it("should throw an error when number of articles receive is insufficient", async () => {
-    const handlerRunner = jest.fn();
-    (getRawArticles as jest.Mock).mockResolvedValue([article, article]);
-
-    await expect(
-      newsSixHandler(handlerRunner, handlerInput, params)
-    ).rejects.toThrowError(
-      "News Six handler error: Insufficient number of articles: 2"
-    );
   });
 });

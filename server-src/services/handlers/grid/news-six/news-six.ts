@@ -2,110 +2,20 @@ import { handlerRunnerFunction } from "../../runner";
 import { IParams } from "../../../__types__/IParams";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { INewsSixHandlerInput } from "../../__types__/INewsSixHandlerInput";
-import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { IBasicArticleUnit } from "../../../../../common/__types__/IBasicArticleUnit";
-import { IBigImageArticleUnit } from "../../../../../common/__types__/IBigImageArticleUnit";
-import { IBasicArticleTitleUnit } from "../../../../../common/__types__/IBasicArticleTitleUnit";
-
-const basicArticleUnit = (
-  article: IRawArticle,
-  strapName: string
-): IBasicArticleUnit => ({
-  type: ContentBlockType.BasicArticleUnit,
-  id: article.id,
-  strapName: strapName,
-  indexHeadline: article.indexHeadline,
-  title: article.title,
-  introText: article.introText,
-  imageSrc: article.imageSrc,
-  imageSrcSet: article.imageSrcSet,
-  linkUrl: article.linkUrl,
-  lastPublishedTime: article.lastPublishedTime,
-  headlineFlags: article.headlineFlags
-});
-
-const bigImageArticleUnit = (
-  article: IRawArticle,
-  strapName: string
-): IBigImageArticleUnit => ({
-  type: ContentBlockType.BigImageArticleUnit,
-  id: article.id,
-  strapName,
-  indexHeadline: article.indexHeadline,
-  title: article.title,
-  introText: article.introText,
-  imageSrc: article.strapImageSrc,
-  imageSrcSet: article.strapImageSrcSet,
-  linkUrl: article.linkUrl,
-  lastPublishedTime: article.lastPublishedTime,
-  headlineFlags: article.headlineFlags
-});
-
-const basicArticleTitleUnit = (
-  article: IRawArticle,
-  strapName: string
-): IBasicArticleTitleUnit => ({
-  type: ContentBlockType.BasicArticleTitleUnit,
-  id: article.id,
-  strapName: strapName,
-  indexHeadline: article.indexHeadline,
-  title: article.title,
-  linkUrl: article.linkUrl,
-  lastPublishedTime: article.lastPublishedTime,
-  headlineFlags: article.headlineFlags
-});
-
-export enum NewsSixPositions {
-  BigTopLeft = "BigTopLeft",
-  SmallTopRight = "SmallTopRight",
-  SmallBottomFirst = "SmallBottomFirst",
-  SmallBottomSecond = "SmallBottomSecond",
-  SmallBottomThird = "SmallBottomThird",
-  SmallBottomFourth = "SmallBottomFourth"
-}
+import { NewsSixPositions } from "./NewsSixPositions";
+import newsSixContentCreator from "./news-six-content";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
   { displayName, sourceId, type, strapName }: INewsSixHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const articles = await getRawArticles(sourceId, 6, params);
-  const articlesLength = articles.length;
-  let contentBlocks: { [key in NewsSixPositions]: IContentBlock };
-  try {
-    contentBlocks = {
-      [NewsSixPositions.BigTopLeft]: basicArticleUnit(
-        articles.shift() as IRawArticle,
-        strapName
-      ),
-      [NewsSixPositions.SmallTopRight]: bigImageArticleUnit(
-        articles.shift() as IRawArticle,
-        strapName
-      ),
-      [NewsSixPositions.SmallBottomFirst]: basicArticleTitleUnit(
-        articles.shift() as IRawArticle,
-        strapName
-      ),
-      [NewsSixPositions.SmallBottomSecond]: basicArticleTitleUnit(
-        articles.shift() as IRawArticle,
-        strapName
-      ),
-      [NewsSixPositions.SmallBottomThird]: basicArticleTitleUnit(
-        articles.shift() as IRawArticle,
-        strapName
-      ),
-      [NewsSixPositions.SmallBottomFourth]: basicArticleTitleUnit(
-        articles.shift() as IRawArticle,
-        strapName
-      )
-    };
-  } catch (e) {
-    throw new Error(
-      `News Six handler error: Insufficient number of articles: ${articlesLength}. Error: ${e}`
-    );
-  }
+  const contentBlocks = await newsSixContentCreator(
+    strapName,
+    sourceId,
+    params
+  );
 
   return [
     {
