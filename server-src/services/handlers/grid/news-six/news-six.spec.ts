@@ -1,16 +1,16 @@
-import { INewsSixHandlerInput } from "../__types__/INewsSixHandlerInput";
-import { HandlerInputType } from "../__types__/HandlerInputType";
-import { Strap } from "../../strap";
-import { IParams } from "../../__types__/IParams";
+import { INewsSixHandlerInput } from "../../__types__/INewsSixHandlerInput";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import { Strap } from "../../../strap";
+import { IParams } from "../../../__types__/IParams";
 import newsSixHandler, { NewsSixPositions } from "./news-six";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
-import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
-import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArticleUnit";
-import { IBasicArticleTitleUnit } from "../../../../common/__types__/IBasicArticleTitleUnit";
-import { IGridContainer } from "../../../../common/__types__/IGridContainer";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { IBasicArticleUnit } from "../../../../../common/__types__/IBasicArticleUnit";
+import { IBigImageArticleUnit } from "../../../../../common/__types__/IBigImageArticleUnit";
+import { IBasicArticleTitleUnit } from "../../../../../common/__types__/IBasicArticleTitleUnit";
+import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
 
-jest.mock("../../adapters/article-retriever/article-retriever");
+jest.mock("../../../adapters/article-retriever/article-retriever");
 
 describe("News six handler", () => {
   const article = {
