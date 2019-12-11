@@ -1,4 +1,3 @@
-import { INewsSixHandlerInput } from "../../__types__/INewsSixHandlerInput";
 import { IParams } from "../../../__types__/IParams";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
