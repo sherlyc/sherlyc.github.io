@@ -5,6 +5,7 @@ import { experimentController } from "./api/experiment-controller";
 import { featureController } from "./api/feature-controller";
 import { getHomePageRecommendations } from "./api/recommendations";
 import logger from "./services/utils/logger";
+import { parseVersion } from "./services/utils/version";
 
 const versionedRouter = express.Router();
 versionedRouter.get("/content", getContent);
@@ -43,14 +44,19 @@ spadeRouter.use(
     req.spadeParams.version = feVersion;
 
     if (beVersion !== feVersion) {
-      logger.info(
-        req.spadeParams.apiRequestId,
-        `spade version mismatch FE:${feVersion} BE:${beVersion}`,
-        {
-          beVersion,
-          feVersion
-        }
-      );
+      if (
+        parseVersion(beVersion) - parseVersion(feVersion) >
+        parseVersion("0.1")
+      ) {
+        logger.info(
+          req.spadeParams.apiRequestId,
+          `spade version mismatch FE:${feVersion} BE:${beVersion}`,
+          {
+            beVersion,
+            feVersion
+          }
+        );
+      }
     }
     next();
   },
