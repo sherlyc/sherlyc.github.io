@@ -32,17 +32,15 @@ function gridGapHandler(gridTemplateValues: string, gridGap: string): string {
 }
 
 function gridBlocksHandler(gridBlocks: IGridBlocks): IGridBlocks {
-  return Object.keys(gridBlocks).reduce((final, key) => {
+  return Object.keys(gridBlocks).reduce((final: IGridBlocks, key: string) => {
     const { rowStart, rowSpan, columnStart, columnSpan } = gridBlocks[key];
-    return {
-      ...final,
-      [key]: {
-        rowStart: getNewLineNumber(rowStart),
-        rowSpan: getNewLineNumber(rowSpan),
-        columnStart: getNewLineNumber(columnStart),
-        columnSpan: getNewLineNumber(columnSpan)
-      }
+    final[key] = {
+      rowStart: getNewLineNumber(rowStart),
+      rowSpan: getNewLineNumber(rowSpan),
+      columnStart: getNewLineNumber(columnStart),
+      columnSpan: getNewLineNumber(columnSpan)
     };
+    return final;
   }, {});
 }
 
