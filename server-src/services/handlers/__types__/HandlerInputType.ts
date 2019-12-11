@@ -17,5 +17,6 @@ export enum HandlerInputType {
   Weather = "Weather",
   Experiment = "Experiment",
   Feature = "Feature",
-  Recommendations = "Recommendations"
+  Recommendations = "Recommendations",
+  NewsSix = "NewsSix"
 }

@@ -17,6 +17,7 @@ import { IExpandableArticleSectionHandlerInput } from "./IExpandableArticleSecti
 import { IMoreSectionExperimentHandlerInput } from "./IMoreSectionExperimentHandlerInput";
 import { ITopStoriesArticleListGroupOneHandlerInput } from "./ITopStoriesArticleListGroupOne";
 import { ITopStoriesArticleListGroupTwoHandlerInput } from "./ITopStoriesArticleListGroupTwo";
+import { INewsSixHandlerInput } from "./INewsSixHandlerInput";
 
 export type HandlerInput =
   | ITopStoriesHandlerInput
@@ -37,4 +38,5 @@ export type HandlerInput =
   | IWeatherHandlerInput
   | IExperimentHandlerInput
   | IFeatureHandlerInput
-  | IRecommendationsHandlerInput;
+  | IRecommendationsHandlerInput
+  | INewsSixHandlerInput;
