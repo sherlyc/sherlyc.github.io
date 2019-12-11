@@ -1,3 +1,7 @@
+export function validateVersion(version: string) {
+  return /^(\d+\.)?(\d+\.)?(\*|\d+)$/.test(version);
+}
+
 export function parseVersion(version: string) {
   const versionParts = version.split(".");
   const paddedVersionParts = versionParts.map((versionPart) => {
