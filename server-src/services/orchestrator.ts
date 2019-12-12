@@ -369,6 +369,20 @@ export default async (params: IParams): Promise<IPage> => {
             },
             {
               type: HandlerInputType.ArticleSection,
+              displayName: "1 News",
+              displayNameColor: "darkblue",
+              linkUrl: "https://www.stuff.co.nz/national/1-news-now",
+              content: {
+                type: HandlerInputType.ExternalContent,
+                height: "calc(56% + 216px)",
+                width: "100%",
+                margin: "0 0 10px 0",
+                url:
+                  "https://www.playwidget.stuff.co.nz/hshelf/5d3fcb25a0e845001caee780"
+              }
+            },
+            {
+              type: HandlerInputType.ArticleSection,
               displayName: "Noted",
               displayNameColor: "darkblue",
               linkUrl: "/" + Section.Noted,
