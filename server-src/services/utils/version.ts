@@ -1,17 +1,20 @@
-export function validateVersion(version: string) {
-  return /^(\d+\.)?(\d+\.)?(\*|\d+)$/.test(version);
-}
+import { memoize } from "lodash";
 
-export function parseVersion(version: string) {
+const versionRegEx = /^(\d+\.)?(\d+\.)?(\*|\d+)$/;
+export const validateVersion = memoize((version: string) => {
+  return versionRegEx.test(version);
+});
+
+export const parseVersion = memoize((version: string) => {
   const versionParts = version.split(".");
   const paddedVersionParts = versionParts.map((versionPart) => {
     return versionPart.replace(/\D+/g, "").padStart(5, "0");
   });
   const fullVersion = paddedVersionParts.join("").padEnd(15, "0");
   return Number(fullVersion);
-}
+});
 
-export function formatVersion(version: number) {
+export const formatVersion = memoize((version: number) => {
   const fullVersion = String(version).padStart(15, "0");
   const major = Number(fullVersion.substr(0, 5));
   const minor = Number(fullVersion.substr(5, 5));
@@ -26,4 +29,4 @@ export function formatVersion(version: number) {
     }
     return "";
   }, "");
-}
+});
