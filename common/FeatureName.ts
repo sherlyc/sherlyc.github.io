@@ -5,5 +5,6 @@ export enum FeatureName {
   LoginFlow = "LoginFlow",
   AdobeLaunch = "AdobeLaunch",
   ShowOldLayout = "ShowOldLayout",
-  ShowNewLayout = "ShowNewLayout"
+  ShowNewLayout = "ShowNewLayout",
+  HideOldLayout = "HideOldLayout"
 }
