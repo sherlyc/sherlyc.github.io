@@ -371,7 +371,7 @@ export default async (params: IParams): Promise<IPage> => {
               type: HandlerInputType.ArticleSection,
               displayName: "1 News",
               displayNameColor: "darkblue",
-              linkUrl: "https://www.stuff.co.nz/national/1-news-now",
+              linkUrl: "https://play.stuff.co.nz/page/channel-onenews",
               content: {
                 type: HandlerInputType.ExternalContent,
                 height: "calc(56% + 216px)",
