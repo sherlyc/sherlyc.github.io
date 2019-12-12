@@ -58,6 +58,12 @@ export default async (params: IParams): Promise<IPage> => {
                 "https://www.playwidget.stuff.co.nz/shelf/5d06caa81de1c4001f81a46e"
             },
             {
+              type: HandlerInputType.NewsSix,
+              sourceId: Strap.National,
+              strapName: "National",
+              displayName: "National"
+            },
+            {
               type: HandlerInputType.ArticleSection,
               displayName: `Editors' Picks`,
               displayNameColor: "darkblue",
