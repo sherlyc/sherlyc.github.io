@@ -9,7 +9,6 @@ import { IBasicArticleUnit } from "../../../../../common/__types__/IBasicArticle
 import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
 import { NewsSixPositions } from "./NewsSixPositions";
 
-jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("./news-six-content");
 
 describe("News six handler", () => {

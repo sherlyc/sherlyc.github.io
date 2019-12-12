@@ -9,8 +9,10 @@ import { ContentBlockType } from "../../../../../common/__types__/ContentBlockTy
 import { IBigImageArticleUnit } from "../../../../../common/__types__/IBigImageArticleUnit";
 import { IBasicArticleTitleUnit } from "../../../../../common/__types__/IBasicArticleTitleUnit";
 import { NewsSixPositions } from "./NewsSixPositions";
+import logger from "../../../utils/logger";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
+jest.mock("../../../utils/logger");
 
 describe("News six content creator", () => {
   const article = {
@@ -104,17 +106,21 @@ describe("News six content creator", () => {
   it("should throw error if fails to create content block", async () => {
     (getRawArticles as jest.Mock).mockResolvedValue([article]);
 
-    expect.assertions(1);
+    expect.assertions(2);
     try {
       await newsSixContentCreator(
         handlerInput.strapName,
         handlerInput.sourceId,
         params
       );
-    } catch (e) {
-      expect(e.message).toContain(
-        "News Six handler error: Insufficient number of articles: 1"
+    } catch (error) {
+      expect(logger.error).toHaveBeenCalledWith(
+        params.apiRequestId,
+        expect.stringContaining(
+          `News Six handler error: Potentially insufficient number of articles: 1. Strap name: ${handlerInput.sourceId}|${handlerInput.strapName}`
+        )
       );
+      expect(error).toBeTruthy();
     }
   });
 });

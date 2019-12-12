@@ -8,6 +8,7 @@ import { IBasicArticleTitleUnit } from "../../../../../common/__types__/IBasicAr
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { Strap } from "../../../strap";
 import { NewsSixPositions } from "./NewsSixPositions";
+import wrappedLogger from "../../../utils/logger";
 
 const basicArticleUnit = (
   article: IRawArticle,
@@ -92,8 +93,10 @@ export default async function(
       )
     };
   } catch (e) {
-    throw new Error(
-      `News Six handler error: Insufficient number of articles: ${articlesLength}. Error: ${e}`
+    wrappedLogger.error(
+      params.apiRequestId,
+      `News Six handler error: Potentially insufficient number of articles: ${articlesLength}. Strap name: ${sourceId}|${strapName}. Error: ${e}`
     );
+    throw e;
   }
 }
