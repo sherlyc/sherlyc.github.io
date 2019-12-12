@@ -9,23 +9,7 @@ import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { Strap } from "../../../strap";
 import { NewsSixPositions } from "./NewsSixPositions";
 import wrappedLogger from "../../../utils/logger";
-
-const basicArticleUnit = (
-  article: IRawArticle,
-  strapName: string
-): IBasicArticleUnit => ({
-  type: ContentBlockType.BasicArticleUnit,
-  id: article.id,
-  strapName: strapName,
-  indexHeadline: article.indexHeadline,
-  title: article.title,
-  introText: article.introText,
-  imageSrc: article.imageSrc,
-  imageSrcSet: article.imageSrcSet,
-  linkUrl: article.linkUrl,
-  lastPublishedTime: article.lastPublishedTime,
-  headlineFlags: article.headlineFlags
-});
+import { IResponsiveBigImageArticleUnit } from "../../../../../common/__types__/IResponsiveBigImageArticleUnit";
 
 const bigImageArticleUnit = (
   article: IRawArticle,
@@ -58,6 +42,23 @@ const basicArticleTitleUnit = (
   headlineFlags: article.headlineFlags
 });
 
+const responsiveBigImageArticleUnit = (
+  article: IRawArticle,
+  strapName: string
+): IResponsiveBigImageArticleUnit => ({
+  type: ContentBlockType.ResponsiveBigImageArticle,
+  id: article.id,
+  strapName,
+  indexHeadline: article.indexHeadline,
+  title: article.title,
+  introText: article.introText,
+  imageSrc: article.strapImageSrc,
+  imageSrcSet: article.strapImageSrcSet,
+  linkUrl: article.linkUrl,
+  lastPublishedTime: article.lastPublishedTime,
+  headlineFlags: article.headlineFlags
+});
+
 export default async function(
   strapName: string,
   sourceId: Strap,
@@ -67,7 +68,7 @@ export default async function(
   const articlesLength = articles.length;
   try {
     return {
-      [NewsSixPositions.BigTopLeft]: basicArticleUnit(
+      [NewsSixPositions.BigTopLeft]: responsiveBigImageArticleUnit(
         articles.shift() as IRawArticle,
         strapName
       ),

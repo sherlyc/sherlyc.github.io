@@ -4,12 +4,12 @@ import { Strap } from "../../../strap";
 import { IParams } from "../../../__types__/IParams";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import newsSixContentCreator from "./news-six-content";
-import { IBasicArticleUnit } from "../../../../../common/__types__/IBasicArticleUnit";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IBigImageArticleUnit } from "../../../../../common/__types__/IBigImageArticleUnit";
 import { IBasicArticleTitleUnit } from "../../../../../common/__types__/IBasicArticleTitleUnit";
 import { NewsSixPositions } from "./NewsSixPositions";
 import logger from "../../../utils/logger";
+import { IResponsiveBigImageArticleUnit } from "../../../../../common/__types__/IResponsiveBigImageArticleUnit";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../utils/logger");
@@ -30,16 +30,16 @@ describe("News six content creator", () => {
     headlineFlags: []
   };
 
-  const articleAsBasicArticleUnit: IBasicArticleUnit = {
-    type: ContentBlockType.BasicArticleUnit,
+  const responsiveBigImageArticleUnit: IResponsiveBigImageArticleUnit = {
+    type: ContentBlockType.ResponsiveBigImageArticle,
     id: "1",
     strapName: "Strap Name",
     indexHeadline: "Headline 1",
     title: "Title One",
     introText: "Intro 1",
     linkUrl: "/link1",
-    imageSrc: "1.jpg",
-    imageSrcSet: "1.jpg 1w",
+    imageSrc: "strap1.jpg",
+    imageSrcSet: "strap1.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: []
   };
@@ -94,7 +94,7 @@ describe("News six content creator", () => {
 
     expect(getRawArticles).toHaveBeenCalledWith(Strap.National, 6, params);
     expect(contentBlocks).toEqual({
-      [NewsSixPositions.BigTopLeft]: articleAsBasicArticleUnit,
+      [NewsSixPositions.BigTopLeft]: responsiveBigImageArticleUnit,
       [NewsSixPositions.SmallTopRight]: articleAsBigImageArticleUnit,
       [NewsSixPositions.SmallBottomFirst]: articleAsBasicArticleTitle,
       [NewsSixPositions.SmallBottomSecond]: articleAsBasicArticleTitle,
