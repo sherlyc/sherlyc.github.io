@@ -6,6 +6,10 @@ import { Request } from "express";
 jest.mock("../services/adapters/feature/feature");
 
 describe("Feature Controller", () => {
+  beforeEach(() => {
+    jest.resetAllMocks();
+  });
+
   it("should return value from feature service", async () => {
     (FeatureName as any)["someFeature"] = "someFeature";
 
@@ -13,7 +17,7 @@ describe("Feature Controller", () => {
       spadeParams: { apiRequestId: "33498" },
       params: {
         featureName: "someFeature",
-        lotteryNumber: 1,
+        lotteryNumber: "1",
         deviceType: "mobile"
       },
       cookies: {}
@@ -27,12 +31,12 @@ describe("Feature Controller", () => {
     expect(res.send).toHaveBeenCalledWith(false);
   });
 
-  it("should return error when feature name is not recognized", async () => {
+  it("should return true when feature name is not recognized", async () => {
     const req = ({
       spadeParams: { apiRequestId: "33498" },
       params: {
         featureName: "FeatureThatDoesNotExist",
-        lotteryNumber: 1,
+        lotteryNumber: "1",
         deviceType: "mobile"
       },
       cookies: {}
@@ -42,14 +46,11 @@ describe("Feature Controller", () => {
       status: jest.fn().mockImplementation(() => res)
     } as any;
 
+    (isFeatureEnabled as jest.Mock).mockReturnValue(true);
+
     await featureController(req, res);
 
-    expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.send).toHaveBeenCalledWith(
-      expect.stringContaining("Invalid feature data provided")
-    );
-    expect(res.send).toHaveBeenCalledTimes(1);
-    expect(res.status).toHaveBeenCalledTimes(1);
+    expect(res.send).toHaveBeenCalledWith(true);
   });
 
   it("should return 400 and message in body when provided with negative lottery number", async () => {
