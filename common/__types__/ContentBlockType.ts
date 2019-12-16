@@ -20,5 +20,6 @@ export enum ContentBlockType {
   ExperimentContainer = "ExperimentContainer",
   FeatureContainer = "FeatureContainer",
   Recommendations = "Recommendations",
-  GridContainer = "GridContainer"
+  GridContainer = "GridContainer",
+  ResponsiveBigImageArticle = "ResponsiveBigImageArticle"
 }

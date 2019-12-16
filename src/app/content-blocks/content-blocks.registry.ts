@@ -22,6 +22,7 @@ import { HalfWidthImageArticleUnitComponent } from "./half-width-image-article-u
 import { ExpandableArticleSectionComponent } from "./expandable-article-section/expandable-article-section.component";
 import { RecommendationsComponent } from "./recommendations/recommendations.component";
 import { GridContainerComponent } from "./grid-container/grid-container.component";
+import { ResponsiveBigImageArticleComponent } from "./responsive-big-image-article/responsive-big-image-article.component";
 
 export const contentBlockComponents = [
   GrayDefconArticleUnitComponent,
@@ -45,7 +46,8 @@ export const contentBlockComponents = [
   FeatureContainerComponent,
   FooterComponent,
   RecommendationsComponent,
-  GridContainerComponent
+  GridContainerComponent,
+  ResponsiveBigImageArticleComponent
 ];
 
 const registry: {
@@ -72,7 +74,8 @@ const registry: {
   FeatureContainerComponent,
   FooterComponent,
   RecommendationsComponent,
-  GridContainerComponent
+  GridContainerComponent,
+  ResponsiveBigImageArticleComponent
 };
 
 export default registry;

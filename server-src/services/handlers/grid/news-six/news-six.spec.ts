@@ -55,36 +55,36 @@ describe("News six handler", () => {
     const desktopGridBlocks = {
       [NewsSixPositions.BigTopLeft]: {
         rowStart: 1,
-        rowSpan: 3,
+        rowSpan: 1,
         columnStart: 1,
         columnSpan: 4
       },
       [NewsSixPositions.SmallTopRight]: {
         rowStart: 1,
-        rowSpan: 3,
+        rowSpan: 2,
         columnStart: 5,
         columnSpan: 1
       },
       [NewsSixPositions.SmallBottomFirst]: {
-        rowStart: 4,
+        rowStart: 2,
         rowSpan: 1,
         columnStart: 1,
         columnSpan: 1
       },
       [NewsSixPositions.SmallBottomSecond]: {
-        rowStart: 4,
+        rowStart: 2,
         rowSpan: 1,
         columnStart: 2,
         columnSpan: 1
       },
       [NewsSixPositions.SmallBottomThird]: {
-        rowStart: 4,
+        rowStart: 2,
         rowSpan: 1,
         columnStart: 3,
         columnSpan: 1
       },
       [NewsSixPositions.SmallBottomFourth]: {
-        rowStart: 4,
+        rowStart: 2,
         rowSpan: 1,
         columnStart: 4,
         columnSpan: 1
@@ -138,13 +138,13 @@ describe("News six handler", () => {
       },
       tablet: {
         gridTemplateColumns: "1fr 1fr 1fr 1fr 300px",
-        gridTemplateRows: "1fr 1fr 1fr 1fr",
+        gridTemplateRows: "auto auto",
         gridGap: "10px",
         gridBlocks: desktopGridBlocks
       },
       desktop: {
         gridTemplateColumns: "1fr 1fr 1fr 1fr 300px",
-        gridTemplateRows: "1fr 1fr 1fr 1fr",
+        gridTemplateRows: "auto auto",
         gridGap: "20px",
         gridBlocks: desktopGridBlocks
       }
