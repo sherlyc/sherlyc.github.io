@@ -20,19 +20,26 @@
 
 #gutterleft {
   position: fixed;
-  left: calc(50% - 1202px);
+  left: calc(50% - 1160px);
   top: 0;
   z-index: 99;
 }
 
 #gutterright {
   position: fixed;
-  right: calc(50% - 1202px);
+  right: calc(50% - 1160px);
   top: 0;
   z-index: 99;
 }
 
-.rich-media-small{
+@media only screen and (max-width: 75em) {
+  #gutterleft,
+  #gutterright {
+    display: none;
+  }
+}
+
+.rich-media-small {
   position: relative;
 }
 
