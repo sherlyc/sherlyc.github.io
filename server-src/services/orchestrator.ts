@@ -53,7 +53,7 @@ export default async (params: IParams): Promise<IPage> => {
               type: HandlerInputType.ExternalContent,
               height: "215px",
               width: "100%",
-              margin: "0 0 20px 0",
+              margin: "0 -10px 20px",
               url:
                 "https://www.playwidget.stuff.co.nz/shelf/5d06caa81de1c4001f81a46e"
             },
@@ -116,7 +116,7 @@ export default async (params: IParams): Promise<IPage> => {
                 type: HandlerInputType.ExternalContent,
                 height: "calc(56% + 216px)",
                 width: "100%",
-                margin: "0 0 10px 0",
+                margin: "0 -10px 10px",
                 url:
                   "https://www.playwidget.stuff.co.nz/hshelf/5d3a9a3fa0e845001c7c998a"
               }
@@ -365,6 +365,20 @@ export default async (params: IParams): Promise<IPage> => {
                 strapName: "Sport",
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 3
+              }
+            },
+            {
+              type: HandlerInputType.ArticleSection,
+              displayName: "1 News",
+              displayNameColor: "darkblue",
+              linkUrl: "https://play.stuff.co.nz/page/channel-onenews",
+              content: {
+                type: HandlerInputType.ExternalContent,
+                height: "calc(56% + 216px)",
+                width: "100%",
+                margin: "0 -10px 10px",
+                url:
+                  "https://www.playwidget.stuff.co.nz/hshelf/5d3fcb25a0e845001caee780"
               }
             },
             {
