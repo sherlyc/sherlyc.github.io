@@ -82,6 +82,5 @@ app-basic-ad-unit iframe {
 }
 
 #pushdownbanner iframe {
-  display: block;
-  margin: 0 auto;
+  margin-left: calc(50% - 1120px / 2);
 }
