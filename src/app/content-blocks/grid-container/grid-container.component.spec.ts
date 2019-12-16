@@ -54,51 +54,53 @@ describe("GridContainerComponent", () => {
   it("applies the grid configuration", () => {
     component.input = {
       type: ContentBlockType.GridContainer,
-      items: new Array(4).fill(input),
+      items: {
+        "first-block": input
+      },
       mobile: {
         gridTemplateColumns: "1fr",
         gridTemplateRows: "auto",
         gridGap: "20px",
-        gridBlocks: [
-          {
+        gridBlocks: {
+          "first-block": {
             rowStart: 1,
             rowSpan: 1,
             columnStart: 1,
             columnSpan: 1
           }
-        ]
+        }
       },
       tablet: {
         gridTemplateColumns: "1fr 1fr 1fr 1fr",
         gridTemplateRows: "auto",
         gridGap: "20px",
-        gridBlocks: [
-          {
+        gridBlocks: {
+          "first-block": {
             rowStart: 1,
             rowSpan: 2,
             columnStart: 1,
             columnSpan: 2
           }
-        ]
+        }
       },
       desktop: {
         gridTemplateColumns: "1fr 1fr 1fr 1fr 200px",
         gridTemplateRows: "auto",
         gridGap: "20px",
-        gridBlocks: [
-          {
+        gridBlocks: {
+          "first-block": {
             rowStart: 1,
             rowSpan: 2,
             columnStart: 1,
             columnSpan: 2
           }
-        ]
+        }
       }
     };
     fixture.detectChanges();
     expect(fixture.componentInstance.style).toMatchInlineSnapshot(`
       Object {
-        " > :nth-child(1)": Object {
+        " > .first-block": Object {
           "gridColumnEnd": "span 1",
           "gridColumnStart": 1,
           "gridRowEnd": "span 1",
@@ -112,7 +114,7 @@ describe("GridContainerComponent", () => {
           "display": "-ms-grid",
         },
         "@media only screen and (min-width: 64em)": Object {
-          " > :nth-child(1)": Object {
+          " > .first-block": Object {
             "gridColumnEnd": "span 3",
             "gridColumnStart": 1,
             "gridRowEnd": "span 3",
@@ -130,9 +132,10 @@ describe("GridContainerComponent", () => {
           "gridTemplateColumns": "1fr 20px 1fr 20px 1fr 20px 1fr",
           "gridTemplateRows": "auto",
           "msGridColumns": "1fr 20px 1fr 20px 1fr 20px 1fr",
+          "msGridRows": "auto",
         },
         "@media only screen and (min-width: 75em)": Object {
-          " > :nth-child(1)": Object {
+          " > .first-block": Object {
             "gridColumnEnd": "span 3",
             "gridColumnStart": 1,
             "gridRowEnd": "span 3",
@@ -150,12 +153,14 @@ describe("GridContainerComponent", () => {
           "gridTemplateColumns": "1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px",
           "gridTemplateRows": "auto",
           "msGridColumns": "1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px",
+          "msGridRows": "auto",
         },
         "display": "grid",
         "gridGap": "0",
         "gridTemplateColumns": "1fr",
         "gridTemplateRows": "auto",
         "msGridColumns": "1fr",
+        "msGridRows": "auto",
       }
     `);
   });

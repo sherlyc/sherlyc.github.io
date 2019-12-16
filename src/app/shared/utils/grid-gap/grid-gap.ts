@@ -1,6 +1,7 @@
 import {
   IGridConfig,
-  IGridBlock
+  IGridBlock,
+  IGridBlocks
 } from "../../../../../common/__types__/IGridContainer";
 import { flatten } from "lodash";
 
@@ -30,16 +31,17 @@ function gridGapHandler(gridTemplateValues: string, gridGap: string): string {
   return flatten(arrGridTemplateWithGap).join(" ");
 }
 
-function gridBlocksHandler(gridBlocks: IGridBlock[]): IGridBlock[] {
-  return gridBlocks.map((grid) => {
-    const { rowStart, rowSpan, columnStart, columnSpan } = grid;
-    return {
+function gridBlocksHandler(gridBlocks: IGridBlocks): IGridBlocks {
+  return Object.keys(gridBlocks).reduce((final: IGridBlocks, key: string) => {
+    const { rowStart, rowSpan, columnStart, columnSpan } = gridBlocks[key];
+    final[key] = {
       rowStart: getNewLineNumber(rowStart),
       rowSpan: getNewLineNumber(rowSpan),
       columnStart: getNewLineNumber(columnStart),
       columnSpan: getNewLineNumber(columnSpan)
     };
-  });
+    return final;
+  }, {});
 }
 
 function getNewLineNumber(lineNumber: number): number {

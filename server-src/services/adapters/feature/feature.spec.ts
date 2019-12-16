@@ -77,4 +77,79 @@ describe("Feature service", () => {
       }
     );
   });
+
+  describe("Show old layout", () => {
+    it("should return true for internal lottery number 404", async () => {
+      const result = await isFeatureEnabled(
+        FeatureName.ShowOldLayout,
+        404,
+        DeviceType.unknown
+      );
+
+      expect(result).toBe(true);
+    });
+
+    it.each([[1], [100]])(
+      "should return true for public lottery number %i",
+      async (lotteryNumber: number) => {
+        const result = await isFeatureEnabled(
+          FeatureName.ShowOldLayout,
+          lotteryNumber,
+          DeviceType.unknown
+        );
+
+        expect(result).toBe(true);
+      }
+    );
+  });
+
+  describe("Hide old layout", () => {
+    it("should return true for internal lottery number 404", async () => {
+      const result = await isFeatureEnabled(
+        FeatureName.HideOldLayout,
+        404,
+        DeviceType.unknown
+      );
+
+      expect(result).toBe(true);
+    });
+
+    it.each([[1], [100]])(
+      "should return false for public lottery number %i",
+      async (lotteryNumber: number) => {
+        const result = await isFeatureEnabled(
+          FeatureName.HideOldLayout,
+          lotteryNumber,
+          DeviceType.unknown
+        );
+
+        expect(result).toBe(false);
+      }
+    );
+  });
+
+  describe("Show new layout", () => {
+    it("should return true for internal lottery number 404", async () => {
+      const result = await isFeatureEnabled(
+        FeatureName.ShowNewLayout,
+        404,
+        DeviceType.unknown
+      );
+
+      expect(result).toBe(true);
+    });
+
+    it.each([[1], [100]])(
+      "should return false for public lottery number %i",
+      async (lotteryNumber: number) => {
+        const result = await isFeatureEnabled(
+          FeatureName.ShowNewLayout,
+          lotteryNumber,
+          DeviceType.unknown
+        );
+
+        expect(result).toBe(false);
+      }
+    );
+  });
 });

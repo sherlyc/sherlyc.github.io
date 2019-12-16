@@ -1,3 +1,5 @@
 <div [appGlobalStyle]="style">
-  <ng-container [appContentBlock]="input.items"></ng-container>
+  <div *ngFor="let item of input.items | keyvalue" [ngClass]="item.key">
+    <ng-container [appContentBlock]="item.value"></ng-container>
+  </div>
 </div>
