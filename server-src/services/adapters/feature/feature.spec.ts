@@ -3,6 +3,15 @@ import { DeviceType } from "../../../../common/DeviceType";
 import { FeatureName } from "../../../../common/FeatureName";
 
 describe("Feature service", () => {
+  it("Should return true if feature name is not recognized", async () => {
+    const result = await isFeatureEnabled(
+      "FeatureThatDoesNotExist",
+      10,
+      DeviceType.unknown
+    );
+    expect(result).toBe(true);
+  });
+
   describe("Recommendations", () => {
     it("should return true for internal lottery number 404", async () => {
       const result = await isFeatureEnabled(
