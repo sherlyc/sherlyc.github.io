@@ -4,7 +4,6 @@ export enum FeatureName {
   AdsRelativePositioning = "AdsRelativePositioning",
   LoginFlow = "LoginFlow",
   AdobeLaunch = "AdobeLaunch",
-  ShowOldLayout = "ShowOldLayout",
-  ShowNewLayout = "ShowNewLayout",
-  HideOldLayout = "HideOldLayout"
+  StrapLayout = "StrapLayout",
+  ModuleLayout = "ModuleLayout"
 }
