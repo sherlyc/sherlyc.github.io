@@ -16,9 +16,16 @@ import applyGripGap from "../../shared/utils/grid-gap/grid-gap";
 export class GridContainerComponent implements IContentBlockComponent, OnInit {
   @Input() input!: IGridContainer;
 
+  borderCells: Array<{
+    name: string;
+    position: string;
+  }> = [];
+
   style = {};
 
   ngOnInit(): void {
+    this.applyBorder();
+
     const { mobile, tablet, desktop } = this.input;
     const mobileWithGap = applyGripGap(mobile);
     const tabletWithGap = applyGripGap(tablet);
@@ -29,6 +36,24 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
       "@media only screen and (min-width: 64em)": this.gridCss(tabletWithGap),
       "@media only screen and (min-width: 75em)": this.gridCss(desktopWithGap)
     };
+  }
+
+  private applyBorder() {
+    Object.keys(this.input.items).forEach((itemKey) => {
+      const allBordersForCell = [
+        this.input.desktop.gridBlocks[itemKey],
+        this.input.tablet.gridBlocks[itemKey],
+        this.input.mobile.gridBlocks[itemKey]
+      ]
+        .map((grid) => grid.border || [])
+        .reduce((final, item) => [...final, ...item], []);
+
+      ["left", "top", "bottom", "right"].forEach((borderPosition: any) => {
+        if (allBordersForCell.includes(borderPosition)) {
+          this.borderCells.push({ name: itemKey, position: borderPosition });
+        }
+      });
+    });
   }
 
   private gridCss(gridConfig: IGridConfig) {

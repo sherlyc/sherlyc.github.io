@@ -17,6 +17,7 @@ export interface IGridBlock {
   rowSpan: number;
   columnStart: number;
   columnSpan: number;
+  border?: Array<"left" | "right" | "top" | "bottom">;
 }
 
 export interface IGridBlocks {

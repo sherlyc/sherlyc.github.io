@@ -5,6 +5,7 @@ import { INewsSixHandlerInput } from "../../__types__/INewsSixHandlerInput";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { NewsSixPositions } from "./NewsSixPositions";
 import newsSixContentCreator from "./news-six-content";
+import { IGridBlock } from "../../../../../common/__types__/IGridContainer";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -29,7 +30,58 @@ export default async function(
     displayNameColor
   };
 
-  const desktop = {
+  const mobile: { [key in NewsSixPositions]: IGridBlock } = {
+    [NewsSixPositions.ModuleTitle]: {
+      rowStart: 1,
+      rowSpan: 1,
+      columnStart: 1,
+      columnSpan: 1
+    },
+    [NewsSixPositions.BigTopLeft]: {
+      rowStart: 2,
+      rowSpan: 1,
+      columnStart: 1,
+      columnSpan: 1,
+      border: ["bottom"]
+    },
+    [NewsSixPositions.SmallTopRight]: {
+      rowStart: 3,
+      rowSpan: 1,
+      columnStart: 1,
+      columnSpan: 1,
+      border: ["bottom"]
+    },
+    [NewsSixPositions.SmallBottomFirst]: {
+      rowStart: 4,
+      rowSpan: 1,
+      columnStart: 1,
+      columnSpan: 1,
+      border: ["bottom"]
+    },
+    [NewsSixPositions.SmallBottomSecond]: {
+      rowStart: 5,
+      rowSpan: 1,
+      columnStart: 1,
+      columnSpan: 1,
+      border: ["bottom"]
+    },
+    [NewsSixPositions.SmallBottomThird]: {
+      rowStart: 6,
+      rowSpan: 1,
+      columnStart: 1,
+      columnSpan: 1,
+      border: ["bottom"]
+    },
+    [NewsSixPositions.SmallBottomFourth]: {
+      rowStart: 7,
+      rowSpan: 1,
+      columnStart: 1,
+      columnSpan: 1,
+      border: ["bottom"]
+    }
+  };
+
+  const desktop: { [key in NewsSixPositions]: IGridBlock } = {
     [NewsSixPositions.ModuleTitle]: {
       rowStart: 1,
       rowSpan: 1,
@@ -40,31 +92,36 @@ export default async function(
       rowStart: 2,
       rowSpan: 1,
       columnStart: 1,
-      columnSpan: 4
+      columnSpan: 4,
+      border: ["bottom"]
     },
     [NewsSixPositions.SmallTopRight]: {
       rowStart: 2,
       rowSpan: 2,
       columnStart: 5,
-      columnSpan: 1
+      columnSpan: 1,
+      border: ["left"]
     },
     [NewsSixPositions.SmallBottomFirst]: {
       rowStart: 3,
       rowSpan: 1,
       columnStart: 1,
-      columnSpan: 1
+      columnSpan: 1,
+      border: ["right"]
     },
     [NewsSixPositions.SmallBottomSecond]: {
       rowStart: 3,
       rowSpan: 1,
       columnStart: 2,
-      columnSpan: 1
+      columnSpan: 1,
+      border: ["right"]
     },
     [NewsSixPositions.SmallBottomThird]: {
       rowStart: 3,
       rowSpan: 1,
       columnStart: 3,
-      columnSpan: 1
+      columnSpan: 1,
+      border: ["right"]
     },
     [NewsSixPositions.SmallBottomFourth]: {
       rowStart: 3,
@@ -81,62 +138,19 @@ export default async function(
       mobile: {
         gridTemplateColumns: "1fr",
         gridTemplateRows: "auto auto auto auto auto auto auto",
-        gridGap: "10px",
-        gridBlocks: {
-          [NewsSixPositions.ModuleTitle]: {
-            rowStart: 1,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1
-          },
-          [NewsSixPositions.BigTopLeft]: {
-            rowStart: 2,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1
-          },
-          [NewsSixPositions.SmallTopRight]: {
-            rowStart: 3,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1
-          },
-          [NewsSixPositions.SmallBottomFirst]: {
-            rowStart: 4,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1
-          },
-          [NewsSixPositions.SmallBottomSecond]: {
-            rowStart: 5,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1
-          },
-          [NewsSixPositions.SmallBottomThird]: {
-            rowStart: 6,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1
-          },
-          [NewsSixPositions.SmallBottomFourth]: {
-            rowStart: 7,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1
-          }
-        }
+        gridGap: "20px",
+        gridBlocks: mobile
       },
       tablet: {
         gridTemplateColumns: "1fr 1fr 1fr 1fr 300px",
-        gridTemplateRows: "auto auto",
-        gridGap: "10px",
+        gridTemplateRows: "auto auto auto",
+        gridGap: "20px",
         gridBlocks: desktop
       },
       desktop: {
         gridTemplateColumns: "1fr 1fr 1fr 1fr 300px",
-        gridTemplateRows: "auto auto",
-        gridGap: "20px",
+        gridTemplateRows: "auto auto auto",
+        gridGap: "40px",
         gridBlocks: desktop
       }
     }
