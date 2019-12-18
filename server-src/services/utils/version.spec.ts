@@ -24,7 +24,6 @@ describe("version", () => {
     ["1", "true"],
     ["asdf", "false"]
   ])("should validate %s as %s", (version: string, result: string) => {
-    console.log(version, validateVersion(version), result, Boolean(result));
     expect(String(validateVersion(version))).toEqual(result);
   });
 });

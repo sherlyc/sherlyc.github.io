@@ -1,7 +1,6 @@
 import { IParams } from "../../../__types__/IParams";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { IBasicArticleUnit } from "../../../../../common/__types__/IBasicArticleUnit";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IBigImageArticleUnit } from "../../../../../common/__types__/IBigImageArticleUnit";
 import { IBasicArticleTitleUnit } from "../../../../../common/__types__/IBasicArticleTitleUnit";

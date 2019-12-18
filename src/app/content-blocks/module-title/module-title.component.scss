@@ -1,0 +1,90 @@
+.module-title {
+  height: 50px;
+  margin: 0;
+}
+.line {
+  flex: 1;
+  height: 2px;
+  background-color: #000;
+}
+.title {
+  margin: 0 20px;
+  font-size: 20px;
+  font-weight: bold;
+
+  &.scarlet {
+    color: #ff3000;
+  }
+
+  &.darkblue {
+    color: #0e468e;
+  }
+
+  &.teal {
+    color: #00aaaf;
+  }
+
+  &.navyblue {
+    color: #025798;
+  }
+
+  &.azureblue {
+    color: #0080fd;
+  }
+
+  &.royalblue {
+    color: #2f67dc;
+  }
+
+  &.mediumslateblue {
+    color: #624bea;
+  }
+
+  &.dingley {
+    color: #597149;
+  }
+
+  &.carribeangreen {
+    color: #00c480;
+  }
+
+  &.keppel {
+    color: #41ad95;
+  }
+
+  &.amaranth {
+    color: #e42d53;
+  }
+
+  &.purpleheart {
+    color: #8130e4;
+  }
+
+  &.yellowsea {
+    color: #fcac00;
+  }
+
+  &.pizzaz {
+    color: #fd9200;
+  }
+
+  &.junglegreen {
+    color: #2bb192;
+  }
+
+  &.sunglow {
+    color: #ffc42a;
+  }
+
+  &.premiumdark {
+    color: #181818;
+  }
+
+  &.woodsmoke {
+    color: #161a1c;
+  }
+
+  &.black {
+    color: #000000;
+  }
+}

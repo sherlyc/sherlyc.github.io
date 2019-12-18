@@ -8,6 +8,7 @@ import { ContentBlockType } from "../../../../../common/__types__/ContentBlockTy
 import { IBasicArticleUnit } from "../../../../../common/__types__/IBasicArticleUnit";
 import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
 import { NewsSixPositions } from "./NewsSixPositions";
+import { IModuleTitle } from "../../../../../common/__types__/IModuleTitle";
 
 jest.mock("./news-six-content");
 
@@ -26,9 +27,16 @@ describe("News six handler", () => {
     headlineFlags: []
   };
 
+  const moduleTitle: IModuleTitle = {
+    type: ContentBlockType.ModuleTitle,
+    displayName: "Module Title",
+    displayNameColor: "darkblue"
+  };
+
   const handlerInput: INewsSixHandlerInput = {
     type: HandlerInputType.NewsSix,
     displayName: "Display Name",
+    displayNameColor: "darkblue",
     strapName: "Strap Name",
     sourceId: Strap.National
   };
@@ -37,6 +45,7 @@ describe("News six handler", () => {
   it("should return content blocks with correct type", async () => {
     const handlerRunner = jest.fn();
     const gridItems = {
+      [NewsSixPositions.ModuleTitle]: moduleTitle,
       [NewsSixPositions.BigTopLeft]: articleAsBasicArticleUnit,
       [NewsSixPositions.SmallTopRight]: articleAsBasicArticleUnit,
       [NewsSixPositions.SmallBottomFirst]: articleAsBasicArticleUnit,
@@ -53,38 +62,44 @@ describe("News six handler", () => {
     );
 
     const desktopGridBlocks = {
-      [NewsSixPositions.BigTopLeft]: {
+      [NewsSixPositions.ModuleTitle]: {
         rowStart: 1,
+        rowSpan: 1,
+        columnStart: 1,
+        columnSpan: 5
+      },
+      [NewsSixPositions.BigTopLeft]: {
+        rowStart: 2,
         rowSpan: 1,
         columnStart: 1,
         columnSpan: 4
       },
       [NewsSixPositions.SmallTopRight]: {
-        rowStart: 1,
+        rowStart: 2,
         rowSpan: 2,
         columnStart: 5,
         columnSpan: 1
       },
       [NewsSixPositions.SmallBottomFirst]: {
-        rowStart: 2,
+        rowStart: 3,
         rowSpan: 1,
         columnStart: 1,
         columnSpan: 1
       },
       [NewsSixPositions.SmallBottomSecond]: {
-        rowStart: 2,
+        rowStart: 3,
         rowSpan: 1,
         columnStart: 2,
         columnSpan: 1
       },
       [NewsSixPositions.SmallBottomThird]: {
-        rowStart: 2,
+        rowStart: 3,
         rowSpan: 1,
         columnStart: 3,
         columnSpan: 1
       },
       [NewsSixPositions.SmallBottomFourth]: {
-        rowStart: 2,
+        rowStart: 3,
         rowSpan: 1,
         columnStart: 4,
         columnSpan: 1
@@ -94,42 +109,48 @@ describe("News six handler", () => {
       type: ContentBlockType.GridContainer,
       items: gridItems,
       mobile: {
-        gridGap: "0px",
+        gridGap: "10px",
         gridTemplateColumns: "1fr",
-        gridTemplateRows: "auto",
+        gridTemplateRows: "auto auto auto auto auto auto auto",
         gridBlocks: {
-          [NewsSixPositions.BigTopLeft]: {
+          [NewsSixPositions.ModuleTitle]: {
             rowStart: 1,
             rowSpan: 1,
             columnStart: 1,
             columnSpan: 1
           },
-          [NewsSixPositions.SmallTopRight]: {
+          [NewsSixPositions.BigTopLeft]: {
             rowStart: 2,
             rowSpan: 1,
             columnStart: 1,
             columnSpan: 1
           },
-          [NewsSixPositions.SmallBottomFirst]: {
+          [NewsSixPositions.SmallTopRight]: {
             rowStart: 3,
             rowSpan: 1,
             columnStart: 1,
             columnSpan: 1
           },
-          [NewsSixPositions.SmallBottomSecond]: {
+          [NewsSixPositions.SmallBottomFirst]: {
             rowStart: 4,
             rowSpan: 1,
             columnStart: 1,
             columnSpan: 1
           },
-          [NewsSixPositions.SmallBottomThird]: {
+          [NewsSixPositions.SmallBottomSecond]: {
             rowStart: 5,
             rowSpan: 1,
             columnStart: 1,
             columnSpan: 1
           },
-          [NewsSixPositions.SmallBottomFourth]: {
+          [NewsSixPositions.SmallBottomThird]: {
             rowStart: 6,
+            rowSpan: 1,
+            columnStart: 1,
+            columnSpan: 1
+          },
+          [NewsSixPositions.SmallBottomFourth]: {
+            rowStart: 7,
             rowSpan: 1,
             columnStart: 1,
             columnSpan: 1

@@ -10,6 +10,7 @@ import { IBasicArticleTitleUnit } from "../../../../../common/__types__/IBasicAr
 import { NewsSixPositions } from "./NewsSixPositions";
 import logger from "../../../utils/logger";
 import { IResponsiveBigImageArticleUnit } from "../../../../../common/__types__/IResponsiveBigImageArticleUnit";
+import { IModuleTitle } from "../../../../../common/__types__/IModuleTitle";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../utils/logger");
@@ -68,9 +69,11 @@ describe("News six content creator", () => {
     linkUrl: "/link1",
     headlineFlags: []
   };
+
   const handlerInput: INewsSixHandlerInput = {
     type: HandlerInputType.NewsSix,
     displayName: "Display Name",
+    displayNameColor: "darkblue",
     strapName: "Strap Name",
     sourceId: Strap.National
   };
