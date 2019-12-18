@@ -92,8 +92,8 @@ export default async (params: IParams): Promise<IPage> => {
             },
             {
               type: HandlerInputType.Feature,
-              name: FeatureName.ShowOldLayout,
-              content: {
+              name: FeatureName.StrapLayout,
+              fallback: {
                 type: HandlerInputType.ArticleSection,
                 displayName: "National",
                 displayNameColor: "darkblue",
@@ -105,6 +105,16 @@ export default async (params: IParams): Promise<IPage> => {
                   totalBasicArticlesUnit: 2,
                   totalBasicArticleTitleUnit: 3
                 }
+              }
+            },
+            {
+              type: HandlerInputType.Feature,
+              name: FeatureName.ModuleLayout,
+              content: {
+                type: HandlerInputType.NewsSix,
+                displayName: "National",
+                strapName: "National",
+                sourceId: Strap.National
               }
             },
             {

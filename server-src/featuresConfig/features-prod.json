@@ -8,7 +8,7 @@
   },
   "LoginFlow": {
     "public": {
-      "min": 0,
+      "min": 1,
       "max": 100
     },
     "internal": 404
@@ -34,21 +34,14 @@
     },
     "internal": 404
   },
-  "ShowOldLayout": {
-    "public": {
-      "min": 1,
-      "max": 100
-    },
-    "internal": 404
-  },
-  "HideOldLayout": {
+  "StrapLayout": {
     "public": {
       "min": -1,
       "max": -1
     },
     "internal": 404
   },
-  "ShowNewLayout": {
+  "ModuleLayout": {
     "public": {
       "min": -1,
       "max": -1

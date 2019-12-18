@@ -1,164 +1,32 @@
 import { isFeatureEnabled } from "./feature";
 import { DeviceType } from "../../../../common/DeviceType";
+import { range, inRange } from "lodash";
 import { FeatureName } from "../../../../common/FeatureName";
 
-describe("Feature service", () => {
-  it("Should return true if feature name is not recognized", async () => {
-    const result = await isFeatureEnabled(
-      "FeatureThatDoesNotExist",
-      10,
-      DeviceType.unknown
-    );
-    expect(result).toBe(true);
-  });
+describe("Feature service", async () => {
+  const testCases: { [key in FeatureName]: [number, number] } = {
+    [FeatureName.Recommendation]: [-1, -1],
+    [FeatureName.RecommendationDisplay]: [-1, -1],
+    [FeatureName.AdsRelativePositioning]: [-1, -1],
+    [FeatureName.AdobeLaunch]: [1, 100],
+    [FeatureName.StrapLayout]: [-1, -1],
+    [FeatureName.ModuleLayout]: [-1, -1],
+    [FeatureName.LoginFlow]: [1, 100]
+  };
 
-  describe("Recommendations", () => {
-    it("should return true for internal lottery number 404", async () => {
-      const result = await isFeatureEnabled(
-        FeatureName.Recommendation,
-        404,
-        DeviceType.unknown
-      );
-
-      expect(result).toBe(true);
-    });
-
-    it.each([[1], [100]])(
-      "should return false for public lottery number %i",
-      async (lotteryNumber: number) => {
+  Object.entries(testCases).forEach(([featureName, [min, max]]) => {
+    range(-10, 110).forEach((rangeValue) => {
+      const shouldBeOn = inRange(rangeValue, min, max + 1);
+      it(`${featureName} should be ${
+        shouldBeOn ? "on" : "off"
+      } when lotto is ${rangeValue}`, async () => {
         const result = await isFeatureEnabled(
-          FeatureName.Recommendation,
-          lotteryNumber,
+          featureName,
+          rangeValue,
           DeviceType.unknown
         );
-
-        expect(result).toBe(false);
-      }
-    );
-  });
-
-  describe("Recommendations Display", () => {
-    it("should return true for internal lottery number 404", async () => {
-      const result = await isFeatureEnabled(
-        FeatureName.RecommendationDisplay,
-        404,
-        DeviceType.unknown
-      );
-
-      expect(result).toBe(true);
+        expect(result).toEqual(shouldBeOn);
+      });
     });
-
-    it.each([[1], [100]])(
-      "should return false for public lottery number %i",
-      async (lotteryNumber: number) => {
-        const result = await isFeatureEnabled(
-          FeatureName.RecommendationDisplay,
-          lotteryNumber,
-          DeviceType.unknown
-        );
-
-        expect(result).toBe(false);
-      }
-    );
-  });
-
-  describe("Load Adobe Launch script", () => {
-    it("should return true for internal lottery number 404", async () => {
-      const result = await isFeatureEnabled(
-        FeatureName.AdobeLaunch,
-        404,
-        DeviceType.unknown
-      );
-
-      expect(result).toBe(true);
-    });
-
-    it.each([[1], [100]])(
-      "should return true for public lottery number %i",
-      async (lotteryNumber: number) => {
-        const result = await isFeatureEnabled(
-          FeatureName.AdobeLaunch,
-          lotteryNumber,
-          DeviceType.unknown
-        );
-
-        expect(result).toBe(true);
-      }
-    );
-  });
-
-  describe("Show old layout", () => {
-    it("should return true for internal lottery number 404", async () => {
-      const result = await isFeatureEnabled(
-        FeatureName.ShowOldLayout,
-        404,
-        DeviceType.unknown
-      );
-
-      expect(result).toBe(true);
-    });
-
-    it.each([[1], [100]])(
-      "should return true for public lottery number %i",
-      async (lotteryNumber: number) => {
-        const result = await isFeatureEnabled(
-          FeatureName.ShowOldLayout,
-          lotteryNumber,
-          DeviceType.unknown
-        );
-
-        expect(result).toBe(true);
-      }
-    );
-  });
-
-  describe("Hide old layout", () => {
-    it("should return true for internal lottery number 404", async () => {
-      const result = await isFeatureEnabled(
-        FeatureName.HideOldLayout,
-        404,
-        DeviceType.unknown
-      );
-
-      expect(result).toBe(true);
-    });
-
-    it.each([[1], [100]])(
-      "should return false for public lottery number %i",
-      async (lotteryNumber: number) => {
-        const result = await isFeatureEnabled(
-          FeatureName.HideOldLayout,
-          lotteryNumber,
-          DeviceType.unknown
-        );
-
-        expect(result).toBe(false);
-      }
-    );
-  });
-
-  describe("Show new layout", () => {
-    it("should return true for internal lottery number 404", async () => {
-      const result = await isFeatureEnabled(
-        FeatureName.ShowNewLayout,
-        404,
-        DeviceType.unknown
-      );
-
-      expect(result).toBe(true);
-    });
-
-    it.each([[1], [100]])(
-      "should return false for public lottery number %i",
-      async (lotteryNumber: number) => {
-        const result = await isFeatureEnabled(
-          FeatureName.ShowNewLayout,
-          lotteryNumber,
-          DeviceType.unknown
-        );
-
-        expect(result).toBe(false);
-      }
-    );
   });
 });
