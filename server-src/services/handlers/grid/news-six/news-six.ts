@@ -8,7 +8,13 @@ import newsSixContentCreator from "./news-six-content";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  { displayName, sourceId, type, strapName }: INewsSixHandlerInput,
+  {
+    displayName,
+    sourceId,
+    type,
+    strapName,
+    displayNameColor
+  }: INewsSixHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   const contentBlocks = await newsSixContentCreator(
@@ -17,39 +23,51 @@ export default async function(
     params
   );
 
+  contentBlocks[NewsSixPositions.ModuleTitle] = {
+    type: ContentBlockType.ModuleTitle,
+    displayName,
+    displayNameColor
+  };
+
   const desktop = {
-    [NewsSixPositions.BigTopLeft]: {
+    [NewsSixPositions.ModuleTitle]: {
       rowStart: 1,
+      rowSpan: 1,
+      columnStart: 1,
+      columnSpan: 5
+    },
+    [NewsSixPositions.BigTopLeft]: {
+      rowStart: 2,
       rowSpan: 1,
       columnStart: 1,
       columnSpan: 4
     },
     [NewsSixPositions.SmallTopRight]: {
-      rowStart: 1,
+      rowStart: 2,
       rowSpan: 2,
       columnStart: 5,
       columnSpan: 1
     },
     [NewsSixPositions.SmallBottomFirst]: {
-      rowStart: 2,
+      rowStart: 3,
       rowSpan: 1,
       columnStart: 1,
       columnSpan: 1
     },
     [NewsSixPositions.SmallBottomSecond]: {
-      rowStart: 2,
+      rowStart: 3,
       rowSpan: 1,
       columnStart: 2,
       columnSpan: 1
     },
     [NewsSixPositions.SmallBottomThird]: {
-      rowStart: 2,
+      rowStart: 3,
       rowSpan: 1,
       columnStart: 3,
       columnSpan: 1
     },
     [NewsSixPositions.SmallBottomFourth]: {
-      rowStart: 2,
+      rowStart: 3,
       rowSpan: 1,
       columnStart: 4,
       columnSpan: 1
@@ -62,41 +80,47 @@ export default async function(
       items: contentBlocks,
       mobile: {
         gridTemplateColumns: "1fr",
-        gridTemplateRows: "auto",
-        gridGap: "0px",
+        gridTemplateRows: "auto auto auto auto auto auto auto",
+        gridGap: "10px",
         gridBlocks: {
-          [NewsSixPositions.BigTopLeft]: {
+          [NewsSixPositions.ModuleTitle]: {
             rowStart: 1,
             rowSpan: 1,
             columnStart: 1,
             columnSpan: 1
           },
-          [NewsSixPositions.SmallTopRight]: {
+          [NewsSixPositions.BigTopLeft]: {
             rowStart: 2,
             rowSpan: 1,
             columnStart: 1,
             columnSpan: 1
           },
-          [NewsSixPositions.SmallBottomFirst]: {
+          [NewsSixPositions.SmallTopRight]: {
             rowStart: 3,
             rowSpan: 1,
             columnStart: 1,
             columnSpan: 1
           },
-          [NewsSixPositions.SmallBottomSecond]: {
+          [NewsSixPositions.SmallBottomFirst]: {
             rowStart: 4,
             rowSpan: 1,
             columnStart: 1,
             columnSpan: 1
           },
-          [NewsSixPositions.SmallBottomThird]: {
+          [NewsSixPositions.SmallBottomSecond]: {
             rowStart: 5,
             rowSpan: 1,
             columnStart: 1,
             columnSpan: 1
           },
-          [NewsSixPositions.SmallBottomFourth]: {
+          [NewsSixPositions.SmallBottomThird]: {
             rowStart: 6,
+            rowSpan: 1,
+            columnStart: 1,
+            columnSpan: 1
+          },
+          [NewsSixPositions.SmallBottomFourth]: {
+            rowStart: 7,
             rowSpan: 1,
             columnStart: 1,
             columnSpan: 1

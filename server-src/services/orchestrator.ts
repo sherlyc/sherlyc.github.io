@@ -113,6 +113,7 @@ export default async (params: IParams): Promise<IPage> => {
               content: {
                 type: HandlerInputType.NewsSix,
                 displayName: "National",
+                displayNameColor: "darkblue",
                 strapName: "National",
                 sourceId: Strap.National
               }
