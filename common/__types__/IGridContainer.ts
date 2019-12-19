@@ -32,7 +32,7 @@ export interface IGridConfig {
 
 export interface IGridContainer {
   type: ContentBlockType.GridContainer;
-  items: { [key: string]: IContentBlock };
+  items: { [key: string]: IContentBlock[] };
   mobile: IGridConfig;
   tablet: IGridConfig;
   desktop: IGridConfig;
