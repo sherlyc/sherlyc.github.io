@@ -14,13 +14,7 @@ import { responsiveBigImageArticleUnit } from "../../../adapters/article-convert
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  {
-    displayName,
-    sourceId,
-    type,
-    strapName,
-    displayNameColor
-  }: INewsSixHandlerInput,
+  { displayName, displayNameColor, sourceId, strapName }: INewsSixHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   const articles = await getRawArticles(sourceId, 6, params);
