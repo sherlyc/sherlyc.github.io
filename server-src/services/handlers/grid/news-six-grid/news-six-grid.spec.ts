@@ -49,147 +49,168 @@ describe("News six grid handler", () => {
         mobile: {
           gridTemplateColumns: "1fr",
           gridTemplateRows: "auto auto auto auto auto auto auto",
-          gridGap: "10px",
+          gridGap: "20px",
           gridBlocks: {
             BigTopLeft: {
               columnSpan: 1,
               columnStart: 1,
               rowSpan: 1,
-              rowStart: 2
+              rowStart: 2,
+              border: ["bottom"]
             },
             ModuleTitle: {
               columnSpan: 1,
               columnStart: 1,
               rowSpan: 1,
-              rowStart: 1
+              rowStart: 1,
+              border: []
             },
             SmallBottomFirst: {
               columnSpan: 1,
               columnStart: 1,
               rowSpan: 1,
-              rowStart: 4
+              rowStart: 4,
+              border: ["bottom"]
             },
             SmallBottomFourth: {
               columnSpan: 1,
               columnStart: 1,
               rowSpan: 1,
-              rowStart: 7
+              rowStart: 7,
+              border: []
             },
             SmallBottomSecond: {
               columnSpan: 1,
               columnStart: 1,
               rowSpan: 1,
-              rowStart: 5
+              rowStart: 5,
+              border: ["bottom"]
             },
             SmallBottomThird: {
               columnSpan: 1,
               columnStart: 1,
               rowSpan: 1,
-              rowStart: 6
+              rowStart: 6,
+              border: ["bottom"]
             },
             SmallTopRight: {
               columnSpan: 1,
               columnStart: 1,
               rowSpan: 1,
-              rowStart: 3
+              rowStart: 3,
+              border: ["bottom"]
             }
           }
         },
         tablet: {
           gridTemplateColumns: "1fr 1fr 1fr 1fr 300px",
-          gridTemplateRows: "auto auto",
-          gridGap: "10px",
-          gridBlocks: {
-            BigTopLeft: {
-              columnSpan: 4,
-              columnStart: 1,
-              rowSpan: 1,
-              rowStart: 2
-            },
-            ModuleTitle: {
-              columnSpan: 5,
-              columnStart: 1,
-              rowSpan: 1,
-              rowStart: 1
-            },
-            SmallBottomFirst: {
-              columnSpan: 1,
-              columnStart: 1,
-              rowSpan: 1,
-              rowStart: 3
-            },
-            SmallBottomFourth: {
-              columnSpan: 1,
-              columnStart: 4,
-              rowSpan: 1,
-              rowStart: 3
-            },
-            SmallBottomSecond: {
-              columnSpan: 1,
-              columnStart: 2,
-              rowSpan: 1,
-              rowStart: 3
-            },
-            SmallBottomThird: {
-              columnSpan: 1,
-              columnStart: 3,
-              rowSpan: 1,
-              rowStart: 3
-            },
-            SmallTopRight: {
-              columnSpan: 1,
-              columnStart: 5,
-              rowSpan: 2,
-              rowStart: 2
-            }
-          }
-        },
-        desktop: {
-          gridTemplateColumns: "1fr 1fr 1fr 1fr 300px",
-          gridTemplateRows: "auto auto",
+          gridTemplateRows: "auto auto auto",
           gridGap: "20px",
           gridBlocks: {
             BigTopLeft: {
               columnSpan: 4,
               columnStart: 1,
               rowSpan: 1,
-              rowStart: 2
+              rowStart: 2,
+              border: ["bottom"]
             },
             ModuleTitle: {
               columnSpan: 5,
               columnStart: 1,
               rowSpan: 1,
-              rowStart: 1
+              rowStart: 1,
+              border: []
             },
             SmallBottomFirst: {
               columnSpan: 1,
               columnStart: 1,
               rowSpan: 1,
-              rowStart: 3
+              rowStart: 3,
+              border: ["right"]
             },
             SmallBottomFourth: {
               columnSpan: 1,
               columnStart: 4,
               rowSpan: 1,
-              rowStart: 3
+              rowStart: 3,
+              border: []
             },
             SmallBottomSecond: {
               columnSpan: 1,
               columnStart: 2,
               rowSpan: 1,
-              rowStart: 3
+              rowStart: 3,
+              border: ["right"]
             },
             SmallBottomThird: {
               columnSpan: 1,
               columnStart: 3,
               rowSpan: 1,
-              rowStart: 3
+              rowStart: 3,
+              border: ["right"]
             },
             SmallTopRight: {
               columnSpan: 1,
               columnStart: 5,
               rowSpan: 2,
-              rowStart: 2
+              rowStart: 2,
+              border: ["left"]
+            }
+          }
+        },
+        desktop: {
+          gridTemplateColumns: "1fr 1fr 1fr 1fr 300px",
+          gridTemplateRows: "auto auto auto",
+          gridGap: "40px",
+          gridBlocks: {
+            BigTopLeft: {
+              columnSpan: 4,
+              columnStart: 1,
+              rowSpan: 1,
+              rowStart: 2,
+              border: ["bottom"]
+            },
+            ModuleTitle: {
+              columnSpan: 5,
+              columnStart: 1,
+              rowSpan: 1,
+              rowStart: 1,
+              border: []
+            },
+            SmallBottomFirst: {
+              columnSpan: 1,
+              columnStart: 1,
+              rowSpan: 1,
+              rowStart: 3,
+              border: ["right"]
+            },
+            SmallBottomFourth: {
+              columnSpan: 1,
+              columnStart: 4,
+              rowSpan: 1,
+              rowStart: 3,
+              border: []
+            },
+            SmallBottomSecond: {
+              columnSpan: 1,
+              columnStart: 2,
+              rowSpan: 1,
+              rowStart: 3,
+              border: ["right"]
+            },
+            SmallBottomThird: {
+              columnSpan: 1,
+              columnStart: 3,
+              rowSpan: 1,
+              rowStart: 3,
+              border: ["right"]
+            },
+            SmallTopRight: {
+              columnSpan: 1,
+              columnStart: 5,
+              rowSpan: 2,
+              rowStart: 2,
+              border: ["left"]
             }
           }
         }
