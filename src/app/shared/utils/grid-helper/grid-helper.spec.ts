@@ -1,4 +1,11 @@
-import { calculateCellGap, calculateGridGap } from "./grid-helper";
+import {
+  calculateBorderCellBottom,
+  calculateBorderCellLeft,
+  calculateBorderCellRight,
+  calculateBorderCellTop,
+  calculateCellGap,
+  calculateGridGap
+} from "./grid-helper";
 import { IGridBlock } from "../../../../../common/__types__/IGridContainer";
 
 describe("grip gap helper", () => {
@@ -14,16 +21,99 @@ describe("grip gap helper", () => {
       rowStart: 3,
       rowSpan: 1,
       columnStart: 2,
-      columnSpan: 3
+      columnSpan: 3,
+      border: []
     };
 
     const expected: IGridBlock = {
       rowStart: 5,
       rowSpan: 1,
       columnStart: 3,
-      columnSpan: 5
+      columnSpan: 5,
+      border: []
     };
 
     expect(calculateCellGap(gridBlock)).toEqual(expected);
+  });
+
+  it("should calculate the border cell bottom", () => {
+    const gridBlock: IGridBlock = {
+      columnStart: 2,
+      columnSpan: 2,
+      rowStart: 2,
+      rowSpan: 2,
+      border: []
+    };
+    const expected: IGridBlock = {
+      columnStart: 2,
+      columnSpan: 2,
+      rowStart: 4,
+      rowSpan: 1,
+      border: []
+    };
+
+    const result = calculateBorderCellBottom(gridBlock);
+
+    expect(result).toEqual(expected);
+  });
+  it("should calculate the border cell top", () => {
+    const gridBlock: IGridBlock = {
+      columnStart: 2,
+      columnSpan: 2,
+      rowStart: 2,
+      rowSpan: 2,
+      border: []
+    };
+    const expected: IGridBlock = {
+      columnStart: 2,
+      columnSpan: 2,
+      rowStart: 1,
+      rowSpan: 1,
+      border: []
+    };
+
+    const result = calculateBorderCellTop(gridBlock);
+
+    expect(result).toEqual(expected);
+  });
+  it("should calculate the border cell left", () => {
+    const gridBlock: IGridBlock = {
+      columnStart: 2,
+      columnSpan: 2,
+      rowStart: 2,
+      rowSpan: 2,
+      border: []
+    };
+    const expected: IGridBlock = {
+      columnStart: 1,
+      columnSpan: 1,
+      rowStart: 2,
+      rowSpan: 2,
+      border: []
+    };
+
+    const result = calculateBorderCellLeft(gridBlock);
+
+    expect(result).toEqual(expected);
+  });
+  it("should calculate the border cell right", () => {
+    const gridBlock: IGridBlock = {
+      columnStart: 2,
+      columnSpan: 2,
+      rowStart: 2,
+      rowSpan: 2,
+      border: []
+    };
+    const expected: IGridBlock = {
+      columnStart: 4,
+      columnSpan: 1,
+      rowStart: 2,
+      rowSpan: 2,
+      border: []
+    };
+
+    const result = calculateBorderCellRight(gridBlock);
+
+    expect(result).toEqual(expected);
   });
 });

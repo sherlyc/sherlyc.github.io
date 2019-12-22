@@ -30,13 +30,17 @@ function getNewLineNumber(lineNumber: number): number {
   return Math.max(0, lineNumber * 2 - 1);
 }
 
-export const calculateBorderCell: {
+const borderFunctions: {
   [key in Border]: (gridBlock: IGridBlock) => IGridBlock;
 } = {
   [Border.bottom]: calculateBorderCellBottom,
   [Border.top]: calculateBorderCellTop,
   [Border.left]: calculateBorderCellLeft,
   [Border.right]: calculateBorderCellRight
+};
+
+export const calculateBorderCell = (type: Border, gridBlock: IGridBlock) => {
+  return borderFunctions[type](gridBlock);
 };
 
 export function calculateBorderCellBottom(gridBlock: IGridBlock): IGridBlock {

@@ -24,7 +24,7 @@ export interface IGridBlock {
   rowSpan: number;
   columnStart: number;
   columnSpan: number;
-  border?: Border[];
+  border: Border[];
 }
 
 export interface IGridBlocks {

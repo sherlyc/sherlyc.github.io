@@ -18,7 +18,7 @@ const gridBlock = (
   columnStart: number,
   rowSpan: number,
   columnSpan: number,
-  border?: Border[]
+  border: Border[]
 ): IGridBlock => ({
   rowStart,
   rowSpan,
@@ -33,7 +33,7 @@ export default async function(
   params: IParams
 ): Promise<IContentBlock[]> {
   const desktop: IGridBlocks = {
-    [NewsSixGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 5),
+    [NewsSixGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 5, []),
     [NewsSixGridPositions.BigTopLeft]: gridBlock(2, 1, 1, 4, [Border.bottom]),
     [NewsSixGridPositions.SmallTopRight]: gridBlock(2, 5, 2, 1, [Border.left]),
     [NewsSixGridPositions.SmallBottomFirst]: gridBlock(3, 1, 1, 1, [
@@ -45,11 +45,11 @@ export default async function(
     [NewsSixGridPositions.SmallBottomThird]: gridBlock(3, 3, 1, 1, [
       Border.right
     ]),
-    [NewsSixGridPositions.SmallBottomFourth]: gridBlock(3, 4, 1, 1)
+    [NewsSixGridPositions.SmallBottomFourth]: gridBlock(3, 4, 1, 1, [])
   };
 
   const mobile: IGridBlocks = {
-    [NewsSixGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 1),
+    [NewsSixGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 1, []),
     [NewsSixGridPositions.BigTopLeft]: gridBlock(2, 1, 1, 1, [Border.bottom]),
     [NewsSixGridPositions.SmallTopRight]: gridBlock(3, 1, 1, 1, [
       Border.bottom
@@ -63,7 +63,7 @@ export default async function(
     [NewsSixGridPositions.SmallBottomThird]: gridBlock(6, 1, 1, 1, [
       Border.bottom
     ]),
-    [NewsSixGridPositions.SmallBottomFourth]: gridBlock(7, 1, 1, 1)
+    [NewsSixGridPositions.SmallBottomFourth]: gridBlock(7, 1, 1, 1, [])
   };
 
   return [
