@@ -55,7 +55,7 @@ describe("GridContainerComponent", () => {
     component.input = {
       type: ContentBlockType.GridContainer,
       items: {
-        "first-block": input
+        "first-block": [input]
       },
       mobile: {
         gridTemplateColumns: "1fr",

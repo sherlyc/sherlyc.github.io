@@ -1,175 +1,124 @@
+import newsSixHandler from "./news-six";
 import { INewsSixHandlerInput } from "../../__types__/INewsSixHandlerInput";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { Strap } from "../../../strap";
-import { IParams } from "../../../__types__/IParams";
-import newsSixHandler from "./news-six";
-import newsSixContentCreator from "./news-six-content";
+import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import logger from "../../../utils/logger";
+import { bigImageArticleUnit } from "../../../adapters/article-converter/big-image-article.converter";
+import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
+import { responsiveBigImageArticleUnit } from "../../../adapters/article-converter/responsive-big-image-article.converter";
+import {
+  INewsSixGridHandlerInput,
+  NewsSixGridPositions
+} from "../../__types__/INewsSixGridHandlerInput";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { IBasicArticleUnit } from "../../../../../common/__types__/IBasicArticleUnit";
-import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
-import { NewsSixPositions } from "./NewsSixPositions";
-import { IModuleTitle } from "../../../../../common/__types__/IModuleTitle";
 
-jest.mock("./news-six-content");
+jest.mock("../../../adapters/article-retriever/article-retriever");
+jest.mock("../../../utils/logger");
+jest.mock("../../../adapters/article-converter/big-image-article.converter");
+jest.mock("../../../adapters/article-converter/basic-article-title.converter");
+jest.mock(
+  "../../../adapters/article-converter/responsive-big-image-article.converter"
+);
 
 describe("News six handler", () => {
-  const articleAsBasicArticleUnit: IBasicArticleUnit = {
-    type: ContentBlockType.BasicArticleUnit,
-    id: "1",
-    strapName: "Strap Name",
-    indexHeadline: "Headline 1",
-    title: "Title One",
-    introText: "Intro 1",
-    linkUrl: "/link1",
-    imageSrc: "1.jpg",
-    imageSrcSet: "1.jpg 1w",
-    lastPublishedTime: 1,
-    headlineFlags: []
-  };
+  const handlerRunnerMock = jest.fn();
+  const params = { apiRequestId: "id" };
 
-  const moduleTitle: IModuleTitle = {
-    type: ContentBlockType.ModuleTitle,
-    displayName: "Module Title",
-    displayNameColor: "darkblue"
-  };
+  beforeEach(() => {
+    jest.resetAllMocks();
+  });
 
-  const handlerInput: INewsSixHandlerInput = {
-    type: HandlerInputType.NewsSix,
-    displayName: "Display Name",
-    displayNameColor: "darkblue",
-    strapName: "Strap Name",
-    sourceId: Strap.National
-  };
-  const params: IParams = { apiRequestId: "1" };
+  it("should work log and throw error when not enough articles are available", async () => {
+    (getRawArticles as jest.Mock).mockResolvedValue([]);
+    (bigImageArticleUnit as jest.Mock).mockImplementation(() => {
+      throw new Error();
+    });
+    (basicArticleTitleUnit as jest.Mock).mockImplementation(() => {
+      throw new Error();
+    });
+    (responsiveBigImageArticleUnit as jest.Mock).mockImplementation(() => {
+      throw new Error();
+    });
 
-  it("should return content blocks with correct type", async () => {
-    const handlerRunner = jest.fn();
-    const gridItems = {
-      [NewsSixPositions.ModuleTitle]: moduleTitle,
-      [NewsSixPositions.BigTopLeft]: articleAsBasicArticleUnit,
-      [NewsSixPositions.SmallTopRight]: articleAsBasicArticleUnit,
-      [NewsSixPositions.SmallBottomFirst]: articleAsBasicArticleUnit,
-      [NewsSixPositions.SmallBottomSecond]: articleAsBasicArticleUnit,
-      [NewsSixPositions.SmallBottomThird]: articleAsBasicArticleUnit,
-      [NewsSixPositions.SmallBottomFourth]: articleAsBasicArticleUnit
+    const input: INewsSixHandlerInput = {
+      type: HandlerInputType.NewsSix,
+      displayName: "FakeName",
+      displayNameColor: "FakeColor",
+      strapName: "FakeStrap",
+      sourceId: "sourceId" as Strap
     };
-    (newsSixContentCreator as jest.Mock).mockResolvedValue(gridItems);
 
-    const contentBlocks = await newsSixHandler(
-      handlerRunner,
-      handlerInput,
-      params
-    );
+    expect.assertions(2);
+    try {
+      console.log(await newsSixHandler(handlerRunnerMock, input, params));
+    } catch (error) {
+      expect(logger.error).toHaveBeenCalledWith(
+        params.apiRequestId,
+        expect.stringContaining(
+          "News Six handler error: Potentially insufficient number of articles:"
+        )
+      );
+      expect(error).toBeTruthy();
+    }
+  });
 
-    const desktopGridBlocks = {
-      [NewsSixPositions.ModuleTitle]: {
-        rowStart: 1,
-        rowSpan: 1,
-        columnStart: 1,
-        columnSpan: 5
-      },
-      [NewsSixPositions.BigTopLeft]: {
-        rowStart: 2,
-        rowSpan: 1,
-        columnStart: 1,
-        columnSpan: 4
-      },
-      [NewsSixPositions.SmallTopRight]: {
-        rowStart: 2,
-        rowSpan: 2,
-        columnStart: 5,
-        columnSpan: 1
-      },
-      [NewsSixPositions.SmallBottomFirst]: {
-        rowStart: 3,
-        rowSpan: 1,
-        columnStart: 1,
-        columnSpan: 1
-      },
-      [NewsSixPositions.SmallBottomSecond]: {
-        rowStart: 3,
-        rowSpan: 1,
-        columnStart: 2,
-        columnSpan: 1
-      },
-      [NewsSixPositions.SmallBottomThird]: {
-        rowStart: 3,
-        rowSpan: 1,
-        columnStart: 3,
-        columnSpan: 1
-      },
-      [NewsSixPositions.SmallBottomFourth]: {
-        rowStart: 3,
-        rowSpan: 1,
-        columnStart: 4,
-        columnSpan: 1
-      }
+  it("should retrieve articles by source id and limit", async () => {
+    (getRawArticles as jest.Mock).mockResolvedValue([]);
+    const input: INewsSixHandlerInput = {
+      type: HandlerInputType.NewsSix,
+      displayName: "FakeName",
+      displayNameColor: "FakeColor",
+      strapName: "FakeStrap",
+      sourceId: "sourceId" as Strap
     };
-    const expectedGridContainer: IGridContainer = {
-      type: ContentBlockType.GridContainer,
-      items: gridItems,
-      mobile: {
-        gridGap: "10px",
-        gridTemplateColumns: "1fr",
-        gridTemplateRows: "auto auto auto auto auto auto auto",
-        gridBlocks: {
-          [NewsSixPositions.ModuleTitle]: {
-            rowStart: 1,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1
-          },
-          [NewsSixPositions.BigTopLeft]: {
-            rowStart: 2,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1
-          },
-          [NewsSixPositions.SmallTopRight]: {
-            rowStart: 3,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1
-          },
-          [NewsSixPositions.SmallBottomFirst]: {
-            rowStart: 4,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1
-          },
-          [NewsSixPositions.SmallBottomSecond]: {
-            rowStart: 5,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1
-          },
-          [NewsSixPositions.SmallBottomThird]: {
-            rowStart: 6,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1
-          },
-          [NewsSixPositions.SmallBottomFourth]: {
-            rowStart: 7,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1
+
+    await newsSixHandler(handlerRunnerMock, input, params);
+    expect(getRawArticles).toHaveBeenCalledWith("sourceId", 6, params);
+  });
+
+  it("should provide correct input to next handler", async () => {
+    (getRawArticles as jest.Mock).mockResolvedValue([]);
+    (bigImageArticleUnit as jest.Mock).mockReturnValue({});
+    (basicArticleTitleUnit as jest.Mock).mockReturnValue({});
+    (responsiveBigImageArticleUnit as jest.Mock).mockReturnValue({});
+
+    const fakeResult = {};
+    handlerRunnerMock.mockResolvedValue(fakeResult);
+
+    const input: INewsSixHandlerInput = {
+      type: HandlerInputType.NewsSix,
+      displayName: "FakeName",
+      displayNameColor: "FakeColor",
+      strapName: "FakeStrap",
+      sourceId: "sourceId" as Strap
+    };
+
+    const result = await newsSixHandler(handlerRunnerMock, input, params);
+
+    const fakeInput = {} as IContentBlock;
+
+    const expected: INewsSixGridHandlerInput = {
+      type: HandlerInputType.NewsSixGrid,
+      content: {
+        [NewsSixGridPositions.ModuleTitle]: [
+          {
+            type: ContentBlockType.ModuleTitle,
+            displayName: "FakeName",
+            displayNameColor: "FakeColor"
           }
-        }
-      },
-      tablet: {
-        gridTemplateColumns: "1fr 1fr 1fr 1fr 300px",
-        gridTemplateRows: "auto auto",
-        gridGap: "10px",
-        gridBlocks: desktopGridBlocks
-      },
-      desktop: {
-        gridTemplateColumns: "1fr 1fr 1fr 1fr 300px",
-        gridTemplateRows: "auto auto",
-        gridGap: "20px",
-        gridBlocks: desktopGridBlocks
+        ],
+        [NewsSixGridPositions.BigTopLeft]: [fakeInput],
+        [NewsSixGridPositions.SmallTopRight]: [fakeInput],
+        [NewsSixGridPositions.SmallBottomFirst]: [fakeInput],
+        [NewsSixGridPositions.SmallBottomSecond]: [fakeInput],
+        [NewsSixGridPositions.SmallBottomThird]: [fakeInput],
+        [NewsSixGridPositions.SmallBottomFourth]: [fakeInput]
       }
     };
-    expect(contentBlocks).toEqual([expectedGridContainer]);
+
+    expect(handlerRunnerMock).toHaveBeenCalledWith(expected, params);
+    expect(result).toEqual(fakeResult);
   });
 });

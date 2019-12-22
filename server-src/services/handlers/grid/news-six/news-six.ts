@@ -3,142 +3,67 @@ import { IParams } from "../../../__types__/IParams";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { INewsSixHandlerInput } from "../../__types__/INewsSixHandlerInput";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { NewsSixPositions } from "./NewsSixPositions";
-import newsSixContentCreator from "./news-six-content";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import wrappedLogger from "../../../utils/logger";
+import { NewsSixGridPositions } from "../../__types__/INewsSixGridHandlerInput";
+import { bigImageArticleUnit } from "../../../adapters/article-converter/big-image-article.converter";
+import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
+import { responsiveBigImageArticleUnit } from "../../../adapters/article-converter/responsive-big-image-article.converter";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  {
-    displayName,
-    sourceId,
-    type,
-    strapName,
-    displayNameColor
-  }: INewsSixHandlerInput,
+  { displayName, displayNameColor, sourceId, strapName }: INewsSixHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const contentBlocks = await newsSixContentCreator(
-    strapName,
-    sourceId,
-    params
-  );
+  const articles = await getRawArticles(sourceId, 6, params);
 
-  contentBlocks[NewsSixPositions.ModuleTitle] = {
-    type: ContentBlockType.ModuleTitle,
-    displayName,
-    displayNameColor
-  };
-
-  const desktop = {
-    [NewsSixPositions.ModuleTitle]: {
-      rowStart: 1,
-      rowSpan: 1,
-      columnStart: 1,
-      columnSpan: 5
-    },
-    [NewsSixPositions.BigTopLeft]: {
-      rowStart: 2,
-      rowSpan: 1,
-      columnStart: 1,
-      columnSpan: 4
-    },
-    [NewsSixPositions.SmallTopRight]: {
-      rowStart: 2,
-      rowSpan: 2,
-      columnStart: 5,
-      columnSpan: 1
-    },
-    [NewsSixPositions.SmallBottomFirst]: {
-      rowStart: 3,
-      rowSpan: 1,
-      columnStart: 1,
-      columnSpan: 1
-    },
-    [NewsSixPositions.SmallBottomSecond]: {
-      rowStart: 3,
-      rowSpan: 1,
-      columnStart: 2,
-      columnSpan: 1
-    },
-    [NewsSixPositions.SmallBottomThird]: {
-      rowStart: 3,
-      rowSpan: 1,
-      columnStart: 3,
-      columnSpan: 1
-    },
-    [NewsSixPositions.SmallBottomFourth]: {
-      rowStart: 3,
-      rowSpan: 1,
-      columnStart: 4,
-      columnSpan: 1
-    }
-  };
-
-  return [
-    {
-      type: ContentBlockType.GridContainer,
-      items: contentBlocks,
-      mobile: {
-        gridTemplateColumns: "1fr",
-        gridTemplateRows: "auto auto auto auto auto auto auto",
-        gridGap: "10px",
-        gridBlocks: {
-          [NewsSixPositions.ModuleTitle]: {
-            rowStart: 1,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1
-          },
-          [NewsSixPositions.BigTopLeft]: {
-            rowStart: 2,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1
-          },
-          [NewsSixPositions.SmallTopRight]: {
-            rowStart: 3,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1
-          },
-          [NewsSixPositions.SmallBottomFirst]: {
-            rowStart: 4,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1
-          },
-          [NewsSixPositions.SmallBottomSecond]: {
-            rowStart: 5,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1
-          },
-          [NewsSixPositions.SmallBottomThird]: {
-            rowStart: 6,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1
-          },
-          [NewsSixPositions.SmallBottomFourth]: {
-            rowStart: 7,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1
-          }
+  const articlesLength = articles.length;
+  try {
+    const content: { [key in NewsSixGridPositions]: IContentBlock[] } = {
+      [NewsSixGridPositions.ModuleTitle]: [
+        {
+          type: ContentBlockType.ModuleTitle,
+          displayName,
+          displayNameColor
         }
+      ],
+      [NewsSixGridPositions.BigTopLeft]: [
+        responsiveBigImageArticleUnit(
+          articles.shift() as IRawArticle,
+          strapName
+        )
+      ],
+      [NewsSixGridPositions.SmallTopRight]: [
+        bigImageArticleUnit(articles.shift() as IRawArticle, strapName)
+      ],
+      [NewsSixGridPositions.SmallBottomFirst]: [
+        basicArticleTitleUnit(articles.shift() as IRawArticle, strapName)
+      ],
+      [NewsSixGridPositions.SmallBottomSecond]: [
+        basicArticleTitleUnit(articles.shift() as IRawArticle, strapName)
+      ],
+      [NewsSixGridPositions.SmallBottomThird]: [
+        basicArticleTitleUnit(articles.shift() as IRawArticle, strapName)
+      ],
+      [NewsSixGridPositions.SmallBottomFourth]: [
+        basicArticleTitleUnit(articles.shift() as IRawArticle, strapName)
+      ]
+    };
+
+    return await handlerRunner(
+      {
+        type: HandlerInputType.NewsSixGrid,
+        content
       },
-      tablet: {
-        gridTemplateColumns: "1fr 1fr 1fr 1fr 300px",
-        gridTemplateRows: "auto auto",
-        gridGap: "10px",
-        gridBlocks: desktop
-      },
-      desktop: {
-        gridTemplateColumns: "1fr 1fr 1fr 1fr 300px",
-        gridTemplateRows: "auto auto",
-        gridGap: "20px",
-        gridBlocks: desktop
-      }
-    }
-  ];
+      params
+    );
+  } catch (e) {
+    wrappedLogger.error(
+      params.apiRequestId,
+      `News Six handler error: Potentially insufficient number of articles: ${articlesLength}. Strap name: ${sourceId}|${strapName}. Error: ${e}`
+    );
+    throw e;
+  }
 }

@@ -3,7 +3,7 @@ import { DeviceType } from "../../../../common/DeviceType";
 import { range, inRange } from "lodash";
 import { FeatureName } from "../../../../common/FeatureName";
 
-describe("Feature service", async () => {
+describe("Feature service", () => {
   const testCases: { [key in FeatureName]: [number, number] } = {
     [FeatureName.Recommendation]: [-1, -1],
     [FeatureName.RecommendationDisplay]: [-1, -1],
