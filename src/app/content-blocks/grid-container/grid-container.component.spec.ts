@@ -98,70 +98,66 @@ describe("GridContainerComponent", () => {
       }
     };
     fixture.detectChanges();
-    expect(fixture.componentInstance.style).toMatchInlineSnapshot(`
-      Object {
-        " > .first-block": Object {
-          "gridColumnEnd": "span 1",
-          "gridColumnStart": 1,
-          "gridRowEnd": "span 1",
-          "gridRowStart": 1,
-          "msGridColumn": 1,
-          "msGridColumnSpan": 1,
-          "msGridRow": 1,
-          "msGridRowSpan": 1,
-        },
-        "@media all": Object {
-          "display": "-ms-grid",
-        },
-        "@media only screen and (min-width: 64em)": Object {
-          " > .first-block": Object {
-            "gridColumnEnd": "span 3",
-            "gridColumnStart": 1,
-            "gridRowEnd": "span 3",
-            "gridRowStart": 1,
-            "msGridColumn": 1,
-            "msGridColumnSpan": 3,
-            "msGridRow": 1,
-            "msGridRowSpan": 3,
-          },
-          "@media all": Object {
-            "display": "-ms-grid",
-          },
-          "display": "grid",
-          "gridGap": "0",
-          "gridTemplateColumns": "1fr 20px 1fr 20px 1fr 20px 1fr",
-          "gridTemplateRows": "auto",
-          "msGridColumns": "1fr 20px 1fr 20px 1fr 20px 1fr",
-          "msGridRows": "auto",
-        },
-        "@media only screen and (min-width: 75em)": Object {
-          " > .first-block": Object {
-            "gridColumnEnd": "span 3",
-            "gridColumnStart": 1,
-            "gridRowEnd": "span 3",
-            "gridRowStart": 1,
-            "msGridColumn": 1,
-            "msGridColumnSpan": 3,
-            "msGridRow": 1,
-            "msGridRowSpan": 3,
-          },
-          "@media all": Object {
-            "display": "-ms-grid",
-          },
-          "display": "grid",
-          "gridGap": "0",
-          "gridTemplateColumns": "1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px",
-          "gridTemplateRows": "auto",
-          "msGridColumns": "1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px",
-          "msGridRows": "auto",
-        },
-        "display": "grid",
-        "gridGap": "0",
-        "gridTemplateColumns": "1fr",
-        "gridTemplateRows": "auto",
-        "msGridColumns": "1fr",
-        "msGridRows": "auto",
+
+    expect(fixture.componentInstance.getGridCss()).toEqual({
+      display: "grid",
+      "@media all": {
+        display: "-ms-grid"
+      },
+      "@media only screen and (max-width: 63.999em)": {
+        msGridColumns: "1fr",
+        gridTemplateColumns: "1fr",
+        msGridRows: "auto",
+        gridTemplateRows: "auto",
+        gridGap: "0"
+      },
+      "@media only screen and (min-width: 64em) and (max-width: 74.999em)": {
+        msGridColumns: "1fr 20px 1fr 20px 1fr 20px 1fr",
+        gridTemplateColumns: "1fr 20px 1fr 20px 1fr 20px 1fr",
+        msGridRows: "auto",
+        gridTemplateRows: "auto",
+        gridGap: "0"
+      },
+      "@media only screen and (min-width: 75em)": {
+        msGridColumns: "1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px",
+        gridTemplateColumns: "1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px",
+        msGridRows: "auto",
+        gridTemplateRows: "auto",
+        gridGap: "0"
       }
-    `);
+    });
+
+    expect(fixture.componentInstance.getCellCss("first-block")).toEqual({
+      "@media only screen and (max-width: 63.999em)": {
+        msGridRow: 1,
+        gridRowStart: 1,
+        msGridRowSpan: 1,
+        gridRowEnd: "span 1",
+        msGridColumn: 1,
+        gridColumnStart: 1,
+        msGridColumnSpan: 1,
+        gridColumnEnd: "span 1"
+      },
+      "@media only screen and (min-width: 64em) and (max-width: 74.999em)": {
+        msGridRow: 1,
+        gridRowStart: 1,
+        msGridRowSpan: 3,
+        gridRowEnd: "span 3",
+        msGridColumn: 1,
+        gridColumnStart: 1,
+        msGridColumnSpan: 3,
+        gridColumnEnd: "span 3"
+      },
+      "@media only screen and (min-width: 75em)": {
+        msGridRow: 1,
+        gridRowStart: 1,
+        msGridRowSpan: 3,
+        gridRowEnd: "span 3",
+        msGridColumn: 1,
+        gridColumnStart: 1,
+        msGridColumnSpan: 3,
+        gridColumnEnd: "span 3"
+      }
+    });
   });
 });

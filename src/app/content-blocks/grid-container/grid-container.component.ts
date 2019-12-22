@@ -1,77 +1,79 @@
 import { Component, Input, OnInit } from "@angular/core";
 import {
   IGridBlock,
-  IGridBlocks,
-  IGridBlockStyle,
   IGridConfig,
   IGridContainer
 } from "../../../../common/__types__/IGridContainer";
 import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
-import applyGripGap from "../../shared/utils/grid-gap/grid-gap";
+import {
+  gridBlockHandler,
+  gridGapHandler
+} from "../../shared/utils/grid-gap/grid-gap";
+
+const media = {
+  mobile: "@media only screen and (max-width: 63.999em)",
+  tablet: "@media only screen and (min-width: 64em) and (max-width: 74.999em)",
+  desktop: "@media only screen and (min-width: 75em)"
+};
 
 @Component({
   selector: "app-grid-container",
   templateUrl: "./grid-container.component.html"
 })
-export class GridContainerComponent implements IContentBlockComponent, OnInit {
+export class GridContainerComponent implements IContentBlockComponent {
   @Input() input!: IGridContainer;
 
-  style = {};
-
-  ngOnInit(): void {
+  getGridCss() {
     const { mobile, tablet, desktop } = this.input;
-    const mobileWithGap = applyGripGap(mobile);
-    const tabletWithGap = applyGripGap(tablet);
-    const desktopWithGap = applyGripGap(desktop);
-
-    this.style = {
-      ...this.gridCss(mobileWithGap),
-      "@media only screen and (min-width: 64em)": this.gridCss(tabletWithGap),
-      "@media only screen and (min-width: 75em)": this.gridCss(desktopWithGap)
-    };
-  }
-
-  private gridCss(gridConfig: IGridConfig) {
     return {
       display: "grid",
       "@media all": {
         display: "-ms-grid"
       },
-
-      msGridColumns: gridConfig.gridTemplateColumns,
-      gridTemplateColumns: gridConfig.gridTemplateColumns,
-      msGridRows: gridConfig.gridTemplateRows,
-      gridTemplateRows: gridConfig.gridTemplateRows,
-      gridGap: gridConfig.gridGap,
-
-      ...this.gridBlocks(gridConfig.gridBlocks)
+      [media.mobile]: this.getGridDeviceCss(mobile),
+      [media.tablet]: this.getGridDeviceCss(tablet),
+      [media.desktop]: this.getGridDeviceCss(desktop)
     };
   }
 
-  private gridBlocks(gridBlocks: IGridBlocks) {
-    return Object.keys(gridBlocks).reduce(
-      (final: { [key: string]: IGridBlockStyle }, key: string) => {
-        const blockCssKey = ` > .${key}`;
-        final[blockCssKey] = this.gridBlockCss(gridBlocks[key]);
-        return final;
-      },
-      {}
+  getGridDeviceCss(config: IGridConfig) {
+    const templateColumns = gridGapHandler(
+      config.gridTemplateColumns,
+      config.gridGap
     );
+    const templateRows = gridGapHandler(
+      config.gridTemplateRows,
+      config.gridGap
+    );
+    return {
+      msGridColumns: templateColumns,
+      gridTemplateColumns: templateColumns,
+      msGridRows: templateRows,
+      gridTemplateRows: templateRows,
+      gridGap: "0"
+    };
   }
 
-  private gridBlockCss(gridBlock: IGridBlock): IGridBlockStyle {
+  getCellCss(cellName: string) {
+    const { mobile, tablet, desktop } = this.input;
     return {
-      msGridRow: gridBlock.rowStart,
-      gridRowStart: gridBlock.rowStart,
+      [media.mobile]: this.getCellDeviceCss(mobile.gridBlocks[cellName]),
+      [media.tablet]: this.getCellDeviceCss(tablet.gridBlocks[cellName]),
+      [media.desktop]: this.getCellDeviceCss(desktop.gridBlocks[cellName])
+    };
+  }
 
-      msGridRowSpan: gridBlock.rowSpan,
-      gridRowEnd: `span ${gridBlock.rowSpan}`,
-
-      msGridColumn: gridBlock.columnStart,
-      gridColumnStart: gridBlock.columnStart,
-
-      msGridColumnSpan: gridBlock.columnSpan,
-      gridColumnEnd: `span ${gridBlock.columnSpan}`
+  private getCellDeviceCss(gridBlock: IGridBlock): any {
+    const gridGapBlock = gridBlockHandler(gridBlock);
+    return {
+      msGridRow: gridGapBlock.rowStart,
+      gridRowStart: gridGapBlock.rowStart,
+      msGridRowSpan: gridGapBlock.rowSpan,
+      gridRowEnd: `span ${gridGapBlock.rowSpan}`,
+      msGridColumn: gridGapBlock.columnStart,
+      gridColumnStart: gridGapBlock.columnStart,
+      msGridColumnSpan: gridGapBlock.columnSpan,
+      gridColumnEnd: `span ${gridGapBlock.columnSpan}`
     };
   }
 }
