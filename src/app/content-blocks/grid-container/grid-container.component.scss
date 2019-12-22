@@ -1,0 +1,22 @@
+.left,
+.right {
+  position: relative;
+  &::before {
+    content: "";
+    left: 50%;
+    border-left: 1px solid #000;
+    position: absolute;
+    height: 100%;
+  }
+}
+.top,
+.bottom {
+  position: relative;
+  &::before {
+    content: "";
+    top: 50%;
+    border-top: 1px solid #000;
+    position: absolute;
+    width: 100%;
+  }
+}

@@ -12,11 +12,19 @@ export interface IGridBlockStyle {
   gridColumnEnd: string;
 }
 
+export enum Border {
+  left = "left",
+  bottom = "bottom",
+  right = "right",
+  top = "top"
+}
+
 export interface IGridBlock {
   rowStart: number;
   rowSpan: number;
   columnStart: number;
   columnSpan: number;
+  border?: Border[];
 }
 
 export interface IGridBlocks {
