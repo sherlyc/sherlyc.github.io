@@ -114,22 +114,22 @@ describe("GridContainerComponent", () => {
       "@media only screen and (max-width: 63.999em)": {
         msGridColumns: "1fr",
         gridTemplateColumns: "1fr",
-        msGridRows: "auto",
-        gridTemplateRows: "auto",
+        msGridRows: "auto 20px",
+        gridTemplateRows: "auto 20px",
         gridGap: "0"
       },
       "@media only screen and (min-width: 64em) and (max-width: 74.999em)": {
         msGridColumns: "1fr 20px 1fr 20px 1fr 20px 1fr",
         gridTemplateColumns: "1fr 20px 1fr 20px 1fr 20px 1fr",
-        msGridRows: "auto",
-        gridTemplateRows: "auto",
+        msGridRows: "auto 20px",
+        gridTemplateRows: "auto 20px",
         gridGap: "0"
       },
       "@media only screen and (min-width: 75em)": {
         msGridColumns: "1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px",
         gridTemplateColumns: "1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px",
-        msGridRows: "auto",
-        gridTemplateRows: "auto",
+        msGridRows: "auto 20px",
+        gridTemplateRows: "auto 20px",
         gridGap: "0"
       }
     };

@@ -8,12 +8,10 @@ export function calculateGridGap(
   gridTemplateValues: string,
   gridGap: string
 ): string {
-  const arrGridTemplate = gridTemplateValues.split(" ");
-  const arrGridTemplateWithGap = arrGridTemplate.map((current, i) => {
-    const isNotLastElement = i < arrGridTemplate.length - 1;
-    return isNotLastElement ? [current, gridGap] : [current];
-  });
-  return flatten(arrGridTemplateWithGap).join(" ");
+  return gridTemplateValues
+    .trim()
+    .split(" ")
+    .join(` ${gridGap} `);
 }
 
 export function calculateCellGap(gridBlock: IGridBlock): IGridBlock {
