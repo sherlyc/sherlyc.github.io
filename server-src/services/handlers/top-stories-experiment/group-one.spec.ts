@@ -1,5 +1,4 @@
 import { HandlerInputType } from "../__types__/HandlerInputType";
-
 import groupOneTopStoriesListHandler from "./group-one";
 import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
 import { IParams } from "../../__types__/IParams";

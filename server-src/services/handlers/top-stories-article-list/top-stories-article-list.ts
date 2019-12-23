@@ -6,50 +6,10 @@ import { getRawArticles } from "../../adapters/article-retriever/article-retriev
 import { LayoutType } from "../../adapters/__types__/LayoutType";
 import { layoutRetriever } from "../../adapters/layout/layout-retriever";
 import logger from "../../utils/logger";
-import { IBasicAdUnit } from "../../../../common/__types__/IBasicAdUnit";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { IRawArticle } from "../../adapters/__types__/IRawArticle";
-import { IDefconArticleUnit } from "../../../../common/__types__/IDefconArticleUnit";
-import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
 import { Strap } from "../../strap";
-
-const basicAdUnit = (context: string): IBasicAdUnit => ({
-  type: ContentBlockType.BasicAdUnit,
-  context
-});
-
-const defconArticleUnit = (
-  article: IRawArticle,
-  strapName: string
-): IDefconArticleUnit => ({
-  type: ContentBlockType.DefconArticleUnit,
-  id: article.id,
-  strapName,
-  indexHeadline: article.indexHeadline,
-  title: article.title,
-  introText: article.introText,
-  imageSrc: article.defconSrc,
-  linkUrl: article.linkUrl,
-  lastPublishedTime: article.lastPublishedTime,
-  headlineFlags: article.headlineFlags
-});
-
-const basicArticleUnit = (
-  article: IRawArticle,
-  strapName: string
-): IBasicArticleUnit => ({
-  type: ContentBlockType.BasicArticleUnit,
-  id: article.id,
-  strapName,
-  indexHeadline: article.indexHeadline,
-  title: article.title,
-  introText: article.introText,
-  imageSrc: article.imageSrc,
-  imageSrcSet: article.imageSrcSet,
-  linkUrl: article.linkUrl,
-  lastPublishedTime: article.lastPublishedTime,
-  headlineFlags: article.headlineFlags
-});
+import { basicArticleUnit } from "../../adapters/article-converter/basic-article-unit.converter";
+import { basicAdUnit } from "../../adapters/article-converter/basic-ad-unit.converter";
+import { defconArticleUnit } from "../../adapters/article-converter/defcon-article-unit.converter";
 
 const retrieveLayout = async (params: IParams): Promise<LayoutType> => {
   try {

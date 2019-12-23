@@ -1,9 +1,9 @@
-import { bigImageArticleUnit } from "./big-image-article.converter";
 import { IRawArticle } from "../__types__/IRawArticle";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArticleUnit";
+import { grayDefconArticleUnit } from "./gray-defcon-article-unit.converter";
+import { IGrayDefconArticleUnit } from "../../../../common/__types__/IGrayDefconArticleUnit";
 
-describe("bit image article", () => {
+describe("gray defcon article unit", () => {
   it("should convert", () => {
     const fakeArticle: IRawArticle = {
       id: "1",
@@ -11,7 +11,7 @@ describe("bit image article", () => {
       title: "Title One",
       introText: "Intro 1",
       linkUrl: "/link1",
-      defconSrc: null,
+      defconSrc: "defcon.jpg",
       imageSrc: "1.jpg",
       imageSrcSet: "1.jpg 1w",
       strapImageSrc: "strap1.jpg",
@@ -22,18 +22,17 @@ describe("bit image article", () => {
 
     const fakeStrapName = "fakeStrapName";
 
-    const result = bigImageArticleUnit(fakeArticle, fakeStrapName);
+    const result = grayDefconArticleUnit(fakeArticle, fakeStrapName);
 
-    const expected: IBigImageArticleUnit = {
-      type: ContentBlockType.BigImageArticleUnit,
+    const expected: IGrayDefconArticleUnit = {
+      type: ContentBlockType.GrayDefconArticleUnit,
       id: "1",
       strapName: "fakeStrapName",
       indexHeadline: "Headline 1",
       title: "Title One",
       introText: "Intro 1",
       linkUrl: "/link1",
-      imageSrc: "strap1.jpg",
-      imageSrcSet: "strap1.jpg 1w",
+      imageSrc: "defcon.jpg",
       lastPublishedTime: 1,
       headlineFlags: []
     };

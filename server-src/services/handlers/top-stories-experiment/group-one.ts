@@ -5,51 +5,12 @@ import { getRawArticles } from "../../adapters/article-retriever/article-retriev
 import { LayoutType } from "../../adapters/__types__/LayoutType";
 import { layoutRetriever } from "../../adapters/layout/layout-retriever";
 import logger from "../../utils/logger";
-import { IBasicAdUnit } from "../../../../common/__types__/IBasicAdUnit";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { IRawArticle } from "../../adapters/__types__/IRawArticle";
 import { Strap } from "../../strap";
 import { ITopStoriesArticleListGroupOneHandlerInput } from "../__types__/ITopStoriesArticleListGroupOne";
-import { IGrayDefconArticleUnit } from "../../../../common/__types__/IGrayDefconArticleUnit";
-import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArticleUnit";
 import wrappedLogger from "../../utils/logger";
-
-const basicAdUnit = (context: string): IBasicAdUnit => ({
-  type: ContentBlockType.BasicAdUnit,
-  context
-});
-const grayDefconArticleUnit = (
-  article: IRawArticle,
-  strapName: string
-): IGrayDefconArticleUnit => ({
-  type: ContentBlockType.GrayDefconArticleUnit,
-  id: article.id,
-  strapName,
-  indexHeadline: article.indexHeadline,
-  title: article.title,
-  introText: article.introText,
-  imageSrc: article.defconSrc,
-  linkUrl: article.linkUrl,
-  lastPublishedTime: article.lastPublishedTime,
-  headlineFlags: article.headlineFlags
-});
-
-const bigImageArticleUnit = (
-  article: IRawArticle,
-  strapName: string
-): IBigImageArticleUnit => ({
-  type: ContentBlockType.BigImageArticleUnit,
-  id: article.id,
-  strapName,
-  indexHeadline: article.indexHeadline,
-  title: article.title,
-  introText: article.introText,
-  imageSrc: article.strapImageSrc,
-  imageSrcSet: article.strapImageSrcSet,
-  linkUrl: article.linkUrl,
-  lastPublishedTime: article.lastPublishedTime,
-  headlineFlags: article.headlineFlags
-});
+import { bigImageArticleUnit } from "../../adapters/article-converter/big-image-article.converter";
+import { basicAdUnit } from "../../adapters/article-converter/basic-ad-unit.converter";
+import { grayDefconArticleUnit } from "../../adapters/article-converter/gray-defcon-article-unit.converter";
 
 const retrieveLayout = async (params: IParams): Promise<LayoutType> => {
   try {

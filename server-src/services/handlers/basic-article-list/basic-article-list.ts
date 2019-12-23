@@ -4,48 +4,10 @@ import { handlerRunnerFunction } from "../runner";
 import { IParams } from "../../__types__/IParams";
 import { LayoutType } from "../../adapters/__types__/LayoutType";
 import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
-import { IBasicAdUnit } from "../../../../common/__types__/IBasicAdUnit";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { IRawArticle } from "../../adapters/__types__/IRawArticle";
-import { IBasicArticleTitleUnit } from "../../../../common/__types__/IBasicArticleTitleUnit";
-import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
 import wrappedLogger from "../../utils/logger";
-
-const basicAdUnit = (context: string): IBasicAdUnit => ({
-  type: ContentBlockType.BasicAdUnit,
-  context
-});
-
-const basicArticleTitleUnit = (
-  article: IRawArticle,
-  strapName: string
-): IBasicArticleTitleUnit => ({
-  type: ContentBlockType.BasicArticleTitleUnit,
-  id: article.id,
-  strapName: strapName,
-  indexHeadline: article.indexHeadline,
-  title: article.title,
-  linkUrl: article.linkUrl,
-  lastPublishedTime: article.lastPublishedTime,
-  headlineFlags: article.headlineFlags
-});
-
-const basicArticleUnit = (
-  article: IRawArticle,
-  strapName: string
-): IBasicArticleUnit => ({
-  type: ContentBlockType.BasicArticleUnit,
-  id: article.id,
-  strapName: strapName,
-  indexHeadline: article.indexHeadline,
-  title: article.title,
-  introText: article.introText,
-  imageSrc: article.imageSrc,
-  imageSrcSet: article.imageSrcSet,
-  linkUrl: article.linkUrl,
-  lastPublishedTime: article.lastPublishedTime,
-  headlineFlags: article.headlineFlags
-});
+import { basicArticleTitleUnit } from "../../adapters/article-converter/basic-article-title.converter";
+import { basicArticleUnit } from "../../adapters/article-converter/basic-article-unit.converter";
+import { basicAdUnit } from "../../adapters/article-converter/basic-ad-unit.converter";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,

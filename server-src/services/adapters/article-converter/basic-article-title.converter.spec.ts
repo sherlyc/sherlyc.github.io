@@ -4,7 +4,7 @@ import { IBasicArticleTitleUnit } from "../../../../common/__types__/IBasicArtic
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 
 describe("basic article title converter", () => {
-  it("should work convert", () => {
+  it("should convert", () => {
     const fakeArticle: IRawArticle = {
       id: "1",
       indexHeadline: "Headline 1",

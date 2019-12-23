@@ -6,68 +6,11 @@ import { Strap } from "../../strap";
 import { LayoutType } from "../../adapters/__types__/LayoutType";
 import { layoutRetriever } from "../../adapters/layout/layout-retriever";
 import logger from "../../utils/logger";
-import { IRawArticle } from "../../adapters/__types__/IRawArticle";
-import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArticleUnit";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { IHalfWidthImageArticleUnit } from "../../../../common/__types__/IHalfWidthImageArticleUnit";
-import { IGrayDefconArticleUnit } from "../../../../common/__types__/IGrayDefconArticleUnit";
-import { IBasicAdUnit } from "../../../../common/__types__/IBasicAdUnit";
 import { ITopStoriesArticleListGroupTwoHandlerInput } from "../__types__/ITopStoriesArticleListGroupTwo";
-
-const basicAdUnit = (context: string): IBasicAdUnit => ({
-  type: ContentBlockType.BasicAdUnit,
-  context
-});
-
-const grayDefconArticleUnit = (
-  article: IRawArticle,
-  strapName: string
-): IGrayDefconArticleUnit => ({
-  type: ContentBlockType.GrayDefconArticleUnit,
-  id: article.id,
-  strapName,
-  indexHeadline: article.indexHeadline,
-  title: article.title,
-  introText: article.introText,
-  imageSrc: article.defconSrc,
-  linkUrl: article.linkUrl,
-  lastPublishedTime: article.lastPublishedTime,
-  headlineFlags: article.headlineFlags
-});
-
-const bigImageArticleUnit = (
-  article: IRawArticle,
-  strapName: string
-): IBigImageArticleUnit => ({
-  type: ContentBlockType.BigImageArticleUnit,
-  id: article.id,
-  strapName,
-  indexHeadline: article.indexHeadline,
-  title: article.title,
-  introText: article.introText,
-  imageSrc: article.strapImageSrc,
-  imageSrcSet: article.strapImageSrcSet,
-  linkUrl: article.linkUrl,
-  lastPublishedTime: article.lastPublishedTime,
-  headlineFlags: article.headlineFlags
-});
-
-const halfWidthImageArticleUnit = (
-  article: IRawArticle,
-  strapName: string
-): IHalfWidthImageArticleUnit => ({
-  type: ContentBlockType.HalfWidthImageArticleUnit,
-  id: article.id,
-  strapName,
-  indexHeadline: article.indexHeadline,
-  title: article.title,
-  introText: article.introText,
-  imageSrc: article.strapImageSrc,
-  imageSrcSet: article.strapImageSrcSet,
-  linkUrl: article.linkUrl,
-  lastPublishedTime: article.lastPublishedTime,
-  headlineFlags: article.headlineFlags
-});
+import { bigImageArticleUnit } from "../../adapters/article-converter/big-image-article.converter";
+import { basicAdUnit } from "../../adapters/article-converter/basic-ad-unit.converter";
+import { grayDefconArticleUnit } from "../../adapters/article-converter/gray-defcon-article-unit.converter";
+import { halfWidthImageArticleUnit } from "../../adapters/article-converter/half-width-image-article-unit.converter";
 
 const retrieveLayout = async (params: IParams): Promise<LayoutType> => {
   try {
