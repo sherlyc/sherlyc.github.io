@@ -1,9 +1,9 @@
-import { bigImageArticleUnit } from "./big-image-article.converter";
+import { basicArticleUnit } from "./basic-article-unit.converter";
 import { IRawArticle } from "../__types__/IRawArticle";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArticleUnit";
+import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
 
-describe("bit image article", () => {
+describe("basic article unit", () => {
   it("should convert", () => {
     const fakeArticle: IRawArticle = {
       id: "1",
@@ -22,10 +22,10 @@ describe("bit image article", () => {
 
     const fakeStrapName = "fakeStrapName";
 
-    const result = bigImageArticleUnit(fakeArticle, fakeStrapName);
+    const result = basicArticleUnit(fakeArticle, fakeStrapName);
 
-    const expected: IBigImageArticleUnit = {
-      type: ContentBlockType.BigImageArticleUnit,
+    const expected: IBasicArticleUnit = {
+      type: ContentBlockType.BasicArticleUnit,
       id: "1",
       strapName: "fakeStrapName",
       indexHeadline: "Headline 1",

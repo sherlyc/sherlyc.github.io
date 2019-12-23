@@ -1,9 +1,9 @@
-import { bigImageArticleUnit } from "./big-image-article.converter";
 import { IRawArticle } from "../__types__/IRawArticle";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArticleUnit";
+import { halfWidthImageArticleUnit } from "./half-width-image-article-unit.converter";
+import { IHalfWidthImageArticleUnit } from "../../../../common/__types__/IHalfWidthImageArticleUnit";
 
-describe("bit image article", () => {
+describe("half width image article unit", () => {
   it("should convert", () => {
     const fakeArticle: IRawArticle = {
       id: "1",
@@ -22,10 +22,10 @@ describe("bit image article", () => {
 
     const fakeStrapName = "fakeStrapName";
 
-    const result = bigImageArticleUnit(fakeArticle, fakeStrapName);
+    const result = halfWidthImageArticleUnit(fakeArticle, fakeStrapName);
 
-    const expected: IBigImageArticleUnit = {
-      type: ContentBlockType.BigImageArticleUnit,
+    const expected: IHalfWidthImageArticleUnit = {
+      type: ContentBlockType.HalfWidthImageArticleUnit,
       id: "1",
       strapName: "fakeStrapName",
       indexHeadline: "Headline 1",

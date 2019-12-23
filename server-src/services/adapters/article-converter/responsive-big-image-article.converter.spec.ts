@@ -1,11 +1,10 @@
 import { responsiveBigImageArticleUnit } from "./responsive-big-image-article.converter";
 import { IRawArticle } from "../__types__/IRawArticle";
-import { IBasicArticleTitleUnit } from "../../../../common/__types__/IBasicArticleTitleUnit";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IResponsiveBigImageArticleUnit } from "../../../../common/__types__/IResponsiveBigImageArticleUnit";
 
 describe("responsive big image article", () => {
-  it("should work convert", () => {
+  it("should convert", () => {
     const fakeArticle: IRawArticle = {
       id: "1",
       indexHeadline: "Headline 1",
