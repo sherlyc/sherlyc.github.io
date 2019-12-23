@@ -32,8 +32,8 @@ describe("basic article unit", () => {
       title: "Title One",
       introText: "Intro 1",
       linkUrl: "/link1",
-      imageSrc: "strap1.jpg",
-      imageSrcSet: "strap1.jpg 1w",
+      imageSrc: "1.jpg",
+      imageSrcSet: "1.jpg 1w",
       lastPublishedTime: 1,
       headlineFlags: []
     };

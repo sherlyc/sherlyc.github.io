@@ -11,7 +11,7 @@ describe("gray defcon article unit", () => {
       title: "Title One",
       introText: "Intro 1",
       linkUrl: "/link1",
-      defconSrc: null,
+      defconSrc: "defcon.jpg",
       imageSrc: "1.jpg",
       imageSrcSet: "1.jpg 1w",
       strapImageSrc: "strap1.jpg",
@@ -32,7 +32,7 @@ describe("gray defcon article unit", () => {
       title: "Title One",
       introText: "Intro 1",
       linkUrl: "/link1",
-      imageSrc: "strap1.jpg",
+      imageSrc: "defcon.jpg",
       lastPublishedTime: 1,
       headlineFlags: []
     };
