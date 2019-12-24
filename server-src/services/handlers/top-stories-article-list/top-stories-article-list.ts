@@ -10,6 +10,14 @@ import { Strap } from "../../strap";
 import { basicArticleUnit } from "../../adapters/article-converter/basic-article-unit.converter";
 import { basicAdUnit } from "../../adapters/article-converter/basic-ad-unit.converter";
 import { defconArticleUnit } from "../../adapters/article-converter/defcon-article-unit.converter";
+import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
+import { IDefconArticleUnit } from "../../../../common/__types__/IDefconArticleUnit";
+import { grayDefconArticleUnit } from "../../adapters/article-converter/gray-defcon-article-unit.converter";
+import { bigImageArticleUnit } from "../../adapters/article-converter/big-image-article.converter";
+import { ExperimentName } from "../../../../common/ExperimentName";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IGrayDefconArticleUnit } from "../../../../common/__types__/IGrayDefconArticleUnit";
+import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArticleUnit";
 
 const retrieveLayout = async (params: IParams): Promise<LayoutType> => {
   try {
@@ -43,21 +51,36 @@ export default async function(
     ].filter(Boolean);
   }
 
-  return rawArticles.reduce(
-    (final, article, index) => {
-      if (index === 0 && layout === LayoutType.DEFCON) {
-        return [
-          ...final,
-          defconArticleUnit(article, strapName),
-          basicAdUnit(strapName)
-        ];
-      }
-      return [
-        ...final,
-        basicArticleUnit(article, strapName),
-        basicAdUnit(strapName)
-      ];
-    },
-    [basicAdUnit(strapName)] as IContentBlock[]
+  const oldMobileContent: Array<
+    IBigImageArticleUnit | IGrayDefconArticleUnit
+  > = rawArticles.map((article, index) =>
+    index === 0 && layout === LayoutType.DEFCON
+      ? grayDefconArticleUnit(article, strapName)
+      : bigImageArticleUnit(article, strapName)
   );
+
+  const oldDesktopContent: Array<
+    IBasicArticleUnit | IDefconArticleUnit
+  > = rawArticles.map((article, index) =>
+    index === 0 && layout === LayoutType.DEFCON
+      ? defconArticleUnit(article, strapName)
+      : basicArticleUnit(article, strapName)
+  );
+
+  return [
+    {
+      type: ContentBlockType.ExperimentContainer,
+      name: ExperimentName.TopStoriesVisualExperiment,
+      variants: {
+        control: oldDesktopContent.reduce(
+          (final, item) => [...final, item, basicAdUnit(strapName)],
+          [basicAdUnit(strapName)] as IContentBlock[]
+        ),
+        groupOne: oldMobileContent.reduce(
+          (final, item) => [...final, item, basicAdUnit(strapName)],
+          [basicAdUnit(strapName)] as IContentBlock[]
+        )
+      }
+    }
+  ];
 }

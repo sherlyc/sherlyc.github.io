@@ -10,6 +10,8 @@ import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUni
 import * as layoutRetriever from "../../adapters/layout/layout-retriever";
 import { LayoutType } from "../../adapters/__types__/LayoutType";
 import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
+import { IGrayDefconArticleUnit } from "../../../../common/__types__/IGrayDefconArticleUnit";
+import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArticleUnit";
 
 jest.mock("../../adapters/article-retriever/article-retriever");
 
@@ -79,6 +81,35 @@ describe("Top Stories Article List", () => {
     headlineFlags: article.headlineFlags
   });
 
+  const AsGrayDefconArticle = (
+    article: IRawArticle
+  ): IGrayDefconArticleUnit => ({
+    type: ContentBlockType.GrayDefconArticleUnit,
+    id: article.id,
+    strapName: strapName,
+    indexHeadline: article.indexHeadline,
+    title: article.title,
+    introText: article.introText,
+    linkUrl: article.linkUrl,
+    imageSrc: article.defconSrc,
+    lastPublishedTime: article.lastPublishedTime,
+    headlineFlags: article.headlineFlags
+  });
+
+  const AsBigImageArticle = (article: IRawArticle): IBigImageArticleUnit => ({
+    type: ContentBlockType.BigImageArticleUnit,
+    id: article.id,
+    strapName: strapName,
+    indexHeadline: article.indexHeadline,
+    title: article.title,
+    introText: article.introText,
+    linkUrl: article.linkUrl,
+    imageSrc: article.strapImageSrc,
+    imageSrcSet: article.strapImageSrcSet,
+    lastPublishedTime: article.lastPublishedTime,
+    headlineFlags: article.headlineFlags
+  });
+
   beforeEach(() => {
     jest.resetModules();
   });
@@ -98,11 +129,26 @@ describe("Top Stories Article List", () => {
     (getRawArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
 
     const expectedContentBlocks = [
-      basicAdUnit,
-      AsBasicArticle(articleTwo),
-      basicAdUnit,
-      AsBasicArticle(articleOne),
-      basicAdUnit
+      {
+        type: "ExperimentContainer",
+        name: "TopStoriesVisualExperiment",
+        variants: {
+          control: [
+            basicAdUnit,
+            AsBasicArticle(articleTwo),
+            basicAdUnit,
+            AsBasicArticle(articleOne),
+            basicAdUnit
+          ],
+          groupOne: [
+            basicAdUnit,
+            AsBigImageArticle(articleTwo),
+            basicAdUnit,
+            AsBigImageArticle(articleOne),
+            basicAdUnit
+          ]
+        }
+      }
     ];
 
     const contentBlocks = await topStoriesListHandler(
@@ -129,11 +175,26 @@ describe("Top Stories Article List", () => {
     (getRawArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
 
     const expectedContentBlocks = [
-      basicAdUnit,
-      AsDefconArticle(articleOne),
-      basicAdUnit,
-      AsBasicArticle(articleTwo),
-      basicAdUnit
+      {
+        type: "ExperimentContainer",
+        name: "TopStoriesVisualExperiment",
+        variants: {
+          control: [
+            basicAdUnit,
+            AsDefconArticle(articleOne),
+            basicAdUnit,
+            AsBasicArticle(articleTwo),
+            basicAdUnit
+          ],
+          groupOne: [
+            basicAdUnit,
+            AsGrayDefconArticle(articleOne),
+            basicAdUnit,
+            AsBigImageArticle(articleTwo),
+            basicAdUnit
+          ]
+        }
+      }
     ];
 
     const contentBlocks = await topStoriesListHandler(
