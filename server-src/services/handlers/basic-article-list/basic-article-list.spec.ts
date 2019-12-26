@@ -247,7 +247,8 @@ describe("BasicArticleListHandler", () => {
       const mobile: IGridConfig = {
         gridTemplateColumns: "1fr",
         gridTemplateRows: "auto auto",
-        gridGap: "0px",
+        gridColumnGap: "0px",
+        gridRowGap: "0px",
         gridBlocks: {
           content0: {
             border: [],
@@ -302,7 +303,8 @@ describe("BasicArticleListHandler", () => {
       const mobile: IGridConfig = {
         gridTemplateColumns: "1fr",
         gridTemplateRows: "auto auto auto",
-        gridGap: "0px",
+        gridColumnGap: "0px",
+        gridRowGap: "0px",
         gridBlocks: {
           content0: {
             border: [],
@@ -365,7 +367,8 @@ describe("BasicArticleListHandler", () => {
       const mobile: IGridConfig = {
         gridTemplateColumns: "1fr",
         gridTemplateRows: "auto auto auto",
-        gridGap: "0px",
+        gridColumnGap: "0px",
+        gridRowGap: "0px",
         gridBlocks: {
           content0: {
             border: [],
@@ -429,7 +432,8 @@ describe("BasicArticleListHandler", () => {
       const mobile: IGridConfig = {
         gridTemplateColumns: "1fr",
         gridTemplateRows: "auto auto auto auto auto",
-        gridGap: "0px",
+        gridColumnGap: "0px",
+        gridRowGap: "0px",
         gridBlocks: {
           content0: {
             border: [],

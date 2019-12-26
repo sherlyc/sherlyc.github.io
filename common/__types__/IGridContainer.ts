@@ -34,7 +34,8 @@ export interface IGridBlocks {
 export interface IGridConfig {
   gridTemplateColumns: string;
   gridTemplateRows: string;
-  gridGap: string;
+  gridColumnGap: string;
+  gridRowGap: string;
   gridBlocks: IGridBlocks;
 }
 

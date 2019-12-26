@@ -99,7 +99,8 @@ function processAsGrid(
   const mobile: IGridConfig = {
     gridTemplateColumns: "1fr",
     gridTemplateRows: totalLines.map(() => "auto").join(" "),
-    gridGap: "0px",
+    gridColumnGap: "0px",
+    gridRowGap: "0px",
     gridBlocks
   };
 

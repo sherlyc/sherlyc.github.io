@@ -45,13 +45,13 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
   private static getGridDeviceCss(config: IGridConfig) {
     const templateColumns = calculateGridGap(
       config.gridTemplateColumns,
-      config.gridGap
+      config.gridColumnGap
     );
 
     const templateRows = `${calculateGridGap(
       config.gridTemplateRows,
-      config.gridGap
-    )} ${config.gridGap}`;
+      config.gridRowGap
+    )} ${config.gridRowGap}`;
 
     return {
       msGridColumns: templateColumns,

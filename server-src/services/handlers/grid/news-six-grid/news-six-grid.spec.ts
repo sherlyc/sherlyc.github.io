@@ -49,7 +49,8 @@ describe("News six grid handler", () => {
         mobile: {
           gridTemplateColumns: "1fr",
           gridTemplateRows: "auto auto auto auto auto auto auto",
-          gridGap: "20px",
+          gridColumnGap: "20px",
+          gridRowGap: "20px",
           gridBlocks: {
             BigTopLeft: {
               columnSpan: 1,
@@ -105,7 +106,8 @@ describe("News six grid handler", () => {
         tablet: {
           gridTemplateColumns: "1fr 1fr 1fr 1fr 300px",
           gridTemplateRows: "auto auto auto",
-          gridGap: "20px",
+          gridColumnGap: "20px",
+          gridRowGap: "20px",
           gridBlocks: {
             BigTopLeft: {
               columnSpan: 4,
@@ -161,7 +163,8 @@ describe("News six grid handler", () => {
         desktop: {
           gridTemplateColumns: "1fr 1fr 1fr 1fr 300px",
           gridTemplateRows: "auto auto auto",
-          gridGap: "40px",
+          gridColumnGap: "40px",
+          gridRowGap: "40px",
           gridBlocks: {
             BigTopLeft: {
               columnSpan: 4,

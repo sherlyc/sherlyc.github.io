@@ -73,19 +73,22 @@ export default async function(
       mobile: {
         gridTemplateColumns: "1fr",
         gridTemplateRows: "auto auto auto auto auto auto auto",
-        gridGap: "20px",
+        gridColumnGap: "20px",
+        gridRowGap: "20px",
         gridBlocks: mobile
       },
       tablet: {
         gridTemplateColumns: "1fr 1fr 1fr 1fr 300px",
         gridTemplateRows: "auto auto auto",
-        gridGap: "20px",
+        gridColumnGap: "20px",
+        gridRowGap: "20px",
         gridBlocks: desktop
       },
       desktop: {
         gridTemplateColumns: "1fr 1fr 1fr 1fr 300px",
         gridTemplateRows: "auto auto auto",
-        gridGap: "40px",
+        gridColumnGap: "40px",
+        gridRowGap: "40px",
         gridBlocks: desktop
       }
     } as IGridContainer
