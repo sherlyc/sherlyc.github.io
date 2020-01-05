@@ -89,7 +89,7 @@ function processAsGrid(
   const gridBlocks: IGridBlocks = content.reduce(
     (final, item, index) => ({
       ...final,
-      [`content${index}`]: gridBlock(index + 1, 1, 1, 1, [])
+      [`content${index}`]: gridBlock(index + 1, 1, 1, 1, [Border.bottom])
     }),
     {
       [`content${content.length}`]: gridBlock(content.length + 1, 1, 1, 1, [])
@@ -100,7 +100,7 @@ function processAsGrid(
     gridTemplateColumns: "1fr",
     gridTemplateRows: totalLines.map(() => "auto").join(" "),
     gridColumnGap: "0px",
-    gridRowGap: "0px",
+    gridRowGap: "20px",
     gridBlocks
   };
 

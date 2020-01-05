@@ -48,10 +48,10 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
       config.gridColumnGap
     );
 
-    const templateRows = `${calculateGridGap(
+    const templateRows = calculateGridGap(
       config.gridTemplateRows,
       config.gridRowGap
-    )} ${config.gridRowGap}`;
+    );
 
     return {
       msGridColumns: templateColumns,

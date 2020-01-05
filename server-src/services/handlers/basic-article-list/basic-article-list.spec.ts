@@ -9,6 +9,7 @@ import { IBasicArticleTitleUnit } from "../../../../common/__types__/IBasicArtic
 import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
 import logger from "../../utils/logger";
 import {
+  Border,
   IGridConfig,
   IGridContainer
 } from "../../../../common/__types__/IGridContainer";
@@ -248,10 +249,10 @@ describe("BasicArticleListHandler", () => {
         gridTemplateColumns: "1fr",
         gridTemplateRows: "auto auto",
         gridColumnGap: "0px",
-        gridRowGap: "0px",
+        gridRowGap: "20px",
         gridBlocks: {
           content0: {
-            border: [],
+            border: [Border.bottom],
             columnSpan: 1,
             columnStart: 1,
             rowSpan: 1,
@@ -304,17 +305,17 @@ describe("BasicArticleListHandler", () => {
         gridTemplateColumns: "1fr",
         gridTemplateRows: "auto auto auto",
         gridColumnGap: "0px",
-        gridRowGap: "0px",
+        gridRowGap: "20px",
         gridBlocks: {
           content0: {
-            border: [],
+            border: [Border.bottom],
             columnSpan: 1,
             columnStart: 1,
             rowSpan: 1,
             rowStart: 1
           },
           content1: {
-            border: [],
+            border: [Border.bottom],
             columnSpan: 1,
             columnStart: 1,
             rowSpan: 1,
@@ -368,17 +369,17 @@ describe("BasicArticleListHandler", () => {
         gridTemplateColumns: "1fr",
         gridTemplateRows: "auto auto auto",
         gridColumnGap: "0px",
-        gridRowGap: "0px",
+        gridRowGap: "20px",
         gridBlocks: {
           content0: {
-            border: [],
+            border: [Border.bottom],
             columnSpan: 1,
             columnStart: 1,
             rowSpan: 1,
             rowStart: 1
           },
           content1: {
-            border: [],
+            border: [Border.bottom],
             columnSpan: 1,
             columnStart: 1,
             rowSpan: 1,
@@ -433,31 +434,31 @@ describe("BasicArticleListHandler", () => {
         gridTemplateColumns: "1fr",
         gridTemplateRows: "auto auto auto auto auto",
         gridColumnGap: "0px",
-        gridRowGap: "0px",
+        gridRowGap: "20px",
         gridBlocks: {
           content0: {
-            border: [],
+            border: [Border.bottom],
             columnSpan: 1,
             columnStart: 1,
             rowSpan: 1,
             rowStart: 1
           },
           content1: {
-            border: [],
+            border: [Border.bottom],
             columnSpan: 1,
             columnStart: 1,
             rowSpan: 1,
             rowStart: 2
           },
           content2: {
-            border: [],
+            border: [Border.bottom],
             columnSpan: 1,
             columnStart: 1,
             rowSpan: 1,
             rowStart: 3
           },
           content3: {
-            border: [],
+            border: [Border.bottom],
             columnSpan: 1,
             columnStart: 1,
             rowSpan: 1,
