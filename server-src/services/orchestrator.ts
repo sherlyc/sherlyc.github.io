@@ -39,8 +39,7 @@ export default async (params: IParams): Promise<IPage> => {
             },
             {
               type: HandlerInputType.TopStoriesArticleList,
-              strapName: "Latest",
-              totalArticles: 6
+              strapName: "Latest"
             },
             {
               type: HandlerInputType.MiniMidStrip,
