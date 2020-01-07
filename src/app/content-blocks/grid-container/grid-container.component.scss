@@ -6,6 +6,8 @@
 .left,
 .right {
   position: relative;
+  min-width: 20px;
+  min-height: 20px;
   &::before {
     content: "";
     left: 50%;
@@ -17,6 +19,8 @@
 .top,
 .bottom {
   position: relative;
+  min-width: 20px;
+  min-height: 20px;
   &::before {
     content: "";
     top: 50%;
