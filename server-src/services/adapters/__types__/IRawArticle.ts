@@ -4,6 +4,7 @@ export interface IRawArticle {
   id: string;
   indexHeadline: string;
   title: string;
+  byline?: string;
   introText: string;
   linkUrl: string;
   defconSrc: string | null;

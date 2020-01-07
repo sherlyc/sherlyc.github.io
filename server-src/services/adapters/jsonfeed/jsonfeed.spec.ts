@@ -51,6 +51,7 @@ describe("json feed service", () => {
       path: "/link",
       title: "Article Title",
       alt_headline: "Alt headline",
+      byline: "Jane Doe",
       isHeadlineOverrideApplied: true,
       datetime_iso8601: "20190116T154002+1300",
       alt_intro: "Hello",

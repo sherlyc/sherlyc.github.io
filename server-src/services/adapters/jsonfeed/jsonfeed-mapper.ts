@@ -35,6 +35,7 @@ export function mapArticleAsset(item: IJsonFeedArticle): IRawArticle {
       : item.title,
     title: item.title,
     introText: item.alt_intro,
+    byline: item.byline,
     linkUrl: item.path,
     imageSrc: getThumbnailSrc(item),
     imageSrcSet: getThumbnailSrcSet(item),

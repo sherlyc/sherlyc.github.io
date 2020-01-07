@@ -63,6 +63,7 @@ describe("JsonFeed Mapper", () => {
     indexHeadline: article.alt_headline,
     title: article.title,
     introText: article.alt_intro,
+    byline: article.byline,
     linkUrl: article.path,
     defconSrc: null,
     imageSrc: null,
