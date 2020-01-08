@@ -416,15 +416,30 @@ export default async (params: IParams): Promise<IPage> => {
               }
             },
             {
-              type: HandlerInputType.ArticleSection,
-              displayName: "Homes to Love",
-              displayNameColor: "amaranth",
-              linkUrl: "/" + Section.HomesToLove,
+              type: HandlerInputType.Feature,
+              name: FeatureName.ModuleLayout,
               content: {
-                type: HandlerInputType.ArticleList,
-                sourceId: Strap.HomesToLove,
+                type: HandlerInputType.SixImage,
+                displayName: "Homes to Love",
+                displayNameColor: "amaranth",
                 strapName: "Homes to Love",
-                totalBasicArticlesUnit: 2
+                sourceId: Strap.HomesToLove
+              }
+            },
+            {
+              type: HandlerInputType.Feature,
+              name: FeatureName.StrapLayout,
+              fallback: {
+                type: HandlerInputType.ArticleSection,
+                displayName: "Homes to Love",
+                displayNameColor: "amaranth",
+                linkUrl: "/" + Section.HomesToLove,
+                content: {
+                  type: HandlerInputType.ArticleList,
+                  sourceId: Strap.HomesToLove,
+                  strapName: "Homes to Love",
+                  totalBasicArticlesUnit: 2
+                }
               }
             },
             {

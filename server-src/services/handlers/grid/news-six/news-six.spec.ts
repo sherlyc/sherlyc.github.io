@@ -52,7 +52,7 @@ describe("News six handler", () => {
 
     expect.assertions(2);
     try {
-      console.log(await newsSixHandler(handlerRunnerMock, input, params));
+      await newsSixHandler(handlerRunnerMock, input, params);
     } catch (error) {
       expect(logger.error).toHaveBeenCalledWith(
         params.apiRequestId,

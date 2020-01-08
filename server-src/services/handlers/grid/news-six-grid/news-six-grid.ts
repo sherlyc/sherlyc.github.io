@@ -8,24 +8,10 @@ import {
 } from "../../__types__/INewsSixGridHandlerInput";
 import {
   Border,
-  IGridBlock,
   IGridBlocks,
   IGridContainer
 } from "../../../../../common/__types__/IGridContainer";
-
-const gridBlock = (
-  rowStart: number,
-  columnStart: number,
-  rowSpan: number,
-  columnSpan: number,
-  border: Border[]
-): IGridBlock => ({
-  rowStart,
-  rowSpan,
-  columnStart,
-  columnSpan,
-  border
-});
+import { gridBlock } from "../../../adapters/grid/grid-block";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,

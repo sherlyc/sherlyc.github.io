@@ -17,6 +17,8 @@ import Feature from "./feature-handler/feature-handler";
 import Recommendations from "./recommendations/recommendations";
 import NewsSix from "./grid/news-six/news-six";
 import NewsSixGrid from "./grid/news-six-grid/news-six-grid";
+import SixImage from "./grid/six-image/six-image";
+import SixImageGrid from "./grid/six-image-grid/six-image-grid";
 import { handlerRunnerFunction } from "./runner";
 import { IParams } from "../__types__/IParams";
 import { HandlerInputType } from "./__types__/HandlerInputType";
@@ -45,7 +47,9 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   Feature,
   Recommendations,
   NewsSix,
-  NewsSixGrid
+  NewsSixGrid,
+  SixImage,
+  SixImageGrid
 };
 
 export default handlerRegistry;
