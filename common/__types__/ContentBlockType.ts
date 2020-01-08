@@ -22,5 +22,6 @@ export enum ContentBlockType {
   Recommendations = "Recommendations",
   GridContainer = "GridContainer",
   ResponsiveBigImageArticle = "ResponsiveBigImageArticle",
-  ModuleTitle = "ModuleTitle"
+  ModuleTitle = "ModuleTitle",
+  ListContainer = "ListContainer"
 }
