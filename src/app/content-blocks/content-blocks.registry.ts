@@ -24,7 +24,6 @@ import { RecommendationsComponent } from "./recommendations/recommendations.comp
 import { GridContainerComponent } from "./grid-container/grid-container.component";
 import { ResponsiveBigImageArticleComponent } from "./responsive-big-image-article/responsive-big-image-article.component";
 import { ModuleTitleComponent } from "./module-title/module-title.component";
-import { ListContainerComponent } from "./list-container/list-container.component";
 
 export const contentBlockComponents = [
   GrayDefconArticleUnitComponent,
@@ -50,8 +49,7 @@ export const contentBlockComponents = [
   RecommendationsComponent,
   GridContainerComponent,
   ResponsiveBigImageArticleComponent,
-  ModuleTitleComponent,
-  ListContainerComponent
+  ModuleTitleComponent
 ];
 
 const registry: {
@@ -80,8 +78,7 @@ const registry: {
   RecommendationsComponent,
   GridContainerComponent,
   ResponsiveBigImageArticleComponent,
-  ModuleTitleComponent,
-  ListContainerComponent
+  ModuleTitleComponent
 };
 
 export default registry;

@@ -22,7 +22,6 @@ import { IRecommendations } from "./IRecommendations";
 import { IGridContainer } from "./IGridContainer";
 import { IResponsiveBigImageArticleUnit } from "./IResponsiveBigImageArticleUnit";
 import { IModuleTitle } from "./IModuleTitle";
-import { IListContainer } from "./IListContainer";
 
 export type IContentBlock =
   | IDefconArticleUnit
@@ -48,5 +47,4 @@ export type IContentBlock =
   | IRecommendations
   | IGridContainer
   | IResponsiveBigImageArticleUnit
-  | IModuleTitle
-  | IListContainer;
+  | IModuleTitle;
