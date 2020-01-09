@@ -21,6 +21,7 @@ import SixImage from "./grid/six-image/six-image";
 import SixImageGrid from "./grid/six-image-grid/six-image-grid";
 import ListGrid from "./grid/list-grid/list-grid";
 import LargeLeadSix from "./grid/large-lead-six/large-lead-six";
+import LargeLeadSixGrid from "./grid/large-lead-six-grid/large-lead-six-grid";
 import { handlerRunnerFunction } from "./runner";
 import { IParams } from "../__types__/IParams";
 import { HandlerInputType } from "./__types__/HandlerInputType";
@@ -53,7 +54,8 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   SixImage,
   SixImageGrid,
   ListGrid,
-  LargeLeadSix
+  LargeLeadSix,
+  LargeLeadSixGrid
 };
 
 export default handlerRegistry;
