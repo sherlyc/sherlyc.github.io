@@ -111,7 +111,7 @@ export default async (params: IParams): Promise<IPage> => {
               name: FeatureName.ModuleLayout,
               content: {
                 type: HandlerInputType.NewsSix,
-                displayName: "National",
+                displayName: "national",
                 displayNameColor: "darkblue",
                 strapName: "National",
                 sourceId: Strap.National
@@ -233,7 +233,7 @@ export default async (params: IParams): Promise<IPage> => {
               name: FeatureName.ModuleLayout,
               content: {
                 type: HandlerInputType.LargeLeadSix,
-                displayName: "Property",
+                displayName: "property",
                 displayNameColor: "royalblue",
                 strapName: "Property",
                 sourceId: Strap.Property
@@ -435,7 +435,7 @@ export default async (params: IParams): Promise<IPage> => {
               name: FeatureName.ModuleLayout,
               content: {
                 type: HandlerInputType.SixImage,
-                displayName: "Homes to Love",
+                displayName: "homes to love",
                 displayNameColor: "amaranth",
                 strapName: "Homes to Love",
                 sourceId: Strap.HomesToLove
