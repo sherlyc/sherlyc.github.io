@@ -5,10 +5,40 @@ import { IListGridHandlerInput } from "../../__types__/IListGridHandlerInput";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import {
   Border,
-  IGridBlock,
   IGridConfig,
   IGridContainer
 } from "../../../../../common/__types__/IGridContainer";
+import { gridBlock } from "../../../adapters/grid/grid-block";
+
+const createGridPosition = (index: number) => {
+  return `content${index}`;
+};
+
+const generateGridBlocks = (content: IContentBlock[]) => {
+  return content.reduce((final, current, index) => {
+    if (index === content.length - 1) {
+      return {
+        ...final,
+        [createGridPosition(index)]: gridBlock(index + 1, 1, 1, 1, [])
+      };
+    }
+    return {
+      ...final,
+      [createGridPosition(index)]: gridBlock(index + 1, 1, 1, 1, [
+        Border.bottom
+      ])
+    };
+  }, {});
+};
+
+const generateGridItems = (content: IContentBlock[]) => {
+  return content.reduce((final, current, index) => {
+    return {
+      ...final,
+      [createGridPosition(index)]: [current]
+    };
+  }, {});
+};
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -20,27 +50,12 @@ export default async function(
     gridTemplateRows: "auto",
     gridColumnGap: "0px",
     gridRowGap: "10px",
-    gridBlocks: {
-      content0: {
-        columnSpan: 1,
-        columnStart: 1,
-        rowSpan: 1,
-        rowStart: 2,
-        border: [Border.bottom]
-      },
-      content1: {
-        columnSpan: 1,
-        columnStart: 1,
-        rowSpan: 1,
-        rowStart: 1,
-        border: []
-      }
-    }
+    gridBlocks: generateGridBlocks(content)
   };
 
   const grid: IGridContainer = {
     type: ContentBlockType.GridContainer,
-    items: content,
+    items: generateGridItems(content),
     mobile: layout,
     tablet: layout,
     desktop: layout

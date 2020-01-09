@@ -3,5 +3,5 @@ import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 
 export interface IListGridHandlerInput {
   type: HandlerInputType.ListGrid;
-  content: { [key: string]: IContentBlock[] };
+  content: IContentBlock[];
 }

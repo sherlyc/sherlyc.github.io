@@ -17,10 +17,7 @@ describe("List Grid", () => {
   it("should create grid container with content passed in", async () => {
     const handlerInput: IListGridHandlerInput = {
       type: HandlerInputType.ListGrid,
-      content: {
-        content0: [contentBlock],
-        content1: [contentBlock]
-      }
+      content: [contentBlock]
     };
 
     const layout = {
@@ -30,17 +27,10 @@ describe("List Grid", () => {
       gridRowGap: "10px",
       gridBlocks: {
         content0: {
-          columnSpan: 1,
           columnStart: 1,
-          rowSpan: 1,
-          rowStart: 2,
-          border: [Border.bottom]
-        },
-        content1: {
           columnSpan: 1,
-          columnStart: 1,
-          rowSpan: 1,
           rowStart: 1,
+          rowSpan: 1,
           border: []
         }
       }
@@ -49,8 +39,7 @@ describe("List Grid", () => {
     const expected: IGridContainer = {
       type: ContentBlockType.GridContainer,
       items: {
-        content0: [contentBlock],
-        content1: [contentBlock]
+        content0: [contentBlock]
       },
       mobile: layout,
       tablet: layout,
