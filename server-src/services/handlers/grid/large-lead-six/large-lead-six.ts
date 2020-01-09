@@ -25,12 +25,18 @@ export default async function(
 ): Promise<IContentBlock[]> {
   const articles = await getRawArticles(sourceId, 6, params);
 
+  const leftContent = bigImageArticleUnit(
+    articles.shift() as IRawArticle,
+    strapName
+  );
+  const listGridContent = articles.map((article) =>
+    basicArticleTitleUnit(article, strapName)
+  );
+
   const listGrid = await handlerRunner(
     {
       type: HandlerInputType.ListGrid,
-      content: articles
-        .slice(1)
-        .map((article) => basicArticleTitleUnit(article, strapName))
+      content: listGridContent
     },
     params
   );
@@ -38,9 +44,7 @@ export default async function(
   const largeLeadSixGridHandlerInput: ILargeLeadSixGridHandlerInput = {
     type: HandlerInputType.LargeLeadSixGrid,
     content: {
-      [LargeLeadSixGridPositions.Left]: [
-        bigImageArticleUnit(articles.shift() as IRawArticle, strapName)
-      ],
+      [LargeLeadSixGridPositions.Left]: [leftContent],
       [LargeLeadSixGridPositions.Middle]: listGrid,
       [LargeLeadSixGridPositions.Right]: [basicAdUnit(strapName)]
     }

@@ -128,8 +128,20 @@ describe("Large lead six", () => {
       strapName,
       sourceId
     };
+    await largeLeadSixHandler(handlerRunnerMock, input, params);
 
-    const expected: ILargeLeadSixGridHandlerInput = {
+    const listGridHandlerInput = {
+      type: HandlerInputType.ListGrid,
+      content: [
+        articleTwoAsTitle,
+        articleTwoAsTitle,
+        articleTwoAsTitle,
+        articleTwoAsTitle,
+        articleTwoAsTitle
+      ]
+    };
+
+    const largeLeadSixGridHandlerInput: ILargeLeadSixGridHandlerInput = {
       type: HandlerInputType.LargeLeadSixGrid,
       content: {
         [LargeLeadSixGridPositions.Left]: [articleOneAsBigImage],
@@ -137,22 +149,13 @@ describe("Large lead six", () => {
         [LargeLeadSixGridPositions.Right]: [basicAdUnit]
       }
     };
-
-    await largeLeadSixHandler(handlerRunnerMock, input, params);
-
     expect(handlerRunnerMock).toHaveBeenCalledWith(
-      {
-        type: HandlerInputType.ListGrid,
-        content: [
-          articleTwoAsTitle,
-          articleTwoAsTitle,
-          articleTwoAsTitle,
-          articleTwoAsTitle,
-          articleTwoAsTitle
-        ]
-      },
+      listGridHandlerInput,
       params
     );
-    // expect(handlerRunnerMock).toHaveBeenCalledWith(expected);
+    expect(handlerRunnerMock).toHaveBeenCalledWith(
+      largeLeadSixGridHandlerInput,
+      params
+    );
   });
 });
