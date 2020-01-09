@@ -10,32 +10,28 @@ import {
 } from "../../../../../common/__types__/IGridContainer";
 import { gridBlock } from "../../../adapters/grid/grid-block";
 
-const createGridPosition = (index: number) => {
+const gridPositionName = (index: number) => {
   return `content${index}`;
 };
 
-const generateGridBlocks = (content: IContentBlock[]) => {
-  return content.reduce((final, current, index) => {
-    if (index === content.length - 1) {
-      return {
-        ...final,
-        [createGridPosition(index)]: gridBlock(index + 1, 1, 1, 1, [])
-      };
-    }
-    return {
-      ...final,
-      [createGridPosition(index)]: gridBlock(index + 1, 1, 1, 1, [
-        Border.bottom
-      ])
-    };
-  }, {});
-};
+const generateGridBlocks = (content: IContentBlock[]) =>
+  content
+    .map((item, index) => ({
+      [gridPositionName(index)]: gridBlock(
+        index + 1,
+        1,
+        1,
+        1,
+        index === content.length - 1 ? [] : [Border.bottom]
+      )
+    }))
+    .reduce((final, item) => ({ ...final, ...item }), {});
 
 const generateGridItems = (content: IContentBlock[]) => {
   return content.reduce((final, current, index) => {
     return {
       ...final,
-      [createGridPosition(index)]: [current]
+      [gridPositionName(index)]: [current]
     };
   }, {});
 };

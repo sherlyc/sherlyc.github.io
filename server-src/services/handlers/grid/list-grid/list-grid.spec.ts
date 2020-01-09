@@ -10,14 +10,15 @@ import listGridHandler from "./list-grid";
 import { IParams } from "../../../__types__/IParams";
 
 describe("List Grid", () => {
-  const contentBlock = {} as IContentBlock;
+  const contentBlockOne = { id: "1" } as IContentBlock;
+  const contentBlockTwo = { id: "2" } as IContentBlock;
   const handlerRunner = jest.fn();
   const params: IParams = { apiRequestId: "123" };
 
-  it("should create grid container with content passed in", async () => {
+  it("should create grid container with one content passed in", async () => {
     const handlerInput: IListGridHandlerInput = {
       type: HandlerInputType.ListGrid,
-      content: [contentBlock]
+      content: [contentBlockOne]
     };
 
     const layout = {
@@ -39,7 +40,60 @@ describe("List Grid", () => {
     const expected: IGridContainer = {
       type: ContentBlockType.GridContainer,
       items: {
-        content0: [contentBlock]
+        content0: [contentBlockOne]
+      },
+      mobile: layout,
+      tablet: layout,
+      desktop: layout
+    };
+
+    const result = await listGridHandler(handlerRunner, handlerInput, params);
+
+    expect(result).toEqual([expected]);
+  });
+
+  it("should create grid container with multiple contents passed in", async () => {
+    const handlerInput: IListGridHandlerInput = {
+      type: HandlerInputType.ListGrid,
+      content: [contentBlockOne, contentBlockTwo, contentBlockOne]
+    };
+
+    const layout = {
+      gridTemplateColumns: "1fr",
+      gridTemplateRows: "auto",
+      gridColumnGap: "0px",
+      gridRowGap: "10px",
+      gridBlocks: {
+        content0: {
+          columnStart: 1,
+          columnSpan: 1,
+          rowStart: 1,
+          rowSpan: 1,
+          border: [Border.bottom]
+        },
+        content1: {
+          columnStart: 1,
+          columnSpan: 1,
+          rowStart: 2,
+          rowSpan: 1,
+          border: [Border.bottom]
+        },
+        content2: {
+          columnStart: 1,
+          columnSpan: 1,
+          rowStart: 3,
+          rowSpan: 1,
+          border: []
+        }
+      }
+    };
+
+    const expected: IGridContainer = {
+      type: ContentBlockType.GridContainer,
+      items: {
+        content0: [contentBlockOne],
+        content1: [contentBlockTwo],
+        content2: [contentBlockOne]
       },
       mobile: layout,
       tablet: layout,
