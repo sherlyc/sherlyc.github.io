@@ -168,7 +168,7 @@ describe("Large lead six", () => {
     );
   });
 
-  it("should log and throw error for insufficient articles", async () => {
+  it("should throw error with custom message for insufficient articles", async () => {
     (getRawArticles as jest.Mock).mockResolvedValue([articleOne]);
     const input: ILargeLeadSixHandlerInput = {
       type: HandlerInputType.LargeLeadSix,
