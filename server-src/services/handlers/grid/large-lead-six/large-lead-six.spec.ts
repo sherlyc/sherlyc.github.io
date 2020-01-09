@@ -17,6 +17,7 @@ import {
   IGridContainer
 } from "../../../../../common/__types__/IGridContainer";
 import { IBasicArticleTitleUnit } from "../../../../../common/__types__/IBasicArticleTitleUnit";
+import { IModuleTitle } from "../../../../../common/__types__/IModuleTitle";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 
@@ -25,6 +26,9 @@ describe("Large lead six", () => {
   const params: IParams = { apiRequestId: "123" };
   const sourceId = Strap.NowToLove;
   const strapName = "fakeStrapName";
+  const displayName = "displayName";
+  const displayNameColor = "displayNameColor";
+
   const articleOne: IRawArticle = {
     id: "1",
     indexHeadline: "Headline 1",
@@ -52,6 +56,11 @@ describe("Large lead six", () => {
     strapImageSrcSet: "strap2.jpg 2w",
     lastPublishedTime: 2,
     headlineFlags: []
+  };
+  const moduleTitle: IModuleTitle = {
+    type: ContentBlockType.ModuleTitle,
+    displayName,
+    displayNameColor
   };
   const articleOneAsBigImage: IBigImageArticleUnit = {
     type: ContentBlockType.BigImageArticleUnit,
@@ -91,8 +100,8 @@ describe("Large lead six", () => {
     );
     const input: ILargeLeadSixHandlerInput = {
       type: HandlerInputType.LargeLeadSix,
-      displayName: "FakeName",
-      displayNameColor: "FakeColor",
+      displayName,
+      displayNameColor,
       strapName,
       sourceId
     };
@@ -122,8 +131,8 @@ describe("Large lead six", () => {
 
     const input: ILargeLeadSixHandlerInput = {
       type: HandlerInputType.LargeLeadSix,
-      displayName: "FakeName",
-      displayNameColor: "FakeColor",
+      displayName,
+      displayNameColor,
       strapName,
       sourceId
     };
@@ -143,6 +152,7 @@ describe("Large lead six", () => {
     const largeLeadSixGridHandlerInput: ILargeLeadSixGridHandlerInput = {
       type: HandlerInputType.LargeLeadSixGrid,
       content: {
+        [LargeLeadSixGridPositions.ModuleTitle]: [moduleTitle],
         [LargeLeadSixGridPositions.Left]: [articleOneAsBigImage],
         [LargeLeadSixGridPositions.Middle]: [listGridResult],
         [LargeLeadSixGridPositions.Right]: [basicAdUnit]
@@ -162,8 +172,8 @@ describe("Large lead six", () => {
     (getRawArticles as jest.Mock).mockResolvedValue([articleOne]);
     const input: ILargeLeadSixHandlerInput = {
       type: HandlerInputType.LargeLeadSix,
-      displayName: "FakeName",
-      displayNameColor: "FakeColor",
+      displayName,
+      displayNameColor,
       strapName,
       sourceId
     };

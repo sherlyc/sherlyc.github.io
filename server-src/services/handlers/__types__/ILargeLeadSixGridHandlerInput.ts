@@ -7,6 +7,7 @@ export interface ILargeLeadSixGridHandlerInput {
 }
 
 export enum LargeLeadSixGridPositions {
+  ModuleTitle = "ModuleTitle",
   Left = "Left",
   Middle = "Middle",
   Right = "Right"

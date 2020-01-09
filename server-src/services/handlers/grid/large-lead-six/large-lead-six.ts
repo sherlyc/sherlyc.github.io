@@ -12,6 +12,7 @@ import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
 import { ILargeLeadSixHandlerInput } from "../../__types__/ILargeLeadSixHandlerInput";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -42,6 +43,13 @@ export default async function(
   const largeLeadSixGridHandlerInput: ILargeLeadSixGridHandlerInput = {
     type: HandlerInputType.LargeLeadSixGrid,
     content: {
+      [LargeLeadSixGridPositions.ModuleTitle]: [
+        {
+          type: ContentBlockType.ModuleTitle,
+          displayName,
+          displayNameColor
+        }
+      ],
       [LargeLeadSixGridPositions.Left]: [leftContent],
       [LargeLeadSixGridPositions.Middle]: await handlerRunner(
         {
