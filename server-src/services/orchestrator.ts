@@ -212,16 +212,31 @@ export default async (params: IParams): Promise<IPage> => {
               url: "https://www.neighbourly.co.nz/stuff/strap"
             },
             {
-              type: HandlerInputType.ArticleSection,
-              displayName: "Property",
-              displayNameColor: "royalblue",
-              linkUrl: "/" + Section.Property,
+              type: HandlerInputType.Feature,
+              name: FeatureName.StrapLayout,
+              fallback: {
+                type: HandlerInputType.ArticleSection,
+                displayName: "Property",
+                displayNameColor: "royalblue",
+                linkUrl: "/" + Section.Property,
+                content: {
+                  type: HandlerInputType.ArticleList,
+                  sourceId: Strap.Property,
+                  strapName: "Property",
+                  totalBasicArticlesUnit: 2,
+                  totalBasicArticleTitleUnit: 3
+                }
+              }
+            },
+            {
+              type: HandlerInputType.Feature,
+              name: FeatureName.ModuleLayout,
               content: {
-                type: HandlerInputType.ArticleList,
-                sourceId: Strap.Property,
+                type: HandlerInputType.LargeLeadSix,
+                displayName: "Property",
+                displayNameColor: "royalblue",
                 strapName: "Property",
-                totalBasicArticlesUnit: 2,
-                totalBasicArticleTitleUnit: 3
+                sourceId: Strap.Property
               }
             },
             {

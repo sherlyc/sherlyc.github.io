@@ -21,7 +21,7 @@ export default async function(
     gridTemplateColumns: "1fr 1fr 300px",
     gridTemplateRows: "auto auto",
     gridColumnGap: "20px",
-    gridRowGap: "0px",
+    gridRowGap: "20px",
     gridBlocks: {
       [LargeLeadSixGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 3, []),
       [LargeLeadSixGridPositions.Left]: gridBlock(2, 1, 1, 1, [Border.right]),
@@ -32,9 +32,9 @@ export default async function(
 
   const mobile: IGridConfig = {
     gridTemplateColumns: "1fr",
-    gridTemplateRows: "auto",
+    gridTemplateRows: "auto auto auto auto",
     gridColumnGap: "0px",
-    gridRowGap: "10px",
+    gridRowGap: "20px",
     gridBlocks: {
       [LargeLeadSixGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 1, []),
       [LargeLeadSixGridPositions.Left]: gridBlock(2, 1, 1, 1, [Border.bottom]),

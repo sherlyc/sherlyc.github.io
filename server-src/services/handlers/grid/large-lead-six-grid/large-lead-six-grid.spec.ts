@@ -34,7 +34,7 @@ describe("Large Lead Six Grid", () => {
       gridTemplateColumns: "1fr 1fr 300px",
       gridTemplateRows: "auto auto",
       gridColumnGap: "20px",
-      gridRowGap: "0px",
+      gridRowGap: "20px",
       gridBlocks: {
         [LargeLeadSixGridPositions.ModuleTitle]: {
           columnStart: 1,
@@ -69,9 +69,9 @@ describe("Large Lead Six Grid", () => {
 
     const mobile: IGridConfig = {
       gridTemplateColumns: "1fr",
-      gridTemplateRows: "auto",
+      gridTemplateRows: "auto auto auto auto",
       gridColumnGap: "0px",
-      gridRowGap: "10px",
+      gridRowGap: "20px",
       gridBlocks: {
         [LargeLeadSixGridPositions.ModuleTitle]: {
           columnStart: 1,
