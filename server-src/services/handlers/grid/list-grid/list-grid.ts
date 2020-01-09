@@ -10,13 +10,12 @@ import {
 } from "../../../../../common/__types__/IGridContainer";
 import { gridBlock } from "../../../adapters/grid/grid-block";
 
-const gridPositionName = (index: number) => {
-  return `content${index}`;
-};
+const gridPositionName = (index: number) => `content${index}`;
 
 const generateGridBlocks = (content: IContentBlock[]) =>
-  content
-    .map((item, index) => ({
+  content.reduce(
+    (final, item, index) => ({
+      ...final,
       [gridPositionName(index)]: gridBlock(
         index + 1,
         1,
@@ -24,17 +23,18 @@ const generateGridBlocks = (content: IContentBlock[]) =>
         1,
         index === content.length - 1 ? [] : [Border.bottom]
       )
-    }))
-    .reduce((final, item) => ({ ...final, ...item }), {});
+    }),
+    {}
+  );
 
-const generateGridItems = (content: IContentBlock[]) => {
-  return content.reduce((final, current, index) => {
-    return {
+const generateGridItems = (content: IContentBlock[]) =>
+  content.reduce(
+    (final, current, index) => ({
       ...final,
       [gridPositionName(index)]: [current]
-    };
-  }, {});
-};
+    }),
+    {}
+  );
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -49,13 +49,13 @@ export default async function(
     gridBlocks: generateGridBlocks(content)
   };
 
-  const grid: IGridContainer = {
-    type: ContentBlockType.GridContainer,
-    items: generateGridItems(content),
-    mobile: layout,
-    tablet: layout,
-    desktop: layout
-  };
-
-  return [grid];
+  return [
+    {
+      type: ContentBlockType.GridContainer,
+      items: generateGridItems(content),
+      mobile: layout,
+      tablet: layout,
+      desktop: layout
+    }
+  ];
 }
