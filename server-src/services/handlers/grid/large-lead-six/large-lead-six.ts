@@ -23,7 +23,13 @@ export default async function(
   }: ILargeLeadSixHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const articles = await getRawArticles(sourceId, 6, params);
+  const totalArticles = 6;
+  const articles = await getRawArticles(sourceId, totalArticles, params);
+
+  if (articles.length < totalArticles) {
+    const errorMsg = `Large Lead Six handler error: Insufficient number of articles: ${articles.length}. Strap name: ${sourceId}|${strapName}`;
+    throw new Error(errorMsg);
+  }
 
   const leftContent = bigImageArticleUnit(
     articles.shift() as IRawArticle,
@@ -50,5 +56,5 @@ export default async function(
     }
   };
 
-  return handlerRunner(largeLeadSixGridHandlerInput, params);
+  return await handlerRunner(largeLeadSixGridHandlerInput, params);
 }

@@ -1,7 +1,6 @@
 import { IParams } from "../../../__types__/IParams";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { Strap } from "../../../strap";
-import { ISixImageHandlerInput } from "../../__types__/ISixImageHandlerInput";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import largeLeadSixHandler from "../large-lead-six/large-lead-six";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
@@ -157,5 +156,25 @@ describe("Large lead six", () => {
       largeLeadSixGridHandlerInput,
       params
     );
+  });
+
+  it("should log and throw error for insufficient articles", async () => {
+    (getRawArticles as jest.Mock).mockResolvedValue([articleOne]);
+    const input: ILargeLeadSixHandlerInput = {
+      type: HandlerInputType.LargeLeadSix,
+      displayName: "FakeName",
+      displayNameColor: "FakeColor",
+      strapName,
+      sourceId
+    };
+
+    expect.assertions(1);
+    try {
+      await largeLeadSixHandler(handlerRunnerMock, input, params);
+    } catch (error) {
+      expect(error.message).toContain(
+        `Large Lead Six handler error: Insufficient number of articles: 1. Strap name: ${sourceId}|${strapName}`
+      );
+    }
   });
 });
