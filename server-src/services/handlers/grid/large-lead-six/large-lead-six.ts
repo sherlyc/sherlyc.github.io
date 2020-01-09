@@ -35,23 +35,21 @@ export default async function(
     articles.shift() as IRawArticle,
     strapName
   );
-  const listGridContent = articles.map((article) =>
+  const middleContent = articles.map((article) =>
     basicArticleTitleUnit(article, strapName)
-  );
-
-  const listGrid = await handlerRunner(
-    {
-      type: HandlerInputType.ListGrid,
-      content: listGridContent
-    },
-    params
   );
 
   const largeLeadSixGridHandlerInput: ILargeLeadSixGridHandlerInput = {
     type: HandlerInputType.LargeLeadSixGrid,
     content: {
       [LargeLeadSixGridPositions.Left]: [leftContent],
-      [LargeLeadSixGridPositions.Middle]: listGrid,
+      [LargeLeadSixGridPositions.Middle]: await handlerRunner(
+        {
+          type: HandlerInputType.ListGrid,
+          content: middleContent
+        },
+        params
+      ),
       [LargeLeadSixGridPositions.Right]: [basicAdUnit(strapName)]
     }
   };
