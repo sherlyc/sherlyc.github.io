@@ -295,4 +295,104 @@ describe("GridContainerComponent", () => {
       })
     ).toEqual(expected);
   });
+
+  describe("layout fallback", () => {
+    it("should assign mobile layout to tablet layout if it is not specified", () => {
+      const gridContainerInput: IGridContainer = {
+        ...containerInput,
+        mobile: {
+          gridTemplateColumns: "1fr",
+          gridTemplateRows: "auto",
+          gridColumnGap: "20px",
+          gridRowGap: "10px",
+          gridBlocks: {
+            "first-block": {
+              rowStart: 1,
+              rowSpan: 1,
+              columnStart: 1,
+              columnSpan: 1,
+              border: []
+            }
+          }
+        },
+        tablet: undefined
+      };
+      containerInput.tablet = undefined;
+      component.input = gridContainerInput;
+
+      fixture.detectChanges();
+
+      const expectedLayoutConfig = {
+        gridTemplateColumns: "1fr",
+        gridTemplateRows: "auto",
+        gridGap: "0",
+        msGridColumns: "1fr",
+        msGridRows: "auto"
+      };
+      expect(fixture.componentInstance.getGridCss()).toEqual({
+        display: "grid",
+        "@media all": {
+          display: "-ms-grid"
+        },
+        "@media only screen and (max-width: 63.999em)": expectedLayoutConfig,
+        "@media only screen and (min-width: 64em) and (max-width: 74.999em)": expectedLayoutConfig,
+        "@media only screen and (min-width: 75em)": {
+          msGridColumns: "1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px",
+          gridTemplateColumns: "1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px",
+          msGridRows: "auto",
+          gridTemplateRows: "auto",
+          gridGap: "0"
+        }
+      });
+    });
+
+    it("should assign mobile layout to tablet layout if it is not specified", () => {
+      const gridContainerInput: IGridContainer = {
+        ...containerInput,
+        mobile: {
+          gridTemplateColumns: "1fr",
+          gridTemplateRows: "auto",
+          gridColumnGap: "20px",
+          gridRowGap: "10px",
+          gridBlocks: {
+            "first-block": {
+              rowStart: 1,
+              rowSpan: 1,
+              columnStart: 1,
+              columnSpan: 1,
+              border: []
+            }
+          }
+        },
+        tablet: undefined
+      };
+      containerInput.tablet = undefined;
+      component.input = gridContainerInput;
+
+      fixture.detectChanges();
+
+      const expectedLayoutConfig = {
+        gridTemplateColumns: "1fr",
+        gridTemplateRows: "auto",
+        gridGap: "0",
+        msGridColumns: "1fr",
+        msGridRows: "auto"
+      };
+      expect(fixture.componentInstance.getGridCss()).toEqual({
+        display: "grid",
+        "@media all": {
+          display: "-ms-grid"
+        },
+        "@media only screen and (max-width: 63.999em)": expectedLayoutConfig,
+        "@media only screen and (min-width: 64em) and (max-width: 74.999em)": expectedLayoutConfig,
+        "@media only screen and (min-width: 75em)": {
+          msGridColumns: "1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px",
+          gridTemplateColumns: "1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px",
+          msGridRows: "auto",
+          gridTemplateRows: "auto",
+          gridGap: "0"
+        }
+      });
+    });
+  });
 });
