@@ -297,7 +297,7 @@ describe("GridContainerComponent", () => {
   });
 
   describe("layout fallback", () => {
-    it("should assign mobile layout to tablet layout if it is not specified", () => {
+    it("should assign mobile to tablet layout if it is not specified", () => {
       const gridContainerInput: IGridContainer = {
         ...containerInput,
         mobile: {
@@ -346,7 +346,7 @@ describe("GridContainerComponent", () => {
       });
     });
 
-    it("should assign mobile layout to tablet layout if it is not specified", () => {
+    it("should assign tablet to desktop layout if it is not specified", () => {
       const gridContainerInput: IGridContainer = {
         ...containerInput,
         mobile: {
@@ -364,7 +364,22 @@ describe("GridContainerComponent", () => {
             }
           }
         },
-        tablet: undefined
+        tablet: {
+          gridTemplateColumns: "1fr",
+          gridTemplateRows: "auto",
+          gridColumnGap: "20px",
+          gridRowGap: "10px",
+          gridBlocks: {
+            "first-block": {
+              rowStart: 1,
+              rowSpan: 1,
+              columnStart: 1,
+              columnSpan: 1,
+              border: []
+            }
+          }
+        },
+        desktop: undefined
       };
       containerInput.tablet = undefined;
       component.input = gridContainerInput;
@@ -385,13 +400,7 @@ describe("GridContainerComponent", () => {
         },
         "@media only screen and (max-width: 63.999em)": expectedLayoutConfig,
         "@media only screen and (min-width: 64em) and (max-width: 74.999em)": expectedLayoutConfig,
-        "@media only screen and (min-width: 75em)": {
-          msGridColumns: "1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px",
-          gridTemplateColumns: "1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px",
-          msGridRows: "auto",
-          gridTemplateRows: "auto",
-          gridGap: "0"
-        }
+        "@media only screen and (min-width: 75em)": expectedLayoutConfig
       });
     });
   });

@@ -80,7 +80,7 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
   }
 
   private createBorderCells() {
-    const { mobile, tablet = mobile, desktop } = this.input;
+    const { mobile, tablet = mobile, desktop = tablet } = this.input;
 
     Object.keys(this.input.items).forEach((itemKey) => {
       const allBordersForCell = Object.keys(
@@ -103,7 +103,7 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
   }
 
   getBorderCellCss(borderCell: { name: string; position: Border }) {
-    const { mobile, tablet = mobile, desktop } = this.input;
+    const { mobile, tablet = mobile, desktop = tablet } = this.input;
     return {
       [media.mobile]: GridContainerComponent.getBorderCellDeviceCss(
         calculateCellGap(mobile.gridBlocks[borderCell.name]),
@@ -121,7 +121,7 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
   }
 
   getGridCss() {
-    const { mobile, tablet = mobile, desktop } = this.input;
+    const { mobile, tablet = mobile, desktop = tablet } = this.input;
     return {
       display: "grid",
       "@media all": {
@@ -134,7 +134,7 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
   }
 
   getCellCss(cellName: string) {
-    const { mobile, tablet = mobile, desktop } = this.input;
+    const { mobile, tablet = mobile, desktop = tablet } = this.input;
 
     const mobileGap = calculateCellGap(mobile.gridBlocks[cellName]);
     const tabletGap = calculateCellGap(tablet.gridBlocks[cellName]);

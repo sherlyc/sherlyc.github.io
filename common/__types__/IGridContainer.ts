@@ -44,5 +44,5 @@ export interface IGridContainer {
   items: { [key: string]: IContentBlock[] };
   mobile: IGridConfig;
   tablet?: IGridConfig;
-  desktop: IGridConfig;
+  desktop?: IGridConfig;
 }
