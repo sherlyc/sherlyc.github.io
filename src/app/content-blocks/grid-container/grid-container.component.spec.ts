@@ -365,6 +365,56 @@ describe("GridContainerComponent", () => {
           }
         },
         tablet: {
+          gridTemplateColumns: "1fr 1fr 1fr 1fr",
+          gridTemplateRows: "auto",
+          gridColumnGap: "20px",
+          gridRowGap: "10px",
+          gridBlocks: {
+            "first-block": {
+              rowStart: 1,
+              rowSpan: 2,
+              columnStart: 1,
+              columnSpan: 2,
+              border: [Border.bottom, Border.top, Border.right, Border.left]
+            }
+          }
+        },
+        desktop: undefined
+      };
+      containerInput.tablet = undefined;
+      component.input = gridContainerInput;
+
+      fixture.detectChanges();
+
+      const expectedMobile = {
+        gridTemplateColumns: "1fr",
+        gridTemplateRows: "auto",
+        gridGap: "0",
+        msGridColumns: "1fr",
+        msGridRows: "auto"
+      };
+      const expectedTablet = {
+        msGridColumns: "1fr 20px 1fr 20px 1fr 20px 1fr",
+        gridTemplateColumns: "1fr 20px 1fr 20px 1fr 20px 1fr",
+        msGridRows: "auto",
+        gridTemplateRows: "auto",
+        gridGap: "0"
+      };
+      expect(fixture.componentInstance.getGridCss()).toEqual({
+        display: "grid",
+        "@media all": {
+          display: "-ms-grid"
+        },
+        "@media only screen and (max-width: 63.999em)": expectedMobile,
+        "@media only screen and (min-width: 64em) and (max-width: 74.999em)": expectedTablet,
+        "@media only screen and (min-width: 75em)": expectedTablet
+      });
+    });
+
+    it("should assign mobile layout to tablet and desktop when both are undefined", () => {
+      const gridContainerInput: IGridContainer = {
+        ...containerInput,
+        mobile: {
           gridTemplateColumns: "1fr",
           gridTemplateRows: "auto",
           gridColumnGap: "20px",
@@ -379,6 +429,7 @@ describe("GridContainerComponent", () => {
             }
           }
         },
+        tablet: undefined,
         desktop: undefined
       };
       containerInput.tablet = undefined;
