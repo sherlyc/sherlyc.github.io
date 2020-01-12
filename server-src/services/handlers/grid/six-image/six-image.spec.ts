@@ -11,7 +11,6 @@ import {
 } from "../../__types__/ISixImageGridHandlerInput";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import wrappedLogger from "../../../utils/logger";
-import { IBigImageArticleUnit } from "../../../../../common/__types__/IBigImageArticleUnit";
 import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
 import { IImageLinkUnit } from "../../../../../common/__types__/IImageLinkUnit";
 

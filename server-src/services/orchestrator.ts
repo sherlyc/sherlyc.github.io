@@ -111,7 +111,7 @@ export default async (params: IParams): Promise<IPage> => {
               name: FeatureName.ModuleLayout,
               content: {
                 type: HandlerInputType.NewsSix,
-                displayName: "National",
+                displayName: "national",
                 displayNameColor: "darkblue",
                 strapName: "National",
                 sourceId: Strap.National
@@ -212,16 +212,31 @@ export default async (params: IParams): Promise<IPage> => {
               url: "https://www.neighbourly.co.nz/stuff/strap"
             },
             {
-              type: HandlerInputType.ArticleSection,
-              displayName: "Property",
-              displayNameColor: "royalblue",
-              linkUrl: "/" + Section.Property,
+              type: HandlerInputType.Feature,
+              name: FeatureName.StrapLayout,
+              fallback: {
+                type: HandlerInputType.ArticleSection,
+                displayName: "Property",
+                displayNameColor: "royalblue",
+                linkUrl: "/" + Section.Property,
+                content: {
+                  type: HandlerInputType.ArticleList,
+                  sourceId: Strap.Property,
+                  strapName: "Property",
+                  totalBasicArticlesUnit: 2,
+                  totalBasicArticleTitleUnit: 3
+                }
+              }
+            },
+            {
+              type: HandlerInputType.Feature,
+              name: FeatureName.ModuleLayout,
               content: {
-                type: HandlerInputType.ArticleList,
-                sourceId: Strap.Property,
+                type: HandlerInputType.LargeLeadSix,
+                displayName: "property",
+                displayNameColor: "royalblue",
                 strapName: "Property",
-                totalBasicArticlesUnit: 2,
-                totalBasicArticleTitleUnit: 3
+                sourceId: Strap.Property
               }
             },
             {
@@ -420,7 +435,7 @@ export default async (params: IParams): Promise<IPage> => {
               name: FeatureName.ModuleLayout,
               content: {
                 type: HandlerInputType.SixImage,
-                displayName: "Homes to Love",
+                displayName: "homes to love",
                 displayNameColor: "amaranth",
                 strapName: "Homes to Love",
                 sourceId: Strap.HomesToLove

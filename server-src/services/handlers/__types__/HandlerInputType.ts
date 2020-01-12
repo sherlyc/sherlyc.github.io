@@ -19,5 +19,7 @@ export enum HandlerInputType {
   NewsSixGrid = "NewsSixGrid",
   SixImage = "SixImage",
   SixImageGrid = "SixImageGrid",
+  LargeLeadSix = "LargeLeadSix",
+  LargeLeadSixGrid = "LargeLeadSixGrid",
   ListGrid = "ListGrid"
 }
