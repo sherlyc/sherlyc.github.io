@@ -297,145 +297,99 @@ describe("GridContainerComponent", () => {
   });
 
   describe("layout fallback", () => {
-    const gridBlock = {
-      rowStart: 1,
-      rowSpan: 1,
-      columnStart: 1,
-      columnSpan: 1,
-      border: []
+    const gridBlocks = {
+      "first-block": {
+        rowStart: 1,
+        rowSpan: 1,
+        columnStart: 1,
+        columnSpan: 1,
+        border: []
+      }
     };
 
     it("should assign mobile to tablet layout if it is not specified", () => {
-      const gridContainerInput: IGridContainer = {
-        ...containerInput,
-        mobile: {
-          gridTemplateColumns: "1fr",
-          gridTemplateRows: "auto",
-          gridColumnGap: "20px",
-          gridRowGap: "10px",
-          gridBlocks: { "first-block": gridBlock }
-        },
-        tablet: undefined,
-        desktop: {
-          gridTemplateColumns: "2fr",
-          gridTemplateRows: "auto",
-          gridColumnGap: "2px",
-          gridRowGap: "2px",
-          gridBlocks: { "first-block": gridBlock }
-        }
+      const mobileConfig = {
+        gridTemplateColumns: "1fr",
+        gridTemplateRows: "auto",
+        gridColumnGap: "20px",
+        gridRowGap: "10px",
+        gridBlocks
       };
-      containerInput.tablet = undefined;
-      component.input = gridContainerInput;
+      const desktopConfig = {
+        gridTemplateColumns: "2fr",
+        gridTemplateRows: "auto",
+        gridColumnGap: "2px",
+        gridRowGap: "2px",
+        gridBlocks
+      };
+      component.input = {
+        ...containerInput,
+        mobile: mobileConfig,
+        tablet: undefined,
+        desktop: desktopConfig
+      };
 
       fixture.detectChanges();
 
-      const expectedMobile = {
-        gridTemplateColumns: "1fr",
-        gridTemplateRows: "auto",
-        msGridColumns: "1fr",
-        msGridRows: "auto",
-        gridGap: "0"
-      };
-      const expectedDesktop = {
-        gridTemplateColumns: "2fr",
-        gridTemplateRows: "auto",
-        msGridColumns: "2fr",
-        msGridRows: "auto",
-        gridGap: "0"
-      };
-      expect(fixture.componentInstance.getGridCss()).toEqual({
-        display: "grid",
-        "@media all": {
-          display: "-ms-grid"
-        },
-        "@media only screen and (max-width: 63.999em)": expectedMobile,
-        "@media only screen and (min-width: 64em) and (max-width: 74.999em)": expectedMobile,
-        "@media only screen and (min-width: 75em)": expectedDesktop
+      expect(fixture.componentInstance.layouts).toEqual({
+        mobile: mobileConfig,
+        tablet: mobileConfig,
+        desktop: desktopConfig
       });
     });
 
     it("should assign tablet to desktop layout if it is not specified", () => {
-      const gridContainerInput: IGridContainer = {
+      const mobileConfig = {
+        gridTemplateColumns: "1fr",
+        gridTemplateRows: "auto",
+        gridColumnGap: "20px",
+        gridRowGap: "10px",
+        gridBlocks
+      };
+      const tabletConfig = {
+        gridTemplateColumns: "1fr 1fr 1fr 1fr",
+        gridTemplateRows: "auto",
+        gridColumnGap: "20px",
+        gridRowGap: "10px",
+        gridBlocks
+      };
+      component.input = {
         ...containerInput,
-        mobile: {
-          gridTemplateColumns: "1fr",
-          gridTemplateRows: "auto",
-          gridColumnGap: "20px",
-          gridRowGap: "10px",
-          gridBlocks: { "first-block": gridBlock }
-        },
-        tablet: {
-          gridTemplateColumns: "1fr 1fr 1fr 1fr",
-          gridTemplateRows: "auto",
-          gridColumnGap: "20px",
-          gridRowGap: "10px",
-          gridBlocks: { "first-block": gridBlock }
-        },
+        mobile: mobileConfig,
+        tablet: tabletConfig,
         desktop: undefined
       };
-      containerInput.tablet = undefined;
-      component.input = gridContainerInput;
 
       fixture.detectChanges();
 
-      const expectedMobile = {
-        gridTemplateColumns: "1fr",
-        gridTemplateRows: "auto",
-        msGridColumns: "1fr",
-        msGridRows: "auto",
-        gridGap: "0"
-      };
-      const expectedTablet = {
-        gridTemplateColumns: "1fr 20px 1fr 20px 1fr 20px 1fr",
-        gridTemplateRows: "auto",
-        msGridColumns: "1fr 20px 1fr 20px 1fr 20px 1fr",
-        msGridRows: "auto",
-        gridGap: "0"
-      };
-      expect(fixture.componentInstance.getGridCss()).toEqual({
-        display: "grid",
-        "@media all": {
-          display: "-ms-grid"
-        },
-        "@media only screen and (max-width: 63.999em)": expectedMobile,
-        "@media only screen and (min-width: 64em) and (max-width: 74.999em)": expectedTablet,
-        "@media only screen and (min-width: 75em)": expectedTablet
+      expect(fixture.componentInstance.layouts).toEqual({
+        mobile: mobileConfig,
+        tablet: tabletConfig,
+        desktop: tabletConfig
       });
     });
 
     it("should assign mobile layout for tablet and desktop when both are not specified", () => {
-      const gridContainerInput: IGridContainer = {
+      const mobileConfig = {
+        gridTemplateColumns: "1fr",
+        gridTemplateRows: "auto",
+        gridColumnGap: "20px",
+        gridRowGap: "10px",
+        gridBlocks
+      };
+      component.input = {
         ...containerInput,
-        mobile: {
-          gridTemplateColumns: "1fr",
-          gridTemplateRows: "auto",
-          gridColumnGap: "20px",
-          gridRowGap: "10px",
-          gridBlocks: { "first-block": gridBlock }
-        },
+        mobile: mobileConfig,
         tablet: undefined,
         desktop: undefined
       };
-      containerInput.tablet = undefined;
-      component.input = gridContainerInput;
 
       fixture.detectChanges();
 
-      const expectedMobile = {
-        gridTemplateColumns: "1fr",
-        gridTemplateRows: "auto",
-        msGridColumns: "1fr",
-        msGridRows: "auto",
-        gridGap: "0"
-      };
-      expect(fixture.componentInstance.getGridCss()).toEqual({
-        display: "grid",
-        "@media all": {
-          display: "-ms-grid"
-        },
-        "@media only screen and (max-width: 63.999em)": expectedMobile,
-        "@media only screen and (min-width: 64em) and (max-width: 74.999em)": expectedMobile,
-        "@media only screen and (min-width: 75em)": expectedMobile
+      expect(fixture.componentInstance.layouts).toEqual({
+        mobile: mobileConfig,
+        tablet: mobileConfig,
+        desktop: mobileConfig
       });
     });
   });
