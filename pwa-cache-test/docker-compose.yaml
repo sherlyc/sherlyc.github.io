@@ -1,13 +1,13 @@
 version: "3.7"
 services:
-  lastestbackend:
+  lastestspade:
     image: gcr.io/shared-218200/nz.stuff/experience/experience-frontend:1.519
     ports:
       - "4000:4000"
     environment:
       - SPADE_ENV=production
       - SPADE_VERSION=1.519
-  oldexpfrontend:
+  oldspade:
     image: gcr.io/shared-218200/nz.stuff/experience/experience-frontend:1.439
     ports:
       - "8000:4000"
