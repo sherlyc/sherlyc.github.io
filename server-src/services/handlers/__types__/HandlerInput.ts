@@ -18,11 +18,13 @@ import { INewsSixHandlerInput } from "./INewsSixHandlerInput";
 import { INewsSixGridHandlerInput } from "./INewsSixGridHandlerInput";
 import { ISixImageHandlerInput } from "./ISixImageHandlerInput";
 import { ISixImageGridHandlerInput } from "./ISixImageGridHandlerInput";
+import { IForceUpdateHandlerInput } from "./IForceUpdateHandlerInput";
 
 export type HandlerInput =
   | ITopStoriesArticleListHandlerInput
   | IBasicArticleListHandlerInput
   | IBannerHandlerInput
+  | IForceUpdateHandlerInput
   | IMidStripHandlerInput
   | IMiniMidStripHandlerInput
   | IBasicArticleSectionHandlerInput

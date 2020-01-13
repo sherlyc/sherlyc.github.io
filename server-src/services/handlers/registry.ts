@@ -18,6 +18,7 @@ import Recommendations from "./recommendations/recommendations";
 import NewsSix from "./grid/news-six/news-six";
 import NewsSixGrid from "./grid/news-six-grid/news-six-grid";
 import SixImage from "./grid/six-image/six-image";
+import ForceUpdate from "./force-update/force-update";
 import SixImageGrid from "./grid/six-image-grid/six-image-grid";
 import ListGrid from "./grid/list-grid/list-grid";
 import { handlerRunnerFunction } from "./runner";
@@ -42,6 +43,7 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   ExternalContent,
   ArticleSection,
   BreakingNews,
+  ForceUpdate,
   Page,
   Weather,
   Experiment,

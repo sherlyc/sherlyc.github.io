@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noarchive" />
+    <meta name="verify-v1" content="RazNiYjuvNuEsMeFXxfR9l9cDZIKxcq2VjQZA25CHgM=" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function() {
+          navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for (var index in registrations) {
+              if (registrations.hasOwnProperty(index)) {
+                registrations[index].unregister();
+              }
+            }
+          });
+        });
+      }
+    </script>
+  </head>
+  <body></body>
+</html>

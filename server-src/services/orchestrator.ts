@@ -21,6 +21,10 @@ export default async (params: IParams): Promise<IPage> => {
           type: HandlerInputType.Page,
           items: [
             {
+              type: HandlerInputType.ForceUpdate,
+              forceUpdateOnVersionsBefore: "1.400"
+            },
+            {
               type: HandlerInputType.Weather
             },
             {
