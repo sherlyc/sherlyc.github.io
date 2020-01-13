@@ -11,12 +11,7 @@ import {
   calculateCellGap,
   calculateGridGap
 } from "../../shared/utils/grid-helper/grid-helper";
-
-const media = {
-  mobile: "@media only screen and (max-width: 63.999em)",
-  tablet: "@media only screen and (min-width: 64em) and (max-width: 74.999em)",
-  desktop: "@media only screen and (min-width: 75em)"
-};
+import { MediaQuery } from "./MediaQuery";
 
 const hideCell = { display: "none" };
 
@@ -115,15 +110,15 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
   getBorderCellCss(borderCell: { name: string; position: Border }) {
     const { mobile, tablet, desktop } = this.layouts;
     return {
-      [media.mobile]: GridContainerComponent.getBorderCss(
+      [MediaQuery.Mobile]: GridContainerComponent.getBorderCss(
         calculateCellGap(mobile.gridBlocks[borderCell.name]),
         borderCell.position
       ),
-      [media.tablet]: GridContainerComponent.getBorderCss(
+      [MediaQuery.Tablet]: GridContainerComponent.getBorderCss(
         calculateCellGap(tablet.gridBlocks[borderCell.name]),
         borderCell.position
       ),
-      [media.desktop]: GridContainerComponent.getBorderCss(
+      [MediaQuery.Desktop]: GridContainerComponent.getBorderCss(
         calculateCellGap(desktop.gridBlocks[borderCell.name]),
         borderCell.position
       )
@@ -137,9 +132,9 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
       "@media all": {
         display: "-ms-grid"
       },
-      [media.mobile]: GridContainerComponent.getGridCssForDevice(mobile),
-      [media.tablet]: GridContainerComponent.getGridCssForDevice(tablet),
-      [media.desktop]: GridContainerComponent.getGridCssForDevice(desktop)
+      [MediaQuery.Mobile]: GridContainerComponent.getGridCssForDevice(mobile),
+      [MediaQuery.Tablet]: GridContainerComponent.getGridCssForDevice(tablet),
+      [MediaQuery.Desktop]: GridContainerComponent.getGridCssForDevice(desktop)
     };
   }
 
@@ -151,9 +146,9 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
     const desktopGap = calculateCellGap(desktop.gridBlocks[cellName]);
 
     return {
-      [media.mobile]: GridContainerComponent.getCellCss(mobileGap),
-      [media.tablet]: GridContainerComponent.getCellCss(tabletGap),
-      [media.desktop]: GridContainerComponent.getCellCss(desktopGap)
+      [MediaQuery.Mobile]: GridContainerComponent.getCellCss(mobileGap),
+      [MediaQuery.Tablet]: GridContainerComponent.getCellCss(tabletGap),
+      [MediaQuery.Desktop]: GridContainerComponent.getCellCss(desktopGap)
     };
   }
 }
