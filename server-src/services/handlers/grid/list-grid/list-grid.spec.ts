@@ -42,9 +42,7 @@ describe("List Grid", () => {
       items: {
         content0: [contentBlockOne]
       },
-      mobile: layout,
-      tablet: layout,
-      desktop: layout
+      mobile: layout
     };
 
     const result = await listGridHandler(handlerRunner, handlerInput, params);
@@ -95,9 +93,7 @@ describe("List Grid", () => {
         content1: [contentBlockTwo],
         content2: [contentBlockOne]
       },
-      mobile: layout,
-      tablet: layout,
-      desktop: layout
+      mobile: layout
     };
 
     const result = await listGridHandler(handlerRunner, handlerInput, params);

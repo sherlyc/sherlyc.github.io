@@ -5,8 +5,7 @@ import { IListGridHandlerInput } from "../../__types__/IListGridHandlerInput";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import {
   Border,
-  IGridConfig,
-  IGridContainer
+  IGridConfig
 } from "../../../../../common/__types__/IGridContainer";
 import { gridBlock } from "../../../adapters/grid/grid-block";
 
@@ -53,9 +52,7 @@ export default async function(
     {
       type: ContentBlockType.GridContainer,
       items: generateGridItems(content),
-      mobile: layout,
-      tablet: layout,
-      desktop: layout
+      mobile: layout
     }
   ];
 }

@@ -34,14 +34,16 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
     desktop: IGridConfig;
   };
 
-  private static getBorderCss(gridBlock: IGridBlock, type: Border) {
+  private static getBorderCellDeviceCss(gridBlock: IGridBlock, type: Border) {
     const hasBorder = gridBlock.border.includes(type);
     return hasBorder
-      ? GridContainerComponent.getCellCss(calculateBorderCell(type, gridBlock))
+      ? GridContainerComponent.getCellDeviceCss(
+          calculateBorderCell(type, gridBlock)
+        )
       : hideCell;
   }
 
-  private static getGridCssForDevice(config: IGridConfig) {
+  private static getGridDeviceCss(config: IGridConfig) {
     const templateColumns = calculateGridGap(
       config.gridTemplateColumns,
       config.gridColumnGap
@@ -61,7 +63,7 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
     };
   }
 
-  private static getCellCss(gridBlock: IGridBlock): any {
+  private static getCellDeviceCss(gridBlock: IGridBlock): any {
     return {
       msGridRow: gridBlock.rowStart,
       gridRowStart: gridBlock.rowStart,
@@ -110,15 +112,15 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
   getBorderCellCss(borderCell: { name: string; position: Border }) {
     const { mobile, tablet, desktop } = this.layouts;
     return {
-      [MediaQuery.Mobile]: GridContainerComponent.getBorderCss(
+      [MediaQuery.Mobile]: GridContainerComponent.getBorderCellDeviceCss(
         calculateCellGap(mobile.gridBlocks[borderCell.name]),
         borderCell.position
       ),
-      [MediaQuery.Tablet]: GridContainerComponent.getBorderCss(
+      [MediaQuery.Tablet]: GridContainerComponent.getBorderCellDeviceCss(
         calculateCellGap(tablet.gridBlocks[borderCell.name]),
         borderCell.position
       ),
-      [MediaQuery.Desktop]: GridContainerComponent.getBorderCss(
+      [MediaQuery.Desktop]: GridContainerComponent.getBorderCellDeviceCss(
         calculateCellGap(desktop.gridBlocks[borderCell.name]),
         borderCell.position
       )
@@ -132,9 +134,9 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
       "@media all": {
         display: "-ms-grid"
       },
-      [MediaQuery.Mobile]: GridContainerComponent.getGridCssForDevice(mobile),
-      [MediaQuery.Tablet]: GridContainerComponent.getGridCssForDevice(tablet),
-      [MediaQuery.Desktop]: GridContainerComponent.getGridCssForDevice(desktop)
+      [MediaQuery.Mobile]: GridContainerComponent.getGridDeviceCss(mobile),
+      [MediaQuery.Tablet]: GridContainerComponent.getGridDeviceCss(tablet),
+      [MediaQuery.Desktop]: GridContainerComponent.getGridDeviceCss(desktop)
     };
   }
 
@@ -146,9 +148,9 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
     const desktopGap = calculateCellGap(desktop.gridBlocks[cellName]);
 
     return {
-      [MediaQuery.Mobile]: GridContainerComponent.getCellCss(mobileGap),
-      [MediaQuery.Tablet]: GridContainerComponent.getCellCss(tabletGap),
-      [MediaQuery.Desktop]: GridContainerComponent.getCellCss(desktopGap)
+      [MediaQuery.Mobile]: GridContainerComponent.getCellDeviceCss(mobileGap),
+      [MediaQuery.Tablet]: GridContainerComponent.getCellDeviceCss(tabletGap),
+      [MediaQuery.Desktop]: GridContainerComponent.getCellDeviceCss(desktopGap)
     };
   }
 }
