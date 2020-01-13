@@ -12,7 +12,7 @@ import {
   Border,
   IGridContainer
 } from "../../../../common/__types__/IGridContainer";
-import { MediaQuery } from "./MediaQuery";
+import { MediaQuery } from "./__types__/MediaQuery";
 
 describe("GridContainerComponent", () => {
   let component: GridContainerComponent;

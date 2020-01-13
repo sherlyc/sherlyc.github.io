@@ -11,7 +11,7 @@ import {
   calculateCellGap,
   calculateGridGap
 } from "../../shared/utils/grid-helper/grid-helper";
-import { MediaQuery } from "./MediaQuery";
+import { MediaQuery } from "./__types__/MediaQuery";
 
 const hideCell = { display: "none" };
 
