@@ -6,12 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noarchive" />
     <meta name="verify-v1" content="RazNiYjuvNuEsMeFXxfR9l9cDZIKxcq2VjQZA25CHgM=" />
+    <script src="https://browser.sentry-cdn.com/5.11.0/bundle.min.js" integrity="sha384-jbFinqIbKkHNg+QL+yxB4VrBC0EAPTuaLGeRT0T+NfEV89YC6u1bKxHLwoo+/xxY" crossorigin="anonymous"></script>
     <script>
+      Sentry.init({ dsn: "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567" });
+      Sentry.configureScope(function(scope) {
+        scope.setLevel(Sentry.Severity.Debug);
+        Sentry.captureMessage("Device need to be updated", "debug");
+      });
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", function() {
           navigator.serviceWorker.getRegistrations().then(function(registrations) {
             for (var index in registrations) {
               if (registrations.hasOwnProperty(index)) {
+                Sentry.captureMessage("Old PWA version deleted", "debug");
                 registrations[index].unregister();
               }
             }
