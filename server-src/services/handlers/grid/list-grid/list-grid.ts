@@ -5,8 +5,7 @@ import { IListGridHandlerInput } from "../../__types__/IListGridHandlerInput";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import {
   Border,
-  IGridConfig,
-  IGridContainer
+  IGridConfig
 } from "../../../../../common/__types__/IGridContainer";
 import { gridBlock } from "../../../adapters/grid/grid-block";
 
