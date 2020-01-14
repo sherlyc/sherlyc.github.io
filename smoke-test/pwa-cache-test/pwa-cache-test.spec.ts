@@ -38,7 +38,7 @@ describe("Pwa cache test", () => {
     try {
       await page.screenshot({
         fullPage: true,
-        path: "./screenshots/homepage.png"
+        path: `./screenshots/${config.spadeVersion}.png`
       });
       expect(true).toBeTruthy();
     } catch (e) {
