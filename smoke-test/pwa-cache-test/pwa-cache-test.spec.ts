@@ -3,7 +3,7 @@ import puppeteerConfig from "../puppeteer-config";
 import config from "../test/environment-config";
 jest.setTimeout(60000);
 
-xdescribe("Pwa cache test", () => {
+describe("Pwa cache test", () => {
   let browser: puppeteer.Browser;
   let page: puppeteer.Page;
 
@@ -33,8 +33,17 @@ xdescribe("Pwa cache test", () => {
     await browser.close();
   });
 
-  it("should have correct title", async () => {
-    const title = await page.title();
-    expect(title).toBe("Latest breaking news NZ | Stuff.co.nz | New Zealand");
+  it("should take screenshot", async () => {
+    expect.assertions(1);
+    try {
+      await page.screenshot({
+        fullPage: true,
+        path: "./screenshots/homepage.png"
+      });
+      expect(true).toBeTruthy();
+    } catch (e) {
+      console.error(e);
+      throw e;
+    }
   });
 });
