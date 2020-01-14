@@ -1,22 +1,22 @@
-import puppeteer from "puppeteer";
+import * as fs from "fs";
+import { join } from "path";
+import { Browser, launch, Page } from "puppeteer";
 import puppeteerConfig from "../puppeteer-config";
 import config from "../test/environment-config";
-import fs from "fs";
-import { join } from "path";
 
-jest.setTimeout(60000);
+jest.setTimeout(80000);
 
 describe("Pwa cache test", () => {
-  let browser: puppeteer.Browser;
-  let page: puppeteer.Page;
+  let browser: Browser;
+  let page: Page;
   const screenshotDir = "./screenshots";
 
   beforeAll(async () => {
-    if (!fs.existsSync(screenshotDir)){
+    if (!fs.existsSync(screenshotDir)) {
       fs.mkdirSync(screenshotDir);
     }
 
-    browser = await puppeteer.launch(puppeteerConfig);
+    browser = await launch(puppeteerConfig);
     page = await browser.newPage();
     const cookieDomain = new URL(config.url).hostname;
     await page.setCookie({
@@ -28,12 +28,12 @@ describe("Pwa cache test", () => {
 
     await page.goto(config.url, {
       waitUntil: "networkidle0",
-      timeout: 60000
+      timeout: 80000
     });
 
     await page.reload({
       waitUntil: "networkidle0",
-      timeout: 60000
+      timeout: 80000
     });
   });
 

@@ -6,7 +6,7 @@ services:
       - SPADE_ENV=production
       - SPADE_VERSION=${VERSION}
   nginx-proxy:
-    image: nginx
+    image: ${NGINX_IMAGE}
     ports:
       - "8888:80"
     volumes:
