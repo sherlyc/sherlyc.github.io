@@ -3,7 +3,8 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
-    "module": "commonjs"
+    "module": "commonjs",
+    "sourceMap": true
   },
   "exclude": ["test.ts", "**/*.spec.ts", "**/*.mock.ts"],
   "angularCompilerOptions": {

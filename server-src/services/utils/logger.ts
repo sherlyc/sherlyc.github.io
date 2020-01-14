@@ -4,11 +4,29 @@ import * as logform from "logform";
 import config from "./config";
 import { ILogger } from "./__types__/ILogger";
 import { logger } from "express-winston";
+import { TransformableInfo } from "logform";
+
+const removeLineBreaks = (stack: string) => {
+  return stack.replace(/(\r\n|\n|\r)/gm, "");
+};
+
+export const formatStackTrace = (info: TransformableInfo) => {
+  if (info.error && info.error instanceof Error) {
+    const { stack } = info.error;
+    info.trace = stack ? removeLineBreaks(stack) : stack;
+  }
+  return info;
+};
 
 function getFormat(name: string): logform.Format {
   return name === "json"
-    ? winston.format.combine(winston.format.timestamp(), winston.format.json())
+    ? winston.format.combine(
+        winston.format(formatStackTrace)(),
+        winston.format.timestamp(),
+        winston.format.json()
+      )
     : winston.format.combine(
+        winston.format(formatStackTrace)(),
         winston.format.colorize(),
         winston.format.simple()
       );
