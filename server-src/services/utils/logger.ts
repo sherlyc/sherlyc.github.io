@@ -12,8 +12,7 @@ const removeLineBreaks = (stack: string) => {
 
 export const formatStackTrace = (info: TransformableInfo) => {
   if (info.error && info.error instanceof Error) {
-    const { stack } = info.error;
-    info.trace = stack ? removeLineBreaks(stack) : stack;
+    info.trace = info.error.stack;
   }
   return info;
 };
