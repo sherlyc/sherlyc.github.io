@@ -31,7 +31,8 @@ export const featureController = async function(req: Request, res: Response) {
   } catch (error) {
     logger.info(
       req.spadeParams.apiRequestId,
-      `Feature controller level error - ${error.message}`
+      `Feature controller level error - ${error.message}`,
+      error
     );
     res.status(400).send(error.message);
     return;

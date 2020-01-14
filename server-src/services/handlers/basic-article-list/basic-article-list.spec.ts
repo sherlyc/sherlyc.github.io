@@ -233,8 +233,7 @@ describe("BasicArticleListHandler", () => {
       ).rejects.toEqual(error);
       expect(logger.error).toHaveBeenCalledWith(
         params.apiRequestId,
-        expect.stringContaining(sourceId),
-        error
+        expect.stringContaining(sourceId)
       );
     });
   });
@@ -529,8 +528,7 @@ describe("BasicArticleListHandler", () => {
 
       expect(logger.error).toHaveBeenCalledWith(
         params.apiRequestId,
-        expect.stringContaining(sourceId),
-        error
+        expect.stringContaining(sourceId)
       );
     });
   });

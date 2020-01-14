@@ -6,10 +6,6 @@ import { ILogger } from "./__types__/ILogger";
 import { logger } from "express-winston";
 import { TransformableInfo } from "logform";
 
-const removeLineBreaks = (stack: string) => {
-  return stack.replace(/(\r\n|\n|\r)/gm, "");
-};
-
 export const formatStackTrace = (info: TransformableInfo) => {
   if (info.error && info.error instanceof Error) {
     info.trace = info.error.stack;
