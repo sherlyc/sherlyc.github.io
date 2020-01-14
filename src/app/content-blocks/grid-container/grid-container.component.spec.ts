@@ -12,6 +12,7 @@ import {
   Border,
   IGridContainer
 } from "../../../../common/__types__/IGridContainer";
+import { MediaQuery } from "./__types__/MediaQuery";
 
 describe("GridContainerComponent", () => {
   let component: GridContainerComponent;
@@ -111,24 +112,24 @@ describe("GridContainerComponent", () => {
     component.input = containerInput;
     const expected = {
       display: "grid",
-      "@media all": {
+      [MediaQuery.All]: {
         display: "-ms-grid"
       },
-      "@media only screen and (max-width: 63.999em)": {
+      [MediaQuery.Mobile]: {
         msGridColumns: "1fr",
         gridTemplateColumns: "1fr",
         msGridRows: "auto",
         gridTemplateRows: "auto",
         gridGap: "0"
       },
-      "@media only screen and (min-width: 64em) and (max-width: 74.999em)": {
+      [MediaQuery.Tablet]: {
         msGridColumns: "1fr 20px 1fr 20px 1fr 20px 1fr",
         gridTemplateColumns: "1fr 20px 1fr 20px 1fr 20px 1fr",
         msGridRows: "auto",
         gridTemplateRows: "auto",
         gridGap: "0"
       },
-      "@media only screen and (min-width: 75em)": {
+      [MediaQuery.Desktop]: {
         msGridColumns: "1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px",
         gridTemplateColumns: "1fr 20px 1fr 20px 1fr 20px 1fr 20px 200px",
         msGridRows: "auto",
@@ -143,7 +144,7 @@ describe("GridContainerComponent", () => {
   it("applies the cell css", () => {
     component.input = containerInput;
     const expected = {
-      "@media only screen and (max-width: 63.999em)": {
+      [MediaQuery.Mobile]: {
         msGridRow: 1,
         gridRowStart: 1,
         msGridRowSpan: 1,
@@ -153,7 +154,7 @@ describe("GridContainerComponent", () => {
         msGridColumnSpan: 1,
         gridColumnEnd: "span 1"
       },
-      "@media only screen and (min-width: 64em) and (max-width: 74.999em)": {
+      [MediaQuery.Tablet]: {
         msGridRow: 1,
         gridRowStart: 1,
         msGridRowSpan: 3,
@@ -163,7 +164,7 @@ describe("GridContainerComponent", () => {
         msGridColumnSpan: 3,
         gridColumnEnd: "span 3"
       },
-      "@media only screen and (min-width: 75em)": {
+      [MediaQuery.Desktop]: {
         msGridRow: 1,
         gridRowStart: 1,
         msGridRowSpan: 3,
@@ -183,10 +184,10 @@ describe("GridContainerComponent", () => {
   it("applies the border bottom css", () => {
     component.input = containerInput;
     const expected = {
-      "@media only screen and (max-width: 63.999em)": {
+      [MediaQuery.Mobile]: {
         display: "none"
       },
-      "@media only screen and (min-width: 64em) and (max-width: 74.999em)": {
+      [MediaQuery.Tablet]: {
         msGridRow: 4,
         gridRowStart: 4,
         msGridRowSpan: 1,
@@ -196,7 +197,7 @@ describe("GridContainerComponent", () => {
         msGridColumnSpan: 3,
         gridColumnEnd: "span 3"
       },
-      "@media only screen and (min-width: 75em)": {
+      [MediaQuery.Desktop]: {
         display: "none"
       }
     };
@@ -212,10 +213,10 @@ describe("GridContainerComponent", () => {
   it("applies the border top css", () => {
     component.input = containerInput;
     const expected = {
-      "@media only screen and (max-width: 63.999em)": {
+      [MediaQuery.Mobile]: {
         display: "none"
       },
-      "@media only screen and (min-width: 64em) and (max-width: 74.999em)": {
+      [MediaQuery.Tablet]: {
         msGridRow: 0,
         gridRowStart: 0,
         msGridRowSpan: 1,
@@ -225,7 +226,7 @@ describe("GridContainerComponent", () => {
         msGridColumnSpan: 3,
         gridColumnEnd: "span 3"
       },
-      "@media only screen and (min-width: 75em)": {
+      [MediaQuery.Desktop]: {
         display: "none"
       }
     };
@@ -241,10 +242,10 @@ describe("GridContainerComponent", () => {
   it("applies the border left css", () => {
     component.input = containerInput;
     const expected = {
-      "@media only screen and (max-width: 63.999em)": {
+      [MediaQuery.Mobile]: {
         display: "none"
       },
-      "@media only screen and (min-width: 64em) and (max-width: 74.999em)": {
+      [MediaQuery.Tablet]: {
         msGridRow: 1,
         gridRowStart: 1,
         msGridRowSpan: 3,
@@ -254,7 +255,7 @@ describe("GridContainerComponent", () => {
         msGridColumnSpan: 1,
         gridColumnEnd: "span 1"
       },
-      "@media only screen and (min-width: 75em)": {
+      [MediaQuery.Desktop]: {
         display: "none"
       }
     };
@@ -270,10 +271,10 @@ describe("GridContainerComponent", () => {
   it("applies the border right css", () => {
     component.input = containerInput;
     const expected = {
-      "@media only screen and (max-width: 63.999em)": {
+      [MediaQuery.Mobile]: {
         display: "none"
       },
-      "@media only screen and (min-width: 64em) and (max-width: 74.999em)": {
+      [MediaQuery.Tablet]: {
         msGridRow: 1,
         gridRowStart: 1,
         msGridRowSpan: 3,
@@ -283,7 +284,7 @@ describe("GridContainerComponent", () => {
         msGridColumnSpan: 1,
         gridColumnEnd: "span 1"
       },
-      "@media only screen and (min-width: 75em)": {
+      [MediaQuery.Desktop]: {
         display: "none"
       }
     };
@@ -294,5 +295,103 @@ describe("GridContainerComponent", () => {
         position: Border.right
       })
     ).toEqual(expected);
+  });
+
+  describe("layout fallback", () => {
+    const gridBlocks = {
+      "first-block": {
+        rowStart: 1,
+        rowSpan: 1,
+        columnStart: 1,
+        columnSpan: 1,
+        border: []
+      }
+    };
+
+    it("should assign mobile to tablet layout if it is not specified", () => {
+      const mobileConfig = {
+        gridTemplateColumns: "1fr",
+        gridTemplateRows: "auto",
+        gridColumnGap: "20px",
+        gridRowGap: "10px",
+        gridBlocks
+      };
+      const desktopConfig = {
+        gridTemplateColumns: "2fr",
+        gridTemplateRows: "auto",
+        gridColumnGap: "2px",
+        gridRowGap: "2px",
+        gridBlocks
+      };
+      component.input = {
+        ...containerInput,
+        mobile: mobileConfig,
+        tablet: undefined,
+        desktop: desktopConfig
+      };
+
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.layouts).toEqual({
+        mobile: mobileConfig,
+        tablet: mobileConfig,
+        desktop: desktopConfig
+      });
+    });
+
+    it("should assign tablet to desktop layout if it is not specified", () => {
+      const mobileConfig = {
+        gridTemplateColumns: "1fr",
+        gridTemplateRows: "auto",
+        gridColumnGap: "20px",
+        gridRowGap: "10px",
+        gridBlocks
+      };
+      const tabletConfig = {
+        gridTemplateColumns: "1fr 1fr 1fr 1fr",
+        gridTemplateRows: "auto",
+        gridColumnGap: "20px",
+        gridRowGap: "10px",
+        gridBlocks
+      };
+      component.input = {
+        ...containerInput,
+        mobile: mobileConfig,
+        tablet: tabletConfig,
+        desktop: undefined
+      };
+
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.layouts).toEqual({
+        mobile: mobileConfig,
+        tablet: tabletConfig,
+        desktop: tabletConfig
+      });
+    });
+
+    it("should assign mobile layout for tablet and desktop when both are not specified", () => {
+      const mobileConfig = {
+        gridTemplateColumns: "1fr",
+        gridTemplateRows: "auto",
+        gridColumnGap: "20px",
+        gridRowGap: "10px",
+        gridBlocks
+      };
+      component.input = {
+        ...containerInput,
+        mobile: mobileConfig,
+        tablet: undefined,
+        desktop: undefined
+      };
+
+      fixture.detectChanges();
+
+      expect(fixture.componentInstance.layouts).toEqual({
+        mobile: mobileConfig,
+        tablet: mobileConfig,
+        desktop: mobileConfig
+      });
+    });
   });
 });

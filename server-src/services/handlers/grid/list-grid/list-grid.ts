@@ -52,9 +52,7 @@ export default async function(
     {
       type: ContentBlockType.GridContainer,
       items: generateGridItems(content),
-      mobile: layout,
-      tablet: layout,
-      desktop: layout
+      mobile: layout
     }
   ];
 }

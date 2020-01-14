@@ -101,9 +101,11 @@
               "poll": 3000,
               "optimization": false,
               "outputHashing": "none",
-              "optimization": false,
               "statsJson": false,
-              "sourceMap": false
+              "sourceMap": {
+                "scripts": true,
+                "styles": false
+              }
             },
             "production": {
               "bundleDependencies": "all",
