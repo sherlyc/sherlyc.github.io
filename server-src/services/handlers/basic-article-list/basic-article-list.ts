@@ -54,7 +54,8 @@ export default async function(
   } catch (error) {
     wrappedLogger.error(
       params.apiRequestId,
-      `Basic article list handler error - ${sourceId}`
+      `Basic article list handler error - ${sourceId}`,
+      error
     );
     throw error;
   }

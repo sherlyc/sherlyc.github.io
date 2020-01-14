@@ -58,7 +58,8 @@ describe("News six handler", () => {
         params.apiRequestId,
         expect.stringContaining(
           "News Six handler error: Potentially insufficient number of articles:"
-        )
+        ),
+        error
       );
       expect(error).toBeTruthy();
     }

@@ -24,8 +24,8 @@ export default async function(
     }
 
     return [];
-  } catch (e) {
-    logger.error(params.apiRequestId, `Breaking News handler error - ${e}`);
+  } catch (error) {
+    logger.error(params.apiRequestId, `Breaking News handler error`, error);
     return [];
   }
 }

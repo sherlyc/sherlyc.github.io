@@ -33,12 +33,13 @@ export const experimentController = async function(
 
   try {
     validateRequest(experimentName, lotteryNumber, deviceType);
-  } catch (e) {
+  } catch (error) {
     logger.info(
       req.spadeParams.apiRequestId,
-      `Experiment controller level error - ${e.message}`
+      `Experiment controller level error`,
+      error
     );
-    res.status(400).send(e.message);
+    res.status(400).send(error.message);
     return;
   }
 
@@ -50,11 +51,12 @@ export const experimentController = async function(
       req.spadeParams
     );
     res.send(variant);
-  } catch (e) {
+  } catch (error) {
     logger.error(
       req.spadeParams.apiRequestId,
-      `Experiment controller level error - ${e.message}`
+      `Experiment controller level error`,
+      error
     );
-    res.status(400).send(e.message);
+    res.status(400).send(error.message);
   }
 };

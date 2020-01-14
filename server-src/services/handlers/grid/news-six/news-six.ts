@@ -59,11 +59,12 @@ export default async function(
       },
       params
     );
-  } catch (e) {
+  } catch (error) {
     wrappedLogger.error(
       params.apiRequestId,
-      `News Six handler error: Potentially insufficient number of articles: ${articlesLength}. Strap name: ${sourceId}|${strapName}. Error: ${e}`
+      `News Six handler error: Potentially insufficient number of articles: ${articlesLength}. Strap name: ${sourceId}|${strapName}`,
+      error
     );
-    throw e;
+    throw error;
   }
 }

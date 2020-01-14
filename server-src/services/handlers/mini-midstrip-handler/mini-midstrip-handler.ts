@@ -47,7 +47,8 @@ export default async function(
   } catch (error) {
     wrappedLogger.error(
       params.apiRequestId,
-      `Mini mid-strip handler error - ${sourceId} - ${error}`
+      `Mini mid-strip handler error - ${sourceId}`,
+      error
     );
     throw error;
   }

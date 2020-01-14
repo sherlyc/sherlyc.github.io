@@ -24,7 +24,11 @@ export const getRecommendedArticles = async (
       response.data.map((id) => getArticleById(spadeParams, id))
     );
   } catch (error) {
-    logger.warn(spadeParams.apiRequestId, `getRecommendedArticles - ${error}`);
+    logger.warn(
+      spadeParams.apiRequestId,
+      `Recommendations service level error`,
+      error
+    );
     return [];
   }
 };

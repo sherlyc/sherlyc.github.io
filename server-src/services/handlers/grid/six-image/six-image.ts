@@ -56,7 +56,8 @@ export default async function(
   } catch (error) {
     wrappedLogger.error(
       params.apiRequestId,
-      `Six Image handler error: Potentially insufficient number of articles: ${articlesLength}. Strap name: ${sourceId}|${strapName}. Error: ${error}`
+      `Six Image handler error: Potentially insufficient number of articles: ${articlesLength}. Strap name: ${sourceId}|${strapName}`,
+      error
     );
     throw error;
   }
