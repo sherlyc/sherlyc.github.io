@@ -8,7 +8,7 @@ services:
       - SPADE_ENV=production
       - SPADE_VERSION=1.519
   oldspade:
-    image: gcr.io/shared-218200/nz.stuff/experience/experience-frontend:1.439
+    image: gcr.io/shared-218200/nz.stuff/experience/experience-frontend:${VERSION}
     ports:
       - "8000:4000"
     environment:
