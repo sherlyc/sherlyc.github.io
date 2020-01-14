@@ -3,6 +3,7 @@
 cd smoke-test/ && npm i && cd ..
 export URL="http://localhost:8888/"
 GCR="gcr.io/shared-218200/nz.stuff/experience/experience-frontend"
+NEXUS="docker.ci.shift21.ffx.nz/nz.stuff/experience/experience-frontend"
 
 CURRENT_PROD_VERSION=498
 for (( i=439; i<=CURRENT_PROD_VERSION; i++ )); do
