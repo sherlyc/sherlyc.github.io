@@ -23,6 +23,8 @@ const hideCell = { display: "none" };
 export class GridContainerComponent implements IContentBlockComponent, OnInit {
   @Input() input!: IGridContainer;
 
+  keys: string[] = [];
+
   borderCells: Array<{
     name: string;
     position: Border;
@@ -77,6 +79,7 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
   }
 
   ngOnInit(): void {
+    this.keys = Object.getOwnPropertyNames(this.input.items);
     this.assignLayouts();
     this.createBorderCells();
   }
