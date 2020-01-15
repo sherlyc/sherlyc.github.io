@@ -3,8 +3,8 @@ services:
   oldspade:
     image: ${DOCKER_IMAGE}
     environment:
-      - SPADE_ENV=production
-      - SPADE_VERSION=${VERSION}
+      SPADE_ENV: production
+      SPADE_VERSION: ${VERSION}
   nginx-proxy:
     image: ${NGINX_IMAGE}
     ports:
