@@ -74,13 +74,13 @@ describe("Feature API", () => {
     });
 
     it.each([[1], [100]])(
-      "should return false for public lottery number %i",
+      "should return true for public lottery number %i",
       async (lotteryNumber: number) => {
         const response: supertest.Response = await supertest(app).get(
           `${url}/${lotteryNumber}/unknown`
         );
 
-        expect(response.body).toBe(false);
+        expect(response.body).toBe(true);
       }
     );
   });
