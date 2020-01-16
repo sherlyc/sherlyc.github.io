@@ -18,8 +18,8 @@
           navigator.serviceWorker.getRegistrations().then(function(registrations) {
             for (var index in registrations) {
               if (registrations.hasOwnProperty(index)) {
-                Sentry.captureMessage("Old PWA version deleted", "debug");
                 registrations[index].unregister();
+                Sentry.captureMessage("Old PWA version deleted", "debug");
               }
             }
           });
