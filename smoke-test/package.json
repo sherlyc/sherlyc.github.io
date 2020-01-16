@@ -21,7 +21,8 @@
     "typescript": "^3.6.4"
   },
   "scripts": {
-    "test": "jest --config jest.config.json --runInBand"
+    "test": "jest test/*.ts --config jest.config.json --runInBand",
+    "pwatest": "jest pwa-cache-test/*.ts --config jest.config.json --runInBand"
   },
   "author": "",
   "license": "ISC",
