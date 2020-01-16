@@ -8,7 +8,10 @@
     <meta name="verify-v1" content="RazNiYjuvNuEsMeFXxfR9l9cDZIKxcq2VjQZA25CHgM=" />
     <script src="https://browser.sentry-cdn.com/5.11.0/bundle.min.js" integrity="sha384-jbFinqIbKkHNg+QL+yxB4VrBC0EAPTuaLGeRT0T+NfEV89YC6u1bKxHLwoo+/xxY" crossorigin="anonymous"></script>
     <script>
-      Sentry.init({ dsn: "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567" });
+      Sentry.init({
+        dsn: "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
+        environment: ["i.stuff.co.nz", "www.stuff.co.nz"].indexOf(window.location.hostname) >= 0 ? "production" : undefined
+      });
       Sentry.configureScope(function(scope) {
         scope.setLevel(Sentry.Severity.Debug);
         Sentry.captureMessage("Device need to be updated", "debug");
