@@ -51,7 +51,7 @@ const shouldContainTopStories = async () => {
   console.log("checking top stories");
   const elements = await $browser.findElements(
     $driver.By.css(
-      ".container > app-experiment-container > app-basic-article-unit"
+      "app-grid-container > div > div > app-big-image-article-unit"
     )
   );
   console.log("articles found: ", elements.length);
