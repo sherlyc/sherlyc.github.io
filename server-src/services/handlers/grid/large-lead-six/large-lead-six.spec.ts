@@ -40,9 +40,9 @@ describe("Large lead six", () => {
     imageSrcSet: "1.jpg 1w",
     strapImageSrc: "strap1.jpg",
     strapImageSrcSet: "strap1.jpg 1w",
+    sixteenByNineSrc: "sixteenByNineSrc.jpg",
     lastPublishedTime: 1,
-    headlineFlags: [],
-    sixteenByNineSrc: null
+    headlineFlags: []
   };
   const articleTwo: IRawArticle = {
     id: "2",
@@ -53,11 +53,11 @@ describe("Large lead six", () => {
     defconSrc: null,
     imageSrc: "2.jpg",
     imageSrcSet: "2.jpg 2w",
+    sixteenByNineSrc: null,
     strapImageSrc: "strap2.jpg",
     strapImageSrcSet: "strap2.jpg 2w",
     lastPublishedTime: 2,
-    headlineFlags: [],
-    sixteenByNineSrc: null
+    headlineFlags: []
   };
   const moduleTitle: IModuleTitle = {
     type: ContentBlockType.ModuleTitle,
@@ -74,6 +74,7 @@ describe("Large lead six", () => {
     linkUrl: "/link1",
     imageSrc: "strap1.jpg",
     imageSrcSet: "strap1.jpg 1w",
+    sixteenByNineSrc: "sixteenByNineSrc.jpg",
     lastPublishedTime: 1,
     headlineFlags: []
   };

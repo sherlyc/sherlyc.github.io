@@ -112,6 +112,7 @@ describe("Top Stories Article List", () => {
     linkUrl: article.linkUrl,
     imageSrc: article.strapImageSrc,
     imageSrcSet: article.strapImageSrcSet,
+    sixteenByNineSrc: article.sixteenByNineSrc,
     lastPublishedTime: article.lastPublishedTime,
     headlineFlags: article.headlineFlags
   });
