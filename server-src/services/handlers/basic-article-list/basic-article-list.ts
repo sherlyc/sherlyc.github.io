@@ -54,7 +54,8 @@ export default async function(
   } catch (error) {
     wrappedLogger.error(
       params.apiRequestId,
-      `Basic article list handler error - ${sourceId} - ${error}`
+      `Basic article list handler error - ${sourceId}`,
+      error
     );
     throw error;
   }
@@ -81,10 +82,9 @@ function processAsGrid(
       ...final,
       [`content${index}`]: [basicAdUnit(strapName), item]
     }),
-    { [`content${content.length}`]: [basicAdUnit(strapName)] } as {
-      [key: string]: IContentBlock[];
-    }
+    {} as { [key: string]: IContentBlock[] }
   );
+  gridContent[`content${content.length}`] = [basicAdUnit(strapName)];
 
   const gridBlocks: IGridBlocks = content.reduce(
     (final, item, index) => ({

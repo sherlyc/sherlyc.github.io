@@ -13,10 +13,11 @@ export default async function(
 ): Promise<IContentBlock[]> {
   try {
     await cacheHttp(params, url);
-  } catch (e) {
+  } catch (error) {
     logger.warn(
       params.apiRequestId,
-      `External content handler error - ${url} - ${e.message}`
+      `External content handler error - ${url}`,
+      error
     );
 
     return [];

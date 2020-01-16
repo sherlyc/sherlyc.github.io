@@ -20,10 +20,11 @@ export default async function(
         fallback: fallback ? await handlerRunner(fallback, params) : []
       } as IFeatureContainer
     ];
-  } catch (e) {
+  } catch (error) {
     logger.error(
       params.apiRequestId,
-      `Feature handler error for ${name} - ${e}`
+      `Feature handler error for ${name}`,
+      error
     );
     return [];
   }

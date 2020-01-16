@@ -196,7 +196,8 @@ describe("MiniMidStripHandler", () => {
       ).rejects.toEqual(error);
       expect(wrappedLogger.error).toHaveBeenCalledWith(
         params.apiRequestId,
-        expect.stringContaining(sourceId)
+        expect.stringContaining(sourceId),
+        error
       );
     });
   });

@@ -118,7 +118,7 @@ describe("Six image", () => {
       sourceId: Strap.MidStrip
     };
 
-    expect.assertions(2);
+    expect.assertions(1);
     try {
       await sixImageHandler(handlerRunnerMock, input, params);
     } catch (error) {
@@ -126,9 +126,9 @@ describe("Six image", () => {
         params.apiRequestId,
         expect.stringContaining(
           "Six Image handler error: Potentially insufficient number of articles: 2"
-        )
+        ),
+        error
       );
-      expect(error).toBeTruthy();
     }
   });
 });

@@ -31,7 +31,8 @@ const retrieveLayout = async (params: IParams): Promise<LayoutType> => {
   } catch (error) {
     logger.error(
       params.apiRequestId,
-      `Top Stories Handler - retrieveLayout error - ${error.message}`
+      `Top Stories Article List - retrieveLayout error`,
+      error
     );
     return LayoutType.DEFAULT;
   }

@@ -157,7 +157,7 @@ pipeline {
             docker version
             
             echo "Run smoke test"
-            docker run --rm --env DOCKER_URL=${DOCKER_URL} -v /var/run/docker.sock:/var/run/docker.sock -v "$PWD:$PWD" -w="$PWD" docker/compose:1.25.0-rc4-alpine up --build --exit-code-from puppet
+            docker run --rm --env DOCKER_URL=${DOCKER_URL} --env SPADE_VERSION=${SPADE_VERSION} -v /var/run/docker.sock:/var/run/docker.sock -v "$PWD:$PWD" -w="$PWD" docker/compose:1.25.0-rc4-alpine up --build --exit-code-from puppet
             '''
           }
         }

@@ -11,12 +11,7 @@ import {
   calculateCellGap,
   calculateGridGap
 } from "../../shared/utils/grid-helper/grid-helper";
-
-const media = {
-  mobile: "@media only screen and (max-width: 63.999em)",
-  tablet: "@media only screen and (min-width: 64em) and (max-width: 74.999em)",
-  desktop: "@media only screen and (min-width: 75em)"
-};
+import { MediaQuery } from "./__types__/MediaQuery";
 
 const hideCell = { display: "none" };
 
@@ -28,10 +23,18 @@ const hideCell = { display: "none" };
 export class GridContainerComponent implements IContentBlockComponent, OnInit {
   @Input() input!: IGridContainer;
 
+  keys: string[] = [];
+
   borderCells: Array<{
     name: string;
     position: Border;
   }> = [];
+
+  layouts!: {
+    mobile: IGridConfig;
+    tablet: IGridConfig;
+    desktop: IGridConfig;
+  };
 
   private static getBorderCellDeviceCss(gridBlock: IGridBlock, type: Border) {
     const hasBorder = gridBlock.border.includes(type);
@@ -76,16 +79,20 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
   }
 
   ngOnInit(): void {
+    this.keys = Object.getOwnPropertyNames(this.input.items);
+    this.assignLayouts();
     this.createBorderCells();
   }
 
   private createBorderCells() {
+    const { mobile, tablet, desktop } = this.layouts;
+
     Object.keys(this.input.items).forEach((itemKey) => {
       const allBordersForCell = Object.keys(
         [
-          this.input.desktop.gridBlocks[itemKey],
-          this.input.tablet.gridBlocks[itemKey],
-          this.input.mobile.gridBlocks[itemKey]
+          desktop.gridBlocks[itemKey],
+          tablet.gridBlocks[itemKey],
+          mobile.gridBlocks[itemKey]
         ]
           .map((grid) => grid.border || [])
           .reduce((final, item) => [...final, ...item], [])
@@ -100,18 +107,23 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
     });
   }
 
+  private assignLayouts() {
+    const { mobile, tablet = mobile, desktop = tablet } = this.input;
+    this.layouts = { mobile, tablet, desktop };
+  }
+
   getBorderCellCss(borderCell: { name: string; position: Border }) {
-    const { mobile, tablet, desktop } = this.input;
+    const { mobile, tablet, desktop } = this.layouts;
     return {
-      [media.mobile]: GridContainerComponent.getBorderCellDeviceCss(
+      [MediaQuery.Mobile]: GridContainerComponent.getBorderCellDeviceCss(
         calculateCellGap(mobile.gridBlocks[borderCell.name]),
         borderCell.position
       ),
-      [media.tablet]: GridContainerComponent.getBorderCellDeviceCss(
+      [MediaQuery.Tablet]: GridContainerComponent.getBorderCellDeviceCss(
         calculateCellGap(tablet.gridBlocks[borderCell.name]),
         borderCell.position
       ),
-      [media.desktop]: GridContainerComponent.getBorderCellDeviceCss(
+      [MediaQuery.Desktop]: GridContainerComponent.getBorderCellDeviceCss(
         calculateCellGap(desktop.gridBlocks[borderCell.name]),
         borderCell.position
       )
@@ -119,29 +131,29 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
   }
 
   getGridCss() {
-    const { mobile, tablet, desktop } = this.input;
+    const { mobile, tablet, desktop } = this.layouts;
     return {
       display: "grid",
       "@media all": {
         display: "-ms-grid"
       },
-      [media.mobile]: GridContainerComponent.getGridDeviceCss(mobile),
-      [media.tablet]: GridContainerComponent.getGridDeviceCss(tablet),
-      [media.desktop]: GridContainerComponent.getGridDeviceCss(desktop)
+      [MediaQuery.Mobile]: GridContainerComponent.getGridDeviceCss(mobile),
+      [MediaQuery.Tablet]: GridContainerComponent.getGridDeviceCss(tablet),
+      [MediaQuery.Desktop]: GridContainerComponent.getGridDeviceCss(desktop)
     };
   }
 
   getCellCss(cellName: string) {
-    const { mobile, tablet, desktop } = this.input;
+    const { mobile, tablet, desktop } = this.layouts;
 
     const mobileGap = calculateCellGap(mobile.gridBlocks[cellName]);
     const tabletGap = calculateCellGap(tablet.gridBlocks[cellName]);
     const desktopGap = calculateCellGap(desktop.gridBlocks[cellName]);
 
     return {
-      [media.mobile]: GridContainerComponent.getCellDeviceCss(mobileGap),
-      [media.tablet]: GridContainerComponent.getCellDeviceCss(tabletGap),
-      [media.desktop]: GridContainerComponent.getCellDeviceCss(desktopGap)
+      [MediaQuery.Mobile]: GridContainerComponent.getCellDeviceCss(mobileGap),
+      [MediaQuery.Tablet]: GridContainerComponent.getCellDeviceCss(tabletGap),
+      [MediaQuery.Desktop]: GridContainerComponent.getCellDeviceCss(desktopGap)
     };
   }
 }

@@ -87,8 +87,8 @@ describe("ExternalContentHandler", () => {
 
   it("should return empty and log warning with url when failing to retrieve content", async () => {
     const url = "https://bbc.com";
-
-    (cacheHttp as jest.Mock).mockRejectedValue(new Error());
+    const error = new Error();
+    (cacheHttp as jest.Mock).mockRejectedValue(error);
     const handlerRunnerMock = jest.fn();
 
     const externalContent = (await externalContentHandler(
@@ -107,7 +107,8 @@ describe("ExternalContentHandler", () => {
     expect(externalContent).toEqual([]);
     expect(wrappedLogger.warn).toHaveBeenCalledWith(
       params.apiRequestId,
-      expect.stringContaining(url)
+      expect.stringContaining(url),
+      error
     );
   });
 });

@@ -58,9 +58,9 @@ describe("Mobile Homepage", () => {
     expect(adUnit).toBeTruthy();
   });
 
-  it("should contain at least 5 basic top stories", async () => {
+  it("should contain at least 5 top stories", async () => {
     const topStories = await page.$$(
-      ".container > app-experiment-container > app-basic-article-unit"
+      "app-grid-container > div > div > app-big-image-article-unit"
     );
     expect(topStories.length).toBeGreaterThanOrEqual(5);
   });
