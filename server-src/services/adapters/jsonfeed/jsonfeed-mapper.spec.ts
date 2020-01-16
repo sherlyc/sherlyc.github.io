@@ -70,6 +70,7 @@ describe("JsonFeed Mapper", () => {
     strapImageSrc: null,
     imageSrcSet: null,
     strapImageSrcSet: null,
+    sixteenByNineSrc: null,
     lastPublishedTime: moment(article.datetime_iso8601).unix(),
     headlineFlags: article.headline_flags
   });
@@ -85,6 +86,7 @@ describe("JsonFeed Mapper", () => {
     strapImageSrc: null,
     imageSrcSet: null,
     strapImageSrcSet: null,
+    sixteenByNineSrc: null,
     lastPublishedTime: moment(article.datetime_iso8601).unix(),
     headlineFlags: article.headline_flags
   });
@@ -385,6 +387,88 @@ describe("JsonFeed Mapper", () => {
       const [result] = mapToRawArticleList(data.stories);
 
       expect(result.defconSrc).toBe(expectedDefconSrc);
+    });
+
+    it("should map 16x9 thumbnail image when it is provided", () => {
+      const feedArticle = jsonFeedArticle();
+      const expected16x9Image = "www.example.com/small_thumbnail.1600x900.jpg";
+      feedArticle.images = [
+        {
+          id: 1,
+          datetime_iso8601: "20150818T085547+1200",
+          datetime_display: "08:55 18/08/2015",
+          creditline: "",
+          caption: "x",
+          variants: [
+            {
+              id: 63784214,
+              layout: JsonFeedImageType.SMALL_THUMBNAIL_SIXTEEN_BY_NINE,
+              src: expected16x9Image,
+              media_type: "Photo",
+              width: "90",
+              height: "60",
+              urls: {
+                "1600x900": expected16x9Image,
+                "320x180": "www.example.com/small_thumbnail.320x180.jpg"
+              },
+              image_type_id: "StuffThumbnailSixteenByNine"
+            }
+          ],
+          asset_type: "IMAGE"
+        }
+      ];
+      const data: IJsonFeedArticleList = { stories: [feedArticle] };
+
+      const [result] = mapToRawArticleList(data.stories);
+
+      expect(result.sixteenByNineSrc).toBe(expected16x9Image);
+    });
+
+    it("should fallback to strap image if sixteen by nine is not provided", () => {
+      const feedArticle = jsonFeedArticle();
+      const expectedStrapImage = "www.example.com/strap.90x60.jpg";
+      feedArticle.images = [
+        {
+          id: 1,
+          datetime_iso8601: "20150818T085547+1200",
+          datetime_display: "08:55 18/08/2015",
+          creditline: "",
+          caption: "x",
+          variants: [
+            {
+              id: 63784214,
+              layout: JsonFeedImageType.SMALL_THUMBNAIL,
+              src: "www.example.com/thumbnail.90x60.jpg",
+              media_type: "Photo",
+              width: "90",
+              height: "60",
+              urls: {
+                "90x60": "www.example.com/thumbnail.90x60.jpg",
+                "180x120": "www.example.com/thumbnail.180x120.jpg"
+              },
+              image_type_id: "StuffThumbnail"
+            },
+            {
+              id: 63784214,
+              layout: JsonFeedImageType.STRAP_IMAGE,
+              src: expectedStrapImage,
+              media_type: "Photo",
+              width: "90",
+              height: "60",
+              urls: {
+                "90x60": "www.example.com/defcon.90x60.jpg",
+                "180x120": "www.example.com/defcon.180x120.jpg"
+              },
+              image_type_id: "Defcon"
+            }
+          ],
+          asset_type: "IMAGE"
+        }
+      ];
+
+      const [result] = mapToRawArticleList([feedArticle]);
+
+      expect(result.sixteenByNineSrc).toBe(expectedStrapImage);
     });
   });
 

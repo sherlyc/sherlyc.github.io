@@ -51,6 +51,18 @@ export function getStrapImageSrc(
   return image ? image.src : null;
 }
 
+export function getImage(
+  item: IJsonFeedArticle | IJsonFeedUrl,
+  imageTypePriority: JsonFeedImageType[]
+) {
+  const image = imageTypePriority.reduce(
+    (final: IImageVariant | undefined, imageType) =>
+      final || findImage(item, imageType),
+    undefined
+  );
+  return image ? image.src : null;
+}
+
 function getImageWidth(dimensions: string) {
   return `${dimensions.split("x")[0]}w`;
 }

@@ -7,11 +7,13 @@ import { IJsonFeedQuery } from "../__types__/IJsonFeedQuery";
 import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 import {
   getDefconSrc,
+  getImage,
   getStrapImageSrc,
   getStrapImageSrcSet,
   getThumbnailSrc,
   getThumbnailSrcSet
 } from "./image-handler";
+import { JsonFeedImageType } from "../__types__/JsonFeedImageType";
 
 export function mapToRawArticleList(
   articles: Array<IJsonFeedArticle | IJsonFeedUrl | IJsonFeedQuery>
@@ -42,6 +44,11 @@ export function mapArticleAsset(item: IJsonFeedArticle): IRawArticle {
     strapImageSrc: getStrapImageSrc(item),
     strapImageSrcSet: getStrapImageSrcSet(item),
     defconSrc: getDefconSrc(item),
+    sixteenByNineSrc: getImage(item, [
+      JsonFeedImageType.SMALL_THUMBNAIL_SIXTEEN_BY_NINE,
+      JsonFeedImageType.STRAP_IMAGE,
+      JsonFeedImageType.SMALL_THUMBNAIL
+    ]),
     lastPublishedTime: moment(item.datetime_iso8601).unix(),
     headlineFlags: getHeadlineFlags(item)
   };
@@ -61,6 +68,11 @@ function mapUrlAsset(item: IJsonFeedUrl): IRawArticle {
     strapImageSrc: getStrapImageSrc(item),
     strapImageSrcSet: getStrapImageSrcSet(item),
     defconSrc: getDefconSrc(item),
+    sixteenByNineSrc: getImage(item, [
+      JsonFeedImageType.SMALL_THUMBNAIL_SIXTEEN_BY_NINE,
+      JsonFeedImageType.STRAP_IMAGE,
+      JsonFeedImageType.SMALL_THUMBNAIL
+    ]),
     lastPublishedTime: moment(item.datetime_iso8601).unix(),
     headlineFlags: getHeadlineFlags(item)
   };
