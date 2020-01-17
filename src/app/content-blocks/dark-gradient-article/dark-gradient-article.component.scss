@@ -1,0 +1,35 @@
+:host {
+  display: block;
+  margin: 0 -10px 10px -10px;
+}
+
+.wrapper {
+  background-color: #333333;
+  padding: 10px;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  color: #000;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+.intro {
+  color: #fff;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+p {
+  margin: 0;
+}

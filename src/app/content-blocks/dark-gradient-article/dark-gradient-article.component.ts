@@ -11,6 +11,7 @@ import { AnalyticsService } from "../../services/analytics/analytics.service";
 })
 export class DarkGradientArticleComponent implements IContentBlockComponent {
   @Input() input!: IDarkGradientArticle;
+  index?: number;
 
   constructor(private analyticsService: AnalyticsService) {}
 
