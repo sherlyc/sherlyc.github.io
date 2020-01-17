@@ -177,8 +177,8 @@ describe("JsonFeed Mapper", () => {
     });
 
     it("should return thumbnail image when strap image is not provided", () => {
-      const thumbnailImageUrl = "www.example.com/thumbnail.90x60.jpg";
       const feedArticle = jsonFeedArticle();
+      const expectedImageUrl = "www.example.com/thumbnail.180x120.jpg";
       feedArticle.images = [
         {
           id: 63784214,
@@ -190,13 +190,13 @@ describe("JsonFeed Mapper", () => {
             {
               id: 63784214,
               layout: JsonFeedImageType.SMALL_THUMBNAIL,
-              src: thumbnailImageUrl,
+              src: "www.example.com/thumbnail.90x60.jpg",
               media_type: "Photo",
               width: "90",
               height: "60",
               urls: {
-                "90x60": thumbnailImageUrl,
-                "180x120": "www.example.com/thumbnail.180x120.jpg"
+                "90x60": "www.example.com/thumbnail.90x60.jpg",
+                "180x120": expectedImageUrl
               },
               image_type_id: "StuffThumbnail"
             }
@@ -207,7 +207,7 @@ describe("JsonFeed Mapper", () => {
 
       const [result] = mapToRawArticleList([feedArticle]);
 
-      expect(result.imageSrc).toBe(thumbnailImageUrl);
+      expect(result.imageSrc).toBe(expectedImageUrl);
     });
 
     it("should generate image source set", () => {
@@ -309,7 +309,8 @@ describe("JsonFeed Mapper", () => {
 
     it("should fallback to strap image when defcon image is not provided", () => {
       const feedArticle = jsonFeedArticle();
-      const expectedDefconSrc = "www.example.com/defcon.90x60.jpg";
+      const expectedStrapImageSrc =
+        "www.example.com/StuffLandscapeThreeByTwo.180x120.jpg";
       feedArticle.images = [
         {
           id: 63784214,
@@ -334,15 +335,15 @@ describe("JsonFeed Mapper", () => {
             {
               id: 63784214,
               layout: JsonFeedImageType.STRAP_IMAGE,
-              src: expectedDefconSrc,
+              src: "www.example.com/StuffLandscapeThreeByTwo.90x60.jpg",
               media_type: "Photo",
               width: "90",
               height: "60",
               urls: {
-                "90x60": "www.example.com/defcon.90x60.jpg",
-                "180x120": "www.example.com/defcon.180x120.jpg"
+                "90x60": "www.example.com/StuffLandscapeThreeByTwo.90x60.jpg",
+                "180x120": expectedStrapImageSrc
               },
-              image_type_id: "Defcon"
+              image_type_id: "StuffLandscapeThreeByTwo"
             }
           ],
           asset_type: "IMAGE"
@@ -351,12 +352,12 @@ describe("JsonFeed Mapper", () => {
 
       const [result] = mapToRawArticleList([feedArticle]);
 
-      expect(result.defconSrc).toBe(expectedDefconSrc);
+      expect(result.defconSrc).toBe(expectedStrapImageSrc);
     });
 
     it("should fallback to thumbnail image when defcon image and strap images are not provided", () => {
       const feedArticle = jsonFeedArticle();
-      const expectedDefconSrc = "www.example.com/defcon.90x60.jpg";
+      const expectedThumbnailSrc = "www.example.com/StuffThumbnail.180x120.jpg";
       feedArticle.images = [
         {
           id: 63784214,
@@ -368,15 +369,15 @@ describe("JsonFeed Mapper", () => {
             {
               id: 63784214,
               layout: JsonFeedImageType.SMALL_THUMBNAIL,
-              src: expectedDefconSrc,
+              src: "www.example.com/StuffThumbnail.90x60.jpg",
               media_type: "Photo",
               width: "90",
               height: "60",
               urls: {
-                "90x60": "www.example.com/defcon.90x60.jpg",
-                "180x120": "www.example.com/defcon.180x120.jpg"
+                "90x60": "www.example.com/StuffThumbnail.90x60.jpg",
+                "180x120": expectedThumbnailSrc
               },
-              image_type_id: "Defcon"
+              image_type_id: "StuffThumbnail"
             }
           ],
           asset_type: "IMAGE"
@@ -386,7 +387,7 @@ describe("JsonFeed Mapper", () => {
 
       const [result] = mapToRawArticleList(data.stories);
 
-      expect(result.defconSrc).toBe(expectedDefconSrc);
+      expect(result.defconSrc).toBe(expectedThumbnailSrc);
     });
 
     it("should map 16x9 thumbnail image when it is provided", () => {
@@ -426,7 +427,7 @@ describe("JsonFeed Mapper", () => {
 
     it("should fallback to strap image if sixteen by nine is not provided", () => {
       const feedArticle = jsonFeedArticle();
-      const expectedStrapImage = "www.example.com/strap.90x60.jpg";
+      const expectedStrapImage = "www.example.com/strap.180x120.jpg";
       feedArticle.images = [
         {
           id: 1,
@@ -456,10 +457,10 @@ describe("JsonFeed Mapper", () => {
               width: "90",
               height: "60",
               urls: {
-                "90x60": "www.example.com/defcon.90x60.jpg",
-                "180x120": "www.example.com/defcon.180x120.jpg"
+                "90x60": "www.example.com/strap.90x60.jpg",
+                "180x120": expectedStrapImage
               },
-              image_type_id: "Defcon"
+              image_type_id: "StuffLandscapeThreeByTwo"
             }
           ],
           asset_type: "IMAGE"
@@ -469,6 +470,40 @@ describe("JsonFeed Mapper", () => {
       const [result] = mapToRawArticleList([feedArticle]);
 
       expect(result.sixteenByNineSrc).toBe(expectedStrapImage);
+    });
+
+    it("should get largest rendition", () => {
+      const feedArticle = jsonFeedArticle();
+      const expectedImage = "www.example.com/thumbnail.180x120.jpg";
+      feedArticle.images = [
+        {
+          id: 1,
+          datetime_iso8601: "20150818T085547+1200",
+          datetime_display: "08:55 18/08/2015",
+          creditline: "",
+          caption: "x",
+          variants: [
+            {
+              id: 63784214,
+              layout: JsonFeedImageType.SMALL_THUMBNAIL,
+              src: "www.example.com/thumbnail.90x60.jpg",
+              media_type: "Photo",
+              width: "90",
+              height: "60",
+              urls: {
+                "90x60": "www.example.com/thumbnail.90x60.jpg",
+                "180x120": expectedImage
+              },
+              image_type_id: "StuffThumbnail"
+            }
+          ],
+          asset_type: "IMAGE"
+        }
+      ];
+
+      const [result] = mapToRawArticleList([feedArticle]);
+
+      expect(result.imageSrc).toBe(expectedImage);
     });
   });
 

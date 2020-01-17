@@ -31,7 +31,21 @@ export function getImage(
       final || findImage(item, imageType),
     undefined
   );
-  return image ? image.src : null;
+  return image ? findLargestRendition(image) : null;
+}
+
+function findLargestRendition(imageVariant: IImageVariant) {
+  let rendition = "";
+  let maxPixelCount = 0;
+  Object.keys(imageVariant.urls).forEach((key) => {
+    const [width, height] = key.split("x");
+    const pixelCount = parseInt(width, 10) * parseInt(height, 10);
+    if (pixelCount > maxPixelCount) {
+      rendition = key;
+      maxPixelCount = pixelCount;
+    }
+  });
+  return imageVariant.urls[rendition];
 }
 
 function getImageWidth(dimensions: string) {
