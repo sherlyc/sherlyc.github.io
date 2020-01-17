@@ -22,35 +22,6 @@ function findImage(
   return undefined;
 }
 
-export function getDefconSrc(
-  item: IJsonFeedArticle | IJsonFeedUrl
-): string | null {
-  const image =
-    findImage(item, JsonFeedImageType.DEFCON_IMAGE) ||
-    findImage(item, JsonFeedImageType.STRAP_IMAGE) ||
-    findImage(item, JsonFeedImageType.SMALL_THUMBNAIL);
-
-  return image ? image.src : null;
-}
-
-export function getThumbnailSrc(
-  item: IJsonFeedArticle | IJsonFeedUrl
-): string | null {
-  const image = findImage(item, JsonFeedImageType.SMALL_THUMBNAIL);
-
-  return image ? image.src : null;
-}
-
-export function getStrapImageSrc(
-  item: IJsonFeedArticle | IJsonFeedUrl
-): string | null {
-  const image =
-    findImage(item, JsonFeedImageType.STRAP_IMAGE) ||
-    findImage(item, JsonFeedImageType.SMALL_THUMBNAIL);
-
-  return image ? image.src : null;
-}
-
 export function getImage(
   item: IJsonFeedArticle | IJsonFeedUrl,
   imageTypePriority: JsonFeedImageType[]
