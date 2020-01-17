@@ -1,0 +1,15 @@
+<article itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+  <meta itemprop="position" content="{{ index }}" />
+  <a itemprop="url" href="{{ input.linkUrl }}" appOpenExternalLink="{{ input.linkUrl }}" (click)="sendAnalytics()">
+    <div>
+      <img itemprop="image" src="{{ input.imageSrc }}" alt="{{ input.indexHeadline }}" loading="auto" />
+    </div>
+    <div class="wrapper">
+      <app-headline textColor="#fff" [headline]="input.indexHeadline" [headlineFlags]="input.headlineFlags"></app-headline>
+      <p>
+        <app-time-ago textColor="#fff" [timestamp]="input.lastPublishedTime"></app-time-ago>
+        <span class="intro">{{ input.introText }}</span>
+      </p>
+    </div>
+  </a>
+</article>
