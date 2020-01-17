@@ -5,6 +5,8 @@ import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IDarkGradientArticle } from "../../../../common/__types__/IDarkGradientArticle";
+import { By } from "@angular/platform-browser";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 
 describe("DarkGradientArticleComponent", () => {
   let component: DarkGradientArticleComponent;
@@ -45,5 +47,21 @@ describe("DarkGradientArticleComponent", () => {
 
   it("should create", () => {
     expect(component).toBeTruthy();
+  });
+
+  it("should send analytics when clicked", () => {
+    const { strapName, title, id } = articleData;
+    component.input = articleData;
+    fixture.detectChanges();
+
+    const anchorTag = fixture.debugElement.query(By.css("a")).nativeElement;
+    anchorTag.click();
+
+    expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+      type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
+      strapName,
+      articleHeadline: title,
+      articleId: id
+    });
   });
 });
