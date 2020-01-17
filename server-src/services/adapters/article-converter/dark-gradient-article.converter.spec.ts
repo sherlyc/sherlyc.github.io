@@ -1,9 +1,9 @@
-import { bigImageArticleUnit } from "./big-image-article.converter";
 import { IRawArticle } from "../__types__/IRawArticle";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArticleUnit";
+import { darkGradientArticle } from "./dark-gradient-article.converter";
+import { IDarkGradientArticle } from "../../../../common/__types__/IDarkGradientArticle";
 
-describe("big image article", () => {
+describe("dark gradient article", () => {
   it("should convert", () => {
     const fakeArticle: IRawArticle = {
       id: "1",
@@ -22,18 +22,18 @@ describe("big image article", () => {
 
     const fakeStrapName = "fakeStrapName";
 
-    const result = bigImageArticleUnit(fakeArticle, fakeStrapName);
+    const result = darkGradientArticle(fakeArticle, fakeStrapName);
 
-    const expected: IBigImageArticleUnit = {
-      type: ContentBlockType.BigImageArticleUnit,
+    const expected: IDarkGradientArticle = {
+      type: ContentBlockType.DarkGradientArticle,
       id: "1",
       strapName: "fakeStrapName",
       indexHeadline: "Headline 1",
       title: "Title One",
       introText: "Intro 1",
       linkUrl: "/link1",
-      imageSrc: "strap1.jpg",
-      imageSrcSet: "strap1.jpg 1w",
+      imageSrc: "1.jpg",
+      imageSrcSet: "1.jpg 1w",
       lastPublishedTime: 1,
       headlineFlags: []
     };
