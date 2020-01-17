@@ -2,6 +2,7 @@ import { IJsonFeedArticle } from "../__types__/IJsonFeedArticle";
 import { IJsonFeedUrl } from "../__types__/IJsonFeedUrl";
 import { JsonFeedImageType } from "../__types__/JsonFeedImageType";
 import { IImageVariant } from "../__types__/IImageVariant";
+import { maxBy } from "lodash";
 
 function findImage(
   item: IJsonFeedArticle | IJsonFeedUrl,
@@ -35,17 +36,16 @@ export function getImage(
 }
 
 function findLargestRendition(imageVariant: IImageVariant) {
-  let rendition = "";
-  let maxPixelCount = 0;
-  Object.keys(imageVariant.urls).forEach((key) => {
-    const [width, height] = key.split("x");
-    const pixelCount = parseInt(width, 10) * parseInt(height, 10);
-    if (pixelCount > maxPixelCount) {
-      rendition = key;
-      maxPixelCount = pixelCount;
+  const largestRendition = maxBy(
+    Object.keys(imageVariant.urls),
+    (rendition) => {
+      const [width, height] = rendition.split("x");
+      return parseInt(width, 10) * parseInt(height, 10);
     }
-  });
-  return imageVariant.urls[rendition];
+  );
+  return largestRendition
+    ? imageVariant.urls[largestRendition]
+    : imageVariant.src;
 }
 
 function getImageWidth(dimensions: string) {

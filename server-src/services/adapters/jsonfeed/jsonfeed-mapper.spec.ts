@@ -505,6 +505,37 @@ describe("JsonFeed Mapper", () => {
 
       expect(result.imageSrc).toBe(expectedImage);
     });
+
+    it("should fallback to image src if there is no rendition", () => {
+      const feedArticle = jsonFeedArticle();
+      const expectedImage = "www.example.com/thumbnail.90x60.jpg";
+      feedArticle.images = [
+        {
+          id: 1,
+          datetime_iso8601: "20150818T085547+1200",
+          datetime_display: "08:55 18/08/2015",
+          creditline: "",
+          caption: "x",
+          variants: [
+            {
+              id: 63784214,
+              layout: JsonFeedImageType.SMALL_THUMBNAIL,
+              src: expectedImage,
+              media_type: "Photo",
+              width: "90",
+              height: "60",
+              urls: {},
+              image_type_id: "StuffThumbnail"
+            }
+          ],
+          asset_type: "IMAGE"
+        }
+      ];
+
+      const [result] = mapToRawArticleList([feedArticle]);
+
+      expect(result.imageSrc).toBe(expectedImage);
+    });
   });
 
   describe("headline flags", () => {
