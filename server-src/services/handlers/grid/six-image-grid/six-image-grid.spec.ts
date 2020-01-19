@@ -26,7 +26,8 @@ describe("Six Image Grid", () => {
     imageSrc: "strap1.jpg",
     imageSrcSet: "strap1.jpg 1w",
     lastPublishedTime: 1,
-    headlineFlags: []
+    headlineFlags: [],
+    sixteenByNineSrc: null
   };
   const basicAdUnit: IBasicAdUnit = {
     type: ContentBlockType.BasicAdUnit,
