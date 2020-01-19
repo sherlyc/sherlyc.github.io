@@ -21,11 +21,13 @@ import { ISixImageGridHandlerInput } from "./ISixImageGridHandlerInput";
 import { ILargeLeadSixHandlerInput } from "./ILargeLeadSixHandlerInput";
 import { ILargeLeadSixGridHandlerInput } from "./ILargeLeadSixGridHandlerInput";
 import { IListGridHandlerInput } from "./IListGridHandlerInput";
+import { IForceUpdateHandlerInput } from "./IForceUpdateHandlerInput";
 
 export type HandlerInput =
   | ITopStoriesArticleListHandlerInput
   | IBasicArticleListHandlerInput
   | IBannerHandlerInput
+  | IForceUpdateHandlerInput
   | IMidStripHandlerInput
   | IMiniMidStripHandlerInput
   | IBasicArticleSectionHandlerInput
