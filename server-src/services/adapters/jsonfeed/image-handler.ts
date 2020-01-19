@@ -2,6 +2,7 @@ import { IJsonFeedArticle } from "../__types__/IJsonFeedArticle";
 import { IJsonFeedUrl } from "../__types__/IJsonFeedUrl";
 import { JsonFeedImageType } from "../__types__/JsonFeedImageType";
 import { IImageVariant } from "../__types__/IImageVariant";
+import { maxBy } from "lodash";
 
 function findImage(
   item: IJsonFeedArticle | IJsonFeedUrl,
@@ -22,33 +23,29 @@ function findImage(
   return undefined;
 }
 
-export function getDefconSrc(
-  item: IJsonFeedArticle | IJsonFeedUrl
-): string | null {
-  const image =
-    findImage(item, JsonFeedImageType.DEFCON_IMAGE) ||
-    findImage(item, JsonFeedImageType.STRAP_IMAGE) ||
-    findImage(item, JsonFeedImageType.SMALL_THUMBNAIL);
-
-  return image ? image.src : null;
+export function getImage(
+  item: IJsonFeedArticle | IJsonFeedUrl,
+  imageTypePriority: JsonFeedImageType[]
+) {
+  const image = imageTypePriority.reduce(
+    (final: IImageVariant | undefined, imageType) =>
+      final || findImage(item, imageType),
+    undefined
+  );
+  return image ? findLargestRendition(image) : null;
 }
 
-export function getThumbnailSrc(
-  item: IJsonFeedArticle | IJsonFeedUrl
-): string | null {
-  const image = findImage(item, JsonFeedImageType.SMALL_THUMBNAIL);
-
-  return image ? image.src : null;
-}
-
-export function getStrapImageSrc(
-  item: IJsonFeedArticle | IJsonFeedUrl
-): string | null {
-  const image =
-    findImage(item, JsonFeedImageType.STRAP_IMAGE) ||
-    findImage(item, JsonFeedImageType.SMALL_THUMBNAIL);
-
-  return image ? image.src : null;
+function findLargestRendition(imageVariant: IImageVariant) {
+  const largestRendition = maxBy(
+    Object.keys(imageVariant.urls),
+    (rendition) => {
+      const [width, height] = rendition.split("x");
+      return parseInt(width, 10) * parseInt(height, 10);
+    }
+  );
+  return largestRendition
+    ? imageVariant.urls[largestRendition]
+    : imageVariant.src;
 }
 
 function getImageWidth(dimensions: string) {

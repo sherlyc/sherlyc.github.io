@@ -32,7 +32,8 @@ describe("Six image", () => {
     strapImageSrc: "strap1.jpg",
     strapImageSrcSet: "strap1.jpg 1w",
     lastPublishedTime: 1,
-    headlineFlags: []
+    headlineFlags: [],
+    sixteenByNineSrc: null
   };
   const strapName = "fakeStrapName";
   const imageLinkUnit: IImageLinkUnit = {
