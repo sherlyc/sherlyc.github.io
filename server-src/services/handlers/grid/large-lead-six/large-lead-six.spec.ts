@@ -170,24 +170,4 @@ describe("Large lead six", () => {
       params
     );
   });
-
-  it("should throw error with custom message for insufficient articles", async () => {
-    (getRawArticles as jest.Mock).mockResolvedValue([articleOne]);
-    const input: ILargeLeadSixHandlerInput = {
-      type: HandlerInputType.LargeLeadSix,
-      displayName,
-      displayNameColor,
-      strapName,
-      sourceId
-    };
-
-    expect.assertions(1);
-    try {
-      await largeLeadSixHandler(handlerRunnerMock, input, params);
-    } catch (error) {
-      expect(error.message).toContain(
-        `Large Lead Six handler error: Insufficient number of articles: 1. Strap name: ${sourceId}|${strapName}`
-      );
-    }
-  });
 });

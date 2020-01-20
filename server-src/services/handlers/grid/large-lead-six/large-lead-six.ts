@@ -13,6 +13,7 @@ import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic
 import { ILargeLeadSixHandlerInput } from "../../__types__/ILargeLeadSixHandlerInput";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { gridBlockErrorHandler } from "../grid-block-error-handler";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -27,19 +28,29 @@ export default async function(
   const totalArticles = 6;
   const articles = await getRawArticles(sourceId, totalArticles, params);
 
-  if (articles.length < totalArticles) {
-    const errorMsg = `Large Lead Six handler error: Insufficient number of articles: ${articles.length}. Strap name: ${sourceId}|${strapName}`;
-    throw new Error(errorMsg);
-  }
-
-  const leftContent = bigImageArticleUnit(
-    articles.shift() as IRawArticle,
-    strapName
+  const leftContent = await gridBlockErrorHandler(
+    () => bigImageArticleUnit(articles.shift() as IRawArticle, strapName),
+    HandlerInputType.LargeLeadSix,
+    LargeLeadSixGridPositions.Left,
+    params
   );
-  const middleContent = articles.map((article) =>
+  const listGridContent = articles.map((article) =>
     basicArticleTitleUnit(article, strapName)
   );
 
+  const middleContent = await gridBlockErrorHandler(
+    () =>
+      handlerRunner(
+        {
+          type: HandlerInputType.ListGrid,
+          content: listGridContent
+        },
+        params
+      ),
+    HandlerInputType.LargeLeadSix,
+    LargeLeadSixGridPositions.Middle,
+    params
+  );
   const largeLeadSixGridHandlerInput: ILargeLeadSixGridHandlerInput = {
     type: HandlerInputType.LargeLeadSixGrid,
     content: {
@@ -51,13 +62,7 @@ export default async function(
         }
       ],
       [LargeLeadSixGridPositions.Left]: [leftContent],
-      [LargeLeadSixGridPositions.Middle]: await handlerRunner(
-        {
-          type: HandlerInputType.ListGrid,
-          content: middleContent
-        },
-        params
-      ),
+      [LargeLeadSixGridPositions.Middle]: middleContent,
       [LargeLeadSixGridPositions.Right]: [basicAdUnit(strapName)]
     }
   };

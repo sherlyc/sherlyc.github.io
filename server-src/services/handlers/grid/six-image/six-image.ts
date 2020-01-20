@@ -13,6 +13,7 @@ import wrappedLogger from "../../../utils/logger";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 import { imageLinkUnit } from "../../../adapters/article-converter/image-link-unit.converter";
+import { gridBlockErrorHandler } from "../grid-block-error-handler";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -33,20 +34,45 @@ export default async function(
           }
         ],
         [SixImageGridHandlerPositions.FirstRowLeft]: [
-          imageLinkUnit(articles.shift() as IRawArticle, strapName)
+          await gridBlockErrorHandler(
+            () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
+            HandlerInputType.SixImage,
+            SixImageGridHandlerPositions.FirstRowLeft,
+            params
+          )
         ],
         [SixImageGridHandlerPositions.FirstRowMiddle]: [
-          imageLinkUnit(articles.shift() as IRawArticle, strapName)
+          await gridBlockErrorHandler(
+            () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
+            HandlerInputType.SixImage,
+            SixImageGridHandlerPositions.FirstRowMiddle,
+            params
+          )
         ],
         [SixImageGridHandlerPositions.FirstRowRight]: [
-          imageLinkUnit(articles.shift() as IRawArticle, strapName)
+          await gridBlockErrorHandler(
+            () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
+            HandlerInputType.SixImage,
+            SixImageGridHandlerPositions.FirstRowRight,
+            params
+          )
         ],
         [SixImageGridHandlerPositions.SecondRowLeft]: [basicAdUnit(strapName)],
         [SixImageGridHandlerPositions.SecondRowMiddle]: [
-          imageLinkUnit(articles.shift() as IRawArticle, strapName)
+          await gridBlockErrorHandler(
+            () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
+            HandlerInputType.SixImage,
+            SixImageGridHandlerPositions.SecondRowMiddle,
+            params
+          )
         ],
         [SixImageGridHandlerPositions.SecondRowRight]: [
-          imageLinkUnit(articles.shift() as IRawArticle, strapName)
+          await gridBlockErrorHandler(
+            () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
+            HandlerInputType.SixImage,
+            SixImageGridHandlerPositions.SecondRowRight,
+            params
+          )
         ],
         [SixImageGridHandlerPositions.BigRight]: [basicAdUnit(strapName)]
       }
