@@ -2,7 +2,10 @@ import { IColumnGridHandlerInput } from "../../__types__/IColumnGridHandlerInput
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IParams } from "../../../__types__/IParams";
-import { Border, IGridContainer } from "../../../../../common/__types__/IGridContainer";
+import {
+  Border,
+  IGridContainer
+} from "../../../../../common/__types__/IGridContainer";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import columnGridHandler from "./column-grid";
 
@@ -13,49 +16,64 @@ describe("Column Grid", () => {
   const params: IParams = { apiRequestId: "123" };
 
   it("should handle one column of content", async () => {
-      const handlerInput: IColumnGridHandlerInput = {
-        type: HandlerInputType.ColumnGrid,
-        content: [[contentBlock("1")]]
-      };
+    const handlerInput: IColumnGridHandlerInput = {
+      type: HandlerInputType.ColumnGrid,
+      content: [[contentBlock("1")]]
+    };
 
-      const layout = {
-        gridTemplateColumns: "1fr",
-        gridTemplateRows: "auto",
-        gridColumnGap: "0px",
-        gridRowGap: "10px",
-        gridBlocks: {
-          content0: {
-            columnStart: 1,
-            columnSpan: 1,
-            rowStart: 1,
-            rowSpan: 1,
-            border: []
-          }
+    const layout = {
+      gridTemplateColumns: "1fr",
+      gridTemplateRows: "auto",
+      gridColumnGap: "0px",
+      gridRowGap: "10px",
+      gridBlocks: {
+        content0: {
+          columnStart: 1,
+          columnSpan: 1,
+          rowStart: 1,
+          rowSpan: 1,
+          border: []
         }
-      };
+      }
+    };
 
-      const expected: IGridContainer = {
-        type: ContentBlockType.GridContainer,
-        items: {
-          content0: [contentBlock("1")]
-        },
-        mobile: layout,
-        tablet: layout,
-        desktop: layout
-      };
+    const tabletLayout = {
+      gridTemplateColumns: "1fr",
+      gridTemplateRows: "auto",
+      gridColumnGap: "15px",
+      gridRowGap: "10px",
+      gridBlocks: {
+        content0: {
+          columnStart: 1,
+          columnSpan: 1,
+          rowStart: 1,
+          rowSpan: 1,
+          border: []
+        }
+      }
+    };
 
-      const result = await columnGridHandler(handlerRunner, handlerInput, params);
+    const expected: IGridContainer = {
+      type: ContentBlockType.GridContainer,
+      items: {
+        content0: [contentBlock("1")]
+      },
+      mobile: layout,
+      tablet: tabletLayout,
+      desktop: tabletLayout
+    };
 
-      expect(result).toEqual([expected]);
+    const result = await columnGridHandler(handlerRunner, handlerInput, params);
 
-    });
+    expect(result).toEqual([expected]);
+  });
 
   it("should handle two columns of content", async () => {
     const handlerInput: IColumnGridHandlerInput = {
       type: HandlerInputType.ColumnGrid,
       content: [
         [contentBlock("1"), contentBlock("2")],
-        [contentBlock("3"), contentBlock("4") ]
+        [contentBlock("3"), contentBlock("4")]
       ]
     };
 
@@ -93,7 +111,7 @@ describe("Column Grid", () => {
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content1: {
           columnStart: 2,
@@ -116,7 +134,7 @@ describe("Column Grid", () => {
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content1: {
           columnStart: 2,
@@ -148,8 +166,8 @@ describe("Column Grid", () => {
       type: HandlerInputType.ColumnGrid,
       content: [
         [contentBlock("1"), contentBlock("2")],
-        [contentBlock("3"), contentBlock("4") ],
-        [contentBlock("5"), contentBlock("6") ]
+        [contentBlock("3"), contentBlock("4")],
+        [contentBlock("5"), contentBlock("6")]
       ]
     };
 
@@ -194,14 +212,14 @@ describe("Column Grid", () => {
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content1: {
           columnStart: 2,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content2: {
           columnStart: 3,
@@ -224,14 +242,14 @@ describe("Column Grid", () => {
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content1: {
           columnStart: 2,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content2: {
           columnStart: 3,
@@ -265,9 +283,9 @@ describe("Column Grid", () => {
       type: HandlerInputType.ColumnGrid,
       content: [
         [contentBlock("1"), contentBlock("2")],
-        [contentBlock("3"), contentBlock("4") ],
-        [contentBlock("5"), contentBlock("6") ],
-        [contentBlock("7"), contentBlock("8") ]
+        [contentBlock("3"), contentBlock("4")],
+        [contentBlock("5"), contentBlock("6")],
+        [contentBlock("7"), contentBlock("8")]
       ]
     };
 
@@ -319,21 +337,21 @@ describe("Column Grid", () => {
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content1: {
           columnStart: 2,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content2: {
           columnStart: 1,
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content3: {
           columnStart: 2,
@@ -356,21 +374,21 @@ describe("Column Grid", () => {
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content1: {
           columnStart: 2,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content2: {
           columnStart: 3,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content3: {
           columnStart: 4,
@@ -405,10 +423,10 @@ describe("Column Grid", () => {
       type: HandlerInputType.ColumnGrid,
       content: [
         [contentBlock("1"), contentBlock("2")],
-        [contentBlock("3"), contentBlock("4") ],
-        [contentBlock("5"), contentBlock("6") ],
-        [contentBlock("7"), contentBlock("8") ],
-        [contentBlock("9"), contentBlock("10") ]
+        [contentBlock("3"), contentBlock("4")],
+        [contentBlock("5"), contentBlock("6")],
+        [contentBlock("7"), contentBlock("8")],
+        [contentBlock("9"), contentBlock("10")]
       ]
     };
 
@@ -467,28 +485,28 @@ describe("Column Grid", () => {
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content1: {
           columnStart: 2,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content2: {
           columnStart: 3,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content3: {
           columnStart: 1,
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content4: {
           columnStart: 2,
@@ -511,28 +529,28 @@ describe("Column Grid", () => {
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content1: {
           columnStart: 2,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content2: {
           columnStart: 3,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content3: {
           columnStart: 4,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content4: {
           columnStart: 5,
@@ -568,11 +586,11 @@ describe("Column Grid", () => {
       type: HandlerInputType.ColumnGrid,
       content: [
         [contentBlock("1"), contentBlock("2")],
-        [contentBlock("3"), contentBlock("4") ],
-        [contentBlock("5"), contentBlock("6") ],
-        [contentBlock("7"), contentBlock("8") ],
-        [contentBlock("9"), contentBlock("10") ],
-        [contentBlock("11"), contentBlock("12") ]
+        [contentBlock("3"), contentBlock("4")],
+        [contentBlock("5"), contentBlock("6")],
+        [contentBlock("7"), contentBlock("8")],
+        [contentBlock("9"), contentBlock("10")],
+        [contentBlock("11"), contentBlock("12")]
       ]
     };
 
@@ -638,35 +656,35 @@ describe("Column Grid", () => {
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content1: {
           columnStart: 2,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content2: {
           columnStart: 3,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content3: {
           columnStart: 1,
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content4: {
           columnStart: 2,
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content5: {
           columnStart: 3,
@@ -689,35 +707,35 @@ describe("Column Grid", () => {
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content1: {
           columnStart: 2,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content2: {
           columnStart: 3,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content3: {
           columnStart: 1,
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content4: {
           columnStart: 2,
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: [Border.right]
+          border: []
         },
         content5: {
           columnStart: 3,
@@ -749,6 +767,3 @@ describe("Column Grid", () => {
     expect(result).toEqual([expected]);
   });
 });
-
-
-

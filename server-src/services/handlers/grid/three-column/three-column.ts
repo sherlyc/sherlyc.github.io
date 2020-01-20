@@ -1,7 +1,5 @@
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import {
-  IColumnGridHandlerInput,
-} from "../../__types__/IColumnGridHandlerInput";
+import { IColumnGridHandlerInput } from "../../__types__/IColumnGridHandlerInput";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { handlerRunnerFunction } from "../../runner";
 import { IParams } from "../../../__types__/IParams";

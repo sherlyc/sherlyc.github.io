@@ -1,14 +1,17 @@
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { Border, IGridConfig } from "../../../../../common/__types__/IGridContainer";
+import {
+  Border,
+  IGridConfig
+} from "../../../../../common/__types__/IGridContainer";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { handlerRunnerFunction } from "../../runner";
 import { IColumnGridHandlerInput } from "../../__types__/IColumnGridHandlerInput";
 import { IParams } from "../../../__types__/IParams";
 import { gridBlock } from "../../../adapters/grid/grid-block";
 import {
+  IColumnGridConfig,
+  IColumnGridTemplate,
   desktopGridConfig,
-  IDictionary,
-  ITemplateDictionary,
   mobileGridConfig,
   tabletGridConfig,
   templateColumnsDesktop,
@@ -17,50 +20,46 @@ import {
   templateRowsTablet
 } from "./column-grid-config";
 
-const getGridTemplateValue = (length: number, config: ITemplateDictionary) => {
-  return config[length];
+const validateLength = (length: number) => {
+  const maxColumnCap = 6;
+
+  if (length > 0 && length <= maxColumnCap) {
+    return length;
+  } else if (length > maxColumnCap) {
+    return maxColumnCap;
+  }
+  return 1;
+};
+
+const getGridTemplateConfig = (length: number, config: IColumnGridTemplate) => {
+  const lengthNum: number = validateLength(length);
+  return config[lengthNum];
 };
 
 const getTemplateRowsForMobile = (length: number) => {
-  return length ? Array(length).fill("auto").join(" ")
+  const lengthNum: number = validateLength(length);
+  return lengthNum
+    ? Array(length)
+        .fill("auto")
+        .join(" ")
     : "auto";
 };
 
 const gridPositionName = (index: number) => `content${index}`;
 
-export const getGridBlocks = (length: number, gridConfig: IDictionary) => {
-  const arr = gridConfig[length];
+const getGridBlocks = (length: number, gridConfig: IColumnGridConfig) => {
+  const lengthNum: number = validateLength(length);
+  const arr = gridConfig[lengthNum];
   const result = arr.reduce(
     (acc, item, index) => ({
       ...acc,
-      [gridPositionName(index)]: gridBlock(
-        item[0],
-        item[1],
-        1,
-        1,
-        index === length - 1 ? [] : [Border.right]
-      )
+      [gridPositionName(index)]: gridBlock(item[0], item[1], 1, 1, [])
     }),
     {}
   );
 
   return result;
 };
-
-// const getGridBlocksForMobile = (content: IContentBlock[][]) =>
-//   content.reduce(
-//     (final, item, index) => ({
-//       ...final,
-//       [gridPositionName(index)]: gridBlock(
-//         index + 1,
-//         1,
-//         1,
-//         1,
-//         []
-//       )
-//     }),
-//     {}
-//   );
 
 const getGridItems = (content: IContentBlock[][]) => {
   const result = content.reduce(
@@ -85,24 +84,31 @@ export default async function(
     gridTemplateRows: getTemplateRowsForMobile(contentLength),
     gridColumnGap: "0px",
     gridRowGap: "10px",
-    gridBlocks: getGridBlocks(content.length, mobileGridConfig)
+    gridBlocks: getGridBlocks(contentLength, mobileGridConfig)
   };
 
   const tabletLayout: IGridConfig = {
-    gridTemplateColumns: getGridTemplateValue(contentLength, templateColumnsTablet),
-    gridTemplateRows: getGridTemplateValue(contentLength, templateRowsTablet),
+    gridTemplateColumns: getGridTemplateConfig(
+      contentLength,
+      templateColumnsTablet
+    ),
+    gridTemplateRows: getGridTemplateConfig(contentLength, templateRowsTablet),
     gridColumnGap: "15px",
     gridRowGap: "10px",
-    gridBlocks: getGridBlocks(content.length, tabletGridConfig)
+    gridBlocks: getGridBlocks(contentLength, tabletGridConfig)
   };
 
   const desktopLayout: IGridConfig = {
-    gridTemplateColumns: getGridTemplateValue(contentLength, templateColumnsDesktop),
-    gridTemplateRows: getGridTemplateValue(contentLength, templateRowsDesktop),
+    gridTemplateColumns: getGridTemplateConfig(
+      contentLength,
+      templateColumnsDesktop
+    ),
+    gridTemplateRows: getGridTemplateConfig(contentLength, templateRowsDesktop),
     gridColumnGap: "15px",
     gridRowGap: "10px",
-    gridBlocks: getGridBlocks(content.length, desktopGridConfig)
+    gridBlocks: getGridBlocks(contentLength, desktopGridConfig)
   };
+
   return [
     {
       type: ContentBlockType.GridContainer,
