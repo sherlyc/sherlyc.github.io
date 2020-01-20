@@ -47,6 +47,21 @@ export const getGridBlocks = (length: number, gridConfig: IDictionary) => {
   return result;
 };
 
+// const getGridBlocksForMobile = (content: IContentBlock[][]) =>
+//   content.reduce(
+//     (final, item, index) => ({
+//       ...final,
+//       [gridPositionName(index)]: gridBlock(
+//         index + 1,
+//         1,
+//         1,
+//         1,
+//         []
+//       )
+//     }),
+//     {}
+//   );
+
 const getGridItems = (content: IContentBlock[][]) => {
   const result = content.reduce(
     (final, current, index) => ({

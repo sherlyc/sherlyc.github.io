@@ -13,7 +13,8 @@ export const mobileGridConfig: IDictionary = {
   4: [[1, 1], [2, 1], [3, 1], [4, 1]],
   5: [[1, 1], [2, 1], [3, 1], [4, 1], [5, 1]],
   6: [[1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 1]]
-}
+};
+
 export const tabletGridConfig: IDictionary = {
   1: [[1, 1]],
   2: [[1, 1], [1, 2]],
@@ -39,7 +40,7 @@ export const templateColumnsTablet: ITemplateDictionary = {
   4 : "1fr 1fr",
   5 : "1fr 1fr 1fr",
   6 : "1fr 1fr 1fr"
-}
+};
 
 export const templateRowsTablet: ITemplateDictionary = {
   1 : "auto",
@@ -48,7 +49,7 @@ export const templateRowsTablet: ITemplateDictionary = {
   4 : "auto auto",
   5 : "auto auto",
   6 : "auto auto"
-}
+};
 
 export const templateColumnsDesktop: ITemplateDictionary = {
   1 : "1fr",
@@ -57,7 +58,7 @@ export const templateColumnsDesktop: ITemplateDictionary = {
   4 : "1fr 1fr 1fr 1fr",
   5 : "1fr 1fr 1fr 1fr 1fr",
   6 : "1fr 1fr 1fr"
-}
+};
 
 export const templateRowsDesktop: ITemplateDictionary = {
   1 : "auto",
@@ -66,4 +67,4 @@ export const templateRowsDesktop: ITemplateDictionary = {
   4 : "auto",
   5 : "auto",
   6 : "auto auto"
-}
+};

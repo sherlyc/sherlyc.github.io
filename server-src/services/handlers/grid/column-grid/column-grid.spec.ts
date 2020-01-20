@@ -2,7 +2,7 @@ import { IColumnGridHandlerInput } from "../../__types__/IColumnGridHandlerInput
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IParams } from "../../../__types__/IParams";
-import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
+import { Border, IGridContainer } from "../../../../../common/__types__/IGridContainer";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import columnGridHandler from "./column-grid";
 
@@ -85,7 +85,7 @@ describe("Column Grid", () => {
     const tabletLayout = {
       gridTemplateColumns: "1fr 1fr",
       gridTemplateRows: "auto",
-      gridColumnGap: "0px",
+      gridColumnGap: "15px",
       gridRowGap: "10px",
       gridBlocks: {
         content0: {
@@ -93,7 +93,7 @@ describe("Column Grid", () => {
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content1: {
           columnStart: 2,
@@ -108,7 +108,7 @@ describe("Column Grid", () => {
     const desktopLayout = {
       gridTemplateColumns: "1fr 1fr",
       gridTemplateRows: "auto",
-      gridColumnGap: "0px",
+      gridColumnGap: "15px",
       gridRowGap: "10px",
       gridBlocks: {
         content0: {
@@ -116,7 +116,7 @@ describe("Column Grid", () => {
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content1: {
           columnStart: 2,
@@ -186,7 +186,7 @@ describe("Column Grid", () => {
     const tabletLayout = {
       gridTemplateColumns: "1fr 1fr 1fr",
       gridTemplateRows: "auto",
-      gridColumnGap: "0px",
+      gridColumnGap: "15px",
       gridRowGap: "10px",
       gridBlocks: {
         content0: {
@@ -194,14 +194,14 @@ describe("Column Grid", () => {
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content1: {
           columnStart: 2,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content2: {
           columnStart: 3,
@@ -216,7 +216,7 @@ describe("Column Grid", () => {
     const desktopLayout = {
       gridTemplateColumns: "1fr 1fr 1fr",
       gridTemplateRows: "auto",
-      gridColumnGap: "0px",
+      gridColumnGap: "15px",
       gridRowGap: "10px",
       gridBlocks: {
         content0: {
@@ -224,14 +224,14 @@ describe("Column Grid", () => {
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content1: {
           columnStart: 2,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content2: {
           columnStart: 3,
@@ -311,7 +311,7 @@ describe("Column Grid", () => {
     const tabletLayout = {
       gridTemplateColumns: "1fr 1fr",
       gridTemplateRows: "auto auto",
-      gridColumnGap: "0px",
+      gridColumnGap: "15px",
       gridRowGap: "10px",
       gridBlocks: {
         content0: {
@@ -319,21 +319,21 @@ describe("Column Grid", () => {
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content1: {
           columnStart: 2,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content2: {
           columnStart: 1,
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content3: {
           columnStart: 2,
@@ -348,7 +348,7 @@ describe("Column Grid", () => {
     const desktopLayout = {
       gridTemplateColumns: "1fr 1fr 1fr 1fr",
       gridTemplateRows: "auto",
-      gridColumnGap: "0px",
+      gridColumnGap: "15px",
       gridRowGap: "10px",
       gridBlocks: {
         content0: {
@@ -356,21 +356,21 @@ describe("Column Grid", () => {
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content1: {
           columnStart: 2,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content2: {
           columnStart: 3,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content3: {
           columnStart: 4,
@@ -459,7 +459,7 @@ describe("Column Grid", () => {
     const tabletLayout = {
       gridTemplateColumns: "1fr 1fr 1fr",
       gridTemplateRows: "auto auto",
-      gridColumnGap: "0px",
+      gridColumnGap: "15px",
       gridRowGap: "10px",
       gridBlocks: {
         content0: {
@@ -467,28 +467,28 @@ describe("Column Grid", () => {
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content1: {
           columnStart: 2,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content2: {
           columnStart: 3,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content3: {
           columnStart: 1,
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content4: {
           columnStart: 2,
@@ -503,7 +503,7 @@ describe("Column Grid", () => {
     const desktopLayout = {
       gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
       gridTemplateRows: "auto",
-      gridColumnGap: "0px",
+      gridColumnGap: "15px",
       gridRowGap: "10px",
       gridBlocks: {
         content0: {
@@ -511,28 +511,28 @@ describe("Column Grid", () => {
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content1: {
           columnStart: 2,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content2: {
           columnStart: 3,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content3: {
           columnStart: 4,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content4: {
           columnStart: 5,
@@ -630,7 +630,7 @@ describe("Column Grid", () => {
     const tabletLayout = {
       gridTemplateColumns: "1fr 1fr 1fr",
       gridTemplateRows: "auto auto",
-      gridColumnGap: "0px",
+      gridColumnGap: "15px",
       gridRowGap: "10px",
       gridBlocks: {
         content0: {
@@ -638,35 +638,35 @@ describe("Column Grid", () => {
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content1: {
           columnStart: 2,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content2: {
           columnStart: 3,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content3: {
           columnStart: 1,
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content4: {
           columnStart: 2,
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content5: {
           columnStart: 3,
@@ -681,7 +681,7 @@ describe("Column Grid", () => {
     const desktopLayout = {
       gridTemplateColumns: "1fr 1fr 1fr",
       gridTemplateRows: "auto auto",
-      gridColumnGap: "0px",
+      gridColumnGap: "15px",
       gridRowGap: "10px",
       gridBlocks: {
         content0: {
@@ -689,35 +689,35 @@ describe("Column Grid", () => {
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content1: {
           columnStart: 2,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content2: {
           columnStart: 3,
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content3: {
           columnStart: 1,
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content4: {
           columnStart: 2,
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: []
+          border: [Border.right]
         },
         content5: {
           columnStart: 3,
