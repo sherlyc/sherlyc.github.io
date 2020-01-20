@@ -6,11 +6,9 @@ import { ContentBlockType } from "../../../../../common/__types__/ContentBlockTy
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import wrappedLogger from "../../../utils/logger";
 import { NewsSixGridPositions } from "../../__types__/INewsSixGridHandlerInput";
 import { bigImageArticleUnit } from "../../../adapters/article-converter/big-image-article.converter";
-import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
-import { responsiveBigImageArticleUnit } from "../../../adapters/article-converter/responsive-big-image-article.converter";
+import { gridBlockErrorHandler } from "../grid-block-error-handler";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -19,52 +17,69 @@ export default async function(
 ): Promise<IContentBlock[]> {
   const articles = await getRawArticles(sourceId, 6, params);
 
-  const articlesLength = articles.length;
-  try {
-    const content: { [key in NewsSixGridPositions]: IContentBlock[] } = {
-      [NewsSixGridPositions.ModuleTitle]: [
-        {
-          type: ContentBlockType.ModuleTitle,
-          displayName,
-          displayNameColor
-        }
-      ],
-      [NewsSixGridPositions.BigTopLeft]: [
-        responsiveBigImageArticleUnit(
-          articles.shift() as IRawArticle,
-          strapName
-        )
-      ],
-      [NewsSixGridPositions.SmallTopRight]: [
-        bigImageArticleUnit(articles.shift() as IRawArticle, strapName)
-      ],
-      [NewsSixGridPositions.SmallBottomFirst]: [
-        basicArticleTitleUnit(articles.shift() as IRawArticle, strapName)
-      ],
-      [NewsSixGridPositions.SmallBottomSecond]: [
-        basicArticleTitleUnit(articles.shift() as IRawArticle, strapName)
-      ],
-      [NewsSixGridPositions.SmallBottomThird]: [
-        basicArticleTitleUnit(articles.shift() as IRawArticle, strapName)
-      ],
-      [NewsSixGridPositions.SmallBottomFourth]: [
-        basicArticleTitleUnit(articles.shift() as IRawArticle, strapName)
-      ]
-    };
-
-    return await handlerRunner(
+  const content: { [key in NewsSixGridPositions]: IContentBlock[] } = {
+    [NewsSixGridPositions.ModuleTitle]: [
       {
-        type: HandlerInputType.NewsSixGrid,
-        content
-      },
-      params
-    );
-  } catch (error) {
-    wrappedLogger.error(
-      params.apiRequestId,
-      `News Six handler error: Potentially insufficient number of articles: ${articlesLength}. Strap name: ${sourceId}|${strapName}`,
-      error
-    );
-    throw error;
-  }
+        type: ContentBlockType.ModuleTitle,
+        displayName,
+        displayNameColor
+      }
+    ],
+    [NewsSixGridPositions.BigTopLeft]: [
+      await gridBlockErrorHandler(
+        () => bigImageArticleUnit(articles.shift() as IRawArticle, strapName),
+        HandlerInputType.NewsSix,
+        NewsSixGridPositions.BigTopLeft,
+        params
+      )
+    ],
+    [NewsSixGridPositions.SmallTopRight]: [
+      await gridBlockErrorHandler(
+        () => bigImageArticleUnit(articles.shift() as IRawArticle, strapName),
+        HandlerInputType.NewsSix,
+        NewsSixGridPositions.SmallTopRight,
+        params
+      )
+    ],
+    [NewsSixGridPositions.SmallBottomFirst]: [
+      await gridBlockErrorHandler(
+        () => bigImageArticleUnit(articles.shift() as IRawArticle, strapName),
+        HandlerInputType.NewsSix,
+        NewsSixGridPositions.SmallBottomFirst,
+        params
+      )
+    ],
+    [NewsSixGridPositions.SmallBottomSecond]: [
+      await gridBlockErrorHandler(
+        () => bigImageArticleUnit(articles.shift() as IRawArticle, strapName),
+        HandlerInputType.NewsSix,
+        NewsSixGridPositions.SmallBottomSecond,
+        params
+      )
+    ],
+    [NewsSixGridPositions.SmallBottomThird]: [
+      await gridBlockErrorHandler(
+        () => bigImageArticleUnit(articles.shift() as IRawArticle, strapName),
+        HandlerInputType.NewsSix,
+        NewsSixGridPositions.SmallBottomThird,
+        params
+      )
+    ],
+    [NewsSixGridPositions.SmallBottomFourth]: [
+      await gridBlockErrorHandler(
+        () => bigImageArticleUnit(articles.shift() as IRawArticle, strapName),
+        HandlerInputType.NewsSix,
+        NewsSixGridPositions.SmallBottomFourth,
+        params
+      )
+    ]
+  };
+
+  return await handlerRunner(
+    {
+      type: HandlerInputType.NewsSixGrid,
+      content
+    },
+    params
+  );
 }
