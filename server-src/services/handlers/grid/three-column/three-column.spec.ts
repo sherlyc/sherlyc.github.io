@@ -62,7 +62,6 @@ describe("Three column", () => {
     };
 
     await threeColumnHandler(handlerRunnerMock, input, params);
-    console.log(getRawArticles);
     expect(getRawArticles).toHaveBeenCalledTimes(3);
   });
 });
