@@ -56,7 +56,7 @@ describe("Grid block error handler", () => {
 
     expect(wrappedLogger.info).toHaveBeenCalledWith(
       params.apiRequestId,
-      `${HandlerInputType.NewsSix} - Potentially insufficient articles for in position Top`,
+      `${HandlerInputType.NewsSix} - Potentially insufficient articles for position Top`,
       error
     );
     expect(result).toEqual([]);
@@ -78,7 +78,7 @@ describe("Grid block error handler", () => {
       );
     } catch (error) {
       expect(error.message).toContain(
-        `${HandlerInputType.NewsSix} - Potentially insufficient articles for in position Top`
+        `${HandlerInputType.NewsSix} - Potentially insufficient articles for position Top`
       );
     }
   });
