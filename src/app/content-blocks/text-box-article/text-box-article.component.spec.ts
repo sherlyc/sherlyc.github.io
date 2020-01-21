@@ -24,7 +24,10 @@ describe("DarkGradientArticleComponent", () => {
     imageSrc: "https://dummyimagesrc.com",
     imageSrcSet: "https://dummyimagesrc.com",
     lastPublishedTime: 123123,
-    headlineFlags: []
+    headlineFlags: [],
+    boxColor: "red",
+    textColor: "white",
+    applyGradient: false
   };
 
   beforeEach(async(() => {
