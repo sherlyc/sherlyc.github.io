@@ -1,16 +1,18 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-
-import { BigImageArticleUnitComponent } from "./big-image-article-unit.component";
-import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { SharedModule } from "src/app/shared/shared.module";
-import { AnalyticsService } from "src/app/services/analytics/analytics.service";
-import { mockService, ServiceMock } from "src/app/services/mocks/MockService";
 import { By } from "@angular/platform-browser";
 import { AnalyticsEventsType } from "src/app/services/analytics/__types__/AnalyticsEventsType";
-import { FeatureSwitchService } from "../../services/feature-switch/feature-switch.service";
+import { AnalyticsService } from "src/app/services/analytics/analytics.service";
+import { mockService, ServiceMock } from "src/app/services/mocks/MockService";
+import { SharedModule } from "src/app/shared/shared.module";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import {
+  BigImageArticleUnitLayout,
+  IBigImageArticleUnit
+} from "../../../../common/__types__/IBigImageArticleUnit";
 import { HeadlineFlags } from "../../../../common/HeadlineFlags";
+import { FeatureSwitchService } from "../../services/feature-switch/feature-switch.service";
 import { HeadlineComponent } from "../../shared/components/headline/headline.component";
+import { BigImageArticleUnitComponent } from "./big-image-article-unit.component";
 
 describe("BigImageArticleUnitComponent", () => {
   let component: BigImageArticleUnitComponent;
@@ -20,8 +22,8 @@ describe("BigImageArticleUnitComponent", () => {
   const twoDaysAgoDateInSeconds =
     new Date().setDate(new Date().getDate() - 2) / 1000;
 
-  const articleData: IBasicArticleUnit = {
-    type: ContentBlockType.BasicArticleUnit,
+  const articleData: IBigImageArticleUnit = {
+    type: ContentBlockType.BigImageArticleUnit,
     id: "123123",
     strapName: "National",
     indexHeadline: "Dummy Headline",
@@ -31,7 +33,13 @@ describe("BigImageArticleUnitComponent", () => {
     imageSrc: "https://dummyimagesrc.com",
     imageSrcSet: "https://dummyimagesrc.com 1w",
     lastPublishedTime: twoDaysAgoDateInSeconds,
-    headlineFlags: []
+    headlineFlags: [],
+    layout: BigImageArticleUnitLayout.default
+  };
+
+  const articleDataForModule: IBigImageArticleUnit = {
+    ...articleData,
+    layout: BigImageArticleUnitLayout.module
   };
 
   beforeEach(async(() => {
