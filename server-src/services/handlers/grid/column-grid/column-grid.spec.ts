@@ -2,10 +2,7 @@ import { IColumnGridHandlerInput } from "../../__types__/IColumnGridHandlerInput
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IParams } from "../../../__types__/IParams";
-import {
-  Border,
-  IGridContainer
-} from "../../../../../common/__types__/IGridContainer";
+import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import columnGridHandler from "./column-grid";
 

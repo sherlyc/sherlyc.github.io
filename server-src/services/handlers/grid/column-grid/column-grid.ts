@@ -1,8 +1,5 @@
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import {
-  Border,
-  IGridConfig
-} from "../../../../../common/__types__/IGridContainer";
+import { IGridConfig } from "../../../../../common/__types__/IGridContainer";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { handlerRunnerFunction } from "../../runner";
 import { IColumnGridHandlerInput } from "../../__types__/IColumnGridHandlerInput";
