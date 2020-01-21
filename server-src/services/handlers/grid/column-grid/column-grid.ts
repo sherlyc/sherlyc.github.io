@@ -61,17 +61,14 @@ const getGridBlocks = (length: number, gridConfig: IColumnGridConfig) => {
   return result;
 };
 
-const getGridItems = (content: IContentBlock[][]) => {
-  const result = content.reduce(
-    (final, current, index) => ({
-      ...final,
-      [gridPositionName(index)]: current
+const getGridItems = (content: IContentBlock[][]) =>
+  content.reduce(
+    (acc, item, index) => ({
+      ...acc,
+      [gridPositionName(index)]: item
     }),
     {}
   );
-
-  return result;
-};
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
