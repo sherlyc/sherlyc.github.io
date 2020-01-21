@@ -57,27 +57,27 @@ describe("Grid block error handler", () => {
       `${HandlerInputType.NewsSix} - Potentially insufficient articles for position`,
       error
     );
-    expect(result).toEqual([]);
+    expect(result).toEqual(undefined);
   });
 
-  it("should log and throw error if callback fails and module layout feature has been rolled out", async () => {
+  it("should log error and return empty array if callback fails and module layout feature has been rolled out", async () => {
     const mockConverterCallback = jest.fn();
     const error = new Error("Failed");
     mockConverterCallback.mockRejectedValue(error);
     (isFeatureEnabled as jest.Mock).mockResolvedValue(true);
 
-    expect.assertions(1);
-    try {
-      await gridBlockErrorHandler(
-        mockConverterCallback,
-        HandlerInputType.NewsSix,
-        params
-      );
-    } catch (error) {
-      expect(error.message).toContain(
-        `${HandlerInputType.NewsSix} - Potentially insufficient articles for position`
-      );
-    }
+    const result = await gridBlockErrorHandler(
+      mockConverterCallback,
+      HandlerInputType.NewsSix,
+      params
+    );
+
+    expect(wrappedLogger.error).toHaveBeenCalledWith(
+      params.apiRequestId,
+      `${HandlerInputType.NewsSix} - Potentially insufficient articles for position`,
+      error
+    );
+    expect(result).toEqual(undefined);
   });
 
   it("should call isFeatureEnabled with correct params if callback fails", async () => {

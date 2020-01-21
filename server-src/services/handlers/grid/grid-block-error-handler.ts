@@ -4,6 +4,7 @@ import { isFeatureEnabled } from "../../adapters/feature/feature";
 import { FeatureName } from "../../../../common/FeatureName";
 import { DeviceType } from "../../../../common/DeviceType";
 import wrappedLogger from "../../utils/logger";
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 
 export const gridBlockErrorHandler = async (
   contentConverterCallback: Function,
@@ -22,10 +23,9 @@ export const gridBlockErrorHandler = async (
 
     if (isFeatureRolledOut) {
       wrappedLogger.error(params.apiRequestId, message, error);
-      throw new Error(message);
     } else {
       wrappedLogger.info(params.apiRequestId, message, error);
-      return [];
     }
+    return undefined;
   }
 };
