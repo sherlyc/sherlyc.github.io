@@ -92,5 +92,6 @@ export default async function(
     type: HandlerInputType.ColumnGrid,
     content: [columnOneContent, columnTwoContent, columnThreeContent]
   };
+
   return await handlerRunner(threeColumnGridHandlerInput, params);
 }

@@ -40,7 +40,6 @@ export default async function(
   { content }: IListGridHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  console.log("listGrid", content);
   const layout: IGridConfig = {
     gridTemplateColumns: "1fr",
     gridTemplateRows: "auto",
