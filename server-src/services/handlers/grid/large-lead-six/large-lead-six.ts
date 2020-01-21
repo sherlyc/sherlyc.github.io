@@ -31,7 +31,6 @@ export default async function(
   const leftContent = await gridBlockErrorHandler(
     () => bigImageArticleUnit(articles.shift() as IRawArticle, strapName),
     HandlerInputType.LargeLeadSix,
-    LargeLeadSixGridPositions.Left,
     params
   );
   const listGridContent = articles.map((article) =>
@@ -48,7 +47,6 @@ export default async function(
         params
       ),
     HandlerInputType.LargeLeadSix,
-    LargeLeadSixGridPositions.Middle,
     params
   );
   const largeLeadSixGridHandlerInput: ILargeLeadSixGridHandlerInput = {

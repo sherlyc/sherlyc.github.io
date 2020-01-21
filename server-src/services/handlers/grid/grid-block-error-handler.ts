@@ -8,7 +8,6 @@ import wrappedLogger from "../../utils/logger";
 export const gridBlockErrorHandler = async (
   contentConverterCallback: Function,
   handlerName: HandlerInputType,
-  positionInModule: string,
   params: IParams
 ) => {
   try {
@@ -19,7 +18,7 @@ export const gridBlockErrorHandler = async (
       1,
       DeviceType.unknown
     );
-    const message = `${handlerName} - Potentially insufficient articles for position ${positionInModule}`;
+    const message = `${handlerName} - Potentially insufficient articles for position`;
 
     if (isFeatureRolledOut) {
       wrappedLogger.error(params.apiRequestId, message, error);

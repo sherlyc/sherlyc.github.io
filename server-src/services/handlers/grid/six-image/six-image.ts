@@ -37,7 +37,6 @@ export default async function(
           await gridBlockErrorHandler(
             () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
             HandlerInputType.SixImage,
-            SixImageGridHandlerPositions.FirstRowLeft,
             params
           )
         ],
@@ -45,7 +44,6 @@ export default async function(
           await gridBlockErrorHandler(
             () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
             HandlerInputType.SixImage,
-            SixImageGridHandlerPositions.FirstRowMiddle,
             params
           )
         ],
@@ -53,7 +51,6 @@ export default async function(
           await gridBlockErrorHandler(
             () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
             HandlerInputType.SixImage,
-            SixImageGridHandlerPositions.FirstRowRight,
             params
           )
         ],
@@ -62,7 +59,6 @@ export default async function(
           await gridBlockErrorHandler(
             () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
             HandlerInputType.SixImage,
-            SixImageGridHandlerPositions.SecondRowMiddle,
             params
           )
         ],
@@ -70,7 +66,6 @@ export default async function(
           await gridBlockErrorHandler(
             () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
             HandlerInputType.SixImage,
-            SixImageGridHandlerPositions.SecondRowRight,
             params
           )
         ],

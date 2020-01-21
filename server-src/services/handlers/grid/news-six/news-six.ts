@@ -29,7 +29,6 @@ export default async function(
       await gridBlockErrorHandler(
         () => bigImageArticleUnit(articles.shift() as IRawArticle, strapName),
         HandlerInputType.NewsSix,
-        NewsSixGridPositions.BigTopLeft,
         params
       )
     ],
@@ -37,7 +36,6 @@ export default async function(
       await gridBlockErrorHandler(
         () => bigImageArticleUnit(articles.shift() as IRawArticle, strapName),
         HandlerInputType.NewsSix,
-        NewsSixGridPositions.SmallTopRight,
         params
       )
     ],
@@ -45,7 +43,6 @@ export default async function(
       await gridBlockErrorHandler(
         () => bigImageArticleUnit(articles.shift() as IRawArticle, strapName),
         HandlerInputType.NewsSix,
-        NewsSixGridPositions.SmallBottomFirst,
         params
       )
     ],
@@ -53,7 +50,6 @@ export default async function(
       await gridBlockErrorHandler(
         () => bigImageArticleUnit(articles.shift() as IRawArticle, strapName),
         HandlerInputType.NewsSix,
-        NewsSixGridPositions.SmallBottomSecond,
         params
       )
     ],
@@ -61,7 +57,6 @@ export default async function(
       await gridBlockErrorHandler(
         () => bigImageArticleUnit(articles.shift() as IRawArticle, strapName),
         HandlerInputType.NewsSix,
-        NewsSixGridPositions.SmallBottomThird,
         params
       )
     ],
@@ -69,7 +64,6 @@ export default async function(
       await gridBlockErrorHandler(
         () => bigImageArticleUnit(articles.shift() as IRawArticle, strapName),
         HandlerInputType.NewsSix,
-        NewsSixGridPositions.SmallBottomFourth,
         params
       )
     ]

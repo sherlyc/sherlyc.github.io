@@ -34,7 +34,6 @@ describe("Grid block error handler", () => {
     const result = await gridBlockErrorHandler(
       mockConverterCallback,
       HandlerInputType.NewsSix,
-      "Top",
       params
     );
 
@@ -50,13 +49,12 @@ describe("Grid block error handler", () => {
     const result = await gridBlockErrorHandler(
       mockConverterCallback,
       HandlerInputType.NewsSix,
-      "Top",
       params
     );
 
     expect(wrappedLogger.info).toHaveBeenCalledWith(
       params.apiRequestId,
-      `${HandlerInputType.NewsSix} - Potentially insufficient articles for position Top`,
+      `${HandlerInputType.NewsSix} - Potentially insufficient articles for position`,
       error
     );
     expect(result).toEqual([]);
@@ -73,12 +71,11 @@ describe("Grid block error handler", () => {
       await gridBlockErrorHandler(
         mockConverterCallback,
         HandlerInputType.NewsSix,
-        "Top",
         params
       );
     } catch (error) {
       expect(error.message).toContain(
-        `${HandlerInputType.NewsSix} - Potentially insufficient articles for position Top`
+        `${HandlerInputType.NewsSix} - Potentially insufficient articles for position`
       );
     }
   });
@@ -92,7 +89,6 @@ describe("Grid block error handler", () => {
     await gridBlockErrorHandler(
       mockConverterCallback,
       HandlerInputType.NewsSix,
-      "Top",
       params
     );
 
