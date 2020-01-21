@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { DarkGradientArticleComponent } from "./dark-gradient-article.component";
+import { TextBoxArticleComponent } from "./text-box-article.component";
 import { SharedModule } from "../../shared/shared.module";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { IDarkGradientArticle } from "../../../../common/__types__/IDarkGradientArticle";
+import { ITextBoxArticle } from "../../../../common/__types__/ITextBoxArticle";
 import { By } from "@angular/platform-browser";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 
 describe("DarkGradientArticleComponent", () => {
-  let component: DarkGradientArticleComponent;
-  let fixture: ComponentFixture<DarkGradientArticleComponent>;
+  let component: TextBoxArticleComponent;
+  let fixture: ComponentFixture<TextBoxArticleComponent>;
   let analyticsService: ServiceMock<AnalyticsService>;
 
-  const articleData: IDarkGradientArticle = {
-    type: ContentBlockType.DarkGradientArticle,
+  const articleData: ITextBoxArticle = {
+    type: ContentBlockType.TextBoxArticle,
     id: "123123",
     strapName: "National",
     indexHeadline: "Dummy Headline",
@@ -30,7 +30,7 @@ describe("DarkGradientArticleComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [SharedModule],
-      declarations: [DarkGradientArticleComponent],
+      declarations: [TextBoxArticleComponent],
       providers: [
         {
           provide: AnalyticsService,
@@ -41,7 +41,7 @@ describe("DarkGradientArticleComponent", () => {
 
     analyticsService = TestBed.get(AnalyticsService);
 
-    fixture = TestBed.createComponent(DarkGradientArticleComponent);
+    fixture = TestBed.createComponent(TextBoxArticleComponent);
     component = fixture.componentInstance;
   }));
 

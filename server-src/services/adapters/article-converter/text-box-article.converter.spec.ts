@@ -1,9 +1,9 @@
 import { IRawArticle } from "../__types__/IRawArticle";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { darkGradientArticle } from "./dark-gradient-article.converter";
-import { IDarkGradientArticle } from "../../../../common/__types__/IDarkGradientArticle";
+import { textBoxArticle } from "./text-box-article.converter";
+import { ITextBoxArticle } from "../../../../common/__types__/ITextBoxArticle";
 
-describe("dark gradient article", () => {
+describe("text box article", () => {
   it("should convert", () => {
     const fakeArticle: IRawArticle = {
       id: "1",
@@ -22,10 +22,10 @@ describe("dark gradient article", () => {
 
     const fakeStrapName = "fakeStrapName";
 
-    const result = darkGradientArticle(fakeArticle, fakeStrapName);
+    const result = textBoxArticle(fakeArticle, fakeStrapName);
 
-    const expected: IDarkGradientArticle = {
-      type: ContentBlockType.DarkGradientArticle,
+    const expected: ITextBoxArticle = {
+      type: ContentBlockType.TextBoxArticle,
       id: "1",
       strapName: "fakeStrapName",
       indexHeadline: "Headline 1",

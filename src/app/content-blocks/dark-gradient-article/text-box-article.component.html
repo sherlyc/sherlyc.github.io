@@ -1,15 +1,11 @@
 <article itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
   <meta itemprop="position" content="{{ index }}" />
   <a itemprop="url" href="{{ input.linkUrl }}" appOpenExternalLink="{{ input.linkUrl }}" (click)="sendAnalytics()">
-    <div>
-      <img itemprop="image" src="{{ input.imageSrc }}" alt="{{ input.indexHeadline }}" loading="auto" />
-    </div>
-    <div class="wrapper">
+    <img itemprop="image" src="{{ input.imageSrc }}" alt="{{ input.indexHeadline }}" loading="auto" />
+    <div class="description-box">
       <app-headline textColor="#fff" [headline]="input.indexHeadline" [headlineFlags]="input.headlineFlags"></app-headline>
-      <p>
-        <span class="intro">{{ input.introText }}</span>
-        <app-time-ago textColor="#fff" [timestamp]="input.lastPublishedTime"></app-time-ago>
-      </p>
+      <p class="intro">{{ input.introText }}</p>
+      <app-time-ago textColor="#fff" [timestamp]="input.lastPublishedTime"></app-time-ago>
     </div>
   </a>
 </article>

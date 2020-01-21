@@ -1,12 +1,12 @@
 import { IRawArticle } from "../__types__/IRawArticle";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { IDarkGradientArticle } from "../../../../common/__types__/IDarkGradientArticle";
+import { ITextBoxArticle } from "../../../../common/__types__/ITextBoxArticle";
 
-export const darkGradientArticle = (
+export const textBoxArticle = (
   article: IRawArticle,
   strapName: string
-): IDarkGradientArticle => ({
-  type: ContentBlockType.DarkGradientArticle,
+): ITextBoxArticle => ({
+  type: ContentBlockType.TextBoxArticle,
   id: article.id,
   strapName,
   indexHeadline: article.indexHeadline,

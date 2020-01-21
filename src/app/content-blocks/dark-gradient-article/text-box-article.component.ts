@@ -1,16 +1,16 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
-import { IDarkGradientArticle } from "../../../../common/__types__/IDarkGradientArticle";
+import { ITextBoxArticle } from "../../../../common/__types__/ITextBoxArticle";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 
 @Component({
-  selector: "app-dark-gradient-article",
-  templateUrl: "./dark-gradient-article.component.html",
-  styleUrls: ["./dark-gradient-article.component.scss"]
+  selector: "app-text-box-article",
+  templateUrl: "./text-box-article.component.html",
+  styleUrls: ["./text-box-article.component.scss"]
 })
-export class DarkGradientArticleComponent implements IContentBlockComponent {
-  @Input() input!: IDarkGradientArticle;
+export class TextBoxArticleComponent implements IContentBlockComponent {
+  @Input() input!: ITextBoxArticle;
   index?: number;
 
   constructor(private analyticsService: AnalyticsService) {}
