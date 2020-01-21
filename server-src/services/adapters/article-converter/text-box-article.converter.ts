@@ -4,7 +4,10 @@ import { ITextBoxArticle } from "../../../../common/__types__/ITextBoxArticle";
 
 export const textBoxArticle = (
   article: IRawArticle,
-  strapName: string
+  strapName: string,
+  textColor: string,
+  boxColor: string,
+  applyGradient?: boolean
 ): ITextBoxArticle => ({
   type: ContentBlockType.TextBoxArticle,
   id: article.id,
@@ -16,5 +19,8 @@ export const textBoxArticle = (
   imageSrcSet: article.imageSrcSet,
   linkUrl: article.linkUrl,
   lastPublishedTime: article.lastPublishedTime,
-  headlineFlags: article.headlineFlags
+  headlineFlags: article.headlineFlags,
+  textColor,
+  boxColor,
+  applyGradient
 });
