@@ -27,7 +27,8 @@ describe("Expandable article list", () => {
     strapImageSrc: "strap1.jpg",
     strapImageSrcSet: "strap1.jpg 1w",
     lastPublishedTime: 1,
-    headlineFlags: []
+    headlineFlags: [],
+    sixteenByNineSrc: null
   };
 
   const articleTwo: IRawArticle = {
@@ -42,7 +43,8 @@ describe("Expandable article list", () => {
     strapImageSrc: "strap2.jpg",
     strapImageSrcSet: "strap2.jpg 1w",
     lastPublishedTime: 2,
-    headlineFlags: []
+    headlineFlags: [],
+    sixteenByNineSrc: null
   };
 
   const articleOneAsBasicArticle: IBasicArticleUnit = {

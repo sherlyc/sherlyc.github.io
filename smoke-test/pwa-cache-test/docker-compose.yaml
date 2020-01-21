@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  oldspade:
+    image: ${DOCKER_IMAGE}
+    environment:
+      SPADE_ENV: production
+      SPADE_VERSION: ${VERSION}
+  nginx-proxy:
+    image: ${NGINX_IMAGE}
+    ports:
+      - "8888:80"
+    volumes:
+      - "./default.conf:/etc/nginx/conf.d/default.conf"

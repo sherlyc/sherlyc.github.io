@@ -6,12 +6,11 @@ import { IJsonFeedUrl } from "../__types__/IJsonFeedUrl";
 import { IJsonFeedQuery } from "../__types__/IJsonFeedQuery";
 import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 import {
-  getDefconSrc,
-  getStrapImageSrc,
+  getImage,
   getStrapImageSrcSet,
-  getThumbnailSrc,
   getThumbnailSrcSet
 } from "./image-handler";
+import { JsonFeedImageType } from "../__types__/JsonFeedImageType";
 
 export function mapToRawArticleList(
   articles: Array<IJsonFeedArticle | IJsonFeedUrl | IJsonFeedQuery>
@@ -37,11 +36,23 @@ export function mapArticleAsset(item: IJsonFeedArticle): IRawArticle {
     introText: item.alt_intro,
     byline: item.byline,
     linkUrl: item.path,
-    imageSrc: getThumbnailSrc(item),
+    imageSrc: getImage(item, [JsonFeedImageType.SMALL_THUMBNAIL]),
     imageSrcSet: getThumbnailSrcSet(item),
-    strapImageSrc: getStrapImageSrc(item),
+    strapImageSrc: getImage(item, [
+      JsonFeedImageType.STRAP_IMAGE,
+      JsonFeedImageType.SMALL_THUMBNAIL
+    ]),
     strapImageSrcSet: getStrapImageSrcSet(item),
-    defconSrc: getDefconSrc(item),
+    defconSrc: getImage(item, [
+      JsonFeedImageType.DEFCON_IMAGE,
+      JsonFeedImageType.STRAP_IMAGE,
+      JsonFeedImageType.SMALL_THUMBNAIL
+    ]),
+    sixteenByNineSrc: getImage(item, [
+      JsonFeedImageType.SMALL_THUMBNAIL_SIXTEEN_BY_NINE,
+      JsonFeedImageType.STRAP_IMAGE,
+      JsonFeedImageType.SMALL_THUMBNAIL
+    ]),
     lastPublishedTime: moment(item.datetime_iso8601).unix(),
     headlineFlags: getHeadlineFlags(item)
   };
@@ -56,11 +67,23 @@ function mapUrlAsset(item: IJsonFeedUrl): IRawArticle {
     title: item.title,
     introText: item.alt_intro,
     linkUrl: getLinkUrl(item),
-    imageSrc: getThumbnailSrc(item),
+    imageSrc: getImage(item, [JsonFeedImageType.SMALL_THUMBNAIL]),
     imageSrcSet: getThumbnailSrcSet(item),
-    strapImageSrc: getStrapImageSrc(item),
+    strapImageSrc: getImage(item, [
+      JsonFeedImageType.STRAP_IMAGE,
+      JsonFeedImageType.SMALL_THUMBNAIL
+    ]),
     strapImageSrcSet: getStrapImageSrcSet(item),
-    defconSrc: getDefconSrc(item),
+    defconSrc: getImage(item, [
+      JsonFeedImageType.DEFCON_IMAGE,
+      JsonFeedImageType.STRAP_IMAGE,
+      JsonFeedImageType.SMALL_THUMBNAIL
+    ]),
+    sixteenByNineSrc: getImage(item, [
+      JsonFeedImageType.SMALL_THUMBNAIL_SIXTEEN_BY_NINE,
+      JsonFeedImageType.STRAP_IMAGE,
+      JsonFeedImageType.SMALL_THUMBNAIL
+    ]),
     lastPublishedTime: moment(item.datetime_iso8601).unix(),
     headlineFlags: getHeadlineFlags(item)
   };

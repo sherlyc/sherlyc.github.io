@@ -40,7 +40,8 @@ describe("Top Stories Article List", () => {
     strapImageSrc: "strap1.jpg",
     strapImageSrcSet: "strap1.jpg 1w",
     lastPublishedTime: 1,
-    headlineFlags: []
+    headlineFlags: [],
+    sixteenByNineSrc: null
   };
 
   const articleTwo: IRawArticle = {
@@ -55,7 +56,8 @@ describe("Top Stories Article List", () => {
     strapImageSrc: "strap2.jpg",
     strapImageSrcSet: "strap2.jpg 1w",
     lastPublishedTime: 1,
-    headlineFlags: []
+    headlineFlags: [],
+    sixteenByNineSrc: null
   };
 
   const AsDefconArticle = (article: IRawArticle): IDefconArticleUnit => ({
@@ -110,6 +112,7 @@ describe("Top Stories Article List", () => {
     linkUrl: article.linkUrl,
     imageSrc: article.strapImageSrc,
     imageSrcSet: article.strapImageSrcSet,
+    sixteenByNineSrc: article.sixteenByNineSrc,
     lastPublishedTime: article.lastPublishedTime,
     headlineFlags: article.headlineFlags
   });

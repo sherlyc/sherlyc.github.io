@@ -14,6 +14,7 @@ export const bigImageArticleUnit = (
   introText: article.introText,
   imageSrc: article.strapImageSrc,
   imageSrcSet: article.strapImageSrcSet,
+  sixteenByNineSrc: article.sixteenByNineSrc,
   linkUrl: article.linkUrl,
   lastPublishedTime: article.lastPublishedTime,
   headlineFlags: article.headlineFlags

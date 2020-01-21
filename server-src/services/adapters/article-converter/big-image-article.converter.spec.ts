@@ -17,7 +17,8 @@ describe("bit image article", () => {
       strapImageSrc: "strap1.jpg",
       strapImageSrcSet: "strap1.jpg 1w",
       lastPublishedTime: 1,
-      headlineFlags: []
+      headlineFlags: [],
+      sixteenByNineSrc: "sixteenByNine.jpg"
     };
 
     const fakeStrapName = "fakeStrapName";
@@ -35,7 +36,8 @@ describe("bit image article", () => {
       imageSrc: "strap1.jpg",
       imageSrcSet: "strap1.jpg 1w",
       lastPublishedTime: 1,
-      headlineFlags: []
+      headlineFlags: [],
+      sixteenByNineSrc: "sixteenByNine.jpg"
     };
 
     expect(result).toEqual(expected);

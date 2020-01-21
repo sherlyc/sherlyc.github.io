@@ -1,14 +1,14 @@
-import puppeteer from "puppeteer";
+import { Browser, launch, Page } from "puppeteer";
 import puppeteerConfig from "../puppeteer-config";
 import config from "./environment-config";
 jest.setTimeout(60000);
 
 describe("Mobile Homepage", () => {
-  let browser: puppeteer.Browser;
-  let page: puppeteer.Page;
+  let browser: Browser;
+  let page: Page;
 
   beforeAll(async () => {
-    browser = await puppeteer.launch(puppeteerConfig);
+    browser = await launch(puppeteerConfig);
     page = await browser.newPage();
     const cookieDomain = new URL(config.url).hostname;
     await page.setCookie({
@@ -58,9 +58,9 @@ describe("Mobile Homepage", () => {
     expect(adUnit).toBeTruthy();
   });
 
-  it("should contain at least 5 basic top stories", async () => {
+  it("should contain at least 5 top stories", async () => {
     const topStories = await page.$$(
-      ".container > app-experiment-container > app-basic-article-unit"
+      "app-grid-container > div > div > app-big-image-article-unit"
     );
     expect(topStories.length).toBeGreaterThanOrEqual(5);
   });
