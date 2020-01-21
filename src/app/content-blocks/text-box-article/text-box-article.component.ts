@@ -13,35 +13,37 @@ export class TextBoxArticleComponent implements IContentBlockComponent, OnInit {
   @Input() input!: ITextBoxArticle;
   index?: number;
 
-  boxStyle?: any;
-  textStyle?: any;
+  boxStyle = {};
 
   constructor(private analyticsService: AnalyticsService) {}
 
   ngOnInit() {
-    const { textColor, boxColor, applyGradient = false } = this.input;
-
-    this.textStyle = { color: textColor };
-    this.boxStyle = this.getBoxStyle(boxColor, applyGradient);
+    this.boxStyle = this.input.applyGradient
+      ? this.gradientBoxStyle()
+      : this.solidBoxStyle();
   }
 
-  getBoxStyle(boxColor: string, applyGradient: boolean) {
-    if (applyGradient) {
-      const gradientHeight = 20;
-      return {
-        "position": "relative",
-        "padding": `${gradientHeight + 10}px 10px 10px`,
-        "height": `calc(100% + ${gradientHeight}px)`,
-        "margin-top": `-${gradientHeight}px`,
-        "background-image": `linear-gradient(rgba(0,0,0,0) 0%, ${boxColor} ${gradientHeight}px, ${boxColor} 100%)`
-      };
-    }
-
+  gradientBoxStyle() {
+    const { textColor, boxColor } = this.input;
+    const gradientHeight = 20;
     return {
-      "position": "relative",
-      "padding": "10px",
-      "height": "100%",
-      "background": boxColor
+      position: "relative",
+      padding: `${gradientHeight + 10}px 10px 10px`,
+      height: `calc(100% + ${gradientHeight}px)`,
+      "margin-top": `-${gradientHeight}px`,
+      "background-image": `linear-gradient(rgba(0,0,0,0) 0%, ${boxColor} ${gradientHeight}px, ${boxColor} 100%)`,
+      color: textColor
+    };
+  }
+
+  solidBoxStyle() {
+    const { textColor, boxColor } = this.input;
+    return {
+      position: "relative",
+      padding: "10px",
+      height: "100%",
+      background: boxColor,
+      color: textColor
     };
   }
 

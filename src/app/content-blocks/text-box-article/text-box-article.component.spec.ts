@@ -8,7 +8,7 @@ import { ITextBoxArticle } from "../../../../common/__types__/ITextBoxArticle";
 import { By } from "@angular/platform-browser";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 
-describe("DarkGradientArticleComponent", () => {
+describe("TextBoxArticleComponent", () => {
   let component: TextBoxArticleComponent;
   let fixture: ComponentFixture<TextBoxArticleComponent>;
   let analyticsService: ServiceMock<AnalyticsService>;
@@ -66,5 +66,45 @@ describe("DarkGradientArticleComponent", () => {
       articleHeadline: title,
       articleId: id
     });
+  });
+
+  it("should set gradient box color and text color when applyGradient is true", () => {
+    const boxColor = "white";
+    const textColor = "blue";
+    component.input = {
+      ...articleData,
+      boxColor,
+      textColor,
+      applyGradient: true
+    };
+
+    fixture.detectChanges();
+
+    expect(component.boxStyle).toEqual(
+      expect.objectContaining({
+        "background-image": `linear-gradient(rgba(0,0,0,0) 0%, ${boxColor} 20px, ${boxColor} 100%)`,
+        color: textColor
+      })
+    );
+  });
+
+  it("should set solid colour background and text color when applyGradient is false", () => {
+    const boxColor = "white";
+    const textColor = "green";
+    component.input = {
+      ...articleData,
+      boxColor,
+      textColor,
+      applyGradient: false
+    };
+
+    fixture.detectChanges();
+
+    expect(component.boxStyle).toEqual(
+      expect.objectContaining({
+        background: boxColor,
+        color: textColor
+      })
+    );
   });
 });
