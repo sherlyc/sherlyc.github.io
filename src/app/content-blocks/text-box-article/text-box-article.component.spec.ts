@@ -82,7 +82,7 @@ describe("TextBoxArticleComponent", () => {
 
     expect(component.boxStyle).toEqual(
       expect.objectContaining({
-        "background-image": `linear-gradient(rgba(0,0,0,0) 0%, ${boxColor} 20px, ${boxColor} 100%)`,
+        "background-image": `linear-gradient(rgba(0,0,0,0) 0%, ${boxColor} 30px, ${boxColor} 100%)`,
         color: textColor
       })
     );

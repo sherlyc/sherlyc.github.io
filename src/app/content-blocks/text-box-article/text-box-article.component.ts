@@ -25,7 +25,7 @@ export class TextBoxArticleComponent implements IContentBlockComponent, OnInit {
 
   gradientBoxStyle() {
     const { textColor, boxColor } = this.input;
-    const gradientHeight = 20;
+    const gradientHeight = 30;
     return {
       position: "relative",
       padding: `${gradientHeight + 10}px 10px 10px`,
