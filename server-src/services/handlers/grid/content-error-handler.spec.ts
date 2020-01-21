@@ -1,6 +1,6 @@
 import { IBasicArticleTitleUnit } from "../../../../common/__types__/IBasicArticleTitleUnit";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { gridBlockErrorHandler } from "./grid-block-error-handler";
+import { contentErrorHandler } from "./content-error-handler";
 import { HandlerInputType } from "../__types__/HandlerInputType";
 import { isFeatureEnabled } from "../../adapters/feature/feature";
 import wrappedLogger from "../../utils/logger";
@@ -10,7 +10,7 @@ import { DeviceType } from "../../../../common/DeviceType";
 jest.mock("../../adapters/feature/feature");
 jest.mock("../../utils/logger");
 
-describe("Grid block error handler", () => {
+describe("Content error handler", () => {
   const params = { apiRequestId: "1" };
 
   beforeEach(() => {
@@ -31,7 +31,7 @@ describe("Grid block error handler", () => {
     };
     mockConverterCallback.mockResolvedValue(fakeContentBlock);
 
-    const result = await gridBlockErrorHandler(
+    const result = await contentErrorHandler(
       mockConverterCallback,
       HandlerInputType.NewsSix,
       params
@@ -46,7 +46,7 @@ describe("Grid block error handler", () => {
     mockConverterCallback.mockRejectedValue(error);
     (isFeatureEnabled as jest.Mock).mockResolvedValue(false);
 
-    const result = await gridBlockErrorHandler(
+    const result = await contentErrorHandler(
       mockConverterCallback,
       HandlerInputType.NewsSix,
       params
@@ -66,7 +66,7 @@ describe("Grid block error handler", () => {
     mockConverterCallback.mockRejectedValue(error);
     (isFeatureEnabled as jest.Mock).mockResolvedValue(true);
 
-    const result = await gridBlockErrorHandler(
+    const result = await contentErrorHandler(
       mockConverterCallback,
       HandlerInputType.NewsSix,
       params
@@ -86,7 +86,7 @@ describe("Grid block error handler", () => {
     mockConverterCallback.mockRejectedValue(error);
     (isFeatureEnabled as jest.Mock).mockResolvedValue(false);
 
-    await gridBlockErrorHandler(
+    await contentErrorHandler(
       mockConverterCallback,
       HandlerInputType.NewsSix,
       params

@@ -13,7 +13,7 @@ import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic
 import { ILargeLeadSixHandlerInput } from "../../__types__/ILargeLeadSixHandlerInput";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { gridBlockErrorHandler } from "../grid-block-error-handler";
+import { contentErrorHandler } from "../content-error-handler";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -28,7 +28,7 @@ export default async function(
   const totalArticles = 6;
   const articles = await getRawArticles(sourceId, totalArticles, params);
 
-  const leftContent = await gridBlockErrorHandler(
+  const leftContent = await contentErrorHandler(
     () => bigImageArticleUnit(articles.shift() as IRawArticle, strapName),
     HandlerInputType.LargeLeadSix,
     params
@@ -37,7 +37,7 @@ export default async function(
     basicArticleTitleUnit(article, strapName)
   );
 
-  const middleContent = await gridBlockErrorHandler(
+  const middleContent = await contentErrorHandler(
     () =>
       handlerRunner(
         {

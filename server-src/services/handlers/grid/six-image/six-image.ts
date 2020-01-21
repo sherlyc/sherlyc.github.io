@@ -13,7 +13,7 @@ import wrappedLogger from "../../../utils/logger";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 import { imageLinkUnit } from "../../../adapters/article-converter/image-link-unit.converter";
-import { gridBlockErrorHandler } from "../grid-block-error-handler";
+import { contentErrorHandler } from "../content-error-handler";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -34,21 +34,21 @@ export default async function(
           }
         ],
         [SixImageGridHandlerPositions.FirstRowLeft]: [
-          await gridBlockErrorHandler(
+          await contentErrorHandler(
             () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
             HandlerInputType.SixImage,
             params
           )
         ],
         [SixImageGridHandlerPositions.FirstRowMiddle]: [
-          await gridBlockErrorHandler(
+          await contentErrorHandler(
             () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
             HandlerInputType.SixImage,
             params
           )
         ],
         [SixImageGridHandlerPositions.FirstRowRight]: [
-          await gridBlockErrorHandler(
+          await contentErrorHandler(
             () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
             HandlerInputType.SixImage,
             params
@@ -56,14 +56,14 @@ export default async function(
         ],
         [SixImageGridHandlerPositions.SecondRowLeft]: [basicAdUnit(strapName)],
         [SixImageGridHandlerPositions.SecondRowMiddle]: [
-          await gridBlockErrorHandler(
+          await contentErrorHandler(
             () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
             HandlerInputType.SixImage,
             params
           )
         ],
         [SixImageGridHandlerPositions.SecondRowRight]: [
-          await gridBlockErrorHandler(
+          await contentErrorHandler(
             () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
             HandlerInputType.SixImage,
             params

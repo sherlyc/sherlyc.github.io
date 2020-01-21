@@ -6,7 +6,7 @@ import { DeviceType } from "../../../../common/DeviceType";
 import wrappedLogger from "../../utils/logger";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 
-export const gridBlockErrorHandler = async (
+export const contentErrorHandler = async (
   contentConverterCallback: Function,
   handlerName: HandlerInputType,
   params: IParams
