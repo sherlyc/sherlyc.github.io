@@ -1,9 +1,6 @@
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
-import {
-  BigImageArticleUnitLayout,
-  IBigImageArticleUnit
-} from "../../../../common/__types__/IBigImageArticleUnit";
+import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArticleUnit";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 import { IDefconArticleUnit } from "../../../../common/__types__/IDefconArticleUnit";
 import { IGrayDefconArticleUnit } from "../../../../common/__types__/IGrayDefconArticleUnit";
@@ -117,11 +114,7 @@ function processAsGrid(
   > = rawArticles.map((article, index) =>
     index === 0 && layout === LayoutType.DEFCON
       ? grayDefconArticleUnit(article, strapName)
-      : bigImageArticleUnit(
-          article,
-          strapName,
-          BigImageArticleUnitLayout.module
-        )
+      : bigImageArticleUnit(article, strapName)
   );
 
   const gridContent = {

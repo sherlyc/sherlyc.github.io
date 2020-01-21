@@ -120,23 +120,6 @@ describe("Top Stories Article List", () => {
     headlineFlags: article.headlineFlags
   });
 
-  const AsBigImageArticleInModule = (
-    article: IRawArticle
-  ): IBigImageArticleUnit => ({
-    type: ContentBlockType.BigImageArticleUnit,
-    id: article.id,
-    strapName: strapName,
-    indexHeadline: article.indexHeadline,
-    title: article.title,
-    introText: article.introText,
-    linkUrl: article.linkUrl,
-    imageSrc: article.sixteenByNineSrc,
-    imageSrcSet: article.strapImageSrcSet,
-    layout: BigImageArticleUnitLayout.module,
-    lastPublishedTime: article.lastPublishedTime,
-    headlineFlags: article.headlineFlags
-  });
-
   beforeEach(() => {
     jest.resetModules();
   });
@@ -278,9 +261,9 @@ describe("Top Stories Article List", () => {
           type: ContentBlockType.GridContainer,
           items: {
             item0: [basicAdUnit],
-            item1: [AsBigImageArticleInModule(articleTwo)],
+            item1: [AsBigImageArticle(articleTwo)],
             item2: [basicAdUnit],
-            item3: [AsBigImageArticleInModule(articleOne)],
+            item3: [AsBigImageArticle(articleOne)],
             item4: [basicAdUnit],
             item5: [undefined],
             item6: [basicAdUnit],
@@ -388,7 +371,7 @@ describe("Top Stories Article List", () => {
             item0: [basicAdUnit],
             item1: [AsGrayDefconArticle(articleOne)],
             item2: [basicAdUnit],
-            item3: [AsBigImageArticleInModule(articleTwo)],
+            item3: [AsBigImageArticle(articleTwo)],
             item4: [basicAdUnit],
             item5: [undefined],
             item6: [basicAdUnit],
