@@ -24,7 +24,7 @@ import { RecommendationsComponent } from "./recommendations/recommendations.comp
 import { GridContainerComponent } from "./grid-container/grid-container.component";
 import { ResponsiveBigImageArticleComponent } from "./responsive-big-image-article/responsive-big-image-article.component";
 import { ModuleTitleComponent } from "./module-title/module-title.component";
-import { TextBoxArticleComponent } from "./dark-gradient-article/text-box-article.component";
+import { TextBoxArticleComponent } from "./text-box-article/text-box-article.component";
 
 export const contentBlockComponents = [
   GrayDefconArticleUnitComponent,

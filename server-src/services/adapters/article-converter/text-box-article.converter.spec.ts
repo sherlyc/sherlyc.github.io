@@ -21,8 +21,11 @@ describe("text box article", () => {
     };
 
     const fakeStrapName = "fakeStrapName";
+    const boxColor = "red";
+    const textColor = "white";
+    const applyGradient = true;
 
-    const result = textBoxArticle(fakeArticle, fakeStrapName);
+    const result = textBoxArticle(fakeArticle, fakeStrapName, textColor, boxColor, applyGradient);
 
     const expected: ITextBoxArticle = {
       type: ContentBlockType.TextBoxArticle,
@@ -35,7 +38,10 @@ describe("text box article", () => {
       imageSrc: "1.jpg",
       imageSrcSet: "1.jpg 1w",
       lastPublishedTime: 1,
-      headlineFlags: []
+      headlineFlags: [],
+      boxColor,
+      textColor,
+      applyGradient
     };
 
     expect(result).toEqual(expected);
