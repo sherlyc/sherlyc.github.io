@@ -6,6 +6,7 @@ import { isFeatureEnabled } from "../../adapters/feature/feature";
 import wrappedLogger from "../../utils/logger";
 import { FeatureName } from "../../../../common/FeatureName";
 import { DeviceType } from "../../../../common/DeviceType";
+import { Strap } from "../../strap";
 
 jest.mock("../../adapters/feature/feature");
 jest.mock("../../utils/logger");
@@ -34,6 +35,7 @@ describe("Content error handler", () => {
     const result = await contentErrorHandler(
       mockConverterCallback,
       HandlerInputType.NewsSix,
+      Strap.Business,
       params
     );
 
@@ -49,12 +51,13 @@ describe("Content error handler", () => {
     const result = await contentErrorHandler(
       mockConverterCallback,
       HandlerInputType.NewsSix,
+      Strap.Business,
       params
     );
 
     expect(wrappedLogger.info).toHaveBeenCalledWith(
       params.apiRequestId,
-      `${HandlerInputType.NewsSix} - Potentially insufficient articles for position`,
+      `${HandlerInputType.NewsSix} - Potentially insufficient articles for source ${Strap.Business}`,
       error
     );
     expect(result).toEqual(undefined);
@@ -69,12 +72,13 @@ describe("Content error handler", () => {
     const result = await contentErrorHandler(
       mockConverterCallback,
       HandlerInputType.NewsSix,
+      Strap.Business,
       params
     );
 
     expect(wrappedLogger.error).toHaveBeenCalledWith(
       params.apiRequestId,
-      `${HandlerInputType.NewsSix} - Potentially insufficient articles for position`,
+      `${HandlerInputType.NewsSix} - Potentially insufficient articles for source ${Strap.Business}`,
       error
     );
     expect(result).toEqual(undefined);
@@ -89,6 +93,7 @@ describe("Content error handler", () => {
     await contentErrorHandler(
       mockConverterCallback,
       HandlerInputType.NewsSix,
+      Strap.Business,
       params
     );
 

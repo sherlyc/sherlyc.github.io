@@ -5,10 +5,12 @@ import { FeatureName } from "../../../../common/FeatureName";
 import { DeviceType } from "../../../../common/DeviceType";
 import wrappedLogger from "../../utils/logger";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import { Strap } from "../../strap";
 
 export const contentErrorHandler = async (
   contentConverterCallback: Function,
   handlerName: HandlerInputType,
+  sourceName: Strap,
   params: IParams
 ) => {
   try {
@@ -19,7 +21,7 @@ export const contentErrorHandler = async (
       1,
       DeviceType.unknown
     );
-    const message = `${handlerName} - Potentially insufficient articles for position`;
+    const message = `${handlerName} - Potentially insufficient articles for source ${sourceName}`;
 
     if (isFeatureRolledOut) {
       wrappedLogger.error(params.apiRequestId, message, error);

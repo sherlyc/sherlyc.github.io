@@ -35,6 +35,7 @@ export default async function(
             strapName
           ),
         HandlerInputType.NewsSix,
+        sourceId,
         params
       )
     ],
@@ -42,6 +43,7 @@ export default async function(
       await contentErrorHandler(
         () => bigImageArticleUnit(articles.shift() as IRawArticle, strapName),
         HandlerInputType.NewsSix,
+        sourceId,
         params
       )
     ],
@@ -49,6 +51,7 @@ export default async function(
       await contentErrorHandler(
         () => basicArticleTitleUnit(articles.shift() as IRawArticle, strapName),
         HandlerInputType.NewsSix,
+        sourceId,
         params
       )
     ],
@@ -56,6 +59,7 @@ export default async function(
       await contentErrorHandler(
         () => basicArticleTitleUnit(articles.shift() as IRawArticle, strapName),
         HandlerInputType.NewsSix,
+        sourceId,
         params
       )
     ],
@@ -63,6 +67,7 @@ export default async function(
       await contentErrorHandler(
         () => basicArticleTitleUnit(articles.shift() as IRawArticle, strapName),
         HandlerInputType.NewsSix,
+        sourceId,
         params
       )
     ],
@@ -70,6 +75,7 @@ export default async function(
       await contentErrorHandler(
         () => basicArticleTitleUnit(articles.shift() as IRawArticle, strapName),
         HandlerInputType.NewsSix,
+        sourceId,
         params
       )
     ]

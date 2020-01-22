@@ -31,6 +31,7 @@ export default async function(
   const leftContent = await contentErrorHandler(
     () => bigImageArticleUnit(articles.shift() as IRawArticle, strapName),
     HandlerInputType.LargeLeadSix,
+    sourceId,
     params
   );
   const listGridContent = articles.map((article) =>
@@ -47,6 +48,7 @@ export default async function(
         params
       ),
     HandlerInputType.LargeLeadSix,
+    sourceId,
     params
   );
   const largeLeadSixGridHandlerInput: ILargeLeadSixGridHandlerInput = {

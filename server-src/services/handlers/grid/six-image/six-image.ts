@@ -37,6 +37,7 @@ export default async function(
           await contentErrorHandler(
             () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
             HandlerInputType.SixImage,
+            sourceId,
             params
           )
         ],
@@ -44,6 +45,7 @@ export default async function(
           await contentErrorHandler(
             () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
             HandlerInputType.SixImage,
+            sourceId,
             params
           )
         ],
@@ -51,6 +53,7 @@ export default async function(
           await contentErrorHandler(
             () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
             HandlerInputType.SixImage,
+            sourceId,
             params
           )
         ],
@@ -59,6 +62,7 @@ export default async function(
           await contentErrorHandler(
             () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
             HandlerInputType.SixImage,
+            sourceId,
             params
           )
         ],
@@ -66,6 +70,7 @@ export default async function(
           await contentErrorHandler(
             () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
             HandlerInputType.SixImage,
+            sourceId,
             params
           )
         ],
