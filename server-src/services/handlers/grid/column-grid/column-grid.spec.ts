@@ -21,24 +21,6 @@ describe("Column Grid", () => {
     const layout = {
       gridTemplateColumns: "1fr",
       gridTemplateRows: "auto",
-      gridColumnGap: "0px",
-      gridRowGap: "10px",
-      gridBlocks: {
-        content0: {
-          columnStart: 1,
-          columnSpan: 1,
-          rowStart: 1,
-          rowSpan: 1,
-          border: []
-        }
-      }
-    };
-
-    const tabletLayout = {
-      gridTemplateColumns: "1fr",
-      gridTemplateRows: "auto",
-      gridColumnGap: "15px",
-      gridRowGap: "10px",
       gridBlocks: {
         content0: {
           columnStart: 1,
@@ -55,9 +37,21 @@ describe("Column Grid", () => {
       items: {
         content0: [contentBlock("1")]
       },
-      mobile: layout,
-      tablet: tabletLayout,
-      desktop: tabletLayout
+      mobile: {
+        ...layout,
+        gridColumnGap: "0px",
+        gridRowGap: "10px"
+      },
+      tablet: {
+        ...layout,
+        gridColumnGap: "15px",
+        gridRowGap: "10px"
+      },
+      desktop: {
+        ...layout,
+        gridColumnGap: "15px",
+        gridRowGap: "10px"
+      }
     };
 
     const result = await columnGridHandler(handlerRunner, handlerInput, params);
