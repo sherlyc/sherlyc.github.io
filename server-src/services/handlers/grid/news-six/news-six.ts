@@ -1,16 +1,17 @@
-import { handlerRunnerFunction } from "../../runner";
-import { IParams } from "../../../__types__/IParams";
-import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { INewsSixHandlerInput } from "../../__types__/INewsSixHandlerInput";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { BigImageArticleUnitLayout } from "../../../../../common/__types__/IBigImageArticleUnit";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { IParams } from "../../../__types__/IParams";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import wrappedLogger from "../../../utils/logger";
-import { NewsSixGridPositions } from "../../__types__/INewsSixGridHandlerInput";
-import { bigImageArticleUnit } from "../../../adapters/article-converter/big-image-article.converter";
 import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
+import { bigImageArticleUnit } from "../../../adapters/article-converter/big-image-article.converter";
 import { responsiveBigImageArticleUnit } from "../../../adapters/article-converter/responsive-big-image-article.converter";
+import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import wrappedLogger from "../../../utils/logger";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import { NewsSixGridPositions } from "../../__types__/INewsSixGridHandlerInput";
+import { INewsSixHandlerInput } from "../../__types__/INewsSixHandlerInput";
+import { handlerRunnerFunction } from "../../runner";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -36,7 +37,11 @@ export default async function(
         )
       ],
       [NewsSixGridPositions.SmallTopRight]: [
-        bigImageArticleUnit(articles.shift() as IRawArticle, strapName)
+        bigImageArticleUnit(
+          articles.shift() as IRawArticle,
+          strapName,
+          BigImageArticleUnitLayout.module
+        )
       ],
       [NewsSixGridPositions.SmallBottomFirst]: [
         basicArticleTitleUnit(articles.shift() as IRawArticle, strapName)
