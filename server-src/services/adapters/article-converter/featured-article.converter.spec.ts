@@ -1,9 +1,9 @@
 import { IRawArticle } from "../__types__/IRawArticle";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { featureArticle } from "./feature-article.converter";
-import { IFeatureArticle } from "../../../../common/__types__/IFeatureArticle";
+import { featuredArticle } from "./featured-article.converter";
+import { IFeaturedArticle } from "../../../../common/__types__/IFeaturedArticle";
 
-describe("Feature Article", () => {
+describe("Featured Article", () => {
   it("should convert", () => {
     const fakeArticle: IRawArticle = {
       id: "1",
@@ -26,7 +26,7 @@ describe("Feature Article", () => {
     const textColor = "white";
     const applyGradient = true;
 
-    const result = featureArticle(
+    const result = featuredArticle(
       fakeArticle,
       strapName,
       textColor,
@@ -34,8 +34,8 @@ describe("Feature Article", () => {
       applyGradient
     );
 
-    const expected: IFeatureArticle = {
-      type: ContentBlockType.FeatureArticle,
+    const expected: IFeaturedArticle = {
+      type: ContentBlockType.FeaturedArticle,
       id: "1",
       strapName,
       indexHeadline: "Headline 1",

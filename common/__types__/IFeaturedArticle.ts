@@ -1,8 +1,8 @@
 import { IArticle } from "./IArticle";
 import { ContentBlockType } from "./ContentBlockType";
 
-export interface IFeatureArticle extends IArticle {
-  type: ContentBlockType.FeatureArticle;
+export interface IFeaturedArticle extends IArticle {
+  type: ContentBlockType.FeaturedArticle;
   boxColor: string;
   textColor: string;
   applyGradient?: boolean;

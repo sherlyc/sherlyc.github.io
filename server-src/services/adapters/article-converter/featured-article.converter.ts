@@ -1,15 +1,15 @@
 import { IRawArticle } from "../__types__/IRawArticle";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { IFeatureArticle } from "../../../../common/__types__/IFeatureArticle";
+import { IFeaturedArticle } from "../../../../common/__types__/IFeaturedArticle";
 
-export const featureArticle = (
+export const featuredArticle = (
   article: IRawArticle,
   strapName: string,
   textColor: string,
   boxColor: string,
   applyGradient?: boolean
-): IFeatureArticle => ({
-  type: ContentBlockType.FeatureArticle,
+): IFeaturedArticle => ({
+  type: ContentBlockType.FeaturedArticle,
   id: article.id,
   strapName,
   indexHeadline: article.indexHeadline,

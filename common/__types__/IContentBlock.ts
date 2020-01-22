@@ -22,7 +22,7 @@ import { IRecommendations } from "./IRecommendations";
 import { IGridContainer } from "./IGridContainer";
 import { IResponsiveBigImageArticleUnit } from "./IResponsiveBigImageArticleUnit";
 import { IModuleTitle } from "./IModuleTitle";
-import { IFeatureArticle } from "./IFeatureArticle";
+import { IFeaturedArticle } from "./IFeaturedArticle";
 
 export type IContentBlock =
   | IDefconArticleUnit
@@ -49,4 +49,4 @@ export type IContentBlock =
   | IGridContainer
   | IResponsiveBigImageArticleUnit
   | IModuleTitle
-  | IFeatureArticle;
+  | IFeaturedArticle;
