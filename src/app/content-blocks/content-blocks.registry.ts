@@ -24,7 +24,7 @@ import { RecommendationsComponent } from "./recommendations/recommendations.comp
 import { GridContainerComponent } from "./grid-container/grid-container.component";
 import { ResponsiveBigImageArticleComponent } from "./responsive-big-image-article/responsive-big-image-article.component";
 import { ModuleTitleComponent } from "./module-title/module-title.component";
-import { FeaturedArticleComponent } from "./feature-article/featured-article.component";
+import { FeaturedArticleComponent } from "./featured-article/featured-article.component";
 
 export const contentBlockComponents = [
   GrayDefconArticleUnitComponent,
