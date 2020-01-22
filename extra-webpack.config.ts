@@ -1,6 +1,6 @@
-"use strict";
-const webpack = require("webpack");
-module.exports = {
+import * as webpack from "webpack";
+
+export default {
   devtool: false,
   output: {
     filename: "spade/[name].[chunkhash:20].js"
@@ -15,4 +15,4 @@ module.exports = {
       noSources: true
     })
   ]
-};
+} as webpack.Configuration;
