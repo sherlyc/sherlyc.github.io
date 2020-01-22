@@ -1,5 +1,6 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
+import { MockComponent } from "ng-mocks";
 import { AnalyticsEventsType } from "src/app/services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "src/app/services/analytics/analytics.service";
 import { mockService, ServiceMock } from "src/app/services/mocks/MockService";
@@ -11,6 +12,7 @@ import {
 } from "../../../../common/__types__/IBigImageArticleUnit";
 import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 import { FeatureSwitchService } from "../../services/feature-switch/feature-switch.service";
+import { FluidImageComponent } from "../../shared/components/fluid-image/fluid-image.component";
 import { HeadlineComponent } from "../../shared/components/headline/headline.component";
 import { BigImageArticleUnitComponent } from "./big-image-article-unit.component";
 
@@ -42,10 +44,13 @@ describe("BigImageArticleUnitComponent", () => {
     layout: BigImageArticleUnitLayout.module
   };
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [SharedModule],
-      declarations: [BigImageArticleUnitComponent],
+      declarations: [
+        BigImageArticleUnitComponent,
+        MockComponent(FluidImageComponent)
+      ],
       providers: [
         {
           provide: AnalyticsService,
@@ -56,10 +61,14 @@ describe("BigImageArticleUnitComponent", () => {
           useClass: mockService(FeatureSwitchService)
         }
       ]
-    }).compileComponents();
-  }));
+    })
+      .overrideComponent(FluidImageComponent, {
+        set: {
+          selector: "app-fluid-image-original"
+        }
+      })
+      .compileComponents();
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(BigImageArticleUnitComponent);
     analyticsService = TestBed.get(AnalyticsService);
     component = fixture.componentInstance;
