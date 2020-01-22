@@ -1,23 +1,26 @@
-import { IParams } from "../../../__types__/IParams";
-import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
-import { Strap } from "../../../strap";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import largeLeadSixHandler from "../large-lead-six/large-lead-six";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import {
-  ILargeLeadSixGridHandlerInput,
-  LargeLeadSixGridPositions
-} from "../../__types__/ILargeLeadSixGridHandlerInput";
-import { IBigImageArticleUnit } from "../../../../../common/__types__/IBigImageArticleUnit";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
-import { ILargeLeadSixHandlerInput } from "../../__types__/ILargeLeadSixHandlerInput";
+import { IBasicArticleTitleUnit } from "../../../../../common/__types__/IBasicArticleTitleUnit";
+import {
+  BigImageArticleUnitLayout,
+  IBigImageArticleUnit
+} from "../../../../../common/__types__/IBigImageArticleUnit";
 import {
   IGridConfig,
   IGridContainer
 } from "../../../../../common/__types__/IGridContainer";
-import { IBasicArticleTitleUnit } from "../../../../../common/__types__/IBasicArticleTitleUnit";
 import { IModuleTitle } from "../../../../../common/__types__/IModuleTitle";
+import { IParams } from "../../../__types__/IParams";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { Strap } from "../../../strap";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import {
+  ILargeLeadSixGridHandlerInput,
+  LargeLeadSixGridPositions
+} from "../../__types__/ILargeLeadSixGridHandlerInput";
+import { ILargeLeadSixHandlerInput } from "../../__types__/ILargeLeadSixHandlerInput";
+import largeLeadSixHandler from "../large-lead-six/large-lead-six";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 
@@ -72,9 +75,9 @@ describe("Large lead six", () => {
     title: "Title One",
     introText: "Intro 1",
     linkUrl: "/link1",
-    imageSrc: "strap1.jpg",
+    imageSrc: "sixteenByNineSrc.jpg",
     imageSrcSet: "strap1.jpg 1w",
-    sixteenByNineSrc: "sixteenByNineSrc.jpg",
+    layout: BigImageArticleUnitLayout.module,
     lastPublishedTime: 1,
     headlineFlags: []
   };
@@ -161,13 +164,10 @@ describe("Large lead six", () => {
         [LargeLeadSixGridPositions.Right]: [basicAdUnit]
       }
     };
-    expect(handlerRunnerMock).toHaveBeenCalledWith(
-      listGridHandlerInput,
-      params
-    );
-    expect(handlerRunnerMock).toHaveBeenCalledWith(
-      largeLeadSixGridHandlerInput,
-      params
-    );
+
+    expect(handlerRunnerMock.mock.calls).toEqual([
+      [listGridHandlerInput, params],
+      [largeLeadSixGridHandlerInput, params]
+    ]);
   });
 });

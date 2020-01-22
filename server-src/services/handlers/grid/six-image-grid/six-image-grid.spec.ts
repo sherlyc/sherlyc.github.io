@@ -4,7 +4,10 @@ import {
 } from "../../__types__/ISixImageGridHandlerInput";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { IBigImageArticleUnit } from "../../../../../common/__types__/IBigImageArticleUnit";
+import {
+  BigImageArticleUnitLayout,
+  IBigImageArticleUnit
+} from "../../../../../common/__types__/IBigImageArticleUnit";
 import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
 import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
 import { IModuleTitle } from "../../../../../common/__types__/IModuleTitle";
@@ -27,7 +30,7 @@ describe("Six Image Grid", () => {
     imageSrcSet: "strap1.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: [],
-    sixteenByNineSrc: null
+    layout: BigImageArticleUnitLayout.module
   };
   const basicAdUnit: IBasicAdUnit = {
     type: ContentBlockType.BasicAdUnit,
