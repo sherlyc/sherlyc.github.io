@@ -17,24 +17,20 @@ import {
   templateRowsTablet
 } from "./column-grid-config";
 
-const validateLength = (length: number) => {
-  const maxColumnCap = 6;
+const getContentLength = (length: number) => {
+  const min = 1;
+  const max = 6;
 
-  if (length > 0 && length <= maxColumnCap) {
-    return length;
-  } else if (length > maxColumnCap) {
-    return maxColumnCap;
-  }
-  return 1;
+  return Math.min(Math.max(length, min), max);
 };
 
 const getGridTemplateConfig = (length: number, config: IColumnGridTemplate) => {
-  const lengthNum: number = validateLength(length);
+  const lengthNum: number = getContentLength(length);
   return config[lengthNum];
 };
 
 const getTemplateRowsForMobile = (length: number) => {
-  const lengthNum: number = validateLength(length);
+  const lengthNum: number = getContentLength(length);
   return lengthNum
     ? Array(length)
         .fill("auto")
@@ -45,7 +41,7 @@ const getTemplateRowsForMobile = (length: number) => {
 const gridPositionName = (index: number) => `content${index}`;
 
 const getGridBlocks = (length: number, gridConfig: IColumnGridConfig) => {
-  const lengthNum: number = validateLength(length);
+  const lengthNum: number = getContentLength(length);
   const arr = gridConfig[lengthNum];
   const result = arr.reduce(
     (acc, item, index) => ({
