@@ -9,10 +9,10 @@ import {
 } from "../../__types__/ISixImageGridHandlerInput";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import wrappedLogger from "../../../utils/logger";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 import { imageLinkUnit } from "../../../adapters/article-converter/image-link-unit.converter";
+import { contentErrorHandler } from "../content-error-handler";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -20,45 +20,60 @@ export default async function(
   params: IParams
 ): Promise<IContentBlock[]> {
   const articles = await getRawArticles(sourceId, 6, params);
-  const articlesLength = articles.length;
-  try {
-    const gridInput: ISixImageGridHandlerInput = {
-      type: HandlerInputType.SixImageGrid,
-      content: {
-        [SixImageGridHandlerPositions.ModuleTitle]: [
-          {
-            type: ContentBlockType.ModuleTitle,
-            displayName,
-            displayNameColor
-          }
-        ],
-        [SixImageGridHandlerPositions.FirstRowLeft]: [
-          imageLinkUnit(articles.shift() as IRawArticle, strapName)
-        ],
-        [SixImageGridHandlerPositions.FirstRowMiddle]: [
-          imageLinkUnit(articles.shift() as IRawArticle, strapName)
-        ],
-        [SixImageGridHandlerPositions.FirstRowRight]: [
-          imageLinkUnit(articles.shift() as IRawArticle, strapName)
-        ],
-        [SixImageGridHandlerPositions.SecondRowLeft]: [basicAdUnit(strapName)],
-        [SixImageGridHandlerPositions.SecondRowMiddle]: [
-          imageLinkUnit(articles.shift() as IRawArticle, strapName)
-        ],
-        [SixImageGridHandlerPositions.SecondRowRight]: [
-          imageLinkUnit(articles.shift() as IRawArticle, strapName)
-        ],
-        [SixImageGridHandlerPositions.BigRight]: [basicAdUnit(strapName)]
-      }
-    };
+  const gridInput: ISixImageGridHandlerInput = {
+    type: HandlerInputType.SixImageGrid,
+    content: {
+      [SixImageGridHandlerPositions.ModuleTitle]: [
+        {
+          type: ContentBlockType.ModuleTitle,
+          displayName,
+          displayNameColor
+        }
+      ],
+      [SixImageGridHandlerPositions.FirstRowLeft]: [
+        await contentErrorHandler(
+          () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
+          HandlerInputType.SixImage,
+          sourceId,
+          params
+        )
+      ],
+      [SixImageGridHandlerPositions.FirstRowMiddle]: [
+        await contentErrorHandler(
+          () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
+          HandlerInputType.SixImage,
+          sourceId,
+          params
+        )
+      ],
+      [SixImageGridHandlerPositions.FirstRowRight]: [
+        await contentErrorHandler(
+          () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
+          HandlerInputType.SixImage,
+          sourceId,
+          params
+        )
+      ],
+      [SixImageGridHandlerPositions.SecondRowLeft]: [basicAdUnit(strapName)],
+      [SixImageGridHandlerPositions.SecondRowMiddle]: [
+        await contentErrorHandler(
+          () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
+          HandlerInputType.SixImage,
+          sourceId,
+          params
+        )
+      ],
+      [SixImageGridHandlerPositions.SecondRowRight]: [
+        await contentErrorHandler(
+          () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
+          HandlerInputType.SixImage,
+          sourceId,
+          params
+        )
+      ],
+      [SixImageGridHandlerPositions.BigRight]: [basicAdUnit(strapName)]
+    }
+  };
 
-    return await handlerRunner(gridInput, params);
-  } catch (error) {
-    wrappedLogger.error(
-      params.apiRequestId,
-      `Six Image handler error: Potentially insufficient number of articles: ${articlesLength}. Strap name: ${sourceId}|${strapName}`,
-      error
-    );
-    throw error;
-  }
+  return await handlerRunner(gridInput, params);
 }

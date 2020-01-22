@@ -107,29 +107,4 @@ describe("Six image", () => {
 
     expect(handlerRunnerMock).toHaveBeenCalledWith(expected, params);
   });
-
-  it("should log and throw error when not enough articles are available", async () => {
-    (getRawArticles as jest.Mock).mockResolvedValue(new Array(2).fill(article));
-
-    const input: ISixImageHandlerInput = {
-      type: HandlerInputType.SixImage,
-      displayName: "FakeName",
-      displayNameColor: "FakeColor",
-      strapName,
-      sourceId: Strap.MidStrip
-    };
-
-    expect.assertions(1);
-    try {
-      await sixImageHandler(handlerRunnerMock, input, params);
-    } catch (error) {
-      expect(wrappedLogger.error).toHaveBeenCalledWith(
-        params.apiRequestId,
-        expect.stringContaining(
-          "Six Image handler error: Potentially insufficient number of articles: 2"
-        ),
-        error
-      );
-    }
-  });
 });

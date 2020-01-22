@@ -13,6 +13,7 @@ import {
   LargeLeadSixGridPositions
 } from "../../__types__/ILargeLeadSixGridHandlerInput";
 import { ILargeLeadSixHandlerInput } from "../../__types__/ILargeLeadSixHandlerInput";
+import { contentErrorHandler } from "../content-error-handler";
 import { handlerRunnerFunction } from "../../runner";
 
 export default async function(
@@ -28,20 +29,34 @@ export default async function(
   const totalArticles = 6;
   const articles = await getRawArticles(sourceId, totalArticles, params);
 
-  if (articles.length < totalArticles) {
-    const errorMsg = `Large Lead Six handler error: Insufficient number of articles: ${articles.length}. Strap name: ${sourceId}|${strapName}`;
-    throw new Error(errorMsg);
-  }
-
-  const leftContent = bigImageArticleUnit(
-    articles.shift() as IRawArticle,
-    strapName,
-    BigImageArticleUnitLayout.module
+  const leftContent = await contentErrorHandler(
+    () =>
+      bigImageArticleUnit(
+        articles.shift() as IRawArticle,
+        strapName,
+        BigImageArticleUnitLayout.module
+      ),
+    HandlerInputType.LargeLeadSix,
+    sourceId,
+    params
   );
-  const middleContent = articles.map((article) =>
+  const listGridContent = articles.map((article) =>
     basicArticleTitleUnit(article, strapName)
   );
 
+  const middleContent = await contentErrorHandler(
+    () =>
+      handlerRunner(
+        {
+          type: HandlerInputType.ListGrid,
+          content: listGridContent
+        },
+        params
+      ),
+    HandlerInputType.LargeLeadSix,
+    sourceId,
+    params
+  );
   const largeLeadSixGridHandlerInput: ILargeLeadSixGridHandlerInput = {
     type: HandlerInputType.LargeLeadSixGrid,
     content: {
@@ -53,13 +68,7 @@ export default async function(
         }
       ],
       [LargeLeadSixGridPositions.Left]: [leftContent],
-      [LargeLeadSixGridPositions.Middle]: await handlerRunner(
-        {
-          type: HandlerInputType.ListGrid,
-          content: middleContent
-        },
-        params
-      ),
+      [LargeLeadSixGridPositions.Middle]: middleContent,
       [LargeLeadSixGridPositions.Right]: [basicAdUnit(strapName)]
     }
   };

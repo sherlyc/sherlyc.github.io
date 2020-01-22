@@ -30,41 +30,6 @@ describe("News six handler", () => {
     jest.resetAllMocks();
   });
 
-  it("should work log and throw error when not enough articles are available", async () => {
-    (getRawArticles as jest.Mock).mockResolvedValue([]);
-    (bigImageArticleUnit as jest.Mock).mockImplementation(() => {
-      throw new Error();
-    });
-    (basicArticleTitleUnit as jest.Mock).mockImplementation(() => {
-      throw new Error();
-    });
-    (responsiveBigImageArticleUnit as jest.Mock).mockImplementation(() => {
-      throw new Error();
-    });
-
-    const input: INewsSixHandlerInput = {
-      type: HandlerInputType.NewsSix,
-      displayName: "FakeName",
-      displayNameColor: "FakeColor",
-      strapName: "FakeStrap",
-      sourceId: "sourceId" as Strap
-    };
-
-    expect.assertions(2);
-    try {
-      await newsSixHandler(handlerRunnerMock, input, params);
-    } catch (error) {
-      expect(logger.error).toHaveBeenCalledWith(
-        params.apiRequestId,
-        expect.stringContaining(
-          "News Six handler error: Potentially insufficient number of articles:"
-        ),
-        error
-      );
-      expect(error).toBeTruthy();
-    }
-  });
-
   it("should retrieve articles by source id and limit", async () => {
     (getRawArticles as jest.Mock).mockResolvedValue([]);
     const input: INewsSixHandlerInput = {
