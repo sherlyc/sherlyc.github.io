@@ -102,6 +102,28 @@ describe("BigImageArticleUnitComponent", () => {
     expect(introSpan!.textContent).toEqual("Dummy intro text");
   });
 
+  it("should render input data in module layout", async () => {
+    component.input = articleDataForModule;
+
+    fixture.detectChanges();
+
+    const componentElement: HTMLElement = fixture.debugElement.nativeElement;
+    const a = componentElement.querySelector("a");
+
+    expect(a!.getAttribute("href")).toEqual(articleData.linkUrl);
+
+    const h3 = componentElement.querySelector("h3");
+    expect(h3!.textContent).toEqual(articleData.indexHeadline);
+
+    const img = fixture.debugElement.query(By.directive(FluidImageComponent))
+      .componentInstance;
+    expect(img.imageSrc).toEqual(articleData.imageSrc);
+    expect(img.caption).toEqual(articleData.indexHeadline);
+
+    const introSpan = componentElement.querySelector("p span.intro");
+    expect(introSpan!.textContent).toEqual("Dummy intro text");
+  });
+
   it("should hide image if not available", async () => {
     component.input = { ...articleData, imageSrc: null };
 
