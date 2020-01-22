@@ -1,16 +1,16 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
-import { ITextBoxArticle } from "../../../../common/__types__/ITextBoxArticle";
+import { IFeatureArticle } from "../../../../common/__types__/IFeatureArticle";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 
 @Component({
   selector: "app-text-box-article",
-  templateUrl: "./text-box-article.component.html",
-  styleUrls: ["./text-box-article.component.scss"]
+  templateUrl: "./feature-article.component.html",
+  styleUrls: ["./feature-article.component.scss"]
 })
-export class TextBoxArticleComponent implements IContentBlockComponent, OnInit {
-  @Input() input!: ITextBoxArticle;
+export class FeatureArticleComponent implements IContentBlockComponent, OnInit {
+  @Input() input!: IFeatureArticle;
   index?: number;
 
   boxStyle = {};

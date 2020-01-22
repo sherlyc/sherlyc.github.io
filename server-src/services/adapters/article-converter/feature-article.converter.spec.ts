@@ -1,9 +1,9 @@
 import { IRawArticle } from "../__types__/IRawArticle";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { textBoxArticle } from "./text-box-article.converter";
-import { ITextBoxArticle } from "../../../../common/__types__/ITextBoxArticle";
+import { featureArticle } from "./feature-article.converter";
+import { IFeatureArticle } from "../../../../common/__types__/IFeatureArticle";
 
-describe("text box article", () => {
+describe("Feature Article", () => {
   it("should convert", () => {
     const fakeArticle: IRawArticle = {
       id: "1",
@@ -17,25 +17,32 @@ describe("text box article", () => {
       strapImageSrc: "strap1.jpg",
       strapImageSrcSet: "strap1.jpg 1w",
       lastPublishedTime: 1,
-      headlineFlags: []
+      headlineFlags: [],
+      sixteenByNineSrc: "sixteenByNineSrc.jpg"
     };
 
-    const fakeStrapName = "fakeStrapName";
+    const strapName = "strapName";
     const boxColor = "red";
     const textColor = "white";
     const applyGradient = true;
 
-    const result = textBoxArticle(fakeArticle, fakeStrapName, textColor, boxColor, applyGradient);
+    const result = featureArticle(
+      fakeArticle,
+      strapName,
+      textColor,
+      boxColor,
+      applyGradient
+    );
 
-    const expected: ITextBoxArticle = {
-      type: ContentBlockType.TextBoxArticle,
+    const expected: IFeatureArticle = {
+      type: ContentBlockType.FeatureArticle,
       id: "1",
-      strapName: "fakeStrapName",
+      strapName,
       indexHeadline: "Headline 1",
       title: "Title One",
       introText: "Intro 1",
       linkUrl: "/link1",
-      imageSrc: "1.jpg",
+      imageSrc: "sixteenByNineSrc.jpg",
       imageSrcSet: "1.jpg 1w",
       lastPublishedTime: 1,
       headlineFlags: [],

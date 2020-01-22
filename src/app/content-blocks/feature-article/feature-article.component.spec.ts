@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { TextBoxArticleComponent } from "./text-box-article.component";
+import { FeatureArticleComponent } from "./feature-article.component";
 import { SharedModule } from "../../shared/shared.module";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { ITextBoxArticle } from "../../../../common/__types__/ITextBoxArticle";
+import { IFeatureArticle } from "../../../../common/__types__/IFeatureArticle";
 import { By } from "@angular/platform-browser";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 
-describe("TextBoxArticleComponent", () => {
-  let component: TextBoxArticleComponent;
-  let fixture: ComponentFixture<TextBoxArticleComponent>;
+describe("FeatureArticleComponent", () => {
+  let component: FeatureArticleComponent;
+  let fixture: ComponentFixture<FeatureArticleComponent>;
   let analyticsService: ServiceMock<AnalyticsService>;
 
-  const articleData: ITextBoxArticle = {
-    type: ContentBlockType.TextBoxArticle,
+  const articleData: IFeatureArticle = {
+    type: ContentBlockType.FeatureArticle,
     id: "123123",
     strapName: "National",
     indexHeadline: "Dummy Headline",
@@ -33,7 +33,7 @@ describe("TextBoxArticleComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [SharedModule],
-      declarations: [TextBoxArticleComponent],
+      declarations: [FeatureArticleComponent],
       providers: [
         {
           provide: AnalyticsService,
@@ -44,7 +44,7 @@ describe("TextBoxArticleComponent", () => {
 
     analyticsService = TestBed.get(AnalyticsService);
 
-    fixture = TestBed.createComponent(TextBoxArticleComponent);
+    fixture = TestBed.createComponent(FeatureArticleComponent);
     component = fixture.componentInstance;
   }));
 
