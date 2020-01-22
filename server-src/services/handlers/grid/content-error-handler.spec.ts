@@ -48,7 +48,7 @@ describe("Content error handler", () => {
     mockConverterCallback.mockRejectedValue(error);
     (isFeatureEnabled as jest.Mock).mockResolvedValue(false);
 
-    const result = await contentErrorHandler(
+    await contentErrorHandler(
       mockConverterCallback,
       HandlerInputType.NewsSix,
       Strap.Business,
@@ -60,16 +60,15 @@ describe("Content error handler", () => {
       `${HandlerInputType.NewsSix} - Potentially insufficient articles for source ${Strap.Business}`,
       error
     );
-    expect(result).toEqual(undefined);
   });
 
-  it("should log error and return empty array if callback fails and module layout feature has been rolled out", async () => {
+  it("should log error if callback fails and module layout feature has been rolled out", async () => {
     const mockConverterCallback = jest.fn();
     const error = new Error("Failed");
     mockConverterCallback.mockRejectedValue(error);
     (isFeatureEnabled as jest.Mock).mockResolvedValue(true);
 
-    const result = await contentErrorHandler(
+    await contentErrorHandler(
       mockConverterCallback,
       HandlerInputType.NewsSix,
       Strap.Business,
@@ -81,7 +80,6 @@ describe("Content error handler", () => {
       `${HandlerInputType.NewsSix} - Potentially insufficient articles for source ${Strap.Business}`,
       error
     );
-    expect(result).toEqual(undefined);
   });
 
   it("should call isFeatureEnabled with correct params if callback fails", async () => {

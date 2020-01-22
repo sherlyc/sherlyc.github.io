@@ -28,6 +28,5 @@ export const contentErrorHandler = async (
     } else {
       wrappedLogger.info(params.apiRequestId, message, error);
     }
-    return undefined;
   }
 };
