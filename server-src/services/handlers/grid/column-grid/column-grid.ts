@@ -25,13 +25,11 @@ const getContentLength = (length: number) => {
 };
 
 const getGridTemplateConfig = (length: number, config: IColumnGridTemplate) => {
-  const lengthNum: number = getContentLength(length);
-  return config[lengthNum];
+  return config[length];
 };
 
 const getTemplateRowsForMobile = (length: number) => {
-  const lengthNum: number = getContentLength(length);
-  return lengthNum
+  return length
     ? Array(length)
         .fill("auto")
         .join(" ")
@@ -41,8 +39,7 @@ const getTemplateRowsForMobile = (length: number) => {
 const gridPositionName = (index: number) => `content${index}`;
 
 const getGridBlocks = (length: number, gridConfig: IColumnGridConfig) => {
-  const lengthNum: number = getContentLength(length);
-  const arr = gridConfig[lengthNum];
+  const arr = gridConfig[length];
   const result = arr.reduce(
     (acc, item, index) => ({
       ...acc,
@@ -68,7 +65,7 @@ export default async function(
   { content }: IColumnGridHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const contentLength = content.length;
+  const contentLength = getContentLength(content.length);
   const mobileLayout: IGridConfig = {
     gridTemplateColumns: "1fr",
     gridTemplateRows: getTemplateRowsForMobile(contentLength),
