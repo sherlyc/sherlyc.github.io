@@ -29,24 +29,23 @@ const getGridTemplateConfig = (length: number, config: IColumnGridTemplate) => {
 };
 
 const getTemplateRowsForMobile = (length: number) => {
-  return length
-    ? Array(length)
-        .fill("auto")
-        .join(" ")
-    : "auto";
+  return Array(length)
+    .fill("auto")
+    .join(" ");
 };
 
 const gridPositionName = (index: number) => `content${index}`;
 
 const getGridBlocks = (length: number, gridConfig: IColumnGridConfig) => {
-  const arr = gridConfig[length];
-  const result = arr.reduce(
-    (acc, item, index) => ({
+  const gridBlockConfig = gridConfig[length];
+  const result = gridBlockConfig.reduce((acc, item, index) => {
+    const [rowStart, colStart] = item;
+
+    return {
       ...acc,
-      [gridPositionName(index)]: gridBlock(item[0], item[1], 1, 1, [])
-    }),
-    {}
-  );
+      [gridPositionName(index)]: gridBlock(rowStart, colStart, 1, 1, [])
+    };
+  }, {});
 
   return result;
 };
