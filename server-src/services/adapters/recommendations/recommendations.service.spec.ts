@@ -23,7 +23,8 @@ describe("getRecommendedArticles", () => {
     imageSrcSet: "asdf",
     strapImageSrcSet: "asdf",
     lastPublishedTime: 34567,
-    headlineFlags: []
+    headlineFlags: [],
+    sixteenByNineSrc: null
   } as IRawArticle;
 
   beforeEach(() => {

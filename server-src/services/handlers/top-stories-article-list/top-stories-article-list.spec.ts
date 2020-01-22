@@ -1,22 +1,25 @@
-import { IRawArticle } from "../../adapters/__types__/IRawArticle";
-import { ITopStoriesArticleListHandlerInput } from "../__types__/ITopStoriesArticleListHandlerInput";
-import { HandlerInputType } from "../__types__/HandlerInputType";
-import handlerRunner from "../runner";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { IParams } from "../../__types__/IParams";
-import topStoriesListHandler from "./top-stories-article-list";
-import { IDefconArticleUnit } from "../../../../common/__types__/IDefconArticleUnit";
 import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
-import * as layoutRetriever from "../../adapters/layout/layout-retriever";
-import { LayoutType } from "../../adapters/__types__/LayoutType";
-import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
+import {
+  BigImageArticleUnitLayout,
+  IBigImageArticleUnit
+} from "../../../../common/__types__/IBigImageArticleUnit";
+import { IDefconArticleUnit } from "../../../../common/__types__/IDefconArticleUnit";
 import { IGrayDefconArticleUnit } from "../../../../common/__types__/IGrayDefconArticleUnit";
-import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArticleUnit";
 
 import {
   Border,
   IGridBlock
 } from "../../../../common/__types__/IGridContainer";
+import { IParams } from "../../__types__/IParams";
+import { IRawArticle } from "../../adapters/__types__/IRawArticle";
+import { LayoutType } from "../../adapters/__types__/LayoutType";
+import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
+import * as layoutRetriever from "../../adapters/layout/layout-retriever";
+import { HandlerInputType } from "../__types__/HandlerInputType";
+import { ITopStoriesArticleListHandlerInput } from "../__types__/ITopStoriesArticleListHandlerInput";
+import handlerRunner from "../runner";
+import topStoriesListHandler from "./top-stories-article-list";
 
 jest.mock("../../adapters/article-retriever/article-retriever");
 
@@ -40,7 +43,8 @@ describe("Top Stories Article List", () => {
     strapImageSrc: "strap1.jpg",
     strapImageSrcSet: "strap1.jpg 1w",
     lastPublishedTime: 1,
-    headlineFlags: []
+    headlineFlags: [],
+    sixteenByNineSrc: "sixteenByNineSrc.jpg"
   };
 
   const articleTwo: IRawArticle = {
@@ -55,7 +59,8 @@ describe("Top Stories Article List", () => {
     strapImageSrc: "strap2.jpg",
     strapImageSrcSet: "strap2.jpg 1w",
     lastPublishedTime: 1,
-    headlineFlags: []
+    headlineFlags: [],
+    sixteenByNineSrc: "sixteenByNineSrc.jpg"
   };
 
   const AsDefconArticle = (article: IRawArticle): IDefconArticleUnit => ({
@@ -110,6 +115,7 @@ describe("Top Stories Article List", () => {
     linkUrl: article.linkUrl,
     imageSrc: article.strapImageSrc,
     imageSrcSet: article.strapImageSrcSet,
+    layout: BigImageArticleUnitLayout.default,
     lastPublishedTime: article.lastPublishedTime,
     headlineFlags: article.headlineFlags
   });
