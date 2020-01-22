@@ -8,7 +8,7 @@ import { Component, Input } from "@angular/core";
 export class FluidImageComponent {
   @Input() imageSrc!: string;
   @Input() caption!: string;
-  @Input() aspectRatio = "16:9";
+  @Input() aspectRatio = "16:9,smart";
   src!: string;
   srcset!: string;
   width = 100;
@@ -19,7 +19,7 @@ export class FluidImageComponent {
     const width = Math.ceil(entry.contentRect.width);
     if (width >= this.width * 1.2) {
       this.width = width;
-      const src = `${this.imageSrc}?format=pjpg&crop=${this.aspectRatio},smart&width=${width}`;
+      const src = `${this.imageSrc}?format=pjpg&crop=${this.aspectRatio}&width=${width}`;
       this.srcset = `${src}, ${src}&dpr=2 2x`;
       this.src = src;
     }
