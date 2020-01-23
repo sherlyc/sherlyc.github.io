@@ -1,6 +1,6 @@
+import { Component, Input } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { MockComponent } from "ng-mocks";
 import { AnalyticsEventsType } from "src/app/services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "src/app/services/analytics/analytics.service";
 import { mockService, ServiceMock } from "src/app/services/mocks/MockService";
@@ -44,13 +44,19 @@ describe("BigImageArticleUnitComponent", () => {
     layout: BigImageArticleUnitLayout.module
   };
 
+  @Component({
+    selector: "app-fluid-image",
+    template: ""
+  })
+  class FakeFluidImageComponent {
+    @Input() imageSrc!: string;
+    @Input() caption!: string;
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [SharedModule],
-      declarations: [
-        BigImageArticleUnitComponent,
-        MockComponent(FluidImageComponent)
-      ],
+      declarations: [BigImageArticleUnitComponent, FakeFluidImageComponent],
       providers: [
         {
           provide: AnalyticsService,
@@ -115,8 +121,9 @@ describe("BigImageArticleUnitComponent", () => {
     const h3 = componentElement.querySelector("h3");
     expect(h3!.textContent).toEqual(articleData.indexHeadline);
 
-    const img = fixture.debugElement.query(By.directive(FluidImageComponent))
-      .componentInstance;
+    const img = fixture.debugElement.query(
+      By.directive(FakeFluidImageComponent)
+    ).componentInstance;
     expect(img.imageSrc).toEqual(articleData.imageSrc);
     expect(img.caption).toEqual(articleData.indexHeadline);
 
