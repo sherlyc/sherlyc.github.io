@@ -1,16 +1,15 @@
 import { Border } from "../../../../../common/__types__/IGridContainer";
+import {
+  IColumnGridConfig,
+  IColumnGridTemplate
+} from "./__types__/IColumnGridDefinition";
 
-export interface IColumnGridConfig {
-  [key: number]: Array<{
-    rowStart: number;
-    colStart: number;
-    border: Border[];
-  }>;
-}
-
-export interface IColumnGridTemplate {
-  [key: number]: string;
-}
+export const getGridTemplateConfig = (
+  numColumns: number,
+  config: IColumnGridTemplate
+) => {
+  return config[numColumns];
+};
 
 export const mobileGridConfig: IColumnGridConfig = {
   1: [{ rowStart: 1, colStart: 1, border: [] }],
@@ -112,6 +111,12 @@ export const desktopGridConfig: IColumnGridConfig = {
     { rowStart: 2, colStart: 2, border: [Border.right] },
     { rowStart: 2, colStart: 3, border: [] }
   ]
+};
+
+export const templateRowsForMobile = (numColumns: number) => {
+  return Array(numColumns)
+    .fill("auto")
+    .join(" ");
 };
 
 export const templateColumnsTablet: IColumnGridTemplate = {

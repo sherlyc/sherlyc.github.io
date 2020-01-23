@@ -6,35 +6,26 @@ import { IColumnGridHandlerInput } from "../../__types__/IColumnGridHandlerInput
 import { IParams } from "../../../__types__/IParams";
 import { gridBlock } from "../../../adapters/grid/grid-block";
 import {
-  IColumnGridConfig,
-  IColumnGridTemplate,
   mobileGridConfig,
   tabletGridConfig,
   desktopGridConfig,
   templateColumnsDesktop,
   templateColumnsTablet,
   templateRowsDesktop,
-  templateRowsTablet
+  templateRowsTablet,
+  templateRowsForMobile,
+  getGridTemplateConfig
 } from "./column-grid-config";
+import {
+  IColumnGridConfig,
+  IColumnGridTemplate
+} from "./__types__/IColumnGridDefinition";
 
 const getNumColumnsFor = (contentLength: number) => {
   const min = 1;
   const max = 6;
 
   return Math.min(Math.max(contentLength, min), max);
-};
-
-const getGridTemplateConfig = (
-  numColumns: number,
-  config: IColumnGridTemplate
-) => {
-  return config[numColumns];
-};
-
-const getTemplateRowsForMobile = (length: number) => {
-  return Array(length)
-    .fill("auto")
-    .join(" ");
 };
 
 const gridPositionName = (index: number) => `content${index}`;
@@ -67,7 +58,7 @@ export default async function(
   const numColumns = getNumColumnsFor(content.length);
   const mobile: IGridConfig = {
     gridTemplateColumns: "1fr",
-    gridTemplateRows: getTemplateRowsForMobile(numColumns),
+    gridTemplateRows: templateRowsForMobile(numColumns),
     gridColumnGap: "0px",
     gridRowGap: "10px",
     gridBlocks: getGridBlocks(numColumns, mobileGridConfig)
