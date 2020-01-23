@@ -1,8 +1,5 @@
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import {
-  Border,
-  IGridConfig
-} from "../../../../../common/__types__/IGridContainer";
+import { IGridConfig } from "../../../../../common/__types__/IGridContainer";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { handlerRunnerFunction } from "../../runner";
 import { IColumnGridHandlerInput } from "../../__types__/IColumnGridHandlerInput";
@@ -41,15 +38,13 @@ const gridPositionName = (index: number) => `content${index}`;
 
 const getGridBlocks = (length: number, gridConfig: IColumnGridConfig) => {
   const gridBlockConfig = gridConfig[length];
-  const result = gridBlockConfig.reduce((acc, item, index) => {
+  return gridBlockConfig.reduce((acc, item, index) => {
     const { rowStart, colStart, border } = item;
     return {
       ...acc,
       [gridPositionName(index)]: gridBlock(rowStart, colStart, 1, 1, border)
     };
   }, {});
-
-  return result;
 };
 
 const getGridItems = (content: IContentBlock[][]) =>
