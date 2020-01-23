@@ -1,14 +1,14 @@
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { IGridConfig } from "../../../../../common/__types__/IGridContainer";
+import { Border, IGridConfig } from "../../../../../common/__types__/IGridContainer";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { handlerRunnerFunction } from "../../runner";
 import { IColumnGridHandlerInput } from "../../__types__/IColumnGridHandlerInput";
 import { IParams } from "../../../__types__/IParams";
 import { gridBlock } from "../../../adapters/grid/grid-block";
 import {
+  desktopGridConfig,
   IColumnGridConfig,
   IColumnGridTemplate,
-  desktopGridConfig,
   mobileGridConfig,
   tabletGridConfig,
   templateColumnsDesktop,
@@ -38,9 +38,12 @@ const gridPositionName = (index: number) => `content${index}`;
 
 const getGridBlocks = (length: number, gridConfig: IColumnGridConfig) => {
   const gridBlockConfig = gridConfig[length];
+
+  // const lastItems = getLastItems(); // { 1: 3, 2: 2 }
   const result = gridBlockConfig.reduce((acc, item, index) => {
     const [rowStart, colStart] = item;
 
+    // const isLastItemInRow = colStart === lastItems[rowStart];
     return {
       ...acc,
       [gridPositionName(index)]: gridBlock(rowStart, colStart, 1, 1, [])
