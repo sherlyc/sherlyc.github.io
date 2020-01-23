@@ -9,8 +9,6 @@ import { HandlerInputType } from "../../__types__/HandlerInputType";
 import threeColumnHandler from "./three-column";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IGridConfig } from "../../../../../common/__types__/IGridContainer";
-import { IListGridHandlerInput } from "../../__types__/IListGridHandlerInput";
-import { IColumnGridHandlerInput } from "../../__types__/IColumnGridHandlerInput";
 import { Strap } from "../../../strap";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
@@ -98,41 +96,10 @@ describe("Three column", () => {
     );
   });
 
-  it("should call list grid with column one content blocks", async () => {
-    const columnOneArticles = new Array(8).fill(article);
-    (getRawArticles as jest.Mock).mockResolvedValue(columnOneArticles);
-    const columnOneContentBlocks = new Array(8).fill(
-      articleAsTitleUnit("Editors' Picks")
-    );
-    handlerRunnerMock.mockResolvedValue([]);
-
-    const input: IThreeColumnHandlerInput = {
-      type: HandlerInputType.ThreeColumn
-    };
-
-    const listGridHandlerInput = {
-      type: HandlerInputType.ListGrid,
-      content: columnOneContentBlocks
-    };
-
-    const columnGridInput: IColumnGridHandlerInput = {
-      type: HandlerInputType.ColumnGrid,
-      content: expect.arrayContaining([{}, {}])
-    };
-
-    const result = await threeColumnHandler(handlerRunnerMock, input, params);
-    const mockCalls = handlerRunnerMock.mock.calls;
-
-    expect(mockCalls[0][0]).toEqual(listGridHandlerInput);
-  });
-
-  it("should call list grid with column two content blocks", async () => {
-    const columnTwoArticles = new Array(8).fill(article);
-    (getRawArticles as jest.Mock).mockResolvedValue(columnTwoArticles);
-    const columnTwoContentBlocks = new Array(8).fill(
-      articleAsTitleUnit("Business")
-    );
-    handlerRunnerMock.mockResolvedValue(listGridResult);
+  it("should create column one content with module title and pass it to column grid", async () => {
+    (getRawArticles as jest.Mock).mockResolvedValue(new Array(8).fill(article));
+    const fakeListGrid = { type: ContentBlockType.GridContainer };
+    handlerRunnerMock.mockResolvedValue(fakeListGrid);
 
     const input: IThreeColumnHandlerInput = {
       type: HandlerInputType.ThreeColumn
@@ -140,11 +107,88 @@ describe("Three column", () => {
 
     await threeColumnHandler(handlerRunnerMock, input, params);
 
-    const listGridInput: IListGridHandlerInput = {
+    const [
+      [firstListGridCall],
+      [second],
+      [third],
+      [columnGridCall]
+    ] = handlerRunnerMock.mock.calls;
+
+    const listGridHandlerInput = {
       type: HandlerInputType.ListGrid,
-      content: columnTwoContentBlocks
+      content: new Array(8).fill(articleAsTitleUnit("Editors' Picks"))
+    };
+    expect(firstListGridCall).toEqual(listGridHandlerInput);
+
+    const title: IModuleTitle = {
+      type: ContentBlockType.ModuleTitle,
+      displayName: "Editors' Picks",
+      displayNameColor: "pizzaz"
+    };
+    expect(columnGridCall.content[0]).toEqual([title, fakeListGrid]);
+  });
+
+  it("should create column two content with module title and pass it to column grid", async () => {
+    (getRawArticles as jest.Mock).mockResolvedValue(new Array(8).fill(article));
+    const fakeListGrid = { type: ContentBlockType.GridContainer };
+    handlerRunnerMock.mockResolvedValue(fakeListGrid);
+
+    const input: IThreeColumnHandlerInput = {
+      type: HandlerInputType.ThreeColumn
     };
 
-    expect(handlerRunnerMock).toHaveBeenCalledWith(listGridInput, params);
+    await threeColumnHandler(handlerRunnerMock, input, params);
+
+    const [
+      [listGridCall],
+      [secondListGridCall],
+      [third],
+      [columnGridCall]
+    ] = handlerRunnerMock.mock.calls;
+
+    const listGridHandlerInput = {
+      type: HandlerInputType.ListGrid,
+      content: new Array(8).fill(articleAsTitleUnit("Business"))
+    };
+    expect(secondListGridCall).toEqual(listGridHandlerInput);
+
+    const title: IModuleTitle = {
+      type: ContentBlockType.ModuleTitle,
+      displayName: "Business",
+      displayNameColor: "pizzaz"
+    };
+    expect(columnGridCall.content[1]).toEqual([title, fakeListGrid]);
+  });
+
+  it("should create column three content with module title and pass it to column grid", async () => {
+    (getRawArticles as jest.Mock).mockResolvedValue(new Array(8).fill(article));
+    const fakeListGrid = { type: ContentBlockType.GridContainer };
+    handlerRunnerMock.mockResolvedValue(fakeListGrid);
+
+    const input: IThreeColumnHandlerInput = {
+      type: HandlerInputType.ThreeColumn
+    };
+
+    await threeColumnHandler(handlerRunnerMock, input, params);
+
+    const [
+      [first],
+      [second],
+      [thirdListGridCall],
+      [columnGridCall]
+    ] = handlerRunnerMock.mock.calls;
+
+    const listGridHandlerInput = {
+      type: HandlerInputType.ListGrid,
+      content: new Array(8).fill(articleAsTitleUnit("Opinion"))
+    };
+    expect(thirdListGridCall).toEqual(listGridHandlerInput);
+
+    const title: IModuleTitle = {
+      type: ContentBlockType.ModuleTitle,
+      displayName: "Opinion",
+      displayNameColor: "pizzaz"
+    };
+    expect(columnGridCall.content[2]).toEqual([title, fakeListGrid]);
   });
 });

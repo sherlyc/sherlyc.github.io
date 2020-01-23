@@ -46,7 +46,7 @@ export default async function(
   const columnOneContent: IContentBlock[] = [
     {
       type: ContentBlockType.ModuleTitle,
-      displayName: "Editor's Picks",
+      displayName: "Editors' Picks",
       displayNameColor: "pizzaz"
     },
     ...(await handlerRunner(
@@ -61,7 +61,7 @@ export default async function(
   const columnTwoContent: IContentBlock[] = [
     {
       type: ContentBlockType.ModuleTitle,
-      displayName: "Most Popular",
+      displayName: "Business",
       displayNameColor: "pizzaz"
     },
     ...(await handlerRunner(
@@ -76,7 +76,7 @@ export default async function(
   const columnThreeContent: IContentBlock[] = [
     {
       type: ContentBlockType.ModuleTitle,
-      displayName: "Latest News",
+      displayName: "Opinion",
       displayNameColor: "pizzaz"
     },
     ...(await handlerRunner(
