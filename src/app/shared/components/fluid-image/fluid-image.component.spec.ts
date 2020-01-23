@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
+import { FluidImageWidth } from "../../../../../common/FluidImageWidth";
 import { FluidImageComponent } from "./fluid-image.component";
 
 describe("FluidImageComponent", () => {
@@ -15,6 +16,20 @@ describe("FluidImageComponent", () => {
   };
 
   const expectedSrc = `${componentInput.imageSrc}?format=pjpg&crop=${componentInput.aspectRatio}`;
+
+  const simulateResize = (width: FluidImageWidth | number) => {
+    component.onResize({
+      contentRect: { width }
+    } as ResizeObserverEntry);
+    fixture.detectChanges();
+  };
+
+  const expectImgWidth = (width: FluidImageWidth) =>
+    expect(getImg().attributes).toMatchObject({
+      src: `${expectedSrc}&width=${width}`,
+      srcset: `${expectedSrc}&width=${width}, ${expectedSrc}&width=${width}&dpr=2 2x`,
+      alt: componentInput.caption
+    });
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -36,55 +51,30 @@ describe("FluidImageComponent", () => {
   });
 
   it("renders the image with optimal width after the element size is determined", () => {
-    component.onResize({ contentRect: { width: 375 } } as ResizeObserverEntry);
-    fixture.detectChanges();
+    simulateResize(FluidImageWidth.xs);
     expect(getImg().classes).toMatchObject({ hidden: false });
-    expect(getImg().attributes).toMatchObject({
-      src: `${expectedSrc}&width=375`,
-      srcset: `${expectedSrc}&width=375, ${expectedSrc}&width=375&dpr=2 2x`,
-      alt: componentInput.caption
-    });
+    expectImgWidth(FluidImageWidth.xs);
   });
 
-  it("swaps in higher resolution image when width increases 20%", () => {
-    component.onResize({ contentRect: { width: 375 } } as ResizeObserverEntry);
-    fixture.detectChanges();
-    component.onResize({
-      contentRect: { width: 375 * 1.2 }
-    } as ResizeObserverEntry);
-    fixture.detectChanges();
-    expect(getImg().attributes).toMatchObject({
-      src: `${expectedSrc}&width=450`,
-      srcset: `${expectedSrc}&width=450, ${expectedSrc}&width=450&dpr=2 2x`,
-      alt: componentInput.caption
-    });
+  it("rounds up the width to the next level", () => {
+    simulateResize(FluidImageWidth.m + 1);
+    expectImgWidth(FluidImageWidth.l);
   });
 
-  it("does not swap in higher resolution image when width increases <20%", () => {
-    component.onResize({ contentRect: { width: 375 } } as ResizeObserverEntry);
-    fixture.detectChanges();
-    component.onResize({
-      contentRect: { width: 375 * 1.1 }
-    } as ResizeObserverEntry);
-    fixture.detectChanges();
-    expect(getImg().attributes).toMatchObject({
-      src: `${expectedSrc}&width=375`,
-      srcset: `${expectedSrc}&width=375, ${expectedSrc}&width=375&dpr=2 2x`,
-      alt: componentInput.caption
-    });
+  it("limits the max width to the highest level", () => {
+    simulateResize(FluidImageWidth.xl + 2020);
+    expectImgWidth(FluidImageWidth.xl);
   });
 
-  it("does not swap in lower resolution image when width decreases", () => {
-    component.onResize({ contentRect: { width: 375 } } as ResizeObserverEntry);
-    fixture.detectChanges();
-    component.onResize({
-      contentRect: { width: 375 * 0.5 }
-    } as ResizeObserverEntry);
-    fixture.detectChanges();
-    expect(getImg().attributes).toMatchObject({
-      src: `${expectedSrc}&width=375`,
-      srcset: `${expectedSrc}&width=375, ${expectedSrc}&width=375&dpr=2 2x`,
-      alt: componentInput.caption
-    });
+  it("loads higher resolution image when width increases", () => {
+    simulateResize(FluidImageWidth.xs);
+    simulateResize(FluidImageWidth.m);
+    expectImgWidth(FluidImageWidth.m);
+  });
+
+  it("does not load lower resolution image when width decreases", () => {
+    simulateResize(FluidImageWidth.l);
+    simulateResize(FluidImageWidth.m);
+    expectImgWidth(FluidImageWidth.l);
   });
 });
