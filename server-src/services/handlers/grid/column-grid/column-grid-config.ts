@@ -1,5 +1,11 @@
+import { Border } from "../../../../../common/__types__/IGridContainer";
+
 export interface IColumnGridConfig {
-  [key: number]: number[][];
+  [key: number]: Array<{
+    rowStart: number;
+    colStart: number;
+    border: Border[];
+  }>;
 }
 
 export interface IColumnGridTemplate {
@@ -7,104 +13,104 @@ export interface IColumnGridTemplate {
 }
 
 export const mobileGridConfig: IColumnGridConfig = {
-  1: [[1, 1]],
+  1: [{ rowStart: 1, colStart: 1, border: [] }],
   2: [
-    [1, 1],
-    [2, 1]
+    { rowStart: 1, colStart: 1, border: [] },
+    { rowStart: 2, colStart: 1, border: [] }
   ],
   3: [
-    [1, 1],
-    [2, 1],
-    [3, 1]
+    { rowStart: 1, colStart: 1, border: [] },
+    { rowStart: 2, colStart: 1, border: [] },
+    { rowStart: 3, colStart: 1, border: [] }
   ],
   4: [
-    [1, 1],
-    [2, 1],
-    [3, 1],
-    [4, 1]
+    { rowStart: 1, colStart: 1, border: [] },
+    { rowStart: 2, colStart: 1, border: [] },
+    { rowStart: 3, colStart: 1, border: [] },
+    { rowStart: 4, colStart: 1, border: [] }
   ],
   5: [
-    [1, 1],
-    [2, 1],
-    [3, 1],
-    [4, 1],
-    [5, 1]
+    { rowStart: 1, colStart: 1, border: [] },
+    { rowStart: 2, colStart: 1, border: [] },
+    { rowStart: 3, colStart: 1, border: [] },
+    { rowStart: 4, colStart: 1, border: [] },
+    { rowStart: 5, colStart: 1, border: [] }
   ],
   6: [
-    [1, 1],
-    [2, 1],
-    [3, 1],
-    [4, 1],
-    [5, 1],
-    [6, 1]
+    { rowStart: 1, colStart: 1, border: [] },
+    { rowStart: 2, colStart: 1, border: [] },
+    { rowStart: 3, colStart: 1, border: [] },
+    { rowStart: 4, colStart: 1, border: [] },
+    { rowStart: 5, colStart: 1, border: [] },
+    { rowStart: 6, colStart: 1, border: [] }
   ]
 };
 
 export const tabletGridConfig: IColumnGridConfig = {
-  1: [[1, 1]],
+  1: [{ rowStart: 1, colStart: 1, border: [] }],
   2: [
-    [1, 1],
-    [1, 2]
+    { rowStart: 1, colStart: 1, border: [Border.right] },
+    { rowStart: 1, colStart: 2, border: [] }
   ],
   3: [
-    [1, 1],
-    [1, 2],
-    [1, 3]
+    { rowStart: 1, colStart: 1, border: [Border.right] },
+    { rowStart: 1, colStart: 2, border: [Border.right] },
+    { rowStart: 1, colStart: 3, border: [] }
   ],
   4: [
-    [1, 1],
-    [1, 2],
-    [2, 1],
-    [2, 2]
+    { rowStart: 1, colStart: 1, border: [Border.right] },
+    { rowStart: 1, colStart: 2, border: [] },
+    { rowStart: 2, colStart: 1, border: [Border.right] },
+    { rowStart: 2, colStart: 2, border: [] }
   ],
   5: [
-    [1, 1],
-    [1, 2],
-    [1, 3],
-    [2, 1],
-    [2, 2]
+    { rowStart: 1, colStart: 1, border: [Border.right] },
+    { rowStart: 1, colStart: 2, border: [Border.right] },
+    { rowStart: 1, colStart: 3, border: [] },
+    { rowStart: 2, colStart: 1, border: [Border.right] },
+    { rowStart: 2, colStart: 2, border: [] }
   ],
   6: [
-    [1, 1],
-    [1, 2],
-    [1, 3],
-    [2, 1],
-    [2, 2],
-    [2, 3]
+    { rowStart: 1, colStart: 1, border: [Border.right] },
+    { rowStart: 1, colStart: 2, border: [Border.right] },
+    { rowStart: 1, colStart: 3, border: [] },
+    { rowStart: 2, colStart: 1, border: [Border.right] },
+    { rowStart: 2, colStart: 2, border: [Border.right] },
+    { rowStart: 2, colStart: 3, border: [] }
   ]
 };
 
 export const desktopGridConfig: IColumnGridConfig = {
-  1: [[1, 1]],
+  1: [{ rowStart: 1, colStart: 1, border: [] }],
   2: [
-    [1, 1],
-    [1, 2]
+    { rowStart: 1, colStart: 1, border: [Border.right] },
+    { rowStart: 1, colStart: 2, border: [] }
   ],
   3: [
-    [1, 1],
-    [1, 2],
-    [1, 3]
+    { rowStart: 1, colStart: 1, border: [Border.right] },
+    { rowStart: 1, colStart: 2, border: [Border.right] },
+    { rowStart: 1, colStart: 3, border: [] }
   ],
   4: [
-    [1, 1],
-    [1, 2],
-    [1, 3],
-    [1, 4]
+    { rowStart: 1, colStart: 1, border: [Border.right] },
+    { rowStart: 1, colStart: 2, border: [Border.right] },
+    { rowStart: 1, colStart: 3, border: [Border.right] },
+    { rowStart: 1, colStart: 4, border: [] }
   ],
   5: [
-    [1, 1],
-    [1, 2],
-    [1, 3],
-    [1, 4],
-    [1, 5]
+    { rowStart: 1, colStart: 1, border: [Border.right] },
+    { rowStart: 1, colStart: 2, border: [Border.right] },
+    { rowStart: 1, colStart: 3, border: [Border.right] },
+    { rowStart: 1, colStart: 4, border: [Border.right] },
+    { rowStart: 1, colStart: 5, border: [] }
   ],
   6: [
-    [1, 1],
-    [1, 2],
-    [1, 3],
-    [2, 1],
-    [2, 2],
-    [2, 3]
+    { rowStart: 1, colStart: 1, border: [Border.right] },
+    { rowStart: 1, colStart: 2, border: [Border.right] },
+    { rowStart: 1, colStart: 3, border: [] },
+    { rowStart: 2, colStart: 1, border: [Border.right] },
+    { rowStart: 2, colStart: 2, border: [Border.right] },
+    { rowStart: 2, colStart: 3, border: [] }
   ]
 };
 
