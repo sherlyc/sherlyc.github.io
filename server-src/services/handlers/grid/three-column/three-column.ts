@@ -32,15 +32,15 @@ export default async function(
   );
 
   const articleListOne = articles.map((article) =>
-    basicArticleTitleUnit(article, "strapName")
+    basicArticleTitleUnit(article, "Editors' Picks")
   );
 
   const articleListTwo = articlesTwo.map((article) =>
-    basicArticleTitleUnit(article, "strapName")
+    basicArticleTitleUnit(article, "Business")
   );
 
   const articleListThree = articlesThree.map((article) =>
-    basicArticleTitleUnit(article, "strapName")
+    basicArticleTitleUnit(article, "Opinion")
   );
 
   const columnOneContent: IContentBlock[] = [

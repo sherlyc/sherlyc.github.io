@@ -18,7 +18,6 @@ jest.mock("../../../adapters/article-retriever/article-retriever");
 describe("Three column", () => {
   const handlerRunnerMock = jest.fn();
   const params: IParams = { apiRequestId: "123" };
-  const strapName = "strapName";
   const displayName = "test";
   const displayNameColor = "testColor";
   const listGridResult = {
@@ -53,7 +52,7 @@ describe("Three column", () => {
     displayNameColor
   };
 
-  const articleAsTitleUnit: IBasicArticleTitleUnit = {
+  const articleAsTitleUnit = (strapName: string): IBasicArticleTitleUnit => ({
     type: ContentBlockType.BasicArticleTitleUnit,
     id: "1",
     strapName,
@@ -62,7 +61,7 @@ describe("Three column", () => {
     linkUrl: "/link1",
     lastPublishedTime: 1,
     headlineFlags: []
-  };
+  });
 
   beforeEach(() => {
     jest.resetAllMocks();
@@ -102,7 +101,9 @@ describe("Three column", () => {
   it("should call list grid with column one content blocks", async () => {
     const columnOneArticles = new Array(8).fill(article);
     (getRawArticles as jest.Mock).mockResolvedValue(columnOneArticles);
-    const columnOneContentBlocks = new Array(8).fill(articleAsTitleUnit);
+    const columnOneContentBlocks = new Array(8).fill(
+      articleAsTitleUnit("Editors' Picks")
+    );
     handlerRunnerMock.mockResolvedValue([]);
 
     const input: IThreeColumnHandlerInput = {
@@ -128,7 +129,9 @@ describe("Three column", () => {
   it("should call list grid with column two content blocks", async () => {
     const columnTwoArticles = new Array(8).fill(article);
     (getRawArticles as jest.Mock).mockResolvedValue(columnTwoArticles);
-    const columnTwoContentBlocks = new Array(8).fill(articleAsTitleUnit);
+    const columnTwoContentBlocks = new Array(8).fill(
+      articleAsTitleUnit("Business")
+    );
     handlerRunnerMock.mockResolvedValue(listGridResult);
 
     const input: IThreeColumnHandlerInput = {
