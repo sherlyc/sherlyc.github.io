@@ -1,55 +1,37 @@
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import {
-  Border,
-  IGridConfig
-} from "../../../../../common/__types__/IGridContainer";
+import { IGridConfig } from "../../../../../common/__types__/IGridContainer";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { handlerRunnerFunction } from "../../runner";
 import { IColumnGridHandlerInput } from "../../__types__/IColumnGridHandlerInput";
 import { IParams } from "../../../__types__/IParams";
 import { gridBlock } from "../../../adapters/grid/grid-block";
 import {
-  desktopGridConfig,
-  IColumnGridConfig,
-  IColumnGridTemplate,
-  mobileGridConfig,
-  tabletGridConfig,
-  templateColumnsDesktop,
-  templateColumnsTablet,
-  templateRowsDesktop,
-  templateRowsTablet
+  mobileColumnGridConfig,
+  tabletColumnGridConfig,
+  desktopColumnGridConfig
 } from "./column-grid-config";
+import { IColumnGridBlock } from "./__types__/IColumnGridConfig";
 
-const getContentLength = (length: number) => {
+const getNumColumnsFor = (contentLength: number) => {
   const min = 1;
   const max = 6;
 
-  return Math.min(Math.max(length, min), max);
-};
-
-const getGridTemplateConfig = (length: number, config: IColumnGridTemplate) => {
-  return config[length];
-};
-
-const getTemplateRowsForMobile = (length: number) => {
-  return Array(length)
-    .fill("auto")
-    .join(" ");
+  return Math.min(Math.max(contentLength, min), max);
 };
 
 const gridPositionName = (index: number) => `content${index}`;
 
-const getGridBlocks = (length: number, gridConfig: IColumnGridConfig) => {
-  const gridBlockConfig = gridConfig[length];
-  const result = gridBlockConfig.reduce((acc, item, index) => {
+const getGridBlocks = (
+  numColumns: number,
+  gridBlockConfig: IColumnGridBlock[]
+) => {
+  return gridBlockConfig.reduce((acc, item, index) => {
     const { rowStart, colStart, border } = item;
     return {
       ...acc,
       [gridPositionName(index)]: gridBlock(rowStart, colStart, 1, 1, border)
     };
   }, {});
-
-  return result;
 };
 
 const getGridItems = (content: IContentBlock[][]) =>
@@ -66,44 +48,42 @@ export default async function(
   { content }: IColumnGridHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const contentLength = getContentLength(content.length);
-  const mobileLayout: IGridConfig = {
-    gridTemplateColumns: "1fr",
-    gridTemplateRows: getTemplateRowsForMobile(contentLength),
-    gridColumnGap: "0px",
-    gridRowGap: "10px",
-    gridBlocks: getGridBlocks(contentLength, mobileGridConfig)
+  const numColumns = getNumColumnsFor(content.length);
+
+  const mobileConfig = mobileColumnGridConfig[numColumns];
+  const mobile: IGridConfig = {
+    gridTemplateColumns: mobileConfig.gridTemplateColumns,
+    gridTemplateRows: mobileConfig.gridTemplateRows,
+    gridColumnGap: mobileConfig.gridColumnGap,
+    gridRowGap: mobileConfig.gridRowGap,
+    gridBlocks: getGridBlocks(numColumns, mobileConfig.gridBlocks)
   };
 
-  const tabletLayout: IGridConfig = {
-    gridTemplateColumns: getGridTemplateConfig(
-      contentLength,
-      templateColumnsTablet
-    ),
-    gridTemplateRows: getGridTemplateConfig(contentLength, templateRowsTablet),
-    gridColumnGap: "15px",
-    gridRowGap: "10px",
-    gridBlocks: getGridBlocks(contentLength, tabletGridConfig)
+  const tabletConfig = tabletColumnGridConfig[numColumns];
+  const tablet: IGridConfig = {
+    gridTemplateColumns: tabletConfig.gridTemplateColumns,
+    gridTemplateRows: tabletConfig.gridTemplateRows,
+    gridColumnGap: tabletConfig.gridColumnGap,
+    gridRowGap: tabletConfig.gridRowGap,
+    gridBlocks: getGridBlocks(numColumns, tabletConfig.gridBlocks)
   };
 
-  const desktopLayout: IGridConfig = {
-    gridTemplateColumns: getGridTemplateConfig(
-      contentLength,
-      templateColumnsDesktop
-    ),
-    gridTemplateRows: getGridTemplateConfig(contentLength, templateRowsDesktop),
-    gridColumnGap: "15px",
-    gridRowGap: "10px",
-    gridBlocks: getGridBlocks(contentLength, desktopGridConfig)
+  const desktopConfig = desktopColumnGridConfig[numColumns];
+  const desktop: IGridConfig = {
+    gridTemplateColumns: desktopConfig.gridTemplateColumns,
+    gridTemplateRows: desktopConfig.gridTemplateRows,
+    gridColumnGap: desktopConfig.gridColumnGap,
+    gridRowGap: desktopConfig.gridRowGap,
+    gridBlocks: getGridBlocks(numColumns, desktopConfig.gridBlocks)
   };
 
   return [
     {
       type: ContentBlockType.GridContainer,
       items: getGridItems(content),
-      mobile: mobileLayout,
-      tablet: tabletLayout,
-      desktop: desktopLayout
+      mobile,
+      tablet,
+      desktop
     }
   ];
 }
