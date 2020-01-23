@@ -30,8 +30,8 @@ const getNumColumnsFor = (contentLength: number) => {
 
 const gridPositionName = (index: number) => `content${index}`;
 
-const getGridBlocks = (length: number, gridConfig: IColumnGridConfig) => {
-  const gridBlockConfig = gridConfig[length];
+const getGridBlocks = (numColumns: number, gridConfig: IColumnGridConfig) => {
+  const gridBlockConfig = gridConfig[numColumns];
   return gridBlockConfig.reduce((acc, item, index) => {
     const { rowStart, colStart, border } = item;
     return {
