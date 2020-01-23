@@ -11,6 +11,7 @@ import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IGridConfig } from "../../../../../common/__types__/IGridContainer";
 import { IListGridHandlerInput } from "../../__types__/IListGridHandlerInput";
 import { IColumnGridHandlerInput } from "../../__types__/IColumnGridHandlerInput";
+import { Strap } from "../../../strap";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 
@@ -39,6 +40,7 @@ describe("Three column", () => {
     defconSrc: null,
     imageSrc: "1.jpg",
     imageSrcSet: "1.jpg 1w",
+    sixteenByNineSrc: "16by9.jpg",
     strapImageSrc: "strap1.jpg",
     strapImageSrcSet: "strap1.jpg 1w",
     lastPublishedTime: 1,
@@ -67,7 +69,10 @@ describe("Three column", () => {
   });
 
   it("should retrieve 3 list of articles", async () => {
-    (getRawArticles as jest.Mock).mockResolvedValue(new Array(8).fill(article));
+    const totalArticles = 8;
+    (getRawArticles as jest.Mock).mockResolvedValue(
+      new Array(totalArticles).fill(article)
+    );
 
     const input: IThreeColumnHandlerInput = {
       type: HandlerInputType.ThreeColumn
@@ -77,6 +82,21 @@ describe("Three column", () => {
     await threeColumnHandler(handlerRunnerMock, input, params);
 
     expect(getRawArticles).toHaveBeenCalledTimes(3);
+    expect(getRawArticles).toHaveBeenCalledWith(
+      Strap.EditorPicks,
+      totalArticles,
+      params
+    );
+    expect(getRawArticles).toHaveBeenCalledWith(
+      Strap.Business,
+      totalArticles,
+      params
+    );
+    expect(getRawArticles).toHaveBeenCalledWith(
+      Strap.Opinion,
+      totalArticles,
+      params
+    );
   });
 
   it("should call list grid with column one content blocks", async () => {
@@ -95,12 +115,12 @@ describe("Three column", () => {
     };
 
     const columnGridInput: IColumnGridHandlerInput = {
-      type : HandlerInputType.ColumnGrid,
-      content : expect.arrayContaining([{}, {}])
-    }
+      type: HandlerInputType.ColumnGrid,
+      content: expect.arrayContaining([{}, {}])
+    };
+
     const result = await threeColumnHandler(handlerRunnerMock, input, params);
     const mockCalls = handlerRunnerMock.mock.calls;
-
 
     expect(mockCalls[0][0]).toEqual(listGridHandlerInput);
   });

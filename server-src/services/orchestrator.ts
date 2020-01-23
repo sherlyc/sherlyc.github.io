@@ -42,6 +42,9 @@ export default async (params: IParams): Promise<IPage> => {
               type: HandlerInputType.Banner
             },
             {
+              type: HandlerInputType.ThreeColumn
+            },
+            {
               type: HandlerInputType.TopStoriesArticleList,
               strapName: "Latest"
             },
