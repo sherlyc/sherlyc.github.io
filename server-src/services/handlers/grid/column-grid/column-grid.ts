@@ -21,10 +21,7 @@ const getNumColumnsFor = (contentLength: number) => {
 
 const gridPositionName = (index: number) => `content${index}`;
 
-const getGridBlocks = (
-  numColumns: number,
-  gridBlockConfig: IColumnGridBlock[]
-) => {
+const getGridBlocks = (gridBlockConfig: IColumnGridBlock[]) => {
   return gridBlockConfig.reduce((acc, item, index) => {
     const { rowStart, colStart, border } = item;
     return {
@@ -56,7 +53,7 @@ export default async function(
     gridTemplateRows: mobileConfig.gridTemplateRows,
     gridColumnGap: mobileConfig.gridColumnGap,
     gridRowGap: mobileConfig.gridRowGap,
-    gridBlocks: getGridBlocks(numColumns, mobileConfig.gridBlocks)
+    gridBlocks: getGridBlocks(mobileConfig.gridBlocks)
   };
 
   const tabletConfig = tabletColumnGridConfig[numColumns];
@@ -65,7 +62,7 @@ export default async function(
     gridTemplateRows: tabletConfig.gridTemplateRows,
     gridColumnGap: tabletConfig.gridColumnGap,
     gridRowGap: tabletConfig.gridRowGap,
-    gridBlocks: getGridBlocks(numColumns, tabletConfig.gridBlocks)
+    gridBlocks: getGridBlocks(tabletConfig.gridBlocks)
   };
 
   const desktopConfig = desktopColumnGridConfig[numColumns];
@@ -74,7 +71,7 @@ export default async function(
     gridTemplateRows: desktopConfig.gridTemplateRows,
     gridColumnGap: desktopConfig.gridColumnGap,
     gridRowGap: desktopConfig.gridRowGap,
-    gridBlocks: getGridBlocks(numColumns, desktopConfig.gridBlocks)
+    gridBlocks: getGridBlocks(desktopConfig.gridBlocks)
   };
 
   return [
