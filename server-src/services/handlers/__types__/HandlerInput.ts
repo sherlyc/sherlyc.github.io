@@ -21,6 +21,7 @@ import { ISixImageGridHandlerInput } from "./ISixImageGridHandlerInput";
 import { ILargeLeadSixHandlerInput } from "./ILargeLeadSixHandlerInput";
 import { ILargeLeadSixGridHandlerInput } from "./ILargeLeadSixGridHandlerInput";
 import { IListGridHandlerInput } from "./IListGridHandlerInput";
+import { IColumnGridHandlerInput } from "./IColumnGridHandlerInput";
 import { IForceUpdateHandlerInput } from "./IForceUpdateHandlerInput";
 
 export type HandlerInput =
@@ -47,4 +48,5 @@ export type HandlerInput =
   | ISixImageGridHandlerInput
   | ILargeLeadSixHandlerInput
   | ILargeLeadSixGridHandlerInput
-  | IListGridHandlerInput;
+  | IListGridHandlerInput
+  | IColumnGridHandlerInput;
