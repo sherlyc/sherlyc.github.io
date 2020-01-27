@@ -8,6 +8,7 @@ import { getRawArticles } from "../../../adapters/article-retriever/article-retr
 import { Strap } from "../../../strap";
 import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { contentErrorHandler } from "../content-error-handler";
 
 const getColumnContent = async (
   handlerRunner: handlerRunnerFunction,
@@ -18,26 +19,33 @@ const getColumnContent = async (
   displayNameColor: string,
   params: IParams
 ): Promise<IContentBlock[]> => {
-  const articles = await getRawArticles(sourceId, totalArticles, params);
+  return await contentErrorHandler(
+    async () => {
+      const articles = await getRawArticles(sourceId, totalArticles, params);
 
-  const articleContentBlocks = articles.map((article) =>
-    basicArticleTitleUnit(article, strapName)
-  );
+      const articleContentBlocks = articles.map((article) =>
+        basicArticleTitleUnit(article, strapName)
+      );
 
-  return [
-    {
-      type: ContentBlockType.ModuleTitle,
-      displayName,
-      displayNameColor
+      return [
+        {
+          type: ContentBlockType.ModuleTitle,
+          displayName,
+          displayNameColor
+        },
+        ...(await handlerRunner(
+          {
+            type: HandlerInputType.ListGrid,
+            content: articleContentBlocks
+          },
+          params
+        ))
+      ];
     },
-    ...(await handlerRunner(
-      {
-        type: HandlerInputType.ListGrid,
-        content: articleContentBlocks
-      },
-      params
-    ))
-  ];
+    HandlerInputType.ThreeColumn,
+    sourceId,
+    params
+  );
 };
 
 export default async function(

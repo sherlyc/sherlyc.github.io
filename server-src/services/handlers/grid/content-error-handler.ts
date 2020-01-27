@@ -4,7 +4,6 @@ import { isFeatureEnabled } from "../../adapters/feature/feature";
 import { FeatureName } from "../../../../common/FeatureName";
 import { DeviceType } from "../../../../common/DeviceType";
 import wrappedLogger from "../../utils/logger";
-import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 import { Strap } from "../../strap";
 
 export const contentErrorHandler = async (

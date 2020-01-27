@@ -191,4 +191,96 @@ describe("Three column", () => {
     };
     expect(columnGridCall.content[2]).toEqual([title, fakeListGrid]);
   });
+
+  describe("when failing to retrieve articles", () => {
+    it("should create empty content blocks for column one and pass it to column grid", async () => {
+      (getRawArticles as jest.Mock).mockRejectedValueOnce(
+        new Error("Failed to retrieve column one articles")
+      );
+      (getRawArticles as jest.Mock).mockResolvedValueOnce(
+        new Array(8).fill(article)
+      );
+      (getRawArticles as jest.Mock).mockResolvedValueOnce(
+        new Array(8).fill(article)
+      );
+      handlerRunnerMock.mockResolvedValue({
+        type: ContentBlockType.GridContainer
+      });
+
+      const input: IThreeColumnHandlerInput = {
+        type: HandlerInputType.ThreeColumn
+      };
+
+      await threeColumnHandler(handlerRunnerMock, input, params);
+
+      const [
+        [secondColumn],
+        [thirdColumn],
+        [columnGridCall]
+      ] = handlerRunnerMock.mock.calls;
+
+      expect(handlerRunnerMock.mock.calls.length).toBe(3);
+      expect(columnGridCall.content[0]).toBe(undefined);
+    });
+
+    it("should create empty content blocks for column two and pass it to column grid", async () => {
+      (getRawArticles as jest.Mock).mockResolvedValueOnce(
+        new Array(8).fill(article)
+      );
+      (getRawArticles as jest.Mock).mockRejectedValueOnce(
+        new Error("Failed to retrieve column two articles")
+      );
+      (getRawArticles as jest.Mock).mockResolvedValueOnce(
+        new Array(8).fill(article)
+      );
+      handlerRunnerMock.mockResolvedValue({
+        type: ContentBlockType.GridContainer
+      });
+
+      const input: IThreeColumnHandlerInput = {
+        type: HandlerInputType.ThreeColumn
+      };
+
+      await threeColumnHandler(handlerRunnerMock, input, params);
+
+      const [
+        [firstColumn],
+        [thirdColumn],
+        [columnGridCall]
+      ] = handlerRunnerMock.mock.calls;
+
+      expect(handlerRunnerMock.mock.calls.length).toBe(3);
+      expect(columnGridCall.content[1]).toBe(undefined);
+    });
+
+    it("should create empty content blocks for column three and pass it to column grid", async () => {
+      (getRawArticles as jest.Mock).mockResolvedValueOnce(
+        new Array(8).fill(article)
+      );
+      (getRawArticles as jest.Mock).mockResolvedValueOnce(
+        new Array(8).fill(article)
+      );
+      (getRawArticles as jest.Mock).mockRejectedValue(
+        new Error("Failed to retrieve column three articles")
+      );
+      handlerRunnerMock.mockResolvedValue({
+        type: ContentBlockType.GridContainer
+      });
+
+      const input: IThreeColumnHandlerInput = {
+        type: HandlerInputType.ThreeColumn
+      };
+
+      await threeColumnHandler(handlerRunnerMock, input, params);
+
+      const [
+        [firstColumn],
+        [secondColumn],
+        [columnGridCall]
+      ] = handlerRunnerMock.mock.calls;
+
+      expect(handlerRunnerMock.mock.calls.length).toBe(3);
+      expect(columnGridCall.content[2]).toBe(undefined);
+    });
+  });
 });
