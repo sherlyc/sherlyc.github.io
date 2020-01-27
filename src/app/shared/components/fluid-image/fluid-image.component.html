@@ -1,1 +1,3 @@
-<img [ngClass]="{ hidden: !src }" appResizeObserver (resize)="onResize($event)" itemprop="image" loading="auto" [attr.src]="src" [attr.srcset]="srcset" [attr.alt]="caption" />
+<div appResizeObserver (resize)="onResize($event)">
+  <img *ngIf="src" (error)="src = null" itemprop="image" loading="auto" [attr.src]="src" [attr.srcset]="srcset" [attr.alt]="caption" />
+</div>

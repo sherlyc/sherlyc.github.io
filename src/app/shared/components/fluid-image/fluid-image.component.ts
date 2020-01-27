@@ -29,7 +29,7 @@ export class FluidImageComponent {
   private loadImg(newWidth: FluidImageWidth) {
     this.width = newWidth;
     const src = `${this.imageSrc}?format=pjpg&crop=${this.aspectRatio}&width=${newWidth}`;
-    this.srcset = `${src}, ${src}&dpr=2 2x`;
+    this.srcset = `${src}, ${src}&dpr=2 2x, ${src}&dpr=3 3x`;
     this.src = src;
   }
 

@@ -27,7 +27,7 @@ describe("FluidImageComponent", () => {
   const expectImgWidth = (width: FluidImageWidth) =>
     expect(getImg().attributes).toMatchObject({
       src: `${expectedSrc}&width=${width}`,
-      srcset: `${expectedSrc}&width=${width}, ${expectedSrc}&width=${width}&dpr=2 2x`,
+      srcset: `${expectedSrc}&width=${width}, ${expectedSrc}&width=${width}&dpr=2 2x, ${expectedSrc}&width=${width}&dpr=3 3x`,
       alt: componentInput.caption
     });
 
@@ -47,12 +47,12 @@ describe("FluidImageComponent", () => {
   });
 
   it("renders nothing at the beginning", () => {
-    expect(getImg().classes).toMatchObject({ hidden: true });
+    expect(getImg()).toBeFalsy();
   });
 
   it("renders the image with optimal width after the element size is determined", () => {
     simulateResize(FluidImageWidth.xs);
-    expect(getImg().classes).toMatchObject({ hidden: false });
+    expect(getImg()).toBeTruthy();
     expectImgWidth(FluidImageWidth.xs);
   });
 
