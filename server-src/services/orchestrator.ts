@@ -42,9 +42,6 @@ export default async (params: IParams): Promise<IPage> => {
               type: HandlerInputType.Banner
             },
             {
-              type: HandlerInputType.ThreeColumn
-            },
-            {
               type: HandlerInputType.TopStoriesArticleList,
               strapName: "Latest"
             },
@@ -87,6 +84,13 @@ export default async (params: IParams): Promise<IPage> => {
                 displayNameColor: "darkblue",
                 totalBasicArticlesUnit: 2,
                 totalBasicArticleTitleUnit: 3
+              }
+            },
+            {
+              type: HandlerInputType.Feature,
+              name: FeatureName.ModuleLayout,
+              content: {
+                type: HandlerInputType.ThreeColumn
               }
             },
             {
