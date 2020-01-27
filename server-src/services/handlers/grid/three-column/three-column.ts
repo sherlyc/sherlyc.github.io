@@ -55,43 +55,37 @@ export default async function(
 ): Promise<IContentBlock[]> {
   const totalArticles = 8;
 
-  const [
-    columnOneContent,
-    columnTwoContent,
-    columnThreeContent
-  ] = await Promise.all([
-    getColumnContent(
-      handlerRunner,
-      Strap.EditorPicks,
-      "Editors' Picks",
-      totalArticles,
-      "Editors' Picks",
-      "pizzaz",
-      params
-    ),
-    getColumnContent(
-      handlerRunner,
-      Strap.Business,
-      "Business",
-      totalArticles,
-      "Business",
-      "pizzaz",
-      params
-    ),
-    getColumnContent(
-      handlerRunner,
-      Strap.Opinion,
-      "Opinion",
-      totalArticles,
-      "Opinion",
-      "pizzaz",
-      params
-    )
-  ]);
-
   const threeColumnGridHandlerInput: IColumnGridHandlerInput = {
     type: HandlerInputType.ColumnGrid,
-    content: [columnOneContent, columnTwoContent, columnThreeContent]
+    content: await Promise.all([
+      getColumnContent(
+        handlerRunner,
+        Strap.EditorPicks,
+        "Editors' Picks",
+        totalArticles,
+        "Editors' Picks",
+        "pizzaz",
+        params
+      ),
+      getColumnContent(
+        handlerRunner,
+        Strap.Business,
+        "Business",
+        totalArticles,
+        "Business",
+        "pizzaz",
+        params
+      ),
+      getColumnContent(
+        handlerRunner,
+        Strap.Opinion,
+        "Opinion",
+        totalArticles,
+        "Opinion",
+        "pizzaz",
+        params
+      )
+    ])
   };
 
   return await handlerRunner(threeColumnGridHandlerInput, params);
