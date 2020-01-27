@@ -6,7 +6,7 @@ import {
 import { IRawArticle } from "../__types__/IRawArticle";
 import { bigImageArticleUnit } from "./big-image-article.converter";
 
-describe("bit image article", () => {
+describe("big image article", () => {
   const fakeArticle: IRawArticle = {
     id: "1",
     indexHeadline: "Headline 1",
