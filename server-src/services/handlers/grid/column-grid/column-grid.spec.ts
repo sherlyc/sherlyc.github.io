@@ -47,12 +47,12 @@ describe("Column Grid", () => {
       },
       tablet: {
         ...layout,
-        gridColumnGap: "15px",
+        gridColumnGap: "40px",
         gridRowGap: "10px"
       },
       desktop: {
         ...layout,
-        gridColumnGap: "15px",
+        gridColumnGap: "40px",
         gridRowGap: "10px"
       }
     };
@@ -97,7 +97,7 @@ describe("Column Grid", () => {
     const tabletLayout = {
       gridTemplateColumns: "1fr 1fr",
       gridTemplateRows: "auto",
-      gridColumnGap: "15px",
+      gridColumnGap: "40px",
       gridRowGap: "10px",
       gridBlocks: {
         content0: {
@@ -120,7 +120,7 @@ describe("Column Grid", () => {
     const desktopLayout = {
       gridTemplateColumns: "1fr 1fr",
       gridTemplateRows: "auto",
-      gridColumnGap: "15px",
+      gridColumnGap: "40px",
       gridRowGap: "10px",
       gridBlocks: {
         content0: {
@@ -198,7 +198,7 @@ describe("Column Grid", () => {
     const tabletLayout = {
       gridTemplateColumns: "1fr 1fr 1fr",
       gridTemplateRows: "auto",
-      gridColumnGap: "15px",
+      gridColumnGap: "40px",
       gridRowGap: "10px",
       gridBlocks: {
         content0: {
@@ -228,7 +228,7 @@ describe("Column Grid", () => {
     const desktopLayout = {
       gridTemplateColumns: "1fr 1fr 1fr",
       gridTemplateRows: "auto",
-      gridColumnGap: "15px",
+      gridColumnGap: "40px",
       gridRowGap: "10px",
       gridBlocks: {
         content0: {
@@ -323,7 +323,7 @@ describe("Column Grid", () => {
     const tabletLayout = {
       gridTemplateColumns: "1fr 1fr",
       gridTemplateRows: "auto auto",
-      gridColumnGap: "15px",
+      gridColumnGap: "40px",
       gridRowGap: "10px",
       gridBlocks: {
         content0: {
@@ -360,7 +360,7 @@ describe("Column Grid", () => {
     const desktopLayout = {
       gridTemplateColumns: "1fr 1fr 1fr 1fr",
       gridTemplateRows: "auto",
-      gridColumnGap: "15px",
+      gridColumnGap: "40px",
       gridRowGap: "10px",
       gridBlocks: {
         content0: {
@@ -471,7 +471,7 @@ describe("Column Grid", () => {
     const tabletLayout = {
       gridTemplateColumns: "1fr 1fr 1fr",
       gridTemplateRows: "auto auto",
-      gridColumnGap: "15px",
+      gridColumnGap: "40px",
       gridRowGap: "10px",
       gridBlocks: {
         content0: {
@@ -515,7 +515,7 @@ describe("Column Grid", () => {
     const desktopLayout = {
       gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
       gridTemplateRows: "auto",
-      gridColumnGap: "15px",
+      gridColumnGap: "40px",
       gridRowGap: "10px",
       gridBlocks: {
         content0: {
@@ -642,7 +642,7 @@ describe("Column Grid", () => {
     const tabletLayout = {
       gridTemplateColumns: "1fr 1fr 1fr",
       gridTemplateRows: "auto auto",
-      gridColumnGap: "15px",
+      gridColumnGap: "40px",
       gridRowGap: "10px",
       gridBlocks: {
         content0: {
@@ -693,7 +693,7 @@ describe("Column Grid", () => {
     const desktopLayout = {
       gridTemplateColumns: "1fr 1fr 1fr",
       gridTemplateRows: "auto auto",
-      gridColumnGap: "15px",
+      gridColumnGap: "40px",
       gridRowGap: "10px",
       gridBlocks: {
         content0: {
