@@ -42,8 +42,12 @@ export default async (params: IParams): Promise<IPage> => {
             {
               type: HandlerInputType.Banner
             },
-            ...newPage(),
-            ...oldPage()
+            {
+              type: HandlerInputType.Feature,
+              name: FeatureName.ModuleLayout,
+              content: newPage(),
+              fallback: oldPage()
+            }
           ]
         },
         params
@@ -335,51 +339,17 @@ const oldPage = (): HandlerInput[] => {
         homepageStrapsConfig[Strap.MidStrip].totalArticlesWithImages
     },
     {
-      type: HandlerInputType.Feature,
-      name: FeatureName.StrapLayout,
-      fallback: [
-        {
-          type: HandlerInputType.ArticleSection,
-          displayName: "National",
-          displayNameColor: "darkblue",
-          linkUrl: "/" + Section.National,
-          content: {
-            type: HandlerInputType.ArticleList,
-            sourceId: Strap.National,
-            strapName: "National",
-            totalBasicArticlesUnit: 2,
-            totalBasicArticleTitleUnit: 3
-          }
-        }
-      ]
-    },
-    {
-      type: HandlerInputType.Feature,
-      name: FeatureName.ModuleLayout,
-      content: [
-        {
-          type: HandlerInputType.NewsSix,
-          displayName: "national",
-          displayNameColor: "darkblue",
-          strapName: "National",
-          sourceId: Strap.National
-        }
-      ],
-      fallback: [
-        {
-          type: HandlerInputType.ArticleSection,
-          displayName: "National",
-          displayNameColor: "darkblue",
-          linkUrl: "/" + Section.National,
-          content: {
-            type: HandlerInputType.ArticleList,
-            sourceId: Strap.National,
-            strapName: "National",
-            totalBasicArticlesUnit: 2,
-            totalBasicArticleTitleUnit: 3
-          }
-        }
-      ]
+      type: HandlerInputType.ArticleSection,
+      displayName: "National",
+      displayNameColor: "darkblue",
+      linkUrl: "/" + Section.National,
+      content: {
+        type: HandlerInputType.ArticleList,
+        sourceId: Strap.National,
+        strapName: "National",
+        totalBasicArticlesUnit: 2,
+        totalBasicArticleTitleUnit: 3
+      }
     },
     {
       type: HandlerInputType.ArticleSection,
@@ -476,36 +446,17 @@ const oldPage = (): HandlerInput[] => {
       url: "https://www.neighbourly.co.nz/stuff/strap"
     },
     {
-      type: HandlerInputType.Feature,
-      name: FeatureName.StrapLayout,
-      fallback: [
-        {
-          type: HandlerInputType.ArticleSection,
-          displayName: "Property",
-          displayNameColor: "royalblue",
-          linkUrl: "/" + Section.Property,
-          content: {
-            type: HandlerInputType.ArticleList,
-            sourceId: Strap.Property,
-            strapName: "Property",
-            totalBasicArticlesUnit: 2,
-            totalBasicArticleTitleUnit: 3
-          }
-        }
-      ]
-    },
-    {
-      type: HandlerInputType.Feature,
-      name: FeatureName.ModuleLayout,
-      content: [
-        {
-          type: HandlerInputType.LargeLeadSix,
-          displayName: "property",
-          displayNameColor: "royalblue",
-          strapName: "Property",
-          sourceId: Strap.Property
-        }
-      ]
+      type: HandlerInputType.ArticleSection,
+      displayName: "Property",
+      displayNameColor: "royalblue",
+      linkUrl: "/" + Section.Property,
+      content: {
+        type: HandlerInputType.ArticleList,
+        sourceId: Strap.Property,
+        strapName: "Property",
+        totalBasicArticlesUnit: 2,
+        totalBasicArticleTitleUnit: 3
+      }
     },
     {
       type: HandlerInputType.ArticleSection,
@@ -699,35 +650,16 @@ const oldPage = (): HandlerInput[] => {
       }
     },
     {
-      type: HandlerInputType.Feature,
-      name: FeatureName.ModuleLayout,
-      content: [
-        {
-          type: HandlerInputType.SixImage,
-          displayName: "homes to love",
-          displayNameColor: "amaranth",
-          strapName: "Homes to Love",
-          sourceId: Strap.HomesToLove
-        }
-      ]
-    },
-    {
-      type: HandlerInputType.Feature,
-      name: FeatureName.StrapLayout,
-      fallback: [
-        {
-          type: HandlerInputType.ArticleSection,
-          displayName: "Homes to Love",
-          displayNameColor: "amaranth",
-          linkUrl: "/" + Section.HomesToLove,
-          content: {
-            type: HandlerInputType.ArticleList,
-            sourceId: Strap.HomesToLove,
-            strapName: "Homes to Love",
-            totalBasicArticlesUnit: 2
-          }
-        }
-      ]
+      type: HandlerInputType.ArticleSection,
+      displayName: "Homes to Love",
+      displayNameColor: "amaranth",
+      linkUrl: "/" + Section.HomesToLove,
+      content: {
+        type: HandlerInputType.ArticleList,
+        sourceId: Strap.HomesToLove,
+        strapName: "Homes to Love",
+        totalBasicArticlesUnit: 2
+      }
     },
     {
       type: HandlerInputType.ArticleSection,
