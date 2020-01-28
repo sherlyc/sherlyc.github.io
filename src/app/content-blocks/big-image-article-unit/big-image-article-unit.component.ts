@@ -1,13 +1,8 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit
-} from "@angular/core";
-import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
-import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArticleUnit";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
   selector: "app-big-image-article-unit",
@@ -16,7 +11,7 @@ import { AnalyticsEventsType } from "../../services/analytics/__types__/Analytic
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BigImageArticleUnitComponent implements IContentBlockComponent {
-  @Input() input!: IBasicArticleUnit;
+  @Input() input!: IBigImageArticleUnit;
   index!: number;
 
   constructor(private analyticsService: AnalyticsService) {}

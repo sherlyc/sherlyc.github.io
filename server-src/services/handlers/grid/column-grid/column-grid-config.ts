@@ -75,14 +75,14 @@ export const tabletColumnGridConfig: IColumnGridConfig = {
   1: {
     gridTemplateColumns: "1fr",
     gridTemplateRows: "auto",
-    gridColumnGap: "15px",
+    gridColumnGap: "40px",
     gridRowGap: "10px",
     gridBlocks: [{ rowStart: 1, colStart: 1, border: [] }]
   },
   2: {
     gridTemplateColumns: "1fr 1fr",
     gridTemplateRows: "auto",
-    gridColumnGap: "15px",
+    gridColumnGap: "40px",
     gridRowGap: "10px",
     gridBlocks: [
       { rowStart: 1, colStart: 1, border: [Border.right] },
@@ -92,7 +92,7 @@ export const tabletColumnGridConfig: IColumnGridConfig = {
   3: {
     gridTemplateColumns: "1fr 1fr 1fr",
     gridTemplateRows: "auto",
-    gridColumnGap: "15px",
+    gridColumnGap: "40px",
     gridRowGap: "10px",
     gridBlocks: [
       { rowStart: 1, colStart: 1, border: [Border.right] },
@@ -103,7 +103,7 @@ export const tabletColumnGridConfig: IColumnGridConfig = {
   4: {
     gridTemplateColumns: "1fr 1fr",
     gridTemplateRows: "auto auto",
-    gridColumnGap: "15px",
+    gridColumnGap: "40px",
     gridRowGap: "10px",
     gridBlocks: [
       { rowStart: 1, colStart: 1, border: [Border.right] },
@@ -115,7 +115,7 @@ export const tabletColumnGridConfig: IColumnGridConfig = {
   5: {
     gridTemplateColumns: "1fr 1fr 1fr",
     gridTemplateRows: "auto auto",
-    gridColumnGap: "15px",
+    gridColumnGap: "40px",
     gridRowGap: "10px",
     gridBlocks: [
       { rowStart: 1, colStart: 1, border: [Border.right] },
@@ -128,7 +128,7 @@ export const tabletColumnGridConfig: IColumnGridConfig = {
   6: {
     gridTemplateColumns: "1fr 1fr 1fr",
     gridTemplateRows: "auto auto",
-    gridColumnGap: "15px",
+    gridColumnGap: "40px",
     gridRowGap: "10px",
     gridBlocks: [
       { rowStart: 1, colStart: 1, border: [Border.right] },
@@ -145,14 +145,14 @@ export const desktopColumnGridConfig: IColumnGridConfig = {
   1: {
     gridTemplateColumns: "1fr",
     gridTemplateRows: "auto",
-    gridColumnGap: "15px",
+    gridColumnGap: "40px",
     gridRowGap: "10px",
     gridBlocks: [{ rowStart: 1, colStart: 1, border: [] }]
   },
   2: {
     gridTemplateColumns: "1fr 1fr",
     gridTemplateRows: "auto",
-    gridColumnGap: "15px",
+    gridColumnGap: "40px",
     gridRowGap: "10px",
     gridBlocks: [
       { rowStart: 1, colStart: 1, border: [Border.right] },
@@ -162,7 +162,7 @@ export const desktopColumnGridConfig: IColumnGridConfig = {
   3: {
     gridTemplateColumns: "1fr 1fr 1fr",
     gridTemplateRows: "auto",
-    gridColumnGap: "15px",
+    gridColumnGap: "40px",
     gridRowGap: "10px",
     gridBlocks: [
       { rowStart: 1, colStart: 1, border: [Border.right] },
@@ -173,7 +173,7 @@ export const desktopColumnGridConfig: IColumnGridConfig = {
   4: {
     gridTemplateColumns: "1fr 1fr 1fr 1fr",
     gridTemplateRows: "auto",
-    gridColumnGap: "15px",
+    gridColumnGap: "40px",
     gridRowGap: "10px",
     gridBlocks: [
       { rowStart: 1, colStart: 1, border: [Border.right] },
@@ -185,7 +185,7 @@ export const desktopColumnGridConfig: IColumnGridConfig = {
   5: {
     gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
     gridTemplateRows: "auto",
-    gridColumnGap: "15px",
+    gridColumnGap: "40px",
     gridRowGap: "10px",
     gridBlocks: [
       { rowStart: 1, colStart: 1, border: [Border.right] },
@@ -198,7 +198,7 @@ export const desktopColumnGridConfig: IColumnGridConfig = {
   6: {
     gridTemplateColumns: "1fr 1fr 1fr",
     gridTemplateRows: "auto auto",
-    gridColumnGap: "15px",
+    gridColumnGap: "40px",
     gridRowGap: "10px",
     gridBlocks: [
       { rowStart: 1, colStart: 1, border: [Border.right] },
