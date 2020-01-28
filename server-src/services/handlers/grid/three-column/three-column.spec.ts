@@ -7,8 +7,6 @@ import { getRawArticles } from "../../../adapters/article-retriever/article-retr
 import { IThreeColumnHandlerInput } from "../../__types__/IThreeColumnHandlerInput";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import threeColumnHandler from "./three-column";
-import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { IGridConfig } from "../../../../../common/__types__/IGridContainer";
 import { Strap } from "../../../strap";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
@@ -16,17 +14,6 @@ jest.mock("../../../adapters/article-retriever/article-retriever");
 describe("Three column", () => {
   const handlerRunnerMock = jest.fn();
   const params: IParams = { apiRequestId: "123" };
-  const displayName = "test";
-  const displayNameColor = "testColor";
-  const listGridResult = {
-    type: ContentBlockType.GridContainer,
-    items: {},
-    mobile: {} as IGridConfig,
-    tablet: {} as IGridConfig,
-    desktop: {} as IGridConfig
-  };
-
-  const contentBlock = (id: string) => ({ id } as IContentBlock);
 
   const article: IRawArticle = {
     id: "1",
@@ -42,12 +29,6 @@ describe("Three column", () => {
     strapImageSrcSet: "strap1.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: []
-  };
-
-  const moduleTitle: IModuleTitle = {
-    type: ContentBlockType.ModuleTitle,
-    displayName,
-    displayNameColor
   };
 
   const articleAsTitleUnit = (strapName: string): IBasicArticleTitleUnit => ({
