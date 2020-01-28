@@ -91,9 +91,11 @@ export default async (params: IParams): Promise<IPage> => {
             {
               type: HandlerInputType.Feature,
               name: FeatureName.ModuleLayout,
-              content: {
-                type: HandlerInputType.ThreeColumn
-              }
+              content: [
+                {
+                  type: HandlerInputType.ThreeColumn
+                }
+              ]
             },
             {
               type: HandlerInputType.MidStrip,
