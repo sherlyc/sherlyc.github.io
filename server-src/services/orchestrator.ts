@@ -45,7 +45,11 @@ export default async (params: IParams): Promise<IPage> => {
             {
               type: HandlerInputType.Feature,
               name: FeatureName.ModuleLayout,
-              content: newPage(),
+              content: newPage()
+            },
+            {
+              type: HandlerInputType.Feature,
+              name: FeatureName.StrapLayout,
               fallback: oldPage()
             }
           ]
