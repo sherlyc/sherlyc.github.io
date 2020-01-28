@@ -4,6 +4,7 @@ import { GlobalStyleService } from "../../../services/global-style/global-style.
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { mockService, ServiceMock } from "../../../services/mocks/MockService";
 import { By } from "@angular/platform-browser";
+import { cloneDeep } from "lodash";
 
 @Component({
   selector: "app-fake-component",
@@ -19,6 +20,7 @@ describe("Global Style Directive", () => {
   let globalStyleService: ServiceMock<GlobalStyleService>;
 
   beforeEach(async () => {
+    jest.resetAllMocks();
     await TestBed.configureTestingModule({
       declarations: [FakeComponent, GlobalStyleDirective],
       providers: [
@@ -67,5 +69,22 @@ describe("Global Style Directive", () => {
     const after = fixture.debugElement.query(By.css(".something")).nativeElement
       .className;
     expect(after).toBe("something spade_03 spade_04");
+  });
+
+  it("should not call injectStyle if the input is not changed", () => {
+    const fakeStyle = { display: "grid" };
+    globalStyleService.stylePrefix.mockReturnValue("spade");
+    globalStyleService.injectStyle.mockReturnValue("spade_01 spade_02");
+
+    component.inputStyle = cloneDeep(fakeStyle);
+    fixture.detectChanges();
+
+    expect(globalStyleService.injectStyle).toHaveBeenCalled();
+    globalStyleService.injectStyle.mockReset();
+
+    component.inputStyle = cloneDeep(fakeStyle);
+    fixture.detectChanges();
+
+    expect(globalStyleService.injectStyle).not.toHaveBeenCalled();
   });
 });
