@@ -5,6 +5,6 @@ import { FeatureName } from "../../../../common/FeatureName";
 export interface IFeatureHandlerInput {
   type: HandlerInputType.Feature;
   name: FeatureName;
-  content?: HandlerInput;
-  fallback?: HandlerInput;
+  content?: HandlerInput[];
+  fallback?: HandlerInput[];
 }

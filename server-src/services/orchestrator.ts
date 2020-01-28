@@ -78,20 +78,24 @@ export default async (params: IParams): Promise<IPage> => {
             {
               type: HandlerInputType.Feature,
               name: FeatureName.Recommendation,
-              content: {
-                type: HandlerInputType.Recommendations,
-                displayName: "Recommended for You",
-                displayNameColor: "darkblue",
-                totalBasicArticlesUnit: 2,
-                totalBasicArticleTitleUnit: 3
-              }
+              content: [
+                {
+                  type: HandlerInputType.Recommendations,
+                  displayName: "Recommended for You",
+                  displayNameColor: "darkblue",
+                  totalBasicArticlesUnit: 2,
+                  totalBasicArticleTitleUnit: 3
+                }
+              ]
             },
             {
               type: HandlerInputType.Feature,
               name: FeatureName.ModuleLayout,
-              content: {
-                type: HandlerInputType.ThreeColumn
-              }
+              content: [
+                {
+                  type: HandlerInputType.ThreeColumn
+                }
+              ]
             },
             {
               type: HandlerInputType.MidStrip,
@@ -103,30 +107,49 @@ export default async (params: IParams): Promise<IPage> => {
             {
               type: HandlerInputType.Feature,
               name: FeatureName.StrapLayout,
-              fallback: {
-                type: HandlerInputType.ArticleSection,
-                displayName: "National",
-                displayNameColor: "darkblue",
-                linkUrl: "/" + Section.National,
-                content: {
-                  type: HandlerInputType.ArticleList,
-                  sourceId: Strap.National,
-                  strapName: "National",
-                  totalBasicArticlesUnit: 2,
-                  totalBasicArticleTitleUnit: 3
+              fallback: [
+                {
+                  type: HandlerInputType.ArticleSection,
+                  displayName: "National",
+                  displayNameColor: "darkblue",
+                  linkUrl: "/" + Section.National,
+                  content: {
+                    type: HandlerInputType.ArticleList,
+                    sourceId: Strap.National,
+                    strapName: "National",
+                    totalBasicArticlesUnit: 2,
+                    totalBasicArticleTitleUnit: 3
+                  }
                 }
-              }
+              ]
             },
             {
               type: HandlerInputType.Feature,
               name: FeatureName.ModuleLayout,
-              content: {
-                type: HandlerInputType.NewsSix,
-                displayName: "national",
-                displayNameColor: "darkblue",
-                strapName: "National",
-                sourceId: Strap.National
-              }
+              content: [
+                {
+                  type: HandlerInputType.NewsSix,
+                  displayName: "national",
+                  displayNameColor: "darkblue",
+                  strapName: "National",
+                  sourceId: Strap.National
+                }
+              ],
+              fallback: [
+                {
+                  type: HandlerInputType.ArticleSection,
+                  displayName: "National",
+                  displayNameColor: "darkblue",
+                  linkUrl: "/" + Section.National,
+                  content: {
+                    type: HandlerInputType.ArticleList,
+                    sourceId: Strap.National,
+                    strapName: "National",
+                    totalBasicArticlesUnit: 2,
+                    totalBasicArticleTitleUnit: 3
+                  }
+                }
+              ]
             },
             {
               type: HandlerInputType.ArticleSection,
@@ -225,30 +248,34 @@ export default async (params: IParams): Promise<IPage> => {
             {
               type: HandlerInputType.Feature,
               name: FeatureName.StrapLayout,
-              fallback: {
-                type: HandlerInputType.ArticleSection,
-                displayName: "Property",
-                displayNameColor: "royalblue",
-                linkUrl: "/" + Section.Property,
-                content: {
-                  type: HandlerInputType.ArticleList,
-                  sourceId: Strap.Property,
-                  strapName: "Property",
-                  totalBasicArticlesUnit: 2,
-                  totalBasicArticleTitleUnit: 3
+              fallback: [
+                {
+                  type: HandlerInputType.ArticleSection,
+                  displayName: "Property",
+                  displayNameColor: "royalblue",
+                  linkUrl: "/" + Section.Property,
+                  content: {
+                    type: HandlerInputType.ArticleList,
+                    sourceId: Strap.Property,
+                    strapName: "Property",
+                    totalBasicArticlesUnit: 2,
+                    totalBasicArticleTitleUnit: 3
+                  }
                 }
-              }
+              ]
             },
             {
               type: HandlerInputType.Feature,
               name: FeatureName.ModuleLayout,
-              content: {
-                type: HandlerInputType.LargeLeadSix,
-                displayName: "property",
-                displayNameColor: "royalblue",
-                strapName: "Property",
-                sourceId: Strap.Property
-              }
+              content: [
+                {
+                  type: HandlerInputType.LargeLeadSix,
+                  displayName: "property",
+                  displayNameColor: "royalblue",
+                  strapName: "Property",
+                  sourceId: Strap.Property
+                }
+              ]
             },
             {
               type: HandlerInputType.ArticleSection,
@@ -444,29 +471,33 @@ export default async (params: IParams): Promise<IPage> => {
             {
               type: HandlerInputType.Feature,
               name: FeatureName.ModuleLayout,
-              content: {
-                type: HandlerInputType.SixImage,
-                displayName: "homes to love",
-                displayNameColor: "amaranth",
-                strapName: "Homes to Love",
-                sourceId: Strap.HomesToLove
-              }
+              content: [
+                {
+                  type: HandlerInputType.SixImage,
+                  displayName: "homes to love",
+                  displayNameColor: "amaranth",
+                  strapName: "Homes to Love",
+                  sourceId: Strap.HomesToLove
+                }
+              ]
             },
             {
               type: HandlerInputType.Feature,
               name: FeatureName.StrapLayout,
-              fallback: {
-                type: HandlerInputType.ArticleSection,
-                displayName: "Homes to Love",
-                displayNameColor: "amaranth",
-                linkUrl: "/" + Section.HomesToLove,
-                content: {
-                  type: HandlerInputType.ArticleList,
-                  sourceId: Strap.HomesToLove,
-                  strapName: "Homes to Love",
-                  totalBasicArticlesUnit: 2
+              fallback: [
+                {
+                  type: HandlerInputType.ArticleSection,
+                  displayName: "Homes to Love",
+                  displayNameColor: "amaranth",
+                  linkUrl: "/" + Section.HomesToLove,
+                  content: {
+                    type: HandlerInputType.ArticleList,
+                    sourceId: Strap.HomesToLove,
+                    strapName: "Homes to Love",
+                    totalBasicArticlesUnit: 2
+                  }
                 }
-              }
+              ]
             },
             {
               type: HandlerInputType.ArticleSection,

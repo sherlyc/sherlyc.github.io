@@ -36,12 +36,14 @@ describe("Feature Handler", () => {
         {
           type: HandlerInputType.Feature,
           name: "fake" as FeatureName,
-          content: {
-            type: HandlerInputType.ExternalContent,
-            url: "/abc",
-            width: "200px",
-            height: "100%"
-          } as IExternalContentHandlerInput
+          content: [
+            {
+              type: HandlerInputType.ExternalContent,
+              url: "/abc",
+              width: "200px",
+              height: "100%"
+            } as IExternalContentHandlerInput
+          ]
         },
         params
       );
@@ -66,12 +68,14 @@ describe("Feature Handler", () => {
         {
           type: HandlerInputType.Feature,
           name: "fake" as FeatureName,
-          fallback: {
-            type: HandlerInputType.ExternalContent,
-            url: "/abc",
-            width: "200px",
-            height: "100%"
-          } as IExternalContentHandlerInput
+          fallback: [
+            {
+              type: HandlerInputType.ExternalContent,
+              url: "/abc",
+              width: "200px",
+              height: "100%"
+            } as IExternalContentHandlerInput
+          ]
         },
         params
       );
@@ -82,12 +86,19 @@ describe("Feature Handler", () => {
 
   describe("when provided both feature and fallback content", () => {
     it("should return the correct content blocks", async () => {
+      const handlerInput = {
+        type: HandlerInputType.ExternalContent,
+        url: "/abc",
+        width: "200px",
+        height: "100%"
+      } as IExternalContentHandlerInput;
+
       const expected = [
         {
           type: ContentBlockType.FeatureContainer,
           name: "fake" as FeatureName,
-          content: [fakeBlock],
-          fallback: [fakeBlock]
+          content: [fakeBlock, fakeBlock],
+          fallback: [fakeBlock, fakeBlock]
         }
       ];
 
@@ -96,18 +107,8 @@ describe("Feature Handler", () => {
         {
           type: HandlerInputType.Feature,
           name: "fake" as FeatureName,
-          content: {
-            type: HandlerInputType.ExternalContent,
-            url: "/abc",
-            width: "200px",
-            height: "100%"
-          } as IExternalContentHandlerInput,
-          fallback: {
-            type: HandlerInputType.ExternalContent,
-            url: "/abc",
-            width: "200px",
-            height: "100%"
-          } as IExternalContentHandlerInput
+          content: [handlerInput, handlerInput],
+          fallback: [handlerInput, handlerInput]
         },
         params
       );
