@@ -1,0 +1,3 @@
+<div appResizeObserver (resize)="onResize($event)">
+  <img *ngIf="src" (error)="src = null" itemprop="image" loading="auto" [attr.src]="src" [attr.srcset]="srcset" [attr.alt]="caption" />
+</div>

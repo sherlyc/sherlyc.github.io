@@ -12,6 +12,7 @@ import { TimeAgoComponent } from "./components/time-ago/time-ago.component";
 import { WeatherIconComponent } from "./components/weather-icon/weather-icon.component";
 import { ResizeDirective } from "./directives/resize/resize.directive";
 import { GlobalStyleDirective } from "./directives/global-style/global-style.directive";
+import { FluidImageComponent } from "./components/fluid-image/fluid-image.component";
 
 @NgModule({
   imports: [CommonModule],
@@ -27,7 +28,8 @@ import { GlobalStyleDirective } from "./directives/global-style/global-style.dir
     SigninCallbackComponent,
     HeadlineFlagComponent,
     WeatherIconComponent,
-    TimeAgoComponent
+    TimeAgoComponent,
+    FluidImageComponent
   ],
   exports: [
     PageComponent,
@@ -41,7 +43,8 @@ import { GlobalStyleDirective } from "./directives/global-style/global-style.dir
     SigninCallbackComponent,
     HeadlineFlagComponent,
     WeatherIconComponent,
-    TimeAgoComponent
+    TimeAgoComponent,
+    FluidImageComponent
   ]
 })
 export class SharedModule {}
