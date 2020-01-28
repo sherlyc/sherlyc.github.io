@@ -20,7 +20,31 @@ export default async (params: IParams): Promise<IPage> => {
       content: await handlerRunner(
         {
           type: HandlerInputType.Page,
-          items: oldPage()
+          items: [
+            {
+              type: HandlerInputType.ForceUpdate,
+              forceUpdateOnVersionsBefore: "1.400"
+            },
+            {
+              type: HandlerInputType.Weather
+            },
+            {
+              type: HandlerInputType.BreakingNews
+            },
+            {
+              type: HandlerInputType.ExternalContent,
+              height: "40px",
+              width: "100%",
+              margin: "0 0 3px 0",
+              url:
+                "https://interactives.stuff.co.nz/voyager/2019/2019-mobile.html"
+            },
+            {
+              type: HandlerInputType.Banner
+            },
+            ...newPage(),
+            ...oldPage()
+          ]
         },
         params
       )
@@ -31,28 +55,233 @@ export default async (params: IParams): Promise<IPage> => {
   }
 };
 
-const oldPage = (): HandlerInput[] => {
+const newPage = (): HandlerInput[] => {
   return [
     {
-      type: HandlerInputType.ForceUpdate,
-      forceUpdateOnVersionsBefore: "1.400"
+      type: HandlerInputType.SixImage,
+      displayName: "top stories",
+      displayNameColor: "darkblue",
+      strapName: "Top Stories",
+      sourceId: Strap.TopStories
     },
     {
-      type: HandlerInputType.Weather
+      type: HandlerInputType.ThreeColumn
     },
     {
-      type: HandlerInputType.BreakingNews
+      type: HandlerInputType.SixImage,
+      displayName: "midstrip",
+      displayNameColor: "darkblue",
+      strapName: "Midstrip",
+      sourceId: Strap.MidStrip
+    },
+    {
+      type: HandlerInputType.NewsSix,
+      displayName: "national",
+      displayNameColor: "darkblue",
+      strapName: "National",
+      sourceId: Strap.National
+    },
+    {
+      type: HandlerInputType.SixImage,
+      displayName: "climate change",
+      displayNameColor: "darkblue",
+      strapName: "Climate Change",
+      sourceId: Strap.ClimateChange
+    },
+    {
+      type: HandlerInputType.NewsSix,
+      displayName: "business",
+      displayNameColor: "royalblue",
+      strapName: "Business",
+      sourceId: Strap.Business
+    },
+    {
+      type: HandlerInputType.SixImage,
+      displayName: "homed",
+      displayNameColor: "keppel",
+      strapName: "Homed",
+      sourceId: Strap.Homed
+    },
+    {
+      type: HandlerInputType.SixImage,
+      displayName: "travel",
+      displayNameColor: "yellowsea",
+      strapName: "Travel",
+      sourceId: Strap.Travel
+    },
+    {
+      type: HandlerInputType.NewsSix,
+      displayName: "world",
+      displayNameColor: "azureblue",
+      strapName: "World",
+      sourceId: Strap.World
+    },
+    {
+      type: HandlerInputType.SixImage,
+      displayName: "property",
+      displayNameColor: "royalblue",
+      strapName: "Property",
+      sourceId: Strap.Property
+    },
+    {
+      type: HandlerInputType.NewsSix,
+      displayName: "kea kids",
+      displayNameColor: "darkblue",
+      strapName: "Kea Kids",
+      sourceId: Strap.KeaKidsNews
+    },
+    {
+      type: HandlerInputType.SixImage,
+      displayName: "life & style",
+      displayNameColor: "amaranth",
+      strapName: "Life & Style",
+      sourceId: Strap.LifeStyle
+    },
+    {
+      type: HandlerInputType.SixImage,
+      displayName: "well & good",
+      displayNameColor: "sunglow",
+      strapName: "Well & Good",
+      sourceId: Strap.WellGood
+    },
+    {
+      type: HandlerInputType.SixImage,
+      displayName: "entertainment",
+      displayNameColor: "purpleheart",
+      strapName: "Entertainment",
+      sourceId: Strap.Entertainment
+    },
+    {
+      type: HandlerInputType.SixImage,
+      displayName: "bravo",
+      displayNameColor: "purpleheart",
+      strapName: "Bravo",
+      sourceId: Strap.Bravo
+    },
+    {
+      type: HandlerInputType.SixImage,
+      displayName: "technology",
+      displayNameColor: "carribeangreen",
+      strapName: "Technology",
+      sourceId: Strap.Technology
+    },
+    {
+      type: HandlerInputType.SixImage,
+      displayName: "opinion",
+      displayNameColor: "dingley",
+      strapName: "Opinion",
+      sourceId: Strap.Opinion
+    },
+    {
+      type: HandlerInputType.SixImage,
+      displayName: "motoring",
+      displayNameColor: "pizzaz",
+      strapName: "Motoring",
+      sourceId: Strap.Motoring
+    },
+    {
+      type: HandlerInputType.SixImage,
+      displayName: "stuff nation",
+      displayNameColor: "woodsmoke",
+      strapName: "Stuff Nation",
+      sourceId: Strap.StuffNation
+    },
+    {
+      type: HandlerInputType.SixImage,
+      displayName: "sport",
+      displayNameColor: "scarlet",
+      strapName: "Sport",
+      sourceId: Strap.Sport
+    },
+    {
+      type: HandlerInputType.ArticleSection,
+      displayName: "1 News",
+      displayNameColor: "darkblue",
+      linkUrl: "https://play.stuff.co.nz/page/channel-onenews",
+      content: {
+        type: HandlerInputType.ExternalContent,
+        height: "calc(56% + 216px)",
+        width: "100%",
+        margin: "0 -10px 10px",
+        url:
+          "https://www.playwidget.stuff.co.nz/hshelf/5d3fcb25a0e845001caee780"
+      }
+    },
+    {
+      type: HandlerInputType.SixImage,
+      displayName: "noted",
+      displayNameColor: "darkblue",
+      strapName: "Noted",
+      sourceId: Strap.Noted
+    },
+    {
+      type: HandlerInputType.SixImage,
+      displayName: "now to love",
+      displayNameColor: "amaranth",
+      strapName: "Now to Love",
+      sourceId: Strap.NowToLove
+    },
+    {
+      type: HandlerInputType.SixImage,
+      displayName: "homes to love",
+      displayNameColor: "amaranth",
+      strapName: "Homes to Love",
+      sourceId: Strap.HomesToLove
+    },
+    {
+      type: HandlerInputType.SixImage,
+      displayName: "food to love",
+      displayNameColor: "amaranth",
+      strapName: "Food to Love",
+      sourceId: Strap.FoodToLove
+    },
+    {
+      type: HandlerInputType.SixImage,
+      displayName: "beauty heaven",
+      displayNameColor: "amaranth",
+      strapName: "Beauty Heaven",
+      sourceId: Strap.BeautyHeaven
+    },
+    {
+      type: HandlerInputType.SixImage,
+      displayName: "metro",
+      displayNameColor: "amaranth",
+      strapName: "Metro",
+      sourceId: Strap.Metro
+    },
+    {
+      type: HandlerInputType.SixImage,
+      displayName: "newsroom.co.nz",
+      displayNameColor: "darkblue",
+      strapName: "newsroom.co.nz",
+      sourceId: Strap.Newsroom
+    },
+    {
+      type: HandlerInputType.SixImage,
+      displayName: "tarana",
+      displayNameColor: "scarlet",
+      strapName: "Tarana",
+      sourceId: Strap.Tarana
+    },
+    {
+      type: HandlerInputType.SixImage,
+      displayName: "sponsored content",
+      displayNameColor: "darkblue",
+      strapName: "Sponsored Content",
+      sourceId: Strap.SponsoredContent
     },
     {
       type: HandlerInputType.ExternalContent,
-      height: "40px",
+      height: "580px",
       width: "100%",
       margin: "0 0 3px 0",
-      url: "https://interactives.stuff.co.nz/voyager/2019/2019-mobile.html"
-    },
-    {
-      type: HandlerInputType.Banner
-    },
+      url: "https://cdn.neighbourly.co.nz/stuff/933/homepage"
+    }
+  ];
+};
+
+const oldPage = (): HandlerInput[] => {
+  return [
     {
       type: HandlerInputType.TopStoriesArticleList,
       strapName: "Latest"
