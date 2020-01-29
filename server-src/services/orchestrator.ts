@@ -271,13 +271,6 @@ const newPage = (): HandlerInput[] => [
     sourceId: Strap.Tarana
   },
   {
-    type: HandlerInputType.SixImage,
-    displayName: "sponsored content",
-    displayNameColor: "darkblue",
-    strapName: `${homepageAdPrefix}SponsoredContent`,
-    sourceId: Strap.SponsoredContent
-  },
-  {
     type: HandlerInputType.ExternalContent,
     height: "580px",
     width: "100%",
