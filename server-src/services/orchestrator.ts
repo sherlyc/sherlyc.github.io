@@ -125,7 +125,7 @@ const newPage = (): HandlerInput[] => [
     sourceId: Strap.World
   },
   {
-    type: HandlerInputType.SixImage,
+    type: HandlerInputType.LargeLeadSix,
     displayName: "property",
     displayNameColor: "royalblue",
     strapName: `${homepageAdPrefix}Property`,
@@ -146,7 +146,7 @@ const newPage = (): HandlerInput[] => [
     sourceId: Strap.LifeStyle
   },
   {
-    type: HandlerInputType.SixImage,
+    type: HandlerInputType.LargeLeadSix,
     displayName: "well & good",
     displayNameColor: "sunglow",
     strapName: `${homepageAdPrefix}WellGood`,
@@ -167,7 +167,7 @@ const newPage = (): HandlerInput[] => [
     sourceId: Strap.Bravo
   },
   {
-    type: HandlerInputType.SixImage,
+    type: HandlerInputType.LargeLeadSix,
     displayName: "technology",
     displayNameColor: "carribeangreen",
     strapName: `${homepageAdPrefix}Technology`,
