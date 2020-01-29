@@ -1,5 +1,7 @@
 import * as supertest from "supertest";
 import { IPage } from "../../common/__types__/IPage";
+import { ContentBlockType } from "../../common/__types__/ContentBlockType";
+import { FeatureName } from "../../common/FeatureName";
 
 describe("api test", () => {
   it("should respond with a json payload", async () => {
@@ -17,24 +19,45 @@ describe("api test", () => {
     );
     expect(page.content).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ type: "Header" }),
+        expect.objectContaining({ type: ContentBlockType.Header }),
         expect.objectContaining({
-          type: "Container",
+          type: ContentBlockType.Container,
           items: expect.arrayContaining([
-            expect.objectContaining({ type: "BasicAdUnit" }),
             expect.objectContaining({
-              type: "ExperimentContainer",
-              variants: expect.objectContaining({
-                control: expect.arrayContaining([
-                  expect.objectContaining({ type: "BasicArticleUnit" })
-                ])
-              })
+              type: ContentBlockType.FeatureContainer,
+              name: FeatureName.ModuleLayout,
+              content: expect.arrayContaining([
+                expect.objectContaining({
+                  type: ContentBlockType.GridContainer
+                })
+              ])
             }),
-            expect.objectContaining({ type: "ColumnContainer" }),
-            expect.objectContaining({ type: "BasicArticleSection" })
+            expect.objectContaining({
+              type: ContentBlockType.FeatureContainer,
+              name: FeatureName.StrapLayout,
+              fallback: expect.arrayContaining([
+                expect.objectContaining({ type: ContentBlockType.BasicAdUnit }),
+                expect.objectContaining({
+                  type: ContentBlockType.ExperimentContainer,
+                  variants: expect.objectContaining({
+                    control: expect.arrayContaining([
+                      expect.objectContaining({
+                        type: ContentBlockType.BasicArticleUnit
+                      })
+                    ])
+                  })
+                }),
+                expect.objectContaining({
+                  type: ContentBlockType.ColumnContainer
+                }),
+                expect.objectContaining({
+                  type: ContentBlockType.BasicArticleSection
+                })
+              ])
+            })
           ])
         }),
-        expect.objectContaining({ type: "Footer" })
+        expect.objectContaining({ type: ContentBlockType.Footer })
       ])
     );
   });

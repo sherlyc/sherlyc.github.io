@@ -1,6 +1,10 @@
 {
   "name": "stuff-experience-frontend",
   "version": "1.999.0",
+  "engines": {
+    "node": ">=10.15.3 <10.16",
+    "npm": ">=6.4.1 <6.5"
+  },
   "scripts": {
     "start": "node dist/server/serverWithNewRelic.js",
     "start:no-newrelic": "node dist/server/main.js",
