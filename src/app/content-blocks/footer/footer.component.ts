@@ -38,12 +38,14 @@ export class FooterComponent implements IContentBlockComponent, OnInit {
     const shieldedSiteId = this.shieldedSiteId;
     const window = this.windowService.getWindow();
 
-    window.onload = function() {
-      const shieldedSiteFrame = new window.ds07o6pcmkorn({
-        openElementId: `#${shieldedSiteId}`
-      });
-      shieldedSiteFrame.init();
-    };
+    if (window.ds07o6pcmkorn) {
+      window.onload = function() {
+        const shieldedSiteFrame = new window.ds07o6pcmkorn({
+          openElementId: `#${shieldedSiteId}`
+        });
+        shieldedSiteFrame.init();
+      };
+    }
   }
 
   sendLinkAnalytics(name: string) {
