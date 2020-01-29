@@ -63,12 +63,13 @@ export default async (params: IParams): Promise<IPage> => {
   }
 };
 
+const homepageAdPrefix = "homepage";
 const newPage = (): HandlerInput[] => [
   {
     type: HandlerInputType.SixImage,
     displayName: "top stories",
     displayNameColor: "darkblue",
-    strapName: "Top Stories",
+    strapName: `${homepageAdPrefix}TopStoriesDefaultOne`,
     sourceId: Strap.TopStories
   },
   {
@@ -78,126 +79,126 @@ const newPage = (): HandlerInput[] => [
     type: HandlerInputType.SixImage,
     displayName: "midstrip",
     displayNameColor: "darkblue",
-    strapName: "Midstrip",
+    strapName: `${homepageAdPrefix}MidStrip`,
     sourceId: Strap.MidStrip
   },
   {
     type: HandlerInputType.NewsSix,
     displayName: "national",
     displayNameColor: "darkblue",
-    strapName: "National",
+    strapName: `${homepageAdPrefix}National`,
     sourceId: Strap.National
   },
   {
     type: HandlerInputType.SixImage,
     displayName: "climate change",
     displayNameColor: "darkblue",
-    strapName: "Climate Change",
+    strapName: `${homepageAdPrefix}ClimateChange`,
     sourceId: Strap.ClimateChange
   },
   {
     type: HandlerInputType.NewsSix,
     displayName: "business",
     displayNameColor: "royalblue",
-    strapName: "Business",
+    strapName: `${homepageAdPrefix}Business`,
     sourceId: Strap.Business
   },
   {
     type: HandlerInputType.SixImage,
     displayName: "homed",
     displayNameColor: "keppel",
-    strapName: "Homed",
+    strapName: `${homepageAdPrefix}Homed`,
     sourceId: Strap.Homed
   },
   {
     type: HandlerInputType.SixImage,
     displayName: "travel",
     displayNameColor: "yellowsea",
-    strapName: "Travel",
+    strapName: `${homepageAdPrefix}Travel`,
     sourceId: Strap.Travel
   },
   {
     type: HandlerInputType.NewsSix,
     displayName: "world",
     displayNameColor: "azureblue",
-    strapName: "World",
+    strapName: `${homepageAdPrefix}World`,
     sourceId: Strap.World
   },
   {
     type: HandlerInputType.SixImage,
     displayName: "property",
     displayNameColor: "royalblue",
-    strapName: "Property",
+    strapName: `${homepageAdPrefix}Property`,
     sourceId: Strap.Property
   },
   {
     type: HandlerInputType.NewsSix,
     displayName: "kea kids",
     displayNameColor: "darkblue",
-    strapName: "Kea Kids",
+    strapName: `${homepageAdPrefix}KeaKidsNews`,
     sourceId: Strap.KeaKidsNews
   },
   {
     type: HandlerInputType.SixImage,
     displayName: "life & style",
     displayNameColor: "amaranth",
-    strapName: "Life & Style",
+    strapName: `${homepageAdPrefix}LifeStyle`,
     sourceId: Strap.LifeStyle
   },
   {
     type: HandlerInputType.SixImage,
     displayName: "well & good",
     displayNameColor: "sunglow",
-    strapName: "Well & Good",
+    strapName: `${homepageAdPrefix}WellGood`,
     sourceId: Strap.WellGood
   },
   {
     type: HandlerInputType.SixImage,
     displayName: "entertainment",
     displayNameColor: "purpleheart",
-    strapName: "Entertainment",
+    strapName: `${homepageAdPrefix}Entertainment`,
     sourceId: Strap.Entertainment
   },
   {
     type: HandlerInputType.SixImage,
     displayName: "bravo",
     displayNameColor: "purpleheart",
-    strapName: "Bravo",
+    strapName: `${homepageAdPrefix}Bravo`,
     sourceId: Strap.Bravo
   },
   {
     type: HandlerInputType.SixImage,
     displayName: "technology",
     displayNameColor: "carribeangreen",
-    strapName: "Technology",
+    strapName: `${homepageAdPrefix}Technology`,
     sourceId: Strap.Technology
   },
   {
     type: HandlerInputType.SixImage,
     displayName: "opinion",
     displayNameColor: "dingley",
-    strapName: "Opinion",
+    strapName: `${homepageAdPrefix}Opinion`,
     sourceId: Strap.Opinion
   },
   {
     type: HandlerInputType.SixImage,
     displayName: "motoring",
     displayNameColor: "pizzaz",
-    strapName: "Motoring",
+    strapName: `${homepageAdPrefix}Motoring`,
     sourceId: Strap.Motoring
   },
   {
     type: HandlerInputType.SixImage,
     displayName: "stuff nation",
     displayNameColor: "woodsmoke",
-    strapName: "Stuff Nation",
+    strapName: `${homepageAdPrefix}StuffNation`,
     sourceId: Strap.StuffNation
   },
   {
     type: HandlerInputType.SixImage,
     displayName: "sport",
     displayNameColor: "scarlet",
-    strapName: "Sport",
+    strapName: `${homepageAdPrefix}Sport`,
     sourceId: Strap.Sport
   },
   {
@@ -217,63 +218,63 @@ const newPage = (): HandlerInput[] => [
     type: HandlerInputType.SixImage,
     displayName: "noted",
     displayNameColor: "darkblue",
-    strapName: "Noted",
+    strapName: `${homepageAdPrefix}Noted`,
     sourceId: Strap.Noted
   },
   {
     type: HandlerInputType.SixImage,
     displayName: "now to love",
     displayNameColor: "amaranth",
-    strapName: "Now to Love",
+    strapName: `${homepageAdPrefix}NowToLove`,
     sourceId: Strap.NowToLove
   },
   {
     type: HandlerInputType.SixImage,
     displayName: "homes to love",
     displayNameColor: "amaranth",
-    strapName: "Homes to Love",
+    strapName: `${homepageAdPrefix}HomesToLove`,
     sourceId: Strap.HomesToLove
   },
   {
     type: HandlerInputType.SixImage,
     displayName: "food to love",
     displayNameColor: "amaranth",
-    strapName: "Food to Love",
+    strapName: `${homepageAdPrefix}FoodToLove`,
     sourceId: Strap.FoodToLove
   },
   {
     type: HandlerInputType.SixImage,
     displayName: "beauty heaven",
     displayNameColor: "amaranth",
-    strapName: "Beauty Heaven",
+    strapName: `${homepageAdPrefix}BeautyHeaven`,
     sourceId: Strap.BeautyHeaven
   },
   {
     type: HandlerInputType.SixImage,
     displayName: "metro",
     displayNameColor: "amaranth",
-    strapName: "Metro",
+    strapName: `${homepageAdPrefix}Metro`,
     sourceId: Strap.Metro
   },
   {
     type: HandlerInputType.SixImage,
     displayName: "newsroom.co.nz",
     displayNameColor: "darkblue",
-    strapName: "newsroom.co.nz",
+    strapName: `${homepageAdPrefix}Newsroomconz`,
     sourceId: Strap.Newsroom
   },
   {
     type: HandlerInputType.SixImage,
     displayName: "tarana",
     displayNameColor: "scarlet",
-    strapName: "Tarana",
+    strapName: `${homepageAdPrefix}Tarana`,
     sourceId: Strap.Tarana
   },
   {
     type: HandlerInputType.SixImage,
     displayName: "sponsored content",
     displayNameColor: "darkblue",
-    strapName: "Sponsored Content",
+    strapName: `${homepageAdPrefix}SponsoredContent`,
     sourceId: Strap.SponsoredContent
   },
   {
