@@ -1,9 +1,11 @@
 import { Directive, ElementRef, Input, OnChanges } from "@angular/core";
 import { GlobalStyleService } from "../../../services/global-style/global-style.service";
+import { isEqual, cloneDeep } from "lodash";
 
 @Directive({ selector: "[appGlobalStyle]" })
 export class GlobalStyleDirective implements OnChanges {
   @Input("appGlobalStyle") inputStyle?: object;
+  lastAppliedStyle?: object;
 
   constructor(
     private el: ElementRef<HTMLElement>,
@@ -11,11 +13,13 @@ export class GlobalStyleDirective implements OnChanges {
   ) {}
 
   ngOnChanges() {
-    const classesToInject =
-      this.globalStyleService.injectStyle(this.inputStyle) || "";
-    const nonInjectedClasses = this.getNonInjectedClasses();
-
-    this.el.nativeElement.className = `${nonInjectedClasses} ${classesToInject}`;
+    if (!isEqual(this.inputStyle, this.lastAppliedStyle)) {
+      this.lastAppliedStyle = cloneDeep(this.inputStyle);
+      const classesToInject =
+        this.globalStyleService.injectStyle(this.inputStyle) || "";
+      const nonInjectedClasses = this.getNonInjectedClasses();
+      this.el.nativeElement.className = `${nonInjectedClasses} ${classesToInject}`;
+    }
   }
 
   private getNonInjectedClasses() {
