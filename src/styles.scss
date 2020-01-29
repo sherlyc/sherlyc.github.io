@@ -56,17 +56,17 @@ body {
   );
 }
 
-@media only screen and (max-width: 767.999px) {
+@media only screen and (max-width: 767px) {
   .container {
     width: 100%;
-    max-width: 767.999px;
+    max-width: 767px;
   }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991.999px) {
+@media only screen and (min-width: 768px) and (max-width: 991px) {
   .container {
     width: 768px;
-    max-width: 991.999px;
+    max-width: 991px;
   }
 }
 
