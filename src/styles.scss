@@ -58,14 +58,14 @@ body {
 
 @media only screen and (max-width: 767.999px) {
   .container {
-    width: 767.999px;
+    width: 100%;
     max-width: 767.999px;
   }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991.999px) {
+@media only screen and (min-width: 768px) {
   .container {
-    width: 991.999px;
+    width: 768px;
     max-width: 991.999px;
   }
 }
