@@ -63,12 +63,13 @@ body {
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) and (max-width: 991.999px) {
   .container {
     width: 768px;
     max-width: 991.999px;
   }
 }
+
 @media only screen and (min-width: 992px) {
   .container {
     width: 992px;
