@@ -3,43 +3,10 @@ import { IParams } from "../../__types__/IParams";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 import { IExpandableArticleListHandlerInput } from "../__types__/IExpandableArticleListHandlerInput";
 import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
-import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { IBasicArticleTitleUnit } from "../../../../common/__types__/IBasicArticleTitleUnit";
 import { IRawArticle } from "../../adapters/__types__/IRawArticle";
-import { IBasicAdUnit } from "../../../../common/__types__/IBasicAdUnit";
 import { chunk, flatten } from "lodash";
-
-const basicArticleUnit = (
-  article: IRawArticle,
-  strapName: string
-): IBasicArticleUnit => ({
-  type: ContentBlockType.BasicArticleUnit,
-  id: article.id,
-  strapName: strapName,
-  indexHeadline: article.indexHeadline,
-  title: article.title,
-  introText: article.introText,
-  imageSrc: article.imageSrc,
-  imageSrcSet: article.imageSrcSet,
-  linkUrl: article.linkUrl,
-  lastPublishedTime: article.lastPublishedTime,
-  headlineFlags: article.headlineFlags
-});
-
-const basicArticleTitleUnit = (
-  article: IRawArticle,
-  strapName: string
-): IBasicArticleTitleUnit => ({
-  type: ContentBlockType.BasicArticleTitleUnit,
-  id: article.id,
-  strapName: strapName,
-  indexHeadline: article.indexHeadline,
-  title: article.title,
-  linkUrl: article.linkUrl,
-  lastPublishedTime: article.lastPublishedTime,
-  headlineFlags: article.headlineFlags
-});
+import { basicArticleUnit } from "../../adapters/article-converter/basic-article-unit.converter";
+import { basicArticleTitleUnit } from "../../adapters/article-converter/basic-article-title.converter";
 
 const createArticlesForPage = (
   articles: IRawArticle[],

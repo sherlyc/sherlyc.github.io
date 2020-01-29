@@ -21,10 +21,11 @@ export const healthCheck = async (req: Request, res: Response) => {
     try {
       await fullHealthCheck(req.spadeParams);
       res.status(200).send("Full Health Check Successful");
-    } catch (err) {
+    } catch (error) {
       logger.error(
         req.spadeParams.apiRequestId,
-        `Health check level error - ${err.message}`
+        `Health check level error`,
+        error
       );
       res.sendStatus(500);
     }

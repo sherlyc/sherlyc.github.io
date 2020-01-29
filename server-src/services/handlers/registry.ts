@@ -1,8 +1,5 @@
 import { IContentBlock } from "../../../common/__types__/IContentBlock";
-import TopStoriesExperiment from "./top-stories-experiment/top-stories-experiment";
 import TopStoriesArticleList from "./top-stories-article-list/top-stories-article-list";
-import TopStoriesArticleListGroupOne from "./top-stories-experiment/group-one";
-import TopStoriesArticleListGroupTwo from "./top-stories-experiment/group-two";
 import ArticleList from "./basic-article-list/basic-article-list";
 import ArticleSection from "./basic-article-section/basic-article-section";
 import MoreSectionExperiment from "./more-section-experiment/more-section-experiment";
@@ -19,6 +16,16 @@ import Experiment from "./experiment-handler/experiment-handler";
 import Feature from "./feature-handler/feature-handler";
 import Recommendations from "./recommendations/recommendations";
 import NewsSix from "./grid/news-six/news-six";
+import NewsSixGrid from "./grid/news-six-grid/news-six-grid";
+import SixImage from "./grid/six-image/six-image";
+import ForceUpdate from "./force-update/force-update";
+import SixImageGrid from "./grid/six-image-grid/six-image-grid";
+import ListGrid from "./grid/list-grid/list-grid";
+import LargeLeadSix from "./grid/large-lead-six/large-lead-six";
+import LargeLeadSixGrid from "./grid/large-lead-six-grid/large-lead-six-grid";
+import ThreeColumn from "./grid/three-column/three-column";
+import ColumnGrid from "./grid/column-grid/column-grid";
+
 import { handlerRunnerFunction } from "./runner";
 import { IParams } from "../__types__/IParams";
 import { HandlerInputType } from "./__types__/HandlerInputType";
@@ -30,10 +37,7 @@ type handlerFunction = (
 ) => Promise<IContentBlock[]>;
 
 const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
-  TopStoriesExperiment,
   TopStoriesArticleList,
-  TopStoriesArticleListGroupOne,
-  TopStoriesArticleListGroupTwo,
   ArticleList,
   MoreSectionExperiment,
   ExpandableArticleSection,
@@ -44,12 +48,21 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   ExternalContent,
   ArticleSection,
   BreakingNews,
+  ForceUpdate,
   Page,
   Weather,
   Experiment,
   Feature,
   Recommendations,
-  NewsSix
+  NewsSix,
+  NewsSixGrid,
+  SixImage,
+  SixImageGrid,
+  ListGrid,
+  LargeLeadSix,
+  LargeLeadSixGrid,
+  ThreeColumn,
+  ColumnGrid
 };
 
 export default handlerRegistry;

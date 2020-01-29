@@ -23,6 +23,8 @@ import { ExpandableArticleSectionComponent } from "./expandable-article-section/
 import { RecommendationsComponent } from "./recommendations/recommendations.component";
 import { GridContainerComponent } from "./grid-container/grid-container.component";
 import { ResponsiveBigImageArticleComponent } from "./responsive-big-image-article/responsive-big-image-article.component";
+import { ModuleTitleComponent } from "./module-title/module-title.component";
+import { FeaturedArticleComponent } from "./featured-article/featured-article.component";
 
 export const contentBlockComponents = [
   GrayDefconArticleUnitComponent,
@@ -47,7 +49,9 @@ export const contentBlockComponents = [
   FooterComponent,
   RecommendationsComponent,
   GridContainerComponent,
-  ResponsiveBigImageArticleComponent
+  ResponsiveBigImageArticleComponent,
+  ModuleTitleComponent,
+  FeaturedArticleComponent
 ];
 
 const registry: {
@@ -75,7 +79,9 @@ const registry: {
   FooterComponent,
   RecommendationsComponent,
   GridContainerComponent,
-  ResponsiveBigImageArticleComponent
+  ResponsiveBigImageArticleComponent,
+  ModuleTitleComponent,
+  FeaturedArticleComponent
 };
 
 export default registry;

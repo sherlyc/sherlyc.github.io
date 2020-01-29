@@ -21,6 +21,8 @@ import { IExpandableArticleSection } from "./IExpandableArticleSection";
 import { IRecommendations } from "./IRecommendations";
 import { IGridContainer } from "./IGridContainer";
 import { IResponsiveBigImageArticleUnit } from "./IResponsiveBigImageArticleUnit";
+import { IModuleTitle } from "./IModuleTitle";
+import { IFeaturedArticle } from "./IFeaturedArticle";
 
 export type IContentBlock =
   | IDefconArticleUnit
@@ -45,4 +47,6 @@ export type IContentBlock =
   | IFeatureContainer
   | IRecommendations
   | IGridContainer
-  | IResponsiveBigImageArticleUnit;
+  | IResponsiveBigImageArticleUnit
+  | IModuleTitle
+  | IFeaturedArticle;

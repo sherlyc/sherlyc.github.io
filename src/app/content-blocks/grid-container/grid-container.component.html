@@ -1,5 +1,6 @@
-<div [appGlobalStyle]="style">
-  <div *ngFor="let item of input.items | keyvalue" [ngClass]="item.key">
-    <ng-container [appContentBlock]="item.value"></ng-container>
+<div [appGlobalStyle]="getGridCss()">
+  <div *ngFor="let key of keys" [appGlobalStyle]="getCellCss(key)">
+    <ng-container [appContentBlock]="input.items[key]"></ng-container>
   </div>
+  <div *ngFor="let borderCell of borderCells" [ngClass]="borderCell.position" [appGlobalStyle]="getBorderCellCss(borderCell)"></div>
 </div>

@@ -6,4 +6,5 @@ export interface IFeatureContainer {
   type: ContentBlockType.FeatureContainer;
   name: FeatureName;
   content: IContentBlock[];
+  fallback: IContentBlock[];
 }

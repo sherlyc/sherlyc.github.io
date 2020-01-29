@@ -83,6 +83,7 @@ describe("JsonFeed Retriever", () => {
       path: "/link",
       title: "title",
       alt_headline: "headline",
+      byline: "Jane Doe",
       isHeadlineOverrideApplied: true,
       datetime_iso8601: "123235345",
       alt_intro: "intro"

@@ -6,8 +6,8 @@ export const getContent = async (req: Request, res: Response) => {
   try {
     res.json(await orchestrate(req.spadeParams));
     res.end();
-  } catch (e) {
-    logger.error(req.spadeParams.apiRequestId, `Content Api Error - ${e}`);
+  } catch (error) {
+    logger.error(req.spadeParams.apiRequestId, `Content Api Error`, error);
     res.sendStatus(500);
   }
 };

@@ -1,14 +1,17 @@
 <article itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
   <meta itemprop="position" content="{{ index }}" />
   <a itemprop="url" href="{{ input.linkUrl }}" appOpenExternalLink="{{ input.linkUrl }}" (click)="sendAnalytics()">
-    <div *ngIf="input.imageSrc">
-      <div class="image">
-        <img itemprop="image" (error)="input.imageSrc = null" src="{{ input.imageSrc }}" alt="{{ input.indexHeadline }}" loading="auto" [attr.srcset]="input.imageSrcSet ? input.imageSrcSet : null" />
-      </div>
+    <div class="image" *ngIf="input.imageSrc">
+      <ng-container *ngIf="input.layout === 'default'; else moduleImage">
+        <img itemprop="image" (error)="input.imageSrc = null" [attr.src]="input.imageSrc" [attr.alt]="input.indexHeadline" loading="auto" [attr.srcset]="input.imageSrcSet ? input.imageSrcSet : null" />
+      </ng-container>
+      <ng-template #moduleImage>
+        <app-fluid-image [imageSrc]="input.imageSrc" [caption]="input.indexHeadline"></app-fluid-image>
+      </ng-template>
     </div>
     <app-headline [headline]="input.indexHeadline" [headlineFlags]="input.headlineFlags"></app-headline>
     <p>
-      <app-time-ago [timestamp]="input.lastPublishedTime"></app-time-ago>
+      <app-time-ago separator="right" [timestamp]="input.lastPublishedTime"></app-time-ago>
       <span class="intro">{{ input.introText }}</span>
     </p>
   </a>

@@ -1,14 +1,16 @@
+import { Component, Input } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { ResponsiveBigImageArticleComponent } from "./responsive-big-image-article.component";
+import { By } from "@angular/platform-browser";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IResponsiveBigImageArticleUnit } from "../../../../common/__types__/IResponsiveBigImageArticleUnit";
-import { SharedModule } from "../../shared/shared.module";
-import { By } from "@angular/platform-browser";
-import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
-import { mockService, ServiceMock } from "../../services/mocks/MockService";
-import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { HeadlineFlags } from "../../../../common/HeadlineFlags";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { mockService, ServiceMock } from "../../services/mocks/MockService";
+import { FluidImageComponent } from "../../shared/components/fluid-image/fluid-image.component";
 import { HeadlineComponent } from "../../shared/components/headline/headline.component";
+import { SharedModule } from "../../shared/shared.module";
+import { ResponsiveBigImageArticleComponent } from "./responsive-big-image-article.component";
 
 describe("Responsive Big Image Article", () => {
   let fixture: ComponentFixture<ResponsiveBigImageArticleComponent>;
@@ -31,17 +33,35 @@ describe("Responsive Big Image Article", () => {
     headlineFlags: []
   };
 
+  @Component({
+    selector: "app-fluid-image",
+    template: ""
+  })
+  class FakeFluidImageComponent {
+    @Input() imageSrc!: string;
+    @Input() caption!: string;
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [SharedModule],
-      declarations: [ResponsiveBigImageArticleComponent],
+      declarations: [
+        ResponsiveBigImageArticleComponent,
+        FakeFluidImageComponent
+      ],
       providers: [
         {
           provide: AnalyticsService,
           useClass: mockService(AnalyticsService)
         }
       ]
-    }).compileComponents();
+    })
+      .overrideComponent(FluidImageComponent, {
+        set: {
+          selector: "app-fluid-image-original"
+        }
+      })
+      .compileComponents();
 
     analyticsService = TestBed.get(AnalyticsService);
     fixture = TestBed.createComponent(ResponsiveBigImageArticleComponent);
@@ -65,10 +85,11 @@ describe("Responsive Big Image Article", () => {
     const h3 = componentElement.querySelector("h3");
     expect(h3!.textContent).toEqual(articleData.indexHeadline);
 
-    const img = componentElement.querySelector("img");
-    expect(img!.getAttribute("src")).toEqual(articleData.imageSrc);
-    expect(img!.getAttribute("srcset")).toEqual(articleData.imageSrcSet);
-    expect(img!.getAttribute("alt")).toEqual(articleData.indexHeadline);
+    const img = fixture.debugElement.query(
+      By.directive(FakeFluidImageComponent)
+    ).componentInstance;
+    expect(img.imageSrc).toBe(articleData.imageSrc);
+    expect(img.caption).toBe(articleData.indexHeadline);
 
     const introSpan = componentElement.querySelector("p span.intro");
     expect(introSpan!.textContent).toEqual("Dummy intro text");

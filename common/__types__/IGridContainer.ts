@@ -12,11 +12,19 @@ export interface IGridBlockStyle {
   gridColumnEnd: string;
 }
 
+export enum Border {
+  left = "left",
+  bottom = "bottom",
+  right = "right",
+  top = "top"
+}
+
 export interface IGridBlock {
   rowStart: number;
   rowSpan: number;
   columnStart: number;
   columnSpan: number;
+  border: Border[];
 }
 
 export interface IGridBlocks {
@@ -26,14 +34,15 @@ export interface IGridBlocks {
 export interface IGridConfig {
   gridTemplateColumns: string;
   gridTemplateRows: string;
-  gridGap: string;
+  gridColumnGap: string;
+  gridRowGap: string;
   gridBlocks: IGridBlocks;
 }
 
 export interface IGridContainer {
   type: ContentBlockType.GridContainer;
-  items: { [key: string]: IContentBlock };
+  items: { [key: string]: IContentBlock[] };
   mobile: IGridConfig;
-  tablet: IGridConfig;
-  desktop: IGridConfig;
+  tablet?: IGridConfig;
+  desktop?: IGridConfig;
 }

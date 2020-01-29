@@ -25,11 +25,21 @@ describe("FeatureContainerComponent", () => {
   })
   class FeatureEnabledContentBlockComponent {}
 
+  @Component({
+    selector: "app-feature-disabled-content-block",
+    template: ""
+  })
+  class FeatureDisabledContentBlockComponent {}
+
   beforeAll(() => {
     // @ts-ignore
     registry[
       "FeatureEnabledContentBlockComponent"
     ] = FeatureEnabledContentBlockComponent;
+    // @ts-ignore
+    registry[
+      "FeatureDisabledContentBlockComponent"
+    ] = FeatureDisabledContentBlockComponent;
   });
 
   beforeEach(async () => {
@@ -38,7 +48,8 @@ describe("FeatureContainerComponent", () => {
       declarations: [
         FeatureContainerComponent,
         ContentBlockDirective,
-        FeatureEnabledContentBlockComponent
+        FeatureEnabledContentBlockComponent,
+        FeatureDisabledContentBlockComponent
       ],
       providers: [
         {
@@ -53,7 +64,10 @@ describe("FeatureContainerComponent", () => {
     })
       .overrideModule(BrowserDynamicTestingModule, {
         set: {
-          entryComponents: [FeatureEnabledContentBlockComponent]
+          entryComponents: [
+            FeatureEnabledContentBlockComponent,
+            FeatureDisabledContentBlockComponent
+          ]
         }
       })
       .compileComponents();
@@ -71,75 +85,93 @@ describe("FeatureContainerComponent", () => {
     type: "FeatureEnabledContentBlock"
   } as IContentBlock;
 
+  // @ts-ignore
+  const featureDisabledContentBlock = {
+    type: "FeatureDisabledContentBlock"
+  } as IContentBlock;
+
   const featureContainer: IFeatureContainer = {
     type: ContentBlockType.FeatureContainer,
     // @ts-ignore
     name: "FeatureName",
-    content: [featureEnabledContentBlock] as IContentBlock[]
+    content: [featureEnabledContentBlock] as IContentBlock[],
+    fallback: [featureDisabledContentBlock] as IContentBlock[]
   };
 
   it("should create", () => {
     component.input = featureContainer;
-
     fixture.detectChanges();
-
     expect(component).toBeTruthy();
   });
 
-  it("should render feature enabled component", async () => {
-    runtimeService.isBrowser.mockReturnValue(true);
-    (featureSwitchServiceServiceMock.getFeature as jest.Mock).mockResolvedValue(
-      true
-    );
-    component.input = featureContainer;
+  describe("client-side rendering", () => {
+    beforeEach(() => {
+      runtimeService.isBrowser.mockReturnValue(true);
+      runtimeService.isServer.mockReturnValue(false);
+    });
 
-    await component.ngOnInit();
-    fixture.detectChanges();
+    describe("when feature is enabled", () => {
+      beforeEach(async () => {
+        (featureSwitchServiceServiceMock.getFeature as jest.Mock).mockResolvedValue(
+          true
+        );
+        component.input = featureContainer;
+        await component.ngOnInit();
+        fixture.detectChanges();
+      });
 
-    const controlVariantBlocks = fixture.debugElement.queryAll(
-      By.directive(FeatureEnabledContentBlockComponent)
-    );
+      it("should render feature content", () => {
+        const controlVariantBlocks = fixture.debugElement.queryAll(
+          By.directive(FeatureEnabledContentBlockComponent)
+        );
+        expect(controlVariantBlocks).toHaveLength(1);
+      });
 
-    expect(controlVariantBlocks).toHaveLength(1);
+      it("should not render fallback content", () => {
+        const controlVariantBlocks = fixture.debugElement.queryAll(
+          By.directive(FeatureDisabledContentBlockComponent)
+        );
+        expect(controlVariantBlocks).toHaveLength(0);
+      });
+    });
+
+    describe("when feature is disabled", () => {
+      beforeEach(async () => {
+        (featureSwitchServiceServiceMock.getFeature as jest.Mock).mockResolvedValue(
+          false
+        );
+        component.input = featureContainer;
+        await component.ngOnInit();
+        fixture.detectChanges();
+      });
+
+      it("should not render feature content", () => {
+        const controlVariantBlocks = fixture.debugElement.queryAll(
+          By.directive(FeatureEnabledContentBlockComponent)
+        );
+        expect(controlVariantBlocks).toHaveLength(0);
+      });
+
+      it("should render fallback content", () => {
+        const controlVariantBlocks = fixture.debugElement.queryAll(
+          By.directive(FeatureDisabledContentBlockComponent)
+        );
+        expect(controlVariantBlocks).toHaveLength(1);
+      });
+    });
   });
 
-  it("should not render feature disabled component", async () => {
-    runtimeService.isBrowser.mockReturnValue(true);
-    (featureSwitchServiceServiceMock.getFeature as jest.Mock).mockResolvedValue(
-      false
-    );
-    component.input = featureContainer;
+  describe("server-side rendering", () => {
+    beforeEach(() => {
+      runtimeService.isBrowser.mockReturnValue(false);
+      runtimeService.isServer.mockReturnValue(true);
+    });
 
-    await component.ngOnInit();
-    fixture.detectChanges();
-
-    const otherVariantBlocks = fixture.debugElement.queryAll(
-      By.directive(FeatureEnabledContentBlockComponent)
-    );
-
-    expect(otherVariantBlocks).toHaveLength(0);
-  });
-
-  it("should not render any feature enabled component in server", async () => {
-    runtimeService.isBrowser.mockReturnValue(false);
-    component.input = featureContainer;
-
-    await component.ngOnInit();
-    fixture.detectChanges();
-
-    expect(component.contentBlocks).toHaveLength(0);
-  });
-
-  it("should not render any component when feature enabled component does not exist", async () => {
-    runtimeService.isBrowser.mockReturnValue(true);
-    (featureSwitchServiceServiceMock.getFeature as jest.Mock).mockResolvedValue(
-      true
-    );
-    component.input = { ...featureContainer, content: [] };
-
-    await component.ngOnInit();
-    fixture.detectChanges();
-
-    expect(component.contentBlocks).toHaveLength(0);
+    it("should render nothing", async () => {
+      component.input = featureContainer;
+      await component.ngOnInit();
+      fixture.detectChanges();
+      expect(component.contentBlocks).toHaveLength(0);
+    });
   });
 });

@@ -8,24 +8,28 @@ import { IRecommendationsHandlerInput } from "./IRecommendationsHandlerInput";
 import { IWeatherHandlerInput } from "./IWeatherHandlerInput";
 import { IMiniMidStripHandlerInput } from "./IMiniMidStripHandlerInput";
 import { IExperimentHandlerInput } from "./IExperimentHandlerInput";
-import { ITopStoriesHandlerInput } from "./ITopStoriesHandlerInput";
 import { ITopStoriesArticleListHandlerInput } from "./ITopStoriesArticleListHandlerInput";
 import { IFeatureHandlerInput } from "./IFeatureHandlerInput";
 import { IBannerHandlerInput } from "./IBannerHandlerInput";
 import { IExpandableArticleListHandlerInput } from "./IExpandableArticleListHandlerInput";
 import { IExpandableArticleSectionHandlerInput } from "./IExpandableArticleSectionHandlerInput";
 import { IMoreSectionExperimentHandlerInput } from "./IMoreSectionExperimentHandlerInput";
-import { ITopStoriesArticleListGroupOneHandlerInput } from "./ITopStoriesArticleListGroupOne";
-import { ITopStoriesArticleListGroupTwoHandlerInput } from "./ITopStoriesArticleListGroupTwo";
 import { INewsSixHandlerInput } from "./INewsSixHandlerInput";
+import { INewsSixGridHandlerInput } from "./INewsSixGridHandlerInput";
+import { ISixImageHandlerInput } from "./ISixImageHandlerInput";
+import { ISixImageGridHandlerInput } from "./ISixImageGridHandlerInput";
+import { ILargeLeadSixHandlerInput } from "./ILargeLeadSixHandlerInput";
+import { ILargeLeadSixGridHandlerInput } from "./ILargeLeadSixGridHandlerInput";
+import { IListGridHandlerInput } from "./IListGridHandlerInput";
+import { IThreeColumnHandlerInput } from "./IThreeColumnHandlerInput";
+import { IColumnGridHandlerInput } from "./IColumnGridHandlerInput";
+import { IForceUpdateHandlerInput } from "./IForceUpdateHandlerInput";
 
 export type HandlerInput =
-  | ITopStoriesHandlerInput
   | ITopStoriesArticleListHandlerInput
-  | ITopStoriesArticleListGroupOneHandlerInput
-  | ITopStoriesArticleListGroupTwoHandlerInput
   | IBasicArticleListHandlerInput
   | IBannerHandlerInput
+  | IForceUpdateHandlerInput
   | IMidStripHandlerInput
   | IMiniMidStripHandlerInput
   | IBasicArticleSectionHandlerInput
@@ -39,4 +43,12 @@ export type HandlerInput =
   | IExperimentHandlerInput
   | IFeatureHandlerInput
   | IRecommendationsHandlerInput
-  | INewsSixHandlerInput;
+  | INewsSixHandlerInput
+  | INewsSixGridHandlerInput
+  | ISixImageHandlerInput
+  | ISixImageGridHandlerInput
+  | ILargeLeadSixHandlerInput
+  | ILargeLeadSixGridHandlerInput
+  | IListGridHandlerInput
+  | IThreeColumnHandlerInput
+  | IColumnGridHandlerInput;

@@ -13,8 +13,7 @@ function validateRequest(
   if (
     isNaN(parsedLotto) ||
     parsedLotto <= 0 ||
-    !Object.keys(DeviceType).includes(deviceType) ||
-    !Object.keys(FeatureName).includes(name)
+    !Object.keys(DeviceType).includes(deviceType)
   ) {
     throw new Error(`Invalid feature data provided,
      featureName [${name}], lotteryNumber [${lotteryNumber}], deviceType [${deviceType}]`);
@@ -32,7 +31,8 @@ export const featureController = async function(req: Request, res: Response) {
   } catch (error) {
     logger.info(
       req.spadeParams.apiRequestId,
-      `Feature controller level error - ${error.message}`
+      `Feature controller level error`,
+      error
     );
     res.status(400).send(error.message);
     return;
@@ -40,7 +40,7 @@ export const featureController = async function(req: Request, res: Response) {
 
   try {
     const isEnabled = await isFeatureEnabled(
-      featureName as FeatureName,
+      featureName,
       parseInt(lotteryNumber, 10),
       deviceType as DeviceType
     );
@@ -48,7 +48,8 @@ export const featureController = async function(req: Request, res: Response) {
   } catch (error) {
     logger.error(
       req.spadeParams.apiRequestId,
-      `Feature controller level error - ${error.message}`
+      `Feature controller level error`,
+      error
     );
     res.status(400).send(error.message);
   }

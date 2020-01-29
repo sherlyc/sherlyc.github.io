@@ -42,11 +42,7 @@ describe("TimeAgoComponent", () => {
     fixture.detectChanges();
 
     const timeAgoSpan = fixture.debugElement.query(By.css(".time-ago"));
-    const separatorSpan = fixture.debugElement.query(By.css(".separator"));
     expect(timeAgoSpan.nativeElement.textContent).toBe("1 hour 20 min ago");
-    expect(timeAgoSpan.nativeElement.nextElementSibling).toBe(
-      separatorSpan.nativeElement
-    );
   });
 
   it("should show the timestamp when it is less than 1 hour ago", () => {
@@ -58,11 +54,7 @@ describe("TimeAgoComponent", () => {
     fixture.detectChanges();
 
     const timeAgoSpan = fixture.debugElement.query(By.css(".time-ago"));
-    const separatorSpan = fixture.debugElement.query(By.css(".separator"));
     expect(timeAgoSpan.nativeElement.textContent).toBe("20 min ago");
-    expect(timeAgoSpan.nativeElement.nextElementSibling).toBe(
-      separatorSpan.nativeElement
-    );
   });
 
   it("should not show the timestamp when it is more than 2 hours ago", () => {
@@ -102,6 +94,38 @@ describe("TimeAgoComponent", () => {
     expect(timeAgoSpan.nativeElement.previousElementSibling).toBe(
       separatorSpan.nativeElement
     );
+  });
+
+  it("should show the separator on the right when specified", () => {
+    // 20 minutes ago
+    component.timestamp = moment()
+      .subtract(20, "m")
+      .unix();
+    component.separator = "right";
+
+    fixture.detectChanges();
+
+    const timeAgoSpan = fixture.debugElement.query(By.css(".time-ago"));
+    const separatorSpan = fixture.debugElement.query(By.css(".separator"));
+    expect(timeAgoSpan.nativeElement.textContent).toBe("20 min ago");
+    expect(timeAgoSpan.nativeElement.nextElementSibling).toBe(
+      separatorSpan.nativeElement
+    );
+  });
+
+  it("should not show the separator when not specified", () => {
+    // 20 minutes ago
+    component.timestamp = moment()
+      .subtract(20, "m")
+      .unix();
+    component.separator = undefined;
+
+    fixture.detectChanges();
+
+    const timeAgoSpan = fixture.debugElement.query(By.css(".time-ago"));
+    const separatorSpan = fixture.debugElement.query(By.css(".separator"));
+    expect(timeAgoSpan.nativeElement.textContent).toBe("20 min ago");
+    expect(separatorSpan).toBeFalsy();
   });
 
   it("should set text color on div", () => {

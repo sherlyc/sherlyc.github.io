@@ -11,14 +11,15 @@ export const getWeather = async (req: Request, res: Response) => {
     } catch (error) {
       logger.error(
         req.spadeParams.apiRequestId,
-        `Weather controller level error - ${error.message}`
+        `Weather controller level error`,
+        error
       );
       res.sendStatus(500);
     }
   } else {
     logger.warn(
       req.spadeParams.apiRequestId,
-      `Weather controller level error - ${req.body}`
+      `Weather controller level error: no location - ${req.body}`
     );
     res.sendStatus(400);
   }

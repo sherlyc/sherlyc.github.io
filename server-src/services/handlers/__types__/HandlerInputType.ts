@@ -1,8 +1,5 @@
 export enum HandlerInputType {
-  TopStoriesExperiment = "TopStoriesExperiment",
   TopStoriesArticleList = "TopStoriesArticleList",
-  TopStoriesArticleListGroupOne = "TopStoriesArticleListGroupOne",
-  TopStoriesArticleListGroupTwo = "TopStoriesArticleListGroupTwo",
   ArticleList = "ArticleList",
   Banner = "Banner",
   MoreSectionExperimentHandlerInput = "MoreSectionExperiment",
@@ -17,6 +14,15 @@ export enum HandlerInputType {
   Weather = "Weather",
   Experiment = "Experiment",
   Feature = "Feature",
+  ForceUpdate = "ForceUpdate",
   Recommendations = "Recommendations",
-  NewsSix = "NewsSix"
+  NewsSix = "NewsSix",
+  NewsSixGrid = "NewsSixGrid",
+  SixImage = "SixImage",
+  SixImageGrid = "SixImageGrid",
+  LargeLeadSix = "LargeLeadSix",
+  LargeLeadSixGrid = "LargeLeadSixGrid",
+  ListGrid = "ListGrid",
+  ThreeColumn = "ThreeColumn",
+  ColumnGrid = "ColumnGrid"
 }

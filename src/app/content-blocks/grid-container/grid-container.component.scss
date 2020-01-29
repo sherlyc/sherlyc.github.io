@@ -1,0 +1,31 @@
+:host {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.left,
+.right {
+  position: relative;
+  min-width: 20px;
+  min-height: 20px;
+  &::before {
+    content: "";
+    left: 50%;
+    border-left: 1px solid #edeef1;
+    position: absolute;
+    height: 100%;
+  }
+}
+.top,
+.bottom {
+  position: relative;
+  min-width: 20px;
+  min-height: 20px;
+  &::before {
+    content: "";
+    top: 50%;
+    border-top: 1px solid #edeef1;
+    position: absolute;
+    width: 100%;
+  }
+}

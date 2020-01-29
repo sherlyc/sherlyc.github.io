@@ -45,8 +45,8 @@ export default async function(
           params
         )
       : [];
-  } catch (e) {
-    logger.error(params.apiRequestId, `Banner handler error - ${e}`);
+  } catch (error) {
+    logger.error(params.apiRequestId, `Banner handler error`, error);
     return [];
   }
 }

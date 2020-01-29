@@ -1,7 +1,5 @@
 :host {
   display: block;
-  border-bottom: 1px solid #edeef1;
-  margin-bottom: 10px;
 }
 
 a {
@@ -29,7 +27,6 @@ img {
 
 .image {
   overflow: hidden;
-  margin-bottom: 10px;
 }
 
 .intro {
@@ -40,5 +37,9 @@ img {
 }
 
 p {
-  margin: 0 0 10px 0;
+  margin: 0;
+}
+
+app-headline {
+  margin-bottom: 10px;
 }

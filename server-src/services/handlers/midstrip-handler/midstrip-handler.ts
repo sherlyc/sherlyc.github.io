@@ -48,7 +48,8 @@ export default async function(
   } catch (error) {
     wrappedLogger.error(
       params.apiRequestId,
-      `Midstrip handler error - ${sourceId} - ${error}`
+      `Midstrip handler error - ${sourceId}`,
+      error
     );
     throw error;
   }

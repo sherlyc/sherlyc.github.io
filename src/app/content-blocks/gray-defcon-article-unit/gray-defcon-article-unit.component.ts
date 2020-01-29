@@ -11,7 +11,7 @@ import { AnalyticsService } from "../../services/analytics/analytics.service";
 })
 export class GrayDefconArticleUnitComponent implements IContentBlockComponent {
   @Input() input!: IDefconArticleUnit;
-  index!: number;
+  index?: number;
 
   constructor(private analyticsService: AnalyticsService) {}
 

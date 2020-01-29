@@ -1,120 +1,97 @@
-import { handlerRunnerFunction } from "../../runner";
-import { IParams } from "../../../__types__/IParams";
-import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { INewsSixHandlerInput } from "../../__types__/INewsSixHandlerInput";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { NewsSixPositions } from "./NewsSixPositions";
-import newsSixContentCreator from "./news-six-content";
+import { BigImageArticleUnitLayout } from "../../../../../common/__types__/IBigImageArticleUnit";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { IParams } from "../../../__types__/IParams";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { NewsSixGridPositions } from "../../__types__/INewsSixGridHandlerInput";
+import { bigImageArticleUnit } from "../../../adapters/article-converter/big-image-article.converter";
+import { contentErrorHandler } from "../content-error-handler";
+import { responsiveBigImageArticleUnit } from "../../../adapters/article-converter/responsive-big-image-article.converter";
+import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
+import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import { INewsSixHandlerInput } from "../../__types__/INewsSixHandlerInput";
+import { handlerRunnerFunction } from "../../runner";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  { displayName, sourceId, type, strapName }: INewsSixHandlerInput,
+  { displayName, displayNameColor, sourceId, strapName }: INewsSixHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const contentBlocks = await newsSixContentCreator(
-    strapName,
-    sourceId,
-    params
-  );
+  const articles = await getRawArticles(sourceId, 6, params);
 
-  const desktop = {
-    [NewsSixPositions.BigTopLeft]: {
-      rowStart: 1,
-      rowSpan: 1,
-      columnStart: 1,
-      columnSpan: 4
-    },
-    [NewsSixPositions.SmallTopRight]: {
-      rowStart: 1,
-      rowSpan: 2,
-      columnStart: 5,
-      columnSpan: 1
-    },
-    [NewsSixPositions.SmallBottomFirst]: {
-      rowStart: 2,
-      rowSpan: 1,
-      columnStart: 1,
-      columnSpan: 1
-    },
-    [NewsSixPositions.SmallBottomSecond]: {
-      rowStart: 2,
-      rowSpan: 1,
-      columnStart: 2,
-      columnSpan: 1
-    },
-    [NewsSixPositions.SmallBottomThird]: {
-      rowStart: 2,
-      rowSpan: 1,
-      columnStart: 3,
-      columnSpan: 1
-    },
-    [NewsSixPositions.SmallBottomFourth]: {
-      rowStart: 2,
-      rowSpan: 1,
-      columnStart: 4,
-      columnSpan: 1
-    }
+  const content: { [key in NewsSixGridPositions]: IContentBlock[] } = {
+    [NewsSixGridPositions.ModuleTitle]: [
+      {
+        type: ContentBlockType.ModuleTitle,
+        displayName,
+        displayNameColor
+      }
+    ],
+    [NewsSixGridPositions.BigTopLeft]: [
+      await contentErrorHandler(
+        () =>
+          responsiveBigImageArticleUnit(
+            articles.shift() as IRawArticle,
+            strapName
+          ),
+        HandlerInputType.NewsSix,
+        sourceId,
+        params
+      )
+    ],
+    [NewsSixGridPositions.SmallTopRight]: [
+      await contentErrorHandler(
+        () =>
+          bigImageArticleUnit(
+            articles.shift() as IRawArticle,
+            strapName,
+            BigImageArticleUnitLayout.module
+          ),
+        HandlerInputType.NewsSix,
+        sourceId,
+        params
+      )
+    ],
+    [NewsSixGridPositions.SmallBottomFirst]: [
+      await contentErrorHandler(
+        () => basicArticleTitleUnit(articles.shift() as IRawArticle, strapName),
+        HandlerInputType.NewsSix,
+        sourceId,
+        params
+      )
+    ],
+    [NewsSixGridPositions.SmallBottomSecond]: [
+      await contentErrorHandler(
+        () => basicArticleTitleUnit(articles.shift() as IRawArticle, strapName),
+        HandlerInputType.NewsSix,
+        sourceId,
+        params
+      )
+    ],
+    [NewsSixGridPositions.SmallBottomThird]: [
+      await contentErrorHandler(
+        () => basicArticleTitleUnit(articles.shift() as IRawArticle, strapName),
+        HandlerInputType.NewsSix,
+        sourceId,
+        params
+      )
+    ],
+    [NewsSixGridPositions.SmallBottomFourth]: [
+      await contentErrorHandler(
+        () => basicArticleTitleUnit(articles.shift() as IRawArticle, strapName),
+        HandlerInputType.NewsSix,
+        sourceId,
+        params
+      )
+    ]
   };
 
-  return [
+  return await handlerRunner(
     {
-      type: ContentBlockType.GridContainer,
-      items: contentBlocks,
-      mobile: {
-        gridTemplateColumns: "1fr",
-        gridTemplateRows: "auto",
-        gridGap: "0px",
-        gridBlocks: {
-          [NewsSixPositions.BigTopLeft]: {
-            rowStart: 1,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1
-          },
-          [NewsSixPositions.SmallTopRight]: {
-            rowStart: 2,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1
-          },
-          [NewsSixPositions.SmallBottomFirst]: {
-            rowStart: 3,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1
-          },
-          [NewsSixPositions.SmallBottomSecond]: {
-            rowStart: 4,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1
-          },
-          [NewsSixPositions.SmallBottomThird]: {
-            rowStart: 5,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1
-          },
-          [NewsSixPositions.SmallBottomFourth]: {
-            rowStart: 6,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1
-          }
-        }
-      },
-      tablet: {
-        gridTemplateColumns: "1fr 1fr 1fr 1fr 300px",
-        gridTemplateRows: "auto auto",
-        gridGap: "10px",
-        gridBlocks: desktop
-      },
-      desktop: {
-        gridTemplateColumns: "1fr 1fr 1fr 1fr 300px",
-        gridTemplateRows: "auto auto",
-        gridGap: "20px",
-        gridBlocks: desktop
-      }
-    }
-  ];
+      type: HandlerInputType.NewsSixGrid,
+      content
+    },
+    params
+  );
 }

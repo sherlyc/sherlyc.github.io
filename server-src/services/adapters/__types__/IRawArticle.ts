@@ -4,6 +4,7 @@ export interface IRawArticle {
   id: string;
   indexHeadline: string;
   title: string;
+  byline?: string;
   introText: string;
   linkUrl: string;
   defconSrc: string | null;
@@ -11,6 +12,7 @@ export interface IRawArticle {
   strapImageSrc: string | null;
   imageSrcSet: string | null;
   strapImageSrcSet: string | null;
+  sixteenByNineSrc: string | null;
   lastPublishedTime: number;
   headlineFlags: HeadlineFlags[];
 }

@@ -24,9 +24,10 @@ export class FeatureContainerComponent
       const isFeatureEnabled = await this.featureSwitchService.getFeature(
         this.input.name
       );
-      if (isFeatureEnabled) {
-        this.contentBlocks = this.input.content;
-      }
+
+      this.contentBlocks = isFeatureEnabled
+        ? this.input.content
+        : this.input.fallback;
     }
   }
 }

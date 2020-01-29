@@ -13,7 +13,7 @@ export class TimeAgoComponent implements OnInit {
   constructor() {}
 
   @Input()
-  separator: "left" | "right" = "right";
+  separator?: "left" | "right";
   @Input()
   timestamp!: moment.MomentInput;
   @Input() textColor = "#d12421";
