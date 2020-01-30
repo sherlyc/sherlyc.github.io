@@ -54,7 +54,14 @@ export default async function(
           params
         )
       ],
-      [SixImageGridHandlerPositions.SecondRowLeft]: [basicAdUnit(strapName)],
+      [SixImageGridHandlerPositions.SecondRowLeft]: [
+        await contentErrorHandler(
+          () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
+          HandlerInputType.SixImage,
+          sourceId,
+          params
+        )
+      ],
       [SixImageGridHandlerPositions.SecondRowMiddle]: [
         await contentErrorHandler(
           () => imageLinkUnit(articles.shift() as IRawArticle, strapName),

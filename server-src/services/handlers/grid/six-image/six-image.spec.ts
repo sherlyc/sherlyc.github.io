@@ -10,7 +10,6 @@ import {
   SixImageGridHandlerPositions
 } from "../../__types__/ISixImageGridHandlerInput";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import wrappedLogger from "../../../utils/logger";
 import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
 import { IImageLinkUnit } from "../../../../../common/__types__/IImageLinkUnit";
 
@@ -96,7 +95,7 @@ describe("Six image", () => {
         [SixImageGridHandlerPositions.FirstRowLeft]: [imageLinkUnit],
         [SixImageGridHandlerPositions.FirstRowMiddle]: [imageLinkUnit],
         [SixImageGridHandlerPositions.FirstRowRight]: [imageLinkUnit],
-        [SixImageGridHandlerPositions.SecondRowLeft]: [basicAdUnit],
+        [SixImageGridHandlerPositions.SecondRowLeft]: [imageLinkUnit],
         [SixImageGridHandlerPositions.SecondRowMiddle]: [imageLinkUnit],
         [SixImageGridHandlerPositions.SecondRowRight]: [imageLinkUnit],
         [SixImageGridHandlerPositions.BigRight]: [basicAdUnit]
