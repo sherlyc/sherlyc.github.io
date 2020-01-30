@@ -56,23 +56,31 @@ body {
   );
 }
 
-@media only screen and (min-width: 48em) {
+@media only screen and (max-width: 767px) {
   .container {
-    width: 47rem;
-    max-width: 47rem;
+    width: 100%;
+    max-width: 767px;
   }
 }
 
-@media only screen and (min-width: 64em) {
+@media only screen and (min-width: 768px) and (max-width: 991px) {
   .container {
-    width: 63rem;
-    max-width: 63rem;
+    width: 768px;
+    max-width: 768px;
   }
 }
-@media only screen and (min-width: 75em) {
+
+@media only screen and (min-width: 992px) and (max-width: 1119px) {
   .container {
-    width: 74rem;
-    max-width: 74rem;
+    width: 992px;
+    max-width: 992px;
+  }
+}
+
+@media only screen and (min-width: 1120px) {
+  .container {
+    width: 1120px;
+    max-width: 1120px;
   }
 }
 
