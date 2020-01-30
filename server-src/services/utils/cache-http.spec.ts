@@ -23,11 +23,11 @@ describe("Cache Request", () => {
     expect(cachedRequest).toBe(promise);
   });
 
-  it("should save to cache and return cached request if request was cached for 10 seconds or more", () => {
+  it("should save to cache and return cached request if request was cached for 20 seconds or more", () => {
     const newCachedRequest = Promise.resolve();
     const now = Date.now();
     (loadFromCache as jest.Mock).mockReturnValueOnce({
-      timestamp: now - 10000,
+      timestamp: now - 20000,
       promise: new Promise(() => {})
     });
     (saveToCache as jest.Mock).mockReturnValueOnce(newCachedRequest);
@@ -38,7 +38,7 @@ describe("Cache Request", () => {
     expect(result).toBe(newCachedRequest);
   });
 
-  it("should not save to cache and return cached request if request was cached for less than 10 seconds", () => {
+  it("should not save to cache and return cached request if request was cached for less than 20 seconds", () => {
     const cachedRequest = Promise.resolve();
     const cachedResult = {
       timestamp: Date.now() - 9000,
