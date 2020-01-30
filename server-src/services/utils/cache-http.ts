@@ -4,7 +4,8 @@ import { ICacheResult } from "./__types__/ICacheResult";
 import { AxiosResponse } from "axios";
 
 function hasExpired(cacheResult: ICacheResult) {
-  return cacheResult.timestamp + 10000 <= Date.now();
+  const cacheTimeInMilSec = 20000;
+  return cacheResult.timestamp + cacheTimeInMilSec <= Date.now();
 }
 
 export default function cacheHttp<T extends any>(
