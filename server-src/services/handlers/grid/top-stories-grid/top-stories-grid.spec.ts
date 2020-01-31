@@ -65,73 +65,73 @@ describe("Top Stories grid handler", () => {
           gridBlocks: {
             [TopStoriesGridPositions.BigTopLeft]: {
               border: [],
-              columnSpan: 1,
               columnStart: 1,
-              rowSpan: 1,
-              rowStart: 1
+              columnSpan: 1,
+              rowStart: 1,
+              rowSpan: 1
             },
             [TopStoriesGridPositions.Right]: {
               border: [],
-              columnSpan: 1,
               columnStart: 1,
-              rowSpan: 1,
-              rowStart: 2
+              columnSpan: 1,
+              rowStart: 2,
+              rowSpan: 1
             },
             [TopStoriesGridPositions.FirstRow1]: {
               border: [],
-              columnSpan: 1,
               columnStart: 1,
-              rowSpan: 1,
-              rowStart: 3
+              columnSpan: 1,
+              rowStart: 3,
+              rowSpan: 1
             },
             [TopStoriesGridPositions.FirstRow2]: {
               border: [Border.top],
-              columnSpan: 1,
               columnStart: 1,
-              rowSpan: 1,
-              rowStart: 4
+              columnSpan: 1,
+              rowStart: 4,
+              rowSpan: 1
             },
             [TopStoriesGridPositions.FirstRow3]: {
               border: [Border.top],
-              columnSpan: 1,
               columnStart: 1,
-              rowSpan: 1,
-              rowStart: 5
+              columnSpan: 1,
+              rowStart: 5,
+              rowSpan: 1
             },
             [TopStoriesGridPositions.FirstRow4]: {
               border: [Border.top],
-              columnSpan: 1,
               columnStart: 1,
-              rowSpan: 1,
-              rowStart: 6
+              columnSpan: 1,
+              rowStart: 6,
+              rowSpan: 1
             },
             [TopStoriesGridPositions.SecondRow1]: {
               border: [Border.top],
-              columnSpan: 1,
               columnStart: 1,
-              rowSpan: 1,
-              rowStart: 7
+              columnSpan: 1,
+              rowStart: 7,
+              rowSpan: 1
             },
             [TopStoriesGridPositions.SecondRow2]: {
               border: [Border.top],
-              columnSpan: 1,
               columnStart: 1,
-              rowSpan: 1,
-              rowStart: 8
+              columnSpan: 1,
+              rowStart: 8,
+              rowSpan: 1
             },
             [TopStoriesGridPositions.SecondRow3]: {
               border: [Border.top],
-              columnSpan: 1,
               columnStart: 1,
-              rowSpan: 1,
-              rowStart: 9
+              columnSpan: 1,
+              rowStart: 9,
+              rowSpan: 1
             },
             [TopStoriesGridPositions.SecondRow4]: {
               border: [Border.top],
-              columnSpan: 1,
               columnStart: 1,
-              rowSpan: 1,
-              rowStart: 10
+              columnSpan: 1,
+              rowStart: 10,
+              rowSpan: 1
             }
           }
         },
@@ -143,73 +143,73 @@ describe("Top Stories grid handler", () => {
           gridBlocks: {
             [TopStoriesGridPositions.BigTopLeft]: {
               border: [Border.bottom],
-              columnSpan: 4,
               columnStart: 1,
-              rowSpan: 1,
-              rowStart: 1
+              columnSpan: 4,
+              rowStart: 1,
+              rowSpan: 1
             },
             [TopStoriesGridPositions.Right]: {
               border: [],
-              columnSpan: 1,
               columnStart: 5,
-              rowSpan: 3,
-              rowStart: 1
+              columnSpan: 1,
+              rowStart: 1,
+              rowSpan: 3
             },
             [TopStoriesGridPositions.FirstRow1]: {
               border: [],
-              columnSpan: 1,
               columnStart: 1,
-              rowSpan: 1,
-              rowStart: 2
+              columnSpan: 1,
+              rowStart: 2,
+              rowSpan: 1
             },
             [TopStoriesGridPositions.FirstRow2]: {
               border: [],
-              columnSpan: 1,
               columnStart: 2,
-              rowSpan: 1,
-              rowStart: 2
+              columnSpan: 1,
+              rowStart: 2,
+              rowSpan: 1
             },
             [TopStoriesGridPositions.FirstRow3]: {
               border: [],
-              columnSpan: 1,
               columnStart: 3,
-              rowSpan: 1,
-              rowStart: 2
+              columnSpan: 1,
+              rowStart: 2,
+              rowSpan: 1
             },
             [TopStoriesGridPositions.FirstRow4]: {
               border: [],
-              columnSpan: 1,
               columnStart: 4,
-              rowSpan: 1,
-              rowStart: 2
+              columnSpan: 1,
+              rowStart: 2,
+              rowSpan: 1
             },
             [TopStoriesGridPositions.SecondRow1]: {
               border: [],
-              columnSpan: 1,
               columnStart: 1,
-              rowSpan: 1,
-              rowStart: 3
+              columnSpan: 1,
+              rowStart: 3,
+              rowSpan: 1
             },
             [TopStoriesGridPositions.SecondRow2]: {
               border: [],
-              columnSpan: 1,
               columnStart: 2,
-              rowSpan: 1,
-              rowStart: 3
+              columnSpan: 1,
+              rowStart: 3,
+              rowSpan: 1
             },
             [TopStoriesGridPositions.SecondRow3]: {
               border: [],
-              columnSpan: 1,
               columnStart: 3,
-              rowSpan: 1,
-              rowStart: 3
+              columnSpan: 1,
+              rowStart: 3,
+              rowSpan: 1
             },
             [TopStoriesGridPositions.SecondRow4]: {
               border: [],
-              columnSpan: 1,
               columnStart: 4,
-              rowSpan: 1,
-              rowStart: 3
+              columnSpan: 1,
+              rowStart: 3,
+              rowSpan: 1
             }
           }
         }
