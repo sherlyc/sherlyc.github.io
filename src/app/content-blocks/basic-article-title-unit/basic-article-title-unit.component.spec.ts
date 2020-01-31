@@ -60,7 +60,9 @@ describe("BasicArticleTitleUnitComponent", () => {
     const headlineComponent = fixture.debugElement.query(
       By.directive(HeadlineComponent)
     );
-    expect(headlineComponent.nativeElement.textContent).toEqual(headline);
+    expect(headlineComponent.nativeElement.textContent.trim()).toEqual(
+      headline
+    );
     expect(headlineComponent.componentInstance).toHaveProperty(
       "headline",
       headline
