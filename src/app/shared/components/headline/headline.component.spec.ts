@@ -38,26 +38,8 @@ describe("Headline Component", () => {
     fixture.detectChanges();
 
     expect(
-      fixture.debugElement.query(By.css(".title")).nativeElement.textContent
+      fixture.debugElement.query(By.css("h3")).nativeElement.textContent.trim()
     ).toEqual(headline);
-  });
-
-  it("should render headline, time ago, and headline flags in correct order", () => {
-    component.headline = "Headline";
-    component.timeStamp = 1547601993;
-    component.headlineFlags = [HeadlineFlags.PHOTO];
-
-    fixture.detectChanges();
-
-    const headline = fixture.debugElement.query(By.css(".title")).nativeElement;
-    const timeAgo = fixture.debugElement.query(By.directive(TimeAgoComponent))
-      .nativeElement;
-    const headlineFlags = fixture.debugElement.query(
-      By.directive(HeadlineFlagComponent)
-    ).nativeElement;
-
-    expect(headline.nextElementSibling).toBe(timeAgo);
-    expect(timeAgo.nextElementSibling).toBe(headlineFlags);
   });
 
   it("should not display time ago when not provided", () => {
