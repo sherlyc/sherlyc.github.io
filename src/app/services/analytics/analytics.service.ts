@@ -172,11 +172,12 @@ export class AnalyticsService implements IAnalyticsService {
     await this.dtmService.getLoadedPromise(LoadedEvent.nielsenLoaded);
 
     try {
-      this.windowService
-        .getWindow()
-        .nol_t({ cid: "nz-stuff", content: "0", server: "secure-nz" })
-        .record()
-        .post();
+      const { nol_t } = this.windowService.getWindow();
+      if (nol_t) {
+        nol_t({ cid: "nz-stuff", content: "0", server: "secure-nz" })
+          .record()
+          .post();
+      }
     } catch (err) {
       this.logger.error(err, "AnalyticsService - trackPageByNielsen error");
     }
