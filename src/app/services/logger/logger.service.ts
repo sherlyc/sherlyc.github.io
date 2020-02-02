@@ -77,7 +77,7 @@ export class LoggerService implements ErrorHandler {
     this.client.configureScope((scope) => {
       scope.setTags(correlation as any);
     });
-    this.client.captureException(error);
+    this.client.captureException(error, { data: rest });
     this.log("error", error, ...rest);
   }
 
