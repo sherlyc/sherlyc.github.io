@@ -16,6 +16,7 @@ export enum HandlerInputType {
   Feature = "Feature",
   ForceUpdate = "ForceUpdate",
   Recommendations = "Recommendations",
+  TopStoriesGrid = "TopStoriesGrid",
   NewsSix = "NewsSix",
   NewsSixGrid = "NewsSixGrid",
   SixImage = "SixImage",
