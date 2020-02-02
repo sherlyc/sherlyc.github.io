@@ -68,7 +68,7 @@ describe("ImageLinkUnitComponent", () => {
     expect(a!.getAttribute("href")).toEqual(articleData.linkUrl);
 
     const h3 = componentElement.querySelector("h3");
-    expect(h3!.textContent).toEqual(articleData.indexHeadline);
+    expect(h3!.textContent!.trim()).toEqual(articleData.indexHeadline);
 
     const img = componentElement.querySelector("img");
     expect(img!.getAttribute("src")).toEqual(articleData.imageSrc);
