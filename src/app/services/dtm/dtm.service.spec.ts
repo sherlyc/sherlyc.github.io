@@ -55,7 +55,7 @@ describe("DtmService", () => {
     expect(scriptInjectorService.load).not.toHaveBeenCalled();
   });
 
-  it("should delegate to script injector to load launch script on setup when feature switch is on", async () => {
+  it("should delegate to script injector to load launch script on setup", async () => {
     runtimeService.isServer.mockReturnValue(false);
     windowService.getWindow.mockReturnValue({});
     scriptInjectorService.load.mockImplementation(() => {
