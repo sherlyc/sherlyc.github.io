@@ -17,7 +17,6 @@ export interface IEnvironmentDefinition {
   loggerOptions: ILoggerOptions;
   aadSdkUrl: string;
   sentryIO: { dsn: string; sampleRate: number; environment: string };
-  dtmUrl: string;
   launchUrl: string;
   loginLibrary: ILoginLibraryConfig;
   redirectUrl: string;
