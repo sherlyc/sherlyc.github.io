@@ -8,6 +8,11 @@ import { layoutRetriever } from "../../../adapters/layout/layout-retriever";
 import { LayoutType } from "../../../adapters/__types__/LayoutType";
 import { ITopStoriesDefaultOneHandlerInput } from "../../__types__/ITopStoriesDefaultOneHandlerInput";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
+import {
+  ITopStoriesGridHandlerInput,
+  TopStoriesGridPositions
+} from "../../__types__/ITopStoriesGridHandlerInput";
+import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -15,14 +20,39 @@ export default async function(
   params: IParams
 ): Promise<IContentBlock[]> {
   const layout = await layoutRetriever(params);
-  const articles = await getRawArticles(Strap.TopStories, 11, params);
+  const maxRequiredArticles = 11;
+  const articles = await getRawArticles(
+    Strap.TopStories,
+    maxRequiredArticles,
+    params
+  );
   if (layout === LayoutType.DEFAULT) {
     const topStoriesDefaultOneHandlerInput: ITopStoriesDefaultOneHandlerInput = {
       type: HandlerInputType.TopStoriesDefaultOne,
       strapName,
-      articles: articles.slice(0, 2)
+      articles: articles.splice(0, 2)
     };
-    return handlerRunner(topStoriesDefaultOneHandlerInput, params);
+    const bigTopLeftContent = await handlerRunner(
+      topStoriesDefaultOneHandlerInput,
+      params
+    );
+    const topStoriesGridInput: ITopStoriesGridHandlerInput = {
+      type: HandlerInputType.TopStoriesGrid,
+      content: {
+        [TopStoriesGridPositions.BigTopLeft]: bigTopLeftContent,
+        [TopStoriesGridPositions.Right]: [basicAdUnit(strapName)],
+        [TopStoriesGridPositions.FirstRow1]: [basicAdUnit(strapName)],
+        [TopStoriesGridPositions.FirstRow2]: [basicAdUnit(strapName)],
+        [TopStoriesGridPositions.FirstRow3]: [basicAdUnit(strapName)],
+        [TopStoriesGridPositions.FirstRow4]: [basicAdUnit(strapName)],
+        [TopStoriesGridPositions.SecondRow1]: [basicAdUnit(strapName)],
+        [TopStoriesGridPositions.SecondRow2]: [basicAdUnit(strapName)],
+        [TopStoriesGridPositions.SecondRow3]: [basicAdUnit(strapName)],
+        [TopStoriesGridPositions.SecondRow4]: [basicAdUnit(strapName)]
+      }
+    };
+    return await handlerRunner(topStoriesGridInput, params);
   }
+
   return [];
 }

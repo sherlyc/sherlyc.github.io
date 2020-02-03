@@ -8,6 +8,14 @@ import { Strap } from "../../../strap";
 import { layoutRetriever } from "../../../adapters/layout/layout-retriever";
 import { LayoutType } from "../../../adapters/__types__/LayoutType";
 import { ITopStoriesDefaultOneHandlerInput } from "../../__types__/ITopStoriesDefaultOneHandlerInput";
+import {
+  ITopStoriesGridHandlerInput,
+  TopStoriesGridPositions
+} from "../../__types__/ITopStoriesGridHandlerInput";
+import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../adapters/layout/layout-retriever");
@@ -35,6 +43,10 @@ describe("Top Stories", () => {
     headlineFlags: [],
     sixteenByNineSrc: null
   };
+  const basicAdUnit: IBasicAdUnit = {
+    type: ContentBlockType.BasicAdUnit,
+    context: strapName
+  };
 
   it("should retrieve articles and layout", async () => {
     (getRawArticles as jest.Mock).mockResolvedValue(
@@ -52,10 +64,16 @@ describe("Top Stories", () => {
     expect(layoutRetriever).toHaveBeenCalledWith(params);
   });
 
-  it("should call top stories default one when layout is default", async () => {
+  it("should call top stories default one when layout is default and call top stories grid", async () => {
     const articles = new Array(11).fill(article);
     (getRawArticles as jest.Mock).mockResolvedValue(articles);
     (layoutRetriever as jest.Mock).mockResolvedValue(LayoutType.DEFAULT);
+    const topStoriesDefaultOneResult = {
+      type: ContentBlockType.GridContainer
+    };
+    handlerRunnerMock.mockResolvedValue([
+      topStoriesDefaultOneResult as IGridContainer
+    ]);
 
     const handlerInput: ITopStoriesHandlerInput = {
       type: HandlerInputType.TopStories,
@@ -64,14 +82,33 @@ describe("Top Stories", () => {
 
     await topStoriesHandler(handlerRunnerMock, handlerInput, params);
 
+    const [
+      [topStoriesDefaultOneCall],
+      [topStoriesGridCall]
+    ] = handlerRunnerMock.mock.calls;
     const topStoriesDefaultOneHandlerInput: ITopStoriesDefaultOneHandlerInput = {
       type: HandlerInputType.TopStoriesDefaultOne,
       strapName,
       articles: articles.slice(0, 2)
     };
-    expect(handlerRunnerMock).toHaveBeenCalledWith(
-      topStoriesDefaultOneHandlerInput,
-      params
-    );
+    expect(topStoriesDefaultOneCall).toEqual(topStoriesDefaultOneHandlerInput);
+    const topStoriesGridHandlerInput: ITopStoriesGridHandlerInput = {
+      type: HandlerInputType.TopStoriesGrid,
+      content: {
+        [TopStoriesGridPositions.BigTopLeft]: [
+          topStoriesDefaultOneResult as IContentBlock
+        ],
+        [TopStoriesGridPositions.Right]: [basicAdUnit],
+        [TopStoriesGridPositions.FirstRow1]: [basicAdUnit],
+        [TopStoriesGridPositions.FirstRow2]: [basicAdUnit],
+        [TopStoriesGridPositions.FirstRow3]: [basicAdUnit],
+        [TopStoriesGridPositions.FirstRow4]: [basicAdUnit],
+        [TopStoriesGridPositions.SecondRow1]: [basicAdUnit],
+        [TopStoriesGridPositions.SecondRow2]: [basicAdUnit],
+        [TopStoriesGridPositions.SecondRow3]: [basicAdUnit],
+        [TopStoriesGridPositions.SecondRow4]: [basicAdUnit]
+      }
+    };
+    expect(topStoriesGridCall).toEqual(topStoriesGridHandlerInput);
   });
 });
