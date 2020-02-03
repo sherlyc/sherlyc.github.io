@@ -49,7 +49,7 @@ export class FeatureSwitchService {
           featureName,
           lotteryNumber,
           this.device.getDevice()
-        ).toPromise();
+        );
         return {
           [featureName]: isFeatureEnabled
         };
@@ -61,22 +61,30 @@ export class FeatureSwitchService {
     ) as { [key in FeatureName]: boolean };
   }
 
-  private isFeatureEnabled(
+  private async isFeatureEnabled(
     featureName: string,
     lotteryNumber: number,
     deviceType: string
-  ): Observable<boolean> {
-    return this.http
-      .get<boolean>(
-        `${
-          this.config.getConfig().featureAPI
-        }/${featureName}/${lotteryNumber}/${deviceType}`
-      )
-      .pipe(
-        catchError((error: HttpErrorResponse) => {
-          this.logger.warn(`Feature Switch Service Error - ${error}`);
-          return of(false);
-        })
-      );
+  ): Promise<boolean> {
+    const cacheKey = `cache-${featureName}-${lotteryNumber}-${deviceType}`;
+    const cachedValue = this.store.get<boolean>(cacheKey);
+    const loadPromise = (async () => {
+      const result = await this.http
+        .get<boolean>(
+          `${
+            this.config.getConfig().featureAPI
+          }/${featureName}/${lotteryNumber}/${deviceType}`
+        )
+        .pipe(
+          catchError((error: HttpErrorResponse) => {
+            this.logger.warn(`Feature Switch Service Error - ${error}`);
+            return of(false);
+          })
+        )
+        .toPromise();
+      this.store.set(cacheKey, result);
+      return result;
+    })();
+    return cachedValue !== undefined ? !!cachedValue : loadPromise;
   }
 }
