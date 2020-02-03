@@ -194,7 +194,7 @@ describe("Relevant Stories", () => {
 
     const adUnit: IBasicAdUnit = {
       type: ContentBlockType.BasicAdUnit,
-      context: "homepage-editors-picks"
+      context: "homepageEditorsPicks"
     };
 
     expect(columnGridCall.content[3]).toEqual([adUnit]);

@@ -86,7 +86,7 @@ export default async function(
         "pizzaz",
         params
       ),
-      [basicAdUnit("homepage-editors-picks")]
+      [basicAdUnit("homepageEditorsPicks")]
     ])
   };
 
