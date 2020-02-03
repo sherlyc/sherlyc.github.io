@@ -7,6 +7,7 @@ import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { Strap } from "../../../strap";
 import { layoutRetriever } from "../../../adapters/layout/layout-retriever";
 import { LayoutType } from "../../../adapters/__types__/LayoutType";
+import { ITopStoriesDefaultOneHandlerInput } from "../../__types__/ITopStoriesDefaultOneHandlerInput";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../adapters/layout/layout-retriever");
@@ -18,6 +19,7 @@ describe("Top Stories", () => {
 
   const handlerRunnerMock = jest.fn();
   const params: IParams = { apiRequestId: "123" };
+  const strapName = "Top Stories";
   const article: IRawArticle = {
     id: "1",
     indexHeadline: "Headline 1",
@@ -41,12 +43,35 @@ describe("Top Stories", () => {
     (layoutRetriever as jest.Mock).mockResolvedValue(LayoutType.DEFAULT);
     const handlerInput: ITopStoriesHandlerInput = {
       type: HandlerInputType.TopStories,
-      strapName: "Top Stories"
+      strapName
     };
 
     await topStoriesHandler(handlerRunnerMock, handlerInput, params);
 
     expect(getRawArticles).toHaveBeenCalledWith(Strap.TopStories, 11, params);
     expect(layoutRetriever).toHaveBeenCalledWith(params);
+  });
+
+  it("should call top stories default one when layout is default", async () => {
+    const articles = new Array(11).fill(article);
+    (getRawArticles as jest.Mock).mockResolvedValue(articles);
+    (layoutRetriever as jest.Mock).mockResolvedValue(LayoutType.DEFAULT);
+
+    const handlerInput: ITopStoriesHandlerInput = {
+      type: HandlerInputType.TopStories,
+      strapName
+    };
+
+    await topStoriesHandler(handlerRunnerMock, handlerInput, params);
+
+    const topStoriesDefaultOneHandlerInput: ITopStoriesDefaultOneHandlerInput = {
+      type: HandlerInputType.TopStoriesDefaultOne,
+      strapName,
+      articles: articles.slice(0, 2)
+    };
+    expect(handlerRunnerMock).toHaveBeenCalledWith(
+      topStoriesDefaultOneHandlerInput,
+      params
+    );
   });
 });

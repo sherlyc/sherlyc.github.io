@@ -24,6 +24,8 @@ import { IListGridHandlerInput } from "./IListGridHandlerInput";
 import { IThreeColumnHandlerInput } from "./IThreeColumnHandlerInput";
 import { IColumnGridHandlerInput } from "./IColumnGridHandlerInput";
 import { IForceUpdateHandlerInput } from "./IForceUpdateHandlerInput";
+import { ITopStoriesHandlerInput } from "./ITopStoriesHandlerInput";
+import { ITopStoriesDefaultOneHandlerInput } from "./ITopStoriesDefaultOneHandlerInput";
 
 export type HandlerInput =
   | ITopStoriesArticleListHandlerInput
@@ -43,6 +45,8 @@ export type HandlerInput =
   | IExperimentHandlerInput
   | IFeatureHandlerInput
   | IRecommendationsHandlerInput
+  | ITopStoriesHandlerInput
+  | ITopStoriesDefaultOneHandlerInput
   | INewsSixHandlerInput
   | INewsSixGridHandlerInput
   | ISixImageHandlerInput
