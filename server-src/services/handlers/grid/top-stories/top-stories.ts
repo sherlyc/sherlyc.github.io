@@ -34,7 +34,10 @@ export default async function(
     const topStoriesDefaultOneHandlerInput: ITopStoriesDefaultOneHandlerInput = {
       type: HandlerInputType.TopStoriesDefaultOne,
       strapName,
-      articles: articles.splice(0, 2)
+      articles: [
+        articles.shift() as IRawArticle,
+        articles.shift() as IRawArticle
+      ]
     };
     const bigTopLeftContent = await handlerRunner(
       topStoriesDefaultOneHandlerInput,
@@ -47,12 +50,17 @@ export default async function(
         [TopStoriesGridPositions.Right]: [basicAdUnit(strapName)],
         [TopStoriesGridPositions.FirstRow1]: [
           await contentErrorHandler(
-            () =>
-              bigImageArticleUnit(
-                articles.shift() as IRawArticle,
+            () => {
+              const article = JSON.parse(
+                JSON.stringify(articles.shift() as IRawArticle)
+              );
+              console.log(articles.length, article.id);
+              return bigImageArticleUnit(
+                article,
                 strapName,
                 BigImageArticleUnitLayout.module
-              ),
+              );
+            },
             HandlerInputType.TopStories,
             Strap.TopStories,
             params
@@ -60,12 +68,17 @@ export default async function(
         ],
         [TopStoriesGridPositions.FirstRow2]: [
           await contentErrorHandler(
-            () =>
-              bigImageArticleUnit(
-                articles.shift() as IRawArticle,
+            () => {
+              const article = JSON.parse(
+                JSON.stringify(articles.shift() as IRawArticle)
+              );
+              console.log(articles.length, article.id);
+              return bigImageArticleUnit(
+                article,
                 strapName,
                 BigImageArticleUnitLayout.module
-              ),
+              );
+            },
             HandlerInputType.TopStories,
             Strap.TopStories,
             params
@@ -73,12 +86,17 @@ export default async function(
         ],
         [TopStoriesGridPositions.FirstRow3]: [
           await contentErrorHandler(
-            () =>
-              bigImageArticleUnit(
-                articles.shift() as IRawArticle,
+            () => {
+              const article = JSON.parse(
+                JSON.stringify(articles.shift() as IRawArticle)
+              );
+              console.log(articles.length, article.id);
+              return bigImageArticleUnit(
+                article,
                 strapName,
                 BigImageArticleUnitLayout.module
-              ),
+              );
+            },
             HandlerInputType.TopStories,
             Strap.TopStories,
             params
@@ -86,12 +104,17 @@ export default async function(
         ],
         [TopStoriesGridPositions.FirstRow4]: [
           await contentErrorHandler(
-            () =>
-              bigImageArticleUnit(
-                articles.shift() as IRawArticle,
+            () => {
+              const article = JSON.parse(
+                JSON.stringify(articles.shift() as IRawArticle)
+              );
+              console.log(articles.length, article.id);
+              return bigImageArticleUnit(
+                article,
                 strapName,
                 BigImageArticleUnitLayout.module
-              ),
+              );
+            },
             HandlerInputType.TopStories,
             Strap.TopStories,
             params
@@ -99,12 +122,17 @@ export default async function(
         ],
         [TopStoriesGridPositions.SecondRow1]: [
           await contentErrorHandler(
-            () =>
-              bigImageArticleUnit(
-                articles.shift() as IRawArticle,
+            () => {
+              const article = JSON.parse(
+                JSON.stringify(articles.shift() as IRawArticle)
+              );
+              console.log(articles.length, article.id);
+              return bigImageArticleUnit(
+                article,
                 strapName,
                 BigImageArticleUnitLayout.module
-              ),
+              );
+            },
             HandlerInputType.TopStories,
             Strap.TopStories,
             params
@@ -112,12 +140,17 @@ export default async function(
         ],
         [TopStoriesGridPositions.SecondRow2]: [
           await contentErrorHandler(
-            () =>
-              bigImageArticleUnit(
-                articles.shift() as IRawArticle,
+            () => {
+              const article = JSON.parse(
+                JSON.stringify(articles.shift() as IRawArticle)
+              );
+              console.log(articles.length, article.id);
+              return bigImageArticleUnit(
+                article,
                 strapName,
                 BigImageArticleUnitLayout.module
-              ),
+              );
+            },
             HandlerInputType.TopStories,
             Strap.TopStories,
             params
@@ -125,12 +158,17 @@ export default async function(
         ],
         [TopStoriesGridPositions.SecondRow3]: [
           await contentErrorHandler(
-            () =>
-              bigImageArticleUnit(
-                articles.shift() as IRawArticle,
+            () => {
+              const article = JSON.parse(
+                JSON.stringify(articles.shift() as IRawArticle)
+              );
+              console.log(articles.length, article.id);
+              return bigImageArticleUnit(
+                article,
                 strapName,
                 BigImageArticleUnitLayout.module
-              ),
+              );
+            },
             HandlerInputType.TopStories,
             Strap.TopStories,
             params
@@ -138,12 +176,17 @@ export default async function(
         ],
         [TopStoriesGridPositions.SecondRow4]: [
           await contentErrorHandler(
-            () =>
-              bigImageArticleUnit(
-                articles.shift() as IRawArticle,
+            () => {
+              const article = JSON.parse(
+                JSON.stringify(articles.shift() as IRawArticle)
+              );
+              console.log(articles.length, article.id);
+              return bigImageArticleUnit(
+                article,
                 strapName,
                 BigImageArticleUnitLayout.module
-              ),
+              );
+            },
             HandlerInputType.TopStories,
             Strap.TopStories,
             params
