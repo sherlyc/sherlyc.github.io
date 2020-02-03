@@ -4,14 +4,14 @@ import { ContentBlockType } from "../../../../../common/__types__/ContentBlockTy
 import { IBasicArticleTitleUnit } from "../../../../../common/__types__/IBasicArticleTitleUnit";
 import { IParams } from "../../../__types__/IParams";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
-import { IThreeColumnHandlerInput } from "../../__types__/IThreeColumnHandlerInput";
+import { IRelevantStoriesHandlerInput } from "../../__types__/IRelevantStoriesHandlerInput";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
-import threeColumnHandler from "./three-column";
+import relevantStoriesHandler from "./relevant-stories";
 import { Strap } from "../../../strap";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 
-describe("Three column", () => {
+describe("Relevant Stories", () => {
   const handlerRunnerMock = jest.fn();
   const params: IParams = { apiRequestId: "123" };
 
@@ -52,12 +52,12 @@ describe("Three column", () => {
       new Array(totalArticles).fill(article)
     );
 
-    const input: IThreeColumnHandlerInput = {
-      type: HandlerInputType.ThreeColumn
+    const input: IRelevantStoriesHandlerInput = {
+      type: HandlerInputType.RelevantStories
     };
 
     handlerRunnerMock.mockResolvedValue([]);
-    await threeColumnHandler(handlerRunnerMock, input, params);
+    await relevantStoriesHandler(handlerRunnerMock, input, params);
 
     expect(getRawArticles).toHaveBeenCalledTimes(3);
     expect(getRawArticles).toHaveBeenCalledWith(
@@ -82,11 +82,11 @@ describe("Three column", () => {
     const fakeListGrid = { type: ContentBlockType.GridContainer };
     handlerRunnerMock.mockResolvedValue(fakeListGrid);
 
-    const input: IThreeColumnHandlerInput = {
-      type: HandlerInputType.ThreeColumn
+    const input: IRelevantStoriesHandlerInput = {
+      type: HandlerInputType.RelevantStories
     };
 
-    await threeColumnHandler(handlerRunnerMock, input, params);
+    await relevantStoriesHandler(handlerRunnerMock, input, params);
 
     const [
       [firstListGridCall],
@@ -114,11 +114,11 @@ describe("Three column", () => {
     const fakeListGrid = { type: ContentBlockType.GridContainer };
     handlerRunnerMock.mockResolvedValue(fakeListGrid);
 
-    const input: IThreeColumnHandlerInput = {
-      type: HandlerInputType.ThreeColumn
+    const input: IRelevantStoriesHandlerInput = {
+      type: HandlerInputType.RelevantStories
     };
 
-    await threeColumnHandler(handlerRunnerMock, input, params);
+    await relevantStoriesHandler(handlerRunnerMock, input, params);
 
     const [
       [listGridCall],
@@ -146,11 +146,11 @@ describe("Three column", () => {
     const fakeListGrid = { type: ContentBlockType.GridContainer };
     handlerRunnerMock.mockResolvedValue(fakeListGrid);
 
-    const input: IThreeColumnHandlerInput = {
-      type: HandlerInputType.ThreeColumn
+    const input: IRelevantStoriesHandlerInput = {
+      type: HandlerInputType.RelevantStories
     };
 
-    await threeColumnHandler(handlerRunnerMock, input, params);
+    await relevantStoriesHandler(handlerRunnerMock, input, params);
 
     const [
       [first],
@@ -188,11 +188,11 @@ describe("Three column", () => {
         type: ContentBlockType.GridContainer
       });
 
-      const input: IThreeColumnHandlerInput = {
-        type: HandlerInputType.ThreeColumn
+      const input: IRelevantStoriesHandlerInput = {
+        type: HandlerInputType.RelevantStories
       };
 
-      await threeColumnHandler(handlerRunnerMock, input, params);
+      await relevantStoriesHandler(handlerRunnerMock, input, params);
 
       const [
         [secondColumn],
@@ -218,11 +218,11 @@ describe("Three column", () => {
         type: ContentBlockType.GridContainer
       });
 
-      const input: IThreeColumnHandlerInput = {
-        type: HandlerInputType.ThreeColumn
+      const input: IRelevantStoriesHandlerInput = {
+        type: HandlerInputType.RelevantStories
       };
 
-      await threeColumnHandler(handlerRunnerMock, input, params);
+      await relevantStoriesHandler(handlerRunnerMock, input, params);
 
       const [
         [firstColumn],
@@ -248,11 +248,11 @@ describe("Three column", () => {
         type: ContentBlockType.GridContainer
       });
 
-      const input: IThreeColumnHandlerInput = {
-        type: HandlerInputType.ThreeColumn
+      const input: IRelevantStoriesHandlerInput = {
+        type: HandlerInputType.RelevantStories
       };
 
-      await threeColumnHandler(handlerRunnerMock, input, params);
+      await relevantStoriesHandler(handlerRunnerMock, input, params);
 
       const [
         [firstColumn],

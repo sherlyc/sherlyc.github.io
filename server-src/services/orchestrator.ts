@@ -73,7 +73,7 @@ const newPage = (): HandlerInput[] => [
     sourceId: Strap.TopStories
   },
   {
-    type: HandlerInputType.ThreeColumn
+    type: HandlerInputType.RelevantStories
   },
   {
     type: HandlerInputType.SixImage,

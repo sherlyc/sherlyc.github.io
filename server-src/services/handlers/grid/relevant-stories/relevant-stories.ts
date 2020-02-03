@@ -3,7 +3,7 @@ import { IColumnGridHandlerInput } from "../../__types__/IColumnGridHandlerInput
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { handlerRunnerFunction } from "../../runner";
 import { IParams } from "../../../__types__/IParams";
-import { IThreeColumnHandlerInput } from "../../__types__/IThreeColumnHandlerInput";
+import { IRelevantStoriesHandlerInput } from "../../__types__/IRelevantStoriesHandlerInput";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { Strap } from "../../../strap";
 import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
@@ -42,7 +42,7 @@ const getColumnContent = async (
         ))
       ];
     },
-    HandlerInputType.ThreeColumn,
+    HandlerInputType.RelevantStories,
     sourceId,
     params
   );
@@ -50,12 +50,12 @@ const getColumnContent = async (
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  {}: IThreeColumnHandlerInput,
+  {}: IRelevantStoriesHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   const totalArticles = 8;
 
-  const threeColumnGridHandlerInput: IColumnGridHandlerInput = {
+  const relevantStoriesGridHandlerInput: IColumnGridHandlerInput = {
     type: HandlerInputType.ColumnGrid,
     content: await Promise.all([
       getColumnContent(
@@ -88,5 +88,5 @@ export default async function(
     ])
   };
 
-  return await handlerRunner(threeColumnGridHandlerInput, params);
+  return await handlerRunner(relevantStoriesGridHandlerInput, params);
 }
