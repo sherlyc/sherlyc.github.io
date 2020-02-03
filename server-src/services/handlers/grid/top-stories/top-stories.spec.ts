@@ -16,6 +16,10 @@ import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import {
+  IBigImageArticleUnit,
+  BigImageArticleUnitLayout
+} from "../../../../../common/__types__/IBigImageArticleUnit";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../adapters/layout/layout-retriever");
@@ -23,6 +27,10 @@ jest.mock("../../../adapters/layout/layout-retriever");
 describe("Top Stories", () => {
   beforeEach(() => {
     jest.resetAllMocks();
+
+    (getRawArticles as jest.Mock).mockResolvedValue(
+      new Array(11).fill(article)
+    );
   });
 
   const handlerRunnerMock = jest.fn();
@@ -41,74 +49,100 @@ describe("Top Stories", () => {
     strapImageSrcSet: "strap1.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: [],
-    sixteenByNineSrc: null
+    sixteenByNineSrc: "sixteenByNineSrc.jpg"
   };
   const basicAdUnit: IBasicAdUnit = {
     type: ContentBlockType.BasicAdUnit,
     context: strapName
   };
+  const articleAsBigImage: IBigImageArticleUnit = {
+    type: ContentBlockType.BigImageArticleUnit,
+    id: "1",
+    strapName,
+    indexHeadline: "Headline 1",
+    title: "Title One",
+    introText: "Intro 1",
+    linkUrl: "/link1",
+    imageSrc: "sixteenByNineSrc.jpg",
+    imageSrcSet: "strap1.jpg 1w",
+    layout: BigImageArticleUnitLayout.module,
+    lastPublishedTime: 1,
+    headlineFlags: []
+  };
 
-  it("should retrieve articles and layout", async () => {
-    (getRawArticles as jest.Mock).mockResolvedValue(
-      new Array(11).fill(article)
-    );
-    (layoutRetriever as jest.Mock).mockResolvedValue(LayoutType.DEFAULT);
-    const handlerInput: ITopStoriesHandlerInput = {
-      type: HandlerInputType.TopStories,
-      strapName
-    };
+  describe("when layout is Default One", () => {
+    beforeEach(() => {
+      (layoutRetriever as jest.Mock).mockResolvedValue(LayoutType.DEFAULT);
+    });
 
-    await topStoriesHandler(handlerRunnerMock, handlerInput, params);
+    it("should retrieve articles and layout", async () => {
+      const handlerInput: ITopStoriesHandlerInput = {
+        type: HandlerInputType.TopStories,
+        strapName
+      };
 
-    expect(getRawArticles).toHaveBeenCalledWith(Strap.TopStories, 11, params);
-    expect(layoutRetriever).toHaveBeenCalledWith(params);
-  });
+      await topStoriesHandler(handlerRunnerMock, handlerInput, params);
 
-  it("should call top stories default one when layout is default and call top stories grid", async () => {
-    const articles = new Array(11).fill(article);
-    (getRawArticles as jest.Mock).mockResolvedValue(articles);
-    (layoutRetriever as jest.Mock).mockResolvedValue(LayoutType.DEFAULT);
-    const topStoriesDefaultOneResult = {
-      type: ContentBlockType.GridContainer
-    };
-    handlerRunnerMock.mockResolvedValue([
-      topStoriesDefaultOneResult as IGridContainer
-    ]);
+      expect(getRawArticles).toHaveBeenCalledWith(Strap.TopStories, 11, params);
+      expect(layoutRetriever).toHaveBeenCalledWith(params);
+    });
 
-    const handlerInput: ITopStoriesHandlerInput = {
-      type: HandlerInputType.TopStories,
-      strapName
-    };
+    it("should call top stories default one", async () => {
+      const handlerInput: ITopStoriesHandlerInput = {
+        type: HandlerInputType.TopStories,
+        strapName
+      };
 
-    await topStoriesHandler(handlerRunnerMock, handlerInput, params);
+      await topStoriesHandler(handlerRunnerMock, handlerInput, params);
 
-    const [
-      [topStoriesDefaultOneCall],
-      [topStoriesGridCall]
-    ] = handlerRunnerMock.mock.calls;
-    const topStoriesDefaultOneHandlerInput: ITopStoriesDefaultOneHandlerInput = {
-      type: HandlerInputType.TopStoriesDefaultOne,
-      strapName,
-      articles: articles.slice(0, 2)
-    };
-    expect(topStoriesDefaultOneCall).toEqual(topStoriesDefaultOneHandlerInput);
-    const topStoriesGridHandlerInput: ITopStoriesGridHandlerInput = {
-      type: HandlerInputType.TopStoriesGrid,
-      content: {
-        [TopStoriesGridPositions.BigTopLeft]: [
-          topStoriesDefaultOneResult as IContentBlock
-        ],
-        [TopStoriesGridPositions.Right]: [basicAdUnit],
-        [TopStoriesGridPositions.FirstRow1]: [basicAdUnit],
-        [TopStoriesGridPositions.FirstRow2]: [basicAdUnit],
-        [TopStoriesGridPositions.FirstRow3]: [basicAdUnit],
-        [TopStoriesGridPositions.FirstRow4]: [basicAdUnit],
-        [TopStoriesGridPositions.SecondRow1]: [basicAdUnit],
-        [TopStoriesGridPositions.SecondRow2]: [basicAdUnit],
-        [TopStoriesGridPositions.SecondRow3]: [basicAdUnit],
-        [TopStoriesGridPositions.SecondRow4]: [basicAdUnit]
-      }
-    };
-    expect(topStoriesGridCall).toEqual(topStoriesGridHandlerInput);
+      const [[topStoriesDefaultOneCall]] = handlerRunnerMock.mock.calls;
+      const topStoriesDefaultOneHandlerInput: ITopStoriesDefaultOneHandlerInput = {
+        type: HandlerInputType.TopStoriesDefaultOne,
+        strapName,
+        articles: [article, article]
+      };
+      expect(topStoriesDefaultOneCall).toEqual(
+        topStoriesDefaultOneHandlerInput
+      );
+    });
+
+    it("should call top stories grid", async () => {
+      const topStoriesDefaultOneResult = {
+        type: ContentBlockType.GridContainer
+      };
+      handlerRunnerMock.mockResolvedValueOnce([
+        topStoriesDefaultOneResult as IGridContainer
+      ]);
+
+      const handlerInput: ITopStoriesHandlerInput = {
+        type: HandlerInputType.TopStories,
+        strapName
+      };
+
+      await topStoriesHandler(handlerRunnerMock, handlerInput, params);
+
+      const topStoriesGridHandlerInput: ITopStoriesGridHandlerInput = {
+        type: HandlerInputType.TopStoriesGrid,
+        content: {
+          [TopStoriesGridPositions.BigTopLeft]: [
+            topStoriesDefaultOneResult as IContentBlock
+          ],
+          [TopStoriesGridPositions.Right]: [basicAdUnit],
+          [TopStoriesGridPositions.FirstRow1]: [articleAsBigImage],
+          [TopStoriesGridPositions.FirstRow2]: [articleAsBigImage],
+          [TopStoriesGridPositions.FirstRow3]: [articleAsBigImage],
+          [TopStoriesGridPositions.FirstRow4]: [articleAsBigImage],
+          [TopStoriesGridPositions.SecondRow1]: [articleAsBigImage],
+          [TopStoriesGridPositions.SecondRow2]: [articleAsBigImage],
+          [TopStoriesGridPositions.SecondRow3]: [articleAsBigImage],
+          [TopStoriesGridPositions.SecondRow4]: [articleAsBigImage]
+        }
+      };
+      expect(handlerRunnerMock).toHaveBeenNthCalledWith(
+        2,
+        topStoriesGridHandlerInput,
+        params
+      );
+    });
   });
 });

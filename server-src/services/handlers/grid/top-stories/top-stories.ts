@@ -13,6 +13,10 @@ import {
   TopStoriesGridPositions
 } from "../../__types__/ITopStoriesGridHandlerInput";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
+import { contentErrorHandler } from "../content-error-handler";
+import { bigImageArticleUnit } from "../../../adapters/article-converter/big-image-article.converter";
+import { BigImageArticleUnitLayout } from "../../../../../common/__types__/IBigImageArticleUnit";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -41,14 +45,110 @@ export default async function(
       content: {
         [TopStoriesGridPositions.BigTopLeft]: bigTopLeftContent,
         [TopStoriesGridPositions.Right]: [basicAdUnit(strapName)],
-        [TopStoriesGridPositions.FirstRow1]: [basicAdUnit(strapName)],
-        [TopStoriesGridPositions.FirstRow2]: [basicAdUnit(strapName)],
-        [TopStoriesGridPositions.FirstRow3]: [basicAdUnit(strapName)],
-        [TopStoriesGridPositions.FirstRow4]: [basicAdUnit(strapName)],
-        [TopStoriesGridPositions.SecondRow1]: [basicAdUnit(strapName)],
-        [TopStoriesGridPositions.SecondRow2]: [basicAdUnit(strapName)],
-        [TopStoriesGridPositions.SecondRow3]: [basicAdUnit(strapName)],
-        [TopStoriesGridPositions.SecondRow4]: [basicAdUnit(strapName)]
+        [TopStoriesGridPositions.FirstRow1]: [
+          await contentErrorHandler(
+            () =>
+              bigImageArticleUnit(
+                articles.shift() as IRawArticle,
+                strapName,
+                BigImageArticleUnitLayout.module
+              ),
+            HandlerInputType.TopStories,
+            Strap.TopStories,
+            params
+          )
+        ],
+        [TopStoriesGridPositions.FirstRow2]: [
+          await contentErrorHandler(
+            () =>
+              bigImageArticleUnit(
+                articles.shift() as IRawArticle,
+                strapName,
+                BigImageArticleUnitLayout.module
+              ),
+            HandlerInputType.TopStories,
+            Strap.TopStories,
+            params
+          )
+        ],
+        [TopStoriesGridPositions.FirstRow3]: [
+          await contentErrorHandler(
+            () =>
+              bigImageArticleUnit(
+                articles.shift() as IRawArticle,
+                strapName,
+                BigImageArticleUnitLayout.module
+              ),
+            HandlerInputType.TopStories,
+            Strap.TopStories,
+            params
+          )
+        ],
+        [TopStoriesGridPositions.FirstRow4]: [
+          await contentErrorHandler(
+            () =>
+              bigImageArticleUnit(
+                articles.shift() as IRawArticle,
+                strapName,
+                BigImageArticleUnitLayout.module
+              ),
+            HandlerInputType.TopStories,
+            Strap.TopStories,
+            params
+          )
+        ],
+        [TopStoriesGridPositions.SecondRow1]: [
+          await contentErrorHandler(
+            () =>
+              bigImageArticleUnit(
+                articles.shift() as IRawArticle,
+                strapName,
+                BigImageArticleUnitLayout.module
+              ),
+            HandlerInputType.TopStories,
+            Strap.TopStories,
+            params
+          )
+        ],
+        [TopStoriesGridPositions.SecondRow2]: [
+          await contentErrorHandler(
+            () =>
+              bigImageArticleUnit(
+                articles.shift() as IRawArticle,
+                strapName,
+                BigImageArticleUnitLayout.module
+              ),
+            HandlerInputType.TopStories,
+            Strap.TopStories,
+            params
+          )
+        ],
+        [TopStoriesGridPositions.SecondRow3]: [
+          await contentErrorHandler(
+            () =>
+              bigImageArticleUnit(
+                articles.shift() as IRawArticle,
+                strapName,
+                BigImageArticleUnitLayout.module
+              ),
+            HandlerInputType.TopStories,
+            Strap.TopStories,
+            params
+          )
+        ],
+        [TopStoriesGridPositions.SecondRow4]: [
+          await contentErrorHandler(
+            () =>
+              bigImageArticleUnit(
+                articles.shift() as IRawArticle,
+                strapName,
+                BigImageArticleUnitLayout.module
+              ),
+            HandlerInputType.TopStories,
+            Strap.TopStories,
+            params
+          )
+        ]
       }
     };
     return await handlerRunner(topStoriesGridInput, params);
