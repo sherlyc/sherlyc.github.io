@@ -8,6 +8,7 @@ import { IRelevantStoriesHandlerInput } from "../../__types__/IRelevantStoriesHa
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import relevantStoriesHandler from "./relevant-stories";
 import { Strap } from "../../../strap";
+import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 
@@ -171,6 +172,32 @@ describe("Relevant Stories", () => {
       displayNameColor: "pizzaz"
     };
     expect(columnGridCall.content[2]).toEqual([title, fakeListGrid]);
+  });
+
+  it("should create column four with ad unit and pass it to column grid", async () => {
+    (getRawArticles as jest.Mock).mockResolvedValue(new Array(8).fill(article));
+    const fakeListGrid = { type: ContentBlockType.GridContainer };
+    handlerRunnerMock.mockResolvedValue(fakeListGrid);
+
+    const input: IRelevantStoriesHandlerInput = {
+      type: HandlerInputType.RelevantStories
+    };
+
+    await relevantStoriesHandler(handlerRunnerMock, input, params);
+
+    const [
+      [first],
+      [second],
+      [third],
+      [columnGridCall]
+    ] = handlerRunnerMock.mock.calls;
+
+    const adUnit: IBasicAdUnit = {
+      type: ContentBlockType.BasicAdUnit,
+      context: "homepage-editors-picks"
+    };
+
+    expect(columnGridCall.content[3]).toEqual([adUnit]);
   });
 
   describe("when failing to retrieve articles", () => {
