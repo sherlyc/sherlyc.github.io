@@ -150,7 +150,7 @@ describe("FeatureSwitchService", () => {
     );
   });
 
-  it("should return from cache if already available", async () => {
+  it("should get feature value from existing cache", async () => {
     storeService.get.mockReturnValue(true);
     httpClient.get.mockReturnValue(of(false));
 
@@ -164,7 +164,7 @@ describe("FeatureSwitchService", () => {
     );
   });
 
-  it("should wait the value if not available", async () => {
+  it("should wait for feature value if there is not existing cache", async () => {
     storeService.get.mockReturnValue(undefined);
     httpClient.get.mockReturnValue(of(true));
 
