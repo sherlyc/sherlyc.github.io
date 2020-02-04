@@ -149,4 +149,32 @@ describe("FeatureSwitchService", () => {
       })
     );
   });
+
+  it("should return from cache if already available", async () => {
+    storeService.get.mockReturnValue(true);
+    httpClient.get.mockReturnValue(of(false));
+
+    await service.setup();
+
+    await Promise.all(
+      Object.keys(features.FeatureName).map(async (feature) => {
+        const featureValue = await service.getFeature(feature as FeatureName);
+        expect(featureValue).toEqual(true);
+      })
+    );
+  });
+
+  it("should wait the value if not available", async () => {
+    storeService.get.mockReturnValue(undefined);
+    httpClient.get.mockReturnValue(of(true));
+
+    await service.setup();
+
+    await Promise.all(
+      Object.keys(features.FeatureName).map(async (feature) => {
+        const featureValue = await service.getFeature(feature as FeatureName);
+        expect(featureValue).toEqual(true);
+      })
+    );
+  });
 });

@@ -6,7 +6,7 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { RuntimeService } from "../runtime/runtime.service";
 import { LottoService } from "../lotto/lotto.service";
 import { LoggerService } from "../logger/logger.service";
-import { Observable, of } from "rxjs";
+import { of } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { DeviceService } from "../device/device.service";
 
