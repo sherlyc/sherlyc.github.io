@@ -9,6 +9,7 @@ import { Strap } from "../../../strap";
 import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { contentErrorHandler } from "../content-error-handler";
+import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 
 const getColumnContent = async (
   handlerRunner: handlerRunnerFunction,
@@ -84,7 +85,8 @@ export default async function(
         "Opinion",
         "pizzaz",
         params
-      )
+      ),
+      [basicAdUnit("homepageEditorsPicks")]
     ])
   };
 
