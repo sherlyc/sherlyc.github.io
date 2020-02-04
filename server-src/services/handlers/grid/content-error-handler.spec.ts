@@ -46,7 +46,7 @@ describe("Content error handler", () => {
     const mockConverterCallback = jest.fn();
     const error = new Error("Failed");
     mockConverterCallback.mockRejectedValue(error);
-    (isFeatureEnabled as jest.Mock).mockResolvedValue(false);
+    (isFeatureEnabled as jest.Mock).mockReturnValue(false);
 
     await contentErrorHandler(
       mockConverterCallback,

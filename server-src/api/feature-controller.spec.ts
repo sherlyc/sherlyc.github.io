@@ -10,7 +10,7 @@ describe("Feature Controller", () => {
     jest.resetAllMocks();
   });
 
-  it("should return value from feature service", async () => {
+  it("should return value from feature service", () => {
     (FeatureName as any)["someFeature"] = "someFeature";
 
     const req = ({
@@ -26,12 +26,12 @@ describe("Feature Controller", () => {
 
     (isFeatureEnabled as jest.Mock).mockReturnValue(false);
 
-    await featureController(req, res);
+    featureController(req, res);
 
     expect(res.send).toHaveBeenCalledWith(false);
   });
 
-  it("should return true when feature name is not recognized", async () => {
+  it("should return true when feature name is not recognized", () => {
     const req = ({
       spadeParams: { apiRequestId: "33498" },
       params: {
@@ -48,12 +48,12 @@ describe("Feature Controller", () => {
 
     (isFeatureEnabled as jest.Mock).mockReturnValue(true);
 
-    await featureController(req, res);
+    featureController(req, res);
 
     expect(res.send).toHaveBeenCalledWith(true);
   });
 
-  it("should return 400 and message in body when provided with negative lottery number", async () => {
+  it("should return 400 and message in body when provided with negative lottery number", () => {
     const req = ({
       spadeParams: { apiRequestId: "33498" },
       params: { featureName: "", lotteryNumber: "-1", deviceType: "mobile" },
@@ -62,7 +62,7 @@ describe("Feature Controller", () => {
     const res = { send: jest.fn(), status: jest.fn() } as any;
     res.status.mockReturnValue(res);
 
-    await featureController(req, res);
+    featureController(req, res);
 
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.send).toHaveBeenCalledWith(`Invalid feature data provided,
@@ -71,7 +71,7 @@ describe("Feature Controller", () => {
     expect(res.status).toHaveBeenCalledTimes(1);
   });
 
-  it("should return 400 and message in body when provided with invalid lottery number", async () => {
+  it("should return 400 and message in body when provided with invalid lottery number", () => {
     const req = ({
       spadeParams: { apiRequestId: "33498" },
       params: {
@@ -84,7 +84,7 @@ describe("Feature Controller", () => {
     const res = { send: jest.fn(), status: jest.fn() } as any;
     res.status.mockReturnValue(res);
 
-    await featureController(req, res);
+    featureController(req, res);
 
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.send).toHaveBeenCalledWith(`Invalid feature data provided,
@@ -93,7 +93,7 @@ describe("Feature Controller", () => {
     expect(res.status).toHaveBeenCalledTimes(1);
   });
 
-  it("should return 400 and message in body when provided with invalid device", async () => {
+  it("should return 400 and message in body when provided with invalid device", () => {
     const req = ({
       spadeParams: { apiRequestId: "33498" },
       params: { featureName: "", lotteryNumber: "1", deviceType: "blahblah" },
@@ -102,7 +102,7 @@ describe("Feature Controller", () => {
     const res = { send: jest.fn(), status: jest.fn() } as any;
     res.status.mockReturnValue(res);
 
-    await featureController(req, res);
+    featureController(req, res);
 
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.send).toHaveBeenCalledWith(`Invalid feature data provided,

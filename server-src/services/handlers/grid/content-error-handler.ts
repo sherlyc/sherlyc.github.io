@@ -15,7 +15,7 @@ export const contentErrorHandler = async (
   try {
     return await contentConverterCallback();
   } catch (error) {
-    const isFeatureRolledOut = await isFeatureEnabled(
+    const isFeatureRolledOut = isFeatureEnabled(
       FeatureName.ModuleLayout,
       1,
       DeviceType.unknown

@@ -18,8 +18,8 @@ describe("Feature service", () => {
       const shouldBeOn = inRange(rangeValue, min, max + 1);
       it(`${featureName} should be ${
         shouldBeOn ? "on" : "off"
-      } when lotto is ${rangeValue}`, async () => {
-        const result = await isFeatureEnabled(
+      } when lotto is ${rangeValue}`, () => {
+        const result = isFeatureEnabled(
           featureName,
           rangeValue,
           DeviceType.unknown
