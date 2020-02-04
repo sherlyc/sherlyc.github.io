@@ -228,7 +228,7 @@ describe("Relevant Stories", () => {
       ] = handlerRunnerMock.mock.calls;
 
       expect(handlerRunnerMock.mock.calls.length).toBe(3);
-      expect(columnGridCall.content[0]).toBe(undefined);
+      expect(columnGridCall.content[0]).toEqual([]);
     });
 
     it("should create empty content blocks for column two and pass it to column grid", async () => {
@@ -258,7 +258,7 @@ describe("Relevant Stories", () => {
       ] = handlerRunnerMock.mock.calls;
 
       expect(handlerRunnerMock.mock.calls.length).toBe(3);
-      expect(columnGridCall.content[1]).toBe(undefined);
+      expect(columnGridCall.content[1]).toEqual([]);
     });
 
     it("should create empty content blocks for column three and pass it to column grid", async () => {
@@ -288,7 +288,7 @@ describe("Relevant Stories", () => {
       ] = handlerRunnerMock.mock.calls;
 
       expect(handlerRunnerMock.mock.calls.length).toBe(3);
-      expect(columnGridCall.content[2]).toBe(undefined);
+      expect(columnGridCall.content[2]).toEqual([]);
     });
   });
 });

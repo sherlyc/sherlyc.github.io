@@ -31,7 +31,7 @@ export default async function(
         }
       ],
       [SixImageGridHandlerPositions.FirstRowLeft]: [
-        await contentErrorHandler(
+        contentErrorHandler(
           () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
           HandlerInputType.SixImage,
           sourceId,
@@ -39,7 +39,7 @@ export default async function(
         )
       ],
       [SixImageGridHandlerPositions.FirstRowMiddle]: [
-        await contentErrorHandler(
+        contentErrorHandler(
           () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
           HandlerInputType.SixImage,
           sourceId,
@@ -47,7 +47,7 @@ export default async function(
         )
       ],
       [SixImageGridHandlerPositions.FirstRowRight]: [
-        await contentErrorHandler(
+        contentErrorHandler(
           () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
           HandlerInputType.SixImage,
           sourceId,
@@ -55,7 +55,7 @@ export default async function(
         )
       ],
       [SixImageGridHandlerPositions.SecondRowLeft]: [
-        await contentErrorHandler(
+        contentErrorHandler(
           () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
           HandlerInputType.SixImage,
           sourceId,
@@ -63,7 +63,7 @@ export default async function(
         )
       ],
       [SixImageGridHandlerPositions.SecondRowMiddle]: [
-        await contentErrorHandler(
+        contentErrorHandler(
           () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
           HandlerInputType.SixImage,
           sourceId,
@@ -71,7 +71,7 @@ export default async function(
         )
       ],
       [SixImageGridHandlerPositions.SecondRowRight]: [
-        await contentErrorHandler(
+        contentErrorHandler(
           () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
           HandlerInputType.SixImage,
           sourceId,

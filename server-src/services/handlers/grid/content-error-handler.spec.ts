@@ -18,7 +18,7 @@ describe("Content error handler", () => {
     jest.resetAllMocks();
   });
 
-  it("should return contentConverterCallback result", async () => {
+  it("should return contentConverterCallback result", () => {
     const mockConverterCallback = jest.fn();
     const fakeContentBlock: IBasicArticleTitleUnit = {
       type: ContentBlockType.BasicArticleTitleUnit,
@@ -30,9 +30,9 @@ describe("Content error handler", () => {
       lastPublishedTime: 2,
       headlineFlags: []
     };
-    mockConverterCallback.mockResolvedValue(fakeContentBlock);
+    mockConverterCallback.mockReturnValue(fakeContentBlock);
 
-    const result = await contentErrorHandler(
+    const result = contentErrorHandler(
       mockConverterCallback,
       HandlerInputType.NewsSix,
       Strap.Business,
@@ -42,13 +42,15 @@ describe("Content error handler", () => {
     expect(result).toEqual(fakeContentBlock);
   });
 
-  it("should log info if callback fails and module layout feature has not been rolled out", async () => {
+  it("should log info if callback fails and module layout feature has not been rolled out", () => {
     const mockConverterCallback = jest.fn();
     const error = new Error("Failed");
-    mockConverterCallback.mockRejectedValue(error);
+    mockConverterCallback.mockImplementation(() => {
+      throw error;
+    });
     (isFeatureEnabled as jest.Mock).mockReturnValue(false);
 
-    await contentErrorHandler(
+    contentErrorHandler(
       mockConverterCallback,
       HandlerInputType.NewsSix,
       Strap.Business,
@@ -62,13 +64,15 @@ describe("Content error handler", () => {
     );
   });
 
-  it("should log error if callback fails and module layout feature has been rolled out", async () => {
+  it("should log error if callback fails and module layout feature has been rolled out", () => {
     const mockConverterCallback = jest.fn();
     const error = new Error("Failed");
-    mockConverterCallback.mockRejectedValue(error);
-    (isFeatureEnabled as jest.Mock).mockResolvedValue(true);
+    mockConverterCallback.mockImplementation(() => {
+      throw error;
+    });
+    (isFeatureEnabled as jest.Mock).mockReturnValue(true);
 
-    await contentErrorHandler(
+    contentErrorHandler(
       mockConverterCallback,
       HandlerInputType.NewsSix,
       Strap.Business,
@@ -82,13 +86,15 @@ describe("Content error handler", () => {
     );
   });
 
-  it("should call isFeatureEnabled with correct params if callback fails", async () => {
+  it("should call isFeatureEnabled with correct params if callback fails", () => {
     const mockConverterCallback = jest.fn();
     const error = new Error("Failed");
-    mockConverterCallback.mockRejectedValue(error);
-    (isFeatureEnabled as jest.Mock).mockResolvedValue(false);
+    mockConverterCallback.mockImplementation(() => {
+      throw error;
+    });
+    (isFeatureEnabled as jest.Mock).mockReturnValue(false);
 
-    await contentErrorHandler(
+    contentErrorHandler(
       mockConverterCallback,
       HandlerInputType.NewsSix,
       Strap.Business,

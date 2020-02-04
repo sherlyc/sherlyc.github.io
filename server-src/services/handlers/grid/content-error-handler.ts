@@ -6,14 +6,14 @@ import { DeviceType } from "../../../../common/DeviceType";
 import wrappedLogger from "../../utils/logger";
 import { Strap } from "../../strap";
 
-export const contentErrorHandler = async (
+export const contentErrorHandler = (
   contentConverterCallback: Function,
   handlerName: HandlerInputType,
   sourceName: Strap,
   params: IParams
 ) => {
   try {
-    return await contentConverterCallback();
+    return contentConverterCallback();
   } catch (error) {
     const isFeatureRolledOut = isFeatureEnabled(
       FeatureName.ModuleLayout,
