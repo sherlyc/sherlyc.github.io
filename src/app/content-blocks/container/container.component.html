@@ -5,10 +5,11 @@
   <div class="rich-media-left"></div>
 
   <div class="container">
-    <div class="rich-media-small">
-      <div id="pushdownbanner"></div>
+    <div id="pushdownbanner"></div>
+    <div class="rich-media-small"></div>
+    <div class="content-blocks">
+      <ng-container [appContentBlock]="input.items"></ng-container>
     </div>
-    <ng-container [appContentBlock]="input.items"></ng-container>
   </div>
 
   <div id="gutterright"></div>
