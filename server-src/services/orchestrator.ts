@@ -70,13 +70,6 @@ const newPage = (): HandlerInput[] => [
     strapName: `${homepageAdPrefix}Hahahah`
   },
   {
-    type: HandlerInputType.SixImage,
-    displayName: "top stories",
-    displayNameColor: "darkblue",
-    strapName: `${homepageAdPrefix}TopStoriesDefaultOne`,
-    sourceId: Strap.TopStories
-  },
-  {
     type: HandlerInputType.ThreeColumn
   },
   {
