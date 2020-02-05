@@ -161,7 +161,7 @@ describe("Top Stories", () => {
       );
     });
 
-    it.only("should call top stories grid", async () => {
+    it("should call top stories grid", async () => {
       const topStoriesDefaultOneResult = {
         type: ContentBlockType.GridContainer
       };

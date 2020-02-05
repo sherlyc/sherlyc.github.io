@@ -19,7 +19,7 @@ export default async function(
     type: HandlerInputType.ColumnGrid,
     content: [
       [
-        await contentErrorHandler(
+        contentErrorHandler(
           () =>
             bigImageArticleUnit(
               articles[0],
@@ -32,7 +32,7 @@ export default async function(
         )
       ],
       [
-        await contentErrorHandler(
+        contentErrorHandler(
           () =>
             featuredArticle(articles[1], strapName, "white", "black", false),
           HandlerInputType.TopStoriesDefaultOne,
