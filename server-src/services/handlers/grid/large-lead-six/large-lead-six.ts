@@ -29,7 +29,7 @@ export default async function(
   const totalArticles = 6;
   const articles = await getRawArticles(sourceId, totalArticles, params);
 
-  const leftContent = await contentErrorHandler(
+  const leftContent = contentErrorHandler(
     () =>
       bigImageArticleUnit(
         articles.shift() as IRawArticle,
@@ -44,17 +44,11 @@ export default async function(
     basicArticleTitleUnit(article, strapName)
   );
 
-  const middleContent = await contentErrorHandler(
-    () =>
-      handlerRunner(
-        {
-          type: HandlerInputType.ListGrid,
-          content: listGridContent
-        },
-        params
-      ),
-    HandlerInputType.LargeLeadSix,
-    sourceId,
+  const middleContent = await handlerRunner(
+    {
+      type: HandlerInputType.ListGrid,
+      content: listGridContent
+    },
     params
   );
   const largeLeadSixGridHandlerInput: ILargeLeadSixGridHandlerInput = {

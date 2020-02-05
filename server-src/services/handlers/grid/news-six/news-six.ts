@@ -29,7 +29,7 @@ export default async function(
       }
     ],
     [NewsSixGridPositions.BigTopLeft]: [
-      await contentErrorHandler(
+      contentErrorHandler(
         () =>
           responsiveBigImageArticleUnit(
             articles.shift() as IRawArticle,
@@ -41,7 +41,7 @@ export default async function(
       )
     ],
     [NewsSixGridPositions.SmallTopRight]: [
-      await contentErrorHandler(
+      contentErrorHandler(
         () =>
           bigImageArticleUnit(
             articles.shift() as IRawArticle,
@@ -54,7 +54,7 @@ export default async function(
       )
     ],
     [NewsSixGridPositions.SmallBottomFirst]: [
-      await contentErrorHandler(
+      contentErrorHandler(
         () => basicArticleTitleUnit(articles.shift() as IRawArticle, strapName),
         HandlerInputType.NewsSix,
         sourceId,
@@ -62,7 +62,7 @@ export default async function(
       )
     ],
     [NewsSixGridPositions.SmallBottomSecond]: [
-      await contentErrorHandler(
+      contentErrorHandler(
         () => basicArticleTitleUnit(articles.shift() as IRawArticle, strapName),
         HandlerInputType.NewsSix,
         sourceId,
@@ -70,7 +70,7 @@ export default async function(
       )
     ],
     [NewsSixGridPositions.SmallBottomThird]: [
-      await contentErrorHandler(
+      contentErrorHandler(
         () => basicArticleTitleUnit(articles.shift() as IRawArticle, strapName),
         HandlerInputType.NewsSix,
         sourceId,
@@ -78,7 +78,7 @@ export default async function(
       )
     ],
     [NewsSixGridPositions.SmallBottomFourth]: [
-      await contentErrorHandler(
+      contentErrorHandler(
         () => basicArticleTitleUnit(articles.shift() as IRawArticle, strapName),
         HandlerInputType.NewsSix,
         sourceId,

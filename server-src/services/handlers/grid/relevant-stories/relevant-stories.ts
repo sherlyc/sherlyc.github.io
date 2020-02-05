@@ -8,8 +8,9 @@ import { getRawArticles } from "../../../adapters/article-retriever/article-retr
 import { Strap } from "../../../strap";
 import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { contentErrorHandler } from "../content-error-handler";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import wrappedLogger from "../../../utils/logger";
 
 const getColumnContent = async (
   handlerRunner: handlerRunnerFunction,
@@ -20,33 +21,34 @@ const getColumnContent = async (
   displayNameColor: string,
   params: IParams
 ): Promise<IContentBlock[]> => {
-  return await contentErrorHandler(
-    async () => {
-      const articles = await getRawArticles(sourceId, totalArticles, params);
+  try {
+    const articles = await getRawArticles(sourceId, totalArticles, params);
+    const articleContentBlocks = articles.map((article) =>
+      basicArticleTitleUnit(article, strapName)
+    );
 
-      const articleContentBlocks = articles.map((article) =>
-        basicArticleTitleUnit(article, strapName)
-      );
-
-      return [
+    return [
+      {
+        type: ContentBlockType.ModuleTitle,
+        displayName,
+        displayNameColor
+      },
+      ...(await handlerRunner(
         {
-          type: ContentBlockType.ModuleTitle,
-          displayName,
-          displayNameColor
+          type: HandlerInputType.ListGrid,
+          content: articleContentBlocks
         },
-        ...(await handlerRunner(
-          {
-            type: HandlerInputType.ListGrid,
-            content: articleContentBlocks
-          },
-          params
-        ))
-      ];
-    },
-    HandlerInputType.RelevantStories,
-    sourceId,
-    params
-  );
+        params
+      ))
+    ];
+  } catch (error) {
+    wrappedLogger.error(
+      params.apiRequestId,
+      `Relevant stories handler - Failed to get articles - sourceId: ${sourceId}`,
+      error
+    );
+    return [];
+  }
 };
 
 export default async function(
