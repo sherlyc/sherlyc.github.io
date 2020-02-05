@@ -8,20 +8,23 @@ import { layoutRetriever } from "../../../adapters/layout/layout-retriever";
 import { LayoutType } from "../../../adapters/__types__/LayoutType";
 import { ITopStoriesDefaultOneHandlerInput } from "../../__types__/ITopStoriesDefaultOneHandlerInput";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
-import {
-  ITopStoriesGridHandlerInput,
-  TopStoriesGridPositions
-} from "../../__types__/ITopStoriesGridHandlerInput";
+import { TopStoriesGridPositions } from "../../__types__/ITopStoriesGridHandlerInput";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 import { contentErrorHandler } from "../content-error-handler";
 import { bigImageArticleUnit } from "../../../adapters/article-converter/big-image-article.converter";
 import { BigImageArticleUnitLayout } from "../../../../../common/__types__/IBigImageArticleUnit";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 
+const bigTopLeftHandlerRegistry: { [key in LayoutType]: Function } = {
+  [LayoutType.DEFAULT]: bigTopLeftForDefaultOne,
+  [LayoutType.DEFCON]: () => [],
+  [LayoutType.BIG_HEADLINE]: () => []
+};
+
 async function bigTopLeftForDefaultOne(
-  strapName: string,
-  articles: IRawArticle[],
   handlerRunner: handlerRunnerFunction,
+  articles: IRawArticle[],
+  strapName: string,
   params: IParams
 ) {
   const [articleOne, articleTwo] = articles.splice(0, 2);
@@ -45,130 +48,126 @@ export default async function(
     maxRequiredArticles,
     params
   );
-  if (layout === LayoutType.DEFAULT) {
-    const bigTopLeftContent = await bigTopLeftForDefaultOne(
-      strapName,
-      articles,
-      handlerRunner,
-      params
-    );
-    const content = {
-      [TopStoriesGridPositions.BigTopLeft]: bigTopLeftContent,
-      [TopStoriesGridPositions.Right]: [basicAdUnit(strapName)],
-      [TopStoriesGridPositions.FirstRow1]: [
-        contentErrorHandler(
-          () =>
-            bigImageArticleUnit(
-              articles.shift() as IRawArticle,
-              strapName,
-              BigImageArticleUnitLayout.module
-            ),
-          HandlerInputType.TopStories,
-          Strap.TopStories,
-          params
-        )
-      ],
-      [TopStoriesGridPositions.FirstRow2]: [
-        contentErrorHandler(
-          () =>
-            bigImageArticleUnit(
-              articles.shift() as IRawArticle,
-              strapName,
-              BigImageArticleUnitLayout.module
-            ),
-          HandlerInputType.TopStories,
-          Strap.TopStories,
-          params
-        )
-      ],
-      [TopStoriesGridPositions.FirstRow3]: [
-        contentErrorHandler(
-          () =>
-            bigImageArticleUnit(
-              articles.shift() as IRawArticle,
-              strapName,
-              BigImageArticleUnitLayout.module
-            ),
-          HandlerInputType.TopStories,
-          Strap.TopStories,
-          params
-        )
-      ],
-      [TopStoriesGridPositions.FirstRow4]: [
-        contentErrorHandler(
-          () =>
-            bigImageArticleUnit(
-              articles.shift() as IRawArticle,
-              strapName,
-              BigImageArticleUnitLayout.module
-            ),
-          HandlerInputType.TopStories,
-          Strap.TopStories,
-          params
-        )
-      ],
-      [TopStoriesGridPositions.SecondRow1]: [
-        contentErrorHandler(
-          () =>
-            bigImageArticleUnit(
-              articles.shift() as IRawArticle,
-              strapName,
-              BigImageArticleUnitLayout.module
-            ),
-          HandlerInputType.TopStories,
-          Strap.TopStories,
-          params
-        )
-      ],
-      [TopStoriesGridPositions.SecondRow2]: [
-        contentErrorHandler(
-          () =>
-            bigImageArticleUnit(
-              articles.shift() as IRawArticle,
-              strapName,
-              BigImageArticleUnitLayout.module
-            ),
-          HandlerInputType.TopStories,
-          Strap.TopStories,
-          params
-        )
-      ],
-      [TopStoriesGridPositions.SecondRow3]: [
-        contentErrorHandler(
-          () =>
-            bigImageArticleUnit(
-              articles.shift() as IRawArticle,
-              strapName,
-              BigImageArticleUnitLayout.module
-            ),
-          HandlerInputType.TopStories,
-          Strap.TopStories,
-          params
-        )
-      ],
-      [TopStoriesGridPositions.SecondRow4]: [
-        contentErrorHandler(
-          () =>
-            bigImageArticleUnit(
-              articles.shift() as IRawArticle,
-              strapName,
-              BigImageArticleUnitLayout.module
-            ),
-          HandlerInputType.TopStories,
-          Strap.TopStories,
-          params
-        )
-      ]
-    };
+  const bigTopLeftContent = await bigTopLeftHandlerRegistry[layout](
+    handlerRunner,
+    articles,
+    strapName,
+    params
+  );
+  const content = {
+    [TopStoriesGridPositions.BigTopLeft]: bigTopLeftContent,
+    [TopStoriesGridPositions.Right]: [basicAdUnit(strapName)],
+    [TopStoriesGridPositions.FirstRow1]: [
+      contentErrorHandler(
+        () =>
+          bigImageArticleUnit(
+            articles.shift() as IRawArticle,
+            strapName,
+            BigImageArticleUnitLayout.module
+          ),
+        HandlerInputType.TopStories,
+        Strap.TopStories,
+        params
+      )
+    ],
+    [TopStoriesGridPositions.FirstRow2]: [
+      contentErrorHandler(
+        () =>
+          bigImageArticleUnit(
+            articles.shift() as IRawArticle,
+            strapName,
+            BigImageArticleUnitLayout.module
+          ),
+        HandlerInputType.TopStories,
+        Strap.TopStories,
+        params
+      )
+    ],
+    [TopStoriesGridPositions.FirstRow3]: [
+      contentErrorHandler(
+        () =>
+          bigImageArticleUnit(
+            articles.shift() as IRawArticle,
+            strapName,
+            BigImageArticleUnitLayout.module
+          ),
+        HandlerInputType.TopStories,
+        Strap.TopStories,
+        params
+      )
+    ],
+    [TopStoriesGridPositions.FirstRow4]: [
+      contentErrorHandler(
+        () =>
+          bigImageArticleUnit(
+            articles.shift() as IRawArticle,
+            strapName,
+            BigImageArticleUnitLayout.module
+          ),
+        HandlerInputType.TopStories,
+        Strap.TopStories,
+        params
+      )
+    ],
+    [TopStoriesGridPositions.SecondRow1]: [
+      contentErrorHandler(
+        () =>
+          bigImageArticleUnit(
+            articles.shift() as IRawArticle,
+            strapName,
+            BigImageArticleUnitLayout.module
+          ),
+        HandlerInputType.TopStories,
+        Strap.TopStories,
+        params
+      )
+    ],
+    [TopStoriesGridPositions.SecondRow2]: [
+      contentErrorHandler(
+        () =>
+          bigImageArticleUnit(
+            articles.shift() as IRawArticle,
+            strapName,
+            BigImageArticleUnitLayout.module
+          ),
+        HandlerInputType.TopStories,
+        Strap.TopStories,
+        params
+      )
+    ],
+    [TopStoriesGridPositions.SecondRow3]: [
+      contentErrorHandler(
+        () =>
+          bigImageArticleUnit(
+            articles.shift() as IRawArticle,
+            strapName,
+            BigImageArticleUnitLayout.module
+          ),
+        HandlerInputType.TopStories,
+        Strap.TopStories,
+        params
+      )
+    ],
+    [TopStoriesGridPositions.SecondRow4]: [
+      contentErrorHandler(
+        () =>
+          bigImageArticleUnit(
+            articles.shift() as IRawArticle,
+            strapName,
+            BigImageArticleUnitLayout.module
+          ),
+        HandlerInputType.TopStories,
+        Strap.TopStories,
+        params
+      )
+    ]
+  };
 
-    return await handlerRunner(
-      {
-        type: HandlerInputType.TopStoriesGrid,
-        content
-      },
-      params
-    );
-  }
-
-  return [];
+  return await handlerRunner(
+    {
+      type: HandlerInputType.TopStoriesGrid,
+      content
+    },
+    params
+  );
 }
