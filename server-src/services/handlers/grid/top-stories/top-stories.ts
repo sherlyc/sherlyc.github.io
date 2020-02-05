@@ -15,7 +15,7 @@ import { bigImageArticleUnit } from "../../../adapters/article-converter/big-ima
 import { BigImageArticleUnitLayout } from "../../../../../common/__types__/IBigImageArticleUnit";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 
-const bigTopLeftHandlerRegistry: {
+const topStoriesVariationHandler: {
   [key in LayoutType]: (
     handlerRunner: handlerRunnerFunction,
     articles: IRawArticle[],
@@ -23,44 +23,43 @@ const bigTopLeftHandlerRegistry: {
     params: IParams
   ) => Promise<IContentBlock[]>;
 } = {
-  [LayoutType.DEFAULT]: bigTopLeftForDefaultOne,
+  [LayoutType.DEFAULT]: defaultOneHandler,
   [LayoutType.DEFCON]: async () => [],
   [LayoutType.BIG_HEADLINE]: async () => []
 };
 
-async function bigTopLeftForDefaultOne(
+async function defaultOneHandler(
   handlerRunner: handlerRunnerFunction,
   articles: IRawArticle[],
   strapName: string,
   params: IParams
 ) {
-  const [articleOne, articleTwo] = articles.splice(0, 2);
+  const [articleOne, articleTwo, ...remainingArticles] = articles;
   const topStoriesDefaultOneHandlerInput: ITopStoriesDefaultOneHandlerInput = {
     type: HandlerInputType.TopStoriesDefaultOne,
     strapName,
     articles: [articleTwo, articleOne]
   };
-  return await handlerRunner(topStoriesDefaultOneHandlerInput, params);
-}
-
-export default async function(
-  handlerRunner: handlerRunnerFunction,
-  { strapName }: ITopStoriesHandlerInput,
-  params: IParams
-): Promise<IContentBlock[]> {
-  const layout = await layoutRetriever(params);
-  const maxRequiredArticles = 11;
-  const articles = await getRawArticles(
-    Strap.TopStories,
-    maxRequiredArticles,
+  const bigTopLeftContent = await handlerRunner(
+    topStoriesDefaultOneHandlerInput,
     params
   );
-  const bigTopLeftContent = await bigTopLeftHandlerRegistry[layout](
+  return await createTopStoriesGrid(
     handlerRunner,
-    articles,
+    bigTopLeftContent,
+    remainingArticles,
     strapName,
     params
   );
+}
+
+async function createTopStoriesGrid(
+  handlerRunner: handlerRunnerFunction,
+  bigTopLeftContent: IContentBlock[],
+  articles: IRawArticle[],
+  strapName: string,
+  params: IParams
+) {
   const content = {
     [TopStoriesGridPositions.BigTopLeft]: bigTopLeftContent,
     [TopStoriesGridPositions.Right]: [basicAdUnit(strapName)],
@@ -175,6 +174,26 @@ export default async function(
       type: HandlerInputType.TopStoriesGrid,
       content
     },
+    params
+  );
+}
+
+export default async function(
+  handlerRunner: handlerRunnerFunction,
+  { strapName }: ITopStoriesHandlerInput,
+  params: IParams
+): Promise<IContentBlock[]> {
+  const layout = await layoutRetriever(params);
+  const maxRequiredArticles = 11;
+  const articles = await getRawArticles(
+    Strap.TopStories,
+    maxRequiredArticles,
+    params
+  );
+  return await topStoriesVariationHandler[layout](
+    handlerRunner,
+    articles,
+    strapName,
     params
   );
 }
