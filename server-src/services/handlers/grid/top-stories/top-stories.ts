@@ -36,7 +36,7 @@ async function defaultOneHandler(
 ) {
   const [articleOne, articleTwo, ...remainingArticles] = articles;
   const topStoriesDefaultOneHandlerInput: ITopStoriesDefaultOneHandlerInput = {
-    type: HandlerInputType.TopStoriesDefaultOne,
+    type: HandlerInputType.TopStoriesDefaultOneBigTopLeft,
     strapName,
     articles: [articleTwo, articleOne]
   };

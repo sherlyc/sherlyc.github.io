@@ -152,7 +152,7 @@ describe("Top Stories", () => {
 
       const [[topStoriesDefaultOneCall]] = handlerRunnerMock.mock.calls;
       const topStoriesDefaultOneHandlerInput: ITopStoriesDefaultOneHandlerInput = {
-        type: HandlerInputType.TopStoriesDefaultOne,
+        type: HandlerInputType.TopStoriesDefaultOneBigTopLeft,
         strapName,
         articles: [fakeArticle("2"), fakeArticle("1")]
       };

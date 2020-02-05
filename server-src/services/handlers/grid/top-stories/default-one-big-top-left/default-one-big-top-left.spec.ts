@@ -1,15 +1,15 @@
-import topStoriesDefaultOne from "./top-stories-default-one";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { IParams } from "../../../__types__/IParams";
-import { ITopStoriesDefaultOneHandlerInput } from "../../__types__/ITopStoriesDefaultOneHandlerInput";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { IColumnGridHandlerInput } from "../../__types__/IColumnGridHandlerInput";
+import topStoriesDefaultOne from "./default-one-big-top-left";
+import { IRawArticle } from "../../../../adapters/__types__/IRawArticle";
+import { IParams } from "../../../../__types__/IParams";
+import { ITopStoriesDefaultOneHandlerInput } from "../../../__types__/ITopStoriesDefaultOneHandlerInput";
+import { HandlerInputType } from "../../../__types__/HandlerInputType";
+import { IColumnGridHandlerInput } from "../../../__types__/IColumnGridHandlerInput";
 import {
   BigImageArticleUnitLayout,
   IBigImageArticleUnit
-} from "../../../../../common/__types__/IBigImageArticleUnit";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { IFeaturedArticle } from "../../../../../common/__types__/IFeaturedArticle";
+} from "../../../../../../common/__types__/IBigImageArticleUnit";
+import { ContentBlockType } from "../../../../../../common/__types__/ContentBlockType";
+import { IFeaturedArticle } from "../../../../../../common/__types__/IFeaturedArticle";
 
 describe("Top Stories Default One", () => {
   const handlerRunnerMock = jest.fn();
@@ -67,7 +67,7 @@ describe("Top Stories Default One", () => {
 
   it("should layout content blocks using column grid handler", async () => {
     const handlerInput: ITopStoriesDefaultOneHandlerInput = {
-      type: HandlerInputType.TopStoriesDefaultOne,
+      type: HandlerInputType.TopStoriesDefaultOneBigTopLeft,
       articles: [article, article],
       strapName
     };

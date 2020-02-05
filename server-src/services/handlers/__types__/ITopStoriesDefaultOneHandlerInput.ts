@@ -3,7 +3,7 @@ import { Strap } from "../../strap";
 import { IRawArticle } from "../../adapters/__types__/IRawArticle";
 
 export interface ITopStoriesDefaultOneHandlerInput {
-  type: HandlerInputType.TopStoriesDefaultOne;
+  type: HandlerInputType.TopStoriesDefaultOneBigTopLeft;
   articles: IRawArticle[];
   strapName: string;
 }
