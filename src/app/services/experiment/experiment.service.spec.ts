@@ -232,7 +232,8 @@ describe("ExperimentService", () => {
 
       it("should get experiment variant from existing cache", async () => {
         storeService.get.mockReturnValue("control");
-        http.get.mockReturnValue(of("Experiment"));
+        http.get.mockReturnValueOnce(of("Experiment"));
+        http.get.mockReturnValueOnce(of("GroupOne"));
 
         await service.setup();
         const variant = await service.getVariant("Experiment");
