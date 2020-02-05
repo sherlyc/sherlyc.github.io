@@ -18,6 +18,21 @@ import { bigImageArticleUnit } from "../../../adapters/article-converter/big-ima
 import { BigImageArticleUnitLayout } from "../../../../../common/__types__/IBigImageArticleUnit";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 
+async function bigTopLeftForDefaultOne(
+  strapName: string,
+  articles: IRawArticle[],
+  handlerRunner: handlerRunnerFunction,
+  params: IParams
+) {
+  const [articleOne, articleTwo] = articles.splice(0, 2);
+  const topStoriesDefaultOneHandlerInput: ITopStoriesDefaultOneHandlerInput = {
+    type: HandlerInputType.TopStoriesDefaultOne,
+    strapName,
+    articles: [articleTwo, articleOne]
+  };
+  return await handlerRunner(topStoriesDefaultOneHandlerInput, params);
+}
+
 export default async function(
   handlerRunner: handlerRunnerFunction,
   { strapName }: ITopStoriesHandlerInput,
@@ -31,16 +46,10 @@ export default async function(
     params
   );
   if (layout === LayoutType.DEFAULT) {
-    const topStoriesDefaultOneHandlerInput: ITopStoriesDefaultOneHandlerInput = {
-      type: HandlerInputType.TopStoriesDefaultOne,
+    const bigTopLeftContent = await bigTopLeftForDefaultOne(
       strapName,
-      articles: [
-        articles.shift() as IRawArticle,
-        articles.shift() as IRawArticle
-      ]
-    };
-    const bigTopLeftContent = await handlerRunner(
-      topStoriesDefaultOneHandlerInput,
+      articles,
+      handlerRunner,
       params
     );
     const content = {

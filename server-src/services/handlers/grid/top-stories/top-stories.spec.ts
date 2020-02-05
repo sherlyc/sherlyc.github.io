@@ -154,7 +154,7 @@ describe("Top Stories", () => {
       const topStoriesDefaultOneHandlerInput: ITopStoriesDefaultOneHandlerInput = {
         type: HandlerInputType.TopStoriesDefaultOne,
         strapName,
-        articles: [fakeArticle("1"), fakeArticle("2")]
+        articles: [fakeArticle("2"), fakeArticle("1")]
       };
       expect(topStoriesDefaultOneCall).toEqual(
         topStoriesDefaultOneHandlerInput
