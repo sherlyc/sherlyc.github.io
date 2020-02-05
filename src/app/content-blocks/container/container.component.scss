@@ -4,18 +4,51 @@
   margin-top: 50px;
 }
 
-.container {
-  margin: 10px;
-}
-
 .content {
   display: flex;
 }
 
+.content-blocks {
+  margin: 10px;
+}
+
+#pushdownbanner {
+  overflow: hidden;
+}
+
+#gutterleft {
+  position: fixed;
+  left: calc(50% - 1160px);
+  top: 0;
+}
+
+#gutterright {
+  position: fixed;
+  right: calc(50% - 1160px);
+  top: 0;
+}
+
+@media only screen and (max-width: 767px) {
+  #gutterleft,
+  #gutterright,
+  #pushdownbanner {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  #gutterleft,
+  #gutterright {
+    display: none;
+  }
+}
+
 .rich-media-left {
   flex: 1;
+  overflow: hidden;
 }
 
 .rich-media-right {
   flex: 1;
+  overflow: hidden;
 }
