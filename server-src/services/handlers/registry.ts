@@ -23,7 +23,7 @@ import SixImageGrid from "./grid/six-image-grid/six-image-grid";
 import ListGrid from "./grid/list-grid/list-grid";
 import LargeLeadSix from "./grid/large-lead-six/large-lead-six";
 import LargeLeadSixGrid from "./grid/large-lead-six-grid/large-lead-six-grid";
-import ThreeColumn from "./grid/three-column/three-column";
+import RelevantStories from "./grid/relevant-stories/relevant-stories";
 import ColumnGrid from "./grid/column-grid/column-grid";
 import TopStories from "./grid/top-stories/top-stories";
 import TopStoriesGrid from "./grid/top-stories-grid/top-stories-grid";
@@ -67,7 +67,7 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   ListGrid,
   LargeLeadSix,
   LargeLeadSixGrid,
-  ThreeColumn,
+  RelevantStories,
   ColumnGrid
 };
 

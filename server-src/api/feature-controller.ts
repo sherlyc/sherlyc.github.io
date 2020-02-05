@@ -20,7 +20,7 @@ function validateRequest(
   }
 }
 
-export const featureController = async function(req: Request, res: Response) {
+export const featureController = function(req: Request, res: Response) {
   const {
     featureName,
     lotteryNumber,
@@ -39,7 +39,7 @@ export const featureController = async function(req: Request, res: Response) {
   }
 
   try {
-    const isEnabled = await isFeatureEnabled(
+    const isEnabled = isFeatureEnabled(
       featureName,
       parseInt(lotteryNumber, 10),
       deviceType as DeviceType

@@ -23,7 +23,7 @@ export default async (params: IParams): Promise<IPage> => {
           items: [
             {
               type: HandlerInputType.ForceUpdate,
-              forceUpdateOnVersionsBefore: "1.400"
+              forceUpdateOnVersionsBefore: "1.450"
             },
             {
               type: HandlerInputType.Weather
@@ -70,7 +70,7 @@ const newPage = (): HandlerInput[] => [
     strapName: `${homepageAdPrefix}Hahahah`
   },
   {
-    type: HandlerInputType.ThreeColumn
+    type: HandlerInputType.RelevantStories
   },
   {
     type: HandlerInputType.SixImage,

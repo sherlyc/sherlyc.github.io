@@ -4,14 +4,15 @@ import { ContentBlockType } from "../../../../../common/__types__/ContentBlockTy
 import { IBasicArticleTitleUnit } from "../../../../../common/__types__/IBasicArticleTitleUnit";
 import { IParams } from "../../../__types__/IParams";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
-import { IThreeColumnHandlerInput } from "../../__types__/IThreeColumnHandlerInput";
+import { IRelevantStoriesHandlerInput } from "../../__types__/IRelevantStoriesHandlerInput";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
-import threeColumnHandler from "./three-column";
+import relevantStoriesHandler from "./relevant-stories";
 import { Strap } from "../../../strap";
+import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 
-describe("Three column", () => {
+describe("Relevant Stories", () => {
   const handlerRunnerMock = jest.fn();
   const params: IParams = { apiRequestId: "123" };
 
@@ -52,12 +53,12 @@ describe("Three column", () => {
       new Array(totalArticles).fill(article)
     );
 
-    const input: IThreeColumnHandlerInput = {
-      type: HandlerInputType.ThreeColumn
+    const input: IRelevantStoriesHandlerInput = {
+      type: HandlerInputType.RelevantStories
     };
 
     handlerRunnerMock.mockResolvedValue([]);
-    await threeColumnHandler(handlerRunnerMock, input, params);
+    await relevantStoriesHandler(handlerRunnerMock, input, params);
 
     expect(getRawArticles).toHaveBeenCalledTimes(3);
     expect(getRawArticles).toHaveBeenCalledWith(
@@ -82,11 +83,11 @@ describe("Three column", () => {
     const fakeListGrid = { type: ContentBlockType.GridContainer };
     handlerRunnerMock.mockResolvedValue(fakeListGrid);
 
-    const input: IThreeColumnHandlerInput = {
-      type: HandlerInputType.ThreeColumn
+    const input: IRelevantStoriesHandlerInput = {
+      type: HandlerInputType.RelevantStories
     };
 
-    await threeColumnHandler(handlerRunnerMock, input, params);
+    await relevantStoriesHandler(handlerRunnerMock, input, params);
 
     const [
       [firstListGridCall],
@@ -114,11 +115,11 @@ describe("Three column", () => {
     const fakeListGrid = { type: ContentBlockType.GridContainer };
     handlerRunnerMock.mockResolvedValue(fakeListGrid);
 
-    const input: IThreeColumnHandlerInput = {
-      type: HandlerInputType.ThreeColumn
+    const input: IRelevantStoriesHandlerInput = {
+      type: HandlerInputType.RelevantStories
     };
 
-    await threeColumnHandler(handlerRunnerMock, input, params);
+    await relevantStoriesHandler(handlerRunnerMock, input, params);
 
     const [
       [listGridCall],
@@ -146,11 +147,11 @@ describe("Three column", () => {
     const fakeListGrid = { type: ContentBlockType.GridContainer };
     handlerRunnerMock.mockResolvedValue(fakeListGrid);
 
-    const input: IThreeColumnHandlerInput = {
-      type: HandlerInputType.ThreeColumn
+    const input: IRelevantStoriesHandlerInput = {
+      type: HandlerInputType.RelevantStories
     };
 
-    await threeColumnHandler(handlerRunnerMock, input, params);
+    await relevantStoriesHandler(handlerRunnerMock, input, params);
 
     const [
       [first],
@@ -173,6 +174,32 @@ describe("Three column", () => {
     expect(columnGridCall.content[2]).toEqual([title, fakeListGrid]);
   });
 
+  it("should create column four with ad unit and pass it to column grid", async () => {
+    (getRawArticles as jest.Mock).mockResolvedValue(new Array(8).fill(article));
+    const fakeListGrid = { type: ContentBlockType.GridContainer };
+    handlerRunnerMock.mockResolvedValue(fakeListGrid);
+
+    const input: IRelevantStoriesHandlerInput = {
+      type: HandlerInputType.RelevantStories
+    };
+
+    await relevantStoriesHandler(handlerRunnerMock, input, params);
+
+    const [
+      [first],
+      [second],
+      [third],
+      [columnGridCall]
+    ] = handlerRunnerMock.mock.calls;
+
+    const adUnit: IBasicAdUnit = {
+      type: ContentBlockType.BasicAdUnit,
+      context: "homepageEditorsPicks"
+    };
+
+    expect(columnGridCall.content[3]).toEqual([adUnit]);
+  });
+
   describe("when failing to retrieve articles", () => {
     it("should create empty content blocks for column one and pass it to column grid", async () => {
       (getRawArticles as jest.Mock).mockRejectedValueOnce(
@@ -188,11 +215,11 @@ describe("Three column", () => {
         type: ContentBlockType.GridContainer
       });
 
-      const input: IThreeColumnHandlerInput = {
-        type: HandlerInputType.ThreeColumn
+      const input: IRelevantStoriesHandlerInput = {
+        type: HandlerInputType.RelevantStories
       };
 
-      await threeColumnHandler(handlerRunnerMock, input, params);
+      await relevantStoriesHandler(handlerRunnerMock, input, params);
 
       const [
         [secondColumn],
@@ -201,7 +228,7 @@ describe("Three column", () => {
       ] = handlerRunnerMock.mock.calls;
 
       expect(handlerRunnerMock.mock.calls.length).toBe(3);
-      expect(columnGridCall.content[0]).toBe(undefined);
+      expect(columnGridCall.content[0]).toEqual([]);
     });
 
     it("should create empty content blocks for column two and pass it to column grid", async () => {
@@ -218,11 +245,11 @@ describe("Three column", () => {
         type: ContentBlockType.GridContainer
       });
 
-      const input: IThreeColumnHandlerInput = {
-        type: HandlerInputType.ThreeColumn
+      const input: IRelevantStoriesHandlerInput = {
+        type: HandlerInputType.RelevantStories
       };
 
-      await threeColumnHandler(handlerRunnerMock, input, params);
+      await relevantStoriesHandler(handlerRunnerMock, input, params);
 
       const [
         [firstColumn],
@@ -231,7 +258,7 @@ describe("Three column", () => {
       ] = handlerRunnerMock.mock.calls;
 
       expect(handlerRunnerMock.mock.calls.length).toBe(3);
-      expect(columnGridCall.content[1]).toBe(undefined);
+      expect(columnGridCall.content[1]).toEqual([]);
     });
 
     it("should create empty content blocks for column three and pass it to column grid", async () => {
@@ -248,11 +275,11 @@ describe("Three column", () => {
         type: ContentBlockType.GridContainer
       });
 
-      const input: IThreeColumnHandlerInput = {
-        type: HandlerInputType.ThreeColumn
+      const input: IRelevantStoriesHandlerInput = {
+        type: HandlerInputType.RelevantStories
       };
 
-      await threeColumnHandler(handlerRunnerMock, input, params);
+      await relevantStoriesHandler(handlerRunnerMock, input, params);
 
       const [
         [firstColumn],
@@ -261,7 +288,7 @@ describe("Three column", () => {
       ] = handlerRunnerMock.mock.calls;
 
       expect(handlerRunnerMock.mock.calls.length).toBe(3);
-      expect(columnGridCall.content[2]).toBe(undefined);
+      expect(columnGridCall.content[2]).toEqual([]);
     });
   });
 });

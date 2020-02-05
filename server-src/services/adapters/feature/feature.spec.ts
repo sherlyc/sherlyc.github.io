@@ -8,7 +8,6 @@ describe("Feature service", () => {
     [FeatureName.Recommendation]: [-1, -1],
     [FeatureName.RecommendationDisplay]: [-1, -1],
     [FeatureName.AdsRelativePositioning]: [1, 100],
-    [FeatureName.AdobeLaunch]: [1, 100],
     [FeatureName.StrapLayout]: [-1, -1],
     [FeatureName.ModuleLayout]: [-1, -1],
     [FeatureName.LoginFlow]: [1, 100]
@@ -19,8 +18,8 @@ describe("Feature service", () => {
       const shouldBeOn = inRange(rangeValue, min, max + 1);
       it(`${featureName} should be ${
         shouldBeOn ? "on" : "off"
-      } when lotto is ${rangeValue}`, async () => {
-        const result = await isFeatureEnabled(
+      } when lotto is ${rangeValue}`, () => {
+        const result = isFeatureEnabled(
           featureName,
           rangeValue,
           DeviceType.unknown

@@ -3,11 +3,11 @@ import { DeviceType } from "../../../../common/DeviceType";
 import config from "../../utils/config";
 import { FeatureName } from "../../../../common/FeatureName";
 
-export const isFeatureEnabled = async (
+export const isFeatureEnabled = (
   feature: FeatureName | string,
   lotteryNumber: number,
   deviceType: DeviceType
-): Promise<boolean> => {
+): boolean => {
   const featuresConfig = config.features;
 
   return featuresConfig.hasOwnProperty(feature)
