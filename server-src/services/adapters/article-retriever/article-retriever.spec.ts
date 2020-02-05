@@ -5,6 +5,8 @@ import * as jsonFeed from "../jsonfeed/jsonfeed";
 import * as strapListService from "../strap-list/strap-list-service";
 import { Strap } from "../../strap";
 
+jest.setTimeout(10000);
+
 describe("Article retriever", () => {
   const params: IParams = { apiRequestId: "123123" };
 
