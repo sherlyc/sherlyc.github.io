@@ -15,10 +15,17 @@ import { bigImageArticleUnit } from "../../../adapters/article-converter/big-ima
 import { BigImageArticleUnitLayout } from "../../../../../common/__types__/IBigImageArticleUnit";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 
-const bigTopLeftHandlerRegistry: { [key in LayoutType]: Function } = {
+const bigTopLeftHandlerRegistry: {
+  [key in LayoutType]: (
+    handlerRunner: handlerRunnerFunction,
+    articles: IRawArticle[],
+    strapName: string,
+    params: IParams
+  ) => Promise<IContentBlock[]>;
+} = {
   [LayoutType.DEFAULT]: bigTopLeftForDefaultOne,
-  [LayoutType.DEFCON]: () => [],
-  [LayoutType.BIG_HEADLINE]: () => []
+  [LayoutType.DEFCON]: async () => [],
+  [LayoutType.BIG_HEADLINE]: async () => []
 };
 
 async function bigTopLeftForDefaultOne(
