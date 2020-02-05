@@ -7,7 +7,7 @@ import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { Strap } from "../../../strap";
 import { layoutRetriever } from "../../../adapters/layout/layout-retriever";
 import { LayoutType } from "../../../adapters/__types__/LayoutType";
-import { ITopStoriesDefaultOneHandlerInput } from "../../__types__/ITopStoriesDefaultOneHandlerInput";
+import { ITopStoriesDefaultOneHighlightHandlerInput } from "../../__types__/ITopStoriesDefaultOneHighlightHandlerInput";
 import {
   ITopStoriesGridHandlerInput,
   TopStoriesGridPositions
@@ -151,8 +151,8 @@ describe("Top Stories", () => {
       await topStoriesHandler(handlerRunnerMock, handlerInput, params);
 
       const [[topStoriesDefaultOneCall]] = handlerRunnerMock.mock.calls;
-      const topStoriesDefaultOneHandlerInput: ITopStoriesDefaultOneHandlerInput = {
-        type: HandlerInputType.TopStoriesDefaultOneBigTopLeft,
+      const topStoriesDefaultOneHandlerInput: ITopStoriesDefaultOneHighlightHandlerInput = {
+        type: HandlerInputType.TopStoriesDefaultOneHighlight,
         strapName,
         articles: [fakeArticle("2"), fakeArticle("1")]
       };
@@ -179,7 +179,7 @@ describe("Top Stories", () => {
       const topStoriesGridHandlerInput: ITopStoriesGridHandlerInput = {
         type: HandlerInputType.TopStoriesGrid,
         content: {
-          [TopStoriesGridPositions.BigTopLeft]: [
+          [TopStoriesGridPositions.Highlight]: [
             topStoriesDefaultOneResult as IContentBlock
           ],
           [TopStoriesGridPositions.Right]: [basicAdUnit],

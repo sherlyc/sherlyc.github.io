@@ -7,7 +7,7 @@ export interface ITopStoriesGridHandlerInput {
 }
 
 export enum TopStoriesGridPositions {
-  BigTopLeft = "BigTopLeft",
+  Highlight = "Highlight",
   Right = "Right",
   FirstRow1 = "FirstRow1",
   FirstRow2 = "FirstRow2",

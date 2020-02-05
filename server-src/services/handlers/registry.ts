@@ -27,7 +27,7 @@ import RelevantStories from "./grid/relevant-stories/relevant-stories";
 import ColumnGrid from "./grid/column-grid/column-grid";
 import TopStories from "./grid/top-stories/top-stories";
 import TopStoriesGrid from "./grid/top-stories-grid/top-stories-grid";
-import TopStoriesDefaultOneBigTopLeft from "./grid/top-stories/default-one-big-top-left/default-one-big-top-left";
+import TopStoriesDefaultOneHighlight from "./grid/top-stories/default-one-highlight/default-one-highlight";
 
 import { handlerRunnerFunction } from "./runner";
 import { IParams } from "../__types__/IParams";
@@ -59,7 +59,7 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   Recommendations,
   TopStories,
   TopStoriesGrid,
-  TopStoriesDefaultOneBigTopLeft,
+  TopStoriesDefaultOneHighlight,
   NewsSix,
   NewsSixGrid,
   SixImage,

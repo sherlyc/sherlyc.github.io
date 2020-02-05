@@ -6,7 +6,7 @@ import { getRawArticles } from "../../../adapters/article-retriever/article-retr
 import { Strap } from "../../../strap";
 import { layoutRetriever } from "../../../adapters/layout/layout-retriever";
 import { LayoutType } from "../../../adapters/__types__/LayoutType";
-import { ITopStoriesDefaultOneHandlerInput } from "../../__types__/ITopStoriesDefaultOneHandlerInput";
+import { ITopStoriesDefaultOneHighlightHandlerInput } from "../../__types__/ITopStoriesDefaultOneHighlightHandlerInput";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { TopStoriesGridPositions } from "../../__types__/ITopStoriesGridHandlerInput";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
@@ -35,18 +35,18 @@ async function defaultOneHandler(
   params: IParams
 ) {
   const [articleOne, articleTwo, ...remainingArticles] = articles;
-  const topStoriesDefaultOneHandlerInput: ITopStoriesDefaultOneHandlerInput = {
-    type: HandlerInputType.TopStoriesDefaultOneBigTopLeft,
+  const topStoriesDefaultOneHandlerInput: ITopStoriesDefaultOneHighlightHandlerInput = {
+    type: HandlerInputType.TopStoriesDefaultOneHighlight,
     strapName,
     articles: [articleTwo, articleOne]
   };
-  const bigTopLeftContent = await handlerRunner(
+  const highlightContents = await handlerRunner(
     topStoriesDefaultOneHandlerInput,
     params
   );
   return await createTopStoriesGrid(
     handlerRunner,
-    bigTopLeftContent,
+    highlightContents,
     remainingArticles,
     strapName,
     params
@@ -55,13 +55,13 @@ async function defaultOneHandler(
 
 async function createTopStoriesGrid(
   handlerRunner: handlerRunnerFunction,
-  bigTopLeftContent: IContentBlock[],
+  highlightContents: IContentBlock[],
   articles: IRawArticle[],
   strapName: string,
   params: IParams
 ) {
   const content = {
-    [TopStoriesGridPositions.BigTopLeft]: bigTopLeftContent,
+    [TopStoriesGridPositions.Highlight]: highlightContents,
     [TopStoriesGridPositions.Right]: [basicAdUnit(strapName)],
     [TopStoriesGridPositions.FirstRow1]: [
       contentErrorHandler(

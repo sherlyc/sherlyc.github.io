@@ -19,9 +19,7 @@ export default async function(
   params: IParams
 ): Promise<IContentBlock[]> {
   const tablet: IGridBlocks = {
-    [TopStoriesGridPositions.BigTopLeft]: gridBlock(1, 1, 1, 4, [
-      Border.bottom
-    ]),
+    [TopStoriesGridPositions.Highlight]: gridBlock(1, 1, 1, 4, [Border.bottom]),
     [TopStoriesGridPositions.Right]: gridBlock(1, 5, 3, 1, []),
     [TopStoriesGridPositions.FirstRow1]: gridBlock(2, 1, 1, 1, []),
     [TopStoriesGridPositions.FirstRow2]: gridBlock(2, 2, 1, 1, []),
@@ -34,7 +32,7 @@ export default async function(
   };
 
   const mobile: IGridBlocks = {
-    [TopStoriesGridPositions.BigTopLeft]: gridBlock(1, 1, 1, 1, []),
+    [TopStoriesGridPositions.Highlight]: gridBlock(1, 1, 1, 1, []),
     [TopStoriesGridPositions.Right]: gridBlock(2, 1, 1, 1, []),
     [TopStoriesGridPositions.FirstRow1]: gridBlock(3, 1, 1, 1, []),
     [TopStoriesGridPositions.FirstRow2]: gridBlock(4, 1, 1, 1, [Border.top]),

@@ -1,7 +1,7 @@
-import topStoriesDefaultOne from "./default-one-big-top-left";
+import defaultOneHighlightHandler from "./default-one-highlight";
 import { IRawArticle } from "../../../../adapters/__types__/IRawArticle";
 import { IParams } from "../../../../__types__/IParams";
-import { ITopStoriesDefaultOneHandlerInput } from "../../../__types__/ITopStoriesDefaultOneHandlerInput";
+import { ITopStoriesDefaultOneHighlightHandlerInput } from "../../../__types__/ITopStoriesDefaultOneHighlightHandlerInput";
 import { HandlerInputType } from "../../../__types__/HandlerInputType";
 import { IColumnGridHandlerInput } from "../../../__types__/IColumnGridHandlerInput";
 import {
@@ -66,13 +66,13 @@ describe("Top Stories Default One", () => {
   });
 
   it("should layout content blocks using column grid handler", async () => {
-    const handlerInput: ITopStoriesDefaultOneHandlerInput = {
-      type: HandlerInputType.TopStoriesDefaultOneBigTopLeft,
+    const handlerInput: ITopStoriesDefaultOneHighlightHandlerInput = {
+      type: HandlerInputType.TopStoriesDefaultOneHighlight,
       articles: [article, article],
       strapName
     };
 
-    await topStoriesDefaultOne(handlerRunnerMock, handlerInput, params);
+    await defaultOneHighlightHandler(handlerRunnerMock, handlerInput, params);
 
     const columnGridExpectedInput: IColumnGridHandlerInput = {
       type: HandlerInputType.ColumnGrid,

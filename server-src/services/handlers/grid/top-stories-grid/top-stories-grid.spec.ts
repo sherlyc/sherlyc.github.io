@@ -23,7 +23,7 @@ describe("Top Stories grid handler", () => {
     const input: ITopStoriesGridHandlerInput = {
       type: HandlerInputType.TopStoriesGrid,
       content: {
-        [TopStoriesGridPositions.BigTopLeft]: [fakeContentBlock],
+        [TopStoriesGridPositions.Highlight]: [fakeContentBlock],
         [TopStoriesGridPositions.Right]: [fakeContentBlock],
         [TopStoriesGridPositions.FirstRow1]: [fakeContentBlock],
         [TopStoriesGridPositions.FirstRow2]: [fakeContentBlock],
@@ -46,7 +46,7 @@ describe("Top Stories grid handler", () => {
       {
         type: ContentBlockType.GridContainer,
         items: {
-          [TopStoriesGridPositions.BigTopLeft]: [fakeContentBlock],
+          [TopStoriesGridPositions.Highlight]: [fakeContentBlock],
           [TopStoriesGridPositions.Right]: [fakeContentBlock],
           [TopStoriesGridPositions.FirstRow1]: [fakeContentBlock],
           [TopStoriesGridPositions.FirstRow2]: [fakeContentBlock],
@@ -63,7 +63,7 @@ describe("Top Stories grid handler", () => {
           gridColumnGap: "20px",
           gridRowGap: "20px",
           gridBlocks: {
-            [TopStoriesGridPositions.BigTopLeft]: {
+            [TopStoriesGridPositions.Highlight]: {
               border: [],
               columnStart: 1,
               columnSpan: 1,
@@ -141,7 +141,7 @@ describe("Top Stories grid handler", () => {
           gridColumnGap: "20px",
           gridRowGap: "20px",
           gridBlocks: {
-            [TopStoriesGridPositions.BigTopLeft]: {
+            [TopStoriesGridPositions.Highlight]: {
               border: [Border.bottom],
               columnStart: 1,
               columnSpan: 4,
