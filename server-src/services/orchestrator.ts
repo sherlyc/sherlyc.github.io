@@ -67,7 +67,7 @@ const homepageAdPrefix = "homepage";
 const newPage = (): HandlerInput[] => [
   {
     type: HandlerInputType.TopStories,
-    strapName: `${homepageAdPrefix}Hahahah`
+    strapName: `${homepageAdPrefix}TopStoriesDefaultOne`
   },
   {
     type: HandlerInputType.RelevantStories
