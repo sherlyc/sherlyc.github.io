@@ -236,6 +236,7 @@ describe("ExperimentService", () => {
         http.get.mockReturnValueOnce(of("GroupOne"));
 
         await service.setup();
+        await service.getExperiment();
         const variant = await service.getVariant("Experiment");
 
         expect(variant).toEqual(ExperimentName.NotAssigned);
@@ -247,9 +248,35 @@ describe("ExperimentService", () => {
         http.get.mockReturnValueOnce(of("GroupOne"));
 
         await service.setup();
+        await service.getExperiment();
         const variant = await service.getVariant("Experiment");
 
         expect(variant).toEqual("GroupOne");
+      });
+
+      it("should save experiment info to cache", async () => {
+        deviceService.getDevice.mockReturnValue(DeviceType.unknown);
+        const lotteryNumber = 1;
+        lottoService.getLotteryNumber.mockReturnValue(lotteryNumber);
+        storeService.get.mockReturnValue(undefined);
+        const expName = "Experiment";
+        http.get.mockReturnValueOnce(of(expName));
+        const variantName = "GroupOne";
+        http.get.mockReturnValueOnce(of(variantName));
+
+        await service.setup();
+        await service.getExperiment();
+
+        expect(storeService.set).toHaveBeenNthCalledWith(
+          lotteryNumber,
+          `cache-exp-${ExperimentName.Users}-${lotteryNumber}-${DeviceType.unknown}`,
+          expName
+        );
+        expect(storeService.set).toHaveBeenNthCalledWith(
+          2,
+          `cache-exp-${expName}-${lotteryNumber}-${DeviceType.unknown}`,
+          variantName
+        );
       });
     });
   });
