@@ -99,7 +99,7 @@ export class ExperimentService {
     lotteryNumber: number,
     deviceType: DeviceType
   ): Promise<string> {
-    const cacheKey = `cache-exp-${experiment}-${lotteryNumber}--${deviceType}`;
+    const cacheKey = `cache-exp-${experiment}-${lotteryNumber}-${deviceType}`;
     const cachedValue = this.store.get<string>(cacheKey);
     const loadPromise = (async () => {
       const result = await this.http
@@ -118,12 +118,9 @@ export class ExperimentService {
           })
         )
         .toPromise();
-      if (cachedValue) {
-        this.store.set(cacheKey, result);
-      }
+      this.store.set(cacheKey, result);
       return result;
     })();
-
-    return cachedValue ? cachedValue : loadPromise;
+    return cachedValue || loadPromise;
   }
 }
