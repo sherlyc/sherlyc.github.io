@@ -66,11 +66,8 @@ export default async (params: IParams): Promise<IPage> => {
 const homepageAdPrefix = "homepage";
 const newPage = (): HandlerInput[] => [
   {
-    type: HandlerInputType.SixImage,
-    displayName: "top stories",
-    displayNameColor: "darkblue",
-    strapName: `${homepageAdPrefix}TopStoriesDefaultOne`,
-    sourceId: Strap.TopStories
+    type: HandlerInputType.TopStories,
+    strapName: `${homepageAdPrefix}TopStoriesDefaultOne`
   },
   {
     type: HandlerInputType.RelevantStories
