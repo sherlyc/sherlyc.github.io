@@ -94,14 +94,14 @@ spec:
             httpGet:
               path: "/health/light"
               port: 4000
-            initialDelaySeconds: 2
+            initialDelaySeconds: 5
             periodSeconds: 5
             timeoutSeconds: 5
           livenessProbe:
             httpGet:
               path: "/health/light"
               port: 4000
-            initialDelaySeconds: 5
+            initialDelaySeconds: 10
             periodSeconds: 5
       volumes:
         - name: config-v${parsedVersion.majorVersion}
