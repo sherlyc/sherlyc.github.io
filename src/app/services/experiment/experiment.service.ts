@@ -3,13 +3,13 @@ import { ConfigService } from "../config/config.service";
 import { RuntimeService } from "../runtime/runtime.service";
 import { LottoService } from "../lotto/lotto.service";
 import { ExperimentName } from "../../../../common/ExperimentName";
-import { Observable } from "rxjs";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { catchError } from "rxjs/operators";
 import { of } from "rxjs/internal/observable/of";
 import { LoggerService } from "../logger/logger.service";
 import { DeviceType } from "../../../../common/DeviceType";
 import { DeviceService } from "../device/device.service";
+import { StoreService } from "../store/store.service";
 
 @Injectable({
   providedIn: "root"
@@ -26,7 +26,8 @@ export class ExperimentService {
     private lottoService: LottoService,
     private http: HttpClient,
     private logger: LoggerService,
-    private device: DeviceService
+    private device: DeviceService,
+    private store: StoreService
   ) {}
 
   async setup() {
@@ -47,7 +48,7 @@ export class ExperimentService {
         ExperimentName.Users,
         userLotteryNumber,
         deviceType
-      ).toPromise();
+      );
       if (
         experimentName === ExperimentName.NotAssigned ||
         experimentName === "control"
@@ -66,7 +67,8 @@ export class ExperimentService {
         experimentName,
         experimentLotteryNumber,
         deviceType
-      ).toPromise();
+      );
+
       if (variant === ExperimentName.NotAssigned) {
         resolve({
           name: ExperimentName.NotAssigned,
@@ -92,25 +94,33 @@ export class ExperimentService {
     return this.experiment;
   }
 
-  retrieveVariant(
+  async retrieveVariant(
     experiment: string,
     lotteryNumber: number,
     deviceType: DeviceType
-  ): Observable<string> {
-    return this.http
-      .get<string>(
-        `${
-          this.config.getConfig().experimentAPI
-        }/${experiment}/${lotteryNumber}/${deviceType}`,
-        {
-          responseType: "text"
-        } as Object
-      )
-      .pipe(
-        catchError((error: HttpErrorResponse) => {
-          this.logger.warn(`Experiment Service Error - ${error}`);
-          return of(ExperimentName.NotAssigned);
-        })
-      );
+  ): Promise<string> {
+    const cacheKey = `cache-exp-${experiment}-${lotteryNumber}-${deviceType}`;
+    const cachedValue = this.store.get<string>(cacheKey);
+    const loadPromise = (async () => {
+      const result = await this.http
+        .get<string>(
+          `${
+            this.config.getConfig().experimentAPI
+          }/${experiment}/${lotteryNumber}/${deviceType}`,
+          {
+            responseType: "text"
+          } as Object
+        )
+        .pipe(
+          catchError((error: HttpErrorResponse) => {
+            this.logger.warn(`Experiment Service Error - ${error}`);
+            return of(ExperimentName.NotAssigned);
+          })
+        )
+        .toPromise();
+      this.store.set(cacheKey, result);
+      return result;
+    })();
+    return cachedValue || loadPromise;
   }
 }

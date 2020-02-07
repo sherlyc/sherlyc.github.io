@@ -10,6 +10,7 @@ import { LoggerService } from "../logger/logger.service";
 import { ExperimentName } from "../../../../common/ExperimentName";
 import { DeviceService } from "../device/device.service";
 import { DeviceType } from "../../../../common/DeviceType";
+import { StoreService } from "../store/store.service";
 
 describe("ExperimentService", () => {
   const experimentAPI = "/spade/api/experiment";
@@ -20,6 +21,7 @@ describe("ExperimentService", () => {
   let http: ServiceMock<HttpClient>;
   let loggerService: ServiceMock<LoggerService>;
   let deviceService: ServiceMock<DeviceService>;
+  let storeService: ServiceMock<StoreService>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -48,6 +50,10 @@ describe("ExperimentService", () => {
         {
           provide: DeviceService,
           useClass: mockService(DeviceService)
+        },
+        {
+          provide: StoreService,
+          useClass: mockService(StoreService)
         }
       ]
     });
@@ -59,6 +65,7 @@ describe("ExperimentService", () => {
     lottoService = TestBed.get(LottoService);
     http = TestBed.get(HttpClient);
     loggerService = TestBed.get(LoggerService);
+    storeService = TestBed.get(StoreService);
     jest.clearAllMocks();
   });
 
@@ -76,7 +83,7 @@ describe("ExperimentService", () => {
   });
 
   describe("when in browser", () => {
-    beforeAll(() => {
+    beforeEach(() => {
       runtimeService.isServer.mockReturnValue(false);
     });
 
@@ -221,6 +228,55 @@ describe("ExperimentService", () => {
         const variant = await service.getVariant("TopStoriesExperiment");
 
         expect(variant).toEqual(ExperimentName.NotAssigned);
+      });
+
+      it("should get experiment variant from existing cache", async () => {
+        storeService.get.mockReturnValue("control");
+        http.get.mockReturnValueOnce(of("Experiment"));
+        http.get.mockReturnValueOnce(of("GroupOne"));
+
+        await service.setup();
+        await service.getExperiment();
+        const variant = await service.getVariant("Experiment");
+
+        expect(variant).toEqual(ExperimentName.NotAssigned);
+      });
+
+      it("should wait for variant if there is no existing cache", async () => {
+        storeService.get.mockReturnValueOnce(undefined);
+        http.get.mockReturnValueOnce(of("Experiment"));
+        http.get.mockReturnValueOnce(of("GroupOne"));
+
+        await service.setup();
+        await service.getExperiment();
+        const variant = await service.getVariant("Experiment");
+
+        expect(variant).toEqual("GroupOne");
+      });
+
+      it("should save experiment info to cache", async () => {
+        deviceService.getDevice.mockReturnValue(DeviceType.unknown);
+        const lotteryNumber = 1;
+        lottoService.getLotteryNumber.mockReturnValue(lotteryNumber);
+        storeService.get.mockReturnValue(undefined);
+        const expName = "Experiment";
+        http.get.mockReturnValueOnce(of(expName));
+        const variantName = "GroupOne";
+        http.get.mockReturnValueOnce(of(variantName));
+
+        await service.setup();
+        await service.getExperiment();
+
+        expect(storeService.set).toHaveBeenNthCalledWith(
+          lotteryNumber,
+          `cache-exp-${ExperimentName.Users}-${lotteryNumber}-${DeviceType.unknown}`,
+          expName
+        );
+        expect(storeService.set).toHaveBeenNthCalledWith(
+          2,
+          `cache-exp-${expName}-${lotteryNumber}-${DeviceType.unknown}`,
+          variantName
+        );
       });
     });
   });
