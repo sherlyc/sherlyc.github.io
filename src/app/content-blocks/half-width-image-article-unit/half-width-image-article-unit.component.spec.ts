@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { HalfWidthImageArticleUnitComponent } from "./half-width-image-article-unit.component";
 import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { SharedModule } from "src/app/shared/shared.module";
 import { AnalyticsService } from "src/app/services/analytics/analytics.service";
 import { mockService, ServiceMock } from "src/app/services/mocks/MockService";
 import { By } from "@angular/platform-browser";
@@ -11,8 +10,13 @@ import { AnalyticsEventsType } from "src/app/services/analytics/__types__/Analyt
 import { FeatureSwitchService } from "../../services/feature-switch/feature-switch.service";
 import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 import { HeadlineComponent } from "../../shared/components/headline/headline.component";
+import { FluidImageComponent } from "../../shared/components/fluid-image/fluid-image.component";
+import { TimeAgoComponent } from "../../shared/components/time-ago/time-ago.component";
+import { OpenExternalLinkDirective } from "../../shared/directives/open-external-link/open-external-link.directive";
+import { SharedModule } from "../../shared/shared.module";
+import { Component, Input } from "@angular/core";
 
-describe("BigImageArticleUnitComponent", () => {
+describe("HalfWidthImageArticleUnitComponent", () => {
   let component: HalfWidthImageArticleUnitComponent;
   let fixture: ComponentFixture<HalfWidthImageArticleUnitComponent>;
   let analyticsService: ServiceMock<AnalyticsService>;
@@ -34,10 +38,22 @@ describe("BigImageArticleUnitComponent", () => {
     headlineFlags: []
   };
 
+  @Component({
+    selector: "app-fluid-image",
+    template: ""
+  })
+  class FakeFluidImageComponent {
+    @Input() imageSrc!: string;
+    @Input() caption!: string;
+  }
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [SharedModule],
-      declarations: [HalfWidthImageArticleUnitComponent],
+      declarations: [
+        HalfWidthImageArticleUnitComponent,
+        FakeFluidImageComponent
+      ],
       providers: [
         {
           provide: AnalyticsService,
@@ -48,7 +64,13 @@ describe("BigImageArticleUnitComponent", () => {
           useClass: mockService(FeatureSwitchService)
         }
       ]
-    }).compileComponents();
+    })
+      .overrideComponent(FluidImageComponent, {
+        set: {
+          selector: "app-fluid-image-original"
+        }
+      })
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -76,22 +98,23 @@ describe("BigImageArticleUnitComponent", () => {
     const h3 = componentElement.querySelector("h3");
     expect(h3!.textContent!.trim()).toEqual(articleData.indexHeadline);
 
-    const img = componentElement.querySelector("img");
-    expect(img!.getAttribute("src")).toEqual(articleData.imageSrc);
-    expect(img!.getAttribute("srcset")).toEqual(articleData.imageSrcSet);
-    expect(img!.getAttribute("alt")).toEqual(articleData.indexHeadline);
-
     const introSpan = componentElement.querySelector("p span.intro");
     expect(introSpan!.textContent).toEqual("Dummy intro text");
   });
 
-  it("should hide image if not available", async () => {
-    component.input = { ...articleData, imageSrc: null };
+  it("should render fluid image", async () => {
+    component.input = articleData;
 
     fixture.detectChanges();
-    const componentElement: HTMLElement = fixture.debugElement.nativeElement;
-    const img = componentElement.querySelector("img");
-    expect(img).toBeFalsy();
+
+    const componentElement = fixture.debugElement;
+
+    const image: FakeFluidImageComponent = componentElement.query(
+      By.directive(FakeFluidImageComponent)
+    ).componentInstance;
+
+    expect(image.imageSrc).toEqual(articleData.imageSrc);
+    expect(image.caption).toEqual(articleData.indexHeadline);
   });
 
   it("should send analytics when clicked", () => {

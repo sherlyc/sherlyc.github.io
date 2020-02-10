@@ -1,5 +1,4 @@
 import { IRawArticle } from "../__types__/IRawArticle";
-import { IHalfWidthImageArticleUnit } from "../../../../common/__types__/IHalfWidthImageArticleUnit";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IImageLinkUnit } from "../../../../common/__types__/IImageLinkUnit";
 
