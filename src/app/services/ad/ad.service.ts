@@ -49,15 +49,8 @@ export class AdService {
   async notify() {
     try {
       await this.load;
-      const isRelativePositioningOn = await this.featureSwitch.getFeature(
-        FeatureName.AdsRelativePositioning
-      );
       this.zone.runOutsideAngular(() => {
-        if (isRelativePositioningOn) {
-          this.sendCustomEventWithValue();
-        } else {
-          this.sendEvent();
-        }
+        this.sendCustomEventWithValue();
       });
     } catch (e) {
       this.logger.error(e);
@@ -66,18 +59,8 @@ export class AdService {
 
   private sendCustomEventWithValue() {
     const event = new CustomEvent("NavigationEnd", {
-      detail: { relativePositioning: true }
+      detail: {}
     });
     this.document.dispatchEvent(event);
-  }
-
-  private sendEvent() {
-    if ("name" in Event.prototype.constructor) {
-      this.document.dispatchEvent(new Event("NavigationEnd"));
-    } else {
-      const event = this.document.createEvent("Event");
-      event.initEvent("NavigationEnd", true, true);
-      this.document.dispatchEvent(event);
-    }
   }
 }
