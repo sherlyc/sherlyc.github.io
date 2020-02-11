@@ -5,14 +5,12 @@
       <div class="col-sm-12 col-xs-6 first-sm image">
         <app-fluid-image [imageSrc]="input.imageSrc" [caption]="input.indexHeadline"></app-fluid-image>
       </div>
-      <div class="col-sm-12 col-xs-12 first-xs">
+      <div class="col-sm-12 col-xs-12 first-xs headline">
         <app-headline [headline]="input.indexHeadline" [headlineFlags]="input.headlineFlags"></app-headline>
       </div>
       <div class="col-sm-12 col-xs-6">
-        <p>
-          <app-time-ago separator="right" [timestamp]="input.lastPublishedTime"></app-time-ago>
-          <span class="intro">{{ input.introText }}</span>
-        </p>
+        <p class="intro">{{ input.introText }}</p>
+        <app-time-ago [timestamp]="input.lastPublishedTime" [textColor]="'#9a9a9a'"></app-time-ago>
       </div>
     </div>
   </a>
