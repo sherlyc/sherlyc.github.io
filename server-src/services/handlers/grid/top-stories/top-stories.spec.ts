@@ -183,10 +183,30 @@ describe("Top Stories", () => {
             topStoriesDefaultOneResult as IContentBlock
           ],
           [TopStoriesGridPositions.Right]: [basicAdUnit],
-          [TopStoriesGridPositions.FirstRow1]: [fakeBigImageArticle("3")],
-          [TopStoriesGridPositions.FirstRow2]: [fakeBigImageArticle("4")],
-          [TopStoriesGridPositions.FirstRow3]: [fakeBigImageArticle("5")],
-          [TopStoriesGridPositions.FirstRow4]: [fakeBigImageArticle("6")],
+          [TopStoriesGridPositions.FirstRow1]: [
+            expect.objectContaining({
+              type: ContentBlockType.HalfWidthImageArticleUnit,
+              id: "3"
+            })
+          ],
+          [TopStoriesGridPositions.FirstRow2]: [
+            expect.objectContaining({
+              type: ContentBlockType.HalfWidthImageArticleUnit,
+              id: "4"
+            })
+          ],
+          [TopStoriesGridPositions.FirstRow3]: [
+            expect.objectContaining({
+              type: ContentBlockType.HalfWidthImageArticleUnit,
+              id: "5"
+            })
+          ],
+          [TopStoriesGridPositions.FirstRow4]: [
+            expect.objectContaining({
+              type: ContentBlockType.HalfWidthImageArticleUnit,
+              id: "6"
+            })
+          ],
           [TopStoriesGridPositions.SecondRow1]: [fakeBigImageArticle("7")],
           [TopStoriesGridPositions.SecondRow2]: [fakeBigImageArticle("8")],
           [TopStoriesGridPositions.SecondRow3]: [fakeBigImageArticle("9")],
