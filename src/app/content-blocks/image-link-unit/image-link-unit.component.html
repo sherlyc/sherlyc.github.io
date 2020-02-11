@@ -1,5 +1,6 @@
-<article>
-  <a href="{{ input.linkUrl }}" class="col-xs" (click)="sendAnalytics()">
+<article itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+  <meta itemprop="position" content="{{ index }}" />
+  <a itemprop="url" href="{{ input.linkUrl }}" appOpenExternalLink="{{ input.linkUrl }}" class="col-xs" (click)="sendAnalytics()">
     <div class="row" *ngIf="input.imageSrc">
       <div class="image">
         <img src="{{ input.imageSrc }}" (error)="input.imageSrc = null" alt="{{ input.indexHeadline }}" loading="auto" [attr.srcset]="input.imageSrcSet ? input.imageSrcSet : null" />

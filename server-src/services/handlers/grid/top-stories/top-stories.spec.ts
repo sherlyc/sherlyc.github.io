@@ -16,10 +16,7 @@ import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import {
-  IBigImageArticleUnit,
-  BigImageArticleUnitLayout
-} from "../../../../../common/__types__/IBigImageArticleUnit";
+import { BigImageArticleUnitLayout } from "../../../../../common/__types__/IBigImageArticleUnit";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../adapters/layout/layout-retriever");
@@ -77,52 +74,9 @@ describe("Top Stories", () => {
   const handlerRunnerMock = jest.fn();
   const params: IParams = { apiRequestId: "123" };
   const strapName = "Top Stories";
-  const article: IRawArticle = {
-    id: "1",
-    indexHeadline: "Headline 1",
-    title: "Title 1",
-    introText: "Intro 1",
-    linkUrl: "/link1",
-    defconSrc: null,
-    imageSrc: "1.jpg",
-    imageSrcSet: "1.jpg 1w",
-    strapImageSrc: "strap1.jpg",
-    strapImageSrcSet: "strap1.jpg 1w",
-    lastPublishedTime: 1,
-    headlineFlags: [],
-    sixteenByNineSrc: "sixteenByNineSrc-1.jpg"
-  };
   const basicAdUnit: IBasicAdUnit = {
     type: ContentBlockType.BasicAdUnit,
     context: strapName
-  };
-  const articleOneAsBigImage: IBigImageArticleUnit = {
-    type: ContentBlockType.BigImageArticleUnit,
-    id: "1",
-    strapName,
-    indexHeadline: "Headline 1",
-    title: "Title 1",
-    introText: "Intro 1",
-    linkUrl: "/link1",
-    imageSrc: "sixteenByNineSrc-1.jpg",
-    imageSrcSet: "strap1.jpg 1w",
-    layout: BigImageArticleUnitLayout.module,
-    lastPublishedTime: 1,
-    headlineFlags: []
-  };
-  const articleTwoAsBigImage: IBigImageArticleUnit = {
-    type: ContentBlockType.BigImageArticleUnit,
-    id: "2",
-    strapName,
-    indexHeadline: "Headline 2",
-    title: "Title 2",
-    introText: "Intro 2",
-    linkUrl: "/link2",
-    imageSrc: "sixteenByNineSrc-2.jpg",
-    imageSrcSet: "strap2.jpg 2w",
-    layout: BigImageArticleUnitLayout.module,
-    lastPublishedTime: 1,
-    headlineFlags: []
   };
 
   describe("when layout is Default One", () => {
@@ -187,10 +141,30 @@ describe("Top Stories", () => {
           [TopStoriesGridPositions.FirstRow2]: [fakeBigImageArticle("4")],
           [TopStoriesGridPositions.FirstRow3]: [fakeBigImageArticle("5")],
           [TopStoriesGridPositions.FirstRow4]: [fakeBigImageArticle("6")],
-          [TopStoriesGridPositions.SecondRow1]: [fakeBigImageArticle("7")],
-          [TopStoriesGridPositions.SecondRow2]: [fakeBigImageArticle("8")],
-          [TopStoriesGridPositions.SecondRow3]: [fakeBigImageArticle("9")],
-          [TopStoriesGridPositions.SecondRow4]: [fakeBigImageArticle("10")]
+          [TopStoriesGridPositions.SecondRow1]: [
+            expect.objectContaining({
+              type: ContentBlockType.HalfImageArticleWithoutIntroUnit,
+              id: "7"
+            })
+          ],
+          [TopStoriesGridPositions.SecondRow2]: [
+            expect.objectContaining({
+              type: ContentBlockType.HalfImageArticleWithoutIntroUnit,
+              id: "8"
+            })
+          ],
+          [TopStoriesGridPositions.SecondRow3]: [
+            expect.objectContaining({
+              type: ContentBlockType.HalfImageArticleWithoutIntroUnit,
+              id: "9"
+            })
+          ],
+          [TopStoriesGridPositions.SecondRow4]: [
+            expect.objectContaining({
+              type: ContentBlockType.HalfImageArticleWithoutIntroUnit,
+              id: "10"
+            })
+          ]
         }
       };
       expect(handlerRunnerMock).toHaveBeenNthCalledWith(
