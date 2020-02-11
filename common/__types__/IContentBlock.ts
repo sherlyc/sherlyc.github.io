@@ -23,6 +23,7 @@ import { IGridContainer } from "./IGridContainer";
 import { IResponsiveBigImageArticleUnit } from "./IResponsiveBigImageArticleUnit";
 import { IModuleTitle } from "./IModuleTitle";
 import { IFeaturedArticle } from "./IFeaturedArticle";
+import { IHalfImageArticleWithoutIntroUnit } from "./IHalfImageArticleWithoutIntroUnit";
 
 export type IContentBlock =
   | IDefconArticleUnit
@@ -34,6 +35,7 @@ export type IContentBlock =
   | IBasicArticleSection
   | IExpandableArticleSection
   | IImageLinkUnit
+  | IHalfImageArticleWithoutIntroUnit
   | IBasicAdUnit
   | IErrorBlock
   | IContainer

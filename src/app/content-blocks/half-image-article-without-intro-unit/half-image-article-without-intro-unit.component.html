@@ -1,0 +1,14 @@
+<article itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+  <meta itemprop="position" content="{{ index }}" />
+  <a itemprop="url" href="{{ input.linkUrl }}" appOpenExternalLink="{{ input.linkUrl }}" (click)="sendAnalytics()">
+    <div class="row">
+      <div class="col-sm-12 col-xs-6 column image">
+        <app-fluid-image [imageSrc]="input.imageSrc" [caption]="input.indexHeadline"></app-fluid-image>
+      </div>
+      <div class="col-sm-12 col-xs-6 column">
+        <app-headline [headline]="input.indexHeadline" [headlineFlags]="input.headlineFlags"></app-headline>
+        <app-time-ago [timestamp]="input.lastPublishedTime" [textColor]="'#9a9a9a'"></app-time-ago>
+      </div>
+    </div>
+  </a>
+</article>

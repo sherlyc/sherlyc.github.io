@@ -1,8 +1,7 @@
 export enum FeatureName {
   Recommendation = "Recommendation",
   RecommendationDisplay = "RecommendationDisplay",
-  AdsRelativePositioning = "AdsRelativePositioning",
-  LoginFlow = "LoginFlow",
   StrapLayout = "StrapLayout",
-  ModuleLayout = "ModuleLayout"
+  ModuleLayout = "ModuleLayout",
+  HomepageTakeover = "HomepageTakeover"
 }

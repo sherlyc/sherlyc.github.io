@@ -25,6 +25,7 @@ import { GridContainerComponent } from "./grid-container/grid-container.componen
 import { ResponsiveBigImageArticleComponent } from "./responsive-big-image-article/responsive-big-image-article.component";
 import { ModuleTitleComponent } from "./module-title/module-title.component";
 import { FeaturedArticleComponent } from "./featured-article/featured-article.component";
+import { HalfImageArticleWithoutIntroUnitComponent } from "./half-image-article-without-intro-unit/half-image-article-without-intro-unit.component";
 
 export const contentBlockComponents = [
   GrayDefconArticleUnitComponent,
@@ -36,6 +37,7 @@ export const contentBlockComponents = [
   ExpandableArticleSectionComponent,
   BasicArticleTitleUnitComponent,
   ImageLinkUnitComponent,
+  HalfImageArticleWithoutIntroUnitComponent,
   BasicAdUnitComponent,
   BreakingNewsComponent,
   ContainerComponent,
@@ -66,6 +68,7 @@ const registry: {
   ExpandableArticleSectionComponent,
   BasicArticleTitleUnitComponent,
   ImageLinkUnitComponent,
+  HalfImageArticleWithoutIntroUnitComponent,
   BasicAdUnitComponent,
   BreakingNewsComponent,
   ContainerComponent,
