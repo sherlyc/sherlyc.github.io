@@ -16,15 +16,12 @@ import { ContentBlockType } from "../../../../../common/__types__/ContentBlockTy
 import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { flow, range, map } from "lodash/fp";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../adapters/layout/layout-retriever");
 
-const fakeArticleWithId = (id: number | string) =>
-  (({ id: `${id}` } as any) as IRawArticle);
-
-const fakeArticlesWithIdRange = flow(range, map(fakeArticleWithId));
+const fakeArticlesWithIds = (ids: number[]) =>
+  ids.map((id) => ({ id: `${id}` } as IRawArticle));
 
 const expectHalfWidthImage = (id: string) =>
   expect.objectContaining({
@@ -43,7 +40,7 @@ describe("Top Stories", () => {
     jest.resetAllMocks();
 
     (getRawArticles as jest.Mock).mockResolvedValue(
-      fakeArticlesWithIdRange(1, 12)
+      fakeArticlesWithIds([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
     );
   });
 
@@ -86,7 +83,7 @@ describe("Top Stories", () => {
       const topStoriesDefaultOneHandlerInput: ITopStoriesDefaultOneHighlightHandlerInput = {
         type: HandlerInputType.TopStoriesDefaultOneHighlight,
         strapName,
-        articles: fakeArticlesWithIdRange(2, 0)
+        articles: fakeArticlesWithIds([2, 1])
       };
       expect(topStoriesDefaultOneCall).toEqual(
         topStoriesDefaultOneHandlerInput
