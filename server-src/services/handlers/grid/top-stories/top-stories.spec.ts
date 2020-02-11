@@ -54,6 +54,10 @@ describe("Top Stories", () => {
     type: ContentBlockType.BasicAdUnit,
     context: strapName
   };
+  const topStoriesHandlerInput: ITopStoriesHandlerInput = {
+    type: HandlerInputType.TopStories,
+    strapName
+  };
 
   describe("when layout is Default One", () => {
     beforeEach(() => {
@@ -61,24 +65,22 @@ describe("Top Stories", () => {
     });
 
     it("should retrieve articles and layout", async () => {
-      const handlerInput: ITopStoriesHandlerInput = {
-        type: HandlerInputType.TopStories,
-        strapName
-      };
-
-      await topStoriesHandler(handlerRunnerMock, handlerInput, params);
+      await topStoriesHandler(
+        handlerRunnerMock,
+        topStoriesHandlerInput,
+        params
+      );
 
       expect(getRawArticles).toHaveBeenCalledWith(Strap.TopStories, 11, params);
       expect(layoutRetriever).toHaveBeenCalledWith(params);
     });
 
     it("should call top stories default one", async () => {
-      const handlerInput: ITopStoriesHandlerInput = {
-        type: HandlerInputType.TopStories,
-        strapName
-      };
-
-      await topStoriesHandler(handlerRunnerMock, handlerInput, params);
+      await topStoriesHandler(
+        handlerRunnerMock,
+        topStoriesHandlerInput,
+        params
+      );
 
       const [[topStoriesDefaultOneCall]] = handlerRunnerMock.mock.calls;
       const topStoriesDefaultOneHandlerInput: ITopStoriesDefaultOneHighlightHandlerInput = {
@@ -99,12 +101,11 @@ describe("Top Stories", () => {
         topStoriesDefaultOneResult as IGridContainer
       ]);
 
-      const handlerInput: ITopStoriesHandlerInput = {
-        type: HandlerInputType.TopStories,
-        strapName
-      };
-
-      await topStoriesHandler(handlerRunnerMock, handlerInput, params);
+      await topStoriesHandler(
+        handlerRunnerMock,
+        topStoriesHandlerInput,
+        params
+      );
 
       const topStoriesGridHandlerInput: ITopStoriesGridHandlerInput = {
         type: HandlerInputType.TopStoriesGrid,
