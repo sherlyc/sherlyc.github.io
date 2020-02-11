@@ -9,7 +9,7 @@ describe("Feature service", () => {
     [FeatureName.RecommendationDisplay]: [-1, -1],
     [FeatureName.StrapLayout]: [-1, -1],
     [FeatureName.ModuleLayout]: [-1, -1],
-    [FeatureName.LoginFlow]: [1, 100]
+    [FeatureName.HomepageTakeover]: [-1, -1]
   };
 
   Object.entries(testCases).forEach(([featureName, [min, max]]) => {

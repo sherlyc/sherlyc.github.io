@@ -1,5 +1,4 @@
 import { Inject, Injectable, NgZone } from "@angular/core";
-import { NavigationEnd } from "@angular/router";
 import { DOCUMENT } from "@angular/common";
 import { ConfigService } from "../config/config.service";
 import { ScriptInjectorService } from "../script-injector/script-injector.service";
@@ -9,6 +8,7 @@ import { LoggerService } from "../logger/logger.service";
 import { RuntimeService } from "../runtime/runtime.service";
 import { FeatureSwitchService } from "../feature-switch/feature-switch.service";
 import { FeatureName } from "../../../../common/FeatureName";
+import { IAdServiceEventDetail } from "./AdServiceEventDetail";
 
 @Injectable({
   providedIn: "root"
@@ -49,17 +49,20 @@ export class AdService {
   async notify() {
     try {
       await this.load;
+      const isHomepageTakeoverOn = await this.featureSwitch.getFeature(
+        FeatureName.HomepageTakeover
+      );
       this.zone.runOutsideAngular(() => {
-        this.sendCustomEventWithValue();
+        this.sendCustomEventWithValue({ isHomepageTakeoverOn });
       });
     } catch (e) {
       this.logger.error(e);
     }
   }
 
-  private sendCustomEventWithValue() {
+  private sendCustomEventWithValue(detail: IAdServiceEventDetail) {
     const event = new CustomEvent("NavigationEnd", {
-      detail: {}
+      detail
     });
     this.document.dispatchEvent(event);
   }

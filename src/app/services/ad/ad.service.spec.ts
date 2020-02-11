@@ -4,11 +4,12 @@ import { ConfigService } from "../config/config.service";
 import { mockService, ServiceMock } from "../mocks/MockService";
 import { ScriptInjectorService } from "../script-injector/script-injector.service";
 import { DOCUMENT } from "@angular/common";
-import { of, throwError } from "rxjs";
+import { of } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { LoggerService } from "../logger/logger.service";
 import { RuntimeService } from "../runtime/runtime.service";
 import { FeatureSwitchService } from "../feature-switch/feature-switch.service";
+import { FeatureName } from "../../../../common/FeatureName";
 
 describe("AdService", () => {
   let scriptInjectorService: ServiceMock<ScriptInjectorService>;
@@ -71,17 +72,42 @@ describe("AdService", () => {
     );
   });
 
-  it("should notify the adnostic sdk with a custom event", async () => {
+  it("should notify the adnostic sdk with custom event detail", async () => {
     const document: Document = TestBed.get(DOCUMENT);
     document.dispatchEvent = jest.fn();
 
     await adService.notify();
 
-    expect(document.dispatchEvent).toHaveBeenCalledTimes(1);
-    const [
-      [dispatchedEvent]
-    ] = (document.dispatchEvent as jest.Mock).mock.calls;
-    expect((dispatchedEvent as CustomEvent).type).toBe("NavigationEnd");
-    expect((dispatchedEvent as CustomEvent).detail).toEqual({});
+    expect(document.dispatchEvent).toHaveBeenNthCalledWith(
+      1,
+      expect.objectContaining({
+        type: "NavigationEnd",
+        detail: expect.any(Object)
+      })
+    );
+  });
+
+  describe("Homepage Takeover feature", () => {
+    it.each([[true], [false]])(
+      `should notify the adnostic sdk with feature switch value (%s)`,
+      async (isHomepageTakeoverOn: boolean) => {
+        featureSwitch.getFeature.mockResolvedValue(isHomepageTakeoverOn);
+        const document: Document = TestBed.get(DOCUMENT);
+        document.dispatchEvent = jest.fn();
+
+        await adService.notify();
+
+        expect(featureSwitch.getFeature).toHaveBeenCalledWith(
+          FeatureName.HomepageTakeover
+        );
+        expect(document.dispatchEvent).toHaveBeenNthCalledWith(
+          1,
+          expect.objectContaining({
+            type: "NavigationEnd",
+            detail: expect.objectContaining({ isHomepageTakeoverOn })
+          })
+        );
+      }
+    );
   });
 });
