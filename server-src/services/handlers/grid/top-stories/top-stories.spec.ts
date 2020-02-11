@@ -116,19 +116,19 @@ describe("Top Stories", () => {
           [TopStoriesGridPositions.Right]: [basicAdUnit],
           [TopStoriesGridPositions.FirstRow1]: [expectHalfWidthImage("3")],
           [TopStoriesGridPositions.FirstRow2]: [expectHalfWidthImage("4")],
-          [TopStoriesGridPositions.FirstRow3]: [expectHalfWidthImage("5")],
-          [TopStoriesGridPositions.FirstRow4]: [expectHalfWidthImage("6")],
+          [TopStoriesGridPositions.FirstRow3]: [basicAdUnit],
+          [TopStoriesGridPositions.FirstRow4]: [expectHalfWidthImage("5")],
           [TopStoriesGridPositions.SecondRow1]: [
-            expectHalfWidthImageWithoutIntro("7")
+            expectHalfWidthImageWithoutIntro("6")
           ],
           [TopStoriesGridPositions.SecondRow2]: [
-            expectHalfWidthImageWithoutIntro("8")
+            expectHalfWidthImageWithoutIntro("7")
           ],
           [TopStoriesGridPositions.SecondRow3]: [
-            expectHalfWidthImageWithoutIntro("9")
+            expectHalfWidthImageWithoutIntro("8")
           ],
           [TopStoriesGridPositions.SecondRow4]: [
-            expectHalfWidthImageWithoutIntro("10")
+            expectHalfWidthImageWithoutIntro("9")
           ]
         }
       };

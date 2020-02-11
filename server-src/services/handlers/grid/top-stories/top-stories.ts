@@ -81,15 +81,7 @@ async function createTopStoriesGrid(
         params
       )
     ],
-    [TopStoriesGridPositions.FirstRow3]: [
-      contentErrorHandler(
-        () =>
-          halfWidthImageArticleUnit(articles.shift() as IRawArticle, strapName),
-        HandlerInputType.TopStories,
-        Strap.TopStories,
-        params
-      )
-    ],
+    [TopStoriesGridPositions.FirstRow3]: [basicAdUnit(strapName)],
     [TopStoriesGridPositions.FirstRow4]: [
       contentErrorHandler(
         () =>
