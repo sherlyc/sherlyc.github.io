@@ -92,13 +92,9 @@ describe("HalfWidthImageArticleUnitComponent", () => {
 
     const componentElement: HTMLElement = fixture.debugElement.nativeElement;
     const a = componentElement.querySelector("a");
-
     expect(a!.getAttribute("href")).toEqual(articleData.linkUrl);
 
-    const h3 = componentElement.querySelector("h3");
-    expect(h3!.textContent!.trim()).toEqual(articleData.indexHeadline);
-
-    const introSpan = componentElement.querySelector("p span.intro");
+    const introSpan = componentElement.querySelector("p.intro");
     expect(introSpan!.textContent).toEqual("Dummy intro text");
   });
 
@@ -133,17 +129,30 @@ describe("HalfWidthImageArticleUnitComponent", () => {
     });
   });
 
-  it("should pass correct inputs to headline component", () => {
+  it("should render headline component", () => {
     articleData.headlineFlags = [HeadlineFlags.PHOTO];
     component.input = articleData;
 
     fixture.detectChanges();
 
-    const headline = fixture.debugElement.query(By.directive(HeadlineComponent))
-      .componentInstance;
+    const headline: HeadlineComponent = fixture.debugElement.query(
+      By.directive(HeadlineComponent)
+    ).componentInstance;
 
-    expect(headline).toHaveProperty("headline", articleData.indexHeadline);
-    expect(headline).toHaveProperty("headlineFlags", articleData.headlineFlags);
+    expect(headline.headline).toEqual(articleData.indexHeadline);
+    expect(headline.headlineFlags).toEqual(articleData.headlineFlags);
     expect(headline).not.toHaveProperty("timeStamp");
+  });
+
+  it("should render time ago component", () => {
+    component.input = articleData;
+
+    fixture.detectChanges();
+
+    const timeAgo: TimeAgoComponent = fixture.debugElement.query(
+      By.directive(TimeAgoComponent)
+    ).componentInstance;
+    expect(timeAgo.timestamp).toEqual(articleData.lastPublishedTime);
+    expect(timeAgo.textColor).toEqual("#9a9a9a");
   });
 });
