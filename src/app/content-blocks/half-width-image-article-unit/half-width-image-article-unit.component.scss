@@ -1,6 +1,5 @@
 :host {
   display: block;
-  border-bottom: 1px solid #edeef1;
   margin-bottom: 10px;
 }
 
@@ -13,22 +12,12 @@ a {
   }
 }
 
-.row {
-  flex-wrap: nowrap;
-}
-
-.column {
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
-}
-
-img {
-  max-width: 100%;
-  margin-bottom: -4px;
-}
-
 .image {
   overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.headline {
   margin-bottom: 10px;
 }
 

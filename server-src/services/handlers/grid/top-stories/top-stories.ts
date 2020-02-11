@@ -11,9 +11,8 @@ import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { TopStoriesGridPositions } from "../../__types__/ITopStoriesGridHandlerInput";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 import { contentErrorHandler } from "../content-error-handler";
-import { bigImageArticleUnit } from "../../../adapters/article-converter/big-image-article.converter";
-import { BigImageArticleUnitLayout } from "../../../../../common/__types__/IBigImageArticleUnit";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { halfWidthImageArticleUnit } from "../../../adapters/article-converter/half-width-image-article-unit.converter";
 import { halfImageArticleWithoutIntroUnit } from "../../../adapters/article-converter/half-image-article-without-intro-unit.converter";
 
 const topStoriesVariationHandler: {
@@ -67,11 +66,7 @@ async function createTopStoriesGrid(
     [TopStoriesGridPositions.FirstRow1]: [
       contentErrorHandler(
         () =>
-          bigImageArticleUnit(
-            articles.shift() as IRawArticle,
-            strapName,
-            BigImageArticleUnitLayout.module
-          ),
+          halfWidthImageArticleUnit(articles.shift() as IRawArticle, strapName),
         HandlerInputType.TopStories,
         Strap.TopStories,
         params
@@ -80,37 +75,17 @@ async function createTopStoriesGrid(
     [TopStoriesGridPositions.FirstRow2]: [
       contentErrorHandler(
         () =>
-          bigImageArticleUnit(
-            articles.shift() as IRawArticle,
-            strapName,
-            BigImageArticleUnitLayout.module
-          ),
+          halfWidthImageArticleUnit(articles.shift() as IRawArticle, strapName),
         HandlerInputType.TopStories,
         Strap.TopStories,
         params
       )
     ],
-    [TopStoriesGridPositions.FirstRow3]: [
-      contentErrorHandler(
-        () =>
-          bigImageArticleUnit(
-            articles.shift() as IRawArticle,
-            strapName,
-            BigImageArticleUnitLayout.module
-          ),
-        HandlerInputType.TopStories,
-        Strap.TopStories,
-        params
-      )
-    ],
+    [TopStoriesGridPositions.FirstRow3]: [basicAdUnit(strapName)],
     [TopStoriesGridPositions.FirstRow4]: [
       contentErrorHandler(
         () =>
-          bigImageArticleUnit(
-            articles.shift() as IRawArticle,
-            strapName,
-            BigImageArticleUnitLayout.module
-          ),
+          halfWidthImageArticleUnit(articles.shift() as IRawArticle, strapName),
         HandlerInputType.TopStories,
         Strap.TopStories,
         params

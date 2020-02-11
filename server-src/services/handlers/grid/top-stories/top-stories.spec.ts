@@ -1,5 +1,4 @@
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import topStoriesHandler from "./top-stories";
 import { IParams } from "../../../__types__/IParams";
 import { ITopStoriesHandlerInput } from "../../__types__/ITopStoriesHandlerInput";
@@ -16,59 +15,33 @@ import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { BigImageArticleUnitLayout } from "../../../../../common/__types__/IBigImageArticleUnit";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../adapters/layout/layout-retriever");
 
-const fakeArticle = (id: string) => ({
-  id,
-  indexHeadline: `Headline ${id}`,
-  title: `Title ${id}`,
-  introText: `Intro ${id}`,
-  linkUrl: `/link${id}`,
-  defconSrc: null,
-  imageSrc: `${id}.jpg`,
-  imageSrcSet: `${id}.jpg ${id}w`,
-  strapImageSrc: `strap${id}.jpg`,
-  strapImageSrcSet: `strap${id}.jpg ${id}w`,
-  lastPublishedTime: 1,
-  headlineFlags: [],
-  sixteenByNineSrc: `sixteenByNineSrc-${id}.jpg`
-});
+const fakeArticlesWithIds = (ids: number[]) =>
+  ids.map((id) => ({ id: `${id}` } as IRawArticle));
 
-const fakeBigImageArticle = (id: string): IContentBlock => ({
-  type: ContentBlockType.BigImageArticleUnit,
-  id,
-  strapName: "Top Stories",
-  indexHeadline: `Headline ${id}`,
-  title: `Title ${id}`,
-  introText: `Intro ${id}`,
-  linkUrl: `/link${id}`,
-  imageSrc: `sixteenByNineSrc-${id}.jpg`,
-  imageSrcSet: `strap${id}.jpg ${id}w`,
-  layout: BigImageArticleUnitLayout.module,
-  lastPublishedTime: 1,
-  headlineFlags: []
-});
+const expectHalfWidthImage = (id: string) =>
+  expect.objectContaining({
+    type: ContentBlockType.HalfWidthImageArticleUnit,
+    id
+  });
+
+const expectHalfWidthImageWithoutIntro = (id: string) =>
+  expect.objectContaining({
+    type: ContentBlockType.HalfImageArticleWithoutIntroUnit,
+    id
+  });
 
 describe("Top Stories", () => {
   beforeEach(() => {
     jest.resetAllMocks();
 
-    (getRawArticles as jest.Mock).mockResolvedValue([
-      fakeArticle("1"),
-      fakeArticle("2"),
-      fakeArticle("3"),
-      fakeArticle("4"),
-      fakeArticle("5"),
-      fakeArticle("6"),
-      fakeArticle("7"),
-      fakeArticle("8"),
-      fakeArticle("9"),
-      fakeArticle("10"),
-      fakeArticle("11")
-    ]);
+    (getRawArticles as jest.Mock).mockResolvedValue(
+      fakeArticlesWithIds([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
+    );
   });
 
   const handlerRunnerMock = jest.fn();
@@ -78,6 +51,10 @@ describe("Top Stories", () => {
     type: ContentBlockType.BasicAdUnit,
     context: strapName
   };
+  const topStoriesHandlerInput: ITopStoriesHandlerInput = {
+    type: HandlerInputType.TopStories,
+    strapName
+  };
 
   describe("when layout is Default One", () => {
     beforeEach(() => {
@@ -85,30 +62,28 @@ describe("Top Stories", () => {
     });
 
     it("should retrieve articles and layout", async () => {
-      const handlerInput: ITopStoriesHandlerInput = {
-        type: HandlerInputType.TopStories,
-        strapName
-      };
-
-      await topStoriesHandler(handlerRunnerMock, handlerInput, params);
+      await topStoriesHandler(
+        handlerRunnerMock,
+        topStoriesHandlerInput,
+        params
+      );
 
       expect(getRawArticles).toHaveBeenCalledWith(Strap.TopStories, 11, params);
       expect(layoutRetriever).toHaveBeenCalledWith(params);
     });
 
     it("should call top stories default one", async () => {
-      const handlerInput: ITopStoriesHandlerInput = {
-        type: HandlerInputType.TopStories,
-        strapName
-      };
-
-      await topStoriesHandler(handlerRunnerMock, handlerInput, params);
+      await topStoriesHandler(
+        handlerRunnerMock,
+        topStoriesHandlerInput,
+        params
+      );
 
       const [[topStoriesDefaultOneCall]] = handlerRunnerMock.mock.calls;
       const topStoriesDefaultOneHandlerInput: ITopStoriesDefaultOneHighlightHandlerInput = {
         type: HandlerInputType.TopStoriesDefaultOneHighlight,
         strapName,
-        articles: [fakeArticle("2"), fakeArticle("1")]
+        articles: fakeArticlesWithIds([2, 1])
       };
       expect(topStoriesDefaultOneCall).toEqual(
         topStoriesDefaultOneHandlerInput
@@ -123,12 +98,11 @@ describe("Top Stories", () => {
         topStoriesDefaultOneResult as IGridContainer
       ]);
 
-      const handlerInput: ITopStoriesHandlerInput = {
-        type: HandlerInputType.TopStories,
-        strapName
-      };
-
-      await topStoriesHandler(handlerRunnerMock, handlerInput, params);
+      await topStoriesHandler(
+        handlerRunnerMock,
+        topStoriesHandlerInput,
+        params
+      );
 
       const topStoriesGridHandlerInput: ITopStoriesGridHandlerInput = {
         type: HandlerInputType.TopStoriesGrid,
@@ -137,33 +111,21 @@ describe("Top Stories", () => {
             topStoriesDefaultOneResult as IContentBlock
           ],
           [TopStoriesGridPositions.Right]: [basicAdUnit],
-          [TopStoriesGridPositions.FirstRow1]: [fakeBigImageArticle("3")],
-          [TopStoriesGridPositions.FirstRow2]: [fakeBigImageArticle("4")],
-          [TopStoriesGridPositions.FirstRow3]: [fakeBigImageArticle("5")],
-          [TopStoriesGridPositions.FirstRow4]: [fakeBigImageArticle("6")],
+          [TopStoriesGridPositions.FirstRow1]: [expectHalfWidthImage("3")],
+          [TopStoriesGridPositions.FirstRow2]: [expectHalfWidthImage("4")],
+          [TopStoriesGridPositions.FirstRow3]: [basicAdUnit],
+          [TopStoriesGridPositions.FirstRow4]: [expectHalfWidthImage("5")],
           [TopStoriesGridPositions.SecondRow1]: [
-            expect.objectContaining({
-              type: ContentBlockType.HalfImageArticleWithoutIntroUnit,
-              id: "7"
-            })
+            expectHalfWidthImageWithoutIntro("6")
           ],
           [TopStoriesGridPositions.SecondRow2]: [
-            expect.objectContaining({
-              type: ContentBlockType.HalfImageArticleWithoutIntroUnit,
-              id: "8"
-            })
+            expectHalfWidthImageWithoutIntro("7")
           ],
           [TopStoriesGridPositions.SecondRow3]: [
-            expect.objectContaining({
-              type: ContentBlockType.HalfImageArticleWithoutIntroUnit,
-              id: "9"
-            })
+            expectHalfWidthImageWithoutIntro("8")
           ],
           [TopStoriesGridPositions.SecondRow4]: [
-            expect.objectContaining({
-              type: ContentBlockType.HalfImageArticleWithoutIntroUnit,
-              id: "10"
-            })
+            expectHalfWidthImageWithoutIntro("9")
           ]
         }
       };
