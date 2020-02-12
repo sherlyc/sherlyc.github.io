@@ -1,18 +1,17 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { HalfImageArticleWithoutIntroUnitComponent } from "./half-image-article-without-intro-unit.component";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { mockService, ServiceMock } from "src/app/services/mocks/MockService";
-import { AnalyticsService } from "src/app/services/analytics/analytics.service";
-import { FeatureSwitchService } from "../../services/feature-switch/feature-switch.service";
-import { IHalfImageArticleWithoutIntroUnit } from "../../../../common/__types__/IHalfImageArticleWithoutIntroUnit";
-import { HeadlineComponent } from "../../shared/components/headline/headline.component";
-import { By } from "@angular/platform-browser";
-import { TimeAgoComponent } from "../../shared/components/time-ago/time-ago.component";
-import { FluidImageComponent } from "../../shared/components/fluid-image/fluid-image.component";
-import { HeadlineFlagComponent } from "../../shared/components/headline-flag/headline-flag.component";
-import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
-import { SharedModule } from "../../shared/shared.module";
 import { Component, Input } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { By } from "@angular/platform-browser";
+import { AnalyticsService } from "src/app/services/analytics/analytics.service";
+import { mockService, ServiceMock } from "src/app/services/mocks/MockService";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IHalfImageArticleWithoutIntroUnit } from "../../../../common/__types__/IHalfImageArticleWithoutIntroUnit";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { FeatureSwitchService } from "../../services/feature-switch/feature-switch.service";
+import { FluidImageComponent } from "../../shared/components/fluid-image/fluid-image.component";
+import { HeadlineComponent } from "../../shared/components/headline/headline.component";
+import { TimeAgoComponent } from "../../shared/components/time-ago/time-ago.component";
+import { SharedModule } from "../../shared/shared.module";
+import { HalfImageArticleWithoutIntroUnitComponent } from "./half-image-article-without-intro-unit.component";
 
 describe("HalfImageArticleWithoutIntroUnit", () => {
   let component: HalfImageArticleWithoutIntroUnitComponent;

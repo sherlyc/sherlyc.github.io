@@ -1,21 +1,21 @@
-import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
-import topStoriesHandler from "./top-stories";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
 import { IParams } from "../../../__types__/IParams";
-import { ITopStoriesHandlerInput } from "../../__types__/ITopStoriesHandlerInput";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { Strap } from "../../../strap";
-import { layoutRetriever } from "../../../adapters/layout/layout-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { LayoutType } from "../../../adapters/__types__/LayoutType";
+import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { layoutRetriever } from "../../../adapters/layout/layout-retriever";
+import { Strap } from "../../../strap";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { ITopStoriesDefaultOneHighlightHandlerInput } from "../../__types__/ITopStoriesDefaultOneHighlightHandlerInput";
 import {
   ITopStoriesGridHandlerInput,
   TopStoriesGridPositions
 } from "../../__types__/ITopStoriesGridHandlerInput";
-import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
-import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { ITopStoriesHandlerInput } from "../../__types__/ITopStoriesHandlerInput";
+import topStoriesHandler from "./top-stories";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../adapters/layout/layout-retriever");
@@ -56,20 +56,17 @@ describe("Top Stories", () => {
     strapName
   };
 
+  it("should retrieve articles and layout", async () => {
+    (layoutRetriever as jest.Mock).mockResolvedValue(LayoutType.DEFAULT);
+    await topStoriesHandler(handlerRunnerMock, topStoriesHandlerInput, params);
+
+    expect(getRawArticles).toHaveBeenCalledWith(Strap.TopStories, 11, params);
+    expect(layoutRetriever).toHaveBeenCalledWith(params);
+  });
+
   describe("when layout is Default One", () => {
     beforeEach(() => {
       (layoutRetriever as jest.Mock).mockResolvedValue(LayoutType.DEFAULT);
-    });
-
-    it("should retrieve articles and layout", async () => {
-      await topStoriesHandler(
-        handlerRunnerMock,
-        topStoriesHandlerInput,
-        params
-      );
-
-      expect(getRawArticles).toHaveBeenCalledWith(Strap.TopStories, 11, params);
-      expect(layoutRetriever).toHaveBeenCalledWith(params);
     });
 
     it("should call top stories default one", async () => {
@@ -126,6 +123,76 @@ describe("Top Stories", () => {
           ],
           [TopStoriesGridPositions.SecondRow4]: [
             expectHalfWidthImageWithoutIntro("9")
+          ]
+        }
+      };
+      expect(handlerRunnerMock).toHaveBeenNthCalledWith(
+        2,
+        topStoriesGridHandlerInput,
+        params
+      );
+    });
+  });
+
+  describe("when layout is Defcon", () => {
+    beforeEach(() => {
+      (layoutRetriever as jest.Mock).mockResolvedValue(LayoutType.DEFCON);
+    });
+
+    it("should call top stories defcon", async () => {
+      await topStoriesHandler(
+        handlerRunnerMock,
+        topStoriesHandlerInput,
+        params
+      );
+
+      expect(handlerRunnerMock).toHaveBeenNthCalledWith(
+        1,
+        {
+          type: HandlerInputType.TopStoriesDefconHighlight,
+          strapName,
+          articles: fakeArticlesWithIds([1, 2, 3])
+        },
+        params
+      );
+    });
+
+    it("should call top stories grid", async () => {
+      const topStoriesDefconResult = {
+        type: ContentBlockType.GridContainer
+      };
+      handlerRunnerMock.mockResolvedValueOnce([
+        topStoriesDefconResult as IGridContainer
+      ]);
+
+      await topStoriesHandler(
+        handlerRunnerMock,
+        topStoriesHandlerInput,
+        params
+      );
+
+      const topStoriesGridHandlerInput: ITopStoriesGridHandlerInput = {
+        type: HandlerInputType.TopStoriesGrid,
+        content: {
+          [TopStoriesGridPositions.Highlight]: [
+            topStoriesDefconResult as IContentBlock
+          ],
+          [TopStoriesGridPositions.Right]: [basicAdUnit],
+          [TopStoriesGridPositions.FirstRow1]: [expectHalfWidthImage("4")],
+          [TopStoriesGridPositions.FirstRow2]: [expectHalfWidthImage("5")],
+          [TopStoriesGridPositions.FirstRow3]: [basicAdUnit],
+          [TopStoriesGridPositions.FirstRow4]: [expectHalfWidthImage("6")],
+          [TopStoriesGridPositions.SecondRow1]: [
+            expectHalfWidthImageWithoutIntro("7")
+          ],
+          [TopStoriesGridPositions.SecondRow2]: [
+            expectHalfWidthImageWithoutIntro("8")
+          ],
+          [TopStoriesGridPositions.SecondRow3]: [
+            expectHalfWidthImageWithoutIntro("9")
+          ],
+          [TopStoriesGridPositions.SecondRow4]: [
+            expectHalfWidthImageWithoutIntro("10")
           ]
         }
       };

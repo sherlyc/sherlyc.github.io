@@ -1,15 +1,15 @@
-import { TestBed } from "@angular/core/testing";
-import { AdService } from "./ad.service";
-import { ConfigService } from "../config/config.service";
-import { mockService, ServiceMock } from "../mocks/MockService";
-import { ScriptInjectorService } from "../script-injector/script-injector.service";
 import { DOCUMENT } from "@angular/common";
-import { of } from "rxjs";
 import { HttpClient } from "@angular/common/http";
-import { LoggerService } from "../logger/logger.service";
-import { RuntimeService } from "../runtime/runtime.service";
-import { FeatureSwitchService } from "../feature-switch/feature-switch.service";
+import { TestBed } from "@angular/core/testing";
+import { of } from "rxjs";
 import { FeatureName } from "../../../../common/FeatureName";
+import { ConfigService } from "../config/config.service";
+import { FeatureSwitchService } from "../feature-switch/feature-switch.service";
+import { LoggerService } from "../logger/logger.service";
+import { mockService, ServiceMock } from "../mocks/MockService";
+import { RuntimeService } from "../runtime/runtime.service";
+import { ScriptInjectorService } from "../script-injector/script-injector.service";
+import { AdService } from "./ad.service";
 
 describe("AdService", () => {
   let scriptInjectorService: ServiceMock<ScriptInjectorService>;

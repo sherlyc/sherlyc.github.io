@@ -1,6 +1,6 @@
-import { IRawArticle } from "../__types__/IRawArticle";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IHalfImageArticleWithoutIntroUnit } from "../../../../common/__types__/IHalfImageArticleWithoutIntroUnit";
+import { IRawArticle } from "../__types__/IRawArticle";
 import { halfImageArticleWithoutIntroUnit } from "./half-image-article-without-intro-unit.converter";
 
 describe("Half image article without intro unit", () => {

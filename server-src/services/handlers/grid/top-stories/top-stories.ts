@@ -1,19 +1,20 @@
-import { handlerRunnerFunction } from "../../runner";
-import { IParams } from "../../../__types__/IParams";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { ITopStoriesHandlerInput } from "../../__types__/ITopStoriesHandlerInput";
-import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
-import { Strap } from "../../../strap";
-import { layoutRetriever } from "../../../adapters/layout/layout-retriever";
-import { LayoutType } from "../../../adapters/__types__/LayoutType";
-import { ITopStoriesDefaultOneHighlightHandlerInput } from "../../__types__/ITopStoriesDefaultOneHighlightHandlerInput";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { TopStoriesGridPositions } from "../../__types__/ITopStoriesGridHandlerInput";
-import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
-import { contentErrorHandler } from "../content-error-handler";
+import { IParams } from "../../../__types__/IParams";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { halfWidthImageArticleUnit } from "../../../adapters/article-converter/half-width-image-article-unit.converter";
+import { LayoutType } from "../../../adapters/__types__/LayoutType";
+import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 import { halfImageArticleWithoutIntroUnit } from "../../../adapters/article-converter/half-image-article-without-intro-unit.converter";
+import { halfWidthImageArticleUnit } from "../../../adapters/article-converter/half-width-image-article-unit.converter";
+import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { layoutRetriever } from "../../../adapters/layout/layout-retriever";
+import { Strap } from "../../../strap";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import { ITopStoriesDefaultOneHighlightHandlerInput } from "../../__types__/ITopStoriesDefaultOneHighlightHandlerInput";
+import { ITopStoriesDefconHighlightHandlerInput } from "../../__types__/ITopStoriesDefconHighlightHandlerInput";
+import { TopStoriesGridPositions } from "../../__types__/ITopStoriesGridHandlerInput";
+import { ITopStoriesHandlerInput } from "../../__types__/ITopStoriesHandlerInput";
+import { handlerRunnerFunction } from "../../runner";
+import { contentErrorHandler } from "../content-error-handler";
 
 const topStoriesVariationHandler: {
   [key in LayoutType]: (
@@ -24,7 +25,7 @@ const topStoriesVariationHandler: {
   ) => Promise<IContentBlock[]>;
 } = {
   [LayoutType.DEFAULT]: defaultOneHandler,
-  [LayoutType.DEFCON]: async () => [],
+  [LayoutType.DEFCON]: defconHandler,
   [LayoutType.BIG_HEADLINE]: async () => []
 };
 
@@ -42,6 +43,31 @@ async function defaultOneHandler(
   };
   const highlightContents = await handlerRunner(
     topStoriesDefaultOneHandlerInput,
+    params
+  );
+  return await createTopStoriesGrid(
+    handlerRunner,
+    highlightContents,
+    remainingArticles,
+    strapName,
+    params
+  );
+}
+
+async function defconHandler(
+  handlerRunner: handlerRunnerFunction,
+  articles: IRawArticle[],
+  strapName: string,
+  params: IParams
+) {
+  const [articleOne, articleTwo, articleThree, ...remainingArticles] = articles;
+  const topStoriesDefconHandlerInput: ITopStoriesDefconHighlightHandlerInput = {
+    type: HandlerInputType.TopStoriesDefconHighlight,
+    strapName,
+    articles: [articleOne, articleTwo, articleThree]
+  };
+  const highlightContents = await handlerRunner(
+    topStoriesDefconHandlerInput,
     params
   );
   return await createTopStoriesGrid(

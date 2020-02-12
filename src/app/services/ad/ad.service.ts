@@ -1,13 +1,13 @@
-import { Inject, Injectable, NgZone } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
-import { ConfigService } from "../config/config.service";
-import { ScriptInjectorService } from "../script-injector/script-injector.service";
-import { ScriptId } from "../script-injector/__types__/ScriptId";
 import { HttpClient } from "@angular/common/http";
+import { Inject, Injectable, NgZone } from "@angular/core";
+import { FeatureName } from "../../../../common/FeatureName";
+import { ConfigService } from "../config/config.service";
+import { FeatureSwitchService } from "../feature-switch/feature-switch.service";
 import { LoggerService } from "../logger/logger.service";
 import { RuntimeService } from "../runtime/runtime.service";
-import { FeatureSwitchService } from "../feature-switch/feature-switch.service";
-import { FeatureName } from "../../../../common/FeatureName";
+import { ScriptId } from "../script-injector/__types__/ScriptId";
+import { ScriptInjectorService } from "../script-injector/script-injector.service";
 import { IAdServiceEventDetail } from "./AdServiceEventDetail";
 
 @Injectable({

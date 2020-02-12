@@ -19,6 +19,7 @@ export enum HandlerInputType {
   TopStories = "TopStories",
   TopStoriesGrid = "TopStoriesGrid",
   TopStoriesDefaultOneHighlight = "TopStoriesDefaultOneHighlight",
+  TopStoriesDefconHighlight = "TopStoriesDefconHighlight",
   NewsSix = "NewsSix",
   NewsSixGrid = "NewsSixGrid",
   SixImage = "SixImage",

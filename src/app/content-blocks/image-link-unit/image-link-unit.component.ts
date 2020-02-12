@@ -1,8 +1,8 @@
 import { Component, Input } from "@angular/core";
 import { IImageLinkUnit } from "../../../../common/__types__/IImageLinkUnit";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
-import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
   selector: "app-image-link-unit",

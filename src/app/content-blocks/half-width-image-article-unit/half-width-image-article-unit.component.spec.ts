@@ -1,20 +1,19 @@
+import { Component, Input } from "@angular/core";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-
-import { HalfWidthImageArticleUnitComponent } from "./half-width-image-article-unit.component";
-import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { AnalyticsService } from "src/app/services/analytics/analytics.service";
-import { mockService, ServiceMock } from "src/app/services/mocks/MockService";
 import { By } from "@angular/platform-browser";
 import { AnalyticsEventsType } from "src/app/services/analytics/__types__/AnalyticsEventsType";
-import { FeatureSwitchService } from "../../services/feature-switch/feature-switch.service";
+import { AnalyticsService } from "src/app/services/analytics/analytics.service";
+import { mockService, ServiceMock } from "src/app/services/mocks/MockService";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
 import { HeadlineFlags } from "../../../../common/HeadlineFlags";
-import { HeadlineComponent } from "../../shared/components/headline/headline.component";
+import { FeatureSwitchService } from "../../services/feature-switch/feature-switch.service";
 import { FluidImageComponent } from "../../shared/components/fluid-image/fluid-image.component";
+import { HeadlineComponent } from "../../shared/components/headline/headline.component";
 import { TimeAgoComponent } from "../../shared/components/time-ago/time-ago.component";
-import { OpenExternalLinkDirective } from "../../shared/directives/open-external-link/open-external-link.directive";
 import { SharedModule } from "../../shared/shared.module";
-import { Component, Input } from "@angular/core";
+
+import { HalfWidthImageArticleUnitComponent } from "./half-width-image-article-unit.component";
 
 describe("HalfWidthImageArticleUnitComponent", () => {
   let component: HalfWidthImageArticleUnitComponent;

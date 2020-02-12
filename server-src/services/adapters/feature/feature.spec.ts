@@ -1,7 +1,7 @@
-import { isFeatureEnabled } from "./feature";
+import { inRange, range } from "lodash";
 import { DeviceType } from "../../../../common/DeviceType";
-import { range, inRange } from "lodash";
 import { FeatureName } from "../../../../common/FeatureName";
+import { isFeatureEnabled } from "./feature";
 
 describe("Feature service", () => {
   const testCases: { [key in FeatureName]: [number, number] } = {

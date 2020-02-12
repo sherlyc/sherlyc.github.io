@@ -1,32 +1,33 @@
+import { IBannerHandlerInput } from "./IBannerHandlerInput";
 import { IBasicArticleListHandlerInput } from "./IBasicArticleListHandlerInput";
 import { IBasicArticleSectionHandlerInput } from "./IBasicArticleSectionHandlerInput";
-import { IPageHandlerInput } from "./IPageHandlerInput";
 import { IBreakingNewsHandlerInput } from "./IBreakingNewsHandlerInput";
-import { IMidStripHandlerInput } from "./IMidStripHandlerInput";
-import { IExternalContentHandlerInput } from "./IExternalContentHandlerInput";
-import { IRecommendationsHandlerInput } from "./IRecommendationsHandlerInput";
-import { IWeatherHandlerInput } from "./IWeatherHandlerInput";
-import { IMiniMidStripHandlerInput } from "./IMiniMidStripHandlerInput";
-import { IExperimentHandlerInput } from "./IExperimentHandlerInput";
-import { ITopStoriesArticleListHandlerInput } from "./ITopStoriesArticleListHandlerInput";
-import { IFeatureHandlerInput } from "./IFeatureHandlerInput";
-import { IBannerHandlerInput } from "./IBannerHandlerInput";
+import { IColumnGridHandlerInput } from "./IColumnGridHandlerInput";
 import { IExpandableArticleListHandlerInput } from "./IExpandableArticleListHandlerInput";
 import { IExpandableArticleSectionHandlerInput } from "./IExpandableArticleSectionHandlerInput";
-import { IMoreSectionExperimentHandlerInput } from "./IMoreSectionExperimentHandlerInput";
-import { INewsSixHandlerInput } from "./INewsSixHandlerInput";
-import { INewsSixGridHandlerInput } from "./INewsSixGridHandlerInput";
-import { ISixImageHandlerInput } from "./ISixImageHandlerInput";
-import { ISixImageGridHandlerInput } from "./ISixImageGridHandlerInput";
-import { ILargeLeadSixHandlerInput } from "./ILargeLeadSixHandlerInput";
-import { ILargeLeadSixGridHandlerInput } from "./ILargeLeadSixGridHandlerInput";
-import { IListGridHandlerInput } from "./IListGridHandlerInput";
-import { IRelevantStoriesHandlerInput } from "./IRelevantStoriesHandlerInput";
-import { IColumnGridHandlerInput } from "./IColumnGridHandlerInput";
+import { IExperimentHandlerInput } from "./IExperimentHandlerInput";
+import { IExternalContentHandlerInput } from "./IExternalContentHandlerInput";
+import { IFeatureHandlerInput } from "./IFeatureHandlerInput";
 import { IForceUpdateHandlerInput } from "./IForceUpdateHandlerInput";
-import { ITopStoriesHandlerInput } from "./ITopStoriesHandlerInput";
+import { ILargeLeadSixGridHandlerInput } from "./ILargeLeadSixGridHandlerInput";
+import { ILargeLeadSixHandlerInput } from "./ILargeLeadSixHandlerInput";
+import { IListGridHandlerInput } from "./IListGridHandlerInput";
+import { IMidStripHandlerInput } from "./IMidStripHandlerInput";
+import { IMiniMidStripHandlerInput } from "./IMiniMidStripHandlerInput";
+import { IMoreSectionExperimentHandlerInput } from "./IMoreSectionExperimentHandlerInput";
+import { INewsSixGridHandlerInput } from "./INewsSixGridHandlerInput";
+import { INewsSixHandlerInput } from "./INewsSixHandlerInput";
+import { IPageHandlerInput } from "./IPageHandlerInput";
+import { IRecommendationsHandlerInput } from "./IRecommendationsHandlerInput";
+import { IRelevantStoriesHandlerInput } from "./IRelevantStoriesHandlerInput";
+import { ISixImageGridHandlerInput } from "./ISixImageGridHandlerInput";
+import { ISixImageHandlerInput } from "./ISixImageHandlerInput";
+import { ITopStoriesArticleListHandlerInput } from "./ITopStoriesArticleListHandlerInput";
 import { ITopStoriesDefaultOneHighlightHandlerInput } from "./ITopStoriesDefaultOneHighlightHandlerInput";
+import { ITopStoriesDefconHighlightHandlerInput } from "./ITopStoriesDefconHighlightHandlerInput";
 import { ITopStoriesGridHandlerInput } from "./ITopStoriesGridHandlerInput";
+import { ITopStoriesHandlerInput } from "./ITopStoriesHandlerInput";
+import { IWeatherHandlerInput } from "./IWeatherHandlerInput";
 
 export type HandlerInput =
   | ITopStoriesArticleListHandlerInput
@@ -48,6 +49,7 @@ export type HandlerInput =
   | IRecommendationsHandlerInput
   | ITopStoriesHandlerInput
   | ITopStoriesDefaultOneHighlightHandlerInput
+  | ITopStoriesDefconHighlightHandlerInput
   | ITopStoriesGridHandlerInput
   | INewsSixHandlerInput
   | INewsSixGridHandlerInput
