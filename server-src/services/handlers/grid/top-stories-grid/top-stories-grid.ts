@@ -18,7 +18,7 @@ export default async function(
   { content }: ITopStoriesGridHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const tablet: IGridBlocks = {
+  const desktop: IGridBlocks = {
     [TopStoriesGridPositions.Highlight]: gridBlock(1, 1, 1, 4, [Border.bottom]),
     [TopStoriesGridPositions.Right]: gridBlock(1, 5, 3, 1, []),
     [TopStoriesGridPositions.FirstRow1]: gridBlock(2, 1, 1, 1, []),
@@ -29,6 +29,19 @@ export default async function(
     [TopStoriesGridPositions.SecondRow2]: gridBlock(3, 2, 1, 1, []),
     [TopStoriesGridPositions.SecondRow3]: gridBlock(3, 3, 1, 1, []),
     [TopStoriesGridPositions.SecondRow4]: gridBlock(3, 4, 1, 1, [])
+  };
+
+  const tablet: IGridBlocks = {
+    [TopStoriesGridPositions.Highlight]: gridBlock(1, 1, 1, 4, [Border.bottom]),
+    [TopStoriesGridPositions.Right]: gridBlock(2, 3, 2, 2, []),
+    [TopStoriesGridPositions.FirstRow1]: gridBlock(2, 1, 1, 1, []),
+    [TopStoriesGridPositions.FirstRow2]: gridBlock(2, 2, 1, 1, []),
+    [TopStoriesGridPositions.FirstRow3]: gridBlock(3, 1, 1, 1, []),
+    [TopStoriesGridPositions.FirstRow4]: gridBlock(3, 2, 1, 1, []),
+    [TopStoriesGridPositions.SecondRow1]: gridBlock(4, 1, 1, 1, []),
+    [TopStoriesGridPositions.SecondRow2]: gridBlock(4, 2, 1, 1, []),
+    [TopStoriesGridPositions.SecondRow3]: gridBlock(4, 3, 1, 1, []),
+    [TopStoriesGridPositions.SecondRow4]: gridBlock(4, 4, 1, 1, [])
   };
 
   const mobile: IGridBlocks = {
@@ -56,11 +69,18 @@ export default async function(
         gridBlocks: mobile
       },
       tablet: {
+        gridTemplateColumns: "1fr 1fr 1fr 1fr",
+        gridTemplateRows: "auto auto auto auto",
+        gridColumnGap: "20px",
+        gridRowGap: "20px",
+        gridBlocks: tablet
+      },
+      desktop: {
         gridTemplateColumns: "1fr 1fr 1fr 1fr 300px",
         gridTemplateRows: "auto auto auto",
         gridColumnGap: "20px",
         gridRowGap: "20px",
-        gridBlocks: tablet
+        gridBlocks: desktop
       }
     } as IGridContainer
   ];
