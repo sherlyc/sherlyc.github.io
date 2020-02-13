@@ -12,13 +12,15 @@ header {
   padding-top: 2px;
 }
 .menu {
-  padding: 10px 16px;
+  padding: 12px 12px;
   position: relative;
   height: 18px;
   width: 18px;
+  text-decoration: none;
+  font-weight: bold;
 
   &.navigationVisible {
-    div {
+    .menu-icon {
       background-color: transparent;
       &::before {
         transform: rotate(-45deg);
@@ -31,9 +33,9 @@ header {
     }
   }
 
-  div,
-  div::after,
-  div::before {
+  .menu-icon,
+  .menu-icon::after,
+  .menu-icon::before {
     position: absolute;
     width: 16px;
     height: 2px;
@@ -41,17 +43,23 @@ header {
     transition: all 200ms ease-in-out;
   }
 
-  div {
+  .menu-icon {
     top: 20px;
 
     &::after {
       content: "";
-      top: 6px;
+      top: 5px;
     }
     &::before {
       content: "";
-      top: -6px;
+      top: -5px;
     }
+  }
+
+  .menu-label {
+    font-size: 12px;
+    color: #333;
+    margin-left: 28px;
   }
 }
 
@@ -59,7 +67,8 @@ header {
   text-decoration: none;
   margin: 9px;
   font-size: 12px;
-  color: #2ba4eb;
+  font-weight: bold;
+  color: #333;
 
   .avatar {
     height: 25px;
@@ -131,5 +140,11 @@ header {
       #ebeef0 50%,
       #ebeef0 100%
     );
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .menu-label {
+    display: none;
   }
 }
