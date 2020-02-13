@@ -80,7 +80,7 @@ describe("Biggie Smalls grid handler", () => {
             ]),
             [BiggieSmallsGridPositions.Right]: gridBlock(3, 3, 2, 1, []),
             [BiggieSmallsGridPositions.FirstRow1]: gridBlock(3, 1, 1, 1, []),
-            [BiggieSmallsGridPositions.FirstRow2]: gridBlock(3, 2, 1, 1, []),
+            [BiggieSmallsGridPositions.FirstRow2]: gridBlock(3, 2, 2, 1, []),
             [BiggieSmallsGridPositions.FirstRow3]: gridBlock(4, 1, 1, 1, [])
           }
         },
