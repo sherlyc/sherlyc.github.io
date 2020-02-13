@@ -2,8 +2,10 @@
   <div class="container col-xs">
     <div class="row between-xs middle-xs header-bar">
       <a href="javascript:void(0)" (click)="[toggleMenu(), sendMenuAnalytics()]" aria-label="Menu" class="menu" [ngClass]="{ navigationVisible: navigationVisible }">
-        <div></div>
+        <div class="menu-icon"></div>
+        <span class="menu-label">Menu</span>
       </a>
+
       <div class="title" (click)="sendLogoAnalytics()">
         <a href="/" aria-label="Stuff">
           <svg *ngIf="displayPunaLogo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 150" width="70" height="28" class="punaLogo">

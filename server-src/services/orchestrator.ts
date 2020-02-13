@@ -29,20 +29,6 @@ export default async (params: IParams): Promise<IPage> => {
               type: HandlerInputType.Weather
             },
             {
-              type: HandlerInputType.BreakingNews
-            },
-            {
-              type: HandlerInputType.ExternalContent,
-              height: "40px",
-              width: "100%",
-              margin: "0 0 3px 0",
-              url:
-                "https://interactives.stuff.co.nz/voyager/2019/2019-mobile.html"
-            },
-            {
-              type: HandlerInputType.Banner
-            },
-            {
               type: HandlerInputType.Feature,
               name: FeatureName.ModuleLayout,
               content: newPage()
@@ -277,6 +263,19 @@ const newPage = (): HandlerInput[] => [
 ];
 
 const oldPage = (): HandlerInput[] => [
+  {
+    type: HandlerInputType.BreakingNews
+  },
+  {
+    type: HandlerInputType.ExternalContent,
+    height: "40px",
+    width: "100%",
+    margin: "0 0 3px 0",
+    url: "https://interactives.stuff.co.nz/voyager/2019/2019-mobile.html"
+  },
+  {
+    type: HandlerInputType.Banner
+  },
   {
     type: HandlerInputType.TopStoriesArticleList,
     strapName: "Latest"
