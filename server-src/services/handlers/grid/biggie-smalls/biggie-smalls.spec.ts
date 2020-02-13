@@ -21,12 +21,6 @@ const expectContentBlock = (
   props: Partial<IContentBlock> & Pick<IContentBlock, "type">
 ) => expect.objectContaining(props);
 
-const expectBasicAdUnit = (context: string) =>
-  expect.objectContaining({
-    type: ContentBlockType.BasicAdUnit,
-    context
-  });
-
 describe("Biggie Smalls", () => {
   const handlerRunnerMock = jest.fn();
   const params: IParams = { apiRequestId: "123" };
@@ -117,8 +111,18 @@ describe("Biggie Smalls", () => {
               id: "1"
             })
           ],
-          [BiggieSmallsGridPositions.Right]: [expectBasicAdUnit(strapName)],
-          [BiggieSmallsGridPositions.FirstRow1]: [expectBasicAdUnit(strapName)],
+          [BiggieSmallsGridPositions.Right]: [
+            expectContentBlock({
+              type: ContentBlockType.BasicAdUnit,
+              context: strapName
+            })
+          ],
+          [BiggieSmallsGridPositions.FirstRow1]: [
+            expectContentBlock({
+              type: ContentBlockType.BasicAdUnit,
+              context: strapName
+            })
+          ],
           [BiggieSmallsGridPositions.FirstRow2]: [
             expectContentBlock({
               type: ContentBlockType.GridContainer
