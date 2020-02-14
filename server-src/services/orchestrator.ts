@@ -271,7 +271,7 @@ export const newPage = (): HandlerInput[] => {
     contentBlocks: [
       {
         type: ContentBlockType.BasicAdUnit,
-        context: "billboard"
+        context: `${homepageAdPrefix}Billboard`
       }
     ]
   };

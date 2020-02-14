@@ -17,7 +17,7 @@ describe("Orchestrator", () => {
       contentBlocks: [
         {
           type: ContentBlockType.BasicAdUnit,
-          context: "billboard"
+          context: "homepageBillboard"
         }
       ]
     };
