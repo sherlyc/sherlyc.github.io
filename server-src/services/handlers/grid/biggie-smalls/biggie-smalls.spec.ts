@@ -44,7 +44,7 @@ describe("Biggie Smalls", () => {
     );
   });
 
-  it("should retrieve articles and layout", async () => {
+  it("should retrieve right count of articles", async () => {
     await biggieSmallsHandler(
       handlerRunnerMock,
       biggieSmallsHandlerInput,
