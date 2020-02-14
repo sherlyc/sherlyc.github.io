@@ -52,7 +52,7 @@ export default async (params: IParams): Promise<IPage> => {
 };
 
 const homepageAdPrefix = "homepage";
-export const newPage = (): HandlerInput[] => {
+const newPage = (): HandlerInput[] => {
   const page: HandlerInput[] = [
     {
       type: HandlerInputType.TopStories,
