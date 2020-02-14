@@ -1,13 +1,13 @@
 import { IPage } from "../../common/__types__/IPage";
 import { FeatureName } from "../../common/FeatureName";
 import { IParams } from "./__types__/IParams";
+import { HandlerInput } from "./handlers/__types__/HandlerInput";
 import { HandlerInputType } from "./handlers/__types__/HandlerInputType";
 import handlerRunner from "./handlers/runner";
 import { Section } from "./section";
 import { Strap } from "./strap";
 import config from "./utils/config";
 import logger from "./utils/logger";
-import { HandlerInput } from "./handlers/__types__/HandlerInput";
 
 const homepageStrapsConfig = config.strapConfig!.homepageStraps;
 
@@ -73,7 +73,7 @@ const newPage = (): HandlerInput[] => [
     sourceId: Strap.National
   },
   {
-    type: HandlerInputType.SixImage,
+    type: HandlerInputType.BiggieSmalls,
     displayName: "climate change",
     displayNameColor: "darkblue",
     strapName: `${homepageAdPrefix}ClimateChange`,
@@ -87,14 +87,14 @@ const newPage = (): HandlerInput[] => [
     sourceId: Strap.Business
   },
   {
-    type: HandlerInputType.SixImage,
+    type: HandlerInputType.BiggieSmalls,
     displayName: "homed",
     displayNameColor: "keppel",
     strapName: `${homepageAdPrefix}Homed`,
     sourceId: Strap.Homed
   },
   {
-    type: HandlerInputType.SixImage,
+    type: HandlerInputType.BiggieSmalls,
     displayName: "travel",
     displayNameColor: "yellowsea",
     strapName: `${homepageAdPrefix}Travel`,
@@ -122,7 +122,7 @@ const newPage = (): HandlerInput[] => [
     sourceId: Strap.KeaKidsNews
   },
   {
-    type: HandlerInputType.SixImage,
+    type: HandlerInputType.BiggieSmalls,
     displayName: "life & style",
     displayNameColor: "amaranth",
     strapName: `${homepageAdPrefix}LifeStyle`,
@@ -136,14 +136,14 @@ const newPage = (): HandlerInput[] => [
     sourceId: Strap.WellGood
   },
   {
-    type: HandlerInputType.SixImage,
+    type: HandlerInputType.BiggieSmalls,
     displayName: "entertainment",
     displayNameColor: "purpleheart",
     strapName: `${homepageAdPrefix}Entertainment`,
     sourceId: Strap.Entertainment
   },
   {
-    type: HandlerInputType.SixImage,
+    type: HandlerInputType.BiggieSmalls,
     displayName: "bravo",
     displayNameColor: "purpleheart",
     strapName: `${homepageAdPrefix}Bravo`,
@@ -164,7 +164,7 @@ const newPage = (): HandlerInput[] => [
     sourceId: Strap.Opinion
   },
   {
-    type: HandlerInputType.SixImage,
+    type: HandlerInputType.BiggieSmalls,
     displayName: "motoring",
     displayNameColor: "pizzaz",
     strapName: `${homepageAdPrefix}Motoring`,
@@ -178,7 +178,7 @@ const newPage = (): HandlerInput[] => [
     sourceId: Strap.StuffNation
   },
   {
-    type: HandlerInputType.SixImage,
+    type: HandlerInputType.BiggieSmalls,
     displayName: "sport",
     displayNameColor: "scarlet",
     strapName: `${homepageAdPrefix}Sport`,
