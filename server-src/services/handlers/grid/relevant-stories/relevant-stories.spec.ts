@@ -197,7 +197,12 @@ describe("Relevant Stories", () => {
       context: "homepageEditorsPicks"
     };
 
-    expect(columnGridCall.content[3]).toEqual([adUnit]);
+    expect(columnGridCall.content[3]).toEqual([
+      {
+        type: ContentBlockType.StickyContainer,
+        items: [adUnit]
+      }
+    ]);
   });
 
   describe("when failing to retrieve articles", () => {

@@ -98,7 +98,12 @@ describe("Six image", () => {
         [SixImageGridHandlerPositions.SecondRowLeft]: [imageLinkUnit],
         [SixImageGridHandlerPositions.SecondRowMiddle]: [imageLinkUnit],
         [SixImageGridHandlerPositions.SecondRowRight]: [imageLinkUnit],
-        [SixImageGridHandlerPositions.BigRight]: [basicAdUnit]
+        [SixImageGridHandlerPositions.BigRight]: [
+          {
+            type: ContentBlockType.StickyContainer,
+            items: [basicAdUnit]
+          }
+        ]
       }
     };
 

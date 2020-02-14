@@ -161,7 +161,12 @@ describe("Large lead six", () => {
         [LargeLeadSixGridPositions.ModuleTitle]: [moduleTitle],
         [LargeLeadSixGridPositions.Left]: [articleOneAsBigImage],
         [LargeLeadSixGridPositions.Middle]: [listGridResult],
-        [LargeLeadSixGridPositions.Right]: [basicAdUnit]
+        [LargeLeadSixGridPositions.Right]: [
+          {
+            type: ContentBlockType.StickyContainer,
+            items: [basicAdUnit]
+          }
+        ]
       }
     };
 
