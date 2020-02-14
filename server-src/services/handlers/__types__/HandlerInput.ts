@@ -1,6 +1,8 @@
 import { IBannerHandlerInput } from "./IBannerHandlerInput";
 import { IBasicArticleListHandlerInput } from "./IBasicArticleListHandlerInput";
 import { IBasicArticleSectionHandlerInput } from "./IBasicArticleSectionHandlerInput";
+import { IBiggieSmallsGridHandlerInput } from "./IBiggieSmallsGridHandlerInput";
+import { IBiggieSmallsHandlerInput } from "./IBiggieSmallsHandlerInput";
 import { IBreakingNewsHandlerInput } from "./IBreakingNewsHandlerInput";
 import { IColumnGridHandlerInput } from "./IColumnGridHandlerInput";
 import { IExpandableArticleListHandlerInput } from "./IExpandableArticleListHandlerInput";
@@ -53,6 +55,8 @@ export type HandlerInput =
   | ITopStoriesDefaultOneHighlightHandlerInput
   | ITopStoriesDefconHighlightHandlerInput
   | ITopStoriesGridHandlerInput
+  | IBiggieSmallsHandlerInput
+  | IBiggieSmallsGridHandlerInput
   | INewsSixHandlerInput
   | INewsSixGridHandlerInput
   | ISixImageHandlerInput

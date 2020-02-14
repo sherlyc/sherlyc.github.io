@@ -37,6 +37,8 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
   weatherData: IWeatherResponse = {} as any;
   selectedLocation?: WeatherLocations;
 
+  currentDateTime: number = Date.now();
+
   ngOnInit() {
     if (this.runtimeService.isBrowser()) {
       this.selectedLocation = this.storeService.get(
