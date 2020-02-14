@@ -16,6 +16,8 @@ import { AnalyticsEventsType } from "../../services/analytics/__types__/Analytic
 import { WindowService } from "src/app/services/window/window.service";
 import { WeatherIconComponent } from "../../shared/components/weather-icon/weather-icon.component";
 
+const OriginalNow = global.Date.now;
+
 describe("WeatherUnitComponent", () => {
   let storeService: ServiceMock<StoreService>;
   let runtimeService: ServiceMock<RuntimeService>;
@@ -75,6 +77,10 @@ describe("WeatherUnitComponent", () => {
     windowService.getWindow.mockReturnValue({ scrollTo: scrollToSpy });
   });
 
+  afterAll(() => {
+    global.Date.now = OriginalNow;
+  });
+
   it("should create", () => {
     expect(component).toBeTruthy();
   });
@@ -85,7 +91,7 @@ describe("WeatherUnitComponent", () => {
       fixture.debugElement.query(By.css(".location-list-visible"))
     ).toBeFalsy();
 
-    fixture.debugElement.query(By.css(".weather-bar")).nativeElement.click();
+    fixture.debugElement.query(By.css(".sub-header")).nativeElement.click();
     fixture.detectChanges();
 
     expect(
@@ -97,7 +103,7 @@ describe("WeatherUnitComponent", () => {
     component.isDropdownOpen = false;
     expect(fixture.debugElement.query(By.css(".regionsList"))).toBeFalsy();
 
-    fixture.debugElement.query(By.css(".weather-bar")).nativeElement.click();
+    fixture.debugElement.query(By.css(".sub-header")).nativeElement.click();
     fixture.detectChanges();
 
     expect(
@@ -115,7 +121,7 @@ describe("WeatherUnitComponent", () => {
       fixture.debugElement.query(By.css(".location-list-visible"))
     ).toBeTruthy();
 
-    fixture.debugElement.query(By.css(".weather-bar")).nativeElement.click();
+    fixture.debugElement.query(By.css(".sub-header")).nativeElement.click();
     fixture.detectChanges();
 
     expect(
@@ -410,6 +416,21 @@ describe("WeatherUnitComponent", () => {
       fixture.debugElement.query(By.css(".location-list-visible"))
     ).toBeFalsy();
     expect(scrollToSpy).toHaveBeenCalled();
+  });
+
+  it("should show timestamp", () => {
+    const christmas = "2020-12-25T00:00:00+00:00";
+    (global as any).Date.now = () => new Date(christmas).getTime();
+    fixture = TestBed.createComponent(WeatherUnitComponent);
+    component = fixture.componentInstance;
+
+    fixture.detectChanges();
+
+    const timeStamp = fixture.debugElement.nativeElement.querySelector(
+      ".time-stamp"
+    );
+
+    expect(timeStamp!.textContent).toEqual("December 25, 2020");
   });
 
   describe("Analytics", () => {

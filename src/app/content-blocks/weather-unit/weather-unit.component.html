@@ -1,23 +1,33 @@
 <div class="weather-component" [ngClass]="{ 'location-list-visible': isDropdownOpen }">
-  <div class="weather-bar row between-xs middle-xs" (click)="onToggleDropdown()">
-    <div *ngIf="!selectedLocation" class="weatherCheckLabel">
-      <app-weather-icon icon="unknown"></app-weather-icon>
-      <span>Check your weather</span>
-    </div>
+  <div class="row sub-header" (click)="onToggleDropdown()">
+    <div class="col-xs time-stamp">{{ currentDateTime | date: "MMMM d, yyyy" }}</div>
+    <div class="col-xs">
+      <div class="weather-info row">
+        <div *ngIf="!selectedLocation" class="weatherCheckLabel">
+          <app-weather-icon icon="unknown"></app-weather-icon>
+          <span>Check your weather</span>
+          <app-weather-icon class="weather-info-arrow" icon="dropdown"></app-weather-icon>
+        </div>
 
-    <div *ngIf="!hasError && selectedLocation" class="weatherLocationInfo">
-      <span class="weather-location-info-label">{{ selectedLocation }}: </span>
-      <app-weather-icon [icon]="weatherData.condition"></app-weather-icon>
-      <span> {{ weatherData.temperature }} {{ weatherData.temperatureUnit }} </span>
-      <span> <span class="weather-location-info-label">Max: </span>{{ weatherData.maxTemp }}{{ weatherData.temperatureUnit }} </span>
-      <span> <span class="weather-location-info-label">Min: </span>{{ weatherData.minTemp }}{{ weatherData.temperatureUnit }} </span>
-    </div>
+        <div *ngIf="!hasError && selectedLocation" class="weatherLocationInfo">
+          <app-weather-icon class="weather-icon" [icon]="weatherData.condition"></app-weather-icon>
+          <div>
+            <span class="weather-location-info-label">{{ selectedLocation }} {{ weatherData.temperature }} {{ weatherData.temperatureUnit }}</span>
+            <app-weather-icon class="weather-info-arrow" icon="dropdown"></app-weather-icon>
+            <div>
+              <span> <span class="weather-location-info-label"></span>{{ weatherData.maxTemp }}{{ weatherData.temperatureUnit }} | </span>
+              <span> <span class="weather-location-info-label"></span>{{ weatherData.minTemp }}{{ weatherData.temperatureUnit }} </span>
+            </div>
+          </div>
+        </div>
 
-    <div *ngIf="hasError" class="weatherError">
-      <app-weather-icon icon="unknown"></app-weather-icon>
-      Weather is unavailable
+        <div *ngIf="hasError" class="weatherError">
+          <app-weather-icon icon="unknown"></app-weather-icon>
+          Weather is unavailable
+          <app-weather-icon class="weather-info-arrow" icon="dropdown"></app-weather-icon>
+        </div>
+      </div>
     </div>
-    <app-weather-icon class="weather-bar-arrow" icon="dropdown"></app-weather-icon>
   </div>
 
   <div class="weather-location-list">

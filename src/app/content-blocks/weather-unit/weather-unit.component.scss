@@ -1,8 +1,8 @@
 :host {
   display: block;
-  margin-bottom: 6px;
   border-bottom: 1px solid #edeef1;
-  padding: 3px 0;
+  padding: 0 0 8px 0;
+  margin-bottom: 10px;
 }
 
 .weather-component {
@@ -15,26 +15,25 @@
     opacity: 1;
     transition: opacity 0s linear;
   }
-  .weather-bar-arrow {
+  .weather-info-arrow {
     transform: rotate(180deg);
   }
 }
 
-.weather-bar {
-  font-size: 11px;
+.weather-info {
+  font-size: 12px;
   cursor: pointer;
-  height: 30px;
   margin-bottom: 8px;
   line-height: 20px;
-  padding-bottom: 8px;
+  justify-content: flex-end;
+  white-space: nowrap;
 }
 
-.weather-bar-arrow {
-  height: 12px;
-  transition: all 0.5s ease;
+.weather-info-arrow {
+  margin-left: 8px;
 }
 
-.weather-bar.row {
+.weather-info.row {
   margin: 0;
 }
 
@@ -48,7 +47,6 @@
 
 .weather-location-info-label {
   font-weight: 700;
-  margin-right: 3px;
 }
 
 .weather-location-list {
@@ -104,4 +102,18 @@
   position: absolute;
   right: 30px;
   bottom: 60px;
+}
+
+.weather-icon {
+  margin-right: 8px;
+}
+
+.time-stamp {
+  margin: auto;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.weatherLocationInfo {
+  display: inherit;
 }
