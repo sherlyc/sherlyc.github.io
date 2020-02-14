@@ -4,4 +4,5 @@ import { IContentBlock } from "./IContentBlock";
 export interface IStickyContainer {
   type: ContentBlockType.StickyContainer;
   items: IContentBlock[];
+  topGap?: string;
 }
