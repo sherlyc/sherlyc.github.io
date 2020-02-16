@@ -30,8 +30,10 @@ import { ITopStoriesDefconHighlightHandlerInput } from "./ITopStoriesDefconHighl
 import { ITopStoriesGridHandlerInput } from "./ITopStoriesGridHandlerInput";
 import { ITopStoriesHandlerInput } from "./ITopStoriesHandlerInput";
 import { IWeatherHandlerInput } from "./IWeatherHandlerInput";
+import { IContentBlockHandlerInput } from "./IContentBlockHandlerInput";
 
 export type HandlerInput =
+  | IContentBlockHandlerInput
   | ITopStoriesArticleListHandlerInput
   | IBasicArticleListHandlerInput
   | IBannerHandlerInput
