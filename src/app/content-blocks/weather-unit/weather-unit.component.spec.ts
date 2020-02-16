@@ -152,7 +152,7 @@ describe("WeatherUnitComponent", () => {
       }
     ];
     component.isDropdownOpen = true;
-    component.selectedLocation = undefined;
+    component.selectedLocation = null;
     fixture.detectChanges();
 
     expect(fixture.debugElement.query(By.css(".tick-icon"))).toBeFalsy();
