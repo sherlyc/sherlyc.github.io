@@ -3,7 +3,6 @@ import { BigImageArticleUnitLayout } from "../../../../../common/__types__/IBigI
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IParams } from "../../../__types__/IParams";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
 import { bigImageArticleUnit } from "../../../adapters/article-converter/big-image-article.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
@@ -15,6 +14,7 @@ import {
 import { ILargeLeadSixHandlerInput } from "../../__types__/ILargeLeadSixHandlerInput";
 import { contentErrorHandler } from "../content-error-handler";
 import { handlerRunnerFunction } from "../../runner";
+import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -63,7 +63,12 @@ export default async function(
       ],
       [LargeLeadSixGridPositions.Left]: [leftContent],
       [LargeLeadSixGridPositions.Middle]: middleContent,
-      [LargeLeadSixGridPositions.Right]: [basicAdUnit(strapName)]
+      [LargeLeadSixGridPositions.Right]: [
+        {
+          type: ContentBlockType.StickyContainer,
+          items: [basicAdUnit(strapName)]
+        }
+      ]
     }
   };
 

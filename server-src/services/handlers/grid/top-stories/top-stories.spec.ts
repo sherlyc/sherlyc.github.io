@@ -107,7 +107,9 @@ describe("Top Stories", () => {
           [TopStoriesGridPositions.Highlight]: [
             topStoriesDefaultOneResult as IContentBlock
           ],
-          [TopStoriesGridPositions.Right]: [basicAdUnit],
+          [TopStoriesGridPositions.Right]: [
+            { type: ContentBlockType.StickyContainer, items: [basicAdUnit] }
+          ],
           [TopStoriesGridPositions.FirstRow1]: [expectHalfWidthImage("3")],
           [TopStoriesGridPositions.FirstRow2]: [expectHalfWidthImage("4")],
           [TopStoriesGridPositions.FirstRow3]: [basicAdUnit],
@@ -177,7 +179,9 @@ describe("Top Stories", () => {
           [TopStoriesGridPositions.Highlight]: [
             topStoriesDefconResult as IContentBlock
           ],
-          [TopStoriesGridPositions.Right]: [basicAdUnit],
+          [TopStoriesGridPositions.Right]: [
+            { type: ContentBlockType.StickyContainer, items: [basicAdUnit] }
+          ],
           [TopStoriesGridPositions.FirstRow1]: [expectHalfWidthImage("4")],
           [TopStoriesGridPositions.FirstRow2]: [expectHalfWidthImage("5")],
           [TopStoriesGridPositions.FirstRow3]: [basicAdUnit],

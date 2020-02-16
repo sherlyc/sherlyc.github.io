@@ -24,6 +24,7 @@ import { IModuleTitle } from "./IModuleTitle";
 import { IRecommendations } from "./IRecommendations";
 import { IResponsiveBigImageArticleUnit } from "./IResponsiveBigImageArticleUnit";
 import { IWeatherUnit } from "./IWeatherUnit";
+import { IStickyContainer } from "./IStickyContainer";
 
 export type IContentBlock =
   | IDefconArticleUnit
@@ -51,4 +52,5 @@ export type IContentBlock =
   | IGridContainer
   | IResponsiveBigImageArticleUnit
   | IModuleTitle
-  | IFeaturedArticle;
+  | IFeaturedArticle
+  | IStickyContainer;
