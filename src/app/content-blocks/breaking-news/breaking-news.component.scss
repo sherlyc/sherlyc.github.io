@@ -1,6 +1,6 @@
 :host {
   display: block;
-  margin: 0 -10px 17px -10px;
+  margin: 0 -10px 12px -10px;
 }
 .breaking-news {
   background-color: #d12421;
@@ -21,15 +21,7 @@
 
   .link {
     display: block;
-    padding: 17px;
-
-    .title {
-      margin: 0 0 10px 0;
-      font-size: 17px;
-      line-height: 1.2;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
+    padding: 12px;
 
     .text {
       line-height: 1.5;
