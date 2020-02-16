@@ -15,12 +15,12 @@ export class BulletItemComponent {
   constructor(private analyticsService: AnalyticsService) {}
 
   sendAnalytics() {
-    const { strapName, title, id } = this.input;
+    const { strapName, linkText, id } = this.input;
 
     this.analyticsService.pushEvent({
       type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
       strapName,
-      articleHeadline: title,
+      articleHeadline: linkText,
       articleId: id
     });
   }

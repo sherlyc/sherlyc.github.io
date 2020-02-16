@@ -16,7 +16,6 @@ describe("Bullet Component", () => {
     id: "123123",
     strapName: "National",
     linkText: "Dummy Headline",
-    title: "Title",
     linkUrl: "https://dummyurl.com",
     bulletColor: "blue"
   };
@@ -44,7 +43,7 @@ describe("Bullet Component", () => {
   });
 
   it("should send analytics when clicked", () => {
-    const { strapName, title, id } = articleData;
+    const { strapName, linkText, id } = articleData;
     component.input = articleData;
     fixture.detectChanges();
 
@@ -54,7 +53,7 @@ describe("Bullet Component", () => {
     expect(analyticsService.pushEvent).toHaveBeenCalledWith({
       type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
       strapName,
-      articleHeadline: title,
+      articleHeadline: linkText,
       articleId: id
     });
   });
