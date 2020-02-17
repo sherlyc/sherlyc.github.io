@@ -28,9 +28,6 @@ export default async (params: IParams): Promise<IPage> => {
               forceUpdateOnVersionsBefore: "1.450"
             },
             {
-              type: HandlerInputType.Weather
-            },
-            {
               type: HandlerInputType.Feature,
               name: FeatureName.ModuleLayout,
               content: newPage()
@@ -54,6 +51,12 @@ export default async (params: IParams): Promise<IPage> => {
 const homepageAdPrefix = "homepage";
 const newPage = (): HandlerInput[] => {
   const page: HandlerInput[] = [
+    {
+      type: HandlerInputType.BreakingNews
+    },
+    {
+      type: HandlerInputType.Weather
+    },
     {
       type: HandlerInputType.TopStories,
       strapName: `${homepageAdPrefix}TopStoriesDefaultOne`
@@ -285,6 +288,9 @@ const newPage = (): HandlerInput[] => {
 };
 
 const oldPage = (): HandlerInput[] => [
+  {
+    type: HandlerInputType.Weather
+  },
   {
     type: HandlerInputType.BreakingNews
   },
