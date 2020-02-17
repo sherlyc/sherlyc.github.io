@@ -10,5 +10,4 @@ import { IBulletList } from "../../../../common/__types__/IBulletList";
 })
 export class BulletListComponent implements IContentBlockComponent {
   @Input() input!: IBulletList;
-  index!: number;
 }
