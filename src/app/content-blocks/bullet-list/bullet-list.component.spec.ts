@@ -8,6 +8,8 @@ import { SharedModule } from "../../shared/shared.module";
 import { By } from "@angular/platform-browser";
 import { BulletItemComponent } from "../../shared/components/bullet-item/bullet-item.component";
 import { IBulletItem } from "../../../../common/__types__/IBulletItem";
+import { Logo } from "../../../../common/Logo";
+import { LogoComponent } from "../../shared/components/logo/logo.component";
 
 describe("Bullet List Component", () => {
   let component: BulletListComponent;
@@ -24,6 +26,7 @@ describe("Bullet List Component", () => {
 
   const bulletListData: IBulletList = {
     type: ContentBlockType.BulletList,
+    logo: Logo.TimaruHerald,
     items: [bulletItem, bulletItem, bulletItem]
   };
 
@@ -47,6 +50,17 @@ describe("Bullet List Component", () => {
 
   it("should create", () => {
     expect(component).toBeTruthy();
+  });
+
+  it("should pass logo name to logo component", () => {
+    component.input = { ...bulletListData, logo: Logo.BeautyHeaven };
+    fixture.detectChanges();
+
+    const logo: LogoComponent = fixture.debugElement.query(
+      By.directive(LogoComponent)
+    ).componentInstance;
+
+    expect(logo.name).toBe(Logo.BeautyHeaven);
   });
 
   it("should pass correct input to bullet component", () => {
