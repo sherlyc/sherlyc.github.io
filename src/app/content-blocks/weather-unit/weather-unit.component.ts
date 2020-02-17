@@ -35,23 +35,22 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
   hasError = false;
 
   weatherData: IWeatherResponse = {} as any;
-  selectedLocation?: WeatherLocations;
+  selectedLocation: WeatherLocations | null = null;
 
   currentDateTime: number = Date.now();
 
   ngOnInit() {
     if (this.runtimeService.isBrowser()) {
-      this.selectedLocation = this.storeService.get(
+      const previousSelectedLocation = this.storeService.get(
         StorageKeys.WeatherLocation
       ) as WeatherLocations;
-      if (this.selectedLocation) {
-        this.getWeatherData(this.selectedLocation);
+      if (previousSelectedLocation) {
+        this.getWeatherData(previousSelectedLocation);
       }
     }
   }
 
-  onSelectLocation(location: string) {
-    this.selectedLocation = location as WeatherLocations;
+  onSelectLocation(location: WeatherLocations) {
     this.storeService.set(StorageKeys.WeatherLocation, location);
     this.getWeatherData(location);
     this.onToggleDropdown();
@@ -64,13 +63,17 @@ export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
     }
   }
 
-  private getWeatherData(location: string) {
+  private getWeatherData(location: WeatherLocations) {
     this.weatherRetrieverService.getWeather(location).subscribe(
       (weatherData: IWeatherResponse) => {
+        this.selectedLocation = location;
         this.weatherData = weatherData;
         this.hasError = false;
       },
-      () => (this.hasError = true)
+      () => {
+        this.selectedLocation = location;
+        this.hasError = true;
+      }
     );
   }
 
