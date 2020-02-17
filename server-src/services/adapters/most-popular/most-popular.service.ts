@@ -3,6 +3,7 @@ import { IParams } from "../../__types__/IParams";
 import cacheHttp from "../../utils/cache-http";
 import config from "../../utils/config";
 import { getArticleById } from "../jsonfeed/jsonfeed";
+import wrappedLogger from "../../utils/logger";
 
 interface MostPopularResponse {
   stories: Array<{
@@ -15,13 +16,22 @@ export const getMostPopular = async (
   limit: number,
   params: IParams
 ): Promise<IRawArticle[]> => {
-  const response = await cacheHttp<MostPopularResponse>(
-    params,
-    `${config.mostPopularApi}?limit=${limit}`
-  );
-  return await Promise.all(
-    response.data.stories.map(({ storyId }) =>
-      getArticleById(params, parseInt(storyId, 10))
-    )
-  );
+  try {
+    const response = await cacheHttp<MostPopularResponse>(
+      params,
+      `${config.mostPopularApi}?limit=${limit}`
+    );
+    return await Promise.all(
+      response.data.stories.map(({ storyId }) =>
+        getArticleById(params, parseInt(storyId, 10))
+      )
+    );
+  } catch (error) {
+    wrappedLogger.warn(
+      params.apiRequestId,
+      "Most popular service level error",
+      error
+    );
+    return [];
+  }
 };
