@@ -5,7 +5,7 @@ import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 
 @Component({
   selector: "app-logo",
-  templateUrl: "./logo.component.html",
+  template: "",
   styleUrls: ["./logo.component.scss"]
 })
 export class LogoComponent implements OnInit {
