@@ -2,5 +2,5 @@
   <a class="link" [href]="input.link" (click)="[onClickOrDismiss(), sendAnalytics(false)]">
     <div class="text">{{ input.text }}</div>
   </a>
-  <a class="dismiss" (click)="[onClickOrDismiss(), sendAnalytics(true)]" aria-label="Dismiss"></a>
+  <a class="dismiss" (click)="[onClickOrDismiss(), sendAnalytics(true)]" aria-label="Dismiss">&times;</a>
 </div>
