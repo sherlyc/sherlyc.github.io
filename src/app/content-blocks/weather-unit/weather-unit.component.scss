@@ -27,6 +27,8 @@
   line-height: 20px;
   justify-content: flex-end;
   white-space: nowrap;
+  height: 40px;
+  align-items: center;
 }
 
 .weather-info-arrow {
@@ -76,7 +78,7 @@
   ul,
   li {
     list-style-type: none;
-    padding-left: 0px;
+    padding-left: 0;
     padding-bottom: 15px;
   }
   ul > li:last-child {
@@ -116,4 +118,8 @@
 
 .weatherLocationInfo {
   display: inherit;
+}
+
+.sub-header {
+  height: 40px;
 }
