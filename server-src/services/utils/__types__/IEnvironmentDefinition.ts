@@ -9,6 +9,7 @@ export interface IEnvironmentDefinition {
   weatherAPI: string;
   breakingNewsApi: string;
   recommendationsApi: string;
+  mostPopularApi: string;
   bannerApi: string;
   layoutAPI: string;
   experimentsConfigUrl: string;
