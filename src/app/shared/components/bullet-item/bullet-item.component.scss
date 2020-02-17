@@ -1,0 +1,16 @@
+article {
+  display: flex;
+  align-items: flex-start;
+}
+
+a {
+  text-decoration: none;
+  :hover {
+    text-decoration: none;
+  }
+}
+
+.bullet {
+  margin: 4px 10px 0;
+  flex-shrink: 0;
+}

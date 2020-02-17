@@ -152,10 +152,10 @@ describe("WeatherUnitComponent", () => {
       }
     ];
     component.isDropdownOpen = true;
-    component.selectedLocation = undefined;
+    component.selectedLocation = null;
     fixture.detectChanges();
 
-    expect(fixture.debugElement.query(By.css(".tick-icon"))).toBeFalsy();
+    expect(fixture.debugElement.query(By.css(".tick"))).toBeFalsy();
   });
 
   it("should save last selected location and retrieve weather data for that location", () => {
