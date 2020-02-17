@@ -19,7 +19,7 @@ export const getMostPopular = async (
   try {
     const response = await cacheHttp<MostPopularResponse>(
       params,
-      `${config.mostPopularApi}?limit=${limit}`
+      `${config.mostPopularApi}?days=2&limit=${limit}`
     );
     return await Promise.all(
       response.data.stories.map(({ storyId }) =>

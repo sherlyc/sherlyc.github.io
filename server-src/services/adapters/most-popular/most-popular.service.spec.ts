@@ -39,7 +39,7 @@ describe("Most popular service", function() {
 
     expect(cacheHttp).toHaveBeenCalledWith(
       params,
-      `${config.mostPopularApi}?limit=${limit}`
+      `${config.mostPopularApi}?days=2&limit=${limit}`
     );
     expect(getArticleById).toHaveBeenNthCalledWith(1, params, 1);
     expect(getArticleById).toHaveBeenNthCalledWith(2, params, 2);
