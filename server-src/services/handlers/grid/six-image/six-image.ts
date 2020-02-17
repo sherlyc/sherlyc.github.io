@@ -78,7 +78,12 @@ export default async function(
           params
         )
       ],
-      [SixImageGridHandlerPositions.BigRight]: [basicAdUnit(strapName)]
+      [SixImageGridHandlerPositions.BigRight]: [
+        {
+          type: ContentBlockType.StickyContainer,
+          items: [basicAdUnit(strapName)]
+        }
+      ]
     }
   };
 

@@ -14,6 +14,7 @@ import { ResizeDirective } from "./directives/resize/resize.directive";
 import { GlobalStyleDirective } from "./directives/global-style/global-style.directive";
 import { FluidImageComponent } from "./components/fluid-image/fluid-image.component";
 import { LogoComponent } from "./components/logo/logo.component";
+import { BulletItemComponent } from "./components/bullet-item/bullet-item.component";
 
 @NgModule({
   imports: [CommonModule],
@@ -31,7 +32,8 @@ import { LogoComponent } from "./components/logo/logo.component";
     WeatherIconComponent,
     TimeAgoComponent,
     FluidImageComponent,
-    LogoComponent
+    LogoComponent,
+    BulletItemComponent
   ],
   exports: [
     PageComponent,
@@ -47,7 +49,8 @@ import { LogoComponent } from "./components/logo/logo.component";
     WeatherIconComponent,
     TimeAgoComponent,
     FluidImageComponent,
-    LogoComponent
+    LogoComponent,
+    BulletItemComponent
   ]
 })
 export class SharedModule {}

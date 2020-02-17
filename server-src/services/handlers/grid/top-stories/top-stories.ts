@@ -11,10 +11,14 @@ import { Strap } from "../../../strap";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { ITopStoriesDefaultOneHighlightHandlerInput } from "../../__types__/ITopStoriesDefaultOneHighlightHandlerInput";
 import { ITopStoriesDefconHighlightHandlerInput } from "../../__types__/ITopStoriesDefconHighlightHandlerInput";
-import { TopStoriesGridPositions } from "../../__types__/ITopStoriesGridHandlerInput";
+import {
+  ITopStoriesGridHandlerInput,
+  TopStoriesGridPositions
+} from "../../__types__/ITopStoriesGridHandlerInput";
 import { ITopStoriesHandlerInput } from "../../__types__/ITopStoriesHandlerInput";
 import { handlerRunnerFunction } from "../../runner";
 import { contentErrorHandler } from "../content-error-handler";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 
 const topStoriesVariationHandler: {
   [key in LayoutType]: (
@@ -86,9 +90,14 @@ async function createTopStoriesGrid(
   strapName: string,
   params: IParams
 ) {
-  const content = {
+  const content: { [position in TopStoriesGridPositions]: IContentBlock[] } = {
     [TopStoriesGridPositions.Highlight]: highlightContents,
-    [TopStoriesGridPositions.Right]: [basicAdUnit(strapName)],
+    [TopStoriesGridPositions.Right]: [
+      {
+        type: ContentBlockType.StickyContainer,
+        items: [basicAdUnit(strapName)]
+      }
+    ],
     [TopStoriesGridPositions.FirstRow1]: [
       contentErrorHandler(
         () =>

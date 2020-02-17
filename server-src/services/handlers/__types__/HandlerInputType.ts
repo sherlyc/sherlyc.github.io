@@ -1,4 +1,5 @@
 export enum HandlerInputType {
+  ContentBlockHandler = "ContentBlockHandler",
   TopStoriesArticleList = "TopStoriesArticleList",
   ArticleList = "ArticleList",
   Banner = "Banner",

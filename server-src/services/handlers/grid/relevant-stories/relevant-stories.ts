@@ -88,7 +88,12 @@ export default async function(
         "pizzaz",
         params
       ),
-      [basicAdUnit("homepageEditorsPicks")]
+      [
+        {
+          type: ContentBlockType.StickyContainer,
+          items: [basicAdUnit("homepageEditorsPicks")]
+        }
+      ]
     ])
   };
 
