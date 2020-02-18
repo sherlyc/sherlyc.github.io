@@ -13,7 +13,7 @@ import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 
-describe("Network Top Stories Handler", () => {
+describe("Brand Handler", () => {
   const params: IParams = { apiRequestId: "123" };
 
   const fakeArticles = (ids: number[]) =>
