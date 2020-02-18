@@ -49,13 +49,25 @@ describe("Most popular service", function() {
     ]);
   });
 
-  it("should log warning if fail to retrieve from most popular service", async () => {
+  it("should call most popular service with provided days", async () => {
+    (cacheHttp as jest.Mock).mockResolvedValue(mostPopularResponse);
+    (getArticleById as jest.Mock).mockResolvedValue(rawArticle("1"));
+
+    await getMostPopular(10, params, 5);
+
+    expect(cacheHttp).toHaveBeenCalledWith(
+      params,
+      `${config.mostPopularApi}?days=5&limit=10`
+    );
+  });
+
+  it("should log error if fail to retrieve from most popular service", async () => {
     const error = new Error("Internal Server Error");
     (cacheHttp as jest.Mock).mockRejectedValue(error);
 
     const articles = await getMostPopular(10, params);
 
-    expect(wrappedLogger.warn).toHaveBeenCalledWith(
+    expect(wrappedLogger.error).toHaveBeenCalledWith(
       params.apiRequestId,
       expect.stringContaining("Most popular service level error"),
       error
@@ -63,14 +75,14 @@ describe("Most popular service", function() {
     expect(articles).toEqual([]);
   });
 
-  it("should log warning if fail to retrieve article", async () => {
+  it("should log error if fail to retrieve article", async () => {
     const error = new Error("Internal Server Error");
     (cacheHttp as jest.Mock).mockResolvedValue(mostPopularResponse);
     (getArticleById as jest.Mock).mockRejectedValue(error);
 
     const articles = await getMostPopular(10, params);
 
-    expect(wrappedLogger.warn).toHaveBeenCalledWith(
+    expect(wrappedLogger.error).toHaveBeenCalledWith(
       params.apiRequestId,
       expect.stringContaining("Most popular service level error"),
       error

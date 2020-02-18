@@ -14,12 +14,13 @@ interface MostPopularResponse {
 
 export const getMostPopular = async (
   limit: number,
-  params: IParams
+  params: IParams,
+  days: number = 2
 ): Promise<IRawArticle[]> => {
   try {
     const response = await cacheHttp<MostPopularResponse>(
       params,
-      `${config.mostPopularApi}?days=2&limit=${limit}`
+      `${config.mostPopularApi}?days=${days}&limit=${limit}`
     );
     return await Promise.all(
       response.data.stories.map(({ storyId }) =>
@@ -27,7 +28,7 @@ export const getMostPopular = async (
       )
     );
   } catch (error) {
-    wrappedLogger.warn(
+    wrappedLogger.error(
       params.apiRequestId,
       "Most popular service level error",
       error
