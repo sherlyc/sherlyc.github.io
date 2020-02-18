@@ -59,6 +59,44 @@ describe("Brand Handler", () => {
     ]);
   });
 
+  it("should pass last 5 articles to the second row column grid handler", async () => {
+    const handlerRunnerMock = jest.fn();
+    handlerRunnerMock.mockResolvedValue({});
+    const fakeBulletList = (id: number) => {
+      return {
+        type: ContentBlockType.BulletList,
+        items: [id]
+      };
+    };
+    (createBulletList as jest.Mock).mockResolvedValueOnce([]);
+    (createBulletList as jest.Mock).mockResolvedValueOnce([]);
+    (createBulletList as jest.Mock).mockResolvedValueOnce([]);
+    (createBulletList as jest.Mock).mockResolvedValueOnce([]);
+    (createBulletList as jest.Mock).mockResolvedValueOnce([]);
+    (createBulletList as jest.Mock).mockResolvedValueOnce(fakeBulletList(5));
+    (createBulletList as jest.Mock).mockResolvedValueOnce(fakeBulletList(6));
+    (createBulletList as jest.Mock).mockResolvedValueOnce(fakeBulletList(7));
+    (createBulletList as jest.Mock).mockResolvedValueOnce(fakeBulletList(8));
+    (createBulletList as jest.Mock).mockResolvedValueOnce(fakeBulletList(9));
+
+    const input: IBrandHandlerInput = {
+      type: HandlerInputType.Brand
+    };
+    await brandHandler(handlerRunnerMock, input, params);
+
+    const [
+      [firstColumnGridCall],
+      [secondColumnGridCall]
+    ] = handlerRunnerMock.mock.calls;
+    expect(secondColumnGridCall.content).toEqual([
+      [expect.objectContaining(fakeBulletList(5))],
+      [expect.objectContaining(fakeBulletList(6))],
+      [expect.objectContaining(fakeBulletList(7))],
+      [expect.objectContaining(fakeBulletList(8))],
+      [expect.objectContaining(fakeBulletList(9))]
+    ]);
+  });
+
   // it("should pass the result of column grid handlers to brand grid handler", async () => {
   //   (getRawArticles as jest.Mock).mockResolvedValue(
   //     fakeArticles([1, 2, 3, 4, 5])
