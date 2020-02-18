@@ -8,8 +8,11 @@ import brandHandler from "./brand";
 import { IBulletList } from "../../../../../common/__types__/IBulletList";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { Logo } from "../../../../../common/Logo";
-import { BrandGridPositions } from "../../__types__/IBrandGridHandlerInput";
-import { first } from "rxjs/operators";
+import {
+  BrandGridPositions,
+  IBrandGridHandlerInput
+} from "../../__types__/IBrandGridHandlerInput";
+import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 
@@ -68,7 +71,7 @@ describe("Network Top Stories Handler", () => {
     expect(getRawArticles).toHaveBeenCalledTimes(10);
   });
 
-  it("should pass 5 articles to column grid first call", async () => {
+  it("should pass 5 articles to column grid calls", async () => {
     const handlerRunnerMock = jest.fn();
     (getRawArticles as jest.Mock).mockResolvedValue(
       new Array(totalArticles).fill(fakeArticle)
@@ -93,7 +96,7 @@ describe("Network Top Stories Handler", () => {
 
     await brandHandler(handlerRunnerMock, input, params);
 
-    const [[firstCall]] = handlerRunnerMock.mock.calls;
+    const [[firstCall], [secondCall]] = handlerRunnerMock.mock.calls;
 
     const expectBulletList = expect.objectContaining({
       type: ContentBlockType.BulletList
@@ -106,5 +109,51 @@ describe("Network Top Stories Handler", () => {
       expectBulletList,
       expectBulletList
     ]);
+
+    expect(secondCall.content[0]).toEqual([
+      expectBulletList,
+      expectBulletList,
+      expectBulletList,
+      expectBulletList,
+      expectBulletList
+    ]);
+  });
+  it("should pass the correct input to brand grid handler", async () => {
+    const handlerRunnerMock = jest.fn();
+    (getRawArticles as jest.Mock).mockResolvedValue(
+      new Array(totalArticles).fill(fakeArticle)
+    );
+
+    const input: IBrandHandlerInput = {
+      type: HandlerInputType.Brand
+    };
+
+    const fakeGridContainer = {} as IGridContainer;
+
+    const fakeBrandGrid: IBrandGridHandlerInput = {
+      type: HandlerInputType.BrandGrid,
+      content: {
+        [BrandGridPositions.ModuleTitle]: [
+          {
+            type: ContentBlockType.ModuleTitle,
+            displayName: "Our Network's Top Stories",
+            displayNameColor: "black"
+          }
+        ],
+        [BrandGridPositions.FirstRow]: [fakeGridContainer],
+        [BrandGridPositions.SecondRow]: [fakeGridContainer]
+      }
+    };
+
+    handlerRunnerMock.mockResolvedValue(fakeGridContainer);
+    await brandHandler(handlerRunnerMock, input, params);
+
+    const [
+      [firstCall],
+      [secondCall],
+      [thirdCall]
+    ] = handlerRunnerMock.mock.calls;
+
+    expect(thirdCall).toEqual(fakeBrandGrid);
   });
 });
