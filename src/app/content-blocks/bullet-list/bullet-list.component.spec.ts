@@ -6,10 +6,10 @@ import { IBulletList } from "../../../../common/__types__/IBulletList";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { SharedModule } from "../../shared/shared.module";
 import { By } from "@angular/platform-browser";
-import { BulletItemComponent } from "../../shared/components/bullet-item/bullet-item.component";
 import { IBulletItem } from "../../../../common/__types__/IBulletItem";
 import { Logo } from "../../../../common/Logo";
 import { LogoComponent } from "../../shared/components/logo/logo.component";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 
 describe("Bullet List Component", () => {
   let component: BulletListComponent;
@@ -63,16 +63,24 @@ describe("Bullet List Component", () => {
     expect(logo.name).toBe(Logo.BeautyHeaven);
   });
 
-  it("should pass correct input to bullet component", () => {
+  it("should send analytics when clicked", () => {
     component.input = bulletListData;
     fixture.detectChanges();
+    const anchorTag = fixture.debugElement.query(By.css("a")).nativeElement;
+    anchorTag.click();
 
-    const bullet: BulletItemComponent = fixture.debugElement.query(
-      By.directive(BulletItemComponent)
-    ).componentInstance;
+    expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+      type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
+      strapName: "National",
+      articleHeadline: "Dummy Headline",
+      articleId: "123123"
+    });
+  });
 
-    expect(bullet.input.linkText).toBeTruthy();
-    expect(bullet.input.linkUrl).toBeTruthy();
-    expect(bullet.input.bulletColor).toBeTruthy();
+  it("should set bullet color", () => {
+    component.input = bulletListData;
+    fixture.detectChanges();
+    const bullet = fixture.debugElement.query(By.css(".bullet")).nativeElement;
+    expect(bullet.style.color).toEqual("blue");
   });
 });
