@@ -45,8 +45,7 @@ export default async function(
   params: IParams
 ): Promise<IContentBlock[]> {
   const bulletLists = await Promise.all(
-    Object.keys(brandConfig).map((brand) => {
-      const config: IBrandConfig = brandConfig[brand as NetworkBrand];
+    Object.values(brandConfig.configs).map((config) => {
       return createBulletList(config, params);
     })
   );

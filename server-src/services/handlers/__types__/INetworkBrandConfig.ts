@@ -20,6 +20,7 @@ export interface IBrandConfig {
   sourceId: Strap;
 }
 
-export type INetworkBrandConfig = {
-  [key in NetworkBrand]: IBrandConfig;
-};
+export interface INetworkBrandConfig {
+  articlesPerBrand: number;
+  configs: { [key in NetworkBrand]: IBrandConfig };
+}
