@@ -1,0 +1,25 @@
+:host {
+  display: block;
+}
+
+a {
+  display: block;
+  padding-bottom: 10px;
+  text-decoration: none;
+  :hover {
+    text-decoration: none;
+  }
+}
+
+app-logo {
+  margin-bottom: 10px;
+}
+
+article {
+  display: flex;
+}
+
+.bullet {
+  font-size: 10px;
+  margin: 4px;
+}

@@ -27,6 +27,7 @@ import { RecommendationsComponent } from "./recommendations/recommendations.comp
 import { ResponsiveBigImageArticleComponent } from "./responsive-big-image-article/responsive-big-image-article.component";
 import { WeatherUnitComponent } from "./weather-unit/weather-unit.component";
 import { StickyContainerComponent } from "./sticky-container/sticky-container.component";
+import { BulletListComponent } from "./bullet-list/bullet-list.component";
 
 export const contentBlockComponents = [
   GrayDefconArticleUnitComponent,
@@ -55,7 +56,8 @@ export const contentBlockComponents = [
   ResponsiveBigImageArticleComponent,
   ModuleTitleComponent,
   FeaturedArticleComponent,
-  StickyContainerComponent
+  StickyContainerComponent,
+  BulletListComponent
 ];
 
 const registry: {
@@ -87,7 +89,8 @@ const registry: {
   ResponsiveBigImageArticleComponent,
   ModuleTitleComponent,
   FeaturedArticleComponent,
-  StickyContainerComponent
+  StickyContainerComponent,
+  BulletListComponent
 };
 
 export default registry;
