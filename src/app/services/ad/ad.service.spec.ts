@@ -98,7 +98,7 @@ describe("AdService", () => {
         await adService.notify();
 
         expect(featureSwitch.getFeature).toHaveBeenCalledWith(
-          FeatureName.HomepageTakeover
+          FeatureName.ModuleLayout
         );
         expect(document.dispatchEvent).toHaveBeenNthCalledWith(
           1,
