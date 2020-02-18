@@ -9,5 +9,5 @@ export interface IBrandGridHandlerInput {
 export enum BrandGridPositions {
   ModuleTitle = "ModuleTitle",
   FirstRow = "FirstRow",
-  SecondRow = "SecondRow",
+  SecondRow = "SecondRow"
 }

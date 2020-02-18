@@ -1,4 +1,7 @@
-<article>
-  <app-logo [name]="input.logo"></app-logo>
-  <app-bullet *ngFor="let item of input.items" [input]="item"></app-bullet>
-</article>
+<app-logo [name]="input.logo"></app-logo>
+<a href="{{ item.linkUrl }}" appOpenExternalLink="{{ item.linkUrl }}" (click)="sendAnalytics(item)" *ngFor="let item of input.items">
+  <article>
+    <span class="bullet" [style.color]="item.bulletColor">►</span>
+    <span>{{ item.linkText }}</span>
+  </article>
+</a>
