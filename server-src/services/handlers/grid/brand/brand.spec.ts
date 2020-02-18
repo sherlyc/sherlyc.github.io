@@ -89,21 +89,9 @@ describe("Network Top Stories Handler", () => {
       ]
     };
 
-    const expectedContent = {
-      [BrandGridPositions.ModuleTitle]: [
-        {
-          type: ContentBlockType.ModuleTitle,
-          displayName: "Our Network's Top Stories",
-          displayNameColor: "black"
-        }
-      ],
-      [BrandGridPositions.FirstRow]: [fakeColumnGrid],
-      [BrandGridPositions.SecondRow]: [fakeColumnGrid]
-    };
-
     handlerRunnerMock.mockResolvedValue(fakeColumnGrid);
 
-    const result = await brandHandler(handlerRunnerMock, input, params);
+    await brandHandler(handlerRunnerMock, input, params);
 
     const [[firstCall]] = handlerRunnerMock.mock.calls;
 
