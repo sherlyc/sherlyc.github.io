@@ -3,11 +3,12 @@
   margin: 0 -10px 12px -10px;
 }
 .breaking-news {
+  display: flex;
+  align-items: center;
+
   background-color: #d12421;
   color: #ffffff;
-
   transition: opacity 0.25s ease-in-out, max-height 0.25s ease-in-out;
-  position: relative;
 
   a {
     text-decoration: none;
@@ -20,30 +21,21 @@
   }
 
   .link {
+    flex-grow: 1;
     display: block;
-    padding: 12px;
+    padding: 12px 0 12px 12px;
 
     .text {
+      font-weight: 400;
       line-height: 1.5;
     }
   }
 
   .dismiss {
+    padding: 12px;
+    font-size: 28px;
+    user-select: none;
     cursor: pointer;
-    color: #fff;
-    position: absolute;
-    top: 0;
-    right: 0px;
-    width: 35px;
-    height: 35px;
-    padding: 6px;
-    z-index: 1;
     outline: none;
-    text-align: center;
-    vertical-align: middle;
-    &:before {
-      content: "\00d7";
-      font-size: 35px;
-    }
   }
 }
