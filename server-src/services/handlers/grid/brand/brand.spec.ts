@@ -4,17 +4,27 @@ import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { IBrandHandlerInput } from "../../__types__/IBrandHandlerInput";
 import brandHandler from "./brand";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import {
+  BrandGridPositions,
+  IBrandGridHandlerInput
+} from "../../__types__/IBrandGridHandlerInput";
+import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
 
 jest.mock("./bullet-list");
 
 describe("Brand Handler", () => {
   const params: IParams = { apiRequestId: "123" };
 
+  const fakeBulletList = (id: number) => ({
+    type: ContentBlockType.BulletList,
+    items: [id]
+  });
+
   beforeEach(() => {
     jest.resetAllMocks();
   });
 
-  it("should retrieve 10 list of articles", async () => {
+  it("should retrieve 10 bullet lists", async () => {
     (createBulletList as jest.Mock).mockResolvedValue([]);
     const handlerRunnerMock = jest.fn();
     handlerRunnerMock.mockResolvedValue([]);
@@ -29,12 +39,6 @@ describe("Brand Handler", () => {
   });
 
   it("should pass first 5 articles to the first row column grid handler", async () => {
-    const fakeBulletList = (id: number) => {
-      return {
-        type: ContentBlockType.BulletList,
-        items: [id]
-      };
-    };
     (createBulletList as jest.Mock).mockResolvedValueOnce(fakeBulletList(1));
     (createBulletList as jest.Mock).mockResolvedValueOnce(fakeBulletList(2));
     (createBulletList as jest.Mock).mockResolvedValueOnce(fakeBulletList(3));
@@ -62,12 +66,6 @@ describe("Brand Handler", () => {
   it("should pass last 5 articles to the second row column grid handler", async () => {
     const handlerRunnerMock = jest.fn();
     handlerRunnerMock.mockResolvedValue({});
-    const fakeBulletList = (id: number) => {
-      return {
-        type: ContentBlockType.BulletList,
-        items: [id]
-      };
-    };
     (createBulletList as jest.Mock).mockResolvedValueOnce([]);
     (createBulletList as jest.Mock).mockResolvedValueOnce([]);
     (createBulletList as jest.Mock).mockResolvedValueOnce([]);
@@ -97,40 +95,38 @@ describe("Brand Handler", () => {
     ]);
   });
 
-  // it("should pass the result of column grid handlers to brand grid handler", async () => {
-  //   (getRawArticles as jest.Mock).mockResolvedValue(
-  //     fakeArticles([1, 2, 3, 4, 5])
-  //   );
-  //   const handlerRunnerMock = jest.fn();
-  //   const fakeGridContainer = {} as IGridContainer;
-  //   handlerRunnerMock.mockResolvedValue(fakeGridContainer);
-  //
-  //   const expectedBrandGridInput: IBrandGridHandlerInput = {
-  //     type: HandlerInputType.BrandGrid,
-  //     content: {
-  //       [BrandGridPositions.ModuleTitle]: [
-  //         {
-  //           type: ContentBlockType.ModuleTitle,
-  //           displayName: "Our Network's Top Stories",
-  //           displayNameColor: "black"
-  //         }
-  //       ],
-  //       [BrandGridPositions.FirstRow]: [fakeGridContainer],
-  //       [BrandGridPositions.SecondRow]: [fakeGridContainer]
-  //     }
-  //   };
-  //
-  //   const input: IBrandHandlerInput = {
-  //     type: HandlerInputType.Brand
-  //   };
-  //   await brandHandler(handlerRunnerMock, input, params);
-  //
-  //   const [
-  //     [firstCall],
-  //     [secondCall],
-  //     [brandGridCall]
-  //   ] = handlerRunnerMock.mock.calls;
-  //
-  //   expect(brandGridCall).toEqual(expectedBrandGridInput);
-  // });
+  it("should pass the result of column grid handlers to brand grid handler", async () => {
+    (createBulletList as jest.Mock).mockResolvedValue([]);
+    const handlerRunnerMock = jest.fn();
+    const fakeGridContainer = {} as IGridContainer;
+    handlerRunnerMock.mockResolvedValue(fakeGridContainer);
+
+    const expectedBrandGridInput: IBrandGridHandlerInput = {
+      type: HandlerInputType.BrandGrid,
+      content: {
+        [BrandGridPositions.ModuleTitle]: [
+          {
+            type: ContentBlockType.ModuleTitle,
+            displayName: "Our Network's Top Stories",
+            displayNameColor: "black"
+          }
+        ],
+        [BrandGridPositions.FirstRow]: [fakeGridContainer],
+        [BrandGridPositions.SecondRow]: [fakeGridContainer]
+      }
+    };
+
+    const input: IBrandHandlerInput = {
+      type: HandlerInputType.Brand
+    };
+    await brandHandler(handlerRunnerMock, input, params);
+
+    const [
+      [firstCall],
+      [secondCall],
+      [brandGridCall]
+    ] = handlerRunnerMock.mock.calls;
+
+    expect(brandGridCall).toEqual(expectedBrandGridInput);
+  });
 });
