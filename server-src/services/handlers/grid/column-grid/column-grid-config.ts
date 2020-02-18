@@ -2,6 +2,8 @@ import { memoize } from "lodash";
 import { Border } from "../../../../../common/__types__/IGridContainer";
 import { IColumnGridConfig } from "./__types__/IColumnGridConfig";
 
+const memoizeResolver = (...args: []) => args.join("|");
+
 export const mobileColumnGridConfig = memoize(
   (rowGap: number): IColumnGridConfig => ({
     1: {
@@ -71,7 +73,8 @@ export const mobileColumnGridConfig = memoize(
         { rowStart: 6, colStart: 1, border: [] }
       ]
     }
-  })
+  }),
+  memoizeResolver
 );
 
 export const tabletColumnGridConfig = memoize(
@@ -143,7 +146,8 @@ export const tabletColumnGridConfig = memoize(
         { rowStart: 2, colStart: 3, border: [] }
       ]
     }
-  })
+  }),
+  memoizeResolver
 );
 
 export const desktopColumnGridConfig = memoize(
@@ -215,5 +219,6 @@ export const desktopColumnGridConfig = memoize(
         { rowStart: 2, colStart: 3, border: [] }
       ]
     }
-  })
+  }),
+  memoizeResolver
 );
