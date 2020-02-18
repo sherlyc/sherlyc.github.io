@@ -738,6 +738,9 @@ const oldPage = (): HandlerInput[] => [
     }
   },
   {
+    type: HandlerInputType.Brand
+  },
+  {
     type: HandlerInputType.ArticleSection,
     displayName: "Sponsored Content",
     displayNameColor: "darkblue",

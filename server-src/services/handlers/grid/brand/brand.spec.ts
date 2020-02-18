@@ -1,13 +1,10 @@
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { IParams } from "../../../__types__/IParams";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { IBulletItem } from "../../../../../common/__types__/IBulletItem";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { IBrandHandlerInput } from "../../__types__/IBrandHandlerInput";
 import brandHandler from "./brand";
-import { IBulletList } from "../../../../../common/__types__/IBulletList";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { Logo } from "../../../../../common/Logo";
 import {
   BrandGridPositions,
   IBrandGridHandlerInput
@@ -18,7 +15,6 @@ jest.mock("../../../adapters/article-retriever/article-retriever");
 
 describe("Network Top Stories Handler", () => {
   const params: IParams = { apiRequestId: "123" };
-  const totalArticles = 5;
 
   const fakeArticle: IRawArticle = {
     id: "1",
@@ -36,30 +32,16 @@ describe("Network Top Stories Handler", () => {
     headlineFlags: []
   };
 
-  const fakeBulletItem: IBulletItem = {
-    id: "1",
-    strapName: "Editor's Picks",
-    linkText: "Headline 1",
-    linkUrl: "/link1",
-    bulletColor: "purple"
-  };
-
-  const fakeBulletList: IBulletList = {
-    type: ContentBlockType.BulletList,
-    logo: Logo.DominionPost,
-    items: [fakeBulletItem, fakeBulletItem]
-  };
-
   beforeEach(() => {
     jest.resetAllMocks();
   });
 
   it("should retrieve 10 list of articles", async () => {
+    (getRawArticles as jest.Mock).mockResolvedValue(
+      new Array(5).fill(fakeArticle)
+    );
     const handlerRunnerMock = jest.fn();
     handlerRunnerMock.mockResolvedValue([]);
-    (getRawArticles as jest.Mock).mockResolvedValue(
-      new Array(totalArticles).fill(fakeArticle)
-    );
 
     const input: IBrandHandlerInput = {
       type: HandlerInputType.Brand
@@ -67,43 +49,36 @@ describe("Network Top Stories Handler", () => {
     await brandHandler(handlerRunnerMock, input, params);
 
     expect(getRawArticles).toHaveBeenCalledTimes(10);
+    expect(getRawArticles).toHaveBeenCalledWith(expect.any(String), 5, params);
   });
 
-  it("should pass 5 articles to column grid calls", async () => {
-    const handlerRunnerMock = jest.fn();
+  it("should pass 5 articles to each column grid handler", async () => {
     (getRawArticles as jest.Mock).mockResolvedValue(
-      new Array(totalArticles).fill(fakeArticle)
+      new Array(5).fill(fakeArticle)
     );
-
-    const fakeColumnGrid = {
-      type: HandlerInputType.ColumnGrid,
-      content: [
-        fakeBulletList,
-        fakeBulletList,
-        fakeBulletList,
-        fakeBulletList,
-        fakeBulletList
-      ]
-    };
-    handlerRunnerMock.mockResolvedValue(fakeColumnGrid);
+    const handlerRunnerMock = jest.fn();
+    handlerRunnerMock.mockResolvedValue({});
 
     const input: IBrandHandlerInput = {
       type: HandlerInputType.Brand
     };
     await brandHandler(handlerRunnerMock, input, params);
 
-    const [[firstCall], [secondCall]] = handlerRunnerMock.mock.calls;
+    const [
+      [firstColumnGridCall],
+      [secondColumnGridCall]
+    ] = handlerRunnerMock.mock.calls;
     const expectBulletList = expect.objectContaining({
       type: ContentBlockType.BulletList
     });
-    expect(firstCall.content).toEqual([
+    expect(firstColumnGridCall.content).toEqual([
       [expectBulletList],
       [expectBulletList],
       [expectBulletList],
       [expectBulletList],
       [expectBulletList]
     ]);
-    expect(secondCall.content).toEqual([
+    expect(secondColumnGridCall.content).toEqual([
       [expectBulletList],
       [expectBulletList],
       [expectBulletList],
@@ -112,19 +87,15 @@ describe("Network Top Stories Handler", () => {
     ]);
   });
 
-  it("should pass the correct result of column grid handlers to brand grid handler", async () => {
-    const handlerRunnerMock = jest.fn();
+  it("should pass the result of column grid handlers to brand grid handler", async () => {
     (getRawArticles as jest.Mock).mockResolvedValue(
-      new Array(totalArticles).fill(fakeArticle)
+      new Array(5).fill(fakeArticle)
     );
-
-    const input: IBrandHandlerInput = {
-      type: HandlerInputType.Brand
-    };
+    const handlerRunnerMock = jest.fn();
     const fakeGridContainer = {} as IGridContainer;
     handlerRunnerMock.mockResolvedValue(fakeGridContainer);
 
-    const fakeBrandGrid: IBrandGridHandlerInput = {
+    const expectedBrandGridInput: IBrandGridHandlerInput = {
       type: HandlerInputType.BrandGrid,
       content: {
         [BrandGridPositions.ModuleTitle]: [
@@ -139,14 +110,17 @@ describe("Network Top Stories Handler", () => {
       }
     };
 
+    const input: IBrandHandlerInput = {
+      type: HandlerInputType.Brand
+    };
     await brandHandler(handlerRunnerMock, input, params);
 
     const [
       [firstCall],
       [secondCall],
-      [thirdCall]
+      [brandGridCall]
     ] = handlerRunnerMock.mock.calls;
 
-    expect(thirdCall).toEqual(fakeBrandGrid);
+    expect(brandGridCall).toEqual(expectedBrandGridInput);
   });
 });
