@@ -1,8 +1,15 @@
-import { INetworkBrandConfig, IPartnerBrandConfig, NetworkBrand, PartnerBrand } from "../../__types__/IBrandConfig";
+import {
+  INetworkBrandConfig,
+  IPartnerBrandConfig,
+  NetworkBrand,
+  PartnerBrand
+} from "../../__types__/IBrandConfig";
 import { Logo } from "../../../../../common/Logo";
 import { Strap } from "../../../strap";
+import { BrandModule } from "../../__types__/IBrandHandlerInput";
 
 export const networkBrandConfig: INetworkBrandConfig = {
+  moduleTitle: "our network's top stories",
   articlesPerBrand: 5,
   articlesPerRow: 5,
   configs: {
@@ -60,6 +67,7 @@ export const networkBrandConfig: INetworkBrandConfig = {
 };
 
 export const partnerBrandConfig: IPartnerBrandConfig = {
+  moduleTitle: "our partners",
   articlesPerBrand: 8,
   articlesPerRow: 4,
   configs: {
@@ -102,6 +110,11 @@ export const partnerBrandConfig: IPartnerBrandConfig = {
       logo: Logo.Tarana,
       bulletColor: "red",
       sourceId: Strap.Tarana
-    },
+    }
   }
-}
+};
+
+export const brandConfig = {
+  [BrandModule.Network]: networkBrandConfig,
+  [BrandModule.Partner]: partnerBrandConfig
+};

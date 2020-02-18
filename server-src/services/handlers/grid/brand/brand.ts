@@ -4,19 +4,31 @@ import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { BrandGridPositions } from "../../__types__/IBrandGridHandlerInput";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { networkBrandConfig } from "./brand-config";
-import { IBrandHandlerInput } from "../../__types__/IBrandHandlerInput";
+import {
+  brandConfig,
+  networkBrandConfig,
+  partnerBrandConfig
+} from "./brand-config";
+import {
+  BrandModule,
+  IBrandHandlerInput
+} from "../../__types__/IBrandHandlerInput";
 import { chunk } from "lodash";
 import { createBulletList } from "./bullet-list";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  {}: IBrandHandlerInput,
+  { module }: IBrandHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
+  const moduleConfig = brandConfig[module];
   const bulletLists = await Promise.all(
-    Object.values(networkBrandConfig.configs).map((config) => {
-      return createBulletList(config, networkBrandConfig.articlesPerBrand, params);
+    Object.values(moduleConfig.configs).map((brandListConfig) => {
+      return createBulletList(
+        brandListConfig,
+        moduleConfig.articlesPerBrand,
+        params
+      );
     })
   );
 

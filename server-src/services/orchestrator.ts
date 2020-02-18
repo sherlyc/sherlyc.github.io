@@ -10,6 +10,7 @@ import config from "./utils/config";
 import logger from "./utils/logger";
 import { ContentBlockType } from "../../common/__types__/ContentBlockType";
 import { IContentBlockHandlerInput } from "./handlers/__types__/IContentBlockHandlerInput";
+import { BrandModule } from "./handlers/__types__/IBrandHandlerInput";
 
 const homepageStrapsConfig = config.strapConfig!.homepageStraps;
 
@@ -268,7 +269,8 @@ const newPage = (): HandlerInput[] => {
       url: "https://cdn.neighbourly.co.nz/stuff/933/homepage"
     },
     {
-      type: HandlerInputType.Brand
+      type: HandlerInputType.Brand,
+      module: BrandModule.Network
     }
   ];
 

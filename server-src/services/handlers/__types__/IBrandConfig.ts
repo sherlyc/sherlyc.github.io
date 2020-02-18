@@ -22,7 +22,7 @@ export enum PartnerBrand {
   BeautyHeaven = "BeautyHeaven",
   Metro = "Metro",
   Newsroom = "Newsroom",
-  Tarana = "Tarana",
+  Tarana = "Tarana"
 }
 
 export interface IBrandListConfig {
@@ -32,12 +32,14 @@ export interface IBrandListConfig {
 }
 
 export interface INetworkBrandConfig {
+  moduleTitle: string;
   articlesPerBrand: number;
   articlesPerRow: number;
   configs: { [key in NetworkBrand]: IBrandListConfig };
 }
 
 export interface IPartnerBrandConfig {
+  moduleTitle: string;
   articlesPerBrand: number;
   articlesPerRow: number;
   configs: { [key in PartnerBrand]: IBrandListConfig };
