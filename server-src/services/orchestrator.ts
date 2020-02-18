@@ -1,15 +1,15 @@
+import { ContentBlockType } from "../../common/__types__/ContentBlockType";
 import { IPage } from "../../common/__types__/IPage";
 import { FeatureName } from "../../common/FeatureName";
 import { IParams } from "./__types__/IParams";
 import { HandlerInput } from "./handlers/__types__/HandlerInput";
 import { HandlerInputType } from "./handlers/__types__/HandlerInputType";
+import { IContentBlockHandlerInput } from "./handlers/__types__/IContentBlockHandlerInput";
 import handlerRunner from "./handlers/runner";
 import { Section } from "./section";
 import { Strap } from "./strap";
 import config from "./utils/config";
 import logger from "./utils/logger";
-import { ContentBlockType } from "../../common/__types__/ContentBlockType";
-import { IContentBlockHandlerInput } from "./handlers/__types__/IContentBlockHandlerInput";
 
 const homepageStrapsConfig = config.strapConfig!.homepageStraps;
 
@@ -105,6 +105,15 @@ const newPage = (): HandlerInput[] => {
       displayNameColor: "yellowsea",
       strapName: `${homepageAdPrefix}Travel`,
       sourceId: Strap.Travel
+    },
+    {
+      type: HandlerInputType.Strips,
+      displayName: "Premium",
+      displayNameColor: "premiumdark",
+      sourceId: Strap.Premium,
+      strapName: Strap.Premium,
+      articleCount: 4,
+      articleFormat: ContentBlockType.FeaturedArticle
     },
     {
       type: HandlerInputType.NewsSix,
@@ -259,6 +268,15 @@ const newPage = (): HandlerInput[] => {
       displayNameColor: "scarlet",
       strapName: `${homepageAdPrefix}Tarana`,
       sourceId: Strap.Tarana
+    },
+    {
+      type: HandlerInputType.Strips,
+      displayName: "Sponsored Content",
+      displayNameColor: "darkblue",
+      strapName: Strap.SponsoredContent,
+      sourceId: Strap.SponsoredContent,
+      articleCount: 4,
+      articleFormat: ContentBlockType.BigImageArticleUnit
     },
     {
       type: HandlerInputType.ExternalContent,
