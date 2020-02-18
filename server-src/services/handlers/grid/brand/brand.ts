@@ -20,7 +20,6 @@ export default async function(
     })
   );
 
-  console.log("bulletLists", bulletLists);
   const content: { [key in BrandGridPositions]: IContentBlock[] } = {
     [BrandGridPositions.ModuleTitle]: [
       {
