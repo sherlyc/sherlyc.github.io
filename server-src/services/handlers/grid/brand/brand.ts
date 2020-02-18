@@ -3,41 +3,11 @@ import { IParams } from "../../../__types__/IParams";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { BrandGridPositions } from "../../__types__/IBrandGridHandlerInput";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { IBulletList } from "../../../../../common/__types__/IBulletList";
 import { brandConfig } from "./brand-config";
 import { IBrandHandlerInput } from "../../__types__/IBrandHandlerInput";
-import { bulletItem } from "../../../adapters/article-converter/bullet-item.converter";
-import { contentErrorHandler } from "../content-error-handler";
-import {
-  IBrandConfig,
-  NetworkBrand
-} from "../../__types__/INetworkBrandConfig";
 import { chunk } from "lodash";
-
-const createBulletList = async (
-  config: IBrandConfig,
-  articlesPerBrand: number,
-  params: IParams
-): Promise<IBulletList> => {
-  const { sourceId, logo, bulletColor } = config;
-  const articles = await getRawArticles(sourceId, articlesPerBrand, params);
-  const bulletItems = articles.map((article) =>
-    contentErrorHandler(
-      () => bulletItem(article, sourceId, bulletColor),
-      HandlerInputType.Brand,
-      sourceId,
-      params
-    )
-  );
-
-  return {
-    type: ContentBlockType.BulletList,
-    logo,
-    items: bulletItems
-  };
-};
+import { createBulletList } from "./bullet-list";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,

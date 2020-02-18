@@ -6,7 +6,10 @@ import {
 } from "../../__types__/IBrandGridHandlerInput";
 import brandGridHandler from "./brand-grid";
 import { IParams } from "../../../__types__/IParams";
-import { Border, IGridContainer } from "../../../../../common/__types__/IGridContainer";
+import {
+  Border,
+  IGridContainer
+} from "../../../../../common/__types__/IGridContainer";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 
 describe("Brand Grid Handler", () => {
@@ -14,11 +17,11 @@ describe("Brand Grid Handler", () => {
   const params: IParams = { apiRequestId: "123" };
 
   it("should create grid", async () => {
-    const fakeContentBlock = {} as IContentBlock ;
+    const fakeContentBlock = {} as IContentBlock;
     const content = {
-      [BrandGridPositions.ModuleTitle] : [],
-      [BrandGridPositions.FirstRow] : [fakeContentBlock, fakeContentBlock],
-      [BrandGridPositions.SecondRow] : [fakeContentBlock],
+      [BrandGridPositions.ModuleTitle]: [],
+      [BrandGridPositions.FirstRow]: [fakeContentBlock, fakeContentBlock],
+      [BrandGridPositions.SecondRow]: [fakeContentBlock]
     };
     const input: IBrandGridHandlerInput = {
       type: HandlerInputType.BrandGrid,
@@ -43,20 +46,20 @@ describe("Brand Grid Handler", () => {
             columnSpan: 1,
             border: []
           },
-          [BrandGridPositions.FirstRow]:  {
+          [BrandGridPositions.FirstRow]: {
             rowStart: 2,
             rowSpan: 1,
             columnStart: 1,
             columnSpan: 1,
             border: [Border.bottom]
           },
-          [BrandGridPositions.SecondRow]:  {
+          [BrandGridPositions.SecondRow]: {
             rowStart: 3,
             rowSpan: 1,
             columnStart: 1,
             columnSpan: 1,
             border: []
-          },
+          }
         }
       }
     };

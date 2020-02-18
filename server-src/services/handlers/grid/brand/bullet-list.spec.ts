@@ -5,7 +5,6 @@ import { Logo } from "../../../../../common/Logo";
 import { Strap } from "../../../strap";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import objectContaining = jasmine.objectContaining;
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IBulletItem } from "../../../../../common/__types__/IBulletItem";
 
@@ -38,7 +37,7 @@ describe("Bullet list", () => {
     );
   });
 
-  it("should articles as bullet items in list", async () => {
+  it("should insert articles as bullet items", async () => {
     const config: IBrandConfig = {
       logo: Logo.DominionPost,
       bulletColor: "red",
