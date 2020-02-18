@@ -65,4 +65,23 @@ describe("Bullet list", () => {
       })
     );
   });
+
+  it("should return empty bullet items if failed to retrieve articles", async () => {
+    const config: IBrandConfig = {
+      logo: Logo.DominionPost,
+      bulletColor: "red",
+      sourceId: Strap.DominionPost
+    };
+    (getRawArticles as jest.Mock).mockRejectedValue(new Error());
+
+    const result = await createBulletList(config, 3, params);
+
+    expect(result).toEqual(
+      expect.objectContaining({
+        type: ContentBlockType.BulletList,
+        logo: config.logo,
+        items: []
+      })
+    );
+  });
 });
