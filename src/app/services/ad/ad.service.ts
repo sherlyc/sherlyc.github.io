@@ -50,7 +50,7 @@ export class AdService {
     try {
       await this.load;
       const isHomepageTakeoverOn = await this.featureSwitch.getFeature(
-        FeatureName.HomepageTakeover
+        FeatureName.ModuleLayout
       );
       this.zone.runOutsideAngular(() => {
         this.sendCustomEventWithValue({ isHomepageTakeoverOn });
