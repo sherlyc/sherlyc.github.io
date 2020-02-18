@@ -31,5 +31,15 @@ export enum Strap {
   Tarana = "strapTarana",
   SponsoredContent = "strapSponsoredContent",
   Bravo = "strapBravo",
-  Property = "strapProperty"
+  Property = "strapProperty",
+  DominionPost = "strapDominionPost",
+  ThePress = "strapThePress",
+  WaikatoTimes = "strapWaikatoTimes",
+  Auckland = "strapAuckland",
+  SouthlandTimes = "strapSouthlandTimes",
+  TaranakiDailyNews = "strapTaranakiDailyNews",
+  ManawatuStandard = "strapManawatuStandard",
+  NelsonMail = "strapNelsonMail",
+  MarlboroughExpress = "strapMarlboroughExpress",
+  TimaruHerald = "strapTimaruHerald"
 }
