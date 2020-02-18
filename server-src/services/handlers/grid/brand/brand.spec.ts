@@ -16,21 +16,8 @@ jest.mock("../../../adapters/article-retriever/article-retriever");
 describe("Network Top Stories Handler", () => {
   const params: IParams = { apiRequestId: "123" };
 
-  const fakeArticle: IRawArticle = {
-    id: "1",
-    indexHeadline: "Headline 1",
-    title: "Title One",
-    introText: "Intro 1",
-    linkUrl: "/link1",
-    defconSrc: null,
-    imageSrc: "1.jpg",
-    imageSrcSet: "1.jpg 1w",
-    sixteenByNineSrc: "16by9.jpg",
-    strapImageSrc: "strap1.jpg",
-    strapImageSrcSet: "strap1.jpg 1w",
-    lastPublishedTime: 1,
-    headlineFlags: []
-  };
+  const fakeArticles = (ids: number[]) =>
+    ids.map((id) => ({ id: `${id}` } as IRawArticle));
 
   beforeEach(() => {
     jest.resetAllMocks();
@@ -38,7 +25,7 @@ describe("Network Top Stories Handler", () => {
 
   it("should retrieve 10 list of articles", async () => {
     (getRawArticles as jest.Mock).mockResolvedValue(
-      new Array(5).fill(fakeArticle)
+      fakeArticles([1, 2, 3, 4, 5])
     );
     const handlerRunnerMock = jest.fn();
     handlerRunnerMock.mockResolvedValue([]);
@@ -54,7 +41,7 @@ describe("Network Top Stories Handler", () => {
 
   it("should pass 5 articles to each column grid handler", async () => {
     (getRawArticles as jest.Mock).mockResolvedValue(
-      new Array(5).fill(fakeArticle)
+      fakeArticles([1, 2, 3, 4, 5])
     );
     const handlerRunnerMock = jest.fn();
     handlerRunnerMock.mockResolvedValue({});
@@ -89,7 +76,7 @@ describe("Network Top Stories Handler", () => {
 
   it("should pass the result of column grid handlers to brand grid handler", async () => {
     (getRawArticles as jest.Mock).mockResolvedValue(
-      new Array(5).fill(fakeArticle)
+      fakeArticles([1, 2, 3, 4, 5])
     );
     const handlerRunnerMock = jest.fn();
     const fakeGridContainer = {} as IGridContainer;
