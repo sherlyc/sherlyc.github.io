@@ -1,12 +1,12 @@
-import { IColumnGridHandlerInput } from "../../__types__/IColumnGridHandlerInput";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { IParams } from "../../../__types__/IParams";
 import {
   Border,
   IGridContainer
 } from "../../../../../common/__types__/IGridContainer";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IParams } from "../../../__types__/IParams";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import { IColumnGridHandlerInput } from "../../__types__/IColumnGridHandlerInput";
 import columnGridHandler from "./column-grid";
 
 const contentBlock = (id: string) => ({ id } as IContentBlock);
@@ -18,6 +18,11 @@ describe("Column Grid", () => {
   it("should handle one column of content", async () => {
     const handlerInput: IColumnGridHandlerInput = {
       type: HandlerInputType.ColumnGrid,
+      options: {
+        border: true,
+        columnGap: 40,
+        rowGap: 10
+      },
       content: [[contentBlock("1")]]
     };
 
@@ -65,6 +70,11 @@ describe("Column Grid", () => {
   it("should handle two columns of content", async () => {
     const handlerInput: IColumnGridHandlerInput = {
       type: HandlerInputType.ColumnGrid,
+      options: {
+        border: true,
+        columnGap: 40,
+        rowGap: 10
+      },
       content: [
         [contentBlock("1"), contentBlock("2")],
         [contentBlock("3"), contentBlock("4")]
@@ -158,6 +168,11 @@ describe("Column Grid", () => {
   it("should handle three columns of content", async () => {
     const handlerInput: IColumnGridHandlerInput = {
       type: HandlerInputType.ColumnGrid,
+      options: {
+        border: true,
+        columnGap: 40,
+        rowGap: 10
+      },
       content: [
         [contentBlock("1"), contentBlock("2")],
         [contentBlock("3"), contentBlock("4")],
@@ -275,6 +290,11 @@ describe("Column Grid", () => {
   it("should handle four columns of content", async () => {
     const handlerInput: IColumnGridHandlerInput = {
       type: HandlerInputType.ColumnGrid,
+      options: {
+        border: true,
+        columnGap: 40,
+        rowGap: 10
+      },
       content: [
         [contentBlock("1"), contentBlock("2")],
         [contentBlock("3"), contentBlock("4")],
@@ -415,6 +435,11 @@ describe("Column Grid", () => {
   it("should handle five columns of content", async () => {
     const handlerInput: IColumnGridHandlerInput = {
       type: HandlerInputType.ColumnGrid,
+      options: {
+        border: true,
+        columnGap: 40,
+        rowGap: 10
+      },
       content: [
         [contentBlock("1"), contentBlock("2")],
         [contentBlock("3"), contentBlock("4")],
@@ -578,6 +603,11 @@ describe("Column Grid", () => {
   it("should handle six columns of content", async () => {
     const handlerInput: IColumnGridHandlerInput = {
       type: HandlerInputType.ColumnGrid,
+      options: {
+        border: true,
+        columnGap: 40,
+        rowGap: 10
+      },
       content: [
         [contentBlock("1"), contentBlock("2")],
         [contentBlock("3"), contentBlock("4")],

@@ -1,19 +1,24 @@
 import { Border } from "../../../../../common/__types__/IGridContainer";
-import { IColumnGridConfig } from "./__types__/IColumnGridConfig";
+import {
+  IColumnGridConfig,
+  IColumnGridConfigOptions
+} from "./__types__/IColumnGridConfig";
 
-export const mobileColumnGridConfig: IColumnGridConfig = {
+export const mobileColumnGridConfig = ({
+  rowGap
+}: Pick<IColumnGridConfigOptions, "rowGap">): IColumnGridConfig => ({
   1: {
     gridTemplateColumns: "1fr",
     gridTemplateRows: "auto",
     gridColumnGap: "0px",
-    gridRowGap: "10px",
+    gridRowGap: `${rowGap}px`,
     gridBlocks: [{ rowStart: 1, colStart: 1, border: [] }]
   },
   2: {
     gridTemplateColumns: "1fr",
     gridTemplateRows: "auto auto",
     gridColumnGap: "0px",
-    gridRowGap: "10px",
+    gridRowGap: `${rowGap}px`,
     gridBlocks: [
       { rowStart: 1, colStart: 1, border: [] },
       { rowStart: 2, colStart: 1, border: [] }
@@ -23,7 +28,7 @@ export const mobileColumnGridConfig: IColumnGridConfig = {
     gridTemplateColumns: "1fr",
     gridTemplateRows: "auto auto auto",
     gridColumnGap: "0px",
-    gridRowGap: "10px",
+    gridRowGap: `${rowGap}px`,
     gridBlocks: [
       { rowStart: 1, colStart: 1, border: [] },
       { rowStart: 2, colStart: 1, border: [] },
@@ -34,7 +39,7 @@ export const mobileColumnGridConfig: IColumnGridConfig = {
     gridTemplateColumns: "1fr",
     gridTemplateRows: "auto auto auto auto",
     gridColumnGap: "0px",
-    gridRowGap: "10px",
+    gridRowGap: `${rowGap}px`,
     gridBlocks: [
       { rowStart: 1, colStart: 1, border: [] },
       { rowStart: 2, colStart: 1, border: [] },
@@ -46,7 +51,7 @@ export const mobileColumnGridConfig: IColumnGridConfig = {
     gridTemplateColumns: "1fr",
     gridTemplateRows: "auto auto auto auto auto",
     gridColumnGap: "0px",
-    gridRowGap: "10px",
+    gridRowGap: `${rowGap}px`,
     gridBlocks: [
       { rowStart: 1, colStart: 1, border: [] },
       { rowStart: 2, colStart: 1, border: [] },
@@ -59,7 +64,7 @@ export const mobileColumnGridConfig: IColumnGridConfig = {
     gridTemplateColumns: "1fr",
     gridTemplateRows: "auto auto auto auto auto auto",
     gridColumnGap: "0px",
-    gridRowGap: "10px",
+    gridRowGap: `${rowGap}px`,
     gridBlocks: [
       { rowStart: 1, colStart: 1, border: [] },
       { rowStart: 2, colStart: 1, border: [] },
@@ -69,144 +74,152 @@ export const mobileColumnGridConfig: IColumnGridConfig = {
       { rowStart: 6, colStart: 1, border: [] }
     ]
   }
-};
+});
 
-export const tabletColumnGridConfig: IColumnGridConfig = {
+export const tabletColumnGridConfig = ({
+  border,
+  columnGap,
+  rowGap
+}: IColumnGridConfigOptions): IColumnGridConfig => ({
   1: {
     gridTemplateColumns: "1fr",
     gridTemplateRows: "auto",
-    gridColumnGap: "40px",
-    gridRowGap: "10px",
+    gridColumnGap: `${columnGap}px`,
+    gridRowGap: `${rowGap}px`,
     gridBlocks: [{ rowStart: 1, colStart: 1, border: [] }]
   },
   2: {
     gridTemplateColumns: "1fr 1fr",
     gridTemplateRows: "auto",
-    gridColumnGap: "40px",
-    gridRowGap: "10px",
+    gridColumnGap: `${columnGap}px`,
+    gridRowGap: `${rowGap}px`,
     gridBlocks: [
-      { rowStart: 1, colStart: 1, border: [Border.right] },
+      { rowStart: 1, colStart: 1, border: border ? [Border.right] : [] },
       { rowStart: 1, colStart: 2, border: [] }
     ]
   },
   3: {
     gridTemplateColumns: "1fr 1fr 1fr",
     gridTemplateRows: "auto",
-    gridColumnGap: "40px",
-    gridRowGap: "10px",
+    gridColumnGap: `${columnGap}px`,
+    gridRowGap: `${rowGap}px`,
     gridBlocks: [
-      { rowStart: 1, colStart: 1, border: [Border.right] },
-      { rowStart: 1, colStart: 2, border: [Border.right] },
+      { rowStart: 1, colStart: 1, border: border ? [Border.right] : [] },
+      { rowStart: 1, colStart: 2, border: border ? [Border.right] : [] },
       { rowStart: 1, colStart: 3, border: [] }
     ]
   },
   4: {
     gridTemplateColumns: "1fr 1fr",
     gridTemplateRows: "auto auto",
-    gridColumnGap: "40px",
-    gridRowGap: "10px",
+    gridColumnGap: `${columnGap}px`,
+    gridRowGap: `${rowGap}px`,
     gridBlocks: [
-      { rowStart: 1, colStart: 1, border: [Border.right] },
+      { rowStart: 1, colStart: 1, border: border ? [Border.right] : [] },
       { rowStart: 1, colStart: 2, border: [] },
-      { rowStart: 2, colStart: 1, border: [Border.right] },
+      { rowStart: 2, colStart: 1, border: border ? [Border.right] : [] },
       { rowStart: 2, colStart: 2, border: [] }
     ]
   },
   5: {
     gridTemplateColumns: "1fr 1fr 1fr",
     gridTemplateRows: "auto auto",
-    gridColumnGap: "40px",
-    gridRowGap: "10px",
+    gridColumnGap: `${columnGap}px`,
+    gridRowGap: `${rowGap}px`,
     gridBlocks: [
-      { rowStart: 1, colStart: 1, border: [Border.right] },
-      { rowStart: 1, colStart: 2, border: [Border.right] },
+      { rowStart: 1, colStart: 1, border: border ? [Border.right] : [] },
+      { rowStart: 1, colStart: 2, border: border ? [Border.right] : [] },
       { rowStart: 1, colStart: 3, border: [] },
-      { rowStart: 2, colStart: 1, border: [Border.right] },
+      { rowStart: 2, colStart: 1, border: border ? [Border.right] : [] },
       { rowStart: 2, colStart: 2, border: [] }
     ]
   },
   6: {
     gridTemplateColumns: "1fr 1fr 1fr",
     gridTemplateRows: "auto auto",
-    gridColumnGap: "40px",
-    gridRowGap: "10px",
+    gridColumnGap: `${columnGap}px`,
+    gridRowGap: `${rowGap}px`,
     gridBlocks: [
-      { rowStart: 1, colStart: 1, border: [Border.right] },
-      { rowStart: 1, colStart: 2, border: [Border.right] },
+      { rowStart: 1, colStart: 1, border: border ? [Border.right] : [] },
+      { rowStart: 1, colStart: 2, border: border ? [Border.right] : [] },
       { rowStart: 1, colStart: 3, border: [] },
-      { rowStart: 2, colStart: 1, border: [Border.right] },
-      { rowStart: 2, colStart: 2, border: [Border.right] },
+      { rowStart: 2, colStart: 1, border: border ? [Border.right] : [] },
+      { rowStart: 2, colStart: 2, border: border ? [Border.right] : [] },
       { rowStart: 2, colStart: 3, border: [] }
     ]
   }
-};
+});
 
-export const desktopColumnGridConfig: IColumnGridConfig = {
+export const desktopColumnGridConfig = ({
+  border,
+  columnGap,
+  rowGap
+}: IColumnGridConfigOptions): IColumnGridConfig => ({
   1: {
     gridTemplateColumns: "1fr",
     gridTemplateRows: "auto",
-    gridColumnGap: "40px",
-    gridRowGap: "10px",
+    gridColumnGap: `${columnGap}px`,
+    gridRowGap: `${rowGap}px`,
     gridBlocks: [{ rowStart: 1, colStart: 1, border: [] }]
   },
   2: {
     gridTemplateColumns: "1fr 1fr",
     gridTemplateRows: "auto",
-    gridColumnGap: "40px",
-    gridRowGap: "10px",
+    gridColumnGap: `${columnGap}px`,
+    gridRowGap: `${rowGap}px`,
     gridBlocks: [
-      { rowStart: 1, colStart: 1, border: [Border.right] },
+      { rowStart: 1, colStart: 1, border: border ? [Border.right] : [] },
       { rowStart: 1, colStart: 2, border: [] }
     ]
   },
   3: {
     gridTemplateColumns: "1fr 1fr 1fr",
     gridTemplateRows: "auto",
-    gridColumnGap: "40px",
-    gridRowGap: "10px",
+    gridColumnGap: `${columnGap}px`,
+    gridRowGap: `${rowGap}px`,
     gridBlocks: [
-      { rowStart: 1, colStart: 1, border: [Border.right] },
-      { rowStart: 1, colStart: 2, border: [Border.right] },
+      { rowStart: 1, colStart: 1, border: border ? [Border.right] : [] },
+      { rowStart: 1, colStart: 2, border: border ? [Border.right] : [] },
       { rowStart: 1, colStart: 3, border: [] }
     ]
   },
   4: {
     gridTemplateColumns: "1fr 1fr 1fr 1fr",
     gridTemplateRows: "auto",
-    gridColumnGap: "40px",
-    gridRowGap: "10px",
+    gridColumnGap: `${columnGap}px`,
+    gridRowGap: `${rowGap}px`,
     gridBlocks: [
-      { rowStart: 1, colStart: 1, border: [Border.right] },
-      { rowStart: 1, colStart: 2, border: [Border.right] },
-      { rowStart: 1, colStart: 3, border: [Border.right] },
+      { rowStart: 1, colStart: 1, border: border ? [Border.right] : [] },
+      { rowStart: 1, colStart: 2, border: border ? [Border.right] : [] },
+      { rowStart: 1, colStart: 3, border: border ? [Border.right] : [] },
       { rowStart: 1, colStart: 4, border: [] }
     ]
   },
   5: {
     gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
     gridTemplateRows: "auto",
-    gridColumnGap: "40px",
-    gridRowGap: "10px",
+    gridColumnGap: `${columnGap}px`,
+    gridRowGap: `${rowGap}px`,
     gridBlocks: [
-      { rowStart: 1, colStart: 1, border: [Border.right] },
-      { rowStart: 1, colStart: 2, border: [Border.right] },
-      { rowStart: 1, colStart: 3, border: [Border.right] },
-      { rowStart: 1, colStart: 4, border: [Border.right] },
+      { rowStart: 1, colStart: 1, border: border ? [Border.right] : [] },
+      { rowStart: 1, colStart: 2, border: border ? [Border.right] : [] },
+      { rowStart: 1, colStart: 3, border: border ? [Border.right] : [] },
+      { rowStart: 1, colStart: 4, border: border ? [Border.right] : [] },
       { rowStart: 1, colStart: 5, border: [] }
     ]
   },
   6: {
     gridTemplateColumns: "1fr 1fr 1fr",
     gridTemplateRows: "auto auto",
-    gridColumnGap: "40px",
-    gridRowGap: "10px",
+    gridColumnGap: `${columnGap}px`,
+    gridRowGap: `${rowGap}px`,
     gridBlocks: [
-      { rowStart: 1, colStart: 1, border: [Border.right] },
-      { rowStart: 1, colStart: 2, border: [Border.right] },
+      { rowStart: 1, colStart: 1, border: border ? [Border.right] : [] },
+      { rowStart: 1, colStart: 2, border: border ? [Border.right] : [] },
       { rowStart: 1, colStart: 3, border: [] },
-      { rowStart: 2, colStart: 1, border: [Border.right] },
-      { rowStart: 2, colStart: 2, border: [Border.right] },
+      { rowStart: 2, colStart: 1, border: border ? [Border.right] : [] },
+      { rowStart: 2, colStart: 2, border: border ? [Border.right] : [] },
       { rowStart: 2, colStart: 3, border: [] }
     ]
   }
-};
+});
