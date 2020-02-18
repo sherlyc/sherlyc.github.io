@@ -37,7 +37,7 @@ describe("Bullet list", () => {
     );
   });
 
-  it("should articles as bullet items in list", async () => {
+  it("should insert articles as bullet items", async () => {
     const config: IBrandConfig = {
       logo: Logo.DominionPost,
       bulletColor: "red",
