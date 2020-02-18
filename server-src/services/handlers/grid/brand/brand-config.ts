@@ -68,7 +68,7 @@ export const networkBrandConfig: INetworkBrandConfig = {
 
 export const partnerBrandConfig: IPartnerBrandConfig = {
   moduleTitle: "our partners",
-  articlesPerBrand: 8,
+  articlesPerBrand: 5,
   articlesPerRow: 4,
   configs: {
     [PartnerBrand.Noted]: {
