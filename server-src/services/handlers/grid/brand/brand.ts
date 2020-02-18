@@ -18,11 +18,11 @@ import { chunk } from "lodash";
 
 const createBulletList = async (
   config: IBrandConfig,
+  articlesPerBrand: number,
   params: IParams
 ): Promise<IBulletList> => {
   const { sourceId, logo, bulletColor } = config;
-  const totalArticles = 5;
-  const articles = await getRawArticles(sourceId, totalArticles, params);
+  const articles = await getRawArticles(sourceId, articlesPerBrand, params);
   const bulletItems = articles.map((article) =>
     contentErrorHandler(
       () => bulletItem(article, sourceId, bulletColor),
@@ -46,7 +46,7 @@ export default async function(
 ): Promise<IContentBlock[]> {
   const bulletLists = await Promise.all(
     Object.values(brandConfig.configs).map((config) => {
-      return createBulletList(config, params);
+      return createBulletList(config, brandConfig.articlesPerBrand, params);
     })
   );
 
