@@ -14,6 +14,7 @@ import {
   IBrandConfig,
   NetworkBrand
 } from "../../__types__/INetworkBrandConfig";
+import { chunk } from "lodash";
 
 const createBulletList = async (
   config: IBrandConfig,
@@ -62,7 +63,7 @@ export default async function(
       ...(await handlerRunner(
         {
           type: HandlerInputType.ColumnGrid,
-          content: [bulletLists.slice(0, 5)]
+          content: chunk(bulletLists.slice(0, 5))
         },
         params
       ))
@@ -71,7 +72,7 @@ export default async function(
       ...(await handlerRunner(
         {
           type: HandlerInputType.ColumnGrid,
-          content: [bulletLists.slice(5)]
+          content: chunk(bulletLists.slice(5))
         },
         params
       ))

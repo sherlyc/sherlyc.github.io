@@ -96,19 +96,19 @@ describe("Network Top Stories Handler", () => {
     const expectBulletList = expect.objectContaining({
       type: ContentBlockType.BulletList
     });
-    expect(firstCall.content[0]).toEqual([
-      expectBulletList,
-      expectBulletList,
-      expectBulletList,
-      expectBulletList,
-      expectBulletList
+    expect(firstCall.content).toEqual([
+      [expectBulletList],
+      [expectBulletList],
+      [expectBulletList],
+      [expectBulletList],
+      [expectBulletList]
     ]);
-    expect(secondCall.content[0]).toEqual([
-      expectBulletList,
-      expectBulletList,
-      expectBulletList,
-      expectBulletList,
-      expectBulletList
+    expect(secondCall.content).toEqual([
+      [expectBulletList],
+      [expectBulletList],
+      [expectBulletList],
+      [expectBulletList],
+      [expectBulletList]
     ]);
   });
 
