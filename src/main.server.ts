@@ -19,6 +19,7 @@ import { cacheControl } from "./middlewares/cache-control";
 // https://github.com/angular/angular/issues/15730
 // @ts-ignore
 import * as xhr2 from "xhr2";
+import * as httpProxy from "http-proxy";
 
 export { AppServerModule } from "./app/app.server.module";
 
@@ -27,6 +28,13 @@ xhr2.prototype._restrictedHeaders["cookie"] = false;
 enableProdMode();
 
 const app = express();
+
+const assetsProxy = httpProxy.createServer({
+  target: "https://www.stuff.co.nz",
+  headers: {
+    host: "www.stuff.co.nz"
+  }
+});
 
 app.use(requestLogger);
 
@@ -126,6 +134,10 @@ app.get("/spade/signin-callback-v3", (req, res) => {
   res.sendFile(
     join(DIST_FOLDER, "browser", "spade/assets/signin-callback.html")
   );
+});
+
+app.get("/static/*", (req, res) => {
+  assetsProxy.web(req, res);
 });
 
 app.listen(PORT, () =>
