@@ -11,10 +11,7 @@ import { Strap } from "../../../strap";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { ITopStoriesDefaultOneHighlightHandlerInput } from "../../__types__/ITopStoriesDefaultOneHighlightHandlerInput";
 import { ITopStoriesDefconHighlightHandlerInput } from "../../__types__/ITopStoriesDefconHighlightHandlerInput";
-import {
-  ITopStoriesGridHandlerInput,
-  TopStoriesGridPositions
-} from "../../__types__/ITopStoriesGridHandlerInput";
+import { TopStoriesGridPositions } from "../../__types__/ITopStoriesGridHandlerInput";
 import { ITopStoriesHandlerInput } from "../../__types__/ITopStoriesHandlerInput";
 import { handlerRunnerFunction } from "../../runner";
 import { contentErrorHandler } from "../content-error-handler";
@@ -30,7 +27,7 @@ const topStoriesVariationHandler: {
 } = {
   [LayoutType.DEFAULT]: defaultOneHandler,
   [LayoutType.DEFCON]: defconHandler,
-  [LayoutType.BIG_HEADLINE]: async () => []
+  [LayoutType.BIG_HEADLINE]: defaultOneHandler
 };
 
 async function defaultOneHandler(
