@@ -136,6 +136,79 @@ describe("Top Stories", () => {
     });
   });
 
+  describe("when layout is Default Two (Big Headline)", () => {
+    beforeEach(() => {
+      (layoutRetriever as jest.Mock).mockResolvedValue(LayoutType.BIG_HEADLINE);
+    });
+
+    it("should call top stories default one since default two is not yet available", async () => {
+      await topStoriesHandler(
+        handlerRunnerMock,
+        topStoriesHandlerInput,
+        params
+      );
+
+      const topStoriesDefaultOneHandlerInput: ITopStoriesDefaultOneHighlightHandlerInput = {
+        type: HandlerInputType.TopStoriesDefaultOneHighlight,
+        strapName,
+        articles: fakeArticlesWithIds([2, 1])
+      };
+      expect(handlerRunnerMock).toHaveBeenNthCalledWith(
+        1,
+        topStoriesDefaultOneHandlerInput,
+        params
+      );
+    });
+
+    it("should call top stories grid", async () => {
+      const topStoriesDefaultOneResult = {
+        type: ContentBlockType.GridContainer
+      };
+      handlerRunnerMock.mockResolvedValueOnce([
+        topStoriesDefaultOneResult as IGridContainer
+      ]);
+
+      await topStoriesHandler(
+        handlerRunnerMock,
+        topStoriesHandlerInput,
+        params
+      );
+
+      const topStoriesGridHandlerInput: ITopStoriesGridHandlerInput = {
+        type: HandlerInputType.TopStoriesGrid,
+        content: {
+          [TopStoriesGridPositions.Highlight]: [
+            topStoriesDefaultOneResult as IContentBlock
+          ],
+          [TopStoriesGridPositions.Right]: [
+            { type: ContentBlockType.StickyContainer, items: [basicAdUnit] }
+          ],
+          [TopStoriesGridPositions.FirstRow1]: [expectHalfWidthImage("3")],
+          [TopStoriesGridPositions.FirstRow2]: [expectHalfWidthImage("4")],
+          [TopStoriesGridPositions.FirstRow3]: [basicAdUnit],
+          [TopStoriesGridPositions.FirstRow4]: [expectHalfWidthImage("5")],
+          [TopStoriesGridPositions.SecondRow1]: [
+            expectHalfWidthImageWithoutIntro("6")
+          ],
+          [TopStoriesGridPositions.SecondRow2]: [
+            expectHalfWidthImageWithoutIntro("7")
+          ],
+          [TopStoriesGridPositions.SecondRow3]: [
+            expectHalfWidthImageWithoutIntro("8")
+          ],
+          [TopStoriesGridPositions.SecondRow4]: [
+            expectHalfWidthImageWithoutIntro("9")
+          ]
+        }
+      };
+      expect(handlerRunnerMock).toHaveBeenNthCalledWith(
+        2,
+        topStoriesGridHandlerInput,
+        params
+      );
+    });
+  });
+
   describe("when layout is Defcon", () => {
     beforeEach(() => {
       (layoutRetriever as jest.Mock).mockResolvedValue(LayoutType.DEFCON);
