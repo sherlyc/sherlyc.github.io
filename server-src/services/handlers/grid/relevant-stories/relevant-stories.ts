@@ -59,11 +59,6 @@ export default async function(
 
   const relevantStoriesGridHandlerInput: IColumnGridHandlerInput = {
     type: HandlerInputType.ColumnGrid,
-    options: {
-      border: true,
-      columnGap: 40,
-      rowGap: 10
-    },
     content: await Promise.all([
       getColumnContent(
         handlerRunner,

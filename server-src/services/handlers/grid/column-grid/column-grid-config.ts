@@ -1,12 +1,7 @@
 import { Border } from "../../../../../common/__types__/IGridContainer";
-import {
-  IColumnGridConfig,
-  IColumnGridConfigOptions
-} from "./__types__/IColumnGridConfig";
+import { IColumnGridConfig } from "./__types__/IColumnGridConfig";
 
-export const mobileColumnGridConfig = ({
-  rowGap
-}: Pick<IColumnGridConfigOptions, "rowGap">): IColumnGridConfig => ({
+export const mobileColumnGridConfig = (rowGap: number): IColumnGridConfig => ({
   1: {
     gridTemplateColumns: "1fr",
     gridTemplateRows: "auto",
@@ -76,11 +71,11 @@ export const mobileColumnGridConfig = ({
   }
 });
 
-export const tabletColumnGridConfig = ({
-  border,
-  columnGap,
-  rowGap
-}: IColumnGridConfigOptions): IColumnGridConfig => ({
+export const tabletColumnGridConfig = (
+  columnGap: number,
+  rowGap: number,
+  border: boolean
+): IColumnGridConfig => ({
   1: {
     gridTemplateColumns: "1fr",
     gridTemplateRows: "auto",
@@ -150,11 +145,11 @@ export const tabletColumnGridConfig = ({
   }
 });
 
-export const desktopColumnGridConfig = ({
-  border,
-  columnGap,
-  rowGap
-}: IColumnGridConfigOptions): IColumnGridConfig => ({
+export const desktopColumnGridConfig = (
+  columnGap: number,
+  rowGap: number,
+  border: boolean
+): IColumnGridConfig => ({
   1: {
     gridTemplateColumns: "1fr",
     gridTemplateRows: "auto",

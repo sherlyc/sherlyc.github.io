@@ -76,11 +76,6 @@ describe("Top Stories Default One", () => {
 
     const columnGridExpectedInput: IColumnGridHandlerInput = {
       type: HandlerInputType.ColumnGrid,
-      options: {
-        border: true,
-        columnGap: 40,
-        rowGap: 10
-      },
       content: [[articleAsBigImage], [articleAsFeaturedArticle]]
     };
     expect(handlerRunnerMock).toHaveBeenCalledWith(

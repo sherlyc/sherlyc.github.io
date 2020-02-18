@@ -15,9 +15,3 @@ export interface IColumnGridBlock {
   colStart: number;
   border: Border[];
 }
-
-export interface IColumnGridConfigOptions {
-  border: boolean;
-  columnGap: number;
-  rowGap: number;
-}
