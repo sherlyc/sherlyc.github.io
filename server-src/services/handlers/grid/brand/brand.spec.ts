@@ -5,19 +5,15 @@ import { IBulletItem } from "../../../../../common/__types__/IBulletItem";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { IBrandHandlerInput } from "../../__types__/IBrandHandlerInput";
 import brandHandler from "./brand";
-import { Strap } from "../../../strap";
-import { bulletItem } from "../../../adapters/article-converter/bullet-item.converter";
 import { IBulletList } from "../../../../../common/__types__/IBulletList";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { Logo } from "../../../../../common/Logo";
-import { bulletList } from "../../../adapters/article-converter/bullet-list.converter";
+import { BrandGridPositions } from "../../__types__/IBrandGridHandlerInput";
+import { first } from "rxjs/operators";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
-jest.mock("../../../adapters/article-converter/bullet-item.converter");
-jest.mock("../../../adapters/article-converter/bullet-list.converter");
 
 describe("Network Top Stories Handler", () => {
-  const handlerRunnerMock = jest.fn();
   const params: IParams = { apiRequestId: "123" };
   const totalArticles = 5;
 
@@ -55,7 +51,9 @@ describe("Network Top Stories Handler", () => {
     jest.resetAllMocks();
   });
 
-  it("should retrieve 10 list of articles", async() => {
+  it("should retrieve 10 list of articles", async () => {
+    const handlerRunnerMock = jest.fn();
+
     (getRawArticles as jest.Mock).mockResolvedValue(
       new Array(totalArticles).fill(fakeArticle)
     );
@@ -68,50 +66,57 @@ describe("Network Top Stories Handler", () => {
     await brandHandler(handlerRunnerMock, input, params);
 
     expect(getRawArticles).toHaveBeenCalledTimes(10);
-    expect(getRawArticles).toHaveBeenNthCalledWith(1,
-      Strap.EditorPicks,
-      totalArticles,
-      params
-    );
-    expect(getRawArticles).toHaveBeenNthCalledWith(10,
-      Strap.EditorPicks,
-      totalArticles,
-      params
-    );
   });
 
-  it("should pass the correct input to next handler",  async() => {
+  it("should pass 5 articles to column grid first call", async () => {
+    const handlerRunnerMock = jest.fn();
     (getRawArticles as jest.Mock).mockResolvedValue(
       new Array(totalArticles).fill(fakeArticle)
     );
-    (bulletItem as jest.Mock).mockReturnValue(fakeBulletItem);
-    (bulletList as jest.Mock).mockReturnValue(fakeBulletList);
-
-    const fakeResult = {};
-    handlerRunnerMock.mockResolvedValueOnce(fakeResult);
 
     const input: IBrandHandlerInput = {
-      type: HandlerInputType.Brand,
+      type: HandlerInputType.Brand
     };
+
+    const fakeColumnGrid = {
+      type: HandlerInputType.ColumnGrid,
+      content: [
+        fakeBulletList,
+        fakeBulletList,
+        fakeBulletList,
+        fakeBulletList,
+        fakeBulletList
+      ]
+    };
+
+    const expectedContent = {
+      [BrandGridPositions.ModuleTitle]: [
+        {
+          type: ContentBlockType.ModuleTitle,
+          displayName: "Our Network's Top Stories",
+          displayNameColor: "black"
+        }
+      ],
+      [BrandGridPositions.FirstRow]: [fakeColumnGrid],
+      [BrandGridPositions.SecondRow]: [fakeColumnGrid]
+    };
+
+    handlerRunnerMock.mockResolvedValue(fakeColumnGrid);
 
     const result = await brandHandler(handlerRunnerMock, input, params);
 
-    const [
-      [firstColumnGridCall],
-      [secondColumnGridCall],
-      [networkTopStoriesGridCall],
-    ] = handlerRunnerMock.mock.calls;
+    const [[firstCall]] = handlerRunnerMock.mock.calls;
 
-    const networkTopStoriesGridHandlerInput = {
-      type: HandlerInputType.BrandGrid,
-      content: new Array(8).fill(fakeBulletItem)
-    };
-   // expect(firstColumnGridCall).toEqual(networkTopStoriesGridHandlerInput);
+    const expectBulletList = expect.objectContaining({
+      type: ContentBlockType.BulletList
+    });
 
-    console.log("firstColumnGridCall", JSON.stringify(firstColumnGridCall));
-    console.log("secondColumnGridCall", JSON.stringify(secondColumnGridCall));
-    console.log("networkTopStoriesGridCall", JSON.stringify(networkTopStoriesGridCall));
-    console.log("network top stories grid handler input", JSON.stringify(networkTopStoriesGridHandlerInput));
-
+    expect(firstCall.content[0]).toEqual([
+      expectBulletList,
+      expectBulletList,
+      expectBulletList,
+      expectBulletList,
+      expectBulletList
+    ]);
   });
 });

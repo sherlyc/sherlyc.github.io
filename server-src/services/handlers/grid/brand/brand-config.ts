@@ -1,45 +1,59 @@
-import { IPartnerNetworkConfig } from "../../__types__/IPartnerNetworkConfig";
+import {
+  INetworkBrandConfig,
+  NetworkBrand
+} from "../../__types__/INetworkBrandConfig";
 import { Logo } from "../../../../../common/Logo";
+import { Strap } from "../../../strap";
 
-export const BrandConfig: IPartnerNetworkConfig =  {
- "DominionPost": {
+export const brandConfig: INetworkBrandConfig = {
+  [NetworkBrand.DominionPost]: {
     logo: Logo.DominionPost,
     bulletColor: "lightblue",
- },
-  "ThePress": {
-    logo: Logo.ThePress,
-    bulletColor: "blue"
+    sourceId: Strap.DominionPost
   },
-  "WaikatoTimes": {
+  [NetworkBrand.ThePress]: {
+    logo: Logo.ThePress,
+    bulletColor: "blue",
+    sourceId: Strap.ThePress
+  },
+  [NetworkBrand.WaikatoTimes]: {
     logo: Logo.WaikatoTimes,
-    bulletColor: "black"
+    bulletColor: "black",
+    sourceId: Strap.WaikatoTimes
   },
-  "Auckland": {
+  [NetworkBrand.Auckland]: {
     logo: Logo.ThePress,
-    bulletColor: "blue"
+    bulletColor: "blue",
+    sourceId: Strap.Auckland
   },
-  "SouthlandTimes": {
+  [NetworkBrand.SouthlandTimes]: {
     logo: Logo.SouthlandTimes,
-    bulletColor: "red"
+    bulletColor: "red",
+    sourceId: Strap.SouthlandTimes
   },
-  "TaranakiDailyNews": {
+  [NetworkBrand.TaranakiDailyNews]: {
     logo: Logo.TaranakiDailyNews,
-    bulletColor: "blue"
+    bulletColor: "blue",
+    sourceId: Strap.TaranakiDailyNews
   },
-  "ManawatuStandard": {
+  [NetworkBrand.ManawatuStandard]: {
     logo: Logo.ManawatuStandard,
-    bulletColor: "green"
+    bulletColor: "green",
+    sourceId: Strap.ManawatuStandard
   },
-  "NelsonMail": {
+  [NetworkBrand.NelsonMail]: {
     logo: Logo.NelsonMail,
-    bulletColor: "blue"
+    bulletColor: "blue",
+    sourceId: Strap.NelsonMail
   },
-  "MarlboroughExpress": {
+  [NetworkBrand.MarlboroughExpress]: {
     logo: Logo.MarlboroughExpress,
-    bulletColor: "blue"
+    bulletColor: "blue",
+    sourceId: Strap.MarlboroughExpress
   },
-  "TimaruHerald": {
+  [NetworkBrand.TimaruHerald]: {
     logo: Logo.TimaruHerald,
-    bulletColor: "black"
-  },
+    bulletColor: "black",
+    sourceId: Strap.TimaruHerald
+  }
 };
