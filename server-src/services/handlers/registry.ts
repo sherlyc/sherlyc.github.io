@@ -30,6 +30,7 @@ import ExpandableArticleSection from "./more-section-experiment/expandable-artic
 import MoreSectionExperiment from "./more-section-experiment/more-section-experiment";
 import Page from "./page/page";
 import Recommendations from "./recommendations/recommendations";
+import BrandGrid from "./grid/brand-grid/brand-grid";
 
 import { handlerRunnerFunction } from "./runner";
 import TopStoriesArticleList from "./top-stories-article-list/top-stories-article-list";
@@ -76,7 +77,8 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   LargeLeadSix,
   LargeLeadSixGrid,
   RelevantStories,
-  ColumnGrid
+  ColumnGrid,
+  BrandGrid
 };
 
 export default handlerRegistry;
