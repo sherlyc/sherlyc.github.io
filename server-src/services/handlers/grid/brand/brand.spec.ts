@@ -56,7 +56,7 @@ describe("Network Top Stories Handler", () => {
 
   it("should retrieve 10 list of articles", async () => {
     const handlerRunnerMock = jest.fn();
-
+    handlerRunnerMock.mockResolvedValue([]);
     (getRawArticles as jest.Mock).mockResolvedValue(
       new Array(totalArticles).fill(fakeArticle)
     );
@@ -64,8 +64,6 @@ describe("Network Top Stories Handler", () => {
     const input: IBrandHandlerInput = {
       type: HandlerInputType.Brand
     };
-
-    handlerRunnerMock.mockResolvedValue([]);
     await brandHandler(handlerRunnerMock, input, params);
 
     expect(getRawArticles).toHaveBeenCalledTimes(10);
@@ -77,10 +75,6 @@ describe("Network Top Stories Handler", () => {
       new Array(totalArticles).fill(fakeArticle)
     );
 
-    const input: IBrandHandlerInput = {
-      type: HandlerInputType.Brand
-    };
-
     const fakeColumnGrid = {
       type: HandlerInputType.ColumnGrid,
       content: [
@@ -91,17 +85,17 @@ describe("Network Top Stories Handler", () => {
         fakeBulletList
       ]
     };
-
     handlerRunnerMock.mockResolvedValue(fakeColumnGrid);
 
+    const input: IBrandHandlerInput = {
+      type: HandlerInputType.Brand
+    };
     await brandHandler(handlerRunnerMock, input, params);
 
     const [[firstCall], [secondCall]] = handlerRunnerMock.mock.calls;
-
     const expectBulletList = expect.objectContaining({
       type: ContentBlockType.BulletList
     });
-
     expect(firstCall.content[0]).toEqual([
       expectBulletList,
       expectBulletList,
@@ -109,7 +103,6 @@ describe("Network Top Stories Handler", () => {
       expectBulletList,
       expectBulletList
     ]);
-
     expect(secondCall.content[0]).toEqual([
       expectBulletList,
       expectBulletList,
@@ -118,7 +111,8 @@ describe("Network Top Stories Handler", () => {
       expectBulletList
     ]);
   });
-  it("should pass the correct input to brand grid handler", async () => {
+
+  it("should pass the correct result of column grid handlers to brand grid handler", async () => {
     const handlerRunnerMock = jest.fn();
     (getRawArticles as jest.Mock).mockResolvedValue(
       new Array(totalArticles).fill(fakeArticle)
@@ -127,8 +121,8 @@ describe("Network Top Stories Handler", () => {
     const input: IBrandHandlerInput = {
       type: HandlerInputType.Brand
     };
-
     const fakeGridContainer = {} as IGridContainer;
+    handlerRunnerMock.mockResolvedValue(fakeGridContainer);
 
     const fakeBrandGrid: IBrandGridHandlerInput = {
       type: HandlerInputType.BrandGrid,
@@ -145,7 +139,6 @@ describe("Network Top Stories Handler", () => {
       }
     };
 
-    handlerRunnerMock.mockResolvedValue(fakeGridContainer);
     await brandHandler(handlerRunnerMock, input, params);
 
     const [
