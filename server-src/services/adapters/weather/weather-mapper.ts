@@ -10,6 +10,6 @@ export const weatherMapper = (weatherInfo: IWeather): IWeatherResponse => {
     temperature: weatherInfo.latest_reading.temperature,
     minTemp: todayWeather.min_temp,
     maxTemp: todayWeather.max_temp,
-    condition: todayWeather.oneword_forecast.replace(/\s/g, "") as Forecasts
+    condition: todayWeather.oneword_forecast.split(" ").join("") as Forecasts
   };
 };
