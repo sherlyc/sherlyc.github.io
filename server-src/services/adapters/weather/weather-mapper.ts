@@ -1,5 +1,6 @@
 import { IWeather } from "../__types__/IWeather";
 import { IWeatherResponse } from "../../../../common/__types__/IWeatherResponse";
+import { Forecasts } from "../../../../common/Forecasts";
 
 export const weatherMapper = (weatherInfo: IWeather): IWeatherResponse => {
   const todayWeather = weatherInfo.oneword_forecasts[0];
@@ -9,6 +10,6 @@ export const weatherMapper = (weatherInfo: IWeather): IWeatherResponse => {
     temperature: weatherInfo.latest_reading.temperature,
     minTemp: todayWeather.min_temp,
     maxTemp: todayWeather.max_temp,
-    condition: todayWeather.oneword_forecast
+    condition: todayWeather.oneword_forecast.split(" ").join("") as Forecasts
   };
 };
