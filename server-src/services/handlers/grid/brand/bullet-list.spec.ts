@@ -7,6 +7,7 @@ import { getRawArticles } from "../../../adapters/article-retriever/article-retr
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import objectContaining = jasmine.objectContaining;
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IBulletItem } from "../../../../../common/__types__/IBulletItem";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 
@@ -38,21 +39,30 @@ describe("Bullet list", () => {
   });
 
   it("should articles as bullet items in list", async () => {
-    const numberOfArticles = 5;
     const config: IBrandConfig = {
       logo: Logo.DominionPost,
       bulletColor: "red",
       sourceId: Strap.DominionPost
     };
-    (getRawArticles as jest.Mock).mockResolvedValue(
-      fakeArticles([1, 2, 3, 4, 5])
-    );
+    (getRawArticles as jest.Mock).mockResolvedValue(fakeArticles([1, 2, 3]));
 
-    const result = await createBulletList(config, numberOfArticles, params);
+    const result = await createBulletList(config, 3, params);
+
+    const bulletItemWithIdAndColor = (id: number) =>
+      expect.objectContaining({
+        id: `${id}`,
+        bulletColor: config.bulletColor
+      } as IBulletItem);
 
     expect(result).toEqual(
       expect.objectContaining({
-        type: ContentBlockType.BulletList
+        type: ContentBlockType.BulletList,
+        logo: config.logo,
+        items: expect.arrayContaining([
+          bulletItemWithIdAndColor(1),
+          bulletItemWithIdAndColor(2),
+          bulletItemWithIdAndColor(3)
+        ])
       })
     );
   });
