@@ -118,7 +118,7 @@ describe("Brand Handler", () => {
           [BrandGridPositions.ModuleTitle]: [
             {
               type: ContentBlockType.ModuleTitle,
-              displayName: "Our Network's Top Stories",
+              displayName: "our network's top stories",
               displayNameColor: "black"
             }
           ],

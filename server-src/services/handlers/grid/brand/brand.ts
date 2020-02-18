@@ -21,14 +21,15 @@ export default async function(
   { module }: IBrandHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const moduleConfig = brandConfig[module];
+  const {
+    moduleTitle,
+    articlesPerBrand,
+    articlesPerRow,
+    configs
+  } = brandConfig[module];
   const bulletLists = await Promise.all(
-    Object.values(moduleConfig.configs).map((brandListConfig) => {
-      return createBulletList(
-        brandListConfig,
-        moduleConfig.articlesPerBrand,
-        params
-      );
+    Object.values(configs).map((brandListConfig) => {
+      return createBulletList(brandListConfig, articlesPerBrand, params);
     })
   );
 
@@ -36,7 +37,7 @@ export default async function(
     [BrandGridPositions.ModuleTitle]: [
       {
         type: ContentBlockType.ModuleTitle,
-        displayName: "Our Network's Top Stories",
+        displayName: moduleTitle,
         displayNameColor: "black"
       }
     ],
@@ -44,7 +45,7 @@ export default async function(
       ...(await handlerRunner(
         {
           type: HandlerInputType.ColumnGrid,
-          content: chunk(bulletLists.slice(0, 5))
+          content: chunk(bulletLists.slice(0, articlesPerRow))
         },
         params
       ))
@@ -53,7 +54,7 @@ export default async function(
       ...(await handlerRunner(
         {
           type: HandlerInputType.ColumnGrid,
-          content: chunk(bulletLists.slice(5))
+          content: chunk(bulletLists.slice(articlesPerRow))
         },
         params
       ))
