@@ -1,15 +1,15 @@
 import { handlerRunnerFunction } from "../../runner";
 import { IParams } from "../../../__types__/IParams";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { NetworkTopStoriesGridPositions } from "../../__types__/INetworkTopStoriesGridHandlerInput";
+import { BrandGridPositions } from "../../__types__/IBrandGridHandlerInput";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IBulletList } from "../../../../../common/__types__/IBulletList";
-import { NetworkConfig } from "./network-config";
+import { BrandConfig } from "./brand-config";
 import { Strap } from "../../../strap";
 import { Logo } from "../../../../../common/Logo";
-import { INetworkTopStoriesHandlerInput } from "../../__types__/INetworkTopStoriesHandlerInput";
+import { IBrandHandlerInput } from "../../__types__/IBrandHandlerInput";
 import { bulletItem } from "../../../adapters/article-converter/bullet-item.converter";
 import { contentErrorHandler } from "../content-error-handler";
 
@@ -23,7 +23,7 @@ const createBulletList = async (logo: Logo, bulletColor: string, params: IParams
       () =>
         bulletItem(article, sourceId, bulletColor
         ),
-      HandlerInputType.NetworkTopStories,
+      HandlerInputType.Brand,
       sourceId,
       params
     )
@@ -38,27 +38,27 @@ const createBulletList = async (logo: Logo, bulletColor: string, params: IParams
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  {}: INetworkTopStoriesHandlerInput,
+  {}: IBrandHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const bulletLists = await Promise.all(Object.keys(NetworkConfig).map(network => {
-    const { logo, bulletColor } = NetworkConfig[network];
+  const bulletLists = await Promise.all(Object.keys(BrandConfig).map(network => {
+    const { logo, bulletColor } = BrandConfig[network];
     return createBulletList(logo, bulletColor, params);
   }));
 
-  const content: { [key in NetworkTopStoriesGridPositions]: IContentBlock[] } = {
-    [NetworkTopStoriesGridPositions.ModuleTitle]: [{
+  const content: { [key in BrandGridPositions]: IContentBlock[] } = {
+    [BrandGridPositions.ModuleTitle]: [{
       type: ContentBlockType.ModuleTitle,
       displayName: "Our Partners",
       displayNameColor: "navyblue"
     }],
-    [NetworkTopStoriesGridPositions.FirstRow]: [
+    [BrandGridPositions.FirstRow]: [
       ...await handlerRunner({
         type: HandlerInputType.ColumnGrid,
         content: [ bulletLists.slice(0, 4) ]
       }, params)
     ],
-    [NetworkTopStoriesGridPositions.SecondRow]: [
+    [BrandGridPositions.SecondRow]: [
       ...await handlerRunner({
         type: HandlerInputType.ColumnGrid,
         content: [ bulletLists.slice(5) ]
@@ -68,7 +68,7 @@ export default async function(
 
   return [
     ...await handlerRunner({
-      type: HandlerInputType.NetworkTopStoriesGrid,
+      type: HandlerInputType.BrandGrid,
       content
     }, params)
   ];

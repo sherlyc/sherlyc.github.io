@@ -30,8 +30,8 @@ import ExpandableArticleSection from "./more-section-experiment/expandable-artic
 import MoreSectionExperiment from "./more-section-experiment/more-section-experiment";
 import Page from "./page/page";
 import Recommendations from "./recommendations/recommendations";
-import NetworkTopStories from "./grid/network-top-stories/network-top-stories";
-import NetworkTopStoriesGrid from "./grid/network-top-stories-grid/network-top-stories-grid";
+import Brand from "./grid/brand/brand";
+import BrandGrid from "./grid/brand-grid/brand-grid";
 
 import { handlerRunnerFunction } from "./runner";
 import TopStoriesArticleList from "./top-stories-article-list/top-stories-article-list";
@@ -79,8 +79,8 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   LargeLeadSixGrid,
   RelevantStories,
   ColumnGrid,
-  NetworkTopStories,
-  NetworkTopStoriesGrid
+  Brand,
+  BrandGrid
 };
 
 export default handlerRegistry;

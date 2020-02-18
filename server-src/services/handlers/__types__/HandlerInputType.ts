@@ -32,6 +32,6 @@ export enum HandlerInputType {
   ListGrid = "ListGrid",
   RelevantStories = "RelevantStories",
   ColumnGrid = "ColumnGrid",
-  NetworkTopStories = "NetworkTopStories",
-  NetworkTopStoriesGrid = "NetworkTopStoriesGrid",
+  Brand = "Brand",
+  BrandGrid = "BrandGrid",
 }

@@ -1,7 +1,7 @@
 import { IPartnerNetworkConfig } from "../../__types__/IPartnerNetworkConfig";
 import { Logo } from "../../../../../common/Logo";
 
-export const NetworkConfig: IPartnerNetworkConfig =  {
+export const BrandConfig: IPartnerNetworkConfig =  {
  "DominionPost": {
     logo: Logo.DominionPost,
     bulletColor: "lightblue",

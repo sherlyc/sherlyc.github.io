@@ -3,8 +3,8 @@ import { IParams } from "../../../__types__/IParams";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { IBulletItem } from "../../../../../common/__types__/IBulletItem";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { INetworkTopStoriesHandlerInput } from "../../__types__/INetworkTopStoriesHandlerInput";
-import networkTopStoriesHandler from "./network-top-stories";
+import { IBrandHandlerInput } from "../../__types__/IBrandHandlerInput";
+import brandHandler from "./brand";
 import { Strap } from "../../../strap";
 import { bulletItem } from "../../../adapters/article-converter/bullet-item.converter";
 import { IBulletList } from "../../../../../common/__types__/IBulletList";
@@ -43,13 +43,13 @@ describe("Network Top Stories Handler", () => {
     linkText: "Headline 1",
     linkUrl: "/link1",
     bulletColor: "purple"
-  }
+  };
 
   const fakeBulletList: IBulletList = {
     type: ContentBlockType.BulletList,
     logo: Logo.DominionPost,
     items: [fakeBulletItem, fakeBulletItem]
-  }
+  };
 
   beforeEach(() => {
     jest.resetAllMocks();
@@ -60,12 +60,12 @@ describe("Network Top Stories Handler", () => {
       new Array(totalArticles).fill(fakeArticle)
     );
 
-    const input: INetworkTopStoriesHandlerInput = {
-      type: HandlerInputType.NetworkTopStories
+    const input: IBrandHandlerInput = {
+      type: HandlerInputType.Brand
     };
 
     handlerRunnerMock.mockResolvedValue([]);
-    await networkTopStoriesHandler(handlerRunnerMock, input, params);
+    await brandHandler(handlerRunnerMock, input, params);
 
     expect(getRawArticles).toHaveBeenCalledTimes(10);
     expect(getRawArticles).toHaveBeenNthCalledWith(1,
@@ -90,11 +90,11 @@ describe("Network Top Stories Handler", () => {
     const fakeResult = {};
     handlerRunnerMock.mockResolvedValueOnce(fakeResult);
 
-    const input: INetworkTopStoriesHandlerInput = {
-      type: HandlerInputType.NetworkTopStories,
+    const input: IBrandHandlerInput = {
+      type: HandlerInputType.Brand,
     };
 
-    const result = await networkTopStoriesHandler(handlerRunnerMock, input, params);
+    const result = await brandHandler(handlerRunnerMock, input, params);
 
     const [
       [firstColumnGridCall],
@@ -103,16 +103,15 @@ describe("Network Top Stories Handler", () => {
     ] = handlerRunnerMock.mock.calls;
 
     const networkTopStoriesGridHandlerInput = {
-      type: HandlerInputType.NetworkTopStoriesGrid,
+      type: HandlerInputType.BrandGrid,
       content: new Array(8).fill(fakeBulletItem)
     };
    // expect(firstColumnGridCall).toEqual(networkTopStoriesGridHandlerInput);
 
     console.log("firstColumnGridCall", JSON.stringify(firstColumnGridCall));
-    console.log("secondColumnGridCall", JSON.stringify(secondColumnGridCall))
-    console.log("networkTopStoriesGridCall", JSON.stringify(networkTopStoriesGridCall))
+    console.log("secondColumnGridCall", JSON.stringify(secondColumnGridCall));
+    console.log("networkTopStoriesGridCall", JSON.stringify(networkTopStoriesGridCall));
     console.log("network top stories grid handler input", JSON.stringify(networkTopStoriesGridHandlerInput));
 
-
   });
-})
+});

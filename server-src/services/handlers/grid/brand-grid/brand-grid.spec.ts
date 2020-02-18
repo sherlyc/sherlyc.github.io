@@ -1,31 +1,31 @@
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import {
-  INetworkTopStoriesGridHandlerInput,
-  NetworkTopStoriesGridPositions
-} from "../../__types__/INetworkTopStoriesGridHandlerInput";
-import networkTopStoriesGridHandler from "./network-top-stories-grid";
+  IBrandGridHandlerInput,
+  BrandGridPositions
+} from "../../__types__/IBrandGridHandlerInput";
+import brandGridHandler from "./brand-grid";
 import { IParams } from "../../../__types__/IParams";
 import { Border, IGridContainer } from "../../../../../common/__types__/IGridContainer";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 
-describe("Network Top Stories Grid Handler", () => {
+describe("Brand Grid Handler", () => {
   const handlerRunner = jest.fn();
   const params: IParams = { apiRequestId: "123" };
 
   it("should create grid", async () => {
     const fakeContentBlock = {} as IContentBlock ;
     const content = {
-      [NetworkTopStoriesGridPositions.ModuleTitle] : [],
-      [NetworkTopStoriesGridPositions.FirstRow] : [fakeContentBlock, fakeContentBlock],
-      [NetworkTopStoriesGridPositions.SecondRow] : [fakeContentBlock],
+      [BrandGridPositions.ModuleTitle] : [],
+      [BrandGridPositions.FirstRow] : [fakeContentBlock, fakeContentBlock],
+      [BrandGridPositions.SecondRow] : [fakeContentBlock],
     };
-    const input: INetworkTopStoriesGridHandlerInput = {
-      type: HandlerInputType.NetworkTopStoriesGrid,
+    const input: IBrandGridHandlerInput = {
+      type: HandlerInputType.BrandGrid,
       content
     };
 
-    const result = await networkTopStoriesGridHandler(handlerRunner, input, params);
+    const result = await brandGridHandler(handlerRunner, input, params);
 
     const expected: IGridContainer = {
       type: ContentBlockType.GridContainer,
@@ -36,21 +36,21 @@ describe("Network Top Stories Grid Handler", () => {
         gridColumnGap: "20px",
         gridRowGap: "20px",
         gridBlocks: {
-          [NetworkTopStoriesGridPositions.ModuleTitle]: {
+          [BrandGridPositions.ModuleTitle]: {
             rowStart: 1,
             rowSpan: 1,
             columnStart: 1,
             columnSpan: 1,
             border: []
           },
-          [NetworkTopStoriesGridPositions.FirstRow]:  {
+          [BrandGridPositions.FirstRow]:  {
             rowStart: 2,
             rowSpan: 1,
             columnStart: 1,
             columnSpan: 1,
             border: [Border.bottom]
           },
-          [NetworkTopStoriesGridPositions.SecondRow]:  {
+          [BrandGridPositions.SecondRow]:  {
             rowStart: 3,
             rowSpan: 1,
             columnStart: 1,
