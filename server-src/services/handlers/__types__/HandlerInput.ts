@@ -31,6 +31,7 @@ import { ITopStoriesGridHandlerInput } from "./ITopStoriesGridHandlerInput";
 import { ITopStoriesHandlerInput } from "./ITopStoriesHandlerInput";
 import { IWeatherHandlerInput } from "./IWeatherHandlerInput";
 import { IContentBlockHandlerInput } from "./IContentBlockHandlerInput";
+import { INetworkTopStoriesGridHandlerInput } from "./INetworkTopStoriesGridHandlerInput";
 
 export type HandlerInput =
   | IContentBlockHandlerInput
@@ -65,4 +66,5 @@ export type HandlerInput =
   | ILargeLeadSixGridHandlerInput
   | IListGridHandlerInput
   | IRelevantStoriesHandlerInput
-  | IColumnGridHandlerInput;
+  | IColumnGridHandlerInput
+  | INetworkTopStoriesGridHandlerInput;
