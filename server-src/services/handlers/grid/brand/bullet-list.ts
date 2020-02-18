@@ -1,4 +1,4 @@
-import { IBrandConfig } from "../../__types__/INetworkBrandConfig";
+import { IBrandListConfig } from "../../__types__/IBrandConfig";
 import { IParams } from "../../../__types__/IParams";
 import { IBulletList } from "../../../../../common/__types__/IBulletList";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
@@ -8,7 +8,7 @@ import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 
 export const createBulletList = async (
-  config: IBrandConfig,
+  config: IBrandListConfig,
   articlesPerBrand: number,
   params: IParams
 ): Promise<IBulletList> => {

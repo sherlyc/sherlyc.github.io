@@ -1,6 +1,6 @@
 import { IParams } from "../../../__types__/IParams";
 import { createBulletList } from "./bullet-list";
-import { IBrandConfig } from "../../__types__/INetworkBrandConfig";
+import { IBrandListConfig } from "../../__types__/IBrandConfig";
 import { Logo } from "../../../../../common/Logo";
 import { Strap } from "../../../strap";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
@@ -21,7 +21,7 @@ describe("Bullet list", () => {
 
   it("should retrieve number of articles from specified sourceId", async () => {
     const numberOfArticles = 5;
-    const config: IBrandConfig = {
+    const config: IBrandListConfig = {
       logo: Logo.DominionPost,
       bulletColor: "red",
       sourceId: Strap.DominionPost
@@ -38,7 +38,7 @@ describe("Bullet list", () => {
   });
 
   it("should insert articles as bullet items", async () => {
-    const config: IBrandConfig = {
+    const config: IBrandListConfig = {
       logo: Logo.DominionPost,
       bulletColor: "red",
       sourceId: Strap.DominionPost

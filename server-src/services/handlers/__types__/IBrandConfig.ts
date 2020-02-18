@@ -14,7 +14,18 @@ export enum NetworkBrand {
   TimaruHerald = "TimaruHerald"
 }
 
-export interface IBrandConfig {
+export enum PartnerBrand {
+  Noted = "Noted",
+  NowToLove = "NowToLove",
+  HomesToLove = "HomesToLove",
+  FoodToLove = "FoodToLove",
+  BeautyHeaven = "BeautyHeaven",
+  Metro = "Metro",
+  Newsroom = "Newsroom",
+  Tarana = "Tarana",
+}
+
+export interface IBrandListConfig {
   logo: Logo;
   bulletColor: string;
   sourceId: Strap;
@@ -22,5 +33,12 @@ export interface IBrandConfig {
 
 export interface INetworkBrandConfig {
   articlesPerBrand: number;
-  configs: { [key in NetworkBrand]: IBrandConfig };
+  articlesPerRow: number;
+  configs: { [key in NetworkBrand]: IBrandListConfig };
+}
+
+export interface IPartnerBrandConfig {
+  articlesPerBrand: number;
+  articlesPerRow: number;
+  configs: { [key in PartnerBrand]: IBrandListConfig };
 }
