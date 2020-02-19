@@ -27,5 +27,15 @@ export enum Section {
   SponsoredContent = "sponsored-content",
   Tarana = "tarana",
   Bravo = "entertainment/bravo",
-  Property = "business/property"
+  Property = "business/property",
+  DominionPost = "dominion-post",
+  ThePress = "the-press",
+  WaikatoTimes = "waikato-times",
+  Auckland = "auckland",
+  SouthlandTimes = "southland-times",
+  TaranakiDailyNews = "taranaki-daily-news",
+  ManawatuStandard = "manawatu-standard",
+  NelsonMail = "nelson-mail",
+  MarlboroughExpress = "marlborough-express",
+  TimaruHerald = "timaru-herald"
 }

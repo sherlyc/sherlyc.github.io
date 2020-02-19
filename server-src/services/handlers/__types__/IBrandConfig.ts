@@ -27,6 +27,7 @@ export enum PartnerBrand {
 
 export interface IBrandListConfig {
   logo: Logo;
+  logoLink: string;
   bulletColor: string;
   sourceId: Strap;
 }
