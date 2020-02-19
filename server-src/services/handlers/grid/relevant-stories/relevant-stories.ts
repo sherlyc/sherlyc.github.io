@@ -15,22 +15,22 @@ import { getMostPopular } from "../../../adapters/most-popular/most-popular.serv
 
 const getColumnContent = async (
   articlesPromise: Promise<IRawArticle[]>,
-  title: string,
-  titleColor: string,
+  moduleTitle: string,
+  moduleTitleColor: string,
   handlerRunner: handlerRunnerFunction,
   params: IParams
 ): Promise<IContentBlock[]> => {
   try {
     const articles = await articlesPromise;
     const articleContentBlocks = articles.map((article) =>
-      basicArticleTitleUnit(article, title)
+      basicArticleTitleUnit(article, moduleTitle)
     );
 
     return [
       {
         type: ContentBlockType.ModuleTitle,
-        displayName: title,
-        displayNameColor: titleColor
+        displayName: moduleTitle,
+        displayNameColor: moduleTitleColor
       },
       ...(await handlerRunner(
         {
@@ -43,7 +43,7 @@ const getColumnContent = async (
   } catch (error) {
     wrappedLogger.error(
       params.apiRequestId,
-      `Relevant stories handler - Failed to get articles - strap: ${title}`,
+      `Relevant stories handler - Failed to get articles - module: ${moduleTitle}`,
       error
     );
     return [];
