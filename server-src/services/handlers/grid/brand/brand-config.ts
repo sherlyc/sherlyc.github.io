@@ -79,7 +79,7 @@ export const partnerBrandConfig: IPartnerBrandConfig = {
     [PartnerBrand.NowToLove]: {
       logo: Logo.NowToLove,
       bulletColor: "navyblue",
-      sourceId: Strap.Noted
+      sourceId: Strap.NowToLove
     },
     [PartnerBrand.HomesToLove]: {
       logo: Logo.HomesToLove,
@@ -94,7 +94,7 @@ export const partnerBrandConfig: IPartnerBrandConfig = {
     [PartnerBrand.BeautyHeaven]: {
       logo: Logo.BeautyHeaven,
       bulletColor: "paleturquoise",
-      sourceId: Strap.Noted
+      sourceId: Strap.BeautyHeaven
     },
     [PartnerBrand.Metro]: {
       logo: Logo.Metro,
@@ -104,7 +104,7 @@ export const partnerBrandConfig: IPartnerBrandConfig = {
     [PartnerBrand.Newsroom]: {
       logo: Logo.Newsroom,
       bulletColor: "black",
-      sourceId: Strap.Noted
+      sourceId: Strap.Newsroom
     },
     [PartnerBrand.Tarana]: {
       logo: Logo.Tarana,
