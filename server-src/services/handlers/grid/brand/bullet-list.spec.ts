@@ -7,6 +7,7 @@ import { getRawArticles } from "../../../adapters/article-retriever/article-retr
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IBulletItem } from "../../../../../common/__types__/IBulletItem";
+import { Section } from "../../../section";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 
@@ -15,17 +16,20 @@ describe("Bullet list", () => {
   const fakeArticles = (ids: number[]) =>
     ids.map((id) => ({ id: `${id}` } as IRawArticle));
 
+  const config: IBrandListConfig = {
+    logo: Logo.DominionPost,
+    logoLink: "/" + Section.DominionPost,
+    bulletColor: "red",
+    sourceId: Strap.DominionPost
+  };
+
   beforeEach(() => {
     jest.resetAllMocks();
   });
 
   it("should retrieve number of articles from specified sourceId", async () => {
     const numberOfArticles = 5;
-    const config: IBrandListConfig = {
-      logo: Logo.DominionPost,
-      bulletColor: "red",
-      sourceId: Strap.DominionPost
-    };
+
     (getRawArticles as jest.Mock).mockResolvedValue([]);
 
     await createBulletList(config, numberOfArticles, params);
@@ -38,11 +42,6 @@ describe("Bullet list", () => {
   });
 
   it("should insert articles as bullet items", async () => {
-    const config: IBrandListConfig = {
-      logo: Logo.DominionPost,
-      bulletColor: "red",
-      sourceId: Strap.DominionPost
-    };
     (getRawArticles as jest.Mock).mockResolvedValue(fakeArticles([1, 2, 3]));
 
     const result = await createBulletList(config, 3, params);
@@ -57,6 +56,7 @@ describe("Bullet list", () => {
       expect.objectContaining({
         type: ContentBlockType.BulletList,
         logo: config.logo,
+        logoLink: config.logoLink,
         items: expect.arrayContaining([
           bulletItemWithIdAndColor(1),
           bulletItemWithIdAndColor(2),
@@ -67,11 +67,6 @@ describe("Bullet list", () => {
   });
 
   it("should return empty bullet items if failed to retrieve articles", async () => {
-    const config: IBrandListConfig = {
-      logo: Logo.DominionPost,
-      bulletColor: "red",
-      sourceId: Strap.DominionPost
-    };
     (getRawArticles as jest.Mock).mockRejectedValue(new Error());
 
     const result = await createBulletList(config, 3, params);
@@ -80,6 +75,7 @@ describe("Bullet list", () => {
       expect.objectContaining({
         type: ContentBlockType.BulletList,
         logo: config.logo,
+        logoLink: config.logoLink,
         items: []
       })
     );

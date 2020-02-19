@@ -5,5 +5,6 @@ import { Logo } from "../Logo";
 export interface IBulletList {
   type: ContentBlockType.BulletList;
   logo: Logo;
+  logoLink: string;
   items: IBulletItem[];
 }

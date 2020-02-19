@@ -35,5 +35,5 @@ export enum HandlerInputType {
   RelevantStories = "RelevantStories",
   ColumnGrid = "ColumnGrid",
   Brand = "Brand",
-  BrandGrid = "BrandGrid",
+  BrandGrid = "BrandGrid"
 }

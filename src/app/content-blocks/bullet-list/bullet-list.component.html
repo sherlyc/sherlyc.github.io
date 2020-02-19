@@ -1,5 +1,5 @@
-<app-logo [name]="input.logo"></app-logo>
-<a href="{{ item.linkUrl }}" appOpenExternalLink="{{ item.linkUrl }}" (click)="sendAnalytics(item)" *ngFor="let item of input.items">
+<a href="{{ input.logoLink }}" class="logoLink"><app-logo [name]="input.logo"></app-logo></a>
+<a href="{{ item.linkUrl }}" appOpenExternalLink="{{ item.linkUrl }}" class="itemLink" (click)="sendAnalytics(item)" *ngFor="let item of input.items">
   <article>
     <span class="bullet" [style.color]="item.bulletColor">►</span>
     <span>{{ item.linkText }}</span>

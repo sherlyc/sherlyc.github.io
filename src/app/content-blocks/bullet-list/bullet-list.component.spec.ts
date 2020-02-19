@@ -10,6 +10,7 @@ import { IBulletItem } from "../../../../common/__types__/IBulletItem";
 import { Logo } from "../../../../common/Logo";
 import { LogoComponent } from "../../shared/components/logo/logo.component";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { Section } from "../../../../server-src/services/section";
 
 describe("Bullet List Component", () => {
   let component: BulletListComponent;
@@ -26,7 +27,8 @@ describe("Bullet List Component", () => {
 
   const bulletListData: IBulletList = {
     type: ContentBlockType.BulletList,
-    logo: Logo.TimaruHerald,
+    logo: Logo.FoodToLove,
+    logoLink: "/" + Section.FoodToLove,
     items: [bulletItem, bulletItem, bulletItem]
   };
 
@@ -66,7 +68,8 @@ describe("Bullet List Component", () => {
   it("should send analytics when clicked", () => {
     component.input = bulletListData;
     fixture.detectChanges();
-    const anchorTag = fixture.debugElement.query(By.css("a")).nativeElement;
+    const anchorTag = fixture.debugElement.query(By.css(".itemLink"))
+      .nativeElement;
     anchorTag.click();
 
     expect(analyticsService.pushEvent).toHaveBeenCalledWith({
@@ -82,5 +85,14 @@ describe("Bullet List Component", () => {
     fixture.detectChanges();
     const bullet = fixture.debugElement.query(By.css(".bullet")).nativeElement;
     expect(bullet.style.color).toEqual("blue");
+  });
+
+  it("set logo link on logo", () => {
+    component.input = bulletListData;
+    fixture.detectChanges();
+
+    const logoLink = fixture.debugElement.query(By.css(".logoLink"))
+      .nativeElement;
+    expect(logoLink.href).toContain(bulletListData.logoLink);
   });
 });
