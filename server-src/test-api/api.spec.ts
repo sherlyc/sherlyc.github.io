@@ -3,6 +3,8 @@ import { IPage } from "../../common/__types__/IPage";
 import { ContentBlockType } from "../../common/__types__/ContentBlockType";
 import { FeatureName } from "../../common/FeatureName";
 
+jest.setTimeout(10000);
+
 describe("api test", () => {
   it("should respond with a json payload", async () => {
     const app = require("../app").default;
