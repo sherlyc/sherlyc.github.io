@@ -38,7 +38,8 @@ describe("Logo Component", () => {
     [Logo.Newsroom, "newsroom"],
     [Logo.Noted, "noted"],
     [Logo.Now2love, "now2love"],
-    [Logo.Tarana, "tarana"]
+    [Logo.Tarana, "tarana"],
+    [Logo.Auckland, "auckland"]
   ])("should show %s", async (logo: Logo, logoClass: string) => {
     component.name = logo;
     fixture.detectChanges();
