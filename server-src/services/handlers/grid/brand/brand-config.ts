@@ -15,12 +15,12 @@ export const networkBrandConfig: INetworkBrandConfig = {
   configs: {
     [NetworkBrand.DominionPost]: {
       logo: Logo.DominionPost,
-      bulletColor: "cornflowerblue",
+      bulletColor: "#2583B1",
       sourceId: Strap.DominionPost
     },
     [NetworkBrand.ThePress]: {
       logo: Logo.ThePress,
-      bulletColor: "darkblue",
+      bulletColor: "#094B85",
       sourceId: Strap.ThePress
     },
     [NetworkBrand.WaikatoTimes]: {
@@ -30,37 +30,37 @@ export const networkBrandConfig: INetworkBrandConfig = {
     },
     [NetworkBrand.Auckland]: {
       logo: Logo.ThePress,
-      bulletColor: "dodgerblue",
+      bulletColor: "#488CCB",
       sourceId: Strap.Auckland
     },
     [NetworkBrand.SouthlandTimes]: {
       logo: Logo.SouthlandTimes,
-      bulletColor: "red",
+      bulletColor: "#99495C",
       sourceId: Strap.SouthlandTimes
     },
     [NetworkBrand.TaranakiDailyNews]: {
       logo: Logo.TaranakiDailyNews,
-      bulletColor: "blue",
+      bulletColor: "#2583B1",
       sourceId: Strap.TaranakiDailyNews
     },
     [NetworkBrand.ManawatuStandard]: {
       logo: Logo.ManawatuStandard,
-      bulletColor: "green",
+      bulletColor: "#A6CE37",
       sourceId: Strap.ManawatuStandard
     },
     [NetworkBrand.NelsonMail]: {
       logo: Logo.NelsonMail,
-      bulletColor: "blue",
+      bulletColor: "#094B85",
       sourceId: Strap.NelsonMail
     },
     [NetworkBrand.MarlboroughExpress]: {
       logo: Logo.MarlboroughExpress,
-      bulletColor: "blue",
+      bulletColor: "#E11A21",
       sourceId: Strap.MarlboroughExpress
     },
     [NetworkBrand.TimaruHerald]: {
       logo: Logo.TimaruHerald,
-      bulletColor: "black",
+      bulletColor: "#231E1F",
       sourceId: Strap.TimaruHerald
     }
   }
