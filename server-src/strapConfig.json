@@ -244,6 +244,66 @@
       "dedupeRules": {
         "dedupeFromBaseList": false
       }
+    },
+    "strapDominionPost": {
+      "ids": ["66731789"],
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
+    },
+    "strapThePress": {
+      "ids": ["65544171"],
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
+    },
+    "strapWaikatoTimes": {
+      "ids": ["66835776"],
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
+    },
+    "strapAuckland": {
+      "ids": ["66681098"],
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
+    },
+    "strapSouthlandTimes": {
+      "ids": ["66460058"],
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
+    },
+    "strapTaranakiDailyNews": {
+      "ids": ["66625358"],
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
+    },
+    "strapManawatuStandard": {
+      "ids": ["66642408"],
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
+    },
+    "strapNelsonMail": {
+      "ids": ["66457776"],
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
+    },
+    "strapMarlboroughExpress": {
+      "ids": ["66648518"],
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
+    },
+    "strapTimaruHerald": {
+      "ids": ["67427219"],
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
     }
   },
   "overrides": {

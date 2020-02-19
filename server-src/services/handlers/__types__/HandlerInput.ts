@@ -31,6 +31,8 @@ import { ITopStoriesGridHandlerInput } from "./ITopStoriesGridHandlerInput";
 import { ITopStoriesHandlerInput } from "./ITopStoriesHandlerInput";
 import { IWeatherHandlerInput } from "./IWeatherHandlerInput";
 import { IContentBlockHandlerInput } from "./IContentBlockHandlerInput";
+import { IBrandGridHandlerInput } from "./IBrandGridHandlerInput";
+import { IBrandHandlerInput } from "./IBrandHandlerInput";
 
 export type HandlerInput =
   | IContentBlockHandlerInput
@@ -65,4 +67,6 @@ export type HandlerInput =
   | ILargeLeadSixGridHandlerInput
   | IListGridHandlerInput
   | IRelevantStoriesHandlerInput
-  | IColumnGridHandlerInput;
+  | IColumnGridHandlerInput
+  | IBrandHandlerInput
+  | IBrandGridHandlerInput;

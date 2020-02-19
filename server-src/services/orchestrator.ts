@@ -266,6 +266,9 @@ const newPage = (): HandlerInput[] => {
       width: "100%",
       margin: "0 0 3px 0",
       url: "https://cdn.neighbourly.co.nz/stuff/933/homepage"
+    },
+    {
+      type: HandlerInputType.Brand
     }
   ];
 
