@@ -15,12 +15,12 @@ export const networkBrandConfig: INetworkBrandConfig = {
   configs: {
     [NetworkBrand.DominionPost]: {
       logo: Logo.DominionPost,
-      bulletColor: "cornflowerblue",
+      bulletColor: "#2583B1",
       sourceId: Strap.DominionPost
     },
     [NetworkBrand.ThePress]: {
       logo: Logo.ThePress,
-      bulletColor: "darkblue",
+      bulletColor: "#094B85",
       sourceId: Strap.ThePress
     },
     [NetworkBrand.WaikatoTimes]: {
@@ -30,37 +30,37 @@ export const networkBrandConfig: INetworkBrandConfig = {
     },
     [NetworkBrand.Auckland]: {
       logo: Logo.ThePress,
-      bulletColor: "dodgerblue",
+      bulletColor: "#488CCB",
       sourceId: Strap.Auckland
     },
     [NetworkBrand.SouthlandTimes]: {
       logo: Logo.SouthlandTimes,
-      bulletColor: "red",
+      bulletColor: "#99495C",
       sourceId: Strap.SouthlandTimes
     },
     [NetworkBrand.TaranakiDailyNews]: {
       logo: Logo.TaranakiDailyNews,
-      bulletColor: "blue",
+      bulletColor: "#2583B1",
       sourceId: Strap.TaranakiDailyNews
     },
     [NetworkBrand.ManawatuStandard]: {
       logo: Logo.ManawatuStandard,
-      bulletColor: "green",
+      bulletColor: "#A6CE37",
       sourceId: Strap.ManawatuStandard
     },
     [NetworkBrand.NelsonMail]: {
       logo: Logo.NelsonMail,
-      bulletColor: "blue",
+      bulletColor: "#094B85",
       sourceId: Strap.NelsonMail
     },
     [NetworkBrand.MarlboroughExpress]: {
       logo: Logo.MarlboroughExpress,
-      bulletColor: "blue",
+      bulletColor: "#E11A21",
       sourceId: Strap.MarlboroughExpress
     },
     [NetworkBrand.TimaruHerald]: {
       logo: Logo.TimaruHerald,
-      bulletColor: "black",
+      bulletColor: "#231E1F",
       sourceId: Strap.TimaruHerald
     }
   }
@@ -71,29 +71,29 @@ export const partnerBrandConfig: IPartnerBrandConfig = {
   articlesPerBrand: 5,
   brandListPerRow: 4,
   configs: {
-    [PartnerBrand.Noted]: {
-      logo: Logo.Noted,
+    [PartnerBrand.Newsroom]: {
+      logo: Logo.Newsroom,
       bulletColor: "black",
-      sourceId: Strap.Noted
+      sourceId: Strap.Newsroom
     },
     [PartnerBrand.NowToLove]: {
       logo: Logo.NowToLove,
-      bulletColor: "navyblue",
+      bulletColor: "#172B53",
       sourceId: Strap.NowToLove
     },
     [PartnerBrand.HomesToLove]: {
       logo: Logo.HomesToLove,
-      bulletColor: "green",
+      bulletColor: "#5FC770",
       sourceId: Strap.HomesToLove
     },
     [PartnerBrand.FoodToLove]: {
       logo: Logo.FoodToLove,
-      bulletColor: "pink",
+      bulletColor: "#F6626E",
       sourceId: Strap.FoodToLove
     },
     [PartnerBrand.BeautyHeaven]: {
       logo: Logo.BeautyHeaven,
-      bulletColor: "paleturquoise",
+      bulletColor: "#25BED9",
       sourceId: Strap.BeautyHeaven
     },
     [PartnerBrand.Metro]: {
@@ -101,14 +101,14 @@ export const partnerBrandConfig: IPartnerBrandConfig = {
       bulletColor: "black",
       sourceId: Strap.Metro
     },
-    [PartnerBrand.Newsroom]: {
-      logo: Logo.Newsroom,
+    [PartnerBrand.Noted]: {
+      logo: Logo.Noted,
       bulletColor: "black",
-      sourceId: Strap.Newsroom
+      sourceId: Strap.Noted
     },
     [PartnerBrand.Tarana]: {
       logo: Logo.Tarana,
-      bulletColor: "red",
+      bulletColor: "#D1171F",
       sourceId: Strap.Tarana
     }
   }
