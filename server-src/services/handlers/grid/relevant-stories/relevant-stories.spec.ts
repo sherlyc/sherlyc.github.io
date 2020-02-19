@@ -177,6 +177,41 @@ describe("Relevant Stories", () => {
     expect(columnGridCall.content[2]).toEqual([title, fakeListGrid]);
   });
 
+  it("should place column grid on the left for relevant stories grid", async () => {
+    (getRawArticles as jest.Mock).mockResolvedValue([]);
+    (getMostPopular as jest.Mock).mockResolvedValue([]);
+    const fakeListGrid = { type: ContentBlockType.GridContainer };
+    const fakeColumnGrid = { type: ContentBlockType.GridContainer };
+    handlerRunnerMock.mockResolvedValueOnce(fakeListGrid);
+    handlerRunnerMock.mockResolvedValueOnce(fakeListGrid);
+    handlerRunnerMock.mockResolvedValueOnce(fakeListGrid);
+    handlerRunnerMock.mockResolvedValueOnce(fakeListGrid);
+    handlerRunnerMock.mockResolvedValueOnce(fakeColumnGrid);
+
+    const input: IRelevantStoriesHandlerInput = {
+      type: HandlerInputType.RelevantStories
+    };
+
+    await relevantStoriesHandler(handlerRunnerMock, input, params);
+
+    const [
+      [first],
+      [second],
+      [third],
+      [fourth],
+      [relevantStoriesGrid]
+    ] = handlerRunnerMock.mock.calls;
+
+    const adUnit: IBasicAdUnit = {
+      type: ContentBlockType.BasicAdUnit,
+      context: "homepageEditorsPicks"
+    };
+
+    expect(
+      relevantStoriesGrid.content[RelevantStoriesGridPositions.Left]
+    ).toEqual(fakeColumnGrid);
+  });
+
   it("should create ad unit and place it on the right for relevant stories grid", async () => {
     (getRawArticles as jest.Mock).mockResolvedValue([]);
     (getMostPopular as jest.Mock).mockResolvedValue([]);
