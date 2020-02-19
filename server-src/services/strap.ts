@@ -1,5 +1,6 @@
 export enum Strap {
   EditorPicks = "strapEditorPicks",
+  LatestNews = "strapLatestNews",
   MidStrip = "strapMidStrip",
   MiniMidStrip = "strapMiniMidStrip",
   TopStories = "strapTopStories",

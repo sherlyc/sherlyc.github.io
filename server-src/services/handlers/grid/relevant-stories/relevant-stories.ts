@@ -1,36 +1,36 @@
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { IColumnGridHandlerInput } from "../../__types__/IColumnGridHandlerInput";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import { handlerRunnerFunction } from "../../runner";
 import { IParams } from "../../../__types__/IParams";
-import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
-import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
+import { IRelevantStoriesHandlerInput } from "../../__types__/IRelevantStoriesHandlerInput";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { Strap } from "../../../strap";
+import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 import wrappedLogger from "../../../utils/logger";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { IColumnGridHandlerInput } from "../../__types__/IColumnGridHandlerInput";
-import { IRelevantStoriesHandlerInput } from "../../__types__/IRelevantStoriesHandlerInput";
-import { handlerRunnerFunction } from "../../runner";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { getMostPopular } from "../../../adapters/most-popular/most-popular.service";
 
 const getColumnContent = async (
+  articlesPromise: Promise<IRawArticle[]>,
+  moduleTitle: string,
+  moduleTitleColor: string,
   handlerRunner: handlerRunnerFunction,
-  sourceId: Strap,
-  strapName: string,
-  totalArticles: number,
-  displayName: string,
-  displayNameColor: string,
   params: IParams
 ): Promise<IContentBlock[]> => {
   try {
-    const articles = await getRawArticles(sourceId, totalArticles, params);
+    const articles = await articlesPromise;
     const articleContentBlocks = articles.map((article) =>
-      basicArticleTitleUnit(article, strapName)
+      basicArticleTitleUnit(article, moduleTitle)
     );
 
     return [
       {
         type: ContentBlockType.ModuleTitle,
-        displayName,
-        displayNameColor
+        displayName: moduleTitle,
+        displayNameColor: moduleTitleColor
       },
       ...(await handlerRunner(
         {
@@ -43,7 +43,7 @@ const getColumnContent = async (
   } catch (error) {
     wrappedLogger.error(
       params.apiRequestId,
-      `Relevant stories handler - Failed to get articles - sourceId: ${sourceId}`,
+      `Relevant stories handler - Failed to get articles - module: ${moduleTitle}`,
       error
     );
     return [];
@@ -55,36 +55,30 @@ export default async function(
   {}: IRelevantStoriesHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const totalArticles = 8;
+  const totalArticles = 5;
 
   const relevantStoriesGridHandlerInput: IColumnGridHandlerInput = {
     type: HandlerInputType.ColumnGrid,
     content: await Promise.all([
       getColumnContent(
-        handlerRunner,
-        Strap.EditorPicks,
-        "Editors' Picks",
-        totalArticles,
-        "Editors' Picks",
+        getRawArticles(Strap.LatestNews, totalArticles, params),
+        "Latest News",
         "pizzaz",
+        handlerRunner,
         params
       ),
       getColumnContent(
-        handlerRunner,
-        Strap.Business,
-        "Business",
-        totalArticles,
-        "Business",
+        getRawArticles(Strap.EditorPicks, totalArticles, params),
+        "Editors' Picks",
         "pizzaz",
+        handlerRunner,
         params
       ),
       getColumnContent(
-        handlerRunner,
-        Strap.Opinion,
-        "Opinion",
-        totalArticles,
-        "Opinion",
+        getMostPopular(totalArticles, params),
+        "Most Popular",
         "pizzaz",
+        handlerRunner,
         params
       ),
       [

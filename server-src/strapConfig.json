@@ -13,6 +13,12 @@
         "dedupeFromBaseList": false
       }
     },
+    "strapLatestNews": {
+      "ids": ["64161221"],
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
+    },
     "strapEditorPicks": {
       "ids": ["63868237"],
       "totalArticlesWithImages": 2,
