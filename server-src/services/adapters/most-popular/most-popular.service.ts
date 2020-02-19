@@ -5,7 +5,7 @@ import config from "../../utils/config";
 import { getArticleById } from "../jsonfeed/jsonfeed";
 import wrappedLogger from "../../utils/logger";
 
-interface MostPopularResponse {
+interface IMostPopularResponse {
   stories: Array<{
     storyId: string;
     [key: string]: any;
@@ -18,7 +18,7 @@ export const getMostPopular = async (
   days: number = 2
 ): Promise<IRawArticle[]> => {
   try {
-    const response = await cacheHttp<MostPopularResponse>(
+    const response = await cacheHttp<IMostPopularResponse>(
       params,
       `${config.mostPopularApi}?days=${days}&limit=${limit}`
     );

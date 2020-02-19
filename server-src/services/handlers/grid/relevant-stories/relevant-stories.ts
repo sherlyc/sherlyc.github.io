@@ -10,18 +10,19 @@ import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 import wrappedLogger from "../../../utils/logger";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { getMostPopular } from "../../../adapters/most-popular/most-popular.service";
 
 const getColumnContent = async (
-  handlerRunner: handlerRunnerFunction,
-  sourceId: Strap,
+  articlesPromise: Promise<IRawArticle[]>,
   strapName: string,
-  totalArticles: number,
   displayName: string,
   displayNameColor: string,
+  handlerRunner: handlerRunnerFunction,
   params: IParams
 ): Promise<IContentBlock[]> => {
   try {
-    const articles = await getRawArticles(sourceId, totalArticles, params);
+    const articles = await articlesPromise;
     const articleContentBlocks = articles.map((article) =>
       basicArticleTitleUnit(article, strapName)
     );
@@ -43,7 +44,7 @@ const getColumnContent = async (
   } catch (error) {
     wrappedLogger.error(
       params.apiRequestId,
-      `Relevant stories handler - Failed to get articles - sourceId: ${sourceId}`,
+      `Relevant stories handler - Failed to get articles - strapName: ${strapName}`,
       error
     );
     return [];
@@ -61,30 +62,27 @@ export default async function(
     type: HandlerInputType.ColumnGrid,
     content: await Promise.all([
       getColumnContent(
-        handlerRunner,
-        Strap.LatestNews,
+        getRawArticles(Strap.LatestNews, totalArticles, params),
         "Latest News",
-        totalArticles,
         "Latest News",
         "pizzaz",
+        handlerRunner,
         params
       ),
       getColumnContent(
-        handlerRunner,
-        Strap.EditorPicks,
+        getRawArticles(Strap.EditorPicks, totalArticles, params),
         "Editors' Picks",
-        totalArticles,
         "Editors' Picks",
         "pizzaz",
+        handlerRunner,
         params
       ),
       getColumnContent(
-        handlerRunner,
-        Strap.Opinion,
-        "Opinion",
-        totalArticles,
-        "Opinion",
+        getMostPopular(totalArticles, params),
+        "Most Popular",
+        "Most Popular",
         "pizzaz",
+        handlerRunner,
         params
       ),
       [
