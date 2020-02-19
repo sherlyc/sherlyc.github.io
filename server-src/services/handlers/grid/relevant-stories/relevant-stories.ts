@@ -9,7 +9,6 @@ import { Strap } from "../../../strap";
 import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import wrappedLogger from "../../../utils/logger";
 
 const getColumnContent = async (
@@ -63,19 +62,19 @@ export default async function(
     content: await Promise.all([
       getColumnContent(
         handlerRunner,
-        Strap.EditorPicks,
-        "Editors' Picks",
+        Strap.LatestNews,
+        "Latest News",
         totalArticles,
-        "Editors' Picks",
+        "Latest News",
         "pizzaz",
         params
       ),
       getColumnContent(
         handlerRunner,
-        Strap.Business,
-        "Business",
+        Strap.EditorPicks,
+        "Editors' Picks",
         totalArticles,
-        "Business",
+        "Editors' Picks",
         "pizzaz",
         params
       ),

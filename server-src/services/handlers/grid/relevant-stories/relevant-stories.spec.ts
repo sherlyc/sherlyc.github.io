@@ -62,12 +62,12 @@ describe("Relevant Stories", () => {
 
     expect(getRawArticles).toHaveBeenCalledTimes(3);
     expect(getRawArticles).toHaveBeenCalledWith(
-      Strap.EditorPicks,
+      Strap.LatestNews,
       totalArticles,
       params
     );
     expect(getRawArticles).toHaveBeenCalledWith(
-      Strap.Business,
+      Strap.EditorPicks,
       totalArticles,
       params
     );
@@ -98,13 +98,13 @@ describe("Relevant Stories", () => {
 
     const listGridHandlerInput = {
       type: HandlerInputType.ListGrid,
-      content: new Array(8).fill(articleAsTitleUnit("Editors' Picks"))
+      content: new Array(8).fill(articleAsTitleUnit("Latest News"))
     };
     expect(firstListGridCall).toEqual(listGridHandlerInput);
 
     const title: IModuleTitle = {
       type: ContentBlockType.ModuleTitle,
-      displayName: "Editors' Picks",
+      displayName: "Latest News",
       displayNameColor: "pizzaz"
     };
     expect(columnGridCall.content[0]).toEqual([title, fakeListGrid]);
@@ -130,13 +130,13 @@ describe("Relevant Stories", () => {
 
     const listGridHandlerInput = {
       type: HandlerInputType.ListGrid,
-      content: new Array(8).fill(articleAsTitleUnit("Business"))
+      content: new Array(8).fill(articleAsTitleUnit("Editors' Picks"))
     };
     expect(secondListGridCall).toEqual(listGridHandlerInput);
 
     const title: IModuleTitle = {
       type: ContentBlockType.ModuleTitle,
-      displayName: "Business",
+      displayName: "Editors' Picks",
       displayNameColor: "pizzaz"
     };
     expect(columnGridCall.content[1]).toEqual([title, fakeListGrid]);
