@@ -1,7 +1,7 @@
 :host {
   display: block;
   border-bottom: 1px solid #edeef1;
-  padding: 0 0 8px 0;
+  padding: 0;
   margin-bottom: 10px;
 }
 
@@ -10,6 +10,7 @@
 }
 
 .location-list-visible {
+  z-index: 10;
   .weather-location-list {
     visibility: visible;
     opacity: 1;
@@ -61,7 +62,6 @@
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s 0.4s, opacity 0.4s linear;
-  margin-top: 3px;
   border-bottom: 1px solid #edeef1;
   z-index: 1;
 }
@@ -121,5 +121,7 @@
 }
 
 .sub-header {
-  height: 40px;
+  height: 48px;
+  padding-bottom: 8px;
+  background-color: #ffffff;
 }

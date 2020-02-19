@@ -110,3 +110,12 @@ app-logo {
     margin-bottom: 50px !important;
   }
 }
+@media only screen and (min-width: 992px) {
+  .content-blocks
+    > app-feature-container:first-child
+    > app-grid-container:first-of-type
+    app-text-box-article {
+    margin-top: -50px;
+    position: relative;
+  }
+}
