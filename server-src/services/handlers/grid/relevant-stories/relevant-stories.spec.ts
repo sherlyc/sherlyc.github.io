@@ -1,7 +1,6 @@
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { IModuleTitle } from "../../../../../common/__types__/IModuleTitle";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { IBasicArticleTitleUnit } from "../../../../../common/__types__/IBasicArticleTitleUnit";
 import { IParams } from "../../../__types__/IParams";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { getMostPopular } from "../../../adapters/most-popular/most-popular.service";
@@ -10,6 +9,7 @@ import { HandlerInputType } from "../../__types__/HandlerInputType";
 import relevantStoriesHandler from "./relevant-stories";
 import { Strap } from "../../../strap";
 import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
+import { RelevantStoriesGridPositions } from "../../__types__/IRelevantStoriesGridHandlerInput";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../adapters/most-popular/most-popular.service");
@@ -177,7 +177,7 @@ describe("Relevant Stories", () => {
     expect(columnGridCall.content[2]).toEqual([title, fakeListGrid]);
   });
 
-  it("should create column four with ad unit and pass it to column grid", async () => {
+  it("should create ad unit and place it on the right for relevant stories grid", async () => {
     (getRawArticles as jest.Mock).mockResolvedValue([]);
     (getMostPopular as jest.Mock).mockResolvedValue([]);
     const fakeListGrid = { type: ContentBlockType.GridContainer };
@@ -193,7 +193,8 @@ describe("Relevant Stories", () => {
       [first],
       [second],
       [third],
-      [columnGridCall]
+      [fourth],
+      [relevantStoriesGrid]
     ] = handlerRunnerMock.mock.calls;
 
     const adUnit: IBasicAdUnit = {
@@ -201,7 +202,9 @@ describe("Relevant Stories", () => {
       context: "homepageEditorsPicks"
     };
 
-    expect(columnGridCall.content[3]).toEqual([
+    expect(
+      relevantStoriesGrid.content[RelevantStoriesGridPositions.Right]
+    ).toEqual([
       {
         type: ContentBlockType.StickyContainer,
         items: [adUnit]
@@ -236,7 +239,6 @@ describe("Relevant Stories", () => {
         [columnGridCall]
       ] = handlerRunnerMock.mock.calls;
 
-      expect(handlerRunnerMock.mock.calls.length).toBe(3);
       expect(columnGridCall.content[0]).toEqual([]);
     });
 
@@ -266,7 +268,6 @@ describe("Relevant Stories", () => {
         [columnGridCall]
       ] = handlerRunnerMock.mock.calls;
 
-      expect(handlerRunnerMock.mock.calls.length).toBe(3);
       expect(columnGridCall.content[1]).toEqual([]);
     });
 
@@ -296,7 +297,6 @@ describe("Relevant Stories", () => {
         [columnGridCall]
       ] = handlerRunnerMock.mock.calls;
 
-      expect(handlerRunnerMock.mock.calls.length).toBe(3);
       expect(columnGridCall.content[2]).toEqual([]);
     });
   });
