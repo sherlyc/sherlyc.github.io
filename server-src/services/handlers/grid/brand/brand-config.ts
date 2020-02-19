@@ -71,29 +71,29 @@ export const partnerBrandConfig: IPartnerBrandConfig = {
   articlesPerBrand: 5,
   brandListPerRow: 4,
   configs: {
-    [PartnerBrand.Noted]: {
-      logo: Logo.Noted,
+    [PartnerBrand.Newsroom]: {
+      logo: Logo.Newsroom,
       bulletColor: "black",
-      sourceId: Strap.Noted
+      sourceId: Strap.Newsroom
     },
     [PartnerBrand.NowToLove]: {
       logo: Logo.NowToLove,
-      bulletColor: "navyblue",
+      bulletColor: "#172B53",
       sourceId: Strap.NowToLove
     },
     [PartnerBrand.HomesToLove]: {
       logo: Logo.HomesToLove,
-      bulletColor: "green",
+      bulletColor: "#5FC770",
       sourceId: Strap.HomesToLove
     },
     [PartnerBrand.FoodToLove]: {
       logo: Logo.FoodToLove,
-      bulletColor: "pink",
+      bulletColor: "#F6626E",
       sourceId: Strap.FoodToLove
     },
     [PartnerBrand.BeautyHeaven]: {
       logo: Logo.BeautyHeaven,
-      bulletColor: "paleturquoise",
+      bulletColor: "#25BED9",
       sourceId: Strap.BeautyHeaven
     },
     [PartnerBrand.Metro]: {
@@ -101,14 +101,14 @@ export const partnerBrandConfig: IPartnerBrandConfig = {
       bulletColor: "black",
       sourceId: Strap.Metro
     },
-    [PartnerBrand.Newsroom]: {
-      logo: Logo.Newsroom,
+    [PartnerBrand.Noted]: {
+      logo: Logo.Noted,
       bulletColor: "black",
-      sourceId: Strap.Newsroom
+      sourceId: Strap.Noted
     },
     [PartnerBrand.Tarana]: {
       logo: Logo.Tarana,
-      bulletColor: "red",
+      bulletColor: "#D1171F",
       sourceId: Strap.Tarana
     }
   }
