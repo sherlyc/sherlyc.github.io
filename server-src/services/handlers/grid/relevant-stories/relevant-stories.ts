@@ -56,7 +56,7 @@ export default async function(
   {}: IRelevantStoriesHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const totalArticles = 8;
+  const totalArticles = 5;
 
   const relevantStoriesGridHandlerInput: IColumnGridHandlerInput = {
     type: HandlerInputType.ColumnGrid,

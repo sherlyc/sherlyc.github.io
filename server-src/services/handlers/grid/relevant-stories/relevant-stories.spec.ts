@@ -17,7 +17,7 @@ jest.mock("../../../adapters/most-popular/most-popular.service");
 describe("Relevant Stories", () => {
   const handlerRunnerMock = jest.fn();
   const params: IParams = { apiRequestId: "123" };
-  const totalArticles = 8;
+  const totalArticles = 5;
 
   const article: IRawArticle = {
     id: "1",
@@ -104,7 +104,7 @@ describe("Relevant Stories", () => {
 
     const listGridHandlerInput = {
       type: HandlerInputType.ListGrid,
-      content: new Array(8).fill(articleAsTitleUnit("Latest News"))
+      content: new Array(totalArticles).fill(articleAsTitleUnit("Latest News"))
     };
     expect(firstListGridCall).toEqual(listGridHandlerInput);
 
@@ -141,7 +141,9 @@ describe("Relevant Stories", () => {
 
     const listGridHandlerInput = {
       type: HandlerInputType.ListGrid,
-      content: new Array(8).fill(articleAsTitleUnit("Editors' Picks"))
+      content: new Array(totalArticles).fill(
+        articleAsTitleUnit("Editors' Picks")
+      )
     };
     expect(secondListGridCall).toEqual(listGridHandlerInput);
 
@@ -154,7 +156,9 @@ describe("Relevant Stories", () => {
   });
 
   it("should create column three content with module title and pass it to column grid", async () => {
-    (getRawArticles as jest.Mock).mockResolvedValue(new Array(8).fill(article));
+    (getRawArticles as jest.Mock).mockResolvedValue(
+      new Array(totalArticles).fill(article)
+    );
     (getMostPopular as jest.Mock).mockResolvedValue(
       new Array(totalArticles).fill(article)
     );
@@ -176,7 +180,7 @@ describe("Relevant Stories", () => {
 
     const listGridHandlerInput = {
       type: HandlerInputType.ListGrid,
-      content: new Array(8).fill(articleAsTitleUnit("Most Popular"))
+      content: new Array(totalArticles).fill(articleAsTitleUnit("Most Popular"))
     };
     expect(thirdListGridCall).toEqual(listGridHandlerInput);
 
