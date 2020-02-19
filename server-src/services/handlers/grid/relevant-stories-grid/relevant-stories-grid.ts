@@ -77,7 +77,7 @@ export default async function(
   const tablet: IGridConfig = {
     gridTemplateColumns: "1fr 1fr 1fr",
     gridTemplateRows: "auto auto auto",
-    gridColumnGap: "20px",
+    gridColumnGap: "40px",
     gridRowGap: "20px",
     gridBlocks: {
       [RelevantStoriesGridPositions.FirstColumnTitle]: {
@@ -127,7 +127,7 @@ export default async function(
         columnSpan: 3,
         rowStart: 3,
         rowSpan: 1,
-        border: [Border.right]
+        border: []
       }
     }
   };
@@ -135,7 +135,7 @@ export default async function(
   const desktop: IGridConfig = {
     gridTemplateColumns: "1fr 1fr 1fr 300px",
     gridTemplateRows: "auto auto",
-    gridColumnGap: "20px",
+    gridColumnGap: "40px",
     gridRowGap: "20px",
     gridBlocks: {
       [RelevantStoriesGridPositions.FirstColumnTitle]: {
@@ -185,7 +185,7 @@ export default async function(
         columnSpan: 1,
         rowStart: 1,
         rowSpan: 2,
-        border: [Border.right]
+        border: []
       }
     }
   };

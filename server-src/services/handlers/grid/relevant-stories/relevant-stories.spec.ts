@@ -208,7 +208,9 @@ describe("Relevant Stories", () => {
     };
 
     expect(
-      relevantStoriesGrid.content[RelevantStoriesGridPositions.Left]
+      relevantStoriesGrid.content[
+        RelevantStoriesGridPositions.FirstColumnContent
+      ]
     ).toEqual(fakeColumnGrid);
   });
 
@@ -238,7 +240,9 @@ describe("Relevant Stories", () => {
     };
 
     expect(
-      relevantStoriesGrid.content[RelevantStoriesGridPositions.Right]
+      relevantStoriesGrid.content[
+        RelevantStoriesGridPositions.SecondColumnContent
+      ]
     ).toEqual([
       {
         type: ContentBlockType.StickyContainer,
