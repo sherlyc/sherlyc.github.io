@@ -1,8 +1,10 @@
 import { IContentBlock } from "../../../common/__types__/IContentBlock";
+import { IParams } from "../__types__/IParams";
+import { HandlerInputType } from "./__types__/HandlerInputType";
+import Banner from "./banner/banner";
 import ArticleList from "./basic-article-list/basic-article-list";
 import ArticleSection from "./basic-article-section/basic-article-section";
 import BreakingNews from "./breaking-news/breaking-news";
-import Banner from "./banner/banner";
 import ContentBlockHandler from "./content-block/content-block-handler";
 import Experiment from "./experiment-handler/experiment-handler";
 import ExternalContent from "./external-content/external-content";
@@ -19,6 +21,8 @@ import NewsSix from "./grid/news-six/news-six";
 import RelevantStories from "./grid/relevant-stories/relevant-stories";
 import SixImageGrid from "./grid/six-image-grid/six-image-grid";
 import SixImage from "./grid/six-image/six-image";
+import StripsGrid from "./grid/strips-grid/strips-grid";
+import Strips from "./grid/strips/strips";
 import TopStoriesGrid from "./grid/top-stories-grid/top-stories-grid";
 import TopStoriesDefaultOneHighlight from "./grid/top-stories/default-one-highlight/default-one-highlight";
 import TopStoriesDefconHighlight from "./grid/top-stories/defcon-highlight/defcon-highlight";
@@ -36,8 +40,6 @@ import BrandGrid from "./grid/brand-grid/brand-grid";
 import { handlerRunnerFunction } from "./runner";
 import TopStoriesArticleList from "./top-stories-article-list/top-stories-article-list";
 import Weather from "./weather/weather";
-import { IParams } from "../__types__/IParams";
-import { HandlerInputType } from "./__types__/HandlerInputType";
 
 type handlerFunction = (
   handlerRunner: handlerRunnerFunction,
@@ -74,6 +76,8 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   NewsSixGrid,
   SixImage,
   SixImageGrid,
+  Strips,
+  StripsGrid,
   ListGrid,
   LargeLeadSix,
   LargeLeadSixGrid,

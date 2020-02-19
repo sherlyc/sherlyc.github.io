@@ -5,6 +5,7 @@ import { IBiggieSmallsGridHandlerInput } from "./IBiggieSmallsGridHandlerInput";
 import { IBiggieSmallsHandlerInput } from "./IBiggieSmallsHandlerInput";
 import { IBreakingNewsHandlerInput } from "./IBreakingNewsHandlerInput";
 import { IColumnGridHandlerInput } from "./IColumnGridHandlerInput";
+import { IContentBlockHandlerInput } from "./IContentBlockHandlerInput";
 import { IExpandableArticleListHandlerInput } from "./IExpandableArticleListHandlerInput";
 import { IExpandableArticleSectionHandlerInput } from "./IExpandableArticleSectionHandlerInput";
 import { IExperimentHandlerInput } from "./IExperimentHandlerInput";
@@ -24,13 +25,14 @@ import { IRecommendationsHandlerInput } from "./IRecommendationsHandlerInput";
 import { IRelevantStoriesHandlerInput } from "./IRelevantStoriesHandlerInput";
 import { ISixImageGridHandlerInput } from "./ISixImageGridHandlerInput";
 import { ISixImageHandlerInput } from "./ISixImageHandlerInput";
+import { IStripsGridHandlerInput } from "./IStripsGridHandlerInput";
+import { IStripsHandlerInput } from "./IStripsHandlerInput";
 import { ITopStoriesArticleListHandlerInput } from "./ITopStoriesArticleListHandlerInput";
 import { ITopStoriesDefaultOneHighlightHandlerInput } from "./ITopStoriesDefaultOneHighlightHandlerInput";
 import { ITopStoriesDefconHighlightHandlerInput } from "./ITopStoriesDefconHighlightHandlerInput";
 import { ITopStoriesGridHandlerInput } from "./ITopStoriesGridHandlerInput";
 import { ITopStoriesHandlerInput } from "./ITopStoriesHandlerInput";
 import { IWeatherHandlerInput } from "./IWeatherHandlerInput";
-import { IContentBlockHandlerInput } from "./IContentBlockHandlerInput";
 import { IBrandGridHandlerInput } from "./IBrandGridHandlerInput";
 import { IBrandHandlerInput } from "./IBrandHandlerInput";
 
@@ -63,6 +65,8 @@ export type HandlerInput =
   | INewsSixGridHandlerInput
   | ISixImageHandlerInput
   | ISixImageGridHandlerInput
+  | IStripsHandlerInput
+  | IStripsGridHandlerInput
   | ILargeLeadSixHandlerInput
   | ILargeLeadSixGridHandlerInput
   | IListGridHandlerInput
