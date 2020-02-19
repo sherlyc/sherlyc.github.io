@@ -1,12 +1,13 @@
-import { IColumnGridHandlerInput } from "../../__types__/IColumnGridHandlerInput";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
+import { flatMap, flow, get } from "lodash/fp";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { IParams } from "../../../__types__/IParams";
 import {
   Border,
   IGridContainer
 } from "../../../../../common/__types__/IGridContainer";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IParams } from "../../../__types__/IParams";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import { IColumnGridHandlerInput } from "../../__types__/IColumnGridHandlerInput";
 import columnGridHandler from "./column-grid";
 
 const contentBlock = (id: string) => ({ id } as IContentBlock);
@@ -18,6 +19,9 @@ describe("Column Grid", () => {
   it("should handle one column of content", async () => {
     const handlerInput: IColumnGridHandlerInput = {
       type: HandlerInputType.ColumnGrid,
+      rowGap: 10,
+      columnGap: 40,
+      border: true,
       content: [[contentBlock("1")]]
     };
 
@@ -65,6 +69,9 @@ describe("Column Grid", () => {
   it("should handle two columns of content", async () => {
     const handlerInput: IColumnGridHandlerInput = {
       type: HandlerInputType.ColumnGrid,
+      rowGap: 10,
+      columnGap: 40,
+      border: true,
       content: [
         [contentBlock("1"), contentBlock("2")],
         [contentBlock("3"), contentBlock("4")]
@@ -158,6 +165,9 @@ describe("Column Grid", () => {
   it("should handle three columns of content", async () => {
     const handlerInput: IColumnGridHandlerInput = {
       type: HandlerInputType.ColumnGrid,
+      rowGap: 10,
+      columnGap: 40,
+      border: true,
       content: [
         [contentBlock("1"), contentBlock("2")],
         [contentBlock("3"), contentBlock("4")],
@@ -275,6 +285,9 @@ describe("Column Grid", () => {
   it("should handle four columns of content", async () => {
     const handlerInput: IColumnGridHandlerInput = {
       type: HandlerInputType.ColumnGrid,
+      rowGap: 10,
+      columnGap: 40,
+      border: true,
       content: [
         [contentBlock("1"), contentBlock("2")],
         [contentBlock("3"), contentBlock("4")],
@@ -415,6 +428,9 @@ describe("Column Grid", () => {
   it("should handle five columns of content", async () => {
     const handlerInput: IColumnGridHandlerInput = {
       type: HandlerInputType.ColumnGrid,
+      rowGap: 10,
+      columnGap: 40,
+      border: true,
       content: [
         [contentBlock("1"), contentBlock("2")],
         [contentBlock("3"), contentBlock("4")],
@@ -578,6 +594,9 @@ describe("Column Grid", () => {
   it("should handle six columns of content", async () => {
     const handlerInput: IColumnGridHandlerInput = {
       type: HandlerInputType.ColumnGrid,
+      rowGap: 10,
+      columnGap: 40,
+      border: true,
       content: [
         [contentBlock("1"), contentBlock("2")],
         [contentBlock("3"), contentBlock("4")],
@@ -759,5 +778,63 @@ describe("Column Grid", () => {
     const result = await columnGridHandler(handlerRunner, handlerInput, params);
 
     expect(result).toEqual([expected]);
+  });
+
+  describe("when borders are enabled", () => {
+    it("generates borders", async () => {
+      const handlerInput: IColumnGridHandlerInput = {
+        type: HandlerInputType.ColumnGrid,
+        rowGap: 10,
+        columnGap: 40,
+        border: true,
+        content: [
+          [contentBlock("1"), contentBlock("2")],
+          [contentBlock("3"), contentBlock("4")],
+          [contentBlock("5"), contentBlock("6")],
+          [contentBlock("7"), contentBlock("8")],
+          [contentBlock("9"), contentBlock("10")],
+          [contentBlock("11"), contentBlock("12")]
+        ]
+      };
+
+      const [result] = await columnGridHandler(
+        handlerRunner,
+        handlerInput,
+        params
+      );
+
+      expect(
+        flow(get("desktop.gridBlocks"), flatMap("border"))(result)
+      ).not.toEqual([]);
+    });
+  });
+
+  describe("when borders are disabled", () => {
+    it("does not generate borders", async () => {
+      const handlerInput: IColumnGridHandlerInput = {
+        type: HandlerInputType.ColumnGrid,
+        rowGap: 10,
+        columnGap: 40,
+        border: false,
+        content: [
+          [contentBlock("1"), contentBlock("2")],
+          [contentBlock("3"), contentBlock("4")],
+          [contentBlock("5"), contentBlock("6")],
+          [contentBlock("7"), contentBlock("8")],
+          [contentBlock("9"), contentBlock("10")],
+          [contentBlock("11"), contentBlock("12")]
+        ]
+      };
+
+      const [result] = await columnGridHandler(
+        handlerRunner,
+        handlerInput,
+        params
+      );
+
+      expect(
+        flow(get("desktop.gridBlocks"), flatMap("border"))(result)
+      ).toEqual([]);
+    });
   });
 });

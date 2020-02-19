@@ -91,3 +91,22 @@ app-basic-ad-unit,
 app-basic-ad-unit iframe {
   max-width: 100%;
 }
+
+app-logo {
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.content-blocks > app-feature-container:first-child > app-grid-container,
+.content-blocks > app-grid-container {
+  margin-bottom: 100px;
+}
+
+.homepage-billboard.ad-container {
+  border-width: 0 !important;
+  &:not(:first-child) {
+    margin-bottom: 50px !important;
+  }
+}

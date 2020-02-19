@@ -1,16 +1,15 @@
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { IColumnGridHandlerInput } from "../../__types__/IColumnGridHandlerInput";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { handlerRunnerFunction } from "../../runner";
 import { IParams } from "../../../__types__/IParams";
-import { IRelevantStoriesHandlerInput } from "../../__types__/IRelevantStoriesHandlerInput";
+import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
+import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { Strap } from "../../../strap";
-import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import wrappedLogger from "../../../utils/logger";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import { IColumnGridHandlerInput } from "../../__types__/IColumnGridHandlerInput";
+import { IRelevantStoriesHandlerInput } from "../../__types__/IRelevantStoriesHandlerInput";
+import { handlerRunnerFunction } from "../../runner";
 
 const getColumnContent = async (
   handlerRunner: handlerRunnerFunction,
