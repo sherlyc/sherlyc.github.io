@@ -12,6 +12,10 @@ import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.c
 import wrappedLogger from "../../../utils/logger";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { getMostPopular } from "../../../adapters/most-popular/most-popular.service";
+import {
+  IRelevantStoriesGridHandlerInput,
+  RelevantStoriesGridPositions
+} from "../../__types__/IRelevantStoriesGridHandlerInput";
 
 const getColumnContent = async (
   articlesPromise: Promise<IRawArticle[]>,
@@ -57,7 +61,7 @@ export default async function(
 ): Promise<IContentBlock[]> {
   const totalArticles = 5;
 
-  const relevantStoriesGridHandlerInput: IColumnGridHandlerInput = {
+  const leftColumns: IColumnGridHandlerInput = {
     type: HandlerInputType.ColumnGrid,
     content: await Promise.all([
       getColumnContent(
@@ -80,15 +84,25 @@ export default async function(
         "pizzaz",
         handlerRunner,
         params
+      )
+    ])
+  };
+
+  const relevantStoriesGrid: IRelevantStoriesGridHandlerInput = {
+    type: HandlerInputType.RelevantStoriesGrid,
+    content: {
+      [RelevantStoriesGridPositions.Left]: await handlerRunner(
+        leftColumns,
+        params
       ),
-      [
+      [RelevantStoriesGridPositions.Right]: [
         {
           type: ContentBlockType.StickyContainer,
           items: [basicAdUnit("homepageEditorsPicks")]
         }
       ]
-    ])
+    }
   };
 
-  return await handlerRunner(relevantStoriesGridHandlerInput, params);
+  return await handlerRunner(relevantStoriesGrid, params);
 }
