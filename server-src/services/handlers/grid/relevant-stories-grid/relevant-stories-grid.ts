@@ -14,9 +14,9 @@ export default async function(
   { content }: IRelevantStoriesGridHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const mobile: IGridConfig = {
+  const mobileAndTablet: IGridConfig = {
     gridTemplateColumns: "1fr",
-    gridTemplateRows: "auto",
+    gridTemplateRows: "auto auto",
     gridColumnGap: "0px",
     gridRowGap: "20px",
     gridBlocks: {
@@ -32,7 +32,7 @@ export default async function(
     gridRowGap: "20px",
     gridBlocks: {
       [RelevantStoriesGridPositions.Left]: gridBlock(1, 1, 1, 1, []),
-      [RelevantStoriesGridPositions.Right]: gridBlock(1, 1, 1, 1, [])
+      [RelevantStoriesGridPositions.Right]: gridBlock(1, 2, 1, 1, [])
     }
   };
 
@@ -40,7 +40,8 @@ export default async function(
     {
       type: ContentBlockType.GridContainer,
       items: content,
-      mobile,
+      mobile: mobileAndTablet,
+      tablet: mobileAndTablet,
       desktop
     }
   ];
