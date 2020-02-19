@@ -11,7 +11,7 @@ import { BrandModule } from "../../__types__/IBrandHandlerInput";
 export const networkBrandConfig: INetworkBrandConfig = {
   moduleTitle: "our network's top stories",
   articlesPerBrand: 5,
-  articlesPerRow: 5,
+  brandListPerRow: 5,
   configs: {
     [NetworkBrand.DominionPost]: {
       logo: Logo.DominionPost,
@@ -69,7 +69,7 @@ export const networkBrandConfig: INetworkBrandConfig = {
 export const partnerBrandConfig: IPartnerBrandConfig = {
   moduleTitle: "our partners",
   articlesPerBrand: 5,
-  articlesPerRow: 4,
+  brandListPerRow: 4,
   configs: {
     [PartnerBrand.Noted]: {
       logo: Logo.Noted,
@@ -79,7 +79,7 @@ export const partnerBrandConfig: IPartnerBrandConfig = {
     [PartnerBrand.NowToLove]: {
       logo: Logo.NowToLove,
       bulletColor: "navyblue",
-      sourceId: Strap.Noted
+      sourceId: Strap.NowToLove
     },
     [PartnerBrand.HomesToLove]: {
       logo: Logo.HomesToLove,
@@ -94,7 +94,7 @@ export const partnerBrandConfig: IPartnerBrandConfig = {
     [PartnerBrand.BeautyHeaven]: {
       logo: Logo.BeautyHeaven,
       bulletColor: "paleturquoise",
-      sourceId: Strap.Noted
+      sourceId: Strap.BeautyHeaven
     },
     [PartnerBrand.Metro]: {
       logo: Logo.Metro,
@@ -104,7 +104,7 @@ export const partnerBrandConfig: IPartnerBrandConfig = {
     [PartnerBrand.Newsroom]: {
       logo: Logo.Newsroom,
       bulletColor: "black",
-      sourceId: Strap.Noted
+      sourceId: Strap.Newsroom
     },
     [PartnerBrand.Tarana]: {
       logo: Logo.Tarana,

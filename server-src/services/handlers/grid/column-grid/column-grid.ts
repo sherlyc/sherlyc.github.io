@@ -1,16 +1,16 @@
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IGridConfig } from "../../../../../common/__types__/IGridContainer";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { handlerRunnerFunction } from "../../runner";
-import { IColumnGridHandlerInput } from "../../__types__/IColumnGridHandlerInput";
 import { IParams } from "../../../__types__/IParams";
 import { gridBlock } from "../../../adapters/grid/grid-block";
-import {
-  mobileColumnGridConfig,
-  tabletColumnGridConfig,
-  desktopColumnGridConfig
-} from "./column-grid-config";
+import { IColumnGridHandlerInput } from "../../__types__/IColumnGridHandlerInput";
+import { handlerRunnerFunction } from "../../runner";
 import { IColumnGridBlock } from "./__types__/IColumnGridConfig";
+import {
+  desktopColumnGridConfig,
+  mobileColumnGridConfig,
+  tabletColumnGridConfig
+} from "./column-grid-config";
 
 const getNumColumnsFor = (contentLength: number) => {
   const min = 1;
@@ -42,12 +42,17 @@ const getGridItems = (content: IContentBlock[][]) =>
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  { content }: IColumnGridHandlerInput,
+  {
+    content,
+    columnGap = 40,
+    rowGap = 10,
+    border = true
+  }: IColumnGridHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   const numColumns = getNumColumnsFor(content.length);
 
-  const mobileConfig = mobileColumnGridConfig[numColumns];
+  const mobileConfig = mobileColumnGridConfig(rowGap)[numColumns];
   const mobile: IGridConfig = {
     gridTemplateColumns: mobileConfig.gridTemplateColumns,
     gridTemplateRows: mobileConfig.gridTemplateRows,
@@ -56,7 +61,9 @@ export default async function(
     gridBlocks: getGridBlocks(mobileConfig.gridBlocks)
   };
 
-  const tabletConfig = tabletColumnGridConfig[numColumns];
+  const tabletConfig = tabletColumnGridConfig(columnGap, rowGap, border)[
+    numColumns
+  ];
   const tablet: IGridConfig = {
     gridTemplateColumns: tabletConfig.gridTemplateColumns,
     gridTemplateRows: tabletConfig.gridTemplateRows,
@@ -65,7 +72,9 @@ export default async function(
     gridBlocks: getGridBlocks(tabletConfig.gridBlocks)
   };
 
-  const desktopConfig = desktopColumnGridConfig[numColumns];
+  const desktopConfig = desktopColumnGridConfig(columnGap, rowGap, border)[
+    numColumns
+  ];
   const desktop: IGridConfig = {
     gridTemplateColumns: desktopConfig.gridTemplateColumns,
     gridTemplateRows: desktopConfig.gridTemplateRows,

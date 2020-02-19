@@ -15,5 +15,6 @@ export enum Logo {
   Newsroom = "Newsroom",
   Noted = "Noted",
   NowToLove = "NowToLove",
-  Tarana = "Tarana"
+  Tarana = "Tarana",
+  Auckland = "Auckland"
 }
