@@ -25,7 +25,7 @@ export default async function(
         gridRowGap: "20px",
         gridBlocks: {
           [StripsGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 1, []),
-          [StripsGridPositions.FirstRow1]: gridBlock(2, 1, 1, 1, [])
+          [StripsGridPositions.ModuleContent]: gridBlock(2, 1, 1, 1, [])
         }
       }
     } as IGridContainer

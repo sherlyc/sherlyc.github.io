@@ -41,7 +41,7 @@ export default async function(
         displayNameColor
       }
     ],
-    [StripsGridPositions.FirstRow1]: await handlerRunner(
+    [StripsGridPositions.ModuleContent]: await handlerRunner(
       {
         type: HandlerInputType.ColumnGrid,
         border: false,

@@ -24,7 +24,7 @@ describe("Strips grid handler", () => {
       type: HandlerInputType.StripsGrid,
       content: {
         [StripsGridPositions.ModuleTitle]: [fakeContentBlock],
-        [StripsGridPositions.FirstRow1]: [fakeContentBlock]
+        [StripsGridPositions.ModuleContent]: [fakeContentBlock]
       }
     };
 
@@ -35,7 +35,7 @@ describe("Strips grid handler", () => {
         type: ContentBlockType.GridContainer,
         items: {
           [StripsGridPositions.ModuleTitle]: [fakeContentBlock],
-          [StripsGridPositions.FirstRow1]: [fakeContentBlock]
+          [StripsGridPositions.ModuleContent]: [fakeContentBlock]
         },
         mobile: {
           gridTemplateColumns: "1fr",
@@ -44,7 +44,7 @@ describe("Strips grid handler", () => {
           gridRowGap: "20px",
           gridBlocks: {
             [StripsGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 1, []),
-            [StripsGridPositions.FirstRow1]: gridBlock(2, 1, 1, 1, [])
+            [StripsGridPositions.ModuleContent]: gridBlock(2, 1, 1, 1, [])
           }
         }
       }

@@ -8,5 +8,5 @@ export interface IStripsGridHandlerInput {
 
 export enum StripsGridPositions {
   ModuleTitle = "ModuleTitle",
-  FirstRow1 = "FirstRow1"
+  ModuleContent = "ModuleContent"
 }

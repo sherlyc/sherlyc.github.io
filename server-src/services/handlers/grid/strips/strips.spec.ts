@@ -134,7 +134,7 @@ describe("Strips", () => {
               displayNameColor
             })
           ],
-          [StripsGridPositions.FirstRow1]: [
+          [StripsGridPositions.ModuleContent]: [
             expectContentBlock({
               type: ContentBlockType.GridContainer
             })
