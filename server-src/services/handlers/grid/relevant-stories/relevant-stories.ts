@@ -56,9 +56,9 @@ export default async function(
   const totalArticles = 5;
 
   const [
-    [firstColumnContent],
-    [secondColumnContent],
-    [thirdColumnContent]
+    firstColumnContent,
+    secondColumnContent,
+    thirdColumnContent
   ] = await Promise.all([
     createListContent(
       getRawArticles(Strap.LatestNews, totalArticles, params),
@@ -89,11 +89,11 @@ export default async function(
       [RelevantStoriesGridPositions.FirstColumnTitle]: [
         {
           type: ContentBlockType.ModuleTitle,
-          displayName: "Lastest News",
+          displayName: "Latest News",
           displayNameColor: "pizzaz"
         }
       ],
-      [RelevantStoriesGridPositions.FirstColumnContent]: [firstColumnContent],
+      [RelevantStoriesGridPositions.FirstColumnContent]: firstColumnContent,
       [RelevantStoriesGridPositions.SecondColumnTitle]: [
         {
           type: ContentBlockType.ModuleTitle,
@@ -101,7 +101,7 @@ export default async function(
           displayNameColor: "pizzaz"
         }
       ],
-      [RelevantStoriesGridPositions.SecondColumnContent]: [secondColumnContent],
+      [RelevantStoriesGridPositions.SecondColumnContent]: secondColumnContent,
       [RelevantStoriesGridPositions.ThirdColumnTitle]: [
         {
           type: ContentBlockType.ModuleTitle,
@@ -109,7 +109,7 @@ export default async function(
           displayNameColor: "pizzaz"
         }
       ],
-      [RelevantStoriesGridPositions.ThirdColumnContent]: [thirdColumnContent],
+      [RelevantStoriesGridPositions.ThirdColumnContent]: thirdColumnContent,
       [RelevantStoriesGridPositions.Right]: [
         {
           type: ContentBlockType.StickyContainer,
