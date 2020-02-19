@@ -1,15 +1,15 @@
-import defaultOneHighlightHandler from "./default-one-highlight";
-import { IRawArticle } from "../../../../adapters/__types__/IRawArticle";
-import { IParams } from "../../../../__types__/IParams";
-import { ITopStoriesDefaultOneHighlightHandlerInput } from "../../../__types__/ITopStoriesDefaultOneHighlightHandlerInput";
-import { HandlerInputType } from "../../../__types__/HandlerInputType";
-import { IColumnGridHandlerInput } from "../../../__types__/IColumnGridHandlerInput";
+import { ContentBlockType } from "../../../../../../common/__types__/ContentBlockType";
 import {
   BigImageArticleUnitLayout,
   IBigImageArticleUnit
 } from "../../../../../../common/__types__/IBigImageArticleUnit";
-import { ContentBlockType } from "../../../../../../common/__types__/ContentBlockType";
 import { IFeaturedArticle } from "../../../../../../common/__types__/IFeaturedArticle";
+import { IParams } from "../../../../__types__/IParams";
+import { IRawArticle } from "../../../../adapters/__types__/IRawArticle";
+import { HandlerInputType } from "../../../__types__/HandlerInputType";
+import { IColumnGridHandlerInput } from "../../../__types__/IColumnGridHandlerInput";
+import { ITopStoriesDefaultOneHighlightHandlerInput } from "../../../__types__/ITopStoriesDefaultOneHighlightHandlerInput";
+import defaultOneHighlightHandler from "./default-one-highlight";
 
 describe("Top Stories Default One", () => {
   const handlerRunnerMock = jest.fn();
