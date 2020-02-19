@@ -5,8 +5,10 @@ import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IFeaturedArticle } from "../../../../common/__types__/IFeaturedArticle";
-import { By } from "@angular/platform-browser";
+import { By, TransferState } from "@angular/platform-browser";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { ResizeObserverService } from "../../services/resize-observer/resize-observer.service";
+import { Subject } from "rxjs";
 
 describe("FeaturedArticleComponent", () => {
   let component: FeaturedArticleComponent;
@@ -38,6 +40,18 @@ describe("FeaturedArticleComponent", () => {
         {
           provide: AnalyticsService,
           useClass: mockService(AnalyticsService)
+        },
+        {
+          provide: ResizeObserverService,
+          useClass: class {
+            observe() {
+              return new Subject();
+            }
+          }
+        },
+        {
+          provide: TransferState,
+          useClass: mockService(TransferState)
         }
       ]
     }).compileComponents();
