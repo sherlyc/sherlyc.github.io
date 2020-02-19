@@ -10,6 +10,7 @@ import { Section } from "./section";
 import { Strap } from "./strap";
 import config from "./utils/config";
 import logger from "./utils/logger";
+import { BrandModule } from "./handlers/__types__/IBrandHandlerInput";
 
 const homepageStrapsConfig = config.strapConfig!.homepageStraps;
 
@@ -128,6 +129,10 @@ const newPage = (): HandlerInput[] => {
       displayNameColor: "royalblue",
       strapName: `${homepageAdPrefix}Property`,
       sourceId: Strap.Property
+    },
+    {
+      type: HandlerInputType.Brand,
+      module: BrandModule.Partner
     },
     {
       type: HandlerInputType.NewsSix,
@@ -286,7 +291,8 @@ const newPage = (): HandlerInput[] => {
       url: "https://cdn.neighbourly.co.nz/stuff/933/homepage"
     },
     {
-      type: HandlerInputType.Brand
+      type: HandlerInputType.Brand,
+      module: BrandModule.Network
     }
   ];
 

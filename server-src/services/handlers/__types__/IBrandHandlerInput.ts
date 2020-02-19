@@ -1,6 +1,11 @@
 import { HandlerInputType } from "./HandlerInputType";
 
-export interface IBrandHandlerInput {
-  type: HandlerInputType.Brand;
+export enum BrandModule {
+  Partner = "Partner",
+  Network = "Network"
 }
 
+export interface IBrandHandlerInput {
+  type: HandlerInputType.Brand;
+  module: BrandModule;
+}
