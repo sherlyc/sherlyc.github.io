@@ -5,7 +5,10 @@ import {
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { IParams } from "../../../__types__/IParams";
 import relevantStoriesGrid from "./relevant-stories-grid";
-import { IGridConfig } from "../../../../../common/__types__/IGridContainer";
+import {
+  Border,
+  IGridConfig
+} from "../../../../../common/__types__/IGridContainer";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 
 describe("Relevant stories grid", () => {
@@ -57,7 +60,7 @@ describe("Relevant stories grid", () => {
           rowSpan: 1,
           columnStart: 1,
           columnSpan: 1,
-          border: []
+          border: [Border.right]
         },
         [RelevantStoriesGridPositions.Right]: {
           rowStart: 1,

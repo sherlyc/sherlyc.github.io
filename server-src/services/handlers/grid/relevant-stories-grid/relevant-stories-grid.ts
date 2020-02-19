@@ -5,7 +5,10 @@ import {
   IRelevantStoriesGridHandlerInput,
   RelevantStoriesGridPositions
 } from "../../__types__/IRelevantStoriesGridHandlerInput";
-import { IGridConfig } from "../../../../../common/__types__/IGridContainer";
+import {
+  Border,
+  IGridConfig
+} from "../../../../../common/__types__/IGridContainer";
 import { gridBlock } from "../../../adapters/grid/grid-block";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 
@@ -31,7 +34,9 @@ export default async function(
     gridColumnGap: "20px",
     gridRowGap: "20px",
     gridBlocks: {
-      [RelevantStoriesGridPositions.Left]: gridBlock(1, 1, 1, 1, []),
+      [RelevantStoriesGridPositions.Left]: gridBlock(1, 1, 1, 1, [
+        Border.right
+      ]),
       [RelevantStoriesGridPositions.Right]: gridBlock(1, 2, 1, 1, [])
     }
   };
