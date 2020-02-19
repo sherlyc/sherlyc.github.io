@@ -11,7 +11,7 @@ import { BrandModule } from "../../__types__/IBrandHandlerInput";
 export const networkBrandConfig: INetworkBrandConfig = {
   moduleTitle: "our network's top stories",
   articlesPerBrand: 5,
-  articlesPerRow: 5,
+  brandListPerRow: 5,
   configs: {
     [NetworkBrand.DominionPost]: {
       logo: Logo.DominionPost,
@@ -69,7 +69,7 @@ export const networkBrandConfig: INetworkBrandConfig = {
 export const partnerBrandConfig: IPartnerBrandConfig = {
   moduleTitle: "our partners",
   articlesPerBrand: 5,
-  articlesPerRow: 4,
+  brandListPerRow: 4,
   configs: {
     [PartnerBrand.Noted]: {
       logo: Logo.Noted,

@@ -34,13 +34,13 @@ export interface IBrandListConfig {
 export interface INetworkBrandConfig {
   moduleTitle: string;
   articlesPerBrand: number;
-  articlesPerRow: number;
+  brandListPerRow: number;
   configs: { [key in NetworkBrand]: IBrandListConfig };
 }
 
 export interface IPartnerBrandConfig {
   moduleTitle: string;
   articlesPerBrand: number;
-  articlesPerRow: number;
+  brandListPerRow: number;
   configs: { [key in PartnerBrand]: IBrandListConfig };
 }

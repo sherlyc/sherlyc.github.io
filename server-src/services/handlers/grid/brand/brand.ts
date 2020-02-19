@@ -24,7 +24,7 @@ export default async function(
   const {
     moduleTitle,
     articlesPerBrand,
-    articlesPerRow,
+    brandListPerRow,
     configs
   } = brandConfig[module];
   const bulletLists = await Promise.all(
@@ -45,7 +45,7 @@ export default async function(
       ...(await handlerRunner(
         {
           type: HandlerInputType.ColumnGrid,
-          content: chunk(bulletLists.slice(0, articlesPerRow))
+          content: chunk(bulletLists.slice(0, brandListPerRow))
         },
         params
       ))
@@ -54,7 +54,7 @@ export default async function(
       ...(await handlerRunner(
         {
           type: HandlerInputType.ColumnGrid,
-          content: chunk(bulletLists.slice(articlesPerRow))
+          content: chunk(bulletLists.slice(brandListPerRow))
         },
         params
       ))
