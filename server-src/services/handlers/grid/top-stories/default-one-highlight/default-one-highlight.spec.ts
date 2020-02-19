@@ -56,7 +56,7 @@ describe("Top Stories Default One", () => {
     imageSrcSet: "1.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: [],
-    boxColor: "black",
+    boxColor: "#333333",
     textColor: "white",
     applyGradient: false
   };
@@ -76,6 +76,8 @@ describe("Top Stories Default One", () => {
 
     const columnGridExpectedInput: IColumnGridHandlerInput = {
       type: HandlerInputType.ColumnGrid,
+      columnGap: 20,
+      border: false,
       content: [[articleAsBigImage], [articleAsFeaturedArticle]]
     };
     expect(handlerRunnerMock).toHaveBeenCalledWith(

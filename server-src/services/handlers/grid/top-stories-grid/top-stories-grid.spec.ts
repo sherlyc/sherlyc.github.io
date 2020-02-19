@@ -60,8 +60,8 @@ describe("Top Stories grid handler", () => {
         mobile: {
           gridTemplateColumns: "1fr",
           gridTemplateRows: "auto auto auto auto auto auto auto auto auto auto",
-          gridColumnGap: "20px",
-          gridRowGap: "20px",
+          gridColumnGap: "0px",
+          gridRowGap: "10px",
           gridBlocks: {
             [TopStoriesGridPositions.Highlight]: {
               border: [],
@@ -138,7 +138,7 @@ describe("Top Stories grid handler", () => {
         tablet: {
           gridTemplateColumns: "1fr 1fr 1fr 1fr",
           gridTemplateRows: "auto auto auto auto",
-          gridColumnGap: "20px",
+          gridColumnGap: "10px",
           gridRowGap: "20px",
           gridBlocks: {
             [TopStoriesGridPositions.Highlight]: {
@@ -217,7 +217,7 @@ describe("Top Stories grid handler", () => {
           gridTemplateColumns: "1fr 1fr 1fr 1fr 300px",
           gridTemplateRows: "auto auto auto",
           gridColumnGap: "20px",
-          gridRowGap: "20px",
+          gridRowGap: "40px",
           gridBlocks: {
             [TopStoriesGridPositions.Highlight]: {
               border: [Border.bottom],

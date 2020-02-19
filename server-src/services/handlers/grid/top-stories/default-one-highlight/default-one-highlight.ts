@@ -17,6 +17,8 @@ export default async function(
 ): Promise<IContentBlock[]> {
   const columnGridHandlerInput: IColumnGridHandlerInput = {
     type: HandlerInputType.ColumnGrid,
+    border: false,
+    columnGap: 20,
     content: [
       [
         contentErrorHandler(
@@ -34,7 +36,7 @@ export default async function(
       [
         contentErrorHandler(
           () =>
-            featuredArticle(articles[1], strapName, "white", "black", false),
+            featuredArticle(articles[1], strapName, "white", "#333333", false),
           HandlerInputType.TopStoriesDefaultOneHighlight,
           Strap.TopStories,
           params

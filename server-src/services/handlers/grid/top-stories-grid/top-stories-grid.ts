@@ -64,14 +64,14 @@ export default async function(
       mobile: {
         gridTemplateColumns: "1fr",
         gridTemplateRows: "auto auto auto auto auto auto auto auto auto auto",
-        gridColumnGap: "20px",
-        gridRowGap: "20px",
+        gridColumnGap: "0px",
+        gridRowGap: "10px",
         gridBlocks: mobile
       },
       tablet: {
         gridTemplateColumns: "1fr 1fr 1fr 1fr",
         gridTemplateRows: "auto auto auto auto",
-        gridColumnGap: "20px",
+        gridColumnGap: "10px",
         gridRowGap: "20px",
         gridBlocks: tablet
       },
@@ -79,7 +79,7 @@ export default async function(
         gridTemplateColumns: "1fr 1fr 1fr 1fr 300px",
         gridTemplateRows: "auto auto auto",
         gridColumnGap: "20px",
-        gridRowGap: "20px",
+        gridRowGap: "40px",
         gridBlocks: desktop
       }
     } as IGridContainer
