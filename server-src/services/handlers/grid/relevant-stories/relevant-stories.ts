@@ -15,23 +15,22 @@ import { getMostPopular } from "../../../adapters/most-popular/most-popular.serv
 
 const getColumnContent = async (
   articlesPromise: Promise<IRawArticle[]>,
-  strapName: string,
-  displayName: string,
-  displayNameColor: string,
+  title: string,
+  titleColor: string,
   handlerRunner: handlerRunnerFunction,
   params: IParams
 ): Promise<IContentBlock[]> => {
   try {
     const articles = await articlesPromise;
     const articleContentBlocks = articles.map((article) =>
-      basicArticleTitleUnit(article, strapName)
+      basicArticleTitleUnit(article, title)
     );
 
     return [
       {
         type: ContentBlockType.ModuleTitle,
-        displayName,
-        displayNameColor
+        displayName: title,
+        displayNameColor: titleColor
       },
       ...(await handlerRunner(
         {
@@ -44,7 +43,7 @@ const getColumnContent = async (
   } catch (error) {
     wrappedLogger.error(
       params.apiRequestId,
-      `Relevant stories handler - Failed to get articles - strapName: ${strapName}`,
+      `Relevant stories handler - Failed to get articles - strap: ${title}`,
       error
     );
     return [];
@@ -64,7 +63,6 @@ export default async function(
       getColumnContent(
         getRawArticles(Strap.LatestNews, totalArticles, params),
         "Latest News",
-        "Latest News",
         "pizzaz",
         handlerRunner,
         params
@@ -72,14 +70,12 @@ export default async function(
       getColumnContent(
         getRawArticles(Strap.EditorPicks, totalArticles, params),
         "Editors' Picks",
-        "Editors' Picks",
         "pizzaz",
         handlerRunner,
         params
       ),
       getColumnContent(
         getMostPopular(totalArticles, params),
-        "Most Popular",
         "Most Popular",
         "pizzaz",
         handlerRunner,
