@@ -122,6 +122,10 @@ const newPage = (): HandlerInput[] => {
       sourceId: Strap.Property
     },
     {
+      type: HandlerInputType.Brand,
+      module: BrandModule.Partner
+    },
+    {
       type: HandlerInputType.NewsSix,
       displayName: "kea kids",
       displayNameColor: "darkblue",

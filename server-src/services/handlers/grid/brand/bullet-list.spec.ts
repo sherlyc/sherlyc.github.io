@@ -67,7 +67,7 @@ describe("Bullet list", () => {
   });
 
   it("should return empty bullet items if failed to retrieve articles", async () => {
-    const config: IBrandConfig = {
+    const config: IBrandListConfig = {
       logo: Logo.DominionPost,
       bulletColor: "red",
       sourceId: Strap.DominionPost
