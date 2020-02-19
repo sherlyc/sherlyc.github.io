@@ -31,7 +31,8 @@ export enum HandlerInputType {
   LargeLeadSixGrid = "LargeLeadSixGrid",
   ListGrid = "ListGrid",
   RelevantStories = "RelevantStories",
+  RelevantStoriesGrid = "RelevantStoriesGrid",
   ColumnGrid = "ColumnGrid",
   Brand = "Brand",
-  BrandGrid = "BrandGrid",
+  BrandGrid = "BrandGrid"
 }

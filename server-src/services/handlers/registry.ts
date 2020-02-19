@@ -17,6 +17,7 @@ import ListGrid from "./grid/list-grid/list-grid";
 import NewsSixGrid from "./grid/news-six-grid/news-six-grid";
 import NewsSix from "./grid/news-six/news-six";
 import RelevantStories from "./grid/relevant-stories/relevant-stories";
+import RelevantStoriesGrid from "./grid/relevant-stories-grid/relevant-stories-grid";
 import SixImageGrid from "./grid/six-image-grid/six-image-grid";
 import SixImage from "./grid/six-image/six-image";
 import TopStoriesGrid from "./grid/top-stories-grid/top-stories-grid";
@@ -78,6 +79,7 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   LargeLeadSix,
   LargeLeadSixGrid,
   RelevantStories,
+  RelevantStoriesGrid,
   ColumnGrid,
   Brand,
   BrandGrid
