@@ -1,15 +1,6 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostBinding,
-  Input,
-  OnInit
-} from "@angular/core";
+import { ChangeDetectionStrategy, Component, HostBinding, Input, OnInit } from "@angular/core";
 import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
-import {
-  IExternalContentDeviceConfig,
-  IExternalContentUnit
-} from "../../../../common/__types__/IExternalContentUnit";
+import { IExternalContentDeviceConfig, IExternalContentUnit } from "../../../../common/__types__/IExternalContentUnit";
 import { DomSanitizer } from "@angular/platform-browser";
 import { MediaQuery } from "../grid-container/__types__/MediaQuery";
 
@@ -33,7 +24,7 @@ export class ExternalContentUnitComponent
   constructor(private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
-    const { url, mobile, tablet = mobile, desktop = tablet } = this.input;
+    const { mobile, tablet = mobile, desktop = tablet } = this.input;
     this.layouts = { mobile, tablet, desktop };
     this.margin = mobile.margin;
   }
