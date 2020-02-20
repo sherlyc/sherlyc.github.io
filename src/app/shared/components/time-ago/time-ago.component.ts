@@ -16,7 +16,7 @@ export class TimeAgoComponent implements OnInit {
   separator?: "left" | "right";
   @Input()
   timestamp!: moment.MomentInput;
-  @Input() textColor = "#616161";
+  @Input() textColor = "#d12421";
   timeAgo!: string;
 
   ngOnInit() {

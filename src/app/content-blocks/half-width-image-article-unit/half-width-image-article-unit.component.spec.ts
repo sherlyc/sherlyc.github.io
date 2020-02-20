@@ -152,5 +152,6 @@ describe("HalfWidthImageArticleUnitComponent", () => {
       By.directive(TimeAgoComponent)
     ).componentInstance;
     expect(timeAgo.timestamp).toEqual(articleData.lastPublishedTime);
+    expect(timeAgo.textColor).toEqual("#616161");
   });
 });
