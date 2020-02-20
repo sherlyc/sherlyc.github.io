@@ -27,11 +27,13 @@ describe("Force Update", () => {
     const expected = [
       {
         type: ContentBlockType.ExternalContentUnit,
-        height: "0",
-        margin: "0",
-        scrollable: false,
         url: "/spade/assets/pwa/uninstall_pwa.html",
-        width: "100%"
+        mobile: {
+          height: "0",
+          margin: "0",
+          scrollable: false,
+          width: "100%"
+        }
       }
     ];
 
