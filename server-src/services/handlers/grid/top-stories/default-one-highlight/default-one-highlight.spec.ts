@@ -41,6 +41,7 @@ describe("Top Stories Default One", () => {
     imageSrc: "sixteenByNineSrc.jpg",
     imageSrcSet: "strap1.jpg 1w",
     layout: BigImageArticleUnitLayout.module,
+    pumped: true,
     lastPublishedTime: 1,
     headlineFlags: []
   };
@@ -56,9 +57,9 @@ describe("Top Stories Default One", () => {
     imageSrcSet: "1.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: [],
-    boxColor: "#333333",
-    textColor: "white",
-    applyGradient: false
+    boxColor: "#333",
+    textColor: "#fff",
+    applyGradient: true
   };
 
   beforeEach(() => {

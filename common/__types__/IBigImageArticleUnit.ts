@@ -9,4 +9,5 @@ export enum BigImageArticleUnitLayout {
 export interface IBigImageArticleUnit extends IArticle {
   type: ContentBlockType.BigImageArticleUnit;
   layout: BigImageArticleUnitLayout;
+  pumped?: boolean;
 }
