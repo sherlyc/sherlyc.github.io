@@ -1,7 +1,7 @@
-import { Component, Input } from "@angular/core";
+import { Component, HostBinding, Input } from "@angular/core";
 import { IResponsiveBigImageArticleUnit } from "../../../../common/__types__/IResponsiveBigImageArticleUnit";
-import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { AnalyticsService } from "../../services/analytics/analytics.service";
 
 @Component({
   selector: "app-responsive-big-image-article",
@@ -10,6 +10,9 @@ import { AnalyticsEventsType } from "../../services/analytics/__types__/Analytic
 })
 export class ResponsiveBigImageArticleComponent {
   @Input() input!: IResponsiveBigImageArticleUnit;
+  @HostBinding("class.pumped") get pumped() {
+    return this.input.pumped;
+  }
   index!: number;
 
   constructor(private analyticsService: AnalyticsService) {}
