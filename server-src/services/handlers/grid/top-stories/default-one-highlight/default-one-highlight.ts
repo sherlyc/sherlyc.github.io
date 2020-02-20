@@ -17,6 +17,8 @@ export default async function(
 ): Promise<IContentBlock[]> {
   const columnGridHandlerInput: IColumnGridHandlerInput = {
     type: HandlerInputType.ColumnGrid,
+    border: false,
+    columnGap: 20,
     content: [
       [
         contentErrorHandler(

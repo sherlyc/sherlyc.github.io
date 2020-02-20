@@ -12,7 +12,7 @@ export const createBulletList = async (
   articlesPerBrand: number,
   params: IParams
 ): Promise<IBulletList> => {
-  const { sourceId, logo, bulletColor } = config;
+  const { sourceId, logo, logoLink, bulletColor } = config;
 
   let articles: IRawArticle[] = [];
   try {
@@ -32,6 +32,7 @@ export const createBulletList = async (
   return {
     type: ContentBlockType.BulletList,
     logo,
+    logoLink,
     items: bulletItems
   };
 };
