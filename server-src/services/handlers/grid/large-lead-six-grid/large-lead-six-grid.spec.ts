@@ -30,7 +30,44 @@ describe("Large Lead Six Grid", () => {
       }
     };
 
-    const desktopAndTablet: IGridConfig = {
+    const desktop: IGridConfig = {
+      gridTemplateColumns: "1fr 1fr 300px",
+      gridTemplateRows: "auto auto",
+      gridColumnGap: "40px",
+      gridRowGap: "40px",
+      gridBlocks: {
+        [LargeLeadSixGridPositions.ModuleTitle]: {
+          columnStart: 1,
+          columnSpan: 3,
+          rowStart: 1,
+          rowSpan: 1,
+          border: []
+        },
+        [LargeLeadSixGridPositions.Left]: {
+          columnStart: 1,
+          columnSpan: 1,
+          rowStart: 2,
+          rowSpan: 1,
+          border: [Border.right]
+        },
+        [LargeLeadSixGridPositions.Middle]: {
+          columnStart: 2,
+          columnSpan: 1,
+          rowStart: 2,
+          rowSpan: 1,
+          border: [Border.right]
+        },
+        [LargeLeadSixGridPositions.Right]: {
+          columnStart: 3,
+          columnSpan: 1,
+          rowStart: 2,
+          rowSpan: 1,
+          border: []
+        }
+      }
+    };
+
+    const tablet: IGridConfig = {
       gridTemplateColumns: "1fr 1fr 300px",
       gridTemplateRows: "auto auto",
       gridColumnGap: "20px",
@@ -107,8 +144,8 @@ describe("Large Lead Six Grid", () => {
     const expectedGridContainer: IGridContainer = {
       type: ContentBlockType.GridContainer,
       items: handlerInput.content,
-      desktop: desktopAndTablet,
-      tablet: desktopAndTablet,
+      desktop,
+      tablet,
       mobile
     };
 
