@@ -326,12 +326,6 @@
           "dedupeFromBaseList": true
         }
       },
-      "strapSponsoredContent": {
-        "ids": ["63868237"],
-        "dedupeRules": {
-          "dedupeFromBaseList": false
-        }
-      },
       "strapMetro": {
         "ids": ["63868237"],
         "dedupeRules": {
