@@ -118,7 +118,6 @@ describe("HalfImageArticleWithoutIntroUnit", () => {
     ).componentInstance;
 
     expect(timeAgo.timestamp).toEqual(articleData.lastPublishedTime);
-    expect(timeAgo.textColor).toEqual("#9a9a9a");
   });
 
   it("should send analytics when clicked", () => {
