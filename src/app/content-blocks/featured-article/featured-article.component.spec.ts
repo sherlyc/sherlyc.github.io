@@ -1,14 +1,14 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { FeaturedArticleComponent } from "./featured-article.component";
-import { SharedModule } from "../../shared/shared.module";
-import { AnalyticsService } from "../../services/analytics/analytics.service";
-import { mockService, ServiceMock } from "../../services/mocks/MockService";
+import { By, TransferState } from "@angular/platform-browser";
+import { Subject } from "rxjs";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IFeaturedArticle } from "../../../../common/__types__/IFeaturedArticle";
-import { By, TransferState } from "@angular/platform-browser";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { ResizeObserverService } from "../../services/resize-observer/resize-observer.service";
-import { Subject } from "rxjs";
+import { SharedModule } from "../../shared/shared.module";
+import { FeaturedArticleComponent } from "./featured-article.component";
 
 describe("FeaturedArticleComponent", () => {
   let component: FeaturedArticleComponent;
@@ -120,5 +120,14 @@ describe("FeaturedArticleComponent", () => {
         color: textColor
       })
     );
+  });
+
+  it("should set pumped class", () => {
+    component.input = { ...articleData, pumped: true };
+    fixture.detectChanges();
+
+    const host = fixture.debugElement.nativeElement;
+
+    expect(host.className).toMatch(/pumped/);
   });
 });

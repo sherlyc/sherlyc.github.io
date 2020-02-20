@@ -78,6 +78,7 @@ describe("Large lead six", () => {
     imageSrc: "sixteenByNineSrc.jpg",
     imageSrcSet: "strap1.jpg 1w",
     layout: BigImageArticleUnitLayout.module,
+    pumped: false,
     lastPublishedTime: 1,
     headlineFlags: []
   };

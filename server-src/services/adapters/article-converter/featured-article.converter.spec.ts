@@ -1,7 +1,7 @@
-import { IRawArticle } from "../__types__/IRawArticle";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { featuredArticle } from "./featured-article.converter";
 import { IFeaturedArticle } from "../../../../common/__types__/IFeaturedArticle";
+import { IRawArticle } from "../__types__/IRawArticle";
+import { featuredArticle } from "./featured-article.converter";
 
 describe("Featured Article", () => {
   it("should convert", () => {
@@ -25,13 +25,15 @@ describe("Featured Article", () => {
     const boxColor = "red";
     const textColor = "white";
     const applyGradient = true;
+    const pumped = true;
 
     const result = featuredArticle(
       fakeArticle,
       strapName,
       textColor,
       boxColor,
-      applyGradient
+      applyGradient,
+      pumped
     );
 
     const expected: IFeaturedArticle = {
@@ -48,7 +50,8 @@ describe("Featured Article", () => {
       headlineFlags: [],
       boxColor,
       textColor,
-      applyGradient
+      applyGradient,
+      pumped
     };
 
     expect(result).toEqual(expected);

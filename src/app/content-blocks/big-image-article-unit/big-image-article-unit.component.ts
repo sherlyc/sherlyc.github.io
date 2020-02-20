@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  Input
+} from "@angular/core";
 import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArticleUnit";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
@@ -12,6 +17,9 @@ import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 })
 export class BigImageArticleUnitComponent implements IContentBlockComponent {
   @Input() input!: IBigImageArticleUnit;
+  @HostBinding("class.pumped") get pumped() {
+    return this.input.pumped;
+  }
   index!: number;
 
   constructor(private analyticsService: AnalyticsService) {}

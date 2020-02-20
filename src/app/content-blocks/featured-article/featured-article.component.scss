@@ -1,5 +1,21 @@
+@import "src/styles/break-points";
+
 :host {
   display: block;
+
+  --title-size: 21px;
+
+  @include desktop {
+    --title-size: 24px;
+  }
+}
+
+:host(.pumped) {
+  --title-size: 24px;
+
+  @include desktop {
+    --title-size: 38px;
+  }
 }
 
 img {
@@ -14,6 +30,11 @@ a {
   &:hover {
     text-decoration: none;
   }
+}
+
+app-headline {
+  margin: 10px 0;
+  margin: calc(var(--title-size) / 2) 0;
 }
 
 .intro {
