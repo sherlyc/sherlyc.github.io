@@ -4,13 +4,13 @@ import { FeatureName } from "../../common/FeatureName";
 import { IParams } from "./__types__/IParams";
 import { HandlerInput } from "./handlers/__types__/HandlerInput";
 import { HandlerInputType } from "./handlers/__types__/HandlerInputType";
+import { BrandModule } from "./handlers/__types__/IBrandHandlerInput";
 import { IContentBlockHandlerInput } from "./handlers/__types__/IContentBlockHandlerInput";
 import handlerRunner from "./handlers/runner";
 import { Section } from "./section";
 import { Strap } from "./strap";
 import config from "./utils/config";
 import logger from "./utils/logger";
-import { BrandModule } from "./handlers/__types__/IBrandHandlerInput";
 
 const homepageStrapsConfig = config.strapConfig!.homepageStraps;
 
@@ -109,7 +109,7 @@ const newPage = (): HandlerInput[] => {
     },
     {
       type: HandlerInputType.Strips,
-      displayName: "Premium",
+      displayName: "premium",
       displayNameColor: "premiumdark",
       sourceId: Strap.Premium,
       strapName: Strap.Premium,
@@ -276,7 +276,7 @@ const newPage = (): HandlerInput[] => {
     },
     {
       type: HandlerInputType.Strips,
-      displayName: "Sponsored Content",
+      displayName: "sponsored content",
       displayNameColor: "darkblue",
       strapName: Strap.SponsoredContent,
       sourceId: Strap.SponsoredContent,
