@@ -3,14 +3,18 @@
 :host {
   display: block;
 
-  --title-size: 16px;
-}
-
-:host(.pumped) {
   --title-size: 21px;
 
   @include desktop {
     --title-size: 24px;
+  }
+}
+
+:host(.pumped) {
+  --title-size: 24px;
+
+  @include desktop {
+    --title-size: 38px;
   }
 }
 
