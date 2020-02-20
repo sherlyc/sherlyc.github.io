@@ -77,4 +77,13 @@ describe("FluidImageComponent", () => {
     simulateResize(FluidImageWidth.m);
     expectImgWidth(FluidImageWidth.l);
   });
+
+  it("should add correct height", () => {
+    expect(component.height).toEqual("56.25%");
+  });
+
+  it("should set height as 0 when image fail to load", () => {
+    component.error();
+    expect(component.height).toEqual("0");
+  });
 });

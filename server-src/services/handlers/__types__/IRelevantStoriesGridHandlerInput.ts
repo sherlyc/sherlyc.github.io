@@ -7,11 +7,8 @@ export interface IRelevantStoriesGridHandlerInput {
 }
 
 export enum RelevantStoriesGridPositions {
-  FirstColumnTitle = "FirstColumnTitle",
-  FirstColumnContent = "FirstColumnContent",
-  SecondColumnTitle = "SecondColumnTitle",
-  SecondColumnContent = "SecondColumnContent",
-  ThirdColumnTitle = "ThirdColumnTitle",
-  ThirdColumnContent = "ThirdColumnContent",
+  FirstColumn = "FirstColumn",
+  SecondColumn = "SecondColumn",
+  ThirdColumn = "ThirdColumn",
   Right = "Right"
 }
