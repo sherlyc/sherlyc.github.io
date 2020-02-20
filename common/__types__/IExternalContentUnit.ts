@@ -8,3 +8,10 @@ export interface IExternalContentUnit {
   margin: string;
   scrollable?: boolean;
 }
+
+export interface IExternalContentDeviceConfig {
+  width: string;
+  height: string;
+  margin: string;
+  scrollable?: boolean;
+}
