@@ -17,7 +17,20 @@ export default async function(
   { content }: ILargeLeadSixGridHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const desktopAndTablet: IGridConfig = {
+  const desktop: IGridConfig = {
+    gridTemplateColumns: "1fr 1fr 300px",
+    gridTemplateRows: "auto auto",
+    gridColumnGap: "40px",
+    gridRowGap: "40px",
+    gridBlocks: {
+      [LargeLeadSixGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 3, []),
+      [LargeLeadSixGridPositions.Left]: gridBlock(2, 1, 1, 1, [Border.right]),
+      [LargeLeadSixGridPositions.Middle]: gridBlock(2, 2, 1, 1, [Border.right]),
+      [LargeLeadSixGridPositions.Right]: gridBlock(2, 3, 1, 1, [])
+    }
+  };
+
+  const tablet: IGridConfig = {
     gridTemplateColumns: "1fr 1fr 300px",
     gridTemplateRows: "auto auto",
     gridColumnGap: "20px",
@@ -49,8 +62,8 @@ export default async function(
     {
       type: ContentBlockType.GridContainer,
       items: content,
-      desktop: desktopAndTablet,
-      tablet: desktopAndTablet,
+      desktop,
+      tablet,
       mobile
     }
   ];

@@ -31,73 +31,84 @@ describe("RuntimeService", () => {
     runtimeService = TestBed.get(RuntimeService);
     transferState = TestBed.get(TransferState);
     windowService = TestBed.get(WindowService);
-
-    windowService.getWindow.mockReturnValue({
-      location: {
-        hostname: "example.com"
-      }
-    });
   });
 
   afterEach(() => {
     process.env = {};
   });
 
-  it("should get env variable in server when env var is set", () => {
-    process.env = { SPADE_ENV: "whatever" };
+  describe("when in server", function() {
+    beforeEach(() => {
+      const isServerSpy = jest.spyOn(runtimeService, "isServer");
+      isServerSpy.mockReturnValue(true);
+    });
 
-    const isServerSpy = jest.spyOn(runtimeService, "isServer");
-    isServerSpy.mockReturnValue(true);
+    it("should get env variable in server when env var is set", () => {
+      process.env = { SPADE_ENV: "whatever" };
 
-    const envVar = runtimeService.getEnvironmentVariable(
-      "SPADE_ENV",
-      "defaultValue"
-    );
+      const envVar = runtimeService.getEnvironmentVariable(
+        "SPADE_ENV",
+        "defaultValue"
+      );
 
-    expect(envVar).toEqual("whatever");
+      expect(envVar).toEqual("whatever");
+    });
+
+    it("should get default env variable in server when env var is not set", () => {
+      const envVar = runtimeService.getEnvironmentVariable(
+        "SPADE_ENV",
+        "defaultValue"
+      );
+
+      expect(envVar).toEqual("defaultValue");
+    });
   });
 
-  it("should get env variable in browser when the domain matches", () => {
-    runtimeService.domainsByEnvironment = {
-      whatever: ["example.com"]
-    };
+  describe("when in browser", () => {
+    beforeEach(() => {
+      const isServerSpy = jest.spyOn(runtimeService, "isServer");
+      isServerSpy.mockReturnValue(false);
+    });
 
-    const isServerSpy = jest.spyOn(runtimeService, "isServer");
-    isServerSpy.mockReturnValue(false);
+    it("should return defaultValue for env in browser when the domain does not match any environment", () => {
+      windowService.getWindow.mockReturnValue({
+        location: {
+          hostname: "example.com"
+        }
+      });
 
-    const envVar = runtimeService.getEnvironmentVariable(
-      "SPADE_ENV",
-      "defaultValue"
+      const envVar = runtimeService.getEnvironmentVariable(
+        "SPADE_ENV",
+        "defaultValue"
+      );
+
+      expect(envVar).toEqual("defaultValue");
+    });
+
+    it.each([
+      ["production", "i.stuff.co.nz"],
+      ["production", "www.stuff.co.nz"],
+      ["production", "experience.expproduction.shift21.ffx.nz"],
+      ["staging", "i-preprod.stuff.co.nz"],
+      ["staging", "experience.expstaging.shift21.ffx.nz"],
+      ["staging", "www-preprod.stuff.co.nz"],
+      ["development", "experience.expdevint.shift21.ffx.nz"]
+    ])(
+      "should return environment as %s when hostname is %s",
+      (expectedEnv: string, hostname: string) => {
+        windowService.getWindow.mockReturnValue({
+          location: {
+            hostname
+          }
+        });
+
+        const envVar = runtimeService.getEnvironmentVariable(
+          "SPADE_ENV",
+          "defaultValue"
+        );
+
+        expect(envVar).toEqual(expectedEnv);
+      }
     );
-
-    expect(envVar).toEqual("whatever");
-  });
-
-  it("should get default env variable in server when env var is not set", () => {
-    const isServerSpy = jest.spyOn(runtimeService, "isServer");
-    isServerSpy.mockReturnValue(true);
-
-    const envVar = runtimeService.getEnvironmentVariable(
-      "SPADE_ENV",
-      "defaultValue"
-    );
-
-    expect(envVar).toEqual("defaultValue");
-  });
-
-  it("should get env variable in browser when the domain does not match any environment", () => {
-    runtimeService.domainsByEnvironment = {
-      whatever: []
-    };
-
-    const isServerSpy = jest.spyOn(runtimeService, "isServer");
-    isServerSpy.mockReturnValue(false);
-
-    const envVar = runtimeService.getEnvironmentVariable(
-      "SPADE_ENV",
-      "defaultValue"
-    );
-
-    expect(envVar).toEqual("defaultValue");
   });
 });

@@ -311,45 +311,5 @@
         "dedupeFromBaseList": false
       }
     }
-  },
-  "overrides": {
-    "staging": {
-      "strapMotoring": {
-        "ids": ["63868237"],
-        "dedupeRules": {
-          "dedupeFromBaseList": true
-        }
-      },
-      "strapSport": {
-        "ids": ["62922196"],
-        "dedupeRules": {
-          "dedupeFromBaseList": true
-        }
-      },
-      "strapSponsoredContent": {
-        "ids": ["63868237"],
-        "dedupeRules": {
-          "dedupeFromBaseList": false
-        }
-      },
-      "strapMetro": {
-        "ids": ["63868237"],
-        "dedupeRules": {
-          "dedupeFromBaseList": false
-        }
-      },
-      "strapBravo": {
-        "ids": ["63868237"],
-        "dedupeRules": {
-          "dedupeFromBaseList": false
-        }
-      },
-      "strapKeaKidsNews": {
-        "ids": ["63868237"],
-        "dedupeRules": {
-          "dedupeFromBaseList": false
-        }
-      }
-    }
   }
 }

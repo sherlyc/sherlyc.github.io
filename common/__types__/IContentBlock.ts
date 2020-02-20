@@ -21,6 +21,7 @@ import { IHalfWidthImageArticleUnit } from "./IHalfWidthImageArticleUnit";
 import { IHeader } from "./IHeader";
 import { IImageLinkUnit } from "./IImageLinkUnit";
 import { IModuleTitle } from "./IModuleTitle";
+import { IModuleSubtitle } from "./IModuleSubtitle";
 import { IRecommendations } from "./IRecommendations";
 import { IResponsiveBigImageArticleUnit } from "./IResponsiveBigImageArticleUnit";
 import { IWeatherUnit } from "./IWeatherUnit";
@@ -53,6 +54,7 @@ export type IContentBlock =
   | IGridContainer
   | IResponsiveBigImageArticleUnit
   | IModuleTitle
+  | IModuleSubtitle
   | IFeaturedArticle
   | IStickyContainer
   | IBulletList;
