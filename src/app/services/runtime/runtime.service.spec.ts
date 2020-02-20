@@ -70,15 +70,12 @@ describe("RuntimeService", () => {
       isServerSpy.mockReturnValue(false);
     });
 
-    it("should get env variable in browser when the domain does not match any environment", () => {
+    it("should return defaultValue for env in browser when the domain does not match any environment", () => {
       windowService.getWindow.mockReturnValue({
         location: {
           hostname: "example.com"
         }
       });
-      runtimeService.domainsByEnvironment = {
-        production: []
-      };
 
       const envVar = runtimeService.getEnvironmentVariable(
         "SPADE_ENV",
