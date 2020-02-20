@@ -23,6 +23,7 @@ import { INewsSixHandlerInput } from "./INewsSixHandlerInput";
 import { IPageHandlerInput } from "./IPageHandlerInput";
 import { IRecommendationsHandlerInput } from "./IRecommendationsHandlerInput";
 import { IRelevantStoriesHandlerInput } from "./IRelevantStoriesHandlerInput";
+import { IRelevantStoriesGridHandlerInput } from "./IRelevantStoriesGridHandlerInput";
 import { ISixImageGridHandlerInput } from "./ISixImageGridHandlerInput";
 import { ISixImageHandlerInput } from "./ISixImageHandlerInput";
 import { IStripsGridHandlerInput } from "./IStripsGridHandlerInput";
@@ -71,6 +72,7 @@ export type HandlerInput =
   | ILargeLeadSixGridHandlerInput
   | IListGridHandlerInput
   | IRelevantStoriesHandlerInput
+  | IRelevantStoriesGridHandlerInput
   | IColumnGridHandlerInput
   | IBrandHandlerInput
   | IBrandGridHandlerInput;
