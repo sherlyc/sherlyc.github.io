@@ -1,15 +1,15 @@
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IParams } from "../../../__types__/IParams";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { getMostPopular } from "../../../adapters/most-popular/most-popular.service";
-import { IRelevantStoriesHandlerInput } from "../../__types__/IRelevantStoriesHandlerInput";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import relevantStoriesHandler from "./relevant-stories";
 import { Strap } from "../../../strap";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { RelevantStoriesGridPositions } from "../../__types__/IRelevantStoriesGridHandlerInput";
-import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
-import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { IRelevantStoriesHandlerInput } from "../../__types__/IRelevantStoriesHandlerInput";
+import relevantStoriesHandler from "./relevant-stories";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../adapters/most-popular/most-popular.service");
@@ -185,7 +185,7 @@ describe("Relevant Stories", () => {
         [RelevantStoriesGridPositions.FirstColumnTitle]: [
           {
             type: ContentBlockType.ModuleTitle,
-            displayName: "Latest News",
+            displayName: "latest news",
             displayNameColor: "pizzaz"
           }
         ],
@@ -193,7 +193,7 @@ describe("Relevant Stories", () => {
         [RelevantStoriesGridPositions.SecondColumnTitle]: [
           {
             type: ContentBlockType.ModuleTitle,
-            displayName: "Editors' Picks",
+            displayName: "editors' picks",
             displayNameColor: "pizzaz"
           }
         ],
@@ -203,7 +203,7 @@ describe("Relevant Stories", () => {
         [RelevantStoriesGridPositions.ThirdColumnTitle]: [
           {
             type: ContentBlockType.ModuleTitle,
-            displayName: "Most Popular",
+            displayName: "most popular",
             displayNameColor: "pizzaz"
           }
         ],

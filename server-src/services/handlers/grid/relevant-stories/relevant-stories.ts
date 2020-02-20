@@ -1,20 +1,20 @@
-import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { handlerRunnerFunction } from "../../runner";
-import { IParams } from "../../../__types__/IParams";
-import { IRelevantStoriesHandlerInput } from "../../__types__/IRelevantStoriesHandlerInput";
-import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
-import { Strap } from "../../../strap";
-import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import wrappedLogger from "../../../utils/logger";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { IParams } from "../../../__types__/IParams";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
+import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
+import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { getMostPopular } from "../../../adapters/most-popular/most-popular.service";
+import { Strap } from "../../../strap";
+import wrappedLogger from "../../../utils/logger";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
   IRelevantStoriesGridHandlerInput,
   RelevantStoriesGridPositions
 } from "../../__types__/IRelevantStoriesGridHandlerInput";
-import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
+import { IRelevantStoriesHandlerInput } from "../../__types__/IRelevantStoriesHandlerInput";
+import { handlerRunnerFunction } from "../../runner";
 
 const createListContent = async (
   articlesPromise: Promise<IRawArticle[]>,
@@ -62,21 +62,21 @@ export default async function(
   ] = await Promise.all([
     createListContent(
       getRawArticles(Strap.LatestNews, totalArticles, params),
-      "Latest News",
+      "latest news",
       "pizzaz",
       handlerRunner,
       params
     ),
     createListContent(
       getRawArticles(Strap.EditorPicks, totalArticles, params),
-      "Editors' Picks",
+      "editors' picks",
       "pizzaz",
       handlerRunner,
       params
     ),
     createListContent(
       getMostPopular(totalArticles, params),
-      "Most Popular",
+      "most popular",
       "pizzaz",
       handlerRunner,
       params
@@ -89,7 +89,7 @@ export default async function(
       [RelevantStoriesGridPositions.FirstColumnTitle]: [
         {
           type: ContentBlockType.ModuleTitle,
-          displayName: "Latest News",
+          displayName: "latest news",
           displayNameColor: "pizzaz"
         }
       ],
@@ -97,7 +97,7 @@ export default async function(
       [RelevantStoriesGridPositions.SecondColumnTitle]: [
         {
           type: ContentBlockType.ModuleTitle,
-          displayName: "Editors' Picks",
+          displayName: "editors' picks",
           displayNameColor: "pizzaz"
         }
       ],
@@ -105,7 +105,7 @@ export default async function(
       [RelevantStoriesGridPositions.ThirdColumnTitle]: [
         {
           type: ContentBlockType.ModuleTitle,
-          displayName: "Most Popular",
+          displayName: "most popular",
           displayNameColor: "pizzaz"
         }
       ],
