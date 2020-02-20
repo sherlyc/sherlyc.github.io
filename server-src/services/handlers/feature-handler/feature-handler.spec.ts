@@ -12,8 +12,11 @@ describe("Feature Handler", () => {
   const fakeBlock = {
     type: ContentBlockType.ExternalContentUnit,
     url: "/abc",
-    width: "200px",
-    height: "100%"
+    mobile: {
+      width: "200px",
+      height: "100%"
+    }
+
   } as IExternalContentUnit;
 
   beforeAll(() => {
@@ -40,8 +43,10 @@ describe("Feature Handler", () => {
             {
               type: HandlerInputType.ExternalContent,
               url: "/abc",
-              width: "200px",
-              height: "100%"
+              mobile: {
+                width: "200px",
+                height: "100%"
+              }
             } as IExternalContentHandlerInput
           ]
         },
@@ -72,8 +77,11 @@ describe("Feature Handler", () => {
             {
               type: HandlerInputType.ExternalContent,
               url: "/abc",
-              width: "200px",
-              height: "100%"
+              mobile: {
+                width: "200px",
+                height: "100%"
+
+              }
             } as IExternalContentHandlerInput
           ]
         },
@@ -89,8 +97,10 @@ describe("Feature Handler", () => {
       const handlerInput = {
         type: HandlerInputType.ExternalContent,
         url: "/abc",
-        width: "200px",
-        height: "100%"
+        mobile: {
+          width: "200px",
+          height: "100%"
+        }
       } as IExternalContentHandlerInput;
 
       const expected = [
