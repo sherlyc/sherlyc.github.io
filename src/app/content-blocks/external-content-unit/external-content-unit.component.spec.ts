@@ -2,13 +2,27 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ExternalContentUnitComponent } from "./external-content-unit.component";
 import { DomSanitizer } from "@angular/platform-browser";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { GlobalStyleDirective } from "../../shared/directives/global-style/global-style.directive";
+import { MediaQuery } from "../grid-container/__types__/MediaQuery";
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 
 describe("ExternalContentUnitComponent", () => {
   let component: ExternalContentUnitComponent;
   let fixture: ComponentFixture<ExternalContentUnitComponent>;
+  const input: IContentBlock = {
+    type: ContentBlockType.ExternalContentUnit,
+    url: "https://example.com",
+    mobile: {
+      height: "320px",
+      width: "100%",
+      margin: "0 0 3px 0",
+      scrollable: false
+    }
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      declarations: [GlobalStyleDirective, ExternalContentUnitComponent],
       providers: [
         {
           provide: DomSanitizer,
@@ -17,8 +31,7 @@ describe("ExternalContentUnitComponent", () => {
             bypassSecurityTrustResourceUrl: (url: string) => url
           }
         }
-      ],
-      declarations: [ExternalContentUnitComponent]
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ExternalContentUnitComponent);
@@ -26,15 +39,11 @@ describe("ExternalContentUnitComponent", () => {
   });
 
   it("should create", () => {
-    component.input = {
-      type: ContentBlockType.ExternalContentUnit,
-      url: "https://example.com",
-      height: "100px",
-      width: "100%",
-      margin: "0 0 3px 0"
-    };
+    component.input = input;
+    console.log(input);
 
     fixture.detectChanges();
+
     expect(component).toBeTruthy();
     expect(
       fixture.debugElement.nativeElement.querySelector("[scrolling=no]")
@@ -43,18 +52,111 @@ describe("ExternalContentUnitComponent", () => {
 
   it("should set scrolling attribute", () => {
     component.input = {
-      type: ContentBlockType.ExternalContentUnit,
-      url: "https://example.com",
-      height: "100px",
-      scrollable: true,
-      width: "100%",
-      margin: "0 0 3px 0"
+      ...input,
+      mobile: {
+        ...input.mobile,
+        scrollable: true
+      }
     };
 
     fixture.detectChanges();
+
     expect(component).toBeTruthy();
     expect(
       fixture.debugElement.nativeElement.querySelector("[scrolling=yes]")
     ).toBeTruthy();
+  });
+
+  it("should set margin", () => {
+    component.input = input;
+
+    fixture.detectChanges();
+
+    expect(component.margin).toEqual(input.mobile.margin);
+  });
+
+  it("should set device css to layouts", () => {
+    const mobileConfig = {
+      height: "320px",
+      width: "100%",
+      margin: "0 0 3px 0",
+      scrollable: false
+    };
+
+    const tabletConfig = {
+      height: "200px",
+      width: "100%",
+      margin: "0 0 5px 0",
+      scrollable: true
+    };
+
+    const desktopConfig = {
+      height: "200",
+      width: "100%",
+      margin: "0 0 10px 0",
+      scrollable: true
+    };
+
+    component.input = {
+      ...input,
+      mobile: mobileConfig,
+      tablet: tabletConfig,
+      desktop: desktopConfig
+    };
+
+    fixture.detectChanges();
+    expect(component.layouts).toEqual({
+      mobile: mobileConfig,
+      tablet: tabletConfig,
+      desktop: desktopConfig
+    });
+  });
+
+  it("should apply the device css", () => {
+    const mobileConfig = {
+      height: "320px",
+      width: "100%",
+      margin: "0 0 3px 0",
+      scrollable: false
+    };
+
+    const tabletConfig = {
+      height: "200px",
+      width: "100%",
+      margin: "0 0 5px 0",
+      scrollable: true
+    };
+
+    const desktopConfig = {
+      height: "200px",
+      width: "100%",
+      margin: "0 0 10px 0",
+      scrollable: true
+    };
+
+    component.input = {
+      ...input,
+      mobile: mobileConfig,
+      tablet: tabletConfig,
+      desktop: desktopConfig
+    };
+
+    const expected = {
+      [MediaQuery.Mobile]: {
+        height: "320px",
+        width: "100%"
+      },
+      [MediaQuery.Tablet]: {
+        height: "200px",
+        width: "100%"
+      },
+      [MediaQuery.Desktop]: {
+        height: "200px",
+        width: "100%"
+      }
+    };
+
+    fixture.detectChanges();
+    expect(component.getCss()).toEqual(expected);
   });
 });

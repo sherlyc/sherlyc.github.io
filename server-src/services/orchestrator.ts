@@ -211,11 +211,13 @@ const newPage = (): HandlerInput[] => {
       linkUrl: "https://play.stuff.co.nz/page/channel-onenews",
       content: {
         type: HandlerInputType.ExternalContent,
-        height: "calc(56% + 216px)",
-        width: "100%",
-        margin: "0 -10px 10px",
         url:
-          "https://www.playwidget.stuff.co.nz/hshelf/5d3fcb25a0e845001caee780"
+          "https://www.playwidget.stuff.co.nz/hshelf/5d3fcb25a0e845001caee780",
+        mobile: {
+          height: "calc(56% + 216px)",
+          width: "100%",
+          margin: "0 -10px 10px"
+        }
       }
     },
     {
@@ -285,10 +287,12 @@ const newPage = (): HandlerInput[] => {
     },
     {
       type: HandlerInputType.ExternalContent,
-      height: "580px",
-      width: "100%",
-      margin: "0 0 3px 0",
-      url: "https://cdn.neighbourly.co.nz/stuff/933/homepage"
+      url: "https://cdn.neighbourly.co.nz/stuff/933/homepage",
+      mobile: {
+        height: "580px",
+        width: "100%",
+        margin: "0 0 3px 0"
+      }
     },
     {
       type: HandlerInputType.Brand,
@@ -323,10 +327,12 @@ const oldPage = (): HandlerInput[] => [
   },
   {
     type: HandlerInputType.ExternalContent,
-    height: "40px",
-    width: "100%",
-    margin: "0 0 3px 0",
-    url: "https://interactives.stuff.co.nz/voyager/2019/2019-mobile.html"
+    url: "https://interactives.stuff.co.nz/voyager/2019/2019-mobile.html",
+    mobile: {
+      height: "40px",
+      width: "100%",
+      margin: "0 0 3px 0"
+    }
   },
   {
     type: HandlerInputType.Banner
@@ -344,10 +350,12 @@ const oldPage = (): HandlerInput[] => [
   },
   {
     type: HandlerInputType.ExternalContent,
-    height: "215px",
-    width: "100%",
-    margin: "0 -10px 20px",
-    url: "https://www.playwidget.stuff.co.nz/shelf/5d06caa81de1c4001f81a46e"
+    url: "https://www.playwidget.stuff.co.nz/shelf/5d06caa81de1c4001f81a46e",
+    mobile: {
+      height: "215px",
+      width: "100%",
+      margin: "0 -10px 20px"
+    }
   },
   {
     type: HandlerInputType.ArticleSection,
@@ -402,19 +410,23 @@ const oldPage = (): HandlerInput[] => [
     linkUrl: "https://play.stuff.co.nz",
     content: {
       type: HandlerInputType.ExternalContent,
-      height: "calc(56% + 216px)",
-      width: "100%",
-      margin: "0 -10px 10px",
-      url: "https://www.playwidget.stuff.co.nz/hshelf/5d3a9a3fa0e845001c7c998a"
+      url: "https://www.playwidget.stuff.co.nz/hshelf/5d3a9a3fa0e845001c7c998a",
+      mobile: {
+        height: "calc(56% + 216px)",
+        width: "100%",
+        margin: "0 -10px 10px"
+      }
     }
   },
   {
     type: HandlerInputType.ExternalContent,
-    height: "48px",
-    width: "100%",
-    margin: "0 0 20px 0",
     url:
-      "https://interactives.stuff.co.nz/2019/05/save-the-planet/qstp-small-uber.html"
+      "https://interactives.stuff.co.nz/2019/05/save-the-planet/qstp-small-uber.html",
+    mobile: {
+      height: "48px",
+      width: "100%",
+      margin: "0 0 20px 0"
+    }
   },
   {
     type: HandlerInputType.ArticleSection,
@@ -483,10 +495,12 @@ const oldPage = (): HandlerInput[] => [
   },
   {
     type: HandlerInputType.ExternalContent,
-    height: "570px",
-    width: "100%",
-    margin: "0 0 20px 0",
-    url: "https://www.neighbourly.co.nz/stuff/strap"
+    url: "https://www.neighbourly.co.nz/stuff/strap",
+    mobile: {
+      height: "570px",
+      width: "100%",
+      margin: "0 0 20px 0"
+    }
   },
   {
     type: HandlerInputType.ArticleSection,
@@ -661,10 +675,12 @@ const oldPage = (): HandlerInput[] => [
     linkUrl: "https://play.stuff.co.nz/page/channel-onenews",
     content: {
       type: HandlerInputType.ExternalContent,
-      height: "calc(56% + 216px)",
-      width: "100%",
-      margin: "0 -10px 10px",
-      url: "https://www.playwidget.stuff.co.nz/hshelf/5d3fcb25a0e845001caee780"
+      url: "https://www.playwidget.stuff.co.nz/hshelf/5d3fcb25a0e845001caee780",
+      mobile: {
+        height: "calc(56% + 216px)",
+        width: "100%",
+        margin: "0 -10px 10px"
+      }
     }
   },
   {
@@ -778,9 +794,11 @@ const oldPage = (): HandlerInput[] => [
   },
   {
     type: HandlerInputType.ExternalContent,
-    height: "580px",
-    width: "100%",
-    margin: "0 0 3px 0",
-    url: "https://cdn.neighbourly.co.nz/stuff/933/homepage"
+    url: "https://cdn.neighbourly.co.nz/stuff/933/homepage",
+    mobile: {
+      height: "580px",
+      width: "100%",
+      margin: "0 0 3px 0"
+    }
   }
 ];
