@@ -1,10 +1,19 @@
 document.addEventListener("NavigationEnd", () => {
   setTimeout(() => {
-    document.querySelectorAll("app-basic-ad-unit").forEach((node, index) => {
-      if (index % 5 === 0) {
-        node.classList.add("ad-container");
-        node.innerHTML = "Ad content dynamic";
+    Array.from(document.querySelectorAll("app-sticky-container")).forEach(
+      (node) => {
+        node.style.height = "100%";
       }
-    });
+    );
+
+    Array.from(document.querySelectorAll("app-basic-ad-unit")).forEach(
+      (node) => {
+        node.classList.add("ad-container");
+        node.innerHTML = "Ad";
+        node.style.display = "block";
+        node.style.height = "100%";
+        node.style.backgroundColor = "#f7f7f7";
+      }
+    );
   }, 100);
 });
