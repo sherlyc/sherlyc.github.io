@@ -2,7 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   HostBinding,
-  Input
+  Input,
+  OnInit
 } from "@angular/core";
 import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArticleUnit";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
@@ -15,14 +16,17 @@ import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
   styleUrls: ["./big-image-article-unit.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BigImageArticleUnitComponent implements IContentBlockComponent {
+export class BigImageArticleUnitComponent
+  implements IContentBlockComponent, OnInit {
   @Input() input!: IBigImageArticleUnit;
-  @HostBinding("class.pumped") get pumped() {
-    return this.input.pumped;
-  }
+  @HostBinding("class.pumped") pumped = false;
   index!: number;
 
   constructor(private analyticsService: AnalyticsService) {}
+
+  ngOnInit(): void {
+    this.pumped = !!this.input.pumped;
+  }
 
   sendAnalytics() {
     const { strapName, title, id } = this.input;
