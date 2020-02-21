@@ -210,12 +210,14 @@ const newPage = (): HandlerInput[] => {
       displayNameColor: "darkblue",
       linkUrl: "https://play.stuff.co.nz/page/channel-onenews",
       content: {
-        type: HandlerInputType.ExternalContent,
-        height: "calc(56% + 216px)",
-        width: "100%",
-        margin: "0 -10px 10px",
+        type: HandlerInputType.ResponsiveExternalContent,
         url:
-          "https://www.playwidget.stuff.co.nz/hshelf/5d3fcb25a0e845001caee780"
+          "https://www.playwidget.stuff.co.nz/hshelf/5d3fcb25a0e845001caee780",
+        mobile: {
+          height: "calc(56% + 216px)",
+          width: "100%",
+          margin: "0 -10px 10px"
+        }
       }
     },
     {
