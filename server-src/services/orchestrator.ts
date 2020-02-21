@@ -63,7 +63,36 @@ const newPage = (): HandlerInput[] => {
       strapName: `${homepageAdPrefix}TopStoriesDefaultOne`
     },
     {
+      type: HandlerInputType.ResponsiveExternalContent,
+      url: "https://interactives.stuff.co.nz/voyager/2019/2019-mobile.html",
+      mobile: {
+        height: "40px",
+        width: "100%",
+        margin: "20px 0"
+      }
+    },
+    {
       type: HandlerInputType.RelevantStories
+    },
+    {
+      type: HandlerInputType.ResponsiveExternalContent,
+      url:
+        "https://interactives.stuff.co.nz/live/homepage/uber/index-editorial-pointer.html",
+      mobile: {
+        height: "320px",
+        width: "100%",
+        margin: "20px 0"
+      },
+      tablet: {
+        height: "320px",
+        width: "100%",
+        margin: "20px 0"
+      },
+      desktop: {
+        height: "200px",
+        width: "100%",
+        margin: "20px 0"
+      }
     },
     {
       type: HandlerInputType.SixImage,
