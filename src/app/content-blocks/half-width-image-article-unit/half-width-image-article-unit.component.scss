@@ -15,11 +15,6 @@ a {
 
 .image {
   overflow: hidden;
-  margin-bottom: 10px;
-}
-
-.headline {
-  margin-bottom: 10px;
 }
 
 .intro {
@@ -31,4 +26,8 @@ a {
 
 p {
   margin: 0 0 10px 0;
+}
+
+app-headline {
+  margin: 10px 0 8px;
 }

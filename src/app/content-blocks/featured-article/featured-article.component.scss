@@ -39,11 +39,6 @@ a {
   }
 }
 
-app-headline {
-  margin: 10px 0;
-  margin: calc(var(--title-size) / 2) 0;
-}
-
 .intro {
   font-size: 15px;
   font-style: normal;
@@ -53,4 +48,9 @@ app-headline {
 
 p {
   margin: 0;
+}
+
+app-headline {
+  margin: 10px 0;
+  margin: calc(var(--title-size) * 0.3) 0 calc(var(--title-size) * 0.2);
 }
