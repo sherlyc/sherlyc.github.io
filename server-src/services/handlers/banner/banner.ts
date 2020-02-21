@@ -23,30 +23,37 @@ const getActiveBanner = (banners: IBannerResponse[]) => {
 
 const defaultExternalContentHandlerInput: Partial<IExternalContentHandlerInput> = {
   type: HandlerInputType.ExternalContent,
-  width: "100%",
-  margin: "0 0 10px 0",
-  height: "50px"
+  mobile: {
+    height: "50px",
+    width: "100%",
+    margin: "0 0 10px 0"
+  }
 };
 
-export default async function(
-  handlerRunner: handlerRunnerFunction,
-  {}: IBannerHandlerInput,
-  params: IParams
-): Promise<IContentBlock[]> {
-  try {
-    const banners = await getBanner(params);
-    const activeBanner = getActiveBanner(banners);
-    return activeBanner
-      ? await handlerRunner(
+  export default async function(
+    handlerRunner: handlerRunnerFunction,
+    {}: IBannerHandlerInput,
+    params: IParams
+  ): Promise<IContentBlock[]> {
+    try {
+      const banners = await getBanner(params);
+      const activeBanner = getActiveBanner(banners);
+      return activeBanner
+        ? await handlerRunner(
           {
             ...defaultExternalContentHandlerInput,
-            ...activeBanner.banner
+            url: activeBanner.banner.url,
+            mobile: {
+              ...defaultExternalContentHandlerInput.mobile,
+              height: activeBanner.banner.height,
+            }
           } as IExternalContentHandlerInput,
           params
         )
-      : [];
-  } catch (error) {
-    logger.error(params.apiRequestId, `Banner handler error`, error);
-    return [];
+        : [];
+    } catch (error) {
+      logger.error(params.apiRequestId, `Banner handler error`, error);
+      return [];
+    }
   }
-}
+
