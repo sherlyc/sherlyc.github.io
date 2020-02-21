@@ -12,9 +12,7 @@ import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 export class FeaturedArticleComponent
   implements IContentBlockComponent, OnInit {
   @Input() input!: IFeaturedArticle;
-  @HostBinding("class.pumped") get pumped() {
-    return this.input.pumped;
-  }
+  @HostBinding("class.pumped") pumped = false;
   index?: number;
 
   boxStyle = {};
@@ -25,6 +23,7 @@ export class FeaturedArticleComponent
     this.boxStyle = this.input.applyGradient
       ? this.gradientBoxStyle()
       : this.solidBoxStyle();
+    this.pumped = !!this.input.pumped;
   }
 
   gradientBoxStyle() {
