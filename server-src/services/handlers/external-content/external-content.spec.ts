@@ -31,23 +31,10 @@ describe("ExternalContentHandler", () => {
       handlerRunnerMock,
       {
         type: HandlerInputType.ExternalContent,
+        width: "100%",
+        height: "300px",
         url: "https://example.com",
-        mobile: {
-          height: "320px",
-          width: "100%",
-          margin: "10px"
-        },
-        tablet: {
-          height: "200px",
-          width: "100%",
-          margin: "15px"
-        },
-        desktop: {
-          height: "200px",
-          width: "100%",
-          margin: "20px",
-          scrollable: true
-        }
+        margin: "10px"
       },
       params
     )) as IExternalContentUnit[];
@@ -55,23 +42,10 @@ describe("ExternalContentHandler", () => {
     const expectedResult: IContentBlock[] = [
       {
         type: ContentBlockType.ExternalContentUnit,
+        width: "100%",
+        height: "300px",
         url: "https://example.com",
-        mobile: {
-          height: "320px",
-          width: "100%",
-          margin: "10px"
-        },
-        tablet: {
-          height: "200px",
-          width: "100%",
-          margin: "15px"
-        },
-        desktop: {
-          height: "200px",
-          width: "100%",
-          margin: "20px",
-          scrollable: true
-        }
+        margin: "10px"
       } as IExternalContentUnit
     ];
 
@@ -88,13 +62,11 @@ describe("ExternalContentHandler", () => {
       handlerRunnerMock,
       {
         type: HandlerInputType.ExternalContent,
-        url: "https://example.com",
-        mobile: {
-          width: "100%",
-          height: "300px",
-          margin: "10px",
-          scrollable: true
-        }
+        width: "100%",
+        height: "300px",
+        margin: "10px",
+        scrollable: true,
+        url: "https://example.com"
       },
       params
     )) as IExternalContentUnit[];
@@ -102,13 +74,11 @@ describe("ExternalContentHandler", () => {
     const expectedResult: IContentBlock[] = [
       {
         type: ContentBlockType.ExternalContentUnit,
-        url: "https://example.com",
-        mobile: {
-          width: "100%",
-          height: "300px",
-          margin: "10px",
-          scrollable: true
-        }
+        width: "100%",
+        height: "300px",
+        margin: "10px",
+        scrollable: true,
+        url: "https://example.com"
       } as IExternalContentUnit
     ];
 
@@ -125,13 +95,11 @@ describe("ExternalContentHandler", () => {
       handlerRunnerMock,
       {
         type: HandlerInputType.ExternalContent,
-        url,
-        mobile: {
-          height: "300px",
-          width: "100%",
-          margin: "10px",
-          scrollable: true
-        }
+        width: "100%",
+        height: "300px",
+        margin: "10px",
+        scrollable: true,
+        url
       },
       params
     )) as IExternalContentUnit[];

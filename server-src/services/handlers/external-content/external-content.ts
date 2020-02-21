@@ -8,7 +8,7 @@ import logger from "../../utils/logger";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  { url, mobile, desktop, tablet }: IExternalContentHandlerInput,
+  { url, height, width, margin, scrollable }: IExternalContentHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   try {
@@ -27,9 +27,10 @@ export default async function(
     {
       type: ContentBlockType.ExternalContentUnit,
       url,
-      mobile,
-      tablet,
-      desktop
+      width,
+      height,
+      margin,
+      scrollable
     }
   ];
 }

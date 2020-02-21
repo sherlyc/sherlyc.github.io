@@ -18,12 +18,10 @@ export default async function(
       {
         type: ContentBlockType.ExternalContentUnit,
         url: "/spade/assets/pwa/uninstall_pwa.html",
-        mobile: {
-          height: "0",
-          width: "100%",
-          margin: "0",
-          scrollable: false
-        }
+        width: "100%",
+        height: "0",
+        margin: "0",
+        scrollable: false
       }
     ];
   } else {

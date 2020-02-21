@@ -25,7 +25,7 @@ describe("BannerHandler", () => {
     startDateTimeUTC: "2019-09-08T17:00:00",
     endDateTimeUTC: "2019-09-15T11:00:00",
     banner: {
-      height: "100px",
+      height: "50px",
       url: "https://uber2.html"
     }
   };
@@ -33,11 +33,9 @@ describe("BannerHandler", () => {
   const outsideOfAnyDateRange = "2019-09-15T11:00:01+00:00";
   const defaultExternalContentBlock: Partial<IExternalContentUnit> = {
     type: ContentBlockType.ExternalContentUnit,
-    mobile: {
-      height: "80px",
-      width: "100%",
-      margin: "0 0 10px 0"
-    }
+    height: "50px",
+    width: "100%",
+    margin: "0 0 10px 0"
   };
 
   beforeEach(() => {
@@ -54,18 +52,12 @@ describe("BannerHandler", () => {
     (global as any).Date.now = () =>
       new Date(withinBannerOneDateRange).getTime();
     (getBanner as jest.Mock).mockResolvedValue(bannerResponse);
-
-    const externalContentUnit = {
-      type: ContentBlockType.ExternalContentUnit,
-      url : bannerOne.banner.url,
-      mobile: {
-        height: bannerOne.banner.height,
-        margin: "0 0 10px 0",
-        width: "100%"
-      }
-    }
     handlerRunnerMock.mockResolvedValue([
-      externalContentUnit
+      {
+        ...defaultExternalContentBlock,
+        url: bannerOne.banner.url,
+        height: bannerOne.banner.height
+      }
     ]);
 
     const contentBlocks = await bannerHandler(
@@ -75,7 +67,13 @@ describe("BannerHandler", () => {
     );
 
     expect(contentBlocks).toHaveLength(1);
-    expect(contentBlocks[0]).toEqual(externalContentUnit);
+    expect(contentBlocks[0]).toEqual({
+      type: ContentBlockType.ExternalContentUnit,
+      height: bannerOne.banner.height,
+      url: bannerOne.banner.url,
+      margin: "0 0 10px 0",
+      width: "100%"
+    });
   });
 
   it("should delegate creation of ExternalContentUnit", async () => {
@@ -85,28 +83,28 @@ describe("BannerHandler", () => {
       new Date(withinBannerOneDateRange).getTime();
     (getBanner as jest.Mock).mockResolvedValue(bannerResponse);
 
-    const externalContentBlocks = [{
-      ...defaultExternalContentBlock,
-      url : bannerOne.banner.url,
-      mobile: {
-        ...defaultExternalContentBlock.mobile,
-        height: bannerOne.banner.height,
+    const externalContentBlocks = [
+      {
+        ...defaultExternalContentBlock,
+        url: bannerOne.banner.url,
+        height: bannerOne.banner.height
       }
-    }]
-
+    ];
     handlerRunnerMock.mockResolvedValue(externalContentBlocks);
 
     await bannerHandler(handlerRunnerMock, {} as IBannerHandlerInput, params);
 
     expect(handlerRunnerMock).toHaveBeenCalledTimes(1);
-    expect(handlerRunnerMock).toHaveBeenCalledWith({
-      type: HandlerInputType.ExternalContent,
-      url: bannerOne.banner.url,
-      mobile: {
+    expect(handlerRunnerMock).toHaveBeenCalledWith(
+      {
+        type: HandlerInputType.ExternalContent,
         width: "100%",
         margin: "0 0 10px 0",
         height: bannerOne.banner.height,
-      }}, params);
+        url: bannerOne.banner.url
+      },
+      params
+    );
   });
 
   it("should return an empty content block when there is no active banner", async () => {
@@ -140,5 +138,3 @@ describe("BannerHandler", () => {
     expect(loggerSpy).toHaveBeenCalled();
   });
 });
-
-
