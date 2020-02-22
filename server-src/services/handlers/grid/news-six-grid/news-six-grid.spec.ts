@@ -104,20 +104,20 @@ describe("News six grid handler", () => {
           }
         },
         tablet: {
-          gridTemplateColumns: "1fr 1fr 1fr 1fr 300px",
-          gridTemplateRows: "auto auto auto",
+          gridTemplateColumns: "1fr 300px",
+          gridTemplateRows: "auto auto auto auto auto auto",
           gridColumnGap: "20px",
           gridRowGap: "20px",
           gridBlocks: {
             BigTopLeft: {
-              columnSpan: 4,
+              columnSpan: 1,
               columnStart: 1,
               rowSpan: 1,
               rowStart: 2,
               border: ["bottom"]
             },
             ModuleTitle: {
-              columnSpan: 5,
+              columnSpan: 2,
               columnStart: 1,
               rowSpan: 1,
               rowStart: 1,
@@ -128,33 +128,33 @@ describe("News six grid handler", () => {
               columnStart: 1,
               rowSpan: 1,
               rowStart: 3,
-              border: ["right"]
+              border: ["bottom"]
             },
             SmallBottomFourth: {
               columnSpan: 1,
-              columnStart: 4,
+              columnStart: 1,
               rowSpan: 1,
-              rowStart: 3,
+              rowStart: 6,
               border: []
             },
             SmallBottomSecond: {
               columnSpan: 1,
-              columnStart: 2,
+              columnStart: 1,
               rowSpan: 1,
-              rowStart: 3,
-              border: ["right"]
+              rowStart: 4,
+              border: ["bottom"]
             },
             SmallBottomThird: {
               columnSpan: 1,
-              columnStart: 3,
+              columnStart: 1,
               rowSpan: 1,
-              rowStart: 3,
-              border: ["right"]
+              rowStart: 5,
+              border: ["bottom"]
             },
             SmallTopRight: {
               columnSpan: 1,
-              columnStart: 5,
-              rowSpan: 2,
+              columnStart: 2,
+              rowSpan: 5,
               rowStart: 2,
               border: ["left"]
             }
