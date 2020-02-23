@@ -1,5 +1,11 @@
-.wrapper {
+:host {
   display: inline-block;
+  vertical-align: middle;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
 }
 
 .time-ago {
