@@ -35,7 +35,6 @@ export class ResponsiveExternalContentComponent
   ngOnInit(): void {
     const { mobile, tablet = mobile, desktop = tablet } = this.input;
     this.layouts = { mobile, tablet, desktop };
-    this.margin = mobile.margin;
   }
 
   getUrl() {
@@ -48,15 +47,18 @@ export class ResponsiveExternalContentComponent
     return {
       [MediaQuery.Mobile]: {
         height: mobile.height,
-        width: mobile.width
+        width: mobile.width,
+        margin: mobile.margin
       },
       [MediaQuery.Tablet]: {
         height: tablet.height,
-        width: tablet.width
+        width: tablet.width,
+        margin: tablet.margin
       },
       [MediaQuery.Desktop]: {
         height: desktop.height,
-        width: desktop.width
+        width: desktop.width,
+        margin: desktop.margin
       }
     };
   }

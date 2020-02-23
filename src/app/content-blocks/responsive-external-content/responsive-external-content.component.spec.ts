@@ -5,6 +5,7 @@ import { ContentBlockType } from "../../../../common/__types__/ContentBlockType"
 import { GlobalStyleDirective } from "../../shared/directives/global-style/global-style.directive";
 import { MediaQuery } from "../grid-container/__types__/MediaQuery";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import { IResponsiveExternalContentDeviceConfig } from "../../../../common/__types__/IResponsiveExternalContent";
 
 describe("ResponsiveExternalContentComponent", () => {
   let component: ResponsiveExternalContentComponent;
@@ -66,30 +67,22 @@ describe("ResponsiveExternalContentComponent", () => {
     ).toBeTruthy();
   });
 
-  it("should set margin", () => {
-    component.input = input;
-
-    fixture.detectChanges();
-
-    expect(component.margin).toEqual(input.mobile.margin);
-  });
-
   it("should set device css to layouts", () => {
-    const mobileConfig = {
+    const mobileConfig: IResponsiveExternalContentDeviceConfig = {
       height: "320px",
       width: "100%",
       margin: "0 0 3px 0",
       scrollable: false
     };
 
-    const tabletConfig = {
+    const tabletConfig: IResponsiveExternalContentDeviceConfig = {
       height: "200px",
       width: "100%",
       margin: "0 0 5px 0",
       scrollable: true
     };
 
-    const desktopConfig = {
+    const desktopConfig: IResponsiveExternalContentDeviceConfig = {
       height: "200",
       width: "100%",
       margin: "0 0 10px 0",
@@ -112,21 +105,21 @@ describe("ResponsiveExternalContentComponent", () => {
   });
 
   it("should apply the device css", () => {
-    const mobileConfig = {
+    const mobileConfig: IResponsiveExternalContentDeviceConfig = {
       height: "320px",
       width: "100%",
       margin: "0 0 3px 0",
       scrollable: false
     };
 
-    const tabletConfig = {
+    const tabletConfig: IResponsiveExternalContentDeviceConfig = {
       height: "200px",
       width: "100%",
       margin: "0 0 5px 0",
       scrollable: true
     };
 
-    const desktopConfig = {
+    const desktopConfig: IResponsiveExternalContentDeviceConfig = {
       height: "200px",
       width: "100%",
       margin: "0 0 10px 0",
@@ -142,16 +135,19 @@ describe("ResponsiveExternalContentComponent", () => {
 
     const expected = {
       [MediaQuery.Mobile]: {
-        height: "320px",
-        width: "100%"
+        height: mobileConfig.height,
+        width: mobileConfig.width,
+        margin: mobileConfig.margin
       },
       [MediaQuery.Tablet]: {
-        height: "200px",
-        width: "100%"
+        height: tabletConfig.height,
+        width: tabletConfig.width,
+        margin: tabletConfig.margin
       },
       [MediaQuery.Desktop]: {
-        height: "200px",
-        width: "100%"
+        height: desktopConfig.height,
+        width: desktopConfig.width,
+        margin: desktopConfig.margin
       }
     };
 
