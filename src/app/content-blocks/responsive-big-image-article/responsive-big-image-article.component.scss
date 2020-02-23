@@ -39,11 +39,12 @@ img {
 
 .image {
   overflow: hidden;
+  margin-bottom: 10px;
 }
 
-@include mobile {
+@include desktop {
   .image {
-    margin-bottom: 10px;
+    margin-bottom: 0;
   }
 }
 
