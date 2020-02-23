@@ -6,6 +6,7 @@ import { ConfigService } from "../config/config.service";
 import { WindowService } from "../window/window.service";
 import { RuntimeService } from "../runtime/runtime.service";
 import { ScriptId } from "../script-injector/__types__/ScriptId";
+import { LoggerService } from "../logger/logger.service";
 
 describe("DtmService", () => {
   let dtmService: DtmService;
@@ -32,6 +33,10 @@ describe("DtmService", () => {
         {
           provide: RuntimeService,
           useClass: mockService(RuntimeService)
+        },
+        {
+          provide: LoggerService,
+          useClass: mockService(LoggerService)
         }
       ]
     });

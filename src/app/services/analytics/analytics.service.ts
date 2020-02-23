@@ -101,9 +101,10 @@ export class AnalyticsService implements IAnalyticsService {
   }
 
   setup() {
-    this.windowService.getWindow().spade = 1;
     const productionEnv = "production";
-    this.windowService.getWindow().digitalData = {
+    const window = this.windowService.getWindow();
+    window.spade = 1;
+    window.digitalData = {
       page: {
         pageInfo: {
           pageID: home,
