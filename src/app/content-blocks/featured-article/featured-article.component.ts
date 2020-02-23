@@ -1,4 +1,9 @@
-import { Component, Input, OnInit } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit
+} from "@angular/core";
 import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 import { IFeaturedArticle } from "../../../../common/__types__/IFeaturedArticle";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
@@ -7,7 +12,8 @@ import { AnalyticsService } from "../../services/analytics/analytics.service";
 @Component({
   selector: "app-text-box-article",
   templateUrl: "./featured-article.component.html",
-  styleUrls: ["./featured-article.component.scss"]
+  styleUrls: ["./featured-article.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FeaturedArticleComponent
   implements IContentBlockComponent, OnInit {
