@@ -39,6 +39,7 @@ img {
 
 .image {
   overflow: hidden;
+  margin-bottom: 10px;
 }
 
 .intro {
@@ -53,6 +54,6 @@ p {
 }
 
 app-headline {
-  margin: 10px 0;
-  margin: calc(var(--title-size) / 2) 0;
+  margin-bottom: 10px;
+  margin-bottom: calc(var(--title-size) / 2);
 }
