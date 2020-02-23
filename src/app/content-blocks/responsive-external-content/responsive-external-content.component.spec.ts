@@ -13,11 +13,11 @@ describe("ResponsiveExternalContentComponent", () => {
   const input: IContentBlock = {
     type: ContentBlockType.ResponsiveExternalContent,
     url: "https://example.com",
+    scrollable: false,
     mobile: {
       height: "320px",
       width: "100%",
-      margin: "0 0 3px 0",
-      scrollable: false
+      margin: "0 0 3px 0"
     }
   };
 
@@ -53,9 +53,9 @@ describe("ResponsiveExternalContentComponent", () => {
   it("should set scrolling attribute", () => {
     component.input = {
       ...input,
+      scrollable: true,
       mobile: {
-        ...input.mobile,
-        scrollable: true
+        ...input.mobile
       }
     };
 
@@ -71,22 +71,19 @@ describe("ResponsiveExternalContentComponent", () => {
     const mobileConfig: IResponsiveExternalContentDeviceConfig = {
       height: "320px",
       width: "100%",
-      margin: "0 0 3px 0",
-      scrollable: false
+      margin: "0 0 3px 0"
     };
 
     const tabletConfig: IResponsiveExternalContentDeviceConfig = {
       height: "200px",
       width: "100%",
-      margin: "0 0 5px 0",
-      scrollable: true
+      margin: "0 0 5px 0"
     };
 
     const desktopConfig: IResponsiveExternalContentDeviceConfig = {
       height: "200",
       width: "100%",
-      margin: "0 0 10px 0",
-      scrollable: true
+      margin: "0 0 10px 0"
     };
 
     component.input = {
@@ -108,22 +105,19 @@ describe("ResponsiveExternalContentComponent", () => {
     const mobileConfig: IResponsiveExternalContentDeviceConfig = {
       height: "320px",
       width: "100%",
-      margin: "0 0 3px 0",
-      scrollable: false
+      margin: "0 0 3px 0"
     };
 
     const tabletConfig: IResponsiveExternalContentDeviceConfig = {
       height: "200px",
       width: "100%",
-      margin: "0 0 5px 0",
-      scrollable: true
+      margin: "0 0 5px 0"
     };
 
     const desktopConfig: IResponsiveExternalContentDeviceConfig = {
       height: "200px",
       width: "100%",
-      margin: "0 0 10px 0",
-      scrollable: true
+      margin: "0 0 10px 0"
     };
 
     component.input = {
