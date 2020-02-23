@@ -13,7 +13,6 @@ describe("ResponsiveExternalContentComponent", () => {
   const input: IContentBlock = {
     type: ContentBlockType.ResponsiveExternalContent,
     url: "https://example.com",
-    scrollable: false,
     mobile: {
       height: "320px",
       width: "100%",
@@ -39,7 +38,7 @@ describe("ResponsiveExternalContentComponent", () => {
     component = fixture.componentInstance;
   });
 
-  it("should create", () => {
+  it("should create and default to no scrolling", () => {
     component.input = input;
 
     fixture.detectChanges();
