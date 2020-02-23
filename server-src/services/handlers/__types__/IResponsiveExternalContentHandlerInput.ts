@@ -4,6 +4,7 @@ import { IResponsiveExternalContentDeviceConfig } from "../../../../common/__typ
 export interface IResponsiveExternalContentHandlerInput {
   type: HandlerInputType.ResponsiveExternalContent;
   url: string;
+  scrollable?: boolean;
   mobile: IResponsiveExternalContentDeviceConfig;
   tablet?: IResponsiveExternalContentDeviceConfig;
   desktop?: IResponsiveExternalContentDeviceConfig;

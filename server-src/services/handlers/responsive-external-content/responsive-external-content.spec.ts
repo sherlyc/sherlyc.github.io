@@ -1,12 +1,12 @@
 import responsiveExternalContent from "./responsive-external-content";
 import { IParams } from "../../__types__/IParams";
 import { HandlerInputType } from "../__types__/HandlerInputType";
-import { IExternalContentUnit } from "../../../../common/__types__/IExternalContentUnit";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 import cacheHttp from "../../utils/cache-http";
 import wrappedLogger from "../../utils/logger";
 import { IResponsiveExternalContent } from "../../../../common/__types__/IResponsiveExternalContent";
+import { IResponsiveExternalContentHandlerInput } from "../__types__/IResponsiveExternalContentHandlerInput";
 
 jest.mock("../../utils/cache-http");
 jest.mock("../../utils/logger");
@@ -46,10 +46,9 @@ describe("Responsive External Content Handler", () => {
         desktop: {
           height: "200px",
           width: "100%",
-          margin: "20px",
-          scrollable: true
+          margin: "20px"
         }
-      },
+      } as IResponsiveExternalContentHandlerInput,
       params
     )) as IResponsiveExternalContent[];
 
@@ -70,8 +69,7 @@ describe("Responsive External Content Handler", () => {
         desktop: {
           height: "200px",
           width: "100%",
-          margin: "20px",
-          scrollable: true
+          margin: "20px"
         }
       } as IResponsiveExternalContent
     ];
@@ -90,13 +88,13 @@ describe("Responsive External Content Handler", () => {
       {
         type: HandlerInputType.ResponsiveExternalContent,
         url: "https://example.com",
+        scrollable: true,
         mobile: {
           width: "100%",
           height: "300px",
-          margin: "10px",
-          scrollable: true
+          margin: "10px"
         }
-      },
+      } as IResponsiveExternalContentHandlerInput,
       params
     )) as IResponsiveExternalContent[];
 
@@ -104,11 +102,11 @@ describe("Responsive External Content Handler", () => {
       {
         type: ContentBlockType.ResponsiveExternalContent,
         url: "https://example.com",
+        scrollable: true,
         mobile: {
           width: "100%",
           height: "300px",
-          margin: "10px",
-          scrollable: true
+          margin: "10px"
         }
       } as IResponsiveExternalContent
     ];
@@ -127,13 +125,13 @@ describe("Responsive External Content Handler", () => {
       {
         type: HandlerInputType.ResponsiveExternalContent,
         url,
+        scrollable: true,
         mobile: {
           height: "300px",
           width: "100%",
-          margin: "10px",
-          scrollable: true
+          margin: "10px"
         }
-      },
+      } as IResponsiveExternalContentHandlerInput,
       params
     )) as IResponsiveExternalContent[];
 
