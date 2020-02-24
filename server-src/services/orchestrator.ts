@@ -315,11 +315,13 @@ const newPage = (): HandlerInput[] => {
       articleFormat: ContentBlockType.BigImageArticleUnit
     },
     {
-      type: HandlerInputType.ExternalContent,
-      height: "580px",
-      width: "100%",
-      margin: "0 0 3px 0",
-      url: "https://cdn.neighbourly.co.nz/stuff/933/homepage"
+      type: HandlerInputType.ResponsiveExternalContent,
+      url: "https://cdn.neighbourly.co.nz/stuff/933/homepage",
+      mobile: {
+        height: "580px",
+        width: "100%",
+        margin: "0 0 3px 0"
+      }
     },
     {
       type: HandlerInputType.Brand,
