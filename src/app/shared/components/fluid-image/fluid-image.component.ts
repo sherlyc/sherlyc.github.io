@@ -1,5 +1,6 @@
-import { Component, Input } from "@angular/core";
+import { Component, HostBinding, Input } from "@angular/core";
 import { FluidImageWidth } from "../../../../../common/FluidImageWidth";
+import { WindowService } from "../../../services/window/window.service";
 
 @Component({
   selector: "app-fluid-image",
@@ -9,12 +10,16 @@ import { FluidImageWidth } from "../../../../../common/FluidImageWidth";
 export class FluidImageComponent {
   @Input() imageSrc!: string;
   @Input() caption!: string;
+
   @Input() aspectRatio = "16:9,smart";
-  src!: string;
+  @HostBinding("style.paddingBottom") height = `${(9 / 16) * 100}%`;
+
+  src: string | undefined;
   srcset!: string;
   width = 0;
+  lazyload: "lazy" | "auto" = "auto";
 
-  constructor() {}
+  constructor(private windowService: WindowService) {}
 
   private static normalizeWidth(width: number): FluidImageWidth {
     let normalizedWidth;
@@ -26,17 +31,30 @@ export class FluidImageComponent {
     return normalizedWidth;
   }
 
-  private loadImg(newWidth: FluidImageWidth) {
+  private loadImg(newWidth: FluidImageWidth, lazyload: boolean) {
     this.width = newWidth;
+    this.lazyload = lazyload ? "lazy" : "auto";
     const src = `${this.imageSrc}?format=pjpg&crop=${this.aspectRatio}&width=${newWidth}`;
     this.srcset = `${src}, ${src}&dpr=2 2x, ${src}&dpr=3 3x`;
     this.src = src;
   }
 
-  onResize({ contentRect: { width } }: ResizeObserverEntry) {
+  error() {
+    this.src = undefined;
+    this.height = "0";
+  }
+
+  onResize({ target, contentRect: { width, top, x, y } }: ResizeObserverEntry) {
+    const window = this.windowService.getWindow();
+    const viewportStart = window.scrollY;
+    const viewportEnd = viewportStart + window.innerHeight;
+    const elementTop = target.getBoundingClientRect().top;
+    const isInViewport =
+      elementTop >= viewportStart && elementTop < viewportEnd;
+
     const newWidth = FluidImageComponent.normalizeWidth(width);
     if (newWidth > this.width) {
-      this.loadImg(newWidth);
+      this.loadImg(newWidth, !isInViewport);
     }
   }
 }

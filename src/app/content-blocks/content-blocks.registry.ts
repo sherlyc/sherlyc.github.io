@@ -23,6 +23,7 @@ import { HalfWidthImageArticleUnitComponent } from "./half-width-image-article-u
 import { HeaderComponent } from "./header/header.component";
 import { ImageLinkUnitComponent } from "./image-link-unit/image-link-unit.component";
 import { ModuleTitleComponent } from "./module-title/module-title.component";
+import { ModuleSubtitleComponent } from "./module-subtitle/module-subtitle.component";
 import { RecommendationsComponent } from "./recommendations/recommendations.component";
 import { ResponsiveBigImageArticleComponent } from "./responsive-big-image-article/responsive-big-image-article.component";
 import { WeatherUnitComponent } from "./weather-unit/weather-unit.component";
@@ -56,6 +57,7 @@ export const contentBlockComponents = [
   GridContainerComponent,
   ResponsiveBigImageArticleComponent,
   ModuleTitleComponent,
+  ModuleSubtitleComponent,
   FeaturedArticleComponent,
   StickyContainerComponent,
   BulletListComponent,
@@ -90,6 +92,7 @@ const registry: {
   GridContainerComponent,
   ResponsiveBigImageArticleComponent,
   ModuleTitleComponent,
+  ModuleSubtitleComponent,
   FeaturedArticleComponent,
   StickyContainerComponent,
   BulletListComponent,

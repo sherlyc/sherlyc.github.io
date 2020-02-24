@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
+import { Component, HostBinding, Input, OnInit } from "@angular/core";
 import { IFeaturedArticle } from "../../../../common/__types__/IFeaturedArticle";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
   selector: "app-text-box-article",
@@ -12,6 +12,7 @@ import { AnalyticsService } from "../../services/analytics/analytics.service";
 export class FeaturedArticleComponent
   implements IContentBlockComponent, OnInit {
   @Input() input!: IFeaturedArticle;
+  @HostBinding("class.pumped") pumped = false;
   index?: number;
 
   boxStyle = {};
@@ -22,6 +23,7 @@ export class FeaturedArticleComponent
     this.boxStyle = this.input.applyGradient
       ? this.gradientBoxStyle()
       : this.solidBoxStyle();
+    this.pumped = !!this.input.pumped;
   }
 
   gradientBoxStyle() {

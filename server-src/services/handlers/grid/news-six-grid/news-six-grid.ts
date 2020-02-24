@@ -34,6 +34,22 @@ export default async function(
     [NewsSixGridPositions.SmallBottomFourth]: gridBlock(3, 4, 1, 1, [])
   };
 
+  const tablet: IGridBlocks = {
+    [NewsSixGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 2, []),
+    [NewsSixGridPositions.BigTopLeft]: gridBlock(2, 1, 1, 1, [Border.bottom]),
+    [NewsSixGridPositions.SmallTopRight]: gridBlock(2, 2, 5, 1, [Border.left]),
+    [NewsSixGridPositions.SmallBottomFirst]: gridBlock(3, 1, 1, 1, [
+      Border.bottom
+    ]),
+    [NewsSixGridPositions.SmallBottomSecond]: gridBlock(4, 1, 1, 1, [
+      Border.bottom
+    ]),
+    [NewsSixGridPositions.SmallBottomThird]: gridBlock(5, 1, 1, 1, [
+      Border.bottom
+    ]),
+    [NewsSixGridPositions.SmallBottomFourth]: gridBlock(6, 1, 1, 1, [])
+  };
+
   const mobile: IGridBlocks = {
     [NewsSixGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 1, []),
     [NewsSixGridPositions.BigTopLeft]: gridBlock(2, 1, 1, 1, [Border.bottom]),
@@ -64,11 +80,11 @@ export default async function(
         gridBlocks: mobile
       },
       tablet: {
-        gridTemplateColumns: "1fr 1fr 1fr 1fr 300px",
-        gridTemplateRows: "auto auto auto",
+        gridTemplateColumns: "1fr 300px",
+        gridTemplateRows: "auto auto auto auto auto auto",
         gridColumnGap: "20px",
         gridRowGap: "20px",
-        gridBlocks: desktop
+        gridBlocks: tablet
       },
       desktop: {
         gridTemplateColumns: "1fr 1fr 1fr 1fr 300px",

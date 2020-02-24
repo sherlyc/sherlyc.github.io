@@ -23,18 +23,22 @@ export default async function(
     [BiggieSmallsGridPositions.Highlight]: gridBlock(2, 1, 1, 3, [
       Border.bottom
     ]),
-    [BiggieSmallsGridPositions.Right]: gridBlock(2, 4, 3, 1, []),
-    [BiggieSmallsGridPositions.FirstRow1]: gridBlock(3, 1, 1, 1, []),
-    [BiggieSmallsGridPositions.FirstRow2]: gridBlock(3, 2, 1, 1, []),
+    [BiggieSmallsGridPositions.Right]: gridBlock(2, 4, 3, 1, [Border.left]),
+    [BiggieSmallsGridPositions.FirstRow1]: gridBlock(3, 1, 1, 1, [
+      Border.right
+    ]),
+    [BiggieSmallsGridPositions.FirstRow2]: gridBlock(3, 2, 1, 1, [
+      Border.right
+    ]),
     [BiggieSmallsGridPositions.FirstRow3]: gridBlock(3, 3, 1, 1, [])
   };
 
   const tablet: IGridBlocks = {
     [BiggieSmallsGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 3, []),
-    [BiggieSmallsGridPositions.Highlight]: gridBlock(2, 1, 1, 3, [
+    [BiggieSmallsGridPositions.Highlight]: gridBlock(2, 1, 1, 2, [
       Border.bottom
     ]),
-    [BiggieSmallsGridPositions.Right]: gridBlock(3, 3, 2, 1, []),
+    [BiggieSmallsGridPositions.Right]: gridBlock(2, 3, 3, 1, [Border.left]),
     [BiggieSmallsGridPositions.FirstRow1]: gridBlock(3, 1, 1, 1, []),
     [BiggieSmallsGridPositions.FirstRow2]: gridBlock(3, 2, 2, 1, []),
     [BiggieSmallsGridPositions.FirstRow3]: gridBlock(4, 1, 1, 1, [])
@@ -61,7 +65,7 @@ export default async function(
         gridBlocks: mobile
       },
       tablet: {
-        gridTemplateColumns: "1fr 1fr 1fr",
+        gridTemplateColumns: "1fr 1fr 300px",
         gridTemplateRows: "auto auto auto auto",
         gridColumnGap: "20px",
         gridRowGap: "20px",
@@ -70,8 +74,8 @@ export default async function(
       desktop: {
         gridTemplateColumns: "1fr 1fr 1fr 300px",
         gridTemplateRows: "auto auto auto",
-        gridColumnGap: "20px",
-        gridRowGap: "20px",
+        gridColumnGap: "40px",
+        gridRowGap: "40px",
         gridBlocks: desktop
       }
     } as IGridContainer

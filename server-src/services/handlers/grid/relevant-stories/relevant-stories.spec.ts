@@ -1,213 +1,109 @@
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IParams } from "../../../__types__/IParams";
-import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
-import { getMostPopular } from "../../../adapters/most-popular/most-popular.service";
+import relevantStories from "./relevant-stories";
 import { IRelevantStoriesHandlerInput } from "../../__types__/IRelevantStoriesHandlerInput";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
-import relevantStoriesHandler from "./relevant-stories";
+import { createRelevantStoriesColumn } from "./relevant-stories-column";
+import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { getMostPopular } from "../../../adapters/most-popular/most-popular.service";
 import { Strap } from "../../../strap";
-import { RelevantStoriesGridPositions } from "../../__types__/IRelevantStoriesGridHandlerInput";
+import {
+  IRelevantStoriesGridHandlerInput,
+  RelevantStoriesGridPositions
+} from "../../__types__/IRelevantStoriesGridHandlerInput";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../adapters/most-popular/most-popular.service");
+jest.mock("./relevant-stories-column");
 
 describe("Relevant Stories", () => {
-  const handlerRunnerMock = jest.fn();
+  const handlerRunner = jest.fn();
   const params: IParams = { apiRequestId: "123" };
+  const totalArticles = 7;
+  const input: IRelevantStoriesHandlerInput = {
+    type: HandlerInputType.RelevantStories
+  };
 
-  const fakeArticlesWithIds = (ids: number[]) =>
-    ids.map((id) => ({ id: `${id}` } as IRawArticle));
-
-  const expectBasicArticleTitle = (id: number) =>
-    expect.objectContaining({
-      type: ContentBlockType.BasicArticleTitleUnit,
-      id: `${id}`
-    });
+  const fakeContentBlock = (id: number) => ({ id: `${id}` } as IContentBlock);
 
   beforeEach(() => {
     jest.resetAllMocks();
   });
 
-  it("should retrieve 3 list of articles", async () => {
-    const articlesPerList = 5;
-    handlerRunnerMock.mockResolvedValue([]);
+  it("should create three relevant stories columns", async () => {
+    const articlesPromise = Promise.resolve([]);
+    (createRelevantStoriesColumn as jest.Mock).mockResolvedValue([]);
+    (getRawArticles as jest.Mock).mockImplementation(() => articlesPromise);
+    (getMostPopular as jest.Mock).mockImplementation(() => articlesPromise);
+
+    await relevantStories(handlerRunner, input, params);
+
+    expect(createRelevantStoriesColumn).toHaveBeenCalledTimes(3);
+    expect(createRelevantStoriesColumn).toHaveBeenCalledWith(
+      articlesPromise,
+      "latest news",
+      "#E9520E",
+      handlerRunner,
+      params
+    );
+    expect(createRelevantStoriesColumn).toHaveBeenCalledWith(
+      articlesPromise,
+      "editors' picks",
+      "#E9520E",
+      handlerRunner,
+      params
+    );
+    expect(createRelevantStoriesColumn).toHaveBeenCalledWith(
+      articlesPromise,
+      "most popular",
+      "#E9520E",
+      handlerRunner,
+      params
+    );
+  });
+
+  it("should get articles from Latest News, Editors' Picks and Most Popular", async () => {
+    (createRelevantStoriesColumn as jest.Mock).mockResolvedValue([]);
     (getRawArticles as jest.Mock).mockResolvedValue([]);
     (getMostPopular as jest.Mock).mockResolvedValue([]);
 
-    const input: IRelevantStoriesHandlerInput = {
-      type: HandlerInputType.RelevantStories
-    };
-    await relevantStoriesHandler(handlerRunnerMock, input, params);
+    await relevantStories(handlerRunner, input, params);
 
-    expect(getRawArticles).toHaveBeenCalledTimes(2);
     expect(getRawArticles).toHaveBeenCalledWith(
       Strap.LatestNews,
-      articlesPerList,
+      totalArticles,
       params
     );
     expect(getRawArticles).toHaveBeenCalledWith(
       Strap.EditorPicks,
-      articlesPerList,
+      totalArticles,
       params
     );
-    expect(getMostPopular).toHaveBeenCalledWith(articlesPerList, params);
+    expect(getMostPopular).toHaveBeenCalledWith(totalArticles, params);
   });
 
-  it("should create list grid with column one content", async () => {
-    (getRawArticles as jest.Mock).mockResolvedValueOnce(
-      fakeArticlesWithIds([1, 2, 3, 4, 5])
-    );
-    (getRawArticles as jest.Mock).mockResolvedValueOnce(
-      fakeArticlesWithIds([6, 7, 8, 9, 10])
-    );
-    (getMostPopular as jest.Mock).mockResolvedValue([]);
-    const fakeListGrid = { type: ContentBlockType.GridContainer };
-    handlerRunnerMock.mockResolvedValue(fakeListGrid);
-
-    const input: IRelevantStoriesHandlerInput = {
-      type: HandlerInputType.RelevantStories
-    };
-    await relevantStoriesHandler(handlerRunnerMock, input, params);
-
-    const [[firstListGridCall]] = handlerRunnerMock.mock.calls;
-
-    const listGridHandlerInput = {
-      type: HandlerInputType.ListGrid,
-      content: [
-        expectBasicArticleTitle(1),
-        expectBasicArticleTitle(2),
-        expectBasicArticleTitle(3),
-        expectBasicArticleTitle(4),
-        expectBasicArticleTitle(5)
-      ]
-    };
-    expect(firstListGridCall).toEqual(listGridHandlerInput);
-  });
-
-  it("should create list grid with column two content", async () => {
-    (getRawArticles as jest.Mock).mockResolvedValueOnce(
-      fakeArticlesWithIds([1, 2, 3, 4, 5])
-    );
-    (getRawArticles as jest.Mock).mockResolvedValueOnce(
-      fakeArticlesWithIds([6, 7, 8, 9, 10])
-    );
-    (getMostPopular as jest.Mock).mockResolvedValue([]);
-    const fakeListGrid = { type: ContentBlockType.GridContainer };
-    handlerRunnerMock.mockResolvedValue(fakeListGrid);
-
-    const input: IRelevantStoriesHandlerInput = {
-      type: HandlerInputType.RelevantStories
-    };
-    await relevantStoriesHandler(handlerRunnerMock, input, params);
-
-    const [[first], [secondListGridCall]] = handlerRunnerMock.mock.calls;
-
-    const listGridHandlerInput = {
-      type: HandlerInputType.ListGrid,
-      content: [
-        expectBasicArticleTitle(6),
-        expectBasicArticleTitle(7),
-        expectBasicArticleTitle(8),
-        expectBasicArticleTitle(9),
-        expectBasicArticleTitle(10)
-      ]
-    };
-    expect(secondListGridCall).toEqual(listGridHandlerInput);
-  });
-
-  it("should create list grid with most popular content", async () => {
-    (getRawArticles as jest.Mock).mockResolvedValue([]);
-    (getMostPopular as jest.Mock).mockResolvedValue(
-      fakeArticlesWithIds([9, 10, 11, 12, 13])
-    );
-    const fakeListGrid = { type: ContentBlockType.GridContainer };
-    handlerRunnerMock.mockResolvedValue(fakeListGrid);
-
-    const input: IRelevantStoriesHandlerInput = {
-      type: HandlerInputType.RelevantStories
-    };
-
-    await relevantStoriesHandler(handlerRunnerMock, input, params);
-
-    const [
-      [first],
-      [second],
-      [thirdListGridCall]
-    ] = handlerRunnerMock.mock.calls;
-
-    const listGridHandlerInput = {
-      type: HandlerInputType.ListGrid,
-      content: [
-        expectBasicArticleTitle(9),
-        expectBasicArticleTitle(10),
-        expectBasicArticleTitle(11),
-        expectBasicArticleTitle(12),
-        expectBasicArticleTitle(13)
-      ]
-    };
-    expect(thirdListGridCall).toEqual(listGridHandlerInput);
-  });
-
-  it("should place correct content in each position for relevant stories grid", async () => {
+  it("should pass 3 columns and ad to relevant stories grid", async () => {
     (getRawArticles as jest.Mock).mockResolvedValue([]);
     (getMostPopular as jest.Mock).mockResolvedValue([]);
+    const columnOne = [fakeContentBlock(1)];
+    const columnTwo = [fakeContentBlock(2)];
+    const columnThree = [fakeContentBlock(3)];
+    (createRelevantStoriesColumn as jest.Mock).mockResolvedValueOnce(columnOne);
+    (createRelevantStoriesColumn as jest.Mock).mockResolvedValueOnce(columnTwo);
+    (createRelevantStoriesColumn as jest.Mock).mockResolvedValueOnce(
+      columnThree
+    );
 
-    const fakeContent = (id: number) => [{ id: `${id}` }] as IContentBlock[];
-    handlerRunnerMock.mockResolvedValueOnce(fakeContent(1));
-    handlerRunnerMock.mockResolvedValueOnce(fakeContent(2));
-    handlerRunnerMock.mockResolvedValueOnce(fakeContent(3));
+    await relevantStories(handlerRunner, input, params);
 
-    const fakeRelevantStoriesGrid = { type: ContentBlockType.GridContainer };
-    handlerRunnerMock.mockResolvedValueOnce(fakeRelevantStoriesGrid);
-
-    const input: IRelevantStoriesHandlerInput = {
-      type: HandlerInputType.RelevantStories
-    };
-    await relevantStoriesHandler(handlerRunnerMock, input, params);
-
-    const [
-      [first],
-      [second],
-      [third],
-      [relevantStoriesGridInput]
-    ] = handlerRunnerMock.mock.calls;
-
-    const expectFakeContent = (id: number) => [
-      expect.objectContaining({ id: `${id}` })
-    ];
-
-    expect(relevantStoriesGridInput).toEqual({
+    const expectedGridInput: IRelevantStoriesGridHandlerInput = {
       type: HandlerInputType.RelevantStoriesGrid,
       content: {
-        [RelevantStoriesGridPositions.FirstColumnTitle]: [
-          {
-            type: ContentBlockType.ModuleTitle,
-            displayName: "Latest News",
-            displayNameColor: "pizzaz"
-          }
-        ],
-        [RelevantStoriesGridPositions.FirstColumnContent]: expectFakeContent(1),
-        [RelevantStoriesGridPositions.SecondColumnTitle]: [
-          {
-            type: ContentBlockType.ModuleTitle,
-            displayName: "Editors' Picks",
-            displayNameColor: "pizzaz"
-          }
-        ],
-        [RelevantStoriesGridPositions.SecondColumnContent]: expectFakeContent(
-          2
-        ),
-        [RelevantStoriesGridPositions.ThirdColumnTitle]: [
-          {
-            type: ContentBlockType.ModuleTitle,
-            displayName: "Most Popular",
-            displayNameColor: "pizzaz"
-          }
-        ],
-        [RelevantStoriesGridPositions.ThirdColumnContent]: expectFakeContent(3),
+        [RelevantStoriesGridPositions.FirstColumn]: columnOne,
+        [RelevantStoriesGridPositions.SecondColumn]: columnTwo,
+        [RelevantStoriesGridPositions.ThirdColumn]: columnThree,
         [RelevantStoriesGridPositions.Right]: [
           {
             type: ContentBlockType.StickyContainer,
@@ -215,103 +111,7 @@ describe("Relevant Stories", () => {
           }
         ]
       }
-    });
-  });
-
-  describe("when failing to retrieve articles", () => {
-    it("should create empty content blocks for column one content", async () => {
-      (getRawArticles as jest.Mock).mockRejectedValueOnce(
-        new Error("Failed to retrieve column one articles")
-      );
-      (getRawArticles as jest.Mock).mockResolvedValueOnce(
-        fakeArticlesWithIds([1, 2, 3, 4, 5])
-      );
-      (getMostPopular as jest.Mock).mockResolvedValueOnce(
-        fakeArticlesWithIds([1, 2, 3, 4, 5])
-      );
-      handlerRunnerMock.mockResolvedValue({
-        type: ContentBlockType.GridContainer
-      });
-
-      const input: IRelevantStoriesHandlerInput = {
-        type: HandlerInputType.RelevantStories
-      };
-
-      await relevantStoriesHandler(handlerRunnerMock, input, params);
-
-      const [
-        [secondColumn],
-        [thirdColumn],
-        [relevantStories]
-      ] = handlerRunnerMock.mock.calls;
-
-      expect(
-        relevantStories.content[RelevantStoriesGridPositions.FirstColumnContent]
-      ).toEqual([]);
-    });
-
-    it("should create empty content blocks for column two content", async () => {
-      (getRawArticles as jest.Mock).mockResolvedValueOnce(
-        fakeArticlesWithIds([1, 2, 3, 4, 5])
-      );
-      (getRawArticles as jest.Mock).mockRejectedValueOnce(
-        new Error("Failed to retrieve column two articles")
-      );
-      (getMostPopular as jest.Mock).mockResolvedValueOnce(
-        fakeArticlesWithIds([1, 2, 3, 4, 5])
-      );
-      handlerRunnerMock.mockResolvedValue({
-        type: ContentBlockType.GridContainer
-      });
-
-      const input: IRelevantStoriesHandlerInput = {
-        type: HandlerInputType.RelevantStories
-      };
-
-      await relevantStoriesHandler(handlerRunnerMock, input, params);
-
-      const [
-        [firstColumn],
-        [thirdColumn],
-        [relevantStories]
-      ] = handlerRunnerMock.mock.calls;
-
-      expect(
-        relevantStories.content[
-          RelevantStoriesGridPositions.SecondColumnContent
-        ]
-      ).toEqual([]);
-    });
-
-    it("should create empty content blocks for column three content", async () => {
-      (getRawArticles as jest.Mock).mockResolvedValueOnce(
-        fakeArticlesWithIds([1, 2, 3, 4, 5])
-      );
-      (getRawArticles as jest.Mock).mockResolvedValueOnce(
-        fakeArticlesWithIds([1, 2, 3, 4, 5])
-      );
-      (getMostPopular as jest.Mock).mockRejectedValue(
-        new Error("Failed to retrieve column three articles")
-      );
-      handlerRunnerMock.mockResolvedValue({
-        type: ContentBlockType.GridContainer
-      });
-
-      const input: IRelevantStoriesHandlerInput = {
-        type: HandlerInputType.RelevantStories
-      };
-
-      await relevantStoriesHandler(handlerRunnerMock, input, params);
-
-      const [
-        [firstColumn],
-        [secondColumn],
-        [relevantStories]
-      ] = handlerRunnerMock.mock.calls;
-
-      expect(
-        relevantStories.content[RelevantStoriesGridPositions.ThirdColumnContent]
-      ).toEqual([]);
-    });
+    };
+    expect(handlerRunner).toHaveBeenCalledWith(expectedGridInput, params);
   });
 });

@@ -34,7 +34,7 @@ describe("NeighbourlyService", () => {
   });
 
   it("should load scripts in browser", async () => {
-    runtimeService.isBrowser.mockReturnValue(true);
+    runtimeService.isServer.mockReturnValue(false);
 
     await neighbourlyService.setup();
 
@@ -51,7 +51,7 @@ describe("NeighbourlyService", () => {
   });
 
   it("should not load scripts in server", async () => {
-    runtimeService.isBrowser.mockReturnValue(false);
+    runtimeService.isServer.mockReturnValue(true);
 
     await neighbourlyService.setup();
 

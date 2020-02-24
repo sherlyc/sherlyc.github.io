@@ -18,56 +18,35 @@ export default async function(
 ): Promise<IContentBlock[]> {
   const mobile: IGridConfig = {
     gridTemplateColumns: "1fr",
-    gridTemplateRows: "auto auto auto auto auto auto auto",
+    gridTemplateRows: "auto auto auto auto",
     gridColumnGap: "20px",
     gridRowGap: "20px",
     gridBlocks: {
-      [RelevantStoriesGridPositions.FirstColumnTitle]: {
+      [RelevantStoriesGridPositions.FirstColumn]: {
         columnStart: 1,
         columnSpan: 1,
         rowStart: 1,
         rowSpan: 1,
         border: []
       },
-      [RelevantStoriesGridPositions.FirstColumnContent]: {
+      [RelevantStoriesGridPositions.SecondColumn]: {
         columnStart: 1,
         columnSpan: 1,
         rowStart: 2,
         rowSpan: 1,
         border: []
       },
-      [RelevantStoriesGridPositions.SecondColumnTitle]: {
+      [RelevantStoriesGridPositions.ThirdColumn]: {
         columnStart: 1,
         columnSpan: 1,
         rowStart: 3,
         rowSpan: 1,
         border: []
       },
-      [RelevantStoriesGridPositions.SecondColumnContent]: {
-        columnStart: 1,
-        columnSpan: 1,
-        rowStart: 4,
-        rowSpan: 1,
-        border: []
-      },
-      [RelevantStoriesGridPositions.ThirdColumnTitle]: {
-        columnStart: 1,
-        columnSpan: 1,
-        rowStart: 5,
-        rowSpan: 1,
-        border: []
-      },
-      [RelevantStoriesGridPositions.ThirdColumnContent]: {
-        columnStart: 1,
-        columnSpan: 1,
-        rowStart: 6,
-        rowSpan: 1,
-        border: []
-      },
       [RelevantStoriesGridPositions.Right]: {
         columnStart: 1,
         columnSpan: 1,
-        rowStart: 7,
+        rowStart: 4,
         rowSpan: 1,
         border: []
       }
@@ -76,56 +55,35 @@ export default async function(
 
   const tablet: IGridConfig = {
     gridTemplateColumns: "1fr 1fr 1fr",
-    gridTemplateRows: "auto auto auto",
+    gridTemplateRows: "auto auto",
     gridColumnGap: "40px",
     gridRowGap: "20px",
     gridBlocks: {
-      [RelevantStoriesGridPositions.FirstColumnTitle]: {
+      [RelevantStoriesGridPositions.FirstColumn]: {
         columnStart: 1,
         columnSpan: 1,
         rowStart: 1,
         rowSpan: 1,
-        border: []
-      },
-      [RelevantStoriesGridPositions.FirstColumnContent]: {
-        columnStart: 1,
-        columnSpan: 1,
-        rowStart: 2,
-        rowSpan: 1,
         border: [Border.right]
       },
-      [RelevantStoriesGridPositions.SecondColumnTitle]: {
+      [RelevantStoriesGridPositions.SecondColumn]: {
         columnStart: 2,
         columnSpan: 1,
         rowStart: 1,
         rowSpan: 1,
-        border: []
-      },
-      [RelevantStoriesGridPositions.SecondColumnContent]: {
-        columnStart: 2,
-        columnSpan: 1,
-        rowStart: 2,
-        rowSpan: 1,
         border: [Border.right]
       },
-      [RelevantStoriesGridPositions.ThirdColumnTitle]: {
+      [RelevantStoriesGridPositions.ThirdColumn]: {
         columnStart: 3,
         columnSpan: 1,
         rowStart: 1,
         rowSpan: 1,
         border: []
-      },
-      [RelevantStoriesGridPositions.ThirdColumnContent]: {
-        columnStart: 3,
-        columnSpan: 1,
-        rowStart: 2,
-        rowSpan: 1,
-        border: [Border.right]
       },
       [RelevantStoriesGridPositions.Right]: {
         columnStart: 1,
         columnSpan: 3,
-        rowStart: 3,
+        rowStart: 2,
         rowSpan: 1,
         border: []
       }
@@ -134,49 +92,28 @@ export default async function(
 
   const desktop: IGridConfig = {
     gridTemplateColumns: "1fr 1fr 1fr 300px",
-    gridTemplateRows: "auto auto",
+    gridTemplateRows: "auto",
     gridColumnGap: "40px",
     gridRowGap: "20px",
     gridBlocks: {
-      [RelevantStoriesGridPositions.FirstColumnTitle]: {
+      [RelevantStoriesGridPositions.FirstColumn]: {
         columnStart: 1,
         columnSpan: 1,
         rowStart: 1,
         rowSpan: 1,
-        border: []
-      },
-      [RelevantStoriesGridPositions.FirstColumnContent]: {
-        columnStart: 1,
-        columnSpan: 1,
-        rowStart: 2,
-        rowSpan: 1,
         border: [Border.right]
       },
-      [RelevantStoriesGridPositions.SecondColumnTitle]: {
+      [RelevantStoriesGridPositions.SecondColumn]: {
         columnStart: 2,
         columnSpan: 1,
         rowStart: 1,
         rowSpan: 1,
-        border: []
-      },
-      [RelevantStoriesGridPositions.SecondColumnContent]: {
-        columnStart: 2,
-        columnSpan: 1,
-        rowStart: 2,
-        rowSpan: 1,
         border: [Border.right]
       },
-      [RelevantStoriesGridPositions.ThirdColumnTitle]: {
+      [RelevantStoriesGridPositions.ThirdColumn]: {
         columnStart: 3,
         columnSpan: 1,
         rowStart: 1,
-        rowSpan: 1,
-        border: []
-      },
-      [RelevantStoriesGridPositions.ThirdColumnContent]: {
-        columnStart: 3,
-        columnSpan: 1,
-        rowStart: 2,
         rowSpan: 1,
         border: [Border.right]
       },
@@ -184,7 +121,7 @@ export default async function(
         columnStart: 4,
         columnSpan: 1,
         rowStart: 1,
-        rowSpan: 2,
+        rowSpan: 1,
         border: []
       }
     }
