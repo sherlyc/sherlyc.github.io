@@ -1,5 +1,6 @@
 import { Component, HostBinding, Input } from "@angular/core";
 import { FluidImageWidth } from "../../../../../common/FluidImageWidth";
+import { WindowService } from "../../../services/window/window.service";
 
 @Component({
   selector: "app-fluid-image",
@@ -16,8 +17,9 @@ export class FluidImageComponent {
   src: string | undefined;
   srcset!: string;
   width = 0;
+  lazyload: "lazy" | "auto" = "auto";
 
-  constructor() {}
+  constructor(private windowService: WindowService) {}
 
   private static normalizeWidth(width: number): FluidImageWidth {
     let normalizedWidth;
@@ -29,8 +31,9 @@ export class FluidImageComponent {
     return normalizedWidth;
   }
 
-  private loadImg(newWidth: FluidImageWidth) {
+  private loadImg(newWidth: FluidImageWidth, lazyload: boolean) {
     this.width = newWidth;
+    this.lazyload = lazyload ? "lazy" : "auto";
     const src = `${this.imageSrc}?format=pjpg&crop=${this.aspectRatio}&width=${newWidth}`;
     this.srcset = `${src}, ${src}&dpr=2 2x, ${src}&dpr=3 3x`;
     this.src = src;
@@ -41,10 +44,17 @@ export class FluidImageComponent {
     this.height = "0";
   }
 
-  onResize({ contentRect: { width } }: ResizeObserverEntry) {
+  onResize({ target, contentRect: { width, top, x, y } }: ResizeObserverEntry) {
+    const window = this.windowService.getWindow();
+    const viewportStart = window.scrollY;
+    const viewportEnd = viewportStart + window.innerHeight;
+    const elementTop = target.getBoundingClientRect().top;
+    const isInViewport =
+      elementTop >= viewportStart && elementTop < viewportEnd;
+
     const newWidth = FluidImageComponent.normalizeWidth(width);
     if (newWidth > this.width) {
-      this.loadImg(newWidth);
+      this.loadImg(newWidth, !isInViewport);
     }
   }
 }

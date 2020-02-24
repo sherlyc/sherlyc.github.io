@@ -6,6 +6,7 @@ import { WindowService } from "../window/window.service";
 import { RuntimeService } from "../runtime/runtime.service";
 import { LoadedEvent } from "./__types__/LoadedEvent";
 import { DOCUMENT } from "@angular/common";
+import { LoggerService } from "../logger/logger.service";
 
 @Injectable({
   providedIn: "root"
@@ -15,6 +16,7 @@ export class DtmService {
     private scriptInjectorService: ScriptInjectorService,
     private config: ConfigService,
     private runtime: RuntimeService,
+    private logger: LoggerService,
     @Inject(DOCUMENT) private document: Document,
     private windowService: WindowService
   ) {}
@@ -25,14 +27,18 @@ export class DtmService {
     if (this.runtime.isServer()) {
       return;
     }
-    this.initLoadedPromises();
-    await this.scriptInjectorService.load(
-      ScriptId.launch,
-      this.config.getConfig().launchUrl
-    );
-    const { _satellite: satellite } = this.windowService.getWindow();
-    if (satellite && satellite.pageBottom) {
-      satellite.pageBottom();
+    try {
+      this.initLoadedPromises();
+      await this.scriptInjectorService.load(
+        ScriptId.launch,
+        this.config.getConfig().launchUrl
+      );
+      const { _satellite: satellite } = this.windowService.getWindow();
+      if (satellite && satellite.pageBottom) {
+        satellite.pageBottom();
+      }
+    } catch (e) {
+      this.logger.error(e, "DtmService - script loading error");
     }
   }
 

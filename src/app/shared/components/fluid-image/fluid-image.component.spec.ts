@@ -2,10 +2,13 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { FluidImageWidth } from "../../../../../common/FluidImageWidth";
 import { FluidImageComponent } from "./fluid-image.component";
+import { WindowService } from "../../../services/window/window.service";
+import { mockService, ServiceMock } from "../../../services/mocks/MockService";
 
 describe("FluidImageComponent", () => {
   let component: FluidImageComponent;
   let fixture: ComponentFixture<FluidImageComponent>;
+  let windowService: ServiceMock<WindowService>;
 
   const getImg = () => fixture.debugElement.query(By.css("img"));
 
@@ -18,7 +21,9 @@ describe("FluidImageComponent", () => {
   const expectedSrc = `${componentInput.imageSrc}?format=pjpg&crop=${componentInput.aspectRatio}`;
 
   const simulateResize = (width: FluidImageWidth | number) => {
+    const fakeTarget = { getBoundingClientRect: () => ({ top: 100 }) } as any;
     component.onResize({
+      target: fakeTarget,
       contentRect: { width }
     } as ResizeObserverEntry);
     fixture.detectChanges();
@@ -33,10 +38,20 @@ describe("FluidImageComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FluidImageComponent]
+      declarations: [FluidImageComponent],
+      providers: [
+        {
+          provide: WindowService,
+          useClass: mockService(WindowService)
+        }
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(FluidImageComponent);
+    windowService = TestBed.get(WindowService);
+
+    windowService.getWindow.mockReturnValue({});
+
     component = fixture.componentInstance;
     Object.assign(component, componentInput);
     fixture.detectChanges();
@@ -85,5 +100,43 @@ describe("FluidImageComponent", () => {
   it("should set height as 0 when image fail to load", () => {
     component.error();
     expect(component.height).toEqual("0");
+  });
+
+  it("should default to auto loading", () => {
+    expect(component.lazyload).toEqual("auto");
+  });
+
+  it("should set loading to auto when element is inside the viewport", () => {
+    const fakeTarget = { getBoundingClientRect: () => ({ top: 100 }) } as any;
+
+    windowService.getWindow.mockReturnValue({
+      scrollY: 0,
+      innerHeight: 500
+    });
+
+    component.onResize({
+      target: fakeTarget,
+      contentRect: { width: 100 } as any
+    });
+    fixture.detectChanges();
+
+    expect(component.lazyload).toEqual("auto");
+  });
+
+  it("should set loading to lazy when element is outside the viewport", () => {
+    const fakeTarget = { getBoundingClientRect: () => ({ top: 1000 }) } as any;
+
+    windowService.getWindow.mockReturnValue({
+      scrollY: 0,
+      innerHeight: 500
+    });
+
+    component.onResize({
+      target: fakeTarget,
+      contentRect: { width: 100 } as any
+    });
+    fixture.detectChanges();
+
+    expect(component.lazyload).toEqual("lazy");
   });
 });

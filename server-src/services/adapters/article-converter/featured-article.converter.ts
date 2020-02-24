@@ -7,8 +7,8 @@ export const featuredArticle = (
   strapName: string,
   textColor: string,
   boxColor: string,
-  applyGradient?: boolean,
-  pumped?: boolean
+  applyGradient = false,
+  pumped = false
 ): IFeaturedArticle => ({
   type: ContentBlockType.FeaturedArticle,
   id: article.id,

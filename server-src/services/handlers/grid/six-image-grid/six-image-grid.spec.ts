@@ -57,7 +57,7 @@ describe("Six Image Grid", () => {
       }
     };
 
-    const desktopAndTablet = {
+    const desktop = {
       [SixImageGridHandlerPositions.ModuleTitle]: {
         columnStart: 1,
         columnSpan: 4,
@@ -112,6 +112,65 @@ describe("Six Image Grid", () => {
         columnSpan: 1,
         rowStart: 2,
         rowSpan: 2,
+        border: []
+      }
+    };
+
+    const tablet = {
+      [SixImageGridHandlerPositions.ModuleTitle]: {
+        columnStart: 1,
+        columnSpan: 3,
+        rowStart: 1,
+        rowSpan: 1,
+        border: []
+      },
+      [SixImageGridHandlerPositions.FirstRowLeft]: {
+        columnStart: 1,
+        columnSpan: 1,
+        rowStart: 2,
+        rowSpan: 1,
+        border: []
+      },
+      [SixImageGridHandlerPositions.FirstRowMiddle]: {
+        columnStart: 2,
+        columnSpan: 1,
+        rowStart: 2,
+        rowSpan: 1,
+        border: []
+      },
+      [SixImageGridHandlerPositions.FirstRowRight]: {
+        columnStart: 1,
+        columnSpan: 1,
+        rowStart: 3,
+        rowSpan: 1,
+        border: []
+      },
+      [SixImageGridHandlerPositions.SecondRowLeft]: {
+        columnStart: 2,
+        columnSpan: 1,
+        rowStart: 3,
+        rowSpan: 1,
+        border: []
+      },
+      [SixImageGridHandlerPositions.SecondRowMiddle]: {
+        columnStart: 1,
+        columnSpan: 1,
+        rowStart: 4,
+        rowSpan: 1,
+        border: []
+      },
+      [SixImageGridHandlerPositions.SecondRowRight]: {
+        columnStart: 2,
+        columnSpan: 1,
+        rowStart: 4,
+        rowSpan: 1,
+        border: []
+      },
+      [SixImageGridHandlerPositions.BigRight]: {
+        columnStart: 3,
+        columnSpan: 1,
+        rowStart: 2,
+        rowSpan: 3,
         border: []
       }
     };
@@ -191,15 +250,15 @@ describe("Six Image Grid", () => {
         gridTemplateColumns: "1fr 1fr 1fr 300px",
         gridTemplateRows: "auto auto auto",
         gridColumnGap: "20px",
-        gridRowGap: "20px",
-        gridBlocks: desktopAndTablet
+        gridRowGap: "40px",
+        gridBlocks: desktop
       },
       tablet: {
-        gridTemplateColumns: "1fr 1fr 1fr 300px",
-        gridTemplateRows: "auto auto auto",
+        gridTemplateColumns: "1fr 1fr 300px",
+        gridTemplateRows: "auto auto auto auto",
         gridColumnGap: "20px",
         gridRowGap: "20px",
-        gridBlocks: desktopAndTablet
+        gridBlocks: tablet
       },
       mobile: {
         gridTemplateColumns: "1fr 1fr",

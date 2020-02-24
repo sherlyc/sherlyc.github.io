@@ -35,10 +35,10 @@ export default async function(
 
   const tablet: IGridBlocks = {
     [BiggieSmallsGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 3, []),
-    [BiggieSmallsGridPositions.Highlight]: gridBlock(2, 1, 1, 3, [
+    [BiggieSmallsGridPositions.Highlight]: gridBlock(2, 1, 1, 2, [
       Border.bottom
     ]),
-    [BiggieSmallsGridPositions.Right]: gridBlock(3, 3, 2, 1, []),
+    [BiggieSmallsGridPositions.Right]: gridBlock(2, 3, 3, 1, [Border.left]),
     [BiggieSmallsGridPositions.FirstRow1]: gridBlock(3, 1, 1, 1, []),
     [BiggieSmallsGridPositions.FirstRow2]: gridBlock(3, 2, 2, 1, []),
     [BiggieSmallsGridPositions.FirstRow3]: gridBlock(4, 1, 1, 1, [])
@@ -65,7 +65,7 @@ export default async function(
         gridBlocks: mobile
       },
       tablet: {
-        gridTemplateColumns: "1fr 1fr 1fr",
+        gridTemplateColumns: "1fr 1fr 300px",
         gridTemplateRows: "auto auto auto auto",
         gridColumnGap: "20px",
         gridRowGap: "20px",
