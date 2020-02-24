@@ -68,7 +68,7 @@ const newPage = (): HandlerInput[] => {
       mobile: {
         height: "40px",
         width: "100%",
-        margin: "20px 0"
+        margin: "0 0 20px 0"
       }
     },
     {
@@ -81,17 +81,17 @@ const newPage = (): HandlerInput[] => {
       mobile: {
         height: "320px",
         width: "100%",
-        margin: "20px 0"
+        margin: "0 0 20px 0"
       },
       tablet: {
-        height: "320px",
+        height: "200px",
         width: "100%",
-        margin: "20px 0"
+        margin: "0 0 20px 0"
       },
       desktop: {
         height: "200px",
         width: "100%",
-        margin: "20px 0"
+        margin: "0 0 20px 0"
       }
     },
     {
