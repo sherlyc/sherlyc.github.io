@@ -52,15 +52,15 @@ export class ResponsiveExternalContentComponent
 
     return {
       [MediaQuery.Mobile]: {
-        height: mobile.height,
+        paddingBottom: mobile.height,
         width: mobile.width
       },
       [MediaQuery.Tablet]: {
-        height: tablet.height,
+        paddingBottom: tablet.height,
         width: tablet.width
       },
       [MediaQuery.Desktop]: {
-        height: desktop.height,
+        paddingBottom: desktop.height,
         width: desktop.width
       }
     };

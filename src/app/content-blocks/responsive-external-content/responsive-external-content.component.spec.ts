@@ -131,15 +131,15 @@ describe("ResponsiveExternalContentComponent", () => {
 
     const expected = {
       [MediaQuery.Mobile]: {
-        height: mobileConfig.height,
+        paddingBottom: mobileConfig.height,
         width: mobileConfig.width
       },
       [MediaQuery.Tablet]: {
-        height: tabletConfig.height,
+        paddingBottom: tabletConfig.height,
         width: tabletConfig.width
       },
       [MediaQuery.Desktop]: {
-        height: desktopConfig.height,
+        paddingBottom: desktopConfig.height,
         width: desktopConfig.width
       }
     };
@@ -158,15 +158,15 @@ describe("ResponsiveExternalContentComponent", () => {
 
     const expected = {
       [MediaQuery.Mobile]: {
-        height: mobileConfig.height,
+        paddingBottom: mobileConfig.height,
         width: mobileConfig.width
       },
       [MediaQuery.Tablet]: {
-        height: mobileConfig.height,
+        paddingBottom: mobileConfig.height,
         width: mobileConfig.width
       },
       [MediaQuery.Desktop]: {
-        height: mobileConfig.height,
+        paddingBottom: mobileConfig.height,
         width: mobileConfig.width
       }
     };
