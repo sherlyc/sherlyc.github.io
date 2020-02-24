@@ -143,6 +143,24 @@
         "dedupeFromBaseList": true
       }
     },
+    "strapFoodAndWine": {
+      "ids": ["62550809"],
+      "dedupeRules": {
+        "dedupeFromBaseList": true
+      }
+    },
+    "strapNZFarmer": {
+      "ids": ["62940047"],
+      "dedupeRules": {
+        "dedupeFromBaseList": true
+      }
+    },
+    "strapParenting": {
+      "ids": ["65946117"],
+      "dedupeRules": {
+        "dedupeFromBaseList": true
+      }
+    },
     "strapStuffNation": {
       "ids": ["90804478"],
       "dedupeRules": {

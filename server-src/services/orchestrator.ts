@@ -197,6 +197,13 @@ const newPage = (): HandlerInput[] => {
       sourceId: Strap.WellGood
     },
     {
+      type: HandlerInputType.LargeLeadSix,
+      displayName: "food & wine",
+      displayNameColor: "junglegreen",
+      strapName: `${homepageAdPrefix}FoodAndWine`,
+      sourceId: Strap.FoodAndWine
+    },
+    {
       type: HandlerInputType.BiggieSmalls,
       displayName: "entertainment",
       displayNameColor: "purpleheart",
@@ -223,6 +230,20 @@ const newPage = (): HandlerInput[] => {
       displayNameColor: "carribeangreen",
       strapName: `${homepageAdPrefix}Technology`,
       sourceId: Strap.Technology
+    },
+    {
+      type: HandlerInputType.LargeLeadSix,
+      displayName: "nz farmer",
+      displayNameColor: "pizzaz",
+      strapName: `${homepageAdPrefix}NzFarmer`,
+      sourceId: Strap.NZFarmer
+    },
+    {
+      type: HandlerInputType.LargeLeadSix,
+      displayName: "parenting",
+      displayNameColor: "amaranth",
+      strapName: `${homepageAdPrefix}Parenting`,
+      sourceId: Strap.Parenting
     },
     {
       type: HandlerInputType.BiggieSmalls,
