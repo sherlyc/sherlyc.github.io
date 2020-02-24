@@ -1,5 +1,6 @@
-<article>
-  <a href="{{ input.linkUrl }}" appOpenExternalLink="{{ input.linkUrl }}" (click)="sendAnalytics()">
-    <app-headline [headline]="input.indexHeadline" [timeStamp]="input.lastPublishedTime" [headlineFlags]="input.headlineFlags"></app-headline>
-  </a>
-</article>
+<a href="{{ input.linkUrl }}" appOpenExternalLink="{{ input.linkUrl }}" class="inputLink">
+  <article>
+    <span>{{this.timeStamp}}</span>
+    <app-headline [headline]="input.indexHeadline" [headlineFlags]="input.headlineFlags"></app-headline>
+  </article>
+</a>
