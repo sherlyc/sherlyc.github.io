@@ -1,5 +1,7 @@
 :host {
   display: block;
+
+  --title-size: 16px;
 }
 
 a {
@@ -12,12 +14,8 @@ a {
 }
 
 .image {
+  margin-bottom: 10px;
   overflow: hidden;
-  margin-bottom: 10px;
-}
-
-.headline {
-  margin-bottom: 10px;
 }
 
 .intro {
@@ -29,4 +27,8 @@ a {
 
 p {
   margin: 0 0 10px 0;
+}
+
+app-headline {
+  margin-bottom: 8px;
 }
