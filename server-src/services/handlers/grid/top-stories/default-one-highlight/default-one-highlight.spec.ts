@@ -59,7 +59,8 @@ describe("Top Stories Default One", () => {
     headlineFlags: [],
     boxColor: "#333",
     textColor: "#fff",
-    applyGradient: true
+    applyGradient: true,
+    pumped: false
   };
 
   beforeEach(() => {
