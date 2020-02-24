@@ -1,0 +1,12 @@
+:host {
+  display: block;
+
+  --title-size: 16px;
+}
+
+a {
+  text-decoration: none;
+  :hover {
+    text-decoration: none;
+  }
+}

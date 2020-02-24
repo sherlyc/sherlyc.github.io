@@ -30,6 +30,7 @@ import { WeatherUnitComponent } from "./weather-unit/weather-unit.component";
 import { StickyContainerComponent } from "./sticky-container/sticky-container.component";
 import { BulletListComponent } from "./bullet-list/bullet-list.component";
 import { ResponsiveExternalContentComponent } from "./responsive-external-content/responsive-external-content.component";
+import { ArticleTitleComponent } from "./article-title/article-title.component";
 
 export const contentBlockComponents = [
   GrayDefconArticleUnitComponent,
@@ -61,7 +62,8 @@ export const contentBlockComponents = [
   FeaturedArticleComponent,
   StickyContainerComponent,
   BulletListComponent,
-  ResponsiveExternalContentComponent
+  ResponsiveExternalContentComponent,
+  ArticleTitleComponent
 ];
 
 const registry: {
@@ -96,7 +98,8 @@ const registry: {
   FeaturedArticleComponent,
   StickyContainerComponent,
   BulletListComponent,
-  ResponsiveExternalContentComponent
+  ResponsiveExternalContentComponent,
+  ArticleTitleComponent
 };
 
 export default registry;
