@@ -28,10 +28,12 @@ describe("Strips", () => {
   const strapName = Strap.Premium;
   const displayName = "Premium";
   const displayNameColor = "premiumdark";
+  const linkUrl = "http://www.stuff.co.nz";
   const stripsHandlerInput: IStripsHandlerInput = {
     type: HandlerInputType.Strips,
     displayName,
     displayNameColor,
+    linkUrl,
     strapName,
     sourceId,
     articleCount,
@@ -131,7 +133,8 @@ describe("Strips", () => {
             expectContentBlock({
               type: ContentBlockType.ModuleTitle,
               displayName,
-              displayNameColor
+              displayNameColor,
+              linkUrl
             })
           ],
           [StripsGridPositions.ModuleContent]: [

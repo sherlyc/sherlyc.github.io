@@ -31,7 +31,8 @@ export default async function(
       {
         type: ContentBlockType.ModuleTitle,
         displayName,
-        displayNameColor
+        displayNameColor,
+        linkUrl
       }
     ],
     [NewsSixGridPositions.BigTopLeft]: [

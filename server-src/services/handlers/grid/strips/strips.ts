@@ -39,7 +39,8 @@ export default async function(
       {
         type: ContentBlockType.ModuleTitle,
         displayName,
-        displayNameColor
+        displayNameColor,
+        linkUrl
       }
     ],
     [StripsGridPositions.ModuleContent]: await handlerRunner(

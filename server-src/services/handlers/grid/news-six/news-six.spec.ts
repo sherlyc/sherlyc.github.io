@@ -3,7 +3,6 @@ import { INewsSixHandlerInput } from "../../__types__/INewsSixHandlerInput";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { Strap } from "../../../strap";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
-import logger from "../../../utils/logger";
 import { bigImageArticleUnit } from "../../../adapters/article-converter/big-image-article.converter";
 import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
 import { responsiveBigImageArticleUnit } from "../../../adapters/article-converter/responsive-big-image-article.converter";
@@ -57,6 +56,7 @@ describe("News six handler", () => {
       type: HandlerInputType.NewsSix,
       displayName: "FakeName",
       displayNameColor: "FakeColor",
+      linkUrl: "http://www.stuff.co.nz",
       strapName: "FakeStrap",
       sourceId: "sourceId" as Strap
     };
@@ -71,8 +71,9 @@ describe("News six handler", () => {
         [NewsSixGridPositions.ModuleTitle]: [
           {
             type: ContentBlockType.ModuleTitle,
-            displayName: "FakeName",
-            displayNameColor: "FakeColor"
+            displayName: input.displayName,
+            displayNameColor: input.displayNameColor,
+            linkUrl: input.linkUrl
           }
         ],
         [NewsSixGridPositions.BigTopLeft]: [fakeInput],

@@ -78,6 +78,7 @@ describe("Six image", () => {
       type: HandlerInputType.SixImage,
       displayName: "FakeName",
       displayNameColor: "FakeColor",
+      linkUrl: "linkUrl",
       strapName,
       sourceId: Strap.MidStrip
     };
@@ -89,7 +90,8 @@ describe("Six image", () => {
           {
             type: ContentBlockType.ModuleTitle,
             displayName: input.displayName,
-            displayNameColor: input.displayNameColor
+            displayNameColor: input.displayNameColor,
+            linkUrl: input.linkUrl
           }
         ],
         [SixImageGridHandlerPositions.FirstRowLeft]: [imageLinkUnit],
