@@ -23,7 +23,7 @@ describe("ErrorBlockComponent", () => {
     expect(component).toBeTruthy();
   });
 
-  it("should display the module name", () => {
+  it("should display the module name when provided", () => {
     const moduleName = "FakeModuleName";
 
     component.input = {
@@ -35,15 +35,30 @@ describe("ErrorBlockComponent", () => {
     expect(moduleTitle.nativeElement.textContent).toEqual(moduleName);
   });
 
+  it("should display line but not module name when name is empty", () => {
+    const moduleName = "";
+
+    component.input = {
+      displayName: moduleName
+    } as IModuleTitle;
+    fixture.detectChanges();
+
+    const moduleTitle = fixture.debugElement.query(By.css(".title"));
+    expect(moduleTitle).toBeFalsy();
+  });
+
   it("should display the color", () => {
     const moduleColor = "FakeModuleColor";
 
     component.input = {
+      displayName: "ModuleTitle",
       displayNameColor: moduleColor
     } as IModuleTitle;
     fixture.detectChanges();
 
-    const moduleTitle = fixture.debugElement.query(By.css("." + moduleColor));
-    expect(moduleTitle).toBeTruthy();
+    const moduleTitleColor = fixture.debugElement.query(
+      By.css("." + moduleColor)
+    );
+    expect(moduleTitleColor).toBeTruthy();
   });
 });
