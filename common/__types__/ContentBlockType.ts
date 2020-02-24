@@ -27,5 +27,6 @@ export enum ContentBlockType {
   ModuleSubtitle = "ModuleSubtitle",
   FeaturedArticle = "FeaturedArticle",
   StickyContainer = "StickyContainer",
-  BulletList = "BulletList"
+  BulletList = "BulletList",
+  ResponsiveExternalContent = "ResponsiveExternalContent"
 }
