@@ -124,4 +124,13 @@ describe("Responsive Big Image Article", () => {
     expect(headline).toHaveProperty("headlineFlags", articleData.headlineFlags);
     expect(headline).not.toHaveProperty("timeStamp");
   });
+
+  it("should set pumped class", () => {
+    component.input = { ...articleData, pumped: true };
+    fixture.detectChanges();
+
+    const host = fixture.debugElement.nativeElement;
+
+    expect(host.className).toMatch(/pumped/);
+  });
 });

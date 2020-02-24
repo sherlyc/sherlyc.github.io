@@ -116,6 +116,7 @@ describe("Top Stories Article List", () => {
     imageSrc: article.strapImageSrc,
     imageSrcSet: article.strapImageSrcSet,
     layout: BigImageArticleUnitLayout.default,
+    pumped: false,
     lastPublishedTime: article.lastPublishedTime,
     headlineFlags: article.headlineFlags
   });

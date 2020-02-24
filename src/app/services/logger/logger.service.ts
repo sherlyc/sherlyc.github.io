@@ -61,7 +61,7 @@ export class LoggerService implements ErrorHandler {
   }
 
   handleError(error: any) {
-    this.error(error);
+    this.error(error, "Angular Error Handler");
   }
 
   debug(...messages: any[]) {
@@ -76,6 +76,7 @@ export class LoggerService implements ErrorHandler {
     const correlation = this.correlationService.getCorrelation();
     this.client.configureScope((scope) => {
       scope.setTags(correlation as any);
+      scope.setExtra("extra_info", rest);
     });
     this.client.captureException(error, { data: rest });
     this.log("error", error, ...rest);

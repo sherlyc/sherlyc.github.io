@@ -23,7 +23,14 @@ export default async function(
       items: {
         [DefconHighlightPosition.Featured]: contentErrorHandler(
           () =>
-            featuredArticle(articles[0], strapName, "white", "black", false),
+            featuredArticle(
+              articles[0],
+              strapName,
+              "white",
+              "black",
+              false,
+              true
+            ),
           HandlerInputType.TopStoriesDefconHighlight,
           Strap.TopStories,
           params

@@ -30,7 +30,7 @@ export class ExperimentService {
     private store: StoreService
   ) {}
 
-  async setup() {
+  setup() {
     if (this.runtimeService.isServer()) {
       return;
     }

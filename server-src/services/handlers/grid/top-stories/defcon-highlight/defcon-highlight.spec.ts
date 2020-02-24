@@ -35,7 +35,8 @@ describe("Top Stories Defcon Highlight", () => {
             id: "1",
             textColor: "white",
             boxColor: "black",
-            applyGradient: false
+            applyGradient: false,
+            pumped: true
           }),
           [DefconHighlightPosition.Related1]: expect.objectContaining({
             type: ContentBlockType.BigImageArticleUnit,

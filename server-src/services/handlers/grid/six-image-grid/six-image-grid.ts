@@ -13,7 +13,7 @@ export default async function(
   { content }: ISixImageGridHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const desktopAndTablet = {
+  const desktop = {
     [SixImageGridHandlerPositions.ModuleTitle]: gridBlock(1, 1, 1, 4, []),
     [SixImageGridHandlerPositions.FirstRowLeft]: gridBlock(2, 1, 1, 1, []),
     [SixImageGridHandlerPositions.FirstRowMiddle]: gridBlock(2, 2, 1, 1, []),
@@ -22,6 +22,17 @@ export default async function(
     [SixImageGridHandlerPositions.SecondRowMiddle]: gridBlock(3, 2, 1, 1, []),
     [SixImageGridHandlerPositions.SecondRowRight]: gridBlock(3, 3, 1, 1, []),
     [SixImageGridHandlerPositions.BigRight]: gridBlock(2, 4, 2, 1, [])
+  };
+
+  const tablet = {
+    [SixImageGridHandlerPositions.ModuleTitle]: gridBlock(1, 1, 1, 3, []),
+    [SixImageGridHandlerPositions.FirstRowLeft]: gridBlock(2, 1, 1, 1, []),
+    [SixImageGridHandlerPositions.FirstRowMiddle]: gridBlock(2, 2, 1, 1, []),
+    [SixImageGridHandlerPositions.FirstRowRight]: gridBlock(3, 1, 1, 1, []),
+    [SixImageGridHandlerPositions.SecondRowLeft]: gridBlock(3, 2, 1, 1, []),
+    [SixImageGridHandlerPositions.SecondRowMiddle]: gridBlock(4, 1, 1, 1, []),
+    [SixImageGridHandlerPositions.SecondRowRight]: gridBlock(4, 2, 1, 1, []),
+    [SixImageGridHandlerPositions.BigRight]: gridBlock(2, 3, 3, 1, [])
   };
 
   const mobile = {
@@ -43,15 +54,15 @@ export default async function(
         gridTemplateColumns: "1fr 1fr 1fr 300px",
         gridTemplateRows: "auto auto auto",
         gridColumnGap: "20px",
-        gridRowGap: "20px",
-        gridBlocks: desktopAndTablet
+        gridRowGap: "40px",
+        gridBlocks: desktop
       },
       tablet: {
-        gridTemplateColumns: "1fr 1fr 1fr 300px",
-        gridTemplateRows: "auto auto auto",
+        gridTemplateColumns: "1fr 1fr 300px",
+        gridTemplateRows: "auto auto auto auto",
         gridColumnGap: "20px",
         gridRowGap: "20px",
-        gridBlocks: desktopAndTablet
+        gridBlocks: tablet
       },
       mobile: {
         gridTemplateColumns: "1fr 1fr",
