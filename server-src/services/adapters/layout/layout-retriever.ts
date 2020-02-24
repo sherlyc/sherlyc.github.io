@@ -25,7 +25,6 @@ const mapTopStoriesLayout = (data: ISectionLayout) => {
 };
 
 async function requestTopStoriesLayout(params: IParams): Promise<LayoutType> {
-  return LayoutType.DEFCON;
   const response = await cacheHttp(params, config.layoutAPI);
 
   if (!isValid(response)) {

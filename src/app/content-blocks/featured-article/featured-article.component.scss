@@ -4,20 +4,20 @@
   display: block;
   height: 100%;
 
-  --title-size: 21px;
+  --title-size: 24px;
 
-  @include desktop {
-    --title-size: 24px;
+  @include mobile {
+    --title-size: 21px;
   }
 }
 
 :host(.pumped) {
   height: 100%;
 
-  --title-size: 24px;
+  --title-size: 38px;
 
-  @include desktop {
-    --title-size: 38px;
+  @include mobile {
+    --title-size: 24px;
   }
 }
 
