@@ -1,4 +1,10 @@
-import { Component, HostBinding, Input, OnInit } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  Input,
+  OnInit
+} from "@angular/core";
 import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 import { IBasicAdUnit } from "../../../../common/__types__/IBasicAdUnit";
 import { ClassNameService } from "../../services/class-name/class-name.service";
@@ -6,7 +12,8 @@ import { ClassNameService } from "../../services/class-name/class-name.service";
 @Component({
   selector: "app-basic-ad-unit",
   template: "",
-  styleUrls: ["./basic-ad-unit.component.scss"]
+  styleUrls: ["./basic-ad-unit.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BasicAdUnitComponent implements IContentBlockComponent, OnInit {
   @Input() input!: IBasicAdUnit;
