@@ -28,12 +28,14 @@ describe("Biggie Smalls", () => {
   const strapName = "motoring-strap";
   const displayName = "motoring";
   const displayNameColor = "pizzaz";
+  const linkUrl = "http://www.stuff.co.nz";
   const biggieSmallsHandlerInput: IBiggieSmallsHandlerInput = {
     type: HandlerInputType.BiggieSmalls,
     displayName,
     displayNameColor,
     strapName,
-    sourceId
+    sourceId,
+    linkUrl
   };
 
   beforeEach(async () => {
@@ -102,7 +104,8 @@ describe("Biggie Smalls", () => {
             expectContentBlock({
               type: ContentBlockType.ModuleTitle,
               displayName,
-              displayNameColor
+              displayNameColor,
+              linkUrl
             })
           ],
           [BiggieSmallsGridPositions.Highlight]: [

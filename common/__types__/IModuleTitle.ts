@@ -4,4 +4,5 @@ export interface IModuleTitle {
   type: ContentBlockType.ModuleTitle;
   displayName: string;
   displayNameColor: string;
+  linkUrl?: string;
 }

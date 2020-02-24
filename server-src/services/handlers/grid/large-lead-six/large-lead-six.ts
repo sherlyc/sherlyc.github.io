@@ -59,7 +59,8 @@ export default async function(
         {
           type: ContentBlockType.ModuleTitle,
           displayName,
-          displayNameColor
+          displayNameColor,
+          linkUrl
         }
       ],
       [LargeLeadSixGridPositions.Left]: [leftContent],

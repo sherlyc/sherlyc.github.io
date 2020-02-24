@@ -31,6 +31,7 @@ describe("Large lead six", () => {
   const strapName = "fakeStrapName";
   const displayName = "displayName";
   const displayNameColor = "displayNameColor";
+  const linkUrl = "http://www.stuff.co.nz";
 
   const articleOne: IRawArticle = {
     id: "1",
@@ -65,7 +66,8 @@ describe("Large lead six", () => {
   const moduleTitle: IModuleTitle = {
     type: ContentBlockType.ModuleTitle,
     displayName,
-    displayNameColor
+    displayNameColor,
+    linkUrl
   };
   const articleOneAsBigImage: IBigImageArticleUnit = {
     type: ContentBlockType.BigImageArticleUnit,
@@ -109,6 +111,7 @@ describe("Large lead six", () => {
       type: HandlerInputType.LargeLeadSix,
       displayName,
       displayNameColor,
+      linkUrl,
       strapName,
       sourceId
     };
@@ -140,6 +143,7 @@ describe("Large lead six", () => {
       type: HandlerInputType.LargeLeadSix,
       displayName,
       displayNameColor,
+      linkUrl,
       strapName,
       sourceId
     };
