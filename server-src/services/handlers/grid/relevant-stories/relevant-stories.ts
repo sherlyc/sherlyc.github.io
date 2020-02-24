@@ -56,10 +56,7 @@ export default async function(
       [RelevantStoriesGridPositions.SecondColumn]: secondColumnContent,
       [RelevantStoriesGridPositions.ThirdColumn]: thirdColumnContent,
       [RelevantStoriesGridPositions.Right]: [
-        {
-          type: ContentBlockType.StickyContainer,
-          items: [basicAdUnit("homepageEditorsPicks")]
-        }
+        basicAdUnit("homepageEditorsPicks")
       ]
     }
   };

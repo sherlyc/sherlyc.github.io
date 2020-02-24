@@ -105,10 +105,7 @@ describe("Relevant Stories", () => {
         [RelevantStoriesGridPositions.SecondColumn]: columnTwo,
         [RelevantStoriesGridPositions.ThirdColumn]: columnThree,
         [RelevantStoriesGridPositions.Right]: [
-          {
-            type: ContentBlockType.StickyContainer,
-            items: [basicAdUnit("homepageEditorsPicks")]
-          }
+          basicAdUnit("homepageEditorsPicks")
         ]
       }
     };
