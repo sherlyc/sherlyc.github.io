@@ -48,7 +48,7 @@
       "level": "info",
       "format": "json"
     },
-    "aadSdkUrl": "/static/adnostic/stuff-adnostic-1.52.0.min.b816d56eea1ab65a5e19.js",
+    "aadSdkUrl": "/static/adnostic/stuff-adnostic-1.54.0.min.333af1e62bc6be90a9ee.js",
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
       "sampleRate": 0.1,
@@ -80,7 +80,7 @@
       "level": "debug",
       "format": "text"
     },
-    "aadSdkUrl": "/static/adnostic/stuff-adnostic-1.52.0.min.b816d56eea1ab65a5e19.js",
+    "aadSdkUrl": "/static/adnostic/stuff-adnostic-1.54.0.min.333af1e62bc6be90a9ee.js",
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
       "sampleRate": 0,
