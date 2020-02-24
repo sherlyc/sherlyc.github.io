@@ -20,6 +20,7 @@ export default async function(
   {
     displayName,
     displayNameColor,
+    linkUrl,
     sourceId,
     strapName
   }: IBiggieSmallsHandlerInput,

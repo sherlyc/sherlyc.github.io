@@ -5,6 +5,7 @@ export interface IBiggieSmallsHandlerInput {
   type: HandlerInputType.BiggieSmalls;
   displayName: string;
   displayNameColor: string;
+  linkUrl?: string;
   strapName: string;
   sourceId: Strap;
 }

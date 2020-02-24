@@ -22,7 +22,8 @@ export default async function(
     sourceId,
     strapName,
     displayName,
-    displayNameColor
+    displayNameColor,
+    linkUrl
   }: ILargeLeadSixHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
