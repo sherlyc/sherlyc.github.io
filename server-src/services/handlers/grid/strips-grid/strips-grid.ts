@@ -14,6 +14,11 @@ export default async function(
   { content }: IStripsGridHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
+  const grid = {
+    [StripsGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 1, []),
+    [StripsGridPositions.ModuleContent]: gridBlock(2, 1, 1, 1, [])
+  };
+
   return [
     {
       type: ContentBlockType.GridContainer,
@@ -22,11 +27,22 @@ export default async function(
         gridTemplateColumns: "1fr",
         gridTemplateRows: "auto auto",
         gridColumnGap: "0",
+        gridRowGap: "10px",
+        gridBlocks: grid
+      },
+      tablet: {
+        gridTemplateColumns: "1fr",
+        gridTemplateRows: "auto auto",
+        gridColumnGap: "0",
         gridRowGap: "20px",
-        gridBlocks: {
-          [StripsGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 1, []),
-          [StripsGridPositions.ModuleContent]: gridBlock(2, 1, 1, 1, [])
-        }
+        gridBlocks: grid
+      },
+      desktop: {
+        gridTemplateColumns: "1fr",
+        gridTemplateRows: "auto auto",
+        gridColumnGap: "0",
+        gridRowGap: "40px",
+        gridBlocks: grid
       }
     } as IGridContainer
   ];
