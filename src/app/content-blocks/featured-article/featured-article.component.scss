@@ -4,20 +4,21 @@
   display: block;
   height: 100%;
 
-  --title-size: 21px;
+  --title-size: 24px;
 
-  @include desktop {
-    --title-size: 24px;
+  @include mobile {
+    --title-size: 21px;
   }
 }
 
 :host(.pumped) {
-  --title-size: 24px;
-
-  @include desktop {
-    --title-size: 38px;
-  }
   height: 100%;
+
+  --title-size: 38px;
+
+  @include mobile {
+    --title-size: 24px;
+  }
 }
 
 article {
@@ -42,7 +43,7 @@ a {
 
 app-headline {
   margin-bottom: 10px;
-  margin-bottom: calc(var(--title-size) / 2);
+  margin-bottom: calc(var(--title-size) * 0.2);
 }
 
 .intro {

@@ -1,5 +1,4 @@
 import { ContentBlockType } from "../../../../../../common/__types__/ContentBlockType";
-import { BigImageArticleUnitLayout } from "../../../../../../common/__types__/IBigImageArticleUnit";
 import { IParams } from "../../../../__types__/IParams";
 import { IRawArticle } from "../../../../adapters/__types__/IRawArticle";
 import { gridBlock } from "../../../../adapters/grid/grid-block";
@@ -39,14 +38,12 @@ describe("Top Stories Defcon Highlight", () => {
             pumped: true
           }),
           [DefconHighlightPosition.Related1]: expect.objectContaining({
-            type: ContentBlockType.BigImageArticleUnit,
-            id: "2",
-            layout: BigImageArticleUnitLayout.module
+            type: ContentBlockType.HalfWidthImageArticleUnit,
+            id: "2"
           }),
           [DefconHighlightPosition.Related2]: expect.objectContaining({
-            type: ContentBlockType.BigImageArticleUnit,
-            id: "3",
-            layout: BigImageArticleUnitLayout.module
+            type: ContentBlockType.HalfWidthImageArticleUnit,
+            id: "3"
           })
         },
         mobile: {
