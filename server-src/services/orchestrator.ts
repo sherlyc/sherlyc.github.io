@@ -63,16 +63,21 @@ const newPage = (): HandlerInput[] => {
       strapName: `${homepageAdPrefix}TopStoriesDefaultOne`
     },
     {
-      type: HandlerInputType.ResponsiveExternalContent,
-      url: "https://interactives.stuff.co.nz/voyager/2019/2019-mobile.html",
-      mobile: {
-        height: "40px",
-        width: "100%",
-        margin: "0 0 20px 0"
-      }
+      type: HandlerInputType.RelevantStories
     },
     {
-      type: HandlerInputType.RelevantStories
+      type: HandlerInputType.ArticleSection,
+      displayName: "play stuff",
+      displayNameColor: "black",
+      linkUrl:
+        "https://www.playwidget.stuff.co.nz/shelf/5d06caa81de1c4001f81a46e",
+      content: {
+        type: HandlerInputType.ExternalContent,
+        height: "215px",
+        width: "100%",
+        margin: "0 -10px 20px",
+        url: "https://www.playwidget.stuff.co.nz/shelf/5d06caa81de1c4001f81a46e"
+      }
     },
     {
       type: HandlerInputType.ResponsiveExternalContent,
@@ -96,8 +101,8 @@ const newPage = (): HandlerInput[] => {
     },
     {
       type: HandlerInputType.SixImage,
-      displayName: "midstrip",
-      displayNameColor: "darkblue",
+      displayName: "",
+      displayNameColor: "",
       strapName: `${homepageAdPrefix}MidStrip`,
       sourceId: Strap.MidStrip
     },
@@ -153,11 +158,18 @@ const newPage = (): HandlerInput[] => {
       sourceId: Strap.World
     },
     {
-      type: HandlerInputType.LargeLeadSix,
-      displayName: "property",
-      displayNameColor: "royalblue",
-      strapName: `${homepageAdPrefix}Property`,
-      sourceId: Strap.Property
+      type: HandlerInputType.ArticleSection,
+      displayName: "one news play stuff",
+      displayNameColor: "black",
+      linkUrl: "https://play.stuff.co.nz/page/channel-onenews",
+      content: {
+        type: HandlerInputType.ExternalContent,
+        height: "calc(56% + 216px)",
+        width: "100%",
+        margin: "0 -10px 10px",
+        url:
+          "https://www.playwidget.stuff.co.nz/hshelf/5d3fcb25a0e845001caee780"
+      }
     },
     {
       type: HandlerInputType.Brand,
@@ -199,20 +211,6 @@ const newPage = (): HandlerInput[] => {
       sourceId: Strap.Bravo
     },
     {
-      type: HandlerInputType.LargeLeadSix,
-      displayName: "technology",
-      displayNameColor: "carribeangreen",
-      strapName: `${homepageAdPrefix}Technology`,
-      sourceId: Strap.Technology
-    },
-    {
-      type: HandlerInputType.SixImage,
-      displayName: "opinion",
-      displayNameColor: "dingley",
-      strapName: `${homepageAdPrefix}Opinion`,
-      sourceId: Strap.Opinion
-    },
-    {
       type: HandlerInputType.BiggieSmalls,
       displayName: "motoring",
       displayNameColor: "pizzaz",
@@ -220,11 +218,11 @@ const newPage = (): HandlerInput[] => {
       sourceId: Strap.Motoring
     },
     {
-      type: HandlerInputType.SixImage,
-      displayName: "stuff nation",
-      displayNameColor: "woodsmoke",
-      strapName: `${homepageAdPrefix}StuffNation`,
-      sourceId: Strap.StuffNation
+      type: HandlerInputType.LargeLeadSix,
+      displayName: "technology",
+      displayNameColor: "carribeangreen",
+      strapName: `${homepageAdPrefix}Technology`,
+      sourceId: Strap.Technology
     },
     {
       type: HandlerInputType.BiggieSmalls,
@@ -232,94 +230,6 @@ const newPage = (): HandlerInput[] => {
       displayNameColor: "scarlet",
       strapName: `${homepageAdPrefix}Sport`,
       sourceId: Strap.Sport
-    },
-    {
-      type: HandlerInputType.ArticleSection,
-      displayName: "1 News",
-      displayNameColor: "darkblue",
-      linkUrl: "https://play.stuff.co.nz/page/channel-onenews",
-      content: {
-        type: HandlerInputType.ResponsiveExternalContent,
-        url:
-          "https://www.playwidget.stuff.co.nz/hshelf/5d3fcb25a0e845001caee780",
-        mobile: {
-          height: "calc(56% + 216px)",
-          width: "100%",
-          margin: "0 -10px 10px"
-        }
-      }
-    },
-    {
-      type: HandlerInputType.SixImage,
-      displayName: "noted",
-      displayNameColor: "darkblue",
-      strapName: `${homepageAdPrefix}Noted`,
-      sourceId: Strap.Noted
-    },
-    {
-      type: HandlerInputType.SixImage,
-      displayName: "now to love",
-      displayNameColor: "amaranth",
-      strapName: `${homepageAdPrefix}NowToLove`,
-      sourceId: Strap.NowToLove
-    },
-    {
-      type: HandlerInputType.SixImage,
-      displayName: "homes to love",
-      displayNameColor: "amaranth",
-      strapName: `${homepageAdPrefix}HomesToLove`,
-      sourceId: Strap.HomesToLove
-    },
-    {
-      type: HandlerInputType.SixImage,
-      displayName: "food to love",
-      displayNameColor: "amaranth",
-      strapName: `${homepageAdPrefix}FoodToLove`,
-      sourceId: Strap.FoodToLove
-    },
-    {
-      type: HandlerInputType.SixImage,
-      displayName: "beauty heaven",
-      displayNameColor: "amaranth",
-      strapName: `${homepageAdPrefix}BeautyHeaven`,
-      sourceId: Strap.BeautyHeaven
-    },
-    {
-      type: HandlerInputType.SixImage,
-      displayName: "metro",
-      displayNameColor: "amaranth",
-      strapName: `${homepageAdPrefix}Metro`,
-      sourceId: Strap.Metro
-    },
-    {
-      type: HandlerInputType.SixImage,
-      displayName: "newsroom.co.nz",
-      displayNameColor: "darkblue",
-      strapName: `${homepageAdPrefix}Newsroomconz`,
-      sourceId: Strap.Newsroom
-    },
-    {
-      type: HandlerInputType.SixImage,
-      displayName: "tarana",
-      displayNameColor: "scarlet",
-      strapName: `${homepageAdPrefix}Tarana`,
-      sourceId: Strap.Tarana
-    },
-    {
-      type: HandlerInputType.Strips,
-      displayName: "sponsored content",
-      displayNameColor: "darkblue",
-      strapName: Strap.SponsoredContent,
-      sourceId: Strap.SponsoredContent,
-      articleCount: 4,
-      articleFormat: ContentBlockType.BigImageArticleUnit
-    },
-    {
-      type: HandlerInputType.ExternalContent,
-      height: "580px",
-      width: "100%",
-      margin: "0 0 3px 0",
-      url: "https://cdn.neighbourly.co.nz/stuff/933/homepage"
     },
     {
       type: HandlerInputType.Brand,
