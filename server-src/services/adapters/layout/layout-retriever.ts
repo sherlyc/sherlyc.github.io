@@ -1,11 +1,11 @@
-import { ISectionLayout } from "../__types__/ISectionLayout";
-import config from "../../utils/config";
-import cacheHttp from "../../utils/cache-http";
-import retry from "../../utils/retry";
-import { IParams } from "../../__types__/IParams";
-import { LayoutType } from "../__types__/LayoutType";
 import { AxiosResponse } from "axios";
+import { IParams } from "../../__types__/IParams";
+import cacheHttp from "../../utils/cache-http";
+import config from "../../utils/config";
 import logger from "../../utils/logger";
+import retry from "../../utils/retry";
+import { ISectionLayout } from "../__types__/ISectionLayout";
+import { LayoutType } from "../__types__/LayoutType";
 
 const isValid = (response: AxiosResponse<ISectionLayout>) => {
   if (!response.data || !response.data.layouts || !response.data.layouts[0]) {
@@ -25,6 +25,7 @@ const mapTopStoriesLayout = (data: ISectionLayout) => {
 };
 
 async function requestTopStoriesLayout(params: IParams): Promise<LayoutType> {
+  return LayoutType.DEFCON;
   const response = await cacheHttp(params, config.layoutAPI);
 
   if (!isValid(response)) {
