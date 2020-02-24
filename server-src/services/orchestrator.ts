@@ -143,7 +143,7 @@ const newPage = (): HandlerInput[] => {
     },
     {
       type: HandlerInputType.Strips,
-      displayName: "premium",
+      displayName: "spotlight",
       displayNameColor: "premiumdark",
       sourceId: Strap.Premium,
       strapName: Strap.Premium,
