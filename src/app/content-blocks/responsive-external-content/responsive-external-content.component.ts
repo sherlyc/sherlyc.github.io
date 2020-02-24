@@ -6,10 +6,7 @@ import {
   OnInit
 } from "@angular/core";
 import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
-import {
-  IResponsiveExternalContent,
-  IResponsiveExternalContentDeviceStyle
-} from "../../../../common/__types__/IResponsiveExternalContent";
+import { IResponsiveExternalContent } from "../../../../common/__types__/IResponsiveExternalContent";
 import { DomSanitizer } from "@angular/platform-browser";
 import { MediaQuery } from "../grid-container/__types__/MediaQuery";
 import { GlobalStyleService } from "../../services/global-style/global-style.service";
@@ -25,12 +22,6 @@ export class ResponsiveExternalContentComponent
   @Input() input!: IResponsiveExternalContent;
   @HostBinding("class") class = "";
 
-  layouts!: {
-    mobile: IResponsiveExternalContentDeviceStyle;
-    tablet: IResponsiveExternalContentDeviceStyle;
-    desktop: IResponsiveExternalContentDeviceStyle;
-  };
-
   constructor(
     private sanitizer: DomSanitizer,
     private globalStyles: GlobalStyleService
@@ -38,20 +29,6 @@ export class ResponsiveExternalContentComponent
 
   ngOnInit(): void {
     const { mobile, tablet = mobile, desktop = tablet } = this.input;
-    this.layouts = {
-      mobile: {
-        height: mobile.height,
-        width: mobile.width
-      },
-      tablet: {
-        height: tablet.height,
-        width: tablet.width
-      },
-      desktop: {
-        height: desktop.height,
-        width: desktop.width
-      }
-    };
 
     this.class = this.globalStyles.injectStyle({
       [MediaQuery.Mobile]: {
@@ -71,7 +48,7 @@ export class ResponsiveExternalContentComponent
   }
 
   getCss() {
-    const { mobile, tablet, desktop } = this.layouts;
+    const { mobile, tablet = mobile, desktop = tablet } = this.input;
 
     return {
       [MediaQuery.Mobile]: {

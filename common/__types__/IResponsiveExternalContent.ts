@@ -14,8 +14,3 @@ export interface IResponsiveExternalContentDeviceConfig {
   height: string;
   margin: string;
 }
-
-export interface IResponsiveExternalContentDeviceStyle {
-  width: string;
-  height: string;
-}

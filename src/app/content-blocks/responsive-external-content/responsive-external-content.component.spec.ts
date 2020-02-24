@@ -118,31 +118,6 @@ describe("ResponsiveExternalContentComponent", () => {
     });
   });
 
-  it("should set device css to layouts", () => {
-    component.input = {
-      ...input,
-      mobile: mobileConfig,
-      tablet: tabletConfig,
-      desktop: desktopConfig
-    };
-
-    fixture.detectChanges();
-    expect(component.layouts).toEqual({
-      mobile: {
-        height: mobileConfig.height,
-        width: mobileConfig.width
-      },
-      tablet: {
-        height: tabletConfig.height,
-        width: tabletConfig.width
-      },
-      desktop: {
-        height: desktopConfig.height,
-        width: desktopConfig.width
-      }
-    });
-  });
-
   it("should apply css according to device configs", () => {
     component.input = {
       ...input,
