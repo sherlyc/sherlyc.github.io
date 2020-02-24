@@ -1,5 +1,21 @@
+@import "src/styles/break-points";
+
 :host {
   display: block;
+
+  --title-size: 21px;
+
+  @include desktop {
+    --title-size: 24px;
+  }
+}
+
+:host(.pumped) {
+  --title-size: 24px;
+
+  @include desktop {
+    --title-size: 38px;
+  }
 }
 
 a {
@@ -24,6 +40,12 @@ img {
 .image {
   overflow: hidden;
   margin-bottom: 10px;
+}
+
+@include desktop {
+  .image {
+    margin-bottom: 0;
+  }
 }
 
 .intro {

@@ -8,7 +8,8 @@ import { IRawArticle } from "../__types__/IRawArticle";
 export const bigImageArticleUnit = (
   article: IRawArticle,
   strapName: string,
-  layout: BigImageArticleUnitLayout = BigImageArticleUnitLayout.default
+  layout: BigImageArticleUnitLayout = BigImageArticleUnitLayout.default,
+  pumped = false
 ): IBigImageArticleUnit => ({
   type: ContentBlockType.BigImageArticleUnit,
   id: article.id,
@@ -22,6 +23,7 @@ export const bigImageArticleUnit = (
       : article.sixteenByNineSrc,
   imageSrcSet: article.strapImageSrcSet,
   layout,
+  pumped,
   linkUrl: article.linkUrl,
   lastPublishedTime: article.lastPublishedTime,
   headlineFlags: article.headlineFlags

@@ -1,5 +1,17 @@
+@import "src/styles/break-points";
+
 :host {
   display: block;
+
+  --title-size: 16px;
+}
+
+:host(.pumped) {
+  --title-size: 21px;
+
+  @include desktop {
+    --title-size: 24px;
+  }
 }
 
 a {
@@ -43,4 +55,5 @@ p {
 
 app-headline {
   margin-bottom: 10px;
+  margin-bottom: calc(var(--title-size) / 2);
 }

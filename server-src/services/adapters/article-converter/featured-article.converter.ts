@@ -1,13 +1,14 @@
-import { IRawArticle } from "../__types__/IRawArticle";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IFeaturedArticle } from "../../../../common/__types__/IFeaturedArticle";
+import { IRawArticle } from "../__types__/IRawArticle";
 
 export const featuredArticle = (
   article: IRawArticle,
   strapName: string,
   textColor: string,
   boxColor: string,
-  applyGradient?: boolean
+  applyGradient = false,
+  pumped = false
 ): IFeaturedArticle => ({
   type: ContentBlockType.FeaturedArticle,
   id: article.id,
@@ -22,5 +23,6 @@ export const featuredArticle = (
   headlineFlags: article.headlineFlags,
   textColor,
   boxColor,
-  applyGradient
+  applyGradient,
+  pumped
 });

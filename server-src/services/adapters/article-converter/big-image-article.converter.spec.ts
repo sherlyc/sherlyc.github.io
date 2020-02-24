@@ -41,7 +41,9 @@ describe("big image article", () => {
   };
 
   it("should convert", () => {
-    expect(bigImageArticleUnit(fakeArticle, fakeStrapName)).toEqual(expected);
+    expect(bigImageArticleUnit(fakeArticle, fakeStrapName)).toEqual(
+      expect.objectContaining(expected)
+    );
   });
 
   it("should convert module layout", () => {
@@ -51,10 +53,30 @@ describe("big image article", () => {
         fakeStrapName,
         BigImageArticleUnitLayout.module
       )
-    ).toEqual({
-      ...expected,
-      imageSrc: "sixteenByNine.jpg",
-      layout: BigImageArticleUnitLayout.module
-    });
+    ).toEqual(
+      expect.objectContaining({
+        ...expected,
+        imageSrc: "sixteenByNine.jpg",
+        layout: BigImageArticleUnitLayout.module
+      })
+    );
+  });
+
+  it("sets the pumped flag", () => {
+    expect(
+      bigImageArticleUnit(
+        fakeArticle,
+        fakeStrapName,
+        BigImageArticleUnitLayout.module,
+        true
+      )
+    ).toEqual(
+      expect.objectContaining({
+        ...expected,
+        imageSrc: "sixteenByNine.jpg",
+        layout: BigImageArticleUnitLayout.module,
+        pumped: true
+      })
+    );
   });
 });
