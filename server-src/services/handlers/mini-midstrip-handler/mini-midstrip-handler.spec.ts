@@ -7,6 +7,7 @@ import { Strap } from "../../strap";
 import { getStrapArticles } from "../../adapters/strap-list/strap-list-service";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import wrappedLogger from "../../utils/logger";
+import { ImageLayoutType } from "../../../../common/__types__/ImageLayoutType";
 
 jest.mock("../../utils/logger");
 jest.mock("../../adapters/strap-list/strap-list-service");
@@ -89,7 +90,8 @@ describe("MiniMidStripHandler", () => {
               indexHeadline: `Headline 1`,
               title: "Title 1",
               linkUrl: "/link1",
-              type: "ImageLinkUnit"
+              type: ContentBlockType.ImageLinkUnit,
+              layout: ImageLayoutType.default
             },
             {
               id: "2",
@@ -100,7 +102,8 @@ describe("MiniMidStripHandler", () => {
               indexHeadline: `Headline 2`,
               title: "Title 2",
               linkUrl: "/link2",
-              type: "ImageLinkUnit"
+              type: ContentBlockType.ImageLinkUnit,
+              layout: ImageLayoutType.default
             }
           ]
         },
@@ -160,7 +163,8 @@ describe("MiniMidStripHandler", () => {
               indexHeadline: `Headline 1`,
               title: "Title 1",
               linkUrl: "/link1",
-              type: "ImageLinkUnit"
+              type: ContentBlockType.ImageLinkUnit,
+              layout: ImageLayoutType.default
             },
             {
               id: "2",
@@ -171,7 +175,8 @@ describe("MiniMidStripHandler", () => {
               indexHeadline: `Headline 2`,
               title: "Title 2",
               linkUrl: "/link2",
-              type: "ImageLinkUnit"
+              type: ContentBlockType.ImageLinkUnit,
+              layout: ImageLayoutType.default
             }
           ]
         },
