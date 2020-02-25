@@ -2,7 +2,12 @@
   <meta itemprop="position" content="{{ index }}" />
   <a itemprop="url" href="{{ input.linkUrl }}" appOpenExternalLink="{{ input.linkUrl }}" (click)="sendAnalytics()">
     <div class="image" *ngIf="input.imageSrc">
-      <img src="{{ input.imageSrc }}" (error)="input.imageSrc = null" alt="{{ input.indexHeadline }}" loading="auto" [attr.srcset]="input.imageSrcSet ? input.imageSrcSet : null" />
+      <ng-container *ngIf="input.layout === 'default'; else moduleImage">
+        <img itemprop="image" (error)="input.imageSrc = null" [attr.src]="input.imageSrc" [attr.alt]="input.indexHeadline" loading="auto" [attr.srcset]="input.imageSrcSet ? input.imageSrcSet : null" />
+      </ng-container>
+      <ng-template #moduleImage>
+        <app-fluid-image [imageSrc]="input.imageSrc" [caption]="input.indexHeadline"></app-fluid-image>
+      </ng-template>
     </div>
     <app-headline [headline]="input.indexHeadline" [headlineFlags]="input.headlineFlags"></app-headline>
   </a>
