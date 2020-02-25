@@ -21,10 +21,20 @@ describe("Relevant stories column", () => {
   const fakeArticlesWithIds = (ids: number[]) =>
     ids.map((id) => ({ id: `${id}` } as IRawArticle));
 
-  const expectArticleTitle = (id: number) =>
+  const expectArticleTitleWithTimestamp = (id: number) =>
     expect.objectContaining({
       type: ContentBlockType.ArticleTitle,
-      id: `${id}`
+      id: `${id}`,
+      showTimestamp: true,
+      numberPosition: undefined
+    });
+
+  const expectArticleTitleWithNumber = (id: number) =>
+    expect.objectContaining({
+      type: ContentBlockType.ArticleTitle,
+      id: `${id}`,
+      numberPosition: `0${id}`,
+      showTimestamp: false
     });
 
   it("should pass articles as title units to list grid", async () => {
@@ -37,6 +47,36 @@ describe("Relevant stories column", () => {
       moduleTitle,
       moduleTitleColor,
       true,
+      false,
+      handlerRunner,
+      params
+    );
+
+    const expectedListGridInput: IListGridHandlerInput = {
+      type: HandlerInputType.ListGrid,
+      content: [
+        expectArticleTitleWithTimestamp(1),
+        expectArticleTitleWithTimestamp(2),
+        expectArticleTitleWithTimestamp(3)
+      ]
+    };
+    expect(handlerRunner).toHaveBeenNthCalledWith(
+      1,
+      expectedListGridInput,
+      params
+    );
+  });
+
+  it("should pass articles title with position to list grid", async () => {
+    const articleRetriever = Promise.resolve(fakeArticlesWithIds([1, 2, 3]));
+    const handlerRunner = jest.fn();
+    handlerRunner.mockResolvedValue([]);
+
+    await createRelevantStoriesColumn(
+      articleRetriever,
+      moduleTitle,
+      moduleTitleColor,
+      false,
       true,
       handlerRunner,
       params
@@ -45,9 +85,9 @@ describe("Relevant stories column", () => {
     const expectedListGridInput: IListGridHandlerInput = {
       type: HandlerInputType.ListGrid,
       content: [
-        expectArticleTitle(1),
-        expectArticleTitle(2),
-        expectArticleTitle(3)
+        expectArticleTitleWithNumber(1),
+        expectArticleTitleWithNumber(2),
+        expectArticleTitleWithNumber(3)
       ]
     };
     expect(handlerRunner).toHaveBeenNthCalledWith(
