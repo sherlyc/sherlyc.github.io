@@ -92,6 +92,20 @@ const newPage = (): HandlerInput[] => {
       }
     },
     {
+      type: HandlerInputType.ResponsiveExternalContent,
+      url: "https://interactives.stuff.co.nz/live/homepage/uber/2/320-200.html",
+      mobile: {
+        height: "320px",
+        width: "100%",
+        margin: "0 0 20px 0"
+      },
+      tablet: {
+        height: "200px",
+        width: "100%",
+        margin: "0 0 20px 0"
+      }
+    },
+    {
       type: HandlerInputType.SixImage,
       displayName: "",
       displayNameColor: "",
@@ -144,8 +158,7 @@ const newPage = (): HandlerInput[] => {
     },
     {
       type: HandlerInputType.ResponsiveExternalContent,
-      url:
-        "https://interactives.stuff.co.nz/live/homepage/uber/index-editorial-pointer.html",
+      url: "https://interactives.stuff.co.nz/live/homepage/uber/3/320-200.html",
       mobile: {
         height: "320px",
         width: "100%",
