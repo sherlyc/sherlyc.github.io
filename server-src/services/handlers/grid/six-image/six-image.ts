@@ -16,7 +16,13 @@ import { contentErrorHandler } from "../content-error-handler";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  { sourceId, strapName, displayName, displayNameColor }: ISixImageHandlerInput,
+  {
+    sourceId,
+    strapName,
+    displayName,
+    displayNameColor,
+    linkUrl
+  }: ISixImageHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   const articles = await getRawArticles(sourceId, 6, params);
@@ -27,7 +33,8 @@ export default async function(
         {
           type: ContentBlockType.ModuleTitle,
           displayName,
-          displayNameColor
+          displayNameColor,
+          linkUrl
         }
       ],
       [SixImageGridHandlerPositions.FirstRowLeft]: [

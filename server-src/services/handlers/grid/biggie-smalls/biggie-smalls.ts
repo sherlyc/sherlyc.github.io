@@ -20,6 +20,7 @@ export default async function(
   {
     displayName,
     displayNameColor,
+    linkUrl,
     sourceId,
     strapName
   }: IBiggieSmallsHandlerInput,
@@ -36,7 +37,8 @@ export default async function(
       {
         type: ContentBlockType.ModuleTitle,
         displayName,
-        displayNameColor
+        displayNameColor,
+        linkUrl
       }
     ],
     [BiggieSmallsGridPositions.Highlight]: [

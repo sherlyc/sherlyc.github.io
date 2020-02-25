@@ -6,6 +6,7 @@ export interface IStripsHandlerInput {
   type: HandlerInputType.Strips;
   displayName: string;
   displayNameColor: string;
+  linkUrl?: string;
   strapName: Strap;
   sourceId: Strap;
   articleCount: number;

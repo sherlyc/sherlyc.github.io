@@ -22,7 +22,8 @@ export default async function(
     sourceId,
     strapName,
     displayName,
-    displayNameColor
+    displayNameColor,
+    linkUrl
   }: ILargeLeadSixHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
@@ -58,7 +59,8 @@ export default async function(
         {
           type: ContentBlockType.ModuleTitle,
           displayName,
-          displayNameColor
+          displayNameColor,
+          linkUrl
         }
       ],
       [LargeLeadSixGridPositions.Left]: [leftContent],

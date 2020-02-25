@@ -15,7 +15,13 @@ import { handlerRunnerFunction } from "../../runner";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  { displayName, displayNameColor, sourceId, strapName }: INewsSixHandlerInput,
+  {
+    displayName,
+    displayNameColor,
+    linkUrl,
+    sourceId,
+    strapName
+  }: INewsSixHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   const articles = await getRawArticles(sourceId, 6, params);
@@ -25,7 +31,8 @@ export default async function(
       {
         type: ContentBlockType.ModuleTitle,
         displayName,
-        displayNameColor
+        displayNameColor,
+        linkUrl
       }
     ],
     [NewsSixGridPositions.BigTopLeft]: [
