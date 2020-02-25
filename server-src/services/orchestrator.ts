@@ -11,8 +11,6 @@ import { Section } from "./section";
 import { Strap } from "./strap";
 import config from "./utils/config";
 import logger from "./utils/logger";
-import { IContentBlock } from "../../common/__types__/IContentBlock";
-import { IGridConfig } from "../../common/__types__/IGridContainer";
 
 const homepageStrapsConfig = config.strapConfig!.homepageStraps;
 
