@@ -18,14 +18,10 @@ describe("Most popular service", function() {
   });
   const mostPopularResponse = {
     data: {
-      stories: [
-        {
-          storyId: "1"
-        },
-        {
-          storyId: "2"
-        }
-      ]
+      mostPopular: {
+        mostPopularArticles: [{ id: "1" }, { id: "2" }],
+        error: false
+      }
     }
   };
 
@@ -37,10 +33,7 @@ describe("Most popular service", function() {
 
     const articles = await getMostPopular(limit, params);
 
-    expect(cacheHttp).toHaveBeenCalledWith(
-      params,
-      `${config.mostPopularApi}?days=2&limit=${limit}`
-    );
+    expect(cacheHttp).toHaveBeenCalledWith(params, config.mostPopularApi);
     expect(getArticleById).toHaveBeenNthCalledWith(1, params, 1);
     expect(getArticleById).toHaveBeenNthCalledWith(2, params, 2);
     expect(articles).toEqual([
@@ -55,10 +48,7 @@ describe("Most popular service", function() {
 
     await getMostPopular(10, params, 5);
 
-    expect(cacheHttp).toHaveBeenCalledWith(
-      params,
-      `${config.mostPopularApi}?days=5&limit=10`
-    );
+    expect(cacheHttp).toHaveBeenCalledWith(params, config.mostPopularApi);
   });
 
   it("should log error if fail to retrieve from most popular service", async () => {

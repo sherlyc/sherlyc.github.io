@@ -6,10 +6,10 @@ import { getArticleById } from "../jsonfeed/jsonfeed";
 import wrappedLogger from "../../utils/logger";
 
 interface IMostPopularResponse {
-  stories: Array<{
-    storyId: string;
-    [key: string]: any;
-  }>;
+  mostPopular: {
+    mostPopularArticles: Array<{ id: string }>;
+    error: boolean;
+  };
 }
 
 export const getMostPopular = async (
@@ -20,11 +20,11 @@ export const getMostPopular = async (
   try {
     const response = await cacheHttp<IMostPopularResponse>(
       params,
-      `${config.mostPopularApi}?days=${days}&limit=${limit}`
+      config.mostPopularApi
     );
     return await Promise.all(
-      response.data.stories.map(({ storyId }) =>
-        getArticleById(params, parseInt(storyId, 10))
+      response.data.mostPopular.mostPopularArticles.map(({ id }) =>
+        getArticleById(params, parseInt(id, 10))
       )
     );
   } catch (error) {
