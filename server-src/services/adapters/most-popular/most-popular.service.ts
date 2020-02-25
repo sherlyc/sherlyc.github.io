@@ -6,26 +6,31 @@ import { getArticleById } from "../jsonfeed/jsonfeed";
 import wrappedLogger from "../../utils/logger";
 
 interface IMostPopularResponse {
-  stories: Array<{
-    storyId: string;
-    [key: string]: any;
-  }>;
+  mostPopular: {
+    mostPopularArticles: Array<{ id: string }>;
+    error: boolean;
+  };
 }
 
 export const getMostPopular = async (
   limit: number,
-  params: IParams,
-  days: number = 2
+  params: IParams
 ): Promise<IRawArticle[]> => {
   try {
     const response = await cacheHttp<IMostPopularResponse>(
       params,
-      `${config.mostPopularApi}?days=${days}&limit=${limit}`
+      config.mostPopularApi
     );
+    if (response.data.mostPopular.error) {
+      throw Error("Most popular returns error");
+    }
+    const articleIds = response.data.mostPopular.mostPopularArticles.slice(
+      0,
+      limit
+    );
+
     return await Promise.all(
-      response.data.stories.map(({ storyId }) =>
-        getArticleById(params, parseInt(storyId, 10))
-      )
+      articleIds.map(({ id }) => getArticleById(params, parseInt(id, 10)))
     );
   } catch (error) {
     wrappedLogger.error(
@@ -33,6 +38,6 @@ export const getMostPopular = async (
       "Most popular service level error",
       error
     );
-    return [];
+    throw error;
   }
 };

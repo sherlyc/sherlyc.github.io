@@ -18,16 +18,16 @@ describe("Most popular service", function() {
   });
   const mostPopularResponse = {
     data: {
-      stories: [
-        {
-          storyId: "1"
-        },
-        {
-          storyId: "2"
-        }
-      ]
+      mostPopular: {
+        mostPopularArticles: [{ id: "1" }, { id: "2" }],
+        error: false
+      }
     }
   };
+
+  beforeEach(() => {
+    jest.resetAllMocks();
+  });
 
   it("should get articles from most popular service", async () => {
     const limit = 10;
@@ -37,10 +37,7 @@ describe("Most popular service", function() {
 
     const articles = await getMostPopular(limit, params);
 
-    expect(cacheHttp).toHaveBeenCalledWith(
-      params,
-      `${config.mostPopularApi}?days=2&limit=${limit}`
-    );
+    expect(cacheHttp).toHaveBeenCalledWith(params, config.mostPopularApi);
     expect(getArticleById).toHaveBeenNthCalledWith(1, params, 1);
     expect(getArticleById).toHaveBeenNthCalledWith(2, params, 2);
     expect(articles).toEqual([
@@ -49,30 +46,50 @@ describe("Most popular service", function() {
     ]);
   });
 
-  it("should call most popular service with provided days", async () => {
+  it("should remove articles based on limit", async () => {
+    const limit = 1;
     (cacheHttp as jest.Mock).mockResolvedValue(mostPopularResponse);
-    (getArticleById as jest.Mock).mockResolvedValue(rawArticle("1"));
+    (getArticleById as jest.Mock).mockResolvedValueOnce(rawArticle("1"));
 
-    await getMostPopular(10, params, 5);
+    const articles = await getMostPopular(limit, params);
 
-    expect(cacheHttp).toHaveBeenCalledWith(
-      params,
-      `${config.mostPopularApi}?days=5&limit=10`
-    );
+    expect(cacheHttp).toHaveBeenCalledWith(params, config.mostPopularApi);
+    expect(getArticleById).toHaveBeenCalledTimes(1);
+    expect(getArticleById).toHaveBeenCalledWith(params, 1);
+    expect(articles).toEqual([expect.objectContaining({ id: "1" })]);
   });
 
   it("should log error if fail to retrieve from most popular service", async () => {
     const error = new Error("Internal Server Error");
     (cacheHttp as jest.Mock).mockRejectedValue(error);
 
-    const articles = await getMostPopular(10, params);
+    await expect(getMostPopular(10, params)).rejects.toEqual(error);
 
     expect(wrappedLogger.error).toHaveBeenCalledWith(
       params.apiRequestId,
       expect.stringContaining("Most popular service level error"),
       error
     );
-    expect(articles).toEqual([]);
+  });
+
+  it("should log error if most popular service return error in payload", async () => {
+    (cacheHttp as jest.Mock).mockResolvedValue({
+      data: {
+        mostPopular: {
+          mostPopularArticles: [],
+          error: true
+        }
+      }
+    });
+
+    const error = new Error("Most popular returns error");
+    await expect(getMostPopular(10, params)).rejects.toEqual(error);
+
+    expect(wrappedLogger.error).toHaveBeenCalledWith(
+      params.apiRequestId,
+      expect.stringContaining("Most popular service level error"),
+      error
+    );
   });
 
   it("should log error if fail to retrieve article", async () => {
@@ -80,13 +97,12 @@ describe("Most popular service", function() {
     (cacheHttp as jest.Mock).mockResolvedValue(mostPopularResponse);
     (getArticleById as jest.Mock).mockRejectedValue(error);
 
-    const articles = await getMostPopular(10, params);
+    await expect(getMostPopular(10, params)).rejects.toEqual(error);
 
     expect(wrappedLogger.error).toHaveBeenCalledWith(
       params.apiRequestId,
       expect.stringContaining("Most popular service level error"),
       error
     );
-    expect(articles).toEqual([]);
   });
 });
