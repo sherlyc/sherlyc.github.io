@@ -1,6 +1,9 @@
 <a href="{{ input.linkUrl }}" appOpenExternalLink="{{ input.linkUrl }}" class="inputLink" (click)="sendAnalytics()">
   <article>
-    <span *ngIf="input.position" class="position">{{input.position}}</span>
+    <ng-container *ngIf="input.position">
+      <span class="position">{{input.position}}</span>
+      <span class="separator"></span>
+    </ng-container>
     <div class="title">
       <span *ngIf="input.showTimestamp" class="timestamp">{{this.timeStamp}}</span>
       <span class="headline">{{ input.indexHeadline }}</span>

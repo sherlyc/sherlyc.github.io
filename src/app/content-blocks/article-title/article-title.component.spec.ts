@@ -60,24 +60,28 @@ describe("ArticleTitle", () => {
     expect(component).toBeTruthy();
   });
 
-  it("should show position when provided", () => {
+  it("should show position and separator when provided", () => {
     component.input = { ...input, position: "01" };
     fixture.detectChanges();
 
     const position = fixture.debugElement.query(By.css(".position"))
       .nativeElement;
+    const separator = fixture.debugElement.query(By.css(".separator"));
 
     expect(position).toBeTruthy();
     expect(position.textContent).toContain("01");
+    expect(separator).toBeTruthy();
   });
 
-  it("should hide position when not provided", () => {
+  it("should hide position and separator when not provided", () => {
     component.input = { ...input, position: undefined };
     fixture.detectChanges();
 
     const position = fixture.debugElement.query(By.css(".position"));
+    const separator = fixture.debugElement.query(By.css(".separator"));
 
     expect(position).toBeFalsy();
+    expect(separator).toBeFalsy();
   });
 
   it("should format timestamp", () => {
