@@ -10,6 +10,9 @@ import { SharedModule } from "../../shared/shared.module";
 import { HeadlineComponent } from "../../shared/components/headline/headline.component";
 import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 import { FeatureSwitchService } from "../../services/feature-switch/feature-switch.service";
+import { ImageLayoutType } from "../../../../common/__types__/ImageLayoutType";
+import { Component, Input } from "@angular/core";
+import { FluidImageComponent } from "../../shared/components/fluid-image/fluid-image.component";
 
 describe("ImageLinkUnitComponent", () => {
   let component: ImageLinkUnitComponent;
@@ -25,13 +28,23 @@ describe("ImageLinkUnitComponent", () => {
     linkUrl: "https://dummyurl.com",
     imageSrc: "https://dummyimagesrc.com",
     imageSrcSet: "https://dummyimagesrc.com 1w",
-    headlineFlags: []
+    headlineFlags: [],
+    layout: ImageLayoutType.default
   };
 
-  beforeEach(async () =>
+  @Component({
+    selector: "app-fluid-image",
+    template: ""
+  })
+  class FakeFluidImageComponent {
+    @Input() imageSrc!: string;
+    @Input() caption!: string;
+  }
+
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [SharedModule],
-      declarations: [ImageLinkUnitComponent],
+      declarations: [ImageLinkUnitComponent, FakeFluidImageComponent],
       providers: [
         {
           provide: AnalyticsService,
@@ -42,10 +55,14 @@ describe("ImageLinkUnitComponent", () => {
           useClass: mockService(FeatureSwitchService)
         }
       ]
-    }).compileComponents()
-  );
+    })
+      .overrideComponent(FluidImageComponent, {
+        set: {
+          selector: "app-fluid-image-original"
+        }
+      })
+      .compileComponents();
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(ImageLinkUnitComponent);
     component = fixture.componentInstance;
     analyticsService = TestBed.get(AnalyticsService);
@@ -74,15 +91,6 @@ describe("ImageLinkUnitComponent", () => {
     expect(img!.getAttribute("src")).toEqual(articleData.imageSrc);
     expect(img!.getAttribute("srcset")).toEqual(articleData.imageSrcSet);
     expect(img!.getAttribute("alt")).toEqual(articleData.indexHeadline);
-  });
-
-  it("should hide image if not available", async () => {
-    component.input = { ...articleData, imageSrc: null };
-
-    fixture.detectChanges();
-    const componentElement: HTMLElement = fixture.debugElement.nativeElement;
-    const img = componentElement.querySelector("img");
-    expect(img).toBeFalsy();
   });
 
   it("should send analytics when clicked", () => {
@@ -114,5 +122,69 @@ describe("ImageLinkUnitComponent", () => {
     expect(headline).toHaveProperty("headline", articleData.indexHeadline);
     expect(headline).toHaveProperty("headlineFlags", articleData.headlineFlags);
     expect(headline).not.toHaveProperty("timeStamp");
+  });
+
+  describe("image", () => {
+    it("should hide all images if imageSrc is not available", async () => {
+      component.input = { ...articleData, imageSrc: null };
+
+      fixture.detectChanges();
+      const defaultImage = fixture.debugElement.nativeElement.querySelector(
+        "img"
+      );
+      const fluidImage = fixture.debugElement.query(
+        By.directive(FakeFluidImageComponent)
+      );
+
+      expect(defaultImage).toBeFalsy();
+      expect(fluidImage).toBeFalsy();
+    });
+
+    it("should only display default image for module layout", () => {
+      const imageSrc = "strapSrc.jpg";
+      const indexHeadline = "headline";
+      component.input = {
+        ...articleData,
+        indexHeadline,
+        imageSrc,
+        layout: ImageLayoutType.default
+      };
+
+      fixture.detectChanges();
+      const defaultImage = fixture.debugElement.nativeElement.querySelector(
+        "img"
+      );
+      const fluidImage = fixture.debugElement.query(
+        By.directive(FakeFluidImageComponent)
+      );
+
+      expect(defaultImage).toBeTruthy();
+      expect(defaultImage.src).toContain(imageSrc);
+      expect(defaultImage.alt).toBe(indexHeadline);
+      expect(fluidImage).toBeFalsy();
+    });
+
+    it("should display fluid image with correct src and caption for module layout", () => {
+      const imageSrc = "sixteenByNine.jpg";
+      const indexHeadline = "headline";
+      component.input = {
+        ...articleData,
+        indexHeadline,
+        imageSrc,
+        layout: ImageLayoutType.module
+      };
+
+      fixture.detectChanges();
+      const defaultImage = fixture.debugElement.nativeElement.querySelector(
+        "img"
+      );
+      const fluidImage = fixture.debugElement.query(
+        By.directive(FakeFluidImageComponent)
+      ).componentInstance;
+
+      expect(defaultImage).toBeFalsy();
+      expect(fluidImage.imageSrc).toBe(imageSrc);
+      expect(fluidImage.caption).toBe(indexHeadline);
+    });
   });
 });

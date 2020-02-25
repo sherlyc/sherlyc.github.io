@@ -1,8 +1,5 @@
 import { ContentBlockType } from "../../../../../../common/__types__/ContentBlockType";
-import {
-  BigImageArticleUnitLayout,
-  IBigImageArticleUnit
-} from "../../../../../../common/__types__/IBigImageArticleUnit";
+import { IBigImageArticleUnit } from "../../../../../../common/__types__/IBigImageArticleUnit";
 import { IFeaturedArticle } from "../../../../../../common/__types__/IFeaturedArticle";
 import { IParams } from "../../../../__types__/IParams";
 import { IRawArticle } from "../../../../adapters/__types__/IRawArticle";
@@ -10,6 +7,7 @@ import { HandlerInputType } from "../../../__types__/HandlerInputType";
 import { IColumnGridHandlerInput } from "../../../__types__/IColumnGridHandlerInput";
 import { ITopStoriesDefaultOneHighlightHandlerInput } from "../../../__types__/ITopStoriesDefaultOneHighlightHandlerInput";
 import defaultOneHighlightHandler from "./default-one-highlight";
+import { ImageLayoutType } from "../../../../../../common/__types__/ImageLayoutType";
 
 describe("Top Stories Default One", () => {
   const handlerRunnerMock = jest.fn();
@@ -40,7 +38,7 @@ describe("Top Stories Default One", () => {
     linkUrl: "/link1",
     imageSrc: "sixteenByNineSrc.jpg",
     imageSrcSet: "strap1.jpg 1w",
-    layout: BigImageArticleUnitLayout.module,
+    layout: ImageLayoutType.module,
     pumped: true,
     lastPublishedTime: 1,
     headlineFlags: []

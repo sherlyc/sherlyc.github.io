@@ -1,5 +1,6 @@
 import { ContentBlockType } from "./ContentBlockType";
 import { HeadlineFlags } from "../HeadlineFlags";
+import { ImageLayoutType } from "./ImageLayoutType";
 
 export interface IImageLinkUnit {
   type: ContentBlockType.ImageLinkUnit;
@@ -11,4 +12,5 @@ export interface IImageLinkUnit {
   imageSrc: string | null;
   imageSrcSet: string | null;
   headlineFlags: HeadlineFlags[];
+  layout: ImageLayoutType;
 }

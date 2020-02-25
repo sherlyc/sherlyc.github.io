@@ -1,10 +1,8 @@
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import {
-  BigImageArticleUnitLayout,
-  IBigImageArticleUnit
-} from "../../../../common/__types__/IBigImageArticleUnit";
+import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArticleUnit";
 import { IRawArticle } from "../__types__/IRawArticle";
 import { bigImageArticleUnit } from "./big-image-article.converter";
+import { ImageLayoutType } from "../../../../common/__types__/ImageLayoutType";
 
 describe("big image article", () => {
   const fakeArticle: IRawArticle = {
@@ -37,7 +35,7 @@ describe("big image article", () => {
     imageSrcSet: "strap1.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: [],
-    layout: BigImageArticleUnitLayout.default
+    layout: ImageLayoutType.default
   };
 
   it("should convert", () => {
@@ -48,16 +46,12 @@ describe("big image article", () => {
 
   it("should convert module layout", () => {
     expect(
-      bigImageArticleUnit(
-        fakeArticle,
-        fakeStrapName,
-        BigImageArticleUnitLayout.module
-      )
+      bigImageArticleUnit(fakeArticle, fakeStrapName, ImageLayoutType.module)
     ).toEqual(
       expect.objectContaining({
         ...expected,
         imageSrc: "sixteenByNine.jpg",
-        layout: BigImageArticleUnitLayout.module
+        layout: ImageLayoutType.module
       })
     );
   });
@@ -67,14 +61,14 @@ describe("big image article", () => {
       bigImageArticleUnit(
         fakeArticle,
         fakeStrapName,
-        BigImageArticleUnitLayout.module,
+        ImageLayoutType.module,
         true
       )
     ).toEqual(
       expect.objectContaining({
         ...expected,
         imageSrc: "sixteenByNine.jpg",
-        layout: BigImageArticleUnitLayout.module,
+        layout: ImageLayoutType.module,
         pumped: true
       })
     );

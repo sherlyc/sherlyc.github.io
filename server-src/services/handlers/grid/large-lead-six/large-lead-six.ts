@@ -1,5 +1,4 @@
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { BigImageArticleUnitLayout } from "../../../../../common/__types__/IBigImageArticleUnit";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IParams } from "../../../__types__/IParams";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
@@ -15,6 +14,7 @@ import { ILargeLeadSixHandlerInput } from "../../__types__/ILargeLeadSixHandlerI
 import { contentErrorHandler } from "../content-error-handler";
 import { handlerRunnerFunction } from "../../runner";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
+import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -35,7 +35,7 @@ export default async function(
       bigImageArticleUnit(
         articles.shift() as IRawArticle,
         strapName,
-        BigImageArticleUnitLayout.module
+        ImageLayoutType.module
       ),
     HandlerInputType.LargeLeadSix,
     sourceId,
