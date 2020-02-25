@@ -14,18 +14,20 @@ interface IMostPopularResponse {
 
 export const getMostPopular = async (
   limit: number,
-  params: IParams,
-  days: number = 2
+  params: IParams
 ): Promise<IRawArticle[]> => {
   try {
     const response = await cacheHttp<IMostPopularResponse>(
       params,
       config.mostPopularApi
     );
+    const articleIds = response.data.mostPopular.mostPopularArticles.slice(
+      0,
+      limit
+    );
+
     return await Promise.all(
-      response.data.mostPopular.mostPopularArticles.map(({ id }) =>
-        getArticleById(params, parseInt(id, 10))
-      )
+      articleIds.map(({ id }) => getArticleById(params, parseInt(id, 10)))
     );
   } catch (error) {
     wrappedLogger.error(
