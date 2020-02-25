@@ -155,11 +155,6 @@ const newPage = (): HandlerInput[] => {
         height: "200px",
         width: "100%",
         margin: "0 0 20px 0"
-      },
-      desktop: {
-        height: "200px",
-        width: "100%",
-        margin: "0 0 20px 0"
       }
     },
     {
