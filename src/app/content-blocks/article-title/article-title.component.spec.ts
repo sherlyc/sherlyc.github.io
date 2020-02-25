@@ -10,6 +10,7 @@ import { By } from "@angular/platform-browser";
 import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 import { LogoComponent } from "../../shared/components/logo/logo.component";
 import { HeadlineFlagComponent } from "../../shared/components/headline-flag/headline-flag.component";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 
 describe("ArticleTitle", () => {
   let component: ArticleTitleComponent;
@@ -122,5 +123,21 @@ describe("ArticleTitle", () => {
     ).componentInstance;
 
     expect(headlineFlagComponent.flag).toEqual(HeadlineFlags.ADVERTISEMENT);
+  });
+
+  it("should send analytics when clicked", () => {
+    const strapName = "National";
+    component.input = { ...input, strapName };
+    fixture.detectChanges();
+
+    const anchorTag = fixture.debugElement.query(By.css("a")).nativeElement;
+    anchorTag.click();
+
+    expect(analyticsService.pushEvent).toBeCalledWith({
+      type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
+      strapName,
+      articleHeadline: input.title,
+      articleId: input.id
+    });
   });
 });

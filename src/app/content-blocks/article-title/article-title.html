@@ -1,4 +1,4 @@
-<a href="{{ input.linkUrl }}" appOpenExternalLink="{{ input.linkUrl }}" class="inputLink">
+<a href="{{ input.linkUrl }}" appOpenExternalLink="{{ input.linkUrl }}" class="inputLink" (click)="sendAnalytics()">
   <article>
     <span *ngIf="input.position" class="position">{{input.position}}</span>
     <div class="title">
