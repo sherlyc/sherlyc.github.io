@@ -229,12 +229,14 @@ const newPage = (): HandlerInput[] => {
       sourceId: Strap.WellGood
     },
     {
-      type: HandlerInputType.LargeLeadSix,
+      type: HandlerInputType.Strips,
       displayName: "food & wine",
       displayNameColor: "#129a5e",
       linkUrl: "/" + Section.FoodAndWine,
-      strapName: `${homepageAdPrefix}FoodAndWine`,
-      sourceId: Strap.FoodAndWine
+      sourceId: Strap.FoodAndWine,
+      strapName: Strap.FoodAndWine,
+      articleCount: 4,
+      articleFormat: ContentBlockType.BigImageArticleUnit
     },
     {
       type: HandlerInputType.BiggieSmalls,
@@ -253,6 +255,15 @@ const newPage = (): HandlerInput[] => {
       sourceId: Strap.Bravo
     },
     {
+      type: HandlerInputType.ResponsiveExternalContent,
+      url: "https://cdn.neighbourly.co.nz/stuff/933/homepage",
+      mobile: {
+        height: "580px",
+        width: "100%",
+        margin: "0 0 3px 0"
+      }
+    },
+    {
       type: HandlerInputType.BiggieSmalls,
       displayName: "motoring",
       displayNameColor: "#999",
@@ -269,20 +280,24 @@ const newPage = (): HandlerInput[] => {
       sourceId: Strap.Technology
     },
     {
-      type: HandlerInputType.LargeLeadSix,
+      type: HandlerInputType.Strips,
       displayName: "nz farmer",
       displayNameColor: "#f36f21",
       linkUrl: "/" + Section.NZFarmer,
-      strapName: `${homepageAdPrefix}NzFarmer`,
-      sourceId: Strap.NZFarmer
+      sourceId: Strap.NZFarmer,
+      strapName: Strap.NZFarmer,
+      articleCount: 4,
+      articleFormat: ContentBlockType.BigImageArticleUnit
     },
     {
-      type: HandlerInputType.LargeLeadSix,
+      type: HandlerInputType.Strips,
       displayName: "parenting",
       displayNameColor: "#db0962",
       linkUrl: "/" + Section.Parenting,
-      strapName: `${homepageAdPrefix}Parenting`,
-      sourceId: Strap.Parenting
+      sourceId: Strap.Parenting,
+      strapName: Strap.Parenting,
+      articleCount: 4,
+      articleFormat: ContentBlockType.BigImageArticleUnit
     },
     {
       type: HandlerInputType.BiggieSmalls,
