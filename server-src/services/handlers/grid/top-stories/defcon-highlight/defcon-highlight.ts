@@ -1,9 +1,8 @@
 import { ContentBlockType } from "../../../../../../common/__types__/ContentBlockType";
-import { BigImageArticleUnitLayout } from "../../../../../../common/__types__/IBigImageArticleUnit";
 import { IContentBlock } from "../../../../../../common/__types__/IContentBlock";
 import { IParams } from "../../../../__types__/IParams";
-import { bigImageArticleUnit } from "../../../../adapters/article-converter/big-image-article.converter";
 import { featuredArticle } from "../../../../adapters/article-converter/featured-article.converter";
+import { halfWidthImageArticleUnit } from "../../../../adapters/article-converter/half-width-image-article-unit.converter";
 import { gridBlock } from "../../../../adapters/grid/grid-block";
 import { Strap } from "../../../../strap";
 import { HandlerInputType } from "../../../__types__/HandlerInputType";
@@ -36,23 +35,13 @@ export default async function(
           params
         ),
         [DefconHighlightPosition.Related1]: contentErrorHandler(
-          () =>
-            bigImageArticleUnit(
-              articles[1],
-              strapName,
-              BigImageArticleUnitLayout.module
-            ),
+          () => halfWidthImageArticleUnit(articles[1], strapName),
           HandlerInputType.TopStoriesDefconHighlight,
           Strap.TopStories,
           params
         ),
         [DefconHighlightPosition.Related2]: contentErrorHandler(
-          () =>
-            bigImageArticleUnit(
-              articles[2],
-              strapName,
-              BigImageArticleUnitLayout.module
-            ),
+          () => halfWidthImageArticleUnit(articles[2], strapName),
           HandlerInputType.TopStoriesDefconHighlight,
           Strap.TopStories,
           params

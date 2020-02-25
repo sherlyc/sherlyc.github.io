@@ -57,6 +57,10 @@ app.use(
     "/spade/api/weather/**": "max-age=600", // 10 minutes
     "/spade/api/feature/**": "max-age=600", // 10 minutes
     "/spade/api/experiment/**": "max-age=600", // 10 minutes
+    "/spade/api/*/weather": "max-age=600", // 10 minutes
+    "/spade/api/*/weather/**": "max-age=600", // 10 minutes
+    "/spade/api/*/feature/**": "max-age=600", // 10 minutes
+    "/spade/api/*/experiment/**": "max-age=600", // 10 minutes
     "/spade/api/**": "max-age=60", // 1 minute
     "/spade/assets/icons/**": "max-age=604800", // 1 week
     "/spade/assets/fonts/**": "max-age=604800", // 1 week

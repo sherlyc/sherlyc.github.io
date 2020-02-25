@@ -1,3 +1,7 @@
+:host {
+  --title-size: 16px;
+}
+
 a {
   display: block;
   text-decoration: none;
@@ -16,10 +20,6 @@ img {
 .image {
   width: 100%;
   margin-bottom: 10px;
-}
-
-.row {
-  flex-wrap: nowrap;
 }
 
 app-headline {
