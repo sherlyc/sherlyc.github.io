@@ -45,6 +45,8 @@ describe("Relevant Stories", () => {
       articlesPromise,
       "latest news",
       "#E9520E",
+      true,
+      false,
       handlerRunner,
       params
     );
@@ -52,6 +54,8 @@ describe("Relevant Stories", () => {
       articlesPromise,
       "editors' picks",
       "#E9520E",
+      false,
+      false,
       handlerRunner,
       params
     );
@@ -59,6 +63,8 @@ describe("Relevant Stories", () => {
       articlesPromise,
       "most popular",
       "#E9520E",
+      false,
+      true,
       handlerRunner,
       params
     );

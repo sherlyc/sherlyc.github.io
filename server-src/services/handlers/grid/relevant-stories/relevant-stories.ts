@@ -30,6 +30,8 @@ export default async function(
       getRawArticles(Strap.LatestNews, totalArticles, params),
       "latest news",
       "#E9520E",
+      true,
+      false,
       handlerRunner,
       params
     ),
@@ -37,6 +39,8 @@ export default async function(
       getRawArticles(Strap.EditorPicks, totalArticles, params),
       "editors' picks",
       "#E9520E",
+      false,
+      false,
       handlerRunner,
       params
     ),
@@ -44,6 +48,8 @@ export default async function(
       getMostPopular(totalArticles, params),
       "most popular",
       "#E9520E",
+      false,
+      true,
       handlerRunner,
       params
     )

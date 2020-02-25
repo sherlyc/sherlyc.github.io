@@ -22,9 +22,7 @@ export class ArticleTitleComponent implements IContentBlockComponent, OnInit {
   timeStamp!: string;
 
   ngOnInit() {
-    this.timeStamp = moment
-      .unix(this.input.lastPublishedTime as number)
-      .format("LT");
+    this.timeStamp = moment.unix(this.input.lastPublishedTime).format("LT");
   }
 
   constructor(private analyticsService: AnalyticsService) {}

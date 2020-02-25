@@ -21,9 +21,9 @@ describe("Relevant stories column", () => {
   const fakeArticlesWithIds = (ids: number[]) =>
     ids.map((id) => ({ id: `${id}` } as IRawArticle));
 
-  const expectBasicArticleTitle = (id: number) =>
+  const expectArticleTitle = (id: number) =>
     expect.objectContaining({
-      type: ContentBlockType.BasicArticleTitleUnit,
+      type: ContentBlockType.ArticleTitle,
       id: `${id}`
     });
 
@@ -36,6 +36,8 @@ describe("Relevant stories column", () => {
       articleRetriever,
       moduleTitle,
       moduleTitleColor,
+      true,
+      true,
       handlerRunner,
       params
     );
@@ -43,9 +45,9 @@ describe("Relevant stories column", () => {
     const expectedListGridInput: IListGridHandlerInput = {
       type: HandlerInputType.ListGrid,
       content: [
-        expectBasicArticleTitle(1),
-        expectBasicArticleTitle(2),
-        expectBasicArticleTitle(3)
+        expectArticleTitle(1),
+        expectArticleTitle(2),
+        expectArticleTitle(3)
       ]
     };
     expect(handlerRunner).toHaveBeenNthCalledWith(
@@ -67,6 +69,8 @@ describe("Relevant stories column", () => {
       articleRetriever,
       moduleTitle,
       moduleTitleColor,
+      true,
+      true,
       handlerRunner,
       params
     );
@@ -100,6 +104,8 @@ describe("Relevant stories column", () => {
       articleRetriever,
       moduleTitle,
       moduleTitleColor,
+      true,
+      true,
       handlerRunner,
       params
     );

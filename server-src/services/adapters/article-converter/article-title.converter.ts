@@ -4,7 +4,9 @@ import { IArticleTitle } from "../../../../common/__types__/IArticleTitle";
 
 export const articleTitle = (
   article: IRawArticle,
-  strapName: string
+  strapName: string,
+  showTimestamp: boolean,
+  numberPosition?: string
 ): IArticleTitle => ({
   type: ContentBlockType.ArticleTitle,
   id: article.id,
@@ -13,5 +15,7 @@ export const articleTitle = (
   title: article.title,
   linkUrl: article.linkUrl,
   lastPublishedTime: article.lastPublishedTime,
-  headlineFlags: article.headlineFlags
+  headlineFlags: article.headlineFlags,
+  showTimestamp,
+  numberPosition
 });
