@@ -1,12 +1,10 @@
 <a href="{{ input.linkUrl }}" appOpenExternalLink="{{ input.linkUrl }}" class="inputLink">
   <article>
-    <span *ngIf="input.position" class="number">{{input.position}}</span>
+    <span *ngIf="input.position" class="position">{{input.position}}</span>
     <div class="title">
-      <p>
-        <span *ngIf="input.showTimestamp" class="timestamp">{{this.timeStamp}}</span>
-        <span class="headline">{{ input.indexHeadline }} </span>
-        <app-headline-flag *ngFor="let flag of input.headlineFlags" [flag]="flag"></app-headline-flag>
-      </p>
+      <span *ngIf="input.showTimestamp" class="timestamp">{{this.timeStamp}}</span>
+      <span class="headline">{{ input.indexHeadline }}</span>
+      <app-headline-flag *ngFor="let flag of input.headlineFlags" [flag]="flag"></app-headline-flag>
     </div>
   </article>
 </a>
