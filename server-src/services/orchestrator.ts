@@ -11,6 +11,8 @@ import { Section } from "./section";
 import { Strap } from "./strap";
 import config from "./utils/config";
 import logger from "./utils/logger";
+import { IContentBlock } from "../../common/__types__/IContentBlock";
+import { IGridConfig } from "../../common/__types__/IGridContainer";
 
 const homepageStrapsConfig = config.strapConfig!.homepageStraps;
 
@@ -76,18 +78,28 @@ const newPage = (): HandlerInput[] => {
     },
     {
       type: HandlerInputType.ArticleSection,
-      displayName: "play stuff",
+      displayName: "playstuff",
       displayNameColor: "black",
       linkUrl:
-        "https://www.playwidget.stuff.co.nz/shelf/5d06caa81de1c4001f81a46e",
+        "https://www.playwidget.stuff.co.nz/hgrid/5d06caa81de1c4001f81a46e",
       content: {
         type: HandlerInputType.ResponsiveExternalContent,
         url:
-          "https://www.playwidget.stuff.co.nz/shelf/5d06caa81de1c4001f81a46e",
+          "https://www.playwidget.stuff.co.nz/hgrid/5d06caa81de1c4001f81a46e",
         mobile: {
-          height: "215px",
           width: "100%",
-          margin: "0 -10px 20px"
+          height: "calc(85% + 40px)",
+          margin: "0 -10px 0"
+        },
+        tablet: {
+          width: "100%",
+          height: "calc(66% + 40px)",
+          margin: "0 -10px 0"
+        },
+        desktop: {
+          width: "100%",
+          height: "66%",
+          margin: "0 -10px 0"
         }
       }
     },
@@ -186,17 +198,26 @@ const newPage = (): HandlerInput[] => {
     },
     {
       type: HandlerInputType.ArticleSection,
-      displayName: "one news play stuff",
+      displayName: "one news",
       displayNameColor: "black",
       linkUrl: "https://play.stuff.co.nz/page/channel-onenews",
       content: {
         type: HandlerInputType.ResponsiveExternalContent,
-        url:
-          "https://www.playwidget.stuff.co.nz/hshelf/5d3fcb25a0e845001caee780",
+        url: "https://www.playwidget.stuff.co.nz/grid/5d06caa81de1c4001f81a46e",
         mobile: {
-          height: "calc(56% + 216px)",
+          height: "calc(35% + 30px)",
           width: "100%",
-          margin: "0 -10px 10px"
+          margin: "0 -10px 20px"
+        },
+        tablet: {
+          height: "35%",
+          width: "100%",
+          margin: "0 -10px 20px"
+        },
+        desktop: {
+          height: "calc(30% + 10px)",
+          width: "100%",
+          margin: "0 -10px 20px"
         }
       }
     },
