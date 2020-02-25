@@ -75,11 +75,9 @@ const newPage = (): HandlerInput[] => {
       type: HandlerInputType.RelevantStories
     },
     {
-      type: HandlerInputType.ArticleSection,
-      displayName: "play stuff",
-      displayNameColor: "black",
-      linkUrl:
-        "https://www.playwidget.stuff.co.nz/shelf/5d06caa81de1c4001f81a46e",
+      type: HandlerInputType.TitleSection,
+      displayName: "playstuff",
+      displayNameColor: "#000",
       content: {
         type: HandlerInputType.ResponsiveExternalContent,
         url:
