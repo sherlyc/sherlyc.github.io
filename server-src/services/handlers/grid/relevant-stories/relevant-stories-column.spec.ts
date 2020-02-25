@@ -17,6 +17,10 @@ describe("Relevant stories column", () => {
   const params: IParams = { apiRequestId: "123" };
   const moduleTitle = "moduleTitle";
   const moduleTitleColor = "red";
+  const notShowTimestamp = false;
+  const notShowNumberPosition = false;
+  const showNumberPosition = true;
+  const showTimeStamp = true;
 
   const fakeArticlesWithIds = (ids: number[]) =>
     ids.map((id) => ({ id: `${id}` } as IRawArticle));
@@ -29,7 +33,7 @@ describe("Relevant stories column", () => {
       position: undefined
     });
 
-  const expectArticleTitleWithNumber = (id: number) =>
+  const expectArticleTitleWithPosition = (id: number) =>
     expect.objectContaining({
       type: ContentBlockType.ArticleTitle,
       id: `${id}`,
@@ -37,7 +41,7 @@ describe("Relevant stories column", () => {
       showTimestamp: false
     });
 
-  it("should pass articles as title units to list grid", async () => {
+  it("should pass article title with timestamp to list grid", async () => {
     const articleRetriever = Promise.resolve(fakeArticlesWithIds([1, 2, 3]));
     const handlerRunner = jest.fn();
     handlerRunner.mockResolvedValue([]);
@@ -46,8 +50,8 @@ describe("Relevant stories column", () => {
       articleRetriever,
       moduleTitle,
       moduleTitleColor,
-      true,
-      false,
+      showTimeStamp,
+      notShowNumberPosition,
       handlerRunner,
       params
     );
@@ -76,8 +80,8 @@ describe("Relevant stories column", () => {
       articleRetriever,
       moduleTitle,
       moduleTitleColor,
-      false,
-      true,
+      notShowTimestamp,
+      showNumberPosition,
       handlerRunner,
       params
     );
@@ -85,15 +89,44 @@ describe("Relevant stories column", () => {
     const expectedListGridInput: IListGridHandlerInput = {
       type: HandlerInputType.ListGrid,
       content: [
-        expectArticleTitleWithNumber(1),
-        expectArticleTitleWithNumber(2),
-        expectArticleTitleWithNumber(3)
+        expectArticleTitleWithPosition(1),
+        expectArticleTitleWithPosition(2),
+        expectArticleTitleWithPosition(3)
       ]
     };
     expect(handlerRunner).toHaveBeenNthCalledWith(
       1,
       expectedListGridInput,
       params
+    );
+  });
+
+  it("should not pad for two digit position", async () => {
+    const articleRetriever = Promise.resolve(
+      fakeArticlesWithIds([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+    );
+    const handlerRunner = jest.fn();
+    handlerRunner.mockResolvedValue([]);
+
+    await createRelevantStoriesColumn(
+      articleRetriever,
+      moduleTitle,
+      moduleTitleColor,
+      notShowTimestamp,
+      showNumberPosition,
+      handlerRunner,
+      params
+    );
+
+    const [[listGridInput]] = handlerRunner.mock.calls;
+
+    expect(listGridInput.content[9]).toEqual(
+      expect.objectContaining({
+        type: ContentBlockType.ArticleTitle,
+        id: "10",
+        position: "10",
+        showTimestamp: false
+      })
     );
   });
 
@@ -109,8 +142,8 @@ describe("Relevant stories column", () => {
       articleRetriever,
       moduleTitle,
       moduleTitleColor,
-      true,
-      true,
+      showTimeStamp,
+      showNumberPosition,
       handlerRunner,
       params
     );
@@ -144,8 +177,8 @@ describe("Relevant stories column", () => {
       articleRetriever,
       moduleTitle,
       moduleTitleColor,
-      true,
-      true,
+      showTimeStamp,
+      showNumberPosition,
       handlerRunner,
       params
     );
