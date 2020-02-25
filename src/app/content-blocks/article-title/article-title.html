@@ -1,5 +1,6 @@
-<a href="{{ input.linkUrl }}" appOpenExternalLink="{{ input.linkUrl }}" class="inputLink" (click)="sendAnalytics()">
-  <article>
+<article itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+  <meta itemprop="position" content="{{ index }}" />
+  <a class="wrapper" itemprop="url" href="{{ input.linkUrl }}" appOpenExternalLink="{{ input.linkUrl }}" (click)="sendAnalytics()">
     <ng-container *ngIf="input.position">
       <span class="position">{{input.position}}</span>
       <span class="separator"></span>
@@ -9,5 +10,5 @@
       <span class="headline">{{ input.indexHeadline }}</span>
       <app-headline-flag *ngFor="let flag of input.headlineFlags" [flag]="flag"></app-headline-flag>
     </div>
-  </article>
-</a>
+  </a>
+</article>
