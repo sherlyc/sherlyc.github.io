@@ -48,19 +48,16 @@ describe("ModuleTitleComponent", () => {
     expect(title).toBeFalsy();
   });
 
-  it("should display the color", () => {
-    const moduleColor = "FakeModuleColor";
-
+  it("should set the title color", () => {
     component.input = {
       displayName: "ModuleTitle",
-      displayNameColor: moduleColor
+      displayNameColor: "red"
     } as IModuleTitle;
+
     fixture.detectChanges();
 
-    const moduleTitleColor = fixture.debugElement.query(
-      By.css("." + moduleColor)
-    );
-    expect(moduleTitleColor).toBeTruthy();
+    const title = fixture.debugElement.query(By.css(".title"));
+    expect(title.styles.color).toBe(component.input.displayNameColor);
   });
 
   it("should not be clickable if url is not provided", () => {

@@ -1,5 +1,5 @@
 <a class="module-title" [attr.href]="input.linkUrl ? input.linkUrl : null" appOpenExternalLink="{{ input.linkUrl }}">
   <div class="line"></div>
-  <div class="title" [ngClass]="input.displayNameColor" *ngIf="input.displayName">{{ input.displayName }}</div>
+  <div class="title" [style.color]="input.displayNameColor" *ngIf="input.displayName">{{ input.displayName }}</div>
   <div class="line"></div>
 </a>
