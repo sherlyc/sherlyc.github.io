@@ -26,14 +26,14 @@ describe("Relevant stories column", () => {
       type: ContentBlockType.ArticleTitle,
       id: `${id}`,
       showTimestamp: true,
-      numberPosition: undefined
+      position: undefined
     });
 
   const expectArticleTitleWithNumber = (id: number) =>
     expect.objectContaining({
       type: ContentBlockType.ArticleTitle,
       id: `${id}`,
-      numberPosition: `0${id}`,
+      position: `0${id}`,
       showTimestamp: false
     });
 

@@ -6,7 +6,7 @@ export const articleTitle = (
   article: IRawArticle,
   strapName: string,
   showTimestamp: boolean,
-  numberPosition?: string
+  position?: string
 ): IArticleTitle => ({
   type: ContentBlockType.ArticleTitle,
   id: article.id,
@@ -17,5 +17,5 @@ export const articleTitle = (
   lastPublishedTime: article.lastPublishedTime,
   headlineFlags: article.headlineFlags,
   showTimestamp,
-  numberPosition
+  position
 });

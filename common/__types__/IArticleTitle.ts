@@ -10,6 +10,6 @@ export interface IArticleTitle {
   linkUrl: string;
   lastPublishedTime: number;
   headlineFlags: HeadlineFlags[];
-  numberPosition?: string;
+  position?: string;
   showTimestamp: boolean;
 }
