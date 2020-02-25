@@ -136,7 +136,6 @@ describe("MidStripHandler", () => {
           type: "ColumnContainer",
           items: [
             {
-              type: ContentBlockType.ImageLinkUnit,
               headlineFlags: [],
               id: "1",
               strapName: "MidStrip",
@@ -145,6 +144,7 @@ describe("MidStripHandler", () => {
               indexHeadline: "Headline 1",
               title: "Title 1",
               linkUrl: "/link1",
+              type: ContentBlockType.ImageLinkUnit,
               layout: ImageLayoutType.default
             }
           ]
@@ -207,7 +207,7 @@ describe("MidStripHandler", () => {
               indexHeadline: "Headline 1",
               title: "Title 1",
               linkUrl: "/link1",
-              type: "ImageLinkUnit",
+              type: ContentBlockType.ImageLinkUnit,
               layout: ImageLayoutType.default
             },
             {
@@ -219,7 +219,7 @@ describe("MidStripHandler", () => {
               indexHeadline: "Headline 2",
               title: "Title 2",
               linkUrl: "/link2",
-              type: "ImageLinkUnit",
+              type: ContentBlockType.ImageLinkUnit,
               layout: ImageLayoutType.default
             }
           ]
@@ -261,7 +261,7 @@ describe("MidStripHandler", () => {
               indexHeadline: "Headline 1",
               title: "Title 1",
               linkUrl: "/link1",
-              type: "ImageLinkUnit",
+              type: ContentBlockType.ImageLinkUnit,
               layout: ImageLayoutType.default
             }
           ]
