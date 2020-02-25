@@ -1,6 +1,7 @@
 import { IBannerHandlerInput } from "./IBannerHandlerInput";
 import { IBasicArticleListHandlerInput } from "./IBasicArticleListHandlerInput";
 import { IBasicArticleSectionHandlerInput } from "./IBasicArticleSectionHandlerInput";
+import { ITitleSectionHandlerInput } from "./ITitleSectionHandlerInput";
 import { IBiggieSmallsGridHandlerInput } from "./IBiggieSmallsGridHandlerInput";
 import { IBiggieSmallsHandlerInput } from "./IBiggieSmallsHandlerInput";
 import { IBreakingNewsHandlerInput } from "./IBreakingNewsHandlerInput";
@@ -77,4 +78,5 @@ export type HandlerInput =
   | IColumnGridHandlerInput
   | IBrandHandlerInput
   | IBrandGridHandlerInput
+  | ITitleSectionHandlerInput
   | IResponsiveExternalContentHandlerInput;
