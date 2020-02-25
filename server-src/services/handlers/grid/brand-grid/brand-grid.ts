@@ -14,6 +14,12 @@ export default async function(
   { content }: IBrandGridHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
+  const grid = {
+    [BrandGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 1, []),
+    [BrandGridPositions.FirstRow]: gridBlock(2, 1, 1, 1, [Border.bottom]),
+    [BrandGridPositions.SecondRow]: gridBlock(3, 1, 1, 1, [])
+  };
+
   return [
     {
       type: ContentBlockType.GridContainer,
@@ -21,13 +27,23 @@ export default async function(
       mobile: {
         gridTemplateColumns: "1fr",
         gridTemplateRows: "auto auto auto",
-        gridColumnGap: "20px",
+        gridColumnGap: "0px",
+        gridRowGap: "10px",
+        gridBlocks: grid
+      },
+      tablet: {
+        gridTemplateColumns: "1fr",
+        gridTemplateRows: "auto auto auto",
+        gridColumnGap: "0px",
         gridRowGap: "20px",
-        gridBlocks: {
-          [BrandGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 1, []),
-          [BrandGridPositions.FirstRow]: gridBlock(2, 1, 1, 1, [Border.bottom]),
-          [BrandGridPositions.SecondRow]: gridBlock(3, 1, 1, 1, [])
-        }
+        gridBlocks: grid
+      },
+      desktop: {
+        gridTemplateColumns: "1fr",
+        gridTemplateRows: "auto auto auto",
+        gridColumnGap: "0px",
+        gridRowGap: "40px",
+        gridBlocks: grid
       }
     }
   ];

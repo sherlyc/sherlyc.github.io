@@ -30,6 +30,11 @@ describe("Strips grid handler", () => {
 
     const result = await stripsGridHandler(handlerRunnerMock, input, params);
 
+    const grid = {
+      [StripsGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 1, []),
+      [StripsGridPositions.ModuleContent]: gridBlock(2, 1, 1, 1, [])
+    };
+
     expect(result).toEqual([
       {
         type: ContentBlockType.GridContainer,
@@ -41,11 +46,22 @@ describe("Strips grid handler", () => {
           gridTemplateColumns: "1fr",
           gridTemplateRows: "auto auto",
           gridColumnGap: "0",
+          gridRowGap: "10px",
+          gridBlocks: grid
+        },
+        tablet: {
+          gridTemplateColumns: "1fr",
+          gridTemplateRows: "auto auto",
+          gridColumnGap: "0",
           gridRowGap: "20px",
-          gridBlocks: {
-            [StripsGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 1, []),
-            [StripsGridPositions.ModuleContent]: gridBlock(2, 1, 1, 1, [])
-          }
+          gridBlocks: grid
+        },
+        desktop: {
+          gridTemplateColumns: "1fr",
+          gridTemplateRows: "auto auto",
+          gridColumnGap: "0",
+          gridRowGap: "40px",
+          gridBlocks: grid
         }
       }
     ]);

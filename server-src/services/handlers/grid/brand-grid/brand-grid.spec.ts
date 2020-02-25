@@ -30,37 +30,53 @@ describe("Brand Grid Handler", () => {
 
     const result = await brandGridHandler(handlerRunner, input, params);
 
+    const grid = {
+      [BrandGridPositions.ModuleTitle]: {
+        rowStart: 1,
+        rowSpan: 1,
+        columnStart: 1,
+        columnSpan: 1,
+        border: []
+      },
+      [BrandGridPositions.FirstRow]: {
+        rowStart: 2,
+        rowSpan: 1,
+        columnStart: 1,
+        columnSpan: 1,
+        border: [Border.bottom]
+      },
+      [BrandGridPositions.SecondRow]: {
+        rowStart: 3,
+        rowSpan: 1,
+        columnStart: 1,
+        columnSpan: 1,
+        border: []
+      }
+    };
+
     const expected: IGridContainer = {
       type: ContentBlockType.GridContainer,
       items: content,
       mobile: {
         gridTemplateColumns: "1fr",
         gridTemplateRows: "auto auto auto",
-        gridColumnGap: "20px",
+        gridColumnGap: "0px",
+        gridRowGap: "10px",
+        gridBlocks: grid
+      },
+      tablet: {
+        gridTemplateColumns: "1fr",
+        gridTemplateRows: "auto auto auto",
+        gridColumnGap: "0px",
         gridRowGap: "20px",
-        gridBlocks: {
-          [BrandGridPositions.ModuleTitle]: {
-            rowStart: 1,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1,
-            border: []
-          },
-          [BrandGridPositions.FirstRow]: {
-            rowStart: 2,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1,
-            border: [Border.bottom]
-          },
-          [BrandGridPositions.SecondRow]: {
-            rowStart: 3,
-            rowSpan: 1,
-            columnStart: 1,
-            columnSpan: 1,
-            border: []
-          }
-        }
+        gridBlocks: grid
+      },
+      desktop: {
+        gridTemplateColumns: "1fr",
+        gridTemplateRows: "auto auto auto",
+        gridColumnGap: "0px",
+        gridRowGap: "40px",
+        gridBlocks: grid
       }
     };
 
