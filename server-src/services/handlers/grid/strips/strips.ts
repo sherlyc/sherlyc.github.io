@@ -11,6 +11,8 @@ import { StripsGridPositions } from "../../__types__/IStripsGridHandlerInput";
 import { IStripsHandlerInput } from "../../__types__/IStripsHandlerInput";
 import { handlerRunnerFunction } from "../../runner";
 import { contentErrorHandler } from "../content-error-handler";
+import { responsiveBigImageArticleUnit } from "../../../adapters/article-converter/responsive-big-image-article.converter";
+import { halfWidthImageArticleUnit } from "../../../adapters/article-converter/half-width-image-article-unit.converter";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -31,7 +33,10 @@ export default async function(
     [ContentBlockType.BigImageArticleUnit]: (article: IRawArticle) => () =>
       bigImageArticleUnit(article, strapName, BigImageArticleUnitLayout.module),
     [ContentBlockType.FeaturedArticle]: (article: IRawArticle) => () =>
-      featuredArticle(article, strapName, "white", "black", false)
+      featuredArticle(article, strapName, "white", "black", false),
+    [ContentBlockType.HalfWidthImageArticleUnit]: (
+      article: IRawArticle
+    ) => () => halfWidthImageArticleUnit(article, strapName)
   };
 
   const content: { [key in StripsGridPositions]: IContentBlock[] } = {

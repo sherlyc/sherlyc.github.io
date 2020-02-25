@@ -12,5 +12,6 @@ export interface IStripsHandlerInput {
   articleCount: number;
   articleFormat:
     | ContentBlockType.FeaturedArticle
-    | ContentBlockType.BigImageArticleUnit;
+    | ContentBlockType.BigImageArticleUnit
+    | ContentBlockType.HalfWidthImageArticleUnit;
 }
