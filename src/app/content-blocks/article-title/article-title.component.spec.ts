@@ -8,9 +8,9 @@ import { ContentBlockType } from "../../../../common/__types__/ContentBlockType"
 import { IArticleTitle } from "../../../../common/__types__/IArticleTitle";
 import { By } from "@angular/platform-browser";
 import { HeadlineFlags } from "../../../../common/HeadlineFlags";
-import { LogoComponent } from "../../shared/components/logo/logo.component";
 import { HeadlineFlagComponent } from "../../shared/components/headline-flag/headline-flag.component";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import * as moment from "moment";
 
 describe("ArticleTitle", () => {
   let component: ArticleTitleComponent;
@@ -29,8 +29,10 @@ describe("ArticleTitle", () => {
     linkUrl: "https://example.com",
     position: "01"
   };
+  const formatMock = jest.fn();
 
   beforeEach(() => {
+    jest.resetAllMocks();
     TestBed.configureTestingModule({
       imports: [SharedModule],
       declarations: [ArticleTitleComponent],
@@ -45,6 +47,9 @@ describe("ArticleTitle", () => {
         }
       ]
     }).compileComponents();
+
+    jest.spyOn(moment, "unix").mockReturnValue({ format: formatMock } as any);
+
     fixture = TestBed.createComponent(ArticleTitleComponent);
     component = fixture.componentInstance;
     component.input = input;
@@ -75,19 +80,20 @@ describe("ArticleTitle", () => {
     expect(position).toBeFalsy();
   });
 
-  it("should show timestamp when provided", () => {
-    const threePm = 1581732000;
+  it("should format timestamp", () => {
+    const mockTimestamp = 1581732000;
     component.input = {
       ...input,
       showTimestamp: true,
-      lastPublishedTime: threePm
+      lastPublishedTime: mockTimestamp
     };
     fixture.detectChanges();
 
     const timestamp = fixture.debugElement.query(By.css(".timestamp"));
 
     expect(timestamp).toBeTruthy();
-    expect(timestamp.nativeElement.textContent).toEqual("3:00 PM");
+    expect(moment.unix).toHaveBeenCalledWith(mockTimestamp);
+    expect(formatMock).toHaveBeenCalledWith("LT");
   });
 
   it("should hide timestamp when not provided", () => {
