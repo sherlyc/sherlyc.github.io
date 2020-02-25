@@ -12,6 +12,7 @@ import {
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
 import { IImageLinkUnit } from "../../../../../common/__types__/IImageLinkUnit";
+import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../utils/logger");
@@ -32,7 +33,7 @@ describe("Six image", () => {
     strapImageSrcSet: "strap1.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: [],
-    sixteenByNineSrc: null
+    sixteenByNineSrc: "sixteenByNine.jpg"
   };
   const strapName = "fakeStrapName";
   const imageLinkUnit: IImageLinkUnit = {
@@ -42,9 +43,10 @@ describe("Six image", () => {
     indexHeadline: "Headline 1",
     title: "Title One",
     linkUrl: "/link1",
-    imageSrc: "strap1.jpg",
+    imageSrc: "sixteenByNine.jpg",
     imageSrcSet: "strap1.jpg 1w",
-    headlineFlags: []
+    headlineFlags: [],
+    layout: ImageLayoutType.module
   };
   const basicAdUnit: IBasicAdUnit = {
     type: ContentBlockType.BasicAdUnit,
