@@ -1,4 +1,3 @@
-import { BigImageArticleUnitLayout } from "../../../../../../common/__types__/IBigImageArticleUnit";
 import { IContentBlock } from "../../../../../../common/__types__/IContentBlock";
 import { IParams } from "../../../../__types__/IParams";
 import { bigImageArticleUnit } from "../../../../adapters/article-converter/big-image-article.converter";
@@ -9,6 +8,7 @@ import { IColumnGridHandlerInput } from "../../../__types__/IColumnGridHandlerIn
 import { ITopStoriesDefaultOneHighlightHandlerInput } from "../../../__types__/ITopStoriesDefaultOneHighlightHandlerInput";
 import { handlerRunnerFunction } from "../../../runner";
 import { contentErrorHandler } from "../../content-error-handler";
+import { ImageLayoutType } from "../../../../../../common/__types__/ImageLayoutType";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -26,7 +26,7 @@ export default async function(
             bigImageArticleUnit(
               articles[0],
               strapName,
-              BigImageArticleUnitLayout.module,
+              ImageLayoutType.module,
               true
             ),
           HandlerInputType.TopStoriesDefaultOneHighlight,

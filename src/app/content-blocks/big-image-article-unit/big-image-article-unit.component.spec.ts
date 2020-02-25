@@ -6,15 +6,13 @@ import { AnalyticsService } from "src/app/services/analytics/analytics.service";
 import { mockService, ServiceMock } from "src/app/services/mocks/MockService";
 import { SharedModule } from "src/app/shared/shared.module";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import {
-  BigImageArticleUnitLayout,
-  IBigImageArticleUnit
-} from "../../../../common/__types__/IBigImageArticleUnit";
+import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArticleUnit";
 import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 import { FeatureSwitchService } from "../../services/feature-switch/feature-switch.service";
 import { FluidImageComponent } from "../../shared/components/fluid-image/fluid-image.component";
 import { HeadlineComponent } from "../../shared/components/headline/headline.component";
 import { BigImageArticleUnitComponent } from "./big-image-article-unit.component";
+import { ImageLayoutType } from "../../../../common/__types__/ImageLayoutType";
 
 describe("BigImageArticleUnitComponent", () => {
   let component: BigImageArticleUnitComponent;
@@ -36,12 +34,12 @@ describe("BigImageArticleUnitComponent", () => {
     imageSrcSet: "https://dummyimagesrc.com 1w",
     lastPublishedTime: twoDaysAgoDateInSeconds,
     headlineFlags: [],
-    layout: BigImageArticleUnitLayout.default
+    layout: ImageLayoutType.default
   };
 
   const articleDataForModule: IBigImageArticleUnit = {
     ...articleData,
-    layout: BigImageArticleUnitLayout.module
+    layout: ImageLayoutType.module
   };
 
   @Component({

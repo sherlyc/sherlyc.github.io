@@ -1,9 +1,6 @@
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
-import {
-  BigImageArticleUnitLayout,
-  IBigImageArticleUnit
-} from "../../../../common/__types__/IBigImageArticleUnit";
+import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArticleUnit";
 import { IDefconArticleUnit } from "../../../../common/__types__/IDefconArticleUnit";
 import { IGrayDefconArticleUnit } from "../../../../common/__types__/IGrayDefconArticleUnit";
 
@@ -20,6 +17,7 @@ import { HandlerInputType } from "../__types__/HandlerInputType";
 import { ITopStoriesArticleListHandlerInput } from "../__types__/ITopStoriesArticleListHandlerInput";
 import handlerRunner from "../runner";
 import topStoriesListHandler from "./top-stories-article-list";
+import { ImageLayoutType } from "../../../../common/__types__/ImageLayoutType";
 
 jest.mock("../../adapters/article-retriever/article-retriever");
 
@@ -115,7 +113,7 @@ describe("Top Stories Article List", () => {
     linkUrl: article.linkUrl,
     imageSrc: article.strapImageSrc,
     imageSrcSet: article.strapImageSrcSet,
-    layout: BigImageArticleUnitLayout.default,
+    layout: ImageLayoutType.default,
     pumped: false,
     lastPublishedTime: article.lastPublishedTime,
     headlineFlags: article.headlineFlags

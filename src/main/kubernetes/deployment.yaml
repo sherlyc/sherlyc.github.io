@@ -85,7 +85,7 @@ spec:
               memory: 1Gi
             requests:
               cpu: 400m
-              memory: 512Mi
+              memory: 650Mi
           volumeMounts:
             - mountPath: /etc/${project.artifactId}/
               name: config-v${parsedVersion.majorVersion}

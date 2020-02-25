@@ -1,16 +1,15 @@
 import { ContentBlockType } from "./ContentBlockType";
 import { HeadlineFlags } from "../HeadlineFlags";
-import { ImageLayoutType } from "./ImageLayoutType";
 
-export interface IImageLinkUnit {
-  type: ContentBlockType.ImageLinkUnit;
+export interface IArticleTitle {
+  type: ContentBlockType.ArticleTitle;
   id: string;
   strapName: string;
   indexHeadline: string;
   title: string;
   linkUrl: string;
-  imageSrc: string | null;
-  imageSrcSet: string | null;
+  lastPublishedTime: number;
   headlineFlags: HeadlineFlags[];
-  layout: ImageLayoutType;
+  position?: string;
+  showTimestamp: boolean;
 }

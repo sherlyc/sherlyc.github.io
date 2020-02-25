@@ -1,5 +1,4 @@
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { BigImageArticleUnitLayout } from "../../../../../common/__types__/IBigImageArticleUnit";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IParams } from "../../../__types__/IParams";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
@@ -12,6 +11,7 @@ import { getRawArticles } from "../../../adapters/article-retriever/article-retr
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { INewsSixHandlerInput } from "../../__types__/INewsSixHandlerInput";
 import { handlerRunnerFunction } from "../../runner";
+import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -53,7 +53,7 @@ export default async function(
           bigImageArticleUnit(
             articles.shift() as IRawArticle,
             strapName,
-            BigImageArticleUnitLayout.module
+            ImageLayoutType.module
           ),
         HandlerInputType.NewsSix,
         sourceId,

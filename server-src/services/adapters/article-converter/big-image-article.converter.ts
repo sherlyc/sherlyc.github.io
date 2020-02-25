@@ -1,14 +1,12 @@
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import {
-  BigImageArticleUnitLayout,
-  IBigImageArticleUnit
-} from "../../../../common/__types__/IBigImageArticleUnit";
+import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArticleUnit";
 import { IRawArticle } from "../__types__/IRawArticle";
+import { ImageLayoutType } from "../../../../common/__types__/ImageLayoutType";
 
 export const bigImageArticleUnit = (
   article: IRawArticle,
   strapName: string,
-  layout: BigImageArticleUnitLayout = BigImageArticleUnitLayout.default,
+  layout: ImageLayoutType = ImageLayoutType.default,
   pumped = false
 ): IBigImageArticleUnit => ({
   type: ContentBlockType.BigImageArticleUnit,
@@ -18,7 +16,7 @@ export const bigImageArticleUnit = (
   title: article.title,
   introText: article.introText,
   imageSrc:
-    layout === BigImageArticleUnitLayout.default
+    layout === ImageLayoutType.default
       ? article.strapImageSrc
       : article.sixteenByNineSrc,
   imageSrcSet: article.strapImageSrcSet,

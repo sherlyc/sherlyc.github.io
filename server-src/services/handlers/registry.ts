@@ -4,6 +4,7 @@ import { HandlerInputType } from "./__types__/HandlerInputType";
 import Banner from "./banner/banner";
 import ArticleList from "./basic-article-list/basic-article-list";
 import ArticleSection from "./basic-article-section/basic-article-section";
+import TitleSection from "./title-section/title-section";
 import BreakingNews from "./breaking-news/breaking-news";
 import ContentBlockHandler from "./content-block/content-block-handler";
 import Experiment from "./experiment-handler/experiment-handler";
@@ -88,6 +89,7 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   ColumnGrid,
   Brand,
   BrandGrid,
+  TitleSection,
   ResponsiveExternalContent
 };
 

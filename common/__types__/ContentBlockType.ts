@@ -5,6 +5,7 @@ export enum ContentBlockType {
   BigImageArticleUnit = "BigImageArticleUnit",
   HalfWidthImageArticleUnit = "HalfWidthImageArticleUnit",
   BasicArticleTitleUnit = "BasicArticleTitleUnit",
+  ArticleTitle = "ArticleTitle",
   ImageLinkUnit = "ImageLinkUnit",
   HalfImageArticleWithoutIntroUnit = "HalfImageArticleWithoutIntroUnit",
   BasicAdUnit = "BasicAdUnit",

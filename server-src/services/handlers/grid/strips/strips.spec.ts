@@ -1,5 +1,4 @@
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { BigImageArticleUnitLayout } from "../../../../../common/__types__/IBigImageArticleUnit";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IParams } from "../../../__types__/IParams";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
@@ -9,6 +8,7 @@ import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { StripsGridPositions } from "../../__types__/IStripsGridHandlerInput";
 import { IStripsHandlerInput } from "../../__types__/IStripsHandlerInput";
 import stripsHandler from "./strips";
+import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 
@@ -80,7 +80,7 @@ describe("Strips", () => {
             expectContentBlock({
               type: ContentBlockType.BigImageArticleUnit,
               id,
-              layout: BigImageArticleUnitLayout.module
+              layout: ImageLayoutType.module
             })
           )
         },

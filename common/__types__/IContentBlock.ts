@@ -28,6 +28,7 @@ import { IWeatherUnit } from "./IWeatherUnit";
 import { IStickyContainer } from "./IStickyContainer";
 import { IBulletList } from "./IBulletList";
 import { IResponsiveExternalContent } from "./IResponsiveExternalContent";
+import { IArticleTitle } from "./IArticleTitle";
 
 export type IContentBlock =
   | IDefconArticleUnit
@@ -59,4 +60,5 @@ export type IContentBlock =
   | IFeaturedArticle
   | IStickyContainer
   | IBulletList
-  | IResponsiveExternalContent;
+  | IResponsiveExternalContent
+  | IArticleTitle;

@@ -75,11 +75,9 @@ const newPage = (): HandlerInput[] => {
       type: HandlerInputType.RelevantStories
     },
     {
-      type: HandlerInputType.ArticleSection,
+      type: HandlerInputType.TitleSection,
       displayName: "playstuff",
-      displayNameColor: "black",
-      linkUrl:
-        "https://www.playwidget.stuff.co.nz/hgrid/5d06caa81de1c4001f81a46e",
+      displayNameColor: "#000",
       content: {
         type: HandlerInputType.ResponsiveExternalContent,
         url:

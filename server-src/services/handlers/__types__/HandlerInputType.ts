@@ -7,6 +7,7 @@ export enum HandlerInputType {
   ExpandableArticleSection = "ExpandableArticleSection",
   ExpandableArticleList = "ExpandableArticleList",
   ArticleSection = "ArticleSection",
+  TitleSection = "TitleSection",
   BreakingNews = "BreakingNews",
   MidStrip = "MidStrip",
   MiniMidStrip = "MiniMidStrip",

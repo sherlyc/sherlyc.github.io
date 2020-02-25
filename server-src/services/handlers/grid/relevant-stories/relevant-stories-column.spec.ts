@@ -17,17 +17,31 @@ describe("Relevant stories column", () => {
   const params: IParams = { apiRequestId: "123" };
   const moduleTitle = "moduleTitle";
   const moduleTitleColor = "red";
+  const notShowTimestamp = false;
+  const notShowNumberPosition = false;
+  const showNumberPosition = true;
+  const showTimeStamp = true;
 
   const fakeArticlesWithIds = (ids: number[]) =>
     ids.map((id) => ({ id: `${id}` } as IRawArticle));
 
-  const expectBasicArticleTitle = (id: number) =>
+  const expectArticleTitleWithTimestamp = (id: number) =>
     expect.objectContaining({
-      type: ContentBlockType.BasicArticleTitleUnit,
-      id: `${id}`
+      type: ContentBlockType.ArticleTitle,
+      id: `${id}`,
+      showTimestamp: true,
+      position: undefined
     });
 
-  it("should pass articles as title units to list grid", async () => {
+  const expectArticleTitleWithPosition = (id: number) =>
+    expect.objectContaining({
+      type: ContentBlockType.ArticleTitle,
+      id: `${id}`,
+      position: `0${id}`,
+      showTimestamp: false
+    });
+
+  it("should pass article title with timestamp to list grid", async () => {
     const articleRetriever = Promise.resolve(fakeArticlesWithIds([1, 2, 3]));
     const handlerRunner = jest.fn();
     handlerRunner.mockResolvedValue([]);
@@ -36,6 +50,8 @@ describe("Relevant stories column", () => {
       articleRetriever,
       moduleTitle,
       moduleTitleColor,
+      showTimeStamp,
+      notShowNumberPosition,
       handlerRunner,
       params
     );
@@ -43,15 +59,74 @@ describe("Relevant stories column", () => {
     const expectedListGridInput: IListGridHandlerInput = {
       type: HandlerInputType.ListGrid,
       content: [
-        expectBasicArticleTitle(1),
-        expectBasicArticleTitle(2),
-        expectBasicArticleTitle(3)
+        expectArticleTitleWithTimestamp(1),
+        expectArticleTitleWithTimestamp(2),
+        expectArticleTitleWithTimestamp(3)
       ]
     };
     expect(handlerRunner).toHaveBeenNthCalledWith(
       1,
       expectedListGridInput,
       params
+    );
+  });
+
+  it("should pass articles title with position to list grid", async () => {
+    const articleRetriever = Promise.resolve(fakeArticlesWithIds([1, 2, 3]));
+    const handlerRunner = jest.fn();
+    handlerRunner.mockResolvedValue([]);
+
+    await createRelevantStoriesColumn(
+      articleRetriever,
+      moduleTitle,
+      moduleTitleColor,
+      notShowTimestamp,
+      showNumberPosition,
+      handlerRunner,
+      params
+    );
+
+    const expectedListGridInput: IListGridHandlerInput = {
+      type: HandlerInputType.ListGrid,
+      content: [
+        expectArticleTitleWithPosition(1),
+        expectArticleTitleWithPosition(2),
+        expectArticleTitleWithPosition(3)
+      ]
+    };
+    expect(handlerRunner).toHaveBeenNthCalledWith(
+      1,
+      expectedListGridInput,
+      params
+    );
+  });
+
+  it("should not pad for two digit position", async () => {
+    const articleRetriever = Promise.resolve(
+      fakeArticlesWithIds([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+    );
+    const handlerRunner = jest.fn();
+    handlerRunner.mockResolvedValue([]);
+
+    await createRelevantStoriesColumn(
+      articleRetriever,
+      moduleTitle,
+      moduleTitleColor,
+      notShowTimestamp,
+      showNumberPosition,
+      handlerRunner,
+      params
+    );
+
+    const [[listGridInput]] = handlerRunner.mock.calls;
+
+    expect(listGridInput.content[9]).toEqual(
+      expect.objectContaining({
+        type: ContentBlockType.ArticleTitle,
+        id: "10",
+        position: "10",
+        showTimestamp: false
+      })
     );
   });
 
@@ -67,6 +142,8 @@ describe("Relevant stories column", () => {
       articleRetriever,
       moduleTitle,
       moduleTitleColor,
+      showTimeStamp,
+      showNumberPosition,
       handlerRunner,
       params
     );
@@ -100,6 +177,8 @@ describe("Relevant stories column", () => {
       articleRetriever,
       moduleTitle,
       moduleTitleColor,
+      showTimeStamp,
+      showNumberPosition,
       handlerRunner,
       params
     );
