@@ -129,13 +129,13 @@ describe("ImageLinkUnitComponent", () => {
       component.input = { ...articleData, imageSrc: null };
 
       fixture.detectChanges();
-
       const defaultImage = fixture.debugElement.nativeElement.querySelector(
         "img"
       );
       const fluidImage = fixture.debugElement.query(
         By.directive(FakeFluidImageComponent)
       );
+
       expect(defaultImage).toBeFalsy();
       expect(fluidImage).toBeFalsy();
     });
@@ -151,13 +151,13 @@ describe("ImageLinkUnitComponent", () => {
       };
 
       fixture.detectChanges();
-
       const defaultImage = fixture.debugElement.nativeElement.querySelector(
         "img"
       );
       const fluidImage = fixture.debugElement.query(
         By.directive(FakeFluidImageComponent)
       );
+
       expect(defaultImage).toBeTruthy();
       expect(defaultImage.src).toContain(imageSrc);
       expect(defaultImage.alt).toBe(indexHeadline);
@@ -175,16 +175,16 @@ describe("ImageLinkUnitComponent", () => {
       };
 
       fixture.detectChanges();
-
-      expect(
-        fixture.debugElement.nativeElement.querySelector("img")
-      ).toBeFalsy();
-
-      const img = fixture.debugElement.query(
+      const defaultImage = fixture.debugElement.nativeElement.querySelector(
+        "img"
+      );
+      const fluidImage = fixture.debugElement.query(
         By.directive(FakeFluidImageComponent)
       ).componentInstance;
-      expect(img.imageSrc).toBe(imageSrc);
-      expect(img.caption).toBe(indexHeadline);
+
+      expect(defaultImage).toBeFalsy();
+      expect(fluidImage.imageSrc).toBe(imageSrc);
+      expect(fluidImage.caption).toBe(indexHeadline);
     });
   });
 });
