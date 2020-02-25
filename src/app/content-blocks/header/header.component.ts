@@ -96,8 +96,7 @@ export class HeaderComponent
         { label: "Careers", link: "https://careers.stuff.co.nz" },
         { label: "Advertising", link: "https://advertise.stuff.co.nz" },
         { label: "Contact", link: "/about-stuff/94800421/contact-us" },
-        { label: "Privacy", link: "/about-stuff/100909861/privacy-policy" },
-        { label: "SecureDrop", link: "/securedrop/index.html" }
+        { label: "Privacy", link: "/about-stuff/100909861/privacy-policy" }
       ]
     }
   ];
