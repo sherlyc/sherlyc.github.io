@@ -1,7 +1,6 @@
 :host {
   display: block;
-
-  --title-size: 16px;
+  margin: 8px 0;
 }
 
 a {
@@ -13,6 +12,7 @@ a {
 
 article {
   display: flex;
+  align-items: center;
 }
 
 .title {
@@ -22,12 +22,10 @@ article {
 .position {
   font-size: 24px;
   font-weight: 900;
-  margin: auto;
   color: #e9520e;
 }
 
 .headline {
-  margin-left: 4px;
   font-size: 16px;
   font-weight: 700;
   color: #222;
@@ -37,4 +35,5 @@ article {
   color: #e9520e;
   font-size: 12px;
   font-weight: 900;
+  margin-right: 4px;
 }
