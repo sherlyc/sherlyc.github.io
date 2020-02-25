@@ -1,5 +1,4 @@
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { BigImageArticleUnitLayout } from "../../../../../common/__types__/IBigImageArticleUnit";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IParams } from "../../../__types__/IParams";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
@@ -11,8 +10,8 @@ import { StripsGridPositions } from "../../__types__/IStripsGridHandlerInput";
 import { IStripsHandlerInput } from "../../__types__/IStripsHandlerInput";
 import { handlerRunnerFunction } from "../../runner";
 import { contentErrorHandler } from "../content-error-handler";
-import { responsiveBigImageArticleUnit } from "../../../adapters/article-converter/responsive-big-image-article.converter";
 import { halfWidthImageArticleUnit } from "../../../adapters/article-converter/half-width-image-article-unit.converter";
+import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -31,7 +30,7 @@ export default async function(
 
   const articleFormatDelegate = {
     [ContentBlockType.BigImageArticleUnit]: (article: IRawArticle) => () =>
-      bigImageArticleUnit(article, strapName, BigImageArticleUnitLayout.module),
+      bigImageArticleUnit(article, strapName, ImageLayoutType.module),
     [ContentBlockType.FeaturedArticle]: (article: IRawArticle) => () =>
       featuredArticle(article, strapName, "white", "black", false),
     [ContentBlockType.HalfWidthImageArticleUnit]: (

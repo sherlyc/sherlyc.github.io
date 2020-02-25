@@ -13,6 +13,7 @@ import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 import { imageLinkUnit } from "../../../adapters/article-converter/image-link-unit.converter";
 import { contentErrorHandler } from "../content-error-handler";
+import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -39,7 +40,12 @@ export default async function(
       ],
       [SixImageGridHandlerPositions.FirstRowLeft]: [
         contentErrorHandler(
-          () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
+          () =>
+            imageLinkUnit(
+              articles.shift() as IRawArticle,
+              strapName,
+              ImageLayoutType.module
+            ),
           HandlerInputType.SixImage,
           sourceId,
           params
@@ -47,7 +53,12 @@ export default async function(
       ],
       [SixImageGridHandlerPositions.FirstRowMiddle]: [
         contentErrorHandler(
-          () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
+          () =>
+            imageLinkUnit(
+              articles.shift() as IRawArticle,
+              strapName,
+              ImageLayoutType.module
+            ),
           HandlerInputType.SixImage,
           sourceId,
           params
@@ -55,7 +66,12 @@ export default async function(
       ],
       [SixImageGridHandlerPositions.FirstRowRight]: [
         contentErrorHandler(
-          () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
+          () =>
+            imageLinkUnit(
+              articles.shift() as IRawArticle,
+              strapName,
+              ImageLayoutType.module
+            ),
           HandlerInputType.SixImage,
           sourceId,
           params
@@ -63,7 +79,12 @@ export default async function(
       ],
       [SixImageGridHandlerPositions.SecondRowLeft]: [
         contentErrorHandler(
-          () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
+          () =>
+            imageLinkUnit(
+              articles.shift() as IRawArticle,
+              strapName,
+              ImageLayoutType.module
+            ),
           HandlerInputType.SixImage,
           sourceId,
           params
@@ -71,7 +92,12 @@ export default async function(
       ],
       [SixImageGridHandlerPositions.SecondRowMiddle]: [
         contentErrorHandler(
-          () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
+          () =>
+            imageLinkUnit(
+              articles.shift() as IRawArticle,
+              strapName,
+              ImageLayoutType.module
+            ),
           HandlerInputType.SixImage,
           sourceId,
           params
@@ -79,7 +105,12 @@ export default async function(
       ],
       [SixImageGridHandlerPositions.SecondRowRight]: [
         contentErrorHandler(
-          () => imageLinkUnit(articles.shift() as IRawArticle, strapName),
+          () =>
+            imageLinkUnit(
+              articles.shift() as IRawArticle,
+              strapName,
+              ImageLayoutType.module
+            ),
           HandlerInputType.SixImage,
           sourceId,
           params

@@ -1,13 +1,9 @@
 import { ContentBlockType } from "./ContentBlockType";
 import { IArticle } from "./IArticle";
-
-export enum BigImageArticleUnitLayout {
-  default = "default",
-  module = "module"
-}
+import { ImageLayoutType } from "./ImageLayoutType";
 
 export interface IBigImageArticleUnit extends IArticle {
   type: ContentBlockType.BigImageArticleUnit;
-  layout: BigImageArticleUnitLayout;
+  layout: ImageLayoutType;
   pumped?: boolean;
 }

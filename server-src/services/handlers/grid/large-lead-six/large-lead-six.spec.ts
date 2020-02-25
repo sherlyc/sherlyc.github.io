@@ -1,10 +1,7 @@
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
 import { IBasicArticleTitleUnit } from "../../../../../common/__types__/IBasicArticleTitleUnit";
-import {
-  BigImageArticleUnitLayout,
-  IBigImageArticleUnit
-} from "../../../../../common/__types__/IBigImageArticleUnit";
+import { IBigImageArticleUnit } from "../../../../../common/__types__/IBigImageArticleUnit";
 import {
   IGridConfig,
   IGridContainer
@@ -21,6 +18,7 @@ import {
 } from "../../__types__/ILargeLeadSixGridHandlerInput";
 import { ILargeLeadSixHandlerInput } from "../../__types__/ILargeLeadSixHandlerInput";
 import largeLeadSixHandler from "../large-lead-six/large-lead-six";
+import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 
@@ -79,7 +77,7 @@ describe("Large lead six", () => {
     linkUrl: "/link1",
     imageSrc: "sixteenByNineSrc.jpg",
     imageSrcSet: "strap1.jpg 1w",
-    layout: BigImageArticleUnitLayout.module,
+    layout: ImageLayoutType.module,
     pumped: false,
     lastPublishedTime: 1,
     headlineFlags: []
