@@ -1,10 +1,12 @@
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IImageLinkUnit } from "../../../../common/__types__/IImageLinkUnit";
 import { IRawArticle } from "../__types__/IRawArticle";
+import { ImageLayoutType } from "../../../../common/__types__/ImageLayoutType";
 
 export const imageLinkUnit = (
   article: IRawArticle,
-  strapName: string
+  strapName: string,
+  layout: ImageLayoutType = ImageLayoutType.default
 ): IImageLinkUnit => ({
   type: ContentBlockType.ImageLinkUnit,
   id: article.id,

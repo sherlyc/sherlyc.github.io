@@ -4,15 +4,8 @@ import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { BrandGridPositions } from "../../__types__/IBrandGridHandlerInput";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import {
-  brandConfig,
-  networkBrandConfig,
-  partnerBrandConfig
-} from "./brand-config";
-import {
-  BrandModule,
-  IBrandHandlerInput
-} from "../../__types__/IBrandHandlerInput";
+import { brandConfig } from "./brand-config";
+import { IBrandHandlerInput } from "../../__types__/IBrandHandlerInput";
 import { chunk } from "lodash";
 import { createBulletList } from "./bullet-list";
 
