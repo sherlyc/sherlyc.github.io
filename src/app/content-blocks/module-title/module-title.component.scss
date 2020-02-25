@@ -1,5 +1,12 @@
 @import "src/styles/break-points";
 
+a {
+  text-decoration: none;
+  :hover {
+    text-decoration: none;
+  }
+}
+
 .module-title {
   display: flex;
   flex-wrap: nowrap;

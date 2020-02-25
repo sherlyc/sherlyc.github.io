@@ -110,6 +110,7 @@ const newPage = (): HandlerInput[] => {
       type: HandlerInputType.NewsSix,
       displayName: "national",
       displayNameColor: "darkblue",
+      linkUrl: "/" + Section.National,
       strapName: `${homepageAdPrefix}National`,
       sourceId: Strap.National
     },
@@ -117,6 +118,7 @@ const newPage = (): HandlerInput[] => {
       type: HandlerInputType.BiggieSmalls,
       displayName: "climate change",
       displayNameColor: "darkblue",
+      linkUrl: "/" + Section.ClimateChange,
       strapName: `${homepageAdPrefix}ClimateChange`,
       sourceId: Strap.ClimateChange
     },
@@ -124,6 +126,7 @@ const newPage = (): HandlerInput[] => {
       type: HandlerInputType.NewsSix,
       displayName: "business",
       displayNameColor: "royalblue",
+      linkUrl: "/" + Section.Business,
       strapName: `${homepageAdPrefix}Business`,
       sourceId: Strap.Business
     },
@@ -131,6 +134,7 @@ const newPage = (): HandlerInput[] => {
       type: HandlerInputType.BiggieSmalls,
       displayName: "homed",
       displayNameColor: "keppel",
+      linkUrl: "/" + Section.Homed,
       strapName: `${homepageAdPrefix}Homed`,
       sourceId: Strap.Homed
     },
@@ -138,6 +142,7 @@ const newPage = (): HandlerInput[] => {
       type: HandlerInputType.BiggieSmalls,
       displayName: "travel",
       displayNameColor: "yellowsea",
+      linkUrl: "/" + Section.Travel,
       strapName: `${homepageAdPrefix}Travel`,
       sourceId: Strap.Travel
     },
@@ -145,6 +150,7 @@ const newPage = (): HandlerInput[] => {
       type: HandlerInputType.Strips,
       displayName: "spotlight",
       displayNameColor: "premiumdark",
+      linkUrl: "/" + Section.Premium,
       sourceId: Strap.Premium,
       strapName: Strap.Premium,
       articleCount: 4,
@@ -154,6 +160,7 @@ const newPage = (): HandlerInput[] => {
       type: HandlerInputType.NewsSix,
       displayName: "world",
       displayNameColor: "azureblue",
+      linkUrl: "/" + Section.World,
       strapName: `${homepageAdPrefix}World`,
       sourceId: Strap.World
     },
@@ -179,6 +186,7 @@ const newPage = (): HandlerInput[] => {
       type: HandlerInputType.NewsSix,
       displayName: "kea kids",
       displayNameColor: "darkblue",
+      linkUrl: "/" + Section.KeaKidsNews,
       strapName: `${homepageAdPrefix}KeaKidsNews`,
       sourceId: Strap.KeaKidsNews
     },
@@ -186,6 +194,7 @@ const newPage = (): HandlerInput[] => {
       type: HandlerInputType.BiggieSmalls,
       displayName: "life & style",
       displayNameColor: "amaranth",
+      linkUrl: "/" + Section.LifeStyle,
       strapName: `${homepageAdPrefix}LifeStyle`,
       sourceId: Strap.LifeStyle
     },
@@ -193,6 +202,7 @@ const newPage = (): HandlerInput[] => {
       type: HandlerInputType.LargeLeadSix,
       displayName: "well & good",
       displayNameColor: "sunglow",
+      linkUrl: "/" + Section.WellGood,
       strapName: `${homepageAdPrefix}WellGood`,
       sourceId: Strap.WellGood
     },
@@ -200,6 +210,7 @@ const newPage = (): HandlerInput[] => {
       type: HandlerInputType.LargeLeadSix,
       displayName: "food & wine",
       displayNameColor: "junglegreen",
+      linkUrl: "/" + Section.FoodAndWine,
       strapName: `${homepageAdPrefix}FoodAndWine`,
       sourceId: Strap.FoodAndWine
     },
@@ -207,6 +218,7 @@ const newPage = (): HandlerInput[] => {
       type: HandlerInputType.BiggieSmalls,
       displayName: "entertainment",
       displayNameColor: "purpleheart",
+      linkUrl: "/" + Section.Entertainment,
       strapName: `${homepageAdPrefix}Entertainment`,
       sourceId: Strap.Entertainment
     },
@@ -214,6 +226,7 @@ const newPage = (): HandlerInput[] => {
       type: HandlerInputType.BiggieSmalls,
       displayName: "bravo",
       displayNameColor: "purpleheart",
+      linkUrl: "/" + Section.Bravo,
       strapName: `${homepageAdPrefix}Bravo`,
       sourceId: Strap.Bravo
     },
@@ -221,6 +234,7 @@ const newPage = (): HandlerInput[] => {
       type: HandlerInputType.BiggieSmalls,
       displayName: "motoring",
       displayNameColor: "pizzaz",
+      linkUrl: "/" + Section.Motoring,
       strapName: `${homepageAdPrefix}Motoring`,
       sourceId: Strap.Motoring
     },
@@ -228,6 +242,7 @@ const newPage = (): HandlerInput[] => {
       type: HandlerInputType.LargeLeadSix,
       displayName: "technology",
       displayNameColor: "carribeangreen",
+      linkUrl: "/" + Section.Technology,
       strapName: `${homepageAdPrefix}Technology`,
       sourceId: Strap.Technology
     },
@@ -235,6 +250,7 @@ const newPage = (): HandlerInput[] => {
       type: HandlerInputType.LargeLeadSix,
       displayName: "nz farmer",
       displayNameColor: "pizzaz",
+      linkUrl: "/" + Section.NZFarmer,
       strapName: `${homepageAdPrefix}NzFarmer`,
       sourceId: Strap.NZFarmer
     },
@@ -242,6 +258,7 @@ const newPage = (): HandlerInput[] => {
       type: HandlerInputType.LargeLeadSix,
       displayName: "parenting",
       displayNameColor: "amaranth",
+      linkUrl: "/" + Section.Parenting,
       strapName: `${homepageAdPrefix}Parenting`,
       sourceId: Strap.Parenting
     },
@@ -249,6 +266,7 @@ const newPage = (): HandlerInput[] => {
       type: HandlerInputType.BiggieSmalls,
       displayName: "sport",
       displayNameColor: "scarlet",
+      linkUrl: "/" + Section.Sport,
       strapName: `${homepageAdPrefix}Sport`,
       sourceId: Strap.Sport
     },
