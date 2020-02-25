@@ -47,22 +47,30 @@ export class HeaderComponent
         { label: "Climate Change", link: "/environment/climate-news" },
         { label: "Sport", link: "/sport" },
         { label: "Entertainment", link: "/entertainment" },
+        { label: "Homed", link: "/life-style/homed" },
         { label: "Life & Style", link: "/life-style" },
         { label: "Travel", link: "/travel" },
         { label: "Motoring", link: "/motoring" },
         { label: "Stuff Nation", link: "/stuff-nation" },
         { label: "Play Stuff", link: "https://play.stuff.co.nz" },
         { label: "Quizzes", link: "/national/quizzes" },
+        { label: "Puzzles", link: "/life-style/puzzles" },
+        { label: "Cartoons", link: "/opinion/cartoons" },
+        {
+          label: "Newsletters",
+          link:
+            "/national/90621395/feed-your-news-hunger-with-stuffs-many-delicious-newsletters"
+        },
         { label: "Politics", link: "/national/politics" },
-        { label: "Premium", link: "/national/premium" },
-        { label: "Homed", link: "/life-style/homed" },
+        { label: "Spotlight", link: "/national/premium" },
         { label: "KEA Kids News", link: "/national/kea-kids-news" },
         { label: "Well & Good", link: "/life-style/well-good" },
         { label: "Food & Wine", link: "/life-style/food-wine" },
         { label: "Parenting", link: "/life-style/parenting" },
         { label: "Rugby", link: "/sport/rugby" },
         { label: "Farming", link: "/business/farming" },
-        { label: "Technology", link: "/technology" }
+        { label: "Technology", link: "/technology" },
+        { label: "Oddstuff", link: "/oddstuff" }
       ]
     },
     {
