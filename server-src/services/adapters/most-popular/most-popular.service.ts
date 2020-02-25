@@ -21,6 +21,9 @@ export const getMostPopular = async (
       params,
       config.mostPopularApi
     );
+    if (response.data.mostPopular.error) {
+      throw Error("Most popular returns error");
+    }
     const articleIds = response.data.mostPopular.mostPopularArticles.slice(
       0,
       limit
@@ -35,6 +38,6 @@ export const getMostPopular = async (
       "Most popular service level error",
       error
     );
-    return [];
+    throw error;
   }
 };
