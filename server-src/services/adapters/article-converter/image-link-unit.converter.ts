@@ -13,8 +13,12 @@ export const imageLinkUnit = (
   strapName,
   indexHeadline: article.indexHeadline,
   title: article.title,
-  imageSrc: article.strapImageSrc,
+  imageSrc:
+    layout === ImageLayoutType.default
+      ? article.strapImageSrc
+      : article.sixteenByNineSrc,
   imageSrcSet: article.strapImageSrcSet,
   linkUrl: article.linkUrl,
-  headlineFlags: article.headlineFlags
+  headlineFlags: article.headlineFlags,
+  layout
 });
