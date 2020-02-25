@@ -2,7 +2,6 @@ import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IMidStripHandlerInput } from "../__types__/IMidStripHandlerInput";
 import { handlerRunnerFunction } from "../runner";
-import { IImageLinkUnit } from "../../../../common/__types__/IImageLinkUnit";
 import { IParams } from "../../__types__/IParams";
 import { Strap } from "../../strap";
 import wrappedLogger from "../../utils/logger";

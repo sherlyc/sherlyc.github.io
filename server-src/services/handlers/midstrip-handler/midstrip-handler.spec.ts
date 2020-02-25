@@ -80,28 +80,32 @@ describe("MidStripHandler", () => {
       expect(columnContainer).toEqual([
         {
           type: "ColumnContainer",
-          items: expect.arrayContaining([
-            expect.objectContaining({
-              type: ContentBlockType.ImageLinkUnit,
+          items: [
+            {
+              headlineFlags: [],
               id: "1",
               strapName: "MidStrip",
-              indexHeadline: "Headline 1",
-              linkUrl: "/link1",
               imageSrc: "1.jpg",
               imageSrcSet: "1.jpg 1w",
-              layout: ImageLayoutType.default
-            }),
-            expect.objectContaining({
+              indexHeadline: "Headline 1",
+              title: "Title 1",
+              linkUrl: "/link1",
               type: ContentBlockType.ImageLinkUnit,
+              layout: ImageLayoutType.default
+            },
+            {
+              headlineFlags: [],
               id: "2",
               strapName: "MidStrip",
-              linkUrl: "/link2",
               imageSrc: "2.jpg",
               imageSrcSet: "2.jpg 2w",
               indexHeadline: "Headline 2",
+              title: "Title 2",
+              linkUrl: "/link2",
+              type: ContentBlockType.ImageLinkUnit,
               layout: ImageLayoutType.default
-            })
-          ])
+            }
+          ]
         },
         basicAdUnit
       ]);
