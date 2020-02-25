@@ -6,6 +6,8 @@ import { getStrapArticles } from "../../adapters/strap-list/strap-list-service";
 import { Strap } from "../../strap";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import wrappedLogger from "../../utils/logger";
+import { IRawArticle } from "../../adapters/__types__/IRawArticle";
+import { ImageLayoutType } from "../../../../common/__types__/ImageLayoutType";
 
 jest.mock("../../utils/logger");
 jest.mock("../../adapters/strap-list/strap-list-service");
@@ -17,15 +19,19 @@ describe("MidStripHandler", () => {
     context: "MidStrip"
   };
   const params: IParams = { apiRequestId: "request-id-for-testing" };
-  const rawMidStrip = [
+  const rawMidStrip: IRawArticle[] = [
     {
       id: "1",
       indexHeadline: "Headline 1",
       title: "Title 1",
       introText: "Intro 1",
       linkUrl: "/link1",
+      defconSrc: "defcon1.jpg",
       imageSrc: "1.jpg",
       imageSrcSet: "1.jpg 1w",
+      strapImageSrc: "1.jpg",
+      strapImageSrcSet: "1.jpg 1w",
+      sixteenByNineSrc: "sixteenByNine1.jpg",
       lastPublishedTime: 1,
       headlineFlags: []
     },
@@ -35,8 +41,12 @@ describe("MidStripHandler", () => {
       introText: "Intro 2",
       title: "Title 2",
       linkUrl: "/link2",
+      defconSrc: "defcon2.jpg",
       imageSrc: "2.jpg",
       imageSrcSet: "2.jpg 2w",
+      strapImageSrc: "2.jpg",
+      strapImageSrcSet: "2.jpg 2w",
+      sixteenByNineSrc: "sixteenByNine2.jpg",
       lastPublishedTime: 2,
       headlineFlags: []
     }
@@ -70,30 +80,28 @@ describe("MidStripHandler", () => {
       expect(columnContainer).toEqual([
         {
           type: "ColumnContainer",
-          items: [
-            {
-              headlineFlags: [],
+          items: expect.arrayContaining([
+            expect.objectContaining({
+              type: ContentBlockType.ImageLinkUnit,
               id: "1",
               strapName: "MidStrip",
+              indexHeadline: "Headline 1",
+              linkUrl: "/link1",
               imageSrc: "1.jpg",
               imageSrcSet: "1.jpg 1w",
-              indexHeadline: "Headline 1",
-              title: "Title 1",
-              linkUrl: "/link1",
-              type: "ImageLinkUnit"
-            },
-            {
-              headlineFlags: [],
+              layout: ImageLayoutType.default
+            }),
+            expect.objectContaining({
+              type: ContentBlockType.ImageLinkUnit,
               id: "2",
               strapName: "MidStrip",
+              linkUrl: "/link2",
               imageSrc: "2.jpg",
               imageSrcSet: "2.jpg 2w",
               indexHeadline: "Headline 2",
-              title: "Title 2",
-              linkUrl: "/link2",
-              type: "ImageLinkUnit"
-            }
-          ]
+              layout: ImageLayoutType.default
+            })
+          ])
         },
         basicAdUnit
       ]);
@@ -124,6 +132,7 @@ describe("MidStripHandler", () => {
           type: "ColumnContainer",
           items: [
             {
+              type: ContentBlockType.ImageLinkUnit,
               headlineFlags: [],
               id: "1",
               strapName: "MidStrip",
@@ -132,7 +141,7 @@ describe("MidStripHandler", () => {
               indexHeadline: "Headline 1",
               title: "Title 1",
               linkUrl: "/link1",
-              type: "ImageLinkUnit"
+              layout: ImageLayoutType.default
             }
           ]
         },
@@ -194,7 +203,8 @@ describe("MidStripHandler", () => {
               indexHeadline: "Headline 1",
               title: "Title 1",
               linkUrl: "/link1",
-              type: "ImageLinkUnit"
+              type: "ImageLinkUnit",
+              layout: ImageLayoutType.default
             },
             {
               headlineFlags: [],
@@ -205,7 +215,8 @@ describe("MidStripHandler", () => {
               indexHeadline: "Headline 2",
               title: "Title 2",
               linkUrl: "/link2",
-              type: "ImageLinkUnit"
+              type: "ImageLinkUnit",
+              layout: ImageLayoutType.default
             }
           ]
         },
@@ -246,7 +257,8 @@ describe("MidStripHandler", () => {
               indexHeadline: "Headline 1",
               title: "Title 1",
               linkUrl: "/link1",
-              type: "ImageLinkUnit"
+              type: "ImageLinkUnit",
+              layout: ImageLayoutType.default
             }
           ]
         },
