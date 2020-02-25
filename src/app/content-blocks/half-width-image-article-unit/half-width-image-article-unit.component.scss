@@ -1,6 +1,7 @@
+@import "src/styles/break-points";
+
 :host {
   display: block;
-
   --title-size: 16px;
 }
 
@@ -16,6 +17,12 @@ a {
 .image {
   margin-bottom: 10px;
   overflow: hidden;
+}
+
+@include mobile {
+  .image {
+    margin-bottom: 0;
+  }
 }
 
 .intro {
