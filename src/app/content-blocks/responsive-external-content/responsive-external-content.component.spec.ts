@@ -2,12 +2,12 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ResponsiveExternalContentComponent } from "./responsive-external-content.component";
 import { DomSanitizer } from "@angular/platform-browser";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { GlobalStyleDirective } from "../../shared/directives/global-style/global-style.directive";
 import { MediaQuery } from "../grid-container/__types__/MediaQuery";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 import { IResponsiveExternalContentDeviceConfig } from "../../../../common/__types__/IResponsiveExternalContent";
 import { GlobalStyleService } from "../../services/global-style/global-style.service";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
+import { Directive, Input } from "@angular/core";
 
 describe("ResponsiveExternalContentComponent", () => {
   let component: ResponsiveExternalContentComponent;
@@ -40,9 +40,19 @@ describe("ResponsiveExternalContentComponent", () => {
     }
   };
 
+  @Directive({
+    selector: "[appGlobalStyle]"
+  })
+  class MockGlobalStyleDirective {
+    @Input() appGlobalStyle?: object;
+  }
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [GlobalStyleDirective, ResponsiveExternalContentComponent],
+      declarations: [
+        MockGlobalStyleDirective,
+        ResponsiveExternalContentComponent
+      ],
       providers: [
         {
           provide: DomSanitizer,
@@ -92,29 +102,22 @@ describe("ResponsiveExternalContentComponent", () => {
   });
 
   it("margin should be injected via global style service", () => {
+    const margin = "0 10px";
+
     component.input = {
       ...input,
       mobile: {
         ...input.mobile,
-        margin: "0 10px"
+        margin
       }
     };
 
     fixture.detectChanges();
 
     expect(globalStyleService.injectStyle).toHaveBeenCalledWith({
-      [MediaQuery.Mobile]: {
-        height: mobileConfig.height,
-        width: mobileConfig.width
-      },
-      [MediaQuery.Tablet]: {
-        height: mobileConfig.height,
-        width: mobileConfig.width
-      },
-      [MediaQuery.Desktop]: {
-        height: mobileConfig.height,
-        width: mobileConfig.width
-      }
+      [MediaQuery.Mobile]: { margin },
+      [MediaQuery.Tablet]: { margin },
+      [MediaQuery.Desktop]: { margin }
     });
   });
 
@@ -128,15 +131,15 @@ describe("ResponsiveExternalContentComponent", () => {
 
     const expected = {
       [MediaQuery.Mobile]: {
-        height: mobileConfig.height,
+        paddingBottom: mobileConfig.height,
         width: mobileConfig.width
       },
       [MediaQuery.Tablet]: {
-        height: tabletConfig.height,
+        paddingBottom: tabletConfig.height,
         width: tabletConfig.width
       },
       [MediaQuery.Desktop]: {
-        height: desktopConfig.height,
+        paddingBottom: desktopConfig.height,
         width: desktopConfig.width
       }
     };
@@ -155,15 +158,15 @@ describe("ResponsiveExternalContentComponent", () => {
 
     const expected = {
       [MediaQuery.Mobile]: {
-        height: mobileConfig.height,
+        paddingBottom: mobileConfig.height,
         width: mobileConfig.width
       },
       [MediaQuery.Tablet]: {
-        height: mobileConfig.height,
+        paddingBottom: mobileConfig.height,
         width: mobileConfig.width
       },
       [MediaQuery.Desktop]: {
-        height: mobileConfig.height,
+        paddingBottom: mobileConfig.height,
         width: mobileConfig.width
       }
     };

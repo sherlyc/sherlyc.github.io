@@ -63,6 +63,15 @@ const newPage = (): HandlerInput[] => {
       strapName: `${homepageAdPrefix}TopStoriesDefaultOne`
     },
     {
+      type: HandlerInputType.ResponsiveExternalContent,
+      url: "https://interactives.stuff.co.nz/voyager/2019/2019-mobile.html",
+      mobile: {
+        height: "40px",
+        width: "100%",
+        margin: "0 0 20px 0"
+      }
+    },
+    {
       type: HandlerInputType.RelevantStories
     },
     {
@@ -72,28 +81,25 @@ const newPage = (): HandlerInput[] => {
       linkUrl:
         "https://www.playwidget.stuff.co.nz/shelf/5d06caa81de1c4001f81a46e",
       content: {
-        type: HandlerInputType.ExternalContent,
-        height: "215px",
-        width: "100%",
-        margin: "0 -10px 20px",
-        url: "https://www.playwidget.stuff.co.nz/shelf/5d06caa81de1c4001f81a46e"
+        type: HandlerInputType.ResponsiveExternalContent,
+        url:
+          "https://www.playwidget.stuff.co.nz/shelf/5d06caa81de1c4001f81a46e",
+        mobile: {
+          height: "215px",
+          width: "100%",
+          margin: "0 -10px 20px"
+        }
       }
     },
     {
       type: HandlerInputType.ResponsiveExternalContent,
-      url:
-        "https://interactives.stuff.co.nz/live/homepage/uber/index-editorial-pointer.html",
+      url: "https://interactives.stuff.co.nz/live/homepage/uber/2/320-200.html",
       mobile: {
         height: "320px",
         width: "100%",
         margin: "0 0 20px 0"
       },
       tablet: {
-        height: "200px",
-        width: "100%",
-        margin: "0 0 20px 0"
-      },
-      desktop: {
         height: "200px",
         width: "100%",
         margin: "0 0 20px 0"
@@ -151,6 +157,20 @@ const newPage = (): HandlerInput[] => {
       articleFormat: ContentBlockType.FeaturedArticle
     },
     {
+      type: HandlerInputType.ResponsiveExternalContent,
+      url: "https://interactives.stuff.co.nz/live/homepage/uber/3/320-200.html",
+      mobile: {
+        height: "320px",
+        width: "100%",
+        margin: "0 0 20px 0"
+      },
+      tablet: {
+        height: "200px",
+        width: "100%",
+        margin: "0 0 20px 0"
+      }
+    },
+    {
       type: HandlerInputType.NewsSix,
       displayName: "world",
       displayNameColor: "azureblue",
@@ -163,12 +183,14 @@ const newPage = (): HandlerInput[] => {
       displayNameColor: "black",
       linkUrl: "https://play.stuff.co.nz/page/channel-onenews",
       content: {
-        type: HandlerInputType.ExternalContent,
-        height: "calc(56% + 216px)",
-        width: "100%",
-        margin: "0 -10px 10px",
+        type: HandlerInputType.ResponsiveExternalContent,
         url:
-          "https://www.playwidget.stuff.co.nz/hshelf/5d3fcb25a0e845001caee780"
+          "https://www.playwidget.stuff.co.nz/hshelf/5d3fcb25a0e845001caee780",
+        mobile: {
+          height: "calc(56% + 216px)",
+          width: "100%",
+          margin: "0 -10px 10px"
+        }
       }
     },
     {
