@@ -65,7 +65,7 @@ export default async function(
         gridTemplateColumns: "1fr",
         gridTemplateRows: "auto auto auto auto auto auto auto auto auto auto",
         gridColumnGap: "0px",
-        gridRowGap: "10px",
+        gridRowGap: "20px",
         gridBlocks: mobile
       },
       tablet: {
