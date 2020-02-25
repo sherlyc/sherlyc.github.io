@@ -3,14 +3,15 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { ModuleTitleComponent } from "./module-title.component";
 import { IModuleTitle } from "../../../../common/__types__/IModuleTitle";
 import { By } from "@angular/platform-browser";
+import { OpenExternalLinkDirective } from "../../shared/directives/open-external-link/open-external-link.directive";
 
-describe("ErrorBlockComponent", () => {
+describe("ModuleTitleComponent", () => {
   let component: ModuleTitleComponent;
   let fixture: ComponentFixture<ModuleTitleComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ModuleTitleComponent]
+      declarations: [ModuleTitleComponent, OpenExternalLinkDirective]
     }).compileComponents();
   }));
 
@@ -31,8 +32,8 @@ describe("ErrorBlockComponent", () => {
     } as IModuleTitle;
     fixture.detectChanges();
 
-    const moduleTitle = fixture.debugElement.query(By.css(".title"));
-    expect(moduleTitle.nativeElement.textContent).toEqual(moduleName);
+    const title = fixture.debugElement.query(By.css(".title"));
+    expect(title.nativeElement.textContent).toEqual(moduleName);
   });
 
   it("should display line but not module name when name is empty", () => {
@@ -43,8 +44,8 @@ describe("ErrorBlockComponent", () => {
     } as IModuleTitle;
     fixture.detectChanges();
 
-    const moduleTitle = fixture.debugElement.query(By.css(".title"));
-    expect(moduleTitle).toBeFalsy();
+    const title = fixture.debugElement.query(By.css(".title"));
+    expect(title).toBeFalsy();
   });
 
   it("should display the color", () => {
@@ -60,5 +61,29 @@ describe("ErrorBlockComponent", () => {
       By.css("." + moduleColor)
     );
     expect(moduleTitleColor).toBeTruthy();
+  });
+
+  it("should not be clickable if url is not provided", () => {
+    component.input = {
+      displayName: "National",
+      linkUrl: ""
+    } as IModuleTitle;
+
+    fixture.detectChanges();
+
+    const moduleTitle = fixture.debugElement.query(By.css(".module-title"));
+    expect(moduleTitle.attributes.href).toBeFalsy();
+  });
+
+  it("should be clickable if url is provided", () => {
+    component.input = {
+      displayName: "National",
+      linkUrl: "/national"
+    } as IModuleTitle;
+
+    fixture.detectChanges();
+
+    const moduleTitle = fixture.debugElement.query(By.css(".module-title"));
+    expect(moduleTitle.attributes.href).toBe(component.input.linkUrl);
   });
 });
