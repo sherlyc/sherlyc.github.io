@@ -10,3 +10,30 @@ a {
     text-decoration: none;
   }
 }
+
+article {
+  display: flex;
+}
+
+.title {
+  margin-left: 15px;
+}
+
+.number {
+  font-size: 24px;
+  font-weight: 900;
+  margin: auto;
+  color: #e9520e;
+}
+
+.headline {
+  margin-left: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #222;
+}
+
+.timestamp {
+  color: #e9520e;
+  font-size: 12px;
+}

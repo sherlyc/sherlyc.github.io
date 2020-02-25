@@ -1,6 +1,12 @@
 <a href="{{ input.linkUrl }}" appOpenExternalLink="{{ input.linkUrl }}" class="inputLink">
   <article>
-    <span>{{this.timeStamp}}</span>
-    <app-headline [headline]="input.indexHeadline" [headlineFlags]="input.headlineFlags"></app-headline>
+    <span class="number">01</span>
+    <div class="title">
+      <p>
+        <span class="timestamp">{{this.timeStamp}}</span>
+        <span class="headline">{{ input.indexHeadline }} </span>
+        <app-headline-flag *ngFor="let flag of input.headlineFlags" [flag]="flag"></app-headline-flag>
+      </p>
+    </div>
   </article>
 </a>
