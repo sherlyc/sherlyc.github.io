@@ -159,7 +159,7 @@ const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.NewsSix,
       displayName: "world",
-      displayNameColor: "#08afb7",
+      displayNameColor: "#1272b4",
       linkUrl: "/" + Section.World,
       strapName: `${homepageAdPrefix}World`,
       sourceId: Strap.World
