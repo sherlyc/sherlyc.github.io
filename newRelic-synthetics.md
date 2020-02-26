@@ -14,7 +14,19 @@ const blackListed = [
 $browser.addHostnamesToBlacklist(blackListed);
 
 const getCssElement = (selector) => {
+  console.log("getCssElement", selector);
   return $browser.waitForAndFindElement($driver.By.css(selector), 8000);
+};
+
+const selectMobileSite = async () => {
+  const element = await getCssElement(".view-mobile-site");
+  element.click();
+};
+
+const turnOffModuleLayout = async () => {
+  const button = await getCssElement(".check-box");
+  await button.click();
+  await button.click();
 };
 
 const closeOLI = async () => {
@@ -69,6 +81,16 @@ const shouldContainFooter = async () => {
 
 $browser
   .get("https://i.stuff.co.nz")
+  .then(selectMobileSite)
+  .then(() => {
+    return $browser.get(
+      "https://i.stuff.co.nz/static/spade/spade-feature-switch.html?grep=Module"
+    );
+  })
+  .then(turnOffModuleLayout)
+  .then(() => {
+    return $browser.get("https://i.stuff.co.nz");
+  })
   .then(closeOLI)
   .then(shouldContainBasicArticleUnits)
   .then(shouldContainHeader)
