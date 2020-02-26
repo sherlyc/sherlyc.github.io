@@ -1,4 +1,5 @@
 @import "~normalize.css/normalize.css";
+@import "src/styles/break-points";
 
 .container {
   width: 100%;
@@ -59,28 +60,28 @@ a {
   color: inherit;
 }
 
-@media only screen and (max-width: 767px) {
+@include mobile {
   .container {
     width: 100%;
     max-width: 767px;
   }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+@include tablet {
   .container {
     width: 748px;
     max-width: 748px;
   }
 }
 
-@media only screen and (min-width: 992px) and (max-width: 1119px) {
+@include desktop {
   .container {
     width: 972px;
     max-width: 972px;
   }
 }
 
-@media only screen and (min-width: 1140px) {
+@include large-screen {
   .container {
     width: 1120px;
     max-width: 1120px;
@@ -101,16 +102,33 @@ app-logo {
 
 .content-blocks > app-feature-container:first-child > app-grid-container,
 .content-blocks > app-grid-container {
-  margin-bottom: 60px;
+  @include mobile {
+    margin-bottom: 20px;
+  }
+  @include tablet {
+    margin-bottom: 40px;
+  }
+  @include desktop {
+    margin-bottom: 60px;
+  }
 }
 
 .homepage-billboard.ad-container {
   border-width: 0 !important;
   &:not(:first-child) {
-    margin-bottom: 50px !important;
+    @include mobile {
+      margin-bottom: 20px !important;
+    }
+    @include tablet {
+      margin-bottom: 40px !important;
+    }
+    @include desktop {
+      margin-bottom: 60px !important;
+    }
   }
 }
-@media only screen and (min-width: 992px) {
+
+@include desktop {
   .content-blocks
     > app-feature-container:first-child
     > app-grid-container:first-of-type
