@@ -71,7 +71,7 @@ describe("Biggie Smalls", () => {
       1,
       {
         type: HandlerInputType.ListGrid,
-        content: ["2", "3", "4", "5", "6"].map((id) =>
+        content: ["3", "4", "5", "6", "7"].map((id) =>
           expectContentBlock({
             type: ContentBlockType.BasicArticleTitleUnit,
             id
@@ -122,8 +122,8 @@ describe("Biggie Smalls", () => {
           ],
           [BiggieSmallsGridPositions.FirstRow1]: [
             expectContentBlock({
-              type: ContentBlockType.BasicAdUnit,
-              context: strapName
+              type: ContentBlockType.HalfWidthImageArticleUnit,
+              id: "2"
             })
           ],
           [BiggieSmallsGridPositions.FirstRow2]: [
@@ -133,8 +133,8 @@ describe("Biggie Smalls", () => {
           ],
           [BiggieSmallsGridPositions.FirstRow3]: [
             expectContentBlock({
-              type: ContentBlockType.HalfWidthImageArticleUnit,
-              id: "7"
+              type: ContentBlockType.BasicAdUnit,
+              context: strapName
             })
           ]
         }
