@@ -88,7 +88,7 @@ pipeline {
       cloud 'Practiv BUILD'
       label agentLabel()
       defaultContainer 'dind'
-      instanceCap 2
+      instanceCap 4
       idleMinutes 120
       yaml agentDefinition()
     }
