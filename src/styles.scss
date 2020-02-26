@@ -74,14 +74,14 @@ a {
   }
 }
 
-@include desktop {
+@media only screen and (min-width: 992px) and (max-width: 1119px) {
   .container {
     width: 972px;
     max-width: 972px;
   }
 }
 
-@include large-screen {
+@media only screen and (min-width: 1140px) {
   .container {
     width: 1120px;
     max-width: 1120px;

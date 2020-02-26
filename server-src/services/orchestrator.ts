@@ -71,7 +71,7 @@ export const newPage = (): HandlerInput[] => {
     },
     {
       type: HandlerInputType.TitleSection,
-      displayName: "playstuff",
+      displayName: "play stuff",
       displayNameColor: "#000",
       linkUrl: "https://play.stuff.co.nz/",
       content: {
@@ -177,7 +177,12 @@ export const newPage = (): HandlerInput[] => {
       tablet: {
         height: "200px",
         width: "100%",
-        margin: "0 0 20px 0"
+        margin: "0 0 40px 0"
+      },
+      desktop: {
+        height: "200px",
+        width: "100%",
+        margin: "0 0 60px 0"
       }
     },
     {
@@ -195,21 +200,21 @@ export const newPage = (): HandlerInput[] => {
       linkUrl: "https://play.stuff.co.nz/page/channel-onenews",
       content: {
         type: HandlerInputType.ResponsiveExternalContent,
-        url: "https://www.playwidget.stuff.co.nz/grid/5d06caa81de1c4001f81a46e",
+        url: "https://www.playwidget.stuff.co.nz/grid/5d3fcb25a0e845001caee780",
         mobile: {
-          height: "calc(35% + 30px)",
+          height: "calc(35% + 35px)",
           width: "100%",
           margin: "0 -10px 20px"
         },
         tablet: {
-          height: "35%",
+          height: "170px",
           width: "100%",
-          margin: "0 -10px 20px"
+          margin: "0 -10px 40px"
         },
         desktop: {
-          height: "calc(30% + 10px)",
+          height: "170px",
           width: "100%",
-          margin: "0 -10px 20px"
+          margin: "0 -10px 60px"
         }
       }
     },
