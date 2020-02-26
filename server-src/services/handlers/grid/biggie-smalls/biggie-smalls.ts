@@ -54,7 +54,15 @@ export default async function(
       )
     ],
     [BiggieSmallsGridPositions.Right]: [basicAdUnit(strapName)],
-    [BiggieSmallsGridPositions.FirstRow1]: [basicAdUnit(strapName)],
+    [BiggieSmallsGridPositions.FirstRow1]: [
+      contentErrorHandler(
+        () =>
+          halfWidthImageArticleUnit(articles.shift() as IRawArticle, strapName),
+        HandlerInputType.BiggieSmalls,
+        sourceId,
+        params
+      )
+    ],
     [BiggieSmallsGridPositions.FirstRow2]: await handlerRunner(
       {
         type: HandlerInputType.ListGrid,
@@ -71,15 +79,7 @@ export default async function(
       },
       params
     ),
-    [BiggieSmallsGridPositions.FirstRow3]: [
-      contentErrorHandler(
-        () =>
-          halfWidthImageArticleUnit(articles.shift() as IRawArticle, strapName),
-        HandlerInputType.BiggieSmalls,
-        sourceId,
-        params
-      )
-    ]
+    [BiggieSmallsGridPositions.FirstRow3]: [basicAdUnit(strapName)]
   };
 
   return await handlerRunner(
