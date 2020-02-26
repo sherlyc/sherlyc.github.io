@@ -11,10 +11,23 @@ import { Section } from "./section";
 import { Strap } from "./strap";
 import config from "./utils/config";
 import logger from "./utils/logger";
+import { parseVersion } from "./utils/version";
 
 const homepageStrapsConfig = config.strapConfig!.homepageStraps;
 
 export default async (params: IParams): Promise<IPage> => {
+  const isNewFrontEnd =
+    params.version && parseVersion(params.version) >= parseVersion("1.649");
+  const components: HandlerInput[] = isNewFrontEnd
+    ? [
+        {
+          type: HandlerInputType.Feature,
+          name: FeatureName.ModuleLayout,
+          content: newPage(),
+          fallback: oldPage()
+        }
+      ]
+    : oldPage();
   try {
     return {
       apiRequestId: params.apiRequestId,
@@ -28,16 +41,7 @@ export default async (params: IParams): Promise<IPage> => {
               type: HandlerInputType.ForceUpdate,
               forceUpdateOnVersionsBefore: "1.450"
             },
-            {
-              type: HandlerInputType.Feature,
-              name: FeatureName.ModuleLayout,
-              content: newPage()
-            },
-            {
-              type: HandlerInputType.Feature,
-              name: FeatureName.StrapLayout,
-              fallback: oldPage()
-            }
+            ...components
           ]
         },
         params
@@ -50,7 +54,7 @@ export default async (params: IParams): Promise<IPage> => {
 };
 
 const homepageAdPrefix = "homepage";
-const newPage = (): HandlerInput[] => {
+export const newPage = (): HandlerInput[] => {
   const page: HandlerInput[] = [
     {
       type: HandlerInputType.BreakingNews
@@ -346,7 +350,7 @@ const newPage = (): HandlerInput[] => {
   );
 };
 
-const oldPage = (): HandlerInput[] => [
+export const oldPage = (): HandlerInput[] => [
   {
     type: HandlerInputType.Weather
   },

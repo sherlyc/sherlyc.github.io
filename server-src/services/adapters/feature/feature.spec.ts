@@ -8,7 +8,7 @@ describe("Feature service", () => {
     [FeatureName.Recommendation]: [-1, -1],
     [FeatureName.RecommendationDisplay]: [-1, -1],
     [FeatureName.StrapLayout]: [-1, -1],
-    [FeatureName.ModuleLayout]: [-1, -1],
+    [FeatureName.ModuleLayout]: [0, 1],
     [FeatureName.HomepageTakeover]: [-1, -1]
   };
 
