@@ -234,7 +234,7 @@ const newPage = (): HandlerInput[] => {
       sourceId: Strap.FoodAndWine,
       strapName: Strap.FoodAndWine,
       articleCount: 4,
-      articleFormat: ContentBlockType.BigImageArticleUnit
+      articleFormat: ContentBlockType.HalfWidthImageArticleUnit
     },
     {
       type: HandlerInputType.BiggieSmalls,
@@ -285,7 +285,7 @@ const newPage = (): HandlerInput[] => {
       sourceId: Strap.NZFarmer,
       strapName: Strap.NZFarmer,
       articleCount: 4,
-      articleFormat: ContentBlockType.BigImageArticleUnit
+      articleFormat: ContentBlockType.HalfWidthImageArticleUnit
     },
     {
       type: HandlerInputType.Strips,
@@ -295,7 +295,7 @@ const newPage = (): HandlerInput[] => {
       sourceId: Strap.Parenting,
       strapName: Strap.Parenting,
       articleCount: 4,
-      articleFormat: ContentBlockType.BigImageArticleUnit
+      articleFormat: ContentBlockType.HalfWidthImageArticleUnit
     },
     {
       type: HandlerInputType.BiggieSmalls,

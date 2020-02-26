@@ -89,9 +89,46 @@ describe("Strips", () => {
     });
   });
 
+  describe("when using HalfWidthImageArticle format", () => {
+    it("should call column grid with articles of correct format", async () => {
+      await stripsHandler(
+        handlerRunnerMock,
+        {
+          ...stripsHandlerInput,
+          articleFormat: ContentBlockType.HalfWidthImageArticleUnit
+        },
+        params
+      );
+
+      expect(handlerRunnerMock).toHaveBeenNthCalledWith(
+        1,
+        {
+          type: HandlerInputType.ColumnGrid,
+          border: false,
+          columnGap: 20,
+          rowGap: 20,
+          content: ["1", "2", "3", "4"].map((id) =>
+            expectContentBlock({
+              type: ContentBlockType.HalfWidthImageArticleUnit,
+              id
+            })
+          )
+        },
+        params
+      );
+    });
+  });
+
   describe("when using FeaturedArticleUnit format", () => {
     it("should call column grid with articles of correct format", async () => {
-      await stripsHandler(handlerRunnerMock, stripsHandlerInput, params);
+      await stripsHandler(
+        handlerRunnerMock,
+        {
+          ...stripsHandlerInput,
+          articleFormat: ContentBlockType.FeaturedArticle
+        },
+        params
+      );
 
       expect(handlerRunnerMock).toHaveBeenNthCalledWith(
         1,
