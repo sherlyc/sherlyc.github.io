@@ -63,15 +63,6 @@ const newPage = (): HandlerInput[] => {
       strapName: `${homepageAdPrefix}TopStoriesDefaultOne`
     },
     {
-      type: HandlerInputType.ResponsiveExternalContent,
-      url: "https://interactives.stuff.co.nz/voyager/2019/2019-mobile.html",
-      mobile: {
-        height: "40px",
-        width: "100%",
-        margin: "0 0 20px 0"
-      }
-    },
-    {
       type: HandlerInputType.RelevantStories
     },
     {
