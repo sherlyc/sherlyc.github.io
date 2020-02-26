@@ -78,6 +78,7 @@ const newPage = (): HandlerInput[] => {
       type: HandlerInputType.TitleSection,
       displayName: "playstuff",
       displayNameColor: "#000",
+      linkUrl: "https://play.stuff.co.nz/",
       content: {
         type: HandlerInputType.ResponsiveExternalContent,
         url:
@@ -272,12 +273,18 @@ const newPage = (): HandlerInput[] => {
       sourceId: Strap.Bravo
     },
     {
-      type: HandlerInputType.ResponsiveExternalContent,
-      url: "https://cdn.neighbourly.co.nz/stuff/933/homepage",
-      mobile: {
-        height: "580px",
-        width: "100%",
-        margin: "0 0 3px 0"
+      type: HandlerInputType.TitleSection,
+      displayName: "neighbourly",
+      displayNameColor: "#60A735",
+      linkUrl: "https://www.neighbourly.co.nz/",
+      content: {
+        type: HandlerInputType.ResponsiveExternalContent,
+        url: "https://cdn.neighbourly.co.nz/stuff/933/homepage",
+        mobile: {
+          height: "550px",
+          width: "100%",
+          margin: "0 0 3px 0"
+        }
       }
     },
     {
