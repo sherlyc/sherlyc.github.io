@@ -110,13 +110,7 @@
     "strapHomed": {
       "ids": ["91738058", "91738163"],
       "dedupeRules": {
-        "dedupeFromBaseList": true,
-        "extraDedupeList": [
-          {
-            "id": "85424401",
-            "limit": 5
-          }
-        ]
+        "dedupeFromBaseList": true
       }
     },
     "strapLifeStyle": {
