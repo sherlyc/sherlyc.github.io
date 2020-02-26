@@ -539,19 +539,6 @@ export const oldPage = (): HandlerInput[] => [
   },
   {
     type: HandlerInputType.ArticleSection,
-    displayName: "Property",
-    displayNameColor: "royalblue",
-    linkUrl: "/" + Section.Property,
-    content: {
-      type: HandlerInputType.ArticleList,
-      sourceId: Strap.Property,
-      strapName: "Property",
-      totalBasicArticlesUnit: 2,
-      totalBasicArticleTitleUnit: 3
-    }
-  },
-  {
-    type: HandlerInputType.ArticleSection,
     displayName: "Daily Fix",
     displayNameColor: "navyblue",
     content: {
