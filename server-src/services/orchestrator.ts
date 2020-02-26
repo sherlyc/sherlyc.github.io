@@ -78,14 +78,25 @@ const newPage = (): HandlerInput[] => {
       type: HandlerInputType.TitleSection,
       displayName: "playstuff",
       displayNameColor: "#000",
+      linkUrl: "https://play.stuff.co.nz/",
       content: {
         type: HandlerInputType.ResponsiveExternalContent,
         url:
-          "https://www.playwidget.stuff.co.nz/shelf/5d06caa81de1c4001f81a46e",
+          "https://www.playwidget.stuff.co.nz/hgrid/5d06caa81de1c4001f81a46e",
         mobile: {
-          height: "215px",
           width: "100%",
-          margin: "0 -10px 20px"
+          height: "calc(85% + 40px)",
+          margin: "0 -10px 0"
+        },
+        tablet: {
+          width: "100%",
+          height: "calc(66% + 40px)",
+          margin: "0 -10px 0"
+        },
+        desktop: {
+          width: "100%",
+          height: "66%",
+          margin: "0 -10px 0"
         }
       }
     },
@@ -183,18 +194,27 @@ const newPage = (): HandlerInput[] => {
       sourceId: Strap.World
     },
     {
-      type: HandlerInputType.ArticleSection,
-      displayName: "one news play stuff",
+      type: HandlerInputType.TitleSection,
+      displayName: "one news",
       displayNameColor: "black",
       linkUrl: "https://play.stuff.co.nz/page/channel-onenews",
       content: {
         type: HandlerInputType.ResponsiveExternalContent,
-        url:
-          "https://www.playwidget.stuff.co.nz/hshelf/5d3fcb25a0e845001caee780",
+        url: "https://www.playwidget.stuff.co.nz/grid/5d06caa81de1c4001f81a46e",
         mobile: {
-          height: "calc(56% + 216px)",
+          height: "calc(35% + 30px)",
           width: "100%",
-          margin: "0 -10px 10px"
+          margin: "0 -10px 20px"
+        },
+        tablet: {
+          height: "35%",
+          width: "100%",
+          margin: "0 -10px 20px"
+        },
+        desktop: {
+          height: "calc(30% + 10px)",
+          width: "100%",
+          margin: "0 -10px 20px"
         }
       }
     },
@@ -253,12 +273,18 @@ const newPage = (): HandlerInput[] => {
       sourceId: Strap.Bravo
     },
     {
-      type: HandlerInputType.ResponsiveExternalContent,
-      url: "https://cdn.neighbourly.co.nz/stuff/933/homepage",
-      mobile: {
-        height: "580px",
-        width: "100%",
-        margin: "0 0 3px 0"
+      type: HandlerInputType.TitleSection,
+      displayName: "neighbourly",
+      displayNameColor: "#60A735",
+      linkUrl: "https://www.neighbourly.co.nz/",
+      content: {
+        type: HandlerInputType.ResponsiveExternalContent,
+        url: "https://cdn.neighbourly.co.nz/stuff/933/homepage",
+        mobile: {
+          height: "550px",
+          width: "100%",
+          margin: "0 0 3px 0"
+        }
       }
     },
     {
