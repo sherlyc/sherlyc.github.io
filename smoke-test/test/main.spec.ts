@@ -21,6 +21,12 @@ describe("Mobile Homepage", () => {
       waitUntil: "domcontentloaded",
       timeout: 60000
     });
+    await page.evaluate(() => {
+      localStorage.setItem(
+        "__storejs_stuff-experience_ModuleLayoutExperimentLottery",
+        "150"
+      );
+    });
   });
 
   afterAll(async () => {
@@ -43,13 +49,6 @@ describe("Mobile Homepage", () => {
   });
 
   it("should contain text in a basic article", async () => {
-    await page.evaluate(() => {
-      localStorage.setItem(
-        "__storejs_stuff-experience_ModuleLayoutExperimentLottery",
-        "150"
-      );
-    });
-
     const basicArticle = await page.$("app-basic-article-unit");
     const articleText = await page.evaluate(
       (element: Element) => element.textContent,
