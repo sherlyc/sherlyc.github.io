@@ -1,5 +1,5 @@
 import { TestBed } from "@angular/core/testing";
-import { WindowService, ServerWindowService } from "./window.service";
+import { ServerWindowService, WindowService } from "./window.service";
 
 describe("WindowService", () => {
   let windowService: WindowService;
@@ -14,6 +14,43 @@ describe("WindowService", () => {
 
   it("should return the window", () => {
     expect(windowService.getWindow()).toEqual(window);
+  });
+
+  describe("isDesktopDomain", () => {
+    const { location } = window;
+
+    beforeAll(() => {
+      delete window.location;
+      Object.defineProperty(window, "location", {
+        value: {
+          hostname: ""
+        },
+        writable: true
+      });
+    });
+
+    afterAll(() => {
+      window.location = location;
+    });
+
+    it.each([["www.stuff.co.nz"], ["www-preprod.stuff.co.nz"]])(
+      "should return true when in %s",
+      (hostname: string) => {
+        window.location.hostname = hostname;
+
+        expect(windowService.isDesktopDomain()).toBeTruthy();
+      }
+    );
+
+    it.each([
+      ["i.stuff.co.nz"],
+      ["experience.expproduction.shift21.ffx.nz"],
+      ["localhost"]
+    ])("should return false when in %s", (hostname: string) => {
+      window.location.hostname = hostname;
+
+      expect(windowService.isDesktopDomain()).toBeFalsy();
+    });
   });
 });
 
