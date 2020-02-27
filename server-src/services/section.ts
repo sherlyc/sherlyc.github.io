@@ -29,7 +29,6 @@ export enum Section {
   SponsoredContent = "sponsored-content",
   Tarana = "tarana",
   Bravo = "entertainment/bravo",
-  Property = "business/property",
   DominionPost = "dominion-post",
   ThePress = "the-press",
   WaikatoTimes = "waikato-times",

@@ -485,6 +485,19 @@ export const oldPage = (): HandlerInput[] => [
   },
   {
     type: HandlerInputType.ArticleSection,
+    displayName: "Homed",
+    displayNameColor: "keppel",
+    linkUrl: "/" + Section.Homed,
+    content: {
+      type: HandlerInputType.ArticleList,
+      sourceId: Strap.Homed,
+      strapName: "Homed",
+      totalBasicArticlesUnit: 2,
+      totalBasicArticleTitleUnit: 3
+    }
+  },
+  {
+    type: HandlerInputType.ArticleSection,
     displayName: "Travel",
     displayNameColor: "yellowsea",
     linkUrl: "/" + Section.Travel,
@@ -531,19 +544,6 @@ export const oldPage = (): HandlerInput[] => [
   },
   {
     type: HandlerInputType.ArticleSection,
-    displayName: "Property",
-    displayNameColor: "royalblue",
-    linkUrl: "/" + Section.Property,
-    content: {
-      type: HandlerInputType.ArticleList,
-      sourceId: Strap.Property,
-      strapName: "Property",
-      totalBasicArticlesUnit: 2,
-      totalBasicArticleTitleUnit: 3
-    }
-  },
-  {
-    type: HandlerInputType.ArticleSection,
     displayName: "Daily Fix",
     displayNameColor: "navyblue",
     content: {
@@ -563,19 +563,6 @@ export const oldPage = (): HandlerInput[] => [
       sourceId: Strap.KeaKidsNews,
       strapName: "KEA Kids News",
       totalBasicArticlesUnit: 2
-    }
-  },
-  {
-    type: HandlerInputType.ArticleSection,
-    displayName: "Homed",
-    displayNameColor: "keppel",
-    linkUrl: "/" + Section.Homed,
-    content: {
-      type: HandlerInputType.ArticleList,
-      sourceId: Strap.Homed,
-      strapName: "Homed",
-      totalBasicArticlesUnit: 2,
-      totalBasicArticleTitleUnit: 3
     }
   },
   {

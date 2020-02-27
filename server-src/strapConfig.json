@@ -245,18 +245,6 @@
         "dedupeFromBaseList": true
       }
     },
-    "strapProperty": {
-      "ids": ["85424401"],
-      "dedupeRules": {
-        "dedupeFromBaseList": false,
-        "extraDedupeList": [
-          {
-            "id": "63060863",
-            "limit": 5
-          }
-        ]
-      }
-    },
     "strapKeaKidsNews": {
       "ids": ["115468303"],
       "dedupeRules": {

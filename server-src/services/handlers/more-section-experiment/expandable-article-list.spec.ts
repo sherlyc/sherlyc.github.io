@@ -76,7 +76,7 @@ describe("Expandable article list", () => {
     const handlerRunner = jest.fn();
     const handlerInput: IExpandableArticleListHandlerInput = {
       type: HandlerInputType.ExpandableArticleList,
-      sourceId: Strap.Property,
+      sourceId: Strap.Business,
       strapName,
       basicArticlesPerPage: 2,
       basicTitleArticlesPerPage: 3,
@@ -86,14 +86,14 @@ describe("Expandable article list", () => {
 
     await expandableArticleList(handlerRunner, handlerInput, params);
 
-    expect(getRawArticles).toHaveBeenCalledWith(Strap.Property, 10, params);
+    expect(getRawArticles).toHaveBeenCalledWith(Strap.Business, 10, params);
   });
 
   it("should return articles as basic articles and title articles specified for a single page", async () => {
     const handlerRunner = jest.fn();
     const handlerInput: IExpandableArticleListHandlerInput = {
       type: HandlerInputType.ExpandableArticleList,
-      sourceId: Strap.Property,
+      sourceId: Strap.Business,
       strapName,
       basicArticlesPerPage: 1,
       basicTitleArticlesPerPage: 1,
@@ -120,7 +120,7 @@ describe("Expandable article list", () => {
     const handlerRunner = jest.fn();
     const handlerInput: IExpandableArticleListHandlerInput = {
       type: HandlerInputType.ExpandableArticleList,
-      sourceId: Strap.Property,
+      sourceId: Strap.Business,
       strapName,
       basicArticlesPerPage: 1,
       basicTitleArticlesPerPage: 2,
@@ -158,7 +158,7 @@ describe("Expandable article list", () => {
     const handlerRunner = jest.fn();
     const handlerInput: IExpandableArticleListHandlerInput = {
       type: HandlerInputType.ExpandableArticleList,
-      sourceId: Strap.Property,
+      sourceId: Strap.Business,
       strapName,
       basicArticlesPerPage: 1,
       basicTitleArticlesPerPage: 2,
@@ -187,7 +187,7 @@ describe("Expandable article list", () => {
     const handlerRunner = jest.fn();
     const handlerInput: IExpandableArticleListHandlerInput = {
       type: HandlerInputType.ExpandableArticleList,
-      sourceId: Strap.Property,
+      sourceId: Strap.Business,
       strapName,
       basicArticlesPerPage: 1,
       basicTitleArticlesPerPage: 2,
