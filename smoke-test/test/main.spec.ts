@@ -42,7 +42,7 @@ describe("Mobile Homepage", () => {
     expect(footer).toBeTruthy();
   });
 
-  it.only("should contain text in a basic article", async () => {
+  it("should contain text in a basic article", async () => {
     await page.evaluate(() => {
       localStorage.setItem(
         "__storejs_stuff-experience_ModuleLayoutExperimentLottery",
