@@ -50,17 +50,6 @@ describe("Mobile Homepage", () => {
       );
     });
 
-    const localStorageData = await page.evaluate(() => {
-      let json = {};
-      for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        // @ts-ignore
-        json[key] = localStorage.getItem(key);
-      }
-      return json;
-    });
-
-    console.log(localStorageData);
     const basicArticle = await page.$("app-basic-article-unit");
     const articleText = await page.evaluate(
       (element: Element) => element.textContent,
