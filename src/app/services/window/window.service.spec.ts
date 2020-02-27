@@ -73,6 +73,6 @@ describe("ServerWindowService", () => {
   });
 
   it("should throw an error when isDesktopDomain is called", () => {
-    expect(() => serverWindowService.isDesktopDomain()).toThrow(TypeError);
+    expect(() => serverWindowService.isDesktopDomain()).toThrowError();
   });
 });
