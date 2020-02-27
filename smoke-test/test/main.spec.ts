@@ -24,7 +24,7 @@ describe("Mobile Homepage", () => {
     await page.evaluate(() => {
       window.localStorage.setItem(
         "__storejs_stuff-experience_ModuleLayoutExperimentLottery",
-        "150"
+        "404"
       );
     });
     await page.goto(config.url, {
@@ -64,14 +64,14 @@ describe("Mobile Homepage", () => {
     expect(footer).toBeTruthy();
   });
 
-  it("should contain text in a basic article", async () => {
-    const basicArticle = await page.$("app-basic-article-unit");
+  it("should contain text in a half width article", async () => {
+    const halfWidthArticle = await page.$("app-half-width-image-article-unit");
     const articleText = await page.evaluate(
       (element: Element) => element.textContent,
-      basicArticle
+      halfWidthArticle
     );
 
-    expect(basicArticle).toBeTruthy();
+    expect(halfWidthArticle).toBeTruthy();
     expect(articleText).toBeTruthy();
   });
 
