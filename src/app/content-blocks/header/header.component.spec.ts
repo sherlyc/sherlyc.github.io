@@ -98,16 +98,16 @@ describe("Header", () => {
     (global as any).Date.now = () =>
       new Date("2019-01-01T00:00:00.000Z").getTime();
     fixture.detectChanges();
-    expect(fixture.debugElement.query(By.css(".stuffLogo"))).toBeTruthy();
-    expect(fixture.debugElement.query(By.css(".punaLogo"))).toBeFalsy();
+    expect(fixture.debugElement.query(By.css(".stuff-logo"))).toBeTruthy();
+    expect(fixture.debugElement.query(By.css(".puna-logo"))).toBeFalsy();
   });
 
   it("should display puna logo", () => {
     (global as any).Date.now = () =>
       new Date("2019-09-09T17:00:00.000Z").getTime();
     fixture.detectChanges();
-    expect(fixture.debugElement.query(By.css(".stuffLogo"))).toBeFalsy();
-    expect(fixture.debugElement.query(By.css(".punaLogo"))).toBeTruthy();
+    expect(fixture.debugElement.query(By.css(".stuff-logo"))).toBeFalsy();
+    expect(fixture.debugElement.query(By.css(".puna-logo"))).toBeTruthy();
   });
 
   describe("Analytics", () => {
