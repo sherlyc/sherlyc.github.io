@@ -106,7 +106,12 @@ export const newPage = (): HandlerInput[] => {
       tablet: {
         height: "200px",
         width: "100%",
-        margin: "0 0 20px 0"
+        margin: "0 0 40px 0"
+      },
+      desktop: {
+        height: "200px",
+        width: "100%",
+        margin: "0 0 60px 0"
       }
     },
     {
