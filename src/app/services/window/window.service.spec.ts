@@ -71,4 +71,8 @@ describe("ServerWindowService", () => {
   it("should return an empty object for the window", () => {
     expect(serverWindowService.getWindow()).toEqual({});
   });
+
+  it("should throw an error when isDesktopDomain is called", () => {
+    expect(() => serverWindowService.isDesktopDomain()).toThrow(TypeError);
+  });
 });
