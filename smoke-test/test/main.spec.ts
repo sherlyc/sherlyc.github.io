@@ -21,6 +21,12 @@ describe("Mobile Homepage", () => {
       waitUntil: "domcontentloaded",
       timeout: 60000
     });
+    await page.evaluate(() => {
+      localStorage.setItem(
+        "__storejs_stuff-experience_ModuleLayoutExperimentLottery",
+        "150"
+      );
+    });
   });
 
   afterAll(async () => {
