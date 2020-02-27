@@ -1,16 +1,20 @@
+@import "src/styles/break-points";
+
 header {
   background-color: #fff;
-  .color-bar {
-    margin-bottom: -3px;
-  }
+  display: block;
 }
-.header-bar {
-  height: 48px;
+
+.title a {
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
-.title {
-  height: 28px;
-  padding-top: 2px;
+
+.stuff-logo {
+  width: auto;
 }
+
 .menu {
   padding: 12px 12px;
   position: relative;
@@ -57,7 +61,7 @@ header {
   }
 
   .menu-label {
-    font-size: 12px;
+    font-size: 14px;
     color: #333;
     margin-left: 28px;
   }
@@ -66,7 +70,7 @@ header {
 .user {
   text-decoration: none;
   margin: 9px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bold;
   color: #333;
 
@@ -80,7 +84,6 @@ header {
 
 .navigation {
   position: fixed;
-  top: 50px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -143,8 +146,53 @@ header {
   }
 }
 
-@media only screen and (max-width: 767px) {
+@include desktop {
+  .header-bar {
+    height: 70px;
+  }
+  .color-bar {
+    height: 5px;
+    margin-bottom: -5px;
+  }
+  .stuff-logo {
+    height: 40px;
+  }
+  .navigation {
+    top: 75px;
+  }
+}
+
+@include tablet {
+  .header-bar {
+    height: 60px;
+  }
+  .color-bar {
+    height: 4px;
+    margin-bottom: -4px;
+  }
+  .stuff-logo {
+    height: 30px;
+  }
+  .navigation {
+    top: 64px;
+  }
+}
+
+@include mobile {
+  .header-bar {
+    height: 50px;
+  }
+  .color-bar {
+    height: 4px;
+    margin-bottom: -4px;
+  }
+  .stuff-logo {
+    height: 25px;
+  }
   .menu-label {
     display: none;
+  }
+  .navigation {
+    top: 54px;
   }
 }

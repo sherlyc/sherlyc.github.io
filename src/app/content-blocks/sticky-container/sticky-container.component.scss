@@ -1,4 +1,16 @@
+@import "src/styles/break-points";
+
 :host {
   display: block;
   position: sticky;
+
+  @include mobile {
+    top: 54px;
+  }
+  @include tablet {
+    top: 64px;
+  }
+  @include desktop {
+    top: 75px;
+  }
 }
