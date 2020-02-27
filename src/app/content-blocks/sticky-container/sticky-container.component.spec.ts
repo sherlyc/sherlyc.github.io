@@ -57,21 +57,4 @@ describe("Sticky Container", () => {
 
     expect(component).toBeTruthy();
   });
-
-  it("should fallback to default value for top gap", () => {
-    component.input = input;
-
-    fixture.detectChanges();
-
-    expect(fixture.debugElement.styles["top"]).toEqual("50px");
-  });
-
-  it("should apply top gap if provided", () => {
-    const topGap = "200px";
-    component.input = { ...input, topGap };
-
-    fixture.detectChanges();
-
-    expect(fixture.debugElement.styles["top"]).toEqual(topGap);
-  });
 });
