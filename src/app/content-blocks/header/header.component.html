@@ -35,7 +35,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-md-4 col-lg-6 {{ sections[0].theme }}">
-          <div class="searchBar">
+          <div class="searchBar" *ngIf="showSearchBar">
             <form action="/searchresults" method="get">
               <input name="q" type="search" placeholder="Type keyword to search..." aria-label="search" />
               <label>

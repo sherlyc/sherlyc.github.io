@@ -10,6 +10,7 @@ import { IEnvironmentDefinition } from "../../services/config/__types__/IEnviron
 import { AuthenticationService } from "../../services/authentication/authentication.service";
 import { Subject } from "rxjs";
 import { IStuffLoginUser } from "../../services/authentication/__types__/IStuffLoginUser";
+import { WindowService } from "../../services/window/window.service";
 
 const OriginalNow = global.Date.now;
 
@@ -18,6 +19,7 @@ describe("Header", () => {
   let analyticsService: ServiceMock<AnalyticsService>;
   let configService: ServiceMock<ConfigService>;
   let authenticationService: ServiceMock<AuthenticationService>;
+  let windowService: ServiceMock<WindowService>;
   let component: HeaderComponent;
   const profileUrl = "https://my.stuff.co.nz/publicprofile";
 
@@ -63,6 +65,10 @@ describe("Header", () => {
         {
           provide: AuthenticationService,
           useClass: mockService(AuthenticationService)
+        },
+        {
+          provide: WindowService,
+          useClass: mockService(WindowService)
         }
       ]
     }).compileComponents();
@@ -70,6 +76,7 @@ describe("Header", () => {
     configService = TestBed.get(ConfigService);
     authenticationService = TestBed.get(AuthenticationService);
     authenticationService.authenticationStateChange = new Subject<any>();
+    windowService = TestBed.get(WindowService);
 
     configService.getConfig.mockReturnValue({
       loginLibrary: {
@@ -108,6 +115,25 @@ describe("Header", () => {
     fixture.detectChanges();
     expect(fixture.debugElement.query(By.css(".stuffLogo"))).toBeFalsy();
     expect(fixture.debugElement.query(By.css(".punaLogo"))).toBeTruthy();
+  });
+
+  it("should hide search bar on non desktop domain", () => {
+    fixture.componentInstance.toggleMenu();
+    fixture.detectChanges();
+
+    const searchBar = fixture.debugElement.query(By.css(".searchBar"));
+
+    expect(searchBar).toBeFalsy();
+  });
+
+  it("should show search bar on desktop domain", () => {
+    windowService.isDesktopDomain.mockReturnValue(true);
+    fixture.componentInstance.toggleMenu();
+    fixture.detectChanges();
+
+    const searchBar = fixture.debugElement.query(By.css(".searchBar"));
+
+    expect(searchBar).toBeTruthy();
   });
 
   describe("Analytics", () => {
