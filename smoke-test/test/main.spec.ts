@@ -22,11 +22,27 @@ describe("Mobile Homepage", () => {
       timeout: 60000
     });
     await page.evaluate(() => {
-      localStorage.setItem(
+      window.localStorage.setItem(
         "__storejs_stuff-experience_ModuleLayoutExperimentLottery",
         "150"
       );
     });
+    await page.goto(config.url, {
+      waitUntil: "domcontentloaded",
+      timeout: 60000
+    });
+    const localStorageData = await page.evaluate(() => {
+      let json = {};
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = window.localStorage.key(i);
+        // @ts-ignore
+        json[key] = window.localStorage.getItem(key);
+      }
+      return json;
+    });
+    console.log("localStorageData", localStorageData);
+
+    await page.waitFor("app-header");
   });
 
   afterAll(async () => {

@@ -1,7 +1,20 @@
+@import "src/styles/break-points";
+
 :host {
   flex: 1 0 auto;
   display: block;
-  margin-top: 50px;
+
+  @include desktop {
+    margin-top: 75px;
+  }
+
+  @include tablet {
+    margin-top: 64px;
+  }
+
+  @include mobile {
+    margin-top: 54px;
+  }
 }
 
 .content {
