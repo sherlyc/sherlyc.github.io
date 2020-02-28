@@ -21,27 +21,10 @@ describe("Mobile Homepage", () => {
       waitUntil: "domcontentloaded",
       timeout: 60000
     });
-    await page.evaluate(() => {
-      window.localStorage.setItem(
-        "__storejs_stuff-experience_ModuleLayoutExperimentLottery",
-        "404"
-      );
-    });
     await page.goto(config.url, {
       waitUntil: "domcontentloaded",
       timeout: 60000
     });
-    const localStorageData = await page.evaluate(() => {
-      let json = {};
-      for (let i = 0; i < localStorage.length; i++) {
-        const key = window.localStorage.key(i);
-        // @ts-ignore
-        json[key] = window.localStorage.getItem(key);
-      }
-      return json;
-    });
-    console.log("localStorageData", localStorageData);
-
     await page.waitFor("app-header");
   });
 
@@ -81,35 +64,41 @@ describe("Mobile Homepage", () => {
   });
 
   it("should contain at least 2 top stories highlights", async () => {
-    // const featuredArticle = await page.$$(
-    //   "app-grid-container > div app-featured-article"
-    // );
-    // const bigImageArticle = await page.$$(
-    //   "app-grid-container > div app-big-image-article-unit"
-    // );
-    //
-    // const halfWidthImageArticle = await page.$$(
-    //   "app-grid-container > div app-half-width-image-article-unit"
-    // );
+    const allGrids = await page.$$(
+      "app-grid-container > div > div > app-grid-container"
+    );
+    const topStoriesHighlight = await allGrids[0];
 
-    const allGrids = await page.$$("app-grid-container");
-    const topStoriesGrid = allGrids[0];
-
-    const featuredArticle = await topStoriesGrid.$$("app-featured-article");
-    const bigImageArticle = await topStoriesGrid.$$(
+    const featuredArticles = await topStoriesHighlight.$$(
+      "app-featured-article"
+    );
+    const bigImageArticles = await topStoriesHighlight.$$(
       "app-big-image-article-unit"
     );
-    const halfWidthArticle = await topStoriesGrid.$$(
+    const halfWidthImageArticles = await topStoriesHighlight.$$(
       "app-half-width-image-article-unit"
     );
 
-    console.log(
-      featuredArticle.length,
-      bigImageArticle.length,
-      halfWidthArticle.length
-    );
     expect(
-      featuredArticle.length + bigImageArticle.length + halfWidthArticle.length
-    ).toBeTruthy();
+      featuredArticles.length +
+        bigImageArticles.length +
+        halfWidthImageArticles.length
+    ).toBeGreaterThanOrEqual(2);
+  });
+
+  it("should contain at least 7 other top stories", async () => {
+    const allGrids = await page.$$("app-grid-container > div");
+    const topStoriesGrid = await allGrids[0];
+
+    const halfWidthImageArticles = await topStoriesGrid.$$(
+      "app-half-width-image-article-unit"
+    );
+    const halfWidthImageWithoutIntroArticles = await topStoriesGrid.$$(
+      "app-half-image-article-without-intro-unit"
+    );
+
+    expect(
+      halfWidthImageArticles.length + halfWidthImageWithoutIntroArticles.length
+    ).toBeGreaterThanOrEqual(7);
   });
 });
