@@ -162,6 +162,10 @@ header {
     border-color: transparent;
   }
 
+  input[type="submit"] {
+    display: none;
+  }
+
   svg {
     width: 20px;
     height: 20px;
