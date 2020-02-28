@@ -1,8 +1,7 @@
-import orchestrator, { newPage, oldPage } from "./orchestrator";
-import * as handlerRunner from "./handlers/runner";
 import { IParams } from "./__types__/IParams";
 import { HandlerInputType } from "./handlers/__types__/HandlerInputType";
-import { FeatureName } from "../../common/FeatureName";
+import * as handlerRunner from "./handlers/runner";
+import orchestrator, { newPage, oldPage } from "./orchestrator";
 
 jest.mock("./handlers/runner");
 
@@ -42,7 +41,7 @@ describe("Orchestrator", () => {
     );
   });
 
-  it("should return feature switch for module layout for new frontend version", async () => {
+  it("should return module layout for new frontend version", async () => {
     const params: IParams = {
       version: "1.649",
       apiRequestId: "123"
@@ -60,12 +59,7 @@ describe("Orchestrator", () => {
             type: HandlerInputType.ForceUpdate,
             forceUpdateOnVersionsBefore: "1.450"
           },
-          {
-            type: HandlerInputType.Feature,
-            name: FeatureName.ModuleLayout,
-            content: newPage(),
-            fallback: oldPage()
-          }
+          ...newPage()
         ]
       },
       params
