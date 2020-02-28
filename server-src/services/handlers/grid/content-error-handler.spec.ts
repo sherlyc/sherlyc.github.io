@@ -1,12 +1,9 @@
-import { IBasicArticleTitleUnit } from "../../../../common/__types__/IBasicArticleTitleUnit";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { contentErrorHandler } from "./content-error-handler";
-import { HandlerInputType } from "../__types__/HandlerInputType";
-import { isFeatureEnabled } from "../../adapters/feature/feature";
-import wrappedLogger from "../../utils/logger";
-import { FeatureName } from "../../../../common/FeatureName";
-import { DeviceType } from "../../../../common/DeviceType";
+import { IBasicArticleTitleUnit } from "../../../../common/__types__/IBasicArticleTitleUnit";
 import { Strap } from "../../strap";
+import wrappedLogger from "../../utils/logger";
+import { HandlerInputType } from "../__types__/HandlerInputType";
+import { contentErrorHandler } from "./content-error-handler";
 
 jest.mock("../../adapters/feature/feature");
 jest.mock("../../utils/logger");
@@ -42,35 +39,12 @@ describe("Content error handler", () => {
     expect(result).toEqual(fakeContentBlock);
   });
 
-  it("should log info if callback fails and module layout feature has not been rolled out", () => {
+  it("should log error if callback fails", () => {
     const mockConverterCallback = jest.fn();
     const error = new Error("Failed");
     mockConverterCallback.mockImplementation(() => {
       throw error;
     });
-    (isFeatureEnabled as jest.Mock).mockReturnValue(false);
-
-    contentErrorHandler(
-      mockConverterCallback,
-      HandlerInputType.NewsSix,
-      Strap.Business,
-      params
-    );
-
-    expect(wrappedLogger.info).toHaveBeenCalledWith(
-      params.apiRequestId,
-      `${HandlerInputType.NewsSix} - Potentially insufficient articles for source ${Strap.Business}`,
-      error
-    );
-  });
-
-  it("should log error if callback fails and module layout feature has been rolled out", () => {
-    const mockConverterCallback = jest.fn();
-    const error = new Error("Failed");
-    mockConverterCallback.mockImplementation(() => {
-      throw error;
-    });
-    (isFeatureEnabled as jest.Mock).mockReturnValue(true);
 
     contentErrorHandler(
       mockConverterCallback,
@@ -83,28 +57,6 @@ describe("Content error handler", () => {
       params.apiRequestId,
       `${HandlerInputType.NewsSix} - Potentially insufficient articles for source ${Strap.Business}`,
       error
-    );
-  });
-
-  it("should call isFeatureEnabled with correct params if callback fails", () => {
-    const mockConverterCallback = jest.fn();
-    const error = new Error("Failed");
-    mockConverterCallback.mockImplementation(() => {
-      throw error;
-    });
-    (isFeatureEnabled as jest.Mock).mockReturnValue(false);
-
-    contentErrorHandler(
-      mockConverterCallback,
-      HandlerInputType.NewsSix,
-      Strap.Business,
-      params
-    );
-
-    expect(isFeatureEnabled).toHaveBeenCalledWith(
-      FeatureName.ModuleLayout,
-      1,
-      DeviceType.unknown
     );
   });
 });
