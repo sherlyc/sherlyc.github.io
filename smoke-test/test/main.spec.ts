@@ -80,10 +80,36 @@ describe("Mobile Homepage", () => {
     expect(adUnit).toBeTruthy();
   });
 
-  it("should contain at least 5 top stories", async () => {
-    const topStories = await page.$$(
-      "app-grid-container > div > div > app-big-image-article-unit"
+  it("should contain at least 2 top stories highlights", async () => {
+    // const featuredArticle = await page.$$(
+    //   "app-grid-container > div app-featured-article"
+    // );
+    // const bigImageArticle = await page.$$(
+    //   "app-grid-container > div app-big-image-article-unit"
+    // );
+    //
+    // const halfWidthImageArticle = await page.$$(
+    //   "app-grid-container > div app-half-width-image-article-unit"
+    // );
+
+    const allGrids = await page.$$("app-grid-container");
+    const topStoriesGrid = allGrids[0];
+
+    const featuredArticle = await topStoriesGrid.$$("app-featured-article");
+    const bigImageArticle = await topStoriesGrid.$$(
+      "app-big-image-article-unit"
     );
-    expect(topStories.length).toBeGreaterThanOrEqual(5);
+    const halfWidthArticle = await topStoriesGrid.$$(
+      "app-half-width-image-article-unit"
+    );
+
+    console.log(
+      featuredArticle.length,
+      bigImageArticle.length,
+      halfWidthArticle.length
+    );
+    expect(
+      featuredArticle.length + bigImageArticle.length + halfWidthArticle.length
+    ).toBeTruthy();
   });
 });
