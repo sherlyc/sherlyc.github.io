@@ -1,7 +1,6 @@
 import { DOCUMENT } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
 import { Inject, Injectable, NgZone } from "@angular/core";
-import { FeatureName } from "../../../../common/FeatureName";
 import { ConfigService } from "../config/config.service";
 import { FeatureSwitchService } from "../feature-switch/feature-switch.service";
 import { LoggerService } from "../logger/logger.service";
@@ -49,11 +48,8 @@ export class AdService {
   async notify() {
     try {
       await this.load;
-      const isHomepageTakeoverOn = await this.featureSwitch.getFeature(
-        FeatureName.ModuleLayout
-      );
       this.zone.runOutsideAngular(() => {
-        this.sendCustomEventWithValue({ isHomepageTakeoverOn });
+        this.sendCustomEventWithValue({ isHomepageTakeoverOn: true });
       });
     } catch (e) {
       this.logger.error(e);
