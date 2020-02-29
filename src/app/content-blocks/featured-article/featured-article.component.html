@@ -9,5 +9,6 @@
       <p class="intro">{{ input.introText }}</p>
       <app-time-ago [textColor]="input.textColor" [timestamp]="input.lastPublishedTime"></app-time-ago>
     </div>
+    <div style="flex: 1" [ngStyle]="{ backgroundColor: input.boxColor }"></div>
   </a>
 </article>
