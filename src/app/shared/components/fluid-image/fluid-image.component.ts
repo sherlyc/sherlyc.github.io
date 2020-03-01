@@ -48,17 +48,30 @@ export class FluidImageComponent implements OnInit {
     this.height = "0";
   }
 
-  onResize({ target, contentRect: { width, top, x, y } }: ResizeObserverEntry) {
-    const window = this.windowService.getWindow();
-    const viewportStart = window.scrollY;
-    const viewportEnd = viewportStart + window.innerHeight;
-    const elementTop = target.getBoundingClientRect().top;
-    const isInViewport =
-      elementTop >= viewportStart && elementTop < viewportEnd;
+  onResize(resizeObserverEntry: ResizeObserverEntry | null) {
+    if (
+      resizeObserverEntry &&
+      resizeObserverEntry.target &&
+      resizeObserverEntry.contentRect
+    ) {
+      const {
+        target,
+        contentRect: { width }
+      } = resizeObserverEntry;
 
-    const newWidth = FluidImageComponent.normalizeWidth(width);
-    if (newWidth > this.width) {
-      this.loadImg(newWidth, !isInViewport);
+      const window = this.windowService.getWindow();
+      const viewportStart = window.scrollY;
+      const viewportEnd = viewportStart + window.innerHeight;
+      const elementTop = target.getBoundingClientRect().top;
+      const isInViewport =
+        elementTop >= viewportStart && elementTop < viewportEnd;
+
+      const newWidth = FluidImageComponent.normalizeWidth(width);
+      if (newWidth > this.width) {
+        this.loadImg(newWidth, !isInViewport);
+      }
+    } else {
+      this.loadImg(FluidImageWidth.s, false);
     }
   }
 

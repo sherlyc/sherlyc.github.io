@@ -150,4 +150,10 @@ describe("FluidImageComponent", () => {
 
     expect(component.lazyload).toEqual("lazy");
   });
+
+  it("should load image with default values when onResize is called without entry", () => {
+    component.onResize(null);
+    fixture.detectChanges();
+    expectImgWidth(FluidImageWidth.s);
+  });
 });
