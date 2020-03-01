@@ -2,7 +2,6 @@ import { DOCUMENT } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
 import { TestBed } from "@angular/core/testing";
 import { of } from "rxjs";
-import { FeatureName } from "../../../../common/FeatureName";
 import { ConfigService } from "../config/config.service";
 import { FeatureSwitchService } from "../feature-switch/feature-switch.service";
 import { LoggerService } from "../logger/logger.service";
@@ -82,32 +81,10 @@ describe("AdService", () => {
       1,
       expect.objectContaining({
         type: "NavigationEnd",
-        detail: expect.any(Object)
+        detail: expect.objectContaining({
+          isHomepageTakeoverOn: true
+        })
       })
-    );
-  });
-
-  describe("Homepage Takeover feature", () => {
-    it.each([[true], [false]])(
-      `should notify the adnostic sdk with feature switch value (%s)`,
-      async (isHomepageTakeoverOn: boolean) => {
-        featureSwitch.getFeature.mockResolvedValue(isHomepageTakeoverOn);
-        const document: Document = TestBed.get(DOCUMENT);
-        document.dispatchEvent = jest.fn();
-
-        await adService.notify();
-
-        expect(featureSwitch.getFeature).toHaveBeenCalledWith(
-          FeatureName.ModuleLayout
-        );
-        expect(document.dispatchEvent).toHaveBeenNthCalledWith(
-          1,
-          expect.objectContaining({
-            type: "NavigationEnd",
-            detail: expect.objectContaining({ isHomepageTakeoverOn })
-          })
-        );
-      }
     );
   });
 });

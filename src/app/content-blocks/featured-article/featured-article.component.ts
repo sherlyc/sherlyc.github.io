@@ -11,7 +11,7 @@ import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
-  selector: "app-text-box-article",
+  selector: "app-featured-article",
   templateUrl: "./featured-article.component.html",
   styleUrls: ["./featured-article.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush

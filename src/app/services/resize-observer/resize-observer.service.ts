@@ -7,11 +7,13 @@ import { Observable, Subscriber } from "rxjs";
 })
 export class ResizeObserverService {
   private entriesMap: WeakMap<Element, Subscriber<ResizeObserverEntry>>;
-  private resizeObserver: ResizeObserver;
+  private readonly resizeObserver?: ResizeObserver;
 
   constructor() {
     this.entriesMap = new WeakMap();
-    this.resizeObserver = new ResizeObserver(this.emitAll.bind(this));
+    if (ResizeObserver) {
+      this.resizeObserver = new ResizeObserver(this.emitAll.bind(this));
+    }
   }
 
   private emitAll(observedElements: ResizeObserverEntry[]) {
@@ -28,9 +30,13 @@ export class ResizeObserverService {
   observe(element: Element): Observable<ResizeObserverEntry> {
     return new Observable((subscriber) => {
       this.entriesMap.set(element, subscriber);
-      this.resizeObserver.observe(element);
+      if (this.resizeObserver) {
+        this.resizeObserver.observe(element);
+      }
       return () => {
-        this.resizeObserver.unobserve(element);
+        if (this.resizeObserver) {
+          this.resizeObserver.unobserve(element);
+        }
         this.entriesMap.delete(element);
       };
     });
