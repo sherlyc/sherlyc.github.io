@@ -9,17 +9,16 @@
 }
 
 .video-flag {
+  display: inline-block;
+  position: relative;
+  width: 14px;
+  height: 14px;
+  font-size: 10px;
   background-color: #00b6af;
   background-size: 100% 100%;
   border-radius: 13px;
   box-sizing: border-box;
-  color: #fff;
-  display: inline-block;
   content: "";
-  position: relative;
-  font-size: 10px;
-  width: 14px;
-  height: 14px;
 }
 
 .video-flag:before {
