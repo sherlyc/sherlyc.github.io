@@ -100,7 +100,6 @@ app-logo {
   }
 }
 
-.content-blocks > app-feature-container:first-child > app-grid-container,
 .content-blocks > app-grid-container {
   @include mobile {
     margin-bottom: 20px;
@@ -129,10 +128,7 @@ app-logo {
 }
 
 @include desktop {
-  .content-blocks
-    > app-feature-container:first-child
-    > app-grid-container:first-of-type
-    app-featured-article {
+  .content-blocks > app-grid-container:first-of-type app-featured-article {
     margin-top: -50px;
     position: relative;
   }
