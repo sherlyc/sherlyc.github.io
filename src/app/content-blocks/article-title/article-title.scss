@@ -25,6 +25,8 @@ app-headline-flag + app-headline-flag {
 }
 
 .headline {
+  display: inline-block;
+  vertical-align: middle;
   font-size: 18px;
   font-weight: 700;
   color: #222;
