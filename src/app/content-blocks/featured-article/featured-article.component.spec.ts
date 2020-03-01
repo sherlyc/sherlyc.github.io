@@ -96,7 +96,7 @@ describe("FeaturedArticleComponent", () => {
 
     expect(component.boxStyle).toEqual(
       expect.objectContaining({
-        "background-image": `linear-gradient(rgba(0,0,0,0) 0%, ${boxColor} 30px, ${boxColor} 100%)`,
+        backgroundImage: `linear-gradient(rgba(0,0,0,0) 0%, ${boxColor} 30px, ${boxColor} 100%)`,
         color: textColor
       })
     );
