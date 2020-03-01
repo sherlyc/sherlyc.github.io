@@ -131,5 +131,6 @@ app-logo {
   .content-blocks > app-grid-container:first-of-type app-featured-article {
     margin-top: -50px;
     position: relative;
+    height: calc(100% + 50px);
   }
 }
