@@ -13,3 +13,7 @@ h3 {
     text-decoration: underline;
   }
 }
+
+app-headline-flag + app-headline-flag {
+  margin-left: 6px;
+}
