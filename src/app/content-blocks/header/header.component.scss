@@ -254,7 +254,11 @@ header {
 }
 
 @include mobile {
-  .search-label {
+  .search-menu {
+    display: none;
+  }
+
+  .search-bar {
     display: none;
   }
 }
