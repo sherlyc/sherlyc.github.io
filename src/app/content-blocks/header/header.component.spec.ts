@@ -11,6 +11,7 @@ import { AuthenticationService } from "../../services/authentication/authenticat
 import { Subject } from "rxjs";
 import { IStuffLoginUser } from "../../services/authentication/__types__/IStuffLoginUser";
 import { WindowService } from "../../services/window/window.service";
+import { RuntimeService } from "../../services/runtime/runtime.service";
 
 const OriginalNow = global.Date.now;
 
@@ -19,8 +20,9 @@ describe("Header", () => {
   let analyticsService: ServiceMock<AnalyticsService>;
   let configService: ServiceMock<ConfigService>;
   let authenticationService: ServiceMock<AuthenticationService>;
-  let windowService: ServiceMock<WindowService>;
   let component: HeaderComponent;
+  let runtimeService: ServiceMock<RuntimeService>;
+  let windowService: ServiceMock<WindowService>;
   const profileUrl = "https://my.stuff.co.nz/publicprofile";
 
   const loggedInUser = {
@@ -69,6 +71,10 @@ describe("Header", () => {
         {
           provide: WindowService,
           useClass: mockService(WindowService)
+        },
+        {
+          provide: RuntimeService,
+          useClass: mockService(RuntimeService)
         }
       ]
     }).compileComponents();
@@ -77,12 +83,15 @@ describe("Header", () => {
     authenticationService = TestBed.get(AuthenticationService);
     authenticationService.authenticationStateChange = new Subject<any>();
     windowService = TestBed.get(WindowService);
+    runtimeService = TestBed.get(RuntimeService);
 
     configService.getConfig.mockReturnValue({
       loginLibrary: {
         authProvider: "https://my.stuff.co.nz"
       }
     } as IEnvironmentDefinition);
+
+    runtimeService.isBrowser.mockReturnValue(true);
 
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
@@ -134,6 +143,13 @@ describe("Header", () => {
     const searchBar = fixture.debugElement.query(By.css(".searchBar"));
 
     expect(searchBar).toBeTruthy();
+  });
+
+  it("should not call isDesktopDomain on server side", () => {
+    runtimeService.isBrowser.mockReturnValue(false);
+    fixture.detectChanges();
+
+    expect(windowService.isDesktopDomain).not.toHaveBeenCalled();
   });
 
   describe("Analytics", () => {
