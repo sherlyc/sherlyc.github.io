@@ -14,6 +14,7 @@ import { AnalyticsEventsType } from "../../services/analytics/__types__/Analytic
 import { ConfigService } from "../../services/config/config.service";
 import { AuthenticationService } from "../../services/authentication/authentication.service";
 import { IStuffLoginUser } from "../../services/authentication/__types__/IStuffLoginUser";
+import { WindowService } from "../../services/window/window.service";
 
 @Component({
   selector: "app-header",
@@ -27,13 +28,15 @@ export class HeaderComponent
     private renderer: Renderer2,
     private analyticsService: AnalyticsService,
     private configService: ConfigService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private windowService: WindowService
   ) {}
 
   isLoggedIn = false;
   profileUrl!: string;
   imgSrc!: string;
   displayPunaLogo = false;
+  showSearchBar = false;
 
   @Input() input!: IHeader;
   navigationVisible = false;
@@ -102,6 +105,7 @@ export class HeaderComponent
   ];
 
   ngOnInit() {
+    this.showSearchBar = this.windowService.isDesktopDomain();
     this.displayPunaLogo =
       Date.now() > new Date("2019-09-08T17:00:00.000Z").getTime() &&
       Date.now() < new Date("2019-09-15T12:00:00.000Z").getTime();

@@ -196,3 +196,28 @@ header {
     top: 54px;
   }
 }
+
+.searchBar {
+  position: relative;
+  padding: 20px 0 0 16px;
+
+  input {
+    width: 85%;
+    padding: 10px 16px;
+    outline: none;
+    border-radius: 20px;
+    background-color: #ebeef0;
+    border-color: transparent;
+  }
+
+  input[type="submit"] {
+    display: none;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    padding: 10px 10px 0;
+  }
+}
