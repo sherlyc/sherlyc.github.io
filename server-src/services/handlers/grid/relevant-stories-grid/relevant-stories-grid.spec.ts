@@ -41,21 +41,21 @@ describe("Relevant stories grid", () => {
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.bottom]
         },
         [RelevantStoriesGridPositions.SecondColumn]: {
           columnStart: 1,
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: []
+          border: [Border.bottom]
         },
         [RelevantStoriesGridPositions.ThirdColumn]: {
           columnStart: 1,
           columnSpan: 1,
           rowStart: 3,
           rowSpan: 1,
-          border: []
+          border: [Border.bottom]
         },
         [RelevantStoriesGridPositions.Right]: {
           columnStart: 1,

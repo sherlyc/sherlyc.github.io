@@ -7,6 +7,7 @@ import { IParams } from "../../../__types__/IParams";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { Border } from "../../../../../common/__types__/IGridContainer";
 
 describe("News six grid handler", () => {
   const handlerRunnerMock = jest.fn();
@@ -57,7 +58,7 @@ describe("News six grid handler", () => {
               columnStart: 1,
               rowSpan: 1,
               rowStart: 2,
-              border: ["bottom"]
+              border: [Border.bottom]
             },
             ModuleTitle: {
               columnSpan: 1,
@@ -71,35 +72,35 @@ describe("News six grid handler", () => {
               columnStart: 1,
               rowSpan: 1,
               rowStart: 4,
-              border: ["bottom"]
+              border: [Border.bottom]
             },
             SmallBottomFourth: {
               columnSpan: 1,
               columnStart: 1,
               rowSpan: 1,
               rowStart: 7,
-              border: []
+              border: [Border.bottom]
             },
             SmallBottomSecond: {
               columnSpan: 1,
               columnStart: 1,
               rowSpan: 1,
               rowStart: 5,
-              border: ["bottom"]
+              border: [Border.bottom]
             },
             SmallBottomThird: {
               columnSpan: 1,
               columnStart: 1,
               rowSpan: 1,
               rowStart: 6,
-              border: ["bottom"]
+              border: [Border.bottom]
             },
             SmallTopRight: {
               columnSpan: 1,
               columnStart: 1,
               rowSpan: 1,
               rowStart: 3,
-              border: ["bottom"]
+              border: [Border.bottom]
             }
           }
         },
@@ -114,7 +115,7 @@ describe("News six grid handler", () => {
               columnStart: 1,
               rowSpan: 1,
               rowStart: 2,
-              border: ["bottom"]
+              border: [Border.bottom]
             },
             ModuleTitle: {
               columnSpan: 2,
@@ -128,7 +129,7 @@ describe("News six grid handler", () => {
               columnStart: 1,
               rowSpan: 1,
               rowStart: 3,
-              border: ["bottom"]
+              border: [Border.bottom]
             },
             SmallBottomFourth: {
               columnSpan: 1,
@@ -142,21 +143,21 @@ describe("News six grid handler", () => {
               columnStart: 1,
               rowSpan: 1,
               rowStart: 4,
-              border: ["bottom"]
+              border: [Border.bottom]
             },
             SmallBottomThird: {
               columnSpan: 1,
               columnStart: 1,
               rowSpan: 1,
               rowStart: 5,
-              border: ["bottom"]
+              border: [Border.bottom]
             },
             SmallTopRight: {
               columnSpan: 1,
               columnStart: 2,
               rowSpan: 5,
               rowStart: 2,
-              border: ["left"]
+              border: [Border.left]
             }
           }
         },
@@ -171,7 +172,7 @@ describe("News six grid handler", () => {
               columnStart: 1,
               rowSpan: 1,
               rowStart: 2,
-              border: ["bottom"]
+              border: [Border.bottom]
             },
             ModuleTitle: {
               columnSpan: 5,
@@ -185,7 +186,7 @@ describe("News six grid handler", () => {
               columnStart: 1,
               rowSpan: 1,
               rowStart: 3,
-              border: ["right"]
+              border: [Border.right]
             },
             SmallBottomFourth: {
               columnSpan: 1,
@@ -199,21 +200,21 @@ describe("News six grid handler", () => {
               columnStart: 2,
               rowSpan: 1,
               rowStart: 3,
-              border: ["right"]
+              border: [Border.right]
             },
             SmallBottomThird: {
               columnSpan: 1,
               columnStart: 3,
               rowSpan: 1,
               rowStart: 3,
-              border: ["right"]
+              border: [Border.right]
             },
             SmallTopRight: {
               columnSpan: 1,
               columnStart: 5,
               rowSpan: 2,
               rowStart: 2,
-              border: ["left"]
+              border: [Border.left]
             }
           }
         }

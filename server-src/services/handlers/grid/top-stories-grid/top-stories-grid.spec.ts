@@ -127,7 +127,7 @@ describe("Top Stories grid handler", () => {
               rowSpan: 1
             },
             [TopStoriesGridPositions.SecondRow4]: {
-              border: [Border.top],
+              border: [Border.top, Border.bottom],
               columnStart: 1,
               columnSpan: 1,
               rowStart: 10,

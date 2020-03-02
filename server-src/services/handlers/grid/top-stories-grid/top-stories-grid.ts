@@ -54,7 +54,10 @@ export default async function(
     [TopStoriesGridPositions.SecondRow1]: gridBlock(7, 1, 1, 1, [Border.top]),
     [TopStoriesGridPositions.SecondRow2]: gridBlock(8, 1, 1, 1, [Border.top]),
     [TopStoriesGridPositions.SecondRow3]: gridBlock(9, 1, 1, 1, [Border.top]),
-    [TopStoriesGridPositions.SecondRow4]: gridBlock(10, 1, 1, 1, [Border.top])
+    [TopStoriesGridPositions.SecondRow4]: gridBlock(10, 1, 1, 1, [
+      Border.top,
+      Border.bottom
+    ])
   };
 
   return [
