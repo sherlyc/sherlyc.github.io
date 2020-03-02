@@ -169,25 +169,6 @@ describe("Header", () => {
     expect(searchMenu).toBeTruthy();
   });
 
-  it("should hide search bar on non desktop domain", () => {
-    fixture.componentInstance.toggleMenu();
-    fixture.detectChanges();
-
-    const searchBar = fixture.debugElement.query(By.css(".search-bar"));
-
-    expect(searchBar).toBeFalsy();
-  });
-
-  it("should show search bar on desktop domain", () => {
-    windowService.isDesktopDomain.mockReturnValue(true);
-    fixture.componentInstance.toggleMenu();
-    fixture.detectChanges();
-
-    const searchBar = fixture.debugElement.query(By.css(".search-bar"));
-
-    expect(searchBar).toBeTruthy();
-  });
-
   describe("Analytics", () => {
     it("should push analytics event when hamburger menu is opened", () => {
       fixture.componentInstance.navigationVisible = false;
