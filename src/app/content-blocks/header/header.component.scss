@@ -243,8 +243,14 @@ header {
   }
 
   .search-icon {
-    margin: 0 16px 0 8px;
+    margin: 0 10px 0 8px;
     width: 16px;
     height: 16px;
+  }
+}
+
+@include mobile {
+  .search-label {
+    display: none;
   }
 }
