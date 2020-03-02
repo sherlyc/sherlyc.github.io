@@ -12,7 +12,6 @@ const blackListed = [
   "https://fonts.googleapis.com"
 ];
 $browser.addHostnamesToBlacklist(blackListed);
-
 const getCssElement = (selector) => {
   console.log("getCssElement", selector);
   return $browser.waitForAndFindElement($driver.By.css(selector), 8000);
@@ -21,12 +20,6 @@ const getCssElement = (selector) => {
 const selectMobileSite = async () => {
   const element = await getCssElement(".view-mobile-site");
   element.click();
-};
-
-const turnOffModuleLayout = async () => {
-  const button = await getCssElement(".check-box");
-  await button.click();
-  await button.click();
 };
 
 const closeOLI = async () => {
@@ -41,58 +34,60 @@ const closeOLI = async () => {
     console.log("OLI was not found");
   }
 };
-
-const shouldContainBasicArticleUnits = async () => {
-  console.log("checking for article unit, no error means ok");
-  const element = await getCssElement("app-basic-article-unit");
-  return assert(element.getText() != null, "app-basic-article-unit is null");
+const shouldContainHalfWidthImageArticleUnits = async () => {
+  console.log("checking for half width image article unit, no error means ok");
+  const element = await getCssElement("app-half-width-image-article-unit");
+  return assert(
+    element.getText() != null,
+    "app-half-width-image-article-unit is null"
+  );
 };
-
 const shouldContainHeader = async () => {
   console.log("checking header, no error means ok");
   const element = await getCssElement("app-header");
   return assert(element != null, "app-header element is null");
 };
-
 const shouldContainBasicAdUnit = async () => {
   const element = await getCssElement("app-basic-ad-unit[id] iframe");
   return assert(element != null, "no ad unit is found");
 };
-
 const shouldContainTopStories = async () => {
-  console.log("checking top stories");
-  const elements = await $browser.findElements(
-    $driver.By.css(
-      "app-grid-container > div > div > app-big-image-article-unit"
-    )
+  console.log("checking top stories highlight");
+  const allGrids = await $browser.findElements(
+    $driver.By.css("app-grid-container > div > div > app-grid-container")
   );
-  console.log("articles found: ", elements.length);
+  const topStoriesHighlight = await allGrids[0];
+  const featuredArticles = await topStoriesHighlight.findElements(
+    $driver.By.css("app-featured-article")
+  );
+  const bigImageArticles = await topStoriesHighlight.findElements(
+    $driver.By.css("app-big-image-article-unit")
+  );
+  const halfWidthImageArticles = await topStoriesHighlight.findElements(
+    $driver.By.css("app-half-width-image-article-unit")
+  );
+  const topStoriesCount =
+    featuredArticles.length +
+    bigImageArticles.length +
+    halfWidthImageArticles.length;
   return assert(
-    elements.length >= 5,
-    "top stories does not display a minimum of 5 articles"
+    topStoriesCount >= 2,
+    "top stories highlight does not display a minimum of 2 articles"
   );
 };
-
 const shouldContainFooter = async () => {
   console.log("checking footer, no error means ok");
   const element = await getCssElement("app-footer");
   return assert(element != null, "footer element is null");
 };
-
 $browser
   .get("https://i.stuff.co.nz")
   .then(selectMobileSite)
   .then(() => {
-    return $browser.get(
-      "https://i.stuff.co.nz/static/spade/spade-feature-switch.html?grep=Module"
-    );
-  })
-  .then(turnOffModuleLayout)
-  .then(() => {
     return $browser.get("https://i.stuff.co.nz");
   })
   .then(closeOLI)
-  .then(shouldContainBasicArticleUnits)
+  .then(shouldContainHalfWidthImageArticleUnits)
   .then(shouldContainHeader)
   .then(shouldContainTopStories)
   .then(shouldContainBasicAdUnit)
