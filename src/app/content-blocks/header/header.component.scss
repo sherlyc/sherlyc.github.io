@@ -233,10 +233,18 @@ header {
   }
 }
 
-.search-link {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
+.search-menu {
+  align-self: center;
+
+  .search-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .search-icon {
+    margin: 0 16px 0 8px;
+    width: 16px;
+    height: 16px;
+  }
 }
-
-

@@ -117,11 +117,28 @@ describe("Header", () => {
     expect(fixture.debugElement.query(By.css(".puna-logo"))).toBeTruthy();
   });
 
+  it("should hide search menu on non desktop domain", () => {
+    fixture.detectChanges();
+
+    const searchMenu = fixture.debugElement.query(By.css(".search-menu"));
+
+    expect(searchMenu).toBeFalsy();
+  });
+
+  it("should show search menu on desktop domain", () => {
+    windowService.isDesktopDomain.mockReturnValue(true);
+    fixture.detectChanges();
+
+    const searchMenu = fixture.debugElement.query(By.css(".search-menu"));
+
+    expect(searchMenu).toBeTruthy();
+  });
+
   it("should hide search bar on non desktop domain", () => {
     fixture.componentInstance.toggleMenu();
     fixture.detectChanges();
 
-    const searchBar = fixture.debugElement.query(By.css(".searchBar"));
+    const searchBar = fixture.debugElement.query(By.css(".search-bar"));
 
     expect(searchBar).toBeFalsy();
   });
@@ -131,7 +148,7 @@ describe("Header", () => {
     fixture.componentInstance.toggleMenu();
     fixture.detectChanges();
 
-    const searchBar = fixture.debugElement.query(By.css(".searchBar"));
+    const searchBar = fixture.debugElement.query(By.css(".search-bar"));
 
     expect(searchBar).toBeTruthy();
   });
