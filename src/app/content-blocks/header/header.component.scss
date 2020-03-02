@@ -15,6 +15,20 @@ header {
   width: auto;
 }
 
+.header-left {
+  width: 140px;
+  display: flex;
+}
+
+.header-right {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  width: 140px;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .menu {
   padding: 12px 12px;
   position: relative;
@@ -70,9 +84,6 @@ header {
 .user {
   text-decoration: none;
   margin: 9px;
-  font-size: 14px;
-  font-weight: bold;
-  color: #333;
 
   .avatar {
     height: 25px;
@@ -197,7 +208,7 @@ header {
   }
 }
 
-.searchBar {
+.search-bar {
   position: relative;
   padding: 20px 0 0 16px;
 
@@ -221,3 +232,11 @@ header {
     padding: 10px 10px 0;
   }
 }
+
+.search-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+
