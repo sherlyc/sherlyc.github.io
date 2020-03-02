@@ -37,21 +37,21 @@ export default async function(
       mobile: {
         gridRowGap: "10px",
         gridColumnGap: "0px",
-        gridTemplateColumns: "auto",
+        gridTemplateColumns: "1fr",
         gridTemplateRows: "auto auto",
         gridBlocks: grid
       },
       tablet: {
         gridRowGap: "20px",
         gridColumnGap: "0px",
-        gridTemplateColumns: "auto",
+        gridTemplateColumns: "1fr",
         gridTemplateRows: "auto auto",
         gridBlocks: grid
       },
       desktop: {
         gridRowGap: "40px",
         gridColumnGap: "0px",
-        gridTemplateColumns: "auto",
+        gridTemplateColumns: "1fr",
         gridTemplateRows: "auto auto",
         gridBlocks: grid
       }

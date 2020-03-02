@@ -1,8 +1,6 @@
-:host {
+:host > * {
   display: inline-block;
-  > * {
-    margin-left: 8px;
-  }
+  vertical-align: middle;
 }
 
 .icon-flag {
@@ -11,17 +9,15 @@
 }
 
 .video-flag {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  font-size: 10px;
   background-color: #00b6af;
   background-size: 100% 100%;
   border-radius: 13px;
   box-sizing: border-box;
-  color: #fff;
-  display: inline-block;
   content: "";
-  position: relative;
-  font-size: 10px;
-  width: 14px;
-  height: 14px;
 }
 
 .video-flag:before {
@@ -43,6 +39,5 @@
   background-color: #ccc;
   padding: 3px 7px 2px 7px;
   font-size: 10px;
-  vertical-align: 4px;
   letter-spacing: 0.2px;
 }

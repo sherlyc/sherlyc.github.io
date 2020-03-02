@@ -18,16 +18,7 @@ const homepageStrapsConfig = config.strapConfig!.homepageStraps;
 export default async (params: IParams): Promise<IPage> => {
   const isNewFrontEnd =
     params.version && parseVersion(params.version) >= parseVersion("1.649");
-  const components: HandlerInput[] = isNewFrontEnd
-    ? [
-        {
-          type: HandlerInputType.Feature,
-          name: FeatureName.ModuleLayout,
-          content: newPage(),
-          fallback: oldPage()
-        }
-      ]
-    : oldPage();
+  const components: HandlerInput[] = isNewFrontEnd ? newPage() : oldPage();
   try {
     return {
       apiRequestId: params.apiRequestId,

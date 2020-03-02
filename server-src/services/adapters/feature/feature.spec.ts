@@ -7,8 +7,6 @@ describe("Feature service", () => {
   const testCases: { [key in FeatureName]: [number, number] } = {
     [FeatureName.Recommendation]: [-1, -1],
     [FeatureName.RecommendationDisplay]: [-1, -1],
-    [FeatureName.StrapLayout]: [-1, -1],
-    [FeatureName.ModuleLayout]: [0, 100],
     [FeatureName.HomepageTakeover]: [-1, -1]
   };
 

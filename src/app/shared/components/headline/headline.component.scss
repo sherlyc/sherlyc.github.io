@@ -3,6 +3,8 @@
 }
 
 h3 {
+  display: inline;
+  vertical-align: middle;
   font-size: 17px;
   font-size: var(--title-size);
   font-weight: 700;
@@ -11,4 +13,8 @@ h3 {
   &:hover {
     text-decoration: underline;
   }
+}
+
+app-headline-flag + app-headline-flag {
+  margin-left: 6px;
 }

@@ -4,11 +4,13 @@ import { FluidImageWidth } from "../../../../../common/FluidImageWidth";
 import { FluidImageComponent } from "./fluid-image.component";
 import { WindowService } from "../../../services/window/window.service";
 import { mockService, ServiceMock } from "../../../services/mocks/MockService";
+import { RuntimeService } from "../../../services/runtime/runtime.service";
 
 describe("FluidImageComponent", () => {
   let component: FluidImageComponent;
   let fixture: ComponentFixture<FluidImageComponent>;
   let windowService: ServiceMock<WindowService>;
+  let runtimeService: ServiceMock<RuntimeService>;
 
   const getImg = () => fixture.debugElement.query(By.css("img"));
 
@@ -43,12 +45,14 @@ describe("FluidImageComponent", () => {
         {
           provide: WindowService,
           useClass: mockService(WindowService)
-        }
+        },
+        { provide: RuntimeService, useClass: mockService(RuntimeService) }
       ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(FluidImageComponent);
     windowService = TestBed.get(WindowService);
+    runtimeService = TestBed.get(RuntimeService);
 
     windowService.getWindow.mockReturnValue({});
 
@@ -91,6 +95,13 @@ describe("FluidImageComponent", () => {
     simulateResize(FluidImageWidth.l);
     simulateResize(FluidImageWidth.m);
     expectImgWidth(FluidImageWidth.l);
+  });
+
+  it("should load image with default config in server ", () => {
+    runtimeService.isServer.mockReturnValue(true);
+    component.ngOnInit();
+    fixture.detectChanges();
+    expectImgWidth(FluidImageWidth.s);
   });
 
   it("should add correct height", () => {
@@ -138,5 +149,11 @@ describe("FluidImageComponent", () => {
     fixture.detectChanges();
 
     expect(component.lazyload).toEqual("lazy");
+  });
+
+  it("should load image with default values when onResize is called without entry", () => {
+    component.onResize(null);
+    fixture.detectChanges();
+    expectImgWidth(FluidImageWidth.s);
   });
 });

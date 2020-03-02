@@ -65,7 +65,9 @@ export default async function(
     [NewsSixGridPositions.SmallBottomThird]: gridBlock(6, 1, 1, 1, [
       Border.bottom
     ]),
-    [NewsSixGridPositions.SmallBottomFourth]: gridBlock(7, 1, 1, 1, [])
+    [NewsSixGridPositions.SmallBottomFourth]: gridBlock(7, 1, 1, 1, [
+      Border.bottom
+    ])
   };
 
   return [

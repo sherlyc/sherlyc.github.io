@@ -49,7 +49,10 @@ export default async function(
     [BiggieSmallsGridPositions.Highlight]: gridBlock(2, 1, 1, 1, []),
     [BiggieSmallsGridPositions.Right]: gridBlock(6, 1, 1, 1, []),
     [BiggieSmallsGridPositions.FirstRow1]: gridBlock(3, 1, 1, 1, []),
-    [BiggieSmallsGridPositions.FirstRow2]: gridBlock(5, 1, 1, 1, [Border.top]),
+    [BiggieSmallsGridPositions.FirstRow2]: gridBlock(5, 1, 1, 1, [
+      Border.top,
+      Border.bottom
+    ]),
     [BiggieSmallsGridPositions.FirstRow3]: gridBlock(4, 1, 1, 1, [Border.top])
   };
 

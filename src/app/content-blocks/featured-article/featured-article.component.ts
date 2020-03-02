@@ -11,7 +11,7 @@ import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
-  selector: "app-text-box-article",
+  selector: "app-featured-article",
   templateUrl: "./featured-article.component.html",
   styleUrls: ["./featured-article.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -39,9 +39,8 @@ export class FeaturedArticleComponent
     return {
       position: "relative",
       padding: `${gradientHeight + 10}px 10px 10px`,
-      height: `calc(100% + ${gradientHeight}px)`,
-      "margin-top": `-${gradientHeight}px`,
-      "background-image": `linear-gradient(rgba(0,0,0,0) 0%, ${boxColor} ${gradientHeight}px, ${boxColor} 100%)`,
+      marginTop: `-${gradientHeight}px`,
+      backgroundImage: `linear-gradient(rgba(0,0,0,0) 0%, ${boxColor} ${gradientHeight}px, ${boxColor} 100%)`,
       color: textColor
     };
   }
@@ -49,9 +48,7 @@ export class FeaturedArticleComponent
   solidBoxStyle() {
     const { textColor, boxColor } = this.input;
     return {
-      position: "relative",
       padding: "10px",
-      height: "100%",
       background: boxColor,
       color: textColor
     };

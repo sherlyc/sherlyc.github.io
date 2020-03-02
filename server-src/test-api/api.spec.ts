@@ -1,7 +1,6 @@
 import * as supertest from "supertest";
-import { IPage } from "../../common/__types__/IPage";
 import { ContentBlockType } from "../../common/__types__/ContentBlockType";
-import { FeatureName } from "../../common/FeatureName";
+import { IPage } from "../../common/__types__/IPage";
 
 jest.setTimeout(10000);
 
@@ -58,18 +57,7 @@ describe("api test", () => {
           type: ContentBlockType.Container,
           items: expect.arrayContaining([
             expect.objectContaining({
-              type: ContentBlockType.FeatureContainer,
-              name: FeatureName.ModuleLayout,
-              content: expect.arrayContaining([
-                expect.objectContaining({
-                  type: ContentBlockType.GridContainer
-                })
-              ]),
-              fallback: expect.arrayContaining([
-                expect.objectContaining({
-                  type: ContentBlockType.ColumnContainer
-                })
-              ])
+              type: ContentBlockType.GridContainer
             })
           ])
         }),

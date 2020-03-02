@@ -15,6 +15,7 @@ import { ConfigService } from "../../services/config/config.service";
 import { AuthenticationService } from "../../services/authentication/authentication.service";
 import { IStuffLoginUser } from "../../services/authentication/__types__/IStuffLoginUser";
 import { WindowService } from "../../services/window/window.service";
+import { RuntimeService } from "../../services/runtime/runtime.service";
 
 @Component({
   selector: "app-header",
@@ -29,7 +30,8 @@ export class HeaderComponent
     private analyticsService: AnalyticsService,
     private configService: ConfigService,
     private authenticationService: AuthenticationService,
-    private windowService: WindowService
+    private windowService: WindowService,
+    private runtimeService: RuntimeService
   ) {}
 
   isLoggedIn = false;
@@ -105,7 +107,9 @@ export class HeaderComponent
   ];
 
   ngOnInit() {
-    this.displaySearch = this.windowService.isDesktopDomain();
+    if (this.runtimeService.isBrowser()) {
+      this.displaySearch = this.windowService.isDesktopDomain();
+    }
     this.displayPunaLogo =
       Date.now() > new Date("2019-09-08T17:00:00.000Z").getTime() &&
       Date.now() < new Date("2019-09-15T12:00:00.000Z").getTime();

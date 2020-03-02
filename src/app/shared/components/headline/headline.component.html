@@ -1,5 +1,5 @@
 <h3 [style.color]="textColor">
   {{ headline }}
-  <app-time-ago *ngIf="timeStamp" [timestamp]="timeStamp" [separator]="'left'"></app-time-ago>
-  <app-headline-flag *ngFor="let flag of headlineFlags" [flag]="flag"></app-headline-flag>
 </h3>
+<app-time-ago *ngIf="timeStamp" [timestamp]="timeStamp" [separator]="'left'"></app-time-ago>
+<app-headline-flag *ngFor="let flag of headlineFlags" [flag]="flag"></app-headline-flag>

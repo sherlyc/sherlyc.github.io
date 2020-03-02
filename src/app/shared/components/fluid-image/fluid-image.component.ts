@@ -1,13 +1,14 @@
-import { Component, HostBinding, Input } from "@angular/core";
+import { Component, HostBinding, Input, OnInit } from "@angular/core";
 import { FluidImageWidth } from "../../../../../common/FluidImageWidth";
 import { WindowService } from "../../../services/window/window.service";
+import { RuntimeService } from "../../../services/runtime/runtime.service";
 
 @Component({
   selector: "app-fluid-image",
   templateUrl: "./fluid-image.component.html",
   styleUrls: ["./fluid-image.component.scss"]
 })
-export class FluidImageComponent {
+export class FluidImageComponent implements OnInit {
   @Input() imageSrc!: string;
   @Input() caption!: string;
 
@@ -19,7 +20,10 @@ export class FluidImageComponent {
   width = 0;
   lazyload: "lazy" | "auto" = "auto";
 
-  constructor(private windowService: WindowService) {}
+  constructor(
+    private windowService: WindowService,
+    private runtime: RuntimeService
+  ) {}
 
   private static normalizeWidth(width: number): FluidImageWidth {
     let normalizedWidth;
@@ -44,17 +48,36 @@ export class FluidImageComponent {
     this.height = "0";
   }
 
-  onResize({ target, contentRect: { width, top, x, y } }: ResizeObserverEntry) {
-    const window = this.windowService.getWindow();
-    const viewportStart = window.scrollY;
-    const viewportEnd = viewportStart + window.innerHeight;
-    const elementTop = target.getBoundingClientRect().top;
-    const isInViewport =
-      elementTop >= viewportStart && elementTop < viewportEnd;
+  onResize(resizeObserverEntry: ResizeObserverEntry | null) {
+    if (
+      resizeObserverEntry &&
+      resizeObserverEntry.target &&
+      resizeObserverEntry.contentRect
+    ) {
+      const {
+        target,
+        contentRect: { width }
+      } = resizeObserverEntry;
 
-    const newWidth = FluidImageComponent.normalizeWidth(width);
-    if (newWidth > this.width) {
-      this.loadImg(newWidth, !isInViewport);
+      const window = this.windowService.getWindow();
+      const viewportStart = window.scrollY;
+      const viewportEnd = viewportStart + window.innerHeight;
+      const elementTop = target.getBoundingClientRect().top;
+      const isInViewport =
+        elementTop >= viewportStart && elementTop < viewportEnd;
+
+      const newWidth = FluidImageComponent.normalizeWidth(width);
+      if (newWidth > this.width) {
+        this.loadImg(newWidth, !isInViewport);
+      }
+    } else {
+      this.loadImg(FluidImageWidth.s, false);
+    }
+  }
+
+  ngOnInit(): void {
+    if (this.runtime.isServer()) {
+      this.loadImg(FluidImageWidth.s, false);
     }
   }
 }
