@@ -20,8 +20,7 @@ describe("Image Link Unit", () => {
     strapImageSrcSet: "strap1.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: [],
-    sixteenByNineSrc: "sixteenByNine.jpg",
-    identifier: "identifier"
+    sixteenByNineSrc: "sixteenByNine.jpg"
   };
 
   const expected: IImageLinkUnit = {

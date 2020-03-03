@@ -6,6 +6,7 @@ import { getStrapArticles } from "../../adapters/strap-list/strap-list-service";
 import { Strap } from "../../strap";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import wrappedLogger from "../../utils/logger";
+import { IRawArticle } from "../../adapters/__types__/IRawArticle";
 import { ImageLayoutType } from "../../../../common/__types__/ImageLayoutType";
 
 jest.mock("../../utils/logger");
@@ -18,7 +19,7 @@ describe("MidStripHandler", () => {
     context: "MidStrip"
   };
   const params: IParams = { apiRequestId: "request-id-for-testing" };
-  const rawMidStrip: any[] = [
+  const rawMidStrip: IRawArticle[] = [
     {
       id: "1",
       indexHeadline: "Headline 1",

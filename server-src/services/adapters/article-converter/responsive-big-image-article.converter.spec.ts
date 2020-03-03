@@ -18,8 +18,7 @@ describe("responsive big image article", () => {
       strapImageSrcSet: "strap1.jpg 1w",
       lastPublishedTime: 1,
       headlineFlags: [],
-      sixteenByNineSrc: null,
-      identifier: "identifier"
+      sixteenByNineSrc: null
     };
 
     const fakeStrapName = "fakeStrapName";
