@@ -15,4 +15,5 @@ export interface IRawArticle {
   sixteenByNineSrc: string | null;
   lastPublishedTime: number;
   headlineFlags: HeadlineFlags[];
+  identifier: string;
 }
