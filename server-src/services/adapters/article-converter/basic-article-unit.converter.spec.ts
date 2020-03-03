@@ -18,7 +18,8 @@ describe("basic article unit", () => {
       strapImageSrcSet: "strap1.jpg 1w",
       lastPublishedTime: 1,
       headlineFlags: [],
-      sixteenByNineSrc: null
+      sixteenByNineSrc: null,
+      identifier: "identifier"
     };
 
     const fakeStrapName = "fakeStrapName";

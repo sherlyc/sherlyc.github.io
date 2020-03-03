@@ -8,58 +8,14 @@ import { IColumnGridHandlerInput } from "../../../__types__/IColumnGridHandlerIn
 import { ITopStoriesDefaultOneHighlightHandlerInput } from "../../../__types__/ITopStoriesDefaultOneHighlightHandlerInput";
 import defaultOneHighlightHandler from "./default-one-highlight";
 import { ImageLayoutType } from "../../../../../../common/__types__/ImageLayoutType";
+import objectContaining = jasmine.objectContaining;
 
 describe("Top Stories Default One", () => {
   const handlerRunnerMock = jest.fn();
   const params: IParams = { apiRequestId: "123" };
-  const article: IRawArticle = {
-    id: "1",
-    indexHeadline: "Headline 1",
-    title: "Title One",
-    introText: "Intro 1",
-    linkUrl: "/link1",
-    defconSrc: null,
-    imageSrc: "1.jpg",
-    imageSrcSet: "1.jpg 1w",
-    strapImageSrc: "strap1.jpg",
-    strapImageSrcSet: "strap1.jpg 1w",
-    lastPublishedTime: 1,
-    headlineFlags: [],
-    sixteenByNineSrc: "sixteenByNineSrc.jpg"
-  };
   const strapName = "strapName";
-  const articleAsBigImage: IBigImageArticleUnit = {
-    type: ContentBlockType.BigImageArticleUnit,
-    id: "1",
-    strapName,
-    indexHeadline: "Headline 1",
-    title: "Title One",
-    introText: "Intro 1",
-    linkUrl: "/link1",
-    imageSrc: "sixteenByNineSrc.jpg",
-    imageSrcSet: "strap1.jpg 1w",
-    layout: ImageLayoutType.module,
-    pumped: true,
-    lastPublishedTime: 1,
-    headlineFlags: []
-  };
-  const articleAsFeaturedArticle: IFeaturedArticle = {
-    type: ContentBlockType.FeaturedArticle,
-    id: "1",
-    strapName,
-    indexHeadline: "Headline 1",
-    title: "Title One",
-    introText: "Intro 1",
-    linkUrl: "/link1",
-    imageSrc: "sixteenByNineSrc.jpg",
-    imageSrcSet: "1.jpg 1w",
-    lastPublishedTime: 1,
-    headlineFlags: [],
-    boxColor: "#333",
-    textColor: "#fff",
-    applyGradient: true,
-    pumped: false
-  };
+
+  const articleWithId = (id: number) => ({ id: `${id}` } as IRawArticle);
 
   beforeEach(() => {
     jest.resetAllMocks();
@@ -68,7 +24,7 @@ describe("Top Stories Default One", () => {
   it("should layout content blocks using column grid handler", async () => {
     const handlerInput: ITopStoriesDefaultOneHighlightHandlerInput = {
       type: HandlerInputType.TopStoriesDefaultOneHighlight,
-      articles: [article, article],
+      articles: [articleWithId(1), articleWithId(2)],
       strapName
     };
 
@@ -78,7 +34,20 @@ describe("Top Stories Default One", () => {
       type: HandlerInputType.ColumnGrid,
       columnGap: 20,
       border: false,
-      content: [[articleAsBigImage], [articleAsFeaturedArticle]]
+      content: [
+        [
+          expect.objectContaining({
+            type: ContentBlockType.BigImageArticleUnit,
+            id: "1"
+          })
+        ],
+        [
+          expect.objectContaining({
+            type: ContentBlockType.FeaturedArticle,
+            id: "2"
+          })
+        ]
+      ]
     };
     expect(handlerRunnerMock).toHaveBeenCalledWith(
       columnGridExpectedInput,

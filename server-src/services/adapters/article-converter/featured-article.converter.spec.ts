@@ -18,7 +18,8 @@ describe("Featured Article", () => {
       strapImageSrcSet: "strap1.jpg 1w",
       lastPublishedTime: 1,
       headlineFlags: [],
-      sixteenByNineSrc: "sixteenByNineSrc.jpg"
+      sixteenByNineSrc: "sixteenByNineSrc.jpg",
+      identifier: "identifier"
     };
 
     const strapName = "strapName";

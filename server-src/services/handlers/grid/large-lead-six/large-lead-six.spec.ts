@@ -44,7 +44,8 @@ describe("Large lead six", () => {
     strapImageSrcSet: "strap1.jpg 1w",
     sixteenByNineSrc: "sixteenByNineSrc.jpg",
     lastPublishedTime: 1,
-    headlineFlags: []
+    headlineFlags: [],
+    identifier: "identifier"
   };
   const articleTwo: IRawArticle = {
     id: "2",
@@ -59,7 +60,8 @@ describe("Large lead six", () => {
     strapImageSrc: "strap2.jpg",
     strapImageSrcSet: "strap2.jpg 2w",
     lastPublishedTime: 2,
-    headlineFlags: []
+    headlineFlags: [],
+    identifier: "identifier"
   };
   const moduleTitle: IModuleTitle = {
     type: ContentBlockType.ModuleTitle,
