@@ -1,12 +1,12 @@
 import { HeadlineComponent } from "./headline.component";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { HeadlineFlagComponent } from "../headline-flag/headline-flag.component";
 import { HeadlineFlags } from "../../../../../common/HeadlineFlags";
 import { TimeAgoComponent } from "../time-ago/time-ago.component";
 import { SharedModule } from "../../shared.module";
 import { FeatureSwitchService } from "../../../services/feature-switch/feature-switch.service";
 import { mockService } from "../../../services/mocks/MockService";
+import * as moment from "moment";
 
 describe("Headline Component", () => {
   let component: HeadlineComponent;
@@ -67,5 +67,38 @@ describe("Headline Component", () => {
     const h3 = fixture.debugElement.query(By.css("h3"));
 
     expect(h3.nativeElement.style.color).toBe("white");
+  });
+
+  it("should show time ago when it is less than 2 hours ago", () => {
+    // 1 hour 20 minutes ago
+    component.timeStamp = moment()
+      .subtract(1, "h")
+      .subtract(20, "m")
+      .unix();
+
+    fixture.detectChanges();
+
+    const timeAgo = fixture.debugElement.query(By.directive(TimeAgoComponent));
+
+    expect(timeAgo).toBeTruthy();
+  });
+
+  it("should not show time ago when the timeStamp when is more than 2 hours ago", () => {
+    component.timeStamp = moment()
+      .subtract(2, "h")
+      .unix();
+    fixture.detectChanges();
+
+    const timeAgo = fixture.debugElement.query(By.directive(TimeAgoComponent));
+
+    expect(timeAgo).toBeFalsy();
+  });
+
+  it("should not show time ago when the timeStamp is empty", () => {
+    component.timeStamp = undefined;
+
+    const timeAgo = fixture.debugElement.query(By.directive(TimeAgoComponent));
+
+    expect(timeAgo).toBeFalsy();
   });
 });
