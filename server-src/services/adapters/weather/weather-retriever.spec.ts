@@ -29,7 +29,7 @@ describe("Weather Retriever", () => {
       data: { error: "bad location", status: "error" }
     });
     await expect(weatherRetriever("auckland", params)).rejects.toEqual(
-      new Error("Failed to fetch weather")
+      new Error("Failed to fetch weather for location: auckland")
     );
   });
 
@@ -38,7 +38,7 @@ describe("Weather Retriever", () => {
       status: 500
     });
     await expect(weatherRetriever("auckland", params)).rejects.toEqual(
-      new Error("Failed to fetch weather")
+      new Error("Failed to fetch weather for location: auckland")
     );
   });
 
@@ -48,7 +48,7 @@ describe("Weather Retriever", () => {
       data: { ...weatherJson, oneword_forecasts: [] }
     });
     await expect(weatherRetriever("auckland", params)).rejects.toEqual(
-      new Error("Missing forecasts")
+      new Error("Missing forecasts for location: auckland")
     );
   });
 });
