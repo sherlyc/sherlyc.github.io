@@ -6,7 +6,6 @@ import { getStrapArticles } from "../../adapters/strap-list/strap-list-service";
 import { Strap } from "../../strap";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import wrappedLogger from "../../utils/logger";
-import { IRawArticle } from "../../adapters/__types__/IRawArticle";
 import { ImageLayoutType } from "../../../../common/__types__/ImageLayoutType";
 
 jest.mock("../../utils/logger");

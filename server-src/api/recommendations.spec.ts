@@ -1,7 +1,5 @@
 import { ContentBlockType } from "../../common/__types__/ContentBlockType";
 import { IBasicAdUnit } from "../../common/__types__/IBasicAdUnit";
-import { IBasicArticleTitleUnit } from "../../common/__types__/IBasicArticleTitleUnit";
-import { IBasicArticleUnit } from "../../common/__types__/IBasicArticleUnit";
 import { IRawArticle } from "../services/adapters/__types__/IRawArticle";
 import { getRecommendedArticles } from "../services/adapters/recommendations/recommendations.service";
 import { getHomePageRecommendations } from "./recommendations";

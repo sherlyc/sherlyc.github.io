@@ -11,8 +11,6 @@ import {
 } from "../../__types__/ISixImageGridHandlerInput";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
-import { IImageLinkUnit } from "../../../../../common/__types__/IImageLinkUnit";
-import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../utils/logger");
