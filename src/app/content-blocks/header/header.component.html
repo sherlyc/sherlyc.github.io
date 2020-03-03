@@ -1,31 +1,48 @@
 <header appHideHeader>
   <div class="container col-xs">
     <div class="row between-xs middle-xs header-bar">
-      <a href="javascript:void(0)" (click)="[toggleMenu(), sendMenuAnalytics()]" aria-label="Menu" class="menu" [ngClass]="{ navigationVisible: navigationVisible }">
-        <div class="menu-icon"></div>
-        <span class="menu-label">Menu</span>
-      </a>
+      <div class="header-left">
+        <a href="javascript:void(0)" (click)="[toggleMenu(), sendMenuAnalytics()]" aria-label="Menu" class="menu"
+           [ngClass]="{ navigationVisible: navigationVisible }">
+          <div class="menu-icon"></div>
+          <span class="menu-label">Menu</span>
+        </a>
+      </div>
 
       <div class="title" (click)="sendLogoAnalytics()">
         <a href="/" aria-label="Stuff">
           <svg *ngIf="displayPunaLogo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 150" class="puna-logo">
             <path
-              d="M481.8 145.3H437v-72c0-18.2-2.8-32-21.3-32C396.3 41.3 391 57 391 77v68.3h-44.8V7.2H391l-.3 19.9h.6a44.8 44.8 0 0 1 40-22.5c40.1 0 50.5 25.8 50.5 59.2zm-384.9 3c-20.5 0-35-7.5-43.8-20.4v68H8.3V7.3H51l-.3 17.6h.6a57 57 0 0 1 46-20.2c39.7 0 65 31 65 71.8 0 40.6-25.3 72-65.3 72zM84 40c-19 0-32 14.5-32 35.8 0 21.3 13 35.9 32.1 35.9 19.3 0 32.5-14.6 32.5-36C116.5 54.6 103.3 40 84 40zm232.5 105.3h-43.2l-.3-15.7a50.3 50.3 0 0 1-40.3 18.8c-19.9 0-32.5-7-39.5-16.3-6.7-9.5-10-21.5-10-41.4V7.2h44.7v77.3c0 16 4.5 26.9 20.5 26.9s23.2-12.6 23.2-30.8V7h45zm315.6 0h-42.9l-.8-14.6c-6 6-17 17.7-39.6 17.7-24.3 0-50-13.2-50-44s28.2-41.2 53.7-42.3l34.7-1.4v-3.1c0-14.6-10.3-22.1-28.3-22.1a88.3 88.3 0 0 0-42.3 12.3l-11.7-29.1c11.7-6 33.3-14 59-14 25.7 0 40.7 5.8 51.6 16C626.1 30.7 632 44 632 67.4v78zm-44.6-60.8l-22 1.4c-13.8.6-22 6.5-22 16.8 0 10.7 8.7 17 21 17 12.1 0 20.2-7.7 23-12.5z"
-            ></path>
+              d="M481.8 145.3H437v-72c0-18.2-2.8-32-21.3-32C396.3 41.3 391 57 391 77v68.3h-44.8V7.2H391l-.3 19.9h.6a44.8 44.8 0 0 1 40-22.5c40.1 0 50.5 25.8 50.5 59.2zm-384.9 3c-20.5 0-35-7.5-43.8-20.4v68H8.3V7.3H51l-.3 17.6h.6a57 57 0 0 1 46-20.2c39.7 0 65 31 65 71.8 0 40.6-25.3 72-65.3 72zM84 40c-19 0-32 14.5-32 35.8 0 21.3 13 35.9 32.1 35.9 19.3 0 32.5-14.6 32.5-36C116.5 54.6 103.3 40 84 40zm232.5 105.3h-43.2l-.3-15.7a50.3 50.3 0 0 1-40.3 18.8c-19.9 0-32.5-7-39.5-16.3-6.7-9.5-10-21.5-10-41.4V7.2h44.7v77.3c0 16 4.5 26.9 20.5 26.9s23.2-12.6 23.2-30.8V7h45zm315.6 0h-42.9l-.8-14.6c-6 6-17 17.7-39.6 17.7-24.3 0-50-13.2-50-44s28.2-41.2 53.7-42.3l34.7-1.4v-3.1c0-14.6-10.3-22.1-28.3-22.1a88.3 88.3 0 0 0-42.3 12.3l-11.7-29.1c11.7-6 33.3-14 59-14 25.7 0 40.7 5.8 51.6 16C626.1 30.7 632 44 632 67.4v78zm-44.6-60.8l-22 1.4c-13.8.6-22 6.5-22 16.8 0 10.7 8.7 17 21 17 12.1 0 20.2-7.7 23-12.5z"></path>
           </svg>
-          <svg *ngIf="!displayPunaLogo" xmlns="http://www.w3.org/2000/svg" width="70" height="28" viewBox="0 0 70 28" class="stuff-logo">
+          <svg *ngIf="!displayPunaLogo" xmlns="http://www.w3.org/2000/svg" width="70" height="28" viewBox="0 0 70 28"
+               class="stuff-logo">
             <path
-              d="M54.86 1.72c-2.11 0-3.71.68-4.7 1.74-1 1.03-1.37 2.66-1.37 4.54v.92h-2.15v4.13h2.15v12.66h5.5V13.05h5.56v12.66h5.5V13.05h3.6V8.92h-3.6V7.83c0-1.26.4-2.18 2-2.18.96 0 2.02.3 2.02.3l.27-3.78s-1.57-.45-3.72-.45c-2.11 0-3.72.68-4.7 1.74-1 1.03-1.37 2.66-1.37 4.54v.92h-5.56V7.83c0-1.26.4-2.18 2-2.18.96 0 2.02.3 2.02.3l.28-3.78s-1.58-.45-3.73-.45zM18.15 4.35v4.57h-2.4v4.13h2.4v6.52c0 2.56.34 3.96 1.19 4.95.85.99 2.15 1.57 4.1 1.57 1.97 0 3.48-.45 3.89-.55l-.28-4.26s-.78.3-1.64.3c-.71 0-1.05-.13-1.3-.4-.27-.31-.47-.65-.47-2.09v-6.04h3.72V8.92h-3.72V4.35zm-10.2 4.2c-3.52 0-6.39 2.01-6.39 5.29 0 3 2.08 4.06 2.87 4.4.78.34 1.74.61 2.39.78.61.2 3.07.75 3.07 1.85 0 1.09-.96 1.43-2.32 1.43s-3.62-.89-4.98-2.05L.54 23.5c1.9 1.81 4.57 2.6 7.1 2.6 2.25 0 3.92-.52 5.15-1.47a5.07 5.07 0 0 0 1.98-4.1 4.7 4.7 0 0 0-1.37-3.4 6.65 6.65 0 0 0-2.18-1.27c-.72-.27-1.23-.44-2.39-.79-1.16-.34-2.46-.74-2.46-1.63 0-.89.72-1.23 2.02-1.23 1.36 0 3.27.89 4.23 1.64l1.77-3.21c-.95-.79-2.93-2.08-6.45-2.08zm20.88.34v10.17c0 2.42.4 3.89 1.23 5.05.85 1.13 2.39 1.98 4.8 1.98 2.43 0 4.2-1.27 4.92-2.29l.04 1.91h5.25V8.9h-5.46v8.94c0 2.22-.89 3.75-2.83 3.75-1.95 0-2.5-1.33-2.5-3.27V8.89z"
-            ></path>
+              d="M54.86 1.72c-2.11 0-3.71.68-4.7 1.74-1 1.03-1.37 2.66-1.37 4.54v.92h-2.15v4.13h2.15v12.66h5.5V13.05h5.56v12.66h5.5V13.05h3.6V8.92h-3.6V7.83c0-1.26.4-2.18 2-2.18.96 0 2.02.3 2.02.3l.27-3.78s-1.57-.45-3.72-.45c-2.11 0-3.72.68-4.7 1.74-1 1.03-1.37 2.66-1.37 4.54v.92h-5.56V7.83c0-1.26.4-2.18 2-2.18.96 0 2.02.3 2.02.3l.28-3.78s-1.58-.45-3.73-.45zM18.15 4.35v4.57h-2.4v4.13h2.4v6.52c0 2.56.34 3.96 1.19 4.95.85.99 2.15 1.57 4.1 1.57 1.97 0 3.48-.45 3.89-.55l-.28-4.26s-.78.3-1.64.3c-.71 0-1.05-.13-1.3-.4-.27-.31-.47-.65-.47-2.09v-6.04h3.72V8.92h-3.72V4.35zm-10.2 4.2c-3.52 0-6.39 2.01-6.39 5.29 0 3 2.08 4.06 2.87 4.4.78.34 1.74.61 2.39.78.61.2 3.07.75 3.07 1.85 0 1.09-.96 1.43-2.32 1.43s-3.62-.89-4.98-2.05L.54 23.5c1.9 1.81 4.57 2.6 7.1 2.6 2.25 0 3.92-.52 5.15-1.47a5.07 5.07 0 0 0 1.98-4.1 4.7 4.7 0 0 0-1.37-3.4 6.65 6.65 0 0 0-2.18-1.27c-.72-.27-1.23-.44-2.39-.79-1.16-.34-2.46-.74-2.46-1.63 0-.89.72-1.23 2.02-1.23 1.36 0 3.27.89 4.23 1.64l1.77-3.21c-.95-.79-2.93-2.08-6.45-2.08zm20.88.34v10.17c0 2.42.4 3.89 1.23 5.05.85 1.13 2.39 1.98 4.8 1.98 2.43 0 4.2-1.27 4.92-2.29l.04 1.91h5.25V8.9h-5.46v8.94c0 2.22-.89 3.75-2.83 3.75-1.95 0-2.5-1.33-2.5-3.27V8.89z"></path>
           </svg>
         </a>
       </div>
 
-      <a *ngIf="isLoggedIn" href="{{ profileUrl }}" target="_blank" aria-label="user" class="user" (click)="avatarAnalytics()" rel="noopener noreferrer">
-        <img class="avatar" src="{{ imgSrc }}" alt="profile-pic" />
-      </a>
+      <div class="header-right">
+        <div class="search-menu" *ngIf="displaySearch">
+          <a href="javascript:void(0)" (click)="[toggleMenu(), sendMenuAnalytics()]" class="search-link">
+            <span class="search-label">Search</span>
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.239 30.239">
+              <path
+                d="M20.194 3.46c-4.613-4.613-12.121-4.613-16.734 0-4.612 4.614-4.612 12.121 0 16.735 4.108 4.107 10.506 4.547 15.116 1.34.097.459.319.897.676 1.254l6.718 6.718a2.498 2.498 0 003.535 0 2.496 2.496 0 000-3.535l-6.718-6.72a2.5 2.5 0 00-1.253-.674c3.209-4.611 2.769-11.008-1.34-15.118zm-2.121 14.614c-3.444 3.444-9.049 3.444-12.492 0-3.442-3.444-3.442-9.048 0-12.492 3.443-3.443 9.048-3.443 12.492 0 3.444 3.444 3.444 9.048 0 12.492z"
+              />
+            </svg>
+          </a>
+        </div>
 
-      <a *ngIf="!isLoggedIn" href="javascript:void(0)" aria-label="user-login" class="user login-text" (click)="login()">Login</a>
+        <a *ngIf="isLoggedIn" href="{{ profileUrl }}" target="_blank" aria-label="user" class="user"
+           (click)="avatarAnalytics()" rel="noopener noreferrer">
+          <img class="avatar" src="{{ imgSrc }}" alt="profile-pic"/>
+        </a>
+
+        <a *ngIf="!isLoggedIn" href="javascript:void(0)" aria-label="user-login" class="user login-text"
+           (click)="login()">Login</a>
+      </div>
     </div>
   </div>
   <div class="color-bar"></div>
@@ -35,11 +52,11 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-md-4 col-lg-6 {{ sections[0].theme }}">
-          <div class="searchBar" *ngIf="showSearchBar">
+          <div class="search-bar" *ngIf="displaySearch">
             <form action="/searchresults" method="get">
-              <input name="q" type="search" placeholder="Type keyword to search..." aria-label="search" />
+              <input name="q" type="search" placeholder="Type keyword to search..." aria-label="search"/>
               <label>
-                <input type="submit" />
+                <input type="submit"/>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.239 30.239">
                   <path
                     d="M20.194 3.46c-4.613-4.613-12.121-4.613-16.734 0-4.612 4.614-4.612 12.121 0 16.735 4.108 4.107 10.506 4.547 15.116 1.34.097.459.319.897.676 1.254l6.718 6.718a2.498 2.498 0 003.535 0 2.496 2.496 0 000-3.535l-6.718-6.72a2.5 2.5 0 00-1.253-.674c3.209-4.611 2.769-11.008-1.34-15.118zm-2.121 14.614c-3.444 3.444-9.049 3.444-12.492 0-3.442-3.444-3.442-9.048 0-12.492 3.443-3.443 9.048-3.443 12.492 0 3.444 3.444 3.444 9.048 0 12.492z"
@@ -51,7 +68,8 @@
 
           <ul class="row">
             <li class="col-xs-12 col-sm-6 col-md-12 col-lg-4" *ngFor="let item of sections[0].items">
-              <a class="section-{{ item.label }}" href="{{ item.link }}" (click)="sendMenuSectionClickAnalytics(item.label)">{{ item.label }} </a>
+              <a class="section-{{ item.label }}" href="{{ item.link }}"
+                 (click)="sendMenuSectionClickAnalytics(item.label)">{{ item.label }} </a>
             </li>
           </ul>
         </div>
@@ -59,7 +77,8 @@
         <div class="col-xs-12 col-md-4 col-lg-4 {{ sections[1].theme }}">
           <ul class="row">
             <li class="col-xs-12 col-sm-6 col-md-12 col-lg-6" *ngFor="let item of sections[1].items">
-              <a class="section-{{ item.label }}" href="{{ item.link }}" (click)="sendMenuSectionClickAnalytics(item.label)">{{ item.label }} </a>
+              <a class="section-{{ item.label }}" href="{{ item.link }}"
+                 (click)="sendMenuSectionClickAnalytics(item.label)">{{ item.label }} </a>
             </li>
           </ul>
         </div>
@@ -67,7 +86,8 @@
         <div class="col-xs-12 col-md-4 col-lg-2 {{ sections[2].theme }}">
           <ul class="row">
             <li class="col-xs-12 col-sm-6 col-md-12" *ngFor="let item of sections[2].items">
-              <a class="section-{{ item.label }}" href="{{ item.link }}" (click)="sendMenuSectionClickAnalytics(item.label)">{{ item.label }} </a>
+              <a class="section-{{ item.label }}" href="{{ item.link }}"
+                 (click)="sendMenuSectionClickAnalytics(item.label)">{{ item.label }} </a>
             </li>
           </ul>
         </div>

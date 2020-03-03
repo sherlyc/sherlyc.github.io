@@ -38,7 +38,7 @@ export class HeaderComponent
   profileUrl!: string;
   imgSrc!: string;
   displayPunaLogo = false;
-  showSearchBar = false;
+  displaySearch = false;
 
   @Input() input!: IHeader;
   navigationVisible = false;
@@ -108,7 +108,7 @@ export class HeaderComponent
 
   ngOnInit() {
     if (this.runtimeService.isBrowser()) {
-      this.showSearchBar = this.windowService.isDesktopDomain();
+      this.displaySearch = this.windowService.isDesktopDomain();
     }
     this.displayPunaLogo =
       Date.now() > new Date("2019-09-08T17:00:00.000Z").getTime() &&

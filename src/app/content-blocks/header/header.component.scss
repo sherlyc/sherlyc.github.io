@@ -15,6 +15,20 @@ header {
   width: 100px;
 }
 
+.header-left {
+  width: 140px;
+  display: flex;
+}
+
+.header-right {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  width: 140px;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .menu {
   padding: 12px 12px;
   position: relative;
@@ -197,7 +211,7 @@ header {
   }
 }
 
-.searchBar {
+.search-bar {
   position: relative;
   padding: 20px 0 0 16px;
 
@@ -219,5 +233,34 @@ header {
     height: 20px;
     position: absolute;
     padding: 10px 10px 0;
+    cursor: pointer;
+  }
+}
+
+.search-menu {
+  align-self: center;
+
+  .search-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .search-icon {
+    margin: 0 10px 0 8px;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@include mobile {
+  .search-menu,
+  .search-bar {
+    display: none;
+  }
+
+  .header-left,
+  .header-right {
+    width: 50px;
   }
 }
