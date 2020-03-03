@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
 import { weatherService } from "../services/adapters/weather/weather";
 import logger from "../services/utils/logger";
+import { WeatherLocations } from "../../common/WeatherLocations";
 
 export const getWeather = async (req: Request, res: Response) => {
   const location = req.query.location || req.params.location;
-  if (location) {
+  if (location && location in WeatherLocations) {
     try {
       res.json(await weatherService(location, req.spadeParams));
       res.end();
