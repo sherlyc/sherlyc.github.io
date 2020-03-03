@@ -328,6 +328,16 @@ export const newPage = (): HandlerInput[] => {
       sourceId: Strap.Sport
     },
     {
+      type: HandlerInputType.Strips,
+      displayName: "",
+      displayNameColor: "#f36f21",
+      linkUrl: "/" + Section.SponsoredContent,
+      sourceId: Strap.SponsoredContent,
+      strapName: Strap.SponsoredContent,
+      articleCount: 4,
+      articleFormat: ContentBlockType.HalfWidthImageArticleUnit
+    },
+    {
       type: HandlerInputType.Brand,
       module: BrandModule.Network
     }
