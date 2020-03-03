@@ -1,4 +1,5 @@
 import * as supertest from "supertest";
+import { WeatherLocations } from "../../common/WeatherLocations";
 
 describe("weather api test", () => {
   it("should return valid response when required querystring is provided", async () => {
@@ -6,7 +7,7 @@ describe("weather api test", () => {
 
     const response: supertest.Response = await supertest(app)
       .get("/spade/api/weather")
-      .query({ location: "auckland" })
+      .query({ location: WeatherLocations.Auckland })
       .set("Accept", "application/json");
 
     const { body } = response;
