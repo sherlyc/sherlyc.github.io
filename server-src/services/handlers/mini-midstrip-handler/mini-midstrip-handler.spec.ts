@@ -20,7 +20,7 @@ describe("MiniMidStripHandler", () => {
   };
   const params: IParams = { apiRequestId: "request-id-for-testing" };
 
-  const rawMiniMidStrip: IRawArticle[] = [
+  const rawMiniMidStrip: any[] = [
     {
       id: "1",
       indexHeadline: "Headline 1",
