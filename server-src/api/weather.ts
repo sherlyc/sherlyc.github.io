@@ -5,7 +5,7 @@ import { WeatherLocations } from "../../common/WeatherLocations";
 
 export const getWeather = async (req: Request, res: Response) => {
   const location = req.query.location || req.params.location;
-  if (location && location in WeatherLocations) {
+  if (location && Object.values(WeatherLocations).includes(location)) {
     try {
       res.json(await weatherService(location, req.spadeParams));
       res.end();

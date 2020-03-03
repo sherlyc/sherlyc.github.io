@@ -78,7 +78,7 @@ describe("Weather Api", () => {
   it("should return 400 status code when location is not valid", async () => {
     const req = {
       spadeParams: { apiRequestId: "33498" },
-      query: { location: "blah" },
+      query: { location: "NewPlymouth" },
       params: {},
       cookies: {}
     } as Request;
