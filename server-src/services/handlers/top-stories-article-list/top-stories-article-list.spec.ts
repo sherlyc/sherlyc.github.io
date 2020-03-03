@@ -29,7 +29,7 @@ describe("Top Stories Article List", () => {
     context: strapName
   };
 
-  const articleOne: IRawArticle = {
+  const articleOne = {
     id: "1",
     indexHeadline: "Article One",
     title: "Title One",
@@ -43,9 +43,9 @@ describe("Top Stories Article List", () => {
     lastPublishedTime: 1,
     headlineFlags: [],
     sixteenByNineSrc: "sixteenByNineSrc.jpg"
-  };
+  } as any;
 
-  const articleTwo: IRawArticle = {
+  const articleTwo = {
     id: "2",
     indexHeadline: "An Article",
     title: "Title Two",
@@ -59,7 +59,7 @@ describe("Top Stories Article List", () => {
     lastPublishedTime: 1,
     headlineFlags: [],
     sixteenByNineSrc: "sixteenByNineSrc.jpg"
-  };
+  } as any;
 
   const AsDefconArticle = (article: IRawArticle): IDefconArticleUnit => ({
     type: ContentBlockType.DefconArticleUnit,

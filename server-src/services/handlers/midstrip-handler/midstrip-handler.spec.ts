@@ -19,7 +19,7 @@ describe("MidStripHandler", () => {
     context: "MidStrip"
   };
   const params: IParams = { apiRequestId: "request-id-for-testing" };
-  const rawMidStrip: IRawArticle[] = [
+  const rawMidStrip: any[] = [
     {
       id: "1",
       indexHeadline: "Headline 1",

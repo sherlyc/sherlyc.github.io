@@ -11,21 +11,7 @@ jest.mock("../../utils/logger");
 
 describe("getRecommendedArticles", () => {
   const spadeParams = { apiRequestId: "123123" };
-  const rawArticle = {
-    id: "1",
-    indexHeadline: "a",
-    title: "a",
-    introText: "a",
-    linkUrl: "asdf",
-    defconSrc: "asdf",
-    imageSrc: "asdf",
-    strapImageSrc: "asdf",
-    imageSrcSet: "asdf",
-    strapImageSrcSet: "asdf",
-    lastPublishedTime: 34567,
-    headlineFlags: [],
-    sixteenByNineSrc: null
-  } as IRawArticle;
+  const rawArticle = { id: "1" } as IRawArticle;
 
   beforeEach(() => {
     (cacheHttp as jest.Mock).mockReturnValue({
