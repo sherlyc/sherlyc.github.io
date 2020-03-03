@@ -4,9 +4,7 @@ import { HandlerInputType } from "../__types__/HandlerInputType";
 import { Strap } from "../../strap";
 import { IParams } from "../../__types__/IParams";
 import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
-import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { IBasicArticleTitleUnit } from "../../../../common/__types__/IBasicArticleTitleUnit";
 import { IRawArticle } from "../../adapters/__types__/IRawArticle";
 
 jest.mock("../../adapters/article-retriever/article-retriever");
@@ -15,62 +13,17 @@ describe("Expandable article list", () => {
   const params: IParams = { apiRequestId: "123" };
   const strapName = "property";
 
-  const articleOne: IRawArticle = {
-    id: "1",
-    indexHeadline: "Headline 1",
-    title: "Title 1",
-    introText: "Intro 1",
-    linkUrl: "/link1",
-    defconSrc: null,
-    imageSrc: "1.jpg",
-    imageSrcSet: "1.jpg 1w",
-    strapImageSrc: "strap1.jpg",
-    strapImageSrcSet: "strap1.jpg 1w",
-    lastPublishedTime: 1,
-    headlineFlags: [],
-    sixteenByNineSrc: null
-  };
-
-  const articleTwo: IRawArticle = {
-    id: "2",
-    indexHeadline: "Headline 2",
-    title: "Title 2",
-    introText: "Intro 2",
-    linkUrl: "/link2",
-    defconSrc: null,
-    imageSrc: "2.jpg",
-    imageSrcSet: "2.jpg 2w",
-    strapImageSrc: "strap2.jpg",
-    strapImageSrcSet: "strap2.jpg 1w",
-    lastPublishedTime: 2,
-    headlineFlags: [],
-    sixteenByNineSrc: null
-  };
-
-  const articleOneAsBasicArticle: IBasicArticleUnit = {
-    type: ContentBlockType.BasicArticleUnit,
-    id: "1",
-    strapName,
-    indexHeadline: "Headline 1",
-    title: "Title 1",
-    introText: "Intro 1",
-    linkUrl: "/link1",
-    imageSrc: "1.jpg",
-    imageSrcSet: "1.jpg 1w",
-    lastPublishedTime: 1,
-    headlineFlags: []
-  };
-
-  const articleTwoAsBasicArticleTitle: IBasicArticleTitleUnit = {
-    type: ContentBlockType.BasicArticleTitleUnit,
-    id: "2",
-    strapName,
-    indexHeadline: "Headline 2",
-    title: "Title 2",
-    lastPublishedTime: 2,
-    linkUrl: "/link2",
-    headlineFlags: []
-  };
+  const articleWithId = (id: number) => ({ id: `${id}` } as IRawArticle);
+  const expectBasicArticleWithId = (id: number) =>
+    expect.objectContaining({
+      type: ContentBlockType.BasicArticleUnit,
+      id: `${id}`
+    });
+  const expectBasicArticleTitleWithId = (id: number) =>
+    expect.objectContaining({
+      type: ContentBlockType.BasicArticleTitleUnit,
+      id: `${id}`
+    });
 
   it("should call getRawArticles with total number of articles for all pages", async () => {
     const handlerRunner = jest.fn();
@@ -101,10 +54,10 @@ describe("Expandable article list", () => {
     };
 
     const expectedContentBlocks = [
-      articleOneAsBasicArticle,
-      articleTwoAsBasicArticleTitle
+      expectBasicArticleWithId(1),
+      expectBasicArticleTitleWithId(2)
     ];
-    const rawArticles = [articleOne, articleTwo];
+    const rawArticles = [articleWithId(1), articleWithId(2)];
     (getRawArticles as jest.Mock).mockResolvedValue(rawArticles);
 
     const contentBlocks = await expandableArticleList(
@@ -128,20 +81,20 @@ describe("Expandable article list", () => {
     };
 
     const expectedContentBlocks = [
-      articleOneAsBasicArticle,
-      articleTwoAsBasicArticleTitle,
-      articleTwoAsBasicArticleTitle,
-      articleOneAsBasicArticle,
-      articleTwoAsBasicArticleTitle,
-      articleTwoAsBasicArticleTitle
+      expectBasicArticleWithId(1),
+      expectBasicArticleTitleWithId(2),
+      expectBasicArticleTitleWithId(2),
+      expectBasicArticleWithId(1),
+      expectBasicArticleTitleWithId(2),
+      expectBasicArticleTitleWithId(2)
     ];
     const rawArticles = [
-      articleOne,
-      articleTwo,
-      articleTwo,
-      articleOne,
-      articleTwo,
-      articleTwo
+      articleWithId(1),
+      articleWithId(2),
+      articleWithId(2),
+      articleWithId(1),
+      articleWithId(2),
+      articleWithId(2)
     ];
     (getRawArticles as jest.Mock).mockResolvedValue(rawArticles);
 
@@ -166,12 +119,17 @@ describe("Expandable article list", () => {
     };
 
     const expectedContentBlocks = [
-      articleOneAsBasicArticle,
-      articleTwoAsBasicArticleTitle,
-      articleTwoAsBasicArticleTitle,
-      articleOneAsBasicArticle
+      expectBasicArticleWithId(1),
+      expectBasicArticleTitleWithId(2),
+      expectBasicArticleTitleWithId(2),
+      expectBasicArticleWithId(1)
     ];
-    const rawArticles = [articleOne, articleTwo, articleTwo, articleOne];
+    const rawArticles = [
+      articleWithId(1),
+      articleWithId(2),
+      articleWithId(2),
+      articleWithId(1)
+    ];
     (getRawArticles as jest.Mock).mockResolvedValue(rawArticles);
 
     const contentBlocks = await expandableArticleList(
@@ -194,8 +152,8 @@ describe("Expandable article list", () => {
       pages: 2
     };
 
-    const expectedContentBlocks = [articleOneAsBasicArticle];
-    const rawArticles = [articleOne];
+    const expectedContentBlocks = [expectBasicArticleWithId(1)];
+    const rawArticles = [articleWithId(1)];
     (getRawArticles as jest.Mock).mockResolvedValue(rawArticles);
 
     const contentBlocks = await expandableArticleList(
