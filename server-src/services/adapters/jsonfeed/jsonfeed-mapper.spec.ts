@@ -127,6 +127,29 @@ describe("JsonFeed Mapper", () => {
 
       expect(mapToRawArticleList([feedArticle])).toEqual([expectedArticle]);
     });
+
+    it("should map non-empty identifier", () => {
+      const identifier = "Identity";
+      const feedArticle = {
+        ...jsonFeedArticle(),
+        identifier
+      };
+
+      const [article] = mapToRawArticleList([feedArticle]);
+
+      expect(article.identifier).toEqual(identifier);
+    });
+
+    it("should map empty identifier to undefined", () => {
+      const feedArticle = {
+        ...jsonFeedArticle(),
+        identifier: ""
+      };
+
+      const [article] = mapToRawArticleList([feedArticle]);
+
+      expect(article.identifier).toEqual(undefined);
+    });
   });
 
   describe("url asset", () => {
@@ -160,6 +183,29 @@ describe("JsonFeed Mapper", () => {
       expectedArticle.indexHeadline = expectedTitle;
 
       expect(mapToRawArticleList([urlAsset])).toEqual([expectedArticle]);
+    });
+
+    it("should map non-empty identifier", () => {
+      const identifier = "Identity";
+      const feedArticle = {
+        ...jsonFeedUrlAsset(),
+        identifier
+      };
+
+      const [article] = mapToRawArticleList([feedArticle]);
+
+      expect(article.identifier).toEqual(identifier);
+    });
+
+    it("should map empty identifier to undefined", () => {
+      const feedArticle = {
+        ...jsonFeedUrlAsset(),
+        identifier: ""
+      };
+
+      const [article] = mapToRawArticleList([feedArticle]);
+
+      expect(article.identifier).toEqual(undefined);
     });
   });
 

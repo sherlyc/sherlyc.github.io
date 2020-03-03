@@ -55,7 +55,7 @@ export function mapArticleAsset(item: IJsonFeedArticle): IRawArticle {
     ]),
     lastPublishedTime: moment(item.datetime_iso8601).unix(),
     headlineFlags: getHeadlineFlags(item),
-    identifier: item.identifier
+    identifier: item.identifier ? item.identifier : undefined
   };
 }
 
@@ -87,7 +87,7 @@ function mapUrlAsset(item: IJsonFeedUrl): IRawArticle {
     ]),
     lastPublishedTime: moment(item.datetime_iso8601).unix(),
     headlineFlags: getHeadlineFlags(item),
-    identifier: item.identifier
+    identifier: item.identifier ? item.identifier : undefined
   };
 }
 
