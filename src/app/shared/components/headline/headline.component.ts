@@ -1,5 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { HeadlineFlags } from "../../../../../common/HeadlineFlags";
+import * as moment from "moment";
 
 @Component({
   selector: "app-headline",
@@ -11,4 +12,13 @@ export class HeadlineComponent {
   @Input() timeStamp?: number;
   @Input() headlineFlags?: HeadlineFlags[];
   @Input() textColor?: string;
+
+  showTimeAgo() {
+    const twoHours = 2 * 3600;
+    const seconds = moment().diff(
+      moment((this.timeStamp as number) * 1000),
+      "seconds"
+    );
+    return this.timeStamp && !(seconds >= twoHours || seconds < 0);
+  }
 }
