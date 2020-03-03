@@ -254,18 +254,12 @@ header {
 }
 
 @include mobile {
-  .search-menu {
-    display: none;
-  }
-
+  .search-menu,
   .search-bar {
     display: none;
   }
 
-  .header-left {
-    width: 50px;
-  }
-
+  .header-left,
   .header-right {
     width: 50px;
   }
