@@ -6,6 +6,7 @@ import { WindowService } from "../window/window.service";
 import { LoggerService } from "../logger/logger.service";
 import { DtmService } from "../dtm/dtm.service";
 import { RuntimeService } from "../runtime/runtime.service";
+import { environment } from "../../../environments/environment";
 
 describe("AnalyticsService", () => {
   let windowService: ServiceMock<WindowService>;
@@ -49,6 +50,15 @@ describe("AnalyticsService", () => {
     analyticsService.setup();
 
     expect(windowService.getWindow().digitalData).toBeTruthy();
+  });
+
+  it("should inject SPADE version into digitalData pageInfo object", () => {
+    environment.version = "FAKE_VERSION";
+    analyticsService.setup();
+
+    expect(windowService.getWindow().digitalData.page.pageInfo.version).toEqual(
+      "FAKE_VERSION"
+    );
   });
 
   it("should inject correct values (section should be empty) into digitalData object for ads to work for production", () => {

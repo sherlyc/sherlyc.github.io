@@ -18,6 +18,7 @@ import { IStuffLoginUser } from "../authentication/__types__/IStuffLoginUser";
 import { DtmService } from "../dtm/dtm.service";
 import { RuntimeService } from "../runtime/runtime.service";
 import { LoadedEvent } from "../dtm/__types__/LoadedEvent";
+import { environment } from "../../../environments/environment";
 
 const home = "home";
 
@@ -111,7 +112,7 @@ export class AnalyticsService implements IAnalyticsService {
           pageName: "Stuff home",
           sysEnv: DeviceType.mobile,
           variant: "1",
-          version: "1",
+          version: environment.version,
           publisher: "",
           articleID: "",
           headline: "",
