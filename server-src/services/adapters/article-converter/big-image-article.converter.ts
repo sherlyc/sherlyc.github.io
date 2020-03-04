@@ -7,7 +7,8 @@ export const bigImageArticleUnit = (
   article: IRawArticle,
   strapName: string,
   layout: ImageLayoutType = ImageLayoutType.default,
-  pumped = false
+  pumped = false,
+  identifierColor?: string
 ): IBigImageArticleUnit => ({
   type: ContentBlockType.BigImageArticleUnit,
   id: article.id,
@@ -24,5 +25,6 @@ export const bigImageArticleUnit = (
   pumped,
   linkUrl: article.linkUrl,
   lastPublishedTime: article.lastPublishedTime,
-  headlineFlags: article.headlineFlags
+  headlineFlags: article.headlineFlags,
+  identifierColor
 });

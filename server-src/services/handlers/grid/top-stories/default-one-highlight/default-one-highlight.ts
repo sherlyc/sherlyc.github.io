@@ -27,7 +27,8 @@ export default async function(
               articles[0],
               strapName,
               ImageLayoutType.module,
-              true
+              true,
+              color
             ),
           HandlerInputType.TopStoriesDefaultOneHighlight,
           Strap.TopStories,
@@ -36,7 +37,16 @@ export default async function(
       ],
       [
         contentErrorHandler(
-          () => featuredArticle(articles[1], strapName, "#fff", "#333", true),
+          () =>
+            featuredArticle(
+              articles[1],
+              strapName,
+              "#fff",
+              "#333",
+              true,
+              false,
+              color
+            ),
           HandlerInputType.TopStoriesDefaultOneHighlight,
           Strap.TopStories,
           params

@@ -36,13 +36,15 @@ describe("Top Stories Default One", () => {
         [
           expect.objectContaining({
             type: ContentBlockType.BigImageArticleUnit,
-            id: "1"
+            id: "1",
+            identifierColor: color
           })
         ],
         [
           expect.objectContaining({
             type: ContentBlockType.FeaturedArticle,
-            id: "2"
+            id: "2",
+            identifierColor: color
           })
         ]
       ]
