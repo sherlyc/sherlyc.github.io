@@ -18,7 +18,8 @@ describe("big image article", () => {
     strapImageSrcSet: "strap1.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: [],
-    sixteenByNineSrc: "sixteenByNine.jpg"
+    sixteenByNineSrc: "sixteenByNine.jpg",
+    identifier: "identifier"
   };
 
   const fakeStrapName = "fakeStrapName";
@@ -36,6 +37,7 @@ describe("big image article", () => {
     lastPublishedTime: 1,
     headlineFlags: [],
     layout: ImageLayoutType.default,
+    identifier: "identifier",
     identifierColor: undefined
   };
 

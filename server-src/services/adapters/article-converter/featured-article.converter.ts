@@ -22,9 +22,10 @@ export const featuredArticle = (
   linkUrl: article.linkUrl,
   lastPublishedTime: article.lastPublishedTime,
   headlineFlags: article.headlineFlags,
+  identifier: article.identifier,
+  identifierColor,
   textColor,
   boxColor,
   applyGradient,
-  pumped,
-  identifierColor
+  pumped
 });

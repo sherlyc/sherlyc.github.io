@@ -21,10 +21,11 @@ export const bigImageArticleUnit = (
       ? article.strapImageSrc
       : article.sixteenByNineSrc,
   imageSrcSet: article.strapImageSrcSet,
-  layout,
-  pumped,
   linkUrl: article.linkUrl,
   lastPublishedTime: article.lastPublishedTime,
   headlineFlags: article.headlineFlags,
-  identifierColor
+  identifier: article.identifier,
+  identifierColor,
+  layout,
+  pumped
 });

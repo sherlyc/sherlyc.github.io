@@ -24,7 +24,8 @@ describe("Featured Article", () => {
     strapImageSrcSet: "strap1.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: [],
-    sixteenByNineSrc: "sixteenByNineSrc.jpg"
+    sixteenByNineSrc: "sixteenByNineSrc.jpg",
+    identifier: "identifier"
   };
   const expected: IFeaturedArticle = {
     type: ContentBlockType.FeaturedArticle,
@@ -38,6 +39,7 @@ describe("Featured Article", () => {
     imageSrcSet: "1.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: [],
+    identifier: "identifier",
     boxColor,
     textColor,
     applyGradient,
