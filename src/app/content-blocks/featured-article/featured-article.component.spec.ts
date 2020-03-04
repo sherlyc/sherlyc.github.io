@@ -9,6 +9,8 @@ import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { ResizeObserverService } from "../../services/resize-observer/resize-observer.service";
 import { SharedModule } from "../../shared/shared.module";
 import { FeaturedArticleComponent } from "./featured-article.component";
+import { HeadlineFlags } from "../../../../common/HeadlineFlags";
+import { HeadlineComponent } from "../../shared/components/headline/headline.component";
 
 describe("FeaturedArticleComponent", () => {
   let component: FeaturedArticleComponent;
@@ -29,7 +31,9 @@ describe("FeaturedArticleComponent", () => {
     headlineFlags: [],
     boxColor: "red",
     textColor: "white",
-    applyGradient: false
+    applyGradient: false,
+    identifier: "Identifier",
+    identifierColor: "blue"
   };
 
   beforeEach(async(() => {
@@ -129,5 +133,22 @@ describe("FeaturedArticleComponent", () => {
     const host = fixture.debugElement.nativeElement;
 
     expect(host.className).toMatch(/pumped/);
+  });
+
+  it("should render headline component", () => {
+    articleData.headlineFlags = [HeadlineFlags.PHOTO];
+    component.input = articleData;
+
+    fixture.detectChanges();
+
+    const headline: HeadlineComponent = fixture.debugElement.query(
+      By.directive(HeadlineComponent)
+    ).componentInstance;
+
+    expect(headline.headline).toEqual(articleData.indexHeadline);
+    expect(headline.headlineFlags).toEqual(articleData.headlineFlags);
+    expect(headline.identifier).toEqual(articleData.identifier);
+    expect(headline.identifierColor).toEqual(articleData.identifierColor);
+    expect(headline).not.toHaveProperty("timeStamp");
   });
 });

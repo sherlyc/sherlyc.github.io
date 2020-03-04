@@ -33,7 +33,9 @@ describe("HalfWidthImageArticleUnitComponent", () => {
     imageSrc: "https://dummyimagesrc.com",
     imageSrcSet: "https://dummyimagesrc.com 1w",
     lastPublishedTime: twoDaysAgoDateInSeconds,
-    headlineFlags: []
+    headlineFlags: [],
+    identifier: "Identifier",
+    identifierColor: "blue"
   };
 
   @Component({
@@ -139,6 +141,8 @@ describe("HalfWidthImageArticleUnitComponent", () => {
 
     expect(headline.headline).toEqual(articleData.indexHeadline);
     expect(headline.headlineFlags).toEqual(articleData.headlineFlags);
+    expect(headline.identifier).toEqual(articleData.identifier);
+    expect(headline.identifierColor).toEqual(articleData.identifierColor);
     expect(headline).not.toHaveProperty("timeStamp");
   });
 

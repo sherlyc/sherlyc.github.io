@@ -29,7 +29,9 @@ describe("HalfImageArticleWithoutIntroUnit", () => {
     headlineFlags: [],
     lastPublishedTime: 1,
     introText: "Intro text",
-    imageSrcSet: "123.jpg 1w"
+    imageSrcSet: "123.jpg 1w",
+    identifier: "Identifier",
+    identifierColor: "blue"
   };
 
   @Component({
@@ -107,6 +109,8 @@ describe("HalfImageArticleWithoutIntroUnit", () => {
 
     expect(headline.headline).toEqual(articleData.indexHeadline);
     expect(headline.headlineFlags).toEqual(articleData.headlineFlags);
+    expect(headline.identifier).toEqual(articleData.identifier);
+    expect(headline.identifierColor).toEqual(articleData.identifierColor);
   });
 
   it("should render time ago component", () => {
