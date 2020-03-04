@@ -69,8 +69,9 @@ async function defconHandler(
   const [articleOne, articleTwo, articleThree, ...remainingArticles] = articles;
   const topStoriesDefconHandlerInput: ITopStoriesDefconHighlightHandlerInput = {
     type: HandlerInputType.TopStoriesDefconHighlight,
+    articles: [articleOne, articleTwo, articleThree],
     strapName,
-    articles: [articleOne, articleTwo, articleThree]
+    color
   };
   const highlightContents = await handlerRunner(
     topStoriesDefconHandlerInput,

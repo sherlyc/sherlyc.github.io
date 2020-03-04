@@ -13,7 +13,7 @@ import { DefconHighlightPosition } from "./defcon-highlight-position";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  { articles, strapName }: ITopStoriesDefconHighlightHandlerInput,
+  { articles, strapName, color }: ITopStoriesDefconHighlightHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   return [
@@ -28,7 +28,8 @@ export default async function(
               "white",
               "black",
               false,
-              true
+              true,
+              color
             ),
           HandlerInputType.TopStoriesDefconHighlight,
           Strap.TopStories,

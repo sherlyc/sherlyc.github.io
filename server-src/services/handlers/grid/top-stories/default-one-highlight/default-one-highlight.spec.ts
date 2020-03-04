@@ -10,7 +10,7 @@ describe("Top Stories Default One", () => {
   const handlerRunnerMock = jest.fn();
   const params: IParams = { apiRequestId: "123" };
   const strapName = "strapName";
-  const color = "red";
+  const color = "blue";
 
   const articleWithId = (id: number) => ({ id: `${id}` } as IRawArticle);
 

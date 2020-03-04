@@ -229,8 +229,9 @@ describe("Top Stories", () => {
         1,
         {
           type: HandlerInputType.TopStoriesDefconHighlight,
+          articles: fakeArticlesWithIds([1, 2, 3]),
           strapName,
-          articles: fakeArticlesWithIds([1, 2, 3])
+          color
         },
         params
       );
