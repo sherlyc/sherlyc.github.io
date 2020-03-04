@@ -2,7 +2,6 @@ import miniMidstripHandler from "./mini-midstrip-handler";
 import { IColumnContainer } from "common/__types__/IColumnContainer";
 import { IParams } from "../../__types__/IParams";
 import { HandlerInputType } from "../__types__/HandlerInputType";
-import { IRawArticle } from "../../adapters/__types__/IRawArticle";
 import { Strap } from "../../strap";
 import { getStrapArticles } from "../../adapters/strap-list/strap-list-service";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
@@ -20,7 +19,7 @@ describe("MiniMidStripHandler", () => {
   };
   const params: IParams = { apiRequestId: "request-id-for-testing" };
 
-  const rawMiniMidStrip: IRawArticle[] = [
+  const rawMiniMidStrip: any[] = [
     {
       id: "1",
       indexHeadline: "Headline 1",

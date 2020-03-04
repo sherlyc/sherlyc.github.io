@@ -19,4 +19,5 @@ export interface IJsonFeedArticle {
     [key: string]: any;
     variants?: IImageVariant[];
   }>;
+  identifier: string;
 }

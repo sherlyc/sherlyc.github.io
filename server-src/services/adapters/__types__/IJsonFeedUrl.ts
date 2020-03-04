@@ -17,4 +17,5 @@ export interface IJsonFeedUrl {
     variants?: IImageVariant[];
   }>;
   datetime_iso8601: string;
+  identifier: string;
 }

@@ -86,7 +86,8 @@ describe("JsonFeed Retriever", () => {
       byline: "Jane Doe",
       isHeadlineOverrideApplied: true,
       datetime_iso8601: "123235345",
-      alt_intro: "intro"
+      alt_intro: "intro",
+      identifier: "identifier"
     } as IJsonFeedArticle;
     (cacheHttp as jest.Mock).mockResolvedValue({ data: article });
 

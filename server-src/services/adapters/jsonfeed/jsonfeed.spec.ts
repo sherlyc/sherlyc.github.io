@@ -55,6 +55,7 @@ describe("json feed service", () => {
       isHeadlineOverrideApplied: true,
       datetime_iso8601: "20190116T154002+1300",
       alt_intro: "Hello",
+      identifier: "Identifier",
       images: [
         {
           id: 109962229,

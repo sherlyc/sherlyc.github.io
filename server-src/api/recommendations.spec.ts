@@ -1,7 +1,5 @@
 import { ContentBlockType } from "../../common/__types__/ContentBlockType";
 import { IBasicAdUnit } from "../../common/__types__/IBasicAdUnit";
-import { IBasicArticleTitleUnit } from "../../common/__types__/IBasicArticleTitleUnit";
-import { IBasicArticleUnit } from "../../common/__types__/IBasicArticleUnit";
 import { IRawArticle } from "../services/adapters/__types__/IRawArticle";
 import { getRecommendedArticles } from "../services/adapters/recommendations/recommendations.service";
 import { getHomePageRecommendations } from "./recommendations";
@@ -15,46 +13,20 @@ describe("Recommendations", () => {
     end: jest.fn()
   } as any;
 
-  const rawArticle = {
-    id: "1",
-    indexHeadline: "a",
-    title: "a",
-    introText: "a",
-    linkUrl: "asdf",
-    defconSrc: "asdf",
-    imageSrc: "asdf",
-    strapImageSrc: "asdf",
-    imageSrcSet: "asdf",
-    strapImageSrcSet: "asdf",
-    lastPublishedTime: 34567,
-    headlineFlags: [],
-    sixteenByNineSrc: null
-  } as IRawArticle;
+  const articlesWithIds = (ids: number[]) =>
+    ids.map((id) => ({ id: `${id}` } as IRawArticle));
 
-  const articleAsBasicArticle: IBasicArticleUnit = {
-    type: ContentBlockType.BasicArticleUnit,
-    id: "1",
-    strapName: "Recommendations",
-    indexHeadline: "a",
-    title: "a",
-    introText: "a",
-    linkUrl: "asdf",
-    imageSrc: "asdf",
-    imageSrcSet: "asdf",
-    lastPublishedTime: 34567,
-    headlineFlags: []
-  };
+  const expectBasicArticleWithId = (id: number) =>
+    expect.objectContaining({
+      type: ContentBlockType.BasicArticleUnit,
+      id: `${id}`
+    });
 
-  const articleAsTitleArticle: IBasicArticleTitleUnit = {
-    type: ContentBlockType.BasicArticleTitleUnit,
-    id: "1",
-    strapName: "Recommendations",
-    indexHeadline: "a",
-    title: "a",
-    linkUrl: "asdf",
-    lastPublishedTime: 34567,
-    headlineFlags: []
-  };
+  const expectBasicArticleTitleWithId = (id: number) =>
+    expect.objectContaining({
+      type: ContentBlockType.BasicArticleTitleUnit,
+      id: `${id}`
+    });
 
   const adUnit: IBasicAdUnit = {
     type: ContentBlockType.BasicAdUnit,
@@ -75,11 +47,9 @@ describe("Recommendations", () => {
       }
     } as any;
 
-    (getRecommendedArticles as jest.Mock).mockResolvedValue([
-      rawArticle,
-      rawArticle,
-      rawArticle
-    ]);
+    (getRecommendedArticles as jest.Mock).mockResolvedValue(
+      articlesWithIds([1, 2, 3])
+    );
 
     await getHomePageRecommendations(req, res);
 
@@ -91,11 +61,11 @@ describe("Recommendations", () => {
 
     expect(res.json).toHaveBeenCalledWith([
       adUnit,
-      articleAsBasicArticle,
+      expectBasicArticleWithId(1),
       adUnit,
-      articleAsTitleArticle,
+      expectBasicArticleTitleWithId(2),
       adUnit,
-      articleAsTitleArticle,
+      expectBasicArticleTitleWithId(3),
       adUnit
     ]);
   });
@@ -109,22 +79,22 @@ describe("Recommendations", () => {
     } as any;
 
     (getRecommendedArticles as jest.Mock).mockResolvedValue(
-      new Array(5).fill(rawArticle)
+      articlesWithIds([1, 2, 3, 4, 5])
     );
 
     await getHomePageRecommendations(req, res);
 
     expect(res.json).toHaveBeenCalledWith([
       adUnit,
-      articleAsBasicArticle,
+      expectBasicArticleWithId(1),
       adUnit,
-      articleAsBasicArticle,
+      expectBasicArticleWithId(2),
       adUnit,
-      articleAsTitleArticle,
+      expectBasicArticleTitleWithId(3),
       adUnit,
-      articleAsTitleArticle,
+      expectBasicArticleTitleWithId(4),
       adUnit,
-      articleAsTitleArticle,
+      expectBasicArticleTitleWithId(5),
       adUnit
     ]);
   });
