@@ -22,6 +22,7 @@ const topStoriesVariationHandler: {
     handlerRunner: handlerRunnerFunction,
     articles: IRawArticle[],
     strapName: string,
+    color: string,
     params: IParams
   ) => Promise<IContentBlock[]>;
 } = {
@@ -34,6 +35,7 @@ async function defaultOneHandler(
   handlerRunner: handlerRunnerFunction,
   articles: IRawArticle[],
   strapName: string,
+  color: string,
   params: IParams
 ) {
   const [articleOne, articleTwo, ...remainingArticles] = articles;
@@ -51,6 +53,7 @@ async function defaultOneHandler(
     highlightContents,
     remainingArticles,
     strapName,
+    color,
     params
   );
 }
@@ -59,6 +62,7 @@ async function defconHandler(
   handlerRunner: handlerRunnerFunction,
   articles: IRawArticle[],
   strapName: string,
+  color: string,
   params: IParams
 ) {
   const [articleOne, articleTwo, articleThree, ...remainingArticles] = articles;
@@ -76,6 +80,7 @@ async function defconHandler(
     highlightContents,
     remainingArticles,
     strapName,
+    color,
     params
   );
 }
@@ -85,6 +90,7 @@ async function createTopStoriesGrid(
   highlightContents: IContentBlock[],
   articles: IRawArticle[],
   strapName: string,
+  color: string,
   params: IParams
 ) {
   const content: { [position in TopStoriesGridPositions]: IContentBlock[] } = {
@@ -198,6 +204,7 @@ export default async function(
     handlerRunner,
     articles,
     strapName,
+    color,
     params
   );
 }

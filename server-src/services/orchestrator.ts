@@ -55,7 +55,8 @@ export const newPage = (): HandlerInput[] => {
     },
     {
       type: HandlerInputType.TopStories,
-      strapName: `${homepageAdPrefix}TopStoriesDefaultOne`
+      strapName: `${homepageAdPrefix}TopStoriesDefaultOne`,
+      color: "blue"
     },
     {
       type: HandlerInputType.RelevantStories
