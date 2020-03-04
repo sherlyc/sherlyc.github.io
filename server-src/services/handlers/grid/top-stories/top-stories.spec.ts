@@ -47,13 +47,15 @@ describe("Top Stories", () => {
   const handlerRunnerMock = jest.fn();
   const params: IParams = { apiRequestId: "123" };
   const strapName = "Top Stories";
+  const color = "blue";
   const basicAdUnit: IBasicAdUnit = {
     type: ContentBlockType.BasicAdUnit,
     context: strapName
   };
   const topStoriesHandlerInput: ITopStoriesHandlerInput = {
     type: HandlerInputType.TopStories,
-    strapName
+    strapName,
+    color
   };
 
   it("should retrieve articles and layout", async () => {

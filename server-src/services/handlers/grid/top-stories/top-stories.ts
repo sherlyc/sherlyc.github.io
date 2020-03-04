@@ -184,7 +184,7 @@ async function createTopStoriesGrid(
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  { strapName }: ITopStoriesHandlerInput,
+  { strapName, color }: ITopStoriesHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   const layout = await layoutRetriever(params);
