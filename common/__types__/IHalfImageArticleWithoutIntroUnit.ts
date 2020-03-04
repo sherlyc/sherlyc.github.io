@@ -1,14 +1,7 @@
-import { HeadlineFlags } from "../HeadlineFlags";
 import { ContentBlockType } from "./ContentBlockType";
+import { IArticle } from "./IArticle";
 
-export interface IHalfImageArticleWithoutIntroUnit {
+export interface IHalfImageArticleWithoutIntroUnit extends IArticle {
   type: ContentBlockType.HalfImageArticleWithoutIntroUnit;
-  id: string;
-  strapName: string;
-  indexHeadline: string;
-  title: string;
-  linkUrl: string;
-  imageSrc: string | null;
-  headlineFlags: HeadlineFlags[];
-  lastPublishedTime: number;
+  identifierColor?: string;
 }

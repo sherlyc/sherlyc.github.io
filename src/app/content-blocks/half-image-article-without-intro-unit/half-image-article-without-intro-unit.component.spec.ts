@@ -27,7 +27,9 @@ describe("HalfImageArticleWithoutIntroUnit", () => {
     linkUrl: "https://dummyurl.com",
     imageSrc: "https://dummyimagesrc.com",
     headlineFlags: [],
-    lastPublishedTime: 1
+    lastPublishedTime: 1,
+    introText: "Intro text",
+    imageSrcSet: "123.jpg 1w"
   };
 
   @Component({

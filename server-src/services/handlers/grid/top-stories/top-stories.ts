@@ -106,7 +106,11 @@ async function createTopStoriesGrid(
     [TopStoriesGridPositions.FirstRow1]: [
       contentErrorHandler(
         () =>
-          halfWidthImageArticleUnit(articles.shift() as IRawArticle, strapName),
+          halfWidthImageArticleUnit(
+            articles.shift() as IRawArticle,
+            strapName,
+            color
+          ),
         HandlerInputType.TopStories,
         Strap.TopStories,
         params
@@ -115,7 +119,11 @@ async function createTopStoriesGrid(
     [TopStoriesGridPositions.FirstRow2]: [
       contentErrorHandler(
         () =>
-          halfWidthImageArticleUnit(articles.shift() as IRawArticle, strapName),
+          halfWidthImageArticleUnit(
+            articles.shift() as IRawArticle,
+            strapName,
+            color
+          ),
         HandlerInputType.TopStories,
         Strap.TopStories,
         params
@@ -125,7 +133,11 @@ async function createTopStoriesGrid(
     [TopStoriesGridPositions.FirstRow4]: [
       contentErrorHandler(
         () =>
-          halfWidthImageArticleUnit(articles.shift() as IRawArticle, strapName),
+          halfWidthImageArticleUnit(
+            articles.shift() as IRawArticle,
+            strapName,
+            color
+          ),
         HandlerInputType.TopStories,
         Strap.TopStories,
         params
@@ -136,7 +148,8 @@ async function createTopStoriesGrid(
         () =>
           halfImageArticleWithoutIntroUnit(
             articles.shift() as IRawArticle,
-            strapName
+            strapName,
+            color
           ),
         HandlerInputType.TopStories,
         Strap.TopStories,
@@ -148,7 +161,8 @@ async function createTopStoriesGrid(
         () =>
           halfImageArticleWithoutIntroUnit(
             articles.shift() as IRawArticle,
-            strapName
+            strapName,
+            color
           ),
         HandlerInputType.TopStories,
         Strap.TopStories,
@@ -160,7 +174,8 @@ async function createTopStoriesGrid(
         () =>
           halfImageArticleWithoutIntroUnit(
             articles.shift() as IRawArticle,
-            strapName
+            strapName,
+            color
           ),
         HandlerInputType.TopStories,
         Strap.TopStories,
@@ -172,7 +187,8 @@ async function createTopStoriesGrid(
         () =>
           halfImageArticleWithoutIntroUnit(
             articles.shift() as IRawArticle,
-            strapName
+            strapName,
+            color
           ),
         HandlerInputType.TopStories,
         Strap.TopStories,
