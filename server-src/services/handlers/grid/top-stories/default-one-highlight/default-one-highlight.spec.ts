@@ -10,6 +10,7 @@ describe("Top Stories Default One", () => {
   const handlerRunnerMock = jest.fn();
   const params: IParams = { apiRequestId: "123" };
   const strapName = "strapName";
+  const color = "red";
 
   const articleWithId = (id: number) => ({ id: `${id}` } as IRawArticle);
 
@@ -21,7 +22,8 @@ describe("Top Stories Default One", () => {
     const handlerInput: ITopStoriesDefaultOneHighlightHandlerInput = {
       type: HandlerInputType.TopStoriesDefaultOneHighlight,
       articles: [articleWithId(1), articleWithId(2)],
-      strapName
+      strapName,
+      color
     };
 
     await defaultOneHighlightHandler(handlerRunnerMock, handlerInput, params);

@@ -81,8 +81,9 @@ describe("Top Stories", () => {
       const [[topStoriesDefaultOneCall]] = handlerRunnerMock.mock.calls;
       const topStoriesDefaultOneHandlerInput: ITopStoriesDefaultOneHighlightHandlerInput = {
         type: HandlerInputType.TopStoriesDefaultOneHighlight,
+        articles: fakeArticlesWithIds([2, 1]),
         strapName,
-        articles: fakeArticlesWithIds([2, 1])
+        color
       };
       expect(topStoriesDefaultOneCall).toEqual(
         topStoriesDefaultOneHandlerInput
@@ -152,8 +153,9 @@ describe("Top Stories", () => {
 
       const topStoriesDefaultOneHandlerInput: ITopStoriesDefaultOneHighlightHandlerInput = {
         type: HandlerInputType.TopStoriesDefaultOneHighlight,
+        articles: fakeArticlesWithIds([2, 1]),
         strapName,
-        articles: fakeArticlesWithIds([2, 1])
+        color
       };
       expect(handlerRunnerMock).toHaveBeenNthCalledWith(
         1,

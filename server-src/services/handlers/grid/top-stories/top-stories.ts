@@ -41,8 +41,9 @@ async function defaultOneHandler(
   const [articleOne, articleTwo, ...remainingArticles] = articles;
   const topStoriesDefaultOneHandlerInput: ITopStoriesDefaultOneHighlightHandlerInput = {
     type: HandlerInputType.TopStoriesDefaultOneHighlight,
+    articles: [articleTwo, articleOne],
     strapName,
-    articles: [articleTwo, articleOne]
+    color
   };
   const highlightContents = await handlerRunner(
     topStoriesDefaultOneHandlerInput,

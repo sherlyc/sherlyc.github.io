@@ -12,7 +12,7 @@ import { ImageLayoutType } from "../../../../../../common/__types__/ImageLayoutT
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  { articles, strapName }: ITopStoriesDefaultOneHighlightHandlerInput,
+  { articles, strapName, color }: ITopStoriesDefaultOneHighlightHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   const columnGridHandlerInput: IColumnGridHandlerInput = {
