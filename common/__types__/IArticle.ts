@@ -12,4 +12,5 @@ export interface IArticle {
   lastPublishedTime: number;
   headlineFlags: HeadlineFlags[];
   identifier?: string;
+  identifierColor?: string;
 }

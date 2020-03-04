@@ -101,4 +101,25 @@ describe("Headline Component", () => {
 
     expect(timeAgo).toBeFalsy();
   });
+
+  it("should set identifier", () => {
+    component.identifierColor = "white";
+    component.identifier = "Hello";
+
+    fixture.detectChanges();
+    const identifier = fixture.debugElement.query(By.css("h3 > span"))
+      .nativeElement;
+
+    expect(identifier.textContent).toBe("Hello");
+    expect(identifier.style.color).toBe("white");
+  });
+
+  it("should hide identifier if not provided", () => {
+    component.identifier = undefined;
+
+    fixture.detectChanges();
+    const identifier = fixture.debugElement.query(By.css("h3 > span"));
+
+    expect(identifier).toBeFalsy();
+  });
 });

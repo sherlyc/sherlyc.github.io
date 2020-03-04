@@ -13,7 +13,7 @@ export class HeadlineComponent {
   @Input() headlineFlags?: HeadlineFlags[];
   @Input() textColor?: string;
   @Input() identifier?: string;
-  @Input() identifierColor?: string;
+  @Input() identifierColor = "#2AAAF5";
 
   showTimeAgo() {
     const twoHours = 2 * 3600;

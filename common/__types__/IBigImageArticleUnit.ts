@@ -6,5 +6,4 @@ export interface IBigImageArticleUnit extends IArticle {
   type: ContentBlockType.BigImageArticleUnit;
   layout: ImageLayoutType;
   pumped?: boolean;
-  identifierColor?: string;
 }
