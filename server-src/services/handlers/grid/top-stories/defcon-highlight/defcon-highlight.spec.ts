@@ -38,15 +38,17 @@ describe("Top Stories Defcon Highlight", () => {
             boxColor: "black",
             applyGradient: false,
             pumped: true,
-            color
+            identifierColor: color
           }),
           [DefconHighlightPosition.Related1]: expect.objectContaining({
             type: ContentBlockType.HalfWidthImageArticleUnit,
-            id: "2"
+            id: "2",
+            identifierColor: color
           }),
           [DefconHighlightPosition.Related2]: expect.objectContaining({
             type: ContentBlockType.HalfWidthImageArticleUnit,
-            id: "3"
+            id: "3",
+            identifierColor: color
           })
         },
         mobile: {
