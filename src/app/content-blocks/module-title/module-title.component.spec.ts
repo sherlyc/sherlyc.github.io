@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-
 import { ModuleTitleComponent } from "./module-title.component";
 import { IModuleTitle } from "../../../../common/__types__/IModuleTitle";
 import { By, TransferState } from "@angular/platform-browser";
@@ -20,10 +19,6 @@ describe("ModuleTitleComponent", () => {
         {
           provide: AnalyticsService,
           useClass: mockService(AnalyticsService)
-        },
-        {
-          provide: TransferState,
-          useClass: mockService(TransferState)
         }
       ]
     }).compileComponents();
