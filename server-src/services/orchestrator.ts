@@ -238,7 +238,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.LargeLeadSix,
       displayName: "well & good",
-      displayNameColor: "#42a634",
+      color: "#42a634",
       linkUrl: "/" + Section.WellGood,
       strapName: `${homepageAdPrefix}WellGood`,
       sourceId: Strap.WellGood
@@ -295,7 +295,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.LargeLeadSix,
       displayName: "technology",
-      displayNameColor: "#00824a",
+      color: "#00824a",
       linkUrl: "/" + Section.Technology,
       strapName: `${homepageAdPrefix}Technology`,
       sourceId: Strap.Technology
