@@ -27,12 +27,12 @@ describe("Biggie Smalls", () => {
   const sourceId = Strap.Motoring;
   const strapName = "motoring-strap";
   const displayName = "motoring";
-  const displayNameColor = "pizzaz";
+  const color = "#000";
   const linkUrl = "http://www.stuff.co.nz";
   const biggieSmallsHandlerInput: IBiggieSmallsHandlerInput = {
     type: HandlerInputType.BiggieSmalls,
     displayName,
-    displayNameColor,
+    color,
     strapName,
     sourceId,
     linkUrl
@@ -104,7 +104,7 @@ describe("Biggie Smalls", () => {
             expectContentBlock({
               type: ContentBlockType.ModuleTitle,
               displayName,
-              displayNameColor,
+              displayNameColor: color,
               linkUrl
             })
           ],

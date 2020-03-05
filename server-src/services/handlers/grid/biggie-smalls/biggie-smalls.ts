@@ -19,7 +19,7 @@ export default async function(
   handlerRunner: handlerRunnerFunction,
   {
     displayName,
-    displayNameColor,
+    color,
     linkUrl,
     sourceId,
     strapName
@@ -37,7 +37,7 @@ export default async function(
       {
         type: ContentBlockType.ModuleTitle,
         displayName,
-        displayNameColor,
+        displayNameColor: color,
         linkUrl
       }
     ],
@@ -46,7 +46,8 @@ export default async function(
         () =>
           responsiveBigImageArticleUnit(
             articles.shift() as IRawArticle,
-            strapName
+            strapName,
+            color
           ),
         HandlerInputType.BiggieSmalls,
         sourceId,
@@ -57,7 +58,11 @@ export default async function(
     [BiggieSmallsGridPositions.FirstRow1]: [
       contentErrorHandler(
         () =>
-          halfWidthImageArticleUnit(articles.shift() as IRawArticle, strapName),
+          halfWidthImageArticleUnit(
+            articles.shift() as IRawArticle,
+            strapName,
+            color
+          ),
         HandlerInputType.BiggieSmalls,
         sourceId,
         params
@@ -70,7 +75,8 @@ export default async function(
           .splice(0, 5)
           .map((article) =>
             contentErrorHandler(
-              () => basicArticleTitleUnit(article as IRawArticle, strapName),
+              () =>
+                basicArticleTitleUnit(article as IRawArticle, strapName, color),
               HandlerInputType.BiggieSmalls,
               sourceId,
               params

@@ -30,12 +30,18 @@ export default async function(
 
   const articleFormatDelegate = {
     [ContentBlockType.BigImageArticleUnit]: (article: IRawArticle) => () =>
-      bigImageArticleUnit(article, strapName, ImageLayoutType.module),
+      bigImageArticleUnit(
+        article,
+        strapName,
+        ImageLayoutType.module,
+        false,
+        color
+      ),
     [ContentBlockType.FeaturedArticle]: (article: IRawArticle) => () =>
       featuredArticle(article, strapName, "white", "black", false),
     [ContentBlockType.HalfWidthImageArticleUnit]: (
       article: IRawArticle
-    ) => () => halfWidthImageArticleUnit(article, strapName)
+    ) => () => halfWidthImageArticleUnit(article, strapName, color)
   };
 
   const content: { [key in StripsGridPositions]: IContentBlock[] } = {
