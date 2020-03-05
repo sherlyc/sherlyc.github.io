@@ -15,13 +15,7 @@ import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  {
-    displayName,
-    displayNameColor,
-    linkUrl,
-    sourceId,
-    strapName
-  }: INewsSixHandlerInput,
+  { displayName, color, linkUrl, sourceId, strapName }: INewsSixHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   const articles = await getRawArticles(sourceId, 6, params);
@@ -31,7 +25,7 @@ export default async function(
       {
         type: ContentBlockType.ModuleTitle,
         displayName,
-        displayNameColor,
+        displayNameColor: color,
         linkUrl
       }
     ],
@@ -40,7 +34,8 @@ export default async function(
         () =>
           responsiveBigImageArticleUnit(
             articles.shift() as IRawArticle,
-            strapName
+            strapName,
+            color
           ),
         HandlerInputType.NewsSix,
         sourceId,
@@ -53,7 +48,9 @@ export default async function(
           bigImageArticleUnit(
             articles.shift() as IRawArticle,
             strapName,
-            ImageLayoutType.module
+            ImageLayoutType.module,
+            false,
+            color
           ),
         HandlerInputType.NewsSix,
         sourceId,
@@ -62,7 +59,12 @@ export default async function(
     ],
     [NewsSixGridPositions.SmallBottomFirst]: [
       contentErrorHandler(
-        () => basicArticleTitleUnit(articles.shift() as IRawArticle, strapName),
+        () =>
+          basicArticleTitleUnit(
+            articles.shift() as IRawArticle,
+            strapName,
+            color
+          ),
         HandlerInputType.NewsSix,
         sourceId,
         params
@@ -70,7 +72,12 @@ export default async function(
     ],
     [NewsSixGridPositions.SmallBottomSecond]: [
       contentErrorHandler(
-        () => basicArticleTitleUnit(articles.shift() as IRawArticle, strapName),
+        () =>
+          basicArticleTitleUnit(
+            articles.shift() as IRawArticle,
+            strapName,
+            color
+          ),
         HandlerInputType.NewsSix,
         sourceId,
         params
@@ -78,7 +85,12 @@ export default async function(
     ],
     [NewsSixGridPositions.SmallBottomThird]: [
       contentErrorHandler(
-        () => basicArticleTitleUnit(articles.shift() as IRawArticle, strapName),
+        () =>
+          basicArticleTitleUnit(
+            articles.shift() as IRawArticle,
+            strapName,
+            color
+          ),
         HandlerInputType.NewsSix,
         sourceId,
         params
@@ -86,7 +98,12 @@ export default async function(
     ],
     [NewsSixGridPositions.SmallBottomFourth]: [
       contentErrorHandler(
-        () => basicArticleTitleUnit(articles.shift() as IRawArticle, strapName),
+        () =>
+          basicArticleTitleUnit(
+            articles.shift() as IRawArticle,
+            strapName,
+            color
+          ),
         HandlerInputType.NewsSix,
         sourceId,
         params

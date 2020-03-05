@@ -7,15 +7,27 @@ import { By } from "@angular/platform-browser";
 import { AnalyticsService } from "src/app/services/analytics/analytics.service";
 import { mockService, ServiceMock } from "src/app/services/mocks/MockService";
 import { AnalyticsEventsType } from "src/app/services/analytics/__types__/AnalyticsEventsType";
-import { TimeAgoComponent } from "../../shared/components/time-ago/time-ago.component";
-import { HeadlineFlagComponent } from "../../shared/components/headline-flag/headline-flag.component";
 import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 import { FeatureSwitchService } from "../../services/feature-switch/feature-switch.service";
+import { IBasicArticleTitleUnit } from "../../../../common/__types__/IBasicArticleTitleUnit";
 
 describe("BasicArticleTitleUnitComponent", () => {
   let component: BasicArticleTitleUnitComponent;
   let fixture: ComponentFixture<BasicArticleTitleUnitComponent>;
   let analyticsService: ServiceMock<AnalyticsService>;
+  const headline = "Headline";
+  const headlineFlags = [HeadlineFlags.PHOTO];
+  const timeStamp = 1;
+  const input: IBasicArticleTitleUnit = {
+    type: ContentBlockType.BasicArticleTitleUnit,
+    id: "123123123",
+    strapName: "Top stories",
+    indexHeadline: headline,
+    title: "Title",
+    linkUrl: "/headline/top-news",
+    headlineFlags,
+    lastPublishedTime: timeStamp
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -42,39 +54,18 @@ describe("BasicArticleTitleUnitComponent", () => {
   });
 
   it("should render headline in headline component with correct inputs", () => {
-    const headline = "Headline";
-    const headlineFlags = [HeadlineFlags.PHOTO];
-    const timeStamp = 1;
-    component.input = {
-      type: ContentBlockType.BasicArticleTitleUnit,
-      id: "123123123",
-      strapName: "Top stories",
-      indexHeadline: headline,
-      title: "Title",
-      linkUrl: "/headline/top-news",
-      headlineFlags,
-      lastPublishedTime: timeStamp
-    };
+    component.input = input;
     fixture.detectChanges();
 
-    const headlineComponent = fixture.debugElement.query(
+    const headlineComponent: HeadlineComponent = fixture.debugElement.query(
       By.directive(HeadlineComponent)
-    );
-    expect(headlineComponent.nativeElement.textContent.trim()).toEqual(
-      headline
-    );
-    expect(headlineComponent.componentInstance).toHaveProperty(
-      "headline",
-      headline
-    );
-    expect(headlineComponent.componentInstance).toHaveProperty(
-      "headlineFlags",
-      headlineFlags
-    );
-    expect(headlineComponent.componentInstance).toHaveProperty(
-      "timeStamp",
-      timeStamp
-    );
+    ).componentInstance;
+
+    expect(headlineComponent.headline).toEqual(input.indexHeadline);
+    expect(headlineComponent.headlineFlags).toEqual(input.headlineFlags);
+    expect(headlineComponent.identifier).toEqual(input.identifier);
+    expect(headlineComponent.identifierColor).toEqual(input.identifierColor);
+    expect(headlineComponent).toHaveProperty("timeStamp", timeStamp);
   });
 
   it("should render anchor tag with correct linkUrl", () => {

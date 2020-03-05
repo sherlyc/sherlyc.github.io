@@ -6,7 +6,7 @@
         <app-fluid-image [imageSrc]="input.imageSrc" [caption]="input.indexHeadline"></app-fluid-image>
       </div>
       <div class="col-md-4 col-sm-12 col-xs-12 column">
-        <app-headline [headline]="input.indexHeadline" [headlineFlags]="input.headlineFlags"></app-headline>
+        <app-headline [headline]="input.indexHeadline" [headlineFlags]="input.headlineFlags" [identifier]="input.identifier" [identifierColor]="input.identifierColor"></app-headline>
         <p>
           <app-time-ago separator="right" [timestamp]="input.lastPublishedTime"></app-time-ago>
           <span class="intro">{{ input.introText }}</span>

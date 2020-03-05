@@ -10,4 +10,6 @@ export interface IBasicArticleTitleUnit {
   linkUrl: string;
   lastPublishedTime: number;
   headlineFlags: HeadlineFlags[];
+  identifier?: string;
+  identifierColor?: string;
 }

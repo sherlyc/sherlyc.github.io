@@ -82,9 +82,6 @@ describe("Responsive Big Image Article", () => {
 
     expect(a!.getAttribute("href")).toEqual(articleData.linkUrl);
 
-    const h3 = componentElement.querySelector("h3");
-    expect(h3!.textContent!.trim()).toEqual(articleData.indexHeadline);
-
     const img = fixture.debugElement.query(
       By.directive(FakeFluidImageComponent)
     ).componentInstance;
@@ -117,11 +114,14 @@ describe("Responsive Big Image Article", () => {
 
     fixture.detectChanges();
 
-    const headline = fixture.debugElement.query(By.directive(HeadlineComponent))
-      .componentInstance;
+    const headline: HeadlineComponent = fixture.debugElement.query(
+      By.directive(HeadlineComponent)
+    ).componentInstance;
 
-    expect(headline).toHaveProperty("headline", articleData.indexHeadline);
-    expect(headline).toHaveProperty("headlineFlags", articleData.headlineFlags);
+    expect(headline.headline).toEqual(articleData.indexHeadline);
+    expect(headline.headlineFlags).toEqual(articleData.headlineFlags);
+    expect(headline.identifier).toEqual(articleData.identifier);
+    expect(headline.identifierColor).toEqual(articleData.identifierColor);
     expect(headline).not.toHaveProperty("timeStamp");
   });
 

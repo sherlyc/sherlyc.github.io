@@ -3,27 +3,38 @@ import { INewsSixHandlerInput } from "../../__types__/INewsSixHandlerInput";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { Strap } from "../../../strap";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
-import { bigImageArticleUnit } from "../../../adapters/article-converter/big-image-article.converter";
-import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
-import { responsiveBigImageArticleUnit } from "../../../adapters/article-converter/responsive-big-image-article.converter";
 import {
   INewsSixGridHandlerInput,
   NewsSixGridPositions
 } from "../../__types__/INewsSixGridHandlerInput";
-import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../utils/logger");
-jest.mock("../../../adapters/article-converter/big-image-article.converter");
-jest.mock("../../../adapters/article-converter/basic-article-title.converter");
-jest.mock(
-  "../../../adapters/article-converter/responsive-big-image-article.converter"
-);
+
+const articlesWithIds = (ids: number[]) =>
+  ids.map((id) => ({ id: `${id}` } as IRawArticle));
+
+const expectBasicArticleTitle = (id: number, identifierColor: string) =>
+  expect.objectContaining({
+    type: ContentBlockType.BasicArticleTitleUnit,
+    id: `${id}`,
+    identifierColor
+  });
 
 describe("News six handler", () => {
   const handlerRunnerMock = jest.fn();
   const params = { apiRequestId: "id" };
+  const displayNameColor = "green";
+  const input: INewsSixHandlerInput = {
+    type: HandlerInputType.NewsSix,
+    displayName: "FakeName",
+    color: displayNameColor,
+    linkUrl: "http://www.stuff.co.nz",
+    strapName: "FakeStrap",
+    sourceId: "sourceId" as Strap
+  };
 
   beforeEach(() => {
     jest.resetAllMocks();
@@ -31,39 +42,20 @@ describe("News six handler", () => {
 
   it("should retrieve articles by source id and limit", async () => {
     (getRawArticles as jest.Mock).mockResolvedValue([]);
-    const input: INewsSixHandlerInput = {
-      type: HandlerInputType.NewsSix,
-      displayName: "FakeName",
-      displayNameColor: "FakeColor",
-      strapName: "FakeStrap",
-      sourceId: "sourceId" as Strap
-    };
 
     await newsSixHandler(handlerRunnerMock, input, params);
     expect(getRawArticles).toHaveBeenCalledWith("sourceId", 6, params);
   });
 
   it("should provide correct input to next handler", async () => {
-    (getRawArticles as jest.Mock).mockResolvedValue([]);
-    (bigImageArticleUnit as jest.Mock).mockReturnValue({});
-    (basicArticleTitleUnit as jest.Mock).mockReturnValue({});
-    (responsiveBigImageArticleUnit as jest.Mock).mockReturnValue({});
+    (getRawArticles as jest.Mock).mockResolvedValue(
+      articlesWithIds([1, 2, 3, 4, 5, 6])
+    );
 
     const fakeResult = {};
     handlerRunnerMock.mockResolvedValue(fakeResult);
 
-    const input: INewsSixHandlerInput = {
-      type: HandlerInputType.NewsSix,
-      displayName: "FakeName",
-      displayNameColor: "FakeColor",
-      linkUrl: "http://www.stuff.co.nz",
-      strapName: "FakeStrap",
-      sourceId: "sourceId" as Strap
-    };
-
     const result = await newsSixHandler(handlerRunnerMock, input, params);
-
-    const fakeInput = {} as IContentBlock;
 
     const expected: INewsSixGridHandlerInput = {
       type: HandlerInputType.NewsSixGrid,
@@ -72,16 +64,36 @@ describe("News six handler", () => {
           {
             type: ContentBlockType.ModuleTitle,
             displayName: input.displayName,
-            displayNameColor: input.displayNameColor,
+            displayNameColor: input.color,
             linkUrl: input.linkUrl
           }
         ],
-        [NewsSixGridPositions.BigTopLeft]: [fakeInput],
-        [NewsSixGridPositions.SmallTopRight]: [fakeInput],
-        [NewsSixGridPositions.SmallBottomFirst]: [fakeInput],
-        [NewsSixGridPositions.SmallBottomSecond]: [fakeInput],
-        [NewsSixGridPositions.SmallBottomThird]: [fakeInput],
-        [NewsSixGridPositions.SmallBottomFourth]: [fakeInput]
+        [NewsSixGridPositions.BigTopLeft]: [
+          expect.objectContaining({
+            type: ContentBlockType.ResponsiveBigImageArticle,
+            id: "1",
+            identifierColor: displayNameColor
+          })
+        ],
+        [NewsSixGridPositions.SmallTopRight]: [
+          expect.objectContaining({
+            type: ContentBlockType.BigImageArticleUnit,
+            id: "2",
+            identifierColor: displayNameColor
+          })
+        ],
+        [NewsSixGridPositions.SmallBottomFirst]: [
+          expectBasicArticleTitle(3, displayNameColor)
+        ],
+        [NewsSixGridPositions.SmallBottomSecond]: [
+          expectBasicArticleTitle(4, displayNameColor)
+        ],
+        [NewsSixGridPositions.SmallBottomThird]: [
+          expectBasicArticleTitle(5, displayNameColor)
+        ],
+        [NewsSixGridPositions.SmallBottomFourth]: [
+          expectBasicArticleTitle(6, displayNameColor)
+        ]
       }
     };
 

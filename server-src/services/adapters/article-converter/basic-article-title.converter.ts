@@ -4,7 +4,8 @@ import { ContentBlockType } from "../../../../common/__types__/ContentBlockType"
 
 export const basicArticleTitleUnit = (
   article: IRawArticle,
-  strapName: string
+  strapName: string,
+  identifierColor?: string
 ): IBasicArticleTitleUnit => ({
   type: ContentBlockType.BasicArticleTitleUnit,
   id: article.id,
@@ -13,5 +14,7 @@ export const basicArticleTitleUnit = (
   title: article.title,
   linkUrl: article.linkUrl,
   lastPublishedTime: article.lastPublishedTime,
-  headlineFlags: article.headlineFlags
+  headlineFlags: article.headlineFlags,
+  identifier: article.identifier,
+  identifierColor
 });

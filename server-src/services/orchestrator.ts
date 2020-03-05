@@ -116,7 +116,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.NewsSix,
       displayName: "national",
-      displayNameColor: "#256091",
+      color: "#256091",
       linkUrl: "/" + Section.National,
       strapName: `${homepageAdPrefix}National`,
       sourceId: Strap.National
@@ -132,7 +132,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.NewsSix,
       displayName: "business",
-      displayNameColor: "#0083d7",
+      color: "#0083d7",
       linkUrl: "/" + Section.Business,
       strapName: `${homepageAdPrefix}Business`,
       sourceId: Strap.Business
@@ -185,7 +185,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.NewsSix,
       displayName: "world",
-      displayNameColor: "#1272b4",
+      color: "#1272b4",
       linkUrl: "/" + Section.World,
       strapName: `${homepageAdPrefix}World`,
       sourceId: Strap.World
@@ -222,7 +222,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.NewsSix,
       displayName: "kea kids",
-      displayNameColor: "#bf4000",
+      color: "#bf4000",
       linkUrl: "/" + Section.KeaKidsNews,
       strapName: `${homepageAdPrefix}KeaKidsNews`,
       sourceId: Strap.KeaKidsNews
