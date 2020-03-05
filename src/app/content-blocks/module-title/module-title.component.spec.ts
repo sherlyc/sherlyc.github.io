@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { ModuleTitleComponent } from "./module-title.component";
 import { IModuleTitle } from "../../../../common/__types__/IModuleTitle";
-import { By, TransferState } from "@angular/platform-browser";
+import { By } from "@angular/platform-browser";
 import { OpenExternalLinkDirective } from "../../shared/directives/open-external-link/open-external-link.directive";
 import { mockService } from "../../services/mocks/MockService";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
