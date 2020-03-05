@@ -4,15 +4,20 @@ import { IRawArticle } from "../__types__/IRawArticle";
 
 export const halfImageArticleWithoutIntroUnit = (
   article: IRawArticle,
-  strapName: string
+  strapName: string,
+  identifierColor?: string
 ): IHalfImageArticleWithoutIntroUnit => ({
   type: ContentBlockType.HalfImageArticleWithoutIntroUnit,
   id: article.id,
   strapName,
   indexHeadline: article.indexHeadline,
   title: article.title,
-  imageSrc: article.sixteenByNineSrc,
+  introText: article.introText,
   linkUrl: article.linkUrl,
+  imageSrc: article.sixteenByNineSrc,
+  imageSrcSet: article.imageSrcSet,
   lastPublishedTime: article.lastPublishedTime,
-  headlineFlags: article.headlineFlags
+  headlineFlags: article.headlineFlags,
+  identifier: article.identifier,
+  identifierColor
 });

@@ -11,6 +11,7 @@ describe("Top Stories Defcon Highlight", () => {
   const handlerRunnerMock = jest.fn();
   const params: IParams = { apiRequestId: "123" };
   const strapName = "strapName";
+  const color = "blue";
 
   beforeEach(() => {
     jest.resetAllMocks();
@@ -20,7 +21,8 @@ describe("Top Stories Defcon Highlight", () => {
     const handlerInput: ITopStoriesDefconHighlightHandlerInput = {
       type: HandlerInputType.TopStoriesDefconHighlight,
       articles: ["1", "2", "3"].map((id) => (({ id } as any) as IRawArticle)),
-      strapName
+      strapName,
+      color
     };
 
     expect(
@@ -35,15 +37,18 @@ describe("Top Stories Defcon Highlight", () => {
             textColor: "white",
             boxColor: "black",
             applyGradient: false,
-            pumped: true
+            pumped: true,
+            identifierColor: color
           }),
           [DefconHighlightPosition.Related1]: expect.objectContaining({
             type: ContentBlockType.HalfWidthImageArticleUnit,
-            id: "2"
+            id: "2",
+            identifierColor: color
           }),
           [DefconHighlightPosition.Related2]: expect.objectContaining({
             type: ContentBlockType.HalfWidthImageArticleUnit,
-            id: "3"
+            id: "3",
+            identifierColor: color
           })
         },
         mobile: {

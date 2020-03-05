@@ -11,4 +11,6 @@ export interface IArticle {
   imageSrcSet: string | null;
   lastPublishedTime: number;
   headlineFlags: HeadlineFlags[];
+  identifier?: string;
+  identifierColor?: string;
 }

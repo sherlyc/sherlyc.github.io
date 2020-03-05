@@ -18,7 +18,8 @@ describe("big image article", () => {
     strapImageSrcSet: "strap1.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: [],
-    sixteenByNineSrc: "sixteenByNine.jpg"
+    sixteenByNineSrc: "sixteenByNine.jpg",
+    identifier: "identifier"
   };
 
   const fakeStrapName = "fakeStrapName";
@@ -35,7 +36,9 @@ describe("big image article", () => {
     imageSrcSet: "strap1.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: [],
-    layout: ImageLayoutType.default
+    layout: ImageLayoutType.default,
+    identifier: "identifier",
+    identifierColor: undefined
   };
 
   it("should convert", () => {
@@ -70,6 +73,23 @@ describe("big image article", () => {
         imageSrc: "sixteenByNine.jpg",
         layout: ImageLayoutType.module,
         pumped: true
+      })
+    );
+  });
+
+  it("sets the identifier color", () => {
+    expect(
+      bigImageArticleUnit(
+        fakeArticle,
+        fakeStrapName,
+        ImageLayoutType.default,
+        false,
+        "black"
+      )
+    ).toEqual(
+      expect.objectContaining({
+        ...expected,
+        identifierColor: "black"
       })
     );
   });

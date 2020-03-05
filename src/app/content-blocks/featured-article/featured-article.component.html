@@ -5,7 +5,7 @@
       <app-fluid-image [imageSrc]="input.imageSrc" [caption]="input.indexHeadline"></app-fluid-image>
     </div>
     <div [appGlobalStyle]="boxStyle">
-      <app-headline [textColor]="input.textColor" [headline]="input.indexHeadline" [headlineFlags]="input.headlineFlags"></app-headline>
+      <app-headline [textColor]="input.textColor" [headline]="input.indexHeadline" [headlineFlags]="input.headlineFlags" [identifier]="input.identifier" [identifierColor]="input.identifierColor"></app-headline>
       <p class="intro">{{ input.introText }}</p>
       <app-time-ago [textColor]="input.textColor" [timestamp]="input.lastPublishedTime"></app-time-ago>
     </div>

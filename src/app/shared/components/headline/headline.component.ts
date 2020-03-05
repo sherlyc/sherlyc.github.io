@@ -12,6 +12,8 @@ export class HeadlineComponent {
   @Input() timeStamp?: number;
   @Input() headlineFlags?: HeadlineFlags[];
   @Input() textColor?: string;
+  @Input() identifier?: string;
+  @Input() identifierColor = "#2AAAF5";
 
   showTimeAgo() {
     const twoHours = 2 * 3600;

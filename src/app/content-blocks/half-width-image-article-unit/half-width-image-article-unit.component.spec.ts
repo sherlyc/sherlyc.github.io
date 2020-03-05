@@ -5,15 +5,14 @@ import { AnalyticsEventsType } from "src/app/services/analytics/__types__/Analyt
 import { AnalyticsService } from "src/app/services/analytics/analytics.service";
 import { mockService, ServiceMock } from "src/app/services/mocks/MockService";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
 import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 import { FeatureSwitchService } from "../../services/feature-switch/feature-switch.service";
 import { FluidImageComponent } from "../../shared/components/fluid-image/fluid-image.component";
 import { HeadlineComponent } from "../../shared/components/headline/headline.component";
 import { TimeAgoComponent } from "../../shared/components/time-ago/time-ago.component";
 import { SharedModule } from "../../shared/shared.module";
-
 import { HalfWidthImageArticleUnitComponent } from "./half-width-image-article-unit.component";
+import { IHalfWidthImageArticleUnit } from "../../../../common/__types__/IHalfWidthImageArticleUnit";
 
 describe("HalfWidthImageArticleUnitComponent", () => {
   let component: HalfWidthImageArticleUnitComponent;
@@ -23,8 +22,8 @@ describe("HalfWidthImageArticleUnitComponent", () => {
   const twoDaysAgoDateInSeconds =
     new Date().setDate(new Date().getDate() - 2) / 1000;
 
-  const articleData: IBasicArticleUnit = {
-    type: ContentBlockType.BasicArticleUnit,
+  const articleData: IHalfWidthImageArticleUnit = {
+    type: ContentBlockType.HalfWidthImageArticleUnit,
     id: "123123",
     strapName: "National",
     indexHeadline: "Dummy Headline",
@@ -34,7 +33,9 @@ describe("HalfWidthImageArticleUnitComponent", () => {
     imageSrc: "https://dummyimagesrc.com",
     imageSrcSet: "https://dummyimagesrc.com 1w",
     lastPublishedTime: twoDaysAgoDateInSeconds,
-    headlineFlags: []
+    headlineFlags: [],
+    identifier: "Identifier",
+    identifierColor: "blue"
   };
 
   @Component({
@@ -140,6 +141,8 @@ describe("HalfWidthImageArticleUnitComponent", () => {
 
     expect(headline.headline).toEqual(articleData.indexHeadline);
     expect(headline.headlineFlags).toEqual(articleData.headlineFlags);
+    expect(headline.identifier).toEqual(articleData.identifier);
+    expect(headline.identifierColor).toEqual(articleData.identifierColor);
     expect(headline).not.toHaveProperty("timeStamp");
   });
 

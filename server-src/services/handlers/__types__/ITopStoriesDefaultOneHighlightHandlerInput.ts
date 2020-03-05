@@ -5,4 +5,5 @@ export interface ITopStoriesDefaultOneHighlightHandlerInput {
   type: HandlerInputType.TopStoriesDefaultOneHighlight;
   articles: IRawArticle[];
   strapName: string;
+  color: string;
 }

@@ -9,7 +9,7 @@
         <app-fluid-image [imageSrc]="input.imageSrc" [caption]="input.indexHeadline"></app-fluid-image>
       </ng-template>
     </div>
-    <app-headline [headline]="input.indexHeadline" [headlineFlags]="input.headlineFlags"></app-headline>
+    <app-headline [headline]="input.indexHeadline" [headlineFlags]="input.headlineFlags" [identifier]="input.identifier" [identifierColor]="input.identifierColor"></app-headline>
     <p>
       <app-time-ago separator="right" [timestamp]="input.lastPublishedTime"></app-time-ago>
       <span class="intro">{{ input.introText }}</span>

@@ -47,13 +47,15 @@ describe("Top Stories", () => {
   const handlerRunnerMock = jest.fn();
   const params: IParams = { apiRequestId: "123" };
   const strapName = "Top Stories";
+  const color = "blue";
   const basicAdUnit: IBasicAdUnit = {
     type: ContentBlockType.BasicAdUnit,
     context: strapName
   };
   const topStoriesHandlerInput: ITopStoriesHandlerInput = {
     type: HandlerInputType.TopStories,
-    strapName
+    strapName,
+    color
   };
 
   it("should retrieve articles and layout", async () => {
@@ -79,8 +81,9 @@ describe("Top Stories", () => {
       const [[topStoriesDefaultOneCall]] = handlerRunnerMock.mock.calls;
       const topStoriesDefaultOneHandlerInput: ITopStoriesDefaultOneHighlightHandlerInput = {
         type: HandlerInputType.TopStoriesDefaultOneHighlight,
+        articles: fakeArticlesWithIds([2, 1]),
         strapName,
-        articles: fakeArticlesWithIds([2, 1])
+        color
       };
       expect(topStoriesDefaultOneCall).toEqual(
         topStoriesDefaultOneHandlerInput
@@ -150,8 +153,9 @@ describe("Top Stories", () => {
 
       const topStoriesDefaultOneHandlerInput: ITopStoriesDefaultOneHighlightHandlerInput = {
         type: HandlerInputType.TopStoriesDefaultOneHighlight,
+        articles: fakeArticlesWithIds([2, 1]),
         strapName,
-        articles: fakeArticlesWithIds([2, 1])
+        color
       };
       expect(handlerRunnerMock).toHaveBeenNthCalledWith(
         1,
@@ -225,8 +229,9 @@ describe("Top Stories", () => {
         1,
         {
           type: HandlerInputType.TopStoriesDefconHighlight,
+          articles: fakeArticlesWithIds([1, 2, 3]),
           strapName,
-          articles: fakeArticlesWithIds([1, 2, 3])
+          color
         },
         params
       );

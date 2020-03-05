@@ -1,4 +1,5 @@
 <h3 [style.color]="textColor">
+  <span *ngIf="identifier" [style.color]="identifierColor">{{ identifier }}</span>
   {{ headline }}
 </h3>
 <app-time-ago *ngIf="showTimeAgo()" [timestamp]="timeStamp" [separator]="'left'"></app-time-ago>

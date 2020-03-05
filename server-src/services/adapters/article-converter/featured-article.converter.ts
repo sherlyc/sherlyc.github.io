@@ -8,7 +8,8 @@ export const featuredArticle = (
   textColor: string,
   boxColor: string,
   applyGradient = false,
-  pumped = false
+  pumped = false,
+  identifierColor?: string
 ): IFeaturedArticle => ({
   type: ContentBlockType.FeaturedArticle,
   id: article.id,
@@ -21,6 +22,8 @@ export const featuredArticle = (
   linkUrl: article.linkUrl,
   lastPublishedTime: article.lastPublishedTime,
   headlineFlags: article.headlineFlags,
+  identifier: article.identifier,
+  identifierColor,
   textColor,
   boxColor,
   applyGradient,

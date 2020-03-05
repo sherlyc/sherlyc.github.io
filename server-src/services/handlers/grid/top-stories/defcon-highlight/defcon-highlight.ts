@@ -13,7 +13,7 @@ import { DefconHighlightPosition } from "./defcon-highlight-position";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  { articles, strapName }: ITopStoriesDefconHighlightHandlerInput,
+  { articles, strapName, color }: ITopStoriesDefconHighlightHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   return [
@@ -28,20 +28,21 @@ export default async function(
               "white",
               "black",
               false,
-              true
+              true,
+              color
             ),
           HandlerInputType.TopStoriesDefconHighlight,
           Strap.TopStories,
           params
         ),
         [DefconHighlightPosition.Related1]: contentErrorHandler(
-          () => halfWidthImageArticleUnit(articles[1], strapName),
+          () => halfWidthImageArticleUnit(articles[1], strapName, color),
           HandlerInputType.TopStoriesDefconHighlight,
           Strap.TopStories,
           params
         ),
         [DefconHighlightPosition.Related2]: contentErrorHandler(
-          () => halfWidthImageArticleUnit(articles[2], strapName),
+          () => halfWidthImageArticleUnit(articles[2], strapName, color),
           HandlerInputType.TopStoriesDefconHighlight,
           Strap.TopStories,
           params

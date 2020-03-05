@@ -4,7 +4,8 @@ import { ContentBlockType } from "../../../../common/__types__/ContentBlockType"
 
 export const halfWidthImageArticleUnit = (
   article: IRawArticle,
-  strapName: string
+  strapName: string,
+  identifierColor?: string
 ): IHalfWidthImageArticleUnit => ({
   type: ContentBlockType.HalfWidthImageArticleUnit,
   id: article.id,
@@ -16,5 +17,7 @@ export const halfWidthImageArticleUnit = (
   imageSrcSet: article.strapImageSrcSet,
   linkUrl: article.linkUrl,
   lastPublishedTime: article.lastPublishedTime,
-  headlineFlags: article.headlineFlags
+  headlineFlags: article.headlineFlags,
+  identifier: article.identifier,
+  identifierColor
 });

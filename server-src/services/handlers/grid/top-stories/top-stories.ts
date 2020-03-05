@@ -22,6 +22,7 @@ const topStoriesVariationHandler: {
     handlerRunner: handlerRunnerFunction,
     articles: IRawArticle[],
     strapName: string,
+    color: string,
     params: IParams
   ) => Promise<IContentBlock[]>;
 } = {
@@ -34,13 +35,15 @@ async function defaultOneHandler(
   handlerRunner: handlerRunnerFunction,
   articles: IRawArticle[],
   strapName: string,
+  color: string,
   params: IParams
 ) {
   const [articleOne, articleTwo, ...remainingArticles] = articles;
   const topStoriesDefaultOneHandlerInput: ITopStoriesDefaultOneHighlightHandlerInput = {
     type: HandlerInputType.TopStoriesDefaultOneHighlight,
+    articles: [articleTwo, articleOne],
     strapName,
-    articles: [articleTwo, articleOne]
+    color
   };
   const highlightContents = await handlerRunner(
     topStoriesDefaultOneHandlerInput,
@@ -51,6 +54,7 @@ async function defaultOneHandler(
     highlightContents,
     remainingArticles,
     strapName,
+    color,
     params
   );
 }
@@ -59,13 +63,15 @@ async function defconHandler(
   handlerRunner: handlerRunnerFunction,
   articles: IRawArticle[],
   strapName: string,
+  color: string,
   params: IParams
 ) {
   const [articleOne, articleTwo, articleThree, ...remainingArticles] = articles;
   const topStoriesDefconHandlerInput: ITopStoriesDefconHighlightHandlerInput = {
     type: HandlerInputType.TopStoriesDefconHighlight,
+    articles: [articleOne, articleTwo, articleThree],
     strapName,
-    articles: [articleOne, articleTwo, articleThree]
+    color
   };
   const highlightContents = await handlerRunner(
     topStoriesDefconHandlerInput,
@@ -76,6 +82,7 @@ async function defconHandler(
     highlightContents,
     remainingArticles,
     strapName,
+    color,
     params
   );
 }
@@ -85,6 +92,7 @@ async function createTopStoriesGrid(
   highlightContents: IContentBlock[],
   articles: IRawArticle[],
   strapName: string,
+  color: string,
   params: IParams
 ) {
   const content: { [position in TopStoriesGridPositions]: IContentBlock[] } = {
@@ -98,7 +106,11 @@ async function createTopStoriesGrid(
     [TopStoriesGridPositions.FirstRow1]: [
       contentErrorHandler(
         () =>
-          halfWidthImageArticleUnit(articles.shift() as IRawArticle, strapName),
+          halfWidthImageArticleUnit(
+            articles.shift() as IRawArticle,
+            strapName,
+            color
+          ),
         HandlerInputType.TopStories,
         Strap.TopStories,
         params
@@ -107,7 +119,11 @@ async function createTopStoriesGrid(
     [TopStoriesGridPositions.FirstRow2]: [
       contentErrorHandler(
         () =>
-          halfWidthImageArticleUnit(articles.shift() as IRawArticle, strapName),
+          halfWidthImageArticleUnit(
+            articles.shift() as IRawArticle,
+            strapName,
+            color
+          ),
         HandlerInputType.TopStories,
         Strap.TopStories,
         params
@@ -117,7 +133,11 @@ async function createTopStoriesGrid(
     [TopStoriesGridPositions.FirstRow4]: [
       contentErrorHandler(
         () =>
-          halfWidthImageArticleUnit(articles.shift() as IRawArticle, strapName),
+          halfWidthImageArticleUnit(
+            articles.shift() as IRawArticle,
+            strapName,
+            color
+          ),
         HandlerInputType.TopStories,
         Strap.TopStories,
         params
@@ -128,7 +148,8 @@ async function createTopStoriesGrid(
         () =>
           halfImageArticleWithoutIntroUnit(
             articles.shift() as IRawArticle,
-            strapName
+            strapName,
+            color
           ),
         HandlerInputType.TopStories,
         Strap.TopStories,
@@ -140,7 +161,8 @@ async function createTopStoriesGrid(
         () =>
           halfImageArticleWithoutIntroUnit(
             articles.shift() as IRawArticle,
-            strapName
+            strapName,
+            color
           ),
         HandlerInputType.TopStories,
         Strap.TopStories,
@@ -152,7 +174,8 @@ async function createTopStoriesGrid(
         () =>
           halfImageArticleWithoutIntroUnit(
             articles.shift() as IRawArticle,
-            strapName
+            strapName,
+            color
           ),
         HandlerInputType.TopStories,
         Strap.TopStories,
@@ -164,7 +187,8 @@ async function createTopStoriesGrid(
         () =>
           halfImageArticleWithoutIntroUnit(
             articles.shift() as IRawArticle,
-            strapName
+            strapName,
+            color
           ),
         HandlerInputType.TopStories,
         Strap.TopStories,
@@ -184,7 +208,7 @@ async function createTopStoriesGrid(
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  { strapName }: ITopStoriesHandlerInput,
+  { strapName, color }: ITopStoriesHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   const layout = await layoutRetriever(params);
@@ -198,6 +222,7 @@ export default async function(
     handlerRunner,
     articles,
     strapName,
+    color,
     params
   );
 }
