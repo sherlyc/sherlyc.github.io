@@ -27,12 +27,12 @@ describe("Strips", () => {
   const articleFormat = ContentBlockType.FeaturedArticle;
   const strapName = Strap.Premium;
   const displayName = "Premium";
-  const displayNameColor = "premiumdark";
+  const color = "premiumdark";
   const linkUrl = "http://www.stuff.co.nz";
   const stripsHandlerInput: IStripsHandlerInput = {
     type: HandlerInputType.Strips,
     displayName,
-    displayNameColor,
+    color,
     linkUrl,
     strapName,
     sourceId,
@@ -170,7 +170,7 @@ describe("Strips", () => {
             expectContentBlock({
               type: ContentBlockType.ModuleTitle,
               displayName,
-              displayNameColor,
+              displayNameColor: color,
               linkUrl
             })
           ],

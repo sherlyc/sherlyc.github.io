@@ -156,7 +156,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.Strips,
       displayName: "spotlight",
-      displayNameColor: "premiumdark",
+      color: "#000",
       linkUrl: "/" + Section.Premium,
       sourceId: Strap.Premium,
       strapName: Strap.Premium,
@@ -246,7 +246,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.Strips,
       displayName: "food & wine",
-      displayNameColor: "#129a5e",
+      color: "#129a5e",
       linkUrl: "/" + Section.FoodAndWine,
       sourceId: Strap.FoodAndWine,
       strapName: Strap.FoodAndWine,
@@ -303,7 +303,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.Strips,
       displayName: "nz farmer",
-      displayNameColor: "#f36f21",
+      color: "#f36f21",
       linkUrl: "/" + Section.NZFarmer,
       sourceId: Strap.NZFarmer,
       strapName: Strap.NZFarmer,
@@ -313,7 +313,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.Strips,
       displayName: "parenting",
-      displayNameColor: "#db0962",
+      color: "#db0962",
       linkUrl: "/" + Section.Parenting,
       sourceId: Strap.Parenting,
       strapName: Strap.Parenting,
@@ -331,7 +331,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.Strips,
       displayName: "",
-      displayNameColor: "#f36f21",
+      color: "#f36f21",
       linkUrl: "/" + Section.SponsoredContent,
       sourceId: Strap.SponsoredContent,
       strapName: Strap.SponsoredContent,

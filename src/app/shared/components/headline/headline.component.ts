@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { HeadlineFlags } from "../../../../../common/HeadlineFlags";
 import * as moment from "moment";
 
@@ -7,13 +7,17 @@ import * as moment from "moment";
   templateUrl: "./headline.component.html",
   styleUrls: ["./headline.component.scss"]
 })
-export class HeadlineComponent {
+export class HeadlineComponent implements OnInit {
   @Input() headline?: string;
   @Input() timeStamp?: number;
   @Input() headlineFlags?: HeadlineFlags[];
   @Input() textColor?: string;
   @Input() identifier?: string;
-  @Input() identifierColor = "#2AAAF5";
+  @Input() identifierColor?: string;
+
+  ngOnInit() {
+    this.identifierColor = this.identifierColor || "#2AAAF5";
+  }
 
   showTimeAgo() {
     const twoHours = 2 * 3600;

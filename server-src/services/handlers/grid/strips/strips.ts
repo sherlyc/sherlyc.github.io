@@ -17,7 +17,7 @@ export default async function(
   handlerRunner: handlerRunnerFunction,
   {
     displayName,
-    displayNameColor,
+    color,
     linkUrl,
     sourceId,
     strapName,
@@ -43,7 +43,7 @@ export default async function(
       {
         type: ContentBlockType.ModuleTitle,
         displayName,
-        displayNameColor,
+        displayNameColor: color,
         linkUrl
       }
     ],

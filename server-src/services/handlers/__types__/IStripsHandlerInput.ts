@@ -5,7 +5,7 @@ import { HandlerInputType } from "./HandlerInputType";
 export interface IStripsHandlerInput {
   type: HandlerInputType.Strips;
   displayName: string;
-  displayNameColor: string;
+  color: string;
   linkUrl?: string;
   strapName: Strap;
   sourceId: Strap;

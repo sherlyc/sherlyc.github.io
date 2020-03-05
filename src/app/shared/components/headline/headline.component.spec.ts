@@ -122,4 +122,15 @@ describe("Headline Component", () => {
 
     expect(identifier).toBeFalsy();
   });
+
+  it("should have identifier color if not provided", () => {
+    component.identifier = "Hello";
+    component.identifierColor = undefined;
+
+    fixture.detectChanges();
+    const identifier = fixture.debugElement.query(By.css("h3 > span"))
+      .nativeElement;
+
+    expect(identifier.style.color).toBeTruthy();
+  });
 });
