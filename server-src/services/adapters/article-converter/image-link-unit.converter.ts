@@ -6,7 +6,8 @@ import { ImageLayoutType } from "../../../../common/__types__/ImageLayoutType";
 export const imageLinkUnit = (
   article: IRawArticle,
   strapName: string,
-  layout: ImageLayoutType = ImageLayoutType.default
+  layout: ImageLayoutType = ImageLayoutType.default,
+  identifierColor?: string
 ): IImageLinkUnit => ({
   type: ContentBlockType.ImageLinkUnit,
   id: article.id,
@@ -20,5 +21,9 @@ export const imageLinkUnit = (
   imageSrcSet: article.strapImageSrcSet,
   linkUrl: article.linkUrl,
   headlineFlags: article.headlineFlags,
+  introText: article.introText,
+  lastPublishedTime: article.lastPublishedTime,
+  identifier: article.identifier,
+  identifierColor,
   layout
 });

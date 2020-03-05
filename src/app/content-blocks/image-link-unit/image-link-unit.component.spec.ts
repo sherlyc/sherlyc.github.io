@@ -29,7 +29,9 @@ describe("ImageLinkUnitComponent", () => {
     imageSrc: "https://dummyimagesrc.com",
     imageSrcSet: "https://dummyimagesrc.com 1w",
     headlineFlags: [],
-    layout: ImageLayoutType.default
+    layout: ImageLayoutType.default,
+    introText: "Intro Text",
+    lastPublishedTime: 1
   };
 
   @Component({
