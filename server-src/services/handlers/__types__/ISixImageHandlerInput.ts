@@ -4,7 +4,7 @@ import { Strap } from "../../strap";
 export interface ISixImageHandlerInput {
   type: HandlerInputType.SixImage;
   displayName: string;
-  displayNameColor: string;
+  color: string;
   linkUrl?: string;
   sourceId: Strap;
   strapName: string;

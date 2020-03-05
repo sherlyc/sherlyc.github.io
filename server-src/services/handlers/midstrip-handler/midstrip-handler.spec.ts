@@ -7,7 +7,6 @@ import { Strap } from "../../strap";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import wrappedLogger from "../../utils/logger";
 import { IRawArticle } from "../../adapters/__types__/IRawArticle";
-import { ImageLayoutType } from "../../../../common/__types__/ImageLayoutType";
 
 jest.mock("../../utils/logger");
 jest.mock("../../adapters/strap-list/strap-list-service");
@@ -19,38 +18,10 @@ describe("MidStripHandler", () => {
     context: "MidStrip"
   };
   const params: IParams = { apiRequestId: "request-id-for-testing" };
-  const rawMidStrip: IRawArticle[] = [
-    {
-      id: "1",
-      indexHeadline: "Headline 1",
-      title: "Title 1",
-      introText: "Intro 1",
-      linkUrl: "/link1",
-      defconSrc: "defcon1.jpg",
-      imageSrc: "1.jpg",
-      imageSrcSet: "1.jpg 1w",
-      strapImageSrc: "1.jpg",
-      strapImageSrcSet: "1.jpg 1w",
-      sixteenByNineSrc: "sixteenByNine1.jpg",
-      lastPublishedTime: 1,
-      headlineFlags: []
-    },
-    {
-      id: "2",
-      indexHeadline: "Headline 2",
-      introText: "Intro 2",
-      title: "Title 2",
-      linkUrl: "/link2",
-      defconSrc: "defcon2.jpg",
-      imageSrc: "2.jpg",
-      imageSrcSet: "2.jpg 2w",
-      strapImageSrc: "2.jpg",
-      strapImageSrcSet: "2.jpg 2w",
-      sixteenByNineSrc: "sixteenByNine2.jpg",
-      lastPublishedTime: 2,
-      headlineFlags: []
-    }
-  ];
+
+  const fakeArticlesWithIds = (ids: number[]) =>
+    ids.map((id) => ({ id: `${id}` } as IRawArticle));
+
   beforeEach(() => {
     jest.resetModules();
   });
@@ -59,7 +30,9 @@ describe("MidStripHandler", () => {
     it("should get a list of Image Links", async () => {
       const totalArticles = 2;
 
-      (getStrapArticles as jest.Mock).mockResolvedValue(rawMidStrip);
+      (getStrapArticles as jest.Mock).mockResolvedValue(
+        fakeArticlesWithIds([1, 2])
+      );
 
       const handlerRunnerMock = jest.fn();
 
@@ -81,30 +54,14 @@ describe("MidStripHandler", () => {
         {
           type: "ColumnContainer",
           items: [
-            {
-              headlineFlags: [],
-              id: "1",
-              strapName: "MidStrip",
-              imageSrc: "1.jpg",
-              imageSrcSet: "1.jpg 1w",
-              indexHeadline: "Headline 1",
-              title: "Title 1",
-              linkUrl: "/link1",
+            expect.objectContaining({
               type: ContentBlockType.ImageLinkUnit,
-              layout: ImageLayoutType.default
-            },
-            {
-              headlineFlags: [],
-              id: "2",
-              strapName: "MidStrip",
-              imageSrc: "2.jpg",
-              imageSrcSet: "2.jpg 2w",
-              indexHeadline: "Headline 2",
-              title: "Title 2",
-              linkUrl: "/link2",
+              id: "1"
+            }),
+            expect.objectContaining({
               type: ContentBlockType.ImageLinkUnit,
-              layout: ImageLayoutType.default
-            }
+              id: "2"
+            })
           ]
         },
         basicAdUnit
@@ -113,7 +70,9 @@ describe("MidStripHandler", () => {
 
     it("should get a list of Image links not exceeding number of requested item", async () => {
       const totalArticles = 1;
-      (getStrapArticles as jest.Mock).mockResolvedValue(rawMidStrip);
+      (getStrapArticles as jest.Mock).mockResolvedValue(
+        fakeArticlesWithIds([1, 2])
+      );
 
       const handlerRunnerMock = jest.fn();
 
@@ -135,18 +94,10 @@ describe("MidStripHandler", () => {
         {
           type: "ColumnContainer",
           items: [
-            {
-              headlineFlags: [],
-              id: "1",
-              strapName: "MidStrip",
-              imageSrc: "1.jpg",
-              imageSrcSet: "1.jpg 1w",
-              indexHeadline: "Headline 1",
-              title: "Title 1",
-              linkUrl: "/link1",
+            expect.objectContaining({
               type: ContentBlockType.ImageLinkUnit,
-              layout: ImageLayoutType.default
-            }
+              id: "1"
+            })
           ]
         },
         basicAdUnit
@@ -176,7 +127,9 @@ describe("MidStripHandler", () => {
     it("should get a list of Image Links", async () => {
       const totalArticles = 2;
 
-      (getStrapArticles as jest.Mock).mockResolvedValue(rawMidStrip);
+      (getStrapArticles as jest.Mock).mockResolvedValue(
+        fakeArticlesWithIds([1, 2])
+      );
 
       const handlerRunnerMock = jest.fn();
 
@@ -198,30 +151,14 @@ describe("MidStripHandler", () => {
         {
           type: "ColumnContainer",
           items: [
-            {
-              headlineFlags: [],
-              id: "1",
-              strapName: "MidStrip",
-              imageSrc: "1.jpg",
-              imageSrcSet: "1.jpg 1w",
-              indexHeadline: "Headline 1",
-              title: "Title 1",
-              linkUrl: "/link1",
+            expect.objectContaining({
               type: ContentBlockType.ImageLinkUnit,
-              layout: ImageLayoutType.default
-            },
-            {
-              headlineFlags: [],
-              id: "2",
-              strapName: "MidStrip",
-              imageSrc: "2.jpg",
-              imageSrcSet: "2.jpg 2w",
-              indexHeadline: "Headline 2",
-              title: "Title 2",
-              linkUrl: "/link2",
+              id: "1"
+            }),
+            expect.objectContaining({
               type: ContentBlockType.ImageLinkUnit,
-              layout: ImageLayoutType.default
-            }
+              id: "2"
+            })
           ]
         },
         basicAdUnit
@@ -230,7 +167,9 @@ describe("MidStripHandler", () => {
 
     it("should get a list of Image links not exceeding number of requested item", async () => {
       const totalArticles = 1;
-      (getStrapArticles as jest.Mock).mockResolvedValue(rawMidStrip);
+      (getStrapArticles as jest.Mock).mockResolvedValue(
+        fakeArticlesWithIds([1, 2])
+      );
 
       const handlerRunnerMock = jest.fn();
 
@@ -252,18 +191,10 @@ describe("MidStripHandler", () => {
         {
           type: "ColumnContainer",
           items: [
-            {
-              headlineFlags: [],
-              id: "1",
-              strapName: "MidStrip",
-              imageSrc: "1.jpg",
-              imageSrcSet: "1.jpg 1w",
-              indexHeadline: "Headline 1",
-              title: "Title 1",
-              linkUrl: "/link1",
+            expect.objectContaining({
               type: ContentBlockType.ImageLinkUnit,
-              layout: ImageLayoutType.default
-            }
+              id: "1"
+            })
           ]
         },
         basicAdUnit

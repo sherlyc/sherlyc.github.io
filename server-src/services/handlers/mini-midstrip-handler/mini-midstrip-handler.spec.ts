@@ -6,7 +6,7 @@ import { Strap } from "../../strap";
 import { getStrapArticles } from "../../adapters/strap-list/strap-list-service";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import wrappedLogger from "../../utils/logger";
-import { ImageLayoutType } from "../../../../common/__types__/ImageLayoutType";
+import { IRawArticle } from "../../adapters/__types__/IRawArticle";
 
 jest.mock("../../utils/logger");
 jest.mock("../../adapters/strap-list/strap-list-service");
@@ -19,38 +19,8 @@ describe("MiniMidStripHandler", () => {
   };
   const params: IParams = { apiRequestId: "request-id-for-testing" };
 
-  const rawMiniMidStrip: any[] = [
-    {
-      id: "1",
-      indexHeadline: "Headline 1",
-      title: "Title 1",
-      introText: "Intro 1",
-      linkUrl: "/link1",
-      defconSrc: null,
-      imageSrc: "1.jpg",
-      imageSrcSet: "1.jpg 1w",
-      strapImageSrc: "1.jpg",
-      strapImageSrcSet: "1.jpg 1w",
-      lastPublishedTime: 1,
-      headlineFlags: [],
-      sixteenByNineSrc: null
-    },
-    {
-      id: "2",
-      indexHeadline: "Headline 2",
-      title: "Title 2",
-      introText: "Intro 2",
-      linkUrl: "/link2",
-      defconSrc: null,
-      imageSrc: "2.jpg",
-      imageSrcSet: "2.jpg 2w",
-      strapImageSrc: "2.jpg",
-      strapImageSrcSet: "2.jpg 2w",
-      lastPublishedTime: 2,
-      headlineFlags: [],
-      sixteenByNineSrc: null
-    }
-  ];
+  const fakeArticlesWithIds = (ids: number[]) =>
+    ids.map((id) => ({ id: `${id}` } as IRawArticle));
 
   beforeEach(() => {
     jest.resetModules();
@@ -58,7 +28,9 @@ describe("MiniMidStripHandler", () => {
 
   describe("when source is strap", () => {
     it("should get a list of Image Links", async () => {
-      (getStrapArticles as jest.Mock).mockResolvedValue(rawMiniMidStrip);
+      (getStrapArticles as jest.Mock).mockResolvedValue(
+        fakeArticlesWithIds([1, 2])
+      );
 
       const handlerRunnerMock = jest.fn();
 
@@ -80,30 +52,14 @@ describe("MiniMidStripHandler", () => {
         {
           type: "ColumnContainer",
           items: [
-            {
-              id: "1",
-              strapName: "MiniMidStrip",
-              headlineFlags: [],
-              imageSrc: "1.jpg",
-              imageSrcSet: "1.jpg 1w",
-              indexHeadline: `Headline 1`,
-              title: "Title 1",
-              linkUrl: "/link1",
+            expect.objectContaining({
               type: ContentBlockType.ImageLinkUnit,
-              layout: ImageLayoutType.default
-            },
-            {
-              id: "2",
-              strapName: "MiniMidStrip",
-              headlineFlags: [],
-              imageSrc: "2.jpg",
-              imageSrcSet: "2.jpg 2w",
-              indexHeadline: `Headline 2`,
-              title: "Title 2",
-              linkUrl: "/link2",
+              id: "1"
+            }),
+            expect.objectContaining({
               type: ContentBlockType.ImageLinkUnit,
-              layout: ImageLayoutType.default
-            }
+              id: "2"
+            })
           ]
         },
         basicAdUnit
@@ -131,7 +87,9 @@ describe("MiniMidStripHandler", () => {
 
   describe("when source is a listasset", () => {
     it("should get a list of Image Links", async () => {
-      (getStrapArticles as jest.Mock).mockResolvedValue(rawMiniMidStrip);
+      (getStrapArticles as jest.Mock).mockResolvedValue(
+        fakeArticlesWithIds([1, 2])
+      );
 
       const handlerRunnerMock = jest.fn();
 
@@ -153,30 +111,14 @@ describe("MiniMidStripHandler", () => {
         {
           type: "ColumnContainer",
           items: [
-            {
-              id: "1",
-              strapName: "MiniMidStrip",
-              headlineFlags: [],
-              imageSrc: "1.jpg",
-              imageSrcSet: "1.jpg 1w",
-              indexHeadline: `Headline 1`,
-              title: "Title 1",
-              linkUrl: "/link1",
+            expect.objectContaining({
               type: ContentBlockType.ImageLinkUnit,
-              layout: ImageLayoutType.default
-            },
-            {
-              id: "2",
-              strapName: "MiniMidStrip",
-              headlineFlags: [],
-              imageSrc: "2.jpg",
-              imageSrcSet: "2.jpg 2w",
-              indexHeadline: `Headline 2`,
-              title: "Title 2",
-              linkUrl: "/link2",
+              id: "1"
+            }),
+            expect.objectContaining({
               type: ContentBlockType.ImageLinkUnit,
-              layout: ImageLayoutType.default
-            }
+              id: "2"
+            })
           ]
         },
         basicAdUnit

@@ -45,7 +45,7 @@ describe("Six image", () => {
     const input: ISixImageHandlerInput = {
       type: HandlerInputType.SixImage,
       displayName: "FakeName",
-      displayNameColor: "FakeColor",
+      color: "FakeColor",
       strapName,
       sourceId
     };
@@ -63,7 +63,7 @@ describe("Six image", () => {
     const input: ISixImageHandlerInput = {
       type: HandlerInputType.SixImage,
       displayName: "FakeName",
-      displayNameColor: "FakeColor",
+      color: "FakeColor",
       linkUrl: "linkUrl",
       strapName,
       sourceId: Strap.MidStrip
@@ -76,7 +76,7 @@ describe("Six image", () => {
           {
             type: ContentBlockType.ModuleTitle,
             displayName: input.displayName,
-            displayNameColor: input.displayNameColor,
+            displayNameColor: input.color,
             linkUrl: input.linkUrl
           }
         ],

@@ -17,13 +17,7 @@ import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  {
-    sourceId,
-    strapName,
-    displayName,
-    displayNameColor,
-    linkUrl
-  }: ISixImageHandlerInput,
+  { sourceId, strapName, displayName, color, linkUrl }: ISixImageHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   const articles = await getRawArticles(sourceId, 6, params);
@@ -34,7 +28,7 @@ export default async function(
         {
           type: ContentBlockType.ModuleTitle,
           displayName,
-          displayNameColor,
+          displayNameColor: color,
           linkUrl
         }
       ],
@@ -44,7 +38,8 @@ export default async function(
             imageLinkUnit(
               articles.shift() as IRawArticle,
               strapName,
-              ImageLayoutType.module
+              ImageLayoutType.module,
+              color
             ),
           HandlerInputType.SixImage,
           sourceId,
@@ -57,7 +52,8 @@ export default async function(
             imageLinkUnit(
               articles.shift() as IRawArticle,
               strapName,
-              ImageLayoutType.module
+              ImageLayoutType.module,
+              color
             ),
           HandlerInputType.SixImage,
           sourceId,
@@ -70,7 +66,8 @@ export default async function(
             imageLinkUnit(
               articles.shift() as IRawArticle,
               strapName,
-              ImageLayoutType.module
+              ImageLayoutType.module,
+              color
             ),
           HandlerInputType.SixImage,
           sourceId,
@@ -83,7 +80,8 @@ export default async function(
             imageLinkUnit(
               articles.shift() as IRawArticle,
               strapName,
-              ImageLayoutType.module
+              ImageLayoutType.module,
+              color
             ),
           HandlerInputType.SixImage,
           sourceId,
@@ -96,7 +94,8 @@ export default async function(
             imageLinkUnit(
               articles.shift() as IRawArticle,
               strapName,
-              ImageLayoutType.module
+              ImageLayoutType.module,
+              color
             ),
           HandlerInputType.SixImage,
           sourceId,
@@ -109,7 +108,8 @@ export default async function(
             imageLinkUnit(
               articles.shift() as IRawArticle,
               strapName,
-              ImageLayoutType.module
+              ImageLayoutType.module,
+              color
             ),
           HandlerInputType.SixImage,
           sourceId,

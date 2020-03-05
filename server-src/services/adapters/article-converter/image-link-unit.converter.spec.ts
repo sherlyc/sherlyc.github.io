@@ -6,6 +6,7 @@ import { ImageLayoutType } from "../../../../common/__types__/ImageLayoutType";
 
 describe("Image Link Unit", () => {
   const strapName = "strapName";
+  const color = "blue";
 
   const rawArticle: IRawArticle = {
     id: "1",
@@ -20,7 +21,8 @@ describe("Image Link Unit", () => {
     strapImageSrcSet: "strap1.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: [],
-    sixteenByNineSrc: "sixteenByNine.jpg"
+    sixteenByNineSrc: "sixteenByNine.jpg",
+    identifier: "Identifier"
   };
 
   const expected: IImageLinkUnit = {
@@ -33,6 +35,9 @@ describe("Image Link Unit", () => {
     imageSrc: "strap1.jpg",
     imageSrcSet: "strap1.jpg 1w",
     headlineFlags: [],
+    introText: "Intro 1",
+    lastPublishedTime: 1,
+    identifier: "Identifier",
     layout: ImageLayoutType.default
   };
 
@@ -55,6 +60,17 @@ describe("Image Link Unit", () => {
         ...expected,
         imageSrc: "sixteenByNine.jpg",
         layout: ImageLayoutType.module
+      })
+    );
+  });
+
+  it("should convert identifierColor", () => {
+    expect(
+      imageLinkUnit(rawArticle, strapName, ImageLayoutType.default, color)
+    ).toEqual(
+      expect.objectContaining({
+        ...expected,
+        identifierColor: color
       })
     );
   });
