@@ -15,13 +15,11 @@ import { AnalyticsService } from "../../services/analytics/analytics.service";
   styleUrls: ["./module-title.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ModuleTitleComponent implements IContentBlockComponent, OnInit {
+export class ModuleTitleComponent implements IContentBlockComponent {
   @Input()
   input!: IModuleTitle;
 
   constructor(private analyticsService: AnalyticsService) {}
-
-  ngOnInit() {}
 
   sendAnalytics() {
     const { displayName } = this.input;
