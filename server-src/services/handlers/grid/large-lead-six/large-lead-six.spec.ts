@@ -22,6 +22,16 @@ import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 
+const articlesWithIds = (ids: number[]) =>
+  ids.map((id) => ({ id: `${id}` } as IRawArticle));
+
+const expectBasicArticleTitle = (id: number, identifierColor: string) =>
+  expect.objectContaining({
+    type: ContentBlockType.BasicArticleTitleUnit,
+    id: `${id}`,
+    identifierColor
+  });
+
 describe("Large lead six", () => {
   const handlerRunnerMock = jest.fn();
   const params: IParams = { apiRequestId: "123" };
@@ -31,66 +41,11 @@ describe("Large lead six", () => {
   const displayNameColor = "displayNameColor";
   const linkUrl = "http://www.stuff.co.nz";
 
-  const articleOne: IRawArticle = {
-    id: "1",
-    indexHeadline: "Headline 1",
-    title: "Title One",
-    introText: "Intro 1",
-    linkUrl: "/link1",
-    defconSrc: null,
-    imageSrc: "1.jpg",
-    imageSrcSet: "1.jpg 1w",
-    strapImageSrc: "strap1.jpg",
-    strapImageSrcSet: "strap1.jpg 1w",
-    sixteenByNineSrc: "sixteenByNineSrc.jpg",
-    lastPublishedTime: 1,
-    headlineFlags: []
-  };
-  const articleTwo: IRawArticle = {
-    id: "2",
-    indexHeadline: "Headline 2",
-    title: "Title Two",
-    introText: "Intro 2",
-    linkUrl: "/link2",
-    defconSrc: null,
-    imageSrc: "2.jpg",
-    imageSrcSet: "2.jpg 2w",
-    sixteenByNineSrc: null,
-    strapImageSrc: "strap2.jpg",
-    strapImageSrcSet: "strap2.jpg 2w",
-    lastPublishedTime: 2,
-    headlineFlags: []
-  };
   const moduleTitle: IModuleTitle = {
     type: ContentBlockType.ModuleTitle,
     displayName,
     displayNameColor,
     linkUrl
-  };
-  const articleOneAsBigImage: IBigImageArticleUnit = {
-    type: ContentBlockType.BigImageArticleUnit,
-    id: "1",
-    strapName,
-    indexHeadline: "Headline 1",
-    title: "Title One",
-    introText: "Intro 1",
-    linkUrl: "/link1",
-    imageSrc: "sixteenByNineSrc.jpg",
-    imageSrcSet: "strap1.jpg 1w",
-    layout: ImageLayoutType.module,
-    pumped: false,
-    lastPublishedTime: 1,
-    headlineFlags: []
-  };
-  const articleTwoAsTitle: IBasicArticleTitleUnit = {
-    type: ContentBlockType.BasicArticleTitleUnit,
-    id: "2",
-    strapName,
-    indexHeadline: "Headline 2",
-    title: "Title Two",
-    linkUrl: "/link2",
-    lastPublishedTime: 2,
-    headlineFlags: []
   };
   const basicAdUnit: IBasicAdUnit = {
     type: ContentBlockType.BasicAdUnit,
@@ -102,9 +57,7 @@ describe("Large lead six", () => {
   });
 
   it("should retrieve articles", async () => {
-    (getRawArticles as jest.Mock).mockResolvedValue(
-      new Array(6).fill(articleOne)
-    );
+    (getRawArticles as jest.Mock).mockResolvedValue([]);
     const input: ILargeLeadSixHandlerInput = {
       type: HandlerInputType.LargeLeadSix,
       displayName,
@@ -120,14 +73,9 @@ describe("Large lead six", () => {
   });
 
   it("should create content blocks and pass them to large lead six grid", async () => {
-    (getRawArticles as jest.Mock).mockResolvedValue([
-      articleOne,
-      articleTwo,
-      articleTwo,
-      articleTwo,
-      articleTwo,
-      articleTwo
-    ]);
+    (getRawArticles as jest.Mock).mockResolvedValue(
+      articlesWithIds([1, 2, 3, 4, 5, 6])
+    );
     const listGridResult: IGridContainer = {
       type: ContentBlockType.GridContainer,
       items: {},
@@ -147,22 +95,32 @@ describe("Large lead six", () => {
     };
     await largeLeadSixHandler(handlerRunnerMock, input, params);
 
-    const listGridHandlerInput = {
+    const [
+      [listGridHandlerInput, listGridHandlerParams],
+      [largeLeadSixGridHandlerInput, largeLeadSixGridParams]
+    ] = handlerRunnerMock.mock.calls;
+    expect(listGridHandlerInput).toEqual({
       type: HandlerInputType.ListGrid,
       content: [
-        articleTwoAsTitle,
-        articleTwoAsTitle,
-        articleTwoAsTitle,
-        articleTwoAsTitle,
-        articleTwoAsTitle
+        expectBasicArticleTitle(2, displayNameColor),
+        expectBasicArticleTitle(3, displayNameColor),
+        expectBasicArticleTitle(4, displayNameColor),
+        expectBasicArticleTitle(5, displayNameColor),
+        expectBasicArticleTitle(6, displayNameColor)
       ]
-    };
-
-    const largeLeadSixGridHandlerInput: ILargeLeadSixGridHandlerInput = {
+    });
+    expect(listGridHandlerParams).toEqual(params);
+    expect(largeLeadSixGridHandlerInput).toEqual({
       type: HandlerInputType.LargeLeadSixGrid,
       content: {
         [LargeLeadSixGridPositions.ModuleTitle]: [moduleTitle],
-        [LargeLeadSixGridPositions.Left]: [articleOneAsBigImage],
+        [LargeLeadSixGridPositions.Left]: [
+          expect.objectContaining({
+            type: ContentBlockType.BigImageArticleUnit,
+            id: "1",
+            identifierColor: displayNameColor
+          })
+        ],
         [LargeLeadSixGridPositions.Middle]: [listGridResult],
         [LargeLeadSixGridPositions.Right]: [
           {
@@ -171,11 +129,7 @@ describe("Large lead six", () => {
           }
         ]
       }
-    };
-
-    expect(handlerRunnerMock.mock.calls).toEqual([
-      [listGridHandlerInput, params],
-      [largeLeadSixGridHandlerInput, params]
-    ]);
+    });
+    expect(largeLeadSixGridParams).toEqual(params);
   });
 });

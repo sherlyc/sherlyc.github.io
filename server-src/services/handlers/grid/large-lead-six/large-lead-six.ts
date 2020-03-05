@@ -35,14 +35,16 @@ export default async function(
       bigImageArticleUnit(
         articles.shift() as IRawArticle,
         strapName,
-        ImageLayoutType.module
+        ImageLayoutType.module,
+        false,
+        displayNameColor
       ),
     HandlerInputType.LargeLeadSix,
     sourceId,
     params
   );
   const listGridContent = articles.map((article) =>
-    basicArticleTitleUnit(article, strapName)
+    basicArticleTitleUnit(article, strapName, displayNameColor)
   );
 
   const middleContent = await handlerRunner(
