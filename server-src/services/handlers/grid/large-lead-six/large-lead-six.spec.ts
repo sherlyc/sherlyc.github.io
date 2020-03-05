@@ -1,7 +1,5 @@
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
-import { IBasicArticleTitleUnit } from "../../../../../common/__types__/IBasicArticleTitleUnit";
-import { IBigImageArticleUnit } from "../../../../../common/__types__/IBigImageArticleUnit";
 import {
   IGridConfig,
   IGridContainer
@@ -12,13 +10,9 @@ import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { Strap } from "../../../strap";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
-import {
-  ILargeLeadSixGridHandlerInput,
-  LargeLeadSixGridPositions
-} from "../../__types__/ILargeLeadSixGridHandlerInput";
+import { LargeLeadSixGridPositions } from "../../__types__/ILargeLeadSixGridHandlerInput";
 import { ILargeLeadSixHandlerInput } from "../../__types__/ILargeLeadSixHandlerInput";
 import largeLeadSixHandler from "../large-lead-six/large-lead-six";
-import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 
@@ -38,13 +32,13 @@ describe("Large lead six", () => {
   const sourceId = Strap.NowToLove;
   const strapName = "fakeStrapName";
   const displayName = "displayName";
-  const displayNameColor = "displayNameColor";
+  const color = "displayNameColor";
   const linkUrl = "http://www.stuff.co.nz";
 
   const moduleTitle: IModuleTitle = {
     type: ContentBlockType.ModuleTitle,
     displayName,
-    displayNameColor,
+    displayNameColor: color,
     linkUrl
   };
   const basicAdUnit: IBasicAdUnit = {
@@ -61,7 +55,7 @@ describe("Large lead six", () => {
     const input: ILargeLeadSixHandlerInput = {
       type: HandlerInputType.LargeLeadSix,
       displayName,
-      displayNameColor,
+      color,
       linkUrl,
       strapName,
       sourceId
@@ -88,7 +82,7 @@ describe("Large lead six", () => {
     const input: ILargeLeadSixHandlerInput = {
       type: HandlerInputType.LargeLeadSix,
       displayName,
-      displayNameColor,
+      color,
       linkUrl,
       strapName,
       sourceId
@@ -102,11 +96,11 @@ describe("Large lead six", () => {
     expect(listGridHandlerInput).toEqual({
       type: HandlerInputType.ListGrid,
       content: [
-        expectBasicArticleTitle(2, displayNameColor),
-        expectBasicArticleTitle(3, displayNameColor),
-        expectBasicArticleTitle(4, displayNameColor),
-        expectBasicArticleTitle(5, displayNameColor),
-        expectBasicArticleTitle(6, displayNameColor)
+        expectBasicArticleTitle(2, color),
+        expectBasicArticleTitle(3, color),
+        expectBasicArticleTitle(4, color),
+        expectBasicArticleTitle(5, color),
+        expectBasicArticleTitle(6, color)
       ]
     });
     expect(listGridHandlerParams).toEqual(params);
@@ -118,7 +112,7 @@ describe("Large lead six", () => {
           expect.objectContaining({
             type: ContentBlockType.BigImageArticleUnit,
             id: "1",
-            identifierColor: displayNameColor
+            identifierColor: color
           })
         ],
         [LargeLeadSixGridPositions.Middle]: [listGridResult],

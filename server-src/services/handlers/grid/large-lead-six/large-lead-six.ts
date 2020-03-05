@@ -22,7 +22,7 @@ export default async function(
     sourceId,
     strapName,
     displayName,
-    displayNameColor,
+    color,
     linkUrl
   }: ILargeLeadSixHandlerInput,
   params: IParams
@@ -37,14 +37,14 @@ export default async function(
         strapName,
         ImageLayoutType.module,
         false,
-        displayNameColor
+        color
       ),
     HandlerInputType.LargeLeadSix,
     sourceId,
     params
   );
   const listGridContent = articles.map((article) =>
-    basicArticleTitleUnit(article, strapName, displayNameColor)
+    basicArticleTitleUnit(article, strapName, color)
   );
 
   const middleContent = await handlerRunner(
@@ -61,7 +61,7 @@ export default async function(
         {
           type: ContentBlockType.ModuleTitle,
           displayName,
-          displayNameColor,
+          displayNameColor: color,
           linkUrl
         }
       ],
