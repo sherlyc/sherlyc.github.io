@@ -11,6 +11,7 @@ import {
   IFooterMenuClicked,
   IHomepageStrapClicked,
   IMenuNavSectionClicked,
+  IModuleTitleClicked,
   IMoreButtonClicked,
   IWeatherLocationChanged
 } from "./__types__/IAnalyticEvents";
@@ -95,6 +96,12 @@ export class AnalyticsService implements IAnalyticsService {
         event: "ab.testing.event",
         "ab.testing.segment.web": analyticEvent.variant,
         "ab.testing.experiment.name": analyticEvent.experiment
+      }),
+      [AnalyticsEventsType.MODULE_TITLE_CLICKED]: (
+        analyticEvent: IModuleTitleClicked
+      ) => ({
+        event: "module.title.click",
+        "module.title": analyticEvent.title
       })
     };
     const adobeEvent = eventTypesRegistry[event.type](event);

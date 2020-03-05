@@ -406,4 +406,27 @@ describe("AnalyticsService", () => {
     analyticsService.setup();
     expect(fakeWindow.spade).toBe(1);
   });
+
+  it("should push corresponding analytics for module title clicked", () => {
+    analyticsService.setup();
+    windowService.getWindow().digitalData.events.push = jest.fn();
+    const strapName = "National";
+
+    const event = {
+      event: "module.title.click",
+      "module.title": strapName
+    };
+
+    analyticsService.pushEvent({
+      type: AnalyticsEventsType.MODULE_TITLE_CLICKED,
+      title: strapName
+    });
+
+    expect(
+      windowService.getWindow().digitalData.events.push
+    ).toHaveBeenCalledWith({
+      type: "analytics",
+      ...event
+    });
+  });
 });
