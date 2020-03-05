@@ -26,7 +26,9 @@ describe("BasicArticleTitleUnitComponent", () => {
     title: "Title",
     linkUrl: "/headline/top-news",
     headlineFlags,
-    lastPublishedTime: timeStamp
+    lastPublishedTime: timeStamp,
+    identifier: "identify",
+    identifierColor: "black"
   };
 
   beforeEach(() => {
