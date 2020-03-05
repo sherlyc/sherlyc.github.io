@@ -109,7 +109,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.SixImage,
       displayName: "",
-      displayNameColor: "",
+      color: "",
       strapName: `${homepageAdPrefix}MidStrip`,
       sourceId: Strap.MidStrip
     },
