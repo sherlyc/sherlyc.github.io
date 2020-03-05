@@ -4,7 +4,7 @@ import { HandlerInputType } from "./HandlerInputType";
 export interface IBiggieSmallsHandlerInput {
   type: HandlerInputType.BiggieSmalls;
   displayName: string;
-  displayNameColor: string;
+  color: string;
   linkUrl?: string;
   strapName: string;
   sourceId: Strap;

@@ -124,7 +124,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.BiggieSmalls,
       displayName: "climate change",
-      displayNameColor: "#256091",
+      color: "#256091",
       linkUrl: "/" + Section.ClimateChange,
       strapName: `${homepageAdPrefix}ClimateChange`,
       sourceId: Strap.ClimateChange
@@ -140,7 +140,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.BiggieSmalls,
       displayName: "homed",
-      displayNameColor: "#41ad95",
+      color: "#41ad95",
       linkUrl: "/" + Section.Homed,
       strapName: `${homepageAdPrefix}Homed`,
       sourceId: Strap.Homed
@@ -148,7 +148,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.BiggieSmalls,
       displayName: "travel",
-      displayNameColor: "#08afb7",
+      color: "#08afb7",
       linkUrl: "/" + Section.Travel,
       strapName: `${homepageAdPrefix}Travel`,
       sourceId: Strap.Travel
@@ -230,7 +230,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.BiggieSmalls,
       displayName: "life & style",
-      displayNameColor: "#d11242",
+      color: "#d11242",
       linkUrl: "/" + Section.LifeStyle,
       strapName: `${homepageAdPrefix}LifeStyle`,
       sourceId: Strap.LifeStyle
@@ -256,7 +256,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.BiggieSmalls,
       displayName: "entertainment",
-      displayNameColor: "#9c1a87",
+      color: "#9c1a87",
       linkUrl: "/" + Section.Entertainment,
       strapName: `${homepageAdPrefix}Entertainment`,
       sourceId: Strap.Entertainment
@@ -264,7 +264,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.BiggieSmalls,
       displayName: "bravo",
-      displayNameColor: "#9c1a87",
+      color: "#9c1a87",
       linkUrl: "/" + Section.Bravo,
       strapName: `${homepageAdPrefix}Bravo`,
       sourceId: Strap.Bravo
@@ -287,7 +287,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.BiggieSmalls,
       displayName: "motoring",
-      displayNameColor: "#999",
+      color: "#999",
       linkUrl: "/" + Section.Motoring,
       strapName: `${homepageAdPrefix}Motoring`,
       sourceId: Strap.Motoring
@@ -323,7 +323,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.BiggieSmalls,
       displayName: "sport",
-      displayNameColor: "#d12421",
+      color: "#d12421",
       linkUrl: "/" + Section.Sport,
       strapName: `${homepageAdPrefix}Sport`,
       sourceId: Strap.Sport
