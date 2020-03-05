@@ -30,7 +30,9 @@ describe("Responsive Big Image Article", () => {
     imageSrc: "https://dummyimagesrc.com",
     imageSrcSet: "https://dummyimagesrc.com 1w",
     lastPublishedTime: twoDaysAgoDateInSeconds,
-    headlineFlags: []
+    headlineFlags: [],
+    identifier: "identify",
+    identifierColor: "black"
   };
 
   @Component({
