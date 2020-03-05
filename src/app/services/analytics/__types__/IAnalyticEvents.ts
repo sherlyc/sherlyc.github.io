@@ -7,7 +7,8 @@ export type AnalyticsEvent =
   | IMenuNavSectionClicked
   | IMoreButtonClicked
   | IHomepageStrapClicked
-  | IExperimentAssigned;
+  | IExperimentAssigned
+  | IModuleTitleClicked;
 
 export interface ISimpleAnalyticEvent {
   type:
@@ -17,7 +18,8 @@ export interface ISimpleAnalyticEvent {
     | AnalyticsEventsType.BREAKING_NEWS_CLOSED
     | AnalyticsEventsType.BREAKING_NEWS_OPENED
     | AnalyticsEventsType.LOGIN_CLIKED
-    | AnalyticsEventsType.AVATAR_CLICKED;
+    | AnalyticsEventsType.AVATAR_CLICKED
+    | AnalyticsEventsType.MODULE_TITLE_CLICKED;
 }
 
 export interface IWeatherLocationChanged {
@@ -33,6 +35,11 @@ export interface IFooterMenuClicked {
 export interface IMoreButtonClicked {
   type: AnalyticsEventsType.MORE_BUTTON_CLICKED;
   url: string;
+}
+
+export interface IModuleTitleClicked {
+  type: AnalyticsEventsType.MODULE_TITLE_CLICKED;
+  title: string;
 }
 
 export interface IMenuNavSectionClicked {

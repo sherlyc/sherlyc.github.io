@@ -1,21 +1,31 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-
 import { ModuleTitleComponent } from "./module-title.component";
 import { IModuleTitle } from "../../../../common/__types__/IModuleTitle";
 import { By } from "@angular/platform-browser";
 import { OpenExternalLinkDirective } from "../../shared/directives/open-external-link/open-external-link.directive";
+import { mockService } from "../../services/mocks/MockService";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { AnalyticsService } from "../../services/analytics/analytics.service";
 
 describe("ModuleTitleComponent", () => {
+  let analyticsService: AnalyticsService;
   let component: ModuleTitleComponent;
   let fixture: ComponentFixture<ModuleTitleComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ModuleTitleComponent, OpenExternalLinkDirective]
+      declarations: [ModuleTitleComponent, OpenExternalLinkDirective],
+      providers: [
+        {
+          provide: AnalyticsService,
+          useClass: mockService(AnalyticsService)
+        }
+      ]
     }).compileComponents();
   }));
 
   beforeEach(() => {
+    analyticsService = TestBed.get(AnalyticsService);
     fixture = TestBed.createComponent(ModuleTitleComponent);
     component = fixture.componentInstance;
   });
@@ -82,5 +92,23 @@ describe("ModuleTitleComponent", () => {
 
     const moduleTitle = fixture.debugElement.query(By.css(".module-title"));
     expect(moduleTitle.attributes.href).toBe(component.input.linkUrl);
+  });
+
+  it("should send analytics when clicked", () => {
+    component.input = {
+      displayName: "National",
+      linkUrl: "/national"
+    } as IModuleTitle;
+
+    fixture.detectChanges();
+
+    const moduleTitle = fixture.debugElement.query(By.css(".module-title"))
+      .nativeElement;
+    moduleTitle.click();
+
+    expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+      type: AnalyticsEventsType.MODULE_TITLE_CLICKED,
+      title: "National"
+    });
   });
 });
