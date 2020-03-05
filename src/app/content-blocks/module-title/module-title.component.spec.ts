@@ -101,6 +101,7 @@ describe("ModuleTitleComponent", () => {
     } as IModuleTitle;
 
     fixture.detectChanges();
+
     const moduleTitle = fixture.debugElement.query(By.css(".module-title"))
       .nativeElement;
     moduleTitle.click();
