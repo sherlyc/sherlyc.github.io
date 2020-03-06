@@ -6,8 +6,7 @@ import { isFeatureEnabled } from "./feature";
 describe("Feature service", () => {
   const testCases: { [key in FeatureName]: [number, number] } = {
     [FeatureName.Recommendation]: [-1, -1],
-    [FeatureName.RecommendationDisplay]: [-1, -1],
-    [FeatureName.HomepageTakeover]: [-1, -1]
+    [FeatureName.RecommendationDisplay]: [-1, -1]
   };
 
   Object.entries(testCases).forEach(([featureName, [min, max]]) => {
