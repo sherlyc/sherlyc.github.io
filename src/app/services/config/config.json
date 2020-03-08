@@ -16,7 +16,7 @@
       "level": "warn",
       "format": "json"
     },
-    "aadSdkUrl": "/static/adnostic/stuff-adnostic-1.62.0.min.f11a55ad4bddd497f884.js",
+    "aadSdkUrl": "/static/adnostic/stuff-adnostic-1.63.0.min.e43d8f305fc3a075b274.js",
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
       "sampleRate": 0.1,
@@ -48,7 +48,7 @@
       "level": "info",
       "format": "json"
     },
-    "aadSdkUrl": "/static/adnostic/stuff-adnostic-1.62.0.min.f11a55ad4bddd497f884.js",
+    "aadSdkUrl": "/static/adnostic/stuff-adnostic-1.63.0.min.e43d8f305fc3a075b274.js",
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
       "sampleRate": 0.1,
@@ -80,7 +80,7 @@
       "level": "debug",
       "format": "text"
     },
-    "aadSdkUrl": "/static/adnostic/stuff-adnostic-1.62.0.min.f11a55ad4bddd497f884.js",
+    "aadSdkUrl": "/static/adnostic/stuff-adnostic-1.63.0.min.e43d8f305fc3a075b274.js",
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
       "sampleRate": 0,
