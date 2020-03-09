@@ -61,4 +61,19 @@ describe("Intersection Observer", () => {
 
     triggerIntersection();
   });
+
+  it("should not emit an event when an unobserved element triggered intersection observer", () => {
+    const service: IntersectionObserverService = TestBed.get(
+      IntersectionObserverService
+    );
+    const element = {} as Element;
+    const observable = service
+      .observe(element)
+      .subscribe((event: IntersectionObserverEntry) => {
+        fail("should not happen");
+      });
+
+    observable.unsubscribe();
+    triggerIntersection();
+  });
 });
