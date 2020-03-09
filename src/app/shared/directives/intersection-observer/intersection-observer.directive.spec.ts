@@ -3,7 +3,7 @@ import { IntersectionObserverService } from "../../../services/intersection-obse
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { IntersectionObserverDirective } from "./intersection-observer.directive";
 import { Component } from "@angular/core";
-import { Subject } from "rxjs";
+import { Subject, Subscription } from "rxjs";
 import { RuntimeService } from "../../../services/runtime/runtime.service";
 import { By } from "@angular/platform-browser";
 
@@ -55,5 +55,25 @@ describe("Intersection Observer Directive", function() {
     expect(component.onIntersect).toHaveBeenCalledWith({
       target: observedElement
     });
+  });
+
+  it("should unsubscribe when destroyed", () => {
+    const observable = new Subject<IntersectionObserverEntry>();
+    intersectionObserverService.observe.mockReturnValue(observable);
+    runtimeService.isBrowser.mockReturnValue(true);
+    fixture = TestBed.createComponent(FakeComponent);
+    component = fixture.componentInstance;
+
+    fixture.detectChanges();
+
+    const directiveInstance = fixture.debugElement
+      .query(By.directive(IntersectionObserverDirective))
+      .injector.get(IntersectionObserverDirective);
+    const subscription: Subscription = directiveInstance.subscription;
+    jest.spyOn(subscription, "unsubscribe");
+
+    fixture.destroy();
+
+    expect(subscription.unsubscribe).toHaveBeenCalled();
   });
 });

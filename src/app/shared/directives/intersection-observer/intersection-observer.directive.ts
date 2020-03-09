@@ -11,7 +11,7 @@ import { RuntimeService } from "../../../services/runtime/runtime.service";
 import { Subscription } from "rxjs";
 
 @Directive({ selector: "[appIntersectionObserver]" })
-export class IntersectionObserverDirective implements AfterViewInit {
+export class IntersectionObserverDirective implements OnDestroy, AfterViewInit {
   @Output() intersect = new EventEmitter();
   subscription?: Subscription;
 
@@ -28,6 +28,12 @@ export class IntersectionObserverDirective implements AfterViewInit {
         .subscribe((entry: IntersectionObserverEntry) => {
           this.intersect.emit(entry);
         });
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.runtimeService.isBrowser() && this.subscription) {
+      this.subscription.unsubscribe();
     }
   }
 }
