@@ -32,7 +32,7 @@ describe("Orchestrator", () => {
         items: [
           {
             type: HandlerInputType.ForceUpdate,
-            forceUpdateOnVersionsBefore: "1.450"
+            forceUpdateOnVersionsBefore: expect.any(String)
           },
           ...oldPage()
         ]
@@ -57,7 +57,7 @@ describe("Orchestrator", () => {
         items: [
           {
             type: HandlerInputType.ForceUpdate,
-            forceUpdateOnVersionsBefore: "1.450"
+            forceUpdateOnVersionsBefore: expect.any(String)
           },
           ...newPage()
         ]

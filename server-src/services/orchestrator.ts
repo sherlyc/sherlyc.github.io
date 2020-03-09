@@ -11,7 +11,7 @@ import { Section } from "./section";
 import { Strap } from "./strap";
 import config from "./utils/config";
 import logger from "./utils/logger";
-import { parseVersion } from "./utils/version";
+import { formatVersion, parseVersion } from "./utils/version";
 
 const homepageStrapsConfig = config.strapConfig!.homepageStraps;
 
@@ -19,18 +19,22 @@ export default async (params: IParams): Promise<IPage> => {
   const isNewFrontEnd =
     params.version && parseVersion(params.version) >= parseVersion("1.649");
   const components: HandlerInput[] = isNewFrontEnd ? newPage() : oldPage();
+  const currentVersion = process.env.SPADE_VERSION || "SNAPSHOT";
+
   try {
     return {
       apiRequestId: params.apiRequestId,
       title: "Latest breaking news NZ | Stuff.co.nz | New Zealand",
-      version: process.env.SPADE_VERSION || "SNAPSHOT",
+      version: currentVersion,
       content: await handlerRunner(
         {
           type: HandlerInputType.Page,
           items: [
             {
               type: HandlerInputType.ForceUpdate,
-              forceUpdateOnVersionsBefore: "1.450"
+              forceUpdateOnVersionsBefore: formatVersion(
+                parseVersion(currentVersion) - parseVersion("0.200")
+              )
             },
             ...components
           ]
