@@ -11,6 +11,7 @@ export default async function(
   {
     url,
     scrollable,
+    lazyLoad,
     mobile,
     desktop,
     tablet
@@ -34,6 +35,7 @@ export default async function(
       type: ContentBlockType.ResponsiveExternalContent,
       url,
       scrollable,
+      lazyLoad,
       mobile,
       tablet,
       desktop

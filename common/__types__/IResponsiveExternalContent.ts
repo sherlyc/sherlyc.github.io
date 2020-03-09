@@ -4,6 +4,7 @@ export interface IResponsiveExternalContent {
   type: ContentBlockType.ResponsiveExternalContent;
   url: string;
   scrollable?: boolean;
+  lazyLoad?: boolean;
   mobile: IResponsiveExternalContentDeviceConfig;
   tablet?: IResponsiveExternalContentDeviceConfig;
   desktop?: IResponsiveExternalContentDeviceConfig;
