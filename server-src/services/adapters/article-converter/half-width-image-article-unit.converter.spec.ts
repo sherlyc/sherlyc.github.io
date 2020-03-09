@@ -19,7 +19,7 @@ describe("half width image article unit", () => {
     strapImageSrcSet: "strap1.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: [],
-    sixteenByNineSrc: null,
+    sixteenByNineSrc: "sixteenByNineSrc.jpg",
     identifier: undefined
   };
   const expected: IHalfWidthImageArticleUnit = {
@@ -30,7 +30,7 @@ describe("half width image article unit", () => {
     title: "Title One",
     introText: "Intro 1",
     linkUrl: "/link1",
-    imageSrc: "strap1.jpg",
+    imageSrc: "sixteenByNineSrc.jpg",
     imageSrcSet: "strap1.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: []

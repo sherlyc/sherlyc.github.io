@@ -18,7 +18,7 @@ describe("responsive big image article", () => {
     strapImageSrcSet: "strap1.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: [],
-    sixteenByNineSrc: null,
+    sixteenByNineSrc: "sixteenByNineSrc.jpg",
     identifier: "identifier"
   };
   const expected: IResponsiveBigImageArticleUnit = {
@@ -29,7 +29,7 @@ describe("responsive big image article", () => {
     title: "Title One",
     introText: "Intro 1",
     linkUrl: "/link1",
-    imageSrc: "strap1.jpg",
+    imageSrc: "sixteenByNineSrc.jpg",
     imageSrcSet: "strap1.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: [],
