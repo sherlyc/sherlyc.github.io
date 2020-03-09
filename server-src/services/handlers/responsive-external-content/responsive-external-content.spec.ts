@@ -14,6 +14,15 @@ jest.mock("../../utils/logger");
 describe("Responsive External Content Handler", () => {
   const params: IParams = { apiRequestId: "request-id-for-testing" };
   const goodData = {};
+  const defaultHandlerInput = {
+    type: HandlerInputType.ResponsiveExternalContent,
+    url: "https://example.com",
+    mobile: {
+      width: "100%",
+      height: "300px",
+      margin: "10px"
+    }
+  };
 
   beforeAll(() => {
     (cacheHttp as jest.Mock).mockReturnValue({
@@ -86,29 +95,42 @@ describe("Responsive External Content Handler", () => {
     const externalContent = (await responsiveExternalContent(
       handlerRunnerMock,
       {
-        type: HandlerInputType.ResponsiveExternalContent,
-        url: "https://example.com",
-        scrollable: true,
-        mobile: {
-          width: "100%",
-          height: "300px",
-          margin: "10px"
-        }
+        ...defaultHandlerInput,
+        scrollable: true
       } as IResponsiveExternalContentHandlerInput,
       params
     )) as IResponsiveExternalContent[];
 
     const expectedResult: IContentBlock[] = [
-      {
+      expect.objectContaining({
         type: ContentBlockType.ResponsiveExternalContent,
-        url: "https://example.com",
-        scrollable: true,
-        mobile: {
-          width: "100%",
-          height: "300px",
-          margin: "10px"
-        }
-      } as IResponsiveExternalContent
+        scrollable: true
+      })
+    ];
+
+    expect(externalContent).toEqual(expectedResult);
+  });
+
+  it("should handle lazyLoad", async () => {
+    (cacheHttp as jest.Mock).mockResolvedValue({
+      status: 200,
+      data: goodData
+    });
+    const handlerRunnerMock = jest.fn();
+    const externalContent = (await responsiveExternalContent(
+      handlerRunnerMock,
+      {
+        ...defaultHandlerInput,
+        lazyLoad: true
+      } as IResponsiveExternalContentHandlerInput,
+      params
+    )) as IResponsiveExternalContent[];
+
+    const expectedResult: IContentBlock[] = [
+      expect.objectContaining({
+        type: ContentBlockType.ResponsiveExternalContent,
+        lazyLoad: true
+      })
     ];
 
     expect(externalContent).toEqual(expectedResult);
@@ -123,14 +145,8 @@ describe("Responsive External Content Handler", () => {
     const externalContent = (await responsiveExternalContent(
       handlerRunnerMock,
       {
-        type: HandlerInputType.ResponsiveExternalContent,
-        url,
-        scrollable: true,
-        mobile: {
-          height: "300px",
-          width: "100%",
-          margin: "10px"
-        }
+        ...defaultHandlerInput,
+        url
       } as IResponsiveExternalContentHandlerInput,
       params
     )) as IResponsiveExternalContent[];
