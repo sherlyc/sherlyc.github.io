@@ -2,7 +2,8 @@ import { ServiceMock } from "../mocks/MockService";
 import { TestBed } from "@angular/core/testing";
 import { IntersectionObserverService } from "./intersection-observer.service";
 
-const Global = global;
+// @ts-ignore
+const realIntersectionObserver = global.IntersectionObserver;
 
 describe("Intersection Observer", () => {
   let intersectionObserverService: ServiceMock<IntersectionObserverService>;
@@ -43,7 +44,8 @@ describe("Intersection Observer", () => {
   });
 
   afterAll(() => {
-    global = Global;
+    // @ts-ignore
+    global.IntersectionObserver = realIntersectionObserver;
   });
 
   it("should be created", () => {
