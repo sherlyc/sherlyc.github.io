@@ -7,6 +7,7 @@ const Global = global;
 describe("Intersection Observer", () => {
   let intersectionObserverService: ServiceMock<IntersectionObserverService>;
   let triggerIntersection: Function;
+  let trackedOptions: any;
 
   beforeEach(() => {
     let observed: any[] = [];
@@ -14,9 +15,9 @@ describe("Intersection Observer", () => {
     // @ts-ignore
     global.IntersectionObserver = class FakeIntersectionObserver {
       callback: Function;
-
-      constructor(callback: Function) {
+      constructor(callback: Function, options: any) {
         this.callback = callback;
+        trackedOptions = options;
 
         triggerIntersection = () => {
           this.fakeIntersection();
@@ -37,6 +38,7 @@ describe("Intersection Observer", () => {
         observed = observed.filter((element) => element !== target);
       }
     };
+
     intersectionObserverService = TestBed.get(IntersectionObserverService);
   });
 
@@ -75,5 +77,11 @@ describe("Intersection Observer", () => {
 
     observable.unsubscribe();
     triggerIntersection();
+  });
+
+  it("should initialize with the correct config", () => {
+    TestBed.get(IntersectionObserverService);
+
+    expect(trackedOptions).toEqual({ threshold: 0 });
   });
 });
