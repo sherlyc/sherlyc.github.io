@@ -13,7 +13,7 @@ export const responsiveBigImageArticleUnit = (
   indexHeadline: article.indexHeadline,
   title: article.title,
   introText: article.introText,
-  imageSrc: article.strapImageSrc,
+  imageSrc: article.sixteenByNineSrc,
   imageSrcSet: article.strapImageSrcSet,
   linkUrl: article.linkUrl,
   lastPublishedTime: article.lastPublishedTime,
