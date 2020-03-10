@@ -76,4 +76,14 @@ describe("Intersection Observer Directive", function() {
 
     expect(subscription.unsubscribe).toHaveBeenCalled();
   });
+
+  it("should not observe element when in server side", () => {
+    runtimeService.isBrowser.mockReturnValue(false);
+    fixture = TestBed.createComponent(FakeComponent);
+    component = fixture.componentInstance;
+
+    fixture.detectChanges();
+
+    expect(intersectionObserverService.observe).not.toHaveBeenCalled();
+  });
 });
