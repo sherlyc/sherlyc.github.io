@@ -35,14 +35,15 @@ describe("Intersection Observer Directive", function() {
     }).compileComponents();
     runtimeService = TestBed.get(RuntimeService);
     intersectionObserverService = TestBed.get(IntersectionObserverService);
+
+    fixture = TestBed.createComponent(FakeComponent);
+    component = fixture.componentInstance;
   });
 
   it("should call intersectCallback when intersecting", () => {
     const observable = new Subject<IntersectionObserverEntry>();
     intersectionObserverService.observe.mockReturnValue(observable);
     runtimeService.isBrowser.mockReturnValue(true);
-    fixture = TestBed.createComponent(FakeComponent);
-    component = fixture.componentInstance;
     jest.spyOn(component, "onIntersect");
 
     fixture.detectChanges();
@@ -61,8 +62,6 @@ describe("Intersection Observer Directive", function() {
     const observable = new Subject<IntersectionObserverEntry>();
     intersectionObserverService.observe.mockReturnValue(observable);
     runtimeService.isBrowser.mockReturnValue(true);
-    fixture = TestBed.createComponent(FakeComponent);
-    component = fixture.componentInstance;
 
     fixture.detectChanges();
 
@@ -79,8 +78,6 @@ describe("Intersection Observer Directive", function() {
 
   it("should not observe element when in server side", () => {
     runtimeService.isBrowser.mockReturnValue(false);
-    fixture = TestBed.createComponent(FakeComponent);
-    component = fixture.componentInstance;
 
     fixture.detectChanges();
 
