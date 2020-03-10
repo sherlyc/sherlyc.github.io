@@ -1,9 +1,9 @@
 {
   "baseDedupeList": [
-    "strapEditorPicks",
     "strapTopStories",
-    "strapMidStrip",
-    "strapMiniMidStrip"
+    "strapEditorPicks",
+    "strapLatestNews",
+    "strapMidStrip"
   ],
   "homepageStraps": {
     "strapTopStories": {
@@ -16,7 +16,17 @@
     "strapLatestNews": {
       "ids": ["64161221"],
       "dedupeRules": {
-        "dedupeFromBaseList": false
+        "dedupeFromBaseList": false,
+        "extraDedupeList": [
+          {
+            "id": "63768623",
+            "limit": 5
+          },
+          {
+            "id": "63868237",
+            "limit": 5
+          }
+        ]
       }
     },
     "strapEditorPicks": {
@@ -24,14 +34,38 @@
       "totalArticlesWithImages": 2,
       "totalTitleArticles": 6,
       "dedupeRules": {
-        "dedupeFromBaseList": false
+        "dedupeFromBaseList": false,
+        "extraDedupeList": [
+          {
+            "id": "63768623",
+            "limit": 5
+          },
+          {
+            "id": "64161221",
+            "limit": 5
+          }
+        ]
       }
     },
     "strapMidStrip": {
       "ids": ["63769065"],
       "totalArticlesWithImages": 6,
       "dedupeRules": {
-        "dedupeFromBaseList": false
+        "dedupeFromBaseList": false,
+        "extraDedupeList": [
+          {
+            "id": "63768623",
+            "limit": 5
+          },
+          {
+            "id": "64161221",
+            "limit": 5
+          },
+          {
+            "id": "63868237",
+            "limit": 5
+          }
+        ]
       }
     },
     "strapMiniMidStrip": {
@@ -50,7 +84,13 @@
     "strapTravel": {
       "ids": ["60860998"],
       "dedupeRules": {
-        "dedupeFromBaseList": true
+        "dedupeFromBaseList": true,
+        "extraDedupeList": [
+          {
+            "id": "62950252",
+            "limit": 5
+          }
+        ]
       }
     },
     "strapRugbyWorldCup": {
@@ -68,7 +108,13 @@
     "strapSport": {
       "ids": ["62922196", "62919098"],
       "dedupeRules": {
-        "dedupeFromBaseList": true
+        "dedupeFromBaseList": true,
+        "extraDedupeList": [
+          {
+            "id": "62950252",
+            "limit": 5
+          }
+        ]
       }
     },
     "strapWorld": {
@@ -79,6 +125,10 @@
           {
             "id": "62950252",
             "limit": 5
+          },
+          {
+            "id": "63060863",
+            "limit": 5
           }
         ]
       }
@@ -86,7 +136,13 @@
     "strapBusiness": {
       "ids": ["63060863"],
       "dedupeRules": {
-        "dedupeFromBaseList": true
+        "dedupeFromBaseList": true,
+        "extraDedupeList": [
+          {
+            "id": "85424401",
+            "limit": 5
+          }
+        ]
       }
     },
     "strapOpinion": {
@@ -140,19 +196,37 @@
     "strapFoodAndWine": {
       "ids": ["62550809"],
       "dedupeRules": {
-        "dedupeFromBaseList": true
+        "dedupeFromBaseList": true,
+        "extraDedupeList": [
+          {
+            "id": "62546009",
+            "limit": 5
+          }
+        ]
       }
     },
     "strapNZFarmer": {
       "ids": ["62940047"],
       "dedupeRules": {
-        "dedupeFromBaseList": true
+        "dedupeFromBaseList": true,
+        "extraDedupeList": [
+          {
+            "id": "63060863",
+            "limit": 5
+          }
+        ]
       }
     },
     "strapParenting": {
       "ids": ["65946117"],
       "dedupeRules": {
-        "dedupeFromBaseList": true
+        "dedupeFromBaseList": true,
+        "extraDedupeList": [
+          {
+            "id": "62546009",
+            "limit": 5
+          }
+        ]
       }
     },
     "strapStuffNation": {
@@ -164,7 +238,7 @@
     "strapClimateChange": {
       "ids": ["74545269"],
       "dedupeRules": {
-        "dedupeFromBaseList": false
+        "dedupeFromBaseList": true
       }
     },
     "strapWellGood": {
@@ -242,13 +316,13 @@
     "strapBravo": {
       "ids": ["114265840"],
       "dedupeRules": {
-        "dedupeFromBaseList": true
+        "dedupeFromBaseList": false
       }
     },
     "strapKeaKidsNews": {
       "ids": ["115468303"],
       "dedupeRules": {
-        "dedupeFromBaseList": false
+        "dedupeFromBaseList": true
       }
     },
     "strapDominionPost": {
