@@ -14,6 +14,7 @@ import { ResizeDirective } from "./directives/resize/resize.directive";
 import { GlobalStyleDirective } from "./directives/global-style/global-style.directive";
 import { FluidImageComponent } from "./components/fluid-image/fluid-image.component";
 import { LogoComponent } from "./components/logo/logo.component";
+import { IntersectionObserverDirective } from "./directives/intersection-observer/intersection-observer.directive";
 
 @NgModule({
   imports: [CommonModule],
@@ -24,6 +25,7 @@ import { LogoComponent } from "./components/logo/logo.component";
     ContentBlockDirective,
     OpenExternalLinkDirective,
     GlobalStyleDirective,
+    IntersectionObserverDirective,
     CopyrightComponent,
     HeadlineComponent,
     SigninCallbackComponent,
@@ -40,6 +42,7 @@ import { LogoComponent } from "./components/logo/logo.component";
     ContentBlockDirective,
     OpenExternalLinkDirective,
     GlobalStyleDirective,
+    IntersectionObserverDirective,
     CopyrightComponent,
     HeadlineComponent,
     SigninCallbackComponent,
