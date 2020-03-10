@@ -21,6 +21,7 @@ export class ResponsiveExternalContentComponent
   implements IContentBlockComponent, OnInit {
   @Input() input!: IResponsiveExternalContent;
   @HostBinding("class") class = "";
+  isShown?: boolean;
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -28,6 +29,7 @@ export class ResponsiveExternalContentComponent
   ) {}
 
   ngOnInit(): void {
+    this.isShown = !this.input.lazyLoad;
     const { mobile, tablet = mobile, desktop = tablet } = this.input;
 
     this.class = this.globalStyles.injectStyle({

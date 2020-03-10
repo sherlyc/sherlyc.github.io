@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ResponsiveExternalContentComponent } from "./responsive-external-content.component";
-import { DomSanitizer } from "@angular/platform-browser";
+import { By, DomSanitizer } from "@angular/platform-browser";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { MediaQuery } from "../grid-container/__types__/MediaQuery";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
@@ -37,7 +37,8 @@ describe("ResponsiveExternalContentComponent", () => {
     url: "https://example.com",
     mobile: {
       ...mobileConfig
-    }
+    },
+    lazyLoad: false
   };
 
   @Directive({
@@ -82,6 +83,24 @@ describe("ResponsiveExternalContentComponent", () => {
     expect(
       fixture.debugElement.nativeElement.querySelector("[scrolling=no]")
     ).toBeTruthy();
+  });
+
+  it("should load iframe initially when lazyload is not enabled", () => {
+    component.input = { ...input, lazyLoad: false };
+
+    fixture.detectChanges();
+
+    const iframe = fixture.debugElement.query(By.css("iframe"));
+    expect(iframe).toBeTruthy();
+  });
+
+  it("should not load iframe initially when lazyload is enabled", () => {
+    component.input = { ...input, lazyLoad: true };
+
+    fixture.detectChanges();
+
+    const iframe = fixture.debugElement.query(By.css("iframe"));
+    expect(iframe).toBeFalsy();
   });
 
   it("should set scrolling attribute", () => {
