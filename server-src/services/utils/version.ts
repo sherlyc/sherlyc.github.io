@@ -2,7 +2,7 @@ import { memoize } from "lodash";
 
 const versionRegEx = /^(\d+\.)?(\d+\.)?(\*|\d+)$/;
 export const validateVersion = memoize((version: string) => {
-  return versionRegEx.test(version);
+  return version === "SNAPSHOT" || versionRegEx.test(version);
 });
 
 export const parseVersion = memoize((version: string) => {

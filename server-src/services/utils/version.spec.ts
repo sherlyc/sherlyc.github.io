@@ -22,7 +22,8 @@ describe("version", () => {
 
   it.each([
     ["1", "true"],
-    ["asdf", "false"]
+    ["asdf", "false"],
+    ["SNAPSHOT", "true"]
   ])("should validate %s as %s", (version: string, result: string) => {
     expect(String(validateVersion(version))).toEqual(result);
   });

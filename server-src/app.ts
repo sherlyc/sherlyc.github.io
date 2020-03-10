@@ -1,14 +1,10 @@
 /* istanbul ignore file */
-import * as express from "express";
 import * as cookieParser from "cookie-parser";
-import extractParams from "./services/params-extractor";
-import { IParams } from "./services/__types__/IParams";
-import { getWeather } from "./api/weather";
-import logger from "./services/utils/logger";
-import { experimentController } from "./api/experiment-controller";
+import * as express from "express";
 import { healthCheck } from "./api/health-controller";
-import { featureController } from "./api/feature-controller";
-import { getContent } from "./services/content";
+import { IParams } from "./services/__types__/IParams";
+import extractParams from "./services/params-extractor";
+import logger from "./services/utils/logger";
 import spadeApi from "./spade-api";
 
 declare const global: {
