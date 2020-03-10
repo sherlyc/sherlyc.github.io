@@ -68,6 +68,7 @@ export const newPage = (): HandlerInput[] => {
       linkUrl: "https://play.stuff.co.nz/",
       content: {
         type: HandlerInputType.ResponsiveExternalContent,
+        lazyLoad: true,
         url:
           "https://www.playwidget.stuff.co.nz/hgrid/5d06caa81de1c4001f81a46e",
         mobile: {

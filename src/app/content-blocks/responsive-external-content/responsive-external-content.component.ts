@@ -21,7 +21,7 @@ export class ResponsiveExternalContentComponent
   implements IContentBlockComponent, OnInit {
   @Input() input!: IResponsiveExternalContent;
   @HostBinding("class") class = "";
-  isShown?: boolean;
+  isShown? = false;
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -66,5 +66,11 @@ export class ResponsiveExternalContentComponent
         width: desktop.width
       }
     };
+  }
+
+  onIntersect(event: IntersectionObserverEntry) {
+    if (event.isIntersecting) {
+      this.isShown = true;
+    }
   }
 }

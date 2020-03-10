@@ -194,4 +194,20 @@ describe("ResponsiveExternalContentComponent", () => {
 
     expect(component.getCss()).toEqual(expected);
   });
+
+  it("should load external content when intersect", async () => {
+    component.input = {
+      ...input,
+      lazyLoad: true
+    };
+    fixture.detectChanges();
+    expect(component.isShown).toBeFalsy();
+
+    const fakeEvent = { isIntersecting: true } as IntersectionObserverEntry;
+    component.onIntersect(fakeEvent);
+
+    expect(component.isShown).toBeTruthy();
+    // const iframe = fixture.debugElement.query(By.css("iframe"));
+    // expect(iframe).toBeTruthy();
+  });
 });
