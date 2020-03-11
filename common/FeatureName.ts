@@ -1,4 +1,3 @@
 export enum FeatureName {
-  Recommendation = "Recommendation",
-  RecommendationDisplay = "RecommendationDisplay"
+  Placeholder = "Placeholder"
 }

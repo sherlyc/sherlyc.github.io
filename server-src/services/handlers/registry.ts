@@ -31,11 +31,7 @@ import TopStoriesDefconHighlight from "./grid/top-stories/defcon-highlight/defco
 import TopStories from "./grid/top-stories/top-stories";
 import MidStrip from "./midstrip-handler/midstrip-handler";
 import MiniMidStrip from "./mini-midstrip-handler/mini-midstrip-handler";
-import ExpandableArticleList from "./more-section-experiment/expandable-article-list";
-import ExpandableArticleSection from "./more-section-experiment/expandable-article-section";
-import MoreSectionExperiment from "./more-section-experiment/more-section-experiment";
 import Page from "./page/page";
-import Recommendations from "./recommendations/recommendations";
 import Brand from "./grid/brand/brand";
 import BrandGrid from "./grid/brand-grid/brand-grid";
 import ResponsiveExternalContent from "./responsive-external-content/responsive-external-content";
@@ -54,9 +50,6 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   ContentBlockHandler,
   TopStoriesArticleList,
   ArticleList,
-  MoreSectionExperiment,
-  ExpandableArticleSection,
-  ExpandableArticleList,
   Banner,
   MidStrip,
   MiniMidStrip,
@@ -68,7 +61,6 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   Weather,
   Experiment,
   Feature,
-  Recommendations,
   TopStories,
   TopStoriesGrid,
   TopStoriesDefaultOneHighlight,

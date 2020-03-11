@@ -10,7 +10,6 @@ import { ColumnContainerComponent } from "./column-container/column-container.co
 import { ContainerComponent } from "./container/container.component";
 import { DefconArticleUnitComponent } from "./defcon-article-unit/defcon-article-unit.component";
 import { ErrorBlockComponent } from "./error-block/error-block.component";
-import { ExpandableArticleSectionComponent } from "./expandable-article-section/expandable-article-section.component";
 import { ExperimentContainerComponent } from "./experiment-container/experiment-container.component";
 import { ExternalContentUnitComponent } from "./external-content-unit/external-content-unit.component";
 import { FeatureContainerComponent } from "./feature-container/feature-container.component";
@@ -24,7 +23,6 @@ import { HeaderComponent } from "./header/header.component";
 import { ImageLinkUnitComponent } from "./image-link-unit/image-link-unit.component";
 import { ModuleTitleComponent } from "./module-title/module-title.component";
 import { ModuleSubtitleComponent } from "./module-subtitle/module-subtitle.component";
-import { RecommendationsComponent } from "./recommendations/recommendations.component";
 import { ResponsiveBigImageArticleComponent } from "./responsive-big-image-article/responsive-big-image-article.component";
 import { WeatherUnitComponent } from "./weather-unit/weather-unit.component";
 import { StickyContainerComponent } from "./sticky-container/sticky-container.component";
@@ -39,7 +37,6 @@ export const contentBlockComponents = [
   BigImageArticleUnitComponent,
   HalfWidthImageArticleUnitComponent,
   BasicArticleSectionComponent,
-  ExpandableArticleSectionComponent,
   BasicArticleTitleUnitComponent,
   ImageLinkUnitComponent,
   HalfImageArticleWithoutIntroUnitComponent,
@@ -54,7 +51,6 @@ export const contentBlockComponents = [
   ExperimentContainerComponent,
   FeatureContainerComponent,
   FooterComponent,
-  RecommendationsComponent,
   GridContainerComponent,
   ResponsiveBigImageArticleComponent,
   ModuleTitleComponent,
@@ -75,7 +71,6 @@ const registry: {
   BigImageArticleUnitComponent,
   HalfWidthImageArticleUnitComponent,
   BasicArticleSectionComponent,
-  ExpandableArticleSectionComponent,
   BasicArticleTitleUnitComponent,
   ImageLinkUnitComponent,
   HalfImageArticleWithoutIntroUnitComponent,
@@ -90,7 +85,6 @@ const registry: {
   ExperimentContainerComponent,
   FeatureContainerComponent,
   FooterComponent,
-  RecommendationsComponent,
   GridContainerComponent,
   ResponsiveBigImageArticleComponent,
   ModuleTitleComponent,

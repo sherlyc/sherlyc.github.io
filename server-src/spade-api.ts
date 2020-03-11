@@ -1,7 +1,6 @@
 import * as express from "express";
 import { experimentController } from "./api/experiment-controller";
 import { featureController } from "./api/feature-controller";
-import { getHomePageRecommendations } from "./api/recommendations";
 import { getWeather } from "./api/weather";
 import { versionGuard } from "./middlewares/version-guard";
 import { versionParityCheck } from "./middlewares/version-parity-check";
@@ -18,7 +17,6 @@ versionedRouter.get(
   "/feature/:featureName/:lotteryNumber/:deviceType",
   featureController
 );
-versionedRouter.get("/recommendations", getHomePageRecommendations);
 
 const spadeRouter = express.Router();
 spadeRouter.get("/content", getContent);

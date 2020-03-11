@@ -8,7 +8,6 @@ import { IColumnContainer } from "./IColumnContainer";
 import { IContainer } from "./IContainer";
 import { IDefconArticleUnit } from "./IDefconArticleUnit";
 import { IErrorBlock } from "./IErrorBlock";
-import { IExpandableArticleSection } from "./IExpandableArticleSection";
 import { IExperimentContainer } from "./IExperimentContainer";
 import { IExternalContentUnit } from "./IExternalContentUnit";
 import { IFeatureContainer } from "./IFeatureContainer";
@@ -22,7 +21,6 @@ import { IHeader } from "./IHeader";
 import { IImageLinkUnit } from "./IImageLinkUnit";
 import { IModuleTitle } from "./IModuleTitle";
 import { IModuleSubtitle } from "./IModuleSubtitle";
-import { IRecommendations } from "./IRecommendations";
 import { IResponsiveBigImageArticleUnit } from "./IResponsiveBigImageArticleUnit";
 import { IWeatherUnit } from "./IWeatherUnit";
 import { IStickyContainer } from "./IStickyContainer";
@@ -38,7 +36,6 @@ export type IContentBlock =
   | IBigImageArticleUnit
   | IHalfWidthImageArticleUnit
   | IBasicArticleSection
-  | IExpandableArticleSection
   | IImageLinkUnit
   | IHalfImageArticleWithoutIntroUnit
   | IBasicAdUnit
@@ -52,7 +49,6 @@ export type IContentBlock =
   | IWeatherUnit
   | IExperimentContainer
   | IFeatureContainer
-  | IRecommendations
   | IGridContainer
   | IResponsiveBigImageArticleUnit
   | IModuleTitle

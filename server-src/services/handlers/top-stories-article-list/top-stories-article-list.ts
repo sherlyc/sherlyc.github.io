@@ -1,21 +1,16 @@
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
 import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArticleUnit";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
-import { IDefconArticleUnit } from "../../../../common/__types__/IDefconArticleUnit";
 import { IGrayDefconArticleUnit } from "../../../../common/__types__/IGrayDefconArticleUnit";
 import {
   Border,
   IGridBlock
 } from "../../../../common/__types__/IGridContainer";
-import { ExperimentName } from "../../../../common/ExperimentName";
 import { IParams } from "../../__types__/IParams";
 import { IRawArticle } from "../../adapters/__types__/IRawArticle";
 import { LayoutType } from "../../adapters/__types__/LayoutType";
 import { basicAdUnit } from "../../adapters/article-converter/basic-ad-unit.converter";
-import { basicArticleUnit } from "../../adapters/article-converter/basic-article-unit.converter";
 import { bigImageArticleUnit } from "../../adapters/article-converter/big-image-article.converter";
-import { defconArticleUnit } from "../../adapters/article-converter/defcon-article-unit.converter";
 import { grayDefconArticleUnit } from "../../adapters/article-converter/gray-defcon-article-unit.converter";
 import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
 import { layoutRetriever } from "../../adapters/layout/layout-retriever";
@@ -78,30 +73,10 @@ function processAsList(
       : bigImageArticleUnit(article, strapName)
   );
 
-  const desktopContent: Array<
-    IBasicArticleUnit | IDefconArticleUnit
-  > = rawArticles.map((article, index) =>
-    index === 0 && layout === LayoutType.DEFCON
-      ? defconArticleUnit(article, strapName)
-      : basicArticleUnit(article, strapName)
+  return mobileContent.reduce(
+    (final, item) => [...final, item, basicAdUnit(strapName)],
+    [basicAdUnit(strapName)] as IContentBlock[]
   );
-
-  return [
-    {
-      type: ContentBlockType.ExperimentContainer,
-      name: ExperimentName.TopStoriesVisualExperiment,
-      variants: {
-        control: desktopContent.reduce(
-          (final, item) => [...final, item, basicAdUnit(strapName)],
-          [basicAdUnit(strapName)] as IContentBlock[]
-        ),
-        groupOne: mobileContent.reduce(
-          (final, item) => [...final, item, basicAdUnit(strapName)],
-          [basicAdUnit(strapName)] as IContentBlock[]
-        )
-      }
-    }
-  ];
 }
 
 function processAsGrid(

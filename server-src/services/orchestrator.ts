@@ -1,6 +1,5 @@
 import { ContentBlockType } from "../../common/__types__/ContentBlockType";
 import { IPage } from "../../common/__types__/IPage";
-import { FeatureName } from "../../common/FeatureName";
 import { IParams } from "./__types__/IParams";
 import { HandlerInput } from "./handlers/__types__/HandlerInput";
 import { HandlerInputType } from "./handlers/__types__/HandlerInputType";
@@ -414,19 +413,6 @@ export const oldPage = (): HandlerInput[] => [
       totalBasicArticleTitleUnit:
         homepageStrapsConfig[Strap.EditorPicks].totalTitleArticles
     }
-  },
-  {
-    type: HandlerInputType.Feature,
-    name: FeatureName.Recommendation,
-    content: [
-      {
-        type: HandlerInputType.Recommendations,
-        displayName: "Recommended for You",
-        displayNameColor: "darkblue",
-        totalBasicArticlesUnit: 2,
-        totalBasicArticleTitleUnit: 3
-      }
-    ]
   },
   {
     type: HandlerInputType.MidStrip,

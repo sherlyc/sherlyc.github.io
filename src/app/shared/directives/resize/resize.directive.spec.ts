@@ -12,21 +12,21 @@ import { Subject, Subscription } from "rxjs";
   template:
     '<div *ngIf="toShow" id="fake-component" appResizeObserver (resize)="onResize($event)">fake data</div>'
 })
-class FakeExpandableComponent {
+class FakeResizeComponent {
   toShow = false;
 
   onResize(entry: any) {}
 }
 
 describe("Resize Directive", () => {
-  let fixture: ComponentFixture<FakeExpandableComponent>;
-  let component: FakeExpandableComponent;
+  let fixture: ComponentFixture<FakeResizeComponent>;
+  let component: FakeResizeComponent;
   let runtimeService: ServiceMock<RuntimeService>;
   let resizeObserverService: ServiceMock<ResizeObserverService>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FakeExpandableComponent, ResizeDirective],
+      declarations: [FakeResizeComponent, ResizeDirective],
       providers: [
         { provide: RuntimeService, useClass: mockService(RuntimeService) },
         {
@@ -43,7 +43,7 @@ describe("Resize Directive", () => {
     const observable = new Subject<ResizeObserverEntry>();
     resizeObserverService.observe.mockReturnValue(observable);
     runtimeService.isBrowser.mockReturnValue(true);
-    fixture = TestBed.createComponent(FakeExpandableComponent);
+    fixture = TestBed.createComponent(FakeResizeComponent);
     component = fixture.componentInstance;
     component.toShow = true;
     jest.spyOn(component, "onResize");
@@ -64,7 +64,7 @@ describe("Resize Directive", () => {
     const observable = new Subject<ResizeObserverEntry>();
     resizeObserverService.observe.mockReturnValue(observable);
     runtimeService.isBrowser.mockReturnValue(true);
-    fixture = TestBed.createComponent(FakeExpandableComponent);
+    fixture = TestBed.createComponent(FakeResizeComponent);
     component = fixture.componentInstance;
     component.toShow = true;
     fixture.detectChanges();

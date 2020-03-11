@@ -7,8 +7,6 @@ import { IBiggieSmallsHandlerInput } from "./IBiggieSmallsHandlerInput";
 import { IBreakingNewsHandlerInput } from "./IBreakingNewsHandlerInput";
 import { IColumnGridHandlerInput } from "./IColumnGridHandlerInput";
 import { IContentBlockHandlerInput } from "./IContentBlockHandlerInput";
-import { IExpandableArticleListHandlerInput } from "./IExpandableArticleListHandlerInput";
-import { IExpandableArticleSectionHandlerInput } from "./IExpandableArticleSectionHandlerInput";
 import { IExperimentHandlerInput } from "./IExperimentHandlerInput";
 import { IExternalContentHandlerInput } from "./IExternalContentHandlerInput";
 import { IFeatureHandlerInput } from "./IFeatureHandlerInput";
@@ -18,11 +16,9 @@ import { ILargeLeadSixHandlerInput } from "./ILargeLeadSixHandlerInput";
 import { IListGridHandlerInput } from "./IListGridHandlerInput";
 import { IMidStripHandlerInput } from "./IMidStripHandlerInput";
 import { IMiniMidStripHandlerInput } from "./IMiniMidStripHandlerInput";
-import { IMoreSectionExperimentHandlerInput } from "./IMoreSectionExperimentHandlerInput";
 import { INewsSixGridHandlerInput } from "./INewsSixGridHandlerInput";
 import { INewsSixHandlerInput } from "./INewsSixHandlerInput";
 import { IPageHandlerInput } from "./IPageHandlerInput";
-import { IRecommendationsHandlerInput } from "./IRecommendationsHandlerInput";
 import { IRelevantStoriesHandlerInput } from "./IRelevantStoriesHandlerInput";
 import { IRelevantStoriesGridHandlerInput } from "./IRelevantStoriesGridHandlerInput";
 import { ISixImageGridHandlerInput } from "./ISixImageGridHandlerInput";
@@ -48,16 +44,12 @@ export type HandlerInput =
   | IMidStripHandlerInput
   | IMiniMidStripHandlerInput
   | IBasicArticleSectionHandlerInput
-  | IExpandableArticleListHandlerInput
-  | IExpandableArticleSectionHandlerInput
-  | IMoreSectionExperimentHandlerInput
   | IBreakingNewsHandlerInput
   | IExternalContentHandlerInput
   | IPageHandlerInput
   | IWeatherHandlerInput
   | IExperimentHandlerInput
   | IFeatureHandlerInput
-  | IRecommendationsHandlerInput
   | ITopStoriesHandlerInput
   | ITopStoriesDefaultOneHighlightHandlerInput
   | ITopStoriesDefconHighlightHandlerInput

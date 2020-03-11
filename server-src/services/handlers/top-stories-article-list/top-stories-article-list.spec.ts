@@ -143,26 +143,11 @@ describe("Top Stories Article List", () => {
       (getRawArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
 
       const expectedContentBlocks = [
-        {
-          type: "ExperimentContainer",
-          name: "TopStoriesVisualExperiment",
-          variants: {
-            control: [
-              basicAdUnit,
-              AsBasicArticle(articleTwo),
-              basicAdUnit,
-              AsBasicArticle(articleOne),
-              basicAdUnit
-            ],
-            groupOne: [
-              basicAdUnit,
-              AsBigImageArticle(articleTwo),
-              basicAdUnit,
-              AsBigImageArticle(articleOne),
-              basicAdUnit
-            ]
-          }
-        }
+        basicAdUnit,
+        AsBigImageArticle(articleTwo),
+        basicAdUnit,
+        AsBigImageArticle(articleOne),
+        basicAdUnit
       ];
 
       const contentBlocks = await topStoriesListHandler(
@@ -188,26 +173,11 @@ describe("Top Stories Article List", () => {
       (getRawArticles as jest.Mock).mockResolvedValueOnce(rawArticles);
 
       const expectedContentBlocks = [
-        {
-          type: "ExperimentContainer",
-          name: "TopStoriesVisualExperiment",
-          variants: {
-            control: [
-              basicAdUnit,
-              AsDefconArticle(articleOne),
-              basicAdUnit,
-              AsBasicArticle(articleTwo),
-              basicAdUnit
-            ],
-            groupOne: [
-              basicAdUnit,
-              AsGrayDefconArticle(articleOne),
-              basicAdUnit,
-              AsBigImageArticle(articleTwo),
-              basicAdUnit
-            ]
-          }
-        }
+        basicAdUnit,
+        AsGrayDefconArticle(articleOne),
+        basicAdUnit,
+        AsBigImageArticle(articleTwo),
+        basicAdUnit
       ];
 
       const contentBlocks = await topStoriesListHandler(

@@ -42,8 +42,9 @@ export class FeatureSwitchService {
   }
 
   private async loadFeatures() {
-    const featurePromises = Object.keys(FeatureName).map(
-      async (featureName) => {
+    const featurePromises = Object.keys(FeatureName)
+      .filter((featureName) => featureName !== FeatureName.Placeholder)
+      .map(async (featureName) => {
         const lotteryNumber = this.lotto.getLotteryNumber(featureName);
         const isFeatureEnabled = await this.isFeatureEnabled(
           featureName,
@@ -53,8 +54,7 @@ export class FeatureSwitchService {
         return {
           [featureName]: isFeatureEnabled
         };
-      }
-    );
+      });
     return (await Promise.all(featurePromises)).reduce(
       (final, item) => ({ ...final, ...item }),
       {}

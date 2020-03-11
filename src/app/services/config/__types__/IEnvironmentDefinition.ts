@@ -8,12 +8,6 @@ export interface IEnvironmentDefinition {
   weatherAPI: string;
   experimentAPI: string;
   featureAPI: string;
-  recommendationsAPI: string;
-  recommendationsCookie: {
-    name: string;
-    segments: string[];
-    limitPerSegment: number;
-  };
   loggerOptions: ILoggerOptions;
   aadSdkUrl: string;
   sentryIO: { dsn: string; sampleRate: number; environment: string };

@@ -90,6 +90,17 @@ describe("FeatureSwitchService", () => {
     expect(httpClient.get).not.toHaveBeenCalled();
   });
 
+  it("should not fetch Placeholder feature", async () => {
+    (features as any).FeatureName = {
+      Placeholder: "Placeholder"
+    };
+
+    await service.setup();
+
+    expect(lottoService.getLotteryNumber).not.toHaveBeenCalled();
+    expect(httpClient.get).not.toHaveBeenCalled();
+  });
+
   it("should make call to feature API with featureName, lotteryNumber and deviceType", async () => {
     const lotteryNumber = 123;
 
