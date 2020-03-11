@@ -7,7 +7,7 @@ import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 import { IResponsiveExternalContentDeviceConfig } from "../../../../common/__types__/IResponsiveExternalContent";
 import { GlobalStyleService } from "../../services/global-style/global-style.service";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
-import { Directive, Input } from "@angular/core";
+import { ChangeDetectorRef, Directive, Input } from "@angular/core";
 
 describe("ResponsiveExternalContentComponent", () => {
   let component: ResponsiveExternalContentComponent;
@@ -47,7 +47,6 @@ describe("ResponsiveExternalContentComponent", () => {
   class MockGlobalStyleDirective {
     @Input() appGlobalStyle?: object;
   }
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
@@ -195,11 +194,15 @@ describe("ResponsiveExternalContentComponent", () => {
     expect(component.getCss()).toEqual(expected);
   });
 
-  it("should load external content when intersect", async () => {
+  it("should load when intersecting", () => {
     component.input = {
       ...input,
       lazyLoad: true
     };
+    const detectChangesSpy = jest.spyOn(
+      fixture.changeDetectorRef,
+      "detectChanges"
+    );
     fixture.detectChanges();
     expect(component.isShown).toBeFalsy();
 
@@ -207,7 +210,8 @@ describe("ResponsiveExternalContentComponent", () => {
     component.onIntersect(fakeEvent);
 
     expect(component.isShown).toBeTruthy();
-    // const iframe = fixture.debugElement.query(By.css("iframe"));
-    // expect(iframe).toBeTruthy();
+    const iframe = fixture.debugElement.query(By.css("iframe"));
+    expect(iframe).toBeTruthy();
+    expect(detectChangesSpy).toHaveBeenCalledTimes(1);
   });
 });

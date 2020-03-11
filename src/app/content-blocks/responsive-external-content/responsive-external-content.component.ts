@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   HostBinding,
   Input,
@@ -25,7 +26,8 @@ export class ResponsiveExternalContentComponent
 
   constructor(
     private sanitizer: DomSanitizer,
-    private globalStyles: GlobalStyleService
+    private globalStyles: GlobalStyleService,
+    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -69,8 +71,10 @@ export class ResponsiveExternalContentComponent
   }
 
   onIntersect(event: IntersectionObserverEntry) {
-    if (event.isIntersecting) {
+    if (!this.isShown && event.isIntersecting) {
       this.isShown = true;
+      this.changeDetectorRef.detectChanges();
+      this.changeDetectorRef.detach();
     }
   }
 }
