@@ -41,7 +41,7 @@ describe("Intersection Observer", () => {
 
   afterAll(() => {
     // @ts-ignore
-    // global.IntersectionObserver = null;
+    global.IntersectionObserver = null;
   });
 
   it("should be created", () => {
@@ -92,7 +92,7 @@ describe("Intersection Observer", () => {
     expect(trackedOptions).toEqual({ threshold: 0 });
   });
 
-  it.only("should not initialise on server side", () => {
+  it("should not initialise on server side", () => {
     // @ts-ignore
     global.IntersectionObserver = null;
     TestBed.get(IntersectionObserverService);

@@ -6,15 +6,12 @@ import { RuntimeService } from "../runtime/runtime.service";
   providedIn: "root"
 })
 export class IntersectionObserverService {
-  private entriesMap: WeakMap<
-    Element,
-    Subscriber<IntersectionObserverEntry>
-  > = new WeakMap<Element, Subscriber<IntersectionObserverEntry>>();
+  private entriesMap: WeakMap<Element, Subscriber<IntersectionObserverEntry>>;
   private readonly intersectionObserver?: IntersectionObserver;
 
   constructor() {
+    this.entriesMap = new WeakMap();
     if (IntersectionObserver) {
-      this.entriesMap = new WeakMap();
       this.intersectionObserver = new IntersectionObserver(
         this.emitAll.bind(this),
         { threshold: 0 }
