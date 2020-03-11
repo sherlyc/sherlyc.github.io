@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { Observable, Subscriber } from "rxjs";
-import { RuntimeService } from "../runtime/runtime.service";
 
 @Injectable({
   providedIn: "root"
@@ -11,7 +10,7 @@ export class IntersectionObserverService {
 
   constructor() {
     this.entriesMap = new WeakMap();
-    if (IntersectionObserver) {
+    if (typeof IntersectionObserver !== "undefined") {
       this.intersectionObserver = new IntersectionObserver(
         this.emitAll.bind(this),
         { threshold: 0 }
