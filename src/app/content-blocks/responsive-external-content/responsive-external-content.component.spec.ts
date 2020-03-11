@@ -9,6 +9,11 @@ import { GlobalStyleService } from "../../services/global-style/global-style.ser
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { ChangeDetectorRef, Directive, Input } from "@angular/core";
 
+const createFakeIntersectEvent = (isIntersecting: boolean) =>
+  ({
+    isIntersecting
+  } as IntersectionObserverEntry);
+
 describe("ResponsiveExternalContentComponent", () => {
   let component: ResponsiveExternalContentComponent;
   let fixture: ComponentFixture<ResponsiveExternalContentComponent>;
@@ -209,10 +214,7 @@ describe("ResponsiveExternalContentComponent", () => {
     );
     expect(component.isShown).toBeFalsy();
 
-    const isIntersectEvent = {
-      isIntersecting: true
-    } as IntersectionObserverEntry;
-    component.onIntersect(isIntersectEvent);
+    component.onIntersect(createFakeIntersectEvent(true));
 
     expect(component.isShown).toBeTruthy();
     expect(fixture.debugElement.query(By.css("iframe"))).toBeTruthy();
@@ -234,11 +236,8 @@ describe("ResponsiveExternalContentComponent", () => {
       "detach"
     );
 
-    const isIntersectEvent = {
-      isIntersecting: true
-    } as IntersectionObserverEntry;
-    component.onIntersect(isIntersectEvent);
-    component.onIntersect(isIntersectEvent);
+    component.onIntersect(createFakeIntersectEvent(true));
+    component.onIntersect(createFakeIntersectEvent(false));
 
     expect(component.isShown).toBeTruthy();
     expect(fixture.debugElement.query(By.css("iframe"))).toBeTruthy();

@@ -22,7 +22,7 @@ export class ResponsiveExternalContentComponent
   implements IContentBlockComponent, OnInit {
   @Input() input!: IResponsiveExternalContent;
   @HostBinding("class") class = "";
-  isShown? = false;
+  isShown = false;
 
   constructor(
     private sanitizer: DomSanitizer,
