@@ -71,6 +71,7 @@ export const newPage = (): HandlerInput[] => {
       linkUrl: "https://play.stuff.co.nz/",
       content: {
         type: HandlerInputType.ResponsiveExternalContent,
+        lazyLoad: true,
         url:
           "https://www.playwidget.stuff.co.nz/hgrid/5d06caa81de1c4001f81a46e",
         mobile: {
@@ -92,6 +93,7 @@ export const newPage = (): HandlerInput[] => {
     },
     {
       type: HandlerInputType.ResponsiveExternalContent,
+      lazyLoad: true,
       url: "https://interactives.stuff.co.nz/live/homepage/uber/2/320-200.html",
       mobile: {
         height: "320px",
@@ -168,6 +170,7 @@ export const newPage = (): HandlerInput[] => {
     },
     {
       type: HandlerInputType.ResponsiveExternalContent,
+      lazyLoad: true,
       url: "https://interactives.stuff.co.nz/live/homepage/uber/3/320-200.html",
       mobile: {
         height: "320px",
@@ -200,6 +203,7 @@ export const newPage = (): HandlerInput[] => {
       linkUrl: "https://play.stuff.co.nz/page/channel-onenews",
       content: {
         type: HandlerInputType.ResponsiveExternalContent,
+        lazyLoad: true,
         url: "https://www.playwidget.stuff.co.nz/grid/5d3fcb25a0e845001caee780",
         mobile: {
           height: "calc(35% + 35px)",
@@ -279,6 +283,7 @@ export const newPage = (): HandlerInput[] => {
       linkUrl: "https://www.neighbourly.co.nz/",
       content: {
         type: HandlerInputType.ResponsiveExternalContent,
+        lazyLoad: true,
         url: "https://cdn.neighbourly.co.nz/stuff/933/homepage",
         mobile: {
           height: "550px",

@@ -1,13 +1,18 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { ResponsiveExternalContentComponent } from "./responsive-external-content.component";
-import { DomSanitizer } from "@angular/platform-browser";
+import { By, DomSanitizer } from "@angular/platform-browser";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { MediaQuery } from "../grid-container/__types__/MediaQuery";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 import { IResponsiveExternalContentDeviceConfig } from "../../../../common/__types__/IResponsiveExternalContent";
 import { GlobalStyleService } from "../../services/global-style/global-style.service";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
-import { Directive, Input } from "@angular/core";
+import { ChangeDetectorRef, Directive, Input } from "@angular/core";
+
+const createFakeIntersectEvent = (isIntersecting: boolean) =>
+  ({
+    isIntersecting
+  } as IntersectionObserverEntry);
 
 describe("ResponsiveExternalContentComponent", () => {
   let component: ResponsiveExternalContentComponent;
@@ -37,7 +42,8 @@ describe("ResponsiveExternalContentComponent", () => {
     url: "https://example.com",
     mobile: {
       ...mobileConfig
-    }
+    },
+    lazyLoad: false
   };
 
   @Directive({
@@ -46,7 +52,6 @@ describe("ResponsiveExternalContentComponent", () => {
   class MockGlobalStyleDirective {
     @Input() appGlobalStyle?: object;
   }
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
@@ -82,6 +87,24 @@ describe("ResponsiveExternalContentComponent", () => {
     expect(
       fixture.debugElement.nativeElement.querySelector("[scrolling=no]")
     ).toBeTruthy();
+  });
+
+  it("should load iframe initially when lazyload is not enabled", () => {
+    component.input = { ...input, lazyLoad: false };
+
+    fixture.detectChanges();
+
+    const iframe = fixture.debugElement.query(By.css("iframe"));
+    expect(iframe).toBeTruthy();
+  });
+
+  it("should not load iframe initially when lazyload is enabled", () => {
+    component.input = { ...input, lazyLoad: true };
+
+    fixture.detectChanges();
+
+    const iframe = fixture.debugElement.query(By.css("iframe"));
+    expect(iframe).toBeFalsy();
   });
 
   it("should set scrolling attribute", () => {
@@ -174,5 +197,52 @@ describe("ResponsiveExternalContentComponent", () => {
     fixture.detectChanges();
 
     expect(component.getCss()).toEqual(expected);
+  });
+
+  it("should load when intersecting", () => {
+    component.input = {
+      ...input,
+      lazyLoad: true
+    };
+    expect(fixture.debugElement.query(By.css("iframe"))).toBeFalsy();
+
+    component.onIntersect(createFakeIntersectEvent(true));
+
+    expect(fixture.debugElement.query(By.css("iframe"))).toBeTruthy();
+  });
+
+  it("should not load when not intersecting", () => {
+    component.input = {
+      ...input,
+      lazyLoad: true
+    };
+    expect(fixture.debugElement.query(By.css("iframe"))).toBeFalsy();
+
+    component.onIntersect(createFakeIntersectEvent(false));
+
+    expect(fixture.debugElement.query(By.css("iframe"))).toBeFalsy();
+  });
+
+  it("should not detect changes again when already loaded", () => {
+    component.input = {
+      ...input,
+      lazyLoad: true
+    };
+    const detectChangesSpy = jest.spyOn(
+      (component as any).changeDetectorRef,
+      "detectChanges"
+    );
+    const detachSpy = jest.spyOn(
+      (component as any).changeDetectorRef,
+      "detach"
+    );
+
+    component.onIntersect(createFakeIntersectEvent(true));
+    component.onIntersect(createFakeIntersectEvent(false));
+
+    expect(component.isShown).toBeTruthy();
+    expect(fixture.debugElement.query(By.css("iframe"))).toBeTruthy();
+    expect(detectChangesSpy).toHaveBeenCalledTimes(1);
+    expect(detachSpy).toHaveBeenCalledTimes(1);
   });
 });

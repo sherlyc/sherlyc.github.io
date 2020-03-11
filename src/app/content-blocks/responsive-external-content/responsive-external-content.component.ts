@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   HostBinding,
   Input,
@@ -21,13 +22,16 @@ export class ResponsiveExternalContentComponent
   implements IContentBlockComponent, OnInit {
   @Input() input!: IResponsiveExternalContent;
   @HostBinding("class") class = "";
+  isShown = false;
 
   constructor(
     private sanitizer: DomSanitizer,
-    private globalStyles: GlobalStyleService
+    private globalStyles: GlobalStyleService,
+    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
+    this.isShown = !this.input.lazyLoad;
     const { mobile, tablet = mobile, desktop = tablet } = this.input;
 
     this.class = this.globalStyles.injectStyle({
@@ -64,5 +68,13 @@ export class ResponsiveExternalContentComponent
         width: desktop.width
       }
     };
+  }
+
+  onIntersect(event: IntersectionObserverEntry) {
+    if (!this.isShown && event.isIntersecting) {
+      this.isShown = true;
+      this.changeDetectorRef.detectChanges();
+      this.changeDetectorRef.detach();
+    }
   }
 }
