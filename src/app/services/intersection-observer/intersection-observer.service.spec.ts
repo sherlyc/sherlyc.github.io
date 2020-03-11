@@ -1,74 +1,80 @@
-import { ServiceMock } from "../mocks/MockService";
 import { TestBed } from "@angular/core/testing";
 import { IntersectionObserverService } from "./intersection-observer.service";
 
-describe("Intersection Observer", () => {
-  let intersectionObserverService: ServiceMock<IntersectionObserverService>;
-  let triggerIntersection: Function;
-  let trackedOptions: any;
+let triggerIntersection: Function;
+let trackedOptions: any;
 
-  beforeEach(() => {
-    let observed: any[] = [];
+class FakeIntersectionObserver {
+  observed: any[] = [];
+  callback: Function;
+  constructor(callback: Function, options: any) {
+    this.callback = callback;
+    trackedOptions = options;
 
-    // @ts-ignore
-    global.IntersectionObserver = class FakeIntersectionObserver {
-      callback: Function;
-      constructor(callback: Function, options: any) {
-        this.callback = callback;
-        trackedOptions = options;
-
-        triggerIntersection = () => {
-          this.fakeIntersection();
-        };
-      }
-
-      fakeIntersection() {
-        this.callback(
-          observed.map((observedElement) => ({ target: observedElement }))
-        );
-      }
-
-      observe(target: Element) {
-        observed.push(target);
-      }
-
-      unobserve(target: Element) {
-        observed = observed.filter((element) => element !== target);
-      }
+    triggerIntersection = () => {
+      this.fakeIntersection();
     };
+  }
 
-    intersectionObserverService = TestBed.get(IntersectionObserverService);
+  fakeIntersection() {
+    this.callback(
+      this.observed.map((observedElement) => ({ target: observedElement }))
+    );
+  }
+
+  observe(target: Element) {
+    this.observed.push(target);
+  }
+
+  unobserve(target: Element) {
+    this.observed = this.observed.filter((element) => element !== target);
+  }
+}
+
+describe("Intersection Observer", () => {
+  let intersectionObserverService: IntersectionObserverService;
+
+  afterEach(() => {
+    triggerIntersection = () => {};
+    trackedOptions = null;
   });
 
   afterAll(() => {
     // @ts-ignore
-    global.IntersectionObserver = null;
+    // global.IntersectionObserver = null;
   });
 
   it("should be created", () => {
+    // @ts-ignore
+    global.IntersectionObserver = FakeIntersectionObserver;
+    intersectionObserverService = TestBed.get(IntersectionObserverService);
+
     expect(intersectionObserverService).toBeTruthy();
   });
 
   it("should emit an event when intersection observer is triggered", (done) => {
-    const service: IntersectionObserverService = TestBed.get(
-      IntersectionObserverService
-    );
+    // @ts-ignore
+    global.IntersectionObserver = FakeIntersectionObserver;
+    intersectionObserverService = TestBed.get(IntersectionObserverService);
     const element = {} as Element;
 
-    service.observe(element).subscribe((event: IntersectionObserverEntry) => {
-      expect(event).toBeTruthy();
-      done();
-    });
+    intersectionObserverService
+      .observe(element)
+      .subscribe((event: IntersectionObserverEntry) => {
+        expect(event).toBeTruthy();
+        done();
+      });
 
     triggerIntersection();
   });
 
   it("should not emit an event when an unobserved element triggered intersection observer", () => {
-    const service: IntersectionObserverService = TestBed.get(
-      IntersectionObserverService
-    );
+    // @ts-ignore
+    global.IntersectionObserver = FakeIntersectionObserver;
+    intersectionObserverService = TestBed.get(IntersectionObserverService);
+
     const element = {} as Element;
-    const observable = service
+    const observable = intersectionObserverService
       .observe(element)
       .subscribe((event: IntersectionObserverEntry) => {
         fail("should not happen");
@@ -79,8 +85,18 @@ describe("Intersection Observer", () => {
   });
 
   it("should initialize with the correct config", () => {
+    // @ts-ignore
+    global.IntersectionObserver = FakeIntersectionObserver;
     TestBed.get(IntersectionObserverService);
 
     expect(trackedOptions).toEqual({ threshold: 0 });
+  });
+
+  it.only("should not initialise on server side", () => {
+    // @ts-ignore
+    global.IntersectionObserver = null;
+    TestBed.get(IntersectionObserverService);
+
+    expect(trackedOptions).toBeFalsy();
   });
 });

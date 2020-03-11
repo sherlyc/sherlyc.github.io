@@ -28,7 +28,7 @@ export class ResizeObserverService {
   }
 
   observe(element: Element): Observable<ResizeObserverEntry> {
-    return new Observable((subscriber) => {
+    return new Observable((subscriber: Subscriber<ResizeObserverEntry>) => {
       this.entriesMap.set(element, subscriber);
       if (this.resizeObserver) {
         this.resizeObserver.observe(element);

@@ -1,19 +1,25 @@
 import { Injectable } from "@angular/core";
 import { Observable, Subscriber } from "rxjs";
+import { RuntimeService } from "../runtime/runtime.service";
 
 @Injectable({
   providedIn: "root"
 })
 export class IntersectionObserverService {
-  private entriesMap: WeakMap<Element, Subscriber<IntersectionObserverEntry>>;
-  private intersectionObserver: IntersectionObserver;
+  private entriesMap: WeakMap<
+    Element,
+    Subscriber<IntersectionObserverEntry>
+  > = new WeakMap<Element, Subscriber<IntersectionObserverEntry>>();
+  private readonly intersectionObserver?: IntersectionObserver;
 
   constructor() {
-    this.entriesMap = new WeakMap();
-    this.intersectionObserver = new IntersectionObserver(
-      this.emitAll.bind(this),
-      { threshold: 0 }
-    );
+    if (IntersectionObserver) {
+      this.entriesMap = new WeakMap();
+      this.intersectionObserver = new IntersectionObserver(
+        this.emitAll.bind(this),
+        { threshold: 0 }
+      );
+    }
   }
 
   private emitAll(observedElements: IntersectionObserverEntry[]) {
@@ -28,13 +34,20 @@ export class IntersectionObserverService {
   }
 
   observe(element: Element): Observable<IntersectionObserverEntry> {
-    return new Observable((subscriber) => {
-      this.entriesMap.set(element, subscriber);
-      this.intersectionObserver.observe(element);
-      return () => {
-        this.intersectionObserver.unobserve(element);
-        this.entriesMap.delete(element);
-      };
-    });
+    return new Observable(
+      (subscriber: Subscriber<IntersectionObserverEntry>) => {
+        this.entriesMap.set(element, subscriber);
+        if (this.intersectionObserver) {
+          this.intersectionObserver.observe(element);
+        }
+
+        return () => {
+          if (this.intersectionObserver) {
+            this.intersectionObserver.unobserve(element);
+          }
+          this.entriesMap.delete(element);
+        };
+      }
+    );
   }
 }
