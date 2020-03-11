@@ -94,7 +94,7 @@ describe("Intersection Observer", () => {
 
   it("should not initialise on server side", () => {
     // @ts-ignore
-    global.IntersectionObserver = null;
+    global.IntersectionObserver = undefined;
     TestBed.get(IntersectionObserverService);
 
     expect(trackedOptions).toBeFalsy();
