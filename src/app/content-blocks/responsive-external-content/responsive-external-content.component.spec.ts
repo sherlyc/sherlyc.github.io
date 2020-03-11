@@ -200,18 +200,49 @@ describe("ResponsiveExternalContentComponent", () => {
       lazyLoad: true
     };
     const detectChangesSpy = jest.spyOn(
-      fixture.changeDetectorRef,
+      (component as any).changeDetectorRef,
       "detectChanges"
     );
-    fixture.detectChanges();
+    const detachSpy = jest.spyOn(
+      (component as any).changeDetectorRef,
+      "detach"
+    );
     expect(component.isShown).toBeFalsy();
 
-    const fakeEvent = { isIntersecting: true } as IntersectionObserverEntry;
-    component.onIntersect(fakeEvent);
+    const isIntersectEvent = {
+      isIntersecting: true
+    } as IntersectionObserverEntry;
+    component.onIntersect(isIntersectEvent);
 
     expect(component.isShown).toBeTruthy();
-    const iframe = fixture.debugElement.query(By.css("iframe"));
-    expect(iframe).toBeTruthy();
+    expect(fixture.debugElement.query(By.css("iframe"))).toBeTruthy();
     expect(detectChangesSpy).toHaveBeenCalledTimes(1);
+    expect(detachSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it("should not detect changes again when already loaded", () => {
+    component.input = {
+      ...input,
+      lazyLoad: true
+    };
+    const detectChangesSpy = jest.spyOn(
+      (component as any).changeDetectorRef,
+      "detectChanges"
+    );
+    const detachSpy = jest.spyOn(
+      (component as any).changeDetectorRef,
+      "detach"
+    );
+
+    const isIntersectEvent = {
+      isIntersecting: true
+    } as IntersectionObserverEntry;
+    component.onIntersect(isIntersectEvent);
+    component.onIntersect(isIntersectEvent);
+
+    expect(component.isShown).toBeTruthy();
+    expect(fixture.debugElement.query(By.css("iframe"))).toBeTruthy();
+    expect(detectChangesSpy).toHaveBeenCalledTimes(1);
+    expect(detachSpy).toHaveBeenCalledTimes(1);
   });
 });
