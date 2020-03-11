@@ -43,20 +43,6 @@ describe("Experiment controller", () => {
     expect(res.send).toHaveBeenCalledWith(variant);
   });
 
-  it("should respond with error when experiment name is not recognized", async () => {
-    req.params.experimentName = "ExperimentThatDoesNotExist";
-    req.params.lotteryNumber = "27";
-    const variant = "control";
-    (getExperimentVariant as jest.Mock).mockReturnValue(variant);
-
-    await experimentController(req, res);
-
-    expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.send).toHaveBeenCalledWith(
-      expect.stringContaining("Invalid experiment data provided")
-    );
-  });
-
   it("should pass experimentName, lotteryNumber, deviceType and spadeParams to getExperimentVariant function", async () => {
     req.params.experimentName = "Random";
     req.params.lotteryNumber = "27";

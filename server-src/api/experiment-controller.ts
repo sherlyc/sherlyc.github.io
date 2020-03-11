@@ -13,8 +13,7 @@ function validateRequest(
   if (
     isNaN(parsedLotto) ||
     parsedLotto <= 0 ||
-    !Object.keys(DeviceType).includes(deviceType) ||
-    !Object.keys(ExperimentName).includes(name)
+    !Object.keys(DeviceType).includes(deviceType)
   ) {
     throw new Error(`Invalid experiment data provided,
      name [${name}], lotteryNumber [${lotteryNumber}], deviceType [${deviceType}]`);
