@@ -204,22 +204,23 @@ describe("ResponsiveExternalContentComponent", () => {
       ...input,
       lazyLoad: true
     };
-    const detectChangesSpy = jest.spyOn(
-      (component as any).changeDetectorRef,
-      "detectChanges"
-    );
-    const detachSpy = jest.spyOn(
-      (component as any).changeDetectorRef,
-      "detach"
-    );
-    expect(component.isShown).toBeFalsy();
+    expect(fixture.debugElement.query(By.css("iframe"))).toBeFalsy();
 
     component.onIntersect(createFakeIntersectEvent(true));
 
-    expect(component.isShown).toBeTruthy();
     expect(fixture.debugElement.query(By.css("iframe"))).toBeTruthy();
-    expect(detectChangesSpy).toHaveBeenCalledTimes(1);
-    expect(detachSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it("should not load when not intersecting", () => {
+    component.input = {
+      ...input,
+      lazyLoad: true
+    };
+    expect(fixture.debugElement.query(By.css("iframe"))).toBeFalsy();
+
+    component.onIntersect(createFakeIntersectEvent(false));
+
+    expect(fixture.debugElement.query(By.css("iframe"))).toBeFalsy();
   });
 
   it("should not detect changes again when already loaded", () => {
