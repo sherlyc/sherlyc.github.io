@@ -407,7 +407,19 @@
       "strapCoronavirus": {
         "ids": ["62950252"],
         "dedupeRules": {
-          "dedupeFromBaseList": true
+          "dedupeFromBaseList": false
+        }
+      },
+      "strapNational": {
+        "ids": ["62950252", "62926368"],
+        "dedupeRules": {
+          "dedupeFromBaseList": false
+        }
+      },
+      "strapWorld": {
+        "ids": ["60844362"],
+        "dedupeRules": {
+          "dedupeFromBaseList": false
         }
       }
     }
