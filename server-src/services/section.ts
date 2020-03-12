@@ -2,6 +2,7 @@ export enum Section {
   Latest = "",
   Sport = "sport",
   National = "national",
+  Coronavirus = "national/health/coronavirus",
   World = "world",
   Business = "business",
   Opinion = "opinion",

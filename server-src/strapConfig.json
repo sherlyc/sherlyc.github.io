@@ -99,10 +99,22 @@
         "dedupeFromBaseList": true
       }
     },
+    "strapCoronavirus": {
+      "ids": ["120121097"],
+      "dedupeRules": {
+        "dedupeFromBaseList": true
+      }
+    },
     "strapNational": {
       "ids": ["62950252", "62926368"],
       "dedupeRules": {
-        "dedupeFromBaseList": true
+        "dedupeFromBaseList": true,
+        "extraDedupeList": [
+          {
+            "id": "120121097",
+            "limit": 5
+          }
+        ]
       }
     },
     "strapSport": {
@@ -128,6 +140,10 @@
           },
           {
             "id": "63060863",
+            "limit": 5
+          },
+          {
+            "id": "120121097",
             "limit": 5
           }
         ]

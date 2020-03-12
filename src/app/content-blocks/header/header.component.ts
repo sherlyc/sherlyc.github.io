@@ -46,6 +46,7 @@ export class HeaderComponent
     {
       theme: "light",
       items: [
+        { label: "Coronavirus", link: "/national/health/coronavirus" },
         { label: "National", link: "/national" },
         { label: "World", link: "/world" },
         { label: "Business", link: "/business" },

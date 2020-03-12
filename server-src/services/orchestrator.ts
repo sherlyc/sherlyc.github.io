@@ -120,6 +120,14 @@ export const newPage = (): HandlerInput[] => {
     },
     {
       type: HandlerInputType.NewsSix,
+      displayName: "coronavirus",
+      color: "#256091",
+      linkUrl: "/" + Section.Coronavirus,
+      strapName: `${homepageAdPrefix}Coronavirus`,
+      sourceId: Strap.Coronavirus
+    },
+    {
+      type: HandlerInputType.NewsSix,
       displayName: "national",
       color: "#256091",
       linkUrl: "/" + Section.National,
