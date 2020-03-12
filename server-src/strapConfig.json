@@ -401,5 +401,15 @@
         "dedupeFromBaseList": false
       }
     }
+  },
+  "overrides": {
+    "staging": {
+      "strapCoronavirus": {
+        "ids": ["62950252"],
+        "dedupeRules": {
+          "dedupeFromBaseList": true
+        }
+      }
+    }
   }
 }

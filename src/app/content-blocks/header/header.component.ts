@@ -46,12 +46,12 @@ export class HeaderComponent
     {
       theme: "light",
       items: [
-        { label: "Coronavirus", link: "/national/health/coronavirus" },
         { label: "National", link: "/national" },
         { label: "World", link: "/world" },
         { label: "Business", link: "/business" },
         { label: "Climate Change", link: "/environment/climate-news" },
         { label: "Sport", link: "/sport" },
+        { label: "Coronavirus", link: "/national/health/coronavirus" },
         { label: "Entertainment", link: "/entertainment" },
         { label: "Homed", link: "/life-style/homed" },
         { label: "Life & Style", link: "/life-style" },
