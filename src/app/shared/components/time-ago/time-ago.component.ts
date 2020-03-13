@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, HostBinding, Input, OnInit } from "@angular/core";
 import * as moment from "moment";
 
 const HOUR_IN_SECONDS = 3600;
@@ -19,8 +19,11 @@ export class TimeAgoComponent implements OnInit {
   @Input() textColor = "#d12421";
   timeAgo!: string;
 
+  @HostBinding("style.display") display = "inline-block";
+
   ngOnInit() {
     this.timeAgo = this.format();
+    this.display = !!this.timeAgo ? "inline-block" : "none";
   }
 
   format() {
