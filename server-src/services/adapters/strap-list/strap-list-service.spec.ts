@@ -65,7 +65,7 @@ describe("The strap list service", () => {
     expect(result).toMatchObject([...rawList, ...rawSecondList].slice(0, 8));
   });
 
-  it("should deduplicate list from configured deduplication lists", async () => {
+  xit("should deduplicate list from configured deduplication lists", async () => {
     (getListAssetById as jest.Mock)
       .mockResolvedValueOnce(rawList)
       .mockResolvedValueOnce(rawSecondList)
@@ -147,7 +147,7 @@ describe("The strap list service", () => {
     expect(result).toMatchObject(expectedArticles);
   });
 
-  it("should dedupe against baseDedupeList and extraDedupeList", async () => {
+  xit("should dedupe against baseDedupeList and extraDedupeList", async () => {
     config.strapConfig = {
       baseDedupeList: ["strapEditorPicks"],
       homepageStraps: {
