@@ -9,9 +9,17 @@ const deduplicate = (
   articles: IRawArticle[],
   dedupeSource: IRawArticle[]
 ): IRawArticle[] => {
-  const dupeSet = new Set();
-  dedupeSource.forEach((article) => dupeSet.add(article.id));
-  return articles.filter((asset) => !dupeSet.has(asset.id));
+  const dedupIds = dedupeSource.map((article) => article.id);
+  const result: IRawArticle[] = [];
+  const duplicated: IRawArticle[] = [];
+  articles.forEach((article) => {
+    if (dedupIds.includes(article.id)) {
+      duplicated.push(article);
+    } else {
+      result.push(article);
+    }
+  });
+  return [...result, ...duplicated];
 };
 
 const getArticlesInListAssets = async (
