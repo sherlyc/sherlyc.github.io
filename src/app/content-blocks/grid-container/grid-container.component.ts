@@ -88,9 +88,10 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
   ngOnInit(): void {
     this.keys = Object.getOwnPropertyNames(this.input.items);
     this.assignLayouts();
-    this.createBorderCells();
     this.useGrid = this.deviceService.isGridSupported();
-    if (!this.useGrid) {
+    if (this.useGrid) {
+      this.createBorderCells();
+    } else {
       this.table = this.getTableContent();
     }
   }
