@@ -404,4 +404,29 @@ describe("GridContainerComponent", () => {
       });
     });
   });
+
+  describe("when CSS Grid is not supported", () => {
+    beforeEach(() => {
+      jest.spyOn(deviceService, "isGridSupported").mockReturnValueOnce(false);
+    });
+
+    it("generates table layout", () => {
+      component.input = containerInput;
+      fixture.detectChanges();
+      const expected = [
+        [
+          {
+            border: [],
+            columnSpan: 2,
+            columnStart: 1,
+            key: "first-block",
+            rowSpan: 2,
+            rowStart: 1,
+            width: 40
+          }
+        ]
+      ];
+      expect(fixture.componentInstance.table).toEqual(expected);
+    });
+  });
 });
