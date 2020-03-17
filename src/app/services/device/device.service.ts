@@ -8,6 +8,8 @@ import { WindowService } from "../window/window.service";
   providedIn: "root"
 })
 export class DeviceService {
+  private _isGridSupported!: boolean;
+
   constructor(
     private runtimeService: RuntimeService,
     private windowService: WindowService
@@ -22,10 +24,13 @@ export class DeviceService {
 
   isGridSupported() {
     if (this.runtimeService.isBrowser()) {
-      const { style } = document.createElement("div");
-      return ["gridTemplateColumns", "msGridColumns"].some(
-        (key) => key in style
-      );
+      if (typeof this._isGridSupported === "undefined") {
+        const { style } = document.createElement("div");
+        this._isGridSupported = ["gridTemplateColumns", "msGridColumns"].some(
+          (key) => key in style
+        );
+      }
+      return this._isGridSupported;
     } else {
       return true;
     }
