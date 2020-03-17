@@ -119,6 +119,27 @@ export const newPage = (): HandlerInput[] => {
       sourceId: Strap.MidStrip
     },
     {
+      type: HandlerInputType.ResponsiveExternalContent,
+      lazyLoad: true,
+      url:
+        "https://interactives.stuff.co.nz/live/homepage/uber/corona/320-200.html",
+      mobile: {
+        height: "320px",
+        width: "100%",
+        margin: "0 0 20px 0"
+      },
+      tablet: {
+        height: "200px",
+        width: "100%",
+        margin: "0 0 40px 0"
+      },
+      desktop: {
+        height: "200px",
+        width: "100%",
+        margin: "0 0 60px 0"
+      }
+    },
+    {
       type: HandlerInputType.NewsSix,
       displayName: "coronavirus",
       color: "#256091",
