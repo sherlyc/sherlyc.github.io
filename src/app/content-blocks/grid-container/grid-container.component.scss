@@ -28,3 +28,14 @@
     width: 100%;
   }
 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  td {
+    vertical-align: top;
+    text-align: left;
+    padding: 10px;
+  }
+}

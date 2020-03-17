@@ -1,6 +1,16 @@
-<div [appGlobalStyle]="getGridCss()">
+<div *ngIf="useGrid === true" [appGlobalStyle]="getGridCss()">
   <div *ngFor="let key of keys" [appGlobalStyle]="getCellCss(key)">
     <ng-container [appContentBlock]="input.items[key]"></ng-container>
   </div>
   <div *ngFor="let borderCell of borderCells" [ngClass]="borderCell.position" [appGlobalStyle]="getBorderCellCss(borderCell)"></div>
 </div>
+
+<table *ngIf="useGrid === false">
+  <tr *ngFor="let row of getTableContent()">
+    <ng-container *ngFor="let cell of row">
+      <td *ngIf="cell" [colSpan]="cell.columnSpan" [rowSpan]="cell.rowSpan" width="{{ cell.width + '%' }}">
+        <ng-container [appContentBlock]="input.items[cell.key]"></ng-container>
+      </td>
+    </ng-container>
+  </tr>
+</table>

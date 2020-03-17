@@ -5,12 +5,13 @@ import {
   IGridConfig,
   IGridContainer
 } from "../../../../common/__types__/IGridContainer";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
+import { DeviceService } from "../../services/device/device.service";
 import {
   calculateBorderCell,
   calculateCellGap,
   calculateGridGap
 } from "../../shared/utils/grid-helper/grid-helper";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 import { MediaQuery } from "./__types__/MediaQuery";
 
 const hideCell = { display: "none" };
@@ -22,6 +23,8 @@ const hideCell = { display: "none" };
 })
 export class GridContainerComponent implements IContentBlockComponent, OnInit {
   @Input() input!: IGridContainer;
+
+  useGrid!: boolean;
 
   keys: string[] = [];
 
@@ -78,7 +81,10 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
     };
   }
 
+  constructor(private deviceService: DeviceService) {}
+
   ngOnInit(): void {
+    this.useGrid = this.deviceService.isGridSupported();
     this.keys = Object.getOwnPropertyNames(this.input.items);
     this.assignLayouts();
     this.createBorderCells();
@@ -155,5 +161,22 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
       [MediaQuery.Tablet]: GridContainerComponent.getCellDeviceCss(tabletGap),
       [MediaQuery.Desktop]: GridContainerComponent.getCellDeviceCss(desktopGap)
     };
+  }
+
+  getTableContent() {
+    const { desktop } = this.layouts;
+    const totalColumns = desktop.gridTemplateColumns.split(" ").length;
+    return Object.keys(desktop.gridBlocks).reduce((table, key) => {
+      const cell = desktop.gridBlocks[key];
+      const rowNumber = cell.rowStart - 1;
+      const colNumber = cell.columnStart - 1;
+      table[rowNumber] = table[rowNumber] || [];
+      table[rowNumber][colNumber] = {
+        ...cell,
+        key,
+        width: (cell.columnSpan * 100) / totalColumns
+      };
+      return table;
+    }, [] as any[]);
   }
 }
