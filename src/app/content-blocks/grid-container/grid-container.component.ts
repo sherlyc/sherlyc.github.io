@@ -24,8 +24,6 @@ const hideCell = { display: "none" };
 export class GridContainerComponent implements IContentBlockComponent, OnInit {
   @Input() input!: IGridContainer;
 
-  useGrid!: boolean;
-
   keys: string[] = [];
 
   borderCells: Array<{
@@ -37,6 +35,18 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
     mobile: IGridConfig;
     tablet: IGridConfig;
     desktop: IGridConfig;
+  };
+
+  grid!: {
+    grid: Partial<CSSStyleDeclaration>;
+    cells: {
+      key: string;
+      style: Partial<CSSStyleDeclaration>;
+    }[];
+    borders: {
+      className: Border;
+      style: Partial<CSSStyleDeclaration>;
+    }[];
   };
 
   table!: any;
@@ -86,11 +96,11 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
   constructor(private deviceService: DeviceService) {}
 
   ngOnInit(): void {
-    this.keys = Object.getOwnPropertyNames(this.input.items);
     this.assignLayouts();
-    this.useGrid = this.deviceService.isGridSupported();
-    if (this.useGrid) {
+    if (this.deviceService.isGridSupported()) {
+      this.keys = Object.getOwnPropertyNames(this.input.items);
       this.createBorderCells();
+      this.grid = this.getGridContent();
     } else {
       this.table = this.getTableContent();
     }
@@ -166,6 +176,20 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
       [MediaQuery.Mobile]: GridContainerComponent.getCellDeviceCss(mobileGap),
       [MediaQuery.Tablet]: GridContainerComponent.getCellDeviceCss(tabletGap),
       [MediaQuery.Desktop]: GridContainerComponent.getCellDeviceCss(desktopGap)
+    };
+  }
+
+  getGridContent() {
+    return {
+      grid: this.getGridCss(),
+      cells: this.keys.map((key) => ({
+        key,
+        style: this.getCellCss(key)
+      })),
+      borders: this.borderCells.map((border) => ({
+        className: border.position,
+        style: this.getBorderCellCss(border)
+      }))
     };
   }
 
