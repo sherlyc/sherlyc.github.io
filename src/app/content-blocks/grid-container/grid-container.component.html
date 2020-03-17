@@ -5,8 +5,8 @@
   <div *ngFor="let borderCell of borderCells" [ngClass]="borderCell.position" [appGlobalStyle]="getBorderCellCss(borderCell)"></div>
 </div>
 
-<table *ngIf="useGrid === false">
-  <tr *ngFor="let row of getTableContent()">
+<table *ngIf="table">
+  <tr *ngFor="let row of table">
     <ng-container *ngFor="let cell of row">
       <td *ngIf="cell" [colSpan]="cell.columnSpan" [rowSpan]="cell.rowSpan" width="{{ cell.width + '%' }}">
         <ng-container [appContentBlock]="input.items[cell.key]"></ng-container>

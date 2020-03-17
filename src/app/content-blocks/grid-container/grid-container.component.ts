@@ -39,6 +39,8 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
     desktop: IGridConfig;
   };
 
+  table!: any;
+
   private static getBorderCellDeviceCss(gridBlock: IGridBlock, type: Border) {
     const hasBorder = gridBlock.border.includes(type);
     return hasBorder
@@ -84,10 +86,13 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
   constructor(private deviceService: DeviceService) {}
 
   ngOnInit(): void {
-    this.useGrid = this.deviceService.isGridSupported();
     this.keys = Object.getOwnPropertyNames(this.input.items);
     this.assignLayouts();
     this.createBorderCells();
+    this.useGrid = this.deviceService.isGridSupported();
+    if (!this.useGrid) {
+      this.table = this.getTableContent();
+    }
   }
 
   private createBorderCells() {
