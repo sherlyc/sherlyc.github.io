@@ -407,7 +407,7 @@ describe("GridContainerComponent", () => {
 
   describe("when CSS Grid is not supported", () => {
     beforeEach(() => {
-      jest.spyOn(deviceService, "isGridSupported").mockReturnValueOnce(false);
+      deviceService.isGridSupported.mockReturnValueOnce(false);
     });
 
     it("generates table layout", () => {
