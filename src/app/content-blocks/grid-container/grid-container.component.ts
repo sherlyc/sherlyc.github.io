@@ -39,14 +39,14 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
 
   grid!: {
     grid: Partial<CSSStyleDeclaration>;
-    cells: {
+    cells: Array<{
       key: string;
       style: Partial<CSSStyleDeclaration>;
-    }[];
-    borders: {
+    }>;
+    borders: Array<{
       className: Border;
       style: Partial<CSSStyleDeclaration>;
-    }[];
+    }>;
   };
 
   table!: any;
