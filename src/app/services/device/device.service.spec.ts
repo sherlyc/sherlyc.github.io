@@ -1,3 +1,4 @@
+import { DOCUMENT } from "@angular/common";
 import { TestBed } from "@angular/core/testing";
 import { DeviceType } from "../../../../common/DeviceType";
 import { mockService, ServiceMock } from "../mocks/MockService";
@@ -10,6 +11,8 @@ describe("DeviceService", () => {
   let deviceService: DeviceService;
   let runtimeService: ServiceMock<RuntimeService>;
   let windowService: ServiceMock<WindowService>;
+  const mockDocument = { createElement: jest.fn() };
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
@@ -20,6 +23,10 @@ describe("DeviceService", () => {
         {
           provide: WindowService,
           useClass: mockService(WindowService)
+        },
+        {
+          provide: DOCUMENT,
+          useValue: mockDocument
         }
       ]
     });
@@ -63,46 +70,25 @@ describe("DeviceService", () => {
   });
 
   describe("isGridSupported", () => {
-    describe("when in browser", () => {
-      beforeEach(() => {
-        jest.spyOn(runtimeService, "isBrowser").mockReturnValueOnce(true);
-      });
-
-      it("returns true when CSS Grid is supported", () => {
-        jest.spyOn(document, "createElement").mockReturnValueOnce({
-          style: { gridTemplateColumns: "" }
-        } as HTMLElement);
-        expect(deviceService.isGridSupported()).toBe(true);
-      });
-
-      it("returns true when CSS Grid (IE) is supported", () => {
-        jest.spyOn(document, "createElement").mockReturnValueOnce({
-          style: { msGridColumns: "" }
-        } as HTMLElement);
-        expect(deviceService.isGridSupported()).toBe(true);
-      });
-
-      it("returns false when CSS Grid is not supported", () => {
-        jest.spyOn(document, "createElement").mockReturnValueOnce({
-          style: {}
-        } as HTMLElement);
-        expect(deviceService.isGridSupported()).toBe(false);
-      });
+    it("returns true when CSS Grid is supported", () => {
+      mockDocument.createElement.mockReturnValueOnce({
+        style: { gridTemplateColumns: "" }
+      } as HTMLElement);
+      expect(deviceService.isGridSupported()).toBe(true);
     });
 
-    describe("when in server", () => {
-      beforeEach(() => {
-        jest.spyOn(runtimeService, "isBrowser").mockReturnValueOnce(false);
-      });
+    it("returns true when CSS Grid (IE) is supported", () => {
+      mockDocument.createElement.mockReturnValueOnce({
+        style: { msGridColumns: "" }
+      } as HTMLElement);
+      expect(deviceService.isGridSupported()).toBe(true);
+    });
 
-      it("returns true", () => {
-        jest.spyOn(document, "createElement").mockImplementationOnce(() => {
-          throw new Error(
-            "document.createElement is not supposed to be called"
-          );
-        });
-        expect(deviceService.isGridSupported()).toBe(true);
-      });
+    it("returns false when CSS Grid is not supported", () => {
+      mockDocument.createElement.mockReturnValueOnce({
+        style: {}
+      } as HTMLElement);
+      expect(deviceService.isGridSupported()).toBe(false);
     });
   });
 });

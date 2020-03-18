@@ -1,7 +1,7 @@
-import { Injectable } from "@angular/core";
+import { DOCUMENT } from "@angular/common";
+import { Inject, Injectable } from "@angular/core";
 import { parse } from "bowser";
 import { DeviceType } from "../../../../common/DeviceType";
-import { RuntimeService } from "../runtime/runtime.service";
 import { WindowService } from "../window/window.service";
 
 @Injectable({
@@ -11,8 +11,8 @@ export class DeviceService {
   private _isGridSupported!: boolean;
 
   constructor(
-    private runtimeService: RuntimeService,
-    private windowService: WindowService
+    private windowService: WindowService,
+    @Inject(DOCUMENT) private document: Document
   ) {}
 
   getDevice() {
@@ -23,16 +23,12 @@ export class DeviceService {
   }
 
   isGridSupported() {
-    if (this.runtimeService.isBrowser()) {
-      if (typeof this._isGridSupported === "undefined") {
-        const { style } = document.createElement("div");
-        this._isGridSupported = ["gridTemplateColumns", "msGridColumns"].some(
-          (key) => key in style
-        );
-      }
-      return this._isGridSupported;
-    } else {
-      return true;
+    if (typeof this._isGridSupported === "undefined") {
+      const { style } = this.document.createElement("div");
+      this._isGridSupported = ["gridTemplateColumns", "msGridColumns"].some(
+        (key) => key in style
+      );
     }
+    return this._isGridSupported;
   }
 }
