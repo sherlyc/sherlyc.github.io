@@ -8,7 +8,7 @@ import { WindowService } from "../window/window.service";
   providedIn: "root"
 })
 export class DeviceService {
-  private _isGridSupported!: boolean;
+  private isGridSupportedMemo!: boolean;
 
   constructor(
     private windowService: WindowService,
@@ -23,12 +23,12 @@ export class DeviceService {
   }
 
   isGridSupported() {
-    if (typeof this._isGridSupported === "undefined") {
+    if (typeof this.isGridSupportedMemo === "undefined") {
       const { style } = this.document.createElement("div");
-      this._isGridSupported = ["gridTemplateColumns", "msGridColumns"].some(
+      this.isGridSupportedMemo = ["gridTemplateColumns", "msGridColumns"].some(
         (key) => key in style
       );
     }
-    return this._isGridSupported;
+    return this.isGridSupportedMemo;
   }
 }
