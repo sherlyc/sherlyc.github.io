@@ -14,7 +14,6 @@ import { GlobalStyleDirective } from "./directives/global-style/global-style.dir
 import { HideHeaderDirective } from "./directives/hide-header/hide-header.directive";
 import { IntersectionObserverDirective } from "./directives/intersection-observer/intersection-observer.directive";
 import { OpenExternalLinkDirective } from "./directives/open-external-link/open-external-link.directive";
-import { PullToRefreshDirective } from "./directives/pull-to-refresh/pull-to-refresh.directive";
 import { ResizeDirective } from "./directives/resize/resize.directive";
 
 @NgModule({
@@ -27,7 +26,6 @@ import { ResizeDirective } from "./directives/resize/resize.directive";
     OpenExternalLinkDirective,
     GlobalStyleDirective,
     IntersectionObserverDirective,
-    PullToRefreshDirective,
     CopyrightComponent,
     HeadlineComponent,
     SigninCallbackComponent,
@@ -45,7 +43,6 @@ import { ResizeDirective } from "./directives/resize/resize.directive";
     OpenExternalLinkDirective,
     GlobalStyleDirective,
     IntersectionObserverDirective,
-    PullToRefreshDirective,
     CopyrightComponent,
     HeadlineComponent,
     SigninCallbackComponent,

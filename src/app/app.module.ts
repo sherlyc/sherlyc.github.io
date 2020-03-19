@@ -15,10 +15,11 @@ import { CookieService } from "./services/cookie/cookie.service";
 import { HttpInterceptorService } from "./services/http-interceptor/http-interceptor.service";
 import { LoggerService } from "./services/logger/logger.service";
 import { WindowService } from "./services/window/window.service";
+import { PullToRefreshDirective } from "./shared/directives/pull-to-refresh/pull-to-refresh.directive";
 import { SharedModule } from "./shared/shared.module";
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PullToRefreshDirective],
   imports: [
     BrowserModule.withServerTransition({ appId: "stuff-experience-frontend" }),
     AppRoutingModule,
