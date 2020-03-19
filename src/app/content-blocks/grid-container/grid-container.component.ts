@@ -16,6 +16,15 @@ import { MediaQuery } from "./__types__/MediaQuery";
 
 const hideCell = { display: "none" };
 
+interface ITableCell {
+  columnSpan: number;
+  columnStart: number;
+  key: string;
+  rowSpan: number;
+  rowStart: number;
+  width: number;
+}
+
 @Component({
   selector: "app-grid-container",
   styleUrls: ["./grid-container.component.scss"],
@@ -37,7 +46,7 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
     desktop: IGridConfig;
   };
 
-  grid!: {
+  grid?: {
     grid: Partial<CSSStyleDeclaration>;
     cells: Array<{
       key: string;
@@ -49,7 +58,7 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
     }>;
   };
 
-  table!: any;
+  table?: ITableCell[][];
 
   private static getBorderCellDeviceCss(gridBlock: IGridBlock, type: Border) {
     const hasBorder = gridBlock.border.includes(type);
@@ -207,6 +216,6 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
         width: (cell.columnSpan * 100) / totalColumns
       };
       return table;
-    }, [] as any[]);
+    }, [] as ITableCell[][]);
   }
 }

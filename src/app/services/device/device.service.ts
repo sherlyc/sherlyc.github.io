@@ -8,7 +8,7 @@ import { WindowService } from "../window/window.service";
   providedIn: "root"
 })
 export class DeviceService {
-  private isGridSupportedMemo!: boolean;
+  private isGridSupportedMemo?: boolean;
 
   constructor(
     private windowService: WindowService,
