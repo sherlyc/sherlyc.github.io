@@ -24,9 +24,8 @@ export class DeviceService {
 
   isGridSupported() {
     if (typeof this.isGridSupportedMemo === "undefined") {
-      const { style } = this.document.createElement("div");
       this.isGridSupportedMemo = ["gridTemplateColumns", "msGridColumns"].some(
-        (key) => key in style
+        (key) => key in this.document.body.style
       );
     }
     return this.isGridSupportedMemo;

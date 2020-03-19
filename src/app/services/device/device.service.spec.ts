@@ -9,9 +9,8 @@ import { DeviceService } from "./device.service";
 
 describe("DeviceService", () => {
   let deviceService: DeviceService;
-  let runtimeService: ServiceMock<RuntimeService>;
   let windowService: ServiceMock<WindowService>;
-  const mockDocument = { createElement: jest.fn() };
+  const mockDocument = { body: { style: {} } };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -26,12 +25,11 @@ describe("DeviceService", () => {
         },
         {
           provide: DOCUMENT,
-          useValue: mockDocument
+          useFactory: () => mockDocument
         }
       ]
     });
 
-    runtimeService = TestBed.get(RuntimeService);
     windowService = TestBed.get(WindowService);
     deviceService = TestBed.get(DeviceService);
   });
@@ -71,23 +69,17 @@ describe("DeviceService", () => {
 
   describe("isGridSupported", () => {
     it("returns true when CSS Grid is supported", () => {
-      mockDocument.createElement.mockReturnValueOnce({
-        style: { gridTemplateColumns: "" }
-      } as HTMLElement);
+      mockDocument.body.style = { gridTemplateColumns: "" };
       expect(deviceService.isGridSupported()).toBe(true);
     });
 
     it("returns true when CSS Grid (IE) is supported", () => {
-      mockDocument.createElement.mockReturnValueOnce({
-        style: { msGridColumns: "" }
-      } as HTMLElement);
+      mockDocument.body.style = { msGridColumns: "" };
       expect(deviceService.isGridSupported()).toBe(true);
     });
 
     it("returns false when CSS Grid is not supported", () => {
-      mockDocument.createElement.mockReturnValueOnce({
-        style: {}
-      } as HTMLElement);
+      mockDocument.body.style = {};
       expect(deviceService.isGridSupported()).toBe(false);
     });
   });
