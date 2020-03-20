@@ -19,6 +19,7 @@ describe("PullToRefreshDirective", () => {
   let fixture: ComponentFixture<DummyComponent>;
   let component: DummyComponent;
   let runtimeService: ServiceMock<RuntimeService>;
+  const pointer = { destroy: jest.fn() };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -34,14 +35,37 @@ describe("PullToRefreshDirective", () => {
     jest.clearAllMocks();
   });
 
-  it("should create an instance", () => {
-    runtimeService.isBrowser.mockReturnValueOnce(true);
-    fixture = TestBed.createComponent(DummyComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  describe("when in browser", () => {
+    beforeEach(() => {
+      runtimeService.isBrowser.mockReturnValueOnce(true);
+      (PullToRefresh.init as jest.Mock).mockReturnValueOnce(pointer);
+      fixture = TestBed.createComponent(DummyComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
 
-    expect(PullToRefresh.init).toHaveBeenCalledWith({
-      mainElement: expect.anything()
+    it("creates PullToRefresh.js instance after view init", () => {
+      expect(PullToRefresh.init).toHaveBeenCalledWith({
+        mainElement: expect.anything()
+      });
+    });
+
+    it("destroys PullToRefresh.js instance before view destroy", () => {
+      fixture.destroy();
+      expect(pointer.destroy).toHaveBeenCalled();
+    });
+  });
+
+  describe("when in server", () => {
+    beforeEach(() => {
+      runtimeService.isBrowser.mockReturnValueOnce(false);
+      fixture = TestBed.createComponent(DummyComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    it("does not call PullToRefresh.js", () => {
+      expect(PullToRefresh.init).not.toHaveBeenCalled();
     });
   });
 });
