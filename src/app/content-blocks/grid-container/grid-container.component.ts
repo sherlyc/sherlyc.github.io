@@ -5,15 +5,25 @@ import {
   IGridConfig,
   IGridContainer
 } from "../../../../common/__types__/IGridContainer";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
+import { DeviceService } from "../../services/device/device.service";
 import {
   calculateBorderCell,
   calculateCellGap,
   calculateGridGap
 } from "../../shared/utils/grid-helper/grid-helper";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 import { MediaQuery } from "./__types__/MediaQuery";
 
 const hideCell = { display: "none" };
+
+interface ITableCell {
+  columnSpan: number;
+  columnStart: number;
+  key: string;
+  rowSpan: number;
+  rowStart: number;
+  width: number;
+}
 
 @Component({
   selector: "app-grid-container",
@@ -35,6 +45,20 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
     tablet: IGridConfig;
     desktop: IGridConfig;
   };
+
+  grid?: {
+    grid: Partial<CSSStyleDeclaration>;
+    cells: Array<{
+      key: string;
+      style: Partial<CSSStyleDeclaration>;
+    }>;
+    borders: Array<{
+      className: Border;
+      style: Partial<CSSStyleDeclaration>;
+    }>;
+  };
+
+  table?: ITableCell[][];
 
   private static getBorderCellDeviceCss(gridBlock: IGridBlock, type: Border) {
     const hasBorder = gridBlock.border.includes(type);
@@ -78,10 +102,17 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
     };
   }
 
+  constructor(private deviceService: DeviceService) {}
+
   ngOnInit(): void {
-    this.keys = Object.getOwnPropertyNames(this.input.items);
     this.assignLayouts();
-    this.createBorderCells();
+    if (this.deviceService.isGridSupported()) {
+      this.keys = Object.getOwnPropertyNames(this.input.items);
+      this.createBorderCells();
+      this.grid = this.getGridContent();
+    } else {
+      this.table = this.getTableContent();
+    }
   }
 
   private createBorderCells() {
@@ -155,5 +186,36 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
       [MediaQuery.Tablet]: GridContainerComponent.getCellDeviceCss(tabletGap),
       [MediaQuery.Desktop]: GridContainerComponent.getCellDeviceCss(desktopGap)
     };
+  }
+
+  getGridContent() {
+    return {
+      grid: this.getGridCss(),
+      cells: this.keys.map((key) => ({
+        key,
+        style: this.getCellCss(key)
+      })),
+      borders: this.borderCells.map((border) => ({
+        className: border.position,
+        style: this.getBorderCellCss(border)
+      }))
+    };
+  }
+
+  getTableContent() {
+    const { desktop } = this.layouts;
+    const totalColumns = desktop.gridTemplateColumns.split(" ").length;
+    return Object.keys(desktop.gridBlocks).reduce((table, key) => {
+      const cell = desktop.gridBlocks[key];
+      const rowNumber = cell.rowStart - 1;
+      const colNumber = cell.columnStart - 1;
+      table[rowNumber] = table[rowNumber] || [];
+      table[rowNumber][colNumber] = {
+        ...cell,
+        key,
+        width: (cell.columnSpan * 100) / totalColumns
+      };
+      return table;
+    }, [] as ITableCell[][]);
   }
 }
