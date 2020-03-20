@@ -2,5 +2,10 @@ declare module "pulltorefreshjs" {
   export interface PullToRefreshPointer {
     destroy: Function;
   }
-  export function init(options: {}): PullToRefreshPointer;
+
+  export interface PullToRefreshOptions {
+    mainElement: HTMLElement | string;
+  }
+
+  export function init(options: PullToRefreshOptions): PullToRefreshPointer;
 }
