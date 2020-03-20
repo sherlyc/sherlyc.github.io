@@ -4,17 +4,20 @@ import { TransferState } from "@angular/platform-browser";
 import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
-import registry from "../content-blocks.registry";
-import { ContentBlockDirective } from "../../shared/directives/content-block/content-block.directive";
-import { GlobalStyleDirective } from "../../shared/directives/global-style/global-style.directive";
-import { GridContainerComponent } from "./grid-container.component";
 import {
   Border,
   IGridContainer
 } from "../../../../common/__types__/IGridContainer";
+import { DeviceService } from "../../services/device/device.service";
+import { mockService, ServiceMock } from "../../services/mocks/MockService";
+import { ContentBlockDirective } from "../../shared/directives/content-block/content-block.directive";
+import { GlobalStyleDirective } from "../../shared/directives/global-style/global-style.directive";
+import registry from "../content-blocks.registry";
 import { MediaQuery } from "./__types__/MediaQuery";
+import { GridContainerComponent } from "./grid-container.component";
 
 describe("GridContainerComponent", () => {
+  let deviceService: ServiceMock<DeviceService>;
   let component: GridContainerComponent;
   let fixture: ComponentFixture<GridContainerComponent>;
 
@@ -91,7 +94,13 @@ describe("GridContainerComponent", () => {
         ContentBlockDirective,
         FakeContentBlockComponent
       ],
-      providers: [TransferState]
+      providers: [
+        TransferState,
+        {
+          provide: DeviceService,
+          useClass: mockService(DeviceService)
+        }
+      ]
     })
       .overrideModule(BrowserDynamicTestingModule, {
         set: {
@@ -100,6 +109,7 @@ describe("GridContainerComponent", () => {
       })
       .compileComponents();
 
+    deviceService = TestBed.get(DeviceService);
     fixture = TestBed.createComponent(GridContainerComponent);
     component = fixture.componentInstance;
   });
@@ -392,6 +402,31 @@ describe("GridContainerComponent", () => {
         tablet: mobileConfig,
         desktop: mobileConfig
       });
+    });
+  });
+
+  describe("when CSS Grid is not supported", () => {
+    beforeEach(() => {
+      deviceService.isGridSupported.mockReturnValueOnce(false);
+    });
+
+    it("generates table layout", () => {
+      component.input = containerInput;
+      fixture.detectChanges();
+      const expected = [
+        [
+          {
+            border: [],
+            columnSpan: 2,
+            columnStart: 1,
+            key: "first-block",
+            rowSpan: 2,
+            rowStart: 1,
+            width: 40
+          }
+        ]
+      ];
+      expect(fixture.componentInstance.table).toEqual(expected);
     });
   });
 });
