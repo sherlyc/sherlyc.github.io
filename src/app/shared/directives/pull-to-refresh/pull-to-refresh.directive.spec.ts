@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { By } from "@angular/platform-browser";
 import * as PullToRefresh from "pulltorefreshjs";
 import { mockService, ServiceMock } from "../../../services/mocks/MockService";
 import { RuntimeService } from "../../../services/runtime/runtime.service";
@@ -45,9 +46,9 @@ describe("PullToRefreshDirective", () => {
     });
 
     it("creates PullToRefresh.js instance after view init", () => {
-      expect(PullToRefresh.init).toHaveBeenCalledWith({
-        mainElement: expect.anything()
-      });
+      const mainElement = fixture.debugElement.query(By.css("div"))
+        .nativeElement;
+      expect(PullToRefresh.init).toHaveBeenCalledWith({ mainElement });
     });
 
     it("destroys PullToRefresh.js instance before view destroy", () => {
