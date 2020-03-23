@@ -1,10 +1,7 @@
 /* istanbul ignore file */
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { ErrorHandler, NgModule } from "@angular/core";
-import {
-  BrowserModule,
-  BrowserTransferStateModule
-} from "@angular/platform-browser";
+import { BrowserModule, BrowserTransferStateModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
