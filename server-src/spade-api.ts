@@ -5,15 +5,7 @@ import { getWeather } from "./api/weather";
 import { versionGuard } from "./middlewares/version-guard";
 import { versionParityCheck } from "./middlewares/version-parity-check";
 import { getContent } from "./services/content";
-import { createProxyMiddleware } from "http-proxy-middleware";
-import config from "./services/utils/config";
-
-const adnosticProxy = (adnosticProxyPath: string) =>
-  createProxyMiddleware({
-    target: config.adnosticProvider,
-    changeOrigin: true,
-    pathRewrite: { [adnosticProxyPath]: "/api/v1" }
-  });
+import {adnosticProxy} from "./services/proxy/adnostic-proxy";
 
 const versionedRouter = express.Router();
 versionedRouter.get("/content", getContent);
@@ -25,11 +17,6 @@ versionedRouter.get(
 versionedRouter.get(
   "/feature/:featureName/:lotteryNumber/:deviceType",
   featureController
-);
-
-versionedRouter.use(
-  "/adnostic/*",
-  adnosticProxy("^/spade/api/\\d+.\\d+/adnostic")
 );
 
 const spadeRouter = express.Router();
@@ -47,7 +34,7 @@ spadeRouter.get(
   featureController
 );
 
-spadeRouter.use("/adnostic/*", adnosticProxy("^/spade/api/adnostic"));
+spadeRouter.use("/adnostic/*", adnosticProxy());
 
 spadeRouter.use("/:version", versionGuard, versionParityCheck, versionedRouter);
 
