@@ -5,16 +5,8 @@ import { getWeather } from "./api/weather";
 import { versionGuard } from "./middlewares/version-guard";
 import { versionParityCheck } from "./middlewares/version-parity-check";
 import { getContent } from "./services/content";
-import * as httpProxy from "http-proxy";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import config from "./services/utils/config";
-
-const adnosticProxy = httpProxy.createServer({
-  target: "https://provider.adsproduction.shift21.ffx.nz",
-  headers: {
-    host: "www.stuff.co.nz"
-  }
-});
 
 const versionedRouter = express.Router();
 versionedRouter.get("/content", getContent);
