@@ -15,9 +15,6 @@ export class PullToRefreshDirective implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     if (this.runtimeService.isBrowser()) {
-      Object.assign(this.ref.nativeElement.style, {
-        overscrollBehaviorY: "none"
-      });
       this.pointer = require("pulltorefreshjs").init({
         mainElement: this.ref.nativeElement
       });

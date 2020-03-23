@@ -27,6 +27,7 @@
 
 body {
   overflow: auto;
+  overscroll-behavior-y: none;
   &.noScroll {
     overflow: hidden;
     [apphideheader] {

@@ -51,12 +51,6 @@ describe("PullToRefreshDirective", () => {
       expect(PullToRefresh.init).toHaveBeenCalledWith({ mainElement });
     });
 
-    it("sets overscroll-behavior-y to none on target element", () => {
-      const mainElement = fixture.debugElement.query(By.css("div"))
-        .nativeElement;
-      expect(mainElement.style.overscrollBehaviorY).toBe("none");
-    });
-
     it("destroys PullToRefresh.js instance before view destroy", () => {
       fixture.destroy();
       expect(pointer.destroy).toHaveBeenCalled();
