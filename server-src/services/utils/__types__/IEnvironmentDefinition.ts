@@ -17,4 +17,5 @@ export interface IEnvironmentDefinition {
   loggerOptions: ILoggerOptions;
   strapConfig: IStrapConfigDefinition;
   features: IFeaturesConfig;
+  adnosticProvider: string;
 }
