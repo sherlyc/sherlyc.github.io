@@ -198,6 +198,26 @@ export const newPage = (): HandlerInput[] => {
       articleFormat: ContentBlockType.FeaturedArticle
     },
     {
+      type: HandlerInputType.ResponsiveExternalContent,
+      lazyLoad: true,
+      url: "https://interactives.stuff.co.nz/live/homepage/uber/3/320-200.html",
+      mobile: {
+        height: "320px",
+        width: "100%",
+        margin: "0 0 20px 0"
+      },
+      tablet: {
+        height: "200px",
+        width: "100%",
+        margin: "0 0 40px 0"
+      },
+      desktop: {
+        height: "200px",
+        width: "100%",
+        margin: "0 0 60px 0"
+      }
+    },
+    {
       type: HandlerInputType.NewsSix,
       displayName: "world",
       color: "#1272b4",
@@ -467,26 +487,6 @@ export const oldPage = (): HandlerInput[] => [
     margin: "0 0 20px 0",
     url:
       "https://interactives.stuff.co.nz/2019/05/save-the-planet/qstp-small-uber.html"
-  },
-  {
-    type: HandlerInputType.ResponsiveExternalContent,
-    lazyLoad: true,
-    url: "https://interactives.stuff.co.nz/live/homepage/uber/3/320-200.html",
-    mobile: {
-      height: "320px",
-      width: "100%",
-      margin: "0 0 20px 0"
-    },
-    tablet: {
-      height: "200px",
-      width: "100%",
-      margin: "0 0 40px 0"
-    },
-    desktop: {
-      height: "200px",
-      width: "100%",
-      margin: "0 0 60px 0"
-    }
   },
   {
     type: HandlerInputType.ArticleSection,
