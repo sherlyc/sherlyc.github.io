@@ -11,7 +11,7 @@
     "experimentsConfigUrl": "https://i.stuff.co.nz/static/spade/experiments-prod.json",
     "featuresConfigUrl": "https://i.stuff.co.nz/static/spade/features.json",
     "maxArticlesToRetrieve": 6,
-    "adnosticProvider": "https://provider.adsproduction.shift21.ffx.nz/api/v1/",
+    "adnosticProvider": "https://provider.adsproduction.shift21.ffx.nz",
     "loggerOptions": {
       "level": "info",
       "format": "json"
@@ -29,7 +29,7 @@
     "experimentsConfigUrl": "https://i.stuff.co.nz/static/spade/experiments-staging.json",
     "featuresConfigUrl": "https://i.stuff.co.nz/static/spade/features.json",
     "maxArticlesToRetrieve": 6,
-    "adnosticProvider": "https://provider.adsstaging.shift21.ffx.nz/api/v1/",
+    "adnosticProvider": "https://provider.adsstaging.shift21.ffx.nz",
     "loggerOptions": {
       "level": "info",
       "format": "json"
@@ -47,7 +47,7 @@
     "experimentsConfigUrl": "https://i.stuff.co.nz/static/spade/experiments-dev.json",
     "featuresConfigUrl": "https://i.stuff.co.nz/static/spade/features.json",
     "maxArticlesToRetrieve": 6,
-    "adnosticProvider": "https://provider.adsdevint.shift21.ffx.nz/api/v1/",
+    "adnosticProvider": "https://provider.adsdevint.shift21.ffx.nz",
     "loggerOptions": {
       "level": "debug",
       "format": "text"
@@ -65,7 +65,7 @@
     "experimentsConfigUrl": "https://i.stuff.co.nz/static/spade/experiments-dev.json",
     "featuresConfigUrl": "https://i.stuff.co.nz/static/spade/features.json",
     "maxArticlesToRetrieve": 6,
-    "adnosticProvider": "https://provider.adsdevint.shift21.ffx.nz/api/v1/",
+    "adnosticProvider": "https://provider.adsdevint.shift21.ffx.nz",
     "loggerOptions": {
       "level": "debug",
       "format": "text"
@@ -83,7 +83,7 @@
     "experimentsConfigUrl": "https://i.stuff.co.nz/static/spade/experiments-dev.json",
     "featuresConfigUrl": "https://i.stuff.co.nz/static/spade/features.json",
     "maxArticlesToRetrieve": 6,
-    "adnosticProvider": "https://provider.adsdevint.shift21.ffx.nz/api/v1/",
+    "adnosticProvider": "https://provider.adsdevint.shift21.ffx.nz",
     "loggerOptions": {
       "level": "debug",
       "format": "text"

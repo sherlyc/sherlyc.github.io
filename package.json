@@ -75,6 +75,7 @@
     "express-winston": "^4.0.2",
     "flexboxgrid": "^6.3.1",
     "helmet": "^3.21.2",
+    "http-proxy-middleware": "^1.0.3",
     "intersection-observer": "^0.7.0",
     "lodash": "^4.17.15",
     "math-random": "^1.0.4",

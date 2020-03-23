@@ -6,6 +6,8 @@ import { versionGuard } from "./middlewares/version-guard";
 import { versionParityCheck } from "./middlewares/version-parity-check";
 import { getContent } from "./services/content";
 import * as httpProxy from "http-proxy";
+import { createProxyMiddleware } from "http-proxy-middleware";
+import config from "./services/utils/config";
 
 const adnosticProxy = httpProxy.createServer({
   target: "https://provider.adsproduction.shift21.ffx.nz",
@@ -41,9 +43,14 @@ spadeRouter.get(
   featureController
 );
 
-spadeRouter.get("/adnostic/*", (req, res) => {
-  adnosticProxy.web(req, res);
-});
+spadeRouter.use(
+  "/adnostic/*",
+  createProxyMiddleware({
+    target: config.adnosticProvider,
+    changeOrigin: true,
+    pathRewrite: { "^/spade/api/adnostic": "/api/v1" }
+  })
+);
 
 spadeRouter.use("/:version", versionGuard, versionParityCheck, versionedRouter);
 
