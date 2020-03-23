@@ -8,6 +8,13 @@ import { getContent } from "./services/content";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import config from "./services/utils/config";
 
+const adnosticProxy = (adnosticProxyPath: string) =>
+  createProxyMiddleware({
+    target: config.adnosticProvider,
+    changeOrigin: true,
+    pathRewrite: { [adnosticProxyPath]: "/api/v1" }
+  });
+
 const versionedRouter = express.Router();
 versionedRouter.get("/content", getContent);
 versionedRouter.get("/weather/:location", getWeather);
@@ -18,6 +25,11 @@ versionedRouter.get(
 versionedRouter.get(
   "/feature/:featureName/:lotteryNumber/:deviceType",
   featureController
+);
+
+versionedRouter.use(
+  "/adnostic/*",
+  adnosticProxy("^/spade/api/\\d+.\\d+/adnostic")
 );
 
 const spadeRouter = express.Router();
@@ -35,14 +47,7 @@ spadeRouter.get(
   featureController
 );
 
-spadeRouter.use(
-  "/adnostic/*",
-  createProxyMiddleware({
-    target: config.adnosticProvider,
-    changeOrigin: true,
-    pathRewrite: { "^/spade/api/adnostic": "/api/v1" }
-  })
-);
+spadeRouter.use("/adnostic/*", adnosticProxy("^/spade/api/adnostic"));
 
 spadeRouter.use("/:version", versionGuard, versionParityCheck, versionedRouter);
 
