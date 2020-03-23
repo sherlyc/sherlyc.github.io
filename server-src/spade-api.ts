@@ -5,7 +5,7 @@ import { getWeather } from "./api/weather";
 import { versionGuard } from "./middlewares/version-guard";
 import { versionParityCheck } from "./middlewares/version-parity-check";
 import { getContent } from "./services/content";
-import {adnosticProxy} from "./services/proxy/adnostic-proxy";
+import { adnosticProxy } from "./services/proxy/adnostic-proxy";
 
 const versionedRouter = express.Router();
 versionedRouter.get("/content", getContent);
