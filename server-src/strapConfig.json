@@ -106,7 +106,7 @@
       }
     },
     "strapNational": {
-      "ids": ["62950252", "62926368"],
+      "ids": ["62950252"],
       "dedupeRules": {
         "dedupeFromBaseList": true,
         "extraDedupeList": [
@@ -411,7 +411,7 @@
         }
       },
       "strapNational": {
-        "ids": ["62950252", "62926368"],
+        "ids": ["62950252"],
         "dedupeRules": {
           "dedupeFromBaseList": false
         }
