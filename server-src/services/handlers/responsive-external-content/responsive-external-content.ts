@@ -3,8 +3,8 @@ import { ContentBlockType } from "../../../../common/__types__/ContentBlockType"
 import { handlerRunnerFunction } from "../runner";
 import { IParams } from "../../__types__/IParams";
 import { IResponsiveExternalContentHandlerInput } from "../__types__/IResponsiveExternalContentHandlerInput";
+import cacheHttp from "../../utils/cache-http";
 import logger from "../../utils/logger";
-import http from "../../utils/http";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -19,9 +19,7 @@ export default async function(
   params: IParams
 ): Promise<IContentBlock[]> {
   try {
-    await http(params).get(url, {
-      params: { "cache-bust": `${Math.random()}` }
-    });
+    await cacheHttp(params, url);
   } catch (error) {
     logger.warn(
       params.apiRequestId,
