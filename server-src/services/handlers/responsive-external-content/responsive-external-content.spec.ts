@@ -171,7 +171,7 @@ describe("Responsive External Content Handler", () => {
     );
 
     expect(httpGetMock).toHaveBeenCalledWith(
-      expect.stringContaining("https://example.com?cache-bust=")
+      expect.stringContaining("https://example.com/?cache-bust=")
     );
   });
 
