@@ -19,7 +19,7 @@ describe("Cache Request", () => {
 
     const cachedRequest = cacheHttp(params, url);
 
-    expect(saveToCache).toHaveBeenCalledWith(params, url);
+    expect(saveToCache).toHaveBeenCalledWith(params, url, false);
     expect(cachedRequest).toBe(promise);
   });
 
@@ -34,7 +34,7 @@ describe("Cache Request", () => {
 
     const result = cacheHttp(params, url);
 
-    expect(saveToCache).toHaveBeenCalledWith(params, url);
+    expect(saveToCache).toHaveBeenCalledWith(params, url, false);
     expect(result).toBe(newCachedRequest);
   });
 
@@ -63,5 +63,17 @@ describe("Cache Request", () => {
 
     expect(saveToCache).not.toHaveBeenCalledWith(params, url);
     expect(result).toBe(cachedRequest);
+  });
+
+  it("should break cache when specified", () => {
+    const cachedRequest = Promise.resolve();
+    (loadFromCache as jest.Mock).mockReturnValue({
+      timestamp: Date.now(),
+      promise: cachedRequest
+    });
+
+    cacheHttp(params, url, 20000, true);
+
+    expect(saveToCache).not.toHaveBeenCalledWith(params, url, true);
   });
 });
