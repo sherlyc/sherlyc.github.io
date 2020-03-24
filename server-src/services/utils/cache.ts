@@ -6,9 +6,13 @@ const cache: {
   [key: string]: ICacheResult | undefined;
 } = {};
 
-export const saveToCache = (params: IParams, url: string): Promise<any> => {
+export const saveToCache = (
+  params: IParams,
+  url: string,
+  breakCache: boolean
+): Promise<any> => {
   const promise = http(params)
-    .get(url)
+    .get(url, { params: breakCache && { "cache-bust": `${Math.random()}` } })
     .catch((error) => {
       delete cache[url];
       throw error;

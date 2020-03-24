@@ -15,7 +15,7 @@ describe("Cache", () => {
     );
 
     try {
-      await saveToCache(params, url);
+      await saveToCache(params, url, false);
     } catch (error) {}
     expect(loadFromCache(url)).toBeTruthy();
   });
@@ -28,8 +28,23 @@ describe("Cache", () => {
     );
 
     try {
-      await saveToCache(params, url);
+      await saveToCache(params, url, false);
     } catch (error) {}
     expect(loadFromCache(url)).toBeFalsy();
+  });
+
+  it("should call with cache bust params when breaking the cache", async () => {
+    const getMock = jest.fn();
+    (http as jest.Mock).mockReturnValue({ get: getMock });
+    getMock.mockImplementationOnce(
+      () => new Promise((resolve) => setTimeout(resolve, 1000))
+    );
+
+    try {
+      await saveToCache(params, url, true);
+    } catch (error) {}
+    expect(getMock).toHaveBeenCalledWith(url, {
+      params: { "cache-bust": expect.any(String) }
+    });
   });
 });

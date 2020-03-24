@@ -3,18 +3,19 @@ import { loadFromCache, saveToCache } from "./cache";
 import { ICacheResult } from "./__types__/ICacheResult";
 import { AxiosResponse } from "axios";
 
-function hasExpired(cacheResult: ICacheResult) {
-  const cacheTimeInMs = 20000;
-  return cacheResult.timestamp + cacheTimeInMs <= Date.now();
+function hasExpired(cacheResult: ICacheResult, ttl: number) {
+  return cacheResult.timestamp + ttl <= Date.now();
 }
 
 export default function cacheHttp<T extends any>(
   params: IParams,
-  url: string
+  url: string,
+  ttl: number = 20000,
+  breakCache = false
 ): Promise<AxiosResponse<T>> {
   const currentCachedResult = loadFromCache(url);
-  if (!currentCachedResult || hasExpired(currentCachedResult)) {
-    return saveToCache(params, url);
+  if (!currentCachedResult || hasExpired(currentCachedResult, ttl)) {
+    return saveToCache(params, url, breakCache);
   }
   return currentCachedResult.promise;
 }
