@@ -1,7 +1,7 @@
 import { Component, HostBinding, Input, OnInit } from "@angular/core";
 import { FluidImageWidth } from "../../../../../common/FluidImageWidth";
-import { WindowService } from "../../../services/window/window.service";
 import { RuntimeService } from "../../../services/runtime/runtime.service";
+import { WindowService } from "../../../services/window/window.service";
 
 @Component({
   selector: "app-fluid-image",
@@ -15,8 +15,8 @@ export class FluidImageComponent implements OnInit {
   @Input() aspectRatio = "16:9,smart";
   @HostBinding("style.paddingBottom") height = `${(9 / 16) * 100}%`;
 
-  src: string | undefined;
-  srcset!: string;
+  src?: string;
+  srcset?: string;
   width = 0;
   lazyload: "lazy" | "auto" = "auto";
 
