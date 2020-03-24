@@ -170,28 +170,8 @@ describe("Responsive External Content Handler", () => {
       params
     );
 
-    expect(httpGetMock).toHaveBeenCalledWith(
-      expect.stringContaining("https://example.com/?cache-bust=")
-    );
-  });
-
-  it("should append cache bust as query string and not remove existing query string params", async () => {
-    (httpGetMock as jest.Mock).mockResolvedValueOnce({
-      status: 200,
-      data: goodData
+    expect(httpGetMock).toHaveBeenCalledWith(defaultHandlerInput.url, {
+      params: { "cache-bust": expect.any(String) }
     });
-    const url = "https://example.com?id=100";
-
-    const handlerRunnerMock = jest.fn();
-    await responsiveExternalContent(
-      handlerRunnerMock,
-      { ...defaultHandlerInput, url } as IResponsiveExternalContentHandlerInput,
-      params
-    );
-
-    const [[httpGetUrl]] = httpGetMock.mock.calls;
-    const queryStrings = httpGetUrl.split("?")[1];
-    expect(queryStrings).toContain("id=100");
-    expect(queryStrings).toContain("cache-bust");
   });
 });

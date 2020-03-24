@@ -19,9 +19,9 @@ export default async function(
   params: IParams
 ): Promise<IContentBlock[]> {
   try {
-    const urlWithCacheBust = new URL(url);
-    urlWithCacheBust.searchParams.append("cache-bust", `${Math.random()}`);
-    await http(params).get(urlWithCacheBust.href);
+    await http(params).get(url, {
+      params: { "cache-bust": `${Math.random()}` }
+    });
   } catch (error) {
     logger.warn(
       params.apiRequestId,
