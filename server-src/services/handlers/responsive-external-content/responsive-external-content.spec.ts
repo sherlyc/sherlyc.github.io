@@ -3,12 +3,12 @@ import { IParams } from "../../__types__/IParams";
 import { HandlerInputType } from "../__types__/HandlerInputType";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
-import http from "../../utils/http";
+import cacheHttp from "../../utils/cache-http";
 import wrappedLogger from "../../utils/logger";
 import { IResponsiveExternalContent } from "../../../../common/__types__/IResponsiveExternalContent";
 import { IResponsiveExternalContentHandlerInput } from "../__types__/IResponsiveExternalContentHandlerInput";
 
-jest.mock("../../utils/http");
+jest.mock("../../utils/cache-http");
 jest.mock("../../utils/logger");
 
 describe("Responsive External Content Handler", () => {
@@ -24,14 +24,15 @@ describe("Responsive External Content Handler", () => {
     }
   };
 
-  const httpGetMock = jest.fn();
-  beforeEach(() => {
-    jest.resetAllMocks();
-    (http as jest.Mock).mockReturnValue({ get: httpGetMock });
+  beforeAll(() => {
+    (cacheHttp as jest.Mock).mockReturnValue({
+      get: jest.fn(),
+      post: jest.fn()
+    });
   });
 
   it("should return ResponsiveExternalContentUnit", async () => {
-    (httpGetMock as jest.Mock).mockResolvedValueOnce({
+    (cacheHttp as jest.Mock).mockResolvedValue({
       status: 200,
       data: goodData
     });
@@ -86,7 +87,7 @@ describe("Responsive External Content Handler", () => {
   });
 
   it("should handle scrolling", async () => {
-    (httpGetMock as jest.Mock).mockResolvedValueOnce({
+    (cacheHttp as jest.Mock).mockResolvedValue({
       status: 200,
       data: goodData
     });
@@ -111,7 +112,7 @@ describe("Responsive External Content Handler", () => {
   });
 
   it("should handle lazyLoad", async () => {
-    (httpGetMock as jest.Mock).mockResolvedValueOnce({
+    (cacheHttp as jest.Mock).mockResolvedValue({
       status: 200,
       data: goodData
     });
@@ -138,7 +139,7 @@ describe("Responsive External Content Handler", () => {
   it("should return empty and log warning with url when failing to retrieve content", async () => {
     const url = "https://bbc.com";
     const error = new Error();
-    (httpGetMock as jest.Mock).mockRejectedValueOnce(error);
+    (cacheHttp as jest.Mock).mockRejectedValue(error);
     const handlerRunnerMock = jest.fn();
 
     const externalContent = (await responsiveExternalContent(
@@ -156,22 +157,5 @@ describe("Responsive External Content Handler", () => {
       expect.stringContaining(url),
       error
     );
-  });
-
-  it("should append cache bust as query string", async () => {
-    (httpGetMock as jest.Mock).mockResolvedValueOnce({
-      status: 200,
-      data: goodData
-    });
-    const handlerRunnerMock = jest.fn();
-    await responsiveExternalContent(
-      handlerRunnerMock,
-      defaultHandlerInput as IResponsiveExternalContentHandlerInput,
-      params
-    );
-
-    expect(httpGetMock).toHaveBeenCalledWith(defaultHandlerInput.url, {
-      params: { "cache-bust": expect.any(String) }
-    });
   });
 });
