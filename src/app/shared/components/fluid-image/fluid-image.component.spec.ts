@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { FluidImageWidth } from "../../../../../common/FluidImageWidth";
-import { FluidImageComponent } from "./fluid-image.component";
-import { WindowService } from "../../../services/window/window.service";
 import { mockService, ServiceMock } from "../../../services/mocks/MockService";
 import { RuntimeService } from "../../../services/runtime/runtime.service";
+import { WindowService } from "../../../services/window/window.service";
+import { FluidImageComponent } from "./fluid-image.component";
 
 describe("FluidImageComponent", () => {
   let component: FluidImageComponent;
@@ -155,5 +155,11 @@ describe("FluidImageComponent", () => {
     component.onResize(null);
     fixture.detectChanges();
     expectImgWidth(FluidImageWidth.s);
+  });
+
+  it("only render img tag if imageSrc is not empty", () => {
+    Object.assign(component, { ...componentInput, imageSrc: null });
+    simulateResize(FluidImageWidth.xs);
+    expect(getImg()).toBe(null);
   });
 });
