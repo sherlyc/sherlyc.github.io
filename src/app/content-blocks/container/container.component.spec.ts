@@ -67,7 +67,7 @@ describe("Container Component", () => {
     expect(component).toBeTruthy();
   });
 
-  it("should render content blocks", async () => {
+  it("should render content blocks", () => {
     // @ts-ignore
     component.input = fakeContentBlock;
 
@@ -77,5 +77,26 @@ describe("Container Component", () => {
       By.directive(FakeContentBlockComponent)
     );
     expect(children.length).toBe(4);
+  });
+
+  it("should render content in the correct order", () => {
+    const content = fixture.debugElement.query(By.css(".content"));
+    const [
+      gutterLeft,
+      richMediaLeft,
+      gutterRight,
+      richMediaRight,
+      container
+    ] = content.children;
+
+    expect(gutterLeft.attributes).toMatchObject({ id: "gutterleft" });
+    expect(richMediaLeft.attributes).toMatchObject({
+      class: "rich-media-left"
+    });
+    expect(gutterRight.attributes).toMatchObject({ id: "gutterright" });
+    expect(richMediaRight.attributes).toMatchObject({
+      class: "rich-media-right"
+    });
+    expect(container.attributes).toMatchObject({ class: "container" });
   });
 });
