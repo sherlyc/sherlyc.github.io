@@ -32,7 +32,7 @@ export default async (params: IParams): Promise<IPage> => {
             {
               type: HandlerInputType.ForceUpdate,
               forceUpdateOnVersionsBefore: formatVersion(
-                parseVersion(currentVersion) - parseVersion("0.200")
+                parseVersion(currentVersion) - parseVersion("0.100")
               )
             },
             ...components
