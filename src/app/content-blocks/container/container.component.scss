@@ -50,11 +50,12 @@
 }
 
 .rich-media-left {
-  flex: 1;
+  flex: 1 auto;
   overflow: hidden;
 }
 
 .rich-media-right {
-  flex: 1;
+  flex: 1 auto;
   overflow: hidden;
+  order: 1;
 }
