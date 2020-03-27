@@ -1,9 +1,9 @@
-import { getMostPopular } from "./most-popular.service";
 import { IParams } from "../../__types__/IParams";
 import cacheHttp from "../../utils/cache-http";
 import config from "../../utils/config";
-import { getArticleById } from "../jsonfeed/jsonfeed";
 import wrappedLogger from "../../utils/logger";
+import { getArticleById } from "../jsonfeed/jsonfeed";
+import { getMostPopular } from "./most-popular.service";
 
 jest.mock("../../utils/cache-http");
 jest.mock("../jsonfeed/jsonfeed");
@@ -19,7 +19,7 @@ describe("Most popular service", function() {
   const mostPopularResponse = {
     data: {
       mostPopular: {
-        mostPopularArticles: [{ id: "1" }, { id: "2" }],
+        mostPopularArticles: [{ id: "1" }, { id: "2" }, { id: "3" }],
         error: false
       }
     }
@@ -30,33 +30,47 @@ describe("Most popular service", function() {
   });
 
   it("should get articles from most popular service", async () => {
-    const limit = 10;
+    const limit = 3;
     (cacheHttp as jest.Mock).mockResolvedValue(mostPopularResponse);
-    (getArticleById as jest.Mock).mockResolvedValueOnce(rawArticle("1"));
-    (getArticleById as jest.Mock).mockResolvedValueOnce(rawArticle("2"));
+    (getArticleById as jest.Mock).mockImplementation(async (params, id) =>
+      rawArticle(`${id}`)
+    );
 
     const articles = await getMostPopular(limit, params);
 
     expect(cacheHttp).toHaveBeenCalledWith(params, config.mostPopularApi);
     expect(getArticleById).toHaveBeenNthCalledWith(1, params, 1);
     expect(getArticleById).toHaveBeenNthCalledWith(2, params, 2);
-    expect(articles).toEqual([
-      expect.objectContaining({ id: "1" }),
-      expect.objectContaining({ id: "2" })
-    ]);
+    expect(getArticleById).toHaveBeenNthCalledWith(3, params, 3);
+    expect(articles).toEqual([{ id: "1" }, { id: "2" }, { id: "3" }]);
   });
 
   it("should remove articles based on limit", async () => {
     const limit = 1;
     (cacheHttp as jest.Mock).mockResolvedValue(mostPopularResponse);
-    (getArticleById as jest.Mock).mockResolvedValueOnce(rawArticle("1"));
+    (getArticleById as jest.Mock).mockImplementation(async (params, id) =>
+      rawArticle(`${id}`)
+    );
 
     const articles = await getMostPopular(limit, params);
 
-    expect(cacheHttp).toHaveBeenCalledWith(params, config.mostPopularApi);
-    expect(getArticleById).toHaveBeenCalledTimes(1);
-    expect(getArticleById).toHaveBeenCalledWith(params, 1);
     expect(articles).toEqual([expect.objectContaining({ id: "1" })]);
+  });
+
+  it("should ignore articles that failed to be retrieved", async () => {
+    const limit = 2;
+    const error = new Error("Internal Server Error");
+    (cacheHttp as jest.Mock).mockResolvedValue(mostPopularResponse);
+    (getArticleById as jest.Mock).mockImplementation(async (params, id) =>
+      id === 2 ? Promise.reject(error) : Promise.resolve(rawArticle(`${id}`))
+    );
+
+    const articles = await getMostPopular(limit, params);
+
+    expect(articles).toEqual([
+      expect.objectContaining({ id: "1" }),
+      expect.objectContaining({ id: "3" })
+    ]);
   });
 
   it("should log error if fail to retrieve from most popular service", async () => {
@@ -82,7 +96,7 @@ describe("Most popular service", function() {
       }
     });
 
-    const error = new Error("Most popular returns error");
+    const error = new Error("Most Popular Service: API returns error");
     await expect(getMostPopular(10, params)).rejects.toEqual(error);
 
     expect(wrappedLogger.error).toHaveBeenCalledWith(
@@ -92,10 +106,14 @@ describe("Most popular service", function() {
     );
   });
 
-  it("should log error if fail to retrieve article", async () => {
-    const error = new Error("Internal Server Error");
+  it("should log error if more than half of articles are missing", async () => {
+    const error = Error(
+      "Most Popular Service: more than half of articles are missing"
+    );
     (cacheHttp as jest.Mock).mockResolvedValue(mostPopularResponse);
-    (getArticleById as jest.Mock).mockRejectedValue(error);
+    (getArticleById as jest.Mock).mockRejectedValue(
+      new Error("Internal Server Error")
+    );
 
     await expect(getMostPopular(10, params)).rejects.toEqual(error);
 
