@@ -1,9 +1,12 @@
-import { IRawArticle } from "../__types__/IRawArticle";
+import { AxiosResponse } from "axios";
+import { forkJoin, from, Observable, of } from "rxjs";
+import { catchError, concatMap, map } from "rxjs/operators";
 import { IParams } from "../../__types__/IParams";
 import cacheHttp from "../../utils/cache-http";
 import config from "../../utils/config";
-import { getArticleById } from "../jsonfeed/jsonfeed";
 import wrappedLogger from "../../utils/logger";
+import { IRawArticle } from "../__types__/IRawArticle";
+import { getArticleById } from "../jsonfeed/jsonfeed";
 
 interface IMostPopularResponse {
   mostPopular: {
@@ -12,32 +15,49 @@ interface IMostPopularResponse {
   };
 }
 
-export const getMostPopular = async (
+export function getMostPopular(
   limit: number,
   params: IParams
-): Promise<IRawArticle[]> => {
-  try {
-    const response = await cacheHttp<IMostPopularResponse>(
-      params,
-      config.mostPopularApi
-    );
-    if (response.data.mostPopular.error) {
-      throw Error("Most popular returns error");
-    }
-    const articleIds = response.data.mostPopular.mostPopularArticles.slice(
-      0,
-      limit
-    );
-
-    return await Promise.all(
-      articleIds.map(({ id }) => getArticleById(params, parseInt(id, 10)))
-    );
-  } catch (error) {
-    wrappedLogger.error(
-      params.apiRequestId,
-      "Most popular service level error",
-      error
-    );
-    throw error;
-  }
-};
+): Promise<IRawArticle[]> {
+  return of(config.mostPopularApi)
+    .pipe(
+      concatMap((url) => cacheHttp<IMostPopularResponse>(params, url)),
+      concatMap((response: AxiosResponse<IMostPopularResponse>) => {
+        if (response.data.mostPopular.error) {
+          throw new Error("Most Popular Service: API returns error");
+        }
+        return forkJoin(
+          response.data.mostPopular.mostPopularArticles.map(
+            ({ id }): Observable<IRawArticle | undefined> =>
+              from(getArticleById(params, parseInt(id, 10))).pipe(
+                catchError(() => of(undefined))
+              )
+          )
+        );
+      }),
+      map((articles: Array<IRawArticle | undefined>): IRawArticle[] => {
+        const filtered = [];
+        while (articles.length > 0 && filtered.length < limit) {
+          const article = articles.shift();
+          if (article) {
+            filtered.push(article);
+          }
+        }
+        if (filtered.length < limit / 2) {
+          throw new Error(
+            "Most Popular Service: more than half of articles are missing"
+          );
+        }
+        return filtered;
+      }),
+      catchError((err) => {
+        wrappedLogger.error(
+          params.apiRequestId,
+          "Most popular service level error",
+          err
+        );
+        throw err;
+      })
+    )
+    .toPromise();
+}
