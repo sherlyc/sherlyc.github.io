@@ -1,5 +1,5 @@
 <div class="color-bar"></div>
-<div class="container col-xs">
+<div class="container col-xs" appIntersectionObserver (intersect)="onIntersect($event)">
   <div class="row center-xs links">
     <a href="https://stuff-fibre.co.nz/" rel="noopener" target="_blank" (click)="sendLinkAnalytics('Stuff Fibre')">
       Stuff Fibre
