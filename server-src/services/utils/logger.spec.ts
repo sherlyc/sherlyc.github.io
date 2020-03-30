@@ -34,8 +34,6 @@ describe("Logger", () => {
   });
 
   describe("formatWorkHours", () => {
-    const date = new Date();
-
     it.each`
       time          | workHours
       ${"06:59:59"} | ${false}
@@ -45,11 +43,7 @@ describe("Logger", () => {
     `(
       "tags error logs as workHours: $workHours on $time",
       ({ time, workHours }) => {
-        date.setHours.apply(
-          date,
-          time.split(":").map((i: string) => ~~i)
-        );
-        const timestamp = date.toISOString();
+        const timestamp = new Date(`2020-03-31T${time}+12:00`).toISOString();
         const info: TransformableInfo = {
           level: "error",
           message: "message",

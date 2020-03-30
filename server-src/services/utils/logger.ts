@@ -1,3 +1,4 @@
+import { utcToZonedTime } from "date-fns-tz";
 import { logger } from "express-winston";
 import * as logform from "logform";
 import { TransformableInfo } from "logform";
@@ -15,7 +16,7 @@ export const formatStackTrace = winston.format((info: TransformableInfo) => {
 
 export const formatWorkHours = winston.format((info: TransformableInfo) => {
   if (info.timestamp && info.level === "error") {
-    const hours = new Date(info.timestamp).getHours();
+    const hours = utcToZonedTime(info.timestamp, "+12:00").getHours();
     info.workHours = hours >= 7 && hours < 23;
   }
   return info;
