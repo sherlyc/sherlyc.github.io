@@ -1,5 +1,5 @@
 import { TransformableInfo } from "logform";
-import { formatStackTrace } from "./logger";
+import { formatStackTrace, formatWorkHours } from "./logger";
 
 describe("Logger", () => {
   describe("formatStackTrace", () => {
@@ -30,6 +30,49 @@ describe("Logger", () => {
         ...info,
         trace: "Things be messed up yo"
       });
+    });
+  });
+
+  describe("formatWorkHours", () => {
+    const date = new Date();
+
+    it.each`
+      time          | workHours
+      ${"06:59:59"} | ${false}
+      ${"07:00:00"} | ${true}
+      ${"22:59:59"} | ${true}
+      ${"23:00:00"} | ${false}
+    `(
+      "tags error logs as workHours: $workHours on $time",
+      ({ time, workHours }) => {
+        date.setHours.apply(
+          date,
+          time.split(":").map((i: string) => ~~i)
+        );
+        const timestamp = date.toISOString();
+        const info: TransformableInfo = {
+          level: "error",
+          message: "message",
+          timestamp
+        };
+        expect(formatWorkHours().transform(info)).toEqual({
+          ...info,
+          workHours
+        });
+      }
+    );
+
+    it.each`
+      level
+      ${"info"}
+      ${"debug"}
+      ${"warn"}
+    `("does not tag $level logs", ({ level }) => {
+      const info: TransformableInfo = {
+        level,
+        message: "message"
+      };
+      expect(formatWorkHours().transform(info)).toEqual(info);
     });
   });
 });

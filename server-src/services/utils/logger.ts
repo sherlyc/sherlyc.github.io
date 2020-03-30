@@ -13,11 +13,20 @@ export const formatStackTrace = winston.format((info: TransformableInfo) => {
   return info;
 });
 
+export const formatWorkHours = winston.format((info: TransformableInfo) => {
+  if (info.timestamp && info.level === "error") {
+    const hours = new Date(info.timestamp).getHours();
+    info.workHours = hours >= 7 && hours < 23;
+  }
+  return info;
+});
+
 function getFormat(name: string): logform.Format {
   return name === "json"
     ? winston.format.combine(
         formatStackTrace(),
         winston.format.timestamp(),
+        formatWorkHours(),
         winston.format.json()
       )
     : winston.format.combine(
