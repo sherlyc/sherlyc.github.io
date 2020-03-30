@@ -1,27 +1,27 @@
+import { logger } from "express-winston";
+import * as logform from "logform";
+import { TransformableInfo } from "logform";
 import * as winston from "winston";
 import { Logger } from "winston";
-import * as logform from "logform";
-import config from "./config";
 import { ILogger } from "./__types__/ILogger";
-import { logger } from "express-winston";
-import { TransformableInfo } from "logform";
+import config from "./config";
 
-export const formatStackTrace = (info: TransformableInfo) => {
+export const formatStackTrace = winston.format((info: TransformableInfo) => {
   if (info.error && info.error instanceof Error) {
     info.trace = info.error.stack;
   }
   return info;
-};
+});
 
 function getFormat(name: string): logform.Format {
   return name === "json"
     ? winston.format.combine(
-        winston.format(formatStackTrace)(),
+        formatStackTrace(),
         winston.format.timestamp(),
         winston.format.json()
       )
     : winston.format.combine(
-        winston.format(formatStackTrace)(),
+        formatStackTrace(),
         winston.format.colorize(),
         winston.format.simple()
       );
