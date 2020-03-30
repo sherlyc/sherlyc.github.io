@@ -23,6 +23,7 @@ export class FooterComponent implements IContentBlockComponent {
   ) {}
   @Input() input!: IFooter;
   shieldedSiteId = "shielded-site";
+  loaded = false;
 
   async setupShieldedSite() {
     await this.scriptInjectorService.load(
@@ -41,9 +42,10 @@ export class FooterComponent implements IContentBlockComponent {
     }
   }
 
-  onIntersect(event: IntersectionObserverEntry) {
-    if (event.isIntersecting) {
-      this.setupShieldedSite();
+  async onIntersect(event: IntersectionObserverEntry) {
+    if (!this.loaded && event.isIntersecting) {
+      await this.setupShieldedSite();
+      this.loaded = true;
     }
   }
 
