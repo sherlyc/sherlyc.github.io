@@ -16,7 +16,7 @@ export const formatStackTrace = winston.format((info: TransformableInfo) => {
 
 export const formatWorkHours = winston.format((info: TransformableInfo) => {
   if (info.timestamp && info.level === "error") {
-    const hours = utcToZonedTime(info.timestamp, "+12:00").getHours();
+    const hours = utcToZonedTime(info.timestamp, "Pacific/Auckland").getHours();
     info.workHours = hours >= 7 && hours < 23;
   }
   return info;
