@@ -9,4 +9,5 @@ RUN npm i newrelic && npm update newrelic
 # Copy dist folder
 COPY maven /
 
-CMD ["node", "--icu-data-dir=node_modules/full-icu", "dist/server/serverWithNewRelic.js"]
+CMD ["node", "dist/server/serverWithNewRelic.js"]
+

@@ -1,4 +1,3 @@
-import { zonedTimeToUtc } from "date-fns-tz";
 import { TransformableInfo } from "logform";
 import { formatStackTrace, formatWorkHours } from "./logger";
 
@@ -44,10 +43,7 @@ describe("Logger", () => {
     `(
       "tags error logs as workHours: $workHours on $time",
       ({ time, workHours }) => {
-        const timestamp = zonedTimeToUtc(
-          `2020-03-31T${time}`,
-          "Pacific/Auckland"
-        ).toISOString();
+        const timestamp = new Date(`2020-03-31T${time}+12:00`).toISOString();
         const info: TransformableInfo = {
           level: "error",
           message: "message",
