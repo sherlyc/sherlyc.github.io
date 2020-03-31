@@ -42,10 +42,6 @@ It is strongly recommended to use Intellij Jest testing feature to keep these te
 
 `npm run test:api`
 
-- Running performance tests - login into our GCP Nexus `docker login docker.ci.shift21.ffx.nz` and then
-
-`npm run test:performance` - [performance tool used](https://bitbucket.org/fairfax/stuff-yokohama-autocannon/src/master/)
-
 - Running end-to-end tests with Selenium
 
 local Chrome browser `npm run e2e`. To run in multiple browsers in parallel by using Browserstack export `BS_ACCOUNT` and `BS_KEY` env variables then run
@@ -55,7 +51,7 @@ You can also test individual browsers. In a terminal run `npm run start:no-newre
 
 ### CLINIC - Performance Insight Tools
 
-If there is a problem with the autocannon test in the pipeline. Run these set of Clinic tools to get further diagnostic reports.
+Provides further performance diagnostic reports
 
 [Doctor](https://clinicjs.org/doctor/)
 
@@ -122,9 +118,12 @@ The following commands can be used as well:
 - `npm run dev:serve` _watch_ serve the universal application listening on 4000
 - `npm run dev:proxy` proxy SPADE and SICS/CQ listening on 3000
 
+Note: If you are unable to see some newer features for example (Grid modules layout), replace "SNAPSHOT" with "1.700" or more
+in src/environment.ts and rerun the build.
+
 ## Deployment
 
-TBD: Add additional notes about how to deploy this on a live system
+Some info is available in CI/CD section of [WIKI](https://bitbucket.org/fairfax/stuff-experience-frontend/wiki/Home)
 
 ## Login Library
 
