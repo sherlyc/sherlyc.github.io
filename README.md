@@ -127,7 +127,7 @@ in src/environment.ts and rerun the build.
 
 ## Deployment
 
-Some info is available in CI/CD section of [WIKI].(https://bitbucket.org/fairfax/stuff-experience-frontend/wiki/Home)
+Some info is available in CI/CD section of [WIKI](https://bitbucket.org/fairfax/stuff-experience-frontend/wiki/Home)
 
 ## Login Library
 
