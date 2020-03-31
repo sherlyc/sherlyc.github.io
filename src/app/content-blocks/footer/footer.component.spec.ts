@@ -101,11 +101,13 @@ describe("Footer", () => {
       expect(link).toBeTruthy();
     });
 
-    it("should load shielded site script when component is initialised", async () => {
+    it("should load shielded site script when component is visible", async () => {
       const window = { onload: jest.fn() };
       windowService.getWindow.mockReturnValue(window);
 
-      await fixture.componentInstance.ngOnInit();
+      await fixture.componentInstance.onIntersect({
+        isIntersecting: true
+      } as IntersectionObserverEntry);
 
       expect(scriptInjectorService.load).toHaveBeenCalledWith(
         ScriptId.shieldedSite,
@@ -114,7 +116,7 @@ describe("Footer", () => {
       );
     });
 
-    it("should inject function that initialises the shielded site into window when component is initialised", async () => {
+    it("should inject function that initialises the shielded site into window when component is visible", async () => {
       const window = {
         onload: jest.fn(),
         ds07o6pcmkorn: jest.fn().mockImplementation(() => {
@@ -123,8 +125,9 @@ describe("Footer", () => {
       };
       windowService.getWindow.mockReturnValue(window);
 
-      await fixture.componentInstance.ngOnInit();
-      window.onload();
+      await fixture.componentInstance.onIntersect({
+        isIntersecting: true
+      } as IntersectionObserverEntry);
 
       expect(window.ds07o6pcmkorn).toHaveBeenCalled();
     });

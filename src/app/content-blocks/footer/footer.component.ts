@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 import { IFooter } from "../../../../common/__types__/IFooter";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
@@ -14,7 +14,7 @@ import { WindowService } from "../../services/window/window.service";
   templateUrl: "./footer.component.html",
   styleUrls: ["./footer.component.scss"]
 })
-export class FooterComponent implements IContentBlockComponent, OnInit {
+export class FooterComponent implements IContentBlockComponent {
   constructor(
     private analyticsService: AnalyticsService,
     private cookieService: CookieService,
@@ -23,10 +23,7 @@ export class FooterComponent implements IContentBlockComponent, OnInit {
   ) {}
   @Input() input!: IFooter;
   shieldedSiteId = "shielded-site";
-
-  ngOnInit() {
-    this.setupShieldedSite();
-  }
+  loaded = false;
 
   async setupShieldedSite() {
     await this.scriptInjectorService.load(
@@ -39,12 +36,16 @@ export class FooterComponent implements IContentBlockComponent, OnInit {
     const window = this.windowService.getWindow();
 
     if (window.ds07o6pcmkorn) {
-      window.onload = function() {
-        const shieldedSiteFrame = new window.ds07o6pcmkorn({
-          openElementId: `#${shieldedSiteId}`
-        });
-        shieldedSiteFrame.init();
-      };
+      new window.ds07o6pcmkorn({
+        openElementId: `#${shieldedSiteId}`
+      }).init();
+    }
+  }
+
+  async onIntersect(event: IntersectionObserverEntry) {
+    if (!this.loaded && event.isIntersecting) {
+      await this.setupShieldedSite();
+      this.loaded = true;
     }
   }
 

@@ -118,9 +118,12 @@ The following commands can be used as well:
 - `npm run dev:serve` _watch_ serve the universal application listening on 4000
 - `npm run dev:proxy` proxy SPADE and SICS/CQ listening on 3000
 
+Note: If you are unable to see some newer features for example (Grid modules layout), replace "SNAPSHOT" with "1.700" or more
+in src/environment.ts and rerun the build.
+
 ## Deployment
 
-TBD: Add additional notes about how to deploy this on a live system
+Some info is available in CI/CD section of [WIKI](https://bitbucket.org/fairfax/stuff-experience-frontend/wiki/Home)
 
 ## Login Library
 
