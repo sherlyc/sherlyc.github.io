@@ -14,10 +14,10 @@ export const formatStackTrace = winston.format((info: TransformableInfo) => {
   return info;
 });
 
-export const formatWorkHours = winston.format((info: TransformableInfo) => {
+export const formatAlarmHours = winston.format((info: TransformableInfo) => {
   if (info.timestamp && info.level === "error") {
     const hours = utcToZonedTime(info.timestamp, "+12:00").getHours();
-    info.workHours = hours >= 7 && hours < 23;
+    info.alarmHours = hours >= 7 && hours < 23;
   }
   return info;
 });
@@ -27,7 +27,7 @@ function getFormat(name: string): logform.Format {
     ? winston.format.combine(
         formatStackTrace(),
         winston.format.timestamp(),
-        formatWorkHours(),
+        formatAlarmHours(),
         winston.format.json()
       )
     : winston.format.combine(
