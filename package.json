@@ -70,6 +70,8 @@
     "cors": "^2.8.5",
     "custom-event-polyfill": "^1.0.7",
     "cxs": "^6.2.0",
+    "date-fns": "^2.11.1",
+    "date-fns-tz": "^1.0.10",
     "default-passive-events": "^1.0.10",
     "express": "^4.17.1",
     "express-winston": "^4.0.2",
