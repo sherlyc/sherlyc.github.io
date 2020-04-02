@@ -2,8 +2,8 @@
 import "reflect-metadata";
 import "zone.js/dist/zone-node";
 import { enableProdMode } from "@angular/core";
-import { renderModuleFactory } from "@angular/platform-server";
 import { provideModuleMap } from "@nguniversal/module-map-ngfactory-loader";
+import { ngExpressEngine } from "@nguniversal/express-engine";
 import * as express from "express";
 import * as cookieParser from "cookie-parser";
 import { readFileSync } from "fs";
@@ -12,7 +12,6 @@ import "source-map-support/register";
 import api from "../server-src/app";
 import * as helmet from "helmet";
 import { requestLogger } from "../server-src/services/utils/logger";
-import { REQUEST, RESPONSE } from "@nguniversal/express-engine/tokens";
 import { cacheControl } from "./middlewares/cache-control";
 // we need to this hacking so that we can set cookie in the request by
 // Angular Http client, see also HttpInterceptorService and
@@ -24,9 +23,7 @@ import * as httpProxy from "http-proxy";
 export { AppServerModule } from "./app/app.server.module";
 
 xhr2.prototype._restrictedHeaders["cookie"] = false;
-
 enableProdMode();
-
 const app = express();
 
 const assetsProxy = httpProxy.createServer({
@@ -84,11 +81,8 @@ app.use(api);
 const PORT = process.env.PORT || 4000;
 const DIST_FOLDER = join(process.cwd(), "dist");
 
-let template: string;
 try {
-  template = readFileSync(
-    join(DIST_FOLDER, "browser", "index.html")
-  ).toString();
+  readFileSync(join(DIST_FOLDER, "browser", "index.html"));
 } catch (e) {
   console.warn(e.message);
   process.exit(1);
@@ -96,25 +90,16 @@ try {
 
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = exports;
 
-app.engine("html", async (_, options: any, callback) =>
-  callback(
-    null,
-    await renderModuleFactory(AppServerModuleNgFactory, {
-      document: template,
-      url: options.req.url,
-      extraProviders: [
-        provideModuleMap(LAZY_MODULE_MAP),
-        {
-          provide: REQUEST,
-          useValue: options.req
-        },
-        {
-          provide: RESPONSE,
-          useValue: options.req.res
-        }
-      ]
-    })
-  )
+app.engine(
+  "html",
+  ngExpressEngine({
+    bootstrap: AppServerModuleNgFactory,
+    providers: [provideModuleMap(LAZY_MODULE_MAP)]
+  }) as (
+    path: string,
+    options: object,
+    callback: (e: any, rendered: string) => void
+  ) => void
 );
 
 app.set("view engine", "html");
@@ -131,7 +116,8 @@ app.get("/adnostic/*", (req, res) => {
 
 app.get(
   ["/", "/spade/signin-callback", "/spade/signin-callback-v2"],
-  (req, res) => res.render(join(DIST_FOLDER, "browser", "index.html"), { req })
+  (req, res) =>
+    res.render(join(DIST_FOLDER, "browser", "index.html"), { req, res })
 );
 
 app.get("/spade/signin-callback-v3", (req, res) => {
