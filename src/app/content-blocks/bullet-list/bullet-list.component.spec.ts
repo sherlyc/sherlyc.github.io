@@ -1,16 +1,16 @@
-import { BulletListComponent } from "./bullet-list.component";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { mockService, ServiceMock } from "../../services/mocks/MockService";
-import { AnalyticsService } from "../../services/analytics/analytics.service";
-import { IBulletList } from "../../../../common/__types__/IBulletList";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { SharedModule } from "../../shared/shared.module";
 import { By } from "@angular/platform-browser";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IBulletItem } from "../../../../common/__types__/IBulletItem";
+import { IBulletList } from "../../../../common/__types__/IBulletList";
 import { Logo } from "../../../../common/Logo";
-import { LogoComponent } from "../../shared/components/logo/logo.component";
-import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { Section } from "../../../../server-src/services/section";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { mockService, ServiceMock } from "../../services/mocks/MockService";
+import { LogoComponent } from "../../shared/components/logo/logo.component";
+import { SharedModule } from "../../shared/shared.module";
+import { BulletListComponent } from "./bullet-list.component";
 
 describe("Bullet List Component", () => {
   let component: BulletListComponent;
@@ -27,8 +27,8 @@ describe("Bullet List Component", () => {
 
   const bulletListData: IBulletList = {
     type: ContentBlockType.BulletList,
-    logo: Logo.FoodToLove,
-    logoLink: "/" + Section.FoodToLove,
+    logo: Logo.Newsroom,
+    logoLink: "/" + Section.Newsroom,
     items: [bulletItem, bulletItem, bulletItem]
   };
 
@@ -55,14 +55,14 @@ describe("Bullet List Component", () => {
   });
 
   it("should pass logo name to logo component", () => {
-    component.input = { ...bulletListData, logo: Logo.BeautyHeaven };
+    component.input = { ...bulletListData, logo: Logo.Newsroom };
     fixture.detectChanges();
 
     const logo: LogoComponent = fixture.debugElement.query(
       By.directive(LogoComponent)
     ).componentInstance;
 
-    expect(logo.name).toBe(Logo.BeautyHeaven);
+    expect(logo.name).toBe(Logo.Newsroom);
   });
 
   it("should send analytics when clicked", () => {

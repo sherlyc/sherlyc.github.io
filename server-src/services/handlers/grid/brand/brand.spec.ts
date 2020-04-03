@@ -1,17 +1,17 @@
-import { createBulletList } from "./bullet-list";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
 import { IParams } from "../../../__types__/IParams";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
+import {
+  BrandGridPositions,
+  IBrandGridHandlerInput
+} from "../../__types__/IBrandGridHandlerInput";
 import {
   BrandModule,
   IBrandHandlerInput
 } from "../../__types__/IBrandHandlerInput";
 import brandHandler from "./brand";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import {
-  BrandGridPositions,
-  IBrandGridHandlerInput
-} from "../../__types__/IBrandGridHandlerInput";
-import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
+import { createBulletList } from "./bullet-list";
 
 jest.mock("./bullet-list");
 
@@ -124,7 +124,7 @@ describe("Brand Handler", () => {
       module: BrandModule.Partner
     };
 
-    it("should retrieve 8 bullet lists with 5 articles", async () => {
+    it("should retrieve 2 bullet lists with 5 articles", async () => {
       const articlesPerBrand = 5;
       (createBulletList as jest.Mock).mockResolvedValue([]);
       const handlerRunnerMock = jest.fn();
@@ -132,7 +132,7 @@ describe("Brand Handler", () => {
 
       await brandHandler(handlerRunnerMock, input, params);
 
-      expect(createBulletList).toHaveBeenCalledTimes(8);
+      expect(createBulletList).toHaveBeenCalledTimes(2);
       expect(createBulletList).toHaveBeenCalledWith(
         expect.anything(),
         articlesPerBrand,
@@ -140,15 +140,9 @@ describe("Brand Handler", () => {
       );
     });
 
-    it("should pass 8 bullet lists to column grid handler", async () => {
+    it("should pass 2 bullet lists to column grid handler", async () => {
       (createBulletList as jest.Mock).mockResolvedValueOnce(fakeBulletList(1));
       (createBulletList as jest.Mock).mockResolvedValueOnce(fakeBulletList(2));
-      (createBulletList as jest.Mock).mockResolvedValueOnce(fakeBulletList(3));
-      (createBulletList as jest.Mock).mockResolvedValueOnce(fakeBulletList(4));
-      (createBulletList as jest.Mock).mockResolvedValueOnce(fakeBulletList(5));
-      (createBulletList as jest.Mock).mockResolvedValueOnce(fakeBulletList(6));
-      (createBulletList as jest.Mock).mockResolvedValueOnce(fakeBulletList(7));
-      (createBulletList as jest.Mock).mockResolvedValueOnce(fakeBulletList(8));
 
       (createBulletList as jest.Mock).mockResolvedValueOnce([]);
       const handlerRunnerMock = jest.fn();
@@ -162,16 +156,9 @@ describe("Brand Handler", () => {
       ] = handlerRunnerMock.mock.calls;
       expect(firstColumnGridCall.content).toEqual([
         [expect.objectContaining(fakeBulletList(1))],
-        [expect.objectContaining(fakeBulletList(2))],
-        [expect.objectContaining(fakeBulletList(3))],
-        [expect.objectContaining(fakeBulletList(4))]
+        [expect.objectContaining(fakeBulletList(2))]
       ]);
-      expect(secondColumnGridCall.content).toEqual([
-        [expect.objectContaining(fakeBulletList(5))],
-        [expect.objectContaining(fakeBulletList(6))],
-        [expect.objectContaining(fakeBulletList(7))],
-        [expect.objectContaining(fakeBulletList(8))]
-      ]);
+      expect(secondColumnGridCall.content).toEqual([]);
     });
 
     it("should pass the result of column grid handlers to brand grid handler", async () => {

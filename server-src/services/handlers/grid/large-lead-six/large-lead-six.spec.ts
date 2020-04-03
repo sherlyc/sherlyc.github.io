@@ -29,7 +29,7 @@ const expectBasicArticleTitle = (id: number, identifierColor: string) =>
 describe("Large lead six", () => {
   const handlerRunnerMock = jest.fn();
   const params: IParams = { apiRequestId: "123" };
-  const sourceId = Strap.NowToLove;
+  const sourceId = Strap.Newsroom;
   const strapName = "fakeStrapName";
   const displayName = "displayName";
   const color = "displayNameColor";

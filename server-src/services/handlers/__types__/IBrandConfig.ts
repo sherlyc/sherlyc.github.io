@@ -15,12 +15,6 @@ export enum NetworkBrand {
 }
 
 export enum PartnerBrand {
-  Noted = "Noted",
-  NowToLove = "NowToLove",
-  HomesToLove = "HomesToLove",
-  FoodToLove = "FoodToLove",
-  BeautyHeaven = "BeautyHeaven",
-  Metro = "Metro",
   Newsroom = "Newsroom",
   Tarana = "Tarana"
 }

@@ -95,36 +95,12 @@
       "ids": ["63587628"],
       "toDedupe": true
     },
-    "strapNoted": {
-      "ids": ["108728445"],
-      "toDedupe": true
-    },
-    "strapNowToLove": {
-      "ids": ["108720459"],
-      "toDedupe": true
-    },
-    "strapHomesToLove": {
-      "ids": ["108727583"],
-      "toDedupe": true
-    },
-    "strapFoodToLove": {
-      "ids": ["108721752"],
-      "toDedupe": true
-    },
-    "strapBeautyHeaven": {
-      "ids": ["108724149"],
-      "toDedupe": true
-    },
     "strapNewsroom": {
       "ids": ["108729104"],
       "toDedupe": true
     },
     "strapSponsoredContent": {
       "ids": ["112451426"],
-      "toDedupe": true
-    },
-    "strapMetro": {
-      "ids": ["112352326"],
       "toDedupe": true
     },
     "strapTarana": {

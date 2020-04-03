@@ -1,6 +1,6 @@
-import { LogoComponent } from "./logo.component";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { Logo } from "../../../../../common/Logo";
+import { LogoComponent } from "./logo.component";
 
 describe("Logo Component", () => {
   let component: LogoComponent;
@@ -30,13 +30,7 @@ describe("Logo Component", () => {
     [Logo.DominionPost, "dominionpost"],
     [Logo.TimaruHerald, "timaruherald"],
     [Logo.WaikatoTimes, "waikatotimes"],
-    [Logo.BeautyHeaven, "beautyheaven"],
-    [Logo.FoodToLove, "foodtolove"],
-    [Logo.HomesToLove, "homestolove"],
-    [Logo.Metro, "metro"],
     [Logo.Newsroom, "newsroom"],
-    [Logo.Noted, "noted"],
-    [Logo.NowToLove, "nowtolove"],
     [Logo.Tarana, "tarana"],
     [Logo.Auckland, "auckland"]
   ])("should show %s", async (logo: Logo, logoClass: string) => {
