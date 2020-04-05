@@ -19,8 +19,7 @@ import { cacheControl } from "./middlewares/cache-control";
 // @ts-ignore
 import * as xhr2 from "xhr2";
 import * as httpProxy from "http-proxy";
-
-export { AppServerModule } from "./app/app.server.module";
+import { AppServerModule } from "./app/app.server.module";
 
 xhr2.prototype._restrictedHeaders["cookie"] = false;
 enableProdMode();
@@ -88,12 +87,12 @@ try {
   process.exit(1);
 }
 
-const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = exports;
+const { LAZY_MODULE_MAP } = exports;
 
 app.engine(
   "html",
   ngExpressEngine({
-    bootstrap: AppServerModuleNgFactory,
+    bootstrap: AppServerModule,
     providers: [provideModuleMap(LAZY_MODULE_MAP)]
   }) as (
     path: string,
