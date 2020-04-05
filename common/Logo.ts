@@ -8,13 +8,7 @@ export enum Logo {
   ThePress = "ThePress",
   TimaruHerald = "TimaruHerald",
   WaikatoTimes = "WaikatoTimes",
-  BeautyHeaven = "BeautyHeaven",
-  FoodToLove = "FoodToLove",
-  HomesToLove = "HomesToLove",
-  Metro = "Metro",
   Newsroom = "Newsroom",
-  Noted = "Noted",
-  NowToLove = "NowToLove",
   Tarana = "Tarana",
   Auckland = "Auckland"
 }

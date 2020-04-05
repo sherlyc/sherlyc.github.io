@@ -275,36 +275,6 @@
         "dedupeFromBaseList": false
       }
     },
-    "strapNoted": {
-      "ids": ["108728445"],
-      "dedupeRules": {
-        "dedupeFromBaseList": true
-      }
-    },
-    "strapNowToLove": {
-      "ids": ["108720459"],
-      "dedupeRules": {
-        "dedupeFromBaseList": true
-      }
-    },
-    "strapHomesToLove": {
-      "ids": ["108727583"],
-      "dedupeRules": {
-        "dedupeFromBaseList": true
-      }
-    },
-    "strapFoodToLove": {
-      "ids": ["108721752"],
-      "dedupeRules": {
-        "dedupeFromBaseList": true
-      }
-    },
-    "strapBeautyHeaven": {
-      "ids": ["108724149"],
-      "dedupeRules": {
-        "dedupeFromBaseList": true
-      }
-    },
     "strapNewsroom": {
       "ids": ["108729104"],
       "dedupeRules": {
@@ -315,12 +285,6 @@
       "ids": ["112451426"],
       "dedupeRules": {
         "dedupeFromBaseList": true
-      }
-    },
-    "strapMetro": {
-      "ids": ["112352326"],
-      "dedupeRules": {
-        "dedupeFromBaseList": false
       }
     },
     "strapTarana": {

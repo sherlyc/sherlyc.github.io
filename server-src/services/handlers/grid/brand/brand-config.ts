@@ -1,13 +1,13 @@
+import { Logo } from "../../../../../common/Logo";
+import { Section } from "../../../section";
+import { Strap } from "../../../strap";
 import {
   INetworkBrandConfig,
   IPartnerBrandConfig,
   NetworkBrand,
   PartnerBrand
 } from "../../__types__/IBrandConfig";
-import { Logo } from "../../../../../common/Logo";
-import { Strap } from "../../../strap";
 import { BrandModule } from "../../__types__/IBrandHandlerInput";
-import { Section } from "../../../section";
 
 export const networkBrandConfig: INetworkBrandConfig = {
   moduleTitle: "our network's top stories",
@@ -80,49 +80,13 @@ export const networkBrandConfig: INetworkBrandConfig = {
 export const partnerBrandConfig: IPartnerBrandConfig = {
   moduleTitle: "our partners",
   articlesPerBrand: 5,
-  brandListPerRow: 4,
+  brandListPerRow: 2,
   configs: {
     [PartnerBrand.Newsroom]: {
       logo: Logo.Newsroom,
       logoLink: "/" + Section.Newsroom,
       bulletColor: "black",
       sourceId: Strap.Newsroom
-    },
-    [PartnerBrand.NowToLove]: {
-      logo: Logo.NowToLove,
-      logoLink: "/" + Section.NowToLove,
-      bulletColor: "#172B53",
-      sourceId: Strap.NowToLove
-    },
-    [PartnerBrand.HomesToLove]: {
-      logo: Logo.HomesToLove,
-      logoLink: "/" + Section.HomesToLove,
-      bulletColor: "#5FC770",
-      sourceId: Strap.HomesToLove
-    },
-    [PartnerBrand.FoodToLove]: {
-      logo: Logo.FoodToLove,
-      logoLink: "/" + Section.FoodToLove,
-      bulletColor: "#F6626E",
-      sourceId: Strap.FoodToLove
-    },
-    [PartnerBrand.BeautyHeaven]: {
-      logo: Logo.BeautyHeaven,
-      logoLink: "/" + Section.BeautyHeaven,
-      bulletColor: "#25BED9",
-      sourceId: Strap.BeautyHeaven
-    },
-    [PartnerBrand.Metro]: {
-      logo: Logo.Metro,
-      logoLink: "/" + Section.Metro,
-      bulletColor: "black",
-      sourceId: Strap.Metro
-    },
-    [PartnerBrand.Noted]: {
-      logo: Logo.Noted,
-      logoLink: "/" + Section.Noted,
-      bulletColor: "black",
-      sourceId: Strap.Noted
     },
     [PartnerBrand.Tarana]: {
       logo: Logo.Tarana,
