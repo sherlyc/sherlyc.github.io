@@ -3,47 +3,74 @@ import { storeNamespace, StoreService } from "./store.service";
 import { WindowService } from "../window/window.service";
 import { mockService, ServiceMock } from "../mocks/MockService";
 
-describe("Store Service should", () => {
-  let windowService: ServiceMock<WindowService>;
-  let storeService: StoreService;
-  const getMock = jest.fn();
-  const setMock = jest.fn();
-  const removeMock = jest.fn();
-  beforeEach(() => {
-    jest.clearAllMocks();
-    TestBed.configureTestingModule({
-      providers: [
-        {
-          provide: WindowService,
-          useClass: mockService(WindowService)
-        }
-      ]
+describe("Store Service", () => {
+  describe("get and set", () => {
+    let storeService: StoreService;
+    let windowService: WindowService;
+    beforeEach(() => {
+      windowService = TestBed.get(WindowService);
+      storeService = TestBed.get(StoreService);
     });
-    windowService = TestBed.get(WindowService);
-    storeService = TestBed.get(StoreService);
-    windowService.getLocalStorage.mockReturnValue({
-      getItem: getMock,
-      setItem: setMock,
-      removeItem: removeMock
+
+    afterEach(() => {
+      windowService.getLocalStorage().clear();
+    });
+
+    it.each([["value"], [1], [true], [null], [{ test: "value" }]])(
+      "should get value that was set",
+      (value) => {
+        expect(storeService.get("key")).toEqual(null);
+        storeService.set("key", value);
+        expect(storeService.get("key")).toEqual(value);
+      }
+    );
+
+    it("should remove value from local storage when set with undefined", () => {
+      storeService.set("key", "value");
+      expect(storeService.get("key")).toEqual("value");
+      storeService.set("key", undefined);
+      expect(storeService.get("key")).toEqual(null);
     });
   });
 
-  it.each([["itemValue"], [1], [true], [null], [{ test: "value" }]])(
-    "should get data from local storage for value %s",
-    (value) => {
+  describe("key prefix", () => {
+    let windowService: ServiceMock<WindowService>;
+    let storeService: StoreService;
+    const getMock = jest.fn();
+    const setMock = jest.fn();
+    const removeMock = jest.fn();
+    beforeEach(() => {
+      jest.clearAllMocks();
+      TestBed.configureTestingModule({
+        providers: [
+          {
+            provide: WindowService,
+            useClass: mockService(WindowService)
+          }
+        ]
+      });
+      windowService = TestBed.get(WindowService);
+      storeService = TestBed.get(StoreService);
+      windowService.getLocalStorage.mockReturnValue({
+        getItem: getMock,
+        setItem: setMock,
+        removeItem: removeMock
+      });
+    });
+
+    it("should get data from local storage", () => {
       const key = "itemKey";
+      const value = "value";
       getMock.mockReturnValue(JSON.stringify(value));
 
-      const result = storeService.get(key);
-      expect(result).toEqual(value);
-      expect(getMock).toHaveBeenCalledWith(`${storeNamespace}${key}`);
-    }
-  );
+      storeService.get(key);
 
-  it.each([["itemValue"], [10], [false], [null], [{ something: "theValue" }]])(
-    "should save data to local storage",
-    (value) => {
+      expect(getMock).toHaveBeenCalledWith(`${storeNamespace}${key}`);
+    });
+
+    it("should save data to local storage", () => {
       const key = "itemKey";
+      const value = "value";
 
       storeService.set(key, value);
 
@@ -51,26 +78,6 @@ describe("Store Service should", () => {
         `${storeNamespace}${key}`,
         JSON.stringify(value)
       );
-    }
-  );
-
-  it("should return raw value if unable to parse", () => {
-    const key = "itemKey";
-    const value = "aValue";
-    getMock.mockReturnValue(value);
-
-    const result = storeService.get(key);
-    expect(result).toEqual(value);
-    expect(getMock).toHaveBeenCalledWith(`${storeNamespace}${key}`);
-  });
-
-  it("should remove item if set with undefined", () => {
-    const key = "itemKey";
-    const value = undefined;
-
-    storeService.set(key, value);
-
-    expect(setMock).not.toHaveBeenCalled();
-    expect(removeMock).toHaveBeenCalledWith(`${storeNamespace}${key}`);
+    });
   });
 });
