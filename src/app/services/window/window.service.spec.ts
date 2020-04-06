@@ -16,6 +16,10 @@ describe("WindowService", () => {
     expect(windowService.getWindow()).toEqual(window);
   });
 
+  it("should return localStorage", () => {
+    expect(windowService.getLocalStorage()).toEqual(window.localStorage);
+  });
+
   describe("isDesktopDomain", () => {
     const { location } = window;
 

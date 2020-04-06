@@ -15,6 +15,10 @@ export class WindowService implements IWindowService {
   isDesktopDomain(): boolean {
     return this.getWindow().location.hostname.includes("www");
   }
+
+  getLocalStorage() {
+    return window.localStorage;
+  }
 }
 
 @Injectable()

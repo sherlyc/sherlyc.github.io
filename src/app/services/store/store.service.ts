@@ -1,22 +1,38 @@
 import { Injectable } from "@angular/core";
-import { namespace } from "store";
 import { IStoreService } from "./__types__/IStoreService";
+import { WindowService } from "../window/window.service";
+
+export const storeNamespace = `__storejs_stuff-experience_`;
 
 @Injectable({
   providedIn: "root"
 })
 export class StoreService implements IStoreService {
-  private store: StoreJsAPI;
-  constructor() {
-    this.store = namespace("stuff-experience");
+  constructor(private windowService: WindowService) {}
+
+  private static getPrefix(key: string) {
+    return `${storeNamespace}${key}`;
   }
 
   get<T>(key: string): T | null {
-    return this.store.get(key);
+    const value = this.windowService
+      .getLocalStorage()
+      .getItem(StoreService.getPrefix(key)) as string;
+    try {
+      return JSON.parse(value);
+    } catch (e) {}
+    return (value as any) as T;
   }
 
   set<T>(key: string, value: T) {
-    this.store.set(key, value);
+    const keyWithPrefix = StoreService.getPrefix(key);
+    if (value === undefined) {
+      this.windowService.getLocalStorage().removeItem(keyWithPrefix);
+    } else {
+      this.windowService
+        .getLocalStorage()
+        .setItem(keyWithPrefix, JSON.stringify(value));
+    }
   }
 }
 
