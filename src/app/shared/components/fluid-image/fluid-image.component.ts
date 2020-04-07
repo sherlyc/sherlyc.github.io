@@ -29,10 +29,10 @@ export class FluidImageComponent implements OnInit {
     let normalizedWidth;
     for (normalizedWidth of Object.values(FluidImageWidth)) {
       if (normalizedWidth >= width) {
-        return normalizedWidth;
+        return normalizedWidth as FluidImageWidth;
       }
     }
-    return normalizedWidth;
+    return normalizedWidth as FluidImageWidth;
   }
 
   private loadImg(newWidth: FluidImageWidth, lazyload: boolean) {

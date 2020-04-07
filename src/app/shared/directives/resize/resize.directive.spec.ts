@@ -72,7 +72,7 @@ describe("Resize Directive", () => {
     const directiveInstance = fixture.debugElement
       .query(By.directive(ResizeDirective))
       .injector.get(ResizeDirective);
-    const subscription: Subscription = directiveInstance.subscription;
+    const subscription = directiveInstance.subscription as Subscription;
     jest.spyOn(subscription, "unsubscribe");
 
     component.toShow = false;

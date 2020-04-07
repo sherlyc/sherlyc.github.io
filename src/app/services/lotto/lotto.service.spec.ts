@@ -6,7 +6,6 @@ import { StoreService } from "../store/store.service";
 import { mockService, ServiceMock } from "../mocks/MockService";
 import { HttpClient } from "@angular/common/http";
 import { ConfigService } from "../config/config.service";
-import { of } from "rxjs";
 
 jest.mock("math-random");
 
@@ -47,7 +46,7 @@ describe("LottoService", () => {
   });
 
   it("should return a new lottery number if it does not exist in storage service", () => {
-    (random as jest.Mock).mockReturnValue(0.38);
+    ((random as any) as jest.Mock).mockReturnValue(0.38);
     storeService.get.mockReturnValue(undefined);
 
     const experimentName = "experimentName";

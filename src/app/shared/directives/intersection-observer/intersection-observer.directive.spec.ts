@@ -68,7 +68,7 @@ describe("Intersection Observer Directive", function() {
     const directiveInstance = fixture.debugElement
       .query(By.directive(IntersectionObserverDirective))
       .injector.get(IntersectionObserverDirective);
-    const subscription: Subscription = directiveInstance.subscription;
+    const subscription = directiveInstance.subscription as Subscription;
     jest.spyOn(subscription, "unsubscribe");
 
     fixture.destroy();

@@ -10,7 +10,7 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "scss"
+          "style": "scss"
         }
       },
       "architect": {
@@ -108,7 +108,6 @@
               }
             },
             "production": {
-              "bundleDependencies": "all",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -119,7 +118,7 @@
                 "scripts": true,
                 "styles": false
               },
-              "optimization": false,
+              "optimization": true,
               "statsJson": true,
               "outputHashing": "none"
             }
