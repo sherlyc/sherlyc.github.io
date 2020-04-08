@@ -1,13 +1,13 @@
-import { TestBed } from "@angular/core/testing";
-import { RuntimeService } from "./runtime.service";
-import { TransferState } from "@angular/platform-browser";
 import { PLATFORM_ID } from "@angular/core";
+import { TestBed } from "@angular/core/testing";
+import { TransferState } from "@angular/platform-browser";
 import { mockService, ServiceMock } from "../mocks/MockService";
 import { WindowService } from "../window/window.service";
+import { RuntimeService } from "./runtime.service";
 
 describe("RuntimeService", () => {
-  let runtimeService: RuntimeService;
-  let transferState: ServiceMock<TransferState>;
+  let runtimeService: ServiceMock<RuntimeService>;
+  let transferState: TransferState;
   let windowService: ServiceMock<WindowService>;
 
   beforeEach(() => {
@@ -28,9 +28,11 @@ describe("RuntimeService", () => {
       ]
     });
 
-    runtimeService = TestBed.get(RuntimeService);
-    transferState = TestBed.get(TransferState);
-    windowService = TestBed.get(WindowService);
+    runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
+      RuntimeService
+    >;
+    transferState = TestBed.inject(TransferState) as ServiceMock<TransferState>;
+    windowService = TestBed.inject(WindowService) as ServiceMock<WindowService>;
   });
 
   afterEach(() => {

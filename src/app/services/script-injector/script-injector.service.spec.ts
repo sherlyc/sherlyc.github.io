@@ -1,13 +1,13 @@
 import { TestBed } from "@angular/core/testing";
-
-import { ScriptInjectorService } from "./script-injector.service";
-import { mockService } from "../mocks/MockService";
-import { Position } from "./__types__/Position";
 import { LoggerService } from "../logger/logger.service";
+import { mockService, ServiceMock } from "../mocks/MockService";
+import { Position } from "./__types__/Position";
 import { ScriptId } from "./__types__/ScriptId";
 
+import { ScriptInjectorService } from "./script-injector.service";
+
 describe("ScriptInjectorService", () => {
-  let scriptInjectorService: ScriptInjectorService;
+  let scriptInjectorService: ServiceMock<ScriptInjectorService>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -18,7 +18,9 @@ describe("ScriptInjectorService", () => {
         }
       ]
     });
-    scriptInjectorService = TestBed.get(ScriptInjectorService);
+    scriptInjectorService = TestBed.inject(
+      ScriptInjectorService
+    ) as ServiceMock<ScriptInjectorService>;
   });
 
   afterEach(() => {

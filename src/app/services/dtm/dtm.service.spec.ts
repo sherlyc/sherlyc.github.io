@@ -1,15 +1,15 @@
 import { TestBed } from "@angular/core/testing";
-import { DtmService } from "./dtm.service";
-import { ScriptInjectorService } from "../script-injector/script-injector.service";
-import { mockService, ServiceMock } from "../mocks/MockService";
 import { ConfigService } from "../config/config.service";
-import { WindowService } from "../window/window.service";
+import { LoggerService } from "../logger/logger.service";
+import { mockService, ServiceMock } from "../mocks/MockService";
 import { RuntimeService } from "../runtime/runtime.service";
 import { ScriptId } from "../script-injector/__types__/ScriptId";
-import { LoggerService } from "../logger/logger.service";
+import { ScriptInjectorService } from "../script-injector/script-injector.service";
+import { WindowService } from "../window/window.service";
+import { DtmService } from "./dtm.service";
 
 describe("DtmService", () => {
-  let dtmService: DtmService;
+  let dtmService: ServiceMock<DtmService>;
   let scriptInjectorService: ServiceMock<ScriptInjectorService>;
   let configService: ServiceMock<ConfigService>;
   let windowService: ServiceMock<WindowService>;
@@ -40,11 +40,15 @@ describe("DtmService", () => {
         }
       ]
     });
-    dtmService = TestBed.get(DtmService);
-    scriptInjectorService = TestBed.get(ScriptInjectorService);
-    configService = TestBed.get(ConfigService);
-    windowService = TestBed.get(WindowService);
-    runtimeService = TestBed.get(RuntimeService);
+    dtmService = TestBed.inject(DtmService) as ServiceMock<DtmService>;
+    scriptInjectorService = TestBed.inject(
+      ScriptInjectorService
+    ) as ServiceMock<ScriptInjectorService>;
+    configService = TestBed.inject(ConfigService) as ServiceMock<ConfigService>;
+    windowService = TestBed.inject(WindowService) as ServiceMock<WindowService>;
+    runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
+      RuntimeService
+    >;
   });
 
   it("should be created", () => {

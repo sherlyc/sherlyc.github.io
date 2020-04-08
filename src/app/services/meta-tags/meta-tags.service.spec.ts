@@ -1,12 +1,12 @@
 import { TestBed } from "@angular/core/testing";
+import { Meta } from "@angular/platform-browser";
+import { mockService, ServiceMock } from "../mocks/MockService";
 
 import { MetaTagsService } from "./meta-tags.service";
-import { mockService } from "../mocks/MockService";
-import { Meta } from "@angular/platform-browser";
 
 describe("MetaTagsService", () => {
   let meta: Meta;
-  let metaService: MetaTagsService;
+  let metaService: ServiceMock<MetaTagsService>;
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -19,12 +19,16 @@ describe("MetaTagsService", () => {
       ]
     });
 
-    meta = TestBed.get(Meta);
-    metaService = TestBed.get(MetaTagsService);
+    meta = TestBed.inject(Meta) as ServiceMock<Meta>;
+    metaService = TestBed.inject(MetaTagsService) as ServiceMock<
+      MetaTagsService
+    >;
   });
 
   it("should be created", () => {
-    const service: MetaTagsService = TestBed.get(MetaTagsService);
+    const service: MetaTagsService = TestBed.inject(
+      MetaTagsService
+    ) as ServiceMock<MetaTagsService>;
     expect(service).toBeTruthy();
   });
 

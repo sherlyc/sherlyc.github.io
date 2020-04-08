@@ -2,8 +2,6 @@ import { TestBed } from "@angular/core/testing";
 import { mockService, ServiceMock } from "../mocks/MockService";
 import { RuntimeService } from "../runtime/runtime.service";
 import { ResizeObserverService } from "./resize-observer.service";
-import { EventEmitter } from "@angular/core";
-import { Observable, Subscription } from "rxjs";
 
 let triggerResize: Function;
 let observed: any[] = [];
@@ -50,8 +48,12 @@ describe("Resize Observer", () => {
         { provide: RuntimeService, useClass: mockService(RuntimeService) }
       ]
     }).compileComponents();
-    runtimeService = TestBed.get(RuntimeService);
-    resizeObserverService = TestBed.get(ResizeObserverService);
+    runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
+      RuntimeService
+    >;
+    resizeObserverService = TestBed.inject(
+      ResizeObserverService
+    ) as ServiceMock<ResizeObserverService>;
   });
 
   afterEach(() => {
@@ -63,7 +65,9 @@ describe("Resize Observer", () => {
   });
 
   it("should emit an event when observed element is resized", (done) => {
-    const service: ResizeObserverService = TestBed.get(ResizeObserverService);
+    const service: ResizeObserverService = TestBed.inject(
+      ResizeObserverService
+    );
     const ele = {} as Element;
 
     service.observe(ele).subscribe((event: ResizeObserverEntry) => {
@@ -75,7 +79,9 @@ describe("Resize Observer", () => {
   });
 
   it("should not emit an event when an unobserved element is resized", () => {
-    const service: ResizeObserverService = TestBed.get(ResizeObserverService);
+    const service: ResizeObserverService = TestBed.inject(
+      ResizeObserverService
+    );
     const ele = {} as Element;
 
     const observable = service

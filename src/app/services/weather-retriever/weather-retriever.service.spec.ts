@@ -33,10 +33,16 @@ describe("Weather Retriever", () => {
       ]
     });
 
-    weatherRetrieverService = TestBed.get(WeatherRetrieverService);
-    httpMock = TestBed.get(HttpTestingController);
-    configServiceMock = TestBed.get(ConfigService);
-    loggerService = TestBed.get(LoggerService);
+    weatherRetrieverService = TestBed.inject(
+      WeatherRetrieverService
+    ) as ServiceMock<WeatherRetrieverService>;
+    httpMock = TestBed.inject(HttpTestingController) as ServiceMock<
+      HttpTestingController
+    >;
+    configServiceMock = TestBed.inject(ConfigService) as ServiceMock<
+      ConfigService
+    >;
+    loggerService = TestBed.inject(LoggerService) as ServiceMock<LoggerService>;
     configServiceMock.getConfig.mockReturnValue({ weatherAPI });
   });
 

@@ -1,11 +1,12 @@
 import { TestBed } from "@angular/core/testing";
+import { ServiceMock } from "../mocks/MockService";
 import { ServerWindowService, WindowService } from "./window.service";
 
 describe("WindowService", () => {
-  let windowService: WindowService;
+  let windowService: ServiceMock<WindowService>;
 
   beforeAll(() => {
-    windowService = TestBed.get(WindowService);
+    windowService = TestBed.inject(WindowService) as ServiceMock<WindowService>;
   });
 
   it("should be created", () => {
@@ -59,13 +60,15 @@ describe("WindowService", () => {
 });
 
 describe("ServerWindowService", () => {
-  let serverWindowService: ServerWindowService;
+  let serverWindowService: ServiceMock<ServerWindowService>;
 
   beforeAll(() => {
     TestBed.configureTestingModule({
       providers: [ServerWindowService]
     });
-    serverWindowService = TestBed.get(ServerWindowService);
+    serverWindowService = TestBed.inject(ServerWindowService) as ServiceMock<
+      ServerWindowService
+    >;
   });
 
   it("should be created", () => {

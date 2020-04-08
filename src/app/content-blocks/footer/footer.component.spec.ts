@@ -1,15 +1,15 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { FooterComponent } from "./footer.component";
 import { By } from "@angular/platform-browser";
-import { CopyrightComponent } from "../../shared/components/copyright/copyright.component";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
-import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { CookieService } from "../../services/cookie/cookie.service";
+import { mockService, ServiceMock } from "../../services/mocks/MockService";
+import { Position } from "../../services/script-injector/__types__/Position";
+import { ScriptId } from "../../services/script-injector/__types__/ScriptId";
 import { ScriptInjectorService } from "../../services/script-injector/script-injector.service";
 import { WindowService } from "../../services/window/window.service";
-import { ScriptId } from "../../services/script-injector/__types__/ScriptId";
-import { Position } from "../../services/script-injector/__types__/Position";
+import { CopyrightComponent } from "../../shared/components/copyright/copyright.component";
+import { FooterComponent } from "./footer.component";
 
 describe("Footer", () => {
   let fixture: ComponentFixture<FooterComponent>;
@@ -40,10 +40,14 @@ describe("Footer", () => {
         }
       ]
     }).compileComponents();
-    analyticsService = TestBed.get(AnalyticsService);
-    cookieService = TestBed.get(CookieService);
-    scriptInjectorService = TestBed.get(ScriptInjectorService);
-    windowService = TestBed.get(WindowService);
+    analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
+      AnalyticsService
+    >;
+    cookieService = TestBed.inject(CookieService) as ServiceMock<CookieService>;
+    scriptInjectorService = TestBed.inject(
+      ScriptInjectorService
+    ) as ServiceMock<ScriptInjectorService>;
+    windowService = TestBed.inject(WindowService) as ServiceMock<WindowService>;
 
     fixture = TestBed.createComponent(FooterComponent);
   });

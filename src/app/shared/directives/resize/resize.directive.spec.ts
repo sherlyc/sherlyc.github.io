@@ -1,11 +1,11 @@
 import { Component } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { RuntimeService } from "../../../services/runtime/runtime.service";
-import { mockService, ServiceMock } from "../../../services/mocks/MockService";
-import { ResizeDirective } from "./resize.directive";
 import { By } from "@angular/platform-browser";
-import { ResizeObserverService } from "../../../services/resize-observer/resize-observer.service";
 import { Subject, Subscription } from "rxjs";
+import { mockService, ServiceMock } from "../../../services/mocks/MockService";
+import { ResizeObserverService } from "../../../services/resize-observer/resize-observer.service";
+import { RuntimeService } from "../../../services/runtime/runtime.service";
+import { ResizeDirective } from "./resize.directive";
 
 @Component({
   selector: "app-fake-component",
@@ -35,8 +35,12 @@ describe("Resize Directive", () => {
         }
       ]
     }).compileComponents();
-    runtimeService = TestBed.get(RuntimeService);
-    resizeObserverService = TestBed.get(ResizeObserverService);
+    runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
+      RuntimeService
+    >;
+    resizeObserverService = TestBed.inject(
+      ResizeObserverService
+    ) as ServiceMock<ResizeObserverService>;
   });
 
   it("should call the resizeCallBack when resized", () => {

@@ -1,15 +1,15 @@
-import { BasicArticleTitleUnitComponent } from "./basic-article-title-unit.component";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { SharedModule } from "src/app/shared/shared.module";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { HeadlineComponent } from "../../shared/components/headline/headline.component";
 import { By } from "@angular/platform-browser";
+import { AnalyticsEventsType } from "src/app/services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "src/app/services/analytics/analytics.service";
 import { mockService, ServiceMock } from "src/app/services/mocks/MockService";
-import { AnalyticsEventsType } from "src/app/services/analytics/__types__/AnalyticsEventsType";
+import { SharedModule } from "src/app/shared/shared.module";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IBasicArticleTitleUnit } from "../../../../common/__types__/IBasicArticleTitleUnit";
 import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 import { FeatureSwitchService } from "../../services/feature-switch/feature-switch.service";
-import { IBasicArticleTitleUnit } from "../../../../common/__types__/IBasicArticleTitleUnit";
+import { HeadlineComponent } from "../../shared/components/headline/headline.component";
+import { BasicArticleTitleUnitComponent } from "./basic-article-title-unit.component";
 
 describe("BasicArticleTitleUnitComponent", () => {
   let component: BasicArticleTitleUnitComponent;
@@ -48,7 +48,9 @@ describe("BasicArticleTitleUnitComponent", () => {
     }).compileComponents();
     fixture = TestBed.createComponent(BasicArticleTitleUnitComponent);
     component = fixture.componentInstance;
-    analyticsService = TestBed.get(AnalyticsService);
+    analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
+      AnalyticsService
+    >;
   });
 
   it("should be created", () => {

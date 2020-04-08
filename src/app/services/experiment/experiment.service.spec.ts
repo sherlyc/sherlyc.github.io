@@ -1,16 +1,16 @@
-import { ConfigService } from "../config/config.service";
-import { TestBed } from "@angular/core/testing";
-import { ExperimentService } from "./experiment.service";
-import { mockService, ServiceMock } from "../mocks/MockService";
-import { of, throwError } from "rxjs";
-import { RuntimeService } from "../runtime/runtime.service";
-import { LottoService } from "../lotto/lotto.service";
 import { HttpClient } from "@angular/common/http";
-import { LoggerService } from "../logger/logger.service";
-import { ExperimentName } from "../../../../common/ExperimentName";
-import { DeviceService } from "../device/device.service";
+import { TestBed } from "@angular/core/testing";
+import { of, throwError } from "rxjs";
 import { DeviceType } from "../../../../common/DeviceType";
+import { ExperimentName } from "../../../../common/ExperimentName";
+import { ConfigService } from "../config/config.service";
+import { DeviceService } from "../device/device.service";
+import { LoggerService } from "../logger/logger.service";
+import { LottoService } from "../lotto/lotto.service";
+import { mockService, ServiceMock } from "../mocks/MockService";
+import { RuntimeService } from "../runtime/runtime.service";
 import { StoreService } from "../store/store.service";
+import { ExperimentService } from "./experiment.service";
 
 describe("ExperimentService", () => {
   const experimentAPI = "/spade/api/experiment";
@@ -57,15 +57,21 @@ describe("ExperimentService", () => {
         }
       ]
     });
-    configServiceMock = TestBed.get(ConfigService);
+    configServiceMock = TestBed.inject(ConfigService) as ServiceMock<
+      ConfigService
+    >;
     configServiceMock.getConfig.mockReturnValue({ experimentAPI });
-    deviceService = TestBed.get(DeviceService);
-    service = TestBed.get(ExperimentService);
-    runtimeService = TestBed.get(RuntimeService);
-    lottoService = TestBed.get(LottoService);
-    http = TestBed.get(HttpClient);
-    loggerService = TestBed.get(LoggerService);
-    storeService = TestBed.get(StoreService);
+    deviceService = TestBed.inject(DeviceService) as ServiceMock<DeviceService>;
+    service = TestBed.inject(ExperimentService) as ServiceMock<
+      ExperimentService
+    >;
+    runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
+      RuntimeService
+    >;
+    lottoService = TestBed.inject(LottoService) as ServiceMock<LottoService>;
+    http = TestBed.inject(HttpClient) as ServiceMock<HttpClient>;
+    loggerService = TestBed.inject(LoggerService) as ServiceMock<LoggerService>;
+    storeService = TestBed.inject(StoreService) as ServiceMock<StoreService>;
     jest.clearAllMocks();
   });
 

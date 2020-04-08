@@ -1,10 +1,10 @@
 import { TestBed } from "@angular/core/testing";
-import { LoggerService } from "./logger.service";
 import { ConfigService } from "../config/config.service";
-import { mockService, ServiceMock } from "../mocks/MockService";
-import { CorrelationService } from "../correlation/correlation.service";
 import { ICorrelation } from "../correlation/__types__/ICorrelation";
+import { CorrelationService } from "../correlation/correlation.service";
+import { mockService, ServiceMock } from "../mocks/MockService";
 import { RuntimeService } from "../runtime/runtime.service";
+import { LoggerService } from "./logger.service";
 
 describe("LoggerService", () => {
   let configService: ServiceMock<ConfigService>;
@@ -29,8 +29,10 @@ describe("LoggerService", () => {
         }
       ]
     });
-    configService = TestBed.get(ConfigService);
-    correlationIdService = TestBed.get(CorrelationService);
+    configService = TestBed.inject(ConfigService) as ServiceMock<ConfigService>;
+    correlationIdService = TestBed.inject(CorrelationService) as ServiceMock<
+      CorrelationService
+    >;
 
     correlationIdService.getCorrelation.mockReturnValue(correlationInfo);
   });
@@ -40,7 +42,9 @@ describe("LoggerService", () => {
       loggerOptions: { level: "debug", format: "json" }
     });
 
-    const service: LoggerService = TestBed.get(LoggerService);
+    const service: LoggerService = TestBed.inject(LoggerService) as ServiceMock<
+      LoggerService
+    >;
     spyOn(console, "debug");
 
     service.debug("This should be logged as debug");
@@ -56,7 +60,9 @@ describe("LoggerService", () => {
       loggerOptions: { level: "info", format: "json" }
     });
 
-    const service: LoggerService = TestBed.get(LoggerService);
+    const service: LoggerService = TestBed.inject(LoggerService) as ServiceMock<
+      LoggerService
+    >;
     spyOn(console, "debug");
 
     service.debug("This should not be logged as debug");
@@ -69,7 +75,9 @@ describe("LoggerService", () => {
       loggerOptions: { level: "error", format: "json" }
     });
 
-    const service: LoggerService = TestBed.get(LoggerService);
+    const service: LoggerService = TestBed.inject(LoggerService) as ServiceMock<
+      LoggerService
+    >;
     spyOn(console, "error");
 
     const error = new Error("This should be logged as an error");
@@ -86,7 +94,9 @@ describe("LoggerService", () => {
       loggerOptions: { level: "non-existing-level", format: "json" }
     });
 
-    const service: LoggerService = TestBed.get(LoggerService);
+    const service: LoggerService = TestBed.inject(LoggerService) as ServiceMock<
+      LoggerService
+    >;
     spyOn(console, "warn");
 
     service.warn("This should be logged as a warn");

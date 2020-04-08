@@ -65,7 +65,9 @@ describe("Responsive Big Image Article", () => {
       })
       .compileComponents();
 
-    analyticsService = TestBed.get(AnalyticsService);
+    analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
+      AnalyticsService
+    >;
     fixture = TestBed.createComponent(ResponsiveBigImageArticleComponent);
     component = fixture.componentInstance;
   });

@@ -1,13 +1,13 @@
 import { TestBed } from "@angular/core/testing";
-import { WindowService } from "../window/window.service";
+import { AnalyticsEventsType } from "../analytics/__types__/AnalyticsEventsType";
+import { AnalyticsService } from "../analytics/analytics.service";
 import { mockService, ServiceMock } from "../mocks/MockService";
 import { RuntimeService } from "../runtime/runtime.service";
-import { AnalyticsService } from "../analytics/analytics.service";
+import { WindowService } from "../window/window.service";
 import { PwaService } from "./pwa.service";
-import { AnalyticsEventsType } from "../analytics/__types__/AnalyticsEventsType";
 
 describe("PwaService", () => {
-  let pwaService: PwaService;
+  let pwaService: ServiceMock<PwaService>;
   let analyticsService: ServiceMock<AnalyticsService>;
   let windowService: ServiceMock<WindowService>;
   let runtimeService: ServiceMock<RuntimeService>;
@@ -30,11 +30,15 @@ describe("PwaService", () => {
       ]
     });
 
-    windowService = TestBed.get(WindowService);
-    runtimeService = TestBed.get(RuntimeService);
-    analyticsService = TestBed.get(AnalyticsService);
+    windowService = TestBed.inject(WindowService) as ServiceMock<WindowService>;
+    runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
+      RuntimeService
+    >;
+    analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
+      AnalyticsService
+    >;
 
-    pwaService = TestBed.get(PwaService);
+    pwaService = TestBed.inject(PwaService) as ServiceMock<PwaService>;
   });
 
   it("should create", () => {

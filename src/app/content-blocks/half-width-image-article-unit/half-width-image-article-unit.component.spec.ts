@@ -5,6 +5,7 @@ import { AnalyticsEventsType } from "src/app/services/analytics/__types__/Analyt
 import { AnalyticsService } from "src/app/services/analytics/analytics.service";
 import { mockService, ServiceMock } from "src/app/services/mocks/MockService";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IHalfWidthImageArticleUnit } from "../../../../common/__types__/IHalfWidthImageArticleUnit";
 import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 import { FeatureSwitchService } from "../../services/feature-switch/feature-switch.service";
 import { FluidImageComponent } from "../../shared/components/fluid-image/fluid-image.component";
@@ -12,7 +13,6 @@ import { HeadlineComponent } from "../../shared/components/headline/headline.com
 import { TimeAgoComponent } from "../../shared/components/time-ago/time-ago.component";
 import { SharedModule } from "../../shared/shared.module";
 import { HalfWidthImageArticleUnitComponent } from "./half-width-image-article-unit.component";
-import { IHalfWidthImageArticleUnit } from "../../../../common/__types__/IHalfWidthImageArticleUnit";
 
 describe("HalfWidthImageArticleUnitComponent", () => {
   let component: HalfWidthImageArticleUnitComponent;
@@ -75,7 +75,9 @@ describe("HalfWidthImageArticleUnitComponent", () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HalfWidthImageArticleUnitComponent);
-    analyticsService = TestBed.get(AnalyticsService);
+    analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
+      AnalyticsService
+    >;
     component = fixture.componentInstance;
   });
 

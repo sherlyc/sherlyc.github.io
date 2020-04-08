@@ -14,7 +14,9 @@ describe("Global Css service", () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    globalStyleService = TestBed.get(GlobalStyleService);
+    globalStyleService = TestBed.inject(GlobalStyleService) as ServiceMock<
+      GlobalStyleService
+    >;
   });
 
   it("should be created", () => {

@@ -29,7 +29,9 @@ describe("PullToRefreshDirective", () => {
         { provide: RuntimeService, useClass: mockService(RuntimeService) }
       ]
     }).compileComponents();
-    runtimeService = TestBed.get(RuntimeService);
+    runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
+      RuntimeService
+    >;
   });
 
   afterEach(() => {

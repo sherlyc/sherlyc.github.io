@@ -62,11 +62,17 @@ describe("WeatherUnitComponent", () => {
       ]
     }).compileComponents();
 
-    runtimeService = TestBed.get(RuntimeService);
-    storeService = TestBed.get(StoreService);
-    weatherRetrieverService = TestBed.get(WeatherRetrieverService);
-    analyticsService = TestBed.get(AnalyticsService);
-    windowService = TestBed.get(WindowService);
+    runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
+      RuntimeService
+    >;
+    storeService = TestBed.inject(StoreService) as ServiceMock<StoreService>;
+    weatherRetrieverService = TestBed.inject(
+      WeatherRetrieverService
+    ) as ServiceMock<WeatherRetrieverService>;
+    analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
+      AnalyticsService
+    >;
+    windowService = TestBed.inject(WindowService) as ServiceMock<WindowService>;
 
     runtimeService.isBrowser.mockReturnValue(true);
 

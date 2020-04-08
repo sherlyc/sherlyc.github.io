@@ -3,14 +3,14 @@ import { By, TransferState } from "@angular/platform-browser";
 import { Subject } from "rxjs";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IFeaturedArticle } from "../../../../common/__types__/IFeaturedArticle";
+import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { ResizeObserverService } from "../../services/resize-observer/resize-observer.service";
+import { HeadlineComponent } from "../../shared/components/headline/headline.component";
 import { SharedModule } from "../../shared/shared.module";
 import { FeaturedArticleComponent } from "./featured-article.component";
-import { HeadlineFlags } from "../../../../common/HeadlineFlags";
-import { HeadlineComponent } from "../../shared/components/headline/headline.component";
 
 describe("FeaturedArticleComponent", () => {
   let component: FeaturedArticleComponent;
@@ -60,7 +60,9 @@ describe("FeaturedArticleComponent", () => {
       ]
     }).compileComponents();
 
-    analyticsService = TestBed.get(AnalyticsService);
+    analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
+      AnalyticsService
+    >;
 
     fixture = TestBed.createComponent(FeaturedArticleComponent);
     component = fixture.componentInstance;

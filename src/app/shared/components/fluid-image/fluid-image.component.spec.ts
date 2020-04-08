@@ -51,8 +51,10 @@ describe("FluidImageComponent", () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(FluidImageComponent);
-    windowService = TestBed.get(WindowService);
-    runtimeService = TestBed.get(RuntimeService);
+    windowService = TestBed.inject(WindowService) as ServiceMock<WindowService>;
+    runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
+      RuntimeService
+    >;
 
     windowService.getWindow.mockReturnValue({});
 

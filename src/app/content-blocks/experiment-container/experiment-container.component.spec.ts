@@ -1,21 +1,21 @@
-import { ServiceMock } from "src/app/services/mocks/MockService";
-import { ExperimentService } from "../../services/experiment/experiment.service";
-import { ExperimentContainerComponent } from "./experiment-container.component";
+import { Component } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { By, TransferState } from "@angular/platform-browser";
+import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
+import { LoggerService } from "src/app/services/logger/logger.service";
+import { ServiceMock } from "src/app/services/mocks/MockService";
+import { RuntimeService } from "src/app/services/runtime/runtime.service";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
-import { ContentBlockDirective } from "../../shared/directives/content-block/content-block.directive";
-import { Component } from "@angular/core";
-import { By, TransferState } from "@angular/platform-browser";
-import { mockService } from "../../services/mocks/MockService";
-import registry from "../content-blocks.registry";
-import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
 import { IExperimentContainer } from "../../../../common/__types__/IExperimentContainer";
-import { RuntimeService } from "src/app/services/runtime/runtime.service";
-import { LoggerService } from "src/app/services/logger/logger.service";
-import { AnalyticsService } from "../../services/analytics/analytics.service";
-import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { ExperimentName } from "../../../../common/ExperimentName";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { ExperimentService } from "../../services/experiment/experiment.service";
+import { mockService } from "../../services/mocks/MockService";
+import { ContentBlockDirective } from "../../shared/directives/content-block/content-block.directive";
+import registry from "../content-blocks.registry";
+import { ExperimentContainerComponent } from "./experiment-container.component";
 
 describe("ExperimentContainerComponent", () => {
   let component: ExperimentContainerComponent;
@@ -89,10 +89,16 @@ describe("ExperimentContainerComponent", () => {
         }
       })
       .compileComponents();
-    experimentService = TestBed.get(ExperimentService);
-    runtimeService = TestBed.get(RuntimeService);
-    loggerService = TestBed.get(LoggerService);
-    analyticsService = TestBed.get(AnalyticsService);
+    experimentService = TestBed.inject(ExperimentService) as ServiceMock<
+      ExperimentService
+    >;
+    runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
+      RuntimeService
+    >;
+    loggerService = TestBed.inject(LoggerService) as ServiceMock<LoggerService>;
+    analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
+      AnalyticsService
+    >;
   });
 
   beforeEach(() => {

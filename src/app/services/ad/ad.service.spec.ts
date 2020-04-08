@@ -48,12 +48,16 @@ describe("AdService", () => {
       ]
     });
 
-    scriptInjectorService = TestBed.get(ScriptInjectorService);
-    httpClient = TestBed.get(HttpClient);
-    configMock = TestBed.get(ConfigService);
-    logger = TestBed.get(LoggerService);
-    adService = TestBed.get(AdService);
-    featureSwitch = TestBed.get(FeatureSwitchService);
+    scriptInjectorService = TestBed.inject(
+      ScriptInjectorService
+    ) as ServiceMock<ScriptInjectorService>;
+    httpClient = TestBed.inject(HttpClient) as ServiceMock<HttpClient>;
+    configMock = TestBed.inject(ConfigService) as ServiceMock<ConfigService>;
+    logger = TestBed.inject(LoggerService) as ServiceMock<LoggerService>;
+    adService = TestBed.inject(AdService) as ServiceMock<AdService>;
+    featureSwitch = TestBed.inject(FeatureSwitchService) as ServiceMock<
+      FeatureSwitchService
+    >;
   });
 
   it("should be created", () => {
@@ -72,7 +76,7 @@ describe("AdService", () => {
   });
 
   it("should notify the adnostic sdk with custom event detail", async () => {
-    const document: Document = TestBed.get(DOCUMENT);
+    const document: Document = TestBed.inject(DOCUMENT);
     document.dispatchEvent = jest.fn();
 
     await adService.notify();

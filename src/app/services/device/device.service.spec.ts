@@ -4,11 +4,10 @@ import { DeviceType } from "../../../../common/DeviceType";
 import { mockService, ServiceMock } from "../mocks/MockService";
 import { RuntimeService } from "../runtime/runtime.service";
 import { WindowService } from "../window/window.service";
-
 import { DeviceService } from "./device.service";
 
 describe("DeviceService", () => {
-  let deviceService: DeviceService;
+  let deviceService: ServiceMock<DeviceService>;
   let windowService: ServiceMock<WindowService>;
   const mockDocument = { body: { style: {} } };
 
@@ -30,8 +29,8 @@ describe("DeviceService", () => {
       ]
     });
 
-    windowService = TestBed.get(WindowService);
-    deviceService = TestBed.get(DeviceService);
+    windowService = TestBed.inject(WindowService) as ServiceMock<WindowService>;
+    deviceService = TestBed.inject(DeviceService) as ServiceMock<DeviceService>;
   });
 
   it("should be created", () => {

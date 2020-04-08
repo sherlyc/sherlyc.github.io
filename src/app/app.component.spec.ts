@@ -1,17 +1,17 @@
-import { TestBed, async } from "@angular/core/testing";
+import { async, TestBed } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 import { AppComponent } from "./app.component";
 import { AdService } from "./services/ad/ad.service";
-import { mockService, ServiceMock } from "./services/mocks/MockService";
-import { DtmService } from "./services/dtm/dtm.service";
 import { AnalyticsService } from "./services/analytics/analytics.service";
-import { ExperimentService } from "./services/experiment/experiment.service";
-import { EventsService } from "./services/events/events.service";
-import { BrowserOverrideService } from "./services/browser-override/browser-override.service";
-import { NeighbourlyService } from "./services/neighbourly/neighbourly.service";
-import { MetaTagsService } from "./services/meta-tags/meta-tags.service";
 import { AuthenticationService } from "./services/authentication/authentication.service";
+import { BrowserOverrideService } from "./services/browser-override/browser-override.service";
+import { DtmService } from "./services/dtm/dtm.service";
+import { EventsService } from "./services/events/events.service";
+import { ExperimentService } from "./services/experiment/experiment.service";
 import { FeatureSwitchService } from "./services/feature-switch/feature-switch.service";
+import { MetaTagsService } from "./services/meta-tags/meta-tags.service";
+import { mockService, ServiceMock } from "./services/mocks/MockService";
+import { NeighbourlyService } from "./services/neighbourly/neighbourly.service";
 import { PwaService } from "./services/pwa/pwa.service";
 
 describe("AppComponent", () => {
@@ -78,16 +78,28 @@ describe("AppComponent", () => {
       ]
     }).compileComponents();
 
-    adService = TestBed.get(AdService);
-    eventsService = TestBed.get(EventsService);
-    analyticsService = TestBed.get(AnalyticsService);
-    dtmService = TestBed.get(DtmService);
-    browserOverrideService = TestBed.get(BrowserOverrideService);
-    experimentService = TestBed.get(ExperimentService);
-    neighbourlyService = TestBed.get(NeighbourlyService);
-    metaTagsService = TestBed.get(MetaTagsService);
-    featureSwitchService = TestBed.get(FeatureSwitchService);
-    pwaService = TestBed.get(PwaService);
+    adService = TestBed.inject(AdService) as ServiceMock<AdService>;
+    eventsService = TestBed.inject(EventsService) as ServiceMock<EventsService>;
+    analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
+      AnalyticsService
+    >;
+    dtmService = TestBed.inject(DtmService) as ServiceMock<DtmService>;
+    browserOverrideService = TestBed.inject(
+      BrowserOverrideService
+    ) as ServiceMock<BrowserOverrideService>;
+    experimentService = TestBed.inject(ExperimentService) as ServiceMock<
+      ExperimentService
+    >;
+    neighbourlyService = TestBed.inject(NeighbourlyService) as ServiceMock<
+      NeighbourlyService
+    >;
+    metaTagsService = TestBed.inject(MetaTagsService) as ServiceMock<
+      MetaTagsService
+    >;
+    featureSwitchService = TestBed.inject(FeatureSwitchService) as ServiceMock<
+      FeatureSwitchService
+    >;
+    pwaService = TestBed.inject(PwaService) as ServiceMock<PwaService>;
   });
 
   it("should create the app and set up services", async(() => {

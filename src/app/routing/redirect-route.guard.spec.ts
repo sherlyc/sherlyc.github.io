@@ -1,13 +1,13 @@
-import { RedirectRouteGuard } from "./redirect-route.guard";
 import { TestBed } from "@angular/core/testing";
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
-import { mockService, ServiceMock } from "../services/mocks/MockService";
-import { CookieService } from "../services/cookie/cookie.service";
-import { WindowService } from "../services/window/window.service";
-import { RuntimeService } from "../services/runtime/runtime.service";
-import { DeviceService } from "../services/device/device.service";
 import { DeviceType } from "../../../common/DeviceType";
 import { ConfigService } from "../services/config/config.service";
+import { CookieService } from "../services/cookie/cookie.service";
+import { DeviceService } from "../services/device/device.service";
+import { mockService, ServiceMock } from "../services/mocks/MockService";
+import { RuntimeService } from "../services/runtime/runtime.service";
+import { WindowService } from "../services/window/window.service";
+import { RedirectRouteGuard } from "./redirect-route.guard";
 
 const OriginalNow = global.Date.now;
 
@@ -43,11 +43,13 @@ describe("RouteGuard", () => {
         }
       ]
     });
-    cookieService = TestBed.get(CookieService);
-    windowService = TestBed.get(WindowService);
-    runtimeService = TestBed.get(RuntimeService);
-    deviceService = TestBed.get(DeviceService);
-    configService = TestBed.get(ConfigService);
+    cookieService = TestBed.inject(CookieService) as ServiceMock<CookieService>;
+    windowService = TestBed.inject(WindowService) as ServiceMock<WindowService>;
+    runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
+      RuntimeService
+    >;
+    deviceService = TestBed.inject(DeviceService) as ServiceMock<DeviceService>;
+    configService = TestBed.inject(ConfigService) as ServiceMock<ConfigService>;
   });
 
   afterEach(() => {

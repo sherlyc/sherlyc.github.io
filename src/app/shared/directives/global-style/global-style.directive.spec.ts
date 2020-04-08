@@ -1,10 +1,10 @@
 import { Component } from "@angular/core";
-import { GlobalStyleDirective } from "./global-style.directive";
-import { GlobalStyleService } from "../../../services/global-style/global-style.service";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { mockService, ServiceMock } from "../../../services/mocks/MockService";
 import { By } from "@angular/platform-browser";
 import { cloneDeep } from "lodash";
+import { GlobalStyleService } from "../../../services/global-style/global-style.service";
+import { mockService, ServiceMock } from "../../../services/mocks/MockService";
+import { GlobalStyleDirective } from "./global-style.directive";
 
 @Component({
   selector: "app-fake-component",
@@ -31,7 +31,9 @@ describe("Global Style Directive", () => {
       ]
     }).compileComponents();
 
-    globalStyleService = TestBed.get(GlobalStyleService);
+    globalStyleService = TestBed.inject(GlobalStyleService) as ServiceMock<
+      GlobalStyleService
+    >;
     fixture = TestBed.createComponent(FakeComponent);
     component = fixture.componentInstance;
   });

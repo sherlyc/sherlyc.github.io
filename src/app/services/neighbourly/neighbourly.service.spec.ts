@@ -1,13 +1,13 @@
 import { TestBed } from "@angular/core/testing";
-import { NeighbourlyService } from "./neighbourly.service";
-import { ServiceMock, mockService } from "../mocks/MockService";
-import { ScriptInjectorService } from "../script-injector/script-injector.service";
+import { mockService, ServiceMock } from "../mocks/MockService";
 import { RuntimeService } from "../runtime/runtime.service";
-import { ScriptId } from "../script-injector/__types__/ScriptId";
 import { Position } from "../script-injector/__types__/Position";
+import { ScriptId } from "../script-injector/__types__/ScriptId";
+import { ScriptInjectorService } from "../script-injector/script-injector.service";
+import { NeighbourlyService } from "./neighbourly.service";
 
 describe("NeighbourlyService", () => {
-  let neighbourlyService: NeighbourlyService;
+  let neighbourlyService: ServiceMock<NeighbourlyService>;
   let scriptInjectorService: ServiceMock<ScriptInjectorService>;
   let runtimeService: ServiceMock<RuntimeService>;
 
@@ -24,9 +24,15 @@ describe("NeighbourlyService", () => {
         }
       ]
     });
-    scriptInjectorService = TestBed.get(ScriptInjectorService);
-    runtimeService = TestBed.get(RuntimeService);
-    neighbourlyService = TestBed.get(NeighbourlyService);
+    scriptInjectorService = TestBed.inject(
+      ScriptInjectorService
+    ) as ServiceMock<ScriptInjectorService>;
+    runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
+      RuntimeService
+    >;
+    neighbourlyService = TestBed.inject(NeighbourlyService) as ServiceMock<
+      NeighbourlyService
+    >;
   });
 
   it("should be created", () => {

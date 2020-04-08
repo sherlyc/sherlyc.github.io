@@ -1,18 +1,18 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { mockService, ServiceMock } from "../../services/mocks/MockService";
-import { AnalyticsService } from "../../services/analytics/analytics.service";
-import { BasicArticleSectionComponent } from "./basic-article-section.component";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { IBasicArticleSection } from "../../../../common/__types__/IBasicArticleSection";
-import { Section } from "../../../../server-src/services/section";
-import { ContentBlockDirective } from "../../shared/directives/content-block/content-block.directive";
 import { Component } from "@angular/core";
-import registry from "../content-blocks.registry";
-import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By, TransferState } from "@angular/platform-browser";
 import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IBasicArticleSection } from "../../../../common/__types__/IBasicArticleSection";
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import { Section } from "../../../../server-src/services/section";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { mockService, ServiceMock } from "../../services/mocks/MockService";
+import { ContentBlockDirective } from "../../shared/directives/content-block/content-block.directive";
 import { OpenExternalLinkDirective } from "../../shared/directives/open-external-link/open-external-link.directive";
+import registry from "../content-blocks.registry";
+import { BasicArticleSectionComponent } from "./basic-article-section.component";
 
 describe("basic article section", () => {
   let component: BasicArticleSectionComponent;
@@ -67,7 +67,9 @@ describe("basic article section", () => {
       })
       .compileComponents();
 
-    analyticsService = TestBed.get(AnalyticsService);
+    analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
+      AnalyticsService
+    >;
     fixture = TestBed.createComponent(BasicArticleSectionComponent);
     component = fixture.componentInstance;
   });

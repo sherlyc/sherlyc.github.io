@@ -1,18 +1,18 @@
+import { Component, Input } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { ImageLinkUnitComponent } from "./image-link-unit.component";
-import { IImageLinkUnit } from "../../../../common/__types__/IImageLinkUnit";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { By } from "@angular/platform-browser";
 import { AnalyticsEventsType } from "src/app/services/analytics/__types__/AnalyticsEventsType";
-import { mockService, ServiceMock } from "src/app/services/mocks/MockService";
 import { AnalyticsService } from "src/app/services/analytics/analytics.service";
-import { SharedModule } from "../../shared/shared.module";
-import { HeadlineComponent } from "../../shared/components/headline/headline.component";
+import { mockService, ServiceMock } from "src/app/services/mocks/MockService";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IImageLinkUnit } from "../../../../common/__types__/IImageLinkUnit";
+import { ImageLayoutType } from "../../../../common/__types__/ImageLayoutType";
 import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 import { FeatureSwitchService } from "../../services/feature-switch/feature-switch.service";
-import { ImageLayoutType } from "../../../../common/__types__/ImageLayoutType";
-import { Component, Input } from "@angular/core";
 import { FluidImageComponent } from "../../shared/components/fluid-image/fluid-image.component";
+import { HeadlineComponent } from "../../shared/components/headline/headline.component";
+import { SharedModule } from "../../shared/shared.module";
+import { ImageLinkUnitComponent } from "./image-link-unit.component";
 
 describe("ImageLinkUnitComponent", () => {
   let component: ImageLinkUnitComponent;
@@ -69,7 +69,9 @@ describe("ImageLinkUnitComponent", () => {
 
     fixture = TestBed.createComponent(ImageLinkUnitComponent);
     component = fixture.componentInstance;
-    analyticsService = TestBed.get(AnalyticsService);
+    analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
+      AnalyticsService
+    >;
   });
 
   it("should create", () => {

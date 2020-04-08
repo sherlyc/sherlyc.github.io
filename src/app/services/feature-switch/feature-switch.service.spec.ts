@@ -1,19 +1,19 @@
+import { HttpClient } from "@angular/common/http";
 import { TestBed } from "@angular/core/testing";
+import { throwError } from "rxjs";
+import { of } from "rxjs/internal/observable/of";
+import { DeviceType } from "../../../../common/DeviceType";
+import * as features from "../../../../common/FeatureName";
+import { FeatureName } from "../../../../common/FeatureName";
+import { ConfigService } from "../config/config.service";
+import { DeviceService } from "../device/device.service";
+import { LoggerService } from "../logger/logger.service";
+import { LottoService } from "../lotto/lotto.service";
+import { mockService, ServiceMock } from "../mocks/MockService";
+import { RuntimeService } from "../runtime/runtime.service";
+import { StoreService } from "../store/store.service";
 
 import { FeatureSwitchService } from "./feature-switch.service";
-import { ConfigService } from "../config/config.service";
-import { mockService, ServiceMock } from "../mocks/MockService";
-import { StoreService } from "../store/store.service";
-import { HttpClient } from "@angular/common/http";
-import { RuntimeService } from "../runtime/runtime.service";
-import { LottoService } from "../lotto/lotto.service";
-import { of } from "rxjs/internal/observable/of";
-import * as features from "../../../../common/FeatureName";
-import { throwError } from "rxjs";
-import { LoggerService } from "../logger/logger.service";
-import { FeatureName } from "../../../../common/FeatureName";
-import { DeviceService } from "../device/device.service";
-import { DeviceType } from "../../../../common/DeviceType";
 
 describe("FeatureSwitchService", () => {
   const featureAPI = "/spade/api/feature";
@@ -62,16 +62,22 @@ describe("FeatureSwitchService", () => {
       ]
     });
 
-    configServiceMock = TestBed.get(ConfigService);
-    storeService = TestBed.get(StoreService);
-    httpClient = TestBed.get(HttpClient);
-    runtimeService = TestBed.get(RuntimeService);
-    lottoService = TestBed.get(LottoService);
-    loggerService = TestBed.get(LoggerService);
-    deviceService = TestBed.get(DeviceService);
+    configServiceMock = TestBed.inject(ConfigService) as ServiceMock<
+      ConfigService
+    >;
+    storeService = TestBed.inject(StoreService) as ServiceMock<StoreService>;
+    httpClient = TestBed.inject(HttpClient) as ServiceMock<HttpClient>;
+    runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
+      RuntimeService
+    >;
+    lottoService = TestBed.inject(LottoService) as ServiceMock<LottoService>;
+    loggerService = TestBed.inject(LoggerService) as ServiceMock<LoggerService>;
+    deviceService = TestBed.inject(DeviceService) as ServiceMock<DeviceService>;
     configServiceMock.getConfig.mockReturnValue({ featureAPI });
 
-    service = TestBed.get(FeatureSwitchService);
+    service = TestBed.inject(FeatureSwitchService) as ServiceMock<
+      FeatureSwitchService
+    >;
     (features as any).FeatureName = {
       TEST: "TEST"
     };

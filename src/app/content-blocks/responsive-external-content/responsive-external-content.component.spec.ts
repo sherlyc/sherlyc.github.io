@@ -1,13 +1,13 @@
+import { Directive, Input } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { ResponsiveExternalContentComponent } from "./responsive-external-content.component";
 import { By, DomSanitizer } from "@angular/platform-browser";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { MediaQuery } from "../grid-container/__types__/MediaQuery";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 import { IResponsiveExternalContentDeviceConfig } from "../../../../common/__types__/IResponsiveExternalContent";
 import { GlobalStyleService } from "../../services/global-style/global-style.service";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
-import { ChangeDetectorRef, Directive, Input } from "@angular/core";
+import { MediaQuery } from "../grid-container/__types__/MediaQuery";
+import { ResponsiveExternalContentComponent } from "./responsive-external-content.component";
 
 const createFakeIntersectEvent = (isIntersecting: boolean) =>
   ({
@@ -73,7 +73,9 @@ describe("ResponsiveExternalContentComponent", () => {
       ]
     }).compileComponents();
 
-    globalStyleService = TestBed.get(GlobalStyleService);
+    globalStyleService = TestBed.inject(GlobalStyleService) as ServiceMock<
+      GlobalStyleService
+    >;
     fixture = TestBed.createComponent(ResponsiveExternalContentComponent);
     component = fixture.componentInstance;
   });

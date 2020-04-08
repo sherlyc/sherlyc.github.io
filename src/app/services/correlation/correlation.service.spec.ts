@@ -1,12 +1,12 @@
 import { TestBed } from "@angular/core/testing";
-import { CorrelationService } from "./correlation.service";
 import { mockService, ServiceMock } from "../mocks/MockService";
-import { StoreService } from "../store/store.service";
 import { RuntimeService } from "../runtime/runtime.service";
+import { StoreService } from "../store/store.service";
+import { CorrelationService } from "./correlation.service";
 
 describe("CorrelationService should", () => {
-  let correlationIdService: CorrelationService;
-  let storeService: StoreService;
+  let correlationIdService: ServiceMock<CorrelationService>;
+  let storeService: ServiceMock<StoreService>;
   let runtimeService: ServiceMock<RuntimeService>;
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -21,9 +21,13 @@ describe("CorrelationService should", () => {
         }
       ]
     });
-    correlationIdService = TestBed.get(CorrelationService);
-    storeService = TestBed.get(StoreService);
-    runtimeService = TestBed.get(RuntimeService);
+    correlationIdService = TestBed.inject(CorrelationService) as ServiceMock<
+      CorrelationService
+    >;
+    storeService = TestBed.inject(StoreService) as ServiceMock<StoreService>;
+    runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
+      RuntimeService
+    >;
   });
 
   afterEach(() => {

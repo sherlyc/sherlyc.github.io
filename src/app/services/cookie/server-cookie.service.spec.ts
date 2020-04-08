@@ -1,10 +1,11 @@
 import { TestBed } from "@angular/core/testing";
+import { REQUEST, RESPONSE } from "@nguniversal/express-engine/tokens";
+import { ServiceMock } from "../mocks/MockService";
 
 import { ServerCookieService } from "./server-cookie.service";
-import { REQUEST, RESPONSE } from "@nguniversal/express-engine/tokens";
 
 describe("ServerCookieService", () => {
-  let cookieService: ServerCookieService;
+  let cookieService: ServiceMock<ServerCookieService>;
   const requestMock = {
     headers: {
       cookie: ""
@@ -29,7 +30,9 @@ describe("ServerCookieService", () => {
         }
       ]
     });
-    cookieService = TestBed.get(ServerCookieService);
+    cookieService = TestBed.inject(ServerCookieService) as ServiceMock<
+      ServerCookieService
+    >;
     requestMock.headers.cookie = "";
     responseMock.cookie.mockReset();
   });

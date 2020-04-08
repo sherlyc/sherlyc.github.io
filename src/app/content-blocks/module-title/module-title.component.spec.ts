@@ -1,14 +1,14 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { ModuleTitleComponent } from "./module-title.component";
-import { IModuleTitle } from "../../../../common/__types__/IModuleTitle";
 import { By } from "@angular/platform-browser";
-import { OpenExternalLinkDirective } from "../../shared/directives/open-external-link/open-external-link.directive";
-import { mockService } from "../../services/mocks/MockService";
+import { IModuleTitle } from "../../../../common/__types__/IModuleTitle";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { mockService, ServiceMock } from "../../services/mocks/MockService";
+import { OpenExternalLinkDirective } from "../../shared/directives/open-external-link/open-external-link.directive";
+import { ModuleTitleComponent } from "./module-title.component";
 
 describe("ModuleTitleComponent", () => {
-  let analyticsService: AnalyticsService;
+  let analyticsService: ServiceMock<AnalyticsService>;
   let component: ModuleTitleComponent;
   let fixture: ComponentFixture<ModuleTitleComponent>;
 
@@ -25,7 +25,9 @@ describe("ModuleTitleComponent", () => {
   }));
 
   beforeEach(() => {
-    analyticsService = TestBed.get(AnalyticsService);
+    analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
+      AnalyticsService
+    >;
     fixture = TestBed.createComponent(ModuleTitleComponent);
     component = fixture.componentInstance;
   });

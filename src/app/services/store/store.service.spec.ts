@@ -1,15 +1,17 @@
 import { TestBed } from "@angular/core/testing";
-import { storeNamespace, StoreService } from "./store.service";
-import { WindowService } from "../window/window.service";
 import { mockService, ServiceMock } from "../mocks/MockService";
+import { WindowService } from "../window/window.service";
+import { storeNamespace, StoreService } from "./store.service";
 
 describe("Store Service", () => {
   describe("get and set", () => {
-    let storeService: StoreService;
-    let windowService: WindowService;
+    let storeService: ServiceMock<StoreService>;
+    let windowService: ServiceMock<WindowService>;
     beforeEach(() => {
-      windowService = TestBed.get(WindowService);
-      storeService = TestBed.get(StoreService);
+      windowService = TestBed.inject(WindowService) as ServiceMock<
+        WindowService
+      >;
+      storeService = TestBed.inject(StoreService) as ServiceMock<StoreService>;
     });
 
     afterEach(() => {
@@ -49,8 +51,10 @@ describe("Store Service", () => {
           }
         ]
       });
-      windowService = TestBed.get(WindowService);
-      storeService = TestBed.get(StoreService);
+      windowService = TestBed.inject(WindowService) as ServiceMock<
+        WindowService
+      >;
+      storeService = TestBed.inject(StoreService) as ServiceMock<StoreService>;
       windowService.getLocalStorage.mockReturnValue({
         getItem: getMock,
         setItem: setMock,

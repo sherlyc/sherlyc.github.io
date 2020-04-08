@@ -15,9 +15,11 @@ describe("Browser Override Service", () => {
         }
       ]
     });
-    windowService = TestBed.get(WindowService);
+    windowService = TestBed.inject(WindowService) as ServiceMock<WindowService>;
     windowService.getWindow.mockReturnValue({});
-    browserOverrideService = TestBed.get(BrowserOverrideService);
+    browserOverrideService = TestBed.inject(
+      BrowserOverrideService
+    ) as ServiceMock<BrowserOverrideService>;
   });
 
   it("should override native browser functions", () => {

@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { SharedModule } from "src/app/shared/shared.module";
+import { By } from "@angular/platform-browser";
+import * as moment from "moment";
 import { AnalyticsService } from "src/app/services/analytics/analytics.service";
 import { mockService, ServiceMock } from "src/app/services/mocks/MockService";
-import { FeatureSwitchService } from "../../services/feature-switch/feature-switch.service";
-import { ArticleTitleComponent } from "./article-title.component";
+import { SharedModule } from "src/app/shared/shared.module";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IArticleTitle } from "../../../../common/__types__/IArticleTitle";
-import { By } from "@angular/platform-browser";
 import { HeadlineFlags } from "../../../../common/HeadlineFlags";
-import { HeadlineFlagComponent } from "../../shared/components/headline-flag/headline-flag.component";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
-import * as moment from "moment";
+import { FeatureSwitchService } from "../../services/feature-switch/feature-switch.service";
+import { HeadlineFlagComponent } from "../../shared/components/headline-flag/headline-flag.component";
+import { ArticleTitleComponent } from "./article-title.component";
 
 describe("ArticleTitle", () => {
   let component: ArticleTitleComponent;
@@ -53,7 +53,9 @@ describe("ArticleTitle", () => {
     fixture = TestBed.createComponent(ArticleTitleComponent);
     component = fixture.componentInstance;
     component.input = input;
-    analyticsService = TestBed.get(AnalyticsService);
+    analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
+      AnalyticsService
+    >;
   });
 
   it("should be created", () => {

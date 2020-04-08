@@ -1,8 +1,9 @@
 import { TestBed } from "@angular/core/testing";
 import { Router } from "@angular/router";
+import { ServiceMock } from "../mocks/MockService";
+import { RouterMock } from "../mocks/router.mock";
 
 import { EventsService } from "./events.service";
-import { RouterMock } from "../mocks/router.mock";
 
 describe("EventsService", () => {
   beforeEach(() => {
@@ -17,7 +18,9 @@ describe("EventsService", () => {
   });
 
   it("should be created", () => {
-    const service: EventsService = TestBed.get(EventsService);
+    const service: EventsService = TestBed.inject(EventsService) as ServiceMock<
+      EventsService
+    >;
     expect(service).toBeTruthy();
   });
 });

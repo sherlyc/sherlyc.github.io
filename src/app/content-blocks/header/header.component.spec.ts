@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { HeaderComponent } from "./header.component";
 import { By } from "@angular/platform-browser";
-import { CopyrightComponent } from "../../shared/components/copyright/copyright.component";
+import { Subject } from "rxjs";
 import { mockService, ServiceMock } from "src/app/services/mocks/MockService";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
-import { ConfigService } from "../../services/config/config.service";
-import { IEnvironmentDefinition } from "../../services/config/__types__/IEnvironmentDefinition";
-import { AuthenticationService } from "../../services/authentication/authentication.service";
-import { Subject } from "rxjs";
 import { IStuffLoginUser } from "../../services/authentication/__types__/IStuffLoginUser";
-import { WindowService } from "../../services/window/window.service";
+import { AuthenticationService } from "../../services/authentication/authentication.service";
+import { IEnvironmentDefinition } from "../../services/config/__types__/IEnvironmentDefinition";
+import { ConfigService } from "../../services/config/config.service";
 import { RuntimeService } from "../../services/runtime/runtime.service";
+import { WindowService } from "../../services/window/window.service";
+import { CopyrightComponent } from "../../shared/components/copyright/copyright.component";
+import { HeaderComponent } from "./header.component";
 
 const OriginalNow = global.Date.now;
 
@@ -78,12 +78,18 @@ describe("Header", () => {
         }
       ]
     }).compileComponents();
-    analyticsService = TestBed.get(AnalyticsService);
-    configService = TestBed.get(ConfigService);
-    authenticationService = TestBed.get(AuthenticationService);
+    analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
+      AnalyticsService
+    >;
+    configService = TestBed.inject(ConfigService) as ServiceMock<ConfigService>;
+    authenticationService = TestBed.inject(
+      AuthenticationService
+    ) as ServiceMock<AuthenticationService>;
     authenticationService.authenticationStateChange = new Subject<any>();
-    windowService = TestBed.get(WindowService);
-    runtimeService = TestBed.get(RuntimeService);
+    windowService = TestBed.inject(WindowService) as ServiceMock<WindowService>;
+    runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
+      RuntimeService
+    >;
 
     configService.getConfig.mockReturnValue({
       loginLibrary: {

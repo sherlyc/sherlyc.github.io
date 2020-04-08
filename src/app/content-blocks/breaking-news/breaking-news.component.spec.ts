@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { BreakingNewsComponent } from "./breaking-news.component";
 import { By } from "@angular/platform-browser";
-import { CookieService } from "../../services/cookie/cookie.service";
-import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
-import { StorageKeys, StoreService } from "../../services/store/store.service";
+import { CookieService } from "../../services/cookie/cookie.service";
+import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { RuntimeService } from "../../services/runtime/runtime.service";
+import { StorageKeys, StoreService } from "../../services/store/store.service";
+import { BreakingNewsComponent } from "./breaking-news.component";
 
 describe("BreakingNewsComponent", () => {
   const breakingNewsId = "whatever";
   let component: BreakingNewsComponent;
   let fixture: ComponentFixture<BreakingNewsComponent>;
-  let cookieServiceMock: ServiceMock<CookieService>;
+  let cookieServiceMock: CookieService;
   let analyticsService: ServiceMock<AnalyticsService>;
   let storeService: ServiceMock<StoreService>;
   let runtimeService: ServiceMock<RuntimeService>;
@@ -40,10 +40,16 @@ describe("BreakingNewsComponent", () => {
         }
       ]
     }).compileComponents();
-    cookieServiceMock = TestBed.get(CookieService);
-    analyticsService = TestBed.get(AnalyticsService);
-    storeService = TestBed.get(StoreService);
-    runtimeService = TestBed.get(RuntimeService);
+    cookieServiceMock = TestBed.inject(CookieService) as ServiceMock<
+      CookieService
+    >;
+    analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
+      AnalyticsService
+    >;
+    storeService = TestBed.inject(StoreService) as ServiceMock<StoreService>;
+    runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
+      RuntimeService
+    >;
   });
 
   beforeEach(() => {

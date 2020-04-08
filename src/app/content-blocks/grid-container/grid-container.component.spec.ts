@@ -109,7 +109,7 @@ describe("GridContainerComponent", () => {
       })
       .compileComponents();
 
-    deviceService = TestBed.get(DeviceService);
+    deviceService = TestBed.inject(DeviceService) as ServiceMock<DeviceService>;
     fixture = TestBed.createComponent(GridContainerComponent);
     component = fixture.componentInstance;
   });

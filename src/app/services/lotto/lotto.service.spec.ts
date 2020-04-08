@@ -1,11 +1,10 @@
-import { TestBed } from "@angular/core/testing";
-
-import { LottoService } from "./lotto.service";
-import * as random from "math-random";
-import { StoreService } from "../store/store.service";
-import { mockService, ServiceMock } from "../mocks/MockService";
 import { HttpClient } from "@angular/common/http";
+import { TestBed } from "@angular/core/testing";
+import * as random from "math-random";
 import { ConfigService } from "../config/config.service";
+import { mockService, ServiceMock } from "../mocks/MockService";
+import { StoreService } from "../store/store.service";
+import { LottoService } from "./lotto.service";
 
 jest.mock("math-random");
 
@@ -33,12 +32,12 @@ describe("LottoService", () => {
         }
       ]
     });
-    storeService = TestBed.get(StoreService);
-    httpClient = TestBed.get(HttpClient);
-    configService = TestBed.get(ConfigService);
+    storeService = TestBed.inject(StoreService) as ServiceMock<StoreService>;
+    httpClient = TestBed.inject(HttpClient) as ServiceMock<HttpClient>;
+    configService = TestBed.inject(ConfigService) as ServiceMock<ConfigService>;
     configService.getConfig.mockReturnValue({ experimentAPI });
 
-    service = TestBed.get(LottoService);
+    service = TestBed.inject(LottoService) as ServiceMock<LottoService>;
   });
 
   it("should be created", () => {

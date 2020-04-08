@@ -74,7 +74,9 @@ describe("HalfImageArticleWithoutIntroUnit", () => {
       HalfImageArticleWithoutIntroUnitComponent
     );
     component = fixture.componentInstance;
-    analyticsService = TestBed.get(AnalyticsService);
+    analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
+      AnalyticsService
+    >;
   });
 
   it("should create", () => {

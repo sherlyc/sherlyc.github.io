@@ -1,20 +1,20 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { PageComponent } from "./page.component";
-import { ContentRetrieverService } from "../../../services/content-retriever/content-retriever.service";
-import { of, throwError, Subject } from "rxjs";
 import { By } from "@angular/platform-browser";
-import { RouterTestingModule } from "@angular/router/testing";
 import { NavigationStart } from "@angular/router";
+import { RouterTestingModule } from "@angular/router/testing";
+import { of, Subject, throwError } from "rxjs";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { mockService, ServiceMock } from "../../../services/mocks/MockService";
+import { environment } from "../../../../environments/environment";
 import { AdService } from "../../../services/ad/ad.service";
+import { AnalyticsService } from "../../../services/analytics/analytics.service";
+import { ContentRetrieverService } from "../../../services/content-retriever/content-retriever.service";
 import { CorrelationService } from "../../../services/correlation/correlation.service";
 import { EventsService } from "../../../services/events/events.service";
-import { AnalyticsService } from "../../../services/analytics/analytics.service";
 import { LoggerService } from "../../../services/logger/logger.service";
-import { environment } from "../../../../environments/environment";
+import { mockService, ServiceMock } from "../../../services/mocks/MockService";
 import { RuntimeService } from "../../../services/runtime/runtime.service";
+import { PageComponent } from "./page.component";
 
 describe("PageComponent", () => {
   const originalVersion = environment.version;
@@ -91,17 +91,25 @@ describe("PageComponent", () => {
         }
       })
       .compileComponents();
-    eventsServiceMock = TestBed.get(EventsService);
+    eventsServiceMock = TestBed.inject(EventsService) as ServiceMock<
+      EventsService
+    >;
     eventsServiceMock.getEventSubject.mockReturnValue({
       NavigationStart: new Subject<NavigationStart>()
     });
     fixture = TestBed.createComponent(PageComponent);
     component = fixture.componentInstance;
-    contentRetrieverMock = TestBed.get(ContentRetrieverService);
-    adServiceMock = TestBed.get(AdService);
-    analyticsServiceMock = TestBed.get(AnalyticsService);
-    loggerService = TestBed.get(LoggerService);
-    runtimeService = TestBed.get(RuntimeService);
+    contentRetrieverMock = TestBed.inject(
+      ContentRetrieverService
+    ) as ServiceMock<ContentRetrieverService>;
+    adServiceMock = TestBed.inject(AdService) as ServiceMock<AdService>;
+    analyticsServiceMock = TestBed.inject(AnalyticsService) as ServiceMock<
+      AnalyticsService
+    >;
+    loggerService = TestBed.inject(LoggerService) as ServiceMock<LoggerService>;
+    runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
+      RuntimeService
+    >;
   });
 
   afterEach(() => {

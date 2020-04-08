@@ -1,11 +1,11 @@
-import { mockService, ServiceMock } from "../../../services/mocks/MockService";
-import { IntersectionObserverService } from "../../../services/intersection-observer/intersection-observer.service";
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { IntersectionObserverDirective } from "./intersection-observer.directive";
 import { Component } from "@angular/core";
-import { Subject, Subscription } from "rxjs";
-import { RuntimeService } from "../../../services/runtime/runtime.service";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
+import { Subject, Subscription } from "rxjs";
+import { IntersectionObserverService } from "../../../services/intersection-observer/intersection-observer.service";
+import { mockService, ServiceMock } from "../../../services/mocks/MockService";
+import { RuntimeService } from "../../../services/runtime/runtime.service";
+import { IntersectionObserverDirective } from "./intersection-observer.directive";
 
 @Component({
   selector: "app-fake-component",
@@ -33,8 +33,12 @@ describe("Intersection Observer Directive", function() {
         }
       ]
     }).compileComponents();
-    runtimeService = TestBed.get(RuntimeService);
-    intersectionObserverService = TestBed.get(IntersectionObserverService);
+    runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
+      RuntimeService
+    >;
+    intersectionObserverService = TestBed.inject(
+      IntersectionObserverService
+    ) as ServiceMock<IntersectionObserverService>;
 
     fixture = TestBed.createComponent(FakeComponent);
     component = fixture.componentInstance;

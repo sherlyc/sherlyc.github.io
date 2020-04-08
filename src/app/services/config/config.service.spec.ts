@@ -21,8 +21,10 @@ describe("Config Service", () => {
       ]
     });
 
-    configService = TestBed.get(ConfigService);
-    runtimeServiceMock = TestBed.get(RuntimeService);
+    configService = TestBed.inject(ConfigService) as ServiceMock<ConfigService>;
+    runtimeServiceMock = TestBed.inject(RuntimeService) as ServiceMock<
+      RuntimeService
+    >;
   });
 
   afterEach(() => {

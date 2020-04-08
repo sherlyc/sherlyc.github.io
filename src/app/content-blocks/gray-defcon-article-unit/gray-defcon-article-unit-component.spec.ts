@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { GrayDefconArticleUnitComponent } from "./gray-defcon-article-unit.component";
-import { SharedModule } from "../../shared/shared.module";
 import { By } from "@angular/platform-browser";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IDefconArticleUnit } from "../../../../common/__types__/IDefconArticleUnit";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { IDefconArticleUnit } from "../../../../common/__types__/IDefconArticleUnit";
+import { SharedModule } from "../../shared/shared.module";
+import { GrayDefconArticleUnitComponent } from "./gray-defcon-article-unit.component";
 
 describe("GrayDefconArticleUnitComponent", () => {
   let component: GrayDefconArticleUnitComponent;
@@ -38,7 +38,9 @@ describe("GrayDefconArticleUnitComponent", () => {
       ]
     }).compileComponents();
 
-    analyticsService = TestBed.get(AnalyticsService);
+    analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
+      AnalyticsService
+    >;
 
     fixture = TestBed.createComponent(GrayDefconArticleUnitComponent);
     component = fixture.componentInstance;

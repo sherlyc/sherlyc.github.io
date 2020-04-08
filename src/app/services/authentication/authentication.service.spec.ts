@@ -1,18 +1,18 @@
 import { TestBed } from "@angular/core/testing";
-import { AuthenticationService } from "./authentication.service";
-import { RuntimeService } from "../runtime/runtime.service";
-import { ScriptInjectorService } from "../script-injector/script-injector.service";
-import { ConfigService } from "../config/config.service";
-import { mockService, ServiceMock } from "../mocks/MockService";
-import { Position } from "../script-injector/__types__/Position";
-import { WindowService } from "../window/window.service";
 import { AnalyticsService } from "../analytics/analytics.service";
+import { ConfigService } from "../config/config.service";
+import { FeatureSwitchService } from "../feature-switch/feature-switch.service";
+import { mockService, ServiceMock } from "../mocks/MockService";
+import { RuntimeService } from "../runtime/runtime.service";
+import { Position } from "../script-injector/__types__/Position";
+import { ScriptInjectorService } from "../script-injector/script-injector.service";
+import { WindowService } from "../window/window.service";
 import { IStuffLogin } from "./__types__/IStuffLogin";
 import { IStuffLoginUser } from "./__types__/IStuffLoginUser";
-import { FeatureSwitchService } from "../feature-switch/feature-switch.service";
+import { AuthenticationService } from "./authentication.service";
 
 describe("AuthenticationService", () => {
-  let authenticationService: AuthenticationService;
+  let authenticationService: ServiceMock<AuthenticationService>;
   let runtimeService: ServiceMock<RuntimeService>;
   let featureSwitchService: ServiceMock<FeatureSwitchService>;
   let scriptInjectorService: ServiceMock<ScriptInjectorService>;
@@ -56,12 +56,20 @@ describe("AuthenticationService", () => {
       ]
     });
 
-    runtimeService = TestBed.get(RuntimeService);
-    featureSwitchService = TestBed.get(FeatureSwitchService);
-    scriptInjectorService = TestBed.get(ScriptInjectorService);
-    configService = TestBed.get(ConfigService);
-    windowService = TestBed.get(WindowService);
-    analyticsService = TestBed.get(AnalyticsService);
+    runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
+      RuntimeService
+    >;
+    featureSwitchService = TestBed.inject(FeatureSwitchService) as ServiceMock<
+      FeatureSwitchService
+    >;
+    scriptInjectorService = TestBed.inject(
+      ScriptInjectorService
+    ) as ServiceMock<ScriptInjectorService>;
+    configService = TestBed.inject(ConfigService) as ServiceMock<ConfigService>;
+    windowService = TestBed.inject(WindowService) as ServiceMock<WindowService>;
+    analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
+      AnalyticsService
+    >;
 
     StuffLogin = {
       init: jest.fn(),
@@ -91,7 +99,9 @@ describe("AuthenticationService", () => {
       }
     });
 
-    authenticationService = TestBed.get(AuthenticationService);
+    authenticationService = TestBed.inject(
+      AuthenticationService
+    ) as ServiceMock<AuthenticationService>;
   });
 
   it("should be created", () => {

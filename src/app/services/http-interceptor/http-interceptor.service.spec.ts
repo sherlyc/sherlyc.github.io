@@ -1,10 +1,10 @@
+import { HttpHandler, HttpRequest } from "@angular/common/http";
 import { TestBed } from "@angular/core/testing";
+import { REQUEST } from "@nguniversal/express-engine/tokens";
+import { mockService, ServiceMock } from "../mocks/MockService";
+import { RuntimeService } from "../runtime/runtime.service";
 
 import { HttpInterceptorService } from "./http-interceptor.service";
-import { RuntimeService } from "../runtime/runtime.service";
-import { mockService, ServiceMock } from "../mocks/MockService";
-import { HttpHandler, HttpRequest } from "@angular/common/http";
-import { REQUEST } from "@nguniversal/express-engine/tokens";
 
 describe("HttpInterceptorService", () => {
   const requestMock = {
@@ -27,8 +27,12 @@ describe("HttpInterceptorService", () => {
         }
       ]
     });
-    interceptor = TestBed.get(HttpInterceptorService);
-    runtimeService = TestBed.get(RuntimeService);
+    interceptor = TestBed.inject(HttpInterceptorService) as ServiceMock<
+      HttpInterceptorService
+    >;
+    runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
+      RuntimeService
+    >;
     requestMock.header.mockReset();
   });
 

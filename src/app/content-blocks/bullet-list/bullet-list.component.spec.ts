@@ -44,7 +44,9 @@ describe("Bullet List Component", () => {
       ]
     }).compileComponents();
 
-    analyticsService = TestBed.get(AnalyticsService);
+    analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
+      AnalyticsService
+    >;
 
     fixture = TestBed.createComponent(BulletListComponent);
     component = fixture.componentInstance;

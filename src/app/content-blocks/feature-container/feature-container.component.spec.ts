@@ -1,22 +1,22 @@
-import { ServiceMock } from "src/app/services/mocks/MockService";
+import { Component } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { By } from "@angular/platform-browser";
+import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
+import { ServiceMock } from "src/app/services/mocks/MockService";
+import { RuntimeService } from "src/app/services/runtime/runtime.service";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
-import { ContentBlockDirective } from "../../shared/directives/content-block/content-block.directive";
-import { Component } from "@angular/core";
-import { mockService } from "../../services/mocks/MockService";
-import registry from "../content-blocks.registry";
-import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
-import { RuntimeService } from "src/app/services/runtime/runtime.service";
-import { FeatureContainerComponent } from "./feature-container.component";
-import { FeatureSwitchService } from "../../services/feature-switch/feature-switch.service";
 import { IFeatureContainer } from "../../../../common/__types__/IFeatureContainer";
-import { By } from "@angular/platform-browser";
+import { FeatureSwitchService } from "../../services/feature-switch/feature-switch.service";
+import { mockService } from "../../services/mocks/MockService";
+import { ContentBlockDirective } from "../../shared/directives/content-block/content-block.directive";
+import registry from "../content-blocks.registry";
+import { FeatureContainerComponent } from "./feature-container.component";
 
 describe("FeatureContainerComponent", () => {
   let component: FeatureContainerComponent;
   let fixture: ComponentFixture<FeatureContainerComponent>;
-  let featureSwitchServiceServiceMock: ServiceMock<FeatureSwitchService>;
+  let featureSwitchServiceServiceMock: FeatureSwitchService;
   let runtimeService: ServiceMock<RuntimeService>;
 
   @Component({
@@ -71,8 +71,12 @@ describe("FeatureContainerComponent", () => {
         }
       })
       .compileComponents();
-    featureSwitchServiceServiceMock = TestBed.get(FeatureSwitchService);
-    runtimeService = TestBed.get(RuntimeService);
+    featureSwitchServiceServiceMock = TestBed.inject(
+      FeatureSwitchService
+    ) as ServiceMock<FeatureSwitchService>;
+    runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
+      RuntimeService
+    >;
   });
 
   beforeEach(() => {

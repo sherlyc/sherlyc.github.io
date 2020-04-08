@@ -1,16 +1,16 @@
 import { TestBed } from "@angular/core/testing";
-import { AnalyticsService } from "./analytics.service";
-import { mockService, ServiceMock } from "../mocks/MockService";
-import { AnalyticsEventsType } from "./__types__/AnalyticsEventsType";
-import { WindowService } from "../window/window.service";
-import { LoggerService } from "../logger/logger.service";
-import { DtmService } from "../dtm/dtm.service";
-import { RuntimeService } from "../runtime/runtime.service";
 import { environment } from "../../../environments/environment";
+import { DtmService } from "../dtm/dtm.service";
+import { LoggerService } from "../logger/logger.service";
+import { mockService, ServiceMock } from "../mocks/MockService";
+import { RuntimeService } from "../runtime/runtime.service";
+import { WindowService } from "../window/window.service";
+import { AnalyticsEventsType } from "./__types__/AnalyticsEventsType";
+import { AnalyticsService } from "./analytics.service";
 
 describe("AnalyticsService", () => {
   let windowService: ServiceMock<WindowService>;
-  let analyticsService: AnalyticsService;
+  let analyticsService: ServiceMock<AnalyticsService>;
   let dtmService: ServiceMock<DtmService>;
   let runtimeService: ServiceMock<RuntimeService>;
 
@@ -35,10 +35,14 @@ describe("AnalyticsService", () => {
         }
       ]
     });
-    analyticsService = TestBed.get(AnalyticsService);
-    dtmService = TestBed.get(DtmService);
-    runtimeService = TestBed.get(RuntimeService);
-    windowService = TestBed.get(WindowService);
+    analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
+      AnalyticsService
+    >;
+    dtmService = TestBed.inject(DtmService) as ServiceMock<DtmService>;
+    runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
+      RuntimeService
+    >;
+    windowService = TestBed.inject(WindowService) as ServiceMock<WindowService>;
     windowService.getWindow.mockReturnValue({});
   });
 

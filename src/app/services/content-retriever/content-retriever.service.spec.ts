@@ -53,11 +53,19 @@ describe("ContentRetrieverService", () => {
       ]
     });
 
-    contentRetrieverService = TestBed.get(ContentRetrieverService);
-    httpMock = TestBed.get(HttpTestingController);
-    configServiceMock = TestBed.get(ConfigService);
-    runtimeMock = TestBed.get(RuntimeService);
-    transferStateMock = TestBed.get(TransferState);
+    contentRetrieverService = TestBed.inject(
+      ContentRetrieverService
+    ) as ServiceMock<ContentRetrieverService>;
+    httpMock = TestBed.inject(HttpTestingController) as ServiceMock<
+      HttpTestingController
+    >;
+    configServiceMock = TestBed.inject(ConfigService) as ServiceMock<
+      ConfigService
+    >;
+    runtimeMock = TestBed.inject(RuntimeService) as ServiceMock<RuntimeService>;
+    transferStateMock = TestBed.inject(TransferState) as ServiceMock<
+      TransferState
+    >;
     responseMock.sendStatus.mockReset();
   });
 

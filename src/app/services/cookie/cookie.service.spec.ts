@@ -1,10 +1,11 @@
+import { DOCUMENT } from "@angular/common";
 import { TestBed } from "@angular/core/testing";
+import { ServiceMock } from "../mocks/MockService";
 
 import { CookieService } from "./cookie.service";
-import { DOCUMENT } from "@angular/common";
 
 describe("CookieService", () => {
-  let cookieService: CookieService;
+  let cookieService: ServiceMock<CookieService>;
   const documentMock = {
     cookie: ""
   };
@@ -18,7 +19,7 @@ describe("CookieService", () => {
         }
       ]
     });
-    cookieService = TestBed.get(CookieService);
+    cookieService = TestBed.inject(CookieService) as ServiceMock<CookieService>;
     documentMock.cookie = "";
   });
 
