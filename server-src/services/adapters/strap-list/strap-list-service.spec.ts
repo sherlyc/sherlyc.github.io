@@ -1,11 +1,12 @@
-import { getStrapArticles } from "./strap-list-service";
-import { Strap } from "../../strap";
 import { IParams } from "../../__types__/IParams";
-import { getListAssetById } from "../jsonfeed/jsonfeed";
-import * as rawList from "./__fixtures__/raw-article-list.json";
-import * as rawSecondList from "./__fixtures__/raw-second-article-list.json";
-import config from "../../utils/config";
+import { Strap } from "../../strap";
 import { IStrapConfigDefinition } from "../../utils/__types__/IStrapConfigDefinition";
+import config from "../../utils/config";
+import { getListAssetById } from "../jsonfeed/jsonfeed";
+import { getStrapArticles } from "./strap-list-service";
+
+const rawList = require("./__fixtures__/raw-article-list.json");
+const rawSecondList = require("./__fixtures__/raw-second-article-list.json");
 
 jest.mock("../jsonfeed/jsonfeed");
 

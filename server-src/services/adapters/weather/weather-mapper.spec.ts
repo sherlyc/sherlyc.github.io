@@ -1,9 +1,10 @@
-import { weatherMapper } from "./weather-mapper";
-import * as weatherJson from "./__fixtures__/weather.json";
-import * as rawWeather from "./__fixtures__/raw-weather.json";
 import { cloneDeep } from "lodash";
-import { IWeather } from "../__types__/IWeather";
 import { Forecasts } from "../../../../common/Forecasts";
+import { IWeather } from "../__types__/IWeather";
+import { weatherMapper } from "./weather-mapper";
+
+const weatherJson = require("./__fixtures__/weather.json");
+const rawWeather = require("./__fixtures__/raw-weather.json");
 
 describe("Weather Mapper should", () => {
   it("map weather response to rawWeather format", () => {

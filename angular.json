@@ -30,7 +30,8 @@
               }
             ],
             "scripts": [],
-            "serviceWorker": true
+            "serviceWorker": true,
+            "aot": true
           },
           "configurations": {
             "development": {
@@ -39,7 +40,6 @@
                 "scripts": true,
                 "styles": false
               },
-              "aot": false,
               "statsJson": false,
               "optimization": false,
               "buildOptimizer": false,
@@ -70,7 +70,6 @@
               },
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": true,
               "statsJson": true,

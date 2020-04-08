@@ -1,21 +1,22 @@
+import { IParams } from "../../__types__/IParams";
+import { Section } from "../../section";
+import { IJsonFeedArticle } from "../__types__/IJsonFeedArticle";
+import { IRawArticle } from "../__types__/IRawArticle";
+import { JsonFeedAssetType } from "../__types__/JsonFeedAssetType";
+import { JsonFeedImageType } from "../__types__/JsonFeedImageType";
 import {
   getArticleById,
   getListAssetById,
   getSectionArticleList
 } from "./jsonfeed";
-import * as jsonfeed from "./__fixtures__/jsonfeed.json";
-import * as midStripData from "./__fixtures__/mid-strip.json";
-import { Section } from "../../section";
-import { IParams } from "../../__types__/IParams";
-import { IRawArticle } from "../__types__/IRawArticle";
-import { JsonFeedAssetType } from "../__types__/JsonFeedAssetType";
-import { IJsonFeedArticle } from "../__types__/IJsonFeedArticle";
 import {
   retrieveArticle,
   retrieveListAsset,
   retrieveSectionList
 } from "./jsonfeed-retriever";
-import { JsonFeedImageType } from "../__types__/JsonFeedImageType";
+
+const jsonfeed = require("./__fixtures__/jsonfeed.json");
+const midStripData = require("./__fixtures__/mid-strip.json");
 
 jest.mock("./jsonfeed-retriever");
 

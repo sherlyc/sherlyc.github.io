@@ -1,9 +1,9 @@
-import * as configJson from "./config.json";
+const configJson = require("./config.json");
 import { TestBed } from "@angular/core/testing";
-import { ConfigService } from "./config.service";
-import { RuntimeService } from "../runtime/runtime.service";
-import { mockService, ServiceMock } from "../mocks/MockService";
 import { environment } from "../../../environments/environment";
+import { mockService, ServiceMock } from "../mocks/MockService";
+import { RuntimeService } from "../runtime/runtime.service";
+import { ConfigService } from "./config.service";
 
 describe("Config Service", () => {
   let configService: ConfigService;

@@ -1,9 +1,10 @@
 import { DeviceType } from "../../../../common/DeviceType";
+import { ExperimentName } from "../../../../common/ExperimentName";
+import { IExperimentsConfig } from "../../__types__/IExperimentsConfig";
 import { IParams } from "../../__types__/IParams";
 import { isSwitchedOn } from "../switch-resolver/switch-resolver";
-import { IExperimentsConfig } from "../../__types__/IExperimentsConfig";
-import * as experimentJson from "../../../experimentsConfig/experiments-prod.json";
-import { ExperimentName } from "../../../../common/ExperimentName";
+
+const experimentJson = require("../../../experimentsConfig/experiments-prod.json");
 
 export const getExperimentVariant = async (
   experimentName: ExperimentName,

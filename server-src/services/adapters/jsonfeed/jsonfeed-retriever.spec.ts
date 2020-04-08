@@ -1,16 +1,17 @@
-import {
-  retrieveSectionList,
-  retrieveListAsset,
-  retrieveArticle
-} from "./jsonfeed-retriever";
-import * as jsonfeed from "./__fixtures__/jsonfeed.json";
-import * as midStripData from "./__fixtures__/mid-strip.json";
-import cacheHttp from "../../utils/cache-http";
-import { Section } from "../../section";
 import { IParams } from "../../__types__/IParams";
-import { JsonFeedAssetType } from "../__types__/JsonFeedAssetType";
-import { IJsonFeedArticle } from "../__types__/IJsonFeedArticle";
+import { Section } from "../../section";
+import cacheHttp from "../../utils/cache-http";
 import config from "../../utils/config";
+import { IJsonFeedArticle } from "../__types__/IJsonFeedArticle";
+import { JsonFeedAssetType } from "../__types__/JsonFeedAssetType";
+import {
+  retrieveArticle,
+  retrieveListAsset,
+  retrieveSectionList
+} from "./jsonfeed-retriever";
+
+const jsonfeed = require("./__fixtures__/jsonfeed.json");
+const midStripData = require("./__fixtures__/mid-strip.json");
 
 jest.mock("../../utils/cache-http");
 

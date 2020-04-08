@@ -1,8 +1,9 @@
 import { Request } from "express";
-import { getWeather } from "./weather";
-import { weatherService } from "../services/adapters/weather/weather";
-import * as weatherData from "../services/adapters/weather/__fixtures__/raw-weather.json";
 import { WeatherLocations } from "../../common/WeatherLocations";
+import { weatherService } from "../services/adapters/weather/weather";
+import { getWeather } from "./weather";
+
+const weatherData = require("../services/adapters/weather/__fixtures__/raw-weather.json");
 
 jest.mock("../services/adapters/weather/weather");
 

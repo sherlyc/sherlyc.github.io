@@ -6,7 +6,7 @@
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
-    "module": "commonjs",
+    "module": "esnext",
     "noImplicitAny": true,
     "strict": true,
     "moduleResolution": "node",

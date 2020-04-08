@@ -1,16 +1,17 @@
-import { TestBed } from "@angular/core/testing";
-import { ContentRetrieverService } from "./content-retriever.service";
-import * as jsonfeed from "./__fixtures__/contentBlockArticles.json";
 import {
   HttpClientTestingModule,
   HttpTestingController
 } from "@angular/common/http/testing";
+import { TestBed } from "@angular/core/testing";
+import { TransferState } from "@angular/platform-browser";
+import { RESPONSE } from "@nguniversal/express-engine/tokens";
 import { ConfigService } from "../config/config.service";
 import { LoggerService } from "../logger/logger.service";
-import { RuntimeService } from "../runtime/runtime.service";
-import { TransferState } from "@angular/platform-browser";
 import { mockService, ServiceMock } from "../mocks/MockService";
-import { RESPONSE } from "@nguniversal/express-engine/tokens";
+import { RuntimeService } from "../runtime/runtime.service";
+import { ContentRetrieverService } from "./content-retriever.service";
+
+const jsonfeed = require("./__fixtures__/contentBlockArticles.json");
 
 describe("ContentRetrieverService", () => {
   let contentRetrieverService: ContentRetrieverService;

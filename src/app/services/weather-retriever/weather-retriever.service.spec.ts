@@ -1,14 +1,15 @@
-import { TestBed } from "@angular/core/testing";
 import {
   HttpClientTestingModule,
   HttpTestingController
 } from "@angular/common/http/testing";
-import { WeatherRetrieverService } from "./weather-retriever.service";
+import { TestBed } from "@angular/core/testing";
 import { WeatherLocations } from "../../../../common/WeatherLocations";
 import { ConfigService } from "../config/config.service";
-import { mockService, ServiceMock } from "../mocks/MockService";
-import * as weatherResponse from "./__fixtures__/weatherData.json";
 import { LoggerService } from "../logger/logger.service";
+import { mockService, ServiceMock } from "../mocks/MockService";
+import { WeatherRetrieverService } from "./weather-retriever.service";
+
+const weatherResponse = require("./__fixtures__/weatherData.json");
 
 describe("Weather Retriever", () => {
   let weatherRetrieverService: WeatherRetrieverService;

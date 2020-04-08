@@ -1,9 +1,10 @@
-import http from "../../utils/http";
 import { IParams } from "../../__types__/IParams";
-import * as weatherJson from "./__fixtures__/weather.json";
-import * as rawWeather from "./__fixtures__/raw-weather.json";
+import http from "../../utils/http";
 import { weatherService } from "./weather";
 import { weatherRetriever } from "./weather-retriever";
+
+const weatherJson = require("./__fixtures__/weather.json");
+const rawWeather = require("./__fixtures__/raw-weather.json");
 
 jest.mock("../../utils/http");
 jest.mock("./weather-retriever");

@@ -1,20 +1,21 @@
+import { DebugElement } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { WeatherUnitComponent } from "./weather-unit.component";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { By, TransferState } from "@angular/platform-browser";
+import { of, throwError } from "rxjs";
+import { AnalyticsService } from "src/app/services/analytics/analytics.service";
+import { WindowService } from "src/app/services/window/window.service";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IWeatherResponse } from "../../../../common/__types__/IWeatherResponse";
 import { WeatherLocations } from "../../../../common/WeatherLocations";
-import { StoreService, StorageKeys } from "../../services/store/store.service";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { RuntimeService } from "../../services/runtime/runtime.service";
+import { StorageKeys, StoreService } from "../../services/store/store.service";
 import { WeatherRetrieverService } from "../../services/weather-retriever/weather-retriever.service";
-import * as weatherDataJson from "../../services/weather-retriever/__fixtures__/weatherData.json";
-import { of, throwError } from "rxjs";
-import { IWeatherResponse } from "../../../../common/__types__/IWeatherResponse";
-import { AnalyticsService } from "src/app/services/analytics/analytics.service";
-import { DebugElement } from "@angular/core";
-import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
-import { WindowService } from "src/app/services/window/window.service";
 import { WeatherIconComponent } from "../../shared/components/weather-icon/weather-icon.component";
+import { WeatherUnitComponent } from "./weather-unit.component";
+
+const weatherDataJson = require("../../services/weather-retriever/__fixtures__/weatherData.json");
 
 const OriginalNow = global.Date.now;
 

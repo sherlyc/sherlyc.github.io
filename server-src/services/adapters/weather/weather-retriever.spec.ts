@@ -1,7 +1,8 @@
-import { weatherRetriever } from "./weather-retriever";
-import cacheHttp from "../../utils/cache-http";
 import { IParams } from "../../__types__/IParams";
-import * as weatherJson from "./__fixtures__/weather.json";
+import cacheHttp from "../../utils/cache-http";
+import { weatherRetriever } from "./weather-retriever";
+
+const weatherJson = require("./__fixtures__/weather.json");
 
 jest.mock("../../utils/cache-http");
 

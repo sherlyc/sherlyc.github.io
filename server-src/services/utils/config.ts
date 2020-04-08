@@ -1,11 +1,11 @@
-import * as config from "../../config.json";
-import * as strapConfiguration from "../../strapConfig.json";
-import * as featureProd from "../../featuresConfig/features-prod.json";
-import * as featureStaging from "../../featuresConfig/features-staging.json";
-import * as featureDev from "../../featuresConfig/features-dev.json";
+const config = require("../../config.json");
+const strapConfiguration = require("../../strapConfig.json");
+const featureProd = require("../../featuresConfig/features-prod.json");
+const featureStaging = require("../../featuresConfig/features-staging.json");
+const featureDev = require("../../featuresConfig/features-dev.json");
+import { IFeaturesConfig } from "../__types__/IFeaturesConfig";
 import { IEnvironmentDefinition } from "./__types__/IEnvironmentDefinition";
 import { IStrapConfigDefinition } from "./__types__/IStrapConfigDefinition";
-import { IFeaturesConfig } from "../__types__/IFeaturesConfig";
 
 const productionEnvName = "production";
 const environmentName: string = process.env.SPADE_ENV || productionEnvName;

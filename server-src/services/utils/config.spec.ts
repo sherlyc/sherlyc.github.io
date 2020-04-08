@@ -1,7 +1,7 @@
-import * as configJson from "./__fixtures__/config.json";
-import * as strapConfig from "./__fixtures__/strapConfig.json";
-import { IFeaturesConfig } from "../__types__/IFeaturesConfig";
+const configJson = require("./__fixtures__/config.json");
+const strapConfig = require("./__fixtures__/strapConfig.json");
 import { FeatureName } from "../../../common/FeatureName";
+import { IFeaturesConfig } from "../__types__/IFeaturesConfig";
 
 const featureProdMock: IFeaturesConfig = {
   ["Feature" as FeatureName]: {

@@ -1,11 +1,12 @@
-import { Section } from "../../section";
-import pageHandler from "./page";
-import * as latestArticles from "../__fixtures__/latest-articles.json";
-import * as sportSection from "../__fixtures__/sport-section.json";
-import * as nationalSection from "../__fixtures__/national-section.json";
-import * as pageHandlerOutput from "../__fixtures__/page-handler-output.json";
-import { IPageHandlerInput } from "../__types__/IPageHandlerInput";
 import { IParams } from "../../__types__/IParams";
+import { Section } from "../../section";
+import { IPageHandlerInput } from "../__types__/IPageHandlerInput";
+import pageHandler from "./page";
+
+const latestArticles = require("../__fixtures__/latest-articles.json");
+const sportSection = require("../__fixtures__/sport-section.json");
+const nationalSection = require("../__fixtures__/national-section.json");
+const pageHandlerOutput = require("../__fixtures__/page-handler-output.json");
 
 jest.mock("../runner");
 describe("PageHandler", () => {
