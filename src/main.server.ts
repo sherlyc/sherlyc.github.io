@@ -2,7 +2,6 @@
 import "reflect-metadata";
 import "zone.js/dist/zone-node";
 import { enableProdMode } from "@angular/core";
-import { provideModuleMap } from "@nguniversal/module-map-ngfactory-loader";
 import { ngExpressEngine } from "@nguniversal/express-engine";
 import * as express from "express";
 import * as cookieParser from "cookie-parser";
@@ -92,8 +91,7 @@ const { LAZY_MODULE_MAP } = exports;
 app.engine(
   "html",
   ngExpressEngine({
-    bootstrap: AppServerModule,
-    providers: [provideModuleMap(LAZY_MODULE_MAP)]
+    bootstrap: AppServerModule
   }) as (
     path: string,
     options: object,
