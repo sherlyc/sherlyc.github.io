@@ -1,12 +1,12 @@
-import { mapToRawArticleList } from "./jsonfeed-mapper";
-import { IJsonFeedArticleList } from "../__types__/IJsonFeedArticleList";
-import { IRawArticle } from "../__types__/IRawArticle";
+import { getUnixTime, parseISO } from "date-fns";
 import { HeadlineFlags } from "../../../../common/HeadlineFlags";
-import { JsonFeedImageType } from "../__types__/JsonFeedImageType";
-import * as moment from "moment";
 import { IJsonFeedArticle } from "../__types__/IJsonFeedArticle";
-import { JsonFeedAssetType } from "../__types__/JsonFeedAssetType";
+import { IJsonFeedArticleList } from "../__types__/IJsonFeedArticleList";
 import { IJsonFeedUrl } from "../__types__/IJsonFeedUrl";
+import { IRawArticle } from "../__types__/IRawArticle";
+import { JsonFeedAssetType } from "../__types__/JsonFeedAssetType";
+import { JsonFeedImageType } from "../__types__/JsonFeedImageType";
+import { mapToRawArticleList } from "./jsonfeed-mapper";
 
 describe("JsonFeed Mapper", () => {
   const jsonFeedArticle = (): IJsonFeedArticle => ({
@@ -73,7 +73,7 @@ describe("JsonFeed Mapper", () => {
     imageSrcSet: null,
     strapImageSrcSet: null,
     sixteenByNineSrc: null,
-    lastPublishedTime: moment(article.datetime_iso8601).unix(),
+    lastPublishedTime: getUnixTime(parseISO(article.datetime_iso8601)),
     headlineFlags: article.headline_flags,
     identifier: article.identifier
   });
@@ -90,7 +90,7 @@ describe("JsonFeed Mapper", () => {
     imageSrcSet: null,
     strapImageSrcSet: null,
     sixteenByNineSrc: null,
-    lastPublishedTime: moment(article.datetime_iso8601).unix(),
+    lastPublishedTime: getUnixTime(parseISO(article.datetime_iso8601)),
     headlineFlags: article.headline_flags,
     identifier: article.identifier
   });

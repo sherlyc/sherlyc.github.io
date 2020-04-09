@@ -9,7 +9,15 @@ import { RuntimeService } from "../services/runtime/runtime.service";
 import { WindowService } from "../services/window/window.service";
 import { RedirectRouteGuard } from "./redirect-route.guard";
 
-const OriginalNow = global.Date.now;
+const _Date = global.Date;
+
+function fakeDate(defaultDate: string | number) {
+  global.Date = new Proxy(Date, {
+    construct(target: DateConstructor, [arg]): Date {
+      return new target(arg || defaultDate);
+    }
+  });
+}
 
 describe("RouteGuard", () => {
   let cookieService: ServiceMock<CookieService>;
@@ -53,7 +61,7 @@ describe("RouteGuard", () => {
   });
 
   afterEach(() => {
-    global.Date.now = OriginalNow;
+    global.Date = _Date;
   });
 
   it("should not do anything when in server", () => {
@@ -145,9 +153,8 @@ describe("RouteGuard", () => {
         location: { href: "https://i.stuff.co.nz", hostname: "i.stuff.co.nz" }
       });
 
-      const date = new Date("2019-01-01T00:00:00.000Z");
-      const oneYearFromNow = new Date("2020-01-01T00:00:00.000Z");
-      (global as any).Date.now = () => date;
+      fakeDate("2020-01-01T00:00:00+13:00");
+      const oneYearFromNow = new Date("2021-01-01T00:00:00+13:00");
 
       const routeGuard = new RedirectRouteGuard(
         cookieService,
@@ -214,9 +221,9 @@ describe("RouteGuard", () => {
         windowService.getWindow.mockReturnValue({
           location: { href: "https://i.stuff.co.nz", hostname: "i.stuff.co.nz" }
         });
-        const date = new Date("2019-01-01T00:00:00.000Z");
-        const oneYearFromNow = new Date("2020-01-01T00:00:00.000Z");
-        (global as any).Date.now = () => date;
+
+        fakeDate("2020-01-01T00:00:00+13:00");
+        const oneYearFromNow = new Date("2021-01-01T00:00:00+13:00");
 
         deviceService.getDevice.mockReturnValue(deviceType);
         const routeGuard = new RedirectRouteGuard(
@@ -256,9 +263,10 @@ describe("RouteGuard", () => {
       windowService.getWindow.mockReturnValue({
         location: { href: "https://" + hostname, hostname }
       });
-      const date = new Date("2019-01-01T00:00:00.000Z");
-      const oneYearFromNow = new Date("2020-01-01T00:00:00.000Z");
-      (global as any).Date.now = () => date;
+
+      fakeDate("2020-01-01T00:00:00+13:00");
+      const oneYearFromNow = new Date("2021-01-01T00:00:00+13:00");
+
       const routeGuard = new RedirectRouteGuard(
         cookieService,
         windowService,

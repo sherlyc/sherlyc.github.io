@@ -2,11 +2,11 @@
   <meta itemprop="position" content="{{ index }}" />
   <a class="wrapper" itemprop="url" href="{{ input.linkUrl }}" appOpenExternalLink="{{ input.linkUrl }}" (click)="sendAnalytics()">
     <ng-container *ngIf="input.position">
-      <span class="position">{{input.position}}</span>
+      <span class="position">{{ input.position }}</span>
       <span class="separator"></span>
     </ng-container>
     <div class="title">
-      <span *ngIf="input.showTimestamp" class="timestamp">{{this.timeStamp}}</span>
+      <span *ngIf="input.showTimestamp" class="timestamp">{{ input.lastPublishedTime * 1000 | date: "shortTime" }}</span>
       <span class="headline">{{ input.indexHeadline }}</span>
       <app-headline-flag *ngFor="let flag of input.headlineFlags" [flag]="flag"></app-headline-flag>
     </div>

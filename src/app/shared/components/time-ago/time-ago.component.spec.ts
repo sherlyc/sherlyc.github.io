@@ -1,15 +1,15 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-
-import { TimeAgoComponent } from "./time-ago.component";
-import moment = require("moment");
 import { By } from "@angular/platform-browser";
+import { add, getUnixTime, sub } from "date-fns";
+import { TimeAgoComponent } from "./time-ago.component";
 
 const _Date = Date;
 
 function fakeDate(defaultDate: string | number) {
-  // @ts-ignore
-  global.Date = (arg: any) => new _Date(arg || defaultDate);
-  global.Date.UTC = _Date.UTC;
+  Object.defineProperty(global, "Date", {
+    value: (arg: any) => new _Date(arg || defaultDate)
+  });
+  global.Date.now = () => new _Date(defaultDate).getTime();
 }
 
 describe("TimeAgoComponent", () => {
@@ -34,10 +34,9 @@ describe("TimeAgoComponent", () => {
 
   it("should show the timestamp when it is less than 2 hours but more than 1 hour ago", () => {
     // 1 hour 20 minutes ago
-    component.timestamp = moment()
-      .subtract(1, "h")
-      .subtract(20, "m")
-      .unix();
+    component.timestamp = getUnixTime(
+      sub(new Date(), { hours: 1, minutes: 20 })
+    );
 
     fixture.detectChanges();
 
@@ -47,9 +46,7 @@ describe("TimeAgoComponent", () => {
 
   it("should show the timestamp when it is less than 1 hour ago", () => {
     // 20 minutes ago
-    component.timestamp = moment()
-      .subtract(20, "m")
-      .unix();
+    component.timestamp = getUnixTime(sub(new Date(), { minutes: 20 }));
 
     fixture.detectChanges();
 
@@ -58,9 +55,8 @@ describe("TimeAgoComponent", () => {
   });
 
   it("should not show the timestamp when it is more than 2 hours ago", () => {
-    component.timestamp = moment()
-      .subtract(2, "h")
-      .unix();
+    // 2 hours ago
+    component.timestamp = getUnixTime(sub(new Date(), { hours: 2 }));
     fixture.detectChanges();
 
     const timeAgoSpan = fixture.debugElement.query(By.css(".time-ago"));
@@ -70,7 +66,8 @@ describe("TimeAgoComponent", () => {
   });
 
   it("should not show the timestamp when it is later than now", () => {
-    component.timestamp = moment().add(1, "m");
+    // 1 minute later
+    component.timestamp = getUnixTime(add(new Date(), { minutes: 1 }));
     fixture.detectChanges();
 
     const timeAgoSpan = fixture.debugElement.query(By.css(".time-ago"));
@@ -81,9 +78,7 @@ describe("TimeAgoComponent", () => {
 
   it("should show the separator on the left when specified", () => {
     // 20 minutes ago
-    component.timestamp = moment()
-      .subtract(20, "m")
-      .unix();
+    component.timestamp = getUnixTime(sub(new Date(), { minutes: 20 }));
     component.separator = "left";
 
     fixture.detectChanges();
@@ -98,9 +93,7 @@ describe("TimeAgoComponent", () => {
 
   it("should show the separator on the right when specified", () => {
     // 20 minutes ago
-    component.timestamp = moment()
-      .subtract(20, "m")
-      .unix();
+    component.timestamp = getUnixTime(sub(new Date(), { minutes: 20 }));
     component.separator = "right";
 
     fixture.detectChanges();
@@ -115,9 +108,7 @@ describe("TimeAgoComponent", () => {
 
   it("should not show the separator when not specified", () => {
     // 20 minutes ago
-    component.timestamp = moment()
-      .subtract(20, "m")
-      .unix();
+    component.timestamp = getUnixTime(sub(new Date(), { minutes: 20 }));
     component.separator = undefined;
 
     fixture.detectChanges();

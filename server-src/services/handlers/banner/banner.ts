@@ -1,25 +1,21 @@
-import { handlerRunnerFunction } from "../runner";
-import { IBannerHandlerInput } from "../__types__/IBannerHandlerInput";
+import { isWithinInterval, parseISO } from "date-fns";
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 import { IParams } from "../../__types__/IParams";
+import { IBannerResponse } from "../../adapters/__types__/IBannerResponse";
 import getBanner from "../../adapters/banner/banner";
 import logger from "../../utils/logger";
-import * as moment from "moment";
-import { IBannerResponse } from "../../adapters/__types__/IBannerResponse";
 import { HandlerInputType } from "../__types__/HandlerInputType";
-import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import { IBannerHandlerInput } from "../__types__/IBannerHandlerInput";
 import { IExternalContentHandlerInput } from "../__types__/IExternalContentHandlerInput";
+import { handlerRunnerFunction } from "../runner";
 
-const getActiveBanner = (banners: IBannerResponse[]) => {
-  const currentTime = moment.utc();
-  return banners.find(({ startDateTimeUTC, endDateTimeUTC }) =>
-    currentTime.isBetween(
-      moment.utc(startDateTimeUTC),
-      moment.utc(endDateTimeUTC),
-      "ms",
-      "[]"
-    )
+const getActiveBanner = (banners: IBannerResponse[]) =>
+  banners.find(({ startDateTimeUTC, endDateTimeUTC }) =>
+    isWithinInterval(Date.now(), {
+      start: parseISO(startDateTimeUTC),
+      end: parseISO(endDateTimeUTC)
+    })
   );
-};
 
 const defaultExternalContentHandlerInput: Partial<IExternalContentHandlerInput> = {
   type: HandlerInputType.ExternalContent,

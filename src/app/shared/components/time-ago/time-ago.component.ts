@@ -1,5 +1,4 @@
 import { Component, HostBinding, Input, OnInit } from "@angular/core";
-import * as moment from "moment";
 
 const HOUR_IN_SECONDS = 3600;
 const MINUTE_IN_SECONDS = 60;
@@ -15,7 +14,7 @@ export class TimeAgoComponent implements OnInit {
   @Input()
   separator?: "left" | "right";
   @Input()
-  timestamp!: moment.MomentInput;
+  timestamp!: number;
   @Input() textColor = "#d12421";
   timeAgo!: string;
 
@@ -27,10 +26,7 @@ export class TimeAgoComponent implements OnInit {
   }
 
   format() {
-    const seconds = moment().diff(
-      moment((this.timestamp as number) * 1000),
-      "seconds"
-    );
+    const seconds = Math.floor((Date.now() - this.timestamp * 1000) / 1000);
     if (seconds >= 2 * HOUR_IN_SECONDS || seconds < 0) {
       return "";
     }

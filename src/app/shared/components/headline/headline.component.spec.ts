@@ -1,12 +1,12 @@
-import { HeadlineComponent } from "./headline.component";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
+import { getUnixTime, sub } from "date-fns";
 import { HeadlineFlags } from "../../../../../common/HeadlineFlags";
-import { TimeAgoComponent } from "../time-ago/time-ago.component";
-import { SharedModule } from "../../shared.module";
 import { FeatureSwitchService } from "../../../services/feature-switch/feature-switch.service";
 import { mockService } from "../../../services/mocks/MockService";
-import * as moment from "moment";
+import { SharedModule } from "../../shared.module";
+import { TimeAgoComponent } from "../time-ago/time-ago.component";
+import { HeadlineComponent } from "./headline.component";
 
 describe("Headline Component", () => {
   let component: HeadlineComponent;
@@ -71,10 +71,9 @@ describe("Headline Component", () => {
 
   it("should show time ago when it is less than 2 hours ago", () => {
     // 1 hour 20 minutes ago
-    component.timeStamp = moment()
-      .subtract(1, "h")
-      .subtract(20, "m")
-      .unix();
+    component.timeStamp = getUnixTime(
+      sub(new Date(), { hours: 1, minutes: 20 })
+    );
 
     fixture.detectChanges();
 
@@ -84,9 +83,7 @@ describe("Headline Component", () => {
   });
 
   it("should not show time ago when the timeStamp when is more than 2 hours ago", () => {
-    component.timeStamp = moment()
-      .subtract(2, "h")
-      .unix();
+    component.timeStamp = getUnixTime(sub(new Date(), { hours: 2 }));
     fixture.detectChanges();
 
     const timeAgo = fixture.debugElement.query(By.directive(TimeAgoComponent));

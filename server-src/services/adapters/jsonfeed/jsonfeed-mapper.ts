@@ -1,16 +1,16 @@
+import { getUnixTime, parseISO } from "date-fns";
+import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 import { IJsonFeedArticle } from "../__types__/IJsonFeedArticle";
-import * as moment from "moment";
+import { IJsonFeedQuery } from "../__types__/IJsonFeedQuery";
+import { IJsonFeedUrl } from "../__types__/IJsonFeedUrl";
 import { IRawArticle } from "../__types__/IRawArticle";
 import { JsonFeedAssetType } from "../__types__/JsonFeedAssetType";
-import { IJsonFeedUrl } from "../__types__/IJsonFeedUrl";
-import { IJsonFeedQuery } from "../__types__/IJsonFeedQuery";
-import { HeadlineFlags } from "../../../../common/HeadlineFlags";
+import { JsonFeedImageType } from "../__types__/JsonFeedImageType";
 import {
   getImage,
   getStrapImageSrcSet,
   getThumbnailSrcSet
 } from "./image-handler";
-import { JsonFeedImageType } from "../__types__/JsonFeedImageType";
 
 export function mapToRawArticleList(
   articles: Array<IJsonFeedArticle | IJsonFeedUrl | IJsonFeedQuery>
@@ -53,7 +53,7 @@ export function mapArticleAsset(item: IJsonFeedArticle): IRawArticle {
       JsonFeedImageType.STRAP_IMAGE,
       JsonFeedImageType.SMALL_THUMBNAIL
     ]),
-    lastPublishedTime: moment(item.datetime_iso8601).unix(),
+    lastPublishedTime: getUnixTime(parseISO(item.datetime_iso8601)),
     headlineFlags: getHeadlineFlags(item),
     identifier: item.identifier ? item.identifier : undefined
   };
@@ -85,7 +85,7 @@ function mapUrlAsset(item: IJsonFeedUrl): IRawArticle {
       JsonFeedImageType.STRAP_IMAGE,
       JsonFeedImageType.SMALL_THUMBNAIL
     ]),
-    lastPublishedTime: moment(item.datetime_iso8601).unix(),
+    lastPublishedTime: getUnixTime(parseISO(item.datetime_iso8601)),
     headlineFlags: getHeadlineFlags(item),
     identifier: item.identifier ? item.identifier : undefined
   };
