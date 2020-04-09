@@ -1,4 +1,5 @@
-import { inRange, range } from "lodash";
+import inRange from "lodash-es/inRange";
+import range from "lodash-es/range";
 import { DeviceType } from "../../../../common/DeviceType";
 import { FeatureName } from "../../../../common/FeatureName";
 import { isFeatureEnabled } from "./feature";

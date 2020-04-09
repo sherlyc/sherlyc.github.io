@@ -1,8 +1,8 @@
+import maxBy from "lodash-es/maxBy";
+import { IImageVariant } from "../__types__/IImageVariant";
 import { IJsonFeedArticle } from "../__types__/IJsonFeedArticle";
 import { IJsonFeedUrl } from "../__types__/IJsonFeedUrl";
 import { JsonFeedImageType } from "../__types__/JsonFeedImageType";
-import { IImageVariant } from "../__types__/IImageVariant";
-import { maxBy } from "lodash";
 
 function findImage(
   item: IJsonFeedArticle | IJsonFeedUrl,

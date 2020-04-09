@@ -1,6 +1,7 @@
 import { Directive, ElementRef, Input, OnChanges } from "@angular/core";
+import cloneDeep from "lodash-es/cloneDeep";
+import isEqual from "lodash-es/isEqual";
 import { GlobalStyleService } from "../../../services/global-style/global-style.service";
-import { isEqual, cloneDeep } from "lodash";
 
 @Directive({ selector: "[appGlobalStyle]" })
 export class GlobalStyleDirective implements OnChanges {
