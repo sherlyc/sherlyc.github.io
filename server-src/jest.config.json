@@ -6,5 +6,9 @@
   "rootDir": "../",
   "roots": ["server-src"],
   "testEnvironment": "node",
-  "coveragePathIgnorePatterns": [".*\\.d\\.ts", ".*\\.spec\\.ts"]
+  "coveragePathIgnorePatterns": [".*\\.d\\.ts", ".*\\.spec\\.ts"],
+  "transform": {
+    "^.+\\.(ts|js)$": "ts-jest"
+  },
+  "transformIgnorePatterns": ["node_modules/(?!lodash-es)"]
 }

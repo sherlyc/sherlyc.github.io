@@ -1,4 +1,4 @@
-import { memoize } from "lodash";
+import memoize from "lodash-es/memoize";
 
 const versionRegEx = /^(\d+\.)?(\d+\.)?(\*|\d+)$/;
 export const validateVersion = memoize((version: string) => {

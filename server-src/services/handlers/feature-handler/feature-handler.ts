@@ -1,12 +1,12 @@
-import { IContentBlock } from "../../../../common/__types__/IContentBlock";
-import { handlerRunnerFunction } from "../runner";
-import { IParams } from "../../__types__/IParams";
+import flatten from "lodash-es/flatten";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import logger from "../../utils/logger";
-import { IFeatureHandlerInput } from "../__types__/IFeatureHandlerInput";
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 import { IFeatureContainer } from "../../../../common/__types__/IFeatureContainer";
+import { IParams } from "../../__types__/IParams";
+import logger from "../../utils/logger";
 import { HandlerInput } from "../__types__/HandlerInput";
-import { flatten } from "lodash";
+import { IFeatureHandlerInput } from "../__types__/IFeatureHandlerInput";
+import { handlerRunnerFunction } from "../runner";
 
 const multiHandlerRunner = async (
   handlerRunner: handlerRunnerFunction,

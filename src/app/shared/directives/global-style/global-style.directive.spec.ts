@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { cloneDeep } from "lodash";
+import cloneDeep from "lodash-es/cloneDeep";
 import { GlobalStyleService } from "../../../services/global-style/global-style.service";
 import { mockService, ServiceMock } from "../../../services/mocks/MockService";
 import { GlobalStyleDirective } from "./global-style.directive";

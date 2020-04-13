@@ -1,12 +1,12 @@
-import { handlerRunnerFunction } from "../../runner";
-import { IParams } from "../../../__types__/IParams";
-import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { BrandGridPositions } from "../../__types__/IBrandGridHandlerInput";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
+import chunk from "lodash-es/chunk";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { brandConfig } from "./brand-config";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { IParams } from "../../../__types__/IParams";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import { BrandGridPositions } from "../../__types__/IBrandGridHandlerInput";
 import { IBrandHandlerInput } from "../../__types__/IBrandHandlerInput";
-import { chunk } from "lodash";
+import { handlerRunnerFunction } from "../../runner";
+import { brandConfig } from "./brand-config";
 import { createBulletList } from "./bullet-list";
 
 export default async function(

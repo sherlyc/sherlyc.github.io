@@ -2,7 +2,6 @@ import {
   Border,
   IGridBlock
 } from "../../../../../common/__types__/IGridContainer";
-import { flatten } from "lodash";
 
 export function calculateGridGap(
   gridTemplateValues: string,

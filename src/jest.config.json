@@ -5,5 +5,9 @@
   "roots": ["src"],
   "coverageDirectory": "<rootDir>/src/coverage",
   "collectCoverageFrom": ["**/*.ts"],
-  "coveragePathIgnorePatterns": [".*\\.d\\.ts", ".*\\.spec\\.ts"]
+  "coveragePathIgnorePatterns": [".*\\.d\\.ts", ".*\\.spec\\.ts"],
+  "transform": {
+    "^.+\\.(ts|js|html)$": "ts-jest"
+  },
+  "transformIgnorePatterns": ["node_modules/(?!@ngrx|lodash-es)"]
 }

@@ -1,4 +1,8 @@
 {
   "preset": "ts-jest",
-  "testEnvironment": "node"
+  "testEnvironment": "node",
+  "transform": {
+    "^.+\\.(ts|js)$": "ts-jest"
+  },
+  "transformIgnorePatterns": ["node_modules/(?!lodash-es)"]
 }
