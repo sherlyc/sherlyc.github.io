@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import * as moment from "moment";
+import { format, fromUnixTime } from "date-fns";
 import { AnalyticsService } from "src/app/services/analytics/analytics.service";
 import { mockService, ServiceMock } from "src/app/services/mocks/MockService";
 import { SharedModule } from "src/app/shared/shared.module";
@@ -48,8 +48,6 @@ describe("ArticleTitle", () => {
       ]
     }).compileComponents();
 
-    jest.spyOn(moment, "unix").mockReturnValue({ format: formatMock } as any);
-
     fixture = TestBed.createComponent(ArticleTitleComponent);
     component = fixture.componentInstance;
     component.input = input;
@@ -88,6 +86,7 @@ describe("ArticleTitle", () => {
 
   it("should format timestamp", () => {
     const mockTimestamp = 1581732000;
+    const expectLocalTime = format(fromUnixTime(mockTimestamp), "p");
     component.input = {
       ...input,
       showTimestamp: true,
@@ -97,9 +96,7 @@ describe("ArticleTitle", () => {
 
     const timestamp = fixture.debugElement.query(By.css(".timestamp"));
 
-    expect(timestamp).toBeTruthy();
-    expect(moment.unix).toHaveBeenCalledWith(mockTimestamp);
-    expect(formatMock).toHaveBeenCalledWith("LT");
+    expect(timestamp.nativeElement.textContent).toBe(expectLocalTime);
   });
 
   it("should hide timestamp when not provided", () => {

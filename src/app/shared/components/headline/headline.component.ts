@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { fromUnixTime, isWithinInterval, subHours } from "date-fns";
 import { HeadlineFlags } from "../../../../../common/HeadlineFlags";
-import * as moment from "moment";
 
 @Component({
   selector: "app-headline",
@@ -20,11 +20,13 @@ export class HeadlineComponent implements OnInit {
   }
 
   showTimeAgo() {
-    const twoHours = 2 * 3600;
-    const seconds = moment().diff(
-      moment((this.timeStamp as number) * 1000),
-      "seconds"
+    const currDate = new Date();
+    return (
+      this.timeStamp &&
+      isWithinInterval(fromUnixTime(this.timeStamp), {
+        start: subHours(currDate, 2),
+        end: currDate
+      })
     );
-    return this.timeStamp && !(seconds >= twoHours || seconds < 0);
   }
 }

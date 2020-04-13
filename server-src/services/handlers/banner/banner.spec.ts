@@ -1,12 +1,12 @@
-import getBanner from "../../adapters/banner/banner";
-import { IBannerResponse } from "../../adapters/__types__/IBannerResponse";
-import bannerHandler from "./banner";
-import { IParams } from "../../__types__/IParams";
-import logger from "../../utils/logger";
-import { IBannerHandlerInput } from "../__types__/IBannerHandlerInput";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IExternalContentUnit } from "../../../../common/__types__/IExternalContentUnit";
+import { IParams } from "../../__types__/IParams";
+import { IBannerResponse } from "../../adapters/__types__/IBannerResponse";
+import getBanner from "../../adapters/banner/banner";
+import logger from "../../utils/logger";
 import { HandlerInputType } from "../__types__/HandlerInputType";
+import { IBannerHandlerInput } from "../__types__/IBannerHandlerInput";
+import bannerHandler from "./banner";
 
 jest.mock("../../adapters/banner/banner");
 const OriginalNow = global.Date.now;
@@ -14,16 +14,16 @@ const OriginalNow = global.Date.now;
 describe("BannerHandler", () => {
   const params: IParams = { apiRequestId: "request-id-for-testing" };
   const bannerOne = {
-    startDateTimeUTC: "2019-08-01T00:00:00",
-    endDateTimeUTC: "2019-09-08T16:59:59",
+    startDateTimeUTC: "2019-08-01T00:00:00Z",
+    endDateTimeUTC: "2019-09-08T16:59:59Z",
     banner: {
       height: "65px",
       url: "https://uber1.html"
     }
   };
   const bannerTwo = {
-    startDateTimeUTC: "2019-09-08T17:00:00",
-    endDateTimeUTC: "2019-09-15T11:00:00",
+    startDateTimeUTC: "2019-09-08T17:00:00Z",
+    endDateTimeUTC: "2019-09-15T11:00:00Z",
     banner: {
       height: "50px",
       url: "https://uber2.html"

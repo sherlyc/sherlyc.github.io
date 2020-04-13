@@ -1,29 +1,18 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit
-} from "@angular/core";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
-import { AnalyticsService } from "../../services/analytics/analytics.service";
-import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { IArticleTitle } from "../../../../common/__types__/IArticleTitle";
-import * as moment from "moment";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
   selector: "app-article-title",
-  templateUrl: "./article-title.html",
-  styleUrls: ["./article-title.scss"],
+  templateUrl: "./article-title.component.html",
+  styleUrls: ["./article-title.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ArticleTitleComponent implements IContentBlockComponent, OnInit {
+export class ArticleTitleComponent implements IContentBlockComponent {
   @Input() input!: IArticleTitle;
   index!: number;
-  timeStamp!: string;
-
-  ngOnInit() {
-    this.timeStamp = moment.unix(this.input.lastPublishedTime).format("LT");
-  }
 
   constructor(private analyticsService: AnalyticsService) {}
 

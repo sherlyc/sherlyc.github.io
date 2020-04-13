@@ -1,16 +1,16 @@
+import { Injectable } from "@angular/core";
 import {
   ActivatedRouteSnapshot,
   CanActivate,
   RouterStateSnapshot
 } from "@angular/router";
-import { Injectable } from "@angular/core";
-import { CookieService } from "../services/cookie/cookie.service";
-import { WindowService } from "../services/window/window.service";
-import { RuntimeService } from "../services/runtime/runtime.service";
-import { DeviceService } from "../services/device/device.service";
+import { addYears } from "date-fns";
 import { DeviceType } from "../../../common/DeviceType";
-import * as moment from "moment";
 import { ConfigService } from "../services/config/config.service";
+import { CookieService } from "../services/cookie/cookie.service";
+import { DeviceService } from "../services/device/device.service";
+import { RuntimeService } from "../services/runtime/runtime.service";
+import { WindowService } from "../services/window/window.service";
 
 @Injectable({
   providedIn: "root"
@@ -77,12 +77,12 @@ export class RedirectRouteGuard implements CanActivate {
     const cookieDomain = hostname.includes("stuff.co.nz")
       ? ".stuff.co.nz"
       : hostname;
-    const expiryDate = moment().add(1, "year");
+    const expires = addYears(new Date(), 1);
 
     this.cookieService.set(key, value, {
       domain: cookieDomain,
       path: "/",
-      expires: expiryDate.toDate()
+      expires
     });
   }
 
