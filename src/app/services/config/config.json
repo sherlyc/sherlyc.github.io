@@ -10,7 +10,11 @@
       "level": "warn",
       "format": "json"
     },
-    "aadSdkUrl": "/static/adnostic/stuff-adnostic-1.68.0.min.34cc48bbc474d39a9b3a.js",
+    "advertising": {
+      "gptUrl": "//securepubads.g.doubleclick.net/tag/js/gpt.js",
+      "prebidUrl": "/static/prebid/prebid-2.41.0.js",
+      "adnosticUrl": "/static/adnostic/stuff-adnostic-1.69.0.min.b8d449584fb8c8c1323e.js"
+    },
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
       "sampleRate": 0.1,
@@ -36,7 +40,11 @@
       "level": "info",
       "format": "json"
     },
-    "aadSdkUrl": "/static/adnostic/stuff-adnostic-1.68.0.min.34cc48bbc474d39a9b3a.js",
+    "advertising": {
+      "gptUrl": "//securepubads.g.doubleclick.net/tag/js/gpt.js",
+      "prebidUrl": "/static/prebid/prebid-2.41.0.js",
+      "adnosticUrl": "/static/adnostic/stuff-adnostic-1.69.0.min.b8d449584fb8c8c1323e.js"
+    },
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
       "sampleRate": 0.1,
@@ -62,7 +70,11 @@
       "level": "debug",
       "format": "text"
     },
-    "aadSdkUrl": "/static/adnostic/stuff-adnostic-1.68.0.min.34cc48bbc474d39a9b3a.js",
+    "advertising": {
+      "gptUrl": "//securepubads.g.doubleclick.net/tag/js/gpt.js",
+      "prebidUrl": "/static/prebid/prebid-2.41.0.js",
+      "adnosticUrl": "/static/adnostic/stuff-adnostic-1.69.0.min.b8d449584fb8c8c1323e.js"
+    },
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
       "sampleRate": 0,
@@ -88,7 +100,11 @@
       "level": "debug",
       "format": "text"
     },
-    "aadSdkUrl": "/spade/assets/test-aad-sdk.js",
+    "advertising": {
+      "gptUrl": "//securepubads.g.doubleclick.net/tag/js/gpt.js",
+      "prebidUrl": "/static/prebid/prebid-2.41.0.js",
+      "adnosticUrl": "/spade/assets/test-aad-sdk.js"
+    },
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
       "sampleRate": 0,
@@ -114,7 +130,11 @@
       "level": "debug",
       "format": "text"
     },
-    "aadSdkUrl": "/spade/assets/test-aad-sdk.js",
+    "advertising": {
+      "gptUrl": "//securepubads.g.doubleclick.net/tag/js/gpt.js",
+      "prebidUrl": "/static/prebid/prebid-2.41.0.js",
+      "adnosticUrl": "/spade/assets/test-aad-sdk.js"
+    },
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
       "sampleRate": 0,
