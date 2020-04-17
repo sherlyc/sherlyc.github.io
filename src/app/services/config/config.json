@@ -11,9 +11,9 @@
       "format": "json"
     },
     "advertising": {
-      "gptUrl": "//securepubads.g.doubleclick.net/tag/js/gpt.js",
-      "prebidUrl": "/static/prebid/prebid-2.41.0.js",
-      "adnosticUrl": "/static/adnostic/stuff-adnostic-1.69.0.min.b8d449584fb8c8c1323e.js"
+      "gpt": "//securepubads.g.doubleclick.net/tag/js/gpt.js",
+      "prebid": "/static/prebid/prebid-2.41.0.js",
+      "adnostic": "/static/adnostic/stuff-adnostic-1.69.0.min.b8d449584fb8c8c1323e.js"
     },
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
@@ -41,9 +41,9 @@
       "format": "json"
     },
     "advertising": {
-      "gptUrl": "//securepubads.g.doubleclick.net/tag/js/gpt.js",
-      "prebidUrl": "/static/prebid/prebid-2.41.0.js",
-      "adnosticUrl": "/static/adnostic/stuff-adnostic-1.69.0.min.b8d449584fb8c8c1323e.js"
+      "gpt": "//securepubads.g.doubleclick.net/tag/js/gpt.js",
+      "prebid": "/static/prebid/prebid-2.41.0.js",
+      "adnostic": "/static/adnostic/stuff-adnostic-1.69.0.min.b8d449584fb8c8c1323e.js"
     },
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
@@ -71,9 +71,9 @@
       "format": "text"
     },
     "advertising": {
-      "gptUrl": "//securepubads.g.doubleclick.net/tag/js/gpt.js",
-      "prebidUrl": "/static/prebid/prebid-2.41.0.js",
-      "adnosticUrl": "/static/adnostic/stuff-adnostic-1.69.0.min.b8d449584fb8c8c1323e.js"
+      "gpt": "//securepubads.g.doubleclick.net/tag/js/gpt.js",
+      "prebid": "/static/prebid/prebid-2.41.0.js",
+      "adnostic": "/static/adnostic/stuff-adnostic-1.69.0.min.b8d449584fb8c8c1323e.js"
     },
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
@@ -101,9 +101,9 @@
       "format": "text"
     },
     "advertising": {
-      "gptUrl": "//securepubads.g.doubleclick.net/tag/js/gpt.js",
-      "prebidUrl": "/static/prebid/prebid-2.41.0.js",
-      "adnosticUrl": "/spade/assets/test-aad-sdk.js"
+      "gpt": "//securepubads.g.doubleclick.net/tag/js/gpt.js",
+      "prebid": "/static/prebid/prebid-2.41.0.js",
+      "adnostic": "/spade/assets/test-aad-sdk.js"
     },
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
@@ -131,9 +131,9 @@
       "format": "text"
     },
     "advertising": {
-      "gptUrl": "//securepubads.g.doubleclick.net/tag/js/gpt.js",
-      "prebidUrl": "/static/prebid/prebid-2.41.0.js",
-      "adnosticUrl": "/spade/assets/test-aad-sdk.js"
+      "gpt": "//securepubads.g.doubleclick.net/tag/js/gpt.js",
+      "prebid": "/static/prebid/prebid-2.41.0.js",
+      "adnostic": "/spade/assets/test-aad-sdk.js"
     },
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
