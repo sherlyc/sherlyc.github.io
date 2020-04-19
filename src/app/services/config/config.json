@@ -103,7 +103,7 @@
     "advertising": {
       "gpt": "//securepubads.g.doubleclick.net/tag/js/gpt.js",
       "prebid": "/static/prebid/prebid-2.41.0.js",
-      "adnostic": "/spade/assets/test-aad-sdk.js"
+      "adnostic": "/spade/assets/fake-adnostic.js"
     },
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
@@ -133,7 +133,7 @@
     "advertising": {
       "gpt": "//securepubads.g.doubleclick.net/tag/js/gpt.js",
       "prebid": "/static/prebid/prebid-2.41.0.js",
-      "adnostic": "/spade/assets/test-aad-sdk.js"
+      "adnostic": "/spade/assets/fake-adnostic.js"
     },
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
