@@ -1,6 +1,8 @@
 export enum ScriptId {
   launch = "launch",
-  adnostic = "aad-sdk",
+  gpt = "gpt",
+  prebid = "prebid",
+  adnostic = "adnostic",
   neighbourlyTopStories = "neighbourlyTopStories",
   neighbourlyLocalStories = "neighbourlyLocalStories",
   loginSdk = "login-sdk",

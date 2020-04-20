@@ -1,7 +1,7 @@
 import { DOCUMENT } from "@angular/common";
-import { HttpClient } from "@angular/common/http";
 import { TestBed } from "@angular/core/testing";
-import { of } from "rxjs";
+import forEach from "lodash-es/forEach";
+import { IEnvironmentDefinition } from "../config/__types__/IEnvironmentDefinition";
 import { ConfigService } from "../config/config.service";
 import { FeatureSwitchService } from "../feature-switch/feature-switch.service";
 import { LoggerService } from "../logger/logger.service";
@@ -13,7 +13,6 @@ import { AdService } from "./ad.service";
 describe("AdService", () => {
   let scriptInjectorService: ServiceMock<ScriptInjectorService>;
   let configMock: ServiceMock<ConfigService>;
-  let httpClient: ServiceMock<HttpClient>;
   let logger: ServiceMock<LoggerService>;
   let featureSwitch: ServiceMock<FeatureSwitchService>;
   let adService: AdService;
@@ -24,10 +23,6 @@ describe("AdService", () => {
         {
           provide: ConfigService,
           useClass: mockService(ConfigService)
-        },
-        {
-          provide: HttpClient,
-          useClass: mockService(HttpClient)
         },
         {
           provide: LoggerService,
@@ -51,7 +46,6 @@ describe("AdService", () => {
     scriptInjectorService = TestBed.inject(
       ScriptInjectorService
     ) as ServiceMock<ScriptInjectorService>;
-    httpClient = TestBed.inject(HttpClient) as ServiceMock<HttpClient>;
     configMock = TestBed.inject(ConfigService) as ServiceMock<ConfigService>;
     logger = TestBed.inject(LoggerService) as ServiceMock<LoggerService>;
     adService = TestBed.inject(AdService) as ServiceMock<AdService>;
@@ -65,13 +59,17 @@ describe("AdService", () => {
   });
 
   it("should delegate to script injector to load the script on setup", async () => {
-    const aadSdkUrl = "http://whatever_url/";
-    configMock.getConfig.mockReturnValue({ aadSdkUrl });
-    httpClient.get.mockReturnValue(of({ url: aadSdkUrl }));
+    const mockConfig: Pick<IEnvironmentDefinition, "advertising"> = {
+      advertising: {
+        gpt: "//example.com/gpt.js",
+        prebid: "//example.com/prebid.js",
+        adnostic: "//example.com/adnostic.js"
+      }
+    };
+    configMock.getConfig.mockReturnValue(mockConfig);
     await adService.setup();
-    expect(scriptInjectorService.load).toHaveBeenCalledWith(
-      "aad-sdk",
-      aadSdkUrl
+    forEach(mockConfig.advertising, (src, id) =>
+      expect(scriptInjectorService.load).toHaveBeenCalledWith(id, src)
     );
   });
 
