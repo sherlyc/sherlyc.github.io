@@ -36,6 +36,16 @@ spec:
           image: gcr.io/shared-218200/nz.stuff/experience/experience-frontend:${project.version}
           ports:
             - containerPort: 4000
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                  - /bin/sh
+                  - -c
+                  - echo ===== `date +"%Y-%m-%d %T"` ===== >> /dev/termination-log
+                  - echo $"`top -b -n 1`" $'\n-----' >> /dev/termination-log
+                  - echo $"`netstat -p tcp`" $'\n-----' >> /dev/termination-log
+                  - echo $"`netstat -tunlp`" $'\n-----' >> /dev/termination-log
           env:
             - name: SPADE_ENV
               value: ${spadeEnv}
