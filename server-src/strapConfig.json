@@ -391,6 +391,12 @@
         "dedupeRules": {
           "dedupeFromBaseList": false
         }
+      },
+      "strapProsper": {
+        "ids": ["62950252"],
+        "dedupeRules": {
+          "dedupeFromBaseList": true
+        }
       }
     }
   }
