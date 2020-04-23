@@ -16,6 +16,7 @@ export enum Strap {
   Opinion = "strapOpinion",
   Technology = "strapTechnology",
   Homed = "strapHomed",
+  Prosper = "strapProsper",
   LifeStyle = "strapLifeStyle",
   WellGood = "strapWellGood",
   Entertainment = "strapEntertainment",

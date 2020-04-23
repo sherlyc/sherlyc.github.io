@@ -200,6 +200,14 @@ export const newPage = (): HandlerInput[] => {
       sourceId: Strap.Homed
     },
     {
+      type: HandlerInputType.NewsSix,
+      displayName: "prosper",
+      color: "#0083d7",
+      linkUrl: "/" + Section.Prosper,
+      strapName: `${homepageAdPrefix}Prosper`,
+      sourceId: Strap.Prosper
+    },
+    {
       type: HandlerInputType.BiggieSmalls,
       displayName: "travel",
       color: "#08afb7",
