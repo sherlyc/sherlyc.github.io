@@ -8,6 +8,7 @@ export enum Section {
   Opinion = "opinion",
   Technology = "technology",
   Homed = "life-style/homed",
+  Prosper = "business/prosper",
   LifeStyle = "life-style",
   Entertainment = "entertainment",
   Travel = "travel",

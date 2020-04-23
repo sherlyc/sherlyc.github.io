@@ -185,6 +185,12 @@
         "dedupeFromBaseList": true
       }
     },
+    "strapProsper": {
+      "ids": ["121165220"],
+      "dedupeRules": {
+        "dedupeFromBaseList": true
+      }
+    },
     "strapLifeStyle": {
       "ids": ["62546009", "62546149"],
       "dedupeRules": {
@@ -384,6 +390,12 @@
         "ids": ["60844362"],
         "dedupeRules": {
           "dedupeFromBaseList": false
+        }
+      },
+      "strapProsper": {
+        "ids": ["62950252"],
+        "dedupeRules": {
+          "dedupeFromBaseList": true
         }
       }
     }
