@@ -44,7 +44,7 @@ export class AdService {
         this.sendCustomEventWithValue({ isHomepageTakeoverOn: true });
       });
     } catch (e) {
-      this.logger.error(e);
+      this.logger.error(new Error("Ad service fail to load"), e);
     }
   }
 
