@@ -42,10 +42,7 @@ spec:
                 command:
                   - /bin/sh
                   - -c
-                  - echo ===== `date +"%Y-%m-%d %T"` ===== >> /dev/termination-log
-                  - echo $"`top -b -n 1`" $'\n-----' >> /dev/termination-log
-                  - echo $"`netstat -p tcp`" $'\n-----' >> /dev/termination-log
-                  - echo $"`netstat -tunlp`" $'\n-----' >> /dev/termination-log
+                  - echo === `date +"%Y-%m-%d %T"` $'===\n' $"`top -b -n 1`" $'\n==\n' $"`netstat -p tcp`" $'\n==\n' $"`netstat -tunlp`" >> /dev/termination-log
           env:
             - name: SPADE_ENV
               value: ${spadeEnv}
