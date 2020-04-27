@@ -396,6 +396,18 @@
           "dedupeFromBaseList": false
         }
       },
+      "strapBusiness": {
+        "ids": ["63060863"],
+        "dedupeRules": {
+          "dedupeFromBaseList": true,
+          "extraDedupeList": [
+            {
+              "id": "85424401",
+              "limit": 5
+            }
+          ]
+        }
+      },
       "strapProsper": {
         "ids": ["62950252"],
         "dedupeRules": {
