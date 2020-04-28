@@ -1,7 +1,7 @@
-<a href="{{ input.logoLink }}" class="logoLink"><app-logo [name]="input.logo"></app-logo></a>
-<a href="{{ item.linkUrl }}" appOpenExternalLink="{{ item.linkUrl }}" class="itemLink" (click)="sendAnalytics(item)" *ngFor="let item of input.items">
-  <article>
+<a href="{{ input.logoLink }}" class="logoLink" [attr.aria-label]="'logo of ' + input.logo"><app-logo [name]="input.logo"></app-logo></a>
+<article *ngFor="let item of input.items">
+  <a href="{{ item.linkUrl }}" appOpenExternalLink="{{ item.linkUrl }}" class="itemLink" (click)="sendAnalytics(item)">
     <span class="bullet" [style.color]="item.bulletColor">►</span>
     <span>{{ item.linkText }}</span>
-  </article>
-</a>
+  </a>
+</article>
