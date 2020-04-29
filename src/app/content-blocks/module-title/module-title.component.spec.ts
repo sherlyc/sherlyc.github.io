@@ -74,14 +74,19 @@ describe("ModuleTitleComponent", () => {
 
   it("should not be clickable if url is not provided", () => {
     component.input = {
-      displayName: "National",
+      displayName: "",
       linkUrl: ""
     } as IModuleTitle;
 
     fixture.detectChanges();
 
     const moduleTitle = fixture.debugElement.query(By.css(".module-title"));
-    expect(moduleTitle.attributes.href).toBe(null);
+    const title = fixture.debugElement.query(By.css(".title"));
+    const line = fixture.debugElement.queryAll(By.css(".line"));
+
+    expect(moduleTitle.attributes.href).toBe(undefined);
+    expect(title).toBe(null);
+    expect(line.length).toBe(1);
   });
 
   it("should be clickable if url is provided", () => {
@@ -93,7 +98,12 @@ describe("ModuleTitleComponent", () => {
     fixture.detectChanges();
 
     const moduleTitle = fixture.debugElement.query(By.css(".module-title"));
+    const title = fixture.debugElement.query(By.css(".title")).nativeElement;
+    const line = fixture.debugElement.queryAll(By.css(".line"));
+
     expect(moduleTitle.attributes.href).toBe(component.input.linkUrl);
+    expect(title.textContent).toBe(component.input.displayName);
+    expect(line.length).toBe(2);
   });
 
   it("should send analytics when clicked", () => {
