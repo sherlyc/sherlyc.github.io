@@ -100,7 +100,7 @@ describe("ModuleTitleComponent", () => {
     expect(title.textContent).toBe(component.input.displayName);
   });
 
-  it("should render just a line when no url and title are provided", () => {
+  it("should not render link and title when both are not provided", () => {
     component.input = {
       displayName: "",
       linkUrl: ""
