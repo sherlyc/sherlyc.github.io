@@ -82,7 +82,7 @@ describe("ModuleTitleComponent", () => {
 
     const moduleTitle = fixture.debugElement.query(By.css(".module-title"));
 
-    expect(moduleTitle.attributes.href).toBe(undefined);
+    expect(moduleTitle.attributes.href).toBeFalsy();
   });
 
   it("should render a link if url is provided", () => {

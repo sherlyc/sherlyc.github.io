@@ -1,12 +1,12 @@
-<div *ngIf="input.linkUrl; then linkModuleTitle; else moduleTitle"></div>
-<ng-template #linkModuleTitle>
+<div *ngIf="input.linkUrl; then titleWithLink; else titleWithoutLink"></div>
+<ng-template #titleWithLink>
   <a class="module-title" [attr.href]="input.linkUrl" appOpenExternalLink="{{ input.linkUrl }}" (click)="sendAnalytics()">
     <div class="line"></div>
     <div class="title" [style.color]="input.displayNameColor">{{ input.displayName }}</div>
     <div class="line"></div>
   </a>
 </ng-template>
-<ng-template #moduleTitle>
+<ng-template #titleWithoutLink>
   <div class="module-title">
     <div class="line"></div>
     <div *ngIf="input.displayName" class="title" [style.color]="input.displayNameColor">{{ input.displayName }}</div>
