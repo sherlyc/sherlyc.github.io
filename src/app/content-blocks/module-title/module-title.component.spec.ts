@@ -75,7 +75,6 @@ describe("ModuleTitleComponent", () => {
   it("should not render a link if url is not provided", () => {
     component.input = {
       displayName: "National",
-      linkUrl: ""
     } as IModuleTitle;
 
     fixture.detectChanges();
