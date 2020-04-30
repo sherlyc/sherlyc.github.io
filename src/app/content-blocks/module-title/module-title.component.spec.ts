@@ -72,19 +72,19 @@ describe("ModuleTitleComponent", () => {
     expect(title.styles.color).toBe(component.input.displayNameColor);
   });
 
-  it("should not be clickable if url is not provided", () => {
+  it("should not render a link if url is not provided", () => {
     component.input = {
       displayName: "National",
-      linkUrl: ""
     } as IModuleTitle;
 
     fixture.detectChanges();
 
     const moduleTitle = fixture.debugElement.query(By.css(".module-title"));
-    expect(moduleTitle.attributes.href).toBe(null);
+
+    expect(moduleTitle.attributes.href).toBeFalsy();
   });
 
-  it("should be clickable if url is provided", () => {
+  it("should render a link if url is provided", () => {
     component.input = {
       displayName: "National",
       linkUrl: "/national"
@@ -93,7 +93,25 @@ describe("ModuleTitleComponent", () => {
     fixture.detectChanges();
 
     const moduleTitle = fixture.debugElement.query(By.css(".module-title"));
+    const title = fixture.debugElement.query(By.css(".title")).nativeElement;
+
     expect(moduleTitle.attributes.href).toBe(component.input.linkUrl);
+    expect(title.textContent).toBe(component.input.displayName);
+  });
+
+  it("should not render link and title when both are not provided", () => {
+    component.input = {
+      displayName: "",
+      linkUrl: ""
+    } as IModuleTitle;
+
+    fixture.detectChanges();
+
+    const moduleTitle = fixture.debugElement.query(By.css(".module-title"));
+    const title = fixture.debugElement.query(By.css(".title"));
+
+    expect(moduleTitle.attributes.href).toBeFalsy();
+    expect(title).toBeFalsy();
   });
 
   it("should send analytics when clicked", () => {

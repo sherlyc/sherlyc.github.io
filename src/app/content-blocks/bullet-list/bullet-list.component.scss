@@ -3,7 +3,7 @@
 }
 
 a {
-  display: block;
+  display: flex;
   padding-bottom: 10px;
   text-decoration: none;
   :hover {
@@ -16,7 +16,6 @@ app-logo {
 }
 
 article {
-  display: flex;
   font-size: 15px;
 }
 
