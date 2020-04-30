@@ -377,7 +377,6 @@ export const newPage = (): HandlerInput[] => {
       type: HandlerInputType.Strips,
       displayName: "",
       color: "#f36f21",
-      linkUrl: "",
       sourceId: Strap.SponsoredContent,
       strapName: Strap.SponsoredContent,
       articleCount: 4,
