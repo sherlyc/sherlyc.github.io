@@ -38,7 +38,7 @@ export class DtmService {
         satellite.pageBottom();
       }
     } catch (e) {
-      this.logger.error(e, "DtmService - script loading error");
+      this.logger.error(new Error("DtmService - script loading error"), e);
     }
   }
 
