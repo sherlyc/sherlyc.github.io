@@ -35,7 +35,10 @@ export class NeighbourlyService {
     try {
       await Promise.all([localStoriesScriptLoad, topStoriesScriptLoad]);
     } catch (e) {
-      this.logger.error(e, "NeighbourlyService - script loading error");
+      this.logger.error(
+        new Error("NeighbourlyService - script loading error"),
+        e
+      );
     }
   }
 }
