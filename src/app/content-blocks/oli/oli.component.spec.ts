@@ -5,25 +5,56 @@ import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { StoreService } from "../../services/store/store.service";
 import { By } from "@angular/platform-browser";
 import { formatISO, set, sub } from "date-fns";
+import { AdService } from "../../services/ad/ad.service";
+import { WindowService } from "../../services/window/window.service";
+
+class MockAdService {
+  load?: Promise<any> = Promise.resolve();
+}
 
 describe("OliComponent", () => {
   let component: OliComponent;
   let fixture: ComponentFixture<OliComponent>;
   let storeService: ServiceMock<StoreService>;
+  let adService: ServiceMock<AdService>;
+  let windowService: ServiceMock<WindowService>;
+  const slot = {
+    addService: jest.fn(),
+    setTargeting: jest.fn()
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [OliComponent],
       providers: [
-        { provide: StoreService, useClass: mockService(StoreService) }
+        { provide: StoreService, useClass: mockService(StoreService) },
+        { provide: AdService, useClass: MockAdService },
+        { provide: WindowService, useClass: mockService(WindowService) }
       ]
     }).compileComponents();
   }));
 
   beforeEach(() => {
     storeService = TestBed.inject(StoreService) as ServiceMock<StoreService>;
+    adService = TestBed.inject(AdService) as ServiceMock<AdService>;
+    windowService = TestBed.inject(WindowService) as ServiceMock<WindowService>;
     fixture = TestBed.createComponent(OliComponent);
     component = fixture.componentInstance;
+
+    windowService.getWindow.mockReturnValue({
+      googletag: {
+        cmd: { push: jest.fn().mockImplementation((func) => func()) },
+        defineSlot: jest.fn().mockReturnValue(slot),
+        pubads: jest.fn().mockReturnValue({
+          enableSingleRequest: jest.fn(),
+          refresh: jest.fn(),
+          addEventListener: jest.fn()
+        })
+      },
+      digitalData: {
+        page: { ads: { environment: "prod" }, pageInfo: { source: "" } }
+      }
+    });
   });
 
   describe("frequency cap", () => {
@@ -63,5 +94,26 @@ describe("OliComponent", () => {
       const oliOverlay = fixture.debugElement.query(By.css(".oliOverlay"));
       expect(oliOverlay).toBeFalsy();
     });
+  });
+
+  it("should inject ad", async () => {
+    const { googletag } = windowService.getWindow();
+    storeService.get.mockReturnValue(null);
+
+    await component.renderOli();
+
+    expect(googletag.cmd.push).toHaveBeenCalledTimes(1);
+    expect(googletag.defineSlot).toHaveBeenCalledWith(
+      "/6674/mob.stuff.homepage",
+      [320, 460],
+      "oliAdId"
+    );
+    expect(slot.setTargeting).toHaveBeenCalledWith("spade", "true");
+    expect(slot.setTargeting).toHaveBeenCalledWith(
+      "pos",
+      "interstitial-portrait"
+    );
+    expect(slot.setTargeting).toHaveBeenCalledWith("env", "prod");
+    expect(slot.setTargeting).toHaveBeenCalledWith("source", "");
   });
 });

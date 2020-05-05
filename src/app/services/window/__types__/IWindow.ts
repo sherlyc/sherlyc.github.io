@@ -11,4 +11,5 @@ export interface IWindow {
   StuffLogin: IStuffLogin;
   ds07o6pcmkorn: ShieldedSite;
   spade: number;
+  readonly googletag: googletag.Googletag;
 }
