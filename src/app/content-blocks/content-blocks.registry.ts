@@ -29,6 +29,7 @@ import { StickyContainerComponent } from "./sticky-container/sticky-container.co
 import { BulletListComponent } from "./bullet-list/bullet-list.component";
 import { ResponsiveExternalContentComponent } from "./responsive-external-content/responsive-external-content.component";
 import { ArticleTitleComponent } from "./article-title/article-title.component";
+import { OliComponent } from "./oli/oli.component";
 
 export const contentBlockComponents = [
   GrayDefconArticleUnitComponent,
@@ -59,7 +60,8 @@ export const contentBlockComponents = [
   StickyContainerComponent,
   BulletListComponent,
   ResponsiveExternalContentComponent,
-  ArticleTitleComponent
+  ArticleTitleComponent,
+  OliComponent
 ];
 
 const registry: {
@@ -93,7 +95,8 @@ const registry: {
   StickyContainerComponent,
   BulletListComponent,
   ResponsiveExternalContentComponent,
-  ArticleTitleComponent
+  ArticleTitleComponent,
+  OliComponent
 };
 
 export default registry;
