@@ -26,11 +26,12 @@ export class OliComponent implements IContentBlockComponent, OnInit {
     private adService: AdService
   ) {}
 
-  ngOnInit() {
-    this.renderOli();
-  }
+  async ngOnInit() {
+    this.loadSubject.subscribe({
+      next: () => (this.loading = false),
+      error: () => (this.show = false)
+    });
 
-  async renderOli() {
     const hideUntil = this.storeService.get<string>("oli-hide-until");
     const showOli = hideUntil === null || isPast(parseISO(hideUntil));
     if (showOli) {

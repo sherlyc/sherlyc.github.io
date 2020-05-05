@@ -1,12 +1,11 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-
-import { OliComponent } from "./oli.component";
-import { mockService, ServiceMock } from "../../services/mocks/MockService";
-import { StoreService } from "../../services/store/store.service";
 import { By } from "@angular/platform-browser";
 import { formatISO, set, sub } from "date-fns";
 import { AdService } from "../../services/ad/ad.service";
+import { mockService, ServiceMock } from "../../services/mocks/MockService";
+import { StoreService } from "../../services/store/store.service";
 import { WindowService } from "../../services/window/window.service";
+import { OliComponent } from "./oli.component";
 import SlotRenderEndedEvent = googletag.events.SlotRenderEndedEvent;
 import Slot = googletag.Slot;
 
@@ -76,7 +75,7 @@ describe("OliComponent", () => {
     });
   });
 
-  describe("frequency cap", () => {
+  describe("Frequency Cap", () => {
     it("should show overlay when oli has never been shown", () => {
       storeService.get.mockReturnValue(null);
 
@@ -113,59 +112,92 @@ describe("OliComponent", () => {
       const oliOverlay = fixture.debugElement.query(By.css(".oliOverlay"));
       expect(oliOverlay).toBeFalsy();
     });
-  });
 
-  it("should inject ad", async () => {
-    const { googletag } = windowService.getWindow();
-    storeService.get.mockReturnValue(null);
+    it("should record oli shown state", async () => {
+      const endOfToday = formatISO(
+        set(new Date(), { hours: 23, minutes: 59, seconds: 59 })
+      );
+      storeService.get.mockReturnValue(null);
 
-    await component.renderOli();
+      fixture.detectChanges();
+      await fixture.whenStable();
 
-    expect(googletag.cmd.push).toHaveBeenCalledTimes(1);
-    expect(googletag.defineSlot).toHaveBeenCalledWith(
-      "/6674/mob.stuff.homepage",
-      [320, 460],
-      "oliAdId"
-    );
-    expect(slot.setTargeting).toHaveBeenCalledWith("spade", "true");
-    expect(slot.setTargeting).toHaveBeenCalledWith(
-      "pos",
-      "interstitial-portrait"
-    );
-    expect(slot.setTargeting).toHaveBeenCalledWith("env", "prod");
-    expect(slot.setTargeting).toHaveBeenCalledWith("source", "");
-    expect(slot.addService).toHaveBeenCalledWith(googletag.pubads());
-    expect(slot.addService).toHaveBeenCalledWith(googletag.companionAds());
-    expect(googletag.pubads().enableSingleRequest).toHaveBeenCalledTimes(1);
-    expect(googletag.enableServices).toHaveBeenCalledTimes(1);
-    expect(googletag.pubads().refresh).toHaveBeenCalledWith([slot]);
-    expect(googletag.pubads().addEventListener).toHaveBeenCalledWith(
-      "slotRenderEnded",
-      expect.any(Function)
-    );
-  });
-
-  it("should display ads when ad is returned", (done) => {
-    slotRenderEndedEvent.isEmpty = false;
-    storeService.get.mockReturnValue(null);
-
-    fixture.detectChanges();
-
-    component.loadSubject.subscribe(() => {
-      done();
+      expect(storeService.set).toHaveBeenCalledWith(
+        "oli-hide-until",
+        endOfToday
+      );
     });
   });
 
-  it("should not display ads when ad is not returned", (done) => {
-    slotRenderEndedEvent.isEmpty = true;
-    storeService.get.mockReturnValue(null);
+  describe("GPT", () => {
+    beforeEach(() => {
+      storeService.get.mockReturnValue(null);
+    });
 
-    fixture.detectChanges();
+    it("should call GPT properly", async () => {
+      fixture.detectChanges();
+      await fixture.whenStable();
 
-    component.loadSubject.subscribe({
-      error: () => {
-        done();
-      }
+      const { googletag } = windowService.getWindow();
+      expect(googletag.cmd.push).toHaveBeenCalledTimes(1);
+      expect(googletag.defineSlot).toHaveBeenCalledWith(
+        "/6674/mob.stuff.homepage",
+        [320, 460],
+        "oliAdId"
+      );
+      expect(slot.setTargeting).toHaveBeenCalledWith("spade", "true");
+      expect(slot.setTargeting).toHaveBeenCalledWith(
+        "pos",
+        "interstitial-portrait"
+      );
+      expect(slot.setTargeting).toHaveBeenCalledWith("env", "prod");
+      expect(slot.setTargeting).toHaveBeenCalledWith("source", "");
+      expect(slot.addService).toHaveBeenCalledWith(googletag.pubads());
+      expect(slot.addService).toHaveBeenCalledWith(googletag.companionAds());
+      expect(googletag.pubads().enableSingleRequest).toHaveBeenCalledTimes(1);
+      expect(googletag.enableServices).toHaveBeenCalledTimes(1);
+      expect(googletag.pubads().refresh).toHaveBeenCalledWith([slot]);
+      expect(googletag.pubads().addEventListener).toHaveBeenCalledWith(
+        "slotRenderEnded",
+        expect.any(Function)
+      );
+    });
+
+    it("should display ad when ad is returned from GPT", async () => {
+      slotRenderEndedEvent.isEmpty = false;
+
+      expect(component.show).toBe(true);
+      expect(component.loading).toBe(true);
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(component.show).toBe(true);
+      expect(component.loading).toBe(false);
+    });
+
+    it("should remove overlay when ad is not returned from GPT", async () => {
+      slotRenderEndedEvent.isEmpty = true;
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(component.show).toBe(false);
+    });
+  });
+
+  describe("Error Handling", () => {
+    beforeEach(() => {
+      storeService.get.mockReturnValue(null);
+    });
+
+    it("should remove overlay when ad is not loaded within the time limit", async () => {
+      clearTimeout(gptCallTimeout); // slotRenderEndedEvent never fires
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(component.show).toBe(false);
     });
   });
 });
