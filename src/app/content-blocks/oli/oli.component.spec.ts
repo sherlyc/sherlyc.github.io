@@ -144,4 +144,28 @@ describe("OliComponent", () => {
       expect.any(Function)
     );
   });
+
+  it("should display ads when ad is returned", (done) => {
+    slotRenderEndedEvent.isEmpty = false;
+    storeService.get.mockReturnValue(null);
+
+    fixture.detectChanges();
+
+    component.loadSubject.subscribe(() => {
+      done();
+    });
+  });
+
+  it("should not display ads when ad is not returned", (done) => {
+    slotRenderEndedEvent.isEmpty = true;
+    storeService.get.mockReturnValue(null);
+
+    fixture.detectChanges();
+
+    component.loadSubject.subscribe({
+      error: () => {
+        done();
+      }
+    });
+  });
 });

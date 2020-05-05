@@ -7,6 +7,7 @@ import { WindowService } from "../../services/window/window.service";
 import { AdService } from "../../services/ad/ad.service";
 import Slot = googletag.Slot;
 import { ITargetingOptions } from "./__types__/ITargetingOptions";
+import { Subject } from "rxjs";
 
 @Component({
   selector: "app-oli",
@@ -17,6 +18,7 @@ export class OliComponent implements IContentBlockComponent, OnInit {
   @Input() input!: IOli;
   show = true;
   loading = true;
+  loadSubject = new Subject<googletag.events.SlotRenderEndedEvent>();
 
   constructor(
     private storeService: StoreService,
@@ -62,7 +64,13 @@ export class OliComponent implements IContentBlockComponent, OnInit {
         .pubads()
         .addEventListener(
           "slotRenderEnded",
-          (event: googletag.events.SlotRenderEndedEvent) => {}
+          (event: googletag.events.SlotRenderEndedEvent) => {
+            if (event.isEmpty) {
+              this.loadSubject.error(event);
+            } else {
+              this.loadSubject.next(event);
+            }
+          }
         );
     });
   }
