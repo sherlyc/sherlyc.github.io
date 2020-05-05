@@ -53,6 +53,17 @@ export class OliComponent implements IContentBlockComponent, OnInit {
         spade: "true",
         pos: "interstitial-portrait"
       });
+      slot.addService(googletag.pubads());
+      slot.addService(googletag.companionAds());
+      googletag.pubads().enableSingleRequest();
+      googletag.enableServices();
+      googletag.pubads().refresh([slot]);
+      googletag
+        .pubads()
+        .addEventListener(
+          "slotRenderEnded",
+          (event: googletag.events.SlotRenderEndedEvent) => {}
+        );
     });
   }
 

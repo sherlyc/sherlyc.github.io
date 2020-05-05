@@ -7,6 +7,8 @@ import { By } from "@angular/platform-browser";
 import { formatISO, set, sub } from "date-fns";
 import { AdService } from "../../services/ad/ad.service";
 import { WindowService } from "../../services/window/window.service";
+import SlotRenderEndedEvent = googletag.events.SlotRenderEndedEvent;
+import Slot = googletag.Slot;
 
 class MockAdService {
   load?: Promise<any> = Promise.resolve();
@@ -18,10 +20,12 @@ describe("OliComponent", () => {
   let storeService: ServiceMock<StoreService>;
   let adService: ServiceMock<AdService>;
   let windowService: ServiceMock<WindowService>;
-  const slot = {
+  const slot = ({
     addService: jest.fn(),
     setTargeting: jest.fn()
-  };
+  } as any) as Slot;
+  let slotRenderEndedEvent: SlotRenderEndedEvent;
+  let gptCallTimeout: NodeJS.Timeout;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -40,6 +44,11 @@ describe("OliComponent", () => {
     windowService = TestBed.inject(WindowService) as ServiceMock<WindowService>;
     fixture = TestBed.createComponent(OliComponent);
     component = fixture.componentInstance;
+    slotRenderEndedEvent = {
+      size: [300, 250],
+      slot,
+      isEmpty: false
+    } as SlotRenderEndedEvent;
 
     windowService.getWindow.mockReturnValue({
       googletag: {
@@ -48,8 +57,18 @@ describe("OliComponent", () => {
         pubads: jest.fn().mockReturnValue({
           enableSingleRequest: jest.fn(),
           refresh: jest.fn(),
-          addEventListener: jest.fn()
-        })
+          addEventListener: jest
+            .fn()
+            .mockImplementation(
+              (eventType: string, handler: Function) =>
+                (gptCallTimeout = setTimeout(
+                  () => handler(slotRenderEndedEvent),
+                  1000
+                ))
+            )
+        }),
+        companionAds: jest.fn(),
+        enableServices: jest.fn()
       },
       digitalData: {
         page: { ads: { environment: "prod" }, pageInfo: { source: "" } }
@@ -115,5 +134,14 @@ describe("OliComponent", () => {
     );
     expect(slot.setTargeting).toHaveBeenCalledWith("env", "prod");
     expect(slot.setTargeting).toHaveBeenCalledWith("source", "");
+    expect(slot.addService).toHaveBeenCalledWith(googletag.pubads());
+    expect(slot.addService).toHaveBeenCalledWith(googletag.companionAds());
+    expect(googletag.pubads().enableSingleRequest).toHaveBeenCalledTimes(1);
+    expect(googletag.enableServices).toHaveBeenCalledTimes(1);
+    expect(googletag.pubads().refresh).toHaveBeenCalledWith([slot]);
+    expect(googletag.pubads().addEventListener).toHaveBeenCalledWith(
+      "slotRenderEnded",
+      expect.any(Function)
+    );
   });
 });
