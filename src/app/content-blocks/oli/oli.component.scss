@@ -1,0 +1,60 @@
+.oliOverlay {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  background-color: #fff;
+  z-index: 9999999;
+
+  &.loading .oliHeader,
+  &.loading .oliContainer,
+  &:not(.loading) .oliLoading {
+    display: none;
+  }
+}
+
+.oliHeader {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  height: 50px;
+  padding: 0 15px;
+  background-color: #fff;
+}
+
+.oliHeaderLogo {
+  width: 70px;
+  height: 28px;
+}
+
+.oliHeaderClose {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.oliHeaderCloseIcon {
+  width: 25px;
+  height: 25px;
+  margin-left: 5px;
+}
+
+.oliContainer {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #000;
+}
