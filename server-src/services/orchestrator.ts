@@ -51,6 +51,14 @@ const homepageAdPrefix = "homepage";
 export const newPage = (): HandlerInput[] => {
   const page: HandlerInput[] = [
     {
+      type: HandlerInputType.ContentBlockHandler,
+      contentBlocks: [
+        {
+          type: ContentBlockType.Oli
+        }
+      ]
+    },
+    {
       type: HandlerInputType.BreakingNews
     },
     {
