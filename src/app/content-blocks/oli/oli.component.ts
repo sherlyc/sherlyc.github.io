@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
-import { IOli } from "../../../../common/__types__/IOli";
-import { StoreService } from "../../services/store/store.service";
 import { isPast, parseISO } from "date-fns";
-import { WindowService } from "../../services/window/window.service";
-import { AdService } from "../../services/ad/ad.service";
-import Slot = googletag.Slot;
-import { ITargetingOptions } from "./__types__/ITargetingOptions";
 import { Subject } from "rxjs";
+import { IOli } from "../../../../common/__types__/IOli";
+import { AdService } from "../../services/ad/ad.service";
+import { StoreService } from "../../services/store/store.service";
+import { WindowService } from "../../services/window/window.service";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
+import { ITargetingOptions } from "./__types__/ITargetingOptions";
+import Slot = googletag.Slot;
 
 @Component({
   selector: "app-oli",
@@ -35,7 +35,12 @@ export class OliComponent implements IContentBlockComponent, OnInit {
     const hideUntil = this.storeService.get<string>("oli-hide-until");
     const showOli = hideUntil === null || isPast(parseISO(hideUntil));
     if (showOli) {
-      await this.injectAd();
+      try {
+        await this.injectAd();
+      } catch (e) {
+        // TODO: logging failed GPT script load
+        this.show = false;
+      }
     } else {
       this.show = false;
     }

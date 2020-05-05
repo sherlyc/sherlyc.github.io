@@ -56,15 +56,13 @@ describe("OliComponent", () => {
         pubads: jest.fn().mockReturnValue({
           enableSingleRequest: jest.fn(),
           refresh: jest.fn(),
-          addEventListener: jest
-            .fn()
-            .mockImplementation(
-              (eventType: string, handler: Function) =>
-                (gptCallTimeout = setTimeout(
-                  () => handler(slotRenderEndedEvent),
-                  1000
-                ))
-            )
+          addEventListener: jest.fn().mockImplementation(
+            (eventType: string, handler: Function) =>
+              (gptCallTimeout = setTimeout(() => {
+                console.log("❌");
+                handler(slotRenderEndedEvent);
+              }, 1000))
+          )
         }),
         companionAds: jest.fn(),
         enableServices: jest.fn()
@@ -73,6 +71,10 @@ describe("OliComponent", () => {
         page: { ads: { environment: "prod" }, pageInfo: { source: "" } }
       }
     });
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
   describe("Frequency Cap", () => {
@@ -113,14 +115,13 @@ describe("OliComponent", () => {
       expect(oliOverlay).toBeFalsy();
     });
 
-    it("should record oli shown state", async () => {
+    it("should record oli shown state", () => {
       const endOfToday = formatISO(
         set(new Date(), { hours: 23, minutes: 59, seconds: 59 })
       );
       storeService.get.mockReturnValue(null);
 
       fixture.detectChanges();
-      await fixture.whenStable();
 
       expect(storeService.set).toHaveBeenCalledWith(
         "oli-hide-until",
@@ -131,11 +132,17 @@ describe("OliComponent", () => {
 
   describe("GPT", () => {
     beforeEach(() => {
+      jest.useFakeTimers();
       storeService.get.mockReturnValue(null);
+    });
+
+    afterEach(() => {
+      jest.clearAllTimers();
     });
 
     it("should call GPT properly", async () => {
       fixture.detectChanges();
+      jest.advanceTimersByTime(1000);
       await fixture.whenStable();
 
       const { googletag } = windowService.getWindow();
@@ -170,6 +177,7 @@ describe("OliComponent", () => {
       expect(component.loading).toBe(true);
 
       fixture.detectChanges();
+      jest.advanceTimersByTime(1000);
       await fixture.whenStable();
 
       expect(component.show).toBe(true);
@@ -180,6 +188,7 @@ describe("OliComponent", () => {
       slotRenderEndedEvent.isEmpty = true;
 
       fixture.detectChanges();
+      jest.advanceTimersByTime(1000);
       await fixture.whenStable();
 
       expect(component.show).toBe(false);
@@ -188,13 +197,19 @@ describe("OliComponent", () => {
 
   describe("Error Handling", () => {
     beforeEach(() => {
+      jest.useFakeTimers();
       storeService.get.mockReturnValue(null);
+    });
+
+    afterEach(() => {
+      jest.clearAllTimers();
     });
 
     it("should remove overlay when ad is not loaded within the time limit", async () => {
       clearTimeout(gptCallTimeout); // slotRenderEndedEvent never fires
 
       fixture.detectChanges();
+      jest.advanceTimersByTime(5000);
       await fixture.whenStable();
 
       expect(component.show).toBe(false);
