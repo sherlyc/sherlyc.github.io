@@ -17,44 +17,60 @@
   &:not(.loading) .oliLoading {
     display: none;
   }
-}
 
-.oliHeader {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  height: 50px;
-  padding: 0 15px;
-  background-color: #fff;
-}
+  .oliLoading {
+    align-self: center;
 
-.oliHeaderLogo {
-  width: 70px;
-  height: 28px;
-}
+    .SVG_ANIMATE_ROTATE {
+      animation: stuff-logo-rotate 3s linear infinite;
+      transform-origin: center;
+      will-change: transform;
+    }
 
-.oliHeaderClose {
-  display: flex;
-  align-items: center;
-  margin-left: auto;
-  text-decoration: none;
-  cursor: pointer;
-}
+    @keyframes stuff-logo-rotate {
+      to {
+        transform: rotate(1turn);
+      }
+    }
+  }
 
-.oliHeaderCloseIcon {
-  width: 25px;
-  height: 25px;
-  margin-left: 5px;
-}
+  .oliHeader {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    height: 50px;
+    padding: 0 15px;
+    background-color: #fff;
 
-.oliContainer {
-  display: flex;
-  flex-grow: 1;
-  justify-content: space-around;
-  align-items: center;
-  background-color: #000;
+    .oliHeaderLogo {
+      width: 70px;
+      height: 28px;
+    }
+
+    .oliHeaderClose {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .oliHeaderCloseIcon {
+      width: 25px;
+      height: 25px;
+      margin-left: 5px;
+    }
+  }
+
+  .oliContainer {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #000;
+  }
 }

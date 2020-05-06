@@ -23,8 +23,8 @@ describe("OliComponent", () => {
     addService: jest.fn(),
     setTargeting: jest.fn()
   } as any) as Slot;
+  let addEventListener: jest.Mock;
   let slotRenderEndedEvent: SlotRenderEndedEvent;
-  let gptCallTimeout: NodeJS.Timeout;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -43,6 +43,11 @@ describe("OliComponent", () => {
     windowService = TestBed.inject(WindowService) as ServiceMock<WindowService>;
     fixture = TestBed.createComponent(OliComponent);
     component = fixture.componentInstance;
+    addEventListener = jest
+      .fn()
+      .mockImplementation((eventType: string, handler: Function) =>
+        handler(slotRenderEndedEvent)
+      );
     slotRenderEndedEvent = {
       size: [300, 250],
       slot,
@@ -56,13 +61,7 @@ describe("OliComponent", () => {
         pubads: jest.fn().mockReturnValue({
           enableSingleRequest: jest.fn(),
           refresh: jest.fn(),
-          addEventListener: jest.fn().mockImplementation(
-            (eventType: string, handler: Function) =>
-              (gptCallTimeout = setTimeout(() => {
-                console.log("❌");
-                handler(slotRenderEndedEvent);
-              }, 1000))
-          )
+          addEventListener
         }),
         companionAds: jest.fn(),
         enableServices: jest.fn()
@@ -115,13 +114,14 @@ describe("OliComponent", () => {
       expect(oliOverlay).toBeFalsy();
     });
 
-    it("should record oli shown state", () => {
+    it("should record oli shown state", async () => {
       const endOfToday = formatISO(
         set(new Date(), { hours: 23, minutes: 59, seconds: 59 })
       );
       storeService.get.mockReturnValue(null);
 
       fixture.detectChanges();
+      await fixture.whenStable();
 
       expect(storeService.set).toHaveBeenCalledWith(
         "oli-hide-until",
@@ -132,17 +132,11 @@ describe("OliComponent", () => {
 
   describe("GPT", () => {
     beforeEach(() => {
-      jest.useFakeTimers();
       storeService.get.mockReturnValue(null);
-    });
-
-    afterEach(() => {
-      jest.clearAllTimers();
     });
 
     it("should call GPT properly", async () => {
       fixture.detectChanges();
-      jest.advanceTimersByTime(1000);
       await fixture.whenStable();
 
       const { googletag } = windowService.getWindow();
@@ -177,7 +171,6 @@ describe("OliComponent", () => {
       expect(component.loading).toBe(true);
 
       fixture.detectChanges();
-      jest.advanceTimersByTime(1000);
       await fixture.whenStable();
 
       expect(component.show).toBe(true);
@@ -188,7 +181,6 @@ describe("OliComponent", () => {
       slotRenderEndedEvent.isEmpty = true;
 
       fixture.detectChanges();
-      jest.advanceTimersByTime(1000);
       await fixture.whenStable();
 
       expect(component.show).toBe(false);
@@ -201,15 +193,9 @@ describe("OliComponent", () => {
       storeService.get.mockReturnValue(null);
     });
 
-    afterEach(() => {
-      jest.clearAllTimers();
-    });
-
     it("should remove overlay when ad is not loaded within the time limit", async () => {
-      clearTimeout(gptCallTimeout); // slotRenderEndedEvent never fires
-
       fixture.detectChanges();
-      jest.advanceTimersByTime(5000);
+      jest.advanceTimersByTime(5000); // fast-forward time to trigger fail-safe
       await fixture.whenStable();
 
       expect(component.show).toBe(false);

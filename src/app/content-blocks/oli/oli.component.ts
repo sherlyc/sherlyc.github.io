@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { isPast, parseISO } from "date-fns";
-import { Subject } from "rxjs";
+import { formatISO, isPast, parseISO, set } from "date-fns";
+import { AsyncSubject } from "rxjs";
+import { timeout } from "rxjs/operators";
 import { IOli } from "../../../../common/__types__/IOli";
 import { AdService } from "../../services/ad/ad.service";
 import { StoreService } from "../../services/store/store.service";
@@ -18,7 +19,7 @@ export class OliComponent implements IContentBlockComponent, OnInit {
   @Input() input!: IOli;
   show = true;
   loading = true;
-  loadSubject = new Subject<googletag.events.SlotRenderEndedEvent>();
+  loadSubject = new AsyncSubject<googletag.events.SlotRenderEndedEvent>();
 
   constructor(
     private storeService: StoreService,
@@ -27,7 +28,7 @@ export class OliComponent implements IContentBlockComponent, OnInit {
   ) {}
 
   async ngOnInit() {
-    this.loadSubject.subscribe({
+    this.loadSubject.pipe(timeout(5000)).subscribe({
       next: () => (this.loading = false),
       error: () => (this.show = false)
     });
@@ -39,7 +40,7 @@ export class OliComponent implements IContentBlockComponent, OnInit {
         await this.injectAd();
       } catch (e) {
         // TODO: logging failed GPT script load
-        this.show = false;
+        this.loadSubject.error(e);
       }
     } else {
       this.show = false;
@@ -76,12 +77,14 @@ export class OliComponent implements IContentBlockComponent, OnInit {
             } else {
               this.loadSubject.next(event);
             }
+            this.loadSubject.complete();
+            this.recordShownState();
           }
         );
     });
   }
 
-  setAdTargetingParameters(slot: Slot, options: ITargetingOptions) {
+  private setAdTargetingParameters(slot: Slot, options: ITargetingOptions) {
     const digitalData = this.windowService.getWindow().digitalData;
     const targeting = {
       env: digitalData.page.ads.environment,
@@ -106,5 +109,12 @@ export class OliComponent implements IContentBlockComponent, OnInit {
       }
     });
     return targeting;
+  }
+
+  private recordShownState() {
+    const endOfToday = formatISO(
+      set(new Date(), { hours: 23, minutes: 59, seconds: 59 })
+    );
+    this.storeService.set<string>("oli-hide-until", endOfToday);
   }
 }
