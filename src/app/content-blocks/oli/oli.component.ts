@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { formatISO, isPast, parseISO, set } from "date-fns";
-import { AsyncSubject } from "rxjs";
-import { timeout } from "rxjs/operators";
+import { AsyncSubject, from } from "rxjs";
+import { concatMap, timeout } from "rxjs/operators";
 import { IOli } from "../../../../common/__types__/IOli";
 import { AdService } from "../../services/ad/ad.service";
 import { StoreService } from "../../services/store/store.service";
@@ -28,27 +28,31 @@ export class OliComponent implements IContentBlockComponent, OnInit {
   ) {}
 
   async ngOnInit() {
-    this.loadSubject.pipe(timeout(5000)).subscribe({
-      next: () => (this.loading = false),
-      error: () => (this.show = false)
-    });
-
-    const hideUntil = this.storeService.get<string>("oli-hide-until");
-    const showOli = hideUntil === null || isPast(parseISO(hideUntil));
-    if (showOli) {
-      try {
-        await this.injectAd();
-      } catch (e) {
-        // TODO: logging failed GPT script load
-        this.loadSubject.error(e);
-      }
+    if (this.isFirstTimeForToday()) {
+      from(this.adService.load as Promise<any>)
+        .pipe(
+          concatMap(() => {
+            this.injectAd();
+            return this.loadSubject;
+          }),
+          timeout(5000)
+        )
+        .subscribe({
+          next: () => {
+            this.loading = false;
+            this.recordShownState();
+          },
+          error: () => {
+            this.show = false;
+            this.recordShownState();
+          }
+        });
     } else {
       this.show = false;
     }
   }
 
-  async injectAd() {
-    await this.adService.load;
+  injectAd() {
     const { googletag } = this.windowService.getWindow();
     const cmd = googletag.cmd || [];
     cmd.push(() => {
@@ -78,7 +82,6 @@ export class OliComponent implements IContentBlockComponent, OnInit {
               this.loadSubject.next(event);
             }
             this.loadSubject.complete();
-            this.recordShownState();
           }
         );
     });
@@ -111,7 +114,12 @@ export class OliComponent implements IContentBlockComponent, OnInit {
     return targeting;
   }
 
-  private recordShownState() {
+  private isFirstTimeForToday(): boolean {
+    const hideUntil = this.storeService.get<string>("oli-hide-until");
+    return hideUntil === null || isPast(parseISO(hideUntil));
+  }
+
+  private recordShownState(): void {
     const endOfToday = formatISO(
       set(new Date(), { hours: 23, minutes: 59, seconds: 59 })
     );
