@@ -5,6 +5,7 @@ import { OliService } from "../../services/oli/oli.service";
 import { StoreService } from "../../services/store/store.service";
 import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 import { WindowService } from "../../services/window/window.service";
+import { RuntimeService } from "../../services/runtime/runtime.service";
 
 @Component({
   selector: "app-oli",
@@ -20,12 +21,16 @@ export class OliComponent implements IContentBlockComponent, OnInit {
   constructor(
     private storeService: StoreService,
     private oliService: OliService,
-    private windowService: WindowService
+    private windowService: WindowService,
+    private runtimeService: RuntimeService
   ) {
     this.oliAdId = `spade-oli-slot-${Math.random()}`;
   }
 
   ngOnInit() {
+    if (this.runtimeService.isServer()) {
+      return;
+    }
     if (!this.windowService.isDesktopDomain() && this.isFirstTimeForToday()) {
       this.oliService.load(this.oliAdId).subscribe({
         next: () => {

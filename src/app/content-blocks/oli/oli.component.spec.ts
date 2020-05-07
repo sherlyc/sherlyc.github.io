@@ -7,12 +7,14 @@ import { OliService } from "../../services/oli/oli.service";
 import { StoreService } from "../../services/store/store.service";
 import { OliComponent } from "./oli.component";
 import { WindowService } from "../../services/window/window.service";
+import { RuntimeService } from "../../services/runtime/runtime.service";
 
 describe("OliComponent", () => {
   let component: OliComponent;
   let fixture: ComponentFixture<OliComponent>;
   let storeService: ServiceMock<StoreService>;
   let windowService: ServiceMock<WindowService>;
+  let runtimeService: ServiceMock<RuntimeService>;
   let oliService: ServiceMock<OliService>;
 
   beforeEach(async () => {
@@ -21,17 +23,22 @@ describe("OliComponent", () => {
       providers: [
         { provide: StoreService, useClass: mockService(StoreService) },
         { provide: OliService, useClass: mockService(OliService) },
-        { provide: WindowService, useClass: mockService(WindowService) }
+        { provide: WindowService, useClass: mockService(WindowService) },
+        { provide: RuntimeService, useClass: mockService(RuntimeService) }
       ]
     }).compileComponents();
 
     storeService = TestBed.inject(StoreService) as ServiceMock<StoreService>;
     windowService = TestBed.inject(WindowService) as ServiceMock<WindowService>;
+    runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
+      RuntimeService
+    >;
     oliService = TestBed.inject(OliService) as ServiceMock<OliService>;
     fixture = TestBed.createComponent(OliComponent);
     component = fixture.componentInstance;
 
     windowService.isDesktopDomain.mockReturnValue(false);
+    runtimeService.isServer.mockReturnValue(false);
   });
 
   afterEach(() => {
@@ -56,6 +63,15 @@ describe("OliComponent", () => {
 
     expect(oliService.load).not.toHaveBeenCalled();
     expect(component.show).toBeFalsy();
+  });
+
+  it("should not do anything when in server", () => {
+    storeService.get.mockReturnValue(null);
+    runtimeService.isServer.mockReturnValue(true);
+
+    fixture.detectChanges();
+
+    expect(oliService.load).not.toHaveBeenCalled();
   });
 
   describe("Frequency Cap", () => {
