@@ -62,6 +62,7 @@ export class OliService {
         .addEventListener(
           "slotRenderEnded",
           (event: googletag.events.SlotRenderEndedEvent) => {
+            if (event.slot !== slot) return;
             if (event.isEmpty) {
               this.loadSubject.error(event);
             } else {

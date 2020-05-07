@@ -39,7 +39,7 @@ describe("OliComponent", () => {
     );
     fixture.detectChanges();
     expect(
-      fixture.debugElement.query(By.css(`[id^="spade-oli-slot-"]`))
+      fixture.debugElement.query(By.css(`[id="${component.oliAdId}"`))
     ).toBeTruthy();
   });
 
@@ -119,6 +119,7 @@ describe("OliComponent", () => {
       fixture.detectChanges();
       await fixture.whenStable();
 
+      expect(oliService.load).toHaveBeenCalledWith(component.oliAdId);
       expect(component.show).toBe(true);
       expect(component.loading).toBe(false);
     });

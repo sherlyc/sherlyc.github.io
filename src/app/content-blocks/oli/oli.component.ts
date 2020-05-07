@@ -12,14 +12,16 @@ import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 })
 export class OliComponent implements IContentBlockComponent, OnInit {
   @Input() input!: IOli;
-  oliAdId = `spade-oli-slot-${Math.random()}`;
+  readonly oliAdId: string;
   show = true;
   loading = true;
 
   constructor(
     private storeService: StoreService,
     private oliService: OliService
-  ) {}
+  ) {
+    this.oliAdId = `spade-oli-slot-${Math.random()}`;
+  }
 
   ngOnInit() {
     if (this.isFirstTimeForToday()) {
