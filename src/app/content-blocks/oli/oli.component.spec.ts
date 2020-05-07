@@ -122,5 +122,22 @@ describe("OliComponent", () => {
 
       expect(component.show).toBe(false);
     });
+
+    it("should close when the close button has been clicked", async () => {
+      oliService.load.mockReturnValue(
+        of({} as googletag.events.SlotRenderEndedEvent)
+      );
+      oliService.destroy.mockReturnValue(true);
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      fixture.debugElement
+        .query(By.css(".oliHeaderClose"))
+        .nativeElement.click();
+
+      expect(oliService.destroy).toHaveBeenCalledWith("oliAdId");
+      expect(component.show).toBe(false);
+    });
   });
 });

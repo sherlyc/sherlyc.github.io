@@ -20,7 +20,7 @@ export class OliComponent implements IContentBlockComponent, OnInit {
     private oliService: OliService
   ) {}
 
-  async ngOnInit() {
+  ngOnInit() {
     if (this.isFirstTimeForToday()) {
       this.oliService.load("oliAdId").subscribe({
         next: () => {
@@ -35,6 +35,11 @@ export class OliComponent implements IContentBlockComponent, OnInit {
     } else {
       this.show = false;
     }
+  }
+
+  onClose() {
+    this.oliService.destroy("oliAdId");
+    this.show = false;
   }
 
   private isFirstTimeForToday(): boolean {
