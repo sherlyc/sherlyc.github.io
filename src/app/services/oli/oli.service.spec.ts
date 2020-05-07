@@ -1,8 +1,9 @@
 import { TestBed } from "@angular/core/testing";
-import { OliService } from "./oli.service";
-import { mockService, ServiceMock } from "../mocks/MockService";
+import { TimeoutError } from "rxjs";
 import { AdService } from "../ad/ad.service";
+import { mockService, ServiceMock } from "../mocks/MockService";
 import { WindowService } from "../window/window.service";
+import { OliService } from "./oli.service";
 
 class MockAdService {
   load?: Promise<any> = Promise.resolve();
@@ -11,6 +12,8 @@ class MockAdService {
 describe("Oli service", () => {
   let adService: ServiceMock<AdService>;
   let windowService: ServiceMock<WindowService>;
+  let oliService: ServiceMock<OliService>;
+
   const slot = ({
     addService: jest.fn(),
     setTargeting: jest.fn()
@@ -26,6 +29,7 @@ describe("Oli service", () => {
       ]
     });
 
+    oliService = TestBed.inject(OliService) as ServiceMock<OliService>;
     adService = TestBed.inject(AdService) as ServiceMock<AdService>;
     windowService = TestBed.inject(WindowService) as ServiceMock<WindowService>;
     slotRenderEndedEvent = {
@@ -61,9 +65,8 @@ describe("Oli service", () => {
 
   it("should call GPT properly", async () => {
     const { googletag } = windowService.getWindow();
-    const service = TestBed.inject(OliService) as ServiceMock<OliService>;
 
-    await service.load("oliAdId").toPromise();
+    await oliService.load("oliAdId").toPromise();
 
     expect(googletag.cmd.push).toHaveBeenCalledTimes(1);
     expect(googletag.defineSlot).toHaveBeenCalledWith(
@@ -90,27 +93,34 @@ describe("Oli service", () => {
     );
   });
 
-  it("should notify subscriber when ads return from gpt", (done) => {
+  it("should notify subscriber when ads return from gpt", async () => {
+    expect.assertions(1);
     slotRenderEndedEvent.isEmpty = false;
-    const service = TestBed.inject(OliService) as ServiceMock<OliService>;
-
-    service.load("oliAdId").subscribe({
-      next: (event) => {
-        expect(event).toEqual(slotRenderEndedEvent);
-      },
-      complete: () => done()
-    });
+    const event = await oliService.load("oliAdId").toPromise();
+    expect(event).toEqual(slotRenderEndedEvent);
   });
 
-  it("should send error to subscriber when ads does not return from gpt", (done) => {
+  it("should send error to subscriber when ads does not return from gpt", async () => {
+    expect.assertions(1);
     slotRenderEndedEvent.isEmpty = true;
-    const service = TestBed.inject(OliService) as ServiceMock<OliService>;
+    try {
+      await oliService.load("oliAdId").toPromise();
+    } catch (event) {
+      expect(event).toEqual(slotRenderEndedEvent);
+    }
+  });
 
-    service.load("oliAdId").subscribe({
-      error: (event) => {
-        expect(event).toEqual(slotRenderEndedEvent);
-      },
-      complete: () => done()
-    });
+  it("should send error to subscriber when ad is not loaded within the time limit", async () => {
+    jest.useFakeTimers();
+
+    expect.assertions(1);
+
+    try {
+      const load = oliService.load("oliAdId").toPromise();
+      jest.advanceTimersByTime(5000); // fast-forward time to trigger fail-safe
+      await load;
+    } catch (error) {
+      expect(error).toEqual(expect.any(TimeoutError));
+    }
   });
 });

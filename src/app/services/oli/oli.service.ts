@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { AsyncSubject, from, Observable } from "rxjs";
 import { concatMap, timeout } from "rxjs/operators";
+import { ITargetingOptions } from "../../content-blocks/oli/__types__/ITargetingOptions";
 import { AdService } from "../ad/ad.service";
 import { WindowService } from "../window/window.service";
-import { ITargetingOptions } from "../../content-blocks/oli/__types__/ITargetingOptions";
 import Slot = googletag.Slot;
 
 @Injectable({
@@ -12,10 +12,12 @@ import Slot = googletag.Slot;
 export class OliService {
   loadSubject = new AsyncSubject<googletag.events.SlotRenderEndedEvent>();
   slot?: googletag.Slot;
+
   constructor(
     private adService: AdService,
     private windowService: WindowService
   ) {}
+
   load(elementId: string): Observable<googletag.events.SlotRenderEndedEvent> {
     return from(this.adService.load as Promise<any>).pipe(
       concatMap(() => {
@@ -50,7 +52,7 @@ export class OliService {
           "slotRenderEnded",
           (event: googletag.events.SlotRenderEndedEvent) => {
             if (event.isEmpty) {
-              // this.loadSubject.error(event);
+              this.loadSubject.error(event);
             } else {
               this.loadSubject.next(event);
             }
