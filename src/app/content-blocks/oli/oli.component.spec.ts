@@ -6,11 +6,13 @@ import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { OliService } from "../../services/oli/oli.service";
 import { StoreService } from "../../services/store/store.service";
 import { OliComponent } from "./oli.component";
+import { WindowService } from "../../services/window/window.service";
 
 describe("OliComponent", () => {
   let component: OliComponent;
   let fixture: ComponentFixture<OliComponent>;
   let storeService: ServiceMock<StoreService>;
+  let windowService: ServiceMock<WindowService>;
   let oliService: ServiceMock<OliService>;
 
   beforeEach(async () => {
@@ -18,14 +20,18 @@ describe("OliComponent", () => {
       declarations: [OliComponent],
       providers: [
         { provide: StoreService, useClass: mockService(StoreService) },
-        { provide: OliService, useClass: mockService(OliService) }
+        { provide: OliService, useClass: mockService(OliService) },
+        { provide: WindowService, useClass: mockService(WindowService) }
       ]
     }).compileComponents();
 
     storeService = TestBed.inject(StoreService) as ServiceMock<StoreService>;
+    windowService = TestBed.inject(WindowService) as ServiceMock<WindowService>;
     oliService = TestBed.inject(OliService) as ServiceMock<OliService>;
     fixture = TestBed.createComponent(OliComponent);
     component = fixture.componentInstance;
+
+    windowService.isDesktopDomain.mockReturnValue(false);
   });
 
   afterEach(() => {
@@ -41,6 +47,15 @@ describe("OliComponent", () => {
     expect(
       fixture.debugElement.query(By.css(`[id="${component.oliAdId}"`))
     ).toBeTruthy();
+  });
+
+  it("should not show on desktop domain", () => {
+    windowService.isDesktopDomain.mockReturnValue(true);
+
+    fixture.detectChanges();
+
+    expect(oliService.load).not.toHaveBeenCalled();
+    expect(component.show).toBeFalsy();
   });
 
   describe("Frequency Cap", () => {
