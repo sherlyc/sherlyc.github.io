@@ -9,6 +9,8 @@ class MockAdService {
   load?: Promise<any> = Promise.resolve();
 }
 
+const oliAdId = "oliAdId";
+
 describe("Oli service", () => {
   let adService: ServiceMock<AdService>;
   let windowService: ServiceMock<WindowService>;
@@ -46,6 +48,7 @@ describe("Oli service", () => {
       googletag: {
         cmd: { push: jest.fn().mockImplementation((func) => func()) },
         defineSlot: jest.fn().mockReturnValue(slot),
+        destroySlots: jest.fn().mockReturnValue(true),
         pubads: jest.fn().mockReturnValue({
           enableSingleRequest: jest.fn(),
           refresh: jest.fn(),
@@ -66,13 +69,13 @@ describe("Oli service", () => {
   it("should call GPT properly", async () => {
     const { googletag } = windowService.getWindow();
 
-    await oliService.load("oliAdId").toPromise();
+    await oliService.load(oliAdId).toPromise();
 
     expect(googletag.cmd.push).toHaveBeenCalledTimes(1);
     expect(googletag.defineSlot).toHaveBeenCalledWith(
       "/6674/mob.stuff.homepage",
       [320, 460],
-      "oliAdId"
+      oliAdId
     );
     expect(slot.setTargeting).toHaveBeenCalledWith("spade", "true");
     expect(slot.setTargeting).toHaveBeenCalledWith(
@@ -96,7 +99,7 @@ describe("Oli service", () => {
   it("should notify subscriber when ads return from gpt", async () => {
     expect.assertions(1);
     slotRenderEndedEvent.isEmpty = false;
-    const event = await oliService.load("oliAdId").toPromise();
+    const event = await oliService.load(oliAdId).toPromise();
     expect(event).toEqual(slotRenderEndedEvent);
   });
 
@@ -104,7 +107,7 @@ describe("Oli service", () => {
     expect.assertions(1);
     slotRenderEndedEvent.isEmpty = true;
     try {
-      await oliService.load("oliAdId").toPromise();
+      await oliService.load(oliAdId).toPromise();
     } catch (event) {
       expect(event).toEqual(slotRenderEndedEvent);
     }
@@ -116,11 +119,31 @@ describe("Oli service", () => {
     expect.assertions(1);
 
     try {
-      const load = oliService.load("oliAdId").toPromise();
+      const load = oliService.load(oliAdId).toPromise();
       jest.advanceTimersByTime(5000); // fast-forward time to trigger fail-safe
       await load;
     } catch (error) {
       expect(error).toEqual(expect.any(TimeoutError));
     }
+  });
+
+  it("should call googletag.destroySlots() when destroy() is called", async () => {
+    slotRenderEndedEvent.isEmpty = false;
+    await oliService.load(oliAdId).toPromise();
+
+    expect(oliService.slotRegistry.get(oliAdId)).toBe(slot);
+
+    oliService.destroy(oliAdId);
+    expect(
+      windowService.getWindow().googletag.destroySlots
+    ).toHaveBeenCalledWith([slot]);
+    expect(oliService.slotRegistry.get(oliAdId)).toBe(undefined);
+  });
+
+  it("should not call googletag.destroySlots() when slot does not exist", async () => {
+    oliService.destroy(oliAdId);
+    expect(
+      windowService.getWindow().googletag.destroySlots
+    ).not.toHaveBeenCalled();
   });
 });

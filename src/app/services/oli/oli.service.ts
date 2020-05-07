@@ -11,7 +11,7 @@ import Slot = googletag.Slot;
 })
 export class OliService {
   loadSubject = new AsyncSubject<googletag.events.SlotRenderEndedEvent>();
-  slot?: googletag.Slot;
+  slotRegistry = new Map<string, googletag.Slot>();
 
   constructor(
     private adService: AdService,
@@ -28,24 +28,35 @@ export class OliService {
     );
   }
 
-  injectAd(elementId: string) {
+  destroy(elementId: string): boolean {
+    const slot = this.slotRegistry.get(elementId);
+    if (slot) {
+      this.slotRegistry.delete(elementId);
+      const { googletag } = this.windowService.getWindow();
+      return googletag.destroySlots([slot]);
+    } else {
+      return false;
+    }
+  }
+
+  private injectAd(elementId: string) {
     const { googletag } = this.windowService.getWindow();
     const cmd = googletag.cmd || [];
     cmd.push(() => {
-      this.slot = googletag.defineSlot(
+      const slot = googletag.defineSlot(
         "/6674/mob.stuff.homepage",
         [320, 460],
         elementId
       );
-      this.setAdTargetingParameters(this.slot, {
+      this.setAdTargetingParameters(slot, {
         spade: "true",
         pos: "interstitial-portrait"
       });
-      this.slot.addService(googletag.pubads());
-      this.slot.addService(googletag.companionAds());
+      slot.addService(googletag.pubads());
+      slot.addService(googletag.companionAds());
       googletag.pubads().enableSingleRequest();
       googletag.enableServices();
-      googletag.pubads().refresh([this.slot]);
+      googletag.pubads().refresh([slot]);
       googletag
         .pubads()
         .addEventListener(
@@ -59,6 +70,7 @@ export class OliService {
             this.loadSubject.complete();
           }
         );
+      this.slotRegistry.set(elementId, slot);
     });
   }
 
