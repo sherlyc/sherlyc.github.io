@@ -32,6 +32,17 @@ describe("OliComponent", () => {
     jest.clearAllMocks();
   });
 
+  it("should set id attribute on the ad slot", () => {
+    storeService.get.mockReturnValue(null);
+    oliService.load.mockReturnValue(
+      of({} as googletag.events.SlotRenderEndedEvent)
+    );
+    fixture.detectChanges();
+    expect(
+      fixture.debugElement.query(By.css(`[id^="spade-oli-slot-"]`))
+    ).toBeTruthy();
+  });
+
   describe("Frequency Cap", () => {
     beforeEach(() => {
       oliService.load.mockReturnValue(
@@ -136,7 +147,9 @@ describe("OliComponent", () => {
         .query(By.css(".oliHeaderClose"))
         .nativeElement.click();
 
-      expect(oliService.destroy).toHaveBeenCalledWith("oliAdId");
+      expect(oliService.destroy).toHaveBeenCalledWith(
+        expect.stringMatching(/^spade-oli-slot-/)
+      );
       expect(component.show).toBe(false);
     });
   });

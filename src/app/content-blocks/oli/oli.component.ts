@@ -12,6 +12,7 @@ import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 })
 export class OliComponent implements IContentBlockComponent, OnInit {
   @Input() input!: IOli;
+  oliAdId = `spade-oli-slot-${Math.random()}`;
   show = true;
   loading = true;
 
@@ -22,7 +23,7 @@ export class OliComponent implements IContentBlockComponent, OnInit {
 
   ngOnInit() {
     if (this.isFirstTimeForToday()) {
-      this.oliService.load("oliAdId").subscribe({
+      this.oliService.load(this.oliAdId).subscribe({
         next: () => {
           this.loading = false;
           this.recordShownState();
@@ -38,7 +39,7 @@ export class OliComponent implements IContentBlockComponent, OnInit {
   }
 
   onClose() {
-    this.oliService.destroy("oliAdId");
+    this.oliService.destroy(this.oliAdId);
     this.show = false;
   }
 
