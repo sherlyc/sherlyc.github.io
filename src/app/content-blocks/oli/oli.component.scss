@@ -12,12 +12,6 @@
   background-color: #fff;
   z-index: 9999999;
 
-  &.loading .oliHeader,
-  &.loading .oliContainer,
-  &:not(.loading) .oliLoading {
-    display: none;
-  }
-
   .oliLoading {
     align-self: center;
 

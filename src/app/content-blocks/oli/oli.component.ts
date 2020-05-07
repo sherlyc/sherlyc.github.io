@@ -1,12 +1,9 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { formatISO, isPast, parseISO, set } from "date-fns";
-import { AsyncSubject } from "rxjs";
 import { IOli } from "../../../../common/__types__/IOli";
-import { AdService } from "../../services/ad/ad.service";
-import { StoreService } from "../../services/store/store.service";
-import { WindowService } from "../../services/window/window.service";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 import { OliService } from "../../services/oli/oli.service";
+import { StoreService } from "../../services/store/store.service";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
   selector: "app-oli",
@@ -17,12 +14,9 @@ export class OliComponent implements IContentBlockComponent, OnInit {
   @Input() input!: IOli;
   show = true;
   loading = true;
-  loadSubject = new AsyncSubject<googletag.events.SlotRenderEndedEvent>();
 
   constructor(
     private storeService: StoreService,
-    private windowService: WindowService,
-    private adService: AdService,
     private oliService: OliService
   ) {}
 
@@ -30,12 +24,10 @@ export class OliComponent implements IContentBlockComponent, OnInit {
     if (this.isFirstTimeForToday()) {
       this.oliService.load("oliAdId").subscribe({
         next: () => {
-          console.log("next");
           this.loading = false;
           this.recordShownState();
         },
         error: () => {
-          console.log("error");
           this.show = false;
           this.recordShownState();
         }
