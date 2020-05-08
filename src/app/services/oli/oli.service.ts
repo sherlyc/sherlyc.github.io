@@ -65,8 +65,7 @@ export class OliService {
 
   private injectAd(elementId: string) {
     const { googletag } = this.windowService.getWindow();
-    const cmd = googletag.cmd || [];
-    cmd.push(() => {
+    googletag.cmd.push(() => {
       const slot = googletag.defineSlot(
         "/6674/mob.stuff.homepage",
         [320, 460],
