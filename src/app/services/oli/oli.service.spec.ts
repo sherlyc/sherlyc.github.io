@@ -216,4 +216,34 @@ describe("Oli service", () => {
       ).not.toHaveBeenCalled();
     });
   });
+
+  describe("Error Handling", () => {
+    it("has 5-second fail-safe timeout", async () => {
+      expect.assertions(1);
+
+      jest.useFakeTimers();
+      const load = oliService.load(oliSlotConfig).toPromise();
+      jest.advanceTimersByTime(5000); // trigger fail-safe timeout
+
+      try {
+        await load;
+      } catch (e) {
+        expect(e).toEqual(expect.any(TimeoutError));
+      }
+    });
+
+    it("records shown state after error happend", async () => {
+      expect.assertions(1);
+
+      jest.useFakeTimers();
+      const load = oliService.load(oliSlotConfig).toPromise();
+      jest.advanceTimersByTime(5000); // trigger fail-safe timeout
+
+      try {
+        await load;
+      } catch (e) {
+        expect(storeService.set).toHaveBeenCalled();
+      }
+    });
+  });
 });

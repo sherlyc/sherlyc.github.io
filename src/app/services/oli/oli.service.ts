@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { formatISO, isPast, parseISO, set } from "date-fns";
 import { AsyncSubject, from, iif, Observable, throwError } from "rxjs";
-import { concatMap, tap, timeout } from "rxjs/operators";
+import { concatMap, timeout, finalize } from "rxjs/operators";
 import { IOliSlotConfig } from "../../../../common/__types__/IOli";
 import { ITargetingOptions } from "../../content-blocks/oli/__types__/ITargetingOptions";
 import { AdService } from "../ad/ad.service";
@@ -33,7 +33,7 @@ export class OliService {
           return this.loadSubject;
         }),
         timeout(5000),
-        tap(this.recordShownState.bind(this))
+        finalize(this.recordShownState.bind(this))
       ),
       throwError("Current device is not mobile or OLI has been shown today")
     );
