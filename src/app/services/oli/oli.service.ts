@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { formatISO, isPast, parseISO, set } from "date-fns";
 import { AsyncSubject, from, iif, Observable, throwError } from "rxjs";
 import { concatMap, tap, timeout } from "rxjs/operators";
+import { IOliSlotConfig } from "../../../../common/__types__/IOli";
 import { ITargetingOptions } from "../../content-blocks/oli/__types__/ITargetingOptions";
 import { AdService } from "../ad/ad.service";
 import { StoreService } from "../store/store.service";
@@ -21,12 +22,14 @@ export class OliService {
     private windowService: WindowService
   ) {}
 
-  load(elementId: string): Observable<googletag.events.SlotRenderEndedEvent> {
+  load(
+    oliSlotConfig: IOliSlotConfig
+  ): Observable<googletag.events.SlotRenderEndedEvent> {
     return iif(
       () => this.isMatchingDeviceType() && this.isFirstTimeForToday(),
       from(this.adService.load as Promise<any>).pipe(
         concatMap(() => {
-          this.injectAd(elementId);
+          this.injectAd(oliSlotConfig);
           return this.loadSubject;
         }),
         timeout(5000),
@@ -63,18 +66,16 @@ export class OliService {
     this.storeService.set<string>("oli-hide-until", endOfToday);
   }
 
-  private injectAd(elementId: string) {
+  private injectAd({
+    adUnitPath,
+    size,
+    elementId,
+    targetingParams
+  }: IOliSlotConfig) {
     const { googletag } = this.windowService.getWindow();
     googletag.cmd.push(() => {
-      const slot = googletag.defineSlot(
-        "/6674/mob.stuff.homepage",
-        [320, 460],
-        elementId
-      );
-      this.setAdTargetingParameters(slot, {
-        spade: "true",
-        pos: "interstitial-portrait"
-      });
+      const slot = googletag.defineSlot(adUnitPath, size, elementId);
+      this.setAdTargetingParameters(slot, targetingParams);
       slot.addService(googletag.pubads());
       slot.addService(googletag.companionAds());
       googletag.pubads().enableSingleRequest();

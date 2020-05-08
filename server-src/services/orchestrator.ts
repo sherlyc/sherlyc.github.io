@@ -54,7 +54,15 @@ export const newPage = (): HandlerInput[] => {
       type: HandlerInputType.ContentBlockHandler,
       contentBlocks: [
         {
-          type: ContentBlockType.Oli
+          type: ContentBlockType.Oli,
+          config: {
+            adUnitPath: "/6674/mob.stuff.homepage",
+            size: [320, 460],
+            targetingParams: {
+              spade: "true",
+              pos: "interstitial-portrait"
+            }
+          }
         }
       ]
     },

@@ -26,10 +26,12 @@ export class OliComponent implements IContentBlockComponent, OnInit {
     if (this.runtimeService.isServer()) {
       return;
     }
-    this.oliService.load(this.oliAdId).subscribe({
-      next: () => (this.loading = false),
-      error: () => (this.show = false)
-    });
+    this.oliService
+      .load({ ...this.input.config, elementId: this.oliAdId })
+      .subscribe({
+        next: () => (this.loading = false),
+        error: () => (this.show = false)
+      });
   }
 
   onClose() {

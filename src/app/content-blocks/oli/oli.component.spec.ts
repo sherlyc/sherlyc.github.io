@@ -1,10 +1,20 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { of, throwError } from "rxjs";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { OliService } from "../../services/oli/oli.service";
 import { RuntimeService } from "../../services/runtime/runtime.service";
 import { OliComponent } from "./oli.component";
+
+const oliSlotConfig = {
+  adUnitPath: "/6674/mob.stuff.homepage",
+  size: [320, 460],
+  targetingParams: {
+    spade: "true",
+    pos: "interstitial-portrait"
+  }
+};
 
 describe("OliComponent", () => {
   let component: OliComponent;
@@ -27,6 +37,10 @@ describe("OliComponent", () => {
     oliService = TestBed.inject(OliService) as ServiceMock<OliService>;
     fixture = TestBed.createComponent(OliComponent);
     component = fixture.componentInstance;
+    component.input = {
+      type: ContentBlockType.Oli,
+      config: oliSlotConfig
+    };
 
     runtimeService.isServer.mockReturnValue(false);
   });
@@ -65,7 +79,10 @@ describe("OliComponent", () => {
       fixture.detectChanges();
       await fixture.whenStable();
 
-      expect(oliService.load).toHaveBeenCalledWith(component.oliAdId);
+      expect(oliService.load).toHaveBeenCalledWith({
+        ...oliSlotConfig,
+        elementId: component.oliAdId
+      });
       expect(component.show).toBe(true);
       expect(component.loading).toBe(false);
     });
