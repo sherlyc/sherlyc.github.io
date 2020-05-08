@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { of, throwError } from "rxjs";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { of, Subscription, throwError } from "rxjs";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { OliService } from "../../services/oli/oli.service";
 import { RuntimeService } from "../../services/runtime/runtime.service";
 import { OliComponent } from "./oli.component";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 
 const oliSlotConfig = {
   adUnitPath: "/6674/mob.stuff.homepage",
@@ -65,6 +65,18 @@ describe("OliComponent", () => {
     fixture.detectChanges();
 
     expect(oliService.load).not.toHaveBeenCalled();
+  });
+
+  it("should unsubscribe when oli is destroyed", () => {
+    oliService.load.mockReturnValue(
+      of({} as googletag.events.SlotRenderEndedEvent)
+    );
+    fixture.detectChanges();
+    jest.spyOn(component.subscription as Subscription, "unsubscribe");
+
+    component.ngOnDestroy();
+
+    expect(component.subscription?.unsubscribe).toHaveBeenCalledTimes(1);
   });
 
   describe("Calling OLI service", () => {
