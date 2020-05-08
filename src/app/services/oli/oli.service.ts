@@ -1,8 +1,10 @@
 import { Injectable } from "@angular/core";
-import { AsyncSubject, from, Observable } from "rxjs";
-import { concatMap, timeout } from "rxjs/operators";
+import { formatISO, isPast, parseISO, set } from "date-fns";
+import { AsyncSubject, from, iif, Observable, throwError } from "rxjs";
+import { concatMap, tap, timeout } from "rxjs/operators";
 import { ITargetingOptions } from "../../content-blocks/oli/__types__/ITargetingOptions";
 import { AdService } from "../ad/ad.service";
+import { StoreService } from "../store/store.service";
 import { WindowService } from "../window/window.service";
 import Slot = googletag.Slot;
 
@@ -14,17 +16,23 @@ export class OliService {
   slotRegistry = new Map<string, googletag.Slot>();
 
   constructor(
+    private storeService: StoreService,
     private adService: AdService,
     private windowService: WindowService
   ) {}
 
   load(elementId: string): Observable<googletag.events.SlotRenderEndedEvent> {
-    return from(this.adService.load as Promise<any>).pipe(
-      concatMap(() => {
-        this.injectAd(elementId);
-        return this.loadSubject;
-      }),
-      timeout(5000)
+    return iif(
+      () => this.isMatchingDeviceType() && this.isFirstTimeForToday(),
+      from(this.adService.load as Promise<any>).pipe(
+        concatMap(() => {
+          this.injectAd(elementId);
+          return this.loadSubject;
+        }),
+        timeout(5000),
+        tap(this.recordShownState.bind(this))
+      ),
+      throwError("Current device is not mobile or OLI has been shown today")
     );
   }
 
@@ -37,6 +45,22 @@ export class OliService {
     } else {
       return false;
     }
+  }
+
+  private isMatchingDeviceType(): boolean {
+    return !this.windowService.isDesktopDomain();
+  }
+
+  private isFirstTimeForToday(): boolean {
+    const hideUntil = this.storeService.get<string>("oli-hide-until");
+    return hideUntil === null || isPast(parseISO(hideUntil));
+  }
+
+  private recordShownState(): void {
+    const endOfToday = formatISO(
+      set(new Date(), { hours: 23, minutes: 59, seconds: 59 })
+    );
+    this.storeService.set<string>("oli-hide-until", endOfToday);
   }
 
   private injectAd(elementId: string) {

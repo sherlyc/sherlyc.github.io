@@ -1,19 +1,14 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { formatISO, set, sub } from "date-fns";
 import { of, throwError } from "rxjs";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { OliService } from "../../services/oli/oli.service";
-import { StoreService } from "../../services/store/store.service";
-import { OliComponent } from "./oli.component";
-import { WindowService } from "../../services/window/window.service";
 import { RuntimeService } from "../../services/runtime/runtime.service";
+import { OliComponent } from "./oli.component";
 
 describe("OliComponent", () => {
   let component: OliComponent;
   let fixture: ComponentFixture<OliComponent>;
-  let storeService: ServiceMock<StoreService>;
-  let windowService: ServiceMock<WindowService>;
   let runtimeService: ServiceMock<RuntimeService>;
   let oliService: ServiceMock<OliService>;
 
@@ -21,15 +16,11 @@ describe("OliComponent", () => {
     await TestBed.configureTestingModule({
       declarations: [OliComponent],
       providers: [
-        { provide: StoreService, useClass: mockService(StoreService) },
         { provide: OliService, useClass: mockService(OliService) },
-        { provide: WindowService, useClass: mockService(WindowService) },
         { provide: RuntimeService, useClass: mockService(RuntimeService) }
       ]
     }).compileComponents();
 
-    storeService = TestBed.inject(StoreService) as ServiceMock<StoreService>;
-    windowService = TestBed.inject(WindowService) as ServiceMock<WindowService>;
     runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
       RuntimeService
     >;
@@ -37,7 +28,6 @@ describe("OliComponent", () => {
     fixture = TestBed.createComponent(OliComponent);
     component = fixture.componentInstance;
 
-    windowService.isDesktopDomain.mockReturnValue(false);
     runtimeService.isServer.mockReturnValue(false);
   });
 
@@ -46,7 +36,6 @@ describe("OliComponent", () => {
   });
 
   it("should set id attribute on the ad slot", () => {
-    storeService.get.mockReturnValue(null);
     oliService.load.mockReturnValue(
       of({} as googletag.events.SlotRenderEndedEvent)
     );
@@ -56,17 +45,7 @@ describe("OliComponent", () => {
     ).toBeTruthy();
   });
 
-  it("should not show on desktop domain", () => {
-    windowService.isDesktopDomain.mockReturnValue(true);
-
-    fixture.detectChanges();
-
-    expect(oliService.load).not.toHaveBeenCalled();
-    expect(component.show).toBeFalsy();
-  });
-
   it("should not do anything when in server", () => {
-    storeService.get.mockReturnValue(null);
     runtimeService.isServer.mockReturnValue(true);
 
     fixture.detectChanges();
@@ -74,71 +53,7 @@ describe("OliComponent", () => {
     expect(oliService.load).not.toHaveBeenCalled();
   });
 
-  describe("Frequency Cap", () => {
-    beforeEach(() => {
-      oliService.load.mockReturnValue(
-        of({} as googletag.events.SlotRenderEndedEvent)
-      );
-    });
-
-    it("should show overlay when oli has never been shown", () => {
-      storeService.get.mockReturnValue(null);
-
-      fixture.detectChanges();
-
-      const oliOverlay = fixture.debugElement.query(By.css(".oliOverlay"));
-      expect(oliOverlay).toBeTruthy();
-    });
-
-    it("should show overlay when oli has been shown yesterday", () => {
-      const endOfYesterday = formatISO(
-        set(sub(new Date(), { days: 1 }), {
-          hours: 23,
-          minutes: 59,
-          seconds: 59
-        })
-      );
-      storeService.get.mockReturnValue(endOfYesterday);
-
-      fixture.detectChanges();
-
-      const oliOverlay = fixture.debugElement.query(By.css(".oliOverlay"));
-      expect(oliOverlay).toBeTruthy();
-    });
-
-    it("should not show overlay when oli has been shown today", () => {
-      const endOfToday = formatISO(
-        set(new Date(), { hours: 23, minutes: 59, seconds: 59 })
-      );
-      storeService.get.mockReturnValue(endOfToday);
-
-      fixture.detectChanges();
-
-      const oliOverlay = fixture.debugElement.query(By.css(".oliOverlay"));
-      expect(oliOverlay).toBeFalsy();
-    });
-
-    it("should record oli shown state", async () => {
-      const endOfToday = formatISO(
-        set(new Date(), { hours: 23, minutes: 59, seconds: 59 })
-      );
-      storeService.get.mockReturnValue(null);
-
-      fixture.detectChanges();
-      await fixture.whenStable();
-
-      expect(storeService.set).toHaveBeenCalledWith(
-        "oli-hide-until",
-        endOfToday
-      );
-    });
-  });
-
-  describe("Calling oli service", () => {
-    beforeEach(() => {
-      storeService.get.mockReturnValue(null);
-    });
-
+  describe("Calling OLI service", () => {
     it("should display ad when ad is returned from oli service", async () => {
       oliService.load.mockReturnValue(
         of({} as googletag.events.SlotRenderEndedEvent)

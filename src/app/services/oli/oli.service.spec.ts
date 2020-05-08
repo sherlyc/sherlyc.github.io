@@ -1,7 +1,10 @@
 import { TestBed } from "@angular/core/testing";
+import { formatISO, set, sub } from "date-fns";
 import { TimeoutError } from "rxjs";
 import { AdService } from "../ad/ad.service";
+import { DeviceService } from "../device/device.service";
 import { mockService, ServiceMock } from "../mocks/MockService";
+import { StoreService } from "../store/store.service";
 import { WindowService } from "../window/window.service";
 import { OliService } from "./oli.service";
 
@@ -12,9 +15,11 @@ class MockAdService {
 const oliAdId = "oliAdId";
 
 describe("Oli service", () => {
+  let oliService: OliService;
+  let deviceService: ServiceMock<DeviceService>;
+  let storeService: ServiceMock<StoreService>;
   let adService: ServiceMock<AdService>;
   let windowService: ServiceMock<WindowService>;
-  let oliService: ServiceMock<OliService>;
 
   const slot = ({
     addService: jest.fn(),
@@ -27,11 +32,15 @@ describe("Oli service", () => {
     TestBed.configureTestingModule({
       providers: [
         { provide: AdService, useClass: MockAdService },
+        { provide: DeviceService, useClass: mockService(DeviceService) },
+        { provide: StoreService, useClass: mockService(StoreService) },
         { provide: WindowService, useClass: mockService(WindowService) }
       ]
     });
 
-    oliService = TestBed.inject(OliService) as ServiceMock<OliService>;
+    oliService = TestBed.inject(OliService);
+    deviceService = TestBed.inject(DeviceService) as ServiceMock<DeviceService>;
+    storeService = TestBed.inject(StoreService) as ServiceMock<StoreService>;
     adService = TestBed.inject(AdService) as ServiceMock<AdService>;
     windowService = TestBed.inject(WindowService) as ServiceMock<WindowService>;
     slotRenderEndedEvent = {
@@ -64,86 +73,138 @@ describe("Oli service", () => {
         search: "?cpid=mweb-oli"
       }
     });
+    windowService.isDesktopDomain.mockReturnValue(false);
+    storeService.get.mockReturnValue(null);
   });
 
-  it("should call GPT properly", async () => {
-    const { googletag } = windowService.getWindow();
+  describe("Frequency Cap", () => {
+    it("should show OLI when OLI has never been shown", () => {
+      expect(oliService.load("oli-id").toPromise()).resolves.toBeTruthy();
+    });
 
-    await oliService.load(oliAdId).toPromise();
+    it("should show overlay when oli has been shown yesterday", () => {
+      const endOfYesterday = formatISO(
+        set(sub(new Date(), { days: 1 }), {
+          hours: 23,
+          minutes: 59,
+          seconds: 59
+        })
+      );
+      storeService.get.mockReturnValue(endOfYesterday);
 
-    expect(googletag.cmd.push).toHaveBeenCalledTimes(1);
-    expect(googletag.defineSlot).toHaveBeenCalledWith(
-      "/6674/mob.stuff.homepage",
-      [320, 460],
-      oliAdId
-    );
-    expect(slot.setTargeting).toHaveBeenCalledWith("spade", "true");
-    expect(slot.setTargeting).toHaveBeenCalledWith(
-      "pos",
-      "interstitial-portrait"
-    );
-    expect(slot.setTargeting).toHaveBeenCalledWith("env", "prod");
-    expect(slot.setTargeting).toHaveBeenCalledWith("source", "");
-    expect(slot.setTargeting).toHaveBeenCalledWith("cpid", "mweb-oli");
-    expect(slot.addService).toHaveBeenCalledWith(googletag.pubads());
-    expect(slot.addService).toHaveBeenCalledWith(googletag.companionAds());
-    expect(googletag.pubads().enableSingleRequest).toHaveBeenCalledTimes(1);
-    expect(googletag.enableServices).toHaveBeenCalledTimes(1);
-    expect(googletag.pubads().refresh).toHaveBeenCalledWith([slot]);
-    expect(googletag.pubads().addEventListener).toHaveBeenCalledWith(
-      "slotRenderEnded",
-      expect.any(Function)
-    );
+      expect(oliService.load("oli-id").toPromise()).resolves.toBeTruthy();
+    });
+
+    it("should not show overlay when oli has been shown today", () => {
+      const endOfToday = formatISO(
+        set(new Date(), { hours: 23, minutes: 59, seconds: 59 })
+      );
+      storeService.get.mockReturnValue(endOfToday);
+
+      expect(oliService.load("oli-id").toPromise()).rejects.toBeTruthy();
+    });
+
+    it("should record oli shown state", async () => {
+      const endOfToday = formatISO(
+        set(new Date(), { hours: 23, minutes: 59, seconds: 59 })
+      );
+
+      await oliService.load("oli-ad").toPromise();
+
+      expect(storeService.set).toHaveBeenCalledWith(
+        "oli-hide-until",
+        endOfToday
+      );
+    });
   });
 
-  it("should notify subscriber when ads return from gpt", async () => {
-    expect.assertions(1);
-    slotRenderEndedEvent.isEmpty = false;
-    const event = await oliService.load(oliAdId).toPromise();
-    expect(event).toEqual(slotRenderEndedEvent);
+  describe("Device Detection", () => {
+    it("does not show OLI for desktop browsers", () => {
+      windowService.isDesktopDomain.mockReturnValue(true);
+      expect(oliService.load("oli-id").toPromise()).rejects.toBeTruthy();
+    });
   });
 
-  it("should send error to subscriber when ads does not return from gpt", async () => {
-    expect.assertions(1);
-    slotRenderEndedEvent.isEmpty = true;
-    try {
+  describe("GPT", () => {
+    it("should call GPT properly", async () => {
+      const { googletag } = windowService.getWindow();
+
       await oliService.load(oliAdId).toPromise();
-    } catch (event) {
+
+      expect(googletag.cmd.push).toHaveBeenCalledTimes(1);
+      expect(googletag.defineSlot).toHaveBeenCalledWith(
+        "/6674/mob.stuff.homepage",
+        [320, 460],
+        oliAdId
+      );
+      expect(slot.setTargeting).toHaveBeenCalledWith("spade", "true");
+      expect(slot.setTargeting).toHaveBeenCalledWith(
+        "pos",
+        "interstitial-portrait"
+      );
+      expect(slot.setTargeting).toHaveBeenCalledWith("env", "prod");
+      expect(slot.setTargeting).toHaveBeenCalledWith("source", "");
+      expect(slot.setTargeting).toHaveBeenCalledWith("cpid", "mweb-oli");
+      expect(slot.addService).toHaveBeenCalledWith(googletag.pubads());
+      expect(slot.addService).toHaveBeenCalledWith(googletag.companionAds());
+      expect(googletag.pubads().enableSingleRequest).toHaveBeenCalledTimes(1);
+      expect(googletag.enableServices).toHaveBeenCalledTimes(1);
+      expect(googletag.pubads().refresh).toHaveBeenCalledWith([slot]);
+      expect(googletag.pubads().addEventListener).toHaveBeenCalledWith(
+        "slotRenderEnded",
+        expect.any(Function)
+      );
+    });
+
+    it("should notify subscriber when ads return from gpt", async () => {
+      expect.assertions(1);
+      slotRenderEndedEvent.isEmpty = false;
+      const event = await oliService.load(oliAdId).toPromise();
       expect(event).toEqual(slotRenderEndedEvent);
-    }
-  });
+    });
 
-  it("should send error to subscriber when ad is not loaded within the time limit", async () => {
-    jest.useFakeTimers();
+    it("should send error to subscriber when ads does not return from gpt", async () => {
+      expect.assertions(1);
+      slotRenderEndedEvent.isEmpty = true;
+      try {
+        await oliService.load(oliAdId).toPromise();
+      } catch (event) {
+        expect(event).toEqual(slotRenderEndedEvent);
+      }
+    });
 
-    expect.assertions(1);
+    it("should send error to subscriber when ad is not loaded within the time limit", async () => {
+      jest.useFakeTimers();
 
-    try {
-      const load = oliService.load(oliAdId).toPromise();
-      jest.advanceTimersByTime(5000); // fast-forward time to trigger fail-safe
-      await load;
-    } catch (error) {
-      expect(error).toEqual(expect.any(TimeoutError));
-    }
-  });
+      expect.assertions(1);
 
-  it("should call googletag.destroySlots() when destroy() is called", async () => {
-    slotRenderEndedEvent.isEmpty = false;
-    await oliService.load(oliAdId).toPromise();
+      try {
+        const load = oliService.load(oliAdId).toPromise();
+        jest.advanceTimersByTime(5000); // fast-forward time to trigger fail-safe
+        await load;
+      } catch (error) {
+        expect(error).toEqual(expect.any(TimeoutError));
+      }
+    });
 
-    expect(oliService.slotRegistry.get(oliAdId)).toBe(slot);
+    it("should call googletag.destroySlots() when destroy() is called", async () => {
+      slotRenderEndedEvent.isEmpty = false;
+      await oliService.load(oliAdId).toPromise();
 
-    oliService.destroy(oliAdId);
-    expect(
-      windowService.getWindow().googletag.destroySlots
-    ).toHaveBeenCalledWith([slot]);
-    expect(oliService.slotRegistry.get(oliAdId)).toBe(undefined);
-  });
+      expect(oliService.slotRegistry.get(oliAdId)).toBe(slot);
 
-  it("should not call googletag.destroySlots() when slot does not exist", async () => {
-    oliService.destroy(oliAdId);
-    expect(
-      windowService.getWindow().googletag.destroySlots
-    ).not.toHaveBeenCalled();
+      oliService.destroy(oliAdId);
+      expect(
+        windowService.getWindow().googletag.destroySlots
+      ).toHaveBeenCalledWith([slot]);
+      expect(oliService.slotRegistry.get(oliAdId)).toBe(undefined);
+    });
+
+    it("should not call googletag.destroySlots() when slot does not exist", async () => {
+      oliService.destroy(oliAdId);
+      expect(
+        windowService.getWindow().googletag.destroySlots
+      ).not.toHaveBeenCalled();
+    });
   });
 });
