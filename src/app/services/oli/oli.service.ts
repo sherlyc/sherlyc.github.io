@@ -1,10 +1,12 @@
 import { Injectable } from "@angular/core";
 import { formatISO, isPast, parseISO, set } from "date-fns";
 import { AsyncSubject, from, iif, Observable, throwError } from "rxjs";
-import { concatMap, timeout, finalize } from "rxjs/operators";
+import { concatMap, finalize, timeout } from "rxjs/operators";
 import { IOliSlotConfig } from "../../../../common/__types__/IOli";
+import { DeviceType } from "../../../../common/DeviceType";
 import { ITargetingOptions } from "../../content-blocks/oli/__types__/ITargetingOptions";
 import { AdService } from "../ad/ad.service";
+import { DeviceService } from "../device/device.service";
 import { StoreService } from "../store/store.service";
 import { WindowService } from "../window/window.service";
 import Slot = googletag.Slot;
@@ -17,6 +19,7 @@ export class OliService {
   slotRegistry = new Map<string, googletag.Slot>();
 
   constructor(
+    private deviceService: DeviceService,
     private storeService: StoreService,
     private adService: AdService,
     private windowService: WindowService
@@ -51,7 +54,11 @@ export class OliService {
   }
 
   private isMatchingDeviceType(): boolean {
-    return !this.windowService.isDesktopDomain();
+    return (
+      [DeviceType.mobile, DeviceType.tablet].indexOf(
+        this.deviceService.getDevice()
+      ) !== -1
+    );
   }
 
   private isFirstTimeForToday(): boolean {

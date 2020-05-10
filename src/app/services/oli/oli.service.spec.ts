@@ -1,6 +1,7 @@
 import { TestBed } from "@angular/core/testing";
 import { formatISO, set, sub } from "date-fns";
 import { TimeoutError } from "rxjs";
+import { DeviceType } from "../../../../common/DeviceType";
 import { AdService } from "../ad/ad.service";
 import { DeviceService } from "../device/device.service";
 import { mockService, ServiceMock } from "../mocks/MockService";
@@ -83,6 +84,7 @@ describe("Oli service", () => {
       }
     });
     windowService.isDesktopDomain.mockReturnValue(false);
+    deviceService.getDevice.mockReturnValue(DeviceType.mobile);
     storeService.get.mockReturnValue(null);
   });
 
@@ -128,9 +130,20 @@ describe("Oli service", () => {
   });
 
   describe("Device Detection", () => {
-    it("does not show OLI for desktop browsers", () => {
-      windowService.isDesktopDomain.mockReturnValue(true);
-      expect(oliService.load(oliSlotConfig).toPromise()).rejects.toBeTruthy();
+    it.each`
+      deviceType            | showOli
+      ${DeviceType.mobile}  | ${true}
+      ${DeviceType.tablet}  | ${true}
+      ${DeviceType.bot}     | ${false}
+      ${DeviceType.desktop} | ${false}
+      ${DeviceType.tv}      | ${false}
+      ${DeviceType.unknown} | ${false}
+    `("show OLI for $deviceType: $showOli", ({ deviceType, showOli }) => {
+      deviceService.getDevice.mockReturnValue(deviceType);
+      const oliLoad = oliService.load(oliSlotConfig).toPromise();
+      return showOli
+        ? expect(oliLoad).resolves.toBeTruthy()
+        : expect(oliLoad).rejects.toBeTruthy();
     });
   });
 
