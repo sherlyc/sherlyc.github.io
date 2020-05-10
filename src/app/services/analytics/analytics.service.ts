@@ -172,25 +172,4 @@ export class AnalyticsService implements IAnalyticsService {
       ? { uid: user.profile.sub }
       : null;
   }
-
-  async trackPageByNielsen() {
-    if (this.runtime.isServer()) {
-      return;
-    }
-
-    try {
-      await this.dtmService.getLoadedPromise(LoadedEvent.nielsenLoaded);
-
-      const { nol_t } = this.windowService.getWindow();
-      if (nol_t) {
-        nol_t({ cid: "nz-stuff", content: "0", server: "secure-nz" })
-          .record()
-          .post();
-      } else {
-        this.logger.error(new Error("Nielsen Load fail"));
-      }
-    } catch (err) {
-      this.logger.error(err, "AnalyticsService - trackPageByNielsen error");
-    }
-  }
 }

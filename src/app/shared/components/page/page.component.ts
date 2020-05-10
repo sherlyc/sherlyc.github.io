@@ -8,10 +8,6 @@ import { CorrelationService } from "../../../services/correlation/correlation.se
 import { EventsService } from "../../../services/events/events.service";
 import { Subject } from "rxjs";
 import { NavigationStart } from "@angular/router";
-import { AnalyticsService } from "../../../services/analytics/analytics.service";
-import { environment } from "../../../../environments/environment";
-import { LoggerService } from "../../../services/logger/logger.service";
-import { RuntimeService } from "../../../services/runtime/runtime.service";
 
 @Component({
   selector: "app-page",
@@ -25,10 +21,7 @@ export class PageComponent implements OnInit {
     private adService: AdService,
     private title: Title,
     private correlationService: CorrelationService,
-    private eventsService: EventsService,
-    private loggerService: LoggerService,
-    private runtimeService: RuntimeService,
-    private analyticsService: AnalyticsService
+    private eventsService: EventsService
   ) {
     this.navigationStartSubject = this.eventsService.getEventSubject().NavigationStart;
   }
@@ -49,7 +42,6 @@ export class PageComponent implements OnInit {
       this.title.setTitle(page.title);
       this.contentBlocks = page.content;
       this.adService.notify();
-      this.analyticsService.trackPageByNielsen();
     });
   }
 }
