@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { of, Subscription, throwError } from "rxjs";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { OliService } from "../../services/oli/oli.service";
 import { RuntimeService } from "../../services/runtime/runtime.service";
 import { OliComponent } from "./oli.component";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 
 const oliSlotConfig = {
   adUnitPath: "/6674/mob.stuff.homepage",
@@ -59,11 +59,12 @@ describe("OliComponent", () => {
     ).toBeTruthy();
   });
 
-  it("should not do anything when in server", () => {
+  it("should not display or do anything when in server", () => {
     runtimeService.isServer.mockReturnValue(true);
 
     fixture.detectChanges();
 
+    expect(fixture.debugElement.query(By.css(".oliOverlay"))).toBeFalsy();
     expect(oliService.load).not.toHaveBeenCalled();
   });
 

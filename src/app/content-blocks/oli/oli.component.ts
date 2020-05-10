@@ -1,9 +1,9 @@
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { Subscription } from "rxjs";
 import { IOli } from "../../../../common/__types__/IOli";
 import { OliService } from "../../services/oli/oli.service";
 import { RuntimeService } from "../../services/runtime/runtime.service";
 import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
-import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-oli",
@@ -26,6 +26,7 @@ export class OliComponent implements IContentBlockComponent, OnInit, OnDestroy {
 
   ngOnInit() {
     if (this.runtimeService.isServer()) {
+      this.show = false;
       return;
     }
     this.subscription = this.oliService
