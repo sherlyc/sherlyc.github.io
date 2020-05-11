@@ -219,6 +219,20 @@ describe("PageComponent", () => {
     expect(adServiceMock.notify).toHaveBeenCalled();
   });
 
+  it("should post nielsen tracking record when the page rendering finishes", () => {
+    contentRetrieverMock.getContent.mockReturnValue(
+      of({
+        title: "",
+        version: "",
+        content: mockContentBlocks,
+        apiRequestId: ""
+      })
+    );
+    fixture.detectChanges();
+
+    expect(analyticsServiceMock.trackPageByNielsen).toHaveBeenCalled();
+  });
+
   function assertsForSuccessfulRetrieval() {
     expect(component.contentBlocks).toHaveLength(mockContentBlocks.length);
     (component.contentBlocks as Array<{ type: string }>).forEach(
