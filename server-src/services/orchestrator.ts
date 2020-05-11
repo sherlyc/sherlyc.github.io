@@ -51,6 +51,22 @@ const homepageAdPrefix = "homepage";
 export const newPage = (): HandlerInput[] => {
   const page: HandlerInput[] = [
     {
+      type: HandlerInputType.ContentBlockHandler,
+      contentBlocks: [
+        {
+          type: ContentBlockType.Oli,
+          config: {
+            adUnitPath: "/6674/mob.stuff.homepage",
+            size: [320, 460],
+            targetingParams: {
+              spade: "true",
+              pos: "interstitial-portrait"
+            }
+          }
+        }
+      ]
+    },
+    {
       type: HandlerInputType.BreakingNews
     },
     {

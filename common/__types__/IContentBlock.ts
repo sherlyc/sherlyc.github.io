@@ -27,6 +27,7 @@ import { IStickyContainer } from "./IStickyContainer";
 import { IBulletList } from "./IBulletList";
 import { IResponsiveExternalContent } from "./IResponsiveExternalContent";
 import { IArticleTitle } from "./IArticleTitle";
+import { IOli } from "./IOli";
 
 export type IContentBlock =
   | IDefconArticleUnit
@@ -57,4 +58,5 @@ export type IContentBlock =
   | IStickyContainer
   | IBulletList
   | IResponsiveExternalContent
-  | IArticleTitle;
+  | IArticleTitle
+  | IOli;
