@@ -54,11 +54,7 @@ export class OliService {
   }
 
   private isMatchingDeviceType(): boolean {
-    return (
-      [DeviceType.mobile, DeviceType.tablet].indexOf(
-        this.deviceService.getDevice()
-      ) !== -1
-    );
+    return this.deviceService.getDevice() === DeviceType.mobile;
   }
 
   private isFirstTimeForToday(): boolean {
