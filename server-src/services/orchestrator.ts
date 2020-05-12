@@ -79,15 +79,8 @@ export const newPage = (): HandlerInput[] => {
       color: "#2AAAF5"
     },
     {
-      type: HandlerInputType.ContentBlockHandler,
-      contentBlocks: [
-        {
-          type: ContentBlockType.FeatureContainer,
-          name: FeatureName.HomepageV2,
-          content: [],
-          fallback: []
-        }
-      ]
+      type: HandlerInputType.Feature,
+      name: FeatureName.HomepageV2
     },
     {
       type: HandlerInputType.RelevantStories

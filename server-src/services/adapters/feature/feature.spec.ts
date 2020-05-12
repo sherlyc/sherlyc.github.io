@@ -11,7 +11,7 @@ describe("Feature service", () => {
   };
 
   Object.entries(testCases).forEach(([featureName, [min, max]]) => {
-    range(-10, 110).forEach((rangeValue) => {
+    range(-1, 101).forEach((rangeValue) => {
       const shouldBeOn = inRange(rangeValue, min, max + 1);
       it(`${featureName} should be ${
         shouldBeOn ? "on" : "off"
@@ -24,5 +24,13 @@ describe("Feature service", () => {
         expect(result).toEqual(shouldBeOn);
       });
     });
+  });
+
+  it("HomepageV2 should be on for internal number 404", () => {
+    expect(isFeatureEnabled(
+      FeatureName.HomepageV2,
+      404,
+      DeviceType.unknown
+    )).toBeTruthy();
   });
 });
