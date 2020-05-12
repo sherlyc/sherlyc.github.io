@@ -11,6 +11,7 @@ import { Strap } from "./strap";
 import config from "./utils/config";
 import logger from "./utils/logger";
 import { formatVersion, parseVersion } from "./utils/version";
+import { FeatureName } from "../../common/FeatureName";
 
 const homepageStrapsConfig = config.strapConfig!.homepageStraps;
 
@@ -76,6 +77,17 @@ export const newPage = (): HandlerInput[] => {
       type: HandlerInputType.TopStories,
       strapName: `${homepageAdPrefix}TopStoriesDefaultOne`,
       color: "#2AAAF5"
+    },
+    {
+      type: HandlerInputType.ContentBlockHandler,
+      contentBlocks: [
+        {
+          type: ContentBlockType.FeatureContainer,
+          name: FeatureName.HomepageV2,
+          content: [],
+          fallback: []
+        }
+      ]
     },
     {
       type: HandlerInputType.RelevantStories
