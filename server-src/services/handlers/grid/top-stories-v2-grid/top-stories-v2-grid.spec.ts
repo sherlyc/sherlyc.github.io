@@ -15,6 +15,7 @@ describe("Top Stories V2 Grid Handler", () => {
   beforeEach(() => {
     jest.resetAllMocks();
   });
+
   it("should generate the grid with correct values", async () => {
     const fakeContentBlock = {} as IContentBlock;
 
