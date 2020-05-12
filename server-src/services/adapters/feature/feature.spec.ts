@@ -7,7 +7,7 @@ import { isFeatureEnabled } from "./feature";
 describe("Feature service", () => {
   const testCases: { [key in FeatureName]: [number, number] } = {
     [FeatureName.Placeholder]: [-1, -1],
-    [FeatureName.TopStoriesGreyLight]: [-1, -1]
+    [FeatureName.HomepageV2]: [-1, -1]
   };
 
   Object.entries(testCases).forEach(([featureName, [min, max]]) => {

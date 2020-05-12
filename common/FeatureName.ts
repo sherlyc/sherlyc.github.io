@@ -1,4 +1,4 @@
 export enum FeatureName {
   Placeholder = "Placeholder",
-  TopStoriesGreyLight = "TopStoriesGreyLight"
+  HomepageV2 = "HomepageV2"
 }
