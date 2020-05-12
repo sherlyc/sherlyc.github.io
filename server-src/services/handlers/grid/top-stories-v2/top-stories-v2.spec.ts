@@ -4,7 +4,10 @@ import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { ITopStoriesV2HandlerInput } from "../../__types__/ITopStoriesV2HandlerInput";
 import { Strap } from "../../../strap";
 import topStoriesV2 from "./top-stories-v2";
-import { ITopStoriesV2GridHandlerInput, TopStoriesV2GridPositions } from "../../__types__/ITopStoriesV2GridHandlerInput";
+import {
+  ITopStoriesV2GridHandlerInput,
+  TopStoriesV2GridPositions
+} from "../../__types__/ITopStoriesV2GridHandlerInput";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
@@ -75,14 +78,13 @@ describe("Top Stories V2", () => {
     const gridHandlerInput: ITopStoriesV2GridHandlerInput = {
       type: HandlerInputType.TopStoriesV2Grid,
       content: {
-        [TopStoriesV2GridPositions.LeftHighlight]: [
-          expect.objectContaining({
-            type: ContentBlockType.BigImageArticleUnit,
-            id: "1"
-          })
+        [TopStoriesV2GridPositions.LeftHighlight]: [expectBigImageArticle("1")],
+        [TopStoriesV2GridPositions.RightHighlight]: [
+          expectFeaturedArticle("2")
         ],
-        [TopStoriesV2GridPositions.RightHighlight]: [expectFeaturedArticle("2")],
-        [TopStoriesV2GridPositions.BannerAd]: [{ type: ContentBlockType.StickyContainer, items: [basicAdUnit]}],
+        [TopStoriesV2GridPositions.BannerAd]: [
+          { type: ContentBlockType.StickyContainer, items: [basicAdUnit] }
+        ],
         [TopStoriesV2GridPositions.LeftOne]: [expectBigImageArticle("3")],
         [TopStoriesV2GridPositions.LeftTwo]: [expectBigImageArticle("4")],
         [TopStoriesV2GridPositions.LeftThree]: [expectBigImageArticle("5")],
