@@ -133,7 +133,7 @@ describe("Oli service", () => {
     it.each`
       deviceType            | showOli
       ${DeviceType.mobile}  | ${true}
-      ${DeviceType.tablet}  | ${true}
+      ${DeviceType.tablet}  | ${false}
       ${DeviceType.bot}     | ${false}
       ${DeviceType.desktop} | ${false}
       ${DeviceType.tv}      | ${false}
