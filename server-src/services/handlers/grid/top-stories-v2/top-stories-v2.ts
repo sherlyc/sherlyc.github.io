@@ -10,6 +10,6 @@ export default async function(
   { strapName, color }: ITopStoriesV2HandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const articles = getRawArticles(Strap.TopStories, 10, params);
+  const articles = getRawArticles(Strap.TopStories, 9, params);
   return [];
 }

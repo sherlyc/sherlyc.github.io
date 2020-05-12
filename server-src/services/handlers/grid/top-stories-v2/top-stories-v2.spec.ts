@@ -22,6 +22,6 @@ describe("Top Stories V2", () => {
   it("should retrieve articles", async () => {
     await topStoriesV2(handlerRunnerMock, handlerInput, params);
 
-    expect(getRawArticles).toHaveBeenCalledWith(Strap.TopStories, 10, params);
+    expect(getRawArticles).toHaveBeenCalledWith(Strap.TopStories, 9, params);
   });
 });
