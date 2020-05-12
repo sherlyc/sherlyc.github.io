@@ -28,6 +28,20 @@ export default async function(
     [TopStoriesV2GridPositions.RightFour]: gridBlock(9, 1, 1, 2, [])
   };
 
+  const desktop: IGridBlocks = {
+    [TopStoriesV2GridPositions.LeftHighlight]: gridBlock(1, 1, 5, 2, []),
+    [TopStoriesV2GridPositions.RightHighlight]: gridBlock(1, 3, 7, 1, []),
+    [TopStoriesV2GridPositions.BannerAd]: gridBlock(1, 5, 11, 1, []),
+    [TopStoriesV2GridPositions.LeftOne]: gridBlock(6, 1, 4, 1, []),
+    [TopStoriesV2GridPositions.LeftTwo]: gridBlock(6, 2, 4, 1, []),
+    [TopStoriesV2GridPositions.LeftThree]: gridBlock(10, 1, 1, 1, []),
+    [TopStoriesV2GridPositions.LeftFour]: gridBlock(10, 2, 1, 1, []),
+    [TopStoriesV2GridPositions.RightOne]: gridBlock(8, 3, 1, 1, []),
+    [TopStoriesV2GridPositions.RightTwo]: gridBlock(9, 3, 1, 1, []),
+    [TopStoriesV2GridPositions.RightThree]: gridBlock(10, 3, 1, 1, []),
+    [TopStoriesV2GridPositions.RightFour]: gridBlock(11, 3, 1, 1, [])
+  };
+
   return [
     {
       type: ContentBlockType.GridContainer,
@@ -38,6 +52,13 @@ export default async function(
         gridColumnGap: "0px",
         gridRowGap: "20px",
         gridBlocks: mobile
+      },
+      desktop: {
+        gridTemplateColumns: "1fr 1fr 2fr 300px",
+        gridTemplateRows: "auto auto auto auto auto auto auto auto auto auto auto",
+        gridColumnGap: "20px",
+        gridRowGap: "20px",
+        gridBlocks: desktop
       }
     }
   ];

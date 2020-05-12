@@ -18,6 +18,7 @@ import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.c
 import { halfWidthImageArticleUnit } from "../../../adapters/article-converter/half-width-image-article-unit.converter";
 import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
 import { featuredArticle } from "../../../adapters/article-converter/featured-article.converter";
+import {halfImageArticleWithoutIntroUnit} from "../../../adapters/article-converter/half-image-article-without-intro-unit.converter";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -35,7 +36,8 @@ export default async function(
             bigImageArticleUnit(
               articles.shift() as IRawArticle,
               strapName,
-              ImageLayoutType.module
+              ImageLayoutType.module,
+              true
             ),
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,
@@ -49,7 +51,9 @@ export default async function(
               articles.shift() as IRawArticle,
               strapName,
               "white",
-              "black"
+              "black",
+              false,
+              true
             ),
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,
@@ -105,7 +109,7 @@ export default async function(
       [TopStoriesV2GridPositions.RightOne]: [
         contentErrorHandler(
           () =>
-            halfWidthImageArticleUnit(
+            halfImageArticleWithoutIntroUnit(
               articles.shift() as IRawArticle,
               strapName,
               ImageLayoutType.module
@@ -118,7 +122,7 @@ export default async function(
       [TopStoriesV2GridPositions.RightTwo]: [
         contentErrorHandler(
           () =>
-            halfWidthImageArticleUnit(
+            halfImageArticleWithoutIntroUnit(
               articles.shift() as IRawArticle,
               strapName,
               ImageLayoutType.module
