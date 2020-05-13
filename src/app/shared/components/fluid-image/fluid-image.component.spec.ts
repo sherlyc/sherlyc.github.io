@@ -172,19 +172,23 @@ describe("FluidImageComponent", () => {
     simulateResize(FluidImageWidth.xs);
 
     const { src, srcset } = getImg().attributes;
-    expect(src).toContain(`crop=${aspectRatio},smart`);
+    const cropQueryString = `crop=${aspectRatio},smart`;
+    expect(src).toContain(cropQueryString);
 
     const srcSetCrop = srcset?.match(/crop=([^&]*)/g);
-    srcSetCrop?.forEach((crop) => expect(crop).toEqual(`crop=${aspectRatio},smart`));
+    srcSetCrop?.forEach((crop) => expect(crop).toEqual(cropQueryString));
   });
 
   it.each([
     [AspectRatio.SixteenByNine, "56.25%"],
     [AspectRatio.OneByOne, "100%"]
-  ])("for aspect ratio %s, height should be %s", (aspectRatio: string, expectedHeight: string) => {
-    Object.assign(component, { ...componentInput, aspectRatio });
-    component.ngOnInit();
+  ])(
+    "for aspect ratio %s, height should be %s",
+    (aspectRatio: string, expectedHeight: string) => {
+      Object.assign(component, { ...componentInput, aspectRatio });
+      component.ngOnInit();
 
-    expect(component.height).toEqual(expectedHeight);
-  });
+      expect(component.height).toEqual(expectedHeight);
+    }
+  );
 });
