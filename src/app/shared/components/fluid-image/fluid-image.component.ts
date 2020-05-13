@@ -12,7 +12,7 @@ export class FluidImageComponent implements OnInit {
   @Input() imageSrc!: string;
   @Input() caption!: string;
 
-  @Input() aspectRatio = "16:9,smart";
+  @Input() aspectRatio?: string;
   @HostBinding("style.paddingBottom") height = `${(9 / 16) * 100}%`;
 
   src?: string;
@@ -79,5 +79,9 @@ export class FluidImageComponent implements OnInit {
     if (this.runtime.isServer()) {
       this.loadImg(FluidImageWidth.s, false);
     }
+    this.aspectRatio = this.aspectRatio || "16:9,smart";
+    const [_, w, h] = /^(\d+):(\d+)/.exec(this.aspectRatio);
+    // tslint:disable-next-line:no-bitwise
+    this.height = `${(~~h / ~~w) * 100}%`;
   }
 }
