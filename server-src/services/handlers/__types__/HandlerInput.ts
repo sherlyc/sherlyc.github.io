@@ -1,9 +1,10 @@
 import { IBannerHandlerInput } from "./IBannerHandlerInput";
 import { IBasicArticleListHandlerInput } from "./IBasicArticleListHandlerInput";
 import { IBasicArticleSectionHandlerInput } from "./IBasicArticleSectionHandlerInput";
-import { ITitleSectionHandlerInput } from "./ITitleSectionHandlerInput";
 import { IBiggieSmallsGridHandlerInput } from "./IBiggieSmallsGridHandlerInput";
 import { IBiggieSmallsHandlerInput } from "./IBiggieSmallsHandlerInput";
+import { IBrandGridHandlerInput } from "./IBrandGridHandlerInput";
+import { IBrandHandlerInput } from "./IBrandHandlerInput";
 import { IBreakingNewsHandlerInput } from "./IBreakingNewsHandlerInput";
 import { IColumnGridHandlerInput } from "./IColumnGridHandlerInput";
 import { IContentBlockHandlerInput } from "./IContentBlockHandlerInput";
@@ -17,23 +18,24 @@ import { IListGridHandlerInput } from "./IListGridHandlerInput";
 import { IMidStripHandlerInput } from "./IMidStripHandlerInput";
 import { IMiniMidStripHandlerInput } from "./IMiniMidStripHandlerInput";
 import { INewsSixGridHandlerInput } from "./INewsSixGridHandlerInput";
+import { INewsSixGridV2HandlerInput } from "./INewsSixGridV2HandlerInput";
 import { INewsSixHandlerInput } from "./INewsSixHandlerInput";
+import { INewsSixV2HandlerInput } from "./INewsSixV2HandlerInput";
 import { IPageHandlerInput } from "./IPageHandlerInput";
-import { IRelevantStoriesHandlerInput } from "./IRelevantStoriesHandlerInput";
 import { IRelevantStoriesGridHandlerInput } from "./IRelevantStoriesGridHandlerInput";
+import { IRelevantStoriesHandlerInput } from "./IRelevantStoriesHandlerInput";
+import { IResponsiveExternalContentHandlerInput } from "./IResponsiveExternalContentHandlerInput";
 import { ISixImageGridHandlerInput } from "./ISixImageGridHandlerInput";
 import { ISixImageHandlerInput } from "./ISixImageHandlerInput";
 import { IStripsGridHandlerInput } from "./IStripsGridHandlerInput";
 import { IStripsHandlerInput } from "./IStripsHandlerInput";
+import { ITitleSectionHandlerInput } from "./ITitleSectionHandlerInput";
 import { ITopStoriesArticleListHandlerInput } from "./ITopStoriesArticleListHandlerInput";
 import { ITopStoriesDefaultOneHighlightHandlerInput } from "./ITopStoriesDefaultOneHighlightHandlerInput";
 import { ITopStoriesDefconHighlightHandlerInput } from "./ITopStoriesDefconHighlightHandlerInput";
 import { ITopStoriesGridHandlerInput } from "./ITopStoriesGridHandlerInput";
 import { ITopStoriesHandlerInput } from "./ITopStoriesHandlerInput";
 import { IWeatherHandlerInput } from "./IWeatherHandlerInput";
-import { IBrandGridHandlerInput } from "./IBrandGridHandlerInput";
-import { IBrandHandlerInput } from "./IBrandHandlerInput";
-import { IResponsiveExternalContentHandlerInput } from "./IResponsiveExternalContentHandlerInput";
 
 export type HandlerInput =
   | IContentBlockHandlerInput
@@ -58,6 +60,8 @@ export type HandlerInput =
   | IBiggieSmallsGridHandlerInput
   | INewsSixHandlerInput
   | INewsSixGridHandlerInput
+  | INewsSixV2HandlerInput
+  | INewsSixGridV2HandlerInput
   | ISixImageHandlerInput
   | ISixImageGridHandlerInput
   | IStripsHandlerInput

@@ -101,7 +101,8 @@ app-logo {
   }
 }
 
-.content-blocks > app-grid-container {
+.content-blocks > app-grid-container,
+.content-blocks > app-feature-container > app-grid-container {
   @include mobile {
     margin-bottom: 20px;
   }

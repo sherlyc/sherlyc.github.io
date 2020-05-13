@@ -4,7 +4,6 @@ import { HandlerInputType } from "./__types__/HandlerInputType";
 import Banner from "./banner/banner";
 import ArticleList from "./basic-article-list/basic-article-list";
 import ArticleSection from "./basic-article-section/basic-article-section";
-import TitleSection from "./title-section/title-section";
 import BreakingNews from "./breaking-news/breaking-news";
 import ContentBlockHandler from "./content-block/content-block-handler";
 import Experiment from "./experiment-handler/experiment-handler";
@@ -13,14 +12,18 @@ import Feature from "./feature-handler/feature-handler";
 import ForceUpdate from "./force-update/force-update";
 import BiggieSmallsGrid from "./grid/biggie-smalls-grid/biggie-smalls-grid";
 import BiggieSmalls from "./grid/biggie-smalls/biggie-smalls";
+import BrandGrid from "./grid/brand-grid/brand-grid";
+import Brand from "./grid/brand/brand";
 import ColumnGrid from "./grid/column-grid/column-grid";
 import LargeLeadSixGrid from "./grid/large-lead-six-grid/large-lead-six-grid";
 import LargeLeadSix from "./grid/large-lead-six/large-lead-six";
 import ListGrid from "./grid/list-grid/list-grid";
 import NewsSixGrid from "./grid/news-six-grid/news-six-grid";
+import NewsSixV2Grid from "./grid/news-six-v2-grid/news-six-v2-grid";
+import NewsSixV2 from "./grid/news-six-v2/news-six-v2";
 import NewsSix from "./grid/news-six/news-six";
-import RelevantStories from "./grid/relevant-stories/relevant-stories";
 import RelevantStoriesGrid from "./grid/relevant-stories-grid/relevant-stories-grid";
+import RelevantStories from "./grid/relevant-stories/relevant-stories";
 import SixImageGrid from "./grid/six-image-grid/six-image-grid";
 import SixImage from "./grid/six-image/six-image";
 import StripsGrid from "./grid/strips-grid/strips-grid";
@@ -32,11 +35,10 @@ import TopStories from "./grid/top-stories/top-stories";
 import MidStrip from "./midstrip-handler/midstrip-handler";
 import MiniMidStrip from "./mini-midstrip-handler/mini-midstrip-handler";
 import Page from "./page/page";
-import Brand from "./grid/brand/brand";
-import BrandGrid from "./grid/brand-grid/brand-grid";
 import ResponsiveExternalContent from "./responsive-external-content/responsive-external-content";
 
 import { handlerRunnerFunction } from "./runner";
+import TitleSection from "./title-section/title-section";
 import TopStoriesArticleList from "./top-stories-article-list/top-stories-article-list";
 import Weather from "./weather/weather";
 
@@ -69,6 +71,8 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   BiggieSmallsGrid,
   NewsSix,
   NewsSixGrid,
+  NewsSixV2,
+  NewsSixV2Grid,
   SixImage,
   SixImageGrid,
   Strips,
