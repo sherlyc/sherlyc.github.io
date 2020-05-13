@@ -7,6 +7,7 @@ import { HandlerInputType } from "../../__types__/HandlerInputType";
 import topStoriesV2GridHandler from "./top-stories-v2-grid";
 import { IParams } from "../../../__types__/IParams";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { Border } from "../../../../../common/__types__/IGridContainer";
 
 describe("Top Stories V2 Grid Handler", () => {
   const handlerRunnerMock = jest.fn();
@@ -61,18 +62,18 @@ describe("Top Stories V2 Grid Handler", () => {
         mobile: {
           gridTemplateColumns: "1fr 1fr",
           gridTemplateRows: "auto auto auto auto auto auto auto auto auto",
-          gridColumnGap: "0px",
+          gridColumnGap: "20px",
           gridRowGap: "20px",
           gridBlocks: {
             [TopStoriesV2GridPositions.LeftHighlight]: {
-              border: [],
+              border: [Border.bottom],
               columnStart: 1,
               columnSpan: 2,
               rowStart: 1,
               rowSpan: 1
             },
             [TopStoriesV2GridPositions.RightHighlight]: {
-              border: [],
+              border: [Border.bottom],
               columnStart: 1,
               columnSpan: 2,
               rowStart: 2,
@@ -86,56 +87,56 @@ describe("Top Stories V2 Grid Handler", () => {
               rowSpan: 1
             },
             [TopStoriesV2GridPositions.LeftOne]: {
-              border: [],
+              border: [Border.bottom],
               columnStart: 1,
               columnSpan: 1,
               rowStart: 4,
               rowSpan: 1
             },
             [TopStoriesV2GridPositions.LeftTwo]: {
-              border: [],
+              border: [Border.bottom],
               columnStart: 2,
               columnSpan: 1,
               rowStart: 4,
               rowSpan: 1
             },
             [TopStoriesV2GridPositions.LeftThree]: {
-              border: [],
+              border: [Border.bottom],
               columnStart: 1,
               columnSpan: 1,
               rowStart: 5,
               rowSpan: 1
             },
             [TopStoriesV2GridPositions.LeftFour]: {
-              border: [],
+              border: [Border.bottom],
               columnStart: 2,
               columnSpan: 1,
               rowStart: 5,
               rowSpan: 1
             },
             [TopStoriesV2GridPositions.RightOne]: {
-              border: [],
+              border: [Border.bottom],
               columnStart: 1,
               columnSpan: 2,
               rowStart: 6,
               rowSpan: 1
             },
             [TopStoriesV2GridPositions.RightTwo]: {
-              border: [],
+              border: [Border.bottom],
               columnStart: 1,
               columnSpan: 2,
               rowStart: 7,
               rowSpan: 1
             },
             [TopStoriesV2GridPositions.RightThree]: {
-              border: [],
+              border: [Border.bottom],
               columnStart: 1,
               columnSpan: 2,
               rowStart: 8,
               rowSpan: 1
             },
             [TopStoriesV2GridPositions.RightFour]: {
-              border: [],
+              border: [Border.bottom],
               columnStart: 1,
               columnSpan: 2,
               rowStart: 9,
