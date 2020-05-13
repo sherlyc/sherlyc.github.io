@@ -51,7 +51,7 @@ export default async function(
               articles.shift() as IRawArticle,
               strapName,
               "black",
-              "#faf9f2",
+              "#f1f1f1c7",
               false,
               true,
               "",
