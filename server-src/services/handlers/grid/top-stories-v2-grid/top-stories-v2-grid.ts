@@ -47,6 +47,36 @@ export default async function(
     ])
   };
 
+  const tablet: IGridBlocks = {
+    [TopStoriesV2GridPositions.LeftHighlight]: gridBlock(1, 1, 4, 2, [
+      Border.bottom
+    ]),
+    [TopStoriesV2GridPositions.RightHighlight]: gridBlock(1, 3, 7, 1, [
+      Border.bottom
+    ]),
+    [TopStoriesV2GridPositions.BannerAd]: gridBlock(12, 1, 1, 3, []),
+    [TopStoriesV2GridPositions.LeftOne]: gridBlock(5, 1, 4, 1, [Border.bottom]),
+    [TopStoriesV2GridPositions.LeftTwo]: gridBlock(5, 2, 4, 1, [Border.bottom]),
+    [TopStoriesV2GridPositions.LeftThree]: gridBlock(9, 1, 3, 1, [
+      Border.bottom
+    ]),
+    [TopStoriesV2GridPositions.LeftFour]: gridBlock(9, 2, 3, 1, [
+      Border.bottom
+    ]),
+    [TopStoriesV2GridPositions.RightOne]: gridBlock(8, 3, 1, 1, [
+      Border.bottom
+    ]),
+    [TopStoriesV2GridPositions.RightTwo]: gridBlock(9, 3, 1, 1, [
+      Border.bottom
+    ]),
+    [TopStoriesV2GridPositions.RightThree]: gridBlock(10, 3, 1, 1, [
+      Border.bottom
+    ]),
+    [TopStoriesV2GridPositions.RightFour]: gridBlock(11, 3, 1, 1, [
+      Border.bottom
+    ])
+  };
+
   const desktop: IGridBlocks = {
     [TopStoriesV2GridPositions.LeftHighlight]: gridBlock(1, 1, 4, 2, [
       Border.bottom
@@ -89,12 +119,12 @@ export default async function(
         gridBlocks: mobile
       },
       tablet: {
-        gridTemplateColumns: "1fr 1fr 2fr 300px",
+        gridTemplateColumns: "1fr 1fr 2fr",
         gridTemplateRows:
-          "auto auto auto auto auto auto auto auto auto auto auto",
+          "auto auto auto auto auto auto auto auto auto auto auto auto",
         gridColumnGap: "20px",
         gridRowGap: "20px",
-        gridBlocks: desktop
+        gridBlocks: tablet
       },
       desktop: {
         gridTemplateColumns: "1fr 1fr 2fr 300px",
