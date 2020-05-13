@@ -4,10 +4,7 @@ import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { ITopStoriesV2HandlerInput } from "../../__types__/ITopStoriesV2HandlerInput";
 import { Strap } from "../../../strap";
 import topStoriesV2 from "./top-stories-v2";
-import {
-  ITopStoriesV2GridHandlerInput,
-  TopStoriesV2GridPositions
-} from "../../__types__/ITopStoriesV2GridHandlerInput";
+import { ITopStoriesV2GridHandlerInput, TopStoriesV2GridPositions } from "../../__types__/ITopStoriesV2GridHandlerInput";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
@@ -34,27 +31,9 @@ describe("Top Stories V2", () => {
   const fakeArticlesWithIds = (ids: number[]) =>
     ids.map((id) => ({ id: `${id}` } as IRawArticle));
 
-  const expectBigImageArticle = (id: string) =>
+  const expectContent = (type: ContentBlockType, id: string) =>
     expect.objectContaining({
-      type: ContentBlockType.BigImageArticleUnit,
-      id
-    });
-
-  const expectFeaturedArticle = (id: string) =>
-    expect.objectContaining({
-      type: ContentBlockType.FeaturedArticle,
-      id
-    });
-
-  const expectHalfWidthImage = (id: string) =>
-    expect.objectContaining({
-      type: ContentBlockType.HalfWidthImageArticleUnit,
-      id
-    });
-
-  const expectBasicArticleTitle = (id: string) =>
-    expect.objectContaining({
-      type: ContentBlockType.BasicArticleTitleUnit,
+      type: type,
       id
     });
 
@@ -78,21 +57,21 @@ describe("Top Stories V2", () => {
     const gridHandlerInput: ITopStoriesV2GridHandlerInput = {
       type: HandlerInputType.TopStoriesV2Grid,
       content: {
-        [TopStoriesV2GridPositions.LeftHighlight]: [expectBigImageArticle("1")],
+        [TopStoriesV2GridPositions.LeftHighlight]: [expectContent(ContentBlockType.BigImageArticleUnit, "1")],
         [TopStoriesV2GridPositions.RightHighlight]: [
-          expectFeaturedArticle("2")
+          expectContent(ContentBlockType.FeaturedArticle, "2")
         ],
         [TopStoriesV2GridPositions.BannerAd]: [
           { type: ContentBlockType.StickyContainer, items: [basicAdUnit] }
         ],
-        [TopStoriesV2GridPositions.LeftOne]: [expectBigImageArticle("3")],
-        [TopStoriesV2GridPositions.LeftTwo]: [expectBigImageArticle("4")],
-        [TopStoriesV2GridPositions.LeftThree]: [expectBigImageArticle("5")],
+        [TopStoriesV2GridPositions.LeftOne]: [expectContent(ContentBlockType.BigImageArticleUnit, "3")],
+        [TopStoriesV2GridPositions.LeftTwo]: [expectContent(ContentBlockType.BigImageArticleUnit, "4")],
+        [TopStoriesV2GridPositions.LeftThree]: [expectContent(ContentBlockType.ImageLinkUnit, "5")],
         [TopStoriesV2GridPositions.LeftFour]: [basicAdUnit],
-        [TopStoriesV2GridPositions.RightOne]: [expectHalfWidthImage("6")],
-        [TopStoriesV2GridPositions.RightTwo]: [expectHalfWidthImage("7")],
-        [TopStoriesV2GridPositions.RightThree]: [expectBasicArticleTitle("8")],
-        [TopStoriesV2GridPositions.RightFour]: [expectBasicArticleTitle("9")]
+        [TopStoriesV2GridPositions.RightOne]: [expectContent(ContentBlockType.HalfImageArticleWithoutIntroUnit, "6")],
+        [TopStoriesV2GridPositions.RightTwo]: [expectContent(ContentBlockType.HalfImageArticleWithoutIntroUnit, "7")],
+        [TopStoriesV2GridPositions.RightThree]: [expectContent(ContentBlockType.BasicArticleTitleUnit, "8")],
+        [TopStoriesV2GridPositions.RightFour]: [expectContent(ContentBlockType.BasicArticleTitleUnit, "9")]
       }
     };
 

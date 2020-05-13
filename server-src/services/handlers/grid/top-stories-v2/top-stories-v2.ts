@@ -15,10 +15,10 @@ import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
-import { halfWidthImageArticleUnit } from "../../../adapters/article-converter/half-width-image-article-unit.converter";
 import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
 import { featuredArticle } from "../../../adapters/article-converter/featured-article.converter";
-import {halfImageArticleWithoutIntroUnit} from "../../../adapters/article-converter/half-image-article-without-intro-unit.converter";
+import { halfImageArticleWithoutIntroUnit } from "../../../adapters/article-converter/half-image-article-without-intro-unit.converter";
+import { imageLinkUnit } from "../../../adapters/article-converter/image-link-unit.converter";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -50,10 +50,12 @@ export default async function(
             featuredArticle(
               articles.shift() as IRawArticle,
               strapName,
-              "white",
               "black",
+              "#faf9f2",
               false,
-              true
+              true,
+              "",
+              "1:1,smart"
             ),
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,
@@ -95,7 +97,7 @@ export default async function(
       [TopStoriesV2GridPositions.LeftThree]: [
         contentErrorHandler(
           () =>
-            bigImageArticleUnit(
+            imageLinkUnit(
               articles.shift() as IRawArticle,
               strapName,
               ImageLayoutType.module
