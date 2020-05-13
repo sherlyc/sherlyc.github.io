@@ -7,4 +7,5 @@ export interface IFeaturedArticle extends IArticle {
   textColor: string;
   applyGradient?: boolean;
   pumped?: boolean;
+  imageRatio?: string;
 }

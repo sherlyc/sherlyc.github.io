@@ -9,7 +9,8 @@ export const featuredArticle = (
   boxColor: string,
   applyGradient = false,
   pumped = false,
-  identifierColor?: string
+  identifierColor?: string,
+  imageRatio?: string
 ): IFeaturedArticle => ({
   type: ContentBlockType.FeaturedArticle,
   id: article.id,
@@ -27,5 +28,6 @@ export const featuredArticle = (
   textColor,
   boxColor,
   applyGradient,
-  pumped
+  pumped,
+  imageRatio
 });
