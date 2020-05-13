@@ -17,7 +17,7 @@ describe("FluidImageComponent", () => {
   const componentInput = {
     imageSrc: "https://meme.com/lucas.jpg",
     caption: "coding lucas",
-    aspectRatio: "16:9,smart"
+    aspectRatio: "16:9"
   };
 
   const expectedSrc = `${componentInput.imageSrc}?format=pjpg&crop=${componentInput.aspectRatio}`;
@@ -163,5 +163,22 @@ describe("FluidImageComponent", () => {
     Object.assign(component, { ...componentInput, imageSrc: null });
     simulateResize(FluidImageWidth.xs);
     expect(getImg()).toBe(null);
+  });
+
+  it("should apply the correct aspect ratio", () => {
+    const aspectRatio = "1:1";
+    Object.assign(component, { ...componentInput, aspectRatio });
+    simulateResize(FluidImageWidth.xs);
+
+    const { src, srcset } = getImg().attributes;
+    expect(src).toContain(`crop=${aspectRatio}`);
+
+    const srcSetList = srcset?.split(",");
+    srcSetList?.forEach((srcSet) => {
+      const cropQueryString = srcSet
+        .split("&")
+        .find((s) => s.includes("crop="));
+      expect(cropQueryString).toEqual(`crop=${aspectRatio}`);
+    });
   });
 });
