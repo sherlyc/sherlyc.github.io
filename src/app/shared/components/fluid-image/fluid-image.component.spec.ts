@@ -173,12 +173,7 @@ describe("FluidImageComponent", () => {
     const { src, srcset } = getImg().attributes;
     expect(src).toContain(`crop=${aspectRatio}`);
 
-    const srcSetList = srcset?.split(",");
-    srcSetList?.forEach((srcSet) => {
-      const cropQueryString = srcSet
-        .split("&")
-        .find((s) => s.includes("crop="));
-      expect(cropQueryString).toEqual(`crop=${aspectRatio}`);
-    });
+    const srcSetCrop = srcset?.match(/crop=([^&]*)/g);
+    srcSetCrop?.forEach((crop) => expect(crop).toEqual(`crop=${aspectRatio}`));
   });
 });
