@@ -47,7 +47,7 @@ describe("Top Stories V2", () => {
     expect(getRawArticles).toHaveBeenCalledWith(Strap.TopStories, 9, params);
   });
 
-  it("should call top stories v2 grid", async () => {
+  it("should call top stories v2 grid with correct content blocks", async () => {
     (getRawArticles as jest.Mock).mockResolvedValue(
       fakeArticlesWithIds([1, 2, 3, 4, 5, 6, 7, 8, 9])
     );

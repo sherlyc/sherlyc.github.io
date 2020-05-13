@@ -12,6 +12,7 @@ import { HeadlineComponent } from "../../shared/components/headline/headline.com
 import { SharedModule } from "../../shared/shared.module";
 import { FeaturedArticleComponent } from "./featured-article.component";
 import { FluidImageComponent } from "../../shared/components/fluid-image/fluid-image.component";
+import { AspectRatio } from "../../../../common/AspectRatio";
 
 describe("FeaturedArticleComponent", () => {
   let component: FeaturedArticleComponent;
@@ -35,7 +36,7 @@ describe("FeaturedArticleComponent", () => {
     applyGradient: false,
     identifier: "Identifier",
     identifierColor: "blue",
-    imageAspectRatio: "1:1"
+    imageAspectRatio: AspectRatio.SixteenByNine
   };
 
   beforeEach(async(() => {
