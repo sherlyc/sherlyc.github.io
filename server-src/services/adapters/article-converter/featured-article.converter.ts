@@ -29,5 +29,5 @@ export const featuredArticle = (
   boxColor,
   applyGradient,
   pumped,
-  imageRatio
+  imageAspectRatio: imageRatio
 });

@@ -11,7 +11,7 @@ import { ResizeObserverService } from "../../services/resize-observer/resize-obs
 import { HeadlineComponent } from "../../shared/components/headline/headline.component";
 import { SharedModule } from "../../shared/shared.module";
 import { FeaturedArticleComponent } from "./featured-article.component";
-import {FluidImageComponent} from "../../shared/components/fluid-image/fluid-image.component";
+import { FluidImageComponent } from "../../shared/components/fluid-image/fluid-image.component";
 
 describe("FeaturedArticleComponent", () => {
   let component: FeaturedArticleComponent;
@@ -35,7 +35,7 @@ describe("FeaturedArticleComponent", () => {
     applyGradient: false,
     identifier: "Identifier",
     identifierColor: "blue",
-    imageRatio: "1:1,smart"
+    imageAspectRatio: "1:1"
   };
 
   beforeEach(async(() => {
@@ -149,7 +149,7 @@ describe("FeaturedArticleComponent", () => {
       By.directive(FluidImageComponent)
     ).componentInstance;
 
-    expect(image.aspectRatio).toEqual(articleData.imageRatio);
+    expect(image.aspectRatio).toEqual(articleData.imageAspectRatio);
   });
 
   it("should render headline component", () => {

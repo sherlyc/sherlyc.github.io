@@ -55,7 +55,7 @@ export default async function(
               false,
               true,
               "",
-              "1:1,smart"
+              "1:1"
             ),
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,

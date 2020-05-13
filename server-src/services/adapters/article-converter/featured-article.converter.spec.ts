@@ -10,7 +10,7 @@ describe("Featured Article", () => {
   const applyGradient = true;
   const pumped = true;
   const identifierColor = "black";
-  const imageRatio = "16:9,smart";
+  const imageAspectRatio = "16:9";
 
   const fakeArticle: IRawArticle = {
     id: "1",
@@ -47,7 +47,7 @@ describe("Featured Article", () => {
     applyGradient,
     pumped,
     identifierColor,
-    imageRatio
+    imageAspectRatio
   };
 
   it("should convert", () => {
@@ -59,7 +59,7 @@ describe("Featured Article", () => {
       applyGradient,
       pumped,
       identifierColor,
-      imageRatio
+      imageAspectRatio
     );
 
     expect(result).toEqual(expected);
