@@ -11,7 +11,6 @@ import { WindowService } from "../../../services/window/window.service";
 export class FluidImageComponent implements OnInit {
   @Input() imageSrc!: string;
   @Input() caption!: string;
-
   @Input() aspectRatio?: string;
   @HostBinding("style.paddingBottom") height = `${(9 / 16) * 100}%`;
 
@@ -38,7 +37,7 @@ export class FluidImageComponent implements OnInit {
   private loadImg(newWidth: FluidImageWidth, lazyload: boolean) {
     this.width = newWidth;
     this.lazyload = lazyload ? "lazy" : "auto";
-    const src = `${this.imageSrc}?format=pjpg&crop=${this.aspectRatio}&width=${newWidth}`;
+    const src = `${this.imageSrc}?format=pjpg&crop=${this.aspectRatio},smart&width=${newWidth}`;
     this.srcset = `${src}, ${src}&dpr=2 2x, ${src}&dpr=3 3x`;
     this.src = src;
   }
@@ -79,9 +78,8 @@ export class FluidImageComponent implements OnInit {
     if (this.runtime.isServer()) {
       this.loadImg(FluidImageWidth.s, false);
     }
-    this.aspectRatio = this.aspectRatio || "16:9,smart";
-    const [_, w, h] = /^(\d+):(\d+)/.exec(this.aspectRatio);
-    // tslint:disable-next-line:no-bitwise
-    this.height = `${(~~h / ~~w) * 100}%`;
+    this.aspectRatio = `${this.aspectRatio || "16:9"}`;
+    const [_, width, height] = /^(\d+):(\d+)/.exec(this.aspectRatio);
+    this.height = `${Number(height) / Number(width) * 100}%`;
   }
 }

@@ -20,7 +20,7 @@ describe("FluidImageComponent", () => {
     aspectRatio: "16:9"
   };
 
-  const expectedSrc = `${componentInput.imageSrc}?format=pjpg&crop=${componentInput.aspectRatio}`;
+  const expectedSrc = `${componentInput.imageSrc}?format=pjpg&crop=${componentInput.aspectRatio},smart`;
 
   const simulateResize = (width: FluidImageWidth | number) => {
     const fakeTarget = { getBoundingClientRect: () => ({ top: 100 }) } as any;
@@ -171,9 +171,9 @@ describe("FluidImageComponent", () => {
     simulateResize(FluidImageWidth.xs);
 
     const { src, srcset } = getImg().attributes;
-    expect(src).toContain(`crop=${aspectRatio}`);
+    expect(src).toContain(`crop=${aspectRatio},smart`);
 
     const srcSetCrop = srcset?.match(/crop=([^&]*)/g);
-    srcSetCrop?.forEach((crop) => expect(crop).toEqual(`crop=${aspectRatio}`));
+    srcSetCrop?.forEach((crop) => expect(crop).toEqual(`crop=${aspectRatio},smart`));
   });
 });
