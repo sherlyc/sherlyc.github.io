@@ -1,6 +1,7 @@
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IFeaturedArticle } from "../../../../common/__types__/IFeaturedArticle";
 import { IRawArticle } from "../__types__/IRawArticle";
+import { AspectRatio } from "../../../../common/AspectRatio";
 
 export const featuredArticle = (
   article: IRawArticle,
@@ -10,7 +11,7 @@ export const featuredArticle = (
   applyGradient = false,
   pumped = false,
   identifierColor?: string,
-  imageAspectRatio?: string
+  imageAspectRatio?: AspectRatio
 ): IFeaturedArticle => ({
   type: ContentBlockType.FeaturedArticle,
   id: article.id,

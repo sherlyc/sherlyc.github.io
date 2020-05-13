@@ -2,6 +2,7 @@ import { Component, HostBinding, Input, OnInit } from "@angular/core";
 import { FluidImageWidth } from "../../../../../common/FluidImageWidth";
 import { RuntimeService } from "../../../services/runtime/runtime.service";
 import { WindowService } from "../../../services/window/window.service";
+import { AspectRatio } from "../../../../../common/AspectRatio";
 
 @Component({
   selector: "app-fluid-image",
@@ -11,7 +12,7 @@ import { WindowService } from "../../../services/window/window.service";
 export class FluidImageComponent implements OnInit {
   @Input() imageSrc!: string;
   @Input() caption!: string;
-  @Input() aspectRatio?: string;
+  @Input() aspectRatio?: AspectRatio;
   @HostBinding("style.paddingBottom") height = `${(9 / 16) * 100}%`;
 
   src?: string;
@@ -78,7 +79,7 @@ export class FluidImageComponent implements OnInit {
     if (this.runtime.isServer()) {
       this.loadImg(FluidImageWidth.s, false);
     }
-    this.aspectRatio = this.aspectRatio || "16:9";
+    this.aspectRatio = this.aspectRatio || AspectRatio.SixteenByNine;
     const [_, width, height] = /^(\d+):(\d+)/.exec(this.aspectRatio);
     this.height = `${Number(height) / Number(width) * 100}%`;
   }

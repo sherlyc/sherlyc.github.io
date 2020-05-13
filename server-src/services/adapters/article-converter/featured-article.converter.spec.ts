@@ -2,6 +2,7 @@ import { ContentBlockType } from "../../../../common/__types__/ContentBlockType"
 import { IFeaturedArticle } from "../../../../common/__types__/IFeaturedArticle";
 import { IRawArticle } from "../__types__/IRawArticle";
 import { featuredArticle } from "./featured-article.converter";
+import { AspectRatio } from "../../../../common/AspectRatio";
 
 describe("Featured Article", () => {
   const strapName = "strapName";
@@ -10,7 +11,7 @@ describe("Featured Article", () => {
   const applyGradient = true;
   const pumped = true;
   const identifierColor = "black";
-  const imageAspectRatio = "16:9";
+  const imageAspectRatio = AspectRatio.SixteenByNine;
 
   const fakeArticle: IRawArticle = {
     id: "1",

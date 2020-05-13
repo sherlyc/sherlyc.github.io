@@ -4,10 +4,7 @@ import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { ITopStoriesV2HandlerInput } from "../../__types__/ITopStoriesV2HandlerInput";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { Strap } from "../../../strap";
-import {
-  ITopStoriesV2GridHandlerInput,
-  TopStoriesV2GridPositions
-} from "../../__types__/ITopStoriesV2GridHandlerInput";
+import { ITopStoriesV2GridHandlerInput, TopStoriesV2GridPositions } from "../../__types__/ITopStoriesV2GridHandlerInput";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { bigImageArticleUnit } from "../../../adapters/article-converter/big-image-article.converter";
 import { contentErrorHandler } from "../content-error-handler";
@@ -19,6 +16,7 @@ import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic
 import { featuredArticle } from "../../../adapters/article-converter/featured-article.converter";
 import { halfImageArticleWithoutIntroUnit } from "../../../adapters/article-converter/half-image-article-without-intro-unit.converter";
 import { imageLinkUnit } from "../../../adapters/article-converter/image-link-unit.converter";
+import { AspectRatio } from "../../../../../common/AspectRatio";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -55,7 +53,7 @@ export default async function(
               false,
               true,
               "",
-              "1:1"
+              AspectRatio.OneByOne
             ),
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,

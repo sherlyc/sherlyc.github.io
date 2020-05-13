@@ -5,6 +5,7 @@ import { mockService, ServiceMock } from "../../../services/mocks/MockService";
 import { RuntimeService } from "../../../services/runtime/runtime.service";
 import { WindowService } from "../../../services/window/window.service";
 import { FluidImageComponent } from "./fluid-image.component";
+import { AspectRatio } from "../../../../../common/AspectRatio";
 
 describe("FluidImageComponent", () => {
   let component: FluidImageComponent;
@@ -17,7 +18,7 @@ describe("FluidImageComponent", () => {
   const componentInput = {
     imageSrc: "https://meme.com/lucas.jpg",
     caption: "coding lucas",
-    aspectRatio: "16:9"
+    aspectRatio: AspectRatio.SixteenByNine
   };
 
   const expectedSrc = `${componentInput.imageSrc}?format=pjpg&crop=${componentInput.aspectRatio},smart`;
@@ -166,7 +167,7 @@ describe("FluidImageComponent", () => {
   });
 
   it("should apply the correct aspect ratio", () => {
-    const aspectRatio = "1:1";
+    const aspectRatio = AspectRatio.OneByOne;
     Object.assign(component, { ...componentInput, aspectRatio });
     simulateResize(FluidImageWidth.xs);
 
@@ -178,9 +179,8 @@ describe("FluidImageComponent", () => {
   });
 
   it.each([
-    ["16:9", "56.25%"],
-    ["4:3", "75%"],
-    ["1:1", "100%"]
+    [AspectRatio.SixteenByNine, "56.25%"],
+    [AspectRatio.OneByOne, "100%"]
   ])("for aspect ratio %s, height should be %s", (aspectRatio: string, expectedHeight: string) => {
     Object.assign(component, { ...componentInput, aspectRatio });
     component.ngOnInit();
