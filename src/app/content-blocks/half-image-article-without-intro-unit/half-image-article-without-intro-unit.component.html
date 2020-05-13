@@ -2,10 +2,10 @@
   <meta itemprop="position" content="{{ index }}" />
   <a itemprop="url" href="{{ input.linkUrl }}" appOpenExternalLink="{{ input.linkUrl }}" (click)="sendAnalytics()">
     <div class="row">
-      <div class="col-sm-12 col-xs-6 column image">
+      <div class="col-xs-6 column image">
         <app-fluid-image [imageSrc]="input.imageSrc" [caption]="input.indexHeadline"></app-fluid-image>
       </div>
-      <div class="col-sm-12 col-xs-6 column">
+      <div class="col-xs-6 column">
         <app-headline [headline]="input.indexHeadline" [headlineFlags]="input.headlineFlags" [identifier]="input.identifier" [identifierColor]="input.identifierColor"></app-headline>
         <app-time-ago [timestamp]="input.lastPublishedTime" [textColor]="'#616161'"></app-time-ago>
       </div>
