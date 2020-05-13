@@ -176,4 +176,15 @@ describe("FluidImageComponent", () => {
     const srcSetCrop = srcset?.match(/crop=([^&]*)/g);
     srcSetCrop?.forEach((crop) => expect(crop).toEqual(`crop=${aspectRatio},smart`));
   });
+
+  it.each([
+    ["16:9", "56.25%"],
+    ["4:3", "75%"],
+    ["1:1", "100%"]
+  ])("for aspect ratio %s, height should be %s", (aspectRatio: string, expectedHeight: string) => {
+    Object.assign(component, { ...componentInput, aspectRatio });
+    component.ngOnInit();
+
+    expect(component.height).toEqual(expectedHeight);
+  });
 });

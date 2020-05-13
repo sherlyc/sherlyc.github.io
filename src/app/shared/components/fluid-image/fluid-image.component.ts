@@ -78,7 +78,7 @@ export class FluidImageComponent implements OnInit {
     if (this.runtime.isServer()) {
       this.loadImg(FluidImageWidth.s, false);
     }
-    this.aspectRatio = `${this.aspectRatio || "16:9"}`;
+    this.aspectRatio = this.aspectRatio || "16:9";
     const [_, width, height] = /^(\d+):(\d+)/.exec(this.aspectRatio);
     this.height = `${Number(height) / Number(width) * 100}%`;
   }
