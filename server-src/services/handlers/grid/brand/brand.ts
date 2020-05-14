@@ -1,4 +1,4 @@
-import chunk from "lodash-es/chunk";
+import { chunk } from "lodash-es";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IParams } from "../../../__types__/IParams";

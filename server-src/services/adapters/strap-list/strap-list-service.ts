@@ -1,4 +1,4 @@
-import flatten from "lodash-es/flatten";
+import { flatten } from "lodash-es";
 import { IParams } from "../../__types__/IParams";
 import { Strap } from "../../strap";
 import config from "../../utils/config";

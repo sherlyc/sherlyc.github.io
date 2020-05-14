@@ -1,4 +1,4 @@
-import cloneDeep from "lodash-es/cloneDeep";
+import { cloneDeep } from "lodash-es";
 import { Forecasts } from "../../../../common/Forecasts";
 import { IWeather } from "../__types__/IWeather";
 import { weatherMapper } from "./weather-mapper";
