@@ -5,6 +5,5 @@
   "roots": ["server-src/test-api"],
   "moduleNameMapper": {
     "^lodash-es$": "<rootDir>/node_modules/lodash/index.js"
-  },
-  "transformIgnorePatterns": ["node_modules/(?!lodash-es)"]
+  }
 }
