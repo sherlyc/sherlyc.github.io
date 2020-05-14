@@ -30,6 +30,8 @@ export default async function(
   return await handlerRunner({
     type: HandlerInputType.ColumnGrid,
     content: await multiHandlerRunner(handlerRunner, content, params),
-    border: false,
+    columnGap,
+    rowGap,
+    border
   }, params);
 }
