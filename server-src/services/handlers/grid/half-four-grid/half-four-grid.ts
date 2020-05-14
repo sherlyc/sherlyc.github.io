@@ -21,7 +21,7 @@ export default async function(
         gridColumnGap: "20px",
         gridRowGap: "20px",
         gridBlocks: {
-          [HalfFourGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 1, []),
+          [HalfFourGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 2, []),
           [HalfFourGridPositions.Left]: gridBlock(2, 1, 3, 1, []),
           [HalfFourGridPositions.RightOne]: gridBlock(2, 2, 1, 1, [Border.bottom]),
           [HalfFourGridPositions.RightTwo]: gridBlock(3, 2, 1, 1, [Border.bottom]),

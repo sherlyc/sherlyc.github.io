@@ -38,7 +38,7 @@ describe("Half Four Grid", () => {
               rowStart: 1,
               columnStart: 1,
               rowSpan: 1,
-              columnSpan: 1,
+              columnSpan: 2,
               border: []
             },
             [HalfFourGridPositions.Left]: {

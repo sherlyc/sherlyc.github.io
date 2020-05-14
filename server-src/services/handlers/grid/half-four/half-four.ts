@@ -42,7 +42,7 @@ export default async function(
               articles.shift() as IRawArticle,
               strapName,
               "black",
-              ""
+              "#f0f0f0"
             ),
           HandlerInputType.HalfFour,
           sourceId,

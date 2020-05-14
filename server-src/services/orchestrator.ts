@@ -74,27 +74,6 @@ export const newPage = (): HandlerInput[] => {
       type: HandlerInputType.Weather
     },
     {
-      type: HandlerInputType.Column,
-      content: [
-        {
-          type: HandlerInputType.HalfFour,
-          displayName: "NZ Farmer",
-          color: "orange",
-          linkUrl: "",
-          strapName: "",
-          sourceId: Strap.NZFarmer
-        },
-        {
-          type: HandlerInputType.HalfFour,
-          displayName: "NZ Farmer",
-          color: "orange",
-          linkUrl: "",
-          strapName: "",
-          sourceId: Strap.NZFarmer
-        }
-      ]
-    },
-    {
       type: HandlerInputType.TopStories,
       strapName: `${homepageAdPrefix}TopStoriesDefaultOne`,
       color: "#2AAAF5"
@@ -388,24 +367,53 @@ export const newPage = (): HandlerInput[] => {
       sourceId: Strap.Technology
     },
     {
-      type: HandlerInputType.Strips,
-      displayName: "nz farmer",
-      color: "#f36f21",
-      linkUrl: "/" + Section.NZFarmer,
-      sourceId: Strap.NZFarmer,
-      strapName: Strap.NZFarmer,
-      articleCount: 4,
-      articleFormat: ContentBlockType.HalfWidthImageArticleUnit
-    },
-    {
-      type: HandlerInputType.Strips,
-      displayName: "parenting",
-      color: "#db0962",
-      linkUrl: "/" + Section.Parenting,
-      sourceId: Strap.Parenting,
-      strapName: Strap.Parenting,
-      articleCount: 4,
-      articleFormat: ContentBlockType.HalfWidthImageArticleUnit
+      type: HandlerInputType.Feature,
+      name: FeatureName.HomepageV2,
+      content: [
+        {
+          type: HandlerInputType.Column,
+          content: [
+            {
+              type: HandlerInputType.HalfFour,
+              displayName: "NZ Farmer",
+              sourceId: Strap.NZFarmer,
+              strapName: Strap.NZFarmer,
+              color: "#f36f21",
+              linkUrl: "/" + Section.NZFarmer
+            },
+            {
+              type: HandlerInputType.HalfFour,
+              displayName: "Parenting",
+              sourceId: Strap.Parenting,
+              strapName: Strap.Parenting,
+              linkUrl: "/" + Section.Parenting,
+              color: "#db0962"
+            }
+          ]
+        },
+      ],
+      fallback: [
+        {
+          type: HandlerInputType.Strips,
+          displayName: "nz farmer",
+          color: "#f36f21",
+          linkUrl: "/" + Section.NZFarmer,
+          sourceId: Strap.NZFarmer,
+          strapName: Strap.NZFarmer,
+          articleCount: 4,
+          articleFormat: ContentBlockType.HalfWidthImageArticleUnit
+        },
+        {
+          type: HandlerInputType.Strips,
+          displayName: "parenting",
+          color: "#db0962",
+          linkUrl: "/" + Section.Parenting,
+          sourceId: Strap.Parenting,
+          strapName: Strap.Parenting,
+          articleCount: 4,
+          articleFormat: ContentBlockType.HalfWidthImageArticleUnit
+        },
+      ]
     },
     {
       type: HandlerInputType.BiggieSmalls,
