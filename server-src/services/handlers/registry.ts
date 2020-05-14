@@ -13,6 +13,7 @@ import Feature from "./feature-handler/feature-handler";
 import ForceUpdate from "./force-update/force-update";
 import BiggieSmallsGrid from "./grid/biggie-smalls-grid/biggie-smalls-grid";
 import BiggieSmalls from "./grid/biggie-smalls/biggie-smalls";
+import Column from "./grid/column/column";
 import ColumnGrid from "./grid/column-grid/column-grid";
 import LargeLeadSixGrid from "./grid/large-lead-six-grid/large-lead-six-grid";
 import LargeLeadSix from "./grid/large-lead-six/large-lead-six";
@@ -80,6 +81,7 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   LargeLeadSixGrid,
   RelevantStories,
   RelevantStoriesGrid,
+  Column,
   ColumnGrid,
   Brand,
   BrandGrid,

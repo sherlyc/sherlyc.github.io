@@ -1,17 +1,17 @@
-import { ContentBlockType } from "../../common/__types__/ContentBlockType";
-import { IPage } from "../../common/__types__/IPage";
-import { IParams } from "./__types__/IParams";
-import { HandlerInput } from "./handlers/__types__/HandlerInput";
-import { HandlerInputType } from "./handlers/__types__/HandlerInputType";
-import { BrandModule } from "./handlers/__types__/IBrandHandlerInput";
-import { IContentBlockHandlerInput } from "./handlers/__types__/IContentBlockHandlerInput";
+import {ContentBlockType} from "../../common/__types__/ContentBlockType";
+import {IPage} from "../../common/__types__/IPage";
+import {IParams} from "./__types__/IParams";
+import {HandlerInput} from "./handlers/__types__/HandlerInput";
+import {HandlerInputType} from "./handlers/__types__/HandlerInputType";
+import {BrandModule} from "./handlers/__types__/IBrandHandlerInput";
+import {IContentBlockHandlerInput} from "./handlers/__types__/IContentBlockHandlerInput";
 import handlerRunner from "./handlers/runner";
-import { Section } from "./section";
-import { Strap } from "./strap";
+import {Section} from "./section";
+import {Strap} from "./strap";
 import config from "./utils/config";
 import logger from "./utils/logger";
-import { formatVersion, parseVersion } from "./utils/version";
-import { FeatureName } from "../../common/FeatureName";
+import {formatVersion, parseVersion} from "./utils/version";
+import {FeatureName} from "../../common/FeatureName";
 
 const homepageStrapsConfig = config.strapConfig!.homepageStraps;
 
@@ -72,6 +72,27 @@ export const newPage = (): HandlerInput[] => {
     },
     {
       type: HandlerInputType.Weather
+    },
+    {
+      type: HandlerInputType.Column,
+      content: [
+        {
+          type: HandlerInputType.HalfFour,
+          displayName: "NZ Farmer",
+          color: "orange",
+          linkUrl: "",
+          strapName: "",
+          sourceId: Strap.NZFarmer
+        },
+        {
+          type: HandlerInputType.HalfFour,
+          displayName: "NZ Farmer",
+          color: "orange",
+          linkUrl: "",
+          strapName: "",
+          sourceId: Strap.NZFarmer
+        }
+      ]
     },
     {
       type: HandlerInputType.TopStories,
