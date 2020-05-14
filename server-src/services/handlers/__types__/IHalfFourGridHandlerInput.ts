@@ -2,7 +2,7 @@ import { HandlerInputType } from "./HandlerInputType";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 
 export interface IHalfFourGridHandlerInput {
-  type: HandlerInputType.LargeLeadSixGrid;
+  type: HandlerInputType.HalfFourGrid;
   content: { [position in HalfFourGridPositions]: IContentBlock[] };
 }
 
