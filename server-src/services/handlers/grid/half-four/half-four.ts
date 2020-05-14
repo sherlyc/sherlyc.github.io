@@ -3,15 +3,13 @@ import { IParams } from "../../../__types__/IParams";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IHalfFourHandlerInput } from "../../__types__/IHalfFourHandlerInput";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
-import {HalfFourGridPositions, IHalfFourGridHandlerInput} from "../../__types__/IHalfFourGridHandlerInput";
-import {HandlerInputType} from "../../__types__/HandlerInputType";
-import {ContentBlockType} from "../../../../../common/__types__/ContentBlockType";
-import {featuredArticle} from "../../../adapters/article-converter/featured-article.converter";
-import {contentErrorHandler} from "../content-error-handler";
-import {responsiveBigImageArticleUnit} from "../../../adapters/article-converter/responsive-big-image-article.converter";
-import {IRawArticle} from "../../../adapters/__types__/IRawArticle";
-import {basicArticleUnit} from "../../../adapters/article-converter/basic-article-unit.converter";
-import {basicArticleTitleUnit} from "../../../adapters/article-converter/basic-article-title.converter";
+import { HalfFourGridPositions, IHalfFourGridHandlerInput } from "../../__types__/IHalfFourGridHandlerInput";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { featuredArticle } from "../../../adapters/article-converter/featured-article.converter";
+import { contentErrorHandler } from "../content-error-handler";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
