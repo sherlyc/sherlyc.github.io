@@ -35,6 +35,7 @@ import { IBrandGridHandlerInput } from "./IBrandGridHandlerInput";
 import { IBrandHandlerInput } from "./IBrandHandlerInput";
 import { IResponsiveExternalContentHandlerInput } from "./IResponsiveExternalContentHandlerInput";
 import { IHalfFourGridHandlerInput } from "./IHalfFourGridHandlerInput";
+import {IHalfFourHandlerInput} from "./IHalfFourHandlerInput";
 
 export type HandlerInput =
   | IContentBlockHandlerInput
@@ -73,4 +74,5 @@ export type HandlerInput =
   | IBrandGridHandlerInput
   | ITitleSectionHandlerInput
   | IResponsiveExternalContentHandlerInput
+  | IHalfFourHandlerInput
   | IHalfFourGridHandlerInput;

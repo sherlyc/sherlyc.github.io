@@ -35,6 +35,7 @@ import Page from "./page/page";
 import Brand from "./grid/brand/brand";
 import BrandGrid from "./grid/brand-grid/brand-grid";
 import ResponsiveExternalContent from "./responsive-external-content/responsive-external-content";
+import HalfFour from "./grid/half-four/half-four";
 import HalfFourGrid from "./grid/half-four-grid/half-four-grid";
 
 import { handlerRunnerFunction } from "./runner";
@@ -84,6 +85,7 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   BrandGrid,
   TitleSection,
   ResponsiveExternalContent,
+  HalfFour,
   HalfFourGrid
 };
 
