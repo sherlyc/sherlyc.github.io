@@ -29,6 +29,92 @@ describe("Half Four Grid", () => {
         type: ContentBlockType.GridContainer,
         items: input.content,
         mobile: {
+          gridTemplateColumns: "1fr",
+          gridTemplateRows: "auto auto auto auto auto",
+          gridColumnGap: "20px",
+          gridRowGap: "20px",
+          gridBlocks: {
+            [HalfFourGridPositions.ModuleTitle]: {
+              rowStart: 1,
+              columnStart: 1,
+              rowSpan: 1,
+              columnSpan: 1,
+              border: []
+            },
+            [HalfFourGridPositions.Left]: {
+              rowStart: 2,
+              columnStart: 1,
+              rowSpan: 1,
+              columnSpan: 1,
+              border: []
+            },
+            [HalfFourGridPositions.RightOne]: {
+              rowStart: 3,
+              columnStart: 1,
+              rowSpan: 1,
+              columnSpan: 1,
+              border: [Border.bottom]
+            },
+            [HalfFourGridPositions.RightTwo]: {
+              rowStart: 4,
+              columnStart: 1,
+              rowSpan: 1,
+              columnSpan: 1,
+              border: [Border.bottom]
+            },
+            [HalfFourGridPositions.RightThree]: {
+              rowStart: 5,
+              columnStart: 1,
+              rowSpan: 1,
+              columnSpan: 1,
+              border: [Border.bottom]
+            }
+          }
+        },
+        tablet: {
+          gridTemplateColumns: "1fr 1fr 1fr",
+          gridTemplateRows: "auto auto auto",
+          gridColumnGap: "20px",
+          gridRowGap: "20px",
+          gridBlocks: {
+            [HalfFourGridPositions.ModuleTitle]: {
+              rowStart: 1,
+              columnStart: 1,
+              rowSpan: 1,
+              columnSpan: 3,
+              border: []
+            },
+            [HalfFourGridPositions.Left]: {
+              rowStart: 2,
+              columnStart: 1,
+              rowSpan: 1,
+              columnSpan: 3,
+              border: []
+            },
+            [HalfFourGridPositions.RightOne]: {
+              rowStart: 3,
+              columnStart: 1,
+              rowSpan: 1,
+              columnSpan: 1,
+              border: [Border.bottom]
+            },
+            [HalfFourGridPositions.RightTwo]: {
+              rowStart: 3,
+              columnStart: 2,
+              rowSpan: 1,
+              columnSpan: 1,
+              border: [Border.bottom]
+            },
+            [HalfFourGridPositions.RightThree]: {
+              rowStart: 3,
+              columnStart: 3,
+              rowSpan: 1,
+              columnSpan: 1,
+              border: [Border.bottom]
+            }
+          }
+        },
+        desktop: {
           gridTemplateColumns: "1fr 1fr",
           gridTemplateRows: "auto auto auto auto",
           gridColumnGap: "20px",
@@ -68,7 +154,7 @@ describe("Half Four Grid", () => {
               rowSpan: 1,
               columnSpan: 1,
               border: [Border.bottom]
-            }
+            },
           }
         }
       }
