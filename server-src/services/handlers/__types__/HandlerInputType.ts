@@ -34,5 +34,6 @@ export enum HandlerInputType {
   ColumnGrid = "ColumnGrid",
   Brand = "Brand",
   BrandGrid = "BrandGrid",
-  ResponsiveExternalContent = "ResponsiveExternalContent"
+  ResponsiveExternalContent = "ResponsiveExternalContent",
+  HalfFourGrid = "HalfFourGrid"
 }
