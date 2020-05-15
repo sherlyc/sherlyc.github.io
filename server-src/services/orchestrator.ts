@@ -1,5 +1,6 @@
 import { ContentBlockType } from "../../common/__types__/ContentBlockType";
 import { IPage } from "../../common/__types__/IPage";
+import { FeatureName } from "../../common/FeatureName";
 import { IParams } from "./__types__/IParams";
 import { HandlerInput } from "./handlers/__types__/HandlerInput";
 import { HandlerInputType } from "./handlers/__types__/HandlerInputType";
@@ -11,7 +12,6 @@ import { Strap } from "./strap";
 import config from "./utils/config";
 import logger from "./utils/logger";
 import { formatVersion, parseVersion } from "./utils/version";
-import { FeatureName } from "../../common/FeatureName";
 
 const homepageStrapsConfig = config.strapConfig!.homepageStraps;
 
@@ -367,6 +367,26 @@ export const newPage = (): HandlerInput[] => {
       sourceId: Strap.Technology
     },
     {
+      type: HandlerInputType.Strips,
+      displayName: "nz farmer",
+      color: "#f36f21",
+      linkUrl: "/" + Section.NZFarmer,
+      sourceId: Strap.NZFarmer,
+      strapName: Strap.NZFarmer,
+      articleCount: 4,
+      articleFormat: ContentBlockType.HalfWidthImageArticleUnit
+    },
+    {
+      type: HandlerInputType.Strips,
+      displayName: "parenting",
+      color: "#db0962",
+      linkUrl: "/" + Section.Parenting,
+      sourceId: Strap.Parenting,
+      strapName: Strap.Parenting,
+      articleCount: 4,
+      articleFormat: ContentBlockType.HalfWidthImageArticleUnit
+    },
+    {
       type: HandlerInputType.Feature,
       name: FeatureName.HomepageV2,
       content: [
@@ -390,29 +410,7 @@ export const newPage = (): HandlerInput[] => {
               color: "#db0962"
             }
           ]
-        },
-      ],
-      fallback: [
-        {
-          type: HandlerInputType.Strips,
-          displayName: "nz farmer",
-          color: "#f36f21",
-          linkUrl: "/" + Section.NZFarmer,
-          sourceId: Strap.NZFarmer,
-          strapName: Strap.NZFarmer,
-          articleCount: 4,
-          articleFormat: ContentBlockType.HalfWidthImageArticleUnit
-        },
-        {
-          type: HandlerInputType.Strips,
-          displayName: "parenting",
-          color: "#db0962",
-          linkUrl: "/" + Section.Parenting,
-          sourceId: Strap.Parenting,
-          strapName: Strap.Parenting,
-          articleCount: 4,
-          articleFormat: ContentBlockType.HalfWidthImageArticleUnit
-        },
+        }
       ]
     },
     {
