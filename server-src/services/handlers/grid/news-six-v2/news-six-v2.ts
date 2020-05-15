@@ -28,7 +28,7 @@ export default async function(
         linkUrl
       }
     ],
-    [NewsSixV2GridPositions.TopLeft]: [
+    [NewsSixV2GridPositions.One]: [
       contentErrorHandler(
         () =>
           featuredArticle(
@@ -45,7 +45,7 @@ export default async function(
         params
       )
     ],
-    [NewsSixV2GridPositions.MidFirst]: [
+    [NewsSixV2GridPositions.Two]: [
       contentErrorHandler(
         () =>
           basicArticleTitleUnit(
@@ -58,7 +58,7 @@ export default async function(
         params
       )
     ],
-    [NewsSixV2GridPositions.MidSecond]: [
+    [NewsSixV2GridPositions.Three]: [
       contentErrorHandler(
         () =>
           basicArticleTitleUnit(
@@ -71,7 +71,7 @@ export default async function(
         params
       )
     ],
-    [NewsSixV2GridPositions.TopRight]: [
+    [NewsSixV2GridPositions.Four]: [
       contentErrorHandler(
         () =>
           featuredArticle(
@@ -88,7 +88,7 @@ export default async function(
         params
       )
     ],
-    [NewsSixV2GridPositions.BottomFirst]: [
+    [NewsSixV2GridPositions.Five]: [
       contentErrorHandler(
         () =>
           responsiveBigImageArticleUnit(
@@ -101,7 +101,7 @@ export default async function(
         params
       )
     ],
-    [NewsSixV2GridPositions.BottomSecond]: [
+    [NewsSixV2GridPositions.Six]: [
       contentErrorHandler(
         () =>
           responsiveBigImageArticleUnit(

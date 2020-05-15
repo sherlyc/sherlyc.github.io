@@ -3,12 +3,12 @@ import { HandlerInputType } from "./HandlerInputType";
 
 export enum NewsSixV2GridPositions {
   ModuleTitle = "ModuleTitle",
-  TopLeft = "TopLeft",
-  MidFirst = "MidFirst",
-  MidSecond = "MidSecond",
-  TopRight = "TopRight",
-  BottomFirst = "BottomFirst",
-  BottomSecond = "BottomSecond"
+  One = "One",
+  Two = "Two",
+  Three = "Three",
+  Four = "Four",
+  Five = "Five",
+  Six = "Six"
 }
 
 export interface INewsSixGridV2HandlerInput {

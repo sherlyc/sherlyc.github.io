@@ -20,36 +20,32 @@ export default async function(
 ): Promise<IContentBlock[]> {
   const desktop: IGridBlocks = {
     [NewsSixV2GridPositions.ModuleTitle]: gridBlock(1, 1, 1, 3, []),
-    [NewsSixV2GridPositions.TopLeft]: gridBlock(2, 1, 2, 1, []),
-    [NewsSixV2GridPositions.MidFirst]: gridBlock(2, 2, 1, 1, [Border.bottom]),
-    [NewsSixV2GridPositions.MidSecond]: gridBlock(3, 2, 1, 1, []),
-    [NewsSixV2GridPositions.TopRight]: gridBlock(2, 3, 2, 1, []),
-    [NewsSixV2GridPositions.BottomFirst]: gridBlock(4, 1, 1, 1, []),
-    [NewsSixV2GridPositions.BottomSecond]: gridBlock(4, 2, 1, 2, [])
+    [NewsSixV2GridPositions.One]: gridBlock(2, 1, 2, 1, []),
+    [NewsSixV2GridPositions.Two]: gridBlock(2, 2, 1, 1, [Border.bottom]),
+    [NewsSixV2GridPositions.Three]: gridBlock(3, 2, 1, 1, []),
+    [NewsSixV2GridPositions.Four]: gridBlock(2, 3, 2, 1, []),
+    [NewsSixV2GridPositions.Five]: gridBlock(4, 1, 1, 1, []),
+    [NewsSixV2GridPositions.Six]: gridBlock(4, 2, 1, 2, [])
   };
 
   const tablet: IGridBlocks = {
     [NewsSixV2GridPositions.ModuleTitle]: gridBlock(1, 1, 1, 2, []),
-    [NewsSixV2GridPositions.TopLeft]: gridBlock(2, 1, 2, 1, []),
-    [NewsSixV2GridPositions.MidFirst]: gridBlock(2, 2, 1, 1, [Border.bottom]),
-    [NewsSixV2GridPositions.MidSecond]: gridBlock(3, 2, 1, 1, []),
-    [NewsSixV2GridPositions.TopRight]: gridBlock(4, 2, 2, 1, []),
-    [NewsSixV2GridPositions.BottomFirst]: gridBlock(4, 1, 1, 1, []),
-    [NewsSixV2GridPositions.BottomSecond]: gridBlock(5, 1, 1, 1, [])
+    [NewsSixV2GridPositions.One]: gridBlock(2, 1, 2, 1, []),
+    [NewsSixV2GridPositions.Two]: gridBlock(2, 2, 1, 1, [Border.bottom]),
+    [NewsSixV2GridPositions.Three]: gridBlock(3, 2, 1, 1, []),
+    [NewsSixV2GridPositions.Four]: gridBlock(4, 2, 2, 1, []),
+    [NewsSixV2GridPositions.Five]: gridBlock(4, 1, 1, 1, []),
+    [NewsSixV2GridPositions.Six]: gridBlock(5, 1, 1, 1, [])
   };
 
   const mobile: IGridBlocks = {
     [NewsSixV2GridPositions.ModuleTitle]: gridBlock(1, 1, 1, 1, []),
-    [NewsSixV2GridPositions.TopLeft]: gridBlock(2, 1, 1, 1, []),
-    [NewsSixV2GridPositions.MidFirst]: gridBlock(3, 1, 1, 1, [Border.bottom]),
-    [NewsSixV2GridPositions.MidSecond]: gridBlock(4, 1, 1, 1, []),
-    [NewsSixV2GridPositions.TopRight]: gridBlock(5, 1, 1, 1, []),
-    [NewsSixV2GridPositions.BottomFirst]: gridBlock(6, 1, 1, 1, [
-      Border.bottom
-    ]),
-    [NewsSixV2GridPositions.BottomSecond]: gridBlock(7, 1, 1, 1, [
-      Border.bottom
-    ])
+    [NewsSixV2GridPositions.One]: gridBlock(2, 1, 1, 1, []),
+    [NewsSixV2GridPositions.Two]: gridBlock(3, 1, 1, 1, [Border.bottom]),
+    [NewsSixV2GridPositions.Three]: gridBlock(4, 1, 1, 1, []),
+    [NewsSixV2GridPositions.Four]: gridBlock(5, 1, 1, 1, []),
+    [NewsSixV2GridPositions.Five]: gridBlock(6, 1, 1, 1, [Border.bottom]),
+    [NewsSixV2GridPositions.Six]: gridBlock(7, 1, 1, 1, [Border.bottom])
   };
 
   return [
