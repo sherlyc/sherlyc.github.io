@@ -6,8 +6,7 @@
   "coverageDirectory": "<rootDir>/src/coverage",
   "collectCoverageFrom": ["**/*.ts"],
   "coveragePathIgnorePatterns": [".*\\.d\\.ts", ".*\\.spec\\.ts"],
-  "transform": {
-    "^.+\\.(ts|js|html)$": "ts-jest"
-  },
-  "transformIgnorePatterns": ["node_modules/(?!@ngrx|lodash-es)"]
+  "moduleNameMapper": {
+    "^lodash-es$": "<rootDir>/node_modules/lodash/index.js"
+  }
 }

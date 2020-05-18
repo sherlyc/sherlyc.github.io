@@ -7,11 +7,14 @@ import { IBrandGridHandlerInput } from "./IBrandGridHandlerInput";
 import { IBrandHandlerInput } from "./IBrandHandlerInput";
 import { IBreakingNewsHandlerInput } from "./IBreakingNewsHandlerInput";
 import { IColumnGridHandlerInput } from "./IColumnGridHandlerInput";
+import { IColumnHandlerInput } from "./IColumnHandlerInput";
 import { IContentBlockHandlerInput } from "./IContentBlockHandlerInput";
 import { IExperimentHandlerInput } from "./IExperimentHandlerInput";
 import { IExternalContentHandlerInput } from "./IExternalContentHandlerInput";
 import { IFeatureHandlerInput } from "./IFeatureHandlerInput";
 import { IForceUpdateHandlerInput } from "./IForceUpdateHandlerInput";
+import { IHalfFourGridHandlerInput } from "./IHalfFourGridHandlerInput";
+import { IHalfFourHandlerInput } from "./IHalfFourHandlerInput";
 import { ILargeLeadSixGridHandlerInput } from "./ILargeLeadSixGridHandlerInput";
 import { ILargeLeadSixHandlerInput } from "./ILargeLeadSixHandlerInput";
 import { IListGridHandlerInput } from "./IListGridHandlerInput";
@@ -35,6 +38,8 @@ import { ITopStoriesDefaultOneHighlightHandlerInput } from "./ITopStoriesDefault
 import { ITopStoriesDefconHighlightHandlerInput } from "./ITopStoriesDefconHighlightHandlerInput";
 import { ITopStoriesGridHandlerInput } from "./ITopStoriesGridHandlerInput";
 import { ITopStoriesHandlerInput } from "./ITopStoriesHandlerInput";
+import { ITopStoriesV2GridHandlerInput } from "./ITopStoriesV2GridHandlerInput";
+import { ITopStoriesV2HandlerInput } from "./ITopStoriesV2HandlerInput";
 import { IWeatherHandlerInput } from "./IWeatherHandlerInput";
 
 export type HandlerInput =
@@ -56,6 +61,8 @@ export type HandlerInput =
   | ITopStoriesDefaultOneHighlightHandlerInput
   | ITopStoriesDefconHighlightHandlerInput
   | ITopStoriesGridHandlerInput
+  | ITopStoriesV2HandlerInput
+  | ITopStoriesV2GridHandlerInput
   | IBiggieSmallsHandlerInput
   | IBiggieSmallsGridHandlerInput
   | INewsSixHandlerInput
@@ -71,8 +78,11 @@ export type HandlerInput =
   | IListGridHandlerInput
   | IRelevantStoriesHandlerInput
   | IRelevantStoriesGridHandlerInput
+  | IColumnHandlerInput
   | IColumnGridHandlerInput
   | IBrandHandlerInput
   | IBrandGridHandlerInput
   | ITitleSectionHandlerInput
-  | IResponsiveExternalContentHandlerInput;
+  | IResponsiveExternalContentHandlerInput
+  | IHalfFourHandlerInput
+  | IHalfFourGridHandlerInput;

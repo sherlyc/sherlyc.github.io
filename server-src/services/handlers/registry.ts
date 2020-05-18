@@ -15,6 +15,9 @@ import BiggieSmalls from "./grid/biggie-smalls/biggie-smalls";
 import BrandGrid from "./grid/brand-grid/brand-grid";
 import Brand from "./grid/brand/brand";
 import ColumnGrid from "./grid/column-grid/column-grid";
+import Column from "./grid/column/column";
+import HalfFourGrid from "./grid/half-four-grid/half-four-grid";
+import HalfFour from "./grid/half-four/half-four";
 import LargeLeadSixGrid from "./grid/large-lead-six-grid/large-lead-six-grid";
 import LargeLeadSix from "./grid/large-lead-six/large-lead-six";
 import ListGrid from "./grid/list-grid/list-grid";
@@ -29,6 +32,8 @@ import SixImage from "./grid/six-image/six-image";
 import StripsGrid from "./grid/strips-grid/strips-grid";
 import Strips from "./grid/strips/strips";
 import TopStoriesGrid from "./grid/top-stories-grid/top-stories-grid";
+import TopStoriesV2Grid from "./grid/top-stories-v2-grid/top-stories-v2-grid";
+import TopStoriesV2 from "./grid/top-stories-v2/top-stories-v2";
 import TopStoriesDefaultOneHighlight from "./grid/top-stories/default-one-highlight/default-one-highlight";
 import TopStoriesDefconHighlight from "./grid/top-stories/defcon-highlight/defcon-highlight";
 import TopStories from "./grid/top-stories/top-stories";
@@ -67,6 +72,8 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   TopStoriesGrid,
   TopStoriesDefaultOneHighlight,
   TopStoriesDefconHighlight,
+  TopStoriesV2,
+  TopStoriesV2Grid,
   BiggieSmalls,
   BiggieSmallsGrid,
   NewsSix,
@@ -82,11 +89,14 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   LargeLeadSixGrid,
   RelevantStories,
   RelevantStoriesGrid,
+  Column,
   ColumnGrid,
   Brand,
   BrandGrid,
   TitleSection,
-  ResponsiveExternalContent
+  ResponsiveExternalContent,
+  HalfFour,
+  HalfFourGrid
 };
 
 export default handlerRegistry;

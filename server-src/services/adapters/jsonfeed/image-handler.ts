@@ -1,4 +1,4 @@
-import maxBy from "lodash-es/maxBy";
+import { maxBy } from "lodash-es";
 import { IImageVariant } from "../__types__/IImageVariant";
 import { IJsonFeedArticle } from "../__types__/IJsonFeedArticle";
 import { IJsonFeedUrl } from "../__types__/IJsonFeedUrl";

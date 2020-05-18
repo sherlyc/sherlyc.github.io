@@ -80,7 +80,15 @@ export const newPage = (): HandlerInput[] => {
     },
     {
       type: HandlerInputType.Feature,
-      name: FeatureName.HomepageV2
+      name: FeatureName.HomepageV2,
+      content: [
+        {
+          type: HandlerInputType.TopStoriesV2,
+          strapName: `${homepageAdPrefix}TopStoriesDefaultOne`,
+          color: "#2AAAF5"
+        }
+      ],
+      fallback: []
     },
     {
       type: HandlerInputType.RelevantStories
@@ -469,6 +477,33 @@ export const newPage = (): HandlerInput[] => {
       strapName: Strap.Parenting,
       articleCount: 4,
       articleFormat: ContentBlockType.HalfWidthImageArticleUnit
+    },
+    {
+      type: HandlerInputType.Feature,
+      name: FeatureName.HomepageV2,
+      content: [
+        {
+          type: HandlerInputType.Column,
+          content: [
+            {
+              type: HandlerInputType.HalfFour,
+              displayName: "NZ Farmer",
+              sourceId: Strap.NZFarmer,
+              strapName: Strap.NZFarmer,
+              color: "#f36f21",
+              linkUrl: "/" + Section.NZFarmer
+            },
+            {
+              type: HandlerInputType.HalfFour,
+              displayName: "Parenting",
+              sourceId: Strap.Parenting,
+              strapName: Strap.Parenting,
+              linkUrl: "/" + Section.Parenting,
+              color: "#db0962"
+            }
+          ]
+        }
+      ]
     },
     {
       type: HandlerInputType.BiggieSmalls,

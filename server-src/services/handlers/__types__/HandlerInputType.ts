@@ -18,6 +18,8 @@ export enum HandlerInputType {
   TopStoriesGrid = "TopStoriesGrid",
   TopStoriesDefaultOneHighlight = "TopStoriesDefaultOneHighlight",
   TopStoriesDefconHighlight = "TopStoriesDefconHighlight",
+  TopStoriesV2 = "TopStoriesV2",
+  TopStoriesV2Grid = "TopStoriesV2Grid",
   BiggieSmalls = "BiggieSmalls",
   BiggieSmallsGrid = "BiggieSmallsGrid",
   NewsSix = "NewsSix",
@@ -33,8 +35,11 @@ export enum HandlerInputType {
   ListGrid = "ListGrid",
   RelevantStories = "RelevantStories",
   RelevantStoriesGrid = "RelevantStoriesGrid",
+  Column = "Column",
   ColumnGrid = "ColumnGrid",
   Brand = "Brand",
   BrandGrid = "BrandGrid",
-  ResponsiveExternalContent = "ResponsiveExternalContent"
+  ResponsiveExternalContent = "ResponsiveExternalContent",
+  HalfFour = "HalfFour",
+  HalfFourGrid = "HalfFourGrid"
 }
