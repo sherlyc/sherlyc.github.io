@@ -7,8 +7,7 @@
   "roots": ["server-src"],
   "testEnvironment": "node",
   "coveragePathIgnorePatterns": [".*\\.d\\.ts", ".*\\.spec\\.ts"],
-  "transform": {
-    "^.+\\.(ts|js)$": "ts-jest"
-  },
-  "transformIgnorePatterns": ["node_modules/(?!lodash-es)"]
+  "moduleNameMapper": {
+    "^lodash-es$": "<rootDir>/node_modules/lodash/index.js"
+  }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import memoize from "lodash-es/memoize";
+import { memoize } from "lodash-es";
 
 const removeSpecialChars = (text: string) => text.replace(/[^a-zA-Z0-9 ]/g, "");
 

@@ -1,5 +1,4 @@
-import inRange from "lodash-es/inRange";
-import range from "lodash-es/range";
+import { inRange, range } from "lodash-es";
 import { DeviceType } from "../../../../common/DeviceType";
 import { FeatureName } from "../../../../common/FeatureName";
 import { isFeatureEnabled } from "./feature";
@@ -27,10 +26,8 @@ describe("Feature service", () => {
   });
 
   it("HomepageV2 should be on for internal number 404", () => {
-    expect(isFeatureEnabled(
-      FeatureName.HomepageV2,
-      404,
-      DeviceType.unknown
-    )).toBeTruthy();
+    expect(
+      isFeatureEnabled(FeatureName.HomepageV2, 404, DeviceType.unknown)
+    ).toBeTruthy();
   });
 });

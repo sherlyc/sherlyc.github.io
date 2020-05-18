@@ -1,4 +1,4 @@
-import memoize from "lodash-es/memoize";
+import { memoize } from "lodash-es";
 import { Border } from "../../../../../common/__types__/IGridContainer";
 import { IColumnGridConfig } from "./__types__/IColumnGridConfig";
 

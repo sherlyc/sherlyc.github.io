@@ -1,8 +1,9 @@
 {
   "preset": "ts-jest",
   "testEnvironment": "node",
-  "transform": {
-    "^.+\\.(ts|js)$": "ts-jest"
-  },
-  "transformIgnorePatterns": ["node_modules/(?!lodash-es)"]
+  "rootDir": "../../",
+  "roots": ["server-src/test-api"],
+  "moduleNameMapper": {
+    "^lodash-es$": "<rootDir>/node_modules/lodash/index.js"
+  }
 }
