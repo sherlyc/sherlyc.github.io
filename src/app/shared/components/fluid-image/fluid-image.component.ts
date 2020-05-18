@@ -2,6 +2,7 @@ import { Component, HostBinding, Input, OnInit } from "@angular/core";
 import { FluidImageWidth } from "../../../../../common/FluidImageWidth";
 import { RuntimeService } from "../../../services/runtime/runtime.service";
 import { WindowService } from "../../../services/window/window.service";
+import { AspectRatio } from "../../../../../common/AspectRatio";
 
 @Component({
   selector: "app-fluid-image",
@@ -11,8 +12,7 @@ import { WindowService } from "../../../services/window/window.service";
 export class FluidImageComponent implements OnInit {
   @Input() imageSrc!: string;
   @Input() caption!: string;
-
-  @Input() aspectRatio = "16:9,smart";
+  @Input() aspectRatio?: AspectRatio;
   @HostBinding("style.paddingBottom") height = `${(9 / 16) * 100}%`;
 
   src?: string;
@@ -38,7 +38,7 @@ export class FluidImageComponent implements OnInit {
   private loadImg(newWidth: FluidImageWidth, lazyload: boolean) {
     this.width = newWidth;
     this.lazyload = lazyload ? "lazy" : "auto";
-    const src = `${this.imageSrc}?format=pjpg&crop=${this.aspectRatio}&width=${newWidth}`;
+    const src = `${this.imageSrc}?format=pjpg&crop=${this.aspectRatio},smart&width=${newWidth}`;
     this.srcset = `${src}, ${src}&dpr=2 2x, ${src}&dpr=3 3x`;
     this.src = src;
   }
@@ -79,5 +79,8 @@ export class FluidImageComponent implements OnInit {
     if (this.runtime.isServer()) {
       this.loadImg(FluidImageWidth.s, false);
     }
+    this.aspectRatio = this.aspectRatio || AspectRatio.SixteenByNine;
+    const [width, height] = this.aspectRatio.split(":");
+    this.height = `${Number(height) / Number(width) * 100}%`;
   }
 }

@@ -11,6 +11,8 @@ import { ResizeObserverService } from "../../services/resize-observer/resize-obs
 import { HeadlineComponent } from "../../shared/components/headline/headline.component";
 import { SharedModule } from "../../shared/shared.module";
 import { FeaturedArticleComponent } from "./featured-article.component";
+import { FluidImageComponent } from "../../shared/components/fluid-image/fluid-image.component";
+import { AspectRatio } from "../../../../common/AspectRatio";
 
 describe("FeaturedArticleComponent", () => {
   let component: FeaturedArticleComponent;
@@ -33,7 +35,8 @@ describe("FeaturedArticleComponent", () => {
     textColor: "white",
     applyGradient: false,
     identifier: "Identifier",
-    identifierColor: "blue"
+    identifierColor: "blue",
+    imageAspectRatio: AspectRatio.SixteenByNine
   };
 
   beforeEach(async(() => {
@@ -135,6 +138,19 @@ describe("FeaturedArticleComponent", () => {
     const host = fixture.debugElement.nativeElement;
 
     expect(host.className).toMatch(/pumped/);
+  });
+
+  it("should set aspect ratio on image", () => {
+    articleData.headlineFlags = [HeadlineFlags.PHOTO];
+    component.input = articleData;
+
+    fixture.detectChanges();
+
+    const image: FluidImageComponent = fixture.debugElement.query(
+      By.directive(FluidImageComponent)
+    ).componentInstance;
+
+    expect(image.aspectRatio).toEqual(articleData.imageAspectRatio);
   });
 
   it("should render headline component", () => {

@@ -5,6 +5,7 @@ import { mockService, ServiceMock } from "../../../services/mocks/MockService";
 import { RuntimeService } from "../../../services/runtime/runtime.service";
 import { WindowService } from "../../../services/window/window.service";
 import { FluidImageComponent } from "./fluid-image.component";
+import { AspectRatio } from "../../../../../common/AspectRatio";
 
 describe("FluidImageComponent", () => {
   let component: FluidImageComponent;
@@ -17,10 +18,10 @@ describe("FluidImageComponent", () => {
   const componentInput = {
     imageSrc: "https://meme.com/lucas.jpg",
     caption: "coding lucas",
-    aspectRatio: "16:9,smart"
+    aspectRatio: AspectRatio.SixteenByNine
   };
 
-  const expectedSrc = `${componentInput.imageSrc}?format=pjpg&crop=${componentInput.aspectRatio}`;
+  const expectedSrc = `${componentInput.imageSrc}?format=pjpg&crop=${componentInput.aspectRatio},smart`;
 
   const simulateResize = (width: FluidImageWidth | number) => {
     const fakeTarget = { getBoundingClientRect: () => ({ top: 100 }) } as any;
@@ -164,4 +165,30 @@ describe("FluidImageComponent", () => {
     simulateResize(FluidImageWidth.xs);
     expect(getImg()).toBe(null);
   });
+
+  it("should apply the correct aspect ratio", () => {
+    const aspectRatio = AspectRatio.OneByOne;
+    Object.assign(component, { ...componentInput, aspectRatio });
+    simulateResize(FluidImageWidth.xs);
+
+    const { src, srcset } = getImg().attributes;
+    const cropQueryString = `crop=${aspectRatio},smart`;
+    expect(src).toContain(cropQueryString);
+
+    const srcSetCrop = srcset?.match(/crop=([^&]*)/g);
+    srcSetCrop?.forEach((crop) => expect(crop).toEqual(cropQueryString));
+  });
+
+  it.each([
+    [AspectRatio.SixteenByNine, "56.25%"],
+    [AspectRatio.OneByOne, "100%"]
+  ])(
+    "for aspect ratio %s, height should be %s",
+    (aspectRatio: string, expectedHeight: string) => {
+      Object.assign(component, { ...componentInput, aspectRatio });
+      component.ngOnInit();
+
+      expect(component.height).toEqual(expectedHeight);
+    }
+  );
 });

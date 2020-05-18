@@ -34,6 +34,8 @@ import { IWeatherHandlerInput } from "./IWeatherHandlerInput";
 import { IBrandGridHandlerInput } from "./IBrandGridHandlerInput";
 import { IBrandHandlerInput } from "./IBrandHandlerInput";
 import { IResponsiveExternalContentHandlerInput } from "./IResponsiveExternalContentHandlerInput";
+import { ITopStoriesV2HandlerInput } from "./ITopStoriesV2HandlerInput";
+import { ITopStoriesV2GridHandlerInput } from "./ITopStoriesV2GridHandlerInput";
 
 export type HandlerInput =
   | IContentBlockHandlerInput
@@ -54,6 +56,8 @@ export type HandlerInput =
   | ITopStoriesDefaultOneHighlightHandlerInput
   | ITopStoriesDefconHighlightHandlerInput
   | ITopStoriesGridHandlerInput
+  | ITopStoriesV2HandlerInput
+  | ITopStoriesV2GridHandlerInput
   | IBiggieSmallsHandlerInput
   | IBiggieSmallsGridHandlerInput
   | INewsSixHandlerInput

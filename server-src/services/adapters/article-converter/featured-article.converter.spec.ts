@@ -2,8 +2,7 @@ import { ContentBlockType } from "../../../../common/__types__/ContentBlockType"
 import { IFeaturedArticle } from "../../../../common/__types__/IFeaturedArticle";
 import { IRawArticle } from "../__types__/IRawArticle";
 import { featuredArticle } from "./featured-article.converter";
-import { bigImageArticleUnit } from "./big-image-article.converter";
-import { ImageLayoutType } from "../../../../common/__types__/ImageLayoutType";
+import { AspectRatio } from "../../../../common/AspectRatio";
 
 describe("Featured Article", () => {
   const strapName = "strapName";
@@ -11,6 +10,9 @@ describe("Featured Article", () => {
   const textColor = "white";
   const applyGradient = true;
   const pumped = true;
+  const identifierColor = "black";
+  const imageAspectRatio = AspectRatio.SixteenByNine;
+
   const fakeArticle: IRawArticle = {
     id: "1",
     indexHeadline: "Headline 1",
@@ -27,6 +29,7 @@ describe("Featured Article", () => {
     sixteenByNineSrc: "sixteenByNineSrc.jpg",
     identifier: "identifier"
   };
+
   const expected: IFeaturedArticle = {
     type: ContentBlockType.FeaturedArticle,
     id: "1",
@@ -43,7 +46,9 @@ describe("Featured Article", () => {
     boxColor,
     textColor,
     applyGradient,
-    pumped
+    pumped,
+    identifierColor,
+    imageAspectRatio
   };
 
   it("should convert", () => {
@@ -53,28 +58,11 @@ describe("Featured Article", () => {
       textColor,
       boxColor,
       applyGradient,
-      pumped
+      pumped,
+      identifierColor,
+      imageAspectRatio
     );
 
     expect(result).toEqual(expected);
-  });
-
-  it("sets the identifier color", () => {
-    expect(
-      featuredArticle(
-        fakeArticle,
-        strapName,
-        textColor,
-        boxColor,
-        applyGradient,
-        pumped,
-        "black"
-      )
-    ).toEqual(
-      expect.objectContaining({
-        ...expected,
-        identifierColor: "black"
-      })
-    );
   });
 });

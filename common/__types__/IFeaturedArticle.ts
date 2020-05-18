@@ -1,5 +1,6 @@
 import { ContentBlockType } from "./ContentBlockType";
 import { IArticle } from "./IArticle";
+import { AspectRatio } from "../AspectRatio";
 
 export interface IFeaturedArticle extends IArticle {
   type: ContentBlockType.FeaturedArticle;
@@ -7,4 +8,5 @@ export interface IFeaturedArticle extends IArticle {
   textColor: string;
   applyGradient?: boolean;
   pumped?: boolean;
+  imageAspectRatio?: AspectRatio;
 }

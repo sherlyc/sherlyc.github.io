@@ -2,7 +2,7 @@
   <meta itemprop="position" content="{{ index }}" />
   <a itemprop="url" href="{{ input.linkUrl }}" appOpenExternalLink="{{ input.linkUrl }}" (click)="sendAnalytics()">
     <div class="image">
-      <app-fluid-image [imageSrc]="input.imageSrc" [caption]="input.indexHeadline"></app-fluid-image>
+      <app-fluid-image [imageSrc]="input.imageSrc" [caption]="input.indexHeadline" [aspectRatio]="input.imageAspectRatio"></app-fluid-image>
     </div>
     <div [appGlobalStyle]="boxStyle">
       <app-headline [textColor]="input.textColor" [headline]="input.indexHeadline" [headlineFlags]="input.headlineFlags" [identifier]="input.identifier" [identifierColor]="input.identifierColor"></app-headline>

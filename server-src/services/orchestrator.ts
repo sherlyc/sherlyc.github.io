@@ -80,7 +80,15 @@ export const newPage = (): HandlerInput[] => {
     },
     {
       type: HandlerInputType.Feature,
-      name: FeatureName.HomepageV2
+      name: FeatureName.HomepageV2,
+      content: [
+        {
+          type: HandlerInputType.TopStoriesV2,
+          strapName: `${homepageAdPrefix}TopStoriesDefaultOne`,
+          color: "#2AAAF5"
+        }
+      ],
+      fallback: []
     },
     {
       type: HandlerInputType.RelevantStories
