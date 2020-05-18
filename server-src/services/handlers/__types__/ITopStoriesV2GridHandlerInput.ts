@@ -1,5 +1,5 @@
-import { HandlerInputType } from "./HandlerInputType";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import { HandlerInputType } from "./HandlerInputType";
 
 export interface ITopStoriesV2GridHandlerInput {
   type: HandlerInputType.TopStoriesV2Grid;

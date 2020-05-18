@@ -3,16 +3,16 @@ import { By, TransferState } from "@angular/platform-browser";
 import { Subject } from "rxjs";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IFeaturedArticle } from "../../../../common/__types__/IFeaturedArticle";
+import { AspectRatio } from "../../../../common/AspectRatio";
 import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { ResizeObserverService } from "../../services/resize-observer/resize-observer.service";
+import { FluidImageComponent } from "../../shared/components/fluid-image/fluid-image.component";
 import { HeadlineComponent } from "../../shared/components/headline/headline.component";
 import { SharedModule } from "../../shared/shared.module";
 import { FeaturedArticleComponent } from "./featured-article.component";
-import { FluidImageComponent } from "../../shared/components/fluid-image/fluid-image.component";
-import { AspectRatio } from "../../../../common/AspectRatio";
 
 describe("FeaturedArticleComponent", () => {
   let component: FeaturedArticleComponent;

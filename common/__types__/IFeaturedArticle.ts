@@ -1,6 +1,6 @@
+import { AspectRatio } from "../AspectRatio";
 import { ContentBlockType } from "./ContentBlockType";
 import { IArticle } from "./IArticle";
-import { AspectRatio } from "../AspectRatio";
 
 export interface IFeaturedArticle extends IArticle {
   type: ContentBlockType.FeaturedArticle;

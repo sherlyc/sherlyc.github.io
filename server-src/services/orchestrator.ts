@@ -1,5 +1,6 @@
 import { ContentBlockType } from "../../common/__types__/ContentBlockType";
 import { IPage } from "../../common/__types__/IPage";
+import { FeatureName } from "../../common/FeatureName";
 import { IParams } from "./__types__/IParams";
 import { HandlerInput } from "./handlers/__types__/HandlerInput";
 import { HandlerInputType } from "./handlers/__types__/HandlerInputType";
@@ -11,7 +12,6 @@ import { Strap } from "./strap";
 import config from "./utils/config";
 import logger from "./utils/logger";
 import { formatVersion, parseVersion } from "./utils/version";
-import { FeatureName } from "../../common/FeatureName";
 
 const homepageStrapsConfig = config.strapConfig!.homepageStraps;
 
@@ -393,6 +393,33 @@ export const newPage = (): HandlerInput[] => {
       strapName: Strap.Parenting,
       articleCount: 4,
       articleFormat: ContentBlockType.HalfWidthImageArticleUnit
+    },
+    {
+      type: HandlerInputType.Feature,
+      name: FeatureName.HomepageV2,
+      content: [
+        {
+          type: HandlerInputType.Column,
+          content: [
+            {
+              type: HandlerInputType.HalfFour,
+              displayName: "NZ Farmer",
+              sourceId: Strap.NZFarmer,
+              strapName: Strap.NZFarmer,
+              color: "#f36f21",
+              linkUrl: "/" + Section.NZFarmer
+            },
+            {
+              type: HandlerInputType.HalfFour,
+              displayName: "Parenting",
+              sourceId: Strap.Parenting,
+              strapName: Strap.Parenting,
+              linkUrl: "/" + Section.Parenting,
+              color: "#db0962"
+            }
+          ]
+        }
+      ]
     },
     {
       type: HandlerInputType.BiggieSmalls,

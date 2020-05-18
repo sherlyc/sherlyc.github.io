@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
+import { AspectRatio } from "../../../../../common/AspectRatio";
 import { FluidImageWidth } from "../../../../../common/FluidImageWidth";
 import { mockService, ServiceMock } from "../../../services/mocks/MockService";
 import { RuntimeService } from "../../../services/runtime/runtime.service";
 import { WindowService } from "../../../services/window/window.service";
 import { FluidImageComponent } from "./fluid-image.component";
-import { AspectRatio } from "../../../../../common/AspectRatio";
 
 describe("FluidImageComponent", () => {
   let component: FluidImageComponent;

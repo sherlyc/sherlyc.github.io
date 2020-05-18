@@ -1,8 +1,8 @@
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IFeaturedArticle } from "../../../../common/__types__/IFeaturedArticle";
+import { AspectRatio } from "../../../../common/AspectRatio";
 import { IRawArticle } from "../__types__/IRawArticle";
 import { featuredArticle } from "./featured-article.converter";
-import { AspectRatio } from "../../../../common/AspectRatio";
 
 describe("Featured Article", () => {
   const strapName = "strapName";

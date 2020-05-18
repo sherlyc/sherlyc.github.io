@@ -1,16 +1,16 @@
-import { handlerRunnerFunction } from "../../runner";
-import { IParams } from "../../../__types__/IParams";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import {
-  ITopStoriesV2GridHandlerInput,
-  TopStoriesV2GridPositions
-} from "../../__types__/ITopStoriesV2GridHandlerInput";
 import {
   Border,
   IGridBlocks
 } from "../../../../../common/__types__/IGridContainer";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IParams } from "../../../__types__/IParams";
 import { gridBlock } from "../../../adapters/grid/grid-block";
+import {
+  ITopStoriesV2GridHandlerInput,
+  TopStoriesV2GridPositions
+} from "../../__types__/ITopStoriesV2GridHandlerInput";
+import { handlerRunnerFunction } from "../../runner";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
