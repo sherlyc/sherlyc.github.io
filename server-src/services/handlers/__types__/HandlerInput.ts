@@ -21,7 +21,9 @@ import { IListGridHandlerInput } from "./IListGridHandlerInput";
 import { IMidStripHandlerInput } from "./IMidStripHandlerInput";
 import { IMiniMidStripHandlerInput } from "./IMiniMidStripHandlerInput";
 import { INewsSixGridHandlerInput } from "./INewsSixGridHandlerInput";
+import { INewsSixGridV2HandlerInput } from "./INewsSixGridV2HandlerInput";
 import { INewsSixHandlerInput } from "./INewsSixHandlerInput";
+import { INewsSixV2HandlerInput } from "./INewsSixV2HandlerInput";
 import { IPageHandlerInput } from "./IPageHandlerInput";
 import { IRelevantStoriesGridHandlerInput } from "./IRelevantStoriesGridHandlerInput";
 import { IRelevantStoriesHandlerInput } from "./IRelevantStoriesHandlerInput";
@@ -65,6 +67,8 @@ export type HandlerInput =
   | IBiggieSmallsGridHandlerInput
   | INewsSixHandlerInput
   | INewsSixGridHandlerInput
+  | INewsSixV2HandlerInput
+  | INewsSixGridV2HandlerInput
   | ISixImageHandlerInput
   | ISixImageGridHandlerInput
   | IStripsHandlerInput

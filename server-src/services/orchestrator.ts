@@ -169,12 +169,40 @@ export const newPage = (): HandlerInput[] => {
       }
     },
     {
+      type: HandlerInputType.Feature,
+      name: FeatureName.HomepageV2,
+      content: [
+        {
+          type: HandlerInputType.NewsSixV2,
+          displayName: "coronavirus",
+          color: "#256091",
+          linkUrl: "/" + Section.Coronavirus,
+          strapName: `${homepageAdPrefix}Coronavirus`,
+          sourceId: Strap.Coronavirus
+        }
+      ]
+    },
+    {
       type: HandlerInputType.NewsSix,
       displayName: "coronavirus",
       color: "#256091",
       linkUrl: "/" + Section.Coronavirus,
       strapName: `${homepageAdPrefix}Coronavirus`,
       sourceId: Strap.Coronavirus
+    },
+    {
+      type: HandlerInputType.Feature,
+      name: FeatureName.HomepageV2,
+      content: [
+        {
+          type: HandlerInputType.NewsSixV2,
+          displayName: "national",
+          color: "#256091",
+          linkUrl: "/" + Section.National,
+          strapName: `${homepageAdPrefix}National`,
+          sourceId: Strap.National
+        }
+      ]
     },
     {
       type: HandlerInputType.NewsSix,
@@ -213,6 +241,20 @@ export const newPage = (): HandlerInput[] => {
       sourceId: Strap.ClimateChange
     },
     {
+      type: HandlerInputType.Feature,
+      name: FeatureName.HomepageV2,
+      content: [
+        {
+          type: HandlerInputType.NewsSixV2,
+          displayName: "business",
+          color: "#0083d7",
+          linkUrl: "/" + Section.Business,
+          strapName: `${homepageAdPrefix}Business`,
+          sourceId: Strap.Business
+        }
+      ]
+    },
+    {
       type: HandlerInputType.NewsSix,
       displayName: "business",
       color: "#0083d7",
@@ -227,6 +269,20 @@ export const newPage = (): HandlerInput[] => {
       linkUrl: "/" + Section.Homed,
       strapName: `${homepageAdPrefix}Homed`,
       sourceId: Strap.Homed
+    },
+    {
+      type: HandlerInputType.Feature,
+      name: FeatureName.HomepageV2,
+      content: [
+        {
+          type: HandlerInputType.NewsSixV2,
+          displayName: "prosper",
+          color: "#0083d7",
+          linkUrl: "/" + Section.Prosper,
+          strapName: `${homepageAdPrefix}Prosper`,
+          sourceId: Strap.Prosper
+        }
+      ]
     },
     {
       type: HandlerInputType.NewsSix,
@@ -253,6 +309,20 @@ export const newPage = (): HandlerInput[] => {
       strapName: Strap.Premium,
       articleCount: 4,
       articleFormat: ContentBlockType.FeaturedArticle
+    },
+    {
+      type: HandlerInputType.Feature,
+      name: FeatureName.HomepageV2,
+      content: [
+        {
+          type: HandlerInputType.NewsSixV2,
+          displayName: "world",
+          color: "#1272b4",
+          linkUrl: "/" + Section.World,
+          strapName: `${homepageAdPrefix}World`,
+          sourceId: Strap.World
+        }
+      ]
     },
     {
       type: HandlerInputType.NewsSix,
@@ -291,6 +361,20 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.Brand,
       module: BrandModule.Partner
+    },
+    {
+      type: HandlerInputType.Feature,
+      name: FeatureName.HomepageV2,
+      content: [
+        {
+          type: HandlerInputType.NewsSixV2,
+          displayName: "kea kids",
+          color: "#bf4000",
+          linkUrl: "/" + Section.KeaKidsNews,
+          strapName: `${homepageAdPrefix}KeaKidsNews`,
+          sourceId: Strap.KeaKidsNews
+        }
+      ]
     },
     {
       type: HandlerInputType.NewsSix,

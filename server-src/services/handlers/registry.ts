@@ -22,6 +22,8 @@ import LargeLeadSixGrid from "./grid/large-lead-six-grid/large-lead-six-grid";
 import LargeLeadSix from "./grid/large-lead-six/large-lead-six";
 import ListGrid from "./grid/list-grid/list-grid";
 import NewsSixGrid from "./grid/news-six-grid/news-six-grid";
+import NewsSixV2Grid from "./grid/news-six-v2-grid/news-six-v2-grid";
+import NewsSixV2 from "./grid/news-six-v2/news-six-v2";
 import NewsSix from "./grid/news-six/news-six";
 import RelevantStoriesGrid from "./grid/relevant-stories-grid/relevant-stories-grid";
 import RelevantStories from "./grid/relevant-stories/relevant-stories";
@@ -76,6 +78,8 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   BiggieSmallsGrid,
   NewsSix,
   NewsSixGrid,
+  NewsSixV2,
+  NewsSixV2Grid,
   SixImage,
   SixImageGrid,
   Strips,
