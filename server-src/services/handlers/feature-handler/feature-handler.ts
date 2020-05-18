@@ -1,4 +1,4 @@
-import flatten from "lodash-es/flatten";
+import { flatten } from "lodash-es";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 import { IFeatureContainer } from "../../../../common/__types__/IFeatureContainer";

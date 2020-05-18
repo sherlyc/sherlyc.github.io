@@ -1,6 +1,6 @@
 import { DOCUMENT } from "@angular/common";
 import { Inject, Injectable, NgZone } from "@angular/core";
-import map from "lodash-es/map";
+import { map } from "lodash-es";
 import { ConfigService } from "../config/config.service";
 import { FeatureSwitchService } from "../feature-switch/feature-switch.service";
 import { LoggerService } from "../logger/logger.service";
