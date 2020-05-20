@@ -21,6 +21,14 @@ export class TimeAgoComponent implements OnInit {
 
   @HostBinding("style.display") display = "inline-block";
 
+  private static timeAgoFormat(secondsAgo: number) {
+    const hours = Math.floor(secondsAgo / ONE_HOUR_IN_SECONDS);
+    const minutes = Math.floor((secondsAgo % ONE_HOUR_IN_SECONDS) / ONE_MINUTE_IN_SECONDS);
+    const hoursText = hours === 0 ? "" : `${hours} hour `;
+    const minutesText = minutes === 0 ? "" : `${minutes} min `;
+    return `${hoursText}${minutesText}ago`;
+  }
+
   ngOnInit() {
     this.timeAgo = this.formatTime();
     this.display = !!this.timeAgo ? "inline-block" : "none";
@@ -35,14 +43,6 @@ export class TimeAgoComponent implements OnInit {
     if (secondsAgo >= ONE_HOUR_IN_SECONDS && secondsAgo <= ONE_HOUR_IN_SECONDS * 2) {
       return format(fromUnixTime(this.timestamp), "H:MMa");
     }
-    return this.timeAgoFormat(secondsAgo);
-  }
-
-  private timeAgoFormat(secondsAgo: number) {
-    const hours = Math.floor(secondsAgo / ONE_HOUR_IN_SECONDS);
-    const minutes = Math.floor((secondsAgo % ONE_HOUR_IN_SECONDS) / ONE_MINUTE_IN_SECONDS);
-    const hoursText = hours === 0 ? "" : `${hours} hour `;
-    const minutesText = minutes === 0 ? "" : `${minutes} min `;
-    return `${hoursText}${minutesText}ago`;
+    return TimeAgoComponent.timeAgoFormat(secondsAgo);
   }
 }
