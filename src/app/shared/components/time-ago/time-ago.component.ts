@@ -22,11 +22,11 @@ export class TimeAgoComponent implements OnInit {
   @HostBinding("style.display") display = "inline-block";
 
   ngOnInit() {
-    this.timeAgo = this.format();
+    this.timeAgo = this.formatTime();
     this.display = !!this.timeAgo ? "inline-block" : "none";
   }
 
-  format() {
+  formatTime() {
     const secondsAgo = Math.floor((Date.now() - this.timestamp * 1000) / 1000);
 
     if (secondsAgo > ONE_HOUR_IN_SECONDS * 2 || secondsAgo < 0) {

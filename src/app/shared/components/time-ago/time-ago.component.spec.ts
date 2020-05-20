@@ -66,7 +66,6 @@ describe("TimeAgoComponent", () => {
     expect(timeAgoSpan.nativeElement.textContent).toBe(expectedTimestamp);
   });
 
-
   it("should not show the time when it is more than 2 hours ago", () => {
     component.timestamp = getUnixTime(sub(new Date(), { hours: 2, minutes: 1 }));
     fixture.detectChanges();
