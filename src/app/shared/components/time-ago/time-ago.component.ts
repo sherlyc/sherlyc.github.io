@@ -1,6 +1,5 @@
 import { Component, HostBinding, Input, OnInit } from "@angular/core";
-import {format, formatDistanceToNow, fromUnixTime} from "date-fns";
-import {formatDistanceStrictWithOptions} from "date-fns/fp";
+import { format, fromUnixTime } from "date-fns";
 
 const ONE_HOUR_IN_SECONDS = 3600;
 const ONE_MINUTE_IN_SECONDS = 60;
@@ -44,7 +43,6 @@ export class TimeAgoComponent implements OnInit {
     const minutes = Math.floor((secondsAgo % ONE_HOUR_IN_SECONDS) / ONE_MINUTE_IN_SECONDS);
     const hoursText = hours === 0 ? "" : `${hours} hour `;
     const minutesText = minutes === 0 ? "" : `${minutes} min `;
-
     return `${hoursText}${minutesText}ago`;
   }
 }

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { add, format, getUnixTime, sub, parse, fromUnixTime } from "date-fns";
+import { add, format, getUnixTime, sub, fromUnixTime } from "date-fns";
 import { TimeAgoComponent } from "./time-ago.component";
 
 const _Date = Date;
