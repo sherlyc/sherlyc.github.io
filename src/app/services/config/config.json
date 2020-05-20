@@ -13,7 +13,7 @@
     "advertising": {
       "gpt": "//securepubads.g.doubleclick.net/tag/js/gpt.js",
       "prebid": "/static/prebid/prebid-2.41.0.js",
-      "adnostic": "/static/adnostic/stuff-adnostic-1.71.0.min.46bf06a12965b628b9f1.js"
+      "adnostic": "/static/adnostic/stuff-adnostic-1.75.0.min.5f93b9788ad86188c85e.js"
     },
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
@@ -43,7 +43,7 @@
     "advertising": {
       "gpt": "//securepubads.g.doubleclick.net/tag/js/gpt.js",
       "prebid": "/static/prebid/prebid-2.41.0.js",
-      "adnostic": "/static/adnostic/stuff-adnostic-1.71.0.min.46bf06a12965b628b9f1.js"
+      "adnostic": "/static/adnostic/stuff-adnostic-1.75.0.min.5f93b9788ad86188c85e.js"
     },
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
@@ -73,7 +73,7 @@
     "advertising": {
       "gpt": "//securepubads.g.doubleclick.net/tag/js/gpt.js",
       "prebid": "/static/prebid/prebid-2.41.0.js",
-      "adnostic": "/static/adnostic/stuff-adnostic-1.71.0.min.46bf06a12965b628b9f1.js"
+      "adnostic": "/static/adnostic/stuff-adnostic-1.75.0.min.5f93b9788ad86188c85e.js"
     },
     "sentryIO": {
       "dsn": "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
