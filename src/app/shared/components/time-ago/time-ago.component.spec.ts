@@ -68,7 +68,6 @@ describe("TimeAgoComponent", () => {
 
 
   it("should not show the time when it is more than 2 hours ago", () => {
-    // 2 hours ago
     component.timestamp = getUnixTime(sub(new Date(), { hours: 2, minutes: 1 }));
     fixture.detectChanges();
 
@@ -79,7 +78,6 @@ describe("TimeAgoComponent", () => {
   });
 
   it("should not show the time when it is later than now", () => {
-    // 1 minute later
     component.timestamp = getUnixTime(add(new Date(), { minutes: 1 }));
     fixture.detectChanges();
 
