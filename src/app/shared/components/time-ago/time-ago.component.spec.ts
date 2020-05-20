@@ -53,7 +53,7 @@ describe("TimeAgoComponent", () => {
       ${1}      | ${0}
       ${1}      | ${20}
       ${2}      | ${0}
-    `("should show timestamp in 12 hour clock format when it is between 1 and 2 hours ago ($hoursAgo hour $minutesAgo min ago)",
+    `("should show time in 12 hour clock format when it is between 1 and 2 hours ago ($hoursAgo hour $minutesAgo min ago)",
     ( {hoursAgo, minutesAgo}) => {
     component.timestamp = getUnixTime(
       sub(new Date(), { hours: hoursAgo, minutes: minutesAgo })
@@ -67,7 +67,7 @@ describe("TimeAgoComponent", () => {
   });
 
 
-  it("should not show when it is more than 2 hours ago", () => {
+  it("should not show the time when it is more than 2 hours ago", () => {
     // 2 hours ago
     component.timestamp = getUnixTime(sub(new Date(), { hours: 2, minutes: 1 }));
     fixture.detectChanges();
@@ -78,7 +78,7 @@ describe("TimeAgoComponent", () => {
     expect(separatorSpan).toBeFalsy();
   });
 
-  it("should not show when it is later than now", () => {
+  it("should not show the time when it is later than now", () => {
     // 1 minute later
     component.timestamp = getUnixTime(add(new Date(), { minutes: 1 }));
     fixture.detectChanges();
