@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { add, getUnixTime, sub } from "date-fns";
+import {add, format, getUnixTime, sub, parse, fromUnixTime} from "date-fns";
 import { TimeAgoComponent } from "./time-ago.component";
 
 const _Date = Date;
@@ -32,7 +32,7 @@ describe("TimeAgoComponent", () => {
     component = fixture.componentInstance;
   });
 
-  it("should show the timestamp when it is less than 2 hours but more than 1 hour ago", () => {
+  it("should show date published as timestamp when it is more than 1 hour ago and less than 2 hours ago", () => {
     // 1 hour 20 minutes ago
     component.timestamp = getUnixTime(
       sub(new Date(), { hours: 1, minutes: 20 })
@@ -41,7 +41,9 @@ describe("TimeAgoComponent", () => {
     fixture.detectChanges();
 
     const timeAgoSpan = fixture.debugElement.query(By.css(".time-ago"));
-    expect(timeAgoSpan.nativeElement.textContent).toBe("1 hour 20 min ago");
+
+    const expectedTimestamp = format(fromUnixTime(component.timestamp), "H:MMa");
+    expect(timeAgoSpan.nativeElement.textContent).toBe(expectedTimestamp);
   });
 
   it("should show the timestamp when it is less than 1 hour ago", () => {
