@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import {add, format, getUnixTime, sub, parse, fromUnixTime} from "date-fns";
+import { add, format, getUnixTime, sub, parse, fromUnixTime } from "date-fns";
 import { TimeAgoComponent } from "./time-ago.component";
 
 const _Date = Date;
@@ -32,33 +32,44 @@ describe("TimeAgoComponent", () => {
     component = fixture.componentInstance;
   });
 
-  it("should show date published as timestamp when it is more than 1 hour ago and less than 2 hours ago", () => {
-    // 1 hour 20 minutes ago
+  it.each`
+      minutesAgo  | expected
+      ${1}        | ${"1 min ago"}
+      ${20}       | ${"20 min ago"}
+      ${59}       | ${"59 min ago"}
+    `(
+    "should show time ago when it is between 1 to 59 minutes ago ($minutesAgo min ago)",
+    ({ minutesAgo, expected }) => {
+      component.timestamp = getUnixTime(sub(new Date(), { minutes: minutesAgo }));
+
+      fixture.detectChanges();
+      const timeAgoSpan = fixture.debugElement.query(By.css(".time-ago"));
+
+      expect(timeAgoSpan.nativeElement.textContent).toBe(expected);
+    });
+
+  it.each`
+      hoursAgo  | minutesAgo
+      ${1}      | ${0}
+      ${1}      | ${20}
+      ${2}      | ${0}
+    `("should show timestamp in 12 hour clock format when it is between 1 and 2 hours ago ($hoursAgo hour $minutesAgo min ago)",
+    ( {hoursAgo, minutesAgo}) => {
     component.timestamp = getUnixTime(
-      sub(new Date(), { hours: 1, minutes: 20 })
+      sub(new Date(), { hours: hoursAgo, minutes: minutesAgo })
     );
 
     fixture.detectChanges();
-
     const timeAgoSpan = fixture.debugElement.query(By.css(".time-ago"));
 
     const expectedTimestamp = format(fromUnixTime(component.timestamp), "H:MMa");
     expect(timeAgoSpan.nativeElement.textContent).toBe(expectedTimestamp);
   });
 
-  it("should show the timestamp when it is less than 1 hour ago", () => {
-    // 20 minutes ago
-    component.timestamp = getUnixTime(sub(new Date(), { minutes: 20 }));
 
-    fixture.detectChanges();
-
-    const timeAgoSpan = fixture.debugElement.query(By.css(".time-ago"));
-    expect(timeAgoSpan.nativeElement.textContent).toBe("20 min ago");
-  });
-
-  it("should not show the timestamp when it is more than 2 hours ago", () => {
+  it("should not show when it is more than 2 hours ago", () => {
     // 2 hours ago
-    component.timestamp = getUnixTime(sub(new Date(), { hours: 2 }));
+    component.timestamp = getUnixTime(sub(new Date(), { hours: 2, minutes: 1 }));
     fixture.detectChanges();
 
     const timeAgoSpan = fixture.debugElement.query(By.css(".time-ago"));
@@ -67,7 +78,7 @@ describe("TimeAgoComponent", () => {
     expect(separatorSpan).toBeFalsy();
   });
 
-  it("should not show the timestamp when it is later than now", () => {
+  it("should not show when it is later than now", () => {
     // 1 minute later
     component.timestamp = getUnixTime(add(new Date(), { minutes: 1 }));
     fixture.detectChanges();
