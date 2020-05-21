@@ -28,6 +28,7 @@ import { IBulletList } from "./IBulletList";
 import { IResponsiveExternalContent } from "./IResponsiveExternalContent";
 import { IArticleTitle } from "./IArticleTitle";
 import { IOli } from "./IOli";
+import { IHomepageArticle } from "./IHomepageArticle";
 
 export type IContentBlock =
   | IDefconArticleUnit
@@ -59,4 +60,5 @@ export type IContentBlock =
   | IBulletList
   | IResponsiveExternalContent
   | IArticleTitle
-  | IOli;
+  | IOli
+  | IHomepageArticle;
