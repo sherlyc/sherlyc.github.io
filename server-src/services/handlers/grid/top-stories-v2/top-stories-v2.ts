@@ -71,9 +71,17 @@ export default async function(
       [TopStoriesV2GridPositions.LeftOne]: [
         contentErrorHandler(
           () =>
-            homepageArticle(articles.shift() as IRawArticle, strapName, {
-              mobile: Orientation.Portrait
-            }),
+            homepageArticle(
+              articles.shift() as IRawArticle,
+              strapName,
+              {
+                mobile: Orientation.Portrait,
+                tablet: Orientation.Portrait,
+                desktop: Orientation.Portrait
+              },
+              true,
+              true
+            ),
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
@@ -86,7 +94,9 @@ export default async function(
               articles.shift() as IRawArticle,
               strapName,
               {
-                mobile: Orientation.Portrait
+                mobile: Orientation.Portrait,
+                tablet: Orientation.Portrait,
+                desktop: Orientation.Portrait
               },
               true,
               false
@@ -103,9 +113,12 @@ export default async function(
               articles.shift() as IRawArticle,
               strapName,
               {
-                mobile: Orientation.Portrait
+                mobile: Orientation.Portrait,
+                tablet: Orientation.Portrait,
+                desktop: Orientation.Portrait
               },
-              false
+              false,
+              true
             ),
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,
@@ -120,8 +133,11 @@ export default async function(
               articles.shift() as IRawArticle,
               strapName,
               {
-                mobile: Orientation.Landscape
+                mobile: Orientation.Landscape,
+                tablet: Orientation.Landscape,
+                desktop: Orientation.Landscape
               },
+              true,
               true
             ),
           HandlerInputType.TopStoriesV2,
@@ -136,9 +152,12 @@ export default async function(
               articles.shift() as IRawArticle,
               strapName,
               {
-                mobile: Orientation.Landscape
+                mobile: Orientation.Landscape,
+                tablet: Orientation.Landscape,
+                desktop: Orientation.Landscape
               },
-              false
+              false,
+              true
             ),
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,
@@ -152,7 +171,9 @@ export default async function(
               articles.shift() as IRawArticle,
               strapName,
               {
-                mobile: Orientation.Portrait
+                mobile: Orientation.Portrait,
+                tablet: Orientation.Portrait,
+                desktop: Orientation.Portrait
               },
               true,
               false
@@ -169,7 +190,9 @@ export default async function(
               articles.shift() as IRawArticle,
               strapName,
               {
-                mobile: Orientation.Landscape
+                mobile: Orientation.Landscape,
+                tablet: Orientation.Landscape,
+                desktop: Orientation.Landscape
               },
               false,
               false

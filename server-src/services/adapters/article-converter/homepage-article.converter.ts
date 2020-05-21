@@ -10,11 +10,11 @@ export const homepageArticle = (
   strapName: string,
   display: {
     mobile: Orientation;
-    tablet?: Orientation;
-    desktop?: Orientation;
+    tablet: Orientation;
+    desktop: Orientation;
   },
-  showIntroText: boolean = true,
-  showImage: boolean = true
+  showIntroText: boolean,
+  showImage: boolean
 ): IHomepageArticle => ({
   type: ContentBlockType.HomepageArticle,
   id: article.id,

@@ -46,11 +46,17 @@ describe("Homepage Article", () => {
   };
 
   it("should convert", () => {
-    const result = homepageArticle(fakeArticle, "strapName", {
-      desktop: Orientation.Landscape,
-      mobile: Orientation.Landscape,
-      tablet: Orientation.Portrait
-    });
+    const result = homepageArticle(
+      fakeArticle,
+      "strapName",
+      {
+        desktop: Orientation.Landscape,
+        mobile: Orientation.Landscape,
+        tablet: Orientation.Portrait
+      },
+      true,
+      true
+    );
 
     expect(result).toEqual(expected);
   });
