@@ -2,8 +2,8 @@ import { ContentBlockType } from "./ContentBlockType";
 import { HeadlineFlags } from "../HeadlineFlags";
 
 export enum Orientation {
-  Portrait = "column",
-  Landscape = "row"
+  Portrait = "portrait",
+  Landscape = "landscape"
 }
 
 export interface IHomepageArticle {
@@ -20,7 +20,7 @@ export interface IHomepageArticle {
     strapName: string;
     title: string;
   };
-  display: {
+  orientation: {
     mobile: Orientation;
     tablet?: Orientation;
     desktop?: Orientation;

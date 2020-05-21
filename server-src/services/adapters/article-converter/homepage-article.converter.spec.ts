@@ -30,7 +30,7 @@ describe("Homepage Article", () => {
       title: "Title One"
     },
     category: "identifier",
-    display: {
+    orientation: {
       desktop: Orientation.Landscape,
       mobile: Orientation.Landscape,
       tablet: Orientation.Portrait

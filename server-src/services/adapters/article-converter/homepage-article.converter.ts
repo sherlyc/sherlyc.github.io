@@ -8,7 +8,7 @@ import { ContentBlockType } from "../../../../common/__types__/ContentBlockType"
 export const homepageArticle = (
   article: IRawArticle,
   strapName: string,
-  display: {
+  orientation: {
     mobile: Orientation;
     tablet: Orientation;
     desktop: Orientation;
@@ -29,5 +29,5 @@ export const homepageArticle = (
     strapName,
     title: article.title
   },
-  display
+  orientation: orientation
 });
