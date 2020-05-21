@@ -9,7 +9,7 @@ import { AnalyticsEventsType } from "../../services/analytics/__types__/Analytic
 import { FeatureSwitchService } from "../../services/feature-switch/feature-switch.service";
 import { FluidImageComponent } from "../../shared/components/fluid-image/fluid-image.component";
 import { HeadlineComponent } from "../../shared/components/headline/headline.component";
-import { TimeAgoComponent } from "../../shared/components/time-ago/time-ago.component";
+import { TimeComponent } from "../../shared/components/time/time.component";
 import { SharedModule } from "../../shared/shared.module";
 import { HalfImageArticleWithoutIntroUnitComponent } from "./half-image-article-without-intro-unit.component";
 
@@ -115,18 +115,18 @@ describe("HalfImageArticleWithoutIntroUnit", () => {
     expect(headline.identifierColor).toEqual(articleData.identifierColor);
   });
 
-  it("should render time ago component", () => {
+  it("should render time component", () => {
     component.input = articleData;
 
     fixture.detectChanges();
 
     const componentElement = fixture.debugElement;
-    const timeAgo: TimeAgoComponent = componentElement.query(
-      By.directive(TimeAgoComponent)
+    const time: TimeComponent = componentElement.query(
+      By.directive(TimeComponent)
     ).componentInstance;
 
-    expect(timeAgo.timestamp).toEqual(articleData.lastPublishedTime);
-    expect(timeAgo.textColor).toEqual("#616161");
+    expect(time.timestamp).toEqual(articleData.lastPublishedTime);
+    expect(time.textColor).toEqual("#616161");
   });
 
   it("should send analytics when clicked", () => {

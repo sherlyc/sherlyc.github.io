@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { add, format, getUnixTime, sub, fromUnixTime } from "date-fns";
-import { TimeAgoComponent } from "./time-ago.component";
+import { TimeComponent } from "./time.component";
 
 const _Date = Date;
 
@@ -12,9 +12,9 @@ function fakeDate(defaultDate: string | number) {
   global.Date.now = () => new _Date(defaultDate).getTime();
 }
 
-describe("TimeAgoComponent", () => {
-  let component: TimeAgoComponent;
-  let fixture: ComponentFixture<TimeAgoComponent>;
+describe("TimeComponent", () => {
+  let component: TimeComponent;
+  let fixture: ComponentFixture<TimeComponent>;
 
   beforeAll(() => {
     fakeDate("2019-07-01");
@@ -26,9 +26,9 @@ describe("TimeAgoComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TimeAgoComponent]
+      declarations: [TimeComponent]
     }).compileComponents();
-    fixture = TestBed.createComponent(TimeAgoComponent);
+    fixture = TestBed.createComponent(TimeComponent);
     component = fixture.componentInstance;
   });
 
@@ -43,9 +43,9 @@ describe("TimeAgoComponent", () => {
       component.timestamp = getUnixTime(sub(new Date(), { minutes: minutesAgo }));
 
       fixture.detectChanges();
-      const timeAgoSpan = fixture.debugElement.query(By.css(".time-ago"));
+      const timeSpan = fixture.debugElement.query(By.css(".time"));
 
-      expect(timeAgoSpan.nativeElement.textContent).toBe(expected);
+      expect(timeSpan.nativeElement.textContent).toBe(expected);
     });
 
   it.each`
@@ -60,19 +60,19 @@ describe("TimeAgoComponent", () => {
     );
 
     fixture.detectChanges();
-    const timeAgoSpan = fixture.debugElement.query(By.css(".time-ago"));
+    const timeSpan = fixture.debugElement.query(By.css(".time"));
 
     const expectedTimestamp = format(fromUnixTime(component.timestamp), "H:MMa");
-    expect(timeAgoSpan.nativeElement.textContent).toBe(expectedTimestamp);
+    expect(timeSpan.nativeElement.textContent).toBe(expectedTimestamp);
   });
 
   it("should not show the time when it is more than 2 hours ago", () => {
     component.timestamp = getUnixTime(sub(new Date(), { hours: 2, minutes: 1 }));
     fixture.detectChanges();
 
-    const timeAgoSpan = fixture.debugElement.query(By.css(".time-ago"));
+    const time = fixture.debugElement.query(By.css(".time"));
     const separatorSpan = fixture.debugElement.query(By.css(".separator"));
-    expect(timeAgoSpan).toBeFalsy();
+    expect(time).toBeFalsy();
     expect(separatorSpan).toBeFalsy();
   });
 
@@ -80,9 +80,9 @@ describe("TimeAgoComponent", () => {
     component.timestamp = getUnixTime(add(new Date(), { minutes: 1 }));
     fixture.detectChanges();
 
-    const timeAgoSpan = fixture.debugElement.query(By.css(".time-ago"));
+    const time = fixture.debugElement.query(By.css(".time"));
     const separatorSpan = fixture.debugElement.query(By.css(".separator"));
-    expect(timeAgoSpan).toBeFalsy();
+    expect(time).toBeFalsy();
     expect(separatorSpan).toBeFalsy();
   });
 
@@ -93,10 +93,10 @@ describe("TimeAgoComponent", () => {
 
     fixture.detectChanges();
 
-    const timeAgoSpan = fixture.debugElement.query(By.css(".time-ago"));
+    const time = fixture.debugElement.query(By.css(".time"));
     const separatorSpan = fixture.debugElement.query(By.css(".separator"));
-    expect(timeAgoSpan.nativeElement.textContent).toBe("20 min ago");
-    expect(timeAgoSpan.nativeElement.previousElementSibling).toBe(
+    expect(time.nativeElement.textContent).toBe("20 min ago");
+    expect(time.nativeElement.previousElementSibling).toBe(
       separatorSpan.nativeElement
     );
   });
@@ -108,10 +108,10 @@ describe("TimeAgoComponent", () => {
 
     fixture.detectChanges();
 
-    const timeAgoSpan = fixture.debugElement.query(By.css(".time-ago"));
+    const time = fixture.debugElement.query(By.css(".time"));
     const separatorSpan = fixture.debugElement.query(By.css(".separator"));
-    expect(timeAgoSpan.nativeElement.textContent).toBe("20 min ago");
-    expect(timeAgoSpan.nativeElement.nextElementSibling).toBe(
+    expect(time.nativeElement.textContent).toBe("20 min ago");
+    expect(time.nativeElement.nextElementSibling).toBe(
       separatorSpan.nativeElement
     );
   });
@@ -123,9 +123,9 @@ describe("TimeAgoComponent", () => {
 
     fixture.detectChanges();
 
-    const timeAgoSpan = fixture.debugElement.query(By.css(".time-ago"));
+    const time = fixture.debugElement.query(By.css(".time"));
     const separatorSpan = fixture.debugElement.query(By.css(".separator"));
-    expect(timeAgoSpan.nativeElement.textContent).toBe("20 min ago");
+    expect(time.nativeElement.textContent).toBe("20 min ago");
     expect(separatorSpan).toBeFalsy();
   });
 

@@ -5,11 +5,11 @@ const ONE_HOUR_IN_SECONDS = 3600;
 const ONE_MINUTE_IN_SECONDS = 60;
 
 @Component({
-  selector: "app-time-ago",
-  templateUrl: "./time-ago.component.html",
-  styleUrls: ["./time-ago.component.scss"]
+  selector: "app-time",
+  templateUrl: "./time.component.html",
+  styleUrls: ["./time.component.scss"]
 })
-export class TimeAgoComponent implements OnInit {
+export class TimeComponent implements OnInit {
   constructor() {}
 
   @Input()
@@ -17,7 +17,7 @@ export class TimeAgoComponent implements OnInit {
   @Input()
   timestamp!: number;
   @Input() textColor = "#d12421";
-  timeAgo!: string;
+  time!: string;
 
   @HostBinding("style.display") display = "inline-block";
 
@@ -30,8 +30,8 @@ export class TimeAgoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.timeAgo = this.formatTime();
-    this.display = !!this.timeAgo ? "inline-block" : "none";
+    this.time = this.formatTime();
+    this.display = !!this.time ? "inline-block" : "none";
   }
 
   formatTime() {
@@ -43,6 +43,6 @@ export class TimeAgoComponent implements OnInit {
     if (secondsAgo >= ONE_HOUR_IN_SECONDS && secondsAgo <= ONE_HOUR_IN_SECONDS * 2) {
       return format(fromUnixTime(this.timestamp), "H:MMa");
     }
-    return TimeAgoComponent.timeAgoFormat(secondsAgo);
+    return TimeComponent.timeAgoFormat(secondsAgo);
   }
 }

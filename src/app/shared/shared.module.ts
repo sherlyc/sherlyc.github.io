@@ -7,7 +7,7 @@ import { HeadlineFlagComponent } from "./components/headline-flag/headline-flag.
 import { HeadlineComponent } from "./components/headline/headline.component";
 import { LogoComponent } from "./components/logo/logo.component";
 import { PageComponent } from "./components/page/page.component";
-import { TimeAgoComponent } from "./components/time-ago/time-ago.component";
+import { TimeComponent } from "./components/time/time.component";
 import { WeatherIconComponent } from "./components/weather-icon/weather-icon.component";
 import { ContentBlockDirective } from "./directives/content-block/content-block.directive";
 import { GlobalStyleDirective } from "./directives/global-style/global-style.directive";
@@ -33,7 +33,7 @@ import { ResizeDirective } from "./directives/resize/resize.directive";
     SigninCallbackComponent,
     HeadlineFlagComponent,
     WeatherIconComponent,
-    TimeAgoComponent,
+    TimeComponent,
     FluidImageComponent,
     LogoComponent
   ],
@@ -51,7 +51,7 @@ import { ResizeDirective } from "./directives/resize/resize.directive";
     SigninCallbackComponent,
     HeadlineFlagComponent,
     WeatherIconComponent,
-    TimeAgoComponent,
+    TimeComponent,
     FluidImageComponent,
     LogoComponent
   ]

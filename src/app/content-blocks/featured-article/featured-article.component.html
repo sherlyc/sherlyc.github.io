@@ -7,7 +7,7 @@
     <div [appGlobalStyle]="boxStyle">
       <app-headline [textColor]="input.textColor" [headline]="input.indexHeadline" [headlineFlags]="input.headlineFlags" [identifier]="input.identifier" [identifierColor]="input.identifierColor"></app-headline>
       <p class="intro">{{ input.introText }}</p>
-      <app-time-ago [textColor]="input.textColor" [timestamp]="input.lastPublishedTime"></app-time-ago>
+      <app-time [textColor]="input.textColor" [timestamp]="input.lastPublishedTime"></app-time>
     </div>
     <div style="flex: 1" [ngStyle]="{ backgroundColor: input.boxColor }"></div>
   </a>

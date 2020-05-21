@@ -19,7 +19,7 @@ export class HeadlineComponent implements OnInit {
     this.identifierColor = this.identifierColor || "#2AAAF5";
   }
 
-  showTimeAgo() {
+  showTime() {
     const currDate = new Date();
     return (
       this.timeStamp &&
