@@ -19,8 +19,6 @@ export class TimeComponent implements OnInit {
   @Input() textColor = "#d12421";
   time!: string;
 
-  @HostBinding("style.display") display = "inline-block";
-
   private static timeAgoFormat(secondsAgo: number) {
     const hours = Math.floor(secondsAgo / ONE_HOUR_IN_SECONDS);
     const minutes = Math.floor((secondsAgo % ONE_HOUR_IN_SECONDS) / ONE_MINUTE_IN_SECONDS);
@@ -31,17 +29,17 @@ export class TimeComponent implements OnInit {
 
   ngOnInit() {
     this.time = this.formatTime();
-    this.display = !!this.time ? "inline-block" : "none";
   }
 
   formatTime() {
-    const secondsAgo = differenceInSeconds(Date.now(), fromUnixTime(this.timestamp));
+    const inputDate = fromUnixTime(this.timestamp);
+    const secondsAgo = differenceInSeconds(Date.now(), inputDate);
 
     if (secondsAgo > ONE_HOUR_IN_SECONDS * 2 || secondsAgo < 0) {
       return "";
     }
     if (secondsAgo >= ONE_HOUR_IN_SECONDS && secondsAgo <= ONE_HOUR_IN_SECONDS * 2) {
-      return format(fromUnixTime(this.timestamp), "H:MMa");
+      return format(inputDate, "H:mma").toLowerCase();
     }
     return TimeComponent.timeAgoFormat(secondsAgo);
   }

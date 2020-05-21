@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { add, format, getUnixTime, sub, fromUnixTime } from "date-fns";
+import { getUnixTime, sub } from "date-fns";
 import { TimeComponent } from "./time.component";
 
 const _Date = Date;
@@ -49,42 +49,39 @@ describe("TimeComponent", () => {
     });
 
   it.each`
-      hoursAgo  | minutesAgo
-      ${1}      | ${0}
-      ${1}      | ${20}
-      ${2}      | ${0}
-    `("should show time in 12 hour clock format when it is between 1 and 2 hours ago ($hoursAgo hour $minutesAgo min ago)",
-    ( {hoursAgo, minutesAgo}) => {
-    component.timestamp = getUnixTime(
-      sub(new Date(), { hours: hoursAgo, minutes: minutesAgo })
-    );
+      inputTime                           | expected
+      ${"January 01, 2020 10:00:00"}      | ${"10:00am"}
+      ${"January 01, 2020 10:45:00"}      | ${"10:45am"}
+      ${"January 01, 2020 11:00:00"}      | ${"11:00am"}
+    `("should show inputTime in 12 hour clock format when it is between 1 and 2 hours ago ($expected)",
+    ({inputTime, expected}) => {
+      const fakeNow = "January 01, 2020 12:00:00";
+      fakeDate(fakeNow);
 
-    fixture.detectChanges();
-    const timeSpan = fixture.debugElement.query(By.css(".time"));
+      component.timestamp = getUnixTime(new Date(inputTime));
 
-    const expectedTimestamp = format(fromUnixTime(component.timestamp), "H:MMa");
-    expect(timeSpan.nativeElement.textContent).toBe(expectedTimestamp);
+      fixture.detectChanges();
+      const timeSpan = fixture.debugElement.query(By.css(".time"));
+
+      expect(timeSpan.nativeElement.textContent).toBe(expected);
   });
 
-  it("should not show the time when it is more than 2 hours ago", () => {
-    component.timestamp = getUnixTime(sub(new Date(), { hours: 2, minutes: 1 }));
-    fixture.detectChanges();
+  it.each([
+    "January 01, 2020 09:00:00",
+    "January 01, 2020 13:00:00"
+  ])("should not show time when it is more than 2 hours ago or in the future (%s)",
+    (inputTime) => {
+      const fakeNow = "January 01, 2020 12:00:00";
+      fakeDate(fakeNow);
+      component.timestamp = getUnixTime(new Date(inputTime));
 
-    const time = fixture.debugElement.query(By.css(".time"));
-    const separatorSpan = fixture.debugElement.query(By.css(".separator"));
-    expect(time).toBeFalsy();
-    expect(separatorSpan).toBeFalsy();
-  });
+      fixture.detectChanges();
+      const time = fixture.debugElement.query(By.css(".time"));
+      const separatorSpan = fixture.debugElement.query(By.css(".separator"));
 
-  it("should not show the time when it is later than now", () => {
-    component.timestamp = getUnixTime(add(new Date(), { minutes: 1 }));
-    fixture.detectChanges();
-
-    const time = fixture.debugElement.query(By.css(".time"));
-    const separatorSpan = fixture.debugElement.query(By.css(".separator"));
-    expect(time).toBeFalsy();
-    expect(separatorSpan).toBeFalsy();
-  });
+      expect(time).toBeFalsy();
+      expect(separatorSpan).toBeFalsy();
+    });
 
   it("should show the separator on the left when specified", () => {
     // 20 minutes ago
@@ -129,12 +126,11 @@ describe("TimeComponent", () => {
     expect(separatorSpan).toBeFalsy();
   });
 
-  it("should set text color on div", () => {
+  it("should set text color", () => {
     component.textColor = "white";
 
     fixture.detectChanges();
-
-    const div = fixture.debugElement.query(By.css("div"));
+    const div = fixture.debugElement.query(By.css(".time"));
 
     expect(div.nativeElement.style.color).toBe("white");
   });
