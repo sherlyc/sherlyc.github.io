@@ -10,7 +10,7 @@ import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 import { FeatureSwitchService } from "../../services/feature-switch/feature-switch.service";
 import { FluidImageComponent } from "../../shared/components/fluid-image/fluid-image.component";
 import { HeadlineComponent } from "../../shared/components/headline/headline.component";
-import { TimeAgoComponent } from "../../shared/components/time-ago/time-ago.component";
+import { TimeComponent } from "../../shared/components/time/time.component";
 import { SharedModule } from "../../shared/shared.module";
 import { HalfWidthImageArticleUnitComponent } from "./half-width-image-article-unit.component";
 
@@ -148,15 +148,15 @@ describe("HalfWidthImageArticleUnitComponent", () => {
     expect(headline).not.toHaveProperty("timeStamp");
   });
 
-  it("should render time ago component", () => {
+  it("should render time component", () => {
     component.input = articleData;
 
     fixture.detectChanges();
 
-    const timeAgo: TimeAgoComponent = fixture.debugElement.query(
-      By.directive(TimeAgoComponent)
+    const time: TimeComponent = fixture.debugElement.query(
+      By.directive(TimeComponent)
     ).componentInstance;
-    expect(timeAgo.timestamp).toEqual(articleData.lastPublishedTime);
-    expect(timeAgo.textColor).toEqual("#616161");
+    expect(time.timestamp).toEqual(articleData.lastPublishedTime);
+    expect(time.textColor).toEqual("#616161");
   });
 });

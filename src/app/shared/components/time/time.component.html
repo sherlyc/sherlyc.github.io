@@ -1,5 +1,5 @@
-<div *ngIf="timeAgo" [style.color]="textColor" class="wrapper">
+<ng-container *ngIf="time" class="wrapper">
   <span class="separator" *ngIf="separator === 'left'"></span>
-  <span class="time-ago">{{ timeAgo }}</span>
+  <span class="time" [style.color]="textColor" >{{ time }}</span>
   <span class="separator" *ngIf="separator === 'right'"></span>
-</div>
+</ng-container>

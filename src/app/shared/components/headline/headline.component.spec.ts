@@ -5,7 +5,7 @@ import { HeadlineFlags } from "../../../../../common/HeadlineFlags";
 import { FeatureSwitchService } from "../../../services/feature-switch/feature-switch.service";
 import { mockService } from "../../../services/mocks/MockService";
 import { SharedModule } from "../../shared.module";
-import { TimeAgoComponent } from "../time-ago/time-ago.component";
+import { TimeComponent } from "../time/time.component";
 import { HeadlineComponent } from "./headline.component";
 
 describe("Headline Component", () => {
@@ -42,15 +42,15 @@ describe("Headline Component", () => {
     ).toEqual(headline);
   });
 
-  it("should not display time ago when not provided", () => {
+  it("should not display time when not provided", () => {
     component.headline = "Headline";
     component.headlineFlags = [HeadlineFlags.PHOTO];
 
     fixture.detectChanges();
 
-    const timeAgo = fixture.debugElement.query(By.directive(TimeAgoComponent));
+    const time = fixture.debugElement.query(By.directive(TimeComponent));
 
-    expect(timeAgo).toBeFalsy();
+    expect(time).toBeFalsy();
   });
 
   it("should inherit text color by default", () => {
@@ -69,34 +69,33 @@ describe("Headline Component", () => {
     expect(h3.nativeElement.style.color).toBe("white");
   });
 
-  it("should show time ago when it is less than 2 hours ago", () => {
+  it("should show time when it is less than 2 hours ago", () => {
     // 1 hour 20 minutes ago
     component.timeStamp = getUnixTime(
       sub(new Date(), { hours: 1, minutes: 20 })
     );
 
     fixture.detectChanges();
+    const time = fixture.debugElement.query(By.directive(TimeComponent));
 
-    const timeAgo = fixture.debugElement.query(By.directive(TimeAgoComponent));
-
-    expect(timeAgo).toBeTruthy();
+    expect(time).toBeTruthy();
   });
 
-  it("should not show time ago when the timeStamp when is more than 2 hours ago", () => {
+  it("should not show time when the timeStamp when is more than 2 hours ago", () => {
     component.timeStamp = getUnixTime(sub(new Date(), { hours: 2 }));
+
     fixture.detectChanges();
+    const time = fixture.debugElement.query(By.directive(TimeComponent));
 
-    const timeAgo = fixture.debugElement.query(By.directive(TimeAgoComponent));
-
-    expect(timeAgo).toBeFalsy();
+    expect(time).toBeFalsy();
   });
 
-  it("should not show time ago when the timeStamp is empty", () => {
+  it("should not show time when the timeStamp is empty", () => {
     component.timeStamp = undefined;
 
-    const timeAgo = fixture.debugElement.query(By.directive(TimeAgoComponent));
+    const time = fixture.debugElement.query(By.directive(TimeComponent));
 
-    expect(timeAgo).toBeFalsy();
+    expect(time).toBeFalsy();
   });
 
   it("should set identifier", () => {

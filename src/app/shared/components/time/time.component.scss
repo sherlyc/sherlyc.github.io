@@ -1,13 +1,10 @@
 :host {
+  display: inline-flex;
+  align-items: center;
   vertical-align: middle;
 }
 
-.wrapper {
-  display: flex;
-  align-items: center;
-}
-
-.time-ago {
+.time {
   font-size: 10px;
   vertical-align: top;
   display: inline-block;
