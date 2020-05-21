@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input, OnInit } from "@angular/core";
-import { format, fromUnixTime } from "date-fns";
+import { differenceInSeconds, format, fromUnixTime } from "date-fns";
 
 const ONE_HOUR_IN_SECONDS = 3600;
 const ONE_MINUTE_IN_SECONDS = 60;
@@ -35,7 +35,7 @@ export class TimeAgoComponent implements OnInit {
   }
 
   formatTime() {
-    const secondsAgo = Math.floor((Date.now() - this.timestamp * 1000) / 1000);
+    const secondsAgo = differenceInSeconds(Date.now(), fromUnixTime(this.timestamp));
 
     if (secondsAgo > ONE_HOUR_IN_SECONDS * 2 || secondsAgo < 0) {
       return "";
