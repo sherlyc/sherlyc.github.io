@@ -70,26 +70,26 @@ describe("Top Stories V2", () => {
           { type: ContentBlockType.StickyContainer, items: [basicAdUnit] }
         ],
         [TopStoriesV2GridPositions.LeftOne]: [
-          expectContent(ContentBlockType.BigImageArticleUnit, "3")
+          expectContent(ContentBlockType.HomepageArticle, "3")
         ],
         [TopStoriesV2GridPositions.LeftTwo]: [
-          expectContent(ContentBlockType.BigImageArticleUnit, "4")
+          expectContent(ContentBlockType.HomepageArticle, "4")
         ],
         [TopStoriesV2GridPositions.LeftThree]: [
-          expectContent(ContentBlockType.ImageLinkUnit, "5")
+          expectContent(ContentBlockType.HomepageArticle, "5")
         ],
         [TopStoriesV2GridPositions.LeftFour]: [basicAdUnit],
         [TopStoriesV2GridPositions.RightOne]: [
-          expectContent(ContentBlockType.HalfImageArticleWithoutIntroUnit, "6")
+          expectContent(ContentBlockType.HomepageArticle, "6")
         ],
         [TopStoriesV2GridPositions.RightTwo]: [
-          expectContent(ContentBlockType.HalfImageArticleWithoutIntroUnit, "7")
+          expectContent(ContentBlockType.HomepageArticle, "7")
         ],
         [TopStoriesV2GridPositions.RightThree]: [
-          expectContent(ContentBlockType.BasicArticleTitleUnit, "8")
+          expectContent(ContentBlockType.HomepageArticle, "8")
         ],
         [TopStoriesV2GridPositions.RightFour]: [
-          expectContent(ContentBlockType.BasicArticleTitleUnit, "9")
+          expectContent(ContentBlockType.HomepageArticle, "9")
         ]
       }
     };
