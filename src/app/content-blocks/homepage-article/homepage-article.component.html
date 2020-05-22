@@ -1,1 +1,12 @@
-<p>homepage-article works!</p>
+<article itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+  <meta itemprop="position" content="{{ index }}" />
+  <a [ngClass]="classNames" itemprop="url" href="{{ input.linkUrl }}" appOpenExternalLink="{{ input.linkUrl }}" (click)="sendAnalytics()">
+    <div class="image" *ngIf="input.imageSrc">
+      <app-fluid-image *ngIf="input.imageSrc" [aspectRatio]="'16:9'" [imageSrc]="input.imageSrc" [caption]="input.headline"></app-fluid-image>
+    </div>
+    <div class="content">
+      <app-headline [headline]="input.headline" [headlineFlags]="input.headlineFlags"></app-headline>
+      <p *ngIf="input.introText" class="intro">{{ input.introText }}</p>
+    </div>
+  </a>
+</article>

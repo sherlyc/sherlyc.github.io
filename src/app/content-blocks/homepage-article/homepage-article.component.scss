@@ -1,0 +1,74 @@
+@import "src/styles/break-points";
+
+:host {
+  --title-size: 20px;
+}
+
+a {
+  display: flex;
+  text-decoration: none;
+  color: #000;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.intro {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #707070;
+}
+
+.image {
+  width: 100%;
+}
+
+@mixin portrait {
+  flex-direction: column;
+  .image {
+    margin-bottom: 5px;
+  }
+}
+
+@mixin landscape {
+  flex-direction: row;
+  .image {
+    margin-right: 10px;
+    flex-basis: 33.33%;
+  }
+  .content {
+    flex-basis: 66.66%;
+    flex-grow: 1;
+  }
+}
+
+@include mobile {
+  .portrait-mobile {
+    @include portrait;
+  }
+
+  .landscape-mobile {
+    @include landscape;
+  }
+}
+
+@include tablet {
+  .portrait-tablet {
+    @include portrait;
+  }
+
+  .landscape-tablet {
+    @include landscape;
+  }
+}
+
+@include desktop {
+  .portrait-desktop {
+    @include portrait;
+  }
+
+  .landscape-desktop {
+    @include landscape;
+  }
+}

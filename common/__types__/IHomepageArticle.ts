@@ -22,7 +22,7 @@ export interface IHomepageArticle {
   };
   orientation: {
     mobile: Orientation;
-    tablet?: Orientation;
-    desktop?: Orientation;
+    tablet: Orientation;
+    desktop: Orientation;
   };
 }
