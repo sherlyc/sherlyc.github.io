@@ -14,7 +14,7 @@ export class HomepageArticleComponent
   implements IContentBlockComponent, OnInit {
   @Input() input!: IHomepageArticle;
   index!: number;
-  classNames!: string[];
+  classNames: string[] = [];
 
   constructor(private analyticsService: AnalyticsService) {}
 
