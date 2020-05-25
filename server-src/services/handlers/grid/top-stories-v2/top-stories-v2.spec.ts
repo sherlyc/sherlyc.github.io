@@ -11,6 +11,8 @@ import {
 } from "../../__types__/ITopStoriesV2GridHandlerInput";
 import { ITopStoriesV2HandlerInput } from "../../__types__/ITopStoriesV2HandlerInput";
 import topStoriesV2 from "./top-stories-v2";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 
@@ -32,13 +34,18 @@ describe("Top Stories V2", () => {
   };
 
   const fakeArticlesWithIds = (ids: number[]) =>
-    ids.map((id) => ({ id: `${id}` } as IRawArticle));
+    ids.map(
+      (id) =>
+        ({
+          id: `${id}`,
+          imageSrc: `${id}.png`,
+          introText: `${id} intro`
+        } as IRawArticle)
+    );
 
-  const expectContent = (type: ContentBlockType, id: string) =>
-    expect.objectContaining({
-      type: type,
-      id
-    });
+  const expectContentBlock = (
+    props: Partial<IContentBlock> & Pick<IContentBlock, "type">
+  ) => expect.objectContaining(props);
 
   beforeEach(() => {
     jest.resetAllMocks();
@@ -61,35 +68,111 @@ describe("Top Stories V2", () => {
       type: HandlerInputType.TopStoriesV2Grid,
       content: {
         [TopStoriesV2GridPositions.LeftHighlight]: [
-          expectContent(ContentBlockType.BigImageArticleUnit, "1")
+          expectContentBlock({
+            type: ContentBlockType.BigImageArticleUnit,
+            id: "1"
+          })
         ],
         [TopStoriesV2GridPositions.RightHighlight]: [
-          expectContent(ContentBlockType.FeaturedArticle, "2")
+          expectContentBlock({
+            type: ContentBlockType.FeaturedArticle,
+            id: "2"
+          })
         ],
         [TopStoriesV2GridPositions.BannerAd]: [
           { type: ContentBlockType.StickyContainer, items: [basicAdUnit] }
         ],
         [TopStoriesV2GridPositions.LeftOne]: [
-          expectContent(ContentBlockType.HomepageArticle, "3")
+          expectContentBlock({
+            type: ContentBlockType.HomepageArticle,
+            id: "3",
+            orientation: {
+              mobile: Orientation.Portrait,
+              tablet: Orientation.Portrait,
+              desktop: Orientation.Portrait
+            },
+            imageSrc: "3.png",
+            introText: "3 intro"
+          })
         ],
         [TopStoriesV2GridPositions.LeftTwo]: [
-          expectContent(ContentBlockType.HomepageArticle, "4")
+          expectContentBlock({
+            type: ContentBlockType.HomepageArticle,
+            id: "4",
+            orientation: {
+              mobile: Orientation.Portrait,
+              tablet: Orientation.Portrait,
+              desktop: Orientation.Portrait
+            },
+            imageSrc: undefined,
+            introText: "4 intro"
+          })
         ],
         [TopStoriesV2GridPositions.LeftThree]: [
-          expectContent(ContentBlockType.HomepageArticle, "5")
+          expectContentBlock({
+            type: ContentBlockType.HomepageArticle,
+            id: "5",
+            orientation: {
+              mobile: Orientation.Portrait,
+              tablet: Orientation.Portrait,
+              desktop: Orientation.Portrait
+            },
+            imageSrc: "5.png",
+            introText: undefined
+          })
         ],
         [TopStoriesV2GridPositions.LeftFour]: [basicAdUnit],
         [TopStoriesV2GridPositions.RightOne]: [
-          expectContent(ContentBlockType.HomepageArticle, "6")
+          expectContentBlock({
+            type: ContentBlockType.HomepageArticle,
+            id: "6",
+            orientation: {
+              mobile: Orientation.Landscape,
+              tablet: Orientation.Landscape,
+              desktop: Orientation.Landscape
+            },
+            imageSrc: "6.png",
+            introText: "6 intro"
+          })
         ],
         [TopStoriesV2GridPositions.RightTwo]: [
-          expectContent(ContentBlockType.HomepageArticle, "7")
+          expectContentBlock({
+            type: ContentBlockType.HomepageArticle,
+            id: "7",
+            orientation: {
+              mobile: Orientation.Landscape,
+              tablet: Orientation.Landscape,
+              desktop: Orientation.Landscape
+            },
+            imageSrc: "7.png",
+            introText: undefined
+          })
         ],
         [TopStoriesV2GridPositions.RightThree]: [
-          expectContent(ContentBlockType.HomepageArticle, "8")
+          expectContentBlock({
+            type: ContentBlockType.HomepageArticle,
+            id: "8",
+            orientation: {
+              mobile: Orientation.Portrait,
+              tablet: Orientation.Portrait,
+              desktop: Orientation.Portrait
+            },
+            imageSrc: undefined,
+            introText: "8 intro"
+          })
         ],
         [TopStoriesV2GridPositions.RightFour]: [
-          expectContent(ContentBlockType.HomepageArticle, "9")
+          expectContentBlock({
+            type: ContentBlockType.HomepageArticle,
+            id: "9",
+            orientation: {
+              mobile: Orientation.Landscape,
+              tablet: Orientation.Landscape,
+              desktop: Orientation.Landscape
+            },
+            imageSrc: undefined,
+            introText: undefined
+          })
         ]
       }
     };

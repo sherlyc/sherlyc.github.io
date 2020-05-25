@@ -10,6 +10,8 @@ import {
   IHalfFourGridHandlerInput
 } from "../../__types__/IHalfFourGridHandlerInput";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 
@@ -26,13 +28,18 @@ describe("Half four", () => {
   };
 
   const articlesWithIds = (ids: number[]) =>
-    ids.map((id) => ({ id: `${id}` } as IRawArticle));
+    ids.map(
+      (id) =>
+        ({
+          id: `${id}`,
+          imageSrc: `${id}.png`,
+          introText: `${id} intro`
+        } as IRawArticle)
+    );
 
-  const expectContentBlock = (type: ContentBlockType, id: number) =>
-    expect.objectContaining({
-      type,
-      id: `${id}`
-    });
+  const expectContentBlock = (
+    props: Partial<IContentBlock> & Pick<IContentBlock, "type">
+  ) => expect.objectContaining(props);
 
   beforeEach(() => {
     jest.resetAllMocks();
@@ -63,16 +70,49 @@ describe("Half four", () => {
           }
         ],
         [HalfFourGridPositions.Left]: [
-          expectContentBlock(ContentBlockType.FeaturedArticle, 1)
+          expectContentBlock({
+            type: ContentBlockType.FeaturedArticle,
+            id: "1"
+          })
         ],
         [HalfFourGridPositions.RightOne]: [
-          expectContentBlock(ContentBlockType.HomepageArticle, 2)
+          expectContentBlock({
+            type: ContentBlockType.HomepageArticle,
+            id: "2",
+            orientation: {
+              mobile: Orientation.Landscape,
+              tablet: Orientation.Landscape,
+              desktop: Orientation.Landscape
+            },
+            introText: "2 intro",
+            imageSrc: undefined
+          })
         ],
         [HalfFourGridPositions.RightTwo]: [
-          expectContentBlock(ContentBlockType.HomepageArticle, 3)
+          expectContentBlock({
+            type: ContentBlockType.HomepageArticle,
+            id: "3",
+            orientation: {
+              mobile: Orientation.Landscape,
+              tablet: Orientation.Landscape,
+              desktop: Orientation.Landscape
+            },
+            introText: undefined,
+            imageSrc: undefined
+          })
         ],
         [HalfFourGridPositions.RightThree]: [
-          expectContentBlock(ContentBlockType.HomepageArticle, 4)
+          expectContentBlock({
+            type: ContentBlockType.HomepageArticle,
+            id: "4",
+            orientation: {
+              mobile: Orientation.Landscape,
+              tablet: Orientation.Landscape,
+              desktop: Orientation.Landscape
+            },
+            introText: undefined,
+            imageSrc: undefined
+          })
         ]
       }
     };
