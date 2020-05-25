@@ -29,5 +29,5 @@ export const homepageArticle = (
     strapName,
     title: article.title
   },
-  orientation: orientation
+  orientation
 });

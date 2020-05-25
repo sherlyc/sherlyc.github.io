@@ -77,16 +77,14 @@ describe("News Six V2 handler", () => {
         ],
         [NewsSixV2GridPositions.Two]: [
           expectContentBlock({
-            type: ContentBlockType.BasicArticleTitleUnit,
-            id: "2",
-            identifierColor: displayNameColor
+            type: ContentBlockType.HomepageArticle,
+            id: "2"
           })
         ],
         [NewsSixV2GridPositions.Three]: [
           expectContentBlock({
-            type: ContentBlockType.BasicArticleTitleUnit,
-            id: "3",
-            identifierColor: displayNameColor
+            type: ContentBlockType.HomepageArticle,
+            id: "3"
           })
         ],
         [NewsSixV2GridPositions.Four]: [
@@ -100,16 +98,14 @@ describe("News Six V2 handler", () => {
         ],
         [NewsSixV2GridPositions.Five]: [
           expectContentBlock({
-            type: ContentBlockType.ResponsiveBigImageArticle,
-            id: "5",
-            identifierColor: displayNameColor
+            type: ContentBlockType.HomepageArticle,
+            id: "5"
           })
         ],
         [NewsSixV2GridPositions.Six]: [
           expectContentBlock({
-            type: ContentBlockType.ResponsiveBigImageArticle,
-            id: "6",
-            identifierColor: displayNameColor
+            type: ContentBlockType.HomepageArticle,
+            id: "6"
           })
         ]
       }
