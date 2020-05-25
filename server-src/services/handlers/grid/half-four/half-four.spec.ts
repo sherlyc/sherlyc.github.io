@@ -5,7 +5,10 @@ import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { Strap } from "../../../strap";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { HalfFourGridPositions, IHalfFourGridHandlerInput } from "../../__types__/IHalfFourGridHandlerInput";
+import {
+  HalfFourGridPositions,
+  IHalfFourGridHandlerInput
+} from "../../__types__/IHalfFourGridHandlerInput";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
@@ -42,23 +45,35 @@ describe("Half four", () => {
   });
 
   it("should call half four grid with correct content", async () => {
-    (getRawArticles as jest.Mock).mockResolvedValue(articlesWithIds([1, 2, 3, 4]));
+    (getRawArticles as jest.Mock).mockResolvedValue(
+      articlesWithIds([1, 2, 3, 4])
+    );
 
     await halfFour(handlerRunnerMock, input, params);
 
     const expectedGrid: IHalfFourGridHandlerInput = {
       type: HandlerInputType.HalfFourGrid,
       content: {
-        [HalfFourGridPositions.ModuleTitle]: [{
-          type: ContentBlockType.ModuleTitle,
-          displayName: input.displayName,
-          displayNameColor: input.color,
-          linkUrl: input.linkUrl,
-        }],
-        [HalfFourGridPositions.Left]: [expectContentBlock(ContentBlockType.FeaturedArticle, 1)],
-        [HalfFourGridPositions.RightOne]: [expectContentBlock(ContentBlockType.BasicArticleTitleUnit, 2)],
-        [HalfFourGridPositions.RightTwo]: [expectContentBlock(ContentBlockType.BasicArticleTitleUnit, 3)],
-        [HalfFourGridPositions.RightThree]: [expectContentBlock(ContentBlockType.BasicArticleTitleUnit, 4)],
+        [HalfFourGridPositions.ModuleTitle]: [
+          {
+            type: ContentBlockType.ModuleTitle,
+            displayName: input.displayName,
+            displayNameColor: input.color,
+            linkUrl: input.linkUrl
+          }
+        ],
+        [HalfFourGridPositions.Left]: [
+          expectContentBlock(ContentBlockType.FeaturedArticle, 1)
+        ],
+        [HalfFourGridPositions.RightOne]: [
+          expectContentBlock(ContentBlockType.HomepageArticle, 2)
+        ],
+        [HalfFourGridPositions.RightTwo]: [
+          expectContentBlock(ContentBlockType.HomepageArticle, 3)
+        ],
+        [HalfFourGridPositions.RightThree]: [
+          expectContentBlock(ContentBlockType.HomepageArticle, 4)
+        ]
       }
     };
 
