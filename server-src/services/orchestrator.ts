@@ -74,11 +74,6 @@ export const newPage = (): HandlerInput[] => {
       type: HandlerInputType.Weather
     },
     {
-      type: HandlerInputType.TopStories,
-      strapName: `${homepageAdPrefix}TopStoriesDefaultOne`,
-      color: "#2AAAF5"
-    },
-    {
       type: HandlerInputType.Feature,
       name: FeatureName.HomepageV2,
       content: [
@@ -89,6 +84,11 @@ export const newPage = (): HandlerInput[] => {
         }
       ],
       fallback: []
+    },
+    {
+      type: HandlerInputType.TopStories,
+      strapName: `${homepageAdPrefix}TopStoriesDefaultOne`,
+      color: "#2AAAF5"
     },
     {
       type: HandlerInputType.RelevantStories
