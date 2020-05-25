@@ -123,14 +123,6 @@ export const newPage = (): HandlerInput[] => {
           sourceId: Strap.World
         },
         {
-          type: HandlerInputType.NewsSixV2,
-          displayName: "kea kids",
-          color: "#bf4000",
-          linkUrl: "/" + Section.KeaKidsNews,
-          strapName: `${homepageAdPrefix}KeaKidsNews`,
-          sourceId: Strap.KeaKidsNews
-        },
-        {
           type: HandlerInputType.Column,
           content: [
             {

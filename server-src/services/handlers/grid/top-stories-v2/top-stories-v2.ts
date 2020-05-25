@@ -99,7 +99,7 @@ export default async function(
                 desktop: Orientation.Portrait
               },
               true,
-              false
+              true
             ),
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,
@@ -137,7 +137,7 @@ export default async function(
                 tablet: Orientation.Landscape,
                 desktop: Orientation.Landscape
               },
-              true,
+              false,
               true
             ),
           HandlerInputType.TopStoriesV2,
@@ -194,7 +194,7 @@ export default async function(
                 tablet: Orientation.Landscape,
                 desktop: Orientation.Landscape
               },
-              false,
+              true,
               false
             ),
           HandlerInputType.TopStoriesV2,

@@ -104,7 +104,7 @@ describe("Top Stories V2", () => {
               tablet: Orientation.Portrait,
               desktop: Orientation.Portrait
             },
-            imageSrc: undefined,
+            imageSrc: "4.png",
             introText: "4 intro"
           })
         ],
@@ -132,7 +132,7 @@ describe("Top Stories V2", () => {
               desktop: Orientation.Landscape
             },
             imageSrc: "6.png",
-            introText: "6 intro"
+            introText: undefined
           })
         ],
         [TopStoriesV2GridPositions.RightTwo]: [
@@ -171,7 +171,7 @@ describe("Top Stories V2", () => {
               desktop: Orientation.Landscape
             },
             imageSrc: undefined,
-            introText: undefined
+            introText: "9 intro"
           })
         ]
       }
