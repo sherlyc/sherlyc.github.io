@@ -3,23 +3,21 @@ import { IParams } from "../../../__types__/IParams";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IHalfFourHandlerInput } from "../../__types__/IHalfFourHandlerInput";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
-import { HalfFourGridPositions, IHalfFourGridHandlerInput } from "../../__types__/IHalfFourGridHandlerInput";
+import {
+  HalfFourGridPositions,
+  IHalfFourGridHandlerInput
+} from "../../__types__/IHalfFourGridHandlerInput";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { featuredArticle } from "../../../adapters/article-converter/featured-article.converter";
 import { contentErrorHandler } from "../content-error-handler";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
+import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
+import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
-  {
-    sourceId,
-    strapName,
-    displayName,
-    color,
-    linkUrl
-  }: IHalfFourHandlerInput,
+  { sourceId, strapName, displayName, color, linkUrl }: IHalfFourHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   const articles = await getRawArticles(sourceId, 4, params);
@@ -27,12 +25,14 @@ export default async function(
   const gridInput: IHalfFourGridHandlerInput = {
     type: HandlerInputType.HalfFourGrid,
     content: {
-      [HalfFourGridPositions.ModuleTitle]: [{
-        type: ContentBlockType.ModuleTitle,
-        displayName,
-        displayNameColor: color,
-        linkUrl,
-      }],
+      [HalfFourGridPositions.ModuleTitle]: [
+        {
+          type: ContentBlockType.ModuleTitle,
+          displayName,
+          displayNameColor: color,
+          linkUrl
+        }
+      ],
       [HalfFourGridPositions.Left]: [
         contentErrorHandler(
           () =>
@@ -50,10 +50,16 @@ export default async function(
       [HalfFourGridPositions.RightOne]: [
         contentErrorHandler(
           () =>
-            basicArticleTitleUnit(
+            homepageArticle(
               articles.shift() as IRawArticle,
               strapName,
-              color
+              {
+                mobile: Orientation.Landscape,
+                tablet: Orientation.Landscape,
+                desktop: Orientation.Landscape
+              },
+              true,
+              false
             ),
           HandlerInputType.HalfFour,
           sourceId,
@@ -63,10 +69,16 @@ export default async function(
       [HalfFourGridPositions.RightTwo]: [
         contentErrorHandler(
           () =>
-            basicArticleTitleUnit(
+            homepageArticle(
               articles.shift() as IRawArticle,
               strapName,
-              color
+              {
+                mobile: Orientation.Landscape,
+                tablet: Orientation.Landscape,
+                desktop: Orientation.Landscape
+              },
+              false,
+              false
             ),
           HandlerInputType.HalfFour,
           sourceId,
@@ -76,16 +88,22 @@ export default async function(
       [HalfFourGridPositions.RightThree]: [
         contentErrorHandler(
           () =>
-            basicArticleTitleUnit(
+            homepageArticle(
               articles.shift() as IRawArticle,
               strapName,
-              color
+              {
+                mobile: Orientation.Landscape,
+                tablet: Orientation.Landscape,
+                desktop: Orientation.Landscape
+              },
+              false,
+              false
             ),
           HandlerInputType.HalfFour,
           sourceId,
           params
         )
-      ],
+      ]
     }
   };
 

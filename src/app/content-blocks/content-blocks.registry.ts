@@ -30,6 +30,7 @@ import { BulletListComponent } from "./bullet-list/bullet-list.component";
 import { ResponsiveExternalContentComponent } from "./responsive-external-content/responsive-external-content.component";
 import { ArticleTitleComponent } from "./article-title/article-title.component";
 import { OliComponent } from "./oli/oli.component";
+import { HomepageArticleComponent } from "./homepage-article/homepage-article.component";
 
 export const contentBlockComponents = [
   GrayDefconArticleUnitComponent,
@@ -61,7 +62,8 @@ export const contentBlockComponents = [
   BulletListComponent,
   ResponsiveExternalContentComponent,
   ArticleTitleComponent,
-  OliComponent
+  OliComponent,
+  HomepageArticleComponent
 ];
 
 const registry: {
@@ -96,7 +98,8 @@ const registry: {
   BulletListComponent,
   ResponsiveExternalContentComponent,
   ArticleTitleComponent,
-  OliComponent
+  OliComponent,
+  HomepageArticleComponent
 };
 
 export default registry;

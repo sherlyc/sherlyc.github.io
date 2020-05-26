@@ -2,15 +2,15 @@ import { ContentBlockType } from "../../../../../common/__types__/ContentBlockTy
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IParams } from "../../../__types__/IParams";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
 import { featuredArticle } from "../../../adapters/article-converter/featured-article.converter";
-import { responsiveBigImageArticleUnit } from "../../../adapters/article-converter/responsive-big-image-article.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { NewsSixV2GridPositions } from "../../__types__/INewsSixGridV2HandlerInput";
 import { INewsSixV2HandlerInput } from "../../__types__/INewsSixV2HandlerInput";
 import { handlerRunnerFunction } from "../../runner";
 import { contentErrorHandler } from "../content-error-handler";
+import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
+import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -48,10 +48,16 @@ export default async function(
     [NewsSixV2GridPositions.Two]: [
       contentErrorHandler(
         () =>
-          basicArticleTitleUnit(
+          homepageArticle(
             articles.shift() as IRawArticle,
             strapName,
-            color
+            {
+              mobile: Orientation.Landscape,
+              tablet: Orientation.Landscape,
+              desktop: Orientation.Landscape
+            },
+            true,
+            false
           ),
         HandlerInputType.NewsSixV2,
         sourceId,
@@ -61,10 +67,16 @@ export default async function(
     [NewsSixV2GridPositions.Three]: [
       contentErrorHandler(
         () =>
-          basicArticleTitleUnit(
+          homepageArticle(
             articles.shift() as IRawArticle,
             strapName,
-            color
+            {
+              mobile: Orientation.Landscape,
+              tablet: Orientation.Landscape,
+              desktop: Orientation.Landscape
+            },
+            true,
+            false
           ),
         HandlerInputType.NewsSixV2,
         sourceId,
@@ -91,10 +103,16 @@ export default async function(
     [NewsSixV2GridPositions.Five]: [
       contentErrorHandler(
         () =>
-          responsiveBigImageArticleUnit(
+          homepageArticle(
             articles.shift() as IRawArticle,
             strapName,
-            color
+            {
+              mobile: Orientation.Landscape,
+              tablet: Orientation.Landscape,
+              desktop: Orientation.Landscape
+            },
+            true,
+            true
           ),
         HandlerInputType.NewsSixV2,
         sourceId,
@@ -104,10 +122,16 @@ export default async function(
     [NewsSixV2GridPositions.Six]: [
       contentErrorHandler(
         () =>
-          responsiveBigImageArticleUnit(
+          homepageArticle(
             articles.shift() as IRawArticle,
             strapName,
-            color
+            {
+              mobile: Orientation.Landscape,
+              tablet: Orientation.Landscape,
+              desktop: Orientation.Landscape
+            },
+            true,
+            true
           ),
         HandlerInputType.NewsSixV2,
         sourceId,
