@@ -5,11 +5,8 @@ import { AspectRatio } from "../../../../../common/AspectRatio";
 import { IParams } from "../../../__types__/IParams";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
-import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
 import { bigImageArticleUnit } from "../../../adapters/article-converter/big-image-article.converter";
 import { featuredArticle } from "../../../adapters/article-converter/featured-article.converter";
-import { halfImageArticleWithoutIntroUnit } from "../../../adapters/article-converter/half-image-article-without-intro-unit.converter";
-import { imageLinkUnit } from "../../../adapters/article-converter/image-link-unit.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { Strap } from "../../../strap";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
@@ -20,6 +17,8 @@ import {
 import { ITopStoriesV2HandlerInput } from "../../__types__/ITopStoriesV2HandlerInput";
 import { handlerRunnerFunction } from "../../runner";
 import { contentErrorHandler } from "../content-error-handler";
+import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
+import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -72,10 +71,16 @@ export default async function(
       [TopStoriesV2GridPositions.LeftOne]: [
         contentErrorHandler(
           () =>
-            bigImageArticleUnit(
+            homepageArticle(
               articles.shift() as IRawArticle,
               strapName,
-              ImageLayoutType.module
+              {
+                mobile: Orientation.Portrait,
+                tablet: Orientation.Portrait,
+                desktop: Orientation.Portrait
+              },
+              true,
+              true
             ),
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,
@@ -85,10 +90,16 @@ export default async function(
       [TopStoriesV2GridPositions.LeftTwo]: [
         contentErrorHandler(
           () =>
-            bigImageArticleUnit(
+            homepageArticle(
               articles.shift() as IRawArticle,
               strapName,
-              ImageLayoutType.module
+              {
+                mobile: Orientation.Portrait,
+                tablet: Orientation.Portrait,
+                desktop: Orientation.Portrait
+              },
+              true,
+              true
             ),
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,
@@ -98,10 +109,16 @@ export default async function(
       [TopStoriesV2GridPositions.LeftThree]: [
         contentErrorHandler(
           () =>
-            imageLinkUnit(
+            homepageArticle(
               articles.shift() as IRawArticle,
               strapName,
-              ImageLayoutType.module
+              {
+                mobile: Orientation.Portrait,
+                tablet: Orientation.Portrait,
+                desktop: Orientation.Portrait
+              },
+              false,
+              true
             ),
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,
@@ -112,10 +129,16 @@ export default async function(
       [TopStoriesV2GridPositions.RightOne]: [
         contentErrorHandler(
           () =>
-            halfImageArticleWithoutIntroUnit(
+            homepageArticle(
               articles.shift() as IRawArticle,
               strapName,
-              ImageLayoutType.module
+              {
+                mobile: Orientation.Landscape,
+                tablet: Orientation.Landscape,
+                desktop: Orientation.Landscape
+              },
+              false,
+              true
             ),
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,
@@ -125,10 +148,16 @@ export default async function(
       [TopStoriesV2GridPositions.RightTwo]: [
         contentErrorHandler(
           () =>
-            halfImageArticleWithoutIntroUnit(
+            homepageArticle(
               articles.shift() as IRawArticle,
               strapName,
-              ImageLayoutType.module
+              {
+                mobile: Orientation.Landscape,
+                tablet: Orientation.Landscape,
+                desktop: Orientation.Landscape
+              },
+              false,
+              true
             ),
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,
@@ -138,10 +167,16 @@ export default async function(
       [TopStoriesV2GridPositions.RightThree]: [
         contentErrorHandler(
           () =>
-            basicArticleTitleUnit(
+            homepageArticle(
               articles.shift() as IRawArticle,
               strapName,
-              ImageLayoutType.module
+              {
+                mobile: Orientation.Portrait,
+                tablet: Orientation.Portrait,
+                desktop: Orientation.Portrait
+              },
+              true,
+              false
             ),
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,
@@ -151,10 +186,16 @@ export default async function(
       [TopStoriesV2GridPositions.RightFour]: [
         contentErrorHandler(
           () =>
-            basicArticleTitleUnit(
+            homepageArticle(
               articles.shift() as IRawArticle,
               strapName,
-              ImageLayoutType.module
+              {
+                mobile: Orientation.Landscape,
+                tablet: Orientation.Landscape,
+                desktop: Orientation.Landscape
+              },
+              true,
+              false
             ),
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,

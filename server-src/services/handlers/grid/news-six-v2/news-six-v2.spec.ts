@@ -10,12 +10,20 @@ import {
 } from "../../__types__/INewsSixGridV2HandlerInput";
 import { INewsSixV2HandlerInput } from "../../__types__/INewsSixV2HandlerInput";
 import newsSixV2Handler from "./news-six-v2";
+import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../utils/logger");
 
 const articlesWithIds = (ids: number[]) =>
-  ids.map((id) => ({ id: `${id}` } as IRawArticle));
+  ids.map(
+    (id) =>
+      ({
+        id: `${id}`,
+        imageSrc: `${id}.png`,
+        introText: `${id} intro`
+      } as IRawArticle)
+  );
 
 const expectContentBlock = (
   props: Partial<IContentBlock> & Pick<IContentBlock, "type">
@@ -77,16 +85,28 @@ describe("News Six V2 handler", () => {
         ],
         [NewsSixV2GridPositions.Two]: [
           expectContentBlock({
-            type: ContentBlockType.BasicArticleTitleUnit,
+            type: ContentBlockType.HomepageArticle,
             id: "2",
-            identifierColor: displayNameColor
+            orientation: {
+              mobile: Orientation.Landscape,
+              tablet: Orientation.Landscape,
+              desktop: Orientation.Landscape
+            },
+            introText: "2 intro",
+            imageSrc: undefined
           })
         ],
         [NewsSixV2GridPositions.Three]: [
           expectContentBlock({
-            type: ContentBlockType.BasicArticleTitleUnit,
+            type: ContentBlockType.HomepageArticle,
             id: "3",
-            identifierColor: displayNameColor
+            orientation: {
+              mobile: Orientation.Landscape,
+              tablet: Orientation.Landscape,
+              desktop: Orientation.Landscape
+            },
+            introText: "3 intro",
+            imageSrc: undefined
           })
         ],
         [NewsSixV2GridPositions.Four]: [
@@ -100,16 +120,28 @@ describe("News Six V2 handler", () => {
         ],
         [NewsSixV2GridPositions.Five]: [
           expectContentBlock({
-            type: ContentBlockType.ResponsiveBigImageArticle,
+            type: ContentBlockType.HomepageArticle,
             id: "5",
-            identifierColor: displayNameColor
+            orientation: {
+              mobile: Orientation.Landscape,
+              tablet: Orientation.Landscape,
+              desktop: Orientation.Landscape
+            },
+            introText: "5 intro",
+            imageSrc: "5.png"
           })
         ],
         [NewsSixV2GridPositions.Six]: [
           expectContentBlock({
-            type: ContentBlockType.ResponsiveBigImageArticle,
+            type: ContentBlockType.HomepageArticle,
             id: "6",
-            identifierColor: displayNameColor
+            orientation: {
+              mobile: Orientation.Landscape,
+              tablet: Orientation.Landscape,
+              desktop: Orientation.Landscape
+            },
+            introText: "6 intro",
+            imageSrc: "6.png"
           })
         ]
       }
