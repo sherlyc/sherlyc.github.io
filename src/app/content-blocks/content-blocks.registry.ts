@@ -31,6 +31,7 @@ import { ResponsiveExternalContentComponent } from "./responsive-external-conten
 import { ArticleTitleComponent } from "./article-title/article-title.component";
 import { OliComponent } from "./oli/oli.component";
 import { HomepageArticleComponent } from "./homepage-article/homepage-article.component";
+import { PartnerContentComponent } from "./partner-content/partner-content.component";
 
 export const contentBlockComponents = [
   GrayDefconArticleUnitComponent,
@@ -63,7 +64,8 @@ export const contentBlockComponents = [
   ResponsiveExternalContentComponent,
   ArticleTitleComponent,
   OliComponent,
-  HomepageArticleComponent
+  HomepageArticleComponent,
+  PartnerContentComponent
 ];
 
 const registry: {
@@ -99,7 +101,8 @@ const registry: {
   ResponsiveExternalContentComponent,
   ArticleTitleComponent,
   OliComponent,
-  HomepageArticleComponent
+  HomepageArticleComponent,
+  PartnerContentComponent
 };
 
 export default registry;

@@ -350,6 +350,9 @@ export const newPage = (): HandlerInput[] => {
       }
     },
     {
+      type: HandlerInputType.Partner
+    },
+    {
       type: HandlerInputType.Brand,
       module: BrandModule.Partner
     },

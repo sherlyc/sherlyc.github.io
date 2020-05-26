@@ -46,6 +46,7 @@ import { handlerRunnerFunction } from "./runner";
 import TitleSection from "./title-section/title-section";
 import TopStoriesArticleList from "./top-stories-article-list/top-stories-article-list";
 import Weather from "./weather/weather";
+import Partner from "./grid/partner/partner";
 
 type handlerFunction = (
   handlerRunner: handlerRunnerFunction,
@@ -96,7 +97,8 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   TitleSection,
   ResponsiveExternalContent,
   HalfFour,
-  HalfFourGrid
+  HalfFourGrid,
+  Partner
 };
 
 export default handlerRegistry;
