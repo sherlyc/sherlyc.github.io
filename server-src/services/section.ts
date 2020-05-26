@@ -21,7 +21,6 @@ export enum Section {
   NZFarmer = "business/farming",
   Parenting = "life-style/parenting",
   Newsroom = "national/newsroom",
-  KeaKidsNews = "national/kea-kids-news",
   SponsoredContent = "sponsored-content",
   Tarana = "tarana",
   Bravo = "entertainment/bravo",
