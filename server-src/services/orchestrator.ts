@@ -354,14 +354,6 @@ export const newPage = (): HandlerInput[] => {
       module: BrandModule.Partner
     },
     {
-      type: HandlerInputType.NewsSix,
-      displayName: "kea kids",
-      color: "#bf4000",
-      linkUrl: "/" + Section.KeaKidsNews,
-      strapName: `${homepageAdPrefix}KeaKidsNews`,
-      sourceId: Strap.KeaKidsNews
-    },
-    {
       type: HandlerInputType.BiggieSmalls,
       displayName: "life & style",
       color: "#d11242",
@@ -679,18 +671,6 @@ export const oldPage = (): HandlerInput[] => [
       sourceId: Strap.DailyFix,
       strapName: "Daily Fix",
       totalBasicArticlesUnit: 3
-    }
-  },
-  {
-    type: HandlerInputType.ArticleSection,
-    displayName: "KEA Kids News",
-    displayNameColor: "darkblue",
-    linkUrl: "/" + Section.KeaKidsNews,
-    content: {
-      type: HandlerInputType.ArticleList,
-      sourceId: Strap.KeaKidsNews,
-      strapName: "KEA Kids News",
-      totalBasicArticlesUnit: 2
     }
   },
   {
