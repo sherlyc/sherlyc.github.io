@@ -1,10 +1,11 @@
 import { ContentBlockType } from "./ContentBlockType";
 import { Logo } from "../Logo";
-import { IRawArticle } from "../../server-src/services/adapters/__types__/IRawArticle";
+import { IHomepageArticleContent } from "./IHomepageArticleContent";
 
 export interface IPartnerContent {
   type: ContentBlockType.PartnerContent;
-  articles: IRawArticle[];
+  articles: IHomepageArticleContent[];
   logo: Logo;
   logoLink: string;
+  strapName: string;
 }

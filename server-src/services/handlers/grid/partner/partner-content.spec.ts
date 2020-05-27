@@ -6,13 +6,49 @@ import { Section } from "../../../section";
 import { Strap } from "../../../strap";
 import { IParams } from "../../../__types__/IParams";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { IPartnerContent } from "../../../../../common/__types__/IPartnerContent";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { HeadlineFlags } from "../../../../../common/HeadlineFlags";
+import { IHomepageArticleContent } from "../../../../../common/__types__/IHomepageArticleContent";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 
 const fakeArticles = (ids: number[]) =>
-  ids.map((id) => ({ id: `${id}` } as IRawArticle));
+  ids.map(
+    (id) =>
+      ({
+        id: `${id}`,
+        indexHeadline: `${id} headline`,
+        title: `${id} title`,
+        introText: `${id} introText`,
+        byline: `${id} byline`,
+        linkUrl: `${id} linkUrl`,
+        lastPublishedTime: id,
+        headlineFlags: [HeadlineFlags.PHOTO],
+        identifier: `${id} identifier`,
+        defconSrc: `${id} defconSrc`,
+        sixteenByNineSrc: `${id} sixteenByNineSrc`
+      } as IRawArticle)
+  );
+
+const expectedArticles = (ids: number[]) =>
+  ids.map(
+    (id) =>
+      ({
+        id: `${id}`,
+        headline: `${id} headline`,
+        title: `${id} title`,
+        introText: `${id} introText`,
+        byline: `${id} byline`,
+        linkUrl: `${id} linkUrl`,
+        lastPublishedTime: id,
+        headlineFlags: [HeadlineFlags.PHOTO],
+        identifier: `${id} identifier`,
+        image: {
+          defcon: `${id} defconSrc`,
+          sixteenByNine: `${id} sixteenByNineSrc`
+        }
+      } as IHomepageArticleContent)
+  );
 
 describe("Create Partner Content", () => {
   const params: IParams = { apiRequestId: "123" };
@@ -49,7 +85,8 @@ describe("Create Partner Content", () => {
       type: ContentBlockType.PartnerContent,
       logo: config.logo,
       logoLink: config.logoLink,
-      articles: [{ id: "1" }, { id: "2" }, { id: "3" }]
+      articles: expectedArticles([1, 2, 3]),
+      strapName: config.sourceId
     });
   });
 });
