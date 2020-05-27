@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 import { IPartnerContent } from "../../../../common/__types__/IPartnerContent";
 
@@ -8,9 +8,8 @@ import { IPartnerContent } from "../../../../common/__types__/IPartnerContent";
   styleUrls: ["./partner-content.component.scss"]
 })
 export class PartnerContentComponent implements IContentBlockComponent, OnInit {
+  @Input() input!: IPartnerContent;
   constructor() {}
 
   ngOnInit(): void {}
-
-  input!: IPartnerContent;
 }
