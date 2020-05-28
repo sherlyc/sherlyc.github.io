@@ -1,0 +1,17 @@
+a {
+  display: flex;
+  padding-bottom: 10px;
+  text-decoration: none;
+  :hover {
+    text-decoration: none;
+  }
+}
+
+article {
+  font-size: 15px;
+}
+
+.bullet {
+  font-size: 10px;
+  margin: 4px;
+}

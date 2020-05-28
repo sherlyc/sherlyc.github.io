@@ -25,7 +25,7 @@ export class PartnerContentComponent implements IContentBlockComponent, OnInit {
       .map((homepageArticleContent) => ({
         type: ContentBlockType.HomepageArticle,
         id: homepageArticleContent.id,
-        introText: homepageArticleContent.introText,
+        introText: undefined,
         headline: homepageArticleContent.headline,
         linkUrl: homepageArticleContent.linkUrl,
         headlineFlags: homepageArticleContent.headlineFlags,
