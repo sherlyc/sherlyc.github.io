@@ -1,7 +1,12 @@
 /* istanbul ignore file */
+import { registerLocaleData } from "@angular/common";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
-import { ErrorHandler, NgModule } from "@angular/core";
-import { BrowserModule, BrowserTransferStateModule } from "@angular/platform-browser";
+import enNZ from "@angular/common/locales/en-NZ";
+import { ErrorHandler, LOCALE_ID, NgModule } from "@angular/core";
+import {
+  BrowserModule,
+  BrowserTransferStateModule
+} from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
@@ -13,6 +18,8 @@ import { HttpInterceptorService } from "./services/http-interceptor/http-interce
 import { LoggerService } from "./services/logger/logger.service";
 import { WindowService } from "./services/window/window.service";
 import { SharedModule } from "./shared/shared.module";
+
+registerLocaleData(enNZ, "en-NZ");
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +36,7 @@ import { SharedModule } from "./shared/shared.module";
     })
   ],
   providers: [
+    { provide: LOCALE_ID, useValue: "en-NZ" },
     { provide: ErrorHandler, useClass: LoggerService },
     {
       provide: HTTP_INTERCEPTORS,
