@@ -5,12 +5,15 @@ import { Logo } from "../../../../../common/Logo";
 import { Section } from "../../../section";
 import { Strap } from "../../../strap";
 import { IParams } from "../../../__types__/IParams";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { homepageArticleContent } from "../../../adapters/article-converter/homepage-article-content.converter";
 import { HeadlineFlags } from "../../../../../common/HeadlineFlags";
-import { IHomepageArticleContent } from "../../../../../common/__types__/IHomepageArticleContent";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
+jest.mock(
+  "../../../adapters/article-converter/homepage-article-content.converter"
+);
 
 const fakeArticles = (ids: number[]) =>
   ids.map(
@@ -28,26 +31,6 @@ const fakeArticles = (ids: number[]) =>
         defconSrc: `${id} defconSrc`,
         sixteenByNineSrc: `${id} sixteenByNineSrc`
       } as IRawArticle)
-  );
-
-const expectedArticles = (ids: number[]) =>
-  ids.map(
-    (id) =>
-      ({
-        id: `${id}`,
-        headline: `${id} headline`,
-        title: `${id} title`,
-        introText: `${id} introText`,
-        byline: `${id} byline`,
-        linkUrl: `${id} linkUrl`,
-        lastPublishedTime: id,
-        headlineFlags: [HeadlineFlags.PHOTO],
-        identifier: `${id} identifier`,
-        image: {
-          defcon: `${id} defconSrc`,
-          sixteenByNine: `${id} sixteenByNineSrc`
-        }
-      } as IHomepageArticleContent)
   );
 
 describe("Create Partner Content", () => {
@@ -73,7 +56,8 @@ describe("Create Partner Content", () => {
 
   it("should create partner content block", async () => {
     const articlesPerBrand = 3;
-    (getRawArticles as jest.Mock).mockResolvedValue(fakeArticles([1, 2, 3]));
+    const rawArticles = fakeArticles([1, 2, 3, 4, 5]);
+    (getRawArticles as jest.Mock).mockResolvedValue(rawArticles);
 
     const partnerContentBlock = await createPartnerContent(
       config,
@@ -81,13 +65,15 @@ describe("Create Partner Content", () => {
       params
     );
 
-    expect(partnerContentBlock).toEqual({
-      type: ContentBlockType.PartnerContent,
-      logo: config.logo,
-      logoLink: config.logoLink,
-      articles: expectedArticles([1, 2, 3]),
-      strapName: config.sourceId
-    });
+    expect(partnerContentBlock).toEqual(
+      expect.objectContaining({
+        type: ContentBlockType.PartnerContent,
+        logo: config.logo,
+        logoLink: config.logoLink,
+        strapName: config.sourceId
+      })
+    );
+    expect(homepageArticleContent).toHaveBeenCalledTimes(5);
   });
 
   it("should create partner content block with empty articles when failed to retrieve articles", async () => {
