@@ -21,7 +21,7 @@ export default async function(
     brandListPerRow,
     configs
   } = brandConfig[BrandModule.Partner];
-  const bulletLists = await Promise.all(
+  const partnerContents = await Promise.all(
     Object.values(configs).map((brandListConfig) => {
       return createPartnerContent(brandListConfig, articlesPerBrand, params);
     })
@@ -39,7 +39,7 @@ export default async function(
       ...(await handlerRunner(
         {
           type: HandlerInputType.ColumnGrid,
-          content: chunk(bulletLists.slice(0, brandListPerRow))
+          content: chunk(partnerContents.slice(0, brandListPerRow))
         },
         params
       ))
@@ -48,7 +48,7 @@ export default async function(
       ...(await handlerRunner(
         {
           type: HandlerInputType.ColumnGrid,
-          content: chunk(bulletLists.slice(brandListPerRow))
+          content: chunk(partnerContents.slice(brandListPerRow))
         },
         params
       ))
