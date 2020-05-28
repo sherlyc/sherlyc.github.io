@@ -4,17 +4,24 @@ import { IPartnerContent } from "../../../../../common/__types__/IPartnerContent
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { IHomepageArticleContent } from "../../../../../common/__types__/IHomepageArticleContent";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import wrappedLogger from "../../../utils/logger";
 
 export const createPartnerContent = async (
   config: IBrandListConfig,
   articlesPerBrand: number,
   params: IParams
 ): Promise<IPartnerContent> => {
-  const articles = await getRawArticles(
-    config.sourceId,
-    articlesPerBrand,
-    params
-  );
+  let articles: IRawArticle[] = [];
+  try {
+    articles = await getRawArticles(config.sourceId, articlesPerBrand, params);
+  } catch (error) {
+    wrappedLogger.warn(
+      params.apiRequestId,
+      `Brand Handler - failed to retrieve articles for sourceId: ${config.sourceId} | logo: ${config.logo}`,
+      error
+    );
+  }
   const homepageArticles: IHomepageArticleContent[] = articles.map(
     (article) => ({
       id: article.id,

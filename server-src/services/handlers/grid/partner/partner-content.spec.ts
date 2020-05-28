@@ -89,4 +89,23 @@ describe("Create Partner Content", () => {
       strapName: config.sourceId
     });
   });
+
+  it("should create partner content block with empty articles when failed to retrieve articles", async () => {
+    const articlesPerBrand = 3;
+    (getRawArticles as jest.Mock).mockRejectedValue(new Error());
+
+    const partnerContentBlock = await createPartnerContent(
+      config,
+      articlesPerBrand,
+      params
+    );
+
+    expect(partnerContentBlock).toEqual({
+      type: ContentBlockType.PartnerContent,
+      logo: config.logo,
+      logoLink: config.logoLink,
+      articles: [],
+      strapName: config.sourceId
+    });
+  });
 });
