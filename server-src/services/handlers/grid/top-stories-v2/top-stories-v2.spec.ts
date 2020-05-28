@@ -70,13 +70,13 @@ describe("Top Stories V2", () => {
         [TopStoriesV2GridPositions.LeftHighlight]: [
           expectContentBlock({
             type: ContentBlockType.BigImageArticleUnit,
-            id: "1"
+            id: "2"
           })
         ],
         [TopStoriesV2GridPositions.RightHighlight]: [
           expectContentBlock({
             type: ContentBlockType.FeaturedArticle,
-            id: "2"
+            id: "1"
           })
         ],
         [TopStoriesV2GridPositions.BannerAd]: [
@@ -118,7 +118,7 @@ describe("Top Stories V2", () => {
               desktop: Orientation.Portrait
             },
             imageSrc: "5.png",
-            introText: undefined
+            introText: "5 intro"
           })
         ],
         [TopStoriesV2GridPositions.LeftFour]: [basicAdUnit],
