@@ -7,6 +7,8 @@ import {
   Orientation
 } from "../../../../common/__types__/IHomepageArticle";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 
 @Component({
   selector: "app-partner-content",
@@ -17,7 +19,7 @@ export class PartnerContentComponent implements IContentBlockComponent, OnInit {
   @Input() input!: IPartnerContent;
   homepageArticles: IHomepageArticle[] = [];
   bulletList: IHomepageArticleContent[] = [];
-  constructor() {}
+  constructor(private analyticsService: AnalyticsService) {}
 
   ngOnInit(): void {
     this.homepageArticles = this.input.articles
@@ -42,5 +44,15 @@ export class PartnerContentComponent implements IContentBlockComponent, OnInit {
         }
       }));
     this.bulletList = this.input.articles.slice(2);
+  }
+
+  sendAnalytics(item: IHomepageArticleContent) {
+    const { title, id } = item;
+    this.analyticsService.pushEvent({
+      type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
+      strapName: this.input.strapName,
+      articleHeadline: title,
+      articleId: id
+    });
   }
 }

@@ -5,14 +5,16 @@
   <div class="col-xs-12 col-md-4 bullet-list">
     <div>
       <article *ngFor="let item of bulletList">
-        <a href="{{ item.linkUrl }}" appOpenExternalLink="{{ item.linkUrl }}" class="itemLink">
+        <a href="{{ item.linkUrl }}" appOpenExternalLink="{{ item.linkUrl }}" (click)="sendAnalytics(item)">
           <span class="bullet">►</span>
           <span>{{ item.headline }}</span>
         </a>
       </article>
     </div>
     <div>
-      <a href="{{ input.logoLink }}" class="logoLink end-xs" [attr.aria-label]="'logo of ' + input.logo"><app-logo [name]="input.logo"></app-logo></a>
+      <a href="{{ input.logoLink }}" class="logo-link end-xs" [attr.aria-label]="'logo of ' + input.logo">
+        <app-logo [name]="input.logo"></app-logo>
+      </a>
     </div>
   </div>
 </div>
