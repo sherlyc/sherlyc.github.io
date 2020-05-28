@@ -24,40 +24,19 @@ describe("Version switcher", () => {
     params = { apiRequestId: "request-id-for-testing" };
   });
 
-  it("should call compatibleHandler when front end version match compatibleVersion", async () => {
-    params.version = "1.500";
-    const handlerInput: IVersionSwitcherHandlerInput = {
-      type: HandlerInputType.VersionSwitcher,
-      compatibleVersion: "1.500",
-      compatibleHandler,
-      fallbackHandler
-    };
-    const handlerRunnerMock = jest.fn();
-
-    await VersionSwitcher(handlerRunnerMock, handlerInput, params);
-
-    expect(handlerRunnerMock).toHaveBeenCalledWith(compatibleHandler, params);
-  });
-
-  it("should call compatibleHandler when front end version is higher than compatibleVersion", async () => {
-    params.version = "1.501";
-    const handlerInput: IVersionSwitcherHandlerInput = {
-      type: HandlerInputType.VersionSwitcher,
-      compatibleVersion: "1.500",
-      compatibleHandler,
-      fallbackHandler
-    };
-    const handlerRunnerMock = jest.fn();
-
-    await VersionSwitcher(handlerRunnerMock, handlerInput, params);
-
-    expect(handlerRunnerMock).toHaveBeenCalledWith(compatibleHandler, params);
-  });
-
-  it.each([["1.499"], ["SNAPSHOT"]])(
-    "should call fallbackHandler when front end version (%s) is lower than compatibleVersion",
-    async (frontendVersion: string) => {
-      params.version = frontendVersion;
+  it.each`
+    version       | handlerType     | handler
+    ${"1.501"}    | ${"compatible"} | ${compatibleHandler}
+    ${"1.500"}    | ${"compatible"} | ${compatibleHandler}
+    ${"1.499"}    | ${"fallback"}   | ${fallbackHandler}
+    ${"SNAPSHOT"} | ${"fallback"}   | ${fallbackHandler}
+    ${undefined}  | ${"fallback"}   | ${fallbackHandler}
+    ${null}       | ${"fallback"}   | ${fallbackHandler}
+    ${""}         | ${"fallback"}   | ${fallbackHandler}
+  `(
+    "calls $handlerType handler for front-end version $version",
+    async ({ version, handler }) => {
+      params.version = version;
       const handlerInput: IVersionSwitcherHandlerInput = {
         type: HandlerInputType.VersionSwitcher,
         compatibleVersion: "1.500",
@@ -68,22 +47,7 @@ describe("Version switcher", () => {
 
       await VersionSwitcher(handlerRunnerMock, handlerInput, params);
 
-      expect(handlerRunnerMock).toHaveBeenCalledWith(fallbackHandler, params);
+      expect(handlerRunnerMock).toHaveBeenCalledWith(handler, params);
     }
   );
-
-  it("should call fallbackHandler when front end version is not provided", async () => {
-    params.version = undefined;
-    const handlerInput: IVersionSwitcherHandlerInput = {
-      type: HandlerInputType.VersionSwitcher,
-      compatibleVersion: "1.500",
-      compatibleHandler,
-      fallbackHandler
-    };
-    const handlerRunnerMock = jest.fn();
-
-    await VersionSwitcher(handlerRunnerMock, handlerInput, params);
-
-    expect(handlerRunnerMock).toHaveBeenCalledWith(fallbackHandler, params);
-  });
 });
