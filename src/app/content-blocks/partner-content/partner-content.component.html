@@ -1,14 +1,18 @@
-<div class="row">
-  <div class="row col-xs-12 col-sm-8">
+<div class="row wrapper">
+  <div class="row col-xs-12 col-md-8">
     <app-homepage-article *ngFor="let homepageArticle of homepageArticles" class="col-xs" [input]="homepageArticle"></app-homepage-article>
   </div>
-  <div class="col-xs-12 col-sm-4">
-    <article *ngFor="let item of bulletList">
-      <a href="{{ item.linkUrl }}" appOpenExternalLink="{{ item.linkUrl }}" class="itemLink">
-        <span class="bullet">►</span>
-        <span>{{ item.headline }}</span>
-      </a>
-    </article>
-    <a href="{{ input.logoLink }}" class="logoLink" [attr.aria-label]="'logo of ' + input.logo"><app-logo [name]="input.logo"></app-logo></a>
+  <div class="col-xs-12 col-md-4 bullet-list">
+    <div>
+      <article *ngFor="let item of bulletList">
+        <a href="{{ item.linkUrl }}" appOpenExternalLink="{{ item.linkUrl }}" class="itemLink">
+          <span class="bullet">►</span>
+          <span>{{ item.headline }}</span>
+        </a>
+      </article>
+    </div>
+    <div>
+      <a href="{{ input.logoLink }}" class="logoLink end-xs" [attr.aria-label]="'logo of ' + input.logo"><app-logo [name]="input.logo"></app-logo></a>
+    </div>
   </div>
 </div>
