@@ -1,1 +1,11 @@
-<p>partner-content works!</p>
+<div class="col-xs-12">
+  <app-homepage-article *ngFor="let homepageArticle of homepageArticles" [input]="homepageArticle"></app-homepage-article>
+</div>
+<div class="col-xs-12">
+  <article *ngFor="let item of bulletList">
+    <a href="{{ item.linkUrl }}" appOpenExternalLink="{{ item.linkUrl }}" class="itemLink">
+      <span class="bullet">►</span>
+      <span>{{ item.headline }}</span>
+    </a>
+  </article>
+</div>

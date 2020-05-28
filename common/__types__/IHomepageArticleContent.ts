@@ -8,8 +8,8 @@ export interface IHomepageArticleContent {
   introText: string;
   linkUrl: string;
   image: {
-    defcon: string | null;
-    sixteenByNine: string | null;
+    defcon?: string;
+    sixteenByNine?: string;
   };
   lastPublishedTime: number;
   headlineFlags: HeadlineFlags[];

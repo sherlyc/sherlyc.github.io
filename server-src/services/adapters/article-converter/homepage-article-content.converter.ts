@@ -14,7 +14,7 @@ export const homepageArticleContent = (
   lastPublishedTime: article.lastPublishedTime,
   identifier: article.identifier,
   image: {
-    defcon: article.defconSrc,
-    sixteenByNine: article.sixteenByNineSrc
+    defcon: article.defconSrc || undefined,
+    sixteenByNine: article.sixteenByNineSrc || undefined
   }
 });
