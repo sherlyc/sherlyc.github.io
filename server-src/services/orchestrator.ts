@@ -83,6 +83,13 @@ export const newPage = (): HandlerInput[] => {
           color: "#2AAAF5"
         },
         {
+          type: HandlerInputType.SixImage,
+          displayName: "",
+          color: "#2AAAF5",
+          strapName: `${homepageAdPrefix}MidStrip`,
+          sourceId: Strap.MidStrip
+        },
+        {
           type: HandlerInputType.NewsSixV2,
           displayName: "coronavirus",
           color: "#256091",
@@ -97,6 +104,14 @@ export const newPage = (): HandlerInput[] => {
           linkUrl: "/" + Section.National,
           strapName: `${homepageAdPrefix}National`,
           sourceId: Strap.National
+        },
+        {
+          type: HandlerInputType.BiggieSmalls,
+          displayName: "climate change",
+          color: "#256091",
+          linkUrl: "/" + Section.ClimateChange,
+          strapName: `${homepageAdPrefix}ClimateChange`,
+          sourceId: Strap.ClimateChange
         },
         {
           type: HandlerInputType.NewsSixV2,
@@ -121,6 +136,24 @@ export const newPage = (): HandlerInput[] => {
           linkUrl: "/" + Section.World,
           strapName: `${homepageAdPrefix}World`,
           sourceId: Strap.World
+        },
+        {
+          type: HandlerInputType.Strips,
+          displayName: "spotlight",
+          color: "#000",
+          linkUrl: "/" + Section.Premium,
+          sourceId: Strap.Premium,
+          strapName: Strap.Premium,
+          articleCount: 4,
+          articleFormat: ContentBlockType.FeaturedArticle
+        },
+        {
+          type: HandlerInputType.LargeLeadSix,
+          displayName: "well & good",
+          color: "#42a634",
+          linkUrl: "/" + Section.WellGood,
+          strapName: `${homepageAdPrefix}WellGood`,
+          sourceId: Strap.WellGood
         },
         {
           type: HandlerInputType.Column,
