@@ -69,7 +69,6 @@ export class HeaderComponent
         },
         { label: "Politics", link: "/national/politics" },
         { label: "Spotlight", link: "/national/premium" },
-        { label: "KEA Kids News", link: "/national/kea-kids-news" },
         { label: "Well & Good", link: "/life-style/well-good" },
         { label: "Food & Wine", link: "/life-style/food-wine" },
         { label: "Parenting", link: "/life-style/parenting" },

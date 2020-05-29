@@ -1,0 +1,46 @@
+.wrapper {
+  background-color: #f7f7f7;
+  padding: 20px 16px;
+  --title-size: 16px;
+}
+
+h3 {
+  font-size: 30px;
+  text-transform: lowercase;
+  margin: 0 0 5px 0;
+}
+
+.article {
+  display: block;
+  padding: 15px 0 15px 0;
+  text-decoration: none;
+  border-bottom: 1px solid #e8e8e8;
+
+  :hover {
+    text-decoration: none;
+  }
+
+  .bullet {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+  }
+
+  .time {
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+
+  app-headline {
+    display: inline;
+  }
+}
+
+.article:last-child {
+  border: none;
+  padding-bottom: 0;
+}

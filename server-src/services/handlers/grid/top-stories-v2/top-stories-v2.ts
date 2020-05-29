@@ -30,20 +30,6 @@ export default async function(
   const gridInput: ITopStoriesV2GridHandlerInput = {
     type: HandlerInputType.TopStoriesV2Grid,
     content: {
-      [TopStoriesV2GridPositions.LeftHighlight]: [
-        contentErrorHandler(
-          () =>
-            bigImageArticleUnit(
-              articles.shift() as IRawArticle,
-              strapName,
-              ImageLayoutType.module,
-              true
-            ),
-          HandlerInputType.TopStoriesV2,
-          Strap.TopStories,
-          params
-        )
-      ],
       [TopStoriesV2GridPositions.RightHighlight]: [
         contentErrorHandler(
           () =>
@@ -56,6 +42,20 @@ export default async function(
               true,
               "",
               AspectRatio.OneByOne
+            ),
+          HandlerInputType.TopStoriesV2,
+          Strap.TopStories,
+          params
+        )
+      ],
+      [TopStoriesV2GridPositions.LeftHighlight]: [
+        contentErrorHandler(
+          () =>
+            bigImageArticleUnit(
+              articles.shift() as IRawArticle,
+              strapName,
+              ImageLayoutType.module,
+              true
             ),
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,
@@ -117,7 +117,7 @@ export default async function(
                 tablet: Orientation.Portrait,
                 desktop: Orientation.Portrait
               },
-              false,
+              true,
               true
             ),
           HandlerInputType.TopStoriesV2,

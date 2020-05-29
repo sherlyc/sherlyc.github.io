@@ -29,6 +29,7 @@ import { IResponsiveExternalContent } from "./IResponsiveExternalContent";
 import { IArticleTitle } from "./IArticleTitle";
 import { IOli } from "./IOli";
 import { IHomepageArticle } from "./IHomepageArticle";
+import { IVerticalArticleList } from "./IVerticalArticleList";
 import { IPartnerContent } from "./IPartnerContent";
 
 export type IContentBlock =
@@ -63,4 +64,5 @@ export type IContentBlock =
   | IArticleTitle
   | IOli
   | IHomepageArticle
+  | IVerticalArticleList
   | IPartnerContent;
