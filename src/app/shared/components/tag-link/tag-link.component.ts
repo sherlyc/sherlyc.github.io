@@ -14,5 +14,4 @@ export class TagLinkComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
