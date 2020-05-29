@@ -7,6 +7,7 @@ export interface IJsonFeedUrl {
   id: string;
   asset_type: JsonFeedAssetType.URL;
   headline_flags: HeadlineFlags[];
+  path: string;
   title: string;
   alt_headline: string;
   alt_intro: string;

@@ -37,7 +37,9 @@ describe("VerticalArticleListComponent", () => {
       sixteenByNine: `sixteenByNine1.jpg`
     },
     lastPublishedTime: 123,
-    headlineFlags: []
+    headlineFlags: [],
+    category: "National",
+    categoryUrl: "/coronavirus/"
   };
 
   beforeEach(async(() => {

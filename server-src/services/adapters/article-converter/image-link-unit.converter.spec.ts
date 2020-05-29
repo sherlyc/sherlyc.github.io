@@ -22,7 +22,9 @@ describe("Image Link Unit", () => {
     lastPublishedTime: 1,
     headlineFlags: [],
     sixteenByNineSrc: "sixteenByNine.jpg",
-    identifier: "Identifier"
+    identifier: "Identifier",
+    category: "National",
+    categoryUrl: "/coronavirus/"
   };
 
   const expected: IImageLinkUnit = {

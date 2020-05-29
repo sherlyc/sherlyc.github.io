@@ -12,9 +12,10 @@ export const homepageArticleContent = (
   headlineFlags: article.headlineFlags,
   linkUrl: article.linkUrl,
   lastPublishedTime: article.lastPublishedTime,
-  identifier: article.identifier,
   image: {
     defcon: article.defconSrc,
     sixteenByNine: article.sixteenByNineSrc
-  }
+  },
+  category: article.category,
+  categoryUrl: article.categoryUrl
 });

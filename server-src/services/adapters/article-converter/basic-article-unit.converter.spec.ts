@@ -18,7 +18,9 @@ describe("basic article unit", () => {
       strapImageSrcSet: "strap1.jpg 1w",
       lastPublishedTime: 1,
       headlineFlags: [],
-      sixteenByNineSrc: null
+      sixteenByNineSrc: null,
+      category: "National",
+      categoryUrl: "/coronavirus/"
     };
 
     const fakeStrapName = "fakeStrapName";

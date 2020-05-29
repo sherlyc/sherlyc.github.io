@@ -50,6 +50,7 @@ describe("JsonFeed Mapper", () => {
     alt_headline: "Paving",
     title: "Paving over paradise",
     isHeadlineOverrideApplied: true,
+    path: "/national/112150655/url-asset",
     url:
       "https://interactives.stuff.co.nz/2019/04/the-tourist-trap/#section-wS1QFb7arf",
     datetime_display: "00:01 22/04/2019",
@@ -95,6 +96,8 @@ describe("JsonFeed Mapper", () => {
     lastPublishedTime: getUnixTime(parseISO(article.datetime_iso8601)),
     headlineFlags: article.headline_flags,
     identifier: article.identifier,
+    category: article["section-home"],
+    categoryUrl: getCategoryUrl(String(article.id), article.path)
   });
 
   describe("article asset", () => {
@@ -618,17 +621,13 @@ describe("JsonFeed Mapper", () => {
 
   describe("get category Url", () => {
     it.each`
-      articleId      |   path                                                                                       | categoryUrl
-      ${"115457620"} | ${"/national/115457620/czech-couples-decisionmaking-on-deadly-great-walk-tramp-criticised"}  | ${"/national/"}
-      ${"300009374"} | ${"/national/health/300009374/recap-jacinda-ardern"}                                         | ${"/national/health/"}
-      ${"999999999"} | ${"/national/health/coronavirus/999999999/recap-jacinda-ardern"}                             | ${"/national/health/coronavirus/"}
-      ${"888899333"} | ${"/life-style/homed/celebrity-homes/random/888899333/worst-dressed-looking-back"}           | ${"/life-style/homed/celebrity-homes/random/"}
-      ${"115457620"} | ${"/115457620/czech-couples-decisionmaking-on-deadly-great-walk-tramp-criticised"}           | ${undefined}
-
-    `(
-      "returns $categoryUrl", ({ articleId, path, categoryUrl}) => {
-        expect(getCategoryUrl(articleId, path)).toEqual(categoryUrl);
-      }
-    );
+      articleId      | path                                                                                        | categoryUrl
+      ${"115457620"} | ${"/national/115457620/czech-couples-decisionmaking-on-deadly-great-walk-tramp-criticised"} | ${"/national/"}
+      ${"300009374"} | ${"/national/health/300009374/recap-jacinda-ardern"}                                        | ${"/national/health/"}
+      ${"999999999"} | ${"/national/health/coronavirus/999999999/recap-jacinda-ardern"}                            | ${"/national/health/coronavirus/"}
+      ${"888899333"} | ${"/life-style/homed/celebrity-homes/random/888899333/worst-dressed-looking-back"}          | ${"/life-style/homed/celebrity-homes/random/"}
+    `("returns $categoryUrl", ({ articleId, path, categoryUrl }) => {
+      expect(getCategoryUrl(articleId, path)).toEqual(categoryUrl);
+    });
   });
 });

@@ -231,8 +231,10 @@
       "id": 112150655,
       "asset_type": "URL",
       "headline_flags": [],
+      "section-home": "National",
       "sponsored": false,
       "title": "Paving over paradise",
+      "path": "/national/112150655/the-tourist-trap",
       "url": "https://interactives.stuff.co.nz/2019/04/the-tourist-trap/#section-wS1QFb7arf",
       "datetime_display": "00:01 22/04/2019",
       "alt_intro": "The ancient, beautiful Ōpārara Basin is the subject of development plans.",
@@ -479,6 +481,8 @@
       "headline_flags": [],
       "sponsored": false,
       "title": "Puzzles",
+      "path": "/category/title",
+      "section_home": "category",
       "id": 63784440
     },
     {

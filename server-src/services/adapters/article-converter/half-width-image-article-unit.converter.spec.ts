@@ -20,7 +20,9 @@ describe("half width image article unit", () => {
     lastPublishedTime: 1,
     headlineFlags: [],
     sixteenByNineSrc: "sixteenByNineSrc.jpg",
-    identifier: undefined
+    identifier: undefined,
+    category: "National",
+    categoryUrl: "/coronavirus/"
   };
   const expected: IHalfWidthImageArticleUnit = {
     type: ContentBlockType.HalfWidthImageArticleUnit,

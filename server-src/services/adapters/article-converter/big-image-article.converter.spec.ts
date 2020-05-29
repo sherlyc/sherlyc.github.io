@@ -19,7 +19,9 @@ describe("big image article", () => {
     lastPublishedTime: 1,
     headlineFlags: [],
     sixteenByNineSrc: "sixteenByNine.jpg",
-    identifier: "identifier"
+    identifier: "identifier",
+    category: "National",
+    categoryUrl: "/coronavirus/"
   };
 
   const fakeStrapName = "fakeStrapName";

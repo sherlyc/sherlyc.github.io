@@ -15,7 +15,6 @@ const fakeArticles = (ids: number[]) =>
         linkUrl: `${id} linkUrl`,
         lastPublishedTime: id,
         headlineFlags: [HeadlineFlags.PHOTO],
-        identifier: `${id} identifier`,
         defconSrc: `${id} defconSrc`,
         sixteenByNineSrc: `${id} sixteenByNineSrc`
       } as IRawArticle)
@@ -33,7 +32,6 @@ const expectedArticles = (ids: number[]) =>
         linkUrl: `${id} linkUrl`,
         lastPublishedTime: id,
         headlineFlags: [HeadlineFlags.PHOTO],
-        identifier: `${id} identifier`,
         image: {
           defcon: `${id} defconSrc`,
           sixteenByNine: `${id} sixteenByNineSrc`
