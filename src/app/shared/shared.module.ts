@@ -16,6 +16,7 @@ import { IntersectionObserverDirective } from "./directives/intersection-observe
 import { OpenExternalLinkDirective } from "./directives/open-external-link/open-external-link.directive";
 import { PullToRefreshDirective } from "./directives/pull-to-refresh/pull-to-refresh.directive";
 import { ResizeDirective } from "./directives/resize/resize.directive";
+import { TagLinkComponent } from './components/tag-link/tag-link.component';
 
 @NgModule({
   imports: [CommonModule],
@@ -35,7 +36,8 @@ import { ResizeDirective } from "./directives/resize/resize.directive";
     WeatherIconComponent,
     TimeComponent,
     FluidImageComponent,
-    LogoComponent
+    LogoComponent,
+    TagLinkComponent
   ],
   exports: [
     PageComponent,
@@ -53,7 +55,8 @@ import { ResizeDirective } from "./directives/resize/resize.directive";
     WeatherIconComponent,
     TimeComponent,
     FluidImageComponent,
-    LogoComponent
+    LogoComponent,
+    TagLinkComponent
   ]
 })
 export class SharedModule {}
