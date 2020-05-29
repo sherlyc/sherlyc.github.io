@@ -6,7 +6,7 @@
     <div>
       <article *ngFor="let item of bulletList">
         <a href="{{ item.linkUrl }}" appOpenExternalLink="{{ item.linkUrl }}" (click)="sendAnalytics(item)">
-          <span class="bullet">►</span>
+          <span class="bullet"></span>
           <span>{{ item.headline }}</span>
         </a>
       </article>

@@ -9,10 +9,7 @@ import { ContentBlockType } from "../../../../common/__types__/ContentBlockType"
 import { Logo } from "../../../../common/Logo";
 import { By } from "@angular/platform-browser";
 import { IHomepageArticleContent } from "../../../../common/__types__/IHomepageArticleContent";
-import {
-  IHomepageArticle,
-  Orientation
-} from "../../../../common/__types__/IHomepageArticle";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 
 const fakeHomepageArticleContents = (
   ids: number[]
@@ -31,29 +28,6 @@ const fakeHomepageArticleContents = (
       sixteenByNine: `${id}-16x9.png`
     }
   }));
-
-const expectedHomepageArticle = (
-  strapName: string,
-  id: number
-): IHomepageArticle => ({
-  type: ContentBlockType.HomepageArticle,
-  id: `${id}`,
-  introText: undefined,
-  headline: `${id} headline`,
-  linkUrl: `${id} linkUrl`,
-  headlineFlags: [],
-  lastPublishedTime: id,
-  analytics: {
-    title: `${id} title`,
-    strapName
-  },
-  imageSrc: `${id}-16x9.png`,
-  orientation: {
-    mobile: Orientation.Portrait,
-    tablet: Orientation.Portrait,
-    desktop: Orientation.Portrait
-  }
-});
 
 describe("PartnerContentComponent", () => {
   let component: PartnerContentComponent;
@@ -98,30 +72,33 @@ describe("PartnerContentComponent", () => {
     fixture.detectChanges();
 
     const componentElement = fixture.debugElement;
-    const homepageArticles = componentElement.queryAll(
+    const homepageArticleElements = componentElement.queryAll(
       By.css("app-homepage-article")
     );
-    expect(homepageArticles[0].nativeElement.input).toEqual(
-      expectedHomepageArticle(partnerContent.strapName, 1)
-    );
-    expect(homepageArticles[1].nativeElement.input).toEqual(
-      expectedHomepageArticle(partnerContent.strapName, 2)
-    );
+    const homepageArticles = component.homepageArticles;
+    homepageArticleElements.forEach((homepageArticleElem, index) => {
+      expect(homepageArticleElem.nativeElement.input).toEqual(
+        homepageArticles[index]
+      );
+    });
+
     const bulletItems = componentElement.queryAll(By.css("article a"));
 
-    const bulletListArticles = partnerContent.articles.slice(2);
+    const bulletListArticleContents = component.bulletList;
     bulletItems.forEach((bulletItem, index) => {
       const bulletItemElem: HTMLLinkElement = bulletItem.nativeElement;
       expect(bulletItemElem.getAttribute("href")).toEqual(
-        bulletListArticles[index].linkUrl
+        bulletListArticleContents[index].linkUrl
       );
       expect(bulletItem.nativeElement.appOpenExternalLink).toEqual(
-        bulletListArticles[index].linkUrl
+        bulletListArticleContents[index].linkUrl
       );
       const headline = bulletItemElem.querySelector<HTMLSpanElement>(
         "span:last-child"
       );
-      expect(headline!.textContent).toEqual(bulletListArticles[index].headline);
+      expect(headline!.textContent).toEqual(
+        bulletListArticleContents[index].headline
+      );
     });
 
     const logoLink: HTMLLinkElement = componentElement.query(
@@ -131,7 +108,46 @@ describe("PartnerContentComponent", () => {
     expect(logoLink.getAttribute("aria-label")).toEqual(
       `logo of ${partnerContent.logo}`
     );
+    const logoElement = componentElement.query(By.css("app-logo"));
+    expect(logoElement.nativeElement.name).toEqual(partnerContent.logo);
+  });
+
+  it("should render no article but render the logo when feeding empty articles", async () => {
+    component.input = { ...partnerContent, articles: [] };
+
+    fixture.detectChanges();
+
+    const componentElement = fixture.debugElement;
+    const homepageArticles = componentElement.queryAll(
+      By.css("app-homepage-article")
+    );
+    expect(homepageArticles).toHaveLength(0);
+    const bulletListArticles = componentElement.queryAll(By.css("article"));
+    expect(bulletListArticles).toHaveLength(0);
     const logo = componentElement.query(By.css("app-logo"));
     expect(logo.nativeElement.name).toEqual(partnerContent.logo);
+  });
+
+  it("should send the analytic event when clicking a bullet article link", async () => {
+    component.input = partnerContent;
+    fixture.detectChanges();
+
+    const componentElement = fixture.debugElement;
+    const bulletItems = componentElement.queryAll(By.css("article a"));
+    const bulletListArticles = component.bulletList;
+    await Promise.all(
+      bulletItems.map(async (bulletItem, index) => {
+        const bulletItemElem: HTMLLinkElement = bulletItem.nativeElement;
+        bulletItemElem.click();
+
+        await fixture.whenStable();
+        expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+          type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
+          strapName: partnerContent.strapName,
+          articleHeadline: bulletListArticles[index].title,
+          articleId: bulletListArticles[index].id
+        });
+      })
+    );
   });
 });
