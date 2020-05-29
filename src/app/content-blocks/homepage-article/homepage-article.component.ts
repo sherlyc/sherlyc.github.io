@@ -13,7 +13,7 @@ import { map } from "lodash-es";
 export class HomepageArticleComponent
   implements IContentBlockComponent, OnInit {
   @Input() input!: IHomepageArticle;
-  @Input() index!: number;
+  index!: number;
   classNames: string[] = [];
 
   constructor(private analyticsService: AnalyticsService) {}
