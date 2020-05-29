@@ -6,7 +6,7 @@ import { IJsonFeedUrl } from "../__types__/IJsonFeedUrl";
 import { IRawArticle } from "../__types__/IRawArticle";
 import { JsonFeedAssetType } from "../__types__/JsonFeedAssetType";
 import { JsonFeedImageType } from "../__types__/JsonFeedImageType";
-import { mapToRawArticleList } from "./jsonfeed-mapper";
+import { getCategoryUrl, mapToRawArticleList } from "./jsonfeed-mapper";
 
 describe("JsonFeed Mapper", () => {
   const jsonFeedArticle = (): IJsonFeedArticle => ({
@@ -14,7 +14,7 @@ describe("JsonFeed Mapper", () => {
     asset_type: JsonFeedAssetType.ARTICLE,
     headline_flags: [],
     sponsored: false,
-    path: "/national/123123123/christmas-tree-caltex",
+    path: "/national/109962196/christmas-tree-caltex",
     url:
       "http://www.stuff.co.nz/_json/national/109962196/christmas-tree-caltex",
     section: "National",
@@ -76,7 +76,8 @@ describe("JsonFeed Mapper", () => {
     lastPublishedTime: getUnixTime(parseISO(article.datetime_iso8601)),
     headlineFlags: article.headline_flags,
     identifier: article.identifier,
-    category: article["section-home"]
+    category: article["section-home"],
+    categoryUrl: getCategoryUrl(String(article.id), article.path)
   });
 
   const rawUrlArticle = (article: IJsonFeedUrl): IRawArticle => ({
@@ -93,8 +94,7 @@ describe("JsonFeed Mapper", () => {
     sixteenByNineSrc: null,
     lastPublishedTime: getUnixTime(parseISO(article.datetime_iso8601)),
     headlineFlags: article.headline_flags,
-    identifier: article.identifier,
-    category: article["section-home"]
+    identifier: article.identifier
   });
 
   describe("article asset", () => {
@@ -613,6 +613,18 @@ describe("JsonFeed Mapper", () => {
 
       expect(headlineFlags.includes(HeadlineFlags.VIDEO)).toBeTruthy();
       expect(headlineFlags.includes(HeadlineFlags.SPONSORED)).toBeFalsy();
+    });
+  });
+
+  describe("get category Url", () => {
+    it.each`
+      articleId      | path                                                                                        | categoryUrl
+      ${"115457620"} | ${"/national/115457620/czech-couples-decisionmaking-on-deadly-great-walk-tramp-criticised"} | ${"/national/"}
+      ${"300009374"} | ${"/national/health/300009374/recap-jacinda-ardern"}                                        | ${"/national/health/"}
+      ${"999999999"} | ${"/national/health/coronavirus/999999999/recap-jacinda-ardern"}                            | ${"/national/health/coronavirus/"}
+      ${"888899333"} | ${"/life-style/homed/celebrity-homes/random/888899333/worst-dressed-looking-back"}          | ${"/life-style/homed/celebrity-homes/random/"}
+    `("returns $categoryUrl", ({ articleId, path, categoryUrl }) => {
+      expect(getCategoryUrl(articleId, path)).toEqual(categoryUrl);
     });
   });
 });

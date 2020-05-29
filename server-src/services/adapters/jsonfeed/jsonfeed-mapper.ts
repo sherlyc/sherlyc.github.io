@@ -56,7 +56,8 @@ export function mapArticleAsset(item: IJsonFeedArticle): IRawArticle {
     lastPublishedTime: getUnixTime(parseISO(item.datetime_iso8601)),
     headlineFlags: getHeadlineFlags(item),
     identifier: item.identifier ? item.identifier : undefined,
-    category: item["section-home"]
+    category: item["section-home"],
+    categoryUrl: getCategoryUrl(String(item.id), item.path)
   };
 }
 
@@ -88,8 +89,7 @@ function mapUrlAsset(item: IJsonFeedUrl): IRawArticle {
     ]),
     lastPublishedTime: getUnixTime(parseISO(item.datetime_iso8601)),
     headlineFlags: getHeadlineFlags(item),
-    identifier: item.identifier ? item.identifier : undefined,
-    category: item["section-home"]
+    identifier: item.identifier ? item.identifier : undefined
   };
 }
 
@@ -106,4 +106,8 @@ function getLinkUrl(item: IJsonFeedUrl) {
 function getHeadlineFlags(asset: IJsonFeedArticle | IJsonFeedUrl) {
   const flags = asset.headline_flags ? asset.headline_flags : [];
   return asset.sponsored ? flags.concat(HeadlineFlags.SPONSORED) : flags;
+}
+
+export function getCategoryUrl(articleId: string, path: string) {
+  return path.split(articleId)[0];
 }

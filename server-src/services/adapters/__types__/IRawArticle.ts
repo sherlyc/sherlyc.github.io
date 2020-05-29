@@ -17,4 +17,5 @@ export interface IRawArticle {
   headlineFlags: HeadlineFlags[];
   identifier?: string;
   category?: string;
+  categoryUrl?: string;
 }
