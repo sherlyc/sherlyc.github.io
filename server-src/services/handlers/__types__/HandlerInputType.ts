@@ -42,5 +42,6 @@ export enum HandlerInputType {
   ResponsiveExternalContent = "ResponsiveExternalContent",
   HalfFour = "HalfFour",
   HalfFourGrid = "HalfFourGrid",
-  VersionSwitcher = "VersionSwitcher"
+  VersionSwitcher = "VersionSwitcher",
+  LatestHeadlines = "LatestHeadlines"
 }

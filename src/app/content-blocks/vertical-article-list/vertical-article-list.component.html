@@ -1,0 +1,8 @@
+<div class="wrapper">
+  <h3 [style.color]="input.color">{{ input.displayName }}</h3>
+  <a class="article" *ngFor="let article of input.articles" [href]="article.linkUrl" (click)="sendAnalytics(article.id, article.title)">
+    <span class="bullet" [ngStyle]="{ background: input.color, 'box-shadow': '0 0 0 1px ' + input.color }"></span>
+    <span class="time">{{ article.lastPublishedTime * 1000 | date: "h:mma" | lowercase }}</span>
+    <app-headline [headline]="article.headline" [headlineFlags]="article.headlineFlags"></app-headline>
+  </a>
+</div>
