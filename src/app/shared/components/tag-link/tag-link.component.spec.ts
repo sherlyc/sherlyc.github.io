@@ -9,9 +9,8 @@ describe("TagComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TagLinkComponent ]
-    })
-    .compileComponents();
+      declarations: [TagLinkComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -49,5 +48,5 @@ describe("TagComponent", () => {
     const link = fixture.debugElement.query(By.css("a")).nativeElement;
 
     expect(link.textContent).toBe(component.name);
-  })
+  });
 });
