@@ -383,11 +383,15 @@ export const newPage = (): HandlerInput[] => {
       }
     },
     {
-      type: HandlerInputType.Partner
-    },
-    {
-      type: HandlerInputType.Brand,
-      module: BrandModule.Partner
+      type: HandlerInputType.VersionSwitcher,
+      compatibleVersion: "1.777",
+      compatibleHandler: {
+        type: HandlerInputType.Partner
+      },
+      fallbackHandler: {
+        type: HandlerInputType.Brand,
+        module: BrandModule.Partner
+      }
     },
     {
       type: HandlerInputType.BiggieSmalls,
