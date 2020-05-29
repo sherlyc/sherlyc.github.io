@@ -80,7 +80,23 @@ export const newPage = (): HandlerInput[] => {
         {
           type: HandlerInputType.TopStoriesV2,
           strapName: `${homepageAdPrefix}TopStoriesDefaultOne`,
-          color: "#2AAAF5"
+          color: "#2AAAF5",
+          midInsertContent: {
+            type: HandlerInputType.ExternalContent,
+            url:
+              "https://interactives.stuff.co.nz/live/homepage/uber/corona/320-200.html",
+            width: "100%",
+            height: "43px",
+            margin: "0"
+          },
+          lowerRightContent: {
+            type: HandlerInputType.LatestHeadlines,
+            sourceId: Strap.LatestNews,
+            totalArticles: 7,
+            displayName: "latest headlines",
+            strapName: `${homepageAdPrefix}LatestHeadlines`,
+            color: "#ff433d"
+          }
         },
         {
           type: HandlerInputType.SixImage,
