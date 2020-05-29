@@ -75,7 +75,8 @@ describe("JsonFeed Mapper", () => {
     sixteenByNineSrc: null,
     lastPublishedTime: getUnixTime(parseISO(article.datetime_iso8601)),
     headlineFlags: article.headline_flags,
-    identifier: article.identifier
+    identifier: article.identifier,
+    category: article["section-home"]
   });
 
   const rawUrlArticle = (article: IJsonFeedUrl): IRawArticle => ({
@@ -92,7 +93,8 @@ describe("JsonFeed Mapper", () => {
     sixteenByNineSrc: null,
     lastPublishedTime: getUnixTime(parseISO(article.datetime_iso8601)),
     headlineFlags: article.headline_flags,
-    identifier: article.identifier
+    identifier: article.identifier,
+    category: article["section-home"]
   });
 
   describe("article asset", () => {

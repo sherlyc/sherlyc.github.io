@@ -55,7 +55,8 @@ export function mapArticleAsset(item: IJsonFeedArticle): IRawArticle {
     ]),
     lastPublishedTime: getUnixTime(parseISO(item.datetime_iso8601)),
     headlineFlags: getHeadlineFlags(item),
-    identifier: item.identifier ? item.identifier : undefined
+    identifier: item.identifier ? item.identifier : undefined,
+    category: item["section-home"]
   };
 }
 
@@ -87,7 +88,8 @@ function mapUrlAsset(item: IJsonFeedUrl): IRawArticle {
     ]),
     lastPublishedTime: getUnixTime(parseISO(item.datetime_iso8601)),
     headlineFlags: getHeadlineFlags(item),
-    identifier: item.identifier ? item.identifier : undefined
+    identifier: item.identifier ? item.identifier : undefined,
+    category: item["section-home"]
   };
 }
 
