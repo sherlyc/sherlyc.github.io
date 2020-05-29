@@ -18,7 +18,7 @@ export const createPartnerContent = async (
   } catch (error) {
     wrappedLogger.warn(
       params.apiRequestId,
-      `Brand Handler - failed to retrieve articles for sourceId: ${config.sourceId} | logo: ${config.logo}`,
+      `Partner Handler - failed to retrieve articles for sourceId: ${config.sourceId} | logo: ${config.logo}`,
       error
     );
   }
