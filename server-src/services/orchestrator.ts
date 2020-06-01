@@ -83,8 +83,7 @@ export const newPage = (): HandlerInput[] => {
           color: "#2AAAF5",
           midInsertContent: {
             type: HandlerInputType.ExternalContent,
-            url:
-              "https://interactives.stuff.co.nz/live/homepage/uber/corona/320-200.html",
+            url: "",
             width: "100%",
             height: "43px",
             margin: "0"
