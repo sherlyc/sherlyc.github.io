@@ -39,9 +39,7 @@ export default async function(
       ...(await handlerRunner(
         {
           type: HandlerInputType.ColumnGrid,
-          content: chunk(partnerContents.slice(0, brandListPerRow)),
-          border: false
-          // columnGap: 15
+          content: chunk(partnerContents.slice(0, brandListPerRow))
         },
         params
       ))
