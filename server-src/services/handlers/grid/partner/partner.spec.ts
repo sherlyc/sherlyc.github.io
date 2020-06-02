@@ -7,10 +7,6 @@ import { BrandModule } from "../../__types__/IBrandHandlerInput";
 import { PartnerBrand } from "../../__types__/IBrandConfig";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
-import {
-  BrandGridPositions,
-  IBrandGridHandlerInput
-} from "../../__types__/IBrandGridHandlerInput";
 
 jest.mock("./partner-content");
 
@@ -58,45 +54,64 @@ describe("Partner", () => {
 
     await Partner(handlerRunnerMock, handlerInput, params);
 
-    const [
-      [firstColumnGridCall],
-      [secondColumnGridCall]
-    ] = handlerRunnerMock.mock.calls;
+    const [[firstColumnGridCall]] = handlerRunnerMock.mock.calls;
     expect(firstColumnGridCall.content).toEqual([
       [expect.objectContaining(partnerContent1)],
       [expect.objectContaining(partnerContent2)]
     ]);
-    expect(secondColumnGridCall.content).toEqual([]);
   });
 
-  it("should pass the result of column grid handlers to brand grid handler", async () => {
+  it("should generate partner grid container", async () => {
     (createPartnerContent as jest.Mock).mockResolvedValue({});
     const handlerRunnerMock = jest.fn();
     const fakeGridContainer = {} as IGridContainer;
     handlerRunnerMock.mockResolvedValue(fakeGridContainer);
 
-    const expectedGridHandlerInput: IBrandGridHandlerInput = {
-      type: HandlerInputType.BrandGrid,
-      content: {
-        [BrandGridPositions.ModuleTitle]: [
+    const gridConfig = {
+      gridTemplateColumns: "1fr",
+      gridTemplateRows: "auto auto auto",
+      gridColumnGap: "0px",
+      gridRowGap: "10px",
+      gridBlocks: {
+        ModuleTitle: {
+          rowStart: 1,
+          rowSpan: 1,
+          columnStart: 1,
+          columnSpan: 1,
+          border: []
+        },
+        Row0: {
+          rowStart: 2,
+          rowSpan: 1,
+          columnStart: 1,
+          columnSpan: 1,
+          border: []
+        }
+      }
+    };
+    const expectedPartnerGridContainer: IGridContainer = {
+      type: ContentBlockType.GridContainer,
+      items: {
+        ModuleTitle: [
           {
             type: ContentBlockType.ModuleTitle,
-            displayName: "from our partners",
+            displayName: brandConfig[BrandModule.Partner].moduleTitle,
             displayNameColor: "black"
           }
         ],
-        [BrandGridPositions.FirstRow]: [fakeGridContainer],
-        [BrandGridPositions.SecondRow]: [fakeGridContainer]
-      }
+        Row0: [fakeGridContainer]
+      },
+      mobile: gridConfig,
+      tablet: { ...gridConfig, gridRowGap: "20px" },
+      desktop: { ...gridConfig, gridRowGap: "40px" }
     };
 
-    await Partner(handlerRunnerMock, handlerInput, params);
+    const partnerGridContainer = await Partner(
+      handlerRunnerMock,
+      handlerInput,
+      params
+    );
 
-    const [
-      [firstColumnGridCall],
-      [secondColumnGridCall],
-      [brandGridCall]
-    ] = handlerRunnerMock.mock.calls;
-    expect(brandGridCall).toEqual(expectedGridHandlerInput);
+    expect(partnerGridContainer).toEqual([expectedPartnerGridContainer]);
   });
 });
