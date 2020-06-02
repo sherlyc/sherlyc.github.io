@@ -101,9 +101,8 @@ describe("PartnerContentComponent", () => {
       );
     });
 
-    const logoLink: HTMLLinkElement = componentElement.query(
-      By.css("a.logo-link")
-    ).nativeElement;
+    const logoLink: HTMLLinkElement = componentElement.query(By.css(".logo a"))
+      .nativeElement;
     expect(logoLink.getAttribute("href")).toEqual(partnerContent.logoLink);
     expect(logoLink.getAttribute("aria-label")).toEqual(
       `logo of ${partnerContent.logo}`

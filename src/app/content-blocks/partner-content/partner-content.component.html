@@ -1,23 +1,25 @@
 <div class="wrapper">
-  <div class="row articles">
-    <div class="col-xs-12 col-md-8 homepage-articles">
-      <div class="row">
-        <app-homepage-article *ngFor="let homepageArticle of homepageArticles" class="col-xs" [input]="homepageArticle"></app-homepage-article>
+  <div class="content">
+    <div class="row">
+      <div class="col-xs-12 col-md-8 homepage-articles">
+        <div class="row">
+          <app-homepage-article *ngFor="let homepageArticle of homepageArticles" class="col-xs" [input]="homepageArticle"></app-homepage-article>
+        </div>
       </div>
-    </div>
-    <div class="col-xs-12 col-md-4 bullet-list">
-      <div>
-        <article *ngFor="let item of bulletList">
-          <a href="{{ item.linkUrl }}" appOpenExternalLink="{{ item.linkUrl }}" (click)="sendAnalytics(item)">
-            <span class="bullet"></span>
-            <span>{{ item.headline }}</span>
-          </a>
-        </article>
+      <div class="col-xs-12 col-md-4 bullet-list">
+        <div>
+          <article *ngFor="let item of bulletList">
+            <a href="{{ item.linkUrl }}" appOpenExternalLink="{{ item.linkUrl }}" (click)="sendAnalytics(item)">
+              <span class="bullet"></span>
+              <span>{{ item.headline }}</span>
+            </a>
+          </article>
+        </div>
       </div>
     </div>
   </div>
-  <div class="row end-xs bottom-xs">
-    <a class="logo-link" href="{{ input.logoLink }}" [attr.aria-label]="'logo of ' + input.logo">
+  <div class="logo">
+    <a href="{{ input.logoLink }}" [attr.aria-label]="'logo of ' + input.logo">
       <app-logo [name]="input.logo"></app-logo>
     </a>
   </div>
