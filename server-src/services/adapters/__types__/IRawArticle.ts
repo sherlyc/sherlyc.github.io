@@ -16,4 +16,6 @@ export interface IRawArticle {
   lastPublishedTime: number;
   headlineFlags: HeadlineFlags[];
   identifier?: string;
+  category?: string;
+  categoryUrl?: string;
 }
