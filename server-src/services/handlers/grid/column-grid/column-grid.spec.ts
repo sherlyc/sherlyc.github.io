@@ -89,7 +89,7 @@ describe("Column Grid", () => {
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.bottom]
         },
         content1: {
           columnStart: 1,
@@ -186,14 +186,14 @@ describe("Column Grid", () => {
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.bottom]
         },
         content1: {
           columnStart: 1,
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: []
+          border: [Border.bottom]
         },
         content2: {
           columnStart: 1,
@@ -307,21 +307,21 @@ describe("Column Grid", () => {
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.bottom]
         },
         content1: {
           columnStart: 1,
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: []
+          border: [Border.bottom]
         },
         content2: {
           columnStart: 1,
           columnSpan: 1,
           rowStart: 3,
           rowSpan: 1,
-          border: []
+          border: [Border.bottom]
         },
         content3: {
           columnStart: 1,
@@ -451,28 +451,28 @@ describe("Column Grid", () => {
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.bottom]
         },
         content1: {
           columnStart: 1,
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: []
+          border: [Border.bottom]
         },
         content2: {
           columnStart: 1,
           columnSpan: 1,
           rowStart: 3,
           rowSpan: 1,
-          border: []
+          border: [Border.bottom]
         },
         content3: {
           columnStart: 1,
           columnSpan: 1,
           rowStart: 4,
           rowSpan: 1,
-          border: []
+          border: [Border.bottom]
         },
         content4: {
           columnStart: 1,
@@ -618,35 +618,35 @@ describe("Column Grid", () => {
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [Border.bottom]
         },
         content1: {
           columnStart: 1,
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: []
+          border: [Border.bottom]
         },
         content2: {
           columnStart: 1,
           columnSpan: 1,
           rowStart: 3,
           rowSpan: 1,
-          border: []
+          border: [Border.bottom]
         },
         content3: {
           columnStart: 1,
           columnSpan: 1,
           rowStart: 4,
           rowSpan: 1,
-          border: []
+          border: [Border.bottom]
         },
         content4: {
           columnStart: 1,
           columnSpan: 1,
           rowStart: 5,
           rowSpan: 1,
-          border: []
+          border: [Border.bottom]
         },
         content5: {
           columnStart: 1,

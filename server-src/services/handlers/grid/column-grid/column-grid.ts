@@ -52,7 +52,7 @@ export default async function(
 ): Promise<IContentBlock[]> {
   const numColumns = getNumColumnsFor(content.length);
 
-  const mobileConfig = mobileColumnGridConfig(rowGap)[numColumns];
+  const mobileConfig = mobileColumnGridConfig(rowGap, border)[numColumns];
   const mobile: IGridConfig = {
     gridTemplateColumns: mobileConfig.gridTemplateColumns,
     gridTemplateRows: mobileConfig.gridTemplateRows,
