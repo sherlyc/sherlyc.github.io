@@ -1,3 +1,4 @@
+import { repeat } from "lodash-es";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { Border } from "../../../../../common/__types__/IGridContainer";
@@ -33,7 +34,10 @@ describe("Top Stories V2 Grid Handler", () => {
         [TopStoriesV2GridPositions.RightOne]: [fakeContentBlock],
         [TopStoriesV2GridPositions.RightTwo]: [fakeContentBlock],
         [TopStoriesV2GridPositions.RightThree]: [fakeContentBlock],
-        [TopStoriesV2GridPositions.RightFour]: [fakeContentBlock]
+        [TopStoriesV2GridPositions.RightFour]: [fakeContentBlock],
+        [TopStoriesV2GridPositions.RightFive]: [fakeContentBlock],
+        [TopStoriesV2GridPositions.MidInsert]: [fakeContentBlock],
+        [TopStoriesV2GridPositions.LowerRight]: [fakeContentBlock]
       }
     };
 
@@ -45,181 +49,221 @@ describe("Top Stories V2 Grid Handler", () => {
 
     const mobile = {
       gridTemplateColumns: "1fr 1fr",
-      gridTemplateRows: "auto auto auto auto auto auto auto auto auto",
+      gridTemplateRows: repeat(" auto", 12).substring(1),
       gridColumnGap: "20px",
       gridRowGap: "20px",
       gridBlocks: {
         [TopStoriesV2GridPositions.LeftHighlight]: {
           border: [Border.bottom],
-          columnStart: 1,
-          columnSpan: 2,
           rowStart: 1,
-          rowSpan: 1
+          rowSpan: 1,
+          columnStart: 1,
+          columnSpan: 2
         },
         [TopStoriesV2GridPositions.RightHighlight]: {
           border: [Border.bottom],
-          columnStart: 1,
-          columnSpan: 2,
           rowStart: 2,
-          rowSpan: 1
+          rowSpan: 1,
+          columnStart: 1,
+          columnSpan: 2
         },
         [TopStoriesV2GridPositions.BannerAd]: {
           border: [],
-          columnStart: 1,
-          columnSpan: 2,
           rowStart: 3,
-          rowSpan: 1
+          rowSpan: 1,
+          columnStart: 1,
+          columnSpan: 2
         },
         [TopStoriesV2GridPositions.LeftOne]: {
           border: [Border.bottom],
-          columnStart: 1,
-          columnSpan: 1,
           rowStart: 4,
-          rowSpan: 1
+          rowSpan: 1,
+          columnStart: 1,
+          columnSpan: 1
         },
         [TopStoriesV2GridPositions.LeftTwo]: {
           border: [Border.bottom],
-          columnStart: 2,
-          columnSpan: 1,
           rowStart: 4,
-          rowSpan: 1
+          rowSpan: 1,
+          columnStart: 2,
+          columnSpan: 1
         },
         [TopStoriesV2GridPositions.LeftThree]: {
           border: [Border.bottom],
-          columnStart: 1,
-          columnSpan: 1,
           rowStart: 5,
-          rowSpan: 1
+          rowSpan: 1,
+          columnStart: 1,
+          columnSpan: 1
         },
         [TopStoriesV2GridPositions.LeftFour]: {
           border: [Border.bottom],
-          columnStart: 2,
-          columnSpan: 1,
           rowStart: 5,
-          rowSpan: 1
+          rowSpan: 1,
+          columnStart: 2,
+          columnSpan: 1
         },
         [TopStoriesV2GridPositions.RightOne]: {
           border: [Border.bottom],
+          rowStart: 7,
+          rowSpan: 1,
           columnStart: 1,
-          columnSpan: 2,
-          rowStart: 6,
-          rowSpan: 1
+          columnSpan: 2
         },
         [TopStoriesV2GridPositions.RightTwo]: {
           border: [Border.bottom],
+          rowStart: 8,
+          rowSpan: 1,
           columnStart: 1,
-          columnSpan: 2,
-          rowStart: 7,
-          rowSpan: 1
+          columnSpan: 2
         },
         [TopStoriesV2GridPositions.RightThree]: {
           border: [Border.bottom],
+          rowStart: 9,
+          rowSpan: 1,
           columnStart: 1,
-          columnSpan: 2,
-          rowStart: 8,
-          rowSpan: 1
+          columnSpan: 2
         },
         [TopStoriesV2GridPositions.RightFour]: {
           border: [Border.bottom],
+          rowStart: 10,
+          rowSpan: 1,
           columnStart: 1,
-          columnSpan: 2,
-          rowStart: 9,
-          rowSpan: 1
+          columnSpan: 2
+        },
+        [TopStoriesV2GridPositions.RightFive]: {
+          border: [Border.bottom],
+          rowStart: 11,
+          rowSpan: 1,
+          columnStart: 1,
+          columnSpan: 2
+        },
+        [TopStoriesV2GridPositions.MidInsert]: {
+          border: [Border.bottom],
+          rowStart: 6,
+          rowSpan: 1,
+          columnStart: 1,
+          columnSpan: 2
+        },
+        [TopStoriesV2GridPositions.LowerRight]: {
+          border: [],
+          rowStart: 12,
+          rowSpan: 1,
+          columnStart: 1,
+          columnSpan: 2
         }
       }
     };
 
     const tablet = {
       gridTemplateColumns: "1fr 1fr 2fr",
-      gridTemplateRows:
-        "auto auto auto auto auto auto auto auto auto auto auto auto",
+      gridTemplateRows: repeat(" auto", 18).substring(1),
       gridColumnGap: "20px",
       gridRowGap: "20px",
       gridBlocks: {
         [TopStoriesV2GridPositions.LeftHighlight]: {
           border: [Border.bottom],
-          columnStart: 1,
-          columnSpan: 2,
           rowStart: 1,
-          rowSpan: 4
+          rowSpan: 4,
+          columnStart: 1,
+          columnSpan: 2
         },
         [TopStoriesV2GridPositions.RightHighlight]: {
           border: [Border.bottom],
-          columnStart: 3,
-          columnSpan: 1,
           rowStart: 1,
-          rowSpan: 7
+          rowSpan: 7,
+          columnStart: 3,
+          columnSpan: 1
         },
         [TopStoriesV2GridPositions.BannerAd]: {
           border: [],
-          columnStart: 1,
-          columnSpan: 3,
-          rowStart: 12,
-          rowSpan: 1
+          rowStart: 8,
+          rowSpan: 7,
+          columnStart: 3,
+          columnSpan: 1
         },
         [TopStoriesV2GridPositions.LeftOne]: {
           border: [Border.bottom],
-          columnStart: 1,
-          columnSpan: 1,
           rowStart: 5,
-          rowSpan: 4
+          rowSpan: 4,
+          columnStart: 1,
+          columnSpan: 1
         },
         [TopStoriesV2GridPositions.LeftTwo]: {
           border: [Border.bottom],
-          columnStart: 2,
-          columnSpan: 1,
           rowStart: 5,
-          rowSpan: 4
+          rowSpan: 4,
+          columnStart: 2,
+          columnSpan: 1
         },
         [TopStoriesV2GridPositions.LeftThree]: {
           border: [Border.bottom],
-          columnStart: 1,
-          columnSpan: 1,
           rowStart: 9,
-          rowSpan: 3
+          rowSpan: 4,
+          columnStart: 1,
+          columnSpan: 1
         },
         [TopStoriesV2GridPositions.LeftFour]: {
           border: [Border.bottom],
-          columnStart: 2,
-          columnSpan: 1,
           rowStart: 9,
-          rowSpan: 3
+          rowSpan: 4,
+          columnStart: 2,
+          columnSpan: 1
         },
         [TopStoriesV2GridPositions.RightOne]: {
           border: [Border.bottom],
-          columnStart: 3,
-          columnSpan: 1,
-          rowStart: 8,
-          rowSpan: 1
+          rowStart: 14,
+          rowSpan: 1,
+          columnStart: 1,
+          columnSpan: 2
         },
         [TopStoriesV2GridPositions.RightTwo]: {
           border: [Border.bottom],
-          columnStart: 3,
-          columnSpan: 1,
-          rowStart: 9,
-          rowSpan: 1
+          rowStart: 15,
+          rowSpan: 1,
+          columnStart: 1,
+          columnSpan: 2
         },
         [TopStoriesV2GridPositions.RightThree]: {
           border: [Border.bottom],
-          columnStart: 3,
-          columnSpan: 1,
-          rowStart: 10,
-          rowSpan: 1
+          rowStart: 16,
+          rowSpan: 1,
+          columnStart: 1,
+          columnSpan: 2
         },
         [TopStoriesV2GridPositions.RightFour]: {
           border: [Border.bottom],
+          rowStart: 17,
+          rowSpan: 1,
+          columnStart: 1,
+          columnSpan: 2
+        },
+        [TopStoriesV2GridPositions.RightFive]: {
+          border: [Border.bottom],
+          rowStart: 18,
+          rowSpan: 1,
+          columnStart: 1,
+          columnSpan: 2
+        },
+        [TopStoriesV2GridPositions.MidInsert]: {
+          border: [Border.bottom],
+          rowStart: 13,
+          rowSpan: 1,
+          columnStart: 1,
+          columnSpan: 2
+        },
+        [TopStoriesV2GridPositions.LowerRight]: {
+          border: [],
+          rowStart: 15,
+          rowSpan: 4,
           columnStart: 3,
-          columnSpan: 1,
-          rowStart: 11,
-          rowSpan: 1
+          columnSpan: 1
         }
       }
     };
 
     const desktop = {
       gridTemplateColumns: "1fr 1fr 2fr 300px",
-      gridTemplateRows:
-        "auto auto auto auto auto auto auto auto auto auto auto",
+      gridTemplateRows: repeat(" auto", 13).substring(1),
       gridColumnGap: "20px",
       gridRowGap: "20px",
       gridBlocks: {
@@ -228,7 +272,7 @@ describe("Top Stories V2 Grid Handler", () => {
           columnStart: 1,
           columnSpan: 2,
           rowStart: 1,
-          rowSpan: 4
+          rowSpan: 5
         },
         [TopStoriesV2GridPositions.RightHighlight]: {
           border: [Border.bottom],
@@ -242,34 +286,34 @@ describe("Top Stories V2 Grid Handler", () => {
           columnStart: 4,
           columnSpan: 1,
           rowStart: 1,
-          rowSpan: 11
+          rowSpan: 8
         },
         [TopStoriesV2GridPositions.LeftOne]: {
           border: [Border.bottom],
           columnStart: 1,
           columnSpan: 1,
-          rowStart: 5,
+          rowStart: 6,
           rowSpan: 4
         },
         [TopStoriesV2GridPositions.LeftTwo]: {
           border: [Border.bottom],
           columnStart: 2,
           columnSpan: 1,
-          rowStart: 5,
+          rowStart: 6,
           rowSpan: 4
         },
         [TopStoriesV2GridPositions.LeftThree]: {
           border: [Border.bottom],
           columnStart: 1,
           columnSpan: 1,
-          rowStart: 9,
+          rowStart: 11,
           rowSpan: 3
         },
         [TopStoriesV2GridPositions.LeftFour]: {
           border: [Border.bottom],
           columnStart: 2,
           columnSpan: 1,
-          rowStart: 9,
+          rowStart: 11,
           rowSpan: 3
         },
         [TopStoriesV2GridPositions.RightOne]: {
@@ -290,15 +334,36 @@ describe("Top Stories V2 Grid Handler", () => {
           border: [Border.bottom],
           columnStart: 3,
           columnSpan: 1,
-          rowStart: 10,
+          rowStart: 11,
           rowSpan: 1
         },
         [TopStoriesV2GridPositions.RightFour]: {
           border: [Border.bottom],
           columnStart: 3,
           columnSpan: 1,
-          rowStart: 11,
+          rowStart: 12,
           rowSpan: 1
+        },
+        [TopStoriesV2GridPositions.RightFive]: {
+          border: [Border.bottom],
+          columnStart: 3,
+          columnSpan: 1,
+          rowStart: 13,
+          rowSpan: 1
+        },
+        [TopStoriesV2GridPositions.MidInsert]: {
+          border: [],
+          columnStart: 1,
+          columnSpan: 3,
+          rowStart: 10,
+          rowSpan: 1
+        },
+        [TopStoriesV2GridPositions.LowerRight]: {
+          border: [],
+          columnStart: 4,
+          columnSpan: 1,
+          rowStart: 9,
+          rowSpan: 5
         }
       }
     };
@@ -317,7 +382,10 @@ describe("Top Stories V2 Grid Handler", () => {
           [TopStoriesV2GridPositions.RightOne]: [fakeContentBlock],
           [TopStoriesV2GridPositions.RightTwo]: [fakeContentBlock],
           [TopStoriesV2GridPositions.RightThree]: [fakeContentBlock],
-          [TopStoriesV2GridPositions.RightFour]: [fakeContentBlock]
+          [TopStoriesV2GridPositions.RightFour]: [fakeContentBlock],
+          [TopStoriesV2GridPositions.RightFive]: [fakeContentBlock],
+          [TopStoriesV2GridPositions.MidInsert]: [fakeContentBlock],
+          [TopStoriesV2GridPositions.LowerRight]: [fakeContentBlock]
         },
         mobile,
         tablet,
