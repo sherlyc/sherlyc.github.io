@@ -55,16 +55,16 @@ export default async function(
     {}
   );
 
-  const rowItemKeys = Object.keys(rowItems);
-  const gridBlocks: IGridBlocks = rowItemKeys.reduce(
-    (acc, itemKey, index) => ({
+  const rowNames = Object.keys(rowItems);
+  const gridBlocks: IGridBlocks = rowNames.reduce(
+    (acc, rowName, index) => ({
       ...acc,
-      [itemKey]: gridBlock(
+      [rowName]: gridBlock(
         index + 2,
         1,
         1,
         1,
-        index < rowItemKeys.length - 1 ? [Border.bottom] : []
+        index < rowNames.length - 1 ? [Border.bottom] : []
       )
     }),
     {
