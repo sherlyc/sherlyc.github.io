@@ -17,5 +17,8 @@ export enum TopStoriesV2GridPositions {
   RightTwo = "RightTwo",
   RightThree = "RightThree",
   RightFour = "RightFour",
-  BannerAd = "BannerAd"
+  RightFive = "RightFive",
+  BannerAd = "BannerAd",
+  LowerRight = "LowerRight",
+  MidInsert = "MidInsert"
 }

@@ -88,7 +88,8 @@ describe("JsonFeed Retriever", () => {
       isHeadlineOverrideApplied: true,
       datetime_iso8601: "123235345",
       alt_intro: "intro",
-      identifier: "identifier"
+      identifier: "identifier",
+      "section-home": "National"
     } as IJsonFeedArticle;
     (cacheHttp as jest.Mock).mockResolvedValue({ data: article });
 
