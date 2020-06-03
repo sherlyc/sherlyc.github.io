@@ -56,13 +56,11 @@ export default async function(
         : []
   };
 
-  return [
-    ...(await handlerRunner(
-      {
-        type: HandlerInputType.BrandGrid,
-        content
-      },
-      params
-    ))
-  ];
+  return await handlerRunner(
+    {
+      type: HandlerInputType.BrandGrid,
+      content
+    },
+    params
+  );
 }
