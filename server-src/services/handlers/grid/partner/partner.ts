@@ -6,15 +6,9 @@ import { brandConfig } from "../brand/brand-config";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IPartnerHandlerInput } from "../../__types__/IPartnerHandlerInput";
 import { createPartnerContent } from "./partner-content";
-import {
-  Border,
-  IGridBlocks,
-  IGridContainer
-} from "../../../../../common/__types__/IGridContainer";
-import { IModuleTitle } from "../../../../../common/__types__/IModuleTitle";
 import { chunk } from "lodash-es";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { gridBlock } from "../../../adapters/grid/grid-block";
+import { BrandGridPositions } from "../../__types__/IBrandGridHandlerInput";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -33,79 +27,41 @@ export default async function(
     })
   );
 
-  const columnGrids = await Promise.all(
-    chunk(partnerContents, brandListPerRow).map(async (partnerContent) => {
-      return [
-        ...(await handlerRunner(
-          {
-            type: HandlerInputType.ColumnGrid,
-            content: chunk(partnerContent, 1)
-          },
-          params
-        ))
-      ];
-    })
-  );
-
-  const rowItems = columnGrids.reduce(
-    (acc, columnGrid, index) => ({
-      ...acc,
-      [`Row${index}`]: columnGrid
-    }),
-    {}
-  );
-
-  const rowNames = Object.keys(rowItems);
-  const gridBlocks: IGridBlocks = rowNames.reduce(
-    (acc, rowName, index) => ({
-      ...acc,
-      [rowName]: gridBlock(
-        index + 2,
-        1,
-        1,
-        1,
-        index < rowNames.length - 1 ? [Border.bottom] : []
-      )
-    }),
-    {
-      ModuleTitle: gridBlock(1, 1, 1, 1, [])
-    }
-  );
-
-  const gridContainer: IGridContainer = {
-    type: ContentBlockType.GridContainer,
-    items: {
-      ModuleTitle: [
+  const content: { [key in BrandGridPositions]: IContentBlock[] } = {
+    [BrandGridPositions.ModuleTitle]: [
+      {
+        type: ContentBlockType.ModuleTitle,
+        displayName: moduleTitle,
+        displayNameColor: "black"
+      }
+    ],
+    [BrandGridPositions.FirstRow]: [
+      ...(await handlerRunner(
         {
-          type: ContentBlockType.ModuleTitle,
-          displayName: moduleTitle,
-          displayNameColor: "black"
-        } as IModuleTitle
-      ],
-      ...rowItems
-    },
-    mobile: {
-      gridTemplateColumns: "1fr",
-      gridTemplateRows: "auto auto auto",
-      gridColumnGap: "0px",
-      gridRowGap: "10px",
-      gridBlocks
-    },
-    tablet: {
-      gridTemplateColumns: "1fr",
-      gridTemplateRows: "auto auto auto",
-      gridColumnGap: "0px",
-      gridRowGap: "20px",
-      gridBlocks
-    },
-    desktop: {
-      gridTemplateColumns: "1fr",
-      gridTemplateRows: "auto auto auto",
-      gridColumnGap: "0px",
-      gridRowGap: "40px",
-      gridBlocks
-    }
+          type: HandlerInputType.ColumnGrid,
+          content: chunk(partnerContents.slice(0, brandListPerRow))
+        },
+        params
+      ))
+    ],
+    [BrandGridPositions.SecondRow]: [
+      ...(await handlerRunner(
+        {
+          type: HandlerInputType.ColumnGrid,
+          content: chunk(partnerContents.slice(brandListPerRow))
+        },
+        params
+      ))
+    ]
   };
 
-  return [gridContainer];
+  return [
+    ...(await handlerRunner(
+      {
+        type: HandlerInputType.BrandGrid,
+        content
+      },
+      params
+    ))
+  ];
 }
