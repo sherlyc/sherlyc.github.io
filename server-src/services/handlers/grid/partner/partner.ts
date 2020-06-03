@@ -27,6 +27,8 @@ export default async function(
     })
   );
 
+  const firstRowContent = chunk(partnerContents.slice(0, brandListPerRow));
+  const secondRowContent = chunk(partnerContents.slice(brandListPerRow));
   const content: { [key in BrandGridPositions]: IContentBlock[] } = {
     [BrandGridPositions.ModuleTitle]: [
       {
@@ -35,24 +37,23 @@ export default async function(
         displayNameColor: "black"
       }
     ],
-    [BrandGridPositions.FirstRow]: [
-      ...(await handlerRunner(
-        {
-          type: HandlerInputType.ColumnGrid,
-          content: chunk(partnerContents.slice(0, brandListPerRow))
-        },
-        params
-      ))
-    ],
-    [BrandGridPositions.SecondRow]: [
-      ...(await handlerRunner(
-        {
-          type: HandlerInputType.ColumnGrid,
-          content: chunk(partnerContents.slice(brandListPerRow))
-        },
-        params
-      ))
-    ]
+    [BrandGridPositions.FirstRow]: await handlerRunner(
+      {
+        type: HandlerInputType.ColumnGrid,
+        content: firstRowContent
+      },
+      params
+    ),
+    [BrandGridPositions.SecondRow]:
+      secondRowContent.length > 0
+        ? await handlerRunner(
+            {
+              type: HandlerInputType.ColumnGrid,
+              content: secondRowContent
+            },
+            params
+          )
+        : []
   };
 
   return [

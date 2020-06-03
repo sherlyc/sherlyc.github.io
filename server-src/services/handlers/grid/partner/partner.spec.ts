@@ -54,26 +54,22 @@ describe("Partner", () => {
     };
     (createPartnerContent as jest.Mock).mockReturnValueOnce(partnerContent2);
     const handlerRunnerMock = jest.fn();
-    handlerRunnerMock.mockResolvedValue({});
+    handlerRunnerMock.mockResolvedValue([]);
 
     await Partner(handlerRunnerMock, handlerInput, params);
 
-    const [
-      [firstColumnGridCall],
-      [secondColumnGridCall]
-    ] = handlerRunnerMock.mock.calls;
+    const [[firstColumnGridCall]] = handlerRunnerMock.mock.calls;
     expect(firstColumnGridCall.content).toEqual([
       [expect.objectContaining(partnerContent1)],
       [expect.objectContaining(partnerContent2)]
     ]);
-    expect(secondColumnGridCall.content).toEqual([]);
   });
 
   it("should pass the result of column grid handlers to brand grid handler", async () => {
     (createPartnerContent as jest.Mock).mockResolvedValue({});
     const handlerRunnerMock = jest.fn();
     const fakeGridContainer = {} as IGridContainer;
-    handlerRunnerMock.mockResolvedValue(fakeGridContainer);
+    handlerRunnerMock.mockResolvedValue([fakeGridContainer]);
 
     const expectedGridHandlerInput: IBrandGridHandlerInput = {
       type: HandlerInputType.BrandGrid,
@@ -86,7 +82,7 @@ describe("Partner", () => {
           }
         ],
         [BrandGridPositions.FirstRow]: [fakeGridContainer],
-        [BrandGridPositions.SecondRow]: [fakeGridContainer]
+        [BrandGridPositions.SecondRow]: []
       }
     };
 
@@ -94,7 +90,6 @@ describe("Partner", () => {
 
     const [
       [firstColumnGridCall],
-      [secondColumnGridCall],
       [brandGridCall]
     ] = handlerRunnerMock.mock.calls;
     expect(brandGridCall).toEqual(expectedGridHandlerInput);
