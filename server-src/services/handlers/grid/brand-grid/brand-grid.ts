@@ -16,7 +16,13 @@ export default async function(
 ): Promise<IContentBlock[]> {
   const grid = {
     [BrandGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 1, []),
-    [BrandGridPositions.FirstRow]: gridBlock(2, 1, 1, 1, [Border.bottom]),
+    [BrandGridPositions.FirstRow]: gridBlock(
+      2,
+      1,
+      1,
+      1,
+      content.SecondRow.length > 0 ? [Border.bottom] : []
+    ),
     [BrandGridPositions.SecondRow]: gridBlock(3, 1, 1, 1, [])
   };
 

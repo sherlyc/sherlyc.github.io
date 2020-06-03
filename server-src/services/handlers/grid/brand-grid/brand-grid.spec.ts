@@ -15,9 +15,9 @@ import { ContentBlockType } from "../../../../../common/__types__/ContentBlockTy
 describe("Brand Grid Handler", () => {
   const handlerRunner = jest.fn();
   const params: IParams = { apiRequestId: "123" };
+  const fakeContentBlock = {} as IContentBlock;
 
   it("should create grid", async () => {
-    const fakeContentBlock = {} as IContentBlock;
     const content = {
       [BrandGridPositions.ModuleTitle]: [],
       [BrandGridPositions.FirstRow]: [fakeContentBlock, fakeContentBlock],
@@ -81,5 +81,50 @@ describe("Brand Grid Handler", () => {
     };
 
     expect(result).toEqual([expected]);
+  });
+
+  it("should remove first row border bottom if second row content is empty", async () => {
+    const content = {
+      [BrandGridPositions.ModuleTitle]: [],
+      [BrandGridPositions.FirstRow]: [fakeContentBlock, fakeContentBlock],
+      [BrandGridPositions.SecondRow]: []
+    };
+    const input: IBrandGridHandlerInput = {
+      type: HandlerInputType.BrandGrid,
+      content
+    };
+
+    const [actualGridContainer] = await brandGridHandler(
+      handlerRunner,
+      input,
+      params
+    );
+
+    const expectedGridBlocks = {
+      [BrandGridPositions.ModuleTitle]: {
+        rowStart: 1,
+        rowSpan: 1,
+        columnStart: 1,
+        columnSpan: 1,
+        border: []
+      },
+      [BrandGridPositions.FirstRow]: {
+        rowStart: 2,
+        rowSpan: 1,
+        columnStart: 1,
+        columnSpan: 1,
+        border: []
+      },
+      [BrandGridPositions.SecondRow]: {
+        rowStart: 3,
+        rowSpan: 1,
+        columnStart: 1,
+        columnSpan: 1,
+        border: []
+      }
+    };
+    expect((actualGridContainer as IGridContainer).mobile.gridBlocks).toEqual(
+      expectedGridBlocks
+    );
   });
 });
