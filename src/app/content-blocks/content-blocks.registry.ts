@@ -32,6 +32,7 @@ import { ArticleTitleComponent } from "./article-title/article-title.component";
 import { OliComponent } from "./oli/oli.component";
 import { HomepageArticleComponent } from "./homepage-article/homepage-article.component";
 import { VerticalArticleListComponent } from "./vertical-article-list/vertical-article-list.component";
+import { PartnerContentComponent } from "./partner-content/partner-content.component";
 
 export const contentBlockComponents = [
   GrayDefconArticleUnitComponent,
@@ -65,7 +66,8 @@ export const contentBlockComponents = [
   ArticleTitleComponent,
   OliComponent,
   HomepageArticleComponent,
-  VerticalArticleListComponent
+  VerticalArticleListComponent,
+  PartnerContentComponent
 ];
 
 const registry: {
@@ -102,7 +104,8 @@ const registry: {
   ArticleTitleComponent,
   OliComponent,
   HomepageArticleComponent,
-  VerticalArticleListComponent
+  VerticalArticleListComponent,
+  PartnerContentComponent
 };
 
 export default registry;

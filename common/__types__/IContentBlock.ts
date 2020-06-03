@@ -30,6 +30,7 @@ import { IArticleTitle } from "./IArticleTitle";
 import { IOli } from "./IOli";
 import { IHomepageArticle } from "./IHomepageArticle";
 import { IVerticalArticleList } from "./IVerticalArticleList";
+import { IPartnerContent } from "./IPartnerContent";
 
 export type IContentBlock =
   | IDefconArticleUnit
@@ -63,4 +64,5 @@ export type IContentBlock =
   | IArticleTitle
   | IOli
   | IHomepageArticle
-  | IVerticalArticleList;
+  | IVerticalArticleList
+  | IPartnerContent;

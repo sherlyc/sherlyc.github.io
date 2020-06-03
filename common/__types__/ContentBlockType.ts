@@ -30,5 +30,6 @@ export enum ContentBlockType {
   ResponsiveExternalContent = "ResponsiveExternalContent",
   Oli = "Oli",
   HomepageArticle = "HomepageArticle",
-  VerticalArticleList = "VerticalArticleList"
+  VerticalArticleList = "VerticalArticleList",
+  PartnerContent = "PartnerContent"
 }

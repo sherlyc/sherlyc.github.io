@@ -47,6 +47,7 @@ import TitleSection from "./title-section/title-section";
 import TopStoriesArticleList from "./top-stories-article-list/top-stories-article-list";
 import Weather from "./weather/weather";
 import VersionSwitcher from "./version-switcher/version-switcher";
+import Partner from "./grid/partner/partner";
 
 type handlerFunction = (
   handlerRunner: handlerRunnerFunction,
@@ -99,7 +100,8 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   HalfFour,
   HalfFourGrid,
   VersionSwitcher,
-  LatestHeadlines
+  LatestHeadlines,
+  Partner
 };
 
 export default handlerRegistry;
