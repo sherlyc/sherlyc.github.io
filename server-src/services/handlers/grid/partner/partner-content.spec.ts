@@ -74,6 +74,7 @@ describe("Create Partner Content", () => {
       })
     );
     expect(homepageArticleContent).toHaveBeenCalledTimes(5);
+    expect(partnerContentBlock.articles.length).toEqual(5);
   });
 
   it("should create partner content block with empty articles when failed to retrieve articles", async () => {
