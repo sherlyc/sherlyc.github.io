@@ -1,13 +1,13 @@
-import { handlerRunnerFunction } from "../../runner";
-import { IParams } from "../../../__types__/IParams";
-import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import {
-  IBrandGridHandlerInput,
-  BrandGridPositions
-} from "../../__types__/IBrandGridHandlerInput";
-import { Border } from "../../../../../common/__types__/IGridContainer";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { Border } from "../../../../../common/__types__/IGridContainer";
+import { IParams } from "../../../__types__/IParams";
 import { gridBlock } from "../../../adapters/grid/grid-block";
+import {
+  BrandGridPositions,
+  IBrandGridHandlerInput
+} from "../../__types__/IBrandGridHandlerInput";
+import { handlerRunnerFunction } from "../../runner";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -16,7 +16,13 @@ export default async function(
 ): Promise<IContentBlock[]> {
   const grid = {
     [BrandGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 1, []),
-    [BrandGridPositions.FirstRow]: gridBlock(2, 1, 1, 1, [Border.bottom]),
+    [BrandGridPositions.FirstRow]: gridBlock(
+      2,
+      1,
+      1,
+      1,
+      content.SecondRow.length > 0 ? [Border.bottom] : []
+    ),
     [BrandGridPositions.SecondRow]: gridBlock(3, 1, 1, 1, [])
   };
 

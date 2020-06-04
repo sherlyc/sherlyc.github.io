@@ -17,6 +17,7 @@ import { IHalfFourGridHandlerInput } from "./IHalfFourGridHandlerInput";
 import { IHalfFourHandlerInput } from "./IHalfFourHandlerInput";
 import { ILargeLeadSixGridHandlerInput } from "./ILargeLeadSixGridHandlerInput";
 import { ILargeLeadSixHandlerInput } from "./ILargeLeadSixHandlerInput";
+import { ILatestHeadlinesHandlerInput } from "./ILatestHeadlinesHandlerInput";
 import { IListGridHandlerInput } from "./IListGridHandlerInput";
 import { IMidStripHandlerInput } from "./IMidStripHandlerInput";
 import { IMiniMidStripHandlerInput } from "./IMiniMidStripHandlerInput";
@@ -25,6 +26,7 @@ import { INewsSixGridV2HandlerInput } from "./INewsSixGridV2HandlerInput";
 import { INewsSixHandlerInput } from "./INewsSixHandlerInput";
 import { INewsSixV2HandlerInput } from "./INewsSixV2HandlerInput";
 import { IPageHandlerInput } from "./IPageHandlerInput";
+import { IPartnerHandlerInput } from "./IPartnerHandlerInput";
 import { IRelevantStoriesGridHandlerInput } from "./IRelevantStoriesGridHandlerInput";
 import { IRelevantStoriesHandlerInput } from "./IRelevantStoriesHandlerInput";
 import { IResponsiveExternalContentHandlerInput } from "./IResponsiveExternalContentHandlerInput";
@@ -40,9 +42,8 @@ import { ITopStoriesGridHandlerInput } from "./ITopStoriesGridHandlerInput";
 import { ITopStoriesHandlerInput } from "./ITopStoriesHandlerInput";
 import { ITopStoriesV2GridHandlerInput } from "./ITopStoriesV2GridHandlerInput";
 import { ITopStoriesV2HandlerInput } from "./ITopStoriesV2HandlerInput";
-import { IWeatherHandlerInput } from "./IWeatherHandlerInput";
 import { IVersionSwitcherHandlerInput } from "./IVersionSwitcherHandlerInput";
-import { ILatestHeadlinesHandlerInput } from "./ILatestHeadlinesHandlerInput";
+import { IWeatherHandlerInput } from "./IWeatherHandlerInput";
 
 export type HandlerInput =
   | IContentBlockHandlerInput
@@ -89,4 +90,5 @@ export type HandlerInput =
   | IHalfFourHandlerInput
   | IHalfFourGridHandlerInput
   | IVersionSwitcherHandlerInput
-  | ILatestHeadlinesHandlerInput;
+  | ILatestHeadlinesHandlerInput
+  | IPartnerHandlerInput;

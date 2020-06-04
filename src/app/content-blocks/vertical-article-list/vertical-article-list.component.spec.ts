@@ -1,16 +1,17 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-
-import { VerticalArticleListComponent } from "./vertical-article-list.component";
-import { IVerticalArticleList } from "../../../../common/__types__/IVerticalArticleList";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { By } from "@angular/platform-browser";
 import { getUnixTime } from "date-fns";
+import { AccentColor } from "../../../../common/__types__/AccentColor";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IVerticalArticleList } from "../../../../common/__types__/IVerticalArticleList";
+import { HeadlineFlags } from "../../../../common/HeadlineFlags";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
-import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
-import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 import { HeadlineComponent } from "../../shared/components/headline/headline.component";
 import { SharedModule } from "../../shared/shared.module";
+
+import { VerticalArticleListComponent } from "./vertical-article-list.component";
 
 describe("VerticalArticleListComponent", () => {
   let component: VerticalArticleListComponent;
@@ -38,8 +39,8 @@ describe("VerticalArticleListComponent", () => {
     },
     lastPublishedTime: 123,
     headlineFlags: [],
-    category: "National",
-    categoryUrl: "/coronavirus/"
+    color: AccentColor.TopStoriesBlue,
+    category: { name: "National", url: "/national/" }
   };
 
   beforeEach(async(() => {

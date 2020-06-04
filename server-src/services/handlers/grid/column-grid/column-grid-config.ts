@@ -5,7 +5,7 @@ import { IColumnGridConfig } from "./__types__/IColumnGridConfig";
 const memoizeResolver = (...args: []) => args.join("|");
 
 export const mobileColumnGridConfig = memoize(
-  (rowGap: number): IColumnGridConfig => ({
+  (rowGap: number, border: boolean): IColumnGridConfig => ({
     1: {
       gridTemplateColumns: "1fr",
       gridTemplateRows: "auto",
@@ -19,7 +19,7 @@ export const mobileColumnGridConfig = memoize(
       gridColumnGap: "0px",
       gridRowGap: `${rowGap}px`,
       gridBlocks: [
-        { rowStart: 1, colStart: 1, border: [] },
+        { rowStart: 1, colStart: 1, border: border ? [Border.bottom] : [] },
         { rowStart: 2, colStart: 1, border: [] }
       ]
     },
@@ -29,8 +29,8 @@ export const mobileColumnGridConfig = memoize(
       gridColumnGap: "0px",
       gridRowGap: `${rowGap}px`,
       gridBlocks: [
-        { rowStart: 1, colStart: 1, border: [] },
-        { rowStart: 2, colStart: 1, border: [] },
+        { rowStart: 1, colStart: 1, border: border ? [Border.bottom] : [] },
+        { rowStart: 2, colStart: 1, border: border ? [Border.bottom] : [] },
         { rowStart: 3, colStart: 1, border: [] }
       ]
     },
@@ -40,9 +40,9 @@ export const mobileColumnGridConfig = memoize(
       gridColumnGap: "0px",
       gridRowGap: `${rowGap}px`,
       gridBlocks: [
-        { rowStart: 1, colStart: 1, border: [] },
-        { rowStart: 2, colStart: 1, border: [] },
-        { rowStart: 3, colStart: 1, border: [] },
+        { rowStart: 1, colStart: 1, border: border ? [Border.bottom] : [] },
+        { rowStart: 2, colStart: 1, border: border ? [Border.bottom] : [] },
+        { rowStart: 3, colStart: 1, border: border ? [Border.bottom] : [] },
         { rowStart: 4, colStart: 1, border: [] }
       ]
     },
@@ -52,10 +52,10 @@ export const mobileColumnGridConfig = memoize(
       gridColumnGap: "0px",
       gridRowGap: `${rowGap}px`,
       gridBlocks: [
-        { rowStart: 1, colStart: 1, border: [] },
-        { rowStart: 2, colStart: 1, border: [] },
-        { rowStart: 3, colStart: 1, border: [] },
-        { rowStart: 4, colStart: 1, border: [] },
+        { rowStart: 1, colStart: 1, border: border ? [Border.bottom] : [] },
+        { rowStart: 2, colStart: 1, border: border ? [Border.bottom] : [] },
+        { rowStart: 3, colStart: 1, border: border ? [Border.bottom] : [] },
+        { rowStart: 4, colStart: 1, border: border ? [Border.bottom] : [] },
         { rowStart: 5, colStart: 1, border: [] }
       ]
     },
@@ -65,11 +65,11 @@ export const mobileColumnGridConfig = memoize(
       gridColumnGap: "0px",
       gridRowGap: `${rowGap}px`,
       gridBlocks: [
-        { rowStart: 1, colStart: 1, border: [] },
-        { rowStart: 2, colStart: 1, border: [] },
-        { rowStart: 3, colStart: 1, border: [] },
-        { rowStart: 4, colStart: 1, border: [] },
-        { rowStart: 5, colStart: 1, border: [] },
+        { rowStart: 1, colStart: 1, border: border ? [Border.bottom] : [] },
+        { rowStart: 2, colStart: 1, border: border ? [Border.bottom] : [] },
+        { rowStart: 3, colStart: 1, border: border ? [Border.bottom] : [] },
+        { rowStart: 4, colStart: 1, border: border ? [Border.bottom] : [] },
+        { rowStart: 5, colStart: 1, border: border ? [Border.bottom] : [] },
         { rowStart: 6, colStart: 1, border: [] }
       ]
     }

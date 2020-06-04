@@ -43,5 +43,6 @@ export enum HandlerInputType {
   HalfFour = "HalfFour",
   HalfFourGrid = "HalfFourGrid",
   VersionSwitcher = "VersionSwitcher",
-  LatestHeadlines = "LatestHeadlines"
+  LatestHeadlines = "LatestHeadlines",
+  Partner = "Partner"
 }

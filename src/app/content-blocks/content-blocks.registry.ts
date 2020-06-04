@@ -1,11 +1,13 @@
 import { Type } from "@angular/core";
 import { IContentBlockComponent } from "./__types__/IContentBlockComponent";
+import { ArticleTitleComponent } from "./article-title/article-title.component";
 import { BasicAdUnitComponent } from "./basic-ad-unit/basic-ad-unit.component";
 import { BasicArticleSectionComponent } from "./basic-article-section/basic-article-section.component";
 import { BasicArticleTitleUnitComponent } from "./basic-article-title-unit/basic-article-title-unit.component";
 import { BasicArticleUnitComponent } from "./basic-article-unit/basic-article-unit.component";
 import { BigImageArticleUnitComponent } from "./big-image-article-unit/big-image-article-unit.component";
 import { BreakingNewsComponent } from "./breaking-news/breaking-news.component";
+import { BulletListComponent } from "./bullet-list/bullet-list.component";
 import { ColumnContainerComponent } from "./column-container/column-container.component";
 import { ContainerComponent } from "./container/container.component";
 import { DefconArticleUnitComponent } from "./defcon-article-unit/defcon-article-unit.component";
@@ -20,18 +22,17 @@ import { GridContainerComponent } from "./grid-container/grid-container.componen
 import { HalfImageArticleWithoutIntroUnitComponent } from "./half-image-article-without-intro-unit/half-image-article-without-intro-unit.component";
 import { HalfWidthImageArticleUnitComponent } from "./half-width-image-article-unit/half-width-image-article-unit.component";
 import { HeaderComponent } from "./header/header.component";
-import { ImageLinkUnitComponent } from "./image-link-unit/image-link-unit.component";
-import { ModuleTitleComponent } from "./module-title/module-title.component";
-import { ModuleSubtitleComponent } from "./module-subtitle/module-subtitle.component";
-import { ResponsiveBigImageArticleComponent } from "./responsive-big-image-article/responsive-big-image-article.component";
-import { WeatherUnitComponent } from "./weather-unit/weather-unit.component";
-import { StickyContainerComponent } from "./sticky-container/sticky-container.component";
-import { BulletListComponent } from "./bullet-list/bullet-list.component";
-import { ResponsiveExternalContentComponent } from "./responsive-external-content/responsive-external-content.component";
-import { ArticleTitleComponent } from "./article-title/article-title.component";
-import { OliComponent } from "./oli/oli.component";
 import { HomepageArticleComponent } from "./homepage-article/homepage-article.component";
+import { ImageLinkUnitComponent } from "./image-link-unit/image-link-unit.component";
+import { ModuleSubtitleComponent } from "./module-subtitle/module-subtitle.component";
+import { ModuleTitleComponent } from "./module-title/module-title.component";
+import { OliComponent } from "./oli/oli.component";
+import { PartnerContentComponent } from "./partner-content/partner-content.component";
+import { ResponsiveBigImageArticleComponent } from "./responsive-big-image-article/responsive-big-image-article.component";
+import { ResponsiveExternalContentComponent } from "./responsive-external-content/responsive-external-content.component";
+import { StickyContainerComponent } from "./sticky-container/sticky-container.component";
 import { VerticalArticleListComponent } from "./vertical-article-list/vertical-article-list.component";
+import { WeatherUnitComponent } from "./weather-unit/weather-unit.component";
 
 export const contentBlockComponents = [
   GrayDefconArticleUnitComponent,
@@ -65,7 +66,8 @@ export const contentBlockComponents = [
   ArticleTitleComponent,
   OliComponent,
   HomepageArticleComponent,
-  VerticalArticleListComponent
+  VerticalArticleListComponent,
+  PartnerContentComponent
 ];
 
 const registry: {
@@ -102,7 +104,8 @@ const registry: {
   ArticleTitleComponent,
   OliComponent,
   HomepageArticleComponent,
-  VerticalArticleListComponent
+  VerticalArticleListComponent,
+  PartnerContentComponent
 };
 
 export default registry;
