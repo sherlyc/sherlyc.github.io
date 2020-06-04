@@ -398,15 +398,17 @@ export const newPage = (): HandlerInput[] => {
       }
     },
     {
-      type: HandlerInputType.VersionSwitcher,
-      compatibleVersion: "1.781",
-      compatibleHandler: {
-        type: HandlerInputType.Partner
-      },
-      fallbackHandler: {
-        type: HandlerInputType.Brand,
-        module: BrandModule.Partner
-      }
+      type: HandlerInputType.Feature,
+      name: FeatureName.HomepageV2,
+      content: [
+        {
+          type: HandlerInputType.Partner
+        }
+      ]
+    },
+    {
+      type: HandlerInputType.Brand,
+      module: BrandModule.Partner
     },
     {
       type: HandlerInputType.BiggieSmalls,
