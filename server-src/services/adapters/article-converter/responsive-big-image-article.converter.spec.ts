@@ -19,7 +19,9 @@ describe("responsive big image article", () => {
     lastPublishedTime: 1,
     headlineFlags: [],
     sixteenByNineSrc: "sixteenByNineSrc.jpg",
-    identifier: "identifier"
+    identifier: "identifier",
+    category: "National",
+    categoryUrl: "/coronavirus/"
   };
   const expected: IResponsiveBigImageArticleUnit = {
     type: ContentBlockType.ResponsiveBigImageArticle,

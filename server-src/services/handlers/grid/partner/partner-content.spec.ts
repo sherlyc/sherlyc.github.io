@@ -1,14 +1,14 @@
-import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
-import { createPartnerContent } from "./partner-content";
-import { IBrandListConfig } from "../../__types__/IBrandConfig";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { HeadlineFlags } from "../../../../../common/HeadlineFlags";
 import { Logo } from "../../../../../common/Logo";
+import { IParams } from "../../../__types__/IParams";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { homepageArticleContent } from "../../../adapters/article-converter/homepage-article-content.converter";
+import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { Section } from "../../../section";
 import { Strap } from "../../../strap";
-import { IParams } from "../../../__types__/IParams";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { homepageArticleContent } from "../../../adapters/article-converter/homepage-article-content.converter";
-import { HeadlineFlags } from "../../../../../common/HeadlineFlags";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { IBrandListConfig } from "../../__types__/IBrandConfig";
+import { createPartnerContent } from "./partner-content";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock(

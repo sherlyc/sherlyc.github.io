@@ -49,7 +49,7 @@ describe("json feed service", () => {
       asset_type: JsonFeedAssetType.ARTICLE,
       headline_flags: [],
       sponsored: false,
-      path: "/link",
+      path: "/category/link",
       title: "Article Title",
       alt_headline: "Alt headline",
       byline: "Jane Doe",

@@ -1,14 +1,14 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
-import { IPartnerContent } from "../../../../common/__types__/IPartnerContent";
-import { IHomepageArticleContent } from "../../../../common/__types__/IHomepageArticleContent";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import {
   IHomepageArticle,
   Orientation
 } from "../../../../common/__types__/IHomepageArticle";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { IHomepageArticleContent } from "../../../../common/__types__/IHomepageArticleContent";
+import { IPartnerContent } from "../../../../common/__types__/IPartnerContent";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
   selector: "app-partner-content",
@@ -29,6 +29,7 @@ export class PartnerContentComponent implements IContentBlockComponent, OnInit {
         id: homepageArticleContent.id,
         introText: undefined,
         headline: homepageArticleContent.headline,
+        color: homepageArticleContent.color,
         linkUrl: homepageArticleContent.linkUrl,
         headlineFlags: homepageArticleContent.headlineFlags,
         lastPublishedTime: homepageArticleContent.lastPublishedTime,
@@ -37,6 +38,7 @@ export class PartnerContentComponent implements IContentBlockComponent, OnInit {
           strapName: this.input.strapName
         },
         imageSrc: homepageArticleContent.image.sixteenByNine,
+        category: homepageArticleContent.category,
         orientation: {
           mobile: Orientation.Portrait,
           tablet: Orientation.Portrait,

@@ -1,9 +1,8 @@
-import { JsonFeedAssetType } from "./JsonFeedAssetType";
-import { IImageVariant } from "./IImageVariant";
 import { HeadlineFlags } from "../../../../common/HeadlineFlags";
+import { IImageVariant } from "./IImageVariant";
+import { JsonFeedAssetType } from "./JsonFeedAssetType";
 
 export interface IJsonFeedArticle {
-  [key: string]: any;
   id: number;
   asset_type: JsonFeedAssetType.ARTICLE;
   headline_flags: HeadlineFlags[];

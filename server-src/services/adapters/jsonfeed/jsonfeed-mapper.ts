@@ -6,7 +6,11 @@ import { IJsonFeedUrl } from "../__types__/IJsonFeedUrl";
 import { IRawArticle } from "../__types__/IRawArticle";
 import { JsonFeedAssetType } from "../__types__/JsonFeedAssetType";
 import { JsonFeedImageType } from "../__types__/JsonFeedImageType";
-import { getImage, getStrapImageSrcSet, getThumbnailSrcSet } from "./image-handler";
+import {
+  getImage,
+  getStrapImageSrcSet,
+  getThumbnailSrcSet
+} from "./image-handler";
 
 export function mapToRawArticleList(
   articles: Array<IJsonFeedArticle | IJsonFeedUrl | IJsonFeedQuery>
@@ -86,6 +90,8 @@ function mapUrlAsset(item: IJsonFeedUrl): IRawArticle {
     lastPublishedTime: getUnixTime(parseISO(item.datetime_iso8601)),
     headlineFlags: getHeadlineFlags(item),
     identifier: item.identifier ? item.identifier : undefined,
+    category: item["section-home"],
+    categoryUrl: getCategoryUrl(String(item.id), item.path)
   };
 }
 
@@ -101,10 +107,12 @@ function getLinkUrl(item: IJsonFeedUrl) {
 
 function getHeadlineFlags(asset: IJsonFeedArticle | IJsonFeedUrl) {
   const flags = asset.headline_flags ? asset.headline_flags : [];
-  return asset.sponsored ? flags.concat(HeadlineFlags.SPONSORED) : flags;
+  if (asset.asset_type === JsonFeedAssetType.ARTICLE && asset.sponsored) {
+    flags.push(HeadlineFlags.SPONSORED);
+  }
+  return flags;
 }
 
 export function getCategoryUrl(articleId: string, path: string) {
-  const categoryUrl = path.split(articleId)[0];
-  return (categoryUrl.length > 2) ?  categoryUrl : undefined;
+  return path.split(articleId)[0];
 }

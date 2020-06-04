@@ -1,15 +1,16 @@
+import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-
-import { PartnerContentComponent } from "./partner-content.component";
+import { By } from "@angular/platform-browser";
+import { AccentColor } from "../../../../common/__types__/AccentColor";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IHomepageArticleContent } from "../../../../common/__types__/IHomepageArticleContent";
+import { IPartnerContent } from "../../../../common/__types__/IPartnerContent";
+import { Logo } from "../../../../common/Logo";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
-import { NO_ERRORS_SCHEMA } from "@angular/core";
-import { IPartnerContent } from "../../../../common/__types__/IPartnerContent";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { Logo } from "../../../../common/Logo";
-import { By } from "@angular/platform-browser";
-import { IHomepageArticleContent } from "../../../../common/__types__/IHomepageArticleContent";
-import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+
+import { PartnerContentComponent } from "./partner-content.component";
 
 const fakeHomepageArticleContents = (
   ids: number[]
@@ -17,6 +18,7 @@ const fakeHomepageArticleContents = (
   ids.map((id) => ({
     id: `${id}`,
     headline: `${id} headline`,
+    color: AccentColor.TopStoriesBlue,
     title: `${id} title`,
     linkUrl: `${id} linkUrl`,
     introText: `${id} introText`,
@@ -26,6 +28,10 @@ const fakeHomepageArticleContents = (
     image: {
       defcon: `${id}-defcon.png`,
       sixteenByNine: `${id}-16x9.png`
+    },
+    category: {
+      name: "National",
+      url: "/national/"
     }
   }));
 

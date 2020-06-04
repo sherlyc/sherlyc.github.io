@@ -1,12 +1,12 @@
-import { JsonFeedAssetType } from "./JsonFeedAssetType";
-import { IImageVariant } from "./IImageVariant";
 import { HeadlineFlags } from "../../../../common/HeadlineFlags";
+import { IImageVariant } from "./IImageVariant";
+import { JsonFeedAssetType } from "./JsonFeedAssetType";
 
 export interface IJsonFeedUrl {
-  [key: string]: any;
   id: string;
   asset_type: JsonFeedAssetType.URL;
   headline_flags: HeadlineFlags[];
+  path: string;
   title: string;
   alt_headline: string;
   alt_intro: string;
@@ -18,4 +18,5 @@ export interface IJsonFeedUrl {
   }>;
   datetime_iso8601: string;
   identifier: string;
+  "section-home": string;
 }

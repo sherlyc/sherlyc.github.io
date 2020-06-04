@@ -1,11 +1,11 @@
-import { IBrandListConfig } from "../../__types__/IBrandConfig";
-import { IParams } from "../../../__types__/IParams";
-import { IPartnerContent } from "../../../../../common/__types__/IPartnerContent";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { IPartnerContent } from "../../../../../common/__types__/IPartnerContent";
+import { IParams } from "../../../__types__/IParams";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import wrappedLogger from "../../../utils/logger";
 import { homepageArticleContent } from "../../../adapters/article-converter/homepage-article-content.converter";
+import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import wrappedLogger from "../../../utils/logger";
+import { IBrandListConfig } from "../../__types__/IBrandConfig";
 
 export const createPartnerContent = async (
   config: IBrandListConfig,

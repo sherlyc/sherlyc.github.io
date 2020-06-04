@@ -1,6 +1,7 @@
+import { AccentColor } from "../../../../common/__types__/AccentColor";
+import { IHomepageArticleContent } from "../../../../common/__types__/IHomepageArticleContent";
 import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 import { IRawArticle } from "../__types__/IRawArticle";
-import { IHomepageArticleContent } from "../../../../common/__types__/IHomepageArticleContent";
 import { homepageArticleContent } from "./homepage-article-content.converter";
 
 const fakeArticles = (ids: number[]) =>
@@ -15,9 +16,10 @@ const fakeArticles = (ids: number[]) =>
         linkUrl: `${id} linkUrl`,
         lastPublishedTime: id,
         headlineFlags: [HeadlineFlags.PHOTO],
-        identifier: `${id} identifier`,
         defconSrc: `${id} defconSrc`,
-        sixteenByNineSrc: `${id} sixteenByNineSrc`
+        sixteenByNineSrc: `${id} sixteenByNineSrc`,
+        category: "National",
+        categoryUrl: "/national/"
       } as IRawArticle)
   );
 
@@ -33,10 +35,14 @@ const expectedArticles = (ids: number[]) =>
         linkUrl: `${id} linkUrl`,
         lastPublishedTime: id,
         headlineFlags: [HeadlineFlags.PHOTO],
-        identifier: `${id} identifier`,
         image: {
           defcon: `${id} defconSrc`,
           sixteenByNine: `${id} sixteenByNineSrc`
+        },
+        color: AccentColor.TopStoriesBlue,
+        category: {
+          name: "National",
+          url: "/national/"
         }
       } as IHomepageArticleContent)
   );

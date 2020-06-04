@@ -1,16 +1,16 @@
-import { HandlerInputType } from "../../__types__/HandlerInputType";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import {
-  IBrandGridHandlerInput,
-  BrandGridPositions
-} from "../../__types__/IBrandGridHandlerInput";
-import brandGridHandler from "./brand-grid";
-import { IParams } from "../../../__types__/IParams";
 import {
   Border,
   IGridContainer
 } from "../../../../../common/__types__/IGridContainer";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IParams } from "../../../__types__/IParams";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import {
+  BrandGridPositions,
+  IBrandGridHandlerInput
+} from "../../__types__/IBrandGridHandlerInput";
+import brandGridHandler from "./brand-grid";
 
 describe("Brand Grid Handler", () => {
   const handlerRunner = jest.fn();

@@ -15,30 +15,16 @@ describe("JsonFeed Mapper", () => {
     headline_flags: [],
     sponsored: false,
     path: "/national/109962196/christmas-tree-caltex",
-    url:
-      "http://www.stuff.co.nz/_json/national/109962196/christmas-tree-caltex",
-    section: "National",
     "section-home": "National",
-    "section-top-level": "National",
-    layout: "landscape-image",
     title:
       "CCTV shows unruly travelling family taking Christmas tree from Auckland Caltex",
     alt_headline: "Not even Christmas is safe",
     isHeadlineOverrideApplied: true,
     datetime_iso8601: "20190116T154002+1300",
-    datetime_display: "15:40 16/01/2019",
     byline: "BRAD FLAHIVE",
-    source_code: "1national-newsroom",
-    source_name: "Stuff",
-    intro:
-      "An unruly family travelling New Zealand has been causing mayhem for more than a month.",
     alt_intro:
       "Unruly travelling family hit an Auckland Caltex four times. They even took the Christmas tree.",
-    body: "<p>Hello</p>",
     images: [],
-    videos: [],
-    html_assets: [],
-    galleries: [],
     identifier: "Article identifier"
   });
 
@@ -46,18 +32,18 @@ describe("JsonFeed Mapper", () => {
     id: "112150655",
     asset_type: JsonFeedAssetType.URL,
     headline_flags: [],
-    sponsored: false,
     alt_headline: "Paving",
     title: "Paving over paradise",
     isHeadlineOverrideApplied: true,
+    path: "/national/112150655/url-asset",
     url:
       "https://interactives.stuff.co.nz/2019/04/the-tourist-trap/#section-wS1QFb7arf",
-    datetime_display: "00:01 22/04/2019",
     alt_intro:
       "The ancient, beautiful Ōpārara Basin is the subject of development plans.",
     images: [],
     datetime_iso8601: "20190422T000100+1200",
-    identifier: "Url Asset Identifier"
+    identifier: "Url Asset Identifier",
+    "section-home": "National"
   });
 
   const rawFeedArticle = (article: IJsonFeedArticle): IRawArticle => ({
@@ -77,7 +63,7 @@ describe("JsonFeed Mapper", () => {
     headlineFlags: article.headline_flags,
     identifier: article.identifier,
     category: article["section-home"],
-    categoryUrl: getCategoryUrl(String(article.id), article.path)
+    categoryUrl: getCategoryUrl(`${article.id}`, article.path)
   });
 
   const rawUrlArticle = (article: IJsonFeedUrl): IRawArticle => ({
@@ -95,6 +81,8 @@ describe("JsonFeed Mapper", () => {
     lastPublishedTime: getUnixTime(parseISO(article.datetime_iso8601)),
     headlineFlags: article.headline_flags,
     identifier: article.identifier,
+    category: article["section-home"],
+    categoryUrl: getCategoryUrl(`${article.id}`, article.path)
   });
 
   describe("article asset", () => {
@@ -618,17 +606,13 @@ describe("JsonFeed Mapper", () => {
 
   describe("get category Url", () => {
     it.each`
-      articleId      |   path                                                                                       | categoryUrl
-      ${"115457620"} | ${"/national/115457620/czech-couples-decisionmaking-on-deadly-great-walk-tramp-criticised"}  | ${"/national/"}
-      ${"300009374"} | ${"/national/health/300009374/recap-jacinda-ardern"}                                         | ${"/national/health/"}
-      ${"999999999"} | ${"/national/health/coronavirus/999999999/recap-jacinda-ardern"}                             | ${"/national/health/coronavirus/"}
-      ${"888899333"} | ${"/life-style/homed/celebrity-homes/random/888899333/worst-dressed-looking-back"}           | ${"/life-style/homed/celebrity-homes/random/"}
-      ${"115457620"} | ${"/115457620/czech-couples-decisionmaking-on-deadly-great-walk-tramp-criticised"}           | ${undefined}
-
-    `(
-      "returns $categoryUrl", ({ articleId, path, categoryUrl}) => {
-        expect(getCategoryUrl(articleId, path)).toEqual(categoryUrl);
-      }
-    );
+      articleId      | path                                                                                        | categoryUrl
+      ${"115457620"} | ${"/national/115457620/czech-couples-decisionmaking-on-deadly-great-walk-tramp-criticised"} | ${"/national/"}
+      ${"300009374"} | ${"/national/health/300009374/recap-jacinda-ardern"}                                        | ${"/national/health/"}
+      ${"999999999"} | ${"/national/health/coronavirus/999999999/recap-jacinda-ardern"}                            | ${"/national/health/coronavirus/"}
+      ${"888899333"} | ${"/life-style/homed/celebrity-homes/random/888899333/worst-dressed-looking-back"}          | ${"/life-style/homed/celebrity-homes/random/"}
+    `("returns $categoryUrl", ({ articleId, path, categoryUrl }) => {
+      expect(getCategoryUrl(articleId, path)).toEqual(categoryUrl);
+    });
   });
 });

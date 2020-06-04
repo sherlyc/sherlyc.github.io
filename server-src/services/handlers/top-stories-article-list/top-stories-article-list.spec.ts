@@ -42,7 +42,9 @@ describe("Top Stories Article List", () => {
     strapImageSrcSet: "strap1.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: [],
-    sixteenByNineSrc: "sixteenByNineSrc.jpg"
+    sixteenByNineSrc: "sixteenByNineSrc.jpg",
+    category: "National",
+    categoryUrl: "/coronavirus/"
   };
 
   const articleTwo: IRawArticle = {
@@ -58,7 +60,9 @@ describe("Top Stories Article List", () => {
     strapImageSrcSet: "strap2.jpg 1w",
     lastPublishedTime: 1,
     headlineFlags: [],
-    sixteenByNineSrc: "sixteenByNineSrc.jpg"
+    sixteenByNineSrc: "sixteenByNineSrc.jpg",
+    category: "National",
+    categoryUrl: "/coronavirus/"
   };
 
   const AsDefconArticle = (article: IRawArticle): IDefconArticleUnit => ({

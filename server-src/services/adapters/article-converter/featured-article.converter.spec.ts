@@ -27,7 +27,9 @@ describe("Featured Article", () => {
     lastPublishedTime: 1,
     headlineFlags: [],
     sixteenByNineSrc: "sixteenByNineSrc.jpg",
-    identifier: "identifier"
+    identifier: "identifier",
+    category: "National",
+    categoryUrl: "/coronavirus/"
   };
 
   const expected: IFeaturedArticle = {

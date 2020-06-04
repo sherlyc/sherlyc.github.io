@@ -1,16 +1,16 @@
-import { IPartnerHandlerInput } from "../../__types__/IPartnerHandlerInput";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import Partner from "./partner";
-import { createPartnerContent } from "./partner-content";
-import { brandConfig } from "../brand/brand-config";
-import { BrandModule } from "../../__types__/IBrandHandlerInput";
-import { PartnerBrand } from "../../__types__/IBrandConfig";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import { PartnerBrand } from "../../__types__/IBrandConfig";
 import {
   BrandGridPositions,
   IBrandGridHandlerInput
 } from "../../__types__/IBrandGridHandlerInput";
+import { BrandModule } from "../../__types__/IBrandHandlerInput";
+import { IPartnerHandlerInput } from "../../__types__/IPartnerHandlerInput";
+import { brandConfig } from "../brand/brand-config";
+import Partner from "./partner";
+import { createPartnerContent } from "./partner-content";
 
 jest.mock("./partner-content");
 

@@ -1,8 +1,10 @@
 import { HeadlineFlags } from "../HeadlineFlags";
+import { AccentColor } from "./AccentColor";
 
 export interface IHomepageArticleContent {
   id: string;
   headline: string;
+  color: AccentColor.TopStoriesBlue;
   title: string;
   byline?: string;
   introText: string;
@@ -11,7 +13,10 @@ export interface IHomepageArticleContent {
     defcon?: string;
     sixteenByNine?: string;
   };
+  category: {
+    name: string;
+    url: string;
+  };
   lastPublishedTime: number;
   headlineFlags: HeadlineFlags[];
-  identifier?: string;
 }

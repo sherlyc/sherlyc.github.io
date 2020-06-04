@@ -5,6 +5,7 @@ import {
 } from "../../../../common/__types__/IHomepageArticle";
 import { homepageArticle } from "./homepage-article.converter";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { AccentColor } from "../../../../common/__types__/AccentColor";
 
 describe("Homepage Article", () => {
   const fakeArticle: IRawArticle = {
@@ -21,7 +22,9 @@ describe("Homepage Article", () => {
     lastPublishedTime: 1,
     headlineFlags: [],
     sixteenByNineSrc: "sixteenByNineSrc.jpg",
-    identifier: "identifier"
+    identifier: "identifier",
+    category: "National",
+    categoryUrl: "/coronavirus/"
   };
 
   const expected: IHomepageArticle = {
@@ -29,7 +32,10 @@ describe("Homepage Article", () => {
       strapName: "strapName",
       title: "Title One"
     },
-    category: "identifier",
+    category: {
+      name: "National",
+      url: "/coronavirus/"
+    },
     orientation: {
       desktop: Orientation.Landscape,
       mobile: Orientation.Landscape,
@@ -38,6 +44,7 @@ describe("Homepage Article", () => {
     headline: "Headline 1",
     headlineFlags: [],
     id: "1",
+    color: AccentColor.TopStoriesBlue,
     imageSrc: "1.jpg",
     introText: "Intro 1",
     lastPublishedTime: 1,

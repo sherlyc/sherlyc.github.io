@@ -2,7 +2,6 @@ import { basicArticleTitleUnit } from "./basic-article-title.converter";
 import { IRawArticle } from "../__types__/IRawArticle";
 import { IBasicArticleTitleUnit } from "../../../../common/__types__/IBasicArticleTitleUnit";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { responsiveBigImageArticleUnit } from "./responsive-big-image-article.converter";
 
 describe("basic article title converter", () => {
   const fakeStrapName = "fakeStrapName";
@@ -20,7 +19,9 @@ describe("basic article title converter", () => {
     lastPublishedTime: 1,
     headlineFlags: [],
     sixteenByNineSrc: null,
-    identifier: "identifier"
+    identifier: "identifier",
+    category: "National",
+    categoryUrl: "/coronavirus/"
   };
   const expected: IBasicArticleTitleUnit = {
     type: ContentBlockType.BasicArticleTitleUnit,

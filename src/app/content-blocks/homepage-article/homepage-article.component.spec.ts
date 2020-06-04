@@ -11,6 +11,7 @@ import {
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { AccentColor } from "../../../../common/__types__/AccentColor";
 
 describe("HomepageArticleComponent", () => {
   let component: HomepageArticleComponent;
@@ -20,6 +21,7 @@ describe("HomepageArticleComponent", () => {
   const articleData: IHomepageArticle = {
     type: ContentBlockType.HomepageArticle,
     id: "123123",
+    color: AccentColor.TopStoriesBlue,
     headline: "Dummy Headline",
     introText: "Dummy intro text",
     linkUrl: "https://dummyurl.com",
@@ -33,6 +35,10 @@ describe("HomepageArticleComponent", () => {
       mobile: Orientation.Portrait,
       tablet: Orientation.Portrait,
       desktop: Orientation.Landscape
+    },
+    category: {
+      name: "National",
+      url: "/coronavirus/"
     }
   };
 
