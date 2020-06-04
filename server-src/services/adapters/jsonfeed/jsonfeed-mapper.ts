@@ -28,7 +28,7 @@ export function mapToRawArticleList(
 
 export function mapArticleAsset(item: IJsonFeedArticle): IRawArticle {
   return {
-    id: `${item.id}`,
+    id: String(item.id),
     indexHeadline: item.isHeadlineOverrideApplied
       ? item.alt_headline
       : item.title,
@@ -57,13 +57,13 @@ export function mapArticleAsset(item: IJsonFeedArticle): IRawArticle {
     headlineFlags: getHeadlineFlags(item),
     identifier: item.identifier ? item.identifier : undefined,
     category: item["section-home"],
-    categoryUrl: getCategoryUrl(`${item.id}`, item.path)
+    categoryUrl: getCategoryUrl(String(item.id), item.path)
   };
 }
 
 function mapUrlAsset(item: IJsonFeedUrl): IRawArticle {
   return {
-    id: `${item.id}`,
+    id: String(item.id),
     indexHeadline: item.isHeadlineOverrideApplied
       ? item.alt_headline
       : item.title,
@@ -91,7 +91,7 @@ function mapUrlAsset(item: IJsonFeedUrl): IRawArticle {
     headlineFlags: getHeadlineFlags(item),
     identifier: item.identifier ? item.identifier : undefined,
     category: item["section-home"],
-    categoryUrl: getCategoryUrl(`${item.id}`, item.path)
+    categoryUrl: getCategoryUrl(String(item.id), item.path)
   };
 }
 
