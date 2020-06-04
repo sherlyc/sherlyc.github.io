@@ -5,6 +5,7 @@
       <app-fluid-image *ngIf="input.imageSrc" [aspectRatio]="'16:9'" [imageSrc]="input.imageSrc" [caption]="input.headline"></app-fluid-image>
     </div>
     <div class="content">
+      <app-tag-link [color]="input.color" [name]="input.category.name" [url]="input.category.url"></app-tag-link>
       <app-headline [headline]="input.headline" [headlineFlags]="input.headlineFlags"></app-headline>
       <p *ngIf="input.introText" class="intro">{{ input.introText }}</p>
     </div>

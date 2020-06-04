@@ -12,6 +12,7 @@ import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AccentColor } from "../../../../common/__types__/AccentColor";
+import { TagLinkComponent } from "../../shared/components/tag-link/tag-link.component";
 
 describe("HomepageArticleComponent", () => {
   let component: HomepageArticleComponent;
@@ -44,7 +45,7 @@ describe("HomepageArticleComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HomepageArticleComponent],
+      declarations: [HomepageArticleComponent, TagLinkComponent],
       providers: [
         {
           provide: AnalyticsService,
@@ -195,5 +196,20 @@ describe("HomepageArticleComponent", () => {
       articleHeadline: title,
       articleId: articleData.id
     });
+  });
+
+  it("should render tag link", async () => {
+    component.input = articleData;
+
+    fixture.detectChanges();
+    const componentElement: HTMLElement = fixture.debugElement.nativeElement;
+    const tagLink = componentElement.querySelector(
+      "app-tag-link"
+    ) as HTMLElement;
+    expect(tagLink).toBeTruthy();
+
+    const anchorTag = tagLink.querySelector("a") as HTMLAnchorElement;
+    expect(anchorTag.getAttribute("href")).toBe(articleData.category.url);
+    expect(anchorTag.textContent).toBe(articleData.category.name);
   });
 });
