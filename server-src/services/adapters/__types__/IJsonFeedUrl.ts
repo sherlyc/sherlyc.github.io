@@ -3,6 +3,7 @@ import { IImageVariant } from "./IImageVariant";
 import { JsonFeedAssetType } from "./JsonFeedAssetType";
 
 export interface IJsonFeedUrl {
+  [key: string]: any;
   id: string;
   asset_type: JsonFeedAssetType.URL;
   headline_flags: HeadlineFlags[];

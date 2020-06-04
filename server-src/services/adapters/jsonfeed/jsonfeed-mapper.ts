@@ -107,10 +107,7 @@ function getLinkUrl(item: IJsonFeedUrl) {
 
 function getHeadlineFlags(asset: IJsonFeedArticle | IJsonFeedUrl) {
   const flags = asset.headline_flags ? asset.headline_flags : [];
-  if (asset.asset_type === JsonFeedAssetType.ARTICLE && asset.sponsored) {
-    flags.push(HeadlineFlags.SPONSORED);
-  }
-  return flags;
+  return asset.sponsored ? flags.concat(HeadlineFlags.SPONSORED) : flags;
 }
 
 export function getCategoryUrl(articleId: string, path: string) {
