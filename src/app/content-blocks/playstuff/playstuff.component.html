@@ -1,0 +1,20 @@
+<div class="wrapper">
+  <div>featured videos</div>
+  <div>logo</div>
+  <div class="grid-row top">
+    <div class="grid-column left grid-cell">
+      <app-playstuff-video [image]="input.videos[0].thumbnail" [text]="input.videos[0].name" [orientation]="'portrait'"></app-playstuff-video>
+    </div>
+    <div class="grid-column right">
+      <div class="grid-cell" *ngFor="let video of input.videos.slice(1, 4)">
+        <app-playstuff-video [image]="video.thumbnail" [text]="video.name" [orientation]="'landscape'"></app-playstuff-video>
+      </div>
+    </div>
+  </div>
+  <div class="grid-row down">
+    <div class="grid-cell" *ngFor="let video of input.videos.slice(4)">
+      <app-playstuff-video [image]="video.thumbnail" [text]="video.name" [orientation]="'portrait'"></app-playstuff-video>
+    </div>
+    >
+  </div>
+</div>
