@@ -31,5 +31,6 @@ export enum ContentBlockType {
   Oli = "Oli",
   HomepageArticle = "HomepageArticle",
   VerticalArticleList = "VerticalArticleList",
-  PartnerContent = "PartnerContent"
+  PartnerContent = "PartnerContent",
+  PlayStuff = "PlayStuff"
 }
