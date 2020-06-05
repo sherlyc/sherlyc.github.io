@@ -12,9 +12,14 @@ export class PlayStuffVideoComponent implements OnInit {
   @Input()
   text!: string;
   @Input()
+  id!: number;
+  @Input()
   orientation!: Orientation;
+  url!: string;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.url = `https://play.stuff.co.nz/details/_${this.id}`;
+  }
 }
