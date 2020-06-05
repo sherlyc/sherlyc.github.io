@@ -38,6 +38,7 @@ export class FluidImageComponent implements OnInit {
   private loadImg(newWidth: FluidImageWidth, lazyload: boolean) {
     this.width = newWidth;
     this.lazyload = lazyload ? "lazy" : "auto";
+
     const src = `${this.imageSrc}?format=pjpg&crop=${this.aspectRatio},smart&width=${newWidth}`;
     this.srcset = `${src}, ${src}&dpr=2 2x, ${src}&dpr=3 3x`;
     this.src = src;
@@ -76,11 +77,12 @@ export class FluidImageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.runtime.isServer()) {
-      this.loadImg(FluidImageWidth.s, false);
-    }
     this.aspectRatio = this.aspectRatio || AspectRatio.SixteenByNine;
     const [width, height] = this.aspectRatio.split(":");
     this.height = `${(Number(height) / Number(width)) * 100}%`;
+
+    if (this.runtime.isServer()) {
+      this.loadImg(FluidImageWidth.s, false);
+    }
   }
 }
