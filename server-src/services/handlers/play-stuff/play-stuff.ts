@@ -5,6 +5,7 @@ import { IPlayStuffHandlerInput } from "../__types__/IPlayStuffHandlerInput";
 import { IPlayStuff } from "../../../../common/__types__/IPlayStuff";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { getBrightcovePlaylist } from "../../adapters/brightcove/brightcove";
+import logger from "../../utils/logger";
 
 const playStuffConfig = {
   account: "6005208634001",
@@ -19,17 +20,24 @@ export default async function(
   params: IParams
 ): Promise<IContentBlock[]> {
   const { account, playlist, policyKey } = playStuffConfig;
-  const videos = await getBrightcovePlaylist(
-    account,
-    playlist,
-    policyKey,
-    total,
-    params
-  );
-  return [
-    {
-      type: ContentBlockType.PlayStuff,
-      videos
-    } as IPlayStuff
-  ];
+
+  try {
+    const videos = await getBrightcovePlaylist(
+      account,
+      playlist,
+      policyKey,
+      total,
+      params
+    );
+
+    return [
+      {
+        type: ContentBlockType.PlayStuff,
+        videos
+      } as IPlayStuff
+    ];
+  } catch (error) {
+    logger.error(params.apiRequestId, `Play Stuff handler error`, error);
+    return [];
+  }
 }
