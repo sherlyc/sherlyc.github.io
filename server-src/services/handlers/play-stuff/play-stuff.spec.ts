@@ -6,6 +6,7 @@ import { HandlerInputType } from "../__types__/HandlerInputType";
 import { getBrightcovePlaylist } from "../../adapters/brightcove/brightcove";
 import logger from "../../utils/logger";
 import playStuff from "./play-stuff";
+import { playStuffConfig } from "./play-stuff-config";
 
 jest.mock("../../adapters/brightcove/brightcove");
 jest.mock("../../utils/logger");
@@ -13,12 +14,6 @@ jest.mock("../../utils/logger");
 describe("Play Stuff", () => {
   const params: IParams = { apiRequestId: "123" };
   const handlerRunnerMock = jest.fn();
-  const playStuffConfig = {
-    account: "6005208634001",
-    playlist: "6041675177001",
-    policyKey:
-      "BCpkADawqM3XbgNT2rxILaX_0Gmok75p2ZBntZDaN-bQXO7Qatbxuf0ECXO0Xjf-Z4muB0XoFYvXKDHe6zeoTpxsPxi6PrDo9vdWqYpUPArEXZ4YqCW8NI4-UdcAChh-2Hr9nhYI9vf-9X0a"
-  };
 
   beforeEach(() => {
     jest.resetAllMocks();
