@@ -5,6 +5,7 @@ export interface IBrightcovePlaylist {
     name: string;
     description: string;
     thumbnail: string;
+    poster: string;
     updated_at: string;
     long_description: string;
   }>;
