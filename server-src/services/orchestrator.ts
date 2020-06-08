@@ -49,6 +49,7 @@ export default async (params: IParams): Promise<IPage> => {
 };
 
 const homepageAdPrefix = "homepage";
+const homepageV2AdPrefix = "homepagev2";
 export const newPage = (): HandlerInput[] => {
   const page: HandlerInput[] = [
     {
@@ -79,7 +80,7 @@ export const newPage = (): HandlerInput[] => {
       content: [
         {
           type: HandlerInputType.TopStoriesV2,
-          strapName: `${homepageAdPrefix}TopStoriesDefaultOne`,
+          strapName: `${homepageV2AdPrefix}TopStoriesDefaultOne`,
           color: "#2AAAF5",
           midInsertContent: {
             type: HandlerInputType.ExternalContent,
@@ -318,7 +319,7 @@ export const newPage = (): HandlerInput[] => {
       displayName: "climate change",
       color: "#256091",
       linkUrl: "/" + Section.ClimateChange,
-      strapName: `${homepageAdPrefix}ClimateChange`,
+      strapName: `${homepageV2AdPrefix}ClimateChange`,
       sourceId: Strap.ClimateChange
     },
     {
@@ -334,7 +335,7 @@ export const newPage = (): HandlerInput[] => {
       displayName: "homed",
       color: "#41ad95",
       linkUrl: "/" + Section.Homed,
-      strapName: `${homepageAdPrefix}Homed`,
+      strapName: `${homepageV2AdPrefix}Homed`,
       sourceId: Strap.Homed
     },
     {
@@ -350,7 +351,7 @@ export const newPage = (): HandlerInput[] => {
       displayName: "travel",
       color: "#08afb7",
       linkUrl: "/" + Section.Travel,
-      strapName: `${homepageAdPrefix}Travel`,
+      strapName: `${homepageV2AdPrefix}Travel`,
       sourceId: Strap.Travel
     },
     {
@@ -415,7 +416,7 @@ export const newPage = (): HandlerInput[] => {
       displayName: "life & style",
       color: "#d11242",
       linkUrl: "/" + Section.LifeStyle,
-      strapName: `${homepageAdPrefix}LifeStyle`,
+      strapName: `${homepageV2AdPrefix}LifeStyle`,
       sourceId: Strap.LifeStyle
     },
     {
@@ -441,7 +442,7 @@ export const newPage = (): HandlerInput[] => {
       displayName: "entertainment",
       color: "#9c1a87",
       linkUrl: "/" + Section.Entertainment,
-      strapName: `${homepageAdPrefix}Entertainment`,
+      strapName: `${homepageV2AdPrefix}Entertainment`,
       sourceId: Strap.Entertainment
     },
     {
