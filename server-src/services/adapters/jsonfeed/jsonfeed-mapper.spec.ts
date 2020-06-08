@@ -444,7 +444,7 @@ describe("JsonFeed Mapper", () => {
                 "1600x900": expected16x9Image,
                 "320x180": "www.example.com/small_thumbnail.320x180.jpg"
               },
-              image_type_id: JsonFeedImageType.LANDSCAPE_SIXTEEN_BY_NINE
+              image_type_id: JsonFeedImageType.THUMBNAIL_SIXTEEN_BY_NINE
             }
           ],
           asset_type: "IMAGE"

@@ -49,7 +49,7 @@ export function mapArticleAsset(item: IJsonFeedArticle): IRawArticle {
       JsonFeedImageType.THUMBNAIL
     ]),
     sixteenByNineSrc: getImage(item, [
-      JsonFeedImageType.LANDSCAPE_SIXTEEN_BY_NINE,
+      JsonFeedImageType.THUMBNAIL_SIXTEEN_BY_NINE,
       JsonFeedImageType.LANDSCAPE_THREE_BY_TWO,
       JsonFeedImageType.THUMBNAIL
     ]),
@@ -83,7 +83,7 @@ function mapUrlAsset(item: IJsonFeedUrl): IRawArticle {
       JsonFeedImageType.THUMBNAIL
     ]),
     sixteenByNineSrc: getImage(item, [
-      JsonFeedImageType.LANDSCAPE_SIXTEEN_BY_NINE,
+      JsonFeedImageType.THUMBNAIL_SIXTEEN_BY_NINE,
       JsonFeedImageType.LANDSCAPE_THREE_BY_TWO,
       JsonFeedImageType.THUMBNAIL
     ]),
