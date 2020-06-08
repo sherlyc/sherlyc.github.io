@@ -3,6 +3,8 @@ import { IBasicArticleListHandlerInput } from "./IBasicArticleListHandlerInput";
 import { IBasicArticleSectionHandlerInput } from "./IBasicArticleSectionHandlerInput";
 import { IBiggieSmallsGridHandlerInput } from "./IBiggieSmallsGridHandlerInput";
 import { IBiggieSmallsHandlerInput } from "./IBiggieSmallsHandlerInput";
+import { IBiggieSmallsV2HandlerInput } from "./IBiggieSmallsV2HandlerInput";
+import { IBiggieSmallsV2GridHandlerInput } from "./IBiggieSmallsV2GridHandlerInput";
 import { IBrandGridHandlerInput } from "./IBrandGridHandlerInput";
 import { IBrandHandlerInput } from "./IBrandHandlerInput";
 import { IBreakingNewsHandlerInput } from "./IBreakingNewsHandlerInput";
@@ -68,6 +70,8 @@ export type HandlerInput =
   | ITopStoriesV2GridHandlerInput
   | IBiggieSmallsHandlerInput
   | IBiggieSmallsGridHandlerInput
+  | IBiggieSmallsV2HandlerInput
+  | IBiggieSmallsV2GridHandlerInput
   | INewsSixHandlerInput
   | INewsSixGridHandlerInput
   | INewsSixV2HandlerInput

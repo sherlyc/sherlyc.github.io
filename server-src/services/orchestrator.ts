@@ -121,6 +121,14 @@ export const newPage = (): HandlerInput[] => {
           sourceId: Strap.National
         },
         {
+          type: HandlerInputType.BiggieSmallsV2,
+          displayName: "climate change",
+          color: "#256091",
+          linkUrl: "/" + Section.ClimateChange,
+          strapName: `${homepageAdPrefix}ClimateChange`,
+          sourceId: Strap.ClimateChange
+        },
+        {
           type: HandlerInputType.BiggieSmalls,
           displayName: "climate change",
           color: "#256091",
