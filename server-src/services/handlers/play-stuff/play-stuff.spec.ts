@@ -36,21 +36,45 @@ describe("Play Stuff", () => {
     );
   });
 
-  it("should return play stuff with videos retrieved", async () => {
+  it("should return play stuff with videos retrieved and resized images", async () => {
     const videos: IBrightcoveVideo[] = [
       {
         id: "1",
         name: "Video 1",
         description: "Description 1",
-        thumbnail: "Thumbnail 1",
-        updatedAt: "Updated 1"
+        poster:
+          "https://cf-images.ap-southeast-2.prod.boltdns.net/v1/static/6005208634001/096243ac-82b6-4a28-bbce-21caa1932da8/247799ae-9ace-46c4-aa3b-4becf50d2af9/1024x576/match/image.jpg",
+        thumbnail:
+          "https://cf-images.ap-southeast-2.prod.boltdns.net/v1/static/6005208634001/096243ac-82b6-4a28-bbce-21caa1932da8/247799ae-9ace-46c4-aa3b-4becf50d2af9/360x180/match/image.jpg"
       },
       {
         id: "2",
         name: "Video 2",
         description: "Description 2",
-        thumbnail: "Thumbnail 2",
-        updatedAt: "Updated 2"
+        poster:
+          "https://cf-images.ap-southeast-2.prod.boltdns.net/v1/static/6005208634001/096243ac-82b6-4a28-bbce-21caa1932da8/247799ae-9ace-46c4-aa3b-4becf50d2af9/960x576/match/image.jpg",
+        thumbnail:
+          "https://cf-images.ap-southeast-2.prod.boltdns.net/v1/static/6005208634001/096243ac-82b6-4a28-bbce-21caa1932da8/247799ae-9ace-46c4-aa3b-4becf50d2af9/320x160/match/image.jpg"
+      }
+    ];
+    const expectedVideos: IBrightcoveVideo[] = [
+      {
+        id: "1",
+        name: "Video 1",
+        description: "Description 1",
+        poster:
+          "https://cf-images.ap-southeast-2.prod.boltdns.net/v1/static/6005208634001/096243ac-82b6-4a28-bbce-21caa1932da8/247799ae-9ace-46c4-aa3b-4becf50d2af9/640x360/match/image.jpg",
+        thumbnail:
+          "https://cf-images.ap-southeast-2.prod.boltdns.net/v1/static/6005208634001/096243ac-82b6-4a28-bbce-21caa1932da8/247799ae-9ace-46c4-aa3b-4becf50d2af9/320x180/match/image.jpg"
+      },
+      {
+        id: "2",
+        name: "Video 2",
+        description: "Description 2",
+        poster:
+          "https://cf-images.ap-southeast-2.prod.boltdns.net/v1/static/6005208634001/096243ac-82b6-4a28-bbce-21caa1932da8/247799ae-9ace-46c4-aa3b-4becf50d2af9/640x360/match/image.jpg",
+        thumbnail:
+          "https://cf-images.ap-southeast-2.prod.boltdns.net/v1/static/6005208634001/096243ac-82b6-4a28-bbce-21caa1932da8/247799ae-9ace-46c4-aa3b-4becf50d2af9/320x180/match/image.jpg"
       }
     ];
     (getBrightcovePlaylist as jest.Mock).mockResolvedValue(videos);
@@ -64,7 +88,7 @@ describe("Play Stuff", () => {
     expect(result).toEqual([
       {
         type: ContentBlockType.PlayStuff,
-        videos
+        videos: expectedVideos
       }
     ]);
   });
@@ -79,7 +103,11 @@ describe("Play Stuff", () => {
 
     const result = await playStuff(handlerRunnerMock, input, params);
 
-    expect(logger.error).toHaveBeenCalledWith(params.apiRequestId, expect.any(String), error);
+    expect(logger.error).toHaveBeenCalledWith(
+      params.apiRequestId,
+      expect.any(String),
+      error
+    );
     expect(result).toEqual([]);
   });
 });

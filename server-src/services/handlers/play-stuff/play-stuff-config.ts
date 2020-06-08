@@ -6,5 +6,5 @@ export const playStuffConfig: IPlayStuffConfig = {
   policyKey:
     "BCpkADawqM3XbgNT2rxILaX_0Gmok75p2ZBntZDaN-bQXO7Qatbxuf0ECXO0Xjf-Z4muB0XoFYvXKDHe6zeoTpxsPxi6PrDo9vdWqYpUPArEXZ4YqCW8NI4-UdcAChh-2Hr9nhYI9vf-9X0a",
   thumbnailSize: "320x180",
-  posterSize: "640x320"
+  posterSize: "640x360"
 };
