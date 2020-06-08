@@ -10,6 +10,7 @@ import { WindowService } from "../window/window.service";
 import { IStuffLogin } from "./__types__/IStuffLogin";
 import { IStuffLoginUser } from "./__types__/IStuffLoginUser";
 import { AuthenticationService } from "./authentication.service";
+import { LoggerService } from "../logger/logger.service";
 
 describe("AuthenticationService", () => {
   let authenticationService: ServiceMock<AuthenticationService>;
@@ -48,6 +49,10 @@ describe("AuthenticationService", () => {
         {
           provide: WindowService,
           useClass: mockService(WindowService)
+        },
+        {
+          provide: LoggerService,
+          useClass: mockService(LoggerService)
         },
         {
           provide: AnalyticsService,
