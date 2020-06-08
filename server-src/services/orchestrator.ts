@@ -49,7 +49,7 @@ export default async (params: IParams): Promise<IPage> => {
 };
 
 const homepageAdPrefix = "homepage";
-const homepageV2AdPrefix = "newHomepage";
+const homepageV2AdPrefix = "homepagev2";
 export const newPage = (): HandlerInput[] => {
   const page: HandlerInput[] = [
     {
