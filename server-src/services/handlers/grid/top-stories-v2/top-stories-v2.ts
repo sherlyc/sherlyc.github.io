@@ -1,14 +1,14 @@
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
-import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType";
+import { HomepageFeaturedArticleVariation } from "../../../../../common/__types__/IHomepageFeaturedArticle";
 import { AspectRatio } from "../../../../../common/AspectRatio";
 import { IParams } from "../../../__types__/IParams";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { JsonFeedImageType } from "../../../adapters/__types__/JsonFeedImageType";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
-import { bigImageArticleUnit } from "../../../adapters/article-converter/big-image-article.converter";
-import { featuredArticle } from "../../../adapters/article-converter/featured-article.converter";
 import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
+import { homepageFeaturedArticle } from "../../../adapters/article-converter/homepage-featured-article.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { Strap } from "../../../strap";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
@@ -43,15 +43,17 @@ export default async function(
       [TopStoriesV2GridPositions.RightHighlight]: [
         contentErrorHandler(
           () =>
-            featuredArticle(
+            homepageFeaturedArticle(
               articles.shift() as IRawArticle,
               strapName,
-              "black",
-              "#f1f1f1c7",
-              false,
-              true,
-              "",
-              AspectRatio.OneByOne
+              {
+                mobile: {
+                  variant: JsonFeedImageType.PORTRAIT,
+                  aspectRatio: AspectRatio.OneByOne
+                }
+              },
+              HomepageFeaturedArticleVariation.Featured,
+              true
             ),
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,
@@ -61,10 +63,16 @@ export default async function(
       [TopStoriesV2GridPositions.LeftHighlight]: [
         contentErrorHandler(
           () =>
-            bigImageArticleUnit(
+            homepageFeaturedArticle(
               articles.shift() as IRawArticle,
               strapName,
-              ImageLayoutType.module,
+              {
+                mobile: {
+                  variant: JsonFeedImageType.THUMBNAIL_SIXTEEN_BY_NINE,
+                  aspectRatio: AspectRatio.SixteenByNine
+                }
+              },
+              HomepageFeaturedArticleVariation.Lead,
               true
             ),
           HandlerInputType.TopStoriesV2,

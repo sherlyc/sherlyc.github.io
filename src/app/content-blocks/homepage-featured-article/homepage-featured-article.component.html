@@ -1,0 +1,13 @@
+<article [ngClass]="classNames" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+  <meta itemprop="position" content="{{ index }}" />
+  <a [ngClass]="classNames" itemprop="url" href="{{ input.linkUrl }}" appOpenExternalLink="{{ input.linkUrl }}" (click)="sendAnalytics()">
+    <div class="image">
+      <app-fluid-image [imageSrc]="input.image.mobile.src" [aspectRatio]="input.image.mobile.aspectRatio" [caption]="input.headline"></app-fluid-image>
+    </div>
+    <div class="content">
+      <app-tag-link [color]="input.color" [name]="input.category.name" [url]="input.category.url"></app-tag-link>
+      <app-headline [headline]="input.headline" [headlineFlags]="input.headlineFlags"></app-headline>
+      <p *ngIf="input.introText" class="intro">{{ input.introText }}</p>
+    </div>
+  </a>
+</article>
