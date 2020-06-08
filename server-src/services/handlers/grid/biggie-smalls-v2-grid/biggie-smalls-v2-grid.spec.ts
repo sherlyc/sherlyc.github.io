@@ -119,7 +119,7 @@ describe("Biggie Smalls V2 grid handler", () => {
         [BiggieSmallsV2GridPositions.LeftTwo]: gridBlock(7, 2, 4, 1, [
           Border.bottom
         ]),
-        [BiggieSmallsV2GridPositions.RightTwo]: gridBlock(11, 1, 2, 1, []),
+        [BiggieSmallsV2GridPositions.RightTwo]: gridBlock(11, 1, 3, 1, []),
         [BiggieSmallsV2GridPositions.RightThree]: gridBlock(11, 2, 1, 1, [
           Border.bottom
         ]),
@@ -160,7 +160,7 @@ describe("Biggie Smalls V2 grid handler", () => {
         [BiggieSmallsV2GridPositions.RightFive]: gridBlock(10, 3, 1, 1, [
           Border.bottom
         ]),
-        [BiggieSmallsV2GridPositions.BannerAd]: gridBlock(2, 4, 8, 1, [])
+        [BiggieSmallsV2GridPositions.BannerAd]: gridBlock(2, 4, 9, 1, [])
       }
     };
 
