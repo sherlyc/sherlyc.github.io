@@ -12,7 +12,7 @@ function findImage(
     for (const image of item.images) {
       if (image.variants && image.variants.length > 0) {
         const imageVariant = image.variants.find(
-          (variant) => variant.layout === imageType
+          (variant) => variant.image_type_id === imageType
         );
         if (imageVariant) {
           return imageVariant;
@@ -59,15 +59,15 @@ function getImageSrcSetString(imageUrls: Object) {
 }
 
 export function getThumbnailSrcSet(item: IJsonFeedArticle | IJsonFeedUrl) {
-  const images = findImage(item, JsonFeedImageType.SMALL_THUMBNAIL);
+  const images = findImage(item, JsonFeedImageType.THUMBNAIL);
 
   return images && images.urls ? getImageSrcSetString(images.urls) : null;
 }
 
 export function getStrapImageSrcSet(item: IJsonFeedArticle | IJsonFeedUrl) {
   const images =
-    findImage(item, JsonFeedImageType.STRAP_IMAGE) ||
-    findImage(item, JsonFeedImageType.SMALL_THUMBNAIL);
+    findImage(item, JsonFeedImageType.LANDSCAPE_THREE_BY_TWO) ||
+    findImage(item, JsonFeedImageType.THUMBNAIL);
 
   return images && images.urls ? getImageSrcSetString(images.urls) : null;
 }

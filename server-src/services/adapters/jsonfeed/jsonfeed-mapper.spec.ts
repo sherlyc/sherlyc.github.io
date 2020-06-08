@@ -229,7 +229,6 @@ describe("JsonFeed Mapper", () => {
           variants: [
             {
               id: 63784214,
-              layout: JsonFeedImageType.SMALL_THUMBNAIL,
               src: "www.example.com/thumbnail.90x60.jpg",
               media_type: "Photo",
               width: "90",
@@ -238,7 +237,7 @@ describe("JsonFeed Mapper", () => {
                 "90x60": "www.example.com/thumbnail.90x60.jpg",
                 "180x120": expectedImageUrl
               },
-              image_type_id: "StuffThumbnail"
+              image_type_id: JsonFeedImageType.THUMBNAIL
             }
           ],
           asset_type: "IMAGE"
@@ -266,7 +265,6 @@ describe("JsonFeed Mapper", () => {
           variants: [
             {
               id: 63784214,
-              layout: JsonFeedImageType.SMALL_THUMBNAIL,
               src: "www.example.com/thumbnail.90x60.jpg",
               media_type: "Photo",
               width: "90",
@@ -275,7 +273,7 @@ describe("JsonFeed Mapper", () => {
                 "90x60": "www.example.com/thumbnail.90x60.jpg",
                 "180x120": "www.example.com/thumbnail.180x120.jpg"
               },
-              image_type_id: "StuffThumbnail"
+              image_type_id: JsonFeedImageType.THUMBNAIL
             }
           ],
           asset_type: "IMAGE"
@@ -303,7 +301,6 @@ describe("JsonFeed Mapper", () => {
           variants: [
             {
               id: 63784214,
-              layout: JsonFeedImageType.DEFCON_IMAGE,
               src: "www.example.com/defcon.90x60.jpg",
               media_type: "Photo",
               width: "90",
@@ -312,7 +309,7 @@ describe("JsonFeed Mapper", () => {
                 "90x60": "www.example.com/defcon.90x60.jpg",
                 "180x120": "www.example.com/defcon.180x120.jpg"
               },
-              image_type_id: "Defcon"
+              image_type_id: JsonFeedImageType.DEFCON
             }
           ],
           asset_type: "IMAGE"
@@ -326,7 +323,6 @@ describe("JsonFeed Mapper", () => {
           variants: [
             {
               id: 63784214,
-              layout: JsonFeedImageType.SMALL_THUMBNAIL,
               src: "www.example.com/thumbnail.90x60.jpg",
               media_type: "Photo",
               width: "90",
@@ -335,7 +331,7 @@ describe("JsonFeed Mapper", () => {
                 "90x60": "www.example.com/thumbnail.90x60.jpg",
                 "180x120": "www.example.com/thumbnail.180x120.jpg"
               },
-              image_type_id: "StuffThumbnail"
+              image_type_id: JsonFeedImageType.THUMBNAIL
             }
           ],
           asset_type: "IMAGE"
@@ -361,7 +357,6 @@ describe("JsonFeed Mapper", () => {
           variants: [
             {
               id: 63784214,
-              layout: JsonFeedImageType.SMALL_THUMBNAIL,
               src: "www.example.com/thumbnail.90x60.jpg",
               media_type: "Photo",
               width: "90",
@@ -370,11 +365,10 @@ describe("JsonFeed Mapper", () => {
                 "90x60": "www.example.com/thumbnail.90x60.jpg",
                 "180x120": "www.example.com/thumbnail.180x120.jpg"
               },
-              image_type_id: "StuffThumbnail"
+              image_type_id: JsonFeedImageType.THUMBNAIL
             },
             {
               id: 63784214,
-              layout: JsonFeedImageType.STRAP_IMAGE,
               src: "www.example.com/StuffLandscapeThreeByTwo.90x60.jpg",
               media_type: "Photo",
               width: "90",
@@ -383,7 +377,7 @@ describe("JsonFeed Mapper", () => {
                 "90x60": "www.example.com/StuffLandscapeThreeByTwo.90x60.jpg",
                 "180x120": expectedStrapImageSrc
               },
-              image_type_id: "StuffLandscapeThreeByTwo"
+              image_type_id: JsonFeedImageType.LANDSCAPE_THREE_BY_TWO
             }
           ],
           asset_type: "IMAGE"
@@ -408,7 +402,6 @@ describe("JsonFeed Mapper", () => {
           variants: [
             {
               id: 63784214,
-              layout: JsonFeedImageType.SMALL_THUMBNAIL,
               src: "www.example.com/StuffThumbnail.90x60.jpg",
               media_type: "Photo",
               width: "90",
@@ -417,7 +410,7 @@ describe("JsonFeed Mapper", () => {
                 "90x60": "www.example.com/StuffThumbnail.90x60.jpg",
                 "180x120": expectedThumbnailSrc
               },
-              image_type_id: "StuffThumbnail"
+              image_type_id: JsonFeedImageType.THUMBNAIL
             }
           ],
           asset_type: "IMAGE"
@@ -430,7 +423,7 @@ describe("JsonFeed Mapper", () => {
       expect(result.defconSrc).toBe(expectedThumbnailSrc);
     });
 
-    it("should map 16x9 thumbnail image when it is provided", () => {
+    it("should map 16:9 image when it is provided", () => {
       const feedArticle = jsonFeedArticle();
       const expected16x9Image = "www.example.com/small_thumbnail.1600x900.jpg";
       feedArticle.images = [
@@ -443,7 +436,6 @@ describe("JsonFeed Mapper", () => {
           variants: [
             {
               id: 63784214,
-              layout: JsonFeedImageType.SMALL_THUMBNAIL_SIXTEEN_BY_NINE,
               src: expected16x9Image,
               media_type: "Photo",
               width: "90",
@@ -452,7 +444,7 @@ describe("JsonFeed Mapper", () => {
                 "1600x900": expected16x9Image,
                 "320x180": "www.example.com/small_thumbnail.320x180.jpg"
               },
-              image_type_id: "StuffThumbnailSixteenByNine"
+              image_type_id: JsonFeedImageType.LANDSCAPE_SIXTEEN_BY_NINE
             }
           ],
           asset_type: "IMAGE"
@@ -478,7 +470,6 @@ describe("JsonFeed Mapper", () => {
           variants: [
             {
               id: 63784214,
-              layout: JsonFeedImageType.SMALL_THUMBNAIL,
               src: "www.example.com/thumbnail.90x60.jpg",
               media_type: "Photo",
               width: "90",
@@ -487,11 +478,11 @@ describe("JsonFeed Mapper", () => {
                 "90x60": "www.example.com/thumbnail.90x60.jpg",
                 "180x120": "www.example.com/thumbnail.180x120.jpg"
               },
-              image_type_id: "StuffThumbnail"
+              image_type_id: JsonFeedImageType.THUMBNAIL
             },
             {
               id: 63784214,
-              layout: JsonFeedImageType.STRAP_IMAGE,
+              layout: JsonFeedImageType.LANDSCAPE_THREE_BY_TWO,
               src: expectedStrapImage,
               media_type: "Photo",
               width: "90",
@@ -500,7 +491,7 @@ describe("JsonFeed Mapper", () => {
                 "90x60": "www.example.com/strap.90x60.jpg",
                 "180x120": expectedStrapImage
               },
-              image_type_id: "StuffLandscapeThreeByTwo"
+              image_type_id: JsonFeedImageType.LANDSCAPE_THREE_BY_TWO
             }
           ],
           asset_type: "IMAGE"
@@ -525,7 +516,6 @@ describe("JsonFeed Mapper", () => {
           variants: [
             {
               id: 63784214,
-              layout: JsonFeedImageType.SMALL_THUMBNAIL,
               src: "www.example.com/thumbnail.90x60.jpg",
               media_type: "Photo",
               width: "90",
@@ -534,7 +524,7 @@ describe("JsonFeed Mapper", () => {
                 "90x60": "www.example.com/thumbnail.90x60.jpg",
                 "180x120": expectedImage
               },
-              image_type_id: "StuffThumbnail"
+              image_type_id: JsonFeedImageType.THUMBNAIL
             }
           ],
           asset_type: "IMAGE"
@@ -559,13 +549,12 @@ describe("JsonFeed Mapper", () => {
           variants: [
             {
               id: 63784214,
-              layout: JsonFeedImageType.SMALL_THUMBNAIL,
               src: expectedImage,
               media_type: "Photo",
               width: "90",
               height: "60",
               urls: {},
-              image_type_id: "StuffThumbnail"
+              image_type_id: JsonFeedImageType.THUMBNAIL
             }
           ],
           asset_type: "IMAGE"
