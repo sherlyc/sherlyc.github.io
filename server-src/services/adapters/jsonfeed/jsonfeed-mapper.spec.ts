@@ -59,6 +59,7 @@ describe("JsonFeed Mapper", () => {
     imageSrcSet: null,
     strapImageSrcSet: null,
     sixteenByNineSrc: null,
+    portraitImageSrc: null,
     lastPublishedTime: getUnixTime(parseISO(article.datetime_iso8601)),
     headlineFlags: article.headline_flags,
     identifier: article.identifier,
@@ -78,6 +79,7 @@ describe("JsonFeed Mapper", () => {
     imageSrcSet: null,
     strapImageSrcSet: null,
     sixteenByNineSrc: null,
+    portraitImageSrc: null,
     lastPublishedTime: getUnixTime(parseISO(article.datetime_iso8601)),
     headlineFlags: article.headline_flags,
     identifier: article.identifier,
@@ -501,6 +503,85 @@ describe("JsonFeed Mapper", () => {
       const [result] = mapToRawArticleList([feedArticle]);
 
       expect(result.sixteenByNineSrc).toBe(expectedStrapImage);
+    });
+
+    it("should map portrait image when it is provided", () => {
+      const feedArticle = jsonFeedArticle();
+      const expectedImage = "www.example.com/portrait.900x1600.jpg";
+      feedArticle.images = [
+        {
+          id: 1,
+          datetime_iso8601: "20150818T085547+1200",
+          datetime_display: "08:55 18/08/2015",
+          creditline: "",
+          caption: "x",
+          variants: [
+            {
+              id: 63784214,
+              src: expectedImage,
+              media_type: "Photo",
+              width: "90",
+              height: "60",
+              urls: {
+                "900x1600": expectedImage,
+                "180x320": "www.example.com/portrait.180x320.jpg"
+              },
+              image_type_id: JsonFeedImageType.PORTRAIT
+            }
+          ],
+          asset_type: "IMAGE"
+        }
+      ];
+      const data: IJsonFeedArticleList = { stories: [feedArticle] };
+
+      const [result] = mapToRawArticleList(data.stories);
+
+      expect(result.portraitImageSrc).toBe(expectedImage);
+    });
+
+    it("should fallback to 16:9 image if portrait image is not provided", () => {
+      const feedArticle = jsonFeedArticle();
+      const expectedImage = "www.example.com/small_thumbnail.1600x900.jpg";
+      feedArticle.images = [
+        {
+          id: 1,
+          datetime_iso8601: "20150818T085547+1200",
+          datetime_display: "08:55 18/08/2015",
+          creditline: "",
+          caption: "x",
+          variants: [
+            {
+              id: 63784214,
+              src: "www.example.com/thumbnail.90x60.jpg",
+              media_type: "Photo",
+              width: "90",
+              height: "60",
+              urls: {
+                "90x60": "www.example.com/thumbnail.90x60.jpg",
+                "180x120": "www.example.com/thumbnail.180x120.jpg"
+              },
+              image_type_id: JsonFeedImageType.THUMBNAIL
+            },
+            {
+              id: 63784214,
+              src: expectedImage,
+              media_type: "Photo",
+              width: "90",
+              height: "60",
+              urls: {
+                "90x60": "www.example.com/small_thumbnail.90x60.jpg",
+                "1600x900": expectedImage
+              },
+              image_type_id: JsonFeedImageType.THUMBNAIL_SIXTEEN_BY_NINE
+            }
+          ],
+          asset_type: "IMAGE"
+        }
+      ];
+
+      const [result] = mapToRawArticleList([feedArticle]);
+
+      expect(result.portraitImageSrc).toBe(expectedImage);
     });
 
     it("should get largest rendition", () => {
