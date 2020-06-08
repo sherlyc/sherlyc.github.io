@@ -9,9 +9,7 @@ import {
   IBiggieSmallsV2GridHandlerInput
 } from "../../__types__/IBiggieSmallsV2GridHandlerInput";
 import { IBiggieSmallsV2HandlerInput } from "../../__types__/IBiggieSmallsV2HandlerInput";
-import biggieSmallsV2Handler, {
-  ARTICLE_CAPACITY_BIGGIE_SMALLS
-} from "./biggie-smalls-v2";
+import biggieSmallsV2Handler from "./biggie-smalls-v2";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
@@ -59,18 +57,14 @@ describe("Biggie Smalls", () => {
     jest.resetAllMocks();
 
     (getRawArticles as jest.Mock).mockResolvedValue(
-      fakeArticlesWithIds([1, 2, 3, 4, 5, 6, 7, 8])
+      fakeArticlesWithIds([1, 2, 3, 4, 5, 6, 7])
     );
   });
 
   it("should retrieve right number of articles", async () => {
     await biggieSmallsV2Handler(handlerRunnerMock, input, params);
 
-    expect(getRawArticles).toHaveBeenCalledWith(
-      Strap.Motoring,
-      ARTICLE_CAPACITY_BIGGIE_SMALLS,
-      params
-    );
+    expect(getRawArticles).toHaveBeenCalledWith(Strap.Motoring, 7, params);
   });
 
   it("should provide correct input to next handler", async () => {

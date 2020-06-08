@@ -14,7 +14,7 @@ import { AspectRatio } from "../../../../../common/AspectRatio";
 import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 
-export const ARTICLE_CAPACITY_BIGGIE_SMALLS = 7;
+const ARTICLE_CAPACITY_BIGGIE_SMALLS = 7;
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
