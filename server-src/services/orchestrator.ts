@@ -129,14 +129,6 @@ export const newPage = (): HandlerInput[] => {
           sourceId: Strap.ClimateChange
         },
         {
-          type: HandlerInputType.BiggieSmalls,
-          displayName: "climate change",
-          color: "#256091",
-          linkUrl: "/" + Section.ClimateChange,
-          strapName: `${homepageAdPrefix}ClimateChange`,
-          sourceId: Strap.ClimateChange
-        },
-        {
           type: HandlerInputType.NewsSixV2,
           displayName: "business",
           color: "#0083d7",
@@ -145,12 +137,28 @@ export const newPage = (): HandlerInput[] => {
           sourceId: Strap.Business
         },
         {
+          type: HandlerInputType.BiggieSmallsV2,
+          displayName: "homed",
+          color: "#256091",
+          linkUrl: "/" + Section.Homed,
+          strapName: `${homepageAdPrefix}Homed`,
+          sourceId: Strap.Homed
+        },
+        {
           type: HandlerInputType.NewsSixV2,
           displayName: "prosper",
           color: "#0083d7",
           linkUrl: "/" + Section.Prosper,
           strapName: `${homepageAdPrefix}Prosper`,
           sourceId: Strap.Prosper
+        },
+        {
+          type: HandlerInputType.BiggieSmallsV2,
+          displayName: "travel",
+          color: "#256091",
+          linkUrl: "/" + Section.Travel,
+          strapName: `${homepageAdPrefix}Travel`,
+          sourceId: Strap.Travel
         },
         {
           type: HandlerInputType.NewsSixV2,
