@@ -11,12 +11,10 @@ import { handlerRunnerFunction } from "../../runner";
 import { contentErrorHandler } from "../content-error-handler";
 import { featuredArticle } from "../../../adapters/article-converter/featured-article.converter";
 import { AspectRatio } from "../../../../../common/AspectRatio";
-import { bigImageArticleUnit } from "../../../adapters/article-converter/big-image-article.converter";
-import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType";
 import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 
-export const ARTICLE_CAPACITY_BIGGIE_SMALLS = 8;
+export const ARTICLE_CAPACITY_BIGGIE_SMALLS = 7;
 
 export default async function(
   handlerRunner: handlerRunnerFunction,

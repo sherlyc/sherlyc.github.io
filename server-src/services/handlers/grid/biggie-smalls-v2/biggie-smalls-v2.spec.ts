@@ -77,11 +77,7 @@ describe("Biggie Smalls", () => {
     const fakeResult = {};
     handlerRunnerMock.mockResolvedValue(fakeResult);
 
-    const actual = await biggieSmallsV2Handler(
-      handlerRunnerMock,
-      input,
-      params
-    );
+    await biggieSmallsV2Handler(handlerRunnerMock, input, params);
 
     const expected: IBiggieSmallsV2GridHandlerInput = {
       type: HandlerInputType.BiggieSmallsV2Grid,
@@ -128,6 +124,12 @@ describe("Biggie Smalls", () => {
         ],
         [BiggieSmallsV2GridPositions.Four]: [
           expectContentBlock({
+            type: ContentBlockType.BasicAdUnit,
+            context: strapName
+          })
+        ],
+        [BiggieSmallsV2GridPositions.Five]: [
+          expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "4",
             orientation: {
@@ -135,27 +137,14 @@ describe("Biggie Smalls", () => {
               tablet: Orientation.Portrait,
               desktop: Orientation.Portrait
             },
-            imageSrc: "4.png",
-            introText: "4 intro"
-          })
-        ],
-        [BiggieSmallsV2GridPositions.Five]: [
-          expectContentBlock({
-            type: ContentBlockType.HomepageArticle,
-            id: "5",
-            orientation: {
-              mobile: Orientation.Portrait,
-              tablet: Orientation.Portrait,
-              desktop: Orientation.Portrait
-            },
             imageSrc: undefined,
-            introText: "5 intro"
+            introText: "4 intro"
           })
         ],
         [BiggieSmallsV2GridPositions.Six]: [
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
-            id: "6",
+            id: "5",
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -168,7 +157,7 @@ describe("Biggie Smalls", () => {
         [BiggieSmallsV2GridPositions.Seven]: [
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
-            id: "7",
+            id: "6",
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -181,7 +170,7 @@ describe("Biggie Smalls", () => {
         [BiggieSmallsV2GridPositions.Eight]: [
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
-            id: "8",
+            id: "7",
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -196,5 +185,7 @@ describe("Biggie Smalls", () => {
         ]
       }
     };
+
+    expect(handlerRunnerMock).toHaveBeenCalledWith(expected, params);
   });
 });
