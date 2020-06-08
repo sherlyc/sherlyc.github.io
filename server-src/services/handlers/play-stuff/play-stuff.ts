@@ -22,7 +22,7 @@ export default async function(
   } = playStuffConfig;
 
   try {
-    let videos = await getBrightcovePlaylist(
+    const videos = await getBrightcovePlaylist(
       account,
       playlist,
       policyKey,
@@ -30,7 +30,7 @@ export default async function(
       params
     );
 
-    videos = videos.map((video) => ({
+    const resizedVideos = videos.map((video) => ({
       ...video,
       thumbnail: resize(video.thumbnail, thumbnailSize),
       poster: resize(video.poster, posterSize)
@@ -39,7 +39,7 @@ export default async function(
     return [
       {
         type: ContentBlockType.PlayStuff,
-        videos
+        videos: resizedVideos
       } as IPlayStuff
     ];
   } catch (error) {
