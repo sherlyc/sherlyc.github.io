@@ -72,7 +72,6 @@ describe("json feed service", () => {
           variants: [
             {
               id: 109962229,
-              layout: JsonFeedImageType.SMALL_THUMBNAIL,
               src:
                 "https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffThumbnail.90x60.1tgvdg.png/1547607024623.jpg",
               media_type: "Photo",
@@ -84,7 +83,7 @@ describe("json feed service", () => {
                 "180x120":
                   "https://resources.stuff.co.nz/content/dam/images/1/t/g/v/e/d/image.related.StuffThumbnail.180x120.1tgvdg.png/1547607024623.jpg"
               },
-              image_type_id: "StuffThumbnail"
+              image_type_id: JsonFeedImageType.THUMBNAIL
             }
           ]
         }

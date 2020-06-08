@@ -35,13 +35,6 @@
   }
 }
 
-.highlight {
-  .text {
-    font-size: 20px;
-    line-height: 24px;
-  }
-}
-
 @mixin landscape {
   flex-direction: row;
   align-items: start;
@@ -64,6 +57,13 @@
   .portrait-mobile {
     @include portrait;
   }
+
+  .highlight {
+    .text {
+      font-size: 24px;
+      line-height: 28px;
+    }
+  }
 }
 
 @include tablet {
@@ -74,6 +74,13 @@
   .portrait-tablet {
     @include portrait;
   }
+
+  .highlight {
+    .text {
+      font-size: 20px;
+      line-height: 24px;
+    }
+  }
 }
 
 @include desktop {
@@ -83,5 +90,12 @@
 
   .portrait-desktop {
     @include portrait;
+  }
+
+  .highlight {
+    .text {
+      font-size: 20px;
+      line-height: 24px;
+    }
   }
 }

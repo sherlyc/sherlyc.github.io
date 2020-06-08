@@ -36,22 +36,22 @@ export function mapArticleAsset(item: IJsonFeedArticle): IRawArticle {
     introText: item.alt_intro,
     byline: item.byline,
     linkUrl: item.path,
-    imageSrc: getImage(item, [JsonFeedImageType.SMALL_THUMBNAIL]),
+    imageSrc: getImage(item, [JsonFeedImageType.THUMBNAIL]),
     imageSrcSet: getThumbnailSrcSet(item),
     strapImageSrc: getImage(item, [
-      JsonFeedImageType.STRAP_IMAGE,
-      JsonFeedImageType.SMALL_THUMBNAIL
+      JsonFeedImageType.LANDSCAPE_THREE_BY_TWO,
+      JsonFeedImageType.THUMBNAIL
     ]),
     strapImageSrcSet: getStrapImageSrcSet(item),
     defconSrc: getImage(item, [
-      JsonFeedImageType.DEFCON_IMAGE,
-      JsonFeedImageType.STRAP_IMAGE,
-      JsonFeedImageType.SMALL_THUMBNAIL
+      JsonFeedImageType.DEFCON,
+      JsonFeedImageType.LANDSCAPE_THREE_BY_TWO,
+      JsonFeedImageType.THUMBNAIL
     ]),
     sixteenByNineSrc: getImage(item, [
-      JsonFeedImageType.SMALL_THUMBNAIL_SIXTEEN_BY_NINE,
-      JsonFeedImageType.STRAP_IMAGE,
-      JsonFeedImageType.SMALL_THUMBNAIL
+      JsonFeedImageType.THUMBNAIL_SIXTEEN_BY_NINE,
+      JsonFeedImageType.LANDSCAPE_THREE_BY_TWO,
+      JsonFeedImageType.THUMBNAIL
     ]),
     lastPublishedTime: getUnixTime(parseISO(item.datetime_iso8601)),
     headlineFlags: getHeadlineFlags(item),
@@ -70,22 +70,22 @@ function mapUrlAsset(item: IJsonFeedUrl): IRawArticle {
     title: item.title,
     introText: item.alt_intro,
     linkUrl: getLinkUrl(item),
-    imageSrc: getImage(item, [JsonFeedImageType.SMALL_THUMBNAIL]),
+    imageSrc: getImage(item, [JsonFeedImageType.THUMBNAIL]),
     imageSrcSet: getThumbnailSrcSet(item),
     strapImageSrc: getImage(item, [
-      JsonFeedImageType.STRAP_IMAGE,
-      JsonFeedImageType.SMALL_THUMBNAIL
+      JsonFeedImageType.LANDSCAPE_THREE_BY_TWO,
+      JsonFeedImageType.THUMBNAIL
     ]),
     strapImageSrcSet: getStrapImageSrcSet(item),
     defconSrc: getImage(item, [
-      JsonFeedImageType.DEFCON_IMAGE,
-      JsonFeedImageType.STRAP_IMAGE,
-      JsonFeedImageType.SMALL_THUMBNAIL
+      JsonFeedImageType.DEFCON,
+      JsonFeedImageType.LANDSCAPE_THREE_BY_TWO,
+      JsonFeedImageType.THUMBNAIL
     ]),
     sixteenByNineSrc: getImage(item, [
-      JsonFeedImageType.SMALL_THUMBNAIL_SIXTEEN_BY_NINE,
-      JsonFeedImageType.STRAP_IMAGE,
-      JsonFeedImageType.SMALL_THUMBNAIL
+      JsonFeedImageType.THUMBNAIL_SIXTEEN_BY_NINE,
+      JsonFeedImageType.LANDSCAPE_THREE_BY_TWO,
+      JsonFeedImageType.THUMBNAIL
     ]),
     lastPublishedTime: getUnixTime(parseISO(item.datetime_iso8601)),
     headlineFlags: getHeadlineFlags(item),

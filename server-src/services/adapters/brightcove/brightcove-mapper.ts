@@ -8,9 +8,9 @@ export const mapBrightcovePlaylist = (
     return {
       id: video.id,
       name: video.name,
+      description: video.description,
       thumbnail: video.thumbnail,
-      poster: video.poster,
-      description: video.description
+      poster: video.poster
     };
   });
 };
