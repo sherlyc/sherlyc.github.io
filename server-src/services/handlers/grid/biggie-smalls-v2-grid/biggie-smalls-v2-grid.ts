@@ -48,7 +48,7 @@ export default async function(
     ])
   };
   const tablet: IGridBlocks = {
-    [BiggieSmallsV2GridPositions.ModuleTitle]: gridBlock(1, 1, 1, 4, []),
+    [BiggieSmallsV2GridPositions.ModuleTitle]: gridBlock(1, 1, 1, 3, []),
     [BiggieSmallsV2GridPositions.Highlight]: gridBlock(2, 1, 5, 2, []),
     [BiggieSmallsV2GridPositions.RightOne]: gridBlock(2, 3, 4, 1, [
       Border.bottom
