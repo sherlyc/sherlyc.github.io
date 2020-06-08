@@ -34,18 +34,16 @@ export class AdService {
       map(this.config.getConfig().advertising, (src: string, id: ScriptId) =>
         this.scriptInjectorService.load(id, src)
       )
-    );
+    ).catch((e) => {
+      this.logger.error(new Error("Ad service fail to load"), e);
+    });
   }
 
   async notify() {
-    try {
-      await this.load;
-      this.zone.runOutsideAngular(() => {
-        this.sendCustomEventWithValue({ isHomepageTakeoverOn: true });
-      });
-    } catch (e) {
-      this.logger.error(new Error("Ad service fail to load"), e);
-    }
+    await this.load;
+    this.zone.runOutsideAngular(() => {
+      this.sendCustomEventWithValue({ isHomepageTakeoverOn: true });
+    });
   }
 
   private sendCustomEventWithValue(detail: IAdServiceEventDetail) {

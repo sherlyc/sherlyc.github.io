@@ -9,6 +9,7 @@ import { IStuffLogin } from "./__types__/IStuffLogin";
 import { Subject } from "rxjs";
 import { AnalyticsService } from "../analytics/analytics.service";
 import { IStuffLoginUser } from "./__types__/IStuffLoginUser";
+import { LoggerService } from "../logger/logger.service";
 
 @Injectable({
   providedIn: "root"
@@ -19,6 +20,7 @@ export class AuthenticationService {
     private scriptInjectorService: ScriptInjectorService,
     private config: ConfigService,
     private window: WindowService,
+    private logger: LoggerService,
     private analyticsService: AnalyticsService
   ) {}
 
@@ -43,8 +45,7 @@ export class AuthenticationService {
       authProvider
     } = this.config.getConfig().loginLibrary;
 
-    const protocol = this.window.getWindow().location.protocol;
-    const host = this.window.getWindow().location.host;
+    const { protocol, host } = this.window.getWindow().location;
 
     const redirect_uri = `${protocol}//${host}${signinRedirectPath}`;
 
@@ -88,15 +89,23 @@ export class AuthenticationService {
     if (this.runtime.isServer()) {
       return;
     }
-
-    await this.injectScript();
-    await this.initialiseLibrary();
-    this.registerAuthStateChangeCallbacks();
-    await this.processCurrentAuthState();
+    try {
+      await this.injectScript();
+      await this.initialiseLibrary();
+      this.registerAuthStateChangeCallbacks();
+      await this.processCurrentAuthState();
+    } catch (e) {
+      this.logger.error(
+        new Error("AuthenticationService service fail to load"),
+        e
+      );
+    }
   }
 
   login() {
-    this.StuffLogin.login();
+    if (this.StuffLogin) {
+      this.StuffLogin.login();
+    }
   }
 
   async signinCallback() {
