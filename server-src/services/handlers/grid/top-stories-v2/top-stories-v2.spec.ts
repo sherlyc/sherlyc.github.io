@@ -54,7 +54,7 @@ describe("Top Stories V2", () => {
       (id) =>
         ({
           id: `${id}`,
-          imageSrc: `${id}.png`,
+          imageSrc: `${id}.jpg`,
           sixteenByNineSrc: `${id}.16:9.jpg`,
           portraitImageSrc: `${id}.3:4.jpg`,
           introText: `${id} intro`
@@ -129,7 +129,7 @@ describe("Top Stories V2", () => {
               tablet: Orientation.Portrait,
               desktop: Orientation.Portrait
             },
-            imageSrc: "3.png",
+            imageSrc: "3.16:9.jpg",
             introText: "3 intro"
           })
         ],
@@ -142,7 +142,7 @@ describe("Top Stories V2", () => {
               tablet: Orientation.Portrait,
               desktop: Orientation.Portrait
             },
-            imageSrc: "4.png",
+            imageSrc: "4.16:9.jpg",
             introText: "4 intro"
           })
         ],
@@ -155,7 +155,7 @@ describe("Top Stories V2", () => {
               tablet: Orientation.Portrait,
               desktop: Orientation.Portrait
             },
-            imageSrc: "5.png",
+            imageSrc: "5.16:9.jpg",
             introText: "5 intro"
           })
         ],
@@ -169,7 +169,7 @@ describe("Top Stories V2", () => {
               tablet: Orientation.Landscape,
               desktop: Orientation.Landscape
             },
-            imageSrc: "6.png",
+            imageSrc: "6.16:9.jpg",
             introText: undefined
           })
         ],
@@ -182,7 +182,7 @@ describe("Top Stories V2", () => {
               tablet: Orientation.Landscape,
               desktop: Orientation.Landscape
             },
-            imageSrc: "7.png",
+            imageSrc: "7.16:9.jpg",
             introText: undefined
           })
         ],

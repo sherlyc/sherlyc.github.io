@@ -1,10 +1,10 @@
-import { IRawArticle } from "../__types__/IRawArticle";
+import { AccentColor } from "../../../../common/__types__/AccentColor";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import {
   IHomepageArticle,
   Orientation
 } from "../../../../common/__types__/IHomepageArticle";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { AccentColor } from "../../../../common/__types__/AccentColor";
+import { IRawArticle } from "../__types__/IRawArticle";
 
 export const homepageArticle = (
   article: IRawArticle,
@@ -25,7 +25,10 @@ export const homepageArticle = (
   headlineFlags: article.headlineFlags,
   lastPublishedTime: article.lastPublishedTime,
   introText: showIntroText ? article.introText : undefined,
-  imageSrc: showImage && article.imageSrc ? article.imageSrc : undefined,
+  imageSrc:
+    showImage && article.sixteenByNineSrc
+      ? article.sixteenByNineSrc
+      : undefined,
   category: {
     name: article.category,
     url: article.categoryUrl

@@ -46,7 +46,7 @@ describe("Homepage Article", () => {
     headlineFlags: [],
     id: "1",
     color: AccentColor.TopStoriesBlue,
-    imageSrc: "1.jpg",
+    imageSrc: "sixteenByNineSrc.jpg",
     introText: "Intro 1",
     lastPublishedTime: 1,
     linkUrl: "/link1",
