@@ -6,7 +6,7 @@ const removeSpecialChars = (text: string) => text.replace(/[^a-zA-Z0-9 ]/g, "");
 const spaceToDash = (text: string) => text.replace(/[\s]+/g, "-");
 
 const camelCaseToDashCase = (text: string) =>
-  text.replace(/([a-z])([A-Z0-9])/g, "$1-$2").toLowerCase();
+  text.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
 
 @Injectable({
   providedIn: "root"

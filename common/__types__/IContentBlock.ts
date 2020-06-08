@@ -31,6 +31,7 @@ import { IResponsiveExternalContent } from "./IResponsiveExternalContent";
 import { IStickyContainer } from "./IStickyContainer";
 import { IVerticalArticleList } from "./IVerticalArticleList";
 import { IWeatherUnit } from "./IWeatherUnit";
+import { IPlayStuff } from "./IPlayStuff";
 
 export type IContentBlock =
   | IDefconArticleUnit
@@ -65,4 +66,5 @@ export type IContentBlock =
   | IOli
   | IHomepageArticle
   | IVerticalArticleList
-  | IPartnerContent;
+  | IPartnerContent
+  | IPlayStuff;

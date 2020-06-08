@@ -61,7 +61,6 @@ describe("FluidImageComponent", () => {
 
     component = fixture.componentInstance;
     Object.assign(component, componentInput);
-    fixture.detectChanges();
   });
 
   it("should create", () => {
@@ -70,6 +69,27 @@ describe("FluidImageComponent", () => {
 
   it("renders nothing at the beginning", () => {
     expect(getImg()).toBeFalsy();
+  });
+
+  it("should load image with default config in server", () => {
+    runtimeService.isServer.mockReturnValue(true);
+    fixture.detectChanges();
+
+    expectImgWidth(FluidImageWidth.s);
+  });
+
+  it("should load image with default aspect ratio in server", () => {
+    runtimeService.isServer.mockReturnValue(true);
+    const input = {
+      ...componentInput,
+      aspectRatio: undefined
+    };
+    Object.assign(component, input);
+
+    fixture.detectChanges();
+
+    expect(component.src).toContain(`crop=${AspectRatio.SixteenByNine}`);
+    expect(component.srcset).toContain(`crop=${AspectRatio.SixteenByNine}`);
   });
 
   it("renders the image with optimal width after the element size is determined", () => {
@@ -98,13 +118,6 @@ describe("FluidImageComponent", () => {
     simulateResize(FluidImageWidth.l);
     simulateResize(FluidImageWidth.m);
     expectImgWidth(FluidImageWidth.l);
-  });
-
-  it("should load image with default config in server ", () => {
-    runtimeService.isServer.mockReturnValue(true);
-    component.ngOnInit();
-    fixture.detectChanges();
-    expectImgWidth(FluidImageWidth.s);
   });
 
   it("should add correct height", () => {
@@ -186,7 +199,7 @@ describe("FluidImageComponent", () => {
     "for aspect ratio %s, height should be %s",
     (aspectRatio: string, expectedHeight: string) => {
       Object.assign(component, { ...componentInput, aspectRatio });
-      component.ngOnInit();
+      simulateResize(FluidImageWidth.xs);
 
       expect(component.height).toEqual(expectedHeight);
     }
