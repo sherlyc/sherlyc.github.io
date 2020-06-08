@@ -42,7 +42,7 @@ export default async function(
         linkUrl
       }
     ],
-    [BiggieSmallsV2GridPositions.One]: [
+    [BiggieSmallsV2GridPositions.Highlight]: [
       contentErrorHandler(
         () =>
           featuredArticle(
@@ -60,7 +60,7 @@ export default async function(
         params
       )
     ],
-    [BiggieSmallsV2GridPositions.Two]: [
+    [BiggieSmallsV2GridPositions.RightOne]: [
       contentErrorHandler(
         () =>
           homepageArticle(
@@ -79,7 +79,7 @@ export default async function(
         params
       )
     ],
-    [BiggieSmallsV2GridPositions.Three]: [
+    [BiggieSmallsV2GridPositions.LeftOne]: [
       contentErrorHandler(
         () =>
           homepageArticle(
@@ -98,8 +98,8 @@ export default async function(
         params
       )
     ],
-    [BiggieSmallsV2GridPositions.Four]: [basicAdUnit(strapName)],
-    [BiggieSmallsV2GridPositions.Five]: [
+    [BiggieSmallsV2GridPositions.LeftTwo]: [basicAdUnit(strapName)],
+    [BiggieSmallsV2GridPositions.RightTwo]: [
       contentErrorHandler(
         () =>
           homepageArticle(
@@ -118,7 +118,7 @@ export default async function(
         params
       )
     ],
-    [BiggieSmallsV2GridPositions.Six]: [
+    [BiggieSmallsV2GridPositions.RightThree]: [
       contentErrorHandler(
         () =>
           homepageArticle(
@@ -137,7 +137,7 @@ export default async function(
         params
       )
     ],
-    [BiggieSmallsV2GridPositions.Seven]: [
+    [BiggieSmallsV2GridPositions.RightFour]: [
       contentErrorHandler(
         () =>
           homepageArticle(
@@ -156,7 +156,7 @@ export default async function(
         params
       )
     ],
-    [BiggieSmallsV2GridPositions.Eight]: [
+    [BiggieSmallsV2GridPositions.RightFive]: [
       contentErrorHandler(
         () =>
           homepageArticle(

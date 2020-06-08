@@ -90,13 +90,13 @@ describe("Biggie Smalls", () => {
             linkUrl: input.linkUrl
           })
         ],
-        [BiggieSmallsV2GridPositions.One]: [
+        [BiggieSmallsV2GridPositions.Highlight]: [
           expectContentBlock({
             type: ContentBlockType.FeaturedArticle,
             id: "1"
           })
         ],
-        [BiggieSmallsV2GridPositions.Two]: [
+        [BiggieSmallsV2GridPositions.RightOne]: [
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "2",
@@ -109,7 +109,7 @@ describe("Biggie Smalls", () => {
             introText: "2 intro"
           })
         ],
-        [BiggieSmallsV2GridPositions.Three]: [
+        [BiggieSmallsV2GridPositions.LeftOne]: [
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "3",
@@ -122,13 +122,13 @@ describe("Biggie Smalls", () => {
             introText: "3 intro"
           })
         ],
-        [BiggieSmallsV2GridPositions.Four]: [
+        [BiggieSmallsV2GridPositions.LeftTwo]: [
           expectContentBlock({
             type: ContentBlockType.BasicAdUnit,
             context: strapName
           })
         ],
-        [BiggieSmallsV2GridPositions.Five]: [
+        [BiggieSmallsV2GridPositions.RightTwo]: [
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "4",
@@ -141,7 +141,7 @@ describe("Biggie Smalls", () => {
             introText: "4 intro"
           })
         ],
-        [BiggieSmallsV2GridPositions.Six]: [
+        [BiggieSmallsV2GridPositions.RightThree]: [
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "5",
@@ -154,7 +154,7 @@ describe("Biggie Smalls", () => {
             introText: undefined
           })
         ],
-        [BiggieSmallsV2GridPositions.Seven]: [
+        [BiggieSmallsV2GridPositions.RightFour]: [
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "6",
@@ -167,7 +167,7 @@ describe("Biggie Smalls", () => {
             introText: undefined
           })
         ],
-        [BiggieSmallsV2GridPositions.Eight]: [
+        [BiggieSmallsV2GridPositions.RightFive]: [
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "7",

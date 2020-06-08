@@ -8,13 +8,13 @@ export interface IBiggieSmallsV2GridHandlerInput {
 
 export enum BiggieSmallsV2GridPositions {
   ModuleTitle = "ModuleTitle",
-  One = "One",
-  Two = "Two",
-  Three = "Three",
-  Four = "Four",
-  Five = "Five",
-  Six = "Six",
-  Seven = "Seven",
-  Eight = "Eight",
+  Highlight = "Highlight",
+  RightOne = "RightOne",
+  LeftOne = "LeftOne",
+  LeftTwo = "LeftTwo",
+  RightTwo = "RightTwo",
+  RightThree = "RightThree",
+  RightFour = "RightFour",
+  RightFive = "RightFive",
   BannerAd = "BannerAd"
 }
