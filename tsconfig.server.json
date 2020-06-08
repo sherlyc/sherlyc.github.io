@@ -1,5 +1,5 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
@@ -9,7 +9,7 @@
   "angularCompilerOptions": {
     "entryModule": "app/app.server.module#AppServerModule"
   },
-  "files": ["main.server.ts"],
+  "files": ["src/main.server.ts"],
   "include": ["**/*.d.ts"],
   "exclude": ["**/*.spec.ts", "**/*.mock.ts"]
 }

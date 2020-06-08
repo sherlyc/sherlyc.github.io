@@ -21,7 +21,7 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "tsConfig": "./tsconfig.app.json",
             "assets": ["src/spade"],
             "styles": [
               {
@@ -93,7 +93,7 @@
           "options": {
             "outputPath": "dist/server",
             "main": "src/main.server.ts",
-            "tsConfig": "src/tsconfig.server.json"
+            "tsConfig": "./tsconfig.server.json"
           },
           "configurations": {
             "development": {
@@ -139,7 +139,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
+            "tsConfig": ["./tsconfig.app.json", "./tsconfig.spec.json"],
             "exclude": ["**/node_modules/**", "**/*.json"]
           }
         }
