@@ -5,14 +5,12 @@ export const mapBrightcovePlaylist = (
   playlist: IBrightcovePlaylist
 ): IBrightcoveVideo[] => {
   return playlist.videos.map((video) => {
-    const thumbnail = video.thumbnail.split("160x90").join("480x270");
-
     return {
       id: video.id,
       name: video.name,
-      thumbnail: thumbnail,
-      description: video.description,
-      updatedAt: video.updated_at
+      thumbnail: video.thumbnail,
+      poster: video.poster,
+      description: video.description
     };
   });
 };

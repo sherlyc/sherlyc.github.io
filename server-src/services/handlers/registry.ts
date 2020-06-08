@@ -48,7 +48,7 @@ import TitleSection from "./title-section/title-section";
 import TopStoriesArticleList from "./top-stories-article-list/top-stories-article-list";
 import VersionSwitcher from "./version-switcher/version-switcher";
 import Weather from "./weather/weather";
-import PlayStuff from "./playstuff/playstuff";
+import PlayStuff from "./play-stuff/play-stuff";
 
 type handlerFunction = (
   handlerRunner: handlerRunnerFunction,

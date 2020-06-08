@@ -3,5 +3,5 @@ export interface IBrightcoveVideo {
   name: string;
   description: string;
   thumbnail: string;
-  updatedAt: string;
+  poster: string;
 }
