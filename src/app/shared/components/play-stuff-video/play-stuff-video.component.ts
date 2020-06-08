@@ -2,9 +2,9 @@ import { Component, Input, OnInit } from "@angular/core";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 
 @Component({
-  selector: "app-playstuff-video",
-  templateUrl: "./playstuff-video.component.html",
-  styleUrls: ["./playstuff-video.component.scss"]
+  selector: "app-play-stuff-video",
+  templateUrl: "./play-stuff-video.component.html",
+  styleUrls: ["./play-stuff-video.component.scss"]
 })
 export class PlayStuffVideoComponent implements OnInit {
   @Input()

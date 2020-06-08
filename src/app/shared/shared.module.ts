@@ -17,7 +17,7 @@ import { OpenExternalLinkDirective } from "./directives/open-external-link/open-
 import { PullToRefreshDirective } from "./directives/pull-to-refresh/pull-to-refresh.directive";
 import { ResizeDirective } from "./directives/resize/resize.directive";
 import { TagLinkComponent } from "./components/tag-link/tag-link.component";
-import { PlayStuffVideoComponent } from "./components/playstuff-video/playstuff-video.component";
+import { PlayStuffVideoComponent } from "./components/play-stuff-video/play-stuff-video.component";
 
 @NgModule({
   imports: [CommonModule],

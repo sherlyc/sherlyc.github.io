@@ -33,7 +33,7 @@ import { ResponsiveExternalContentComponent } from "./responsive-external-conten
 import { StickyContainerComponent } from "./sticky-container/sticky-container.component";
 import { VerticalArticleListComponent } from "./vertical-article-list/vertical-article-list.component";
 import { WeatherUnitComponent } from "./weather-unit/weather-unit.component";
-import { PlayStuffComponent } from "./playstuff/playstuff.component";
+import { PlayStuffComponent } from "./play-stuff/play-stuff.component";
 
 export const contentBlockComponents = [
   GrayDefconArticleUnitComponent,
