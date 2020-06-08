@@ -7,9 +7,27 @@
   padding: 10px;
 }
 
-.cell {
-  background-color: #283339;
-  margin: 10px;
+@mixin head($fontSize, $titleTop, $imageHeight, $imageTop) {
+  .head {
+    position: relative;
+    margin: 10px;
+    padding-top: #{$titleTop};
+
+    span {
+      color: #ffffff;
+      font-size: #{$fontSize};
+      border-left: solid 7px #51d7dd;
+      padding-left: 13px;
+    }
+
+    img {
+      position: absolute;
+      width: auto;
+      height: #{$imageHeight};
+      right: 0;
+      top: #{$imageTop};
+    }
+  }
 }
 
 .top {
@@ -27,6 +45,11 @@
   display: flex;
   justify-content: space-between;
   align-content: stretch;
+}
+
+.cell {
+  background-color: #283339;
+  margin: 10px;
 }
 
 @include desktop {
@@ -51,6 +74,8 @@
       flex: 1;
     }
   }
+
+  @include head(31px, 36px, 47px, 14px);
 }
 
 @include tablet {
@@ -65,6 +90,8 @@
       }
     }
   }
+
+  @include head(31px, 26px, 47px, 6px);
 }
 
 @include mobile {
@@ -89,4 +116,6 @@
   .top > .cell {
     margin: 0;
   }
+
+  @include head(24px, 25px, 40px, 5px);
 }
