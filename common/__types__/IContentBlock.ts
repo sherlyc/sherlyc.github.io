@@ -21,6 +21,7 @@ import { IHalfImageArticleWithoutIntroUnit } from "./IHalfImageArticleWithoutInt
 import { IHalfWidthImageArticleUnit } from "./IHalfWidthImageArticleUnit";
 import { IHeader } from "./IHeader";
 import { IHomepageArticle } from "./IHomepageArticle";
+import { IHomepageFeaturedArticle } from "./IHomepageFeaturedArticle";
 import { IImageLinkUnit } from "./IImageLinkUnit";
 import { IModuleSubtitle } from "./IModuleSubtitle";
 import { IModuleTitle } from "./IModuleTitle";
@@ -64,5 +65,6 @@ export type IContentBlock =
   | IArticleTitle
   | IOli
   | IHomepageArticle
+  | IHomepageFeaturedArticle
   | IVerticalArticleList
   | IPartnerContent;
