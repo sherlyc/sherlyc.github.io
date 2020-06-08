@@ -4,7 +4,8 @@ describe("ClassNameService", () => {
   test.each([
     ["camelCaseText", "camel-case-text"],
     ["camelKCaseText", "camel-kcase-text"],
-    ["homepageTopStoriesDefaultOne", "homepage-top-stories-default-one"]
+    ["homepageTopStoriesDefaultOne", "homepage-top-stories-default-one"],
+    ["newHomepageTopStoriesDefaultOne", "new-homepage-top-stories-default-one"]
   ])("should add dash between camel casing: %s -> %s", (input, expected) => {
     expect(ClassNameService.generateClassName(input)).toEqual(expected);
   });
