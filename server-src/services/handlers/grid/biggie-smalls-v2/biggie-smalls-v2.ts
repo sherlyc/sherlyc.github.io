@@ -14,8 +14,6 @@ import { AspectRatio } from "../../../../../common/AspectRatio";
 import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 
-const ARTICLE_CAPACITY_BIGGIE_SMALLS = 7;
-
 export default async function(
   handlerRunner: handlerRunnerFunction,
   {
@@ -27,11 +25,7 @@ export default async function(
   }: IBiggieSmallsV2HandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const articles = await getRawArticles(
-    sourceId,
-    ARTICLE_CAPACITY_BIGGIE_SMALLS,
-    params
-  );
+  const articles = await getRawArticles(sourceId, 7, params);
 
   const content: { [key in BiggieSmallsV2GridPositions]: IContentBlock[] } = {
     [BiggieSmallsV2GridPositions.ModuleTitle]: [
