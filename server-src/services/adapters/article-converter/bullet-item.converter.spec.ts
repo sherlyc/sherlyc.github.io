@@ -1,5 +1,5 @@
-import { IRawArticle } from "../__types__/IRawArticle";
 import { IBulletItem } from "../../../../common/__types__/IBulletItem";
+import { IRawArticle } from "../__types__/IRawArticle";
 import { bulletItem } from "./bullet-item.converter";
 
 describe("Bullet Item Converter", () => {
@@ -17,6 +17,7 @@ describe("Bullet Item Converter", () => {
     lastPublishedTime: 1,
     headlineFlags: [],
     sixteenByNineSrc: "sixteenByNine.jpg",
+    portraitImageSrc: "portraitImageSrc.jpg",
     category: "National",
     categoryUrl: "/coronavirus/"
   };

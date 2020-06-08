@@ -27,6 +27,7 @@ describe("Featured Article", () => {
     lastPublishedTime: 1,
     headlineFlags: [],
     sixteenByNineSrc: "sixteenByNineSrc.jpg",
+    portraitImageSrc: "portraitImageSrc.jpg",
     identifier: "identifier",
     category: "National",
     categoryUrl: "/coronavirus/"
