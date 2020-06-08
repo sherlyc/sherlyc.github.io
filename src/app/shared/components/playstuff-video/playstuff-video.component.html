@@ -1,7 +1,9 @@
-<div class="wrapper" [ngClass]="orientation" data-id="{{ id }}">
+<div class="wrapper" [ngClass]="orientation" [class.highlight]="highlight" data-id="{{ id }}">
   <a class="image-logo" [href]="url">
-    <img class="image" [src]="image" alt="" />
-    <img class="logo" src="https://www.playwidget.stuff.co.nz/images/icon_playstuff_v2.svg" />
+    <img [src]="image" alt="{{ text }}" />
+    <div class="logo">
+      <img src="https://www.playwidget.stuff.co.nz/images/icon_playstuff_v2.svg" />
+    </div>
   </a>
   <div class="text">{{ text }}</div>
 </div>

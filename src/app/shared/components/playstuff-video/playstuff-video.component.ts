@@ -14,7 +14,10 @@ export class PlayStuffVideoComponent implements OnInit {
   @Input()
   id!: number;
   @Input()
-  orientation!: Orientation;
+  orientation: Orientation = Orientation.Portrait;
+  @Input()
+  highlight: boolean = false;
+
   url!: string;
 
   constructor() {}
