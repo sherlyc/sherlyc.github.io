@@ -2,19 +2,46 @@
   <div>featured videos</div>
   <div>logo</div>
   <div class="top">
-    <div class="highlight cell">
-      <app-play-stuff-video [image]="input.videos[0].poster" [text]="input.videos[0].name" [id]="input.videos[0].id" [orientation]="'portrait'" [highlight]="true"></app-play-stuff-video>
+    <div class="cell">
+      <app-play-stuff-video
+        [image]="input.videos[0].poster"
+        [text]="input.videos[0].name"
+        [id]="input.videos[0].id"
+        [orientation]="{
+          mobile: 'portrait',
+          tablet: 'portrait',
+          desktop: 'portrait'
+        }"
+        [highlight]="true"
+      ></app-play-stuff-video>
     </div>
     <div class="three-items">
       <div class="cell" *ngFor="let video of input.videos.slice(1, 4)">
-        <app-play-stuff-video [image]="video.thumbnail" [text]="video.name" [id]="video.id" [orientation]="'landscape'"></app-play-stuff-video>
+        <app-play-stuff-video
+          [image]="video.thumbnail"
+          [text]="video.name"
+          [id]="video.id"
+          [orientation]="{
+            mobile: 'landscape',
+            tablet: 'portrait',
+            desktop: 'landscape'
+          }"
+        ></app-play-stuff-video>
       </div>
     </div>
   </div>
   <div class="bottom">
     <div class="cell" *ngFor="let video of input.videos.slice(4)">
-      <app-play-stuff-video [image]="video.thumbnail" [text]="video.name" [id]="video.id" [orientation]="'portrait'"></app-play-stuff-video>
+      <app-play-stuff-video
+        [image]="video.thumbnail"
+        [text]="video.name"
+        [id]="video.id"
+        [orientation]="{
+          mobile: 'landscape',
+          tablet: 'portrait',
+          desktop: 'portrait'
+        }"
+      ></app-play-stuff-video>
     </div>
-    >
   </div>
 </div>

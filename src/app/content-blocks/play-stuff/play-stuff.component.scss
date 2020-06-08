@@ -1,6 +1,7 @@
 @import "src/styles/break-points";
 
 .wrapper {
+  box-sizing: border-box;
   width: 100%;
   background-color: #1a242a;
   padding: 10px;
@@ -13,45 +14,79 @@
 
 .top {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
 
-  .highlight {
-    flex: 3 1 0;
-  }
-
   .three-items {
-    flex: 2 1 0;
-
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
     align-content: stretch;
-    //.grid-cell {
-    //  flex: 1 1 0;
-    //}
   }
 }
 
 .bottom {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-content: stretch;
+}
 
-  .cell {
-    flex: 1;
+@include desktop {
+  .top {
+    flex-direction: row;
+
+    .highlight {
+      flex: 3 1 0;
+    }
+
+    .three-items {
+      flex: 2 1 0;
+
+      flex-direction: column;
+    }
+  }
+
+  .bottom {
+    flex-direction: row;
+
+    .cell {
+      flex: 1;
+    }
+  }
+}
+
+@include tablet {
+  .top {
+    flex-direction: column;
+
+    .three-items {
+      flex-direction: row;
+
+      .cell {
+        flex: 1;
+      }
+    }
   }
 }
 
 @include mobile {
   .top {
-    display: flex;
     flex-direction: column;
+
+    .three-items {
+      flex-direction: column;
+    }
   }
 
   .bottom {
-    display: flex;
     flex-direction: column;
+  }
+
+  .wrapper {
+    width: calc(100% + 20px);
+    margin-left: -10px;
+    padding: 10px 0;
+  }
+
+  .top > .cell {
+    margin: 0;
   }
 }

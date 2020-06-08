@@ -1,3 +1,5 @@
+@import "src/styles/break-points";
+
 .wrapper {
   display: flex;
 }
@@ -33,7 +35,14 @@
   }
 }
 
-.landscape {
+.highlight {
+  .text {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+@mixin landscape {
   flex-direction: row;
   align-items: start;
   .image-logo,
@@ -42,14 +51,37 @@
   }
 }
 
-.portrait {
+@mixin portrait {
   flex-direction: column;
   justify-content: stretch;
 }
 
-.highlight {
-  .text {
-    font-size: 20px;
-    line-height: 24px;
+@include mobile {
+  .landscape-mobile {
+    @include landscape;
+  }
+
+  .portrait-mobile {
+    @include portrait;
+  }
+}
+
+@include tablet {
+  .landscape-tablet {
+    @include landscape;
+  }
+
+  .portrait-tablet {
+    @include portrait;
+  }
+}
+
+@include desktop {
+  .landscape-desktop {
+    @include landscape;
+  }
+
+  .portrait-desktop {
+    @include portrait;
   }
 }
