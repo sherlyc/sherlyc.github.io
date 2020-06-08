@@ -4,7 +4,8 @@ import logger from "../services/utils/logger";
 import { WeatherLocations } from "../../common/WeatherLocations";
 
 export const getWeather = async (req: Request, res: Response) => {
-  const location = req.query.location || req.params.location;
+  const location = (req.query.location ||
+    req.params.location) as WeatherLocations;
   if (location && Object.values(WeatherLocations).includes(location)) {
     try {
       res.json(await weatherService(location, req.spadeParams));

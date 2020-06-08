@@ -9,11 +9,11 @@ jest.mock("../services/adapters/weather/weather");
 
 describe("Weather Api", () => {
   it("should send weather data when request is successful", async () => {
-    const req = {
+    const req = ({
       spadeParams: { apiRequestId: "33498" },
       query: { location: WeatherLocations.Auckland },
       cookies: {}
-    } as Request;
+    } as any) as Request;
 
     const res = {
       json: jest.fn(),
@@ -50,11 +50,11 @@ describe("Weather Api", () => {
   });
 
   it("should send 500 status code when request failed", async () => {
-    const req = {
+    const req = ({
       spadeParams: { apiRequestId: "33498" },
       query: { location: WeatherLocations.Auckland },
       cookies: {}
-    } as Request;
+    } as any) as Request;
     const res = { sendStatus: jest.fn(), end: jest.fn() } as any;
     (weatherService as jest.Mock).mockRejectedValue(new Error());
 
@@ -77,12 +77,12 @@ describe("Weather Api", () => {
   });
 
   it("should return 400 status code when location is not valid", async () => {
-    const req = {
+    const req = ({
       spadeParams: { apiRequestId: "33498" },
       query: { location: "NewPlymouth" },
       params: {},
       cookies: {}
-    } as Request;
+    } as any) as Request;
     const res = { sendStatus: jest.fn(), end: jest.fn() } as any;
 
     await getWeather(req, res);
