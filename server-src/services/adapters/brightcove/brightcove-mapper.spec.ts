@@ -33,7 +33,7 @@ describe("Brightcove mapper", () => {
           name: "Video 1",
           description: "Description 1",
           thumbnail: expectedImageSrc,
-          updatedAt: "123"
+          poster: expectedImageSrc
         }
       ];
 

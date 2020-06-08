@@ -13,16 +13,28 @@ export default async function(
   { total }: IPlayStuffHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const { account, playlist, policyKey } = playStuffConfig;
+  const {
+    account,
+    playlist,
+    policyKey,
+    thumbnailSize,
+    posterSize
+  } = playStuffConfig;
 
   try {
-    const videos = await getBrightcovePlaylist(
+    let videos = await getBrightcovePlaylist(
       account,
       playlist,
       policyKey,
       total,
       params
     );
+
+    videos = videos.map((video) => ({
+      ...video,
+      thumbnail: resize(video.thumbnail, thumbnailSize),
+      poster: resize(video.poster, posterSize)
+    }));
 
     return [
       {
@@ -35,3 +47,6 @@ export default async function(
     return [];
   }
 }
+
+const resize = (imageSrc: string, size: string) =>
+  imageSrc.replace(/\/[0-9]+x[0-9]+\//, `/${size}/`);
