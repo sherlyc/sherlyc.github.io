@@ -5,11 +5,11 @@ import { mapBrightcovePlaylist } from "./brightcove-mapper";
 describe("Brightcove mapper", () => {
   it.each([
     [
-      "https://cf-images.ap-southeast-2.prod.boltdns.net/v1/static/6005208634001/096243ac-82b6-4a28-bbce-21caa1932da8/247799ae-9ace-46c4-aa3b-4becf50d2af9/320x180/match/image.jpg",
-      "https://cf-images.ap-southeast-2.prod.boltdns.net/v1/static/6005208634001/096243ac-82b6-4a28-bbce-21caa1932da8/247799ae-9ace-46c4-aa3b-4becf50d2af9/480x270/match/image.jpg"
+      "https://cf-images.ap-southeast-2.prod.boltdns.net/v1/static/6005208634001/096243ac-82b6-4a28-bbce-21caa1932da8/247799ae-9ace-46c4-aa3b-4becf50d2af9/1024x576/match/image.jpg",
+      "https://cf-images.ap-southeast-2.prod.boltdns.net/v1/static/6005208634001/096243ac-82b6-4a28-bbce-21caa1932da8/247799ae-9ace-46c4-aa3b-4becf50d2af9/320x180/match/image.jpg"
     ]
   ])(
-    "should replace image src with 480x270",
+    "should replace image src with 320x180",
     (inputImageSrc, expectedImageSrc) => {
       const input: IBrightcovePlaylist = {
         videos: [

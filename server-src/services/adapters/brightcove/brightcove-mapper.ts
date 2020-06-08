@@ -5,7 +5,7 @@ export const mapBrightcovePlaylist = (
   playlist: IBrightcovePlaylist
 ): IBrightcoveVideo[] => {
   return playlist.videos.map((video) => {
-    const thumbnail = video.thumbnail.replace(/\/[0-9]+x[0-9]+\//, "/480x270/");
+    const thumbnail = video.thumbnail.replace(/\/[0-9]+x[0-9]+\//, "/320x180/");
 
     return {
       id: video.id,
