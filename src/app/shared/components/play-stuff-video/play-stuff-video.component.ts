@@ -13,7 +13,7 @@ export class PlayStuffVideoComponent implements OnInit {
   @Input()
   text!: string;
   @Input()
-  id!: number;
+  id!: string;
   @Input()
   orientation!: {
     mobile: Orientation;
