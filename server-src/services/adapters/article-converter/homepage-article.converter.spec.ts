@@ -1,11 +1,11 @@
-import { IRawArticle } from "../__types__/IRawArticle";
+import { AccentColor } from "../../../../common/__types__/AccentColor";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import {
   IHomepageArticle,
   Orientation
 } from "../../../../common/__types__/IHomepageArticle";
+import { IRawArticle } from "../__types__/IRawArticle";
 import { homepageArticle } from "./homepage-article.converter";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { AccentColor } from "../../../../common/__types__/AccentColor";
 
 describe("Homepage Article", () => {
   const fakeArticle: IRawArticle = {
@@ -22,6 +22,7 @@ describe("Homepage Article", () => {
     lastPublishedTime: 1,
     headlineFlags: [],
     sixteenByNineSrc: "sixteenByNineSrc.jpg",
+    portraitImageSrc: "portraitImageSrc.jpg",
     identifier: "identifier",
     category: "National",
     categoryUrl: "/coronavirus/"

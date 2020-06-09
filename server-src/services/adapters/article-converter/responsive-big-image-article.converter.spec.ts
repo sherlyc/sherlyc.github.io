@@ -1,7 +1,7 @@
-import { responsiveBigImageArticleUnit } from "./responsive-big-image-article.converter";
-import { IRawArticle } from "../__types__/IRawArticle";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IResponsiveBigImageArticleUnit } from "../../../../common/__types__/IResponsiveBigImageArticleUnit";
+import { IRawArticle } from "../__types__/IRawArticle";
+import { responsiveBigImageArticleUnit } from "./responsive-big-image-article.converter";
 
 describe("responsive big image article", () => {
   const fakeStrapName = "fakeStrapName";
@@ -19,6 +19,7 @@ describe("responsive big image article", () => {
     lastPublishedTime: 1,
     headlineFlags: [],
     sixteenByNineSrc: "sixteenByNineSrc.jpg",
+    portraitImageSrc: "portraitImageSrc.jpg",
     identifier: "identifier",
     category: "National",
     categoryUrl: "/coronavirus/"

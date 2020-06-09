@@ -1,7 +1,7 @@
-import { IRawArticle } from "../__types__/IRawArticle";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { defconArticleUnit } from "./defcon-article-unit.converter";
 import { IDefconArticleUnit } from "../../../../common/__types__/IDefconArticleUnit";
+import { IRawArticle } from "../__types__/IRawArticle";
+import { defconArticleUnit } from "./defcon-article-unit.converter";
 
 describe("defcon article unit", () => {
   it("should convert", () => {
@@ -19,6 +19,7 @@ describe("defcon article unit", () => {
       lastPublishedTime: 1,
       headlineFlags: [],
       sixteenByNineSrc: null,
+      portraitImageSrc: null,
       category: "National",
       categoryUrl: "/coronavirus/"
     };
