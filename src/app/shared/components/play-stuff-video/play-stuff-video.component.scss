@@ -29,8 +29,9 @@
     padding: 2%;
     border-radius: 50%;
     background: #19242a;
+    box-sizing: border-box;
 
-    img {
+    svg {
       margin-left: 10%;
     }
   }
