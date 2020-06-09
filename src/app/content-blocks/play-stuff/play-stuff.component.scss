@@ -93,6 +93,7 @@
   }
 
   .bottom {
+    display: none;
     flex-direction: row;
 
     .cell {
@@ -109,10 +110,14 @@
 
     .three-items {
       flex-direction: column;
+      .cell:last-child {
+        display: none;
+      }
     }
   }
 
   .bottom {
+    display: none;
     flex-direction: column;
   }
 
@@ -123,7 +128,7 @@
   }
 
   .top > .cell {
-    margin: 0;
+    margin: 0 0 30px;
   }
 
   @include head(24px, 25px, 40px, 5px);
