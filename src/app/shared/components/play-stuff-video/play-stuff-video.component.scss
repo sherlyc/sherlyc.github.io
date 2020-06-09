@@ -29,10 +29,11 @@
     padding: 2%;
     border-radius: 50%;
     background: #19242a;
-    box-sizing: border-box;
 
     svg {
-      margin-left: 10%;
+      display: block;
+      position: relative;
+      left: 10%;
     }
   }
 }
