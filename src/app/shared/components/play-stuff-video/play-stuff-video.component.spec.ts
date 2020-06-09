@@ -45,10 +45,11 @@ describe("PlayStuffVideoComponent", () => {
     expect(wrapper.className).toContain("portrait-tablet");
     expect(wrapper.className).toContain("landscape-desktop");
 
-    const anchor: HTMLAnchorElement = fixture.debugElement.query(
-      By.css("a")
-    ).nativeElement;
-    expect(anchor.href).toBe(`https://play.stuff.co.nz/details/_${component.id}`);
+    const anchor: HTMLAnchorElement = fixture.debugElement.query(By.css("a"))
+      .nativeElement;
+    expect(anchor.href).toBe(
+      `https://play.stuff.co.nz/details/_${component.id}`
+    );
 
     const image: HTMLImageElement = fixture.debugElement.query(
       By.css(".image-logo > img")
@@ -56,9 +57,8 @@ describe("PlayStuffVideoComponent", () => {
     expect(image.getAttribute("src")).toBe(component.image);
     expect(image.getAttribute("alt")).toBe(component.text);
 
-    const text: HTMLDivElement = fixture.debugElement.query(
-      By.css(".text")
-    ).nativeElement;
+    const text: HTMLDivElement = fixture.debugElement.query(By.css(".text"))
+      .nativeElement;
     expect(text.textContent).toBe(component.text);
   });
 });
