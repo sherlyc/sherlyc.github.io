@@ -126,7 +126,7 @@ export const newPage = (): HandlerInput[] => {
           displayName: "climate change",
           color: "#256091",
           linkUrl: "/" + Section.ClimateChange,
-          strapName: `${homepageAdPrefix}ClimateChange`,
+          strapName: `${homepageV2AdPrefix}ClimateChange`,
           sourceId: Strap.ClimateChange
         },
         {
@@ -142,7 +142,7 @@ export const newPage = (): HandlerInput[] => {
           displayName: "homed",
           color: "#256091",
           linkUrl: "/" + Section.Homed,
-          strapName: `${homepageAdPrefix}Homed`,
+          strapName: `${homepageV2AdPrefix}Homed`,
           sourceId: Strap.Homed
         },
         {
@@ -158,7 +158,7 @@ export const newPage = (): HandlerInput[] => {
           displayName: "travel",
           color: "#256091",
           linkUrl: "/" + Section.Travel,
-          strapName: `${homepageAdPrefix}Travel`,
+          strapName: `${homepageV2AdPrefix}Travel`,
           sourceId: Strap.Travel
         },
         {
@@ -335,7 +335,7 @@ export const newPage = (): HandlerInput[] => {
       displayName: "climate change",
       color: "#256091",
       linkUrl: "/" + Section.ClimateChange,
-      strapName: `${homepageV2AdPrefix}ClimateChange`,
+      strapName: `${homepageAdPrefix}ClimateChange`,
       sourceId: Strap.ClimateChange
     },
     {
@@ -351,7 +351,7 @@ export const newPage = (): HandlerInput[] => {
       displayName: "homed",
       color: "#41ad95",
       linkUrl: "/" + Section.Homed,
-      strapName: `${homepageV2AdPrefix}Homed`,
+      strapName: `${homepageAdPrefix}Homed`,
       sourceId: Strap.Homed
     },
     {
@@ -367,7 +367,7 @@ export const newPage = (): HandlerInput[] => {
       displayName: "travel",
       color: "#08afb7",
       linkUrl: "/" + Section.Travel,
-      strapName: `${homepageV2AdPrefix}Travel`,
+      strapName: `${homepageAdPrefix}Travel`,
       sourceId: Strap.Travel
     },
     {
@@ -432,7 +432,7 @@ export const newPage = (): HandlerInput[] => {
       displayName: "life & style",
       color: "#d11242",
       linkUrl: "/" + Section.LifeStyle,
-      strapName: `${homepageV2AdPrefix}LifeStyle`,
+      strapName: `${homepageAdPrefix}LifeStyle`,
       sourceId: Strap.LifeStyle
     },
     {
@@ -458,7 +458,7 @@ export const newPage = (): HandlerInput[] => {
       displayName: "entertainment",
       color: "#9c1a87",
       linkUrl: "/" + Section.Entertainment,
-      strapName: `${homepageV2AdPrefix}Entertainment`,
+      strapName: `${homepageAdPrefix}Entertainment`,
       sourceId: Strap.Entertainment
     },
     {
