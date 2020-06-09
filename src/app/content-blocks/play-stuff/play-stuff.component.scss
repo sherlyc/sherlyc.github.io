@@ -91,6 +91,14 @@
     }
   }
 
+  .bottom {
+    flex-direction: row;
+
+    .cell {
+      flex: 1;
+    }
+  }
+
   @include head(31px, 26px, 47px, 6px);
 }
 
