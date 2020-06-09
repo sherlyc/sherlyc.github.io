@@ -33,16 +33,7 @@ describe("PlayStuffComponent", () => {
   it("should create", () => {
     component.input = {
       type: ContentBlockType.PlayStuff,
-      videos: [
-        fakeVideo("1"),
-        fakeVideo("2"),
-        fakeVideo("3"),
-        fakeVideo("4"),
-        fakeVideo("5"),
-        fakeVideo("6"),
-        fakeVideo("7"),
-        fakeVideo("8")
-      ]
+      videos: []
     };
     fixture.detectChanges();
     expect(component).toBeTruthy();
@@ -124,7 +115,7 @@ describe("PlayStuffComponent", () => {
     });
   });
 
-  it("should render when insufficient videos are provided", () => {
+  it("should render videos when there are fewer than 8", () => {
     component.input = {
       type: ContentBlockType.PlayStuff,
       videos: [fakeVideo("1"), fakeVideo("2"), fakeVideo("3")]
@@ -136,5 +127,19 @@ describe("PlayStuffComponent", () => {
     );
 
     expect(videoElements).toHaveLength(3);
+  });
+
+  it("should not render videos when none are provided", () => {
+    component.input = {
+      type: ContentBlockType.PlayStuff,
+      videos: []
+    };
+
+    fixture.detectChanges();
+    const videoElements = fixture.debugElement.queryAll(
+      By.css("app-play-stuff-video")
+    );
+
+    expect(videoElements).toHaveLength(0);
   });
 });
