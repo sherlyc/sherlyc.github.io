@@ -3,34 +3,43 @@ import { ContentBlockType } from "../../../../common/__types__/ContentBlockType"
 import {
   HomepageHighlightArticleVariation,
   IHomepageHighlightArticle,
-  IHomepageHighlightArticleImage,
-  IHomepageHighlightArticleImageDeviceConfig
+  IHomepageHighlightArticleImageConfigs,
+  IHomepageHighlightArticleImages
 } from "../../../../common/__types__/IHomepageHighlightArticle";
 import { IRawArticle } from "../__types__/IRawArticle";
 import { JsonFeedImageType } from "../__types__/JsonFeedImageType";
 
 function pickImage(
   article: IRawArticle,
-  config: IHomepageHighlightArticleImageDeviceConfig
-): IHomepageHighlightArticleImage {
-  switch (config.variant) {
-    case JsonFeedImageType.DEFCON:
-      return { src: article.defconSrc, aspectRatio: config.aspectRatio };
-    case JsonFeedImageType.PORTRAIT:
-      return { src: article.portraitImageSrc, aspectRatio: config.aspectRatio };
-    default:
-      return { src: article.sixteenByNineSrc, aspectRatio: config.aspectRatio };
+  image: IHomepageHighlightArticleImageConfigs
+): IHomepageHighlightArticleImages {
+  const result: IHomepageHighlightArticleImages = {};
+  for (const [device, { variant, aspectRatio }] of Object.entries(image)) {
+    let src;
+    switch (variant) {
+      case JsonFeedImageType.DEFCON:
+        src = article.defconSrc;
+        break;
+      case JsonFeedImageType.PORTRAIT:
+        src = article.portraitImageSrc;
+        break;
+      default:
+        src = article.sixteenByNineSrc;
+    }
+    if (src) {
+      result[device as keyof IHomepageHighlightArticleImages] = {
+        src,
+        aspectRatio
+      };
+    }
   }
+  return result;
 }
 
 export const homepageHighlightArticle = (
   article: IRawArticle,
   strapName: string,
-  image: {
-    mobile?: IHomepageHighlightArticleImageDeviceConfig;
-    tablet?: IHomepageHighlightArticleImageDeviceConfig;
-    desktop?: IHomepageHighlightArticleImageDeviceConfig;
-  },
+  image: IHomepageHighlightArticleImageConfigs,
   variation: HomepageHighlightArticleVariation,
   showIntroText: boolean
 ): IHomepageHighlightArticle => ({
@@ -42,11 +51,7 @@ export const homepageHighlightArticle = (
   headlineFlags: article.headlineFlags,
   lastPublishedTime: article.lastPublishedTime,
   introText: showIntroText ? article.introText : undefined,
-  image: {
-    ...(image.mobile ? { mobile: pickImage(article, image.mobile) } : {}),
-    ...(image.tablet ? { tablet: pickImage(article, image.tablet) } : {}),
-    ...(image.desktop ? { desktop: pickImage(article, image.desktop) } : {})
-  },
+  image: pickImage(article, image),
   variation,
   category: {
     name: article.category,

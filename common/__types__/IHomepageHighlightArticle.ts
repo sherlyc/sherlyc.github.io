@@ -9,17 +9,23 @@ export enum HomepageHighlightArticleVariation {
   Featured = "Featured"
 }
 
-export interface IHomepageHighlightArticleImageDeviceConfig {
+export interface IHomepageHighlightArticleImageConfig {
   variant: JsonFeedImageType;
   aspectRatio: AspectRatio;
 }
 
+export interface IHomepageHighlightArticleImageConfigs {
+  mobile?: IHomepageHighlightArticleImageConfig;
+  tablet?: IHomepageHighlightArticleImageConfig;
+  desktop?: IHomepageHighlightArticleImageConfig;
+}
+
 export interface IHomepageHighlightArticleImage {
-  src: string | null;
+  src: string;
   aspectRatio: AspectRatio;
 }
 
-export interface IHomepageHighlightArticleImageConfig {
+export interface IHomepageHighlightArticleImages {
   mobile?: IHomepageHighlightArticleImage;
   tablet?: IHomepageHighlightArticleImage;
   desktop?: IHomepageHighlightArticleImage;
@@ -34,7 +40,7 @@ export interface IHomepageHighlightArticle {
   headlineFlags: HeadlineFlags[];
   lastPublishedTime?: number;
   introText?: string;
-  image: IHomepageHighlightArticleImageConfig;
+  image: IHomepageHighlightArticleImages;
   variation: HomepageHighlightArticleVariation;
   category: {
     name: string;

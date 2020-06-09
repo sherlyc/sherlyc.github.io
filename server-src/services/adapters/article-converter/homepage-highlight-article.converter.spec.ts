@@ -89,7 +89,7 @@ describe("Homepage Highlight Article", () => {
     expect(result).toEqual(expected);
   });
 
-  it("should convert different configurations", () => {
+  it("converts different configurations", () => {
     const result = homepageHighlightArticle(
       fakeArticle,
       "strapName",
@@ -103,6 +103,34 @@ describe("Homepage Highlight Article", () => {
       image: {},
       variation: HomepageHighlightArticleVariation.Featured,
       introText: undefined
+    });
+  });
+
+  it("ignores null image src", () => {
+    const result = homepageHighlightArticle(
+      { ...fakeArticle, sixteenByNineSrc: null, portraitImageSrc: null },
+      "strapName",
+      {
+        mobile: {
+          variant: JsonFeedImageType.THUMBNAIL_SIXTEEN_BY_NINE,
+          aspectRatio: AspectRatio.SixteenByNine
+        },
+        tablet: {
+          variant: JsonFeedImageType.PORTRAIT,
+          aspectRatio: AspectRatio.SixteenByNine
+        },
+        desktop: {
+          variant: JsonFeedImageType.PORTRAIT,
+          aspectRatio: AspectRatio.OneByOne
+        }
+      },
+      HomepageHighlightArticleVariation.Lead,
+      true
+    );
+
+    expect(result).toEqual({
+      ...expected,
+      image: {}
     });
   });
 });
