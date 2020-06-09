@@ -2,6 +2,7 @@ import { ContentBlockType } from "../../../../../common/__types__/ContentBlockTy
 import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
+import { AspectRatio } from "../../../../../common/AspectRatio";
 import { IParams } from "../../../__types__/IParams";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
@@ -54,6 +55,8 @@ describe("Top Stories V2", () => {
         ({
           id: `${id}`,
           imageSrc: `${id}.png`,
+          sixteenByNineSrc: `${id}.16:9.jpg`,
+          portraitImageSrc: `${id}.3:4.jpg`,
           introText: `${id} intro`
         } as IRawArticle)
     );
@@ -92,14 +95,26 @@ describe("Top Stories V2", () => {
       content: {
         [TopStoriesV2GridPositions.RightHighlight]: [
           expectContentBlock({
-            type: ContentBlockType.FeaturedArticle,
-            id: "1"
+            type: ContentBlockType.HomepageHighlightArticle,
+            id: "1",
+            image: {
+              mobile: {
+                src: "1.3:4.jpg",
+                aspectRatio: AspectRatio.OneByOne
+              }
+            }
           })
         ],
         [TopStoriesV2GridPositions.LeftHighlight]: [
           expectContentBlock({
-            type: ContentBlockType.BigImageArticleUnit,
-            id: "2"
+            type: ContentBlockType.HomepageHighlightArticle,
+            id: "2",
+            image: {
+              mobile: {
+                src: "2.16:9.jpg",
+                aspectRatio: AspectRatio.SixteenByNine
+              }
+            }
           })
         ],
         [TopStoriesV2GridPositions.BannerAd]: [
