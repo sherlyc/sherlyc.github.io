@@ -21,7 +21,7 @@ export class PlayStuffVideoComponent implements OnInit {
     desktop: Orientation;
   };
   @Input()
-  highlight: boolean = false;
+  highlight = false;
   classNames: string[] = [];
 
   url!: string;
