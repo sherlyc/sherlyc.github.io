@@ -28,18 +28,6 @@ describe("PlayStuffComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PlayStuffComponent);
     component = fixture.componentInstance;
-  });
-
-  it("should create", () => {
-    component.input = {
-      type: ContentBlockType.PlayStuff,
-      videos: []
-    };
-    fixture.detectChanges();
-    expect(component).toBeTruthy();
-  });
-
-  it("should render 8 videos", () => {
     component.input = {
       type: ContentBlockType.PlayStuff,
       videos: [
@@ -53,7 +41,14 @@ describe("PlayStuffComponent", () => {
         fakeVideo("8")
       ]
     };
+  });
 
+  it("should create", () => {
+    fixture.detectChanges();
+    expect(component).toBeTruthy();
+  });
+
+  it("should render 8 videos", () => {
     fixture.detectChanges();
     const videoElements = fixture.debugElement.queryAll(
       By.css("app-play-stuff-video")
@@ -127,19 +122,5 @@ describe("PlayStuffComponent", () => {
     );
 
     expect(videoElements).toHaveLength(3);
-  });
-
-  it("should not render videos when none are provided", () => {
-    component.input = {
-      type: ContentBlockType.PlayStuff,
-      videos: []
-    };
-
-    fixture.detectChanges();
-    const videoElements = fixture.debugElement.queryAll(
-      By.css("app-play-stuff-video")
-    );
-
-    expect(videoElements).toHaveLength(0);
   });
 });

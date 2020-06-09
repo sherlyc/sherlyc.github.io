@@ -36,12 +36,14 @@ export default async function(
       poster: resize(video.poster, posterSize)
     }));
 
-    return [
-      {
-        type: ContentBlockType.PlayStuff,
-        videos: resizedVideos
-      } as IPlayStuff
-    ];
+    return resizedVideos.length
+      ? [
+          {
+            type: ContentBlockType.PlayStuff,
+            videos: resizedVideos
+          } as IPlayStuff
+        ]
+      : [];
   } catch (error) {
     logger.error(params.apiRequestId, `Play Stuff handler error`, error);
     return [];
