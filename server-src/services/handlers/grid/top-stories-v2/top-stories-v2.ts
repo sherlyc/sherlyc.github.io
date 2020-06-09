@@ -1,14 +1,14 @@
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
-import { HomepageFeaturedArticleVariation } from "../../../../../common/__types__/IHomepageFeaturedArticle";
+import { HomepageHighlightArticleVariation } from "../../../../../common/__types__/IHomepageHighlightArticle";
 import { AspectRatio } from "../../../../../common/AspectRatio";
 import { IParams } from "../../../__types__/IParams";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { JsonFeedImageType } from "../../../adapters/__types__/JsonFeedImageType";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
-import { homepageFeaturedArticle } from "../../../adapters/article-converter/homepage-featured-article.converter";
+import { homepageHighlightArticle } from "../../../adapters/article-converter/homepage-highlight-article.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { Strap } from "../../../strap";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
@@ -43,7 +43,7 @@ export default async function(
       [TopStoriesV2GridPositions.RightHighlight]: [
         contentErrorHandler(
           () =>
-            homepageFeaturedArticle(
+            homepageHighlightArticle(
               articles.shift() as IRawArticle,
               strapName,
               {
@@ -52,7 +52,7 @@ export default async function(
                   aspectRatio: AspectRatio.OneByOne
                 }
               },
-              HomepageFeaturedArticleVariation.Featured,
+              HomepageHighlightArticleVariation.Featured,
               true
             ),
           HandlerInputType.TopStoriesV2,
@@ -63,7 +63,7 @@ export default async function(
       [TopStoriesV2GridPositions.LeftHighlight]: [
         contentErrorHandler(
           () =>
-            homepageFeaturedArticle(
+            homepageHighlightArticle(
               articles.shift() as IRawArticle,
               strapName,
               {
@@ -72,7 +72,7 @@ export default async function(
                   aspectRatio: AspectRatio.SixteenByNine
                 }
               },
-              HomepageFeaturedArticleVariation.Lead,
+              HomepageHighlightArticleVariation.Lead,
               true
             ),
           HandlerInputType.TopStoriesV2,

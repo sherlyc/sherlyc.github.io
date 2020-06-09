@@ -4,9 +4,9 @@ import { By } from "@angular/platform-browser";
 import { AccentColor } from "../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import {
-  HomepageFeaturedArticleVariation,
-  IHomepageFeaturedArticle
-} from "../../../../common/__types__/IHomepageFeaturedArticle";
+  HomepageHighlightArticleVariation,
+  IHomepageHighlightArticle
+} from "../../../../common/__types__/IHomepageHighlightArticle";
 import { AspectRatio } from "../../../../common/AspectRatio";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
@@ -14,15 +14,15 @@ import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { FluidImageComponent } from "../../shared/components/fluid-image/fluid-image.component";
 import { HeadlineComponent } from "../../shared/components/headline/headline.component";
 import { TagLinkComponent } from "../../shared/components/tag-link/tag-link.component";
-import { HomepageFeaturedArticleComponent } from "./homepage-featured-article.component";
+import { HomepageHighlightArticleComponent } from "./homepage-highlight-article.component";
 
-describe("HomepageFeaturedArticleComponent", () => {
-  let component: HomepageFeaturedArticleComponent;
-  let fixture: ComponentFixture<HomepageFeaturedArticleComponent>;
+describe("HomepageHighlightArticleComponent", () => {
+  let component: HomepageHighlightArticleComponent;
+  let fixture: ComponentFixture<HomepageHighlightArticleComponent>;
   let analyticsService: ServiceMock<AnalyticsService>;
 
-  const input: IHomepageFeaturedArticle = {
-    type: ContentBlockType.HomepageFeaturedArticle,
+  const input: IHomepageHighlightArticle = {
+    type: ContentBlockType.HomepageHighlightArticle,
     id: "123123",
     headline: "Dummy Headline",
     introText: "Dummy intro text",
@@ -44,12 +44,12 @@ describe("HomepageFeaturedArticleComponent", () => {
       title: "title",
       strapName: "strapName"
     },
-    variation: HomepageFeaturedArticleVariation.Lead
+    variation: HomepageHighlightArticleVariation.Lead
   };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HomepageFeaturedArticleComponent],
+      declarations: [HomepageHighlightArticleComponent],
       providers: [
         {
           provide: AnalyticsService,
@@ -61,7 +61,7 @@ describe("HomepageFeaturedArticleComponent", () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomepageFeaturedArticleComponent);
+    fixture = TestBed.createComponent(HomepageHighlightArticleComponent);
     component = fixture.componentInstance;
     analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
       AnalyticsService
@@ -105,8 +105,8 @@ describe("HomepageFeaturedArticleComponent", () => {
 
   it.each`
     variation
-    ${HomepageFeaturedArticleVariation.Lead}
-    ${HomepageFeaturedArticleVariation.Featured}
+    ${HomepageHighlightArticleVariation.Lead}
+    ${HomepageHighlightArticleVariation.Featured}
   `("should set class name for variation $variation", ({ variation }) => {
     component.input = {
       ...input,

@@ -95,7 +95,7 @@ describe("Top Stories V2", () => {
       content: {
         [TopStoriesV2GridPositions.RightHighlight]: [
           expectContentBlock({
-            type: ContentBlockType.HomepageFeaturedArticle,
+            type: ContentBlockType.HomepageHighlightArticle,
             id: "1",
             image: {
               mobile: {
@@ -107,7 +107,7 @@ describe("Top Stories V2", () => {
         ],
         [TopStoriesV2GridPositions.LeftHighlight]: [
           expectContentBlock({
-            type: ContentBlockType.HomepageFeaturedArticle,
+            type: ContentBlockType.HomepageHighlightArticle,
             id: "2",
             image: {
               mobile: {

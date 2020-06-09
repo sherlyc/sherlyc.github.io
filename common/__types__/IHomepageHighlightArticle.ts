@@ -4,29 +4,29 @@ import { HeadlineFlags } from "../HeadlineFlags";
 import { AccentColor } from "./AccentColor";
 import { ContentBlockType } from "./ContentBlockType";
 
-export enum HomepageFeaturedArticleVariation {
+export enum HomepageHighlightArticleVariation {
   Lead = "Lead",
   Featured = "Featured"
 }
 
-export interface IHomepageFeaturedArticleImageDeviceConfig {
+export interface IHomepageHighlightArticleImageDeviceConfig {
   variant: JsonFeedImageType;
   aspectRatio: AspectRatio;
 }
 
-export interface IHomepageFeaturedArticleImage {
+export interface IHomepageHighlightArticleImage {
   src: string | null;
   aspectRatio: AspectRatio;
 }
 
-export interface IHomepageFeaturedArticleImageConfig {
-  mobile?: IHomepageFeaturedArticleImage;
-  tablet?: IHomepageFeaturedArticleImage;
-  desktop?: IHomepageFeaturedArticleImage;
+export interface IHomepageHighlightArticleImageConfig {
+  mobile?: IHomepageHighlightArticleImage;
+  tablet?: IHomepageHighlightArticleImage;
+  desktop?: IHomepageHighlightArticleImage;
 }
 
-export interface IHomepageFeaturedArticle {
-  type: ContentBlockType.HomepageFeaturedArticle;
+export interface IHomepageHighlightArticle {
+  type: ContentBlockType.HomepageHighlightArticle;
   id: string;
   headline: string;
   color: AccentColor.TopStoriesBlue;
@@ -34,8 +34,8 @@ export interface IHomepageFeaturedArticle {
   headlineFlags: HeadlineFlags[];
   lastPublishedTime?: number;
   introText?: string;
-  image: IHomepageFeaturedArticleImageConfig;
-  variation: HomepageFeaturedArticleVariation;
+  image: IHomepageHighlightArticleImageConfig;
+  variation: HomepageHighlightArticleVariation;
   category: {
     name: string;
     url: string;

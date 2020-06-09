@@ -1,18 +1,18 @@
 import { AccentColor } from "../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import {
-  HomepageFeaturedArticleVariation,
-  IHomepageFeaturedArticle,
-  IHomepageFeaturedArticleImage,
-  IHomepageFeaturedArticleImageDeviceConfig
-} from "../../../../common/__types__/IHomepageFeaturedArticle";
+  HomepageHighlightArticleVariation,
+  IHomepageHighlightArticle,
+  IHomepageHighlightArticleImage,
+  IHomepageHighlightArticleImageDeviceConfig
+} from "../../../../common/__types__/IHomepageHighlightArticle";
 import { IRawArticle } from "../__types__/IRawArticle";
 import { JsonFeedImageType } from "../__types__/JsonFeedImageType";
 
 function pickImage(
   article: IRawArticle,
-  config: IHomepageFeaturedArticleImageDeviceConfig
-): IHomepageFeaturedArticleImage {
+  config: IHomepageHighlightArticleImageDeviceConfig
+): IHomepageHighlightArticleImage {
   switch (config.variant) {
     case JsonFeedImageType.DEFCON:
       return { src: article.defconSrc, aspectRatio: config.aspectRatio };
@@ -23,18 +23,18 @@ function pickImage(
   }
 }
 
-export const homepageFeaturedArticle = (
+export const homepageHighlightArticle = (
   article: IRawArticle,
   strapName: string,
   image: {
-    mobile?: IHomepageFeaturedArticleImageDeviceConfig;
-    tablet?: IHomepageFeaturedArticleImageDeviceConfig;
-    desktop?: IHomepageFeaturedArticleImageDeviceConfig;
+    mobile?: IHomepageHighlightArticleImageDeviceConfig;
+    tablet?: IHomepageHighlightArticleImageDeviceConfig;
+    desktop?: IHomepageHighlightArticleImageDeviceConfig;
   },
-  variation: HomepageFeaturedArticleVariation,
+  variation: HomepageHighlightArticleVariation,
   showIntroText: boolean
-): IHomepageFeaturedArticle => ({
-  type: ContentBlockType.HomepageFeaturedArticle,
+): IHomepageHighlightArticle => ({
+  type: ContentBlockType.HomepageHighlightArticle,
   id: article.id,
   headline: article.indexHeadline,
   color: AccentColor.TopStoriesBlue,

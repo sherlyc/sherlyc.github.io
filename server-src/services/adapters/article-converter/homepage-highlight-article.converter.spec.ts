@@ -1,15 +1,15 @@
 import { AccentColor } from "../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import {
-  HomepageFeaturedArticleVariation,
-  IHomepageFeaturedArticle
-} from "../../../../common/__types__/IHomepageFeaturedArticle";
+  HomepageHighlightArticleVariation,
+  IHomepageHighlightArticle
+} from "../../../../common/__types__/IHomepageHighlightArticle";
 import { AspectRatio } from "../../../../common/AspectRatio";
 import { IRawArticle } from "../__types__/IRawArticle";
 import { JsonFeedImageType } from "../__types__/JsonFeedImageType";
-import { homepageFeaturedArticle } from "./homepage-featured-article.converter";
+import { homepageHighlightArticle } from "./homepage-highlight-article.converter";
 
-describe("Homepage Featured Article", () => {
+describe("Homepage Highlight Article", () => {
   const fakeArticle: IRawArticle = {
     id: "1",
     indexHeadline: "Headline 1",
@@ -30,7 +30,7 @@ describe("Homepage Featured Article", () => {
     categoryUrl: "/coronavirus/"
   };
 
-  const expected: IHomepageFeaturedArticle = {
+  const expected: IHomepageHighlightArticle = {
     analytics: {
       strapName: "strapName",
       title: "Title One"
@@ -57,15 +57,15 @@ describe("Homepage Featured Article", () => {
         aspectRatio: AspectRatio.OneByOne
       }
     },
-    variation: HomepageFeaturedArticleVariation.Lead,
+    variation: HomepageHighlightArticleVariation.Lead,
     introText: "Intro 1",
     lastPublishedTime: 1,
     linkUrl: "/link1",
-    type: ContentBlockType.HomepageFeaturedArticle
+    type: ContentBlockType.HomepageHighlightArticle
   };
 
   it("should convert", () => {
-    const result = homepageFeaturedArticle(
+    const result = homepageHighlightArticle(
       fakeArticle,
       "strapName",
       {
@@ -82,7 +82,7 @@ describe("Homepage Featured Article", () => {
           aspectRatio: AspectRatio.OneByOne
         }
       },
-      HomepageFeaturedArticleVariation.Lead,
+      HomepageHighlightArticleVariation.Lead,
       true
     );
 
@@ -90,18 +90,18 @@ describe("Homepage Featured Article", () => {
   });
 
   it("should convert different configurations", () => {
-    const result = homepageFeaturedArticle(
+    const result = homepageHighlightArticle(
       fakeArticle,
       "strapName",
       {},
-      HomepageFeaturedArticleVariation.Featured,
+      HomepageHighlightArticleVariation.Featured,
       false
     );
 
     expect(result).toEqual({
       ...expected,
       image: {},
-      variation: HomepageFeaturedArticleVariation.Featured,
+      variation: HomepageHighlightArticleVariation.Featured,
       introText: undefined
     });
   });

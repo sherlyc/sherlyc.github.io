@@ -1,17 +1,17 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { IHomepageFeaturedArticle } from "../../../../common/__types__/IHomepageFeaturedArticle";
+import { IHomepageHighlightArticle } from "../../../../common/__types__/IHomepageHighlightArticle";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
-  selector: "app-homepage-featured-article",
-  templateUrl: "./homepage-featured-article.component.html",
-  styleUrls: ["./homepage-featured-article.component.scss"]
+  selector: "app-homepage-highlight-article",
+  templateUrl: "./homepage-highlight-article.component.html",
+  styleUrls: ["./homepage-highlight-article.component.scss"]
 })
-export class HomepageFeaturedArticleComponent
+export class HomepageHighlightArticleComponent
   implements IContentBlockComponent, OnInit {
-  @Input() input!: IHomepageFeaturedArticle;
+  @Input() input!: IHomepageHighlightArticle;
   index!: number;
   classNames: string[] = [];
 
