@@ -207,6 +207,22 @@ export const newPage = (): HandlerInput[] => {
               color: "#db0962"
             }
           ]
+        },
+        {
+          type: HandlerInputType.BiggieSmallsV2,
+          displayName: "life & style",
+          color: "#d11242",
+          linkUrl: "/" + Section.LifeStyle,
+          strapName: `${homepageV2AdPrefix}LifeStyle`,
+          sourceId: Strap.LifeStyle
+        },
+        {
+          type: HandlerInputType.BiggieSmallsV2,
+          displayName: "entertainment",
+          color: "#9c1a87",
+          linkUrl: "/" + Section.Entertainment,
+          strapName: `${homepageV2AdPrefix}Entertainment`,
+          sourceId: Strap.Entertainment
         }
       ],
       fallback: []
