@@ -13,7 +13,6 @@ import biggieSmallsV2Handler from "./biggie-smalls-v2";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
-import { AccentColor } from "../../../../../common/__types__/AccentColor";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../adapters/layout/layout-retriever");
@@ -79,10 +78,10 @@ describe("Biggie Smalls", () => {
       content: {
         [BiggieSmallsV2GridPositions.ModuleTitle]: [
           expectContentBlock({
-            type: ContentBlockType.ModuleHeader,
-            title: input.displayName,
-            color: AccentColor.TopStoriesBlue,
-            url: input.linkUrl
+            type: ContentBlockType.ModuleTitle,
+            displayName: input.displayName,
+            displayNameColor: input.color,
+            linkUrl: input.linkUrl
           })
         ],
         [BiggieSmallsV2GridPositions.Highlight]: [

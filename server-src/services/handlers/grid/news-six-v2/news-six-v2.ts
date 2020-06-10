@@ -11,7 +11,6 @@ import { handlerRunnerFunction } from "../../runner";
 import { contentErrorHandler } from "../content-error-handler";
 import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
-import { AccentColor } from "../../../../../common/__types__/AccentColor";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -23,10 +22,10 @@ export default async function(
   const content: { [key in NewsSixV2GridPositions]: IContentBlock[] } = {
     [NewsSixV2GridPositions.ModuleTitle]: [
       {
-        type: ContentBlockType.ModuleHeader,
-        title: displayName,
-        color: AccentColor.TopStoriesBlue,
-        url: linkUrl
+        type: ContentBlockType.ModuleTitle,
+        displayName,
+        displayNameColor: color,
+        linkUrl
       }
     ],
     [NewsSixV2GridPositions.One]: [
