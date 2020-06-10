@@ -1,11 +1,12 @@
 import { Component } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { TransferState } from "@angular/platform-browser";
+import { By, TransferState } from "@angular/platform-browser";
 import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 import {
   Border,
+  GridContainerVariation,
   IGridContainer
 } from "../../../../common/__types__/IGridContainer";
 import { DeviceService } from "../../services/device/device.service";
@@ -112,6 +113,8 @@ describe("GridContainerComponent", () => {
     deviceService = TestBed.inject(DeviceService) as ServiceMock<DeviceService>;
     fixture = TestBed.createComponent(GridContainerComponent);
     component = fixture.componentInstance;
+
+    deviceService.isGridSupported.mockReturnValue(true);
   });
 
   it("should create", () => {
@@ -405,6 +408,33 @@ describe("GridContainerComponent", () => {
     });
   });
 
+  it("should set variation class when specified", () => {
+    component.input = {
+      ...containerInput,
+      variation: GridContainerVariation.GrayBackground
+    };
+
+    fixture.detectChanges();
+
+    const grid: HTMLDivElement = fixture.debugElement.query(By.css("div"))
+      .nativeElement;
+    expect(grid.className).toContain(
+      `variation-${component.input.variation}`.toLowerCase()
+    );
+  });
+
+  it("should not set variation class when not specified", () => {
+    component.input = {
+      ...containerInput,
+      variation: undefined
+    };
+
+    fixture.detectChanges();
+
+    const grid = fixture.debugElement.query(By.css("div")).nativeElement;
+    expect(grid.className).not.toContain(`variation`);
+  });
+
   describe("when CSS Grid is not supported", () => {
     beforeEach(() => {
       deviceService.isGridSupported.mockReturnValueOnce(false);
@@ -427,6 +457,36 @@ describe("GridContainerComponent", () => {
         ]
       ];
       expect(fixture.componentInstance.table).toEqual(expected);
+    });
+
+    it("should set variation class when specified", () => {
+      component.input = {
+        ...containerInput,
+        variation: GridContainerVariation.GrayBackground
+      };
+
+      fixture.detectChanges();
+
+      const table: HTMLTableElement = fixture.debugElement.query(
+        By.css("table")
+      ).nativeElement;
+      expect(table.className).toContain(
+        `variation-${component.input.variation}`.toLowerCase()
+      );
+    });
+
+    it("should not set variation class when not specified", () => {
+      component.input = {
+        ...containerInput,
+        variation: undefined
+      };
+
+      fixture.detectChanges();
+
+      const table: HTMLTableElement = fixture.debugElement.query(
+        By.css("table")
+      ).nativeElement;
+      expect(table.className).not.toContain("variation");
     });
   });
 });

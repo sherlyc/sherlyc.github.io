@@ -1,11 +1,11 @@
-<div *ngIf="grid" [appGlobalStyle]="grid.grid">
+<div *ngIf="grid" [appGlobalStyle]="grid.grid" [ngClass]="variationClass">
   <div *ngFor="let cell of grid.cells" [appGlobalStyle]="cell.style">
     <ng-container [appContentBlock]="input.items[cell.key]"></ng-container>
   </div>
   <div *ngFor="let border of grid.borders" [ngClass]="border.className" [appGlobalStyle]="border.style"></div>
 </div>
 
-<table *ngIf="table">
+<table *ngIf="table" [ngClass]="variationClass">
   <tr *ngFor="let row of table">
     <ng-container *ngFor="let cell of row">
       <td *ngIf="cell" [colSpan]="cell.columnSpan" [rowSpan]="cell.rowSpan" width="{{ cell.width + '%' }}">

@@ -39,10 +39,15 @@ export interface IGridConfig {
   gridBlocks: IGridBlocks;
 }
 
+export enum GridContainerVariation {
+  GrayBackground = "GrayBackground"
+}
+
 export interface IGridContainer {
   type: ContentBlockType.GridContainer;
   items: { [key: string]: IContentBlock[] };
   mobile: IGridConfig;
   tablet?: IGridConfig;
   desktop?: IGridConfig;
+  variation?: GridContainerVariation;
 }
