@@ -3,7 +3,10 @@ import { IParams } from "../../../__types__/IParams";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IHalfFourHandlerInput } from "../../__types__/IHalfFourHandlerInput";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
-import { HalfFourGridPositions, IHalfFourGridHandlerInput } from "../../__types__/IHalfFourGridHandlerInput";
+import {
+  HalfFourGridPositions,
+  IHalfFourGridHandlerInput
+} from "../../__types__/IHalfFourGridHandlerInput";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { featuredArticle } from "../../../adapters/article-converter/featured-article.converter";
@@ -11,7 +14,6 @@ import { contentErrorHandler } from "../content-error-handler";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
-import { AccentColor } from "../../../../../common/__types__/AccentColor";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -25,10 +27,10 @@ export default async function(
     content: {
       [HalfFourGridPositions.ModuleTitle]: [
         {
-          type: ContentBlockType.ModuleHeader,
-          title: displayName,
-          color: AccentColor.TopStoriesBlue,
-          url: linkUrl
+          type: ContentBlockType.ModuleTitle,
+          displayName,
+          displayNameColor: color,
+          linkUrl
         }
       ],
       [HalfFourGridPositions.Left]: [
