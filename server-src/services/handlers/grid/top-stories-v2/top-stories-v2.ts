@@ -46,6 +46,7 @@ export default async function(
             homepageHighlightArticle(
               articles.shift() as IRawArticle,
               strapName,
+              color,
               {
                 mobile: {
                   variant: JsonFeedImageType.PORTRAIT,
@@ -66,6 +67,7 @@ export default async function(
             homepageHighlightArticle(
               articles.shift() as IRawArticle,
               strapName,
+              color,
               {
                 mobile: {
                   variant: JsonFeedImageType.THUMBNAIL_SIXTEEN_BY_NINE,
@@ -92,6 +94,7 @@ export default async function(
             homepageArticle(
               articles.shift() as IRawArticle,
               strapName,
+              color,
               {
                 mobile: Orientation.Portrait,
                 tablet: Orientation.Portrait,
@@ -111,6 +114,7 @@ export default async function(
             homepageArticle(
               articles.shift() as IRawArticle,
               strapName,
+              color,
               {
                 mobile: Orientation.Portrait,
                 tablet: Orientation.Portrait,
@@ -130,6 +134,7 @@ export default async function(
             homepageArticle(
               articles.shift() as IRawArticle,
               strapName,
+              color,
               {
                 mobile: Orientation.Portrait,
                 tablet: Orientation.Portrait,
@@ -150,6 +155,7 @@ export default async function(
             homepageArticle(
               articles.shift() as IRawArticle,
               strapName,
+              color,
               {
                 mobile: Orientation.Landscape,
                 tablet: Orientation.Landscape,
@@ -169,6 +175,7 @@ export default async function(
             homepageArticle(
               articles.shift() as IRawArticle,
               strapName,
+              color,
               {
                 mobile: Orientation.Landscape,
                 tablet: Orientation.Landscape,
@@ -188,6 +195,7 @@ export default async function(
             homepageArticle(
               articles.shift() as IRawArticle,
               strapName,
+              color,
               {
                 mobile: Orientation.Portrait,
                 tablet: Orientation.Portrait,
@@ -207,6 +215,7 @@ export default async function(
             homepageArticle(
               articles.shift() as IRawArticle,
               strapName,
+              color,
               {
                 mobile: Orientation.Landscape,
                 tablet: Orientation.Landscape,
@@ -226,6 +235,7 @@ export default async function(
             homepageArticle(
               articles.shift() as IRawArticle,
               strapName,
+              color,
               {
                 mobile: Orientation.Landscape,
                 tablet: Orientation.Landscape,

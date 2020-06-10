@@ -39,6 +39,7 @@ function pickImage(
 export const homepageHighlightArticle = (
   article: IRawArticle,
   strapName: string,
+  accentColor: AccentColor,
   image: IHomepageHighlightArticleImageConfigs,
   variation: HomepageHighlightArticleVariation,
   showIntroText: boolean
@@ -46,7 +47,7 @@ export const homepageHighlightArticle = (
   type: ContentBlockType.HomepageHighlightArticle,
   id: article.id,
   headline: article.indexHeadline,
-  color: AccentColor.TopStoriesBlue,
+  color: accentColor,
   linkUrl: article.linkUrl,
   headlineFlags: article.headlineFlags,
   lastPublishedTime: article.lastPublishedTime,

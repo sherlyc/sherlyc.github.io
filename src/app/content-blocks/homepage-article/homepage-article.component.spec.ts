@@ -1,18 +1,18 @@
+import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-
-import { HomepageArticleComponent } from "./homepage-article.component";
-import { mockService, ServiceMock } from "../../services/mocks/MockService";
-import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { By } from "@angular/platform-browser";
+import { AccentColor } from "../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import {
   IHomepageArticle,
   Orientation
 } from "../../../../common/__types__/IHomepageArticle";
-import { NO_ERRORS_SCHEMA } from "@angular/core";
-import { By } from "@angular/platform-browser";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
-import { AccentColor } from "../../../../common/__types__/AccentColor";
+import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { TagLinkComponent } from "../../shared/components/tag-link/tag-link.component";
+
+import { HomepageArticleComponent } from "./homepage-article.component";
 
 describe("HomepageArticleComponent", () => {
   let component: HomepageArticleComponent;
@@ -22,7 +22,7 @@ describe("HomepageArticleComponent", () => {
   const articleData: IHomepageArticle = {
     type: ContentBlockType.HomepageArticle,
     id: "123123",
-    color: AccentColor.TopStoriesBlue,
+    color: AccentColor.CuriousBlue,
     headline: "Dummy Headline",
     introText: "Dummy intro text",
     linkUrl: "https://dummyurl.com",

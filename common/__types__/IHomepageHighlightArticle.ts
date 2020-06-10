@@ -35,7 +35,7 @@ export interface IHomepageHighlightArticle {
   type: ContentBlockType.HomepageHighlightArticle;
   id: string;
   headline: string;
-  color: AccentColor.TopStoriesBlue;
+  color: AccentColor;
   linkUrl: string;
   headlineFlags: HeadlineFlags[];
   lastPublishedTime?: number;

@@ -1,18 +1,18 @@
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
+import { AspectRatio } from "../../../../../common/AspectRatio";
 import { IParams } from "../../../__types__/IParams";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
+import { featuredArticle } from "../../../adapters/article-converter/featured-article.converter";
+import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { BiggieSmallsV2GridPositions } from "../../__types__/IBiggieSmallsV2GridHandlerInput";
 import { IBiggieSmallsV2HandlerInput } from "../../__types__/IBiggieSmallsV2HandlerInput";
 import { handlerRunnerFunction } from "../../runner";
 import { contentErrorHandler } from "../content-error-handler";
-import { featuredArticle } from "../../../adapters/article-converter/featured-article.converter";
-import { AspectRatio } from "../../../../../common/AspectRatio";
-import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
-import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -60,6 +60,7 @@ export default async function(
           homepageArticle(
             articles.shift() as IRawArticle,
             strapName,
+            color,
             {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -79,6 +80,7 @@ export default async function(
           homepageArticle(
             articles.shift() as IRawArticle,
             strapName,
+            color,
             {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -99,6 +101,7 @@ export default async function(
           homepageArticle(
             articles.shift() as IRawArticle,
             strapName,
+            color,
             {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -118,6 +121,7 @@ export default async function(
           homepageArticle(
             articles.shift() as IRawArticle,
             strapName,
+            color,
             {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -137,6 +141,7 @@ export default async function(
           homepageArticle(
             articles.shift() as IRawArticle,
             strapName,
+            color,
             {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -156,6 +161,7 @@ export default async function(
           homepageArticle(
             articles.shift() as IRawArticle,
             strapName,
+            color,
             {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,

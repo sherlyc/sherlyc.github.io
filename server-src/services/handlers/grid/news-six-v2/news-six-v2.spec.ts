@@ -1,3 +1,4 @@
+import { AccentColor } from "../../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
@@ -32,7 +33,7 @@ const expectContentBlock = (
 describe("News Six V2 handler", () => {
   const handlerRunnerMock = jest.fn();
   const params = { apiRequestId: "id" };
-  const displayNameColor = "green";
+  const displayNameColor = AccentColor.AppleGreen;
   const input: INewsSixV2HandlerInput = {
     type: HandlerInputType.NewsSixV2,
     displayName: "FakeName",

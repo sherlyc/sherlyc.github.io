@@ -9,6 +9,7 @@ import { IRawArticle } from "../__types__/IRawArticle";
 export const homepageArticle = (
   article: IRawArticle,
   strapName: string,
+  accentColor: AccentColor,
   orientation: {
     mobile: Orientation;
     tablet: Orientation;
@@ -20,7 +21,7 @@ export const homepageArticle = (
   type: ContentBlockType.HomepageArticle,
   id: article.id,
   headline: article.indexHeadline,
-  color: AccentColor.TopStoriesBlue,
+  color: accentColor,
   linkUrl: article.linkUrl,
   headlineFlags: article.headlineFlags,
   lastPublishedTime: article.lastPublishedTime,

@@ -42,7 +42,7 @@ describe("Homepage Highlight Article", () => {
     headline: "Headline 1",
     headlineFlags: [],
     id: "1",
-    color: AccentColor.TopStoriesBlue,
+    color: AccentColor.CuriousBlue,
     image: {
       mobile: {
         src: "sixteenByNineSrc.jpg",
@@ -68,6 +68,7 @@ describe("Homepage Highlight Article", () => {
     const result = homepageHighlightArticle(
       fakeArticle,
       "strapName",
+      AccentColor.CuriousBlue,
       {
         mobile: {
           variant: JsonFeedImageType.THUMBNAIL_SIXTEEN_BY_NINE,
@@ -93,6 +94,7 @@ describe("Homepage Highlight Article", () => {
     const result = homepageHighlightArticle(
       fakeArticle,
       "strapName",
+      AccentColor.Cyan,
       {},
       HomepageHighlightArticleVariation.Featured,
       false
@@ -100,6 +102,7 @@ describe("Homepage Highlight Article", () => {
 
     expect(result).toEqual({
       ...expected,
+      color: AccentColor.Cyan,
       image: {},
       variation: HomepageHighlightArticleVariation.Featured,
       introText: undefined
@@ -110,6 +113,7 @@ describe("Homepage Highlight Article", () => {
     const result = homepageHighlightArticle(
       { ...fakeArticle, sixteenByNineSrc: null, portraitImageSrc: null },
       "strapName",
+      AccentColor.CuriousBlue,
       {
         mobile: {
           variant: JsonFeedImageType.THUMBNAIL_SIXTEEN_BY_NINE,
