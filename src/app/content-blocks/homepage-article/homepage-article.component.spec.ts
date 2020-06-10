@@ -213,7 +213,7 @@ describe("HomepageArticleComponent", () => {
     expect(anchorTag.textContent).toBe(articleData.category.name);
   });
 
-  it("should render color bar above image", async () => {
+  it("should render color bar within image container", async () => {
     component.input = articleData;
 
     fixture.detectChanges();

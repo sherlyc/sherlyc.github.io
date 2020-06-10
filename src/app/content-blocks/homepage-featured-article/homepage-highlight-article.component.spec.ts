@@ -138,7 +138,7 @@ describe("HomepageHighlightArticleComponent", () => {
     });
   });
 
-  it("should render color bar above image", async () => {
+  it("should render color bar within image container", async () => {
     component.input = input;
 
     fixture.detectChanges();
