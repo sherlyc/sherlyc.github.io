@@ -12,6 +12,7 @@ import {
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
+import { AccentColor } from "../../../../../common/__types__/AccentColor";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 
@@ -63,10 +64,10 @@ describe("Half four", () => {
       content: {
         [HalfFourGridPositions.ModuleTitle]: [
           {
-            type: ContentBlockType.ModuleTitle,
-            displayName: input.displayName,
-            displayNameColor: input.color,
-            linkUrl: input.linkUrl
+            type: ContentBlockType.ModuleHeader,
+            title: input.displayName,
+            color: AccentColor.TopStoriesBlue,
+            url: input.linkUrl
           }
         ],
         [HalfFourGridPositions.Left]: [
