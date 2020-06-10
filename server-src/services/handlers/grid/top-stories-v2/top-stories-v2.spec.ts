@@ -1,3 +1,4 @@
+import { AccentColor } from "../../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
@@ -21,7 +22,7 @@ describe("Top Stories V2", () => {
   const handlerRunnerMock = jest.fn();
   const params: IParams = { apiRequestId: "123" };
   const strapName = "Top Stories V2";
-  const color = "blue";
+  const color = AccentColor.CuriousBlue;
   const handlerInput: ITopStoriesV2HandlerInput = {
     type: HandlerInputType.TopStoriesV2,
     strapName,

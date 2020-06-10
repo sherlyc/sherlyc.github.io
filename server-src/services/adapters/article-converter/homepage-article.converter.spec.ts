@@ -45,7 +45,7 @@ describe("Homepage Article", () => {
     headline: "Headline 1",
     headlineFlags: [],
     id: "1",
-    color: AccentColor.TopStoriesBlue,
+    color: AccentColor.CuriousBlue,
     imageSrc: "sixteenByNineSrc.jpg",
     introText: "Intro 1",
     lastPublishedTime: 1,
@@ -57,6 +57,7 @@ describe("Homepage Article", () => {
     const result = homepageArticle(
       fakeArticle,
       "strapName",
+      AccentColor.CuriousBlue,
       {
         desktop: Orientation.Landscape,
         mobile: Orientation.Landscape,
@@ -73,6 +74,7 @@ describe("Homepage Article", () => {
     const result = homepageArticle(
       fakeArticle,
       "strapName",
+      AccentColor.CuriousBlue,
       {
         desktop: Orientation.Landscape,
         mobile: Orientation.Landscape,

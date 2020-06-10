@@ -1,16 +1,16 @@
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 import { IParams } from "../../../__types__/IParams";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { featuredArticle } from "../../../adapters/article-converter/featured-article.converter";
+import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { NewsSixV2GridPositions } from "../../__types__/INewsSixGridV2HandlerInput";
 import { INewsSixV2HandlerInput } from "../../__types__/INewsSixV2HandlerInput";
 import { handlerRunnerFunction } from "../../runner";
 import { contentErrorHandler } from "../content-error-handler";
-import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
-import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -51,6 +51,7 @@ export default async function(
           homepageArticle(
             articles.shift() as IRawArticle,
             strapName,
+            color,
             {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
@@ -70,6 +71,7 @@ export default async function(
           homepageArticle(
             articles.shift() as IRawArticle,
             strapName,
+            color,
             {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
@@ -106,6 +108,7 @@ export default async function(
           homepageArticle(
             articles.shift() as IRawArticle,
             strapName,
+            color,
             {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
@@ -125,6 +128,7 @@ export default async function(
           homepageArticle(
             articles.shift() as IRawArticle,
             strapName,
+            color,
             {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
