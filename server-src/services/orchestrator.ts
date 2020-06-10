@@ -140,7 +140,7 @@ export const newPage = (): HandlerInput[] => {
         {
           type: HandlerInputType.BiggieSmallsV2,
           displayName: "homed",
-          color: "#256091",
+          color: "#41ad95",
           linkUrl: "/" + Section.Homed,
           strapName: `${homepageV2AdPrefix}Homed`,
           sourceId: Strap.Homed
@@ -156,7 +156,7 @@ export const newPage = (): HandlerInput[] => {
         {
           type: HandlerInputType.BiggieSmallsV2,
           displayName: "travel",
-          color: "#256091",
+          color: "#08afb7",
           linkUrl: "/" + Section.Travel,
           strapName: `${homepageV2AdPrefix}Travel`,
           sourceId: Strap.Travel
