@@ -1,3 +1,22 @@
-variation-regular {
+div {
+  font-size: 40px;
+  padding-left: 20px;
+  text-transform: lowercase;
+  a {
+    text-decoration: none;
+  }
+}
 
+.view-all {
+  padding: 3px;
+  border-radius: 10px;
+  svg {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+.variation-noline {
+  border: none;
+  padding-left: 0;
 }

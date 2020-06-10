@@ -3,7 +3,6 @@ import { AccentColor } from "./AccentColor";
 
 export enum ModuleHeaderVariation {
   NoLine = "NoLine",
-  FancyFont = "FancyFont"
 }
 
 export interface IModuleHeader {
