@@ -11,6 +11,7 @@ import {
 import { INewsSixV2HandlerInput } from "../../__types__/INewsSixV2HandlerInput";
 import newsSixV2Handler from "./news-six-v2";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
+import { AccentColor } from "../../../../../common/__types__/AccentColor";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../utils/logger");
@@ -68,10 +69,10 @@ describe("News Six V2 handler", () => {
       content: {
         [NewsSixV2GridPositions.ModuleTitle]: [
           expectContentBlock({
-            type: ContentBlockType.ModuleTitle,
-            displayName: input.displayName,
-            displayNameColor: input.color,
-            linkUrl: input.linkUrl
+            type: ContentBlockType.ModuleHeader,
+            title: input.displayName,
+            color: AccentColor.TopStoriesBlue,
+            url: input.linkUrl
           })
         ],
         [NewsSixV2GridPositions.One]: [
