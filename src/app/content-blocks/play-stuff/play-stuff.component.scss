@@ -7,7 +7,7 @@
   padding: 10px;
 }
 
-@mixin head($fontSize, $titleTop, $imageHeight, $imageTop) {
+@mixin head($fontSize, $titleTop, $logoHeight, $logoTop) {
   .head {
     position: relative;
     margin: 10px;
@@ -21,12 +21,16 @@
       padding-left: 13px;
     }
 
-    img {
+    a {
       position: absolute;
       width: auto;
-      height: #{$imageHeight};
+      height: #{$logoHeight};
       right: 0;
-      top: #{$imageTop};
+      top: #{$logoTop};
+
+      svg {
+        height: 100%;
+      }
     }
   }
 }
@@ -101,7 +105,7 @@
     }
   }
 
-  @include head(31px, 26px, 47px, 6px);
+  @include head(31px, 26px, 40px, 6px);
 }
 
 @include mobile {
@@ -131,5 +135,5 @@
     margin: 0 0 30px;
   }
 
-  @include head(24px, 25px, 40px, 5px);
+  @include head(24px, 25px, 34px, 5px);
 }
