@@ -64,10 +64,10 @@ describe("Half four", () => {
       content: {
         [HalfFourGridPositions.ModuleTitle]: [
           {
-            type: ContentBlockType.ModuleTitle,
-            displayName: input.displayName,
-            displayNameColor: input.color,
-            linkUrl: input.linkUrl
+            type: ContentBlockType.ModuleHeader,
+            title: input.displayName,
+            url: input.linkUrl,
+            color: input.color
           }
         ],
         [HalfFourGridPositions.Left]: [

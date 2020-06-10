@@ -22,10 +22,10 @@ export default async function(
   const content: { [key in NewsSixV2GridPositions]: IContentBlock[] } = {
     [NewsSixV2GridPositions.ModuleTitle]: [
       {
-        type: ContentBlockType.ModuleTitle,
-        displayName,
-        displayNameColor: color,
-        linkUrl
+        type: ContentBlockType.ModuleHeader,
+        title: displayName,
+        url: linkUrl,
+        color
       }
     ],
     [NewsSixV2GridPositions.One]: [

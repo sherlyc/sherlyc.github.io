@@ -27,10 +27,10 @@ export default async function(
     content: {
       [HalfFourGridPositions.ModuleTitle]: [
         {
-          type: ContentBlockType.ModuleTitle,
-          displayName,
-          displayNameColor: color,
-          linkUrl
+          type: ContentBlockType.ModuleHeader,
+          title: displayName,
+          url: linkUrl,
+          color
         }
       ],
       [HalfFourGridPositions.Left]: [

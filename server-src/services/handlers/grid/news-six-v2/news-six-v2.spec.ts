@@ -69,10 +69,10 @@ describe("News Six V2 handler", () => {
       content: {
         [NewsSixV2GridPositions.ModuleTitle]: [
           expectContentBlock({
-            type: ContentBlockType.ModuleTitle,
-            displayName: input.displayName,
-            displayNameColor: input.color,
-            linkUrl: input.linkUrl
+            type: ContentBlockType.ModuleHeader,
+            title: input.displayName,
+            url: input.linkUrl,
+            color: input.color
           })
         ],
         [NewsSixV2GridPositions.One]: [
