@@ -212,4 +212,15 @@ describe("HomepageArticleComponent", () => {
     expect(anchorTag.getAttribute("href")).toBe(articleData.category.url);
     expect(anchorTag.textContent).toBe(articleData.category.name);
   });
+
+  it("should render color bar above image", async () => {
+    component.input = articleData;
+
+    fixture.detectChanges();
+
+    const colorBar = fixture.debugElement.query(By.css(".image .border"))
+      .nativeElement;
+    expect(colorBar).toBeTruthy();
+    expect(colorBar.style.backgroundColor).toEqual("rgb(14, 123, 194)");
+  });
 });
