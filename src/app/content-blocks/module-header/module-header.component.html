@@ -1,4 +1,6 @@
 <div [style.color]="input.color" [ngClass]="variationClass">
-  <a *ngIf="input.url; else titleWithoutLink" [href]="input.url">{{ input.title }}</a>
-  <ng-template #titleWithoutLink>{{ input.title }}</ng-template>
+  <ng-container *ngIf="input.title">
+    <a *ngIf="input.url; else titleWithoutLink" [href]="input.url">{{ input.title }}</a>
+    <ng-template #titleWithoutLink>{{ input.title }}</ng-template>
+  </ng-container>
 </div>

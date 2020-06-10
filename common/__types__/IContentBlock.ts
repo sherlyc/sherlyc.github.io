@@ -33,7 +33,7 @@ import { IStickyContainer } from "./IStickyContainer";
 import { IVerticalArticleList } from "./IVerticalArticleList";
 import { IWeatherUnit } from "./IWeatherUnit";
 import { IPlayStuff } from "./IPlayStuff";
-import {IModuleHeader} from "./IModuleHeader";
+import { IModuleHeader } from "./IModuleHeader";
 
 export type IContentBlock =
   | IDefconArticleUnit
