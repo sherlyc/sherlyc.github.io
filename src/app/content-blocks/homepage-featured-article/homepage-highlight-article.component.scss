@@ -30,6 +30,10 @@ img {
 
 .image {
   overflow: hidden;
+
+  .border {
+    height: 2px;
+  }
 }
 
 app-headline {

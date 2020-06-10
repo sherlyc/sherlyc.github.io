@@ -137,4 +137,15 @@ describe("HomepageHighlightArticleComponent", () => {
       articleId: input.id
     });
   });
+
+  it("should render color bar above image", async () => {
+    component.input = input;
+
+    fixture.detectChanges();
+
+    const colorBar = fixture.debugElement.query(By.css(".image .border"))
+      .nativeElement;
+    expect(colorBar).toBeTruthy();
+    expect(colorBar.style.backgroundColor).toEqual("rgb(14, 123, 194)");
+  });
 });
