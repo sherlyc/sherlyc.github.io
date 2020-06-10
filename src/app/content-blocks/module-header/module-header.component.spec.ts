@@ -18,7 +18,7 @@ describe("ModuleHeaderComponent", () => {
     title: "Grumpy Cat",
     url: "http://www.grumpy-cat.com",
     color: AccentColor.Black,
-    variation: ModuleHeaderVariation.NoLine
+    variation: ModuleHeaderVariation.SmallerNoLine
   };
 
   beforeEach(async(() => {
@@ -38,40 +38,19 @@ describe("ModuleHeaderComponent", () => {
     expect(component).toBeTruthy();
   });
 
-  it("should set inputs", () => {
-    const headerInput: IModuleHeader = {
-      type: ContentBlockType.ModuleHeader,
+  it("should show link with title when both title and url are specified", () => {
+    component.input = {
+      ...input,
       title: "Grumpy Cat",
-      url: "http://www.grumpy-cat.com",
-      color: AccentColor.Black
+      url: "https://grumpy-cat.com"
     };
-    component.input = headerInput;
 
     fixture.detectChanges();
-
-    const wrapper = fixture.debugElement.query(By.css("div"));
-    expect(wrapper.styles.color).toBe(headerInput.color);
-    expect(wrapper.nativeElement.className).toBeFalsy();
 
     const link: HTMLAnchorElement = fixture.debugElement.query(By.css("a"))
       .nativeElement;
-    expect(link.getAttribute("href")).toBe(headerInput.url);
-    expect(link.textContent).toBe(headerInput.title);
-  });
-
-  it("should not show title or link when title is unspecified", () => {
-    component.input = {
-      ...input,
-      title: undefined,
-      url: "http://undefined.com"
-    };
-
-    fixture.detectChanges();
-
-    const wrapper = fixture.debugElement.query(By.css("div")).nativeElement;
-    const link = fixture.debugElement.query(By.css("a"));
-    expect(wrapper.textContent).toBeFalsy();
-    expect(link).toBeFalsy();
+    expect(link.getAttribute("href")).toBe(component.input.url);
+    expect(link.textContent).toBe(component.input.title);
   });
 
   it("should show title without link when url is unspecified", () => {
@@ -89,10 +68,25 @@ describe("ModuleHeaderComponent", () => {
     expect(link).toBeFalsy();
   });
 
-  it("should set variation class", () => {
+  it("should not show title or link when title is unspecified", () => {
     component.input = {
       ...input,
-      variation: ModuleHeaderVariation.NoLine
+      title: undefined,
+      url: "http://undefined.com"
+    };
+
+    fixture.detectChanges();
+
+    const wrapper = fixture.debugElement.query(By.css("div")).nativeElement;
+    const link = fixture.debugElement.query(By.css("a"));
+    expect(wrapper.textContent).toBeFalsy();
+    expect(link).toBeFalsy();
+  });
+
+  it("should set variation when specified", () => {
+    component.input = {
+      ...input,
+      variation: ModuleHeaderVariation.Smaller
     };
 
     fixture.detectChanges();
@@ -101,5 +95,29 @@ describe("ModuleHeaderComponent", () => {
     expect(wrapper.nativeElement.className).toContain(
       `variation-${component.input.variation}`.toLowerCase()
     );
+  });
+
+  it("should not set variation when not specified", () => {
+    component.input = {
+      ...input,
+      variation: undefined
+    };
+
+    fixture.detectChanges();
+
+    const wrapper = fixture.debugElement.query(By.css("div"));
+    expect(wrapper.nativeElement.className).toBeFalsy();
+  });
+
+  it("should set color", () => {
+    component.input = {
+      ...input,
+      color: AccentColor.AppleGreen
+    };
+
+    fixture.detectChanges();
+
+    const wrapper = fixture.debugElement.query(By.css("div"));
+    expect(wrapper.styles.color).toBe(component.input.color);
   });
 });

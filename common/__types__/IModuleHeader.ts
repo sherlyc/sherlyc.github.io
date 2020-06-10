@@ -2,7 +2,8 @@ import { ContentBlockType } from "./ContentBlockType";
 import { AccentColor } from "./AccentColor";
 
 export enum ModuleHeaderVariation {
-  NoLine = "NoLine",
+  Smaller = "Smaller",
+  SmallerNoLine = "SmallerNoLine"
 }
 
 export interface IModuleHeader {
