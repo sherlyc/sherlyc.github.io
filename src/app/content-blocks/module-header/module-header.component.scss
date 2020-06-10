@@ -2,7 +2,7 @@
 
 div {
   margin: 0 -10px;
-  padding-left: 20px;
+  padding-left: 10px;
   border-bottom: 4px solid;
   font-size: 40px;
   font-weight: 900;
@@ -13,7 +13,7 @@ div {
   }
 
   @include mobile {
-    padding-left: 17px;
+    padding-left: 10px;
     border-bottom: 3px solid;
   }
 }
