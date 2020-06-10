@@ -1,4 +1,4 @@
-<div [ngStyle]="{ 'color': input.color, 'border-bottom': '4px solid ' + this.input.color }" [ngClass]="variationStyle">
+<div [style.color]="input.color" [ngClass]="variationClass">
   <a [href]="input.url ? input.url : null">
     {{ input.title }}
   </a>

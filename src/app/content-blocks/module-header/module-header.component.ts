@@ -9,11 +9,12 @@ import { IModuleHeader } from "../../../../common/__types__/IModuleHeader";
 })
 export class ModuleHeaderComponent implements OnInit, IContentBlockComponent {
   @Input() input!: IModuleHeader;
-  variationStyle?: string;
+  variationClass?: string;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.variationStyle = `variation-${this.input.variation}`;
+    const { variation } = this.input;
+    this.variationClass = variation ? `variation-${this.input.variation}`.toLowerCase() : undefined;
   }
 }
