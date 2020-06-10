@@ -1,17 +1,19 @@
 @import "src/styles/break-points";
 
 div {
-  font-size: 40px;
+  margin: 0 -10px;
   padding-left: 20px;
-  margin: 0 -20px;
   border-bottom: 4px solid;
+  font-size: 40px;
   font-weight: 900;
   text-transform: lowercase;
+
   a {
     text-decoration: none;
   }
 
   @include mobile {
+    padding-left: 17px;
     border-bottom: 3px solid;
   }
 }
