@@ -36,14 +36,20 @@ export default async function(
       poster: resize(video.poster, posterSize)
     }));
 
-    return resizedVideos.length
-      ? [
-          {
-            type: ContentBlockType.PlayStuff,
-            videos: resizedVideos
-          } as IPlayStuff
-        ]
-      : [];
+    if (resizedVideos.length < 1) {
+      logger.error(
+        params.apiRequestId,
+        "Insufficient videos retrieved from Brightcove"
+      );
+      return [];
+    }
+
+    return [
+      {
+        type: ContentBlockType.PlayStuff,
+        videos: resizedVideos
+      } as IPlayStuff
+    ];
   } catch (error) {
     logger.error(params.apiRequestId, `Play Stuff handler error`, error);
     return [];
