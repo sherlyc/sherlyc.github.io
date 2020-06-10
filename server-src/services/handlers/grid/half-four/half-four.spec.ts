@@ -1,17 +1,18 @@
-import halfFour from "./half-four";
+import { AccentColor } from "../../../../../common/__types__/AccentColor";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 import { IParams } from "../../../__types__/IParams";
-import { IHalfFourHandlerInput } from "../../__types__/IHalfFourHandlerInput";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { Strap } from "../../../strap";
-import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { Strap } from "../../../strap";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
   HalfFourGridPositions,
   IHalfFourGridHandlerInput
 } from "../../__types__/IHalfFourGridHandlerInput";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
+import { IHalfFourHandlerInput } from "../../__types__/IHalfFourHandlerInput";
+import halfFour from "./half-four";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 
@@ -22,7 +23,7 @@ describe("Half four", () => {
     type: HandlerInputType.HalfFour,
     sourceId: Strap.NZFarmer,
     displayName: "NZ Farmer",
-    color: "Orange",
+    color: AccentColor.Orange,
     linkUrl: "/nz-farmer",
     strapName: "nz-farmer"
   };

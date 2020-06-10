@@ -28,7 +28,7 @@ describe("HomepageHighlightArticleComponent", () => {
     introText: "Dummy intro text",
     linkUrl: "https://dummyurl.com",
     lastPublishedTime: 1,
-    color: AccentColor.TopStoriesBlue,
+    color: AccentColor.CuriousBlue,
     image: {
       mobile: {
         src: "https://dummyimagesrc.com/16:9.jpg",

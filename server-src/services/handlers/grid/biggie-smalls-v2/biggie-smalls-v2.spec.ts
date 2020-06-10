@@ -1,4 +1,8 @@
+import { AccentColor } from "../../../../../common/__types__/AccentColor";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 import { IParams } from "../../../__types__/IParams";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
@@ -10,9 +14,6 @@ import {
 } from "../../__types__/IBiggieSmallsV2GridHandlerInput";
 import { IBiggieSmallsV2HandlerInput } from "../../__types__/IBiggieSmallsV2HandlerInput";
 import biggieSmallsV2Handler from "./biggie-smalls-v2";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
-import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../adapters/layout/layout-retriever");
@@ -22,7 +23,7 @@ const fakeArticlesWithIds = (ids: number[]) =>
     (id) =>
       ({
         id: `${id}`,
-        imageSrc: `${id}.png`,
+        sixteenByNineSrc: `${id}.16:9.jpg`,
         introText: `${id} intro`
       } as IRawArticle)
   );
@@ -37,7 +38,7 @@ describe("Biggie Smalls", () => {
   const sourceId = Strap.Motoring;
   const strapName = "motoring-strap";
   const displayName = "motoring";
-  const color = "#000";
+  const color = AccentColor.Black;
   const linkUrl = "http://www.stuff.co.nz";
   const input: IBiggieSmallsV2HandlerInput = {
     type: HandlerInputType.BiggieSmallsV2,
@@ -99,7 +100,7 @@ describe("Biggie Smalls", () => {
               tablet: Orientation.Portrait,
               desktop: Orientation.Portrait
             },
-            imageSrc: "2.png",
+            imageSrc: "2.16:9.jpg",
             introText: "2 intro"
           })
         ],
@@ -112,7 +113,7 @@ describe("Biggie Smalls", () => {
               tablet: Orientation.Portrait,
               desktop: Orientation.Portrait
             },
-            imageSrc: "3.png",
+            imageSrc: "3.16:9.jpg",
             introText: "3 intro"
           })
         ],

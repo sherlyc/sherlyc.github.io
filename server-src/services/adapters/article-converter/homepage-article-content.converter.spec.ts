@@ -39,7 +39,7 @@ const expectedArticles = (ids: number[]) =>
           defcon: `${id} defconSrc`,
           sixteenByNine: `${id} sixteenByNineSrc`
         },
-        color: AccentColor.TopStoriesBlue,
+        color: AccentColor.CuriousBlue,
         category: {
           name: "National",
           url: "/national/"
