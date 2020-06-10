@@ -1,8 +1,8 @@
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArticleUnit";
+import { ImageLayoutType } from "../../../../common/__types__/ImageLayoutType";
 import { IRawArticle } from "../__types__/IRawArticle";
 import { bigImageArticleUnit } from "./big-image-article.converter";
-import { ImageLayoutType } from "../../../../common/__types__/ImageLayoutType";
 
 describe("big image article", () => {
   const fakeArticle: IRawArticle = {
@@ -19,6 +19,7 @@ describe("big image article", () => {
     lastPublishedTime: 1,
     headlineFlags: [],
     sixteenByNineSrc: "sixteenByNine.jpg",
+    portraitImageSrc: "portraitImageSrc.jpg",
     identifier: "identifier",
     category: "National",
     categoryUrl: "/coronavirus/"

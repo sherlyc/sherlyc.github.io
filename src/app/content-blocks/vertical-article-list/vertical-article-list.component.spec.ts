@@ -39,7 +39,7 @@ describe("VerticalArticleListComponent", () => {
     },
     lastPublishedTime: 123,
     headlineFlags: [],
-    color: AccentColor.TopStoriesBlue,
+    color: AccentColor.CuriousBlue,
     category: { name: "National", url: "/national/" }
   };
 

@@ -1,5 +1,7 @@
+import { AccentColor } from "../../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { Strap } from "../../../strap";
@@ -10,7 +12,6 @@ import {
 } from "../../__types__/INewsSixGridV2HandlerInput";
 import { INewsSixV2HandlerInput } from "../../__types__/INewsSixV2HandlerInput";
 import newsSixV2Handler from "./news-six-v2";
-import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../utils/logger");
@@ -20,7 +21,7 @@ const articlesWithIds = (ids: number[]) =>
     (id) =>
       ({
         id: `${id}`,
-        imageSrc: `${id}.png`,
+        sixteenByNineSrc: `${id}.png`,
         introText: `${id} intro`
       } as IRawArticle)
   );
@@ -32,7 +33,7 @@ const expectContentBlock = (
 describe("News Six V2 handler", () => {
   const handlerRunnerMock = jest.fn();
   const params = { apiRequestId: "id" };
-  const displayNameColor = "green";
+  const displayNameColor = AccentColor.AppleGreen;
   const input: INewsSixV2HandlerInput = {
     type: HandlerInputType.NewsSixV2,
     displayName: "FakeName",

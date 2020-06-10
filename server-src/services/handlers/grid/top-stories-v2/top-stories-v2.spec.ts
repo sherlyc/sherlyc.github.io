@@ -1,7 +1,9 @@
+import { AccentColor } from "../../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
+import { AspectRatio } from "../../../../../common/AspectRatio";
 import { IParams } from "../../../__types__/IParams";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
@@ -20,7 +22,7 @@ describe("Top Stories V2", () => {
   const handlerRunnerMock = jest.fn();
   const params: IParams = { apiRequestId: "123" };
   const strapName = "Top Stories V2";
-  const color = "blue";
+  const color = AccentColor.CuriousBlue;
   const handlerInput: ITopStoriesV2HandlerInput = {
     type: HandlerInputType.TopStoriesV2,
     strapName,
@@ -53,7 +55,9 @@ describe("Top Stories V2", () => {
       (id) =>
         ({
           id: `${id}`,
-          imageSrc: `${id}.png`,
+          imageSrc: `${id}.jpg`,
+          sixteenByNineSrc: `${id}.16:9.jpg`,
+          portraitImageSrc: `${id}.3:4.jpg`,
           introText: `${id} intro`
         } as IRawArticle)
     );
@@ -92,14 +96,26 @@ describe("Top Stories V2", () => {
       content: {
         [TopStoriesV2GridPositions.RightHighlight]: [
           expectContentBlock({
-            type: ContentBlockType.FeaturedArticle,
-            id: "1"
+            type: ContentBlockType.HomepageHighlightArticle,
+            id: "1",
+            image: {
+              mobile: {
+                src: "1.3:4.jpg",
+                aspectRatio: AspectRatio.OneByOne
+              }
+            }
           })
         ],
         [TopStoriesV2GridPositions.LeftHighlight]: [
           expectContentBlock({
-            type: ContentBlockType.BigImageArticleUnit,
-            id: "2"
+            type: ContentBlockType.HomepageHighlightArticle,
+            id: "2",
+            image: {
+              mobile: {
+                src: "2.16:9.jpg",
+                aspectRatio: AspectRatio.SixteenByNine
+              }
+            }
           })
         ],
         [TopStoriesV2GridPositions.BannerAd]: [
@@ -114,7 +130,7 @@ describe("Top Stories V2", () => {
               tablet: Orientation.Portrait,
               desktop: Orientation.Portrait
             },
-            imageSrc: "3.png",
+            imageSrc: "3.16:9.jpg",
             introText: "3 intro"
           })
         ],
@@ -127,7 +143,7 @@ describe("Top Stories V2", () => {
               tablet: Orientation.Portrait,
               desktop: Orientation.Portrait
             },
-            imageSrc: "4.png",
+            imageSrc: "4.16:9.jpg",
             introText: "4 intro"
           })
         ],
@@ -140,7 +156,7 @@ describe("Top Stories V2", () => {
               tablet: Orientation.Portrait,
               desktop: Orientation.Portrait
             },
-            imageSrc: "5.png",
+            imageSrc: "5.16:9.jpg",
             introText: "5 intro"
           })
         ],
@@ -154,7 +170,7 @@ describe("Top Stories V2", () => {
               tablet: Orientation.Landscape,
               desktop: Orientation.Landscape
             },
-            imageSrc: "6.png",
+            imageSrc: "6.16:9.jpg",
             introText: undefined
           })
         ],
@@ -167,7 +183,7 @@ describe("Top Stories V2", () => {
               tablet: Orientation.Landscape,
               desktop: Orientation.Landscape
             },
-            imageSrc: "7.png",
+            imageSrc: "7.16:9.jpg",
             introText: undefined
           })
         ],

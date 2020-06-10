@@ -4,7 +4,7 @@ import { AccentColor } from "./AccentColor";
 export interface IHomepageArticleContent {
   id: string;
   headline: string;
-  color: AccentColor.TopStoriesBlue;
+  color: AccentColor;
   title: string;
   byline?: string;
   introText: string;

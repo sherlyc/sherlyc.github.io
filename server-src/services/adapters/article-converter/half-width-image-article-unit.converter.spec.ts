@@ -1,7 +1,7 @@
-import { IRawArticle } from "../__types__/IRawArticle";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { halfWidthImageArticleUnit } from "./half-width-image-article-unit.converter";
 import { IHalfWidthImageArticleUnit } from "../../../../common/__types__/IHalfWidthImageArticleUnit";
+import { IRawArticle } from "../__types__/IRawArticle";
+import { halfWidthImageArticleUnit } from "./half-width-image-article-unit.converter";
 
 describe("half width image article unit", () => {
   const fakeStrapName = "fakeStrapName";
@@ -20,6 +20,7 @@ describe("half width image article unit", () => {
     lastPublishedTime: 1,
     headlineFlags: [],
     sixteenByNineSrc: "sixteenByNineSrc.jpg",
+    portraitImageSrc: "portraitImageSrc.jpg",
     identifier: undefined,
     category: "National",
     categoryUrl: "/coronavirus/"

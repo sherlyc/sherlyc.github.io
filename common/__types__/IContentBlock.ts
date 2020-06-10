@@ -21,6 +21,7 @@ import { IHalfImageArticleWithoutIntroUnit } from "./IHalfImageArticleWithoutInt
 import { IHalfWidthImageArticleUnit } from "./IHalfWidthImageArticleUnit";
 import { IHeader } from "./IHeader";
 import { IHomepageArticle } from "./IHomepageArticle";
+import { IHomepageHighlightArticle } from "./IHomepageHighlightArticle";
 import { IImageLinkUnit } from "./IImageLinkUnit";
 import { IModuleSubtitle } from "./IModuleSubtitle";
 import { IModuleTitle } from "./IModuleTitle";
@@ -31,6 +32,7 @@ import { IResponsiveExternalContent } from "./IResponsiveExternalContent";
 import { IStickyContainer } from "./IStickyContainer";
 import { IVerticalArticleList } from "./IVerticalArticleList";
 import { IWeatherUnit } from "./IWeatherUnit";
+import { IPlayStuff } from "./IPlayStuff";
 
 export type IContentBlock =
   | IDefconArticleUnit
@@ -64,5 +66,7 @@ export type IContentBlock =
   | IArticleTitle
   | IOli
   | IHomepageArticle
+  | IHomepageHighlightArticle
   | IVerticalArticleList
-  | IPartnerContent;
+  | IPartnerContent
+  | IPlayStuff;

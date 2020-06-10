@@ -20,6 +20,7 @@ describe("Half image article without intro unit", () => {
     lastPublishedTime: 1,
     headlineFlags: [],
     sixteenByNineSrc: "sixteenByNine.jpg",
+    portraitImageSrc: "portraitImageSrc.jpg",
     category: "National",
     categoryUrl: "/coronavirus/"
   };

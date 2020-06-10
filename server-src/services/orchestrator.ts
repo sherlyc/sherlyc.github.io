@@ -1,3 +1,4 @@
+import { AccentColor } from "../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../common/__types__/ContentBlockType";
 import { IPage } from "../../common/__types__/IPage";
 import { FeatureName } from "../../common/FeatureName";
@@ -49,6 +50,7 @@ export default async (params: IParams): Promise<IPage> => {
 };
 
 const homepageAdPrefix = "homepage";
+const homepageV2AdPrefix = "homepagev2";
 export const newPage = (): HandlerInput[] => {
   const page: HandlerInput[] = [
     {
@@ -79,8 +81,8 @@ export const newPage = (): HandlerInput[] => {
       content: [
         {
           type: HandlerInputType.TopStoriesV2,
-          strapName: `${homepageAdPrefix}TopStoriesDefaultOne`,
-          color: "#2AAAF5",
+          strapName: `${homepageV2AdPrefix}TopStoriesDefaultOne`,
+          color: AccentColor.CuriousBlue,
           midInsertContent: {
             type: HandlerInputType.ExternalContent,
             url: "",
@@ -94,20 +96,20 @@ export const newPage = (): HandlerInput[] => {
             totalArticles: 7,
             displayName: "latest headlines",
             strapName: `${homepageAdPrefix}LatestHeadlines`,
-            color: "#ff433d"
+            color: AccentColor.Coral
           }
         },
         {
           type: HandlerInputType.SixImage,
           displayName: "",
-          color: "#2AAAF5",
+          color: AccentColor.Gray,
           strapName: `${homepageAdPrefix}MidStrip`,
           sourceId: Strap.MidStrip
         },
         {
           type: HandlerInputType.NewsSixV2,
           displayName: "coronavirus",
-          color: "#256091",
+          color: AccentColor.DeepBlue,
           linkUrl: "/" + Section.Coronavirus,
           strapName: `${homepageAdPrefix}Coronavirus`,
           sourceId: Strap.Coronavirus
@@ -115,39 +117,55 @@ export const newPage = (): HandlerInput[] => {
         {
           type: HandlerInputType.NewsSixV2,
           displayName: "national",
-          color: "#256091",
+          color: AccentColor.DeepBlue,
           linkUrl: "/" + Section.National,
           strapName: `${homepageAdPrefix}National`,
           sourceId: Strap.National
         },
         {
-          type: HandlerInputType.BiggieSmalls,
+          type: HandlerInputType.BiggieSmallsV2,
           displayName: "climate change",
-          color: "#256091",
+          color: AccentColor.DeepBlue,
           linkUrl: "/" + Section.ClimateChange,
-          strapName: `${homepageAdPrefix}ClimateChange`,
+          strapName: `${homepageV2AdPrefix}ClimateChange`,
           sourceId: Strap.ClimateChange
         },
         {
           type: HandlerInputType.NewsSixV2,
           displayName: "business",
-          color: "#0083d7",
+          color: AccentColor.NavyBlue,
           linkUrl: "/" + Section.Business,
           strapName: `${homepageAdPrefix}Business`,
           sourceId: Strap.Business
         },
         {
+          type: HandlerInputType.BiggieSmallsV2,
+          displayName: "homed",
+          color: AccentColor.Cyan,
+          linkUrl: "/" + Section.Homed,
+          strapName: `${homepageV2AdPrefix}Homed`,
+          sourceId: Strap.Homed
+        },
+        {
           type: HandlerInputType.NewsSixV2,
           displayName: "prosper",
-          color: "#0083d7",
+          color: AccentColor.NavyBlue,
           linkUrl: "/" + Section.Prosper,
           strapName: `${homepageAdPrefix}Prosper`,
           sourceId: Strap.Prosper
         },
         {
+          type: HandlerInputType.BiggieSmallsV2,
+          displayName: "travel",
+          color: AccentColor.Aqua,
+          linkUrl: "/" + Section.Travel,
+          strapName: `${homepageV2AdPrefix}Travel`,
+          sourceId: Strap.Travel
+        },
+        {
           type: HandlerInputType.NewsSixV2,
           displayName: "world",
-          color: "#1272b4",
+          color: AccentColor.Denim,
           linkUrl: "/" + Section.World,
           strapName: `${homepageAdPrefix}World`,
           sourceId: Strap.World
@@ -155,7 +173,7 @@ export const newPage = (): HandlerInput[] => {
         {
           type: HandlerInputType.Strips,
           displayName: "spotlight",
-          color: "#000",
+          color: AccentColor.Black,
           linkUrl: "/" + Section.Premium,
           sourceId: Strap.Premium,
           strapName: Strap.Premium,
@@ -165,7 +183,7 @@ export const newPage = (): HandlerInput[] => {
         {
           type: HandlerInputType.LargeLeadSix,
           displayName: "well & good",
-          color: "#42a634",
+          color: AccentColor.AppleGreen,
           linkUrl: "/" + Section.WellGood,
           strapName: `${homepageAdPrefix}WellGood`,
           sourceId: Strap.WellGood
@@ -178,7 +196,7 @@ export const newPage = (): HandlerInput[] => {
               displayName: "NZ Farmer",
               sourceId: Strap.NZFarmer,
               strapName: Strap.NZFarmer,
-              color: "#f36f21",
+              color: AccentColor.Orange,
               linkUrl: "/" + Section.NZFarmer
             },
             {
@@ -187,9 +205,25 @@ export const newPage = (): HandlerInput[] => {
               sourceId: Strap.Parenting,
               strapName: Strap.Parenting,
               linkUrl: "/" + Section.Parenting,
-              color: "#db0962"
+              color: AccentColor.Ruby
             }
           ]
+        },
+        {
+          type: HandlerInputType.BiggieSmallsV2,
+          displayName: "life & style",
+          color: AccentColor.Crimson,
+          linkUrl: "/" + Section.LifeStyle,
+          strapName: `${homepageV2AdPrefix}LifeStyle`,
+          sourceId: Strap.LifeStyle
+        },
+        {
+          type: HandlerInputType.BiggieSmallsV2,
+          displayName: "entertainment",
+          color: AccentColor.Violet,
+          linkUrl: "/" + Section.Entertainment,
+          strapName: `${homepageV2AdPrefix}Entertainment`,
+          sourceId: Strap.Entertainment
         }
       ],
       fallback: []
@@ -197,7 +231,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.TopStories,
       strapName: `${homepageAdPrefix}TopStoriesDefaultOne`,
-      color: "#2AAAF5"
+      color: AccentColor.CuriousBlue
     },
     {
       type: HandlerInputType.RelevantStories
@@ -205,7 +239,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.TitleSection,
       displayName: "play stuff",
-      displayNameColor: "#000",
+      displayNameColor: AccentColor.Black,
       linkUrl: "https://play.stuff.co.nz/",
       content: {
         type: HandlerInputType.ResponsiveExternalContent,
@@ -252,7 +286,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.SixImage,
       displayName: "",
-      color: "#2AAAF5",
+      color: AccentColor.Gray,
       strapName: `${homepageAdPrefix}MidStrip`,
       sourceId: Strap.MidStrip
     },
@@ -280,7 +314,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.NewsSix,
       displayName: "coronavirus",
-      color: "#256091",
+      color: AccentColor.DeepBlue,
       linkUrl: "/" + Section.Coronavirus,
       strapName: `${homepageAdPrefix}Coronavirus`,
       sourceId: Strap.Coronavirus
@@ -288,7 +322,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.NewsSix,
       displayName: "national",
-      color: "#256091",
+      color: AccentColor.DeepBlue,
       linkUrl: "/" + Section.National,
       strapName: `${homepageAdPrefix}National`,
       sourceId: Strap.National
@@ -316,7 +350,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.BiggieSmalls,
       displayName: "climate change",
-      color: "#256091",
+      color: AccentColor.DeepBlue,
       linkUrl: "/" + Section.ClimateChange,
       strapName: `${homepageAdPrefix}ClimateChange`,
       sourceId: Strap.ClimateChange
@@ -324,7 +358,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.NewsSix,
       displayName: "business",
-      color: "#0083d7",
+      color: AccentColor.NavyBlue,
       linkUrl: "/" + Section.Business,
       strapName: `${homepageAdPrefix}Business`,
       sourceId: Strap.Business
@@ -332,7 +366,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.BiggieSmalls,
       displayName: "homed",
-      color: "#41ad95",
+      color: AccentColor.Cyan,
       linkUrl: "/" + Section.Homed,
       strapName: `${homepageAdPrefix}Homed`,
       sourceId: Strap.Homed
@@ -340,7 +374,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.NewsSix,
       displayName: "prosper",
-      color: "#0083d7",
+      color: AccentColor.NavyBlue,
       linkUrl: "/" + Section.Prosper,
       strapName: `${homepageAdPrefix}Prosper`,
       sourceId: Strap.Prosper
@@ -348,7 +382,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.BiggieSmalls,
       displayName: "travel",
-      color: "#08afb7",
+      color: AccentColor.Aqua,
       linkUrl: "/" + Section.Travel,
       strapName: `${homepageAdPrefix}Travel`,
       sourceId: Strap.Travel
@@ -356,7 +390,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.Strips,
       displayName: "spotlight",
-      color: "#000",
+      color: AccentColor.Black,
       linkUrl: "/" + Section.Premium,
       sourceId: Strap.Premium,
       strapName: Strap.Premium,
@@ -366,7 +400,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.NewsSix,
       displayName: "world",
-      color: "#1272b4",
+      color: AccentColor.Denim,
       linkUrl: "/" + Section.World,
       strapName: `${homepageAdPrefix}World`,
       sourceId: Strap.World
@@ -413,7 +447,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.BiggieSmalls,
       displayName: "life & style",
-      color: "#d11242",
+      color: AccentColor.Crimson,
       linkUrl: "/" + Section.LifeStyle,
       strapName: `${homepageAdPrefix}LifeStyle`,
       sourceId: Strap.LifeStyle
@@ -421,7 +455,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.LargeLeadSix,
       displayName: "well & good",
-      color: "#42a634",
+      color: AccentColor.AppleGreen,
       linkUrl: "/" + Section.WellGood,
       strapName: `${homepageAdPrefix}WellGood`,
       sourceId: Strap.WellGood
@@ -429,7 +463,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.Strips,
       displayName: "food & wine",
-      color: "#129a5e",
+      color: AccentColor.Salem,
       linkUrl: "/" + Section.FoodAndWine,
       sourceId: Strap.FoodAndWine,
       strapName: Strap.FoodAndWine,
@@ -439,7 +473,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.BiggieSmalls,
       displayName: "entertainment",
-      color: "#9c1a87",
+      color: AccentColor.Violet,
       linkUrl: "/" + Section.Entertainment,
       strapName: `${homepageAdPrefix}Entertainment`,
       sourceId: Strap.Entertainment
@@ -447,7 +481,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.BiggieSmalls,
       displayName: "bravo",
-      color: "#9c1a87",
+      color: AccentColor.Violet,
       linkUrl: "/" + Section.Bravo,
       strapName: `${homepageAdPrefix}Bravo`,
       sourceId: Strap.Bravo
@@ -455,7 +489,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.TitleSection,
       displayName: "neighbourly",
-      displayNameColor: "#60A735",
+      displayNameColor: AccentColor.SpringGreen,
       linkUrl: "https://www.neighbourly.co.nz/",
       content: {
         type: HandlerInputType.ResponsiveExternalContent,
@@ -471,7 +505,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.BiggieSmalls,
       displayName: "motoring",
-      color: "#999",
+      color: AccentColor.DustyGray,
       linkUrl: "/" + Section.Motoring,
       strapName: `${homepageAdPrefix}Motoring`,
       sourceId: Strap.Motoring
@@ -479,7 +513,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.LargeLeadSix,
       displayName: "technology",
-      color: "#00824a",
+      color: AccentColor.RainforestGreen,
       linkUrl: "/" + Section.Technology,
       strapName: `${homepageAdPrefix}Technology`,
       sourceId: Strap.Technology
@@ -487,7 +521,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.Strips,
       displayName: "nz farmer",
-      color: "#f36f21",
+      color: AccentColor.Orange,
       linkUrl: "/" + Section.NZFarmer,
       sourceId: Strap.NZFarmer,
       strapName: Strap.NZFarmer,
@@ -497,7 +531,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.Strips,
       displayName: "parenting",
-      color: "#db0962",
+      color: AccentColor.Ruby,
       linkUrl: "/" + Section.Parenting,
       sourceId: Strap.Parenting,
       strapName: Strap.Parenting,
@@ -507,7 +541,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.BiggieSmalls,
       displayName: "sport",
-      color: "#d12421",
+      color: AccentColor.CardinalRed,
       linkUrl: "/" + Section.Sport,
       strapName: `${homepageAdPrefix}Sport`,
       sourceId: Strap.Sport
@@ -515,7 +549,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.Strips,
       displayName: "",
-      color: "#f36f21",
+      color: AccentColor.Orange,
       sourceId: Strap.SponsoredContent,
       strapName: Strap.SponsoredContent,
       articleCount: 4,

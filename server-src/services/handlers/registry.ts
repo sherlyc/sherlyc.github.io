@@ -12,6 +12,8 @@ import Feature from "./feature-handler/feature-handler";
 import ForceUpdate from "./force-update/force-update";
 import BiggieSmallsGrid from "./grid/biggie-smalls-grid/biggie-smalls-grid";
 import BiggieSmalls from "./grid/biggie-smalls/biggie-smalls";
+import BiggieSmallsV2Grid from "./grid/biggie-smalls-v2-grid/biggie-smalls-v2-grid";
+import BiggieSmallsV2 from "./grid/biggie-smalls-v2/biggie-smalls-v2";
 import BrandGrid from "./grid/brand-grid/brand-grid";
 import Brand from "./grid/brand/brand";
 import ColumnGrid from "./grid/column-grid/column-grid";
@@ -48,6 +50,7 @@ import TitleSection from "./title-section/title-section";
 import TopStoriesArticleList from "./top-stories-article-list/top-stories-article-list";
 import VersionSwitcher from "./version-switcher/version-switcher";
 import Weather from "./weather/weather";
+import PlayStuff from "./play-stuff/play-stuff";
 
 type handlerFunction = (
   handlerRunner: handlerRunnerFunction,
@@ -78,6 +81,8 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   TopStoriesV2Grid,
   BiggieSmalls,
   BiggieSmallsGrid,
+  BiggieSmallsV2,
+  BiggieSmallsV2Grid,
   NewsSix,
   NewsSixGrid,
   NewsSixV2,
@@ -101,7 +106,8 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   HalfFourGrid,
   VersionSwitcher,
   LatestHeadlines,
-  Partner
+  Partner,
+  PlayStuff
 };
 
 export default handlerRegistry;

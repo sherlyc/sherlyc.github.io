@@ -3,6 +3,8 @@ import { IBasicArticleListHandlerInput } from "./IBasicArticleListHandlerInput";
 import { IBasicArticleSectionHandlerInput } from "./IBasicArticleSectionHandlerInput";
 import { IBiggieSmallsGridHandlerInput } from "./IBiggieSmallsGridHandlerInput";
 import { IBiggieSmallsHandlerInput } from "./IBiggieSmallsHandlerInput";
+import { IBiggieSmallsV2HandlerInput } from "./IBiggieSmallsV2HandlerInput";
+import { IBiggieSmallsV2GridHandlerInput } from "./IBiggieSmallsV2GridHandlerInput";
 import { IBrandGridHandlerInput } from "./IBrandGridHandlerInput";
 import { IBrandHandlerInput } from "./IBrandHandlerInput";
 import { IBreakingNewsHandlerInput } from "./IBreakingNewsHandlerInput";
@@ -44,6 +46,7 @@ import { ITopStoriesV2GridHandlerInput } from "./ITopStoriesV2GridHandlerInput";
 import { ITopStoriesV2HandlerInput } from "./ITopStoriesV2HandlerInput";
 import { IVersionSwitcherHandlerInput } from "./IVersionSwitcherHandlerInput";
 import { IWeatherHandlerInput } from "./IWeatherHandlerInput";
+import { IPlayStuffHandlerInput } from "./IPlayStuffHandlerInput";
 
 export type HandlerInput =
   | IContentBlockHandlerInput
@@ -68,6 +71,8 @@ export type HandlerInput =
   | ITopStoriesV2GridHandlerInput
   | IBiggieSmallsHandlerInput
   | IBiggieSmallsGridHandlerInput
+  | IBiggieSmallsV2HandlerInput
+  | IBiggieSmallsV2GridHandlerInput
   | INewsSixHandlerInput
   | INewsSixGridHandlerInput
   | INewsSixV2HandlerInput
@@ -91,4 +96,5 @@ export type HandlerInput =
   | IHalfFourGridHandlerInput
   | IVersionSwitcherHandlerInput
   | ILatestHeadlinesHandlerInput
-  | IPartnerHandlerInput;
+  | IPartnerHandlerInput
+  | IPlayStuffHandlerInput;
