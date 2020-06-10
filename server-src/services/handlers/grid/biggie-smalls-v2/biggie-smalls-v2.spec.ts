@@ -22,7 +22,7 @@ const fakeArticlesWithIds = (ids: number[]) =>
     (id) =>
       ({
         id: `${id}`,
-        imageSrc: `${id}.png`,
+        sixteenByNineSrc: `${id}.16:9.jpg`,
         introText: `${id} intro`
       } as IRawArticle)
   );
@@ -99,7 +99,7 @@ describe("Biggie Smalls", () => {
               tablet: Orientation.Portrait,
               desktop: Orientation.Portrait
             },
-            imageSrc: "2.png",
+            imageSrc: "2.16:9.jpg",
             introText: "2 intro"
           })
         ],
@@ -112,7 +112,7 @@ describe("Biggie Smalls", () => {
               tablet: Orientation.Portrait,
               desktop: Orientation.Portrait
             },
-            imageSrc: "3.png",
+            imageSrc: "3.16:9.jpg",
             introText: "3 intro"
           })
         ],
