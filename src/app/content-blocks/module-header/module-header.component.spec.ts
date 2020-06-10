@@ -17,7 +17,7 @@ describe("ModuleHeaderComponent", () => {
     type: ContentBlockType.ModuleHeader,
     title: "Grumpy Cat",
     url: "http://www.grumpy-cat.com",
-    color: AccentColor.TopStoriesBlue,
+    color: AccentColor.Black,
     variation: ModuleHeaderVariation.NoLine
   };
 
@@ -43,7 +43,7 @@ describe("ModuleHeaderComponent", () => {
       type: ContentBlockType.ModuleHeader,
       title: "Grumpy Cat",
       url: "http://www.grumpy-cat.com",
-      color: AccentColor.TopStoriesBlue
+      color: AccentColor.Black
     };
     component.input = headerInput;
 
