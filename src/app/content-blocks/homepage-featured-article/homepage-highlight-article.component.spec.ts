@@ -143,9 +143,8 @@ describe("HomepageHighlightArticleComponent", () => {
 
     fixture.detectChanges();
 
-    const colorBar = fixture.debugElement.query(By.css(".image .border"))
-      .nativeElement;
+    const colorBar = fixture.debugElement.query(By.css(".image .border"));
     expect(colorBar).toBeTruthy();
-    expect(colorBar.style.backgroundColor).toEqual("rgb(14, 123, 194)");
+    expect(colorBar.styles.backgroundColor).toEqual(AccentColor.CuriousBlue);
   });
 });
