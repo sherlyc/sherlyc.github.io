@@ -212,4 +212,14 @@ describe("HomepageArticleComponent", () => {
     expect(anchorTag.getAttribute("href")).toBe(articleData.category.url);
     expect(anchorTag.textContent).toBe(articleData.category.name);
   });
+
+  it("should render color bar within image container", async () => {
+    component.input = articleData;
+
+    fixture.detectChanges();
+
+    const colorBar = fixture.debugElement.query(By.css(".image .border"));
+    expect(colorBar).toBeTruthy();
+    expect(colorBar.styles.backgroundColor).toEqual(AccentColor.CuriousBlue);
+  });
 });
