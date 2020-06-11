@@ -1,0 +1,9 @@
+$color-bar-height: 4px;
+
+$mobile-header-bar-height: 51px;
+$tablet-header-bar-height: 56px;
+$desktop-header-bar-height: 56px;
+
+$mobile-masthead-height: $mobile-header-bar-height + $color-bar-height;
+$tablet-masthead-height: $tablet-header-bar-height + $color-bar-height;
+$desktop-masthead-height: $desktop-header-bar-height + $color-bar-height;

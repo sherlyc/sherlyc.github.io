@@ -1,8 +1,20 @@
 @import "src/styles/break-points";
+@import "src/styles/spacings";
 
 header {
   background-color: #fff;
   display: block;
+}
+
+.color-bar {
+  background-image: linear-gradient(
+    90deg,
+    #ff4e00 13%,
+    #fcd300 33%,
+    #00c580 50%,
+    #00a2fc 67%,
+    #8130e4 87%
+  );
 }
 
 .title a {
@@ -162,52 +174,52 @@ header {
 
 @include desktop {
   .header-bar {
-    height: 70px;
+    height: $desktop-header-bar-height;
   }
   .color-bar {
-    height: 5px;
-    margin-bottom: -5px;
+    height: $color-bar-height;
+    margin-bottom: -$color-bar-height;
   }
   .stuff-logo {
-    height: 40px;
+    height: 35px;
   }
   .navigation {
-    top: 75px;
+    top: $desktop-masthead-height;
   }
 }
 
 @include tablet {
   .header-bar {
-    height: 60px;
+    height: $tablet-header-bar-height;
   }
   .color-bar {
-    height: 4px;
-    margin-bottom: -4px;
+    height: $color-bar-height;
+    margin-bottom: -$color-bar-height;
   }
   .stuff-logo {
-    height: 30px;
+    height: 35px;
   }
   .navigation {
-    top: 64px;
+    top: $tablet-masthead-height;
   }
 }
 
 @include mobile {
   .header-bar {
-    height: 50px;
+    height: $mobile-header-bar-height;
   }
   .color-bar {
-    height: 4px;
-    margin-bottom: -4px;
+    height: $color-bar-height;
+    margin-bottom: -$color-bar-height;
   }
   .stuff-logo {
-    height: 25px;
+    height: 26px;
   }
   .menu-label {
     display: none;
   }
   .navigation {
-    top: 54px;
+    top: $mobile-masthead-height;
   }
 }
 

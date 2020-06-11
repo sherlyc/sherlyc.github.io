@@ -1,16 +1,17 @@
 @import "src/styles/break-points";
+@import "src/styles/spacings";
 
 :host {
   display: block;
   position: sticky;
 
   @include mobile {
-    top: 54px;
+    top: $mobile-masthead-height;
   }
   @include tablet {
-    top: 64px;
+    top: $tablet-masthead-height;
   }
   @include desktop {
-    top: 75px;
+    top: $desktop-masthead-height;
   }
 }
