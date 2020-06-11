@@ -3,6 +3,9 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { PlayStuffVideoComponent } from "./play-stuff-video.component";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 import { By } from "@angular/platform-browser";
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { SharedModule } from "../../shared.module";
+import { FluidImageComponent } from "../fluid-image/fluid-image.component";
 
 describe("PlayStuffVideoComponent", () => {
   let component: PlayStuffVideoComponent;
@@ -10,7 +13,7 @@ describe("PlayStuffVideoComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PlayStuffVideoComponent]
+      declarations: [PlayStuffVideoComponent, FluidImageComponent],
     }).compileComponents();
   }));
 
@@ -32,7 +35,7 @@ describe("PlayStuffVideoComponent", () => {
     component.orientation = {
       mobile: Orientation.Landscape,
       tablet: Orientation.Portrait,
-      desktop: Orientation.Landscape
+      desktop: Orientation.Landscape,
     };
 
     fixture.detectChanges();
@@ -51,11 +54,11 @@ describe("PlayStuffVideoComponent", () => {
       `https://play.stuff.co.nz/details/_${component.id}`
     );
 
-    const image: HTMLImageElement = fixture.debugElement.query(
-      By.css(".image-logo > img")
+    const image: HTMLUnknownElement & any = fixture.debugElement.query(
+      By.css("app-fluid-image")
     ).nativeElement;
-    expect(image.getAttribute("src")).toBe(component.image);
-    expect(image.getAttribute("alt")).toBe(component.text);
+    expect(image.imageSrc).toBe(component.image);
+    expect(image.caption).toBe(component.text);
 
     const text: HTMLDivElement = fixture.debugElement.query(By.css(".text"))
       .nativeElement;
