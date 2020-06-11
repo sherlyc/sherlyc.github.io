@@ -33,6 +33,7 @@ import { IStickyContainer } from "./IStickyContainer";
 import { IVerticalArticleList } from "./IVerticalArticleList";
 import { IWeatherUnit } from "./IWeatherUnit";
 import { IPlayStuff } from "./IPlayStuff";
+import { IModuleHeader } from "./IModuleHeader";
 
 export type IContentBlock =
   | IDefconArticleUnit
@@ -57,6 +58,7 @@ export type IContentBlock =
   | IFeatureContainer
   | IGridContainer
   | IResponsiveBigImageArticleUnit
+  | IModuleHeader
   | IModuleTitle
   | IModuleSubtitle
   | IFeaturedArticle

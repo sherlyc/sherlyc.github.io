@@ -30,10 +30,10 @@ export default async function(
   const content: { [key in BiggieSmallsV2GridPositions]: IContentBlock[] } = {
     [BiggieSmallsV2GridPositions.ModuleTitle]: [
       {
-        type: ContentBlockType.ModuleTitle,
-        displayName,
-        displayNameColor: color,
-        linkUrl
+        type: ContentBlockType.ModuleHeader,
+        title: displayName,
+        url: linkUrl,
+        color
       }
     ],
     [BiggieSmallsV2GridPositions.Highlight]: [

@@ -34,6 +34,7 @@ import { ResponsiveExternalContentComponent } from "./responsive-external-conten
 import { StickyContainerComponent } from "./sticky-container/sticky-container.component";
 import { VerticalArticleListComponent } from "./vertical-article-list/vertical-article-list.component";
 import { WeatherUnitComponent } from "./weather-unit/weather-unit.component";
+import { ModuleHeaderComponent } from "./module-header/module-header.component";
 
 export const contentBlockComponents = [
   GrayDefconArticleUnitComponent,
@@ -58,6 +59,7 @@ export const contentBlockComponents = [
   FooterComponent,
   GridContainerComponent,
   ResponsiveBigImageArticleComponent,
+  ModuleHeaderComponent,
   ModuleTitleComponent,
   ModuleSubtitleComponent,
   FeaturedArticleComponent,
@@ -97,6 +99,7 @@ const registry: {
   FooterComponent,
   GridContainerComponent,
   ResponsiveBigImageArticleComponent,
+  ModuleHeaderComponent,
   ModuleTitleComponent,
   ModuleSubtitleComponent,
   FeaturedArticleComponent,

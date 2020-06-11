@@ -79,10 +79,10 @@ describe("Biggie Smalls", () => {
       content: {
         [BiggieSmallsV2GridPositions.ModuleTitle]: [
           expectContentBlock({
-            type: ContentBlockType.ModuleTitle,
-            displayName: input.displayName,
-            displayNameColor: input.color,
-            linkUrl: input.linkUrl
+            type: ContentBlockType.ModuleHeader,
+            title: input.displayName,
+            url: input.linkUrl,
+            color: input.color
           })
         ],
         [BiggieSmallsV2GridPositions.Highlight]: [
