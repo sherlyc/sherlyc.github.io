@@ -1,7 +1,7 @@
-import { IRawArticle } from "../__types__/IRawArticle";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { articleTitle } from "./article-title.converter";
 import { IArticleTitle } from "../../../../common/__types__/IArticleTitle";
+import { IRawArticle } from "../__types__/IRawArticle";
+import { articleTitle } from "./article-title.converter";
 
 describe("article title converter", () => {
   it("should convert", () => {
@@ -19,6 +19,7 @@ describe("article title converter", () => {
       lastPublishedTime: 1,
       headlineFlags: [],
       sixteenByNineSrc: null,
+      portraitImageSrc: null,
       category: "National",
       categoryUrl: "/coronavirus/"
     };

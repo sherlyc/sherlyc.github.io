@@ -1,11 +1,11 @@
-import { IRawArticle } from "../__types__/IRawArticle";
+import { AccentColor } from "../../../../common/__types__/AccentColor";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import {
   IHomepageArticle,
   Orientation
 } from "../../../../common/__types__/IHomepageArticle";
+import { IRawArticle } from "../__types__/IRawArticle";
 import { homepageArticle } from "./homepage-article.converter";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { AccentColor } from "../../../../common/__types__/AccentColor";
 
 describe("Homepage Article", () => {
   const fakeArticle: IRawArticle = {
@@ -22,6 +22,7 @@ describe("Homepage Article", () => {
     lastPublishedTime: 1,
     headlineFlags: [],
     sixteenByNineSrc: "sixteenByNineSrc.jpg",
+    portraitImageSrc: "portraitImageSrc.jpg",
     identifier: "identifier",
     category: "National",
     categoryUrl: "/coronavirus/"
@@ -44,8 +45,8 @@ describe("Homepage Article", () => {
     headline: "Headline 1",
     headlineFlags: [],
     id: "1",
-    color: AccentColor.TopStoriesBlue,
-    imageSrc: "1.jpg",
+    color: AccentColor.CuriousBlue,
+    imageSrc: "sixteenByNineSrc.jpg",
     introText: "Intro 1",
     lastPublishedTime: 1,
     linkUrl: "/link1",
@@ -56,6 +57,7 @@ describe("Homepage Article", () => {
     const result = homepageArticle(
       fakeArticle,
       "strapName",
+      AccentColor.CuriousBlue,
       {
         desktop: Orientation.Landscape,
         mobile: Orientation.Landscape,
@@ -72,6 +74,7 @@ describe("Homepage Article", () => {
     const result = homepageArticle(
       fakeArticle,
       "strapName",
+      AccentColor.CuriousBlue,
       {
         desktop: Orientation.Landscape,
         mobile: Orientation.Landscape,

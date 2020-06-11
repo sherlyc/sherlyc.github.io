@@ -18,7 +18,7 @@ const fakeHomepageArticleContents = (
   ids.map((id) => ({
     id: `${id}`,
     headline: `${id} headline`,
-    color: AccentColor.TopStoriesBlue,
+    color: AccentColor.CuriousBlue,
     title: `${id} title`,
     linkUrl: `${id} linkUrl`,
     introText: `${id} introText`,

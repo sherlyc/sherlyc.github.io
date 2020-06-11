@@ -8,7 +8,7 @@ export const homepageArticleContent = (
   id: article.id,
   headline: article.indexHeadline,
   title: article.title,
-  color: AccentColor.TopStoriesBlue,
+  color: AccentColor.Gray,
   byline: article.byline,
   introText: article.introText,
   headlineFlags: article.headlineFlags,

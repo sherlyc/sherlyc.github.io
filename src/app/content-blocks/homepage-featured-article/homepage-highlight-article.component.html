@@ -1,9 +1,9 @@
-<article itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+<article [ngClass]="classNames" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
   <meta itemprop="position" content="{{ index }}" />
   <a [ngClass]="classNames" itemprop="url" href="{{ input.linkUrl }}" appOpenExternalLink="{{ input.linkUrl }}" (click)="sendAnalytics()">
-    <div class="image" *ngIf="input.imageSrc">
+    <div class="image">
       <div class="border" [style.backgroundColor]="input.color"></div>
-      <app-fluid-image *ngIf="input.imageSrc" [aspectRatio]="'16:9'" [imageSrc]="input.imageSrc" [caption]="input.headline"></app-fluid-image>
+      <app-fluid-image [imageSrc]="input.image?.mobile.src" [aspectRatio]="input.image?.mobile.aspectRatio" [caption]="input.headline"></app-fluid-image>
     </div>
     <div class="content">
       <app-tag-link [color]="input.color" [name]="input.category.name" [url]="input.category.url"></app-tag-link>

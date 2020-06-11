@@ -1,7 +1,7 @@
-import { basicArticleUnit } from "./basic-article-unit.converter";
-import { IRawArticle } from "../__types__/IRawArticle";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
+import { IRawArticle } from "../__types__/IRawArticle";
+import { basicArticleUnit } from "./basic-article-unit.converter";
 
 describe("basic article unit", () => {
   it("should convert", () => {
@@ -19,6 +19,7 @@ describe("basic article unit", () => {
       lastPublishedTime: 1,
       headlineFlags: [],
       sixteenByNineSrc: null,
+      portraitImageSrc: null,
       category: "National",
       categoryUrl: "/coronavirus/"
     };

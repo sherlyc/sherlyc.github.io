@@ -22,6 +22,10 @@ a {
 
 .image {
   width: 100%;
+
+  .border {
+    height: 2px;
+  }
 }
 
 @mixin portrait {

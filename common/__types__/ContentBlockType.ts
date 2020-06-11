@@ -22,6 +22,7 @@ export enum ContentBlockType {
   FeatureContainer = "FeatureContainer",
   GridContainer = "GridContainer",
   ResponsiveBigImageArticle = "ResponsiveBigImageArticle",
+  ModuleHeader = "ModuleHeader",
   ModuleTitle = "ModuleTitle",
   ModuleSubtitle = "ModuleSubtitle",
   FeaturedArticle = "FeaturedArticle",
@@ -30,6 +31,7 @@ export enum ContentBlockType {
   ResponsiveExternalContent = "ResponsiveExternalContent",
   Oli = "Oli",
   HomepageArticle = "HomepageArticle",
+  HomepageHighlightArticle = "HomepageHighlightArticle",
   VerticalArticleList = "VerticalArticleList",
   PartnerContent = "PartnerContent",
   PlayStuff = "PlayStuff"

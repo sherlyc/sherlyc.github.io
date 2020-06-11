@@ -23,6 +23,7 @@ import { HalfImageArticleWithoutIntroUnitComponent } from "./half-image-article-
 import { HalfWidthImageArticleUnitComponent } from "./half-width-image-article-unit/half-width-image-article-unit.component";
 import { HeaderComponent } from "./header/header.component";
 import { HomepageArticleComponent } from "./homepage-article/homepage-article.component";
+import { HomepageHighlightArticleComponent } from "./homepage-featured-article/homepage-highlight-article.component";
 import { ImageLinkUnitComponent } from "./image-link-unit/image-link-unit.component";
 import { ModuleSubtitleComponent } from "./module-subtitle/module-subtitle.component";
 import { ModuleTitleComponent } from "./module-title/module-title.component";
@@ -33,6 +34,7 @@ import { ResponsiveExternalContentComponent } from "./responsive-external-conten
 import { StickyContainerComponent } from "./sticky-container/sticky-container.component";
 import { VerticalArticleListComponent } from "./vertical-article-list/vertical-article-list.component";
 import { WeatherUnitComponent } from "./weather-unit/weather-unit.component";
+import { ModuleHeaderComponent } from "./module-header/module-header.component";
 import { PlayStuffComponent } from "./play-stuff/play-stuff.component";
 
 export const contentBlockComponents = [
@@ -58,6 +60,7 @@ export const contentBlockComponents = [
   FooterComponent,
   GridContainerComponent,
   ResponsiveBigImageArticleComponent,
+  ModuleHeaderComponent,
   ModuleTitleComponent,
   ModuleSubtitleComponent,
   FeaturedArticleComponent,
@@ -67,6 +70,7 @@ export const contentBlockComponents = [
   ArticleTitleComponent,
   OliComponent,
   HomepageArticleComponent,
+  HomepageHighlightArticleComponent,
   VerticalArticleListComponent,
   PartnerContentComponent,
   PlayStuffComponent
@@ -97,6 +101,7 @@ const registry: {
   FooterComponent,
   GridContainerComponent,
   ResponsiveBigImageArticleComponent,
+  ModuleHeaderComponent,
   ModuleTitleComponent,
   ModuleSubtitleComponent,
   FeaturedArticleComponent,
@@ -106,6 +111,7 @@ const registry: {
   ArticleTitleComponent,
   OliComponent,
   HomepageArticleComponent,
+  HomepageHighlightArticleComponent: HomepageHighlightArticleComponent,
   VerticalArticleListComponent,
   PartnerContentComponent,
   PlayStuffComponent

@@ -1,8 +1,8 @@
-import { IRawArticle } from "../__types__/IRawArticle";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { imageLinkUnit } from "./image-link-unit.converter";
 import { IImageLinkUnit } from "../../../../common/__types__/IImageLinkUnit";
 import { ImageLayoutType } from "../../../../common/__types__/ImageLayoutType";
+import { IRawArticle } from "../__types__/IRawArticle";
+import { imageLinkUnit } from "./image-link-unit.converter";
 
 describe("Image Link Unit", () => {
   const strapName = "strapName";
@@ -22,6 +22,7 @@ describe("Image Link Unit", () => {
     lastPublishedTime: 1,
     headlineFlags: [],
     sixteenByNineSrc: "sixteenByNine.jpg",
+    portraitImageSrc: "portraitImageSrc.jpg",
     identifier: "Identifier",
     category: "National",
     categoryUrl: "/coronavirus/"

@@ -1,6 +1,6 @@
-import { ContentBlockType } from "./ContentBlockType";
 import { HeadlineFlags } from "../HeadlineFlags";
 import { AccentColor } from "./AccentColor";
+import { ContentBlockType } from "./ContentBlockType";
 
 export enum Orientation {
   Portrait = "portrait",
@@ -11,7 +11,7 @@ export interface IHomepageArticle {
   type: ContentBlockType.HomepageArticle;
   id: string;
   headline: string;
-  color: AccentColor.TopStoriesBlue;
+  color: AccentColor;
   linkUrl: string;
   headlineFlags: HeadlineFlags[];
   lastPublishedTime?: number;

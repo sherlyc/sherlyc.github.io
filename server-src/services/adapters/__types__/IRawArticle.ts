@@ -13,6 +13,7 @@ export interface IRawArticle {
   imageSrcSet: string | null;
   strapImageSrcSet: string | null;
   sixteenByNineSrc: string | null;
+  portraitImageSrc: string | null;
   lastPublishedTime: number;
   headlineFlags: HeadlineFlags[];
   identifier?: string;

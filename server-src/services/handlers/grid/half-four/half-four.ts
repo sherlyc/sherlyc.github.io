@@ -1,19 +1,19 @@
-import { handlerRunnerFunction } from "../../runner";
-import { IParams } from "../../../__types__/IParams";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { IHalfFourHandlerInput } from "../../__types__/IHalfFourHandlerInput";
+import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
+import { IParams } from "../../../__types__/IParams";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { featuredArticle } from "../../../adapters/article-converter/featured-article.converter";
+import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
   HalfFourGridPositions,
   IHalfFourGridHandlerInput
 } from "../../__types__/IHalfFourGridHandlerInput";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { featuredArticle } from "../../../adapters/article-converter/featured-article.converter";
+import { IHalfFourHandlerInput } from "../../__types__/IHalfFourHandlerInput";
+import { handlerRunnerFunction } from "../../runner";
 import { contentErrorHandler } from "../content-error-handler";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
-import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -27,10 +27,10 @@ export default async function(
     content: {
       [HalfFourGridPositions.ModuleTitle]: [
         {
-          type: ContentBlockType.ModuleTitle,
-          displayName,
-          displayNameColor: color,
-          linkUrl
+          type: ContentBlockType.ModuleHeader,
+          title: displayName,
+          url: linkUrl,
+          color
         }
       ],
       [HalfFourGridPositions.Left]: [
@@ -53,6 +53,7 @@ export default async function(
             homepageArticle(
               articles.shift() as IRawArticle,
               strapName,
+              color,
               {
                 mobile: Orientation.Landscape,
                 tablet: Orientation.Landscape,
@@ -72,6 +73,7 @@ export default async function(
             homepageArticle(
               articles.shift() as IRawArticle,
               strapName,
+              color,
               {
                 mobile: Orientation.Landscape,
                 tablet: Orientation.Landscape,
@@ -91,6 +93,7 @@ export default async function(
             homepageArticle(
               articles.shift() as IRawArticle,
               strapName,
+              color,
               {
                 mobile: Orientation.Landscape,
                 tablet: Orientation.Landscape,

@@ -1,0 +1,29 @@
+@import "src/styles/break-points";
+
+div {
+  margin: 0 -10px;
+  padding-left: 10px;
+  border-bottom: 4px solid;
+  font-size: 40px;
+  font-weight: 900;
+  text-transform: lowercase;
+
+  a {
+    text-decoration: none;
+  }
+
+  @include mobile {
+    padding-left: 10px;
+    border-bottom: 3px solid;
+  }
+}
+
+.variation-smaller {
+  font-size: 30px;
+  border-bottom: 3px solid;
+}
+
+.variation-smallernoline {
+  font-size: 30px;
+  border: none;
+}
