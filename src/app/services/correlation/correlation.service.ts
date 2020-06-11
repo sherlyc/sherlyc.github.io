@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
-import * as uuidv4 from "uuid/v4";
+import { v4 } from "uuid";
 import { ICorrelation } from "./__types__/ICorrelation";
 import { StoreService, StorageKeys } from "../store/store.service";
 import { RuntimeService } from "../runtime/runtime.service";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class CorrelationService {
   private pageScopedId!: string;
@@ -17,7 +17,7 @@ export class CorrelationService {
   ) {}
 
   generatePageScopedId() {
-    this.pageScopedId = uuidv4();
+    this.pageScopedId = v4();
   }
 
   getPageScopedId(): string {
@@ -33,7 +33,7 @@ export class CorrelationService {
   }
 
   generateDeviceId() {
-    return `${uuidv4()}-${new Date().getTime()}`;
+    return `${v4()}-${new Date().getTime()}`;
   }
 
   getDeviceId(): string {
@@ -52,7 +52,7 @@ export class CorrelationService {
     return {
       deviceId: this.getDeviceId(),
       apiRequestId: this.getApiRequestId(),
-      pageScopedId: this.getPageScopedId()
+      pageScopedId: this.getPageScopedId(),
     };
   }
 }
