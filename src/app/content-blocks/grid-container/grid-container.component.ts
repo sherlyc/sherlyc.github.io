@@ -60,6 +60,8 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
 
   table?: ITableCell[][];
 
+  variationClass?: string;
+
   private static getBorderCellDeviceCss(gridBlock: IGridBlock, type: Border) {
     const hasBorder = gridBlock.border.includes(type);
     return hasBorder
@@ -113,6 +115,10 @@ export class GridContainerComponent implements IContentBlockComponent, OnInit {
     } else {
       this.table = this.getTableContent();
     }
+
+    this.variationClass = this.input.variation
+      ? `variation-${this.input.variation}`.toLowerCase()
+      : undefined;
   }
 
   private createBorderCells() {
