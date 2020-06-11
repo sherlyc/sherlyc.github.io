@@ -107,6 +107,10 @@ export const newPage = (): HandlerInput[] => {
           sourceId: Strap.MidStrip
         },
         {
+          type: HandlerInputType.PlayStuff,
+          total: 8
+        },
+        {
           type: HandlerInputType.NewsSixV2,
           displayName: "coronavirus",
           color: AccentColor.DeepBlue,

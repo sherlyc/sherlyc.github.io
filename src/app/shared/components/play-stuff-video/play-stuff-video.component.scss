@@ -1,0 +1,106 @@
+@import "src/styles/break-points";
+
+.wrapper {
+  display: flex;
+}
+
+.text {
+  padding: 10px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 22px;
+}
+
+.image-logo {
+  position: relative;
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .logo {
+    position: absolute;
+    width: 7%;
+    padding: 2%;
+    border-radius: 50%;
+    background: #19242a;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    svg {
+      display: block;
+      position: relative;
+      left: 10%;
+    }
+  }
+}
+
+@mixin landscape {
+  flex-direction: row;
+  align-items: start;
+  .image-logo,
+  .text {
+    flex: 1 1 0;
+  }
+}
+
+@mixin portrait {
+  flex-direction: column;
+  justify-content: stretch;
+}
+
+@include mobile {
+  .landscape-mobile {
+    @include landscape;
+  }
+
+  .portrait-mobile {
+    @include portrait;
+  }
+
+  .highlight {
+    .text {
+      font-size: 24px;
+      line-height: 28px;
+    }
+  }
+}
+
+@include tablet {
+  .landscape-tablet {
+    @include landscape;
+  }
+
+  .portrait-tablet {
+    @include portrait;
+  }
+
+  .highlight {
+    .text {
+      font-size: 20px;
+      line-height: 24px;
+    }
+  }
+}
+
+@include desktop {
+  .landscape-desktop {
+    @include landscape;
+  }
+
+  .portrait-desktop {
+    @include portrait;
+  }
+
+  .highlight {
+    .text {
+      font-size: 20px;
+      line-height: 24px;
+    }
+  }
+}

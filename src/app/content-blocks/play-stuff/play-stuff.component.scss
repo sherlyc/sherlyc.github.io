@@ -1,0 +1,139 @@
+@import "src/styles/break-points";
+
+.wrapper {
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #1a242a;
+  padding: 10px;
+}
+
+@mixin head($fontSize, $titleTop, $logoHeight, $logoTop) {
+  .head {
+    position: relative;
+    margin: 10px;
+    padding-top: #{$titleTop};
+
+    span {
+      color: #ffffff;
+      font-size: #{$fontSize};
+      font-weight: 700;
+      border-left: solid 7px #51d7dd;
+      padding-left: 13px;
+    }
+
+    a {
+      position: absolute;
+      width: auto;
+      height: #{$logoHeight};
+      right: 0;
+      top: #{$logoTop};
+
+      svg {
+        height: 100%;
+      }
+    }
+  }
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+
+  .three-items {
+    display: flex;
+    justify-content: space-between;
+    align-content: stretch;
+  }
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-content: stretch;
+}
+
+.cell {
+  background-color: #283339;
+  margin: 10px;
+}
+
+@include desktop {
+  .top {
+    flex-direction: row;
+
+    .highlight {
+      flex: 3 1 0;
+    }
+
+    .three-items {
+      flex: 2 1 0;
+
+      flex-direction: column;
+    }
+  }
+
+  .bottom {
+    flex-direction: row;
+
+    .cell {
+      flex: 1;
+    }
+  }
+
+  @include head(31px, 36px, 47px, 14px);
+}
+
+@include tablet {
+  .top {
+    flex-direction: column;
+
+    .three-items {
+      flex-direction: row;
+
+      .cell {
+        flex: 1;
+      }
+    }
+  }
+
+  .bottom {
+    display: none;
+    flex-direction: row;
+
+    .cell {
+      flex: 1;
+    }
+  }
+
+  @include head(31px, 26px, 40px, 6px);
+}
+
+@include mobile {
+  .top {
+    flex-direction: column;
+
+    .three-items {
+      flex-direction: column;
+      .cell:last-child {
+        display: none;
+      }
+    }
+  }
+
+  .bottom {
+    display: none;
+    flex-direction: column;
+  }
+
+  .wrapper {
+    width: calc(100% + 20px);
+    margin-left: -10px;
+    padding: 10px 0;
+  }
+
+  .top > .cell {
+    margin: 0 0 30px;
+  }
+
+  @include head(24px, 25px, 34px, 5px);
+}

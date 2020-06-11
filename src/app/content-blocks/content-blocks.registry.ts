@@ -35,6 +35,7 @@ import { StickyContainerComponent } from "./sticky-container/sticky-container.co
 import { VerticalArticleListComponent } from "./vertical-article-list/vertical-article-list.component";
 import { WeatherUnitComponent } from "./weather-unit/weather-unit.component";
 import { ModuleHeaderComponent } from "./module-header/module-header.component";
+import { PlayStuffComponent } from "./play-stuff/play-stuff.component";
 
 export const contentBlockComponents = [
   GrayDefconArticleUnitComponent,
@@ -71,7 +72,8 @@ export const contentBlockComponents = [
   HomepageArticleComponent,
   HomepageHighlightArticleComponent,
   VerticalArticleListComponent,
-  PartnerContentComponent
+  PartnerContentComponent,
+  PlayStuffComponent
 ];
 
 const registry: {
@@ -111,7 +113,8 @@ const registry: {
   HomepageArticleComponent,
   HomepageHighlightArticleComponent: HomepageHighlightArticleComponent,
   VerticalArticleListComponent,
-  PartnerContentComponent
+  PartnerContentComponent,
+  PlayStuffComponent
 };
 
 export default registry;

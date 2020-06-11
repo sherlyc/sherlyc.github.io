@@ -93,6 +93,22 @@ describe("Play Stuff", () => {
     ]);
   });
 
+  it("should return empty when no videos are returned", async () => {
+    const input: IPlayStuffHandlerInput = {
+      type: HandlerInputType.PlayStuff,
+      total: 8
+    };
+    (getBrightcovePlaylist as jest.Mock).mockResolvedValue([]);
+
+    const result = await playStuff(handlerRunnerMock, input, params);
+
+    expect(result).toEqual([]);
+    expect(logger.error).toHaveBeenCalledWith(
+      params.apiRequestId,
+      "Insufficient videos retrieved from Brightcove"
+    );
+  });
+
   it("should log error and return empty content block when failing to retrieve videos", async () => {
     const input: IPlayStuffHandlerInput = {
       type: HandlerInputType.PlayStuff,
