@@ -18,7 +18,7 @@ const create = (params: IParams): AxiosInstance => {
   };
   httpClient.interceptors.request.use((request: AxiosRequestConfig & any) => {
     request.headers["User-Agent"] = "Stuff NZ SPADE; nz.co.stuff.spade";
-    if (params.authorization) {
+    if (params.authorization && !request.headers["Authorization"]) {
       request.headers["Authorization"] = params.authorization;
     }
     request.ts = performance.now();
