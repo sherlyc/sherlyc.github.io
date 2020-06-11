@@ -45,6 +45,17 @@ body {
   font-weight: 400;
 }
 
+.color-bar {
+  background-image: linear-gradient(
+    90deg,
+    #ff4e00 13%,
+    #fcd300 33%,
+    #00c580 50%,
+    #00a2fc 67%,
+    #8130e4 87%
+  );
+}
+
 a {
   color: inherit;
 }
