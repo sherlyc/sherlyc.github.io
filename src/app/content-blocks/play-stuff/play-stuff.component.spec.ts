@@ -15,13 +15,13 @@ describe("PlayStuffComponent", () => {
     name: `name ${id}`,
     description: `description ${id}`,
     thumbnail: `thumbnail${id}.png`,
-    poster: `poster${id}.png`,
+    poster: `poster${id}.png`
   });
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [PlayStuffComponent],
-      schemas: [NO_ERRORS_SCHEMA],
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
   }));
 
@@ -38,8 +38,8 @@ describe("PlayStuffComponent", () => {
         fakeVideo("5"),
         fakeVideo("6"),
         fakeVideo("7"),
-        fakeVideo("8"),
-      ],
+        fakeVideo("8")
+      ]
     };
   });
 
@@ -68,13 +68,12 @@ describe("PlayStuffComponent", () => {
     expect(featuredVideoElement.orientation).toEqual({
       mobile: Orientation.Portrait,
       tablet: Orientation.Portrait,
-      desktop: Orientation.Portrait,
+      desktop: Orientation.Portrait
     });
 
     const threeItemsVideos = component.input.videos.slice(1, 4);
-    const threeItems: Array<
-      HTMLUnknownElement & any
-    > = fixture.debugElement
+    const threeItems: Array<HTMLUnknownElement &
+      any> = fixture.debugElement
       .queryAll(By.css(".three-items app-play-stuff-video"))
       .map((item) => item.nativeElement);
     expect(threeItems).toHaveLength(3);
@@ -87,14 +86,13 @@ describe("PlayStuffComponent", () => {
       expect(item.orientation).toEqual({
         mobile: Orientation.Landscape,
         tablet: Orientation.Portrait,
-        desktop: Orientation.Landscape,
+        desktop: Orientation.Landscape
       });
     });
 
     const bottomVideos = component.input.videos.slice(4);
-    const bottomVideoElements: Array<
-      HTMLUnknownElement & any
-    > = fixture.debugElement
+    const bottomVideoElements: Array<HTMLUnknownElement &
+      any> = fixture.debugElement
       .queryAll(By.css(".bottom app-play-stuff-video"))
       .map((item) => item.nativeElement);
     expect(bottomVideoElements).toHaveLength(4);
@@ -107,7 +105,7 @@ describe("PlayStuffComponent", () => {
       expect(item.orientation).toEqual({
         mobile: Orientation.Landscape,
         tablet: Orientation.Portrait,
-        desktop: Orientation.Portrait,
+        desktop: Orientation.Portrait
       });
     });
   });
@@ -115,7 +113,7 @@ describe("PlayStuffComponent", () => {
   it("should render videos when there are fewer than 8", () => {
     component.input = {
       type: ContentBlockType.PlayStuff,
-      videos: [fakeVideo("1"), fakeVideo("2"), fakeVideo("3")],
+      videos: [fakeVideo("1"), fakeVideo("2"), fakeVideo("3")]
     };
 
     fixture.detectChanges();
