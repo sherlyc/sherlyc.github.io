@@ -30,7 +30,7 @@
 
   .logo {
     position: absolute;
-    width: 7%;
+    width: 6%;
     padding: 2%;
     border-radius: 50%;
     background: #19242a;
@@ -76,6 +76,13 @@
       line-height: 28px;
     }
   }
+
+  .image-logo {
+    .logo {
+      top: 86%;
+      left: 9%;
+    }
+  }
 }
 
 @include tablet {
@@ -91,6 +98,13 @@
     .text {
       font-size: 20px;
       line-height: 24px;
+    }
+  }
+
+  .image-logo {
+    .logo {
+      top: 86%;
+      left: 9%;
     }
   }
 }
