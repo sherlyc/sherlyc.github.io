@@ -56,8 +56,9 @@ describe("PlayStuffVideoComponent", () => {
     expect(image.getAttribute("src")).toBe(component.image);
     expect(image.getAttribute("alt")).toBe(component.text);
 
-    const text: HTMLDivElement = fixture.debugElement.query(By.css(".text"))
+    const text: HTMLAnchorElement = fixture.debugElement.query(By.css(".text"))
       .nativeElement;
     expect(text.textContent).toBe(component.text);
+    expect(text.href).toBe(component.url);
   });
 });
