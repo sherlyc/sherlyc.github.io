@@ -10,7 +10,7 @@ describe("PlayStuffVideoComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PlayStuffVideoComponent],
+      declarations: [PlayStuffVideoComponent]
     }).compileComponents();
   }));
 
@@ -32,7 +32,7 @@ describe("PlayStuffVideoComponent", () => {
     component.orientation = {
       mobile: Orientation.Landscape,
       tablet: Orientation.Portrait,
-      desktop: Orientation.Landscape,
+      desktop: Orientation.Landscape
     };
 
     fixture.detectChanges();
