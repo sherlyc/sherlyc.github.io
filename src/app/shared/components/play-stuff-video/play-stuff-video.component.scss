@@ -4,10 +4,6 @@
   display: flex;
 }
 
-.image {
-  overflow: hidden;
-}
-
 .text {
   padding: 10px;
   color: #ffffff;
@@ -18,11 +14,17 @@
 
 .image-logo {
   position: relative;
-  img {
-    display: block;
+
+  .image {
+    position: relative;
+    overflow: hidden;
     width: 100%;
-    height: auto;
-    object-fit: cover;
+    height: 0;
+    padding-bottom: 56.25%;
+    img {
+      width: 100%;
+      max-width: 100%;
+    }
   }
 
   .logo {

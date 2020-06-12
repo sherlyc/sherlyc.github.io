@@ -1,7 +1,7 @@
 <div class="wrapper" [ngClass]="classNames" [class.highlight]="highlight" data-id="{{ id }}">
   <a class="image-logo" [href]="url">
-    <div class="image" *ngIf="image">
-      <app-fluid-image [imageSrc]="image" [caption]="text"></app-fluid-image>
+    <div class="image">
+      <img [src]="image" alt="{{ text }}" />
     </div>
     <div class="logo">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14">
