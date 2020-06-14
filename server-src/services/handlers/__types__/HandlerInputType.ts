@@ -47,5 +47,6 @@ export enum HandlerInputType {
   VersionSwitcher = "VersionSwitcher",
   LatestHeadlines = "LatestHeadlines",
   Partner = "Partner",
-  PlayStuff = "PlayStuff"
+  PlayStuff = "PlayStuff",
+  EditorsPicksGrid = "EditorsPicksGrid"
 }
