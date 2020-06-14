@@ -7,6 +7,7 @@ export interface IEditorsPicksGridHandlerInput {
 }
 
 export enum EditorsPicksGridPositions {
+  ModuleTitle = "ModuleTitle",
   FirstRowOne = "FirstRowOne",
   FirstRowTwo = "FirstRowTwo",
   FirstRowThree = "FirstRowThree",
@@ -15,5 +16,5 @@ export enum EditorsPicksGridPositions {
   SecondRowTwo = "SecondRowTwo",
   SecondRowThree = "SecondRowThree",
   SecondRowFour = "SecondRowFour",
-  Ad = "Ad"
+  Ad = "Ad",
 }
