@@ -62,13 +62,12 @@
   .top {
     flex-direction: row;
 
-    .highlight {
-      flex: 3 1 0;
+    .cell {
+      flex: 4;
     }
 
     .three-items {
-      flex: 2 1 0;
-
+      flex: 3;
       flex-direction: column;
     }
   }
