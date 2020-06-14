@@ -51,6 +51,7 @@ import TopStoriesArticleList from "./top-stories-article-list/top-stories-articl
 import VersionSwitcher from "./version-switcher/version-switcher";
 import Weather from "./weather/weather";
 import PlayStuff from "./play-stuff/play-stuff";
+import MostReadGrid from "./grid/most-read-grid/most-read-grid";
 
 type handlerFunction = (
   handlerRunner: handlerRunnerFunction,
@@ -107,7 +108,8 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   VersionSwitcher,
   LatestHeadlines,
   Partner,
-  PlayStuff
+  PlayStuff,
+  MostReadGrid,
 };
 
 export default handlerRegistry;
