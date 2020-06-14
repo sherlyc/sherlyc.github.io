@@ -1,5 +1,9 @@
 @import "src/styles/break-points";
 
+a {
+  text-decoration: none;
+}
+
 .wrapper {
   display: flex;
 }
@@ -9,21 +13,29 @@
   color: #ffffff;
   font-size: 18px;
   font-weight: 700;
+  text-decoration: none;
   line-height: 22px;
 }
 
 .image-logo {
+  display: inline;
   position: relative;
-  img {
-    display: block;
+
+  .image {
+    position: relative;
+    overflow: hidden;
     width: 100%;
-    height: auto;
-    object-fit: cover;
+    height: 0;
+    padding-bottom: 56.25%;
+    img {
+      width: 100%;
+      max-width: 100%;
+    }
   }
 
   .logo {
     position: absolute;
-    width: 7%;
+    width: 6%;
     padding: 2%;
     border-radius: 50%;
     background: #19242a;
@@ -69,6 +81,11 @@
       line-height: 28px;
     }
   }
+
+  .image-logo > .logo {
+    top: 86%;
+    left: 9%;
+  }
 }
 
 @include tablet {
@@ -85,6 +102,11 @@
       font-size: 20px;
       line-height: 24px;
     }
+  }
+
+  .image-logo > .logo {
+    top: 86%;
+    left: 9%;
   }
 }
 

@@ -5,6 +5,7 @@
   width: 100%;
   background-color: #1a242a;
   padding: 10px;
+  margin-bottom: 30px;
 }
 
 @mixin head($fontSize, $titleTop, $logoHeight, $logoTop) {
@@ -135,5 +136,5 @@
     margin: 0 0 30px;
   }
 
-  @include head(24px, 25px, 34px, 5px);
+  @include head(24px, 25px, 30px, 5px);
 }
