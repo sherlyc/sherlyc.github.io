@@ -2,30 +2,14 @@ import { TestBed } from "@angular/core/testing";
 
 import { SeoService } from "./seo.service";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { mockService, ServiceMock } from "../mocks/MockService";
-import { EventsService } from "../events/events.service";
-import { NavigationStart } from "@angular/router";
-import { Subject } from "rxjs";
 
 describe("SeoService", () => {
   let service: SeoService;
-  let eventsService: ServiceMock<EventsService>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        {
-          provide: EventsService,
-          useClass: mockService(EventsService),
-        },
-      ],
-    });
+    TestBed.configureTestingModule({});
     service = TestBed.inject(SeoService);
-    eventsService = TestBed.inject(EventsService) as ServiceMock<EventsService>;
-    eventsService.getEventSubject.mockReturnValue({
-      NavigationStart: new Subject<NavigationStart>(),
-    });
-    service.setup();
+    service.reset();
   });
 
   it("should be created", () => {
@@ -59,9 +43,7 @@ describe("SeoService", () => {
     index = service.index(contentBlockType);
     expect(index).toEqual(1);
 
-    eventsService
-      .getEventSubject()
-      .NavigationStart.next(new NavigationStart(0, "/"));
+    service.reset();
 
     expect(service.counter).toEqual(0);
 

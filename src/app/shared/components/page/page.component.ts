@@ -9,11 +9,12 @@ import { EventsService } from "../../../services/events/events.service";
 import { Subject } from "rxjs";
 import { NavigationStart } from "@angular/router";
 import { AnalyticsService } from "../../../services/analytics/analytics.service";
+import { SeoService } from "../../../services/seo/seo.service";
 
 @Component({
   selector: "app-page",
   templateUrl: "./page.component.html",
-  styleUrls: ["./page.component.scss"]
+  styleUrls: ["./page.component.scss"],
 })
 export class PageComponent implements OnInit {
   private navigationStartSubject: Subject<NavigationStart>;
@@ -23,7 +24,8 @@ export class PageComponent implements OnInit {
     private title: Title,
     private correlationService: CorrelationService,
     private eventsService: EventsService,
-    private analyticsService: AnalyticsService
+    private analyticsService: AnalyticsService,
+    private seoService: SeoService
   ) {
     this.navigationStartSubject = this.eventsService.getEventSubject().NavigationStart;
   }
@@ -39,6 +41,7 @@ export class PageComponent implements OnInit {
 
   getData() {
     this.correlationService.generatePageScopedId();
+    this.seoService.reset();
     this.contentRetriever.getContent().subscribe(async (page: IPage) => {
       this.correlationService.setApiRequestId(page.apiRequestId);
       this.title.setTitle(page.title);

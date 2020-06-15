@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { EventsService } from "../events/events.service";
 
 @Injectable({
   providedIn: "root",
@@ -21,12 +20,8 @@ export class SeoService {
   ];
   counter = 0;
 
-  constructor(private eventsService: EventsService) {}
-
-  setup() {
-    this.eventsService.getEventSubject().NavigationStart.subscribe(() => {
-      this.counter = 0;
-    });
+  reset() {
+    this.counter = 0;
   }
 
   index(contentBlockType: ContentBlockType) {
