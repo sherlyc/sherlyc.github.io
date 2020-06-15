@@ -6,8 +6,7 @@ import { ContentBlockType } from "./ContentBlockType";
 
 export enum HomepageHighlightArticleVariation {
   Lead = "Lead",
-  BigFeatured = "BigFeatured",
-  Featured = "Featured",
+  Featured = "Featured"
 }
 
 export interface IHomepageHighlightArticleImageConfig {

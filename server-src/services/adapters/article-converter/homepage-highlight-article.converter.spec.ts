@@ -2,7 +2,7 @@ import { AccentColor } from "../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import {
   HomepageHighlightArticleVariation,
-  IHomepageHighlightArticle,
+  IHomepageHighlightArticle
 } from "../../../../common/__types__/IHomepageHighlightArticle";
 import { AspectRatio } from "../../../../common/AspectRatio";
 import { IRawArticle } from "../__types__/IRawArticle";
@@ -27,17 +27,17 @@ describe("Homepage Highlight Article", () => {
     portraitImageSrc: "portraitImageSrc.jpg",
     identifier: "identifier",
     category: "National",
-    categoryUrl: "/coronavirus/",
+    categoryUrl: "/coronavirus/"
   };
 
   const expected: IHomepageHighlightArticle = {
     analytics: {
       strapName: "strapName",
-      title: "Title One",
+      title: "Title One"
     },
     category: {
       name: "National",
-      url: "/coronavirus/",
+      url: "/coronavirus/"
     },
     headline: "Headline 1",
     headlineFlags: [],
@@ -46,22 +46,22 @@ describe("Homepage Highlight Article", () => {
     image: {
       mobile: {
         src: "sixteenByNineSrc.jpg",
-        aspectRatio: AspectRatio.SixteenByNine,
+        aspectRatio: AspectRatio.SixteenByNine
       },
       tablet: {
         src: "portraitImageSrc.jpg",
-        aspectRatio: AspectRatio.SixteenByNine,
+        aspectRatio: AspectRatio.SixteenByNine
       },
       desktop: {
         src: "portraitImageSrc.jpg",
-        aspectRatio: AspectRatio.OneByOne,
-      },
+        aspectRatio: AspectRatio.OneByOne
+      }
     },
     variation: HomepageHighlightArticleVariation.Lead,
     introText: "Intro 1",
     lastPublishedTime: 1,
     linkUrl: "/link1",
-    type: ContentBlockType.HomepageHighlightArticle,
+    type: ContentBlockType.HomepageHighlightArticle
   };
 
   it("should convert", () => {
@@ -72,16 +72,16 @@ describe("Homepage Highlight Article", () => {
       {
         mobile: {
           variant: JsonFeedImageType.THUMBNAIL_SIXTEEN_BY_NINE,
-          aspectRatio: AspectRatio.SixteenByNine,
+          aspectRatio: AspectRatio.SixteenByNine
         },
         tablet: {
           variant: JsonFeedImageType.PORTRAIT,
-          aspectRatio: AspectRatio.SixteenByNine,
+          aspectRatio: AspectRatio.SixteenByNine
         },
         desktop: {
           variant: JsonFeedImageType.PORTRAIT,
-          aspectRatio: AspectRatio.OneByOne,
-        },
+          aspectRatio: AspectRatio.OneByOne
+        }
       },
       HomepageHighlightArticleVariation.Lead,
       true
@@ -96,7 +96,7 @@ describe("Homepage Highlight Article", () => {
       "strapName",
       AccentColor.Cyan,
       {},
-      HomepageHighlightArticleVariation.BigFeatured,
+      HomepageHighlightArticleVariation.Featured,
       false
     );
 
@@ -104,8 +104,8 @@ describe("Homepage Highlight Article", () => {
       ...expected,
       color: AccentColor.Cyan,
       image: {},
-      variation: HomepageHighlightArticleVariation.BigFeatured,
-      introText: undefined,
+      variation: HomepageHighlightArticleVariation.Featured,
+      introText: undefined
     });
   });
 
@@ -117,16 +117,16 @@ describe("Homepage Highlight Article", () => {
       {
         mobile: {
           variant: JsonFeedImageType.THUMBNAIL_SIXTEEN_BY_NINE,
-          aspectRatio: AspectRatio.SixteenByNine,
+          aspectRatio: AspectRatio.SixteenByNine
         },
         tablet: {
           variant: JsonFeedImageType.PORTRAIT,
-          aspectRatio: AspectRatio.SixteenByNine,
+          aspectRatio: AspectRatio.SixteenByNine
         },
         desktop: {
           variant: JsonFeedImageType.PORTRAIT,
-          aspectRatio: AspectRatio.OneByOne,
-        },
+          aspectRatio: AspectRatio.OneByOne
+        }
       },
       HomepageHighlightArticleVariation.Lead,
       true
@@ -134,7 +134,7 @@ describe("Homepage Highlight Article", () => {
 
     expect(result).toEqual({
       ...expected,
-      image: {},
+      image: {}
     });
   });
 });
