@@ -3,20 +3,19 @@ import { ContentBlockType } from "../../../../../common/__types__/ContentBlockTy
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
   ILargeLeadSixGridHandlerInput,
-  LargeLeadSixGridPositions
+  LargeLeadSixGridPositions,
 } from "../../__types__/ILargeLeadSixGridHandlerInput";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import {
   Border,
   IGridConfig,
-  IGridContainer
+  IGridContainer,
 } from "../../../../../common/__types__/IGridContainer";
 import largeLeadSixGrid from "./large-lead-six-grid";
 
 describe("Large Lead Six Grid", () => {
   const handlerRunner = jest.fn();
   const params: IParams = { apiRequestId: "123" };
-  const strapName = "fakeStrapName";
   const fakeContentBlock = {} as IContentBlock;
 
   it("should generate grid", async () => {
@@ -26,8 +25,8 @@ describe("Large Lead Six Grid", () => {
         [LargeLeadSixGridPositions.ModuleTitle]: [fakeContentBlock],
         [LargeLeadSixGridPositions.Left]: [fakeContentBlock],
         [LargeLeadSixGridPositions.Middle]: [fakeContentBlock],
-        [LargeLeadSixGridPositions.Right]: [fakeContentBlock]
-      }
+        [LargeLeadSixGridPositions.Right]: [fakeContentBlock],
+      },
     };
 
     const desktop: IGridConfig = {
@@ -41,30 +40,30 @@ describe("Large Lead Six Grid", () => {
           columnSpan: 3,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [],
         },
         [LargeLeadSixGridPositions.Left]: {
           columnStart: 1,
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: [Border.right]
+          border: [],
         },
         [LargeLeadSixGridPositions.Middle]: {
           columnStart: 2,
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: [Border.right]
+          border: [Border.bottom],
         },
         [LargeLeadSixGridPositions.Right]: {
           columnStart: 3,
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: []
-        }
-      }
+          border: [],
+        },
+      },
     };
 
     const tablet: IGridConfig = {
@@ -78,30 +77,30 @@ describe("Large Lead Six Grid", () => {
           columnSpan: 3,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [],
         },
         [LargeLeadSixGridPositions.Left]: {
           columnStart: 1,
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: [Border.right]
+          border: [],
         },
         [LargeLeadSixGridPositions.Middle]: {
           columnStart: 2,
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: [Border.right]
+          border: [Border.bottom],
         },
         [LargeLeadSixGridPositions.Right]: {
           columnStart: 3,
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: []
-        }
-      }
+          border: [],
+        },
+      },
     };
 
     const mobile: IGridConfig = {
@@ -115,30 +114,30 @@ describe("Large Lead Six Grid", () => {
           columnSpan: 1,
           rowStart: 1,
           rowSpan: 1,
-          border: []
+          border: [],
         },
         [LargeLeadSixGridPositions.Left]: {
           columnStart: 1,
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: [Border.bottom]
+          border: [Border.bottom],
         },
         [LargeLeadSixGridPositions.Middle]: {
           columnStart: 1,
           columnSpan: 1,
           rowStart: 3,
           rowSpan: 1,
-          border: [Border.bottom]
+          border: [Border.bottom],
         },
         [LargeLeadSixGridPositions.Right]: {
           columnStart: 1,
           columnSpan: 1,
           rowStart: 4,
           rowSpan: 1,
-          border: []
-        }
-      }
+          border: [],
+        },
+      },
     };
 
     const expectedGridContainer: IGridContainer = {
@@ -146,7 +145,7 @@ describe("Large Lead Six Grid", () => {
       items: handlerInput.content,
       desktop,
       tablet,
-      mobile
+      mobile,
     };
 
     const result = await largeLeadSixGrid(handlerRunner, handlerInput, params);
