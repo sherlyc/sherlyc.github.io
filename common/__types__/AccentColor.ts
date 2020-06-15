@@ -13,9 +13,10 @@ export enum AccentColor {
   Salem = "#129A5E",
   Violet = "#9C1A87",
   SpringGreen = "#60A735",
-  DustyGray = "#999",
   RainforestGreen = "#00824A",
   CardinalRed = "#d12421",
   Coral = "#ff433d",
-  Gray = "#5d5d5d"
+  Gray = "#5d5d5d",
+  DarkGray = "#333333",
+  DustyGray = "#999",
 }

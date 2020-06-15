@@ -16,24 +16,23 @@ describe("Editors Picks grid", () => {
   const handlerRunnerMock = jest.fn();
   const params: IParams = { apiRequestId: "123" };
   const fakeContentBlock = {} as IContentBlock;
+  const input: IEditorsPicksGridHandlerInput = {
+    type: HandlerInputType.EditorsPicksGrid,
+    content: {
+      [EditorsPicksGridPositions.ModuleTitle]: [fakeContentBlock],
+      [EditorsPicksGridPositions.FirstRowOne]: [fakeContentBlock],
+      [EditorsPicksGridPositions.FirstRowTwo]: [fakeContentBlock],
+      [EditorsPicksGridPositions.FirstRowThree]: [fakeContentBlock],
+      [EditorsPicksGridPositions.FirstRowFour]: [fakeContentBlock],
+      [EditorsPicksGridPositions.SecondRowOne]: [fakeContentBlock],
+      [EditorsPicksGridPositions.SecondRowTwo]: [fakeContentBlock],
+      [EditorsPicksGridPositions.SecondRowThree]: [fakeContentBlock],
+      [EditorsPicksGridPositions.SecondRowFour]: [fakeContentBlock],
+      [EditorsPicksGridPositions.Ad]: [fakeContentBlock],
+    },
+  };
 
   it("should generate desktop grid", async () => {
-    const input: IEditorsPicksGridHandlerInput = {
-      type: HandlerInputType.EditorsPicksGrid,
-      content: {
-        [EditorsPicksGridPositions.ModuleTitle]: [fakeContentBlock],
-        [EditorsPicksGridPositions.FirstRowOne]: [fakeContentBlock],
-        [EditorsPicksGridPositions.FirstRowTwo]: [fakeContentBlock],
-        [EditorsPicksGridPositions.FirstRowThree]: [fakeContentBlock],
-        [EditorsPicksGridPositions.FirstRowFour]: [fakeContentBlock],
-        [EditorsPicksGridPositions.SecondRowOne]: [fakeContentBlock],
-        [EditorsPicksGridPositions.SecondRowTwo]: [fakeContentBlock],
-        [EditorsPicksGridPositions.SecondRowThree]: [fakeContentBlock],
-        [EditorsPicksGridPositions.SecondRowFour]: [fakeContentBlock],
-        [EditorsPicksGridPositions.Ad]: [fakeContentBlock],
-      },
-    };
-
     const [grid] = await editorsPicksGrid(handlerRunnerMock, input, params);
 
     expect((grid as IGridContainer).desktop).toEqual({
