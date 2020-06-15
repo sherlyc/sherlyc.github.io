@@ -57,7 +57,7 @@ export default async function (
     gridTemplateColumns: "1fr 1fr 300px",
     gridTemplateRows: repeat(" auto", 5).substring(1),
     gridRowGap: "20px",
-    gridColumnGap: "10px",
+    gridColumnGap: "20px",
     gridBlocks: {
       [EditorsPicksGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 3, []),
       [EditorsPicksGridPositions.FirstRowOne]: gridBlock(2, 1, 1, 1, [

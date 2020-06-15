@@ -117,7 +117,7 @@ describe("Editors Picks grid", () => {
       gridTemplateColumns: "1fr 1fr 300px",
       gridTemplateRows: "auto auto auto auto auto",
       gridRowGap: "20px",
-      gridColumnGap: "10px",
+      gridColumnGap: "20px",
       gridBlocks: {
         [EditorsPicksGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 3, []),
         [EditorsPicksGridPositions.FirstRowOne]: gridBlock(2, 1, 1, 1, [
