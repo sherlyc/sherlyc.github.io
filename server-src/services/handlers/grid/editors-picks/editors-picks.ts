@@ -9,7 +9,6 @@ import {
   IEditorsPicksGridHandlerInput,
 } from "../../__types__/IEditorsPicksGridHandlerInput";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { AccentColor } from "../../../../../common/__types__/AccentColor";
 import { contentErrorHandler } from "../content-error-handler";
 import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
