@@ -33,49 +33,49 @@ describe("AppComponent", () => {
       providers: [
         {
           provide: AdService,
-          useClass: mockService(AdService),
+          useClass: mockService(AdService)
         },
         {
           provide: EventsService,
-          useClass: mockService(EventsService),
+          useClass: mockService(EventsService)
         },
         {
           provide: AnalyticsService,
-          useClass: mockService(AnalyticsService),
+          useClass: mockService(AnalyticsService)
         },
         {
           provide: DtmService,
-          useClass: mockService(DtmService),
+          useClass: mockService(DtmService)
         },
         {
           provide: BrowserOverrideService,
-          useClass: mockService(BrowserOverrideService),
+          useClass: mockService(BrowserOverrideService)
         },
         {
           provide: ExperimentService,
-          useClass: mockService(ExperimentService),
+          useClass: mockService(ExperimentService)
         },
         {
           provide: NeighbourlyService,
-          useClass: mockService(NeighbourlyService),
+          useClass: mockService(NeighbourlyService)
         },
         {
           provide: MetaTagsService,
-          useClass: mockService(MetaTagsService),
+          useClass: mockService(MetaTagsService)
         },
         {
           provide: AuthenticationService,
-          useClass: mockService(AuthenticationService),
+          useClass: mockService(AuthenticationService)
         },
         {
           provide: FeatureSwitchService,
-          useClass: mockService(FeatureSwitchService),
+          useClass: mockService(FeatureSwitchService)
         },
         {
           provide: PwaService,
-          useClass: mockService(PwaService),
-        },
-      ],
+          useClass: mockService(PwaService)
+        }
+      ]
     }).compileComponents();
 
     adService = TestBed.inject(AdService) as ServiceMock<AdService>;
