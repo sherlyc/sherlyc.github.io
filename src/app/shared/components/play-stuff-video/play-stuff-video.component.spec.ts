@@ -10,7 +10,7 @@ describe("PlayStuffVideoComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PlayStuffVideoComponent]
+      declarations: [PlayStuffVideoComponent],
     }).compileComponents();
   }));
 
@@ -32,7 +32,7 @@ describe("PlayStuffVideoComponent", () => {
     component.orientation = {
       mobile: Orientation.Landscape,
       tablet: Orientation.Portrait,
-      desktop: Orientation.Landscape
+      desktop: Orientation.Landscape,
     };
 
     fixture.detectChanges();
@@ -51,9 +51,8 @@ describe("PlayStuffVideoComponent", () => {
       `https://play.stuff.co.nz/details/_${component.id}`
     );
 
-    const image: HTMLImageElement = fixture.debugElement.query(
-      By.css(".image-logo > img")
-    ).nativeElement;
+    const image: HTMLImageElement = fixture.debugElement.query(By.css("img"))
+      .nativeElement;
     expect(image.getAttribute("src")).toBe(component.image);
     expect(image.getAttribute("alt")).toBe(component.text);
 
