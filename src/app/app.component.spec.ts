@@ -13,6 +13,7 @@ import { MetaTagsService } from "./services/meta-tags/meta-tags.service";
 import { mockService, ServiceMock } from "./services/mocks/MockService";
 import { NeighbourlyService } from "./services/neighbourly/neighbourly.service";
 import { PwaService } from "./services/pwa/pwa.service";
+import { SeoService } from "./services/seo/seo.service";
 
 describe("AppComponent", () => {
   let adService: ServiceMock<AdService>;
@@ -25,6 +26,7 @@ describe("AppComponent", () => {
   let metaTagsService: ServiceMock<MetaTagsService>;
   let featureSwitchService: ServiceMock<FeatureSwitchService>;
   let pwaService: ServiceMock<PwaService>;
+  let seoService: ServiceMock<SeoService>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -33,49 +35,53 @@ describe("AppComponent", () => {
       providers: [
         {
           provide: AdService,
-          useClass: mockService(AdService)
+          useClass: mockService(AdService),
         },
         {
           provide: EventsService,
-          useClass: mockService(EventsService)
+          useClass: mockService(EventsService),
         },
         {
           provide: AnalyticsService,
-          useClass: mockService(AnalyticsService)
+          useClass: mockService(AnalyticsService),
         },
         {
           provide: DtmService,
-          useClass: mockService(DtmService)
+          useClass: mockService(DtmService),
         },
         {
           provide: BrowserOverrideService,
-          useClass: mockService(BrowserOverrideService)
+          useClass: mockService(BrowserOverrideService),
         },
         {
           provide: ExperimentService,
-          useClass: mockService(ExperimentService)
+          useClass: mockService(ExperimentService),
         },
         {
           provide: NeighbourlyService,
-          useClass: mockService(NeighbourlyService)
+          useClass: mockService(NeighbourlyService),
         },
         {
           provide: MetaTagsService,
-          useClass: mockService(MetaTagsService)
+          useClass: mockService(MetaTagsService),
         },
         {
           provide: AuthenticationService,
-          useClass: mockService(AuthenticationService)
+          useClass: mockService(AuthenticationService),
         },
         {
           provide: FeatureSwitchService,
-          useClass: mockService(FeatureSwitchService)
+          useClass: mockService(FeatureSwitchService),
         },
         {
           provide: PwaService,
-          useClass: mockService(PwaService)
-        }
-      ]
+          useClass: mockService(PwaService),
+        },
+        {
+          provide: SeoService,
+          useClass: mockService(SeoService),
+        },
+      ],
     }).compileComponents();
 
     adService = TestBed.inject(AdService) as ServiceMock<AdService>;
@@ -100,6 +106,7 @@ describe("AppComponent", () => {
       FeatureSwitchService
     >;
     pwaService = TestBed.inject(PwaService) as ServiceMock<PwaService>;
+    seoService = TestBed.inject(SeoService) as ServiceMock<SeoService>;
   });
 
   it("should create the app and set up services", async(() => {
@@ -117,6 +124,7 @@ describe("AppComponent", () => {
     expect(metaTagsService.setup).toHaveBeenCalled();
     expect(featureSwitchService.setup).toHaveBeenCalled();
     expect(pwaService.setup).toHaveBeenCalled();
+    expect(seoService.setup).toHaveBeenCalled();
   }));
 
   it("should check router outlet is present", async(() => {

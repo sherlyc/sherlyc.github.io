@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { EventsService } from "../events/events.service";
 
 @Injectable({
   providedIn: "root",
@@ -18,11 +19,19 @@ export class SeoService {
     ContentBlockType.ImageLinkUnit,
     ContentBlockType.ResponsiveBigImageArticle,
   ];
-  total = 0;
+  counter = 0;
+
+  constructor(private eventsService: EventsService) {}
+
+  setup() {
+    this.eventsService.getEventSubject().NavigationStart.subscribe(() => {
+      this.counter = 0;
+    });
+  }
 
   index(contentBlockType: ContentBlockType) {
     return this.articleContentBlocks.includes(contentBlockType)
-      ? this.total++
+      ? this.counter++
       : undefined;
   }
 }

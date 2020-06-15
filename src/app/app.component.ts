@@ -9,11 +9,12 @@ import { NeighbourlyService } from "./services/neighbourly/neighbourly.service";
 import { MetaTagsService } from "./services/meta-tags/meta-tags.service";
 import { FeatureSwitchService } from "./services/feature-switch/feature-switch.service";
 import { PwaService } from "./services/pwa/pwa.service";
+import { SeoService } from "./services/seo/seo.service";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"]
+  styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
   constructor(
@@ -26,7 +27,8 @@ export class AppComponent {
     private neighbourlyService: NeighbourlyService,
     private metaTagsService: MetaTagsService,
     private featureSwitchService: FeatureSwitchService,
-    private pwaService: PwaService
+    private pwaService: PwaService,
+    private seoService: SeoService
   ) {
     this.experimentService.setup();
     this.featureSwitchService.setup();
@@ -37,6 +39,7 @@ export class AppComponent {
     this.browserOverride.setup();
     this.neighbourlyService.setup();
     this.metaTagsService.setup();
+    this.seoService.setup();
     this.pwaService.setup();
   }
 }
