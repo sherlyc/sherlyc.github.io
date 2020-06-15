@@ -46,31 +46,18 @@ export default async function (
     params
   );
   const listGridContent = articles.map((article, index) =>
-    index < 2
-      ? homepageArticle(
-          article,
-          strapName,
-          color,
-          {
-            mobile: Orientation.Portrait,
-            tablet: Orientation.Portrait,
-            desktop: Orientation.Portrait,
-          },
-          true,
-          false
-        )
-      : homepageArticle(
-          article,
-          strapName,
-          color,
-          {
-            mobile: Orientation.Portrait,
-            tablet: Orientation.Portrait,
-            desktop: Orientation.Portrait,
-          },
-          false,
-          false
-        )
+    homepageArticle(
+      article,
+      strapName,
+      color,
+      {
+        mobile: Orientation.Portrait,
+        tablet: Orientation.Portrait,
+        desktop: Orientation.Portrait,
+      },
+      index < 2,
+      false
+    )
   );
   const middleContent = await handlerRunner(
     {
