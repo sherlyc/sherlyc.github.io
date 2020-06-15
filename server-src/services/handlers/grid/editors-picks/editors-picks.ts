@@ -197,7 +197,12 @@ export default async function (
           params
         ),
       ],
-      [EditorsPicksGridPositions.Ad]: [basicAdUnit(strapName)],
+      [EditorsPicksGridPositions.Ad]: [
+        {
+          type: ContentBlockType.StickyContainer,
+          items: [basicAdUnit(strapName)],
+        },
+      ],
     },
   };
   return handlerRunner(gridHandlerInput, params);

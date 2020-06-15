@@ -177,8 +177,13 @@ describe("Editors Picks", () => {
         ],
         [EditorsPicksGridPositions.Ad]: [
           {
-            type: ContentBlockType.BasicAdUnit,
-            context: input.strapName,
+            type: ContentBlockType.StickyContainer,
+            items: [
+              {
+                type: ContentBlockType.BasicAdUnit,
+                context: input.strapName,
+              },
+            ],
           },
         ],
       },
