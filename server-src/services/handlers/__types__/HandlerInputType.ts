@@ -33,6 +33,7 @@ export enum HandlerInputType {
   Strips = "Strips",
   StripsGrid = "StripsGrid",
   LargeLeadSix = "LargeLeadSix",
+  LargeLeadSixV2 = "LargeLeadSixV2",
   LargeLeadSixGrid = "LargeLeadSixGrid",
   ListGrid = "ListGrid",
   RelevantStories = "RelevantStories",
