@@ -5,7 +5,7 @@ import { AccentColor } from "../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import {
   HomepageHighlightArticleVariation,
-  IHomepageHighlightArticle
+  IHomepageHighlightArticle,
 } from "../../../../common/__types__/IHomepageHighlightArticle";
 import { AspectRatio } from "../../../../common/AspectRatio";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
@@ -32,19 +32,19 @@ describe("HomepageHighlightArticleComponent", () => {
     image: {
       mobile: {
         src: "https://dummyimagesrc.com/16:9.jpg",
-        aspectRatio: AspectRatio.SixteenByNine
-      }
+        aspectRatio: AspectRatio.SixteenByNine,
+      },
     },
     category: {
       name: "Category name",
-      url: "/categoryurl"
+      url: "/categoryurl",
     },
     headlineFlags: [],
     analytics: {
       title: "title",
-      strapName: "strapName"
+      strapName: "strapName",
     },
-    variation: HomepageHighlightArticleVariation.Lead
+    variation: HomepageHighlightArticleVariation.Lead,
   };
 
   beforeEach(async(() => {
@@ -53,10 +53,10 @@ describe("HomepageHighlightArticleComponent", () => {
       providers: [
         {
           provide: AnalyticsService,
-          useClass: mockService(AnalyticsService)
-        }
+          useClass: mockService(AnalyticsService),
+        },
       ],
-      schemas: [NO_ERRORS_SCHEMA]
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   }));
 
@@ -106,11 +106,11 @@ describe("HomepageHighlightArticleComponent", () => {
   it.each`
     variation
     ${HomepageHighlightArticleVariation.Lead}
-    ${HomepageHighlightArticleVariation.Featured}
+    ${HomepageHighlightArticleVariation.BigFeatured}
   `("should set class name for variation $variation", ({ variation }) => {
     component.input = {
       ...input,
-      variation
+      variation,
     };
 
     fixture.detectChanges();
@@ -134,7 +134,7 @@ describe("HomepageHighlightArticleComponent", () => {
       type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
       strapName,
       articleHeadline: title,
-      articleId: input.id
+      articleId: input.id,
     });
   });
 
