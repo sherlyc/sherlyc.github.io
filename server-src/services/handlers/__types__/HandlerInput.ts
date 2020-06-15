@@ -47,6 +47,8 @@ import { ITopStoriesV2HandlerInput } from "./ITopStoriesV2HandlerInput";
 import { IVersionSwitcherHandlerInput } from "./IVersionSwitcherHandlerInput";
 import { IWeatherHandlerInput } from "./IWeatherHandlerInput";
 import { IPlayStuffHandlerInput } from "./IPlayStuffHandlerInput";
+import { IEditorsPicksGridHandlerInput } from "./IEditorsPicksGridHandlerInput";
+import { IEditorsPicksHandlerInput } from "./IEditorsPicksHandlerInput";
 
 export type HandlerInput =
   | IContentBlockHandlerInput
@@ -97,4 +99,6 @@ export type HandlerInput =
   | IVersionSwitcherHandlerInput
   | ILatestHeadlinesHandlerInput
   | IPartnerHandlerInput
-  | IPlayStuffHandlerInput;
+  | IPlayStuffHandlerInput
+  | IEditorsPicksHandlerInput
+  | IEditorsPicksGridHandlerInput;

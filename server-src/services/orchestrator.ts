@@ -100,6 +100,13 @@ export const newPage = (): HandlerInput[] => {
           }
         },
         {
+          type: HandlerInputType.EditorsPicks,
+          displayName: "editors' picks",
+          color: AccentColor.Charcoal,
+          strapName: `${homepageV2AdPrefix}EditorsPicks`,
+          sourceId: Strap.EditorPicks
+        },
+        {
           type: HandlerInputType.SixImage,
           displayName: "",
           color: AccentColor.Gray,
