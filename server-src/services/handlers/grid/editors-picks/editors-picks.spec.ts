@@ -23,7 +23,7 @@ describe("Editors Picks", () => {
     type: HandlerInputType.EditorsPicks,
     sourceId: Strap.EditorPicks,
     displayName: "editors' picks",
-    color: AccentColor.DarkGray,
+    color: AccentColor.Charcoal,
     strapName: "editorsPicks",
   };
 

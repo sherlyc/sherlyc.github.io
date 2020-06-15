@@ -17,6 +17,6 @@ export enum AccentColor {
   CardinalRed = "#d12421",
   Coral = "#ff433d",
   Gray = "#5d5d5d",
-  DarkGray = "#333333",
   DustyGray = "#999",
+  Charcoal = "#414141",
 }
