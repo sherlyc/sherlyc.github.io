@@ -137,4 +137,18 @@ describe("MostReadListComponent", () => {
       articleId: fakeArticle.id,
     });
   });
+
+  it("should not render title when there is no articles", () => {
+    const input: IMostReadList = {
+      ...componentInput,
+      articles: [],
+      strapName: "StrapName",
+    };
+    component.input = input;
+
+    fixture.detectChanges();
+    const title = fixture.debugElement.query(By.css(".title"));
+
+    expect(title).toBeFalsy();
+  });
 });

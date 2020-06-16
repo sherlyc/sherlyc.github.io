@@ -5,7 +5,6 @@ import { AspectRatio } from "../../../../../common/AspectRatio";
 import { IParams } from "../../../__types__/IParams";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
-import { featuredArticle } from "../../../adapters/article-converter/featured-article.converter";
 import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
@@ -13,6 +12,9 @@ import { BiggieSmallsV2GridPositions } from "../../__types__/IBiggieSmallsV2Grid
 import { IBiggieSmallsV2HandlerInput } from "../../__types__/IBiggieSmallsV2HandlerInput";
 import { handlerRunnerFunction } from "../../runner";
 import { contentErrorHandler } from "../content-error-handler";
+import { homepageHighlightArticle } from "../../../adapters/article-converter/homepage-highlight-article.converter";
+import { JsonFeedImageType } from "../../../adapters/__types__/JsonFeedImageType";
+import { HomepageHighlightArticleVariation } from "../../../../../common/__types__/IHomepageHighlightArticle";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,
@@ -39,15 +41,18 @@ export default async function(
     [BiggieSmallsV2GridPositions.Highlight]: [
       contentErrorHandler(
         () =>
-          featuredArticle(
+          homepageHighlightArticle(
             articles.shift() as IRawArticle,
             strapName,
-            "black",
-            "#f1f1f1c7",
-            false,
-            true,
-            "",
-            AspectRatio.SixteenByNine
+            color,
+            {
+              mobile: {
+                variant: JsonFeedImageType.LANDSCAPE_SIXTEEN_BY_NINE,
+                aspectRatio: AspectRatio.SixteenByNine,
+              },
+            },
+            HomepageHighlightArticleVariation.Featured,
+            true
           ),
         HandlerInputType.BiggieSmallsV2,
         sourceId,
