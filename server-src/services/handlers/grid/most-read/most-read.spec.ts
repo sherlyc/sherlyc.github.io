@@ -65,4 +65,33 @@ describe("Most Read", () => {
 
     expect(handlerRunner).toHaveBeenCalledWith(expectedGrid, params);
   });
+
+  it("renders empty block of most read list when most popular API fails", async () => {
+    (getMostPopular as jest.Mock).mockImplementation(() => {
+      throw new Error();
+    });
+    await mostReadHandler(handlerRunner, input, params);
+
+    const expectedGrid: IMostReadGridHandlerInput = {
+      type: HandlerInputType.MostReadGrid,
+      content: {
+        [MostReadGridPositions.Left]: [
+          {
+            type: ContentBlockType.MostReadList,
+            articles: [],
+            displayName: input.displayName,
+            strapName: input.strapName,
+          },
+        ],
+        [MostReadGridPositions.Right]: [
+          {
+            type: ContentBlockType.StickyContainer,
+            items: [basicAdUnit(input.strapName)],
+          },
+        ],
+      },
+    };
+
+    expect(handlerRunner).toHaveBeenCalledWith(expectedGrid, params);
+  });
 });

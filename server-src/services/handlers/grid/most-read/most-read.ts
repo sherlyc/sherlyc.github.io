@@ -8,13 +8,20 @@ import { handlerRunnerFunction } from "../../runner";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { homepageArticleContent } from "../../../adapters/article-converter/homepage-article-content.converter";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import logger from "../../../utils/logger";
 
 export default async function (
   handlerRunner: handlerRunnerFunction,
   { displayName, strapName }: IMostReadHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const articles = await getMostPopular(8, params);
+  let articles: IRawArticle[] = [];
+  try {
+    articles = await getMostPopular(8, params);
+  } catch (error) {
+    logger.error(params.apiRequestId, `getMostPopular error`, error);
+  }
 
   const content: { [key in MostReadGridPositions]: IContentBlock[] } = {
     [MostReadGridPositions.Left]: [
