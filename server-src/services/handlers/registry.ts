@@ -35,11 +35,11 @@ import SixImage from "./grid/six-image/six-image";
 import StripsGrid from "./grid/strips-grid/strips-grid";
 import Strips from "./grid/strips/strips";
 import TopStoriesGrid from "./grid/top-stories-grid/top-stories-grid";
-import TopStoriesV2Grid from "./grid/top-stories-v2-grid/top-stories-v2-grid";
-import TopStoriesV2 from "./grid/top-stories-v2/top-stories-v2";
+import TopStories from "./grid/top-stories/top-stories";
+import TopStoriesV2DefaultGrid from "./grid/top-stories-v2-default-grid/top-stories-v2-default-grid";
+import TopStoriesV2Default from "./grid/top-stories-v2-default/top-stories-v2-default";
 import TopStoriesDefaultOneHighlight from "./grid/top-stories/default-one-highlight/default-one-highlight";
 import TopStoriesDefconHighlight from "./grid/top-stories/defcon-highlight/defcon-highlight";
-import TopStories from "./grid/top-stories/top-stories";
 import LatestHeadlines from "./latest-headlines/latest-headlines";
 import MidStrip from "./midstrip-handler/midstrip-handler";
 import MiniMidStrip from "./mini-midstrip-handler/mini-midstrip-handler";
@@ -81,8 +81,8 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   TopStoriesGrid,
   TopStoriesDefaultOneHighlight,
   TopStoriesDefconHighlight,
-  TopStoriesV2,
-  TopStoriesV2Grid,
+  TopStoriesV2Default,
+  TopStoriesV2DefaultGrid,
   BiggieSmalls,
   BiggieSmallsGrid,
   BiggieSmallsV2,
