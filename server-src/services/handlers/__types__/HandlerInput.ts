@@ -51,6 +51,7 @@ import { IEditorsPicksGridHandlerInput } from "./IEditorsPicksGridHandlerInput";
 import { IEditorsPicksHandlerInput } from "./IEditorsPicksHandlerInput";
 import { IMostReadGridHandlerInput } from "./IMostReadGridHandlerInput";
 import { IMostReadHandlerInput } from "./IMostReadHandlerInput";
+import { ITopStoriesV2HandlerInput } from "./ITopStoriesV2HandlerInput";
 
 export type HandlerInput =
   | IContentBlockHandlerInput
@@ -68,6 +69,7 @@ export type HandlerInput =
   | IExperimentHandlerInput
   | IFeatureHandlerInput
   | ITopStoriesHandlerInput
+  | ITopStoriesV2HandlerInput
   | ITopStoriesDefaultOneHighlightHandlerInput
   | ITopStoriesDefconHighlightHandlerInput
   | ITopStoriesGridHandlerInput
@@ -104,6 +106,5 @@ export type HandlerInput =
   | IPlayStuffHandlerInput
   | IEditorsPicksHandlerInput
   | IEditorsPicksGridHandlerInput
-  | IPlayStuffHandlerInput
   | IMostReadGridHandlerInput
   | IMostReadHandlerInput;
