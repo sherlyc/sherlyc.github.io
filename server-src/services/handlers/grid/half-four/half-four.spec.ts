@@ -13,6 +13,8 @@ import {
 } from "../../__types__/IHalfFourGridHandlerInput";
 import { IHalfFourHandlerInput } from "../../__types__/IHalfFourHandlerInput";
 import halfFour from "./half-four";
+import { AspectRatio } from "../../../../../common/AspectRatio";
+import { HomepageHighlightArticleVariation } from "../../../../../common/__types__/IHomepageHighlightArticle";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 
@@ -34,6 +36,7 @@ describe("Half four", () => {
         ({
           id: `${id}`,
           imageSrc: `${id}.png`,
+          sixteenByNineSrc: `${id}.16:9.png`,
           introText: `${id} intro`
         } as IRawArticle)
     );
@@ -72,9 +75,16 @@ describe("Half four", () => {
         ],
         [HalfFourGridPositions.Left]: [
           expectContentBlock({
-            type: ContentBlockType.FeaturedArticle,
-            id: "1"
-          })
+            type: ContentBlockType.HomepageHighlightArticle,
+            id: "1",
+            image: {
+              mobile: {
+                src: "1.16:9.png",
+                aspectRatio: AspectRatio.SixteenByNine,
+              },
+            },
+            variation: HomepageHighlightArticleVariation.Featured,
+          }),
         ],
         [HalfFourGridPositions.RightOne]: [
           expectContentBlock({
