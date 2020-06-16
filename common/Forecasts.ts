@@ -1,5 +1,6 @@
 export enum Forecasts {
   cloud = "cloud",
+  cloudy = "cloudy",
   drizzle = "drizzle",
   fewshowers = "fewshowers",
   fine = "fine",
