@@ -46,7 +46,7 @@ function defaultGrid(
               HomepageHighlightArticleVariation.Featured,
               true
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
         ),
@@ -67,7 +67,7 @@ function defaultGrid(
               HomepageHighlightArticleVariation.Lead,
               true
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
         ),
@@ -93,7 +93,7 @@ function defaultGrid(
               true,
               true
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
         ),
@@ -113,7 +113,7 @@ function defaultGrid(
               true,
               true
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
         ),
@@ -133,7 +133,7 @@ function defaultGrid(
               true,
               true
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
         ),
@@ -154,7 +154,7 @@ function defaultGrid(
               false,
               true
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
         ),
@@ -174,7 +174,7 @@ function defaultGrid(
               false,
               true
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
         ),
@@ -194,7 +194,7 @@ function defaultGrid(
               true,
               false
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
         ),
@@ -214,7 +214,7 @@ function defaultGrid(
               true,
               false
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
         ),
@@ -234,7 +234,7 @@ function defaultGrid(
               true,
               false
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
         ),

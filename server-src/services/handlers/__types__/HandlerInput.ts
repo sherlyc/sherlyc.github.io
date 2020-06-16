@@ -43,7 +43,6 @@ import { ITopStoriesDefconHighlightHandlerInput } from "./ITopStoriesDefconHighl
 import { ITopStoriesGridHandlerInput } from "./ITopStoriesGridHandlerInput";
 import { ITopStoriesHandlerInput } from "./ITopStoriesHandlerInput";
 import { ITopStoriesV2DefaultGridHandlerInput } from "./ITopStoriesV2DefaultGridHandlerInput";
-import { ITopStoriesV2DefaultHandlerInput } from "./ITopStoriesV2DefaultHandlerInput";
 import { IVersionSwitcherHandlerInput } from "./IVersionSwitcherHandlerInput";
 import { IWeatherHandlerInput } from "./IWeatherHandlerInput";
 import { IPlayStuffHandlerInput } from "./IPlayStuffHandlerInput";
@@ -73,7 +72,6 @@ export type HandlerInput =
   | ITopStoriesDefaultOneHighlightHandlerInput
   | ITopStoriesDefconHighlightHandlerInput
   | ITopStoriesGridHandlerInput
-  | ITopStoriesV2DefaultHandlerInput
   | ITopStoriesV2DefaultGridHandlerInput
   | IBiggieSmallsHandlerInput
   | IBiggieSmallsGridHandlerInput
