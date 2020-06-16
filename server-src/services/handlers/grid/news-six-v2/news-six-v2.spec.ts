@@ -23,7 +23,7 @@ const articlesWithIds = (ids: number[]) =>
     (id) =>
       ({
         id: `${id}`,
-        sixteenByNineSrc: `${id}.16:9.png`,
+        sixteenByNineSrc: `${id}.png`,
         introText: `${id} intro`,
       } as IRawArticle)
   );
@@ -83,7 +83,7 @@ describe("News Six V2 handler", () => {
             id: "1",
             image: {
               mobile: {
-                src: "1.16:9.png",
+                src: "1.png",
                 aspectRatio: AspectRatio.SixteenByNine,
               },
             },
@@ -122,7 +122,7 @@ describe("News Six V2 handler", () => {
             id: "4",
             image: {
               mobile: {
-                src: "4.16:9.png",
+                src: "4.png",
                 aspectRatio: AspectRatio.SixteenByNine,
               },
             },
@@ -139,7 +139,7 @@ describe("News Six V2 handler", () => {
               desktop: Orientation.Landscape,
             },
             introText: "5 intro",
-            imageSrc: "5.16:9.png",
+            imageSrc: "5.png",
           }),
         ],
         [NewsSixV2GridPositions.Six]: [
@@ -152,7 +152,7 @@ describe("News Six V2 handler", () => {
               desktop: Orientation.Landscape,
             },
             introText: "6 intro",
-            imageSrc: "6.16:9.png",
+            imageSrc: "6.png",
           }),
         ],
       },
