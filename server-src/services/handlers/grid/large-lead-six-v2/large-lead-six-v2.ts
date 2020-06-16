@@ -26,7 +26,7 @@ export default async function (
   }: ILargeLeadSixV2HandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const articles = await getRawArticles(sourceId, 6, params);
+  const articles = await getRawArticles(sourceId, 5, params);
   const leftContent = contentErrorHandler(
     () =>
       homepageArticle(
@@ -55,7 +55,7 @@ export default async function (
         tablet: Orientation.Portrait,
         desktop: Orientation.Portrait,
       },
-      index < 2,
+      index < 1,
       false
     )
   );

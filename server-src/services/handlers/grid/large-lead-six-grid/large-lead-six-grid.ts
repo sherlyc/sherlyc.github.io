@@ -25,9 +25,7 @@ export default async function (
     gridBlocks: {
       [LargeLeadSixGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 3, []),
       [LargeLeadSixGridPositions.Left]: gridBlock(2, 1, 1, 1, []),
-      [LargeLeadSixGridPositions.Middle]: gridBlock(2, 2, 1, 1, [
-        Border.bottom,
-      ]),
+      [LargeLeadSixGridPositions.Middle]: gridBlock(2, 2, 1, 1, []),
       [LargeLeadSixGridPositions.Right]: gridBlock(2, 3, 1, 1, []),
     },
   };
@@ -40,9 +38,7 @@ export default async function (
     gridBlocks: {
       [LargeLeadSixGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 3, []),
       [LargeLeadSixGridPositions.Left]: gridBlock(2, 1, 1, 1, []),
-      [LargeLeadSixGridPositions.Middle]: gridBlock(2, 2, 1, 1, [
-        Border.bottom,
-      ]),
+      [LargeLeadSixGridPositions.Middle]: gridBlock(2, 2, 1, 1, []),
       [LargeLeadSixGridPositions.Right]: gridBlock(2, 3, 1, 1, []),
     },
   };
