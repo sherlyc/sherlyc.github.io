@@ -47,7 +47,7 @@ describe("Large Lead Six Grid", () => {
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: [],
+          border: [Border.bottom],
         },
         [LargeLeadSixGridPositions.Middle]: {
           columnStart: 2,
@@ -84,7 +84,7 @@ describe("Large Lead Six Grid", () => {
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: [],
+          border: [Border.bottom],
         },
         [LargeLeadSixGridPositions.Middle]: {
           columnStart: 2,

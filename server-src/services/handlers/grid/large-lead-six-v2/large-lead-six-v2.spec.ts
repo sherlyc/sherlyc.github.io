@@ -60,12 +60,12 @@ describe("Large Lead Six V2", () => {
 
     await largeLeadSixV2(handlerRunnerMock, input, params);
 
-    expect(getRawArticles).toHaveBeenCalledWith(input.sourceId, 6, params);
+    expect(getRawArticles).toHaveBeenCalledWith(input.sourceId, 5, params);
   });
 
   it("should call list grid to generate middle content", async () => {
     (getRawArticles as jest.Mock).mockResolvedValue(
-      articlesWithIds([1, 2, 3, 4, 5, 6])
+      articlesWithIds([1, 2, 3, 4, 5])
     );
     handlerRunnerMock.mockResolvedValueOnce([mockListGridResult]);
 
@@ -96,7 +96,7 @@ describe("Large Lead Six V2", () => {
             tablet: Orientation.Portrait,
             desktop: Orientation.Portrait,
           },
-          introText: "3 intro",
+          introText: undefined,
           imageSrc: undefined,
         }),
         expectContentBlock({
@@ -113,17 +113,6 @@ describe("Large Lead Six V2", () => {
         expectContentBlock({
           type: ContentBlockType.HomepageArticle,
           id: "5",
-          orientation: {
-            mobile: Orientation.Portrait,
-            tablet: Orientation.Portrait,
-            desktop: Orientation.Portrait,
-          },
-          introText: undefined,
-          imageSrc: undefined,
-        }),
-        expectContentBlock({
-          type: ContentBlockType.HomepageArticle,
-          id: "6",
           orientation: {
             mobile: Orientation.Portrait,
             tablet: Orientation.Portrait,

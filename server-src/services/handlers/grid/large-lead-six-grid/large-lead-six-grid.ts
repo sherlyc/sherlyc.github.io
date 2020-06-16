@@ -24,8 +24,10 @@ export default async function (
     gridRowGap: "40px",
     gridBlocks: {
       [LargeLeadSixGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 3, []),
-      [LargeLeadSixGridPositions.Left]: gridBlock(2, 1, 1, 1, []),
-      [LargeLeadSixGridPositions.Middle]: gridBlock(2, 2, 1, 1, []),
+      [LargeLeadSixGridPositions.Left]: gridBlock(2, 1, 1, 1, [Border.bottom]),
+      [LargeLeadSixGridPositions.Middle]: gridBlock(2, 2, 1, 1, [
+        Border.bottom,
+      ]),
       [LargeLeadSixGridPositions.Right]: gridBlock(2, 3, 1, 1, []),
     },
   };
@@ -37,8 +39,10 @@ export default async function (
     gridRowGap: "20px",
     gridBlocks: {
       [LargeLeadSixGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 3, []),
-      [LargeLeadSixGridPositions.Left]: gridBlock(2, 1, 1, 1, []),
-      [LargeLeadSixGridPositions.Middle]: gridBlock(2, 2, 1, 1, []),
+      [LargeLeadSixGridPositions.Left]: gridBlock(2, 1, 1, 1, [Border.bottom]),
+      [LargeLeadSixGridPositions.Middle]: gridBlock(2, 2, 1, 1, [
+        Border.bottom,
+      ]),
       [LargeLeadSixGridPositions.Right]: gridBlock(2, 3, 1, 1, []),
     },
   };
