@@ -34,6 +34,7 @@ import SixImageGrid from "./grid/six-image-grid/six-image-grid";
 import SixImage from "./grid/six-image/six-image";
 import StripsGrid from "./grid/strips-grid/strips-grid";
 import Strips from "./grid/strips/strips";
+import StripsV2 from "./grid/strips-v2/strips-v2";
 import TopStoriesGrid from "./grid/top-stories-grid/top-stories-grid";
 import TopStoriesV2Grid from "./grid/top-stories-v2-grid/top-stories-v2-grid";
 import TopStoriesV2 from "./grid/top-stories-v2/top-stories-v2";
@@ -91,6 +92,7 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   SixImage,
   SixImageGrid,
   Strips,
+  StripsV2,
   StripsGrid,
   ListGrid,
   LargeLeadSix,

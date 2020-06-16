@@ -47,6 +47,7 @@ import { ITopStoriesV2HandlerInput } from "./ITopStoriesV2HandlerInput";
 import { IVersionSwitcherHandlerInput } from "./IVersionSwitcherHandlerInput";
 import { IWeatherHandlerInput } from "./IWeatherHandlerInput";
 import { IPlayStuffHandlerInput } from "./IPlayStuffHandlerInput";
+import { IStripsV2HandlerInput } from "./IStripsV2HandlerInput";
 
 export type HandlerInput =
   | IContentBlockHandlerInput
@@ -80,6 +81,7 @@ export type HandlerInput =
   | ISixImageHandlerInput
   | ISixImageGridHandlerInput
   | IStripsHandlerInput
+  | IStripsV2HandlerInput
   | IStripsGridHandlerInput
   | ILargeLeadSixHandlerInput
   | ILargeLeadSixGridHandlerInput

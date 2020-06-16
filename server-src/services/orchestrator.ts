@@ -175,14 +175,13 @@ export const newPage = (): HandlerInput[] => {
           sourceId: Strap.World
         },
         {
-          type: HandlerInputType.Strips,
+          type: HandlerInputType.StripsV2,
           displayName: "spotlight",
           color: AccentColor.Black,
           linkUrl: "/" + Section.Premium,
           sourceId: Strap.Premium,
           strapName: Strap.Premium,
-          articleCount: 4,
-          articleFormat: ContentBlockType.FeaturedArticle
+          articleCount: 4
         },
         {
           type: HandlerInputType.LargeLeadSix,
