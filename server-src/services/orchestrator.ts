@@ -189,7 +189,7 @@ export const newPage = (): HandlerInput[] => {
         {
           type: HandlerInputType.StripsV2,
           displayName: "spotlight",
-          color: AccentColor.Black,
+          color: AccentColor.DarkGray,
           linkUrl: "/" + Section.Premium,
           sourceId: Strap.Premium,
           strapName: Strap.Premium,
