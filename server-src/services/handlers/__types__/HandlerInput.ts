@@ -48,6 +48,10 @@ import { IVersionSwitcherHandlerInput } from "./IVersionSwitcherHandlerInput";
 import { IWeatherHandlerInput } from "./IWeatherHandlerInput";
 import { IPlayStuffHandlerInput } from "./IPlayStuffHandlerInput";
 import { IStripsV2HandlerInput } from "./IStripsV2HandlerInput";
+import { IEditorsPicksGridHandlerInput } from "./IEditorsPicksGridHandlerInput";
+import { IEditorsPicksHandlerInput } from "./IEditorsPicksHandlerInput";
+import { IMostReadGridHandlerInput } from "./IMostReadGridHandlerInput";
+import { IMostReadHandlerInput } from "./IMostReadHandlerInput";
 
 export type HandlerInput =
   | IContentBlockHandlerInput
@@ -99,4 +103,8 @@ export type HandlerInput =
   | IVersionSwitcherHandlerInput
   | ILatestHeadlinesHandlerInput
   | IPartnerHandlerInput
-  | IPlayStuffHandlerInput;
+  | IPlayStuffHandlerInput
+  | IEditorsPicksHandlerInput
+  | IEditorsPicksGridHandlerInput
+  | IMostReadGridHandlerInput
+  | IMostReadHandlerInput;

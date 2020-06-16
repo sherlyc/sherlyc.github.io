@@ -35,13 +35,13 @@ export default async (params: IParams): Promise<IPage> => {
               type: HandlerInputType.ForceUpdate,
               forceUpdateOnVersionsBefore: formatVersion(
                 parseVersion(currentVersion) - parseVersion("0.100")
-              )
+              ),
             },
-            ...components
-          ]
+            ...components,
+          ],
         },
         params
-      )
+      ),
     };
   } catch (error) {
     logger.error(params.apiRequestId, `Orchestrator level error `, error);
@@ -63,17 +63,17 @@ export const newPage = (): HandlerInput[] => {
             size: [320, 460],
             targetingParams: {
               spade: "true",
-              pos: "interstitial-portrait"
-            }
-          }
-        }
-      ]
+              pos: "interstitial-portrait",
+            },
+          },
+        },
+      ],
     },
     {
-      type: HandlerInputType.BreakingNews
+      type: HandlerInputType.BreakingNews,
     },
     {
-      type: HandlerInputType.Weather
+      type: HandlerInputType.Weather,
     },
     {
       type: HandlerInputType.Feature,
@@ -88,7 +88,7 @@ export const newPage = (): HandlerInput[] => {
             url: "",
             width: "100%",
             height: "43px",
-            margin: "0"
+            margin: "0",
           },
           lowerRightContent: {
             type: HandlerInputType.LatestHeadlines,
@@ -96,19 +96,31 @@ export const newPage = (): HandlerInput[] => {
             totalArticles: 7,
             displayName: "latest headlines",
             strapName: `${homepageAdPrefix}LatestHeadlines`,
-            color: AccentColor.Coral
-          }
+            color: AccentColor.Coral,
+          },
+        },
+        {
+          type: HandlerInputType.EditorsPicks,
+          displayName: "editors' picks",
+          color: AccentColor.Charcoal,
+          strapName: `${homepageV2AdPrefix}EditorsPicks`,
+          sourceId: Strap.EditorPicks,
+        },
+        {
+          type: HandlerInputType.MostRead,
+          displayName: "most read",
+          strapName: `${homepageV2AdPrefix}MostRead`,
         },
         {
           type: HandlerInputType.SixImage,
           displayName: "",
           color: AccentColor.Gray,
           strapName: `${homepageAdPrefix}MidStrip`,
-          sourceId: Strap.MidStrip
+          sourceId: Strap.MidStrip,
         },
         {
           type: HandlerInputType.PlayStuff,
-          total: 8
+          total: 8,
         },
         {
           type: HandlerInputType.NewsSixV2,
@@ -116,7 +128,7 @@ export const newPage = (): HandlerInput[] => {
           color: AccentColor.DeepBlue,
           linkUrl: "/" + Section.Coronavirus,
           strapName: `${homepageAdPrefix}Coronavirus`,
-          sourceId: Strap.Coronavirus
+          sourceId: Strap.Coronavirus,
         },
         {
           type: HandlerInputType.NewsSixV2,
@@ -124,7 +136,7 @@ export const newPage = (): HandlerInput[] => {
           color: AccentColor.DeepBlue,
           linkUrl: "/" + Section.National,
           strapName: `${homepageAdPrefix}National`,
-          sourceId: Strap.National
+          sourceId: Strap.National,
         },
         {
           type: HandlerInputType.BiggieSmallsV2,
@@ -132,7 +144,7 @@ export const newPage = (): HandlerInput[] => {
           color: AccentColor.DeepBlue,
           linkUrl: "/" + Section.ClimateChange,
           strapName: `${homepageV2AdPrefix}ClimateChange`,
-          sourceId: Strap.ClimateChange
+          sourceId: Strap.ClimateChange,
         },
         {
           type: HandlerInputType.NewsSixV2,
@@ -140,7 +152,7 @@ export const newPage = (): HandlerInput[] => {
           color: AccentColor.NavyBlue,
           linkUrl: "/" + Section.Business,
           strapName: `${homepageAdPrefix}Business`,
-          sourceId: Strap.Business
+          sourceId: Strap.Business,
         },
         {
           type: HandlerInputType.BiggieSmallsV2,
@@ -148,7 +160,7 @@ export const newPage = (): HandlerInput[] => {
           color: AccentColor.Cyan,
           linkUrl: "/" + Section.Homed,
           strapName: `${homepageV2AdPrefix}Homed`,
-          sourceId: Strap.Homed
+          sourceId: Strap.Homed,
         },
         {
           type: HandlerInputType.NewsSixV2,
@@ -156,7 +168,7 @@ export const newPage = (): HandlerInput[] => {
           color: AccentColor.NavyBlue,
           linkUrl: "/" + Section.Prosper,
           strapName: `${homepageAdPrefix}Prosper`,
-          sourceId: Strap.Prosper
+          sourceId: Strap.Prosper,
         },
         {
           type: HandlerInputType.BiggieSmallsV2,
@@ -164,7 +176,7 @@ export const newPage = (): HandlerInput[] => {
           color: AccentColor.Aqua,
           linkUrl: "/" + Section.Travel,
           strapName: `${homepageV2AdPrefix}Travel`,
-          sourceId: Strap.Travel
+          sourceId: Strap.Travel,
         },
         {
           type: HandlerInputType.NewsSixV2,
@@ -172,7 +184,7 @@ export const newPage = (): HandlerInput[] => {
           color: AccentColor.Denim,
           linkUrl: "/" + Section.World,
           strapName: `${homepageAdPrefix}World`,
-          sourceId: Strap.World
+          sourceId: Strap.World,
         },
         {
           type: HandlerInputType.StripsV2,
@@ -181,7 +193,7 @@ export const newPage = (): HandlerInput[] => {
           linkUrl: "/" + Section.Premium,
           sourceId: Strap.Premium,
           strapName: Strap.Premium,
-          articleCount: 4
+          articleCount: 4,
         },
         {
           type: HandlerInputType.LargeLeadSix,
@@ -189,7 +201,7 @@ export const newPage = (): HandlerInput[] => {
           color: AccentColor.AppleGreen,
           linkUrl: "/" + Section.WellGood,
           strapName: `${homepageAdPrefix}WellGood`,
-          sourceId: Strap.WellGood
+          sourceId: Strap.WellGood,
         },
         {
           type: HandlerInputType.Column,
@@ -200,7 +212,7 @@ export const newPage = (): HandlerInput[] => {
               sourceId: Strap.NZFarmer,
               strapName: Strap.NZFarmer,
               color: AccentColor.Orange,
-              linkUrl: "/" + Section.NZFarmer
+              linkUrl: "/" + Section.NZFarmer,
             },
             {
               type: HandlerInputType.HalfFour,
@@ -208,9 +220,9 @@ export const newPage = (): HandlerInput[] => {
               sourceId: Strap.Parenting,
               strapName: Strap.Parenting,
               linkUrl: "/" + Section.Parenting,
-              color: AccentColor.Ruby
-            }
-          ]
+              color: AccentColor.Ruby,
+            },
+          ],
         },
         {
           type: HandlerInputType.BiggieSmallsV2,
@@ -218,7 +230,7 @@ export const newPage = (): HandlerInput[] => {
           color: AccentColor.Crimson,
           linkUrl: "/" + Section.LifeStyle,
           strapName: `${homepageV2AdPrefix}LifeStyle`,
-          sourceId: Strap.LifeStyle
+          sourceId: Strap.LifeStyle,
         },
         {
           type: HandlerInputType.BiggieSmallsV2,
@@ -226,18 +238,18 @@ export const newPage = (): HandlerInput[] => {
           color: AccentColor.Violet,
           linkUrl: "/" + Section.Entertainment,
           strapName: `${homepageV2AdPrefix}Entertainment`,
-          sourceId: Strap.Entertainment
-        }
+          sourceId: Strap.Entertainment,
+        },
       ],
-      fallback: []
+      fallback: [],
     },
     {
       type: HandlerInputType.TopStories,
       strapName: `${homepageAdPrefix}TopStoriesDefaultOne`,
-      color: AccentColor.CuriousBlue
+      color: AccentColor.CuriousBlue,
     },
     {
-      type: HandlerInputType.RelevantStories
+      type: HandlerInputType.RelevantStories,
     },
     {
       type: HandlerInputType.TitleSection,
@@ -252,19 +264,19 @@ export const newPage = (): HandlerInput[] => {
         mobile: {
           width: "100%",
           height: "calc(85% + 40px)",
-          margin: "0 -10px 0"
+          margin: "0 -10px 0",
         },
         tablet: {
           width: "100%",
           height: "calc(66% + 40px)",
-          margin: "0 -10px 0"
+          margin: "0 -10px 0",
         },
         desktop: {
           width: "100%",
           height: "66%",
-          margin: "0 -10px 0"
-        }
-      }
+          margin: "0 -10px 0",
+        },
+      },
     },
     {
       type: HandlerInputType.ResponsiveExternalContent,
@@ -273,25 +285,25 @@ export const newPage = (): HandlerInput[] => {
       mobile: {
         height: "320px",
         width: "100%",
-        margin: "0 0 20px 0"
+        margin: "0 0 20px 0",
       },
       tablet: {
         height: "200px",
         width: "100%",
-        margin: "0 0 40px 0"
+        margin: "0 0 40px 0",
       },
       desktop: {
         height: "200px",
         width: "100%",
-        margin: "0 0 60px 0"
-      }
+        margin: "0 0 60px 0",
+      },
     },
     {
       type: HandlerInputType.SixImage,
       displayName: "",
       color: AccentColor.Gray,
       strapName: `${homepageAdPrefix}MidStrip`,
-      sourceId: Strap.MidStrip
+      sourceId: Strap.MidStrip,
     },
     {
       type: HandlerInputType.ResponsiveExternalContent,
@@ -301,18 +313,18 @@ export const newPage = (): HandlerInput[] => {
       mobile: {
         height: "320px",
         width: "100%",
-        margin: "0 0 20px 0"
+        margin: "0 0 20px 0",
       },
       tablet: {
         height: "200px",
         width: "100%",
-        margin: "0 0 40px 0"
+        margin: "0 0 40px 0",
       },
       desktop: {
         height: "200px",
         width: "100%",
-        margin: "0 0 60px 0"
-      }
+        margin: "0 0 60px 0",
+      },
     },
     {
       type: HandlerInputType.NewsSix,
@@ -320,7 +332,7 @@ export const newPage = (): HandlerInput[] => {
       color: AccentColor.DeepBlue,
       linkUrl: "/" + Section.Coronavirus,
       strapName: `${homepageAdPrefix}Coronavirus`,
-      sourceId: Strap.Coronavirus
+      sourceId: Strap.Coronavirus,
     },
     {
       type: HandlerInputType.NewsSix,
@@ -328,7 +340,7 @@ export const newPage = (): HandlerInput[] => {
       color: AccentColor.DeepBlue,
       linkUrl: "/" + Section.National,
       strapName: `${homepageAdPrefix}National`,
-      sourceId: Strap.National
+      sourceId: Strap.National,
     },
     {
       type: HandlerInputType.ResponsiveExternalContent,
@@ -337,18 +349,18 @@ export const newPage = (): HandlerInput[] => {
       mobile: {
         height: "320px",
         width: "100%",
-        margin: "0 0 20px 0"
+        margin: "0 0 20px 0",
       },
       tablet: {
         height: "200px",
         width: "100%",
-        margin: "0 0 40px 0"
+        margin: "0 0 40px 0",
       },
       desktop: {
         height: "200px",
         width: "100%",
-        margin: "0 0 60px 0"
-      }
+        margin: "0 0 60px 0",
+      },
     },
     {
       type: HandlerInputType.BiggieSmalls,
@@ -356,7 +368,7 @@ export const newPage = (): HandlerInput[] => {
       color: AccentColor.DeepBlue,
       linkUrl: "/" + Section.ClimateChange,
       strapName: `${homepageAdPrefix}ClimateChange`,
-      sourceId: Strap.ClimateChange
+      sourceId: Strap.ClimateChange,
     },
     {
       type: HandlerInputType.NewsSix,
@@ -364,7 +376,7 @@ export const newPage = (): HandlerInput[] => {
       color: AccentColor.NavyBlue,
       linkUrl: "/" + Section.Business,
       strapName: `${homepageAdPrefix}Business`,
-      sourceId: Strap.Business
+      sourceId: Strap.Business,
     },
     {
       type: HandlerInputType.BiggieSmalls,
@@ -372,7 +384,7 @@ export const newPage = (): HandlerInput[] => {
       color: AccentColor.Cyan,
       linkUrl: "/" + Section.Homed,
       strapName: `${homepageAdPrefix}Homed`,
-      sourceId: Strap.Homed
+      sourceId: Strap.Homed,
     },
     {
       type: HandlerInputType.NewsSix,
@@ -380,7 +392,7 @@ export const newPage = (): HandlerInput[] => {
       color: AccentColor.NavyBlue,
       linkUrl: "/" + Section.Prosper,
       strapName: `${homepageAdPrefix}Prosper`,
-      sourceId: Strap.Prosper
+      sourceId: Strap.Prosper,
     },
     {
       type: HandlerInputType.BiggieSmalls,
@@ -388,7 +400,7 @@ export const newPage = (): HandlerInput[] => {
       color: AccentColor.Aqua,
       linkUrl: "/" + Section.Travel,
       strapName: `${homepageAdPrefix}Travel`,
-      sourceId: Strap.Travel
+      sourceId: Strap.Travel,
     },
     {
       type: HandlerInputType.Strips,
@@ -398,7 +410,7 @@ export const newPage = (): HandlerInput[] => {
       sourceId: Strap.Premium,
       strapName: Strap.Premium,
       articleCount: 4,
-      articleFormat: ContentBlockType.FeaturedArticle
+      articleFormat: ContentBlockType.FeaturedArticle,
     },
     {
       type: HandlerInputType.NewsSix,
@@ -406,7 +418,7 @@ export const newPage = (): HandlerInput[] => {
       color: AccentColor.Denim,
       linkUrl: "/" + Section.World,
       strapName: `${homepageAdPrefix}World`,
-      sourceId: Strap.World
+      sourceId: Strap.World,
     },
     {
       type: HandlerInputType.TitleSection,
@@ -420,32 +432,32 @@ export const newPage = (): HandlerInput[] => {
         mobile: {
           height: "calc(35% + 35px)",
           width: "100%",
-          margin: "0 -10px 20px"
+          margin: "0 -10px 20px",
         },
         tablet: {
           height: "170px",
           width: "100%",
-          margin: "0 -10px 40px"
+          margin: "0 -10px 40px",
         },
         desktop: {
           height: "170px",
           width: "100%",
-          margin: "0 -10px 60px"
-        }
-      }
+          margin: "0 -10px 60px",
+        },
+      },
     },
     {
       type: HandlerInputType.Feature,
       name: FeatureName.HomepageV2,
       content: [
         {
-          type: HandlerInputType.Partner
-        }
-      ]
+          type: HandlerInputType.Partner,
+        },
+      ],
     },
     {
       type: HandlerInputType.Brand,
-      module: BrandModule.Partner
+      module: BrandModule.Partner,
     },
     {
       type: HandlerInputType.BiggieSmalls,
@@ -453,7 +465,7 @@ export const newPage = (): HandlerInput[] => {
       color: AccentColor.Crimson,
       linkUrl: "/" + Section.LifeStyle,
       strapName: `${homepageAdPrefix}LifeStyle`,
-      sourceId: Strap.LifeStyle
+      sourceId: Strap.LifeStyle,
     },
     {
       type: HandlerInputType.LargeLeadSix,
@@ -461,7 +473,7 @@ export const newPage = (): HandlerInput[] => {
       color: AccentColor.AppleGreen,
       linkUrl: "/" + Section.WellGood,
       strapName: `${homepageAdPrefix}WellGood`,
-      sourceId: Strap.WellGood
+      sourceId: Strap.WellGood,
     },
     {
       type: HandlerInputType.Strips,
@@ -471,7 +483,7 @@ export const newPage = (): HandlerInput[] => {
       sourceId: Strap.FoodAndWine,
       strapName: Strap.FoodAndWine,
       articleCount: 4,
-      articleFormat: ContentBlockType.HalfWidthImageArticleUnit
+      articleFormat: ContentBlockType.HalfWidthImageArticleUnit,
     },
     {
       type: HandlerInputType.BiggieSmalls,
@@ -479,7 +491,7 @@ export const newPage = (): HandlerInput[] => {
       color: AccentColor.Violet,
       linkUrl: "/" + Section.Entertainment,
       strapName: `${homepageAdPrefix}Entertainment`,
-      sourceId: Strap.Entertainment
+      sourceId: Strap.Entertainment,
     },
     {
       type: HandlerInputType.BiggieSmalls,
@@ -487,7 +499,7 @@ export const newPage = (): HandlerInput[] => {
       color: AccentColor.Violet,
       linkUrl: "/" + Section.Bravo,
       strapName: `${homepageAdPrefix}Bravo`,
-      sourceId: Strap.Bravo
+      sourceId: Strap.Bravo,
     },
     {
       type: HandlerInputType.TitleSection,
@@ -501,9 +513,9 @@ export const newPage = (): HandlerInput[] => {
         mobile: {
           height: "550px",
           width: "100%",
-          margin: "0 0 3px 0"
-        }
-      }
+          margin: "0 0 3px 0",
+        },
+      },
     },
     {
       type: HandlerInputType.BiggieSmalls,
@@ -511,7 +523,7 @@ export const newPage = (): HandlerInput[] => {
       color: AccentColor.DustyGray,
       linkUrl: "/" + Section.Motoring,
       strapName: `${homepageAdPrefix}Motoring`,
-      sourceId: Strap.Motoring
+      sourceId: Strap.Motoring,
     },
     {
       type: HandlerInputType.LargeLeadSix,
@@ -519,7 +531,7 @@ export const newPage = (): HandlerInput[] => {
       color: AccentColor.RainforestGreen,
       linkUrl: "/" + Section.Technology,
       strapName: `${homepageAdPrefix}Technology`,
-      sourceId: Strap.Technology
+      sourceId: Strap.Technology,
     },
     {
       type: HandlerInputType.Strips,
@@ -529,7 +541,7 @@ export const newPage = (): HandlerInput[] => {
       sourceId: Strap.NZFarmer,
       strapName: Strap.NZFarmer,
       articleCount: 4,
-      articleFormat: ContentBlockType.HalfWidthImageArticleUnit
+      articleFormat: ContentBlockType.HalfWidthImageArticleUnit,
     },
     {
       type: HandlerInputType.Strips,
@@ -539,7 +551,7 @@ export const newPage = (): HandlerInput[] => {
       sourceId: Strap.Parenting,
       strapName: Strap.Parenting,
       articleCount: 4,
-      articleFormat: ContentBlockType.HalfWidthImageArticleUnit
+      articleFormat: ContentBlockType.HalfWidthImageArticleUnit,
     },
     {
       type: HandlerInputType.BiggieSmalls,
@@ -547,7 +559,7 @@ export const newPage = (): HandlerInput[] => {
       color: AccentColor.CardinalRed,
       linkUrl: "/" + Section.Sport,
       strapName: `${homepageAdPrefix}Sport`,
-      sourceId: Strap.Sport
+      sourceId: Strap.Sport,
     },
     {
       type: HandlerInputType.Strips,
@@ -556,12 +568,12 @@ export const newPage = (): HandlerInput[] => {
       sourceId: Strap.SponsoredContent,
       strapName: Strap.SponsoredContent,
       articleCount: 4,
-      articleFormat: ContentBlockType.HalfWidthImageArticleUnit
+      articleFormat: ContentBlockType.HalfWidthImageArticleUnit,
     },
     {
       type: HandlerInputType.Brand,
-      module: BrandModule.Network
-    }
+      module: BrandModule.Network,
+    },
   ];
 
   const billboard: IContentBlockHandlerInput = {
@@ -569,9 +581,9 @@ export const newPage = (): HandlerInput[] => {
     contentBlocks: [
       {
         type: ContentBlockType.BasicAdUnit,
-        context: `${homepageAdPrefix}Billboard`
-      }
-    ]
+        context: `${homepageAdPrefix}Billboard`,
+      },
+    ],
   };
 
   return page.reduce(
@@ -584,38 +596,38 @@ export const newPage = (): HandlerInput[] => {
 
 export const oldPage = (): HandlerInput[] => [
   {
-    type: HandlerInputType.Weather
+    type: HandlerInputType.Weather,
   },
   {
-    type: HandlerInputType.BreakingNews
+    type: HandlerInputType.BreakingNews,
   },
   {
     type: HandlerInputType.ExternalContent,
     height: "40px",
     width: "100%",
     margin: "0 0 3px 0",
-    url: "https://interactives.stuff.co.nz/voyager/2019/2019-mobile.html"
+    url: "https://interactives.stuff.co.nz/voyager/2019/2019-mobile.html",
   },
   {
-    type: HandlerInputType.Banner
+    type: HandlerInputType.Banner,
   },
   {
     type: HandlerInputType.TopStoriesArticleList,
-    strapName: "Latest"
+    strapName: "Latest",
   },
   {
     type: HandlerInputType.MiniMidStrip,
     strapName: "MiniMidStrip",
     sourceId: Strap.MiniMidStrip,
     totalArticles:
-      homepageStrapsConfig[Strap.MiniMidStrip].totalArticlesWithImages
+      homepageStrapsConfig[Strap.MiniMidStrip].totalArticlesWithImages,
   },
   {
     type: HandlerInputType.ExternalContent,
     height: "215px",
     width: "100%",
     margin: "0 -10px 20px",
-    url: "https://www.playwidget.stuff.co.nz/shelf/5d06caa81de1c4001f81a46e"
+    url: "https://www.playwidget.stuff.co.nz/shelf/5d06caa81de1c4001f81a46e",
   },
   {
     type: HandlerInputType.ArticleSection,
@@ -628,14 +640,14 @@ export const oldPage = (): HandlerInput[] => [
       totalBasicArticlesUnit:
         homepageStrapsConfig[Strap.EditorPicks].totalArticlesWithImages,
       totalBasicArticleTitleUnit:
-        homepageStrapsConfig[Strap.EditorPicks].totalTitleArticles
-    }
+        homepageStrapsConfig[Strap.EditorPicks].totalTitleArticles,
+    },
   },
   {
     type: HandlerInputType.MidStrip,
     strapName: "MidStrip",
     sourceId: Strap.MidStrip,
-    totalArticles: homepageStrapsConfig[Strap.MidStrip].totalArticlesWithImages
+    totalArticles: homepageStrapsConfig[Strap.MidStrip].totalArticlesWithImages,
   },
   {
     type: HandlerInputType.ArticleSection,
@@ -647,8 +659,8 @@ export const oldPage = (): HandlerInput[] => [
       sourceId: Strap.National,
       strapName: "National",
       totalBasicArticlesUnit: 2,
-      totalBasicArticleTitleUnit: 3
-    }
+      totalBasicArticleTitleUnit: 3,
+    },
   },
   {
     type: HandlerInputType.ArticleSection,
@@ -660,8 +672,8 @@ export const oldPage = (): HandlerInput[] => [
       height: "calc(56% + 216px)",
       width: "100%",
       margin: "0 -10px 10px",
-      url: "https://www.playwidget.stuff.co.nz/hshelf/5d3a9a3fa0e845001c7c998a"
-    }
+      url: "https://www.playwidget.stuff.co.nz/hshelf/5d3a9a3fa0e845001c7c998a",
+    },
   },
   {
     type: HandlerInputType.ExternalContent,
@@ -669,7 +681,7 @@ export const oldPage = (): HandlerInput[] => [
     width: "100%",
     margin: "0 0 20px 0",
     url:
-      "https://interactives.stuff.co.nz/2019/05/save-the-planet/qstp-small-uber.html"
+      "https://interactives.stuff.co.nz/2019/05/save-the-planet/qstp-small-uber.html",
   },
   {
     type: HandlerInputType.ArticleSection,
@@ -681,8 +693,8 @@ export const oldPage = (): HandlerInput[] => [
       sourceId: Strap.ClimateChange,
       strapName: "Climate Change",
       totalBasicArticlesUnit: 2,
-      totalBasicArticleTitleUnit: 3
-    }
+      totalBasicArticleTitleUnit: 3,
+    },
   },
   {
     type: HandlerInputType.ArticleSection,
@@ -694,8 +706,8 @@ export const oldPage = (): HandlerInput[] => [
       sourceId: Strap.Business,
       strapName: "Business",
       totalBasicArticlesUnit: 2,
-      totalBasicArticleTitleUnit: 3
-    }
+      totalBasicArticleTitleUnit: 3,
+    },
   },
   {
     type: HandlerInputType.ArticleSection,
@@ -707,8 +719,8 @@ export const oldPage = (): HandlerInput[] => [
       sourceId: Strap.Homed,
       strapName: "Homed",
       totalBasicArticlesUnit: 2,
-      totalBasicArticleTitleUnit: 3
-    }
+      totalBasicArticleTitleUnit: 3,
+    },
   },
   {
     type: HandlerInputType.ArticleSection,
@@ -720,8 +732,8 @@ export const oldPage = (): HandlerInput[] => [
       sourceId: Strap.Travel,
       strapName: "Travel",
       totalBasicArticlesUnit: 2,
-      totalBasicArticleTitleUnit: 3
-    }
+      totalBasicArticleTitleUnit: 3,
+    },
   },
   {
     type: HandlerInputType.ArticleSection,
@@ -733,8 +745,8 @@ export const oldPage = (): HandlerInput[] => [
       sourceId: Strap.Premium,
       strapName: "Premium",
       totalBasicArticlesUnit: 2,
-      totalBasicArticleTitleUnit: 3
-    }
+      totalBasicArticleTitleUnit: 3,
+    },
   },
   {
     type: HandlerInputType.ArticleSection,
@@ -746,15 +758,15 @@ export const oldPage = (): HandlerInput[] => [
       sourceId: Strap.World,
       strapName: "World",
       totalBasicArticlesUnit: 2,
-      totalBasicArticleTitleUnit: 3
-    }
+      totalBasicArticleTitleUnit: 3,
+    },
   },
   {
     type: HandlerInputType.ExternalContent,
     height: "570px",
     width: "100%",
     margin: "0 0 20px 0",
-    url: "https://www.neighbourly.co.nz/stuff/strap"
+    url: "https://www.neighbourly.co.nz/stuff/strap",
   },
   {
     type: HandlerInputType.ArticleSection,
@@ -764,8 +776,8 @@ export const oldPage = (): HandlerInput[] => [
       type: HandlerInputType.ArticleList,
       sourceId: Strap.DailyFix,
       strapName: "Daily Fix",
-      totalBasicArticlesUnit: 3
-    }
+      totalBasicArticlesUnit: 3,
+    },
   },
   {
     type: HandlerInputType.ArticleSection,
@@ -777,8 +789,8 @@ export const oldPage = (): HandlerInput[] => [
       sourceId: Strap.LifeStyle,
       strapName: "Life & Style",
       totalBasicArticlesUnit: 2,
-      totalBasicArticleTitleUnit: 3
-    }
+      totalBasicArticleTitleUnit: 3,
+    },
   },
   {
     type: HandlerInputType.ArticleSection,
@@ -790,8 +802,8 @@ export const oldPage = (): HandlerInput[] => [
       sourceId: Strap.WellGood,
       strapName: "Well & Good",
       totalBasicArticlesUnit: 2,
-      totalBasicArticleTitleUnit: 3
-    }
+      totalBasicArticleTitleUnit: 3,
+    },
   },
   {
     type: HandlerInputType.ArticleSection,
@@ -803,8 +815,8 @@ export const oldPage = (): HandlerInput[] => [
       sourceId: Strap.Entertainment,
       strapName: "Entertainment",
       totalBasicArticlesUnit: 2,
-      totalBasicArticleTitleUnit: 3
-    }
+      totalBasicArticleTitleUnit: 3,
+    },
   },
   {
     type: HandlerInputType.ArticleSection,
@@ -816,8 +828,8 @@ export const oldPage = (): HandlerInput[] => [
       sourceId: Strap.Bravo,
       strapName: "Bravo",
       totalBasicArticlesUnit: 2,
-      totalBasicArticleTitleUnit: 3
-    }
+      totalBasicArticleTitleUnit: 3,
+    },
   },
   {
     type: HandlerInputType.ArticleSection,
@@ -829,8 +841,8 @@ export const oldPage = (): HandlerInput[] => [
       sourceId: Strap.Technology,
       strapName: "Technology",
       totalBasicArticlesUnit: 2,
-      totalBasicArticleTitleUnit: 3
-    }
+      totalBasicArticleTitleUnit: 3,
+    },
   },
   {
     type: HandlerInputType.ArticleSection,
@@ -842,8 +854,8 @@ export const oldPage = (): HandlerInput[] => [
       sourceId: Strap.Opinion,
       strapName: "Opinion",
       totalBasicArticlesUnit: 2,
-      totalBasicArticleTitleUnit: 2
-    }
+      totalBasicArticleTitleUnit: 2,
+    },
   },
   {
     type: HandlerInputType.ArticleSection,
@@ -855,8 +867,8 @@ export const oldPage = (): HandlerInput[] => [
       sourceId: Strap.Motoring,
       strapName: "Motoring",
       totalBasicArticlesUnit: 2,
-      totalBasicArticleTitleUnit: 3
-    }
+      totalBasicArticleTitleUnit: 3,
+    },
   },
   {
     type: HandlerInputType.ArticleSection,
@@ -868,8 +880,8 @@ export const oldPage = (): HandlerInput[] => [
       sourceId: Strap.StuffNation,
       strapName: "Stuff Nation",
       totalBasicArticlesUnit: 2,
-      totalBasicArticleTitleUnit: 3
-    }
+      totalBasicArticleTitleUnit: 3,
+    },
   },
   {
     type: HandlerInputType.ArticleSection,
@@ -881,8 +893,8 @@ export const oldPage = (): HandlerInput[] => [
       sourceId: Strap.Sport,
       strapName: "Sport",
       totalBasicArticlesUnit: 2,
-      totalBasicArticleTitleUnit: 3
-    }
+      totalBasicArticleTitleUnit: 3,
+    },
   },
   {
     type: HandlerInputType.ArticleSection,
@@ -894,8 +906,8 @@ export const oldPage = (): HandlerInput[] => [
       height: "calc(56% + 216px)",
       width: "100%",
       margin: "0 -10px 10px",
-      url: "https://www.playwidget.stuff.co.nz/hshelf/5d3fcb25a0e845001caee780"
-    }
+      url: "https://www.playwidget.stuff.co.nz/hshelf/5d3fcb25a0e845001caee780",
+    },
   },
   {
     type: HandlerInputType.ArticleSection,
@@ -906,8 +918,8 @@ export const oldPage = (): HandlerInput[] => [
       type: HandlerInputType.ArticleList,
       sourceId: Strap.Newsroom,
       strapName: "Newsroom.co.nz",
-      totalBasicArticlesUnit: 3
-    }
+      totalBasicArticlesUnit: 3,
+    },
   },
   {
     type: HandlerInputType.ArticleSection,
@@ -919,8 +931,8 @@ export const oldPage = (): HandlerInput[] => [
       sourceId: Strap.Tarana,
       strapName: "Tarana",
       totalBasicArticlesUnit: 2,
-      totalBasicArticleTitleUnit: 2
-    }
+      totalBasicArticleTitleUnit: 2,
+    },
   },
   {
     type: HandlerInputType.ArticleSection,
@@ -931,14 +943,14 @@ export const oldPage = (): HandlerInput[] => [
       type: HandlerInputType.ArticleList,
       sourceId: Strap.SponsoredContent,
       strapName: "Sponsored Content",
-      totalBasicArticlesUnit: 2
-    }
+      totalBasicArticlesUnit: 2,
+    },
   },
   {
     type: HandlerInputType.ExternalContent,
     height: "580px",
     width: "100%",
     margin: "0 0 3px 0",
-    url: "https://cdn.neighbourly.co.nz/stuff/933/homepage"
-  }
+    url: "https://cdn.neighbourly.co.nz/stuff/933/homepage",
+  },
 ];
