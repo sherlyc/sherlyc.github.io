@@ -37,6 +37,7 @@ import { WeatherUnitComponent } from "./weather-unit/weather-unit.component";
 import { ModuleHeaderComponent } from "./module-header/module-header.component";
 import { PlayStuffComponent } from "./play-stuff/play-stuff.component";
 import { MostReadListComponent } from "./most-read-list/most-read-list.component";
+import { DefconComponent } from "./defcon/defcon.component";
 
 export const contentBlockComponents = [
   GrayDefconArticleUnitComponent,
@@ -76,6 +77,7 @@ export const contentBlockComponents = [
   PartnerContentComponent,
   PlayStuffComponent,
   MostReadListComponent,
+  DefconComponent,
 ];
 
 const registry: {
@@ -113,11 +115,12 @@ const registry: {
   ArticleTitleComponent,
   OliComponent,
   HomepageArticleComponent,
-  HomepageHighlightArticleComponent: HomepageHighlightArticleComponent,
+  HomepageHighlightArticleComponent,
   VerticalArticleListComponent,
   PartnerContentComponent,
   PlayStuffComponent,
   MostReadListComponent,
+  DefconComponent,
 };
 
 export default registry;
