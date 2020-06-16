@@ -81,11 +81,6 @@ a {
       line-height: 28px;
     }
   }
-
-  .image-logo > .logo {
-    top: 86%;
-    left: 9%;
-  }
 }
 
 @include tablet {
@@ -102,11 +97,6 @@ a {
       font-size: 20px;
       line-height: 24px;
     }
-  }
-
-  .image-logo > .logo {
-    top: 86%;
-    left: 9%;
   }
 }
 
