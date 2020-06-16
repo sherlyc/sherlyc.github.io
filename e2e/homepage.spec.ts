@@ -52,4 +52,15 @@ describe("Homepage", () => {
     const ads = await getElements(driver, "app-basic-ad-unit");
     expect(ads.length).toBeGreaterThan(0);
   });
+
+  it("should not have the missing position in article meta tag", async () => {
+    const metaElements = await getElements(driver, "meta[itemprop=position]");
+    const positions = await Promise.all(
+      metaElements.map(async (elem) => await elem.getAttribute("content"))
+    );
+    positions.forEach((position) => {
+      expect(position).not.toEqual("");
+      expect(parseInt(position, 10)).toBeGreaterThanOrEqual(0);
+    });
+  });
 });

@@ -34,6 +34,7 @@ import { IVerticalArticleList } from "./IVerticalArticleList";
 import { IWeatherUnit } from "./IWeatherUnit";
 import { IPlayStuff } from "./IPlayStuff";
 import { IModuleHeader } from "./IModuleHeader";
+import { IMostReadList } from "./IMostReadList";
 
 export type IContentBlock =
   | IDefconArticleUnit
@@ -71,4 +72,5 @@ export type IContentBlock =
   | IHomepageHighlightArticle
   | IVerticalArticleList
   | IPartnerContent
-  | IPlayStuff;
+  | IPlayStuff
+  | IMostReadList;

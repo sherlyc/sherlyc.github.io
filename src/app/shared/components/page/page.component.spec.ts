@@ -15,6 +15,7 @@ import { LoggerService } from "../../../services/logger/logger.service";
 import { mockService, ServiceMock } from "../../../services/mocks/MockService";
 import { RuntimeService } from "../../../services/runtime/runtime.service";
 import { PageComponent } from "./page.component";
+import { SeoService } from "../../../services/seo/seo.service";
 
 describe("PageComponent", () => {
   const originalVersion = environment.version;
@@ -27,23 +28,24 @@ describe("PageComponent", () => {
   let analyticsServiceMock: ServiceMock<AnalyticsService>;
   let loggerService: ServiceMock<LoggerService>;
   let runtimeService: ServiceMock<RuntimeService>;
+  let seoService: ServiceMock<SeoService>;
 
   const mockContentBlocks: IContentBlock[] = ([
     {
-      type: "FakeContentBlock"
+      type: "FakeContentBlock",
     },
     {
-      type: "FakeContentBlock"
+      type: "FakeContentBlock",
     },
     {
-      type: "FakeContentBlock"
+      type: "FakeContentBlock",
     },
     {
-      type: "FakeContentBlock"
+      type: "FakeContentBlock",
     },
     {
-      type: "FakeContentBlock"
-    }
+      type: "FakeContentBlock",
+    },
   ] as any) as IContentBlock[];
 
   beforeEach(async () => {
@@ -53,49 +55,53 @@ describe("PageComponent", () => {
       providers: [
         {
           provide: ContentRetrieverService,
-          useClass: mockService(ContentRetrieverService)
+          useClass: mockService(ContentRetrieverService),
         },
         {
           provide: AdService,
-          useClass: mockService(AdService)
+          useClass: mockService(AdService),
         },
         {
           provide: CorrelationService,
-          useClass: mockService(CorrelationService)
+          useClass: mockService(CorrelationService),
         },
         {
           provide: EventsService,
-          useClass: mockService(EventsService)
+          useClass: mockService(EventsService),
         },
         {
           provide: AnalyticsService,
-          useClass: mockService(AnalyticsService)
+          useClass: mockService(AnalyticsService),
         },
         {
           provide: RuntimeService,
-          useClass: mockService(RuntimeService)
+          useClass: mockService(RuntimeService),
         },
         {
           provide: LoggerService,
-          useClass: mockService(LoggerService)
-        }
+          useClass: mockService(LoggerService),
+        },
+        {
+          provide: SeoService,
+          useClass: mockService(SeoService),
+        },
       ],
-      schemas: [NO_ERRORS_SCHEMA]
+      schemas: [NO_ERRORS_SCHEMA],
     })
       .overrideComponent(PageComponent, {
         set: {
           template: `
             <ng-container *ngFor="let contentBlock of contentBlocks; trackBy: trackByFn">
             <p class="app-fake-content-block"></p>
-            </ng-container>`
-        }
+            </ng-container>`,
+        },
       })
       .compileComponents();
     eventsServiceMock = TestBed.inject(EventsService) as ServiceMock<
       EventsService
     >;
     eventsServiceMock.getEventSubject.mockReturnValue({
-      NavigationStart: new Subject<NavigationStart>()
+      NavigationStart: new Subject<NavigationStart>(),
     });
     fixture = TestBed.createComponent(PageComponent);
     component = fixture.componentInstance;
@@ -110,6 +116,7 @@ describe("PageComponent", () => {
     runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
       RuntimeService
     >;
+    seoService = TestBed.inject(SeoService) as ServiceMock<SeoService>;
   });
 
   afterEach(() => {
@@ -132,7 +139,7 @@ describe("PageComponent", () => {
         title: "",
         version: "",
         content: mockContentBlocks,
-        apiRequestId: ""
+        apiRequestId: "",
       })
     );
 
@@ -149,7 +156,7 @@ describe("PageComponent", () => {
         title: "",
         version: "",
         content: mockContentBlocks,
-        apiRequestId: ""
+        apiRequestId: "",
       })
     );
     const getDataSpy = jest.spyOn(component, "getData");
@@ -162,12 +169,14 @@ describe("PageComponent", () => {
     fixture.detectChanges();
     expect(getDataSpy).toBeCalledTimes(1);
     expect(contentRetrieverMock.getContent).toBeCalledTimes(1);
+    expect(seoService.reset).toBeCalledTimes(1);
 
     eventsServiceMock
       .getEventSubject()
       .NavigationStart.next(new NavigationStart(0, "/"));
     expect(getDataSpy).toBeCalledTimes(2);
     expect(contentRetrieverMock.getContent).toBeCalledTimes(2);
+    expect(seoService.reset).toBeCalledTimes(2);
     fixture.detectChanges();
 
     assertsForSuccessfulRetrieval();
@@ -211,7 +220,7 @@ describe("PageComponent", () => {
         title: "",
         version: "",
         content: mockContentBlocks,
-        apiRequestId: ""
+        apiRequestId: "",
       })
     );
     fixture.detectChanges();
@@ -225,7 +234,7 @@ describe("PageComponent", () => {
         title: "",
         version: "",
         content: mockContentBlocks,
-        apiRequestId: ""
+        apiRequestId: "",
       })
     );
     fixture.detectChanges();

@@ -1,0 +1,11 @@
+<div class="wrapper" *ngIf="input.articles">
+  <div class="title">
+    {{ input.displayName }}
+  </div>
+  <div class="article-list">
+    <a class="article" *ngFor="let article of input.articles; let i = index" [href]="article.linkUrl" (click)="sendAnalytics(article.id, article.title, input.strapName)">
+      <div class="bullet">{{ i + 1 }}</div>
+      <app-headline [headline]="article.headline" [headlineFlags]="article.headlineFlags"></app-headline>
+    </a>
+  </div>
+</div>
