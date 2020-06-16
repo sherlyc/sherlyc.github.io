@@ -57,13 +57,13 @@ describe("Most Read Grid Handler", () => {
     };
 
     const tabletConfig: IGridConfig = {
-      gridTemplateColumns: "1fr",
-      gridTemplateRows: "auto auto",
+      gridTemplateColumns: "1fr 1fr",
+      gridTemplateRows: "auto",
       gridColumnGap: "20px",
       gridRowGap: "20px",
       gridBlocks: {
         [MostReadGridPositions.Left]: gridBlock(1, 1, 1, 1, []),
-        [MostReadGridPositions.Right]: gridBlock(2, 1, 1, 1, [Border.bottom]),
+        [MostReadGridPositions.Right]: gridBlock(1, 2, 1, 1, []),
       },
     };
 

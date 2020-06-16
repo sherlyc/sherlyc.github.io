@@ -22,6 +22,11 @@ export default async function (
     [MostReadGridPositions.Right]: gridBlock(2, 1, 1, 1, [Border.bottom]),
   };
 
+  const tablet: IGridBlocks = {
+    [MostReadGridPositions.Left]: gridBlock(1, 1, 1, 1, []),
+    [MostReadGridPositions.Right]: gridBlock(1, 2, 1, 1, []),
+  };
+
   const desktop: IGridBlocks = {
     [MostReadGridPositions.Left]: gridBlock(1, 1, 1, 2, []),
     [MostReadGridPositions.Right]: gridBlock(1, 3, 1, 1, []),
@@ -39,11 +44,11 @@ export default async function (
         gridBlocks: mobile,
       },
       tablet: {
-        gridTemplateColumns: "1fr",
-        gridTemplateRows: "auto auto",
+        gridTemplateColumns: "1fr 1fr",
+        gridTemplateRows: "auto",
         gridColumnGap: "20px",
         gridRowGap: "20px",
-        gridBlocks: mobile,
+        gridBlocks: tablet,
       },
       desktop: {
         gridTemplateColumns: "1fr 1fr 1fr",

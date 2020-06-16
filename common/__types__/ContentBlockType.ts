@@ -34,5 +34,6 @@ export enum ContentBlockType {
   HomepageHighlightArticle = "HomepageHighlightArticle",
   VerticalArticleList = "VerticalArticleList",
   PartnerContent = "PartnerContent",
-  PlayStuff = "PlayStuff"
+  PlayStuff = "PlayStuff",
+  MostReadList = "MostReadList",
 }

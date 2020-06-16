@@ -54,6 +54,7 @@ import PlayStuff from "./play-stuff/play-stuff";
 import EditorsPicks from "./grid/editors-picks/editors-picks";
 import EditorsPicksGrid from "./grid/editors-picks-grid/editors-picks-grid";
 import MostReadGrid from "./grid/most-read-grid/most-read-grid";
+import MostRead from "./grid/most-read/most-read";
 
 type handlerFunction = (
   handlerRunner: handlerRunnerFunction,
@@ -114,6 +115,7 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   EditorsPicks,
   EditorsPicksGrid,
   MostReadGrid,
+  MostRead,
 };
 
 export default handlerRegistry;

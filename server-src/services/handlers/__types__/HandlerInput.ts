@@ -49,6 +49,8 @@ import { IWeatherHandlerInput } from "./IWeatherHandlerInput";
 import { IPlayStuffHandlerInput } from "./IPlayStuffHandlerInput";
 import { IEditorsPicksGridHandlerInput } from "./IEditorsPicksGridHandlerInput";
 import { IEditorsPicksHandlerInput } from "./IEditorsPicksHandlerInput";
+import { IMostReadGridHandlerInput } from "./IMostReadGridHandlerInput";
+import { IMostReadHandlerInput } from "./IMostReadHandlerInput";
 
 export type HandlerInput =
   | IContentBlockHandlerInput
@@ -101,4 +103,7 @@ export type HandlerInput =
   | IPartnerHandlerInput
   | IPlayStuffHandlerInput
   | IEditorsPicksHandlerInput
-  | IEditorsPicksGridHandlerInput;
+  | IEditorsPicksGridHandlerInput
+  | IPlayStuffHandlerInput
+  | IMostReadGridHandlerInput
+  | IMostReadHandlerInput;
