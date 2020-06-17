@@ -38,8 +38,8 @@ import Strips from "./grid/strips/strips";
 import StripsV2 from "./grid/strips-v2/strips-v2";
 import TopStoriesGrid from "./grid/top-stories-grid/top-stories-grid";
 import TopStories from "./grid/top-stories/top-stories";
+import TopStoriesV2 from "./grid/top-stories-v2/top-stories-v2";
 import TopStoriesV2DefaultGrid from "./grid/top-stories-v2-default-grid/top-stories-v2-default-grid";
-import TopStoriesV2Default from "./grid/top-stories-v2-default/top-stories-v2-default";
 import TopStoriesDefaultOneHighlight from "./grid/top-stories/default-one-highlight/default-one-highlight";
 import TopStoriesDefconHighlight from "./grid/top-stories/defcon-highlight/defcon-highlight";
 import LatestHeadlines from "./latest-headlines/latest-headlines";
@@ -80,10 +80,10 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   Experiment,
   Feature,
   TopStories,
+  TopStoriesV2,
   TopStoriesGrid,
   TopStoriesDefaultOneHighlight,
   TopStoriesDefconHighlight,
-  TopStoriesV2Default,
   TopStoriesV2DefaultGrid,
   BiggieSmalls,
   BiggieSmallsGrid,

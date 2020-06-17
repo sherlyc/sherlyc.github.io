@@ -80,7 +80,7 @@ export const newPage = (): HandlerInput[] => {
       name: FeatureName.HomepageV2,
       content: [
         {
-          type: HandlerInputType.TopStoriesV2Default,
+          type: HandlerInputType.TopStoriesV2,
           strapName: `${homepageV2AdPrefix}TopStoriesDefaultOne`,
           color: AccentColor.CuriousBlue,
           midInsertContent: {
