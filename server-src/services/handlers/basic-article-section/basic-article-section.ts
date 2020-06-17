@@ -4,7 +4,7 @@ import { IParams } from "../../__types__/IParams";
 import { handlerRunnerFunction } from "../runner";
 import { IBasicArticleSectionHandlerInput } from "../__types__/IBasicArticleSectionHandlerInput";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   {
     displayName,

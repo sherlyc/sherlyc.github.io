@@ -11,7 +11,7 @@ import {
   RelevantStoriesGridPositions
 } from "../../__types__/IRelevantStoriesGridHandlerInput";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { content }: IRelevantStoriesGridHandlerInput,
   params: IParams

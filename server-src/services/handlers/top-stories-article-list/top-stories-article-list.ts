@@ -33,7 +33,7 @@ const retrieveLayout = async (params: IParams): Promise<LayoutType> => {
   }
 };
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { strapName }: ITopStoriesArticleListHandlerInput,
   params: IParams

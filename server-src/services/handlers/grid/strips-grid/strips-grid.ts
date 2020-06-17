@@ -9,7 +9,7 @@ import {
   StripsGridPositions
 } from "../../__types__/IStripsGridHandlerInput";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { content }: IStripsGridHandlerInput,
   params: IParams

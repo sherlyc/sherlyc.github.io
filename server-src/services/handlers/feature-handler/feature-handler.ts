@@ -20,7 +20,7 @@ const multiHandlerRunner = async (
   return flatten(await Promise.all(results));
 };
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { name, content, fallback }: IFeatureHandlerInput,
   params: IParams

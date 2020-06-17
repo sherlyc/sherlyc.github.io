@@ -13,7 +13,7 @@ import {
   TopStoriesGridPositions
 } from "../../__types__/ITopStoriesGridHandlerInput";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { content }: ITopStoriesGridHandlerInput,
   params: IParams

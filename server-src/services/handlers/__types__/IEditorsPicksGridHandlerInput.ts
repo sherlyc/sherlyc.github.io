@@ -16,5 +16,5 @@ export enum EditorsPicksGridPositions {
   SecondRowTwo = "SecondRowTwo",
   SecondRowThree = "SecondRowThree",
   SecondRowFour = "SecondRowFour",
-  Ad = "Ad",
+  Ad = "Ad"
 }

@@ -75,7 +75,7 @@ export const contentBlockComponents = [
   VerticalArticleListComponent,
   PartnerContentComponent,
   PlayStuffComponent,
-  MostReadListComponent,
+  MostReadListComponent
 ];
 
 const registry: {
@@ -117,7 +117,7 @@ const registry: {
   VerticalArticleListComponent,
   PartnerContentComponent,
   PlayStuffComponent,
-  MostReadListComponent,
+  MostReadListComponent
 };
 
 export default registry;

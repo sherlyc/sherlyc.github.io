@@ -9,7 +9,7 @@ import { IBrandHandlerInput } from "../../__types__/IBrandHandlerInput";
 import { brandConfig } from "./brand-config";
 import { createBulletList } from "./bullet-list";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { module }: IBrandHandlerInput,
   params: IParams

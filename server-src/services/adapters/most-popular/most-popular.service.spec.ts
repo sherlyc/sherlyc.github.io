@@ -11,18 +11,18 @@ jest.mock("../../utils/logger");
 
 describe("Most popular service", function () {
   const params: IParams = {
-    apiRequestId: "1",
+    apiRequestId: "1"
   };
   const rawArticle = (id: string) => ({
-    id,
+    id
   });
   const mostPopularResponse = {
     data: {
       mostPopular: {
         mostPopularArticles: [{ id: "1" }, { id: "2" }, { id: "3" }],
-        error: false,
-      },
-    },
+        error: false
+      }
+    }
   };
 
   beforeEach(() => {
@@ -69,7 +69,7 @@ describe("Most popular service", function () {
 
     expect(articles).toEqual([
       expect.objectContaining({ id: "1" }),
-      expect.objectContaining({ id: "3" }),
+      expect.objectContaining({ id: "3" })
     ]);
   });
 
@@ -91,9 +91,9 @@ describe("Most popular service", function () {
       data: {
         mostPopular: {
           mostPopularArticles: [],
-          error: true,
-        },
-      },
+          error: true
+        }
+      }
     });
 
     const error = new Error("Most Popular Service: API returns error");

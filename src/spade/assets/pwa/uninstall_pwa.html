@@ -12,13 +12,13 @@
         dsn: "https://4d85d50cd0ec418792cf6e031e460229@sentry.io/1425567",
         environment: ["i.stuff.co.nz", "www.stuff.co.nz"].indexOf(window.location.hostname) >= 0 ? "production" : undefined
       });
-      Sentry.configureScope(function(scope) {
+      Sentry.configureScope(function (scope) {
         scope.setLevel(Sentry.Severity.Debug);
         Sentry.captureMessage("Device need to be updated", "debug");
       });
       if ("serviceWorker" in navigator) {
-        window.addEventListener("load", function() {
-          navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.getRegistrations().then(function (registrations) {
             for (var index in registrations) {
               if (registrations.hasOwnProperty(index)) {
                 registrations[index].unregister();

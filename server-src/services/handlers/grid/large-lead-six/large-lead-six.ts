@@ -16,7 +16,7 @@ import {
 import { ILargeLeadSixHandlerInput } from "../../__types__/ILargeLeadSixHandlerInput";
 import { contentErrorHandler } from "../content-error-handler";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   {
     sourceId,

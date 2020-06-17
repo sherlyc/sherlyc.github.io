@@ -10,7 +10,7 @@ import { IPartnerHandlerInput } from "../../__types__/IPartnerHandlerInput";
 import { brandConfig } from "../brand/brand-config";
 import { createPartnerContent } from "./partner-content";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   input: IPartnerHandlerInput,
   params: IParams

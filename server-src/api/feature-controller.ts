@@ -19,7 +19,7 @@ function validateRequest(
   }
 }
 
-export const featureController = function(req: Request, res: Response) {
+export const featureController = function (req: Request, res: Response) {
   const {
     featureName,
     lotteryNumber,

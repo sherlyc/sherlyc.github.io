@@ -16,7 +16,7 @@ class FakeComponent {
   onIntersect(entry: IntersectionObserverEntry) {}
 }
 
-describe("Intersection Observer Directive", function() {
+describe("Intersection Observer Directive", function () {
   let fixture: ComponentFixture<FakeComponent>;
   let component: FakeComponent;
   let runtimeService: ServiceMock<RuntimeService>;

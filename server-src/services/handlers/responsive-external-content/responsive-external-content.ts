@@ -6,7 +6,7 @@ import { IParams } from "../../__types__/IParams";
 import { handlerRunnerFunction } from "../runner";
 import { IResponsiveExternalContentHandlerInput } from "../__types__/IResponsiveExternalContentHandlerInput";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   {
     url,

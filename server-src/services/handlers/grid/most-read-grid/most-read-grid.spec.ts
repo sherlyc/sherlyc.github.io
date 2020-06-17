@@ -3,14 +3,14 @@ import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import {
   Border,
   IGridConfig,
-  IGridContainer,
+  IGridContainer
 } from "../../../../../common/__types__/IGridContainer";
 import { gridBlock } from "../../../adapters/grid/grid-block";
 import { IParams } from "../../../__types__/IParams";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
   IMostReadGridHandlerInput,
-  MostReadGridPositions,
+  MostReadGridPositions
 } from "../../__types__/IMostReadGridHandlerInput";
 import mostReadGridHandler from "./most-read-grid";
 
@@ -28,8 +28,8 @@ describe("Most Read Grid Handler", () => {
       type: HandlerInputType.MostReadGrid,
       content: {
         [MostReadGridPositions.Left]: [fakeContentBlock],
-        [MostReadGridPositions.Right]: [fakeContentBlock],
-      },
+        [MostReadGridPositions.Right]: [fakeContentBlock]
+      }
     };
 
     const result = await mostReadGridHandler(handlerRunnerMock, input, params);
@@ -39,8 +39,8 @@ describe("Most Read Grid Handler", () => {
         type: ContentBlockType.GridContainer,
         items: {
           [MostReadGridPositions.Left]: [fakeContentBlock],
-          [MostReadGridPositions.Right]: [fakeContentBlock],
-        },
+          [MostReadGridPositions.Right]: [fakeContentBlock]
+        }
       })
     );
 
@@ -52,8 +52,8 @@ describe("Most Read Grid Handler", () => {
       gridRowGap: "20px",
       gridBlocks: {
         [MostReadGridPositions.Left]: gridBlock(1, 1, 1, 1, []),
-        [MostReadGridPositions.Right]: gridBlock(2, 1, 1, 1, [Border.bottom]),
-      },
+        [MostReadGridPositions.Right]: gridBlock(2, 1, 1, 1, [Border.bottom])
+      }
     };
 
     const tabletConfig: IGridConfig = {
@@ -63,8 +63,8 @@ describe("Most Read Grid Handler", () => {
       gridRowGap: "20px",
       gridBlocks: {
         [MostReadGridPositions.Left]: gridBlock(1, 1, 1, 1, []),
-        [MostReadGridPositions.Right]: gridBlock(1, 2, 1, 1, []),
-      },
+        [MostReadGridPositions.Right]: gridBlock(1, 2, 1, 1, [])
+      }
     };
 
     const desktopConfig: IGridConfig = {
@@ -74,8 +74,8 @@ describe("Most Read Grid Handler", () => {
       gridRowGap: "20px",
       gridBlocks: {
         [MostReadGridPositions.Left]: gridBlock(1, 1, 1, 2, []),
-        [MostReadGridPositions.Right]: gridBlock(1, 3, 1, 1, []),
-      },
+        [MostReadGridPositions.Right]: gridBlock(1, 3, 1, 1, [])
+      }
     };
 
     expect(mobile).toEqual(mobileConfig);

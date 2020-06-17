@@ -15,7 +15,7 @@ import {
 import { ISixImageHandlerInput } from "../../__types__/ISixImageHandlerInput";
 import { contentErrorHandler } from "../content-error-handler";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { sourceId, strapName, displayName, color, linkUrl }: ISixImageHandlerInput,
   params: IParams

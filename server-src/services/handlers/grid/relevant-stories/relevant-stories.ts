@@ -14,7 +14,7 @@ import {
 import { IRelevantStoriesHandlerInput } from "../../__types__/IRelevantStoriesHandlerInput";
 import { createRelevantStoriesColumn } from "./relevant-stories-column";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   {}: IRelevantStoriesHandlerInput,
   params: IParams

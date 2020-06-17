@@ -20,7 +20,7 @@ function validateRequest(
   }
 }
 
-export const experimentController = async function(
+export const experimentController = async function (
   req: Request,
   res: Response
 ) {

@@ -2,7 +2,10 @@ import { ContentBlockType } from "../../../../../common/__types__/ContentBlockTy
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { Border } from "../../../../../common/__types__/IGridContainer";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { HalfFourGridPositions, IHalfFourGridHandlerInput } from "../../__types__/IHalfFourGridHandlerInput";
+import {
+  HalfFourGridPositions,
+  IHalfFourGridHandlerInput
+} from "../../__types__/IHalfFourGridHandlerInput";
 import halfFourGrid from "./half-four-grid";
 
 describe("Half Four Grid", () => {
@@ -18,7 +21,7 @@ describe("Half Four Grid", () => {
         [HalfFourGridPositions.Left]: [fakeContent],
         [HalfFourGridPositions.RightOne]: [fakeContent],
         [HalfFourGridPositions.RightTwo]: [fakeContent],
-        [HalfFourGridPositions.RightThree]: [fakeContent],
+        [HalfFourGridPositions.RightThree]: [fakeContent]
       }
     };
 
@@ -154,7 +157,7 @@ describe("Half Four Grid", () => {
               rowSpan: 1,
               columnSpan: 1,
               border: [Border.bottom]
-            },
+            }
           }
         }
       }

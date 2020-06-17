@@ -12,6 +12,8 @@ import { IColumnGridHandlerInput } from "./IColumnGridHandlerInput";
 import { IColumnHandlerInput } from "./IColumnHandlerInput";
 import { IContentBlockHandlerInput } from "./IContentBlockHandlerInput";
 import { IEditorsPicksGridHandlerInput } from "./IEditorsPicksGridHandlerInput";
+import { IEditorsPicksGridHandlerInput } from "./IEditorsPicksGridHandlerInput";
+import { IEditorsPicksHandlerInput } from "./IEditorsPicksHandlerInput";
 import { IEditorsPicksHandlerInput } from "./IEditorsPicksHandlerInput";
 import { IExperimentHandlerInput } from "./IExperimentHandlerInput";
 import { IExternalContentHandlerInput } from "./IExternalContentHandlerInput";
@@ -22,11 +24,14 @@ import { IHalfFourHandlerInput } from "./IHalfFourHandlerInput";
 import { ILargeLeadSixGridHandlerInput } from "./ILargeLeadSixGridHandlerInput";
 import { ILargeLeadSixHandlerInput } from "./ILargeLeadSixHandlerInput";
 import { ILargeLeadSixV2HandlerInput } from "./ILargeLeadSixV2HandlerInput";
+import { ILargeLeadSixV2HandlerInput } from "./ILargeLeadSixV2HandlerInput";
 import { ILatestHeadlinesHandlerInput } from "./ILatestHeadlinesHandlerInput";
 import { IListGridHandlerInput } from "./IListGridHandlerInput";
 import { IMidStripHandlerInput } from "./IMidStripHandlerInput";
 import { IMiniMidStripHandlerInput } from "./IMiniMidStripHandlerInput";
 import { IMostReadGridHandlerInput } from "./IMostReadGridHandlerInput";
+import { IMostReadGridHandlerInput } from "./IMostReadGridHandlerInput";
+import { IMostReadHandlerInput } from "./IMostReadHandlerInput";
 import { IMostReadHandlerInput } from "./IMostReadHandlerInput";
 import { INewsSixGridHandlerInput } from "./INewsSixGridHandlerInput";
 import { INewsSixGridV2HandlerInput } from "./INewsSixGridV2HandlerInput";
@@ -34,6 +39,7 @@ import { INewsSixHandlerInput } from "./INewsSixHandlerInput";
 import { INewsSixV2HandlerInput } from "./INewsSixV2HandlerInput";
 import { IPageHandlerInput } from "./IPageHandlerInput";
 import { IPartnerHandlerInput } from "./IPartnerHandlerInput";
+import { IPlayStuffHandlerInput } from "./IPlayStuffHandlerInput";
 import { IPlayStuffHandlerInput } from "./IPlayStuffHandlerInput";
 import { IRelevantStoriesGridHandlerInput } from "./IRelevantStoriesGridHandlerInput";
 import { IRelevantStoriesHandlerInput } from "./IRelevantStoriesHandlerInput";
@@ -43,6 +49,7 @@ import { ISixImageHandlerInput } from "./ISixImageHandlerInput";
 import { IStripsGridHandlerInput } from "./IStripsGridHandlerInput";
 import { IStripsHandlerInput } from "./IStripsHandlerInput";
 import { IStripsV2HandlerInput } from "./IStripsV2HandlerInput";
+import { IStripsV2HandlerInput } from "./IStripsV2HandlerInput";
 import { ITitleSectionHandlerInput } from "./ITitleSectionHandlerInput";
 import { ITopStoriesArticleListHandlerInput } from "./ITopStoriesArticleListHandlerInput";
 import { ITopStoriesDefaultOneHighlightHandlerInput } from "./ITopStoriesDefaultOneHighlightHandlerInput";
@@ -50,7 +57,7 @@ import { ITopStoriesDefconHighlightHandlerInput } from "./ITopStoriesDefconHighl
 import { ITopStoriesGridHandlerInput } from "./ITopStoriesGridHandlerInput";
 import { ITopStoriesHandlerInput } from "./ITopStoriesHandlerInput";
 import { ITopStoriesV2DefaultGridHandlerInput } from "./ITopStoriesV2DefaultGridHandlerInput";
-import { ITopStoriesV2DefaultHandlerInput } from "./ITopStoriesV2DefaultHandlerInput";
+import { ITopStoriesV2HandlerInput } from "./ITopStoriesV2HandlerInput";
 import { IVersionSwitcherHandlerInput } from "./IVersionSwitcherHandlerInput";
 import { IWeatherHandlerInput } from "./IWeatherHandlerInput";
 
@@ -73,7 +80,7 @@ export type HandlerInput =
   | ITopStoriesDefaultOneHighlightHandlerInput
   | ITopStoriesDefconHighlightHandlerInput
   | ITopStoriesGridHandlerInput
-  | ITopStoriesV2DefaultHandlerInput
+  | ITopStoriesV2HandlerInput
   | ITopStoriesV2DefaultGridHandlerInput
   | IBiggieSmallsHandlerInput
   | IBiggieSmallsGridHandlerInput

@@ -19,23 +19,23 @@ describe("Column Handler", () => {
 
     const input: IColumnHandlerInput = {
       type: HandlerInputType.Column,
-      content: [
-        fakeHandlerInput,
-        fakeHandlerInput
-      ],
+      content: [fakeHandlerInput, fakeHandlerInput],
       columnGap: 10,
       rowGap: 10,
-      border: false,
+      border: false
     };
 
     await column(handlerRunnerMock, input, params);
 
-    expect(handlerRunnerMock).toHaveBeenCalledWith({
-      type: HandlerInputType.ColumnGrid,
-      content: [handlerOneResult, handlerTwoResult],
-      columnGap: input.columnGap,
-      rowGap: input.rowGap,
-      border: input.border,
-    }, params);
+    expect(handlerRunnerMock).toHaveBeenCalledWith(
+      {
+        type: HandlerInputType.ColumnGrid,
+        content: [handlerOneResult, handlerTwoResult],
+        columnGap: input.columnGap,
+        rowGap: input.rowGap,
+        border: input.border
+      },
+      params
+    );
   });
 });

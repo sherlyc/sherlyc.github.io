@@ -40,7 +40,7 @@ const getGridItems = (content: IContentBlock[][]) =>
     {}
   );
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   {
     content,

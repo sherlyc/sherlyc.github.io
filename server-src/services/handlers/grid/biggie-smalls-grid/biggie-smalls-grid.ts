@@ -13,7 +13,7 @@ import {
   IBiggieSmallsGridHandlerInput
 } from "../../__types__/IBiggieSmallsGridHandlerInput";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { content }: IBiggieSmallsGridHandlerInput,
   params: IParams

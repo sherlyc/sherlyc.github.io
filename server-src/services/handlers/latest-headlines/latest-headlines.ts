@@ -6,7 +6,7 @@ import { IParams } from "../../__types__/IParams";
 import { handlerRunnerFunction } from "../runner";
 import { ILatestHeadlinesHandlerInput } from "../__types__/ILatestHeadlinesHandlerInput";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   {
     sourceId,

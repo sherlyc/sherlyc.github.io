@@ -15,7 +15,7 @@ import { contentErrorHandler } from "../content-error-handler";
 
 export const ARTICLE_CAPACITY_BIGGIE_SMALLS = 7;
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   {
     displayName,

@@ -7,10 +7,7 @@ export function calculateGridGap(
   gridTemplateValues: string,
   gridGap: string
 ): string {
-  return gridTemplateValues
-    .trim()
-    .split(" ")
-    .join(` ${gridGap} `);
+  return gridTemplateValues.trim().split(" ").join(` ${gridGap} `);
 }
 
 export function calculateCellGap(gridBlock: IGridBlock): IGridBlock {

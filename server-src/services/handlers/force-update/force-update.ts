@@ -5,7 +5,7 @@ import { IParams } from "../../__types__/IParams";
 import { handlerRunnerFunction } from "../runner";
 import { IForceUpdateHandlerInput } from "../__types__/IForceUpdateHandlerInput";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { forceUpdateOnVersionsBefore }: IForceUpdateHandlerInput,
   params: IParams

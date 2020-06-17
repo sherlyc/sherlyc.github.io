@@ -10,7 +10,7 @@ import { IColumnGridHandlerInput } from "../../../__types__/IColumnGridHandlerIn
 import { ITopStoriesDefaultOneHighlightHandlerInput } from "../../../__types__/ITopStoriesDefaultOneHighlightHandlerInput";
 import { contentErrorHandler } from "../../content-error-handler";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { articles, strapName, color }: ITopStoriesDefaultOneHighlightHandlerInput,
   params: IParams

@@ -11,7 +11,7 @@ import { ITopStoriesDefconHighlightHandlerInput } from "../../../__types__/ITopS
 import { contentErrorHandler } from "../../content-error-handler";
 import { DefconHighlightPosition } from "./defcon-highlight-position";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { articles, strapName, color }: ITopStoriesDefconHighlightHandlerInput,
   params: IParams

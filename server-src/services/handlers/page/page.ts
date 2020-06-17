@@ -4,7 +4,7 @@ import { IParams } from "../../__types__/IParams";
 import { handlerRunnerFunction } from "../runner";
 import { IPageHandlerInput } from "../__types__/IPageHandlerInput";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { items }: IPageHandlerInput,
   params: IParams

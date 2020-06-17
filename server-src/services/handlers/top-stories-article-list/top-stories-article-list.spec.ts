@@ -4,7 +4,10 @@ import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArti
 import { IDefconArticleUnit } from "../../../../common/__types__/IDefconArticleUnit";
 import { IGrayDefconArticleUnit } from "../../../../common/__types__/IGrayDefconArticleUnit";
 
-import { Border, IGridBlock } from "../../../../common/__types__/IGridContainer";
+import {
+  Border,
+  IGridBlock
+} from "../../../../common/__types__/IGridContainer";
 import { ImageLayoutType } from "../../../../common/__types__/ImageLayoutType";
 import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
 import * as layoutRetriever from "../../adapters/layout/layout-retriever";

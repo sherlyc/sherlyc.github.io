@@ -17,21 +17,19 @@ const multiHandlerRunner = async (
   return await Promise.all(results);
 };
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
-  {
-    content,
-    columnGap = 40,
-    rowGap = 10,
-    border = true
-  }: IColumnHandlerInput,
+  { content, columnGap = 40, rowGap = 10, border = true }: IColumnHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  return await handlerRunner({
-    type: HandlerInputType.ColumnGrid,
-    content: await multiHandlerRunner(handlerRunner, content, params),
-    columnGap,
-    rowGap,
-    border
-  }, params);
+  return await handlerRunner(
+    {
+      type: HandlerInputType.ColumnGrid,
+      content: await multiHandlerRunner(handlerRunner, content, params),
+      columnGap,
+      rowGap,
+      border
+    },
+    params
+  );
 }

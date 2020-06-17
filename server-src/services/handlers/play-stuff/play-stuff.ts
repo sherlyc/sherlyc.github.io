@@ -8,7 +8,7 @@ import { handlerRunnerFunction } from "../runner";
 import { IPlayStuffHandlerInput } from "../__types__/IPlayStuffHandlerInput";
 import { playStuffConfig } from "./play-stuff-config";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { total }: IPlayStuffHandlerInput,
   params: IParams

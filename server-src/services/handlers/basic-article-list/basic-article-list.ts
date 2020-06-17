@@ -20,7 +20,7 @@ import { IParams } from "../../__types__/IParams";
 import { handlerRunnerFunction } from "../runner";
 import { IBasicArticleListHandlerInput } from "../__types__/IBasicArticleListHandlerInput";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   {
     sourceId,

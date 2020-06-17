@@ -8,7 +8,7 @@ import {
   SixImageGridHandlerPositions
 } from "../../__types__/ISixImageGridHandlerInput";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { content }: ISixImageGridHandlerInput,
   params: IParams

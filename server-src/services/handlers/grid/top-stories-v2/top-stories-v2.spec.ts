@@ -13,8 +13,8 @@ import {
   ITopStoriesV2DefaultGridHandlerInput,
   TopStoriesV2DefaultGridPositions
 } from "../../__types__/ITopStoriesV2DefaultGridHandlerInput";
-import { ITopStoriesV2DefaultHandlerInput } from "../../__types__/ITopStoriesV2DefaultHandlerInput";
-import topStoriesV2Default from "./top-stories-v2-default";
+import { ITopStoriesV2HandlerInput } from "../../__types__/ITopStoriesV2HandlerInput";
+import topStoriesV2 from "./top-stories-v2";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 
@@ -23,8 +23,8 @@ describe("Top Stories V2", () => {
   const params: IParams = { apiRequestId: "123" };
   const strapName = "Top Stories V2";
   const color = AccentColor.CuriousBlue;
-  const handlerInput: ITopStoriesV2DefaultHandlerInput = {
-    type: HandlerInputType.TopStoriesV2Default,
+  const handlerInput: ITopStoriesV2HandlerInput = {
+    type: HandlerInputType.TopStoriesV2,
     strapName,
     color,
     midInsertContent: {
@@ -79,7 +79,11 @@ describe("Top Stories V2", () => {
   });
 
   it("should retrieve articles", async () => {
-    await topStoriesV2Default(handlerRunnerMock, handlerInput, params);
+    (getRawArticles as jest.Mock).mockResolvedValue(
+      fakeArticlesWithIds([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+    );
+
+    await topStoriesV2(handlerRunnerMock, handlerInput, params);
 
     expect(getRawArticles).toHaveBeenCalledWith(Strap.TopStories, 10, params);
   });
@@ -89,7 +93,7 @@ describe("Top Stories V2", () => {
       fakeArticlesWithIds([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
     );
 
-    await topStoriesV2Default(handlerRunnerMock, handlerInput, params);
+    await topStoriesV2(handlerRunnerMock, handlerInput, params);
 
     const gridHandlerInput: ITopStoriesV2DefaultGridHandlerInput = {
       type: HandlerInputType.TopStoriesV2DefaultGrid,

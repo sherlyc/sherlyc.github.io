@@ -206,7 +206,7 @@ async function createTopStoriesGrid(
   );
 }
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { strapName, color }: ITopStoriesHandlerInput,
   params: IParams

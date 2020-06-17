@@ -10,8 +10,7 @@ export class TagLinkComponent implements OnInit {
   @Input() url!: string;
   @Input() color?: string;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

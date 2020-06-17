@@ -1,14 +1,14 @@
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import {
   Border,
-  IGridContainer,
+  IGridContainer
 } from "../../../../../common/__types__/IGridContainer";
 import { gridBlock } from "../../../adapters/grid/grid-block";
 import { IParams } from "../../../__types__/IParams";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
   EditorsPicksGridPositions,
-  IEditorsPicksGridHandlerInput,
+  IEditorsPicksGridHandlerInput
 } from "../../__types__/IEditorsPicksGridHandlerInput";
 import editorsPicksGrid from "./editors-picks-grid";
 
@@ -28,8 +28,8 @@ describe("Editors Picks grid", () => {
       [EditorsPicksGridPositions.SecondRowTwo]: [fakeContentBlock],
       [EditorsPicksGridPositions.SecondRowThree]: [fakeContentBlock],
       [EditorsPicksGridPositions.SecondRowFour]: [fakeContentBlock],
-      [EditorsPicksGridPositions.Ad]: [fakeContentBlock],
-    },
+      [EditorsPicksGridPositions.Ad]: [fakeContentBlock]
+    }
   };
 
   it("should generate desktop grid", async () => {
@@ -43,31 +43,31 @@ describe("Editors Picks grid", () => {
       gridBlocks: {
         [EditorsPicksGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 5, []),
         [EditorsPicksGridPositions.FirstRowOne]: gridBlock(2, 1, 1, 1, [
-          Border.bottom,
+          Border.bottom
         ]),
         [EditorsPicksGridPositions.FirstRowTwo]: gridBlock(2, 2, 1, 1, [
-          Border.bottom,
+          Border.bottom
         ]),
         [EditorsPicksGridPositions.FirstRowThree]: gridBlock(2, 3, 1, 1, [
-          Border.bottom,
+          Border.bottom
         ]),
         [EditorsPicksGridPositions.FirstRowFour]: gridBlock(2, 4, 1, 1, [
-          Border.bottom,
+          Border.bottom
         ]),
         [EditorsPicksGridPositions.SecondRowOne]: gridBlock(3, 1, 1, 1, [
-          Border.bottom,
+          Border.bottom
         ]),
         [EditorsPicksGridPositions.SecondRowTwo]: gridBlock(3, 2, 1, 1, [
-          Border.bottom,
+          Border.bottom
         ]),
         [EditorsPicksGridPositions.SecondRowThree]: gridBlock(3, 3, 1, 1, [
-          Border.bottom,
+          Border.bottom
         ]),
         [EditorsPicksGridPositions.SecondRowFour]: gridBlock(3, 4, 1, 1, [
-          Border.bottom,
+          Border.bottom
         ]),
-        [EditorsPicksGridPositions.Ad]: gridBlock(2, 5, 2, 1, []),
-      },
+        [EditorsPicksGridPositions.Ad]: gridBlock(2, 5, 2, 1, [])
+      }
     });
   });
 
@@ -82,31 +82,31 @@ describe("Editors Picks grid", () => {
       gridBlocks: {
         [EditorsPicksGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 2, []),
         [EditorsPicksGridPositions.FirstRowOne]: gridBlock(2, 1, 1, 1, [
-          Border.bottom,
+          Border.bottom
         ]),
         [EditorsPicksGridPositions.FirstRowTwo]: gridBlock(2, 2, 1, 1, [
-          Border.bottom,
+          Border.bottom
         ]),
         [EditorsPicksGridPositions.FirstRowThree]: gridBlock(3, 1, 1, 1, [
-          Border.bottom,
+          Border.bottom
         ]),
         [EditorsPicksGridPositions.FirstRowFour]: gridBlock(3, 2, 1, 1, [
-          Border.bottom,
+          Border.bottom
         ]),
         [EditorsPicksGridPositions.SecondRowOne]: gridBlock(4, 1, 1, 1, [
-          Border.bottom,
+          Border.bottom
         ]),
         [EditorsPicksGridPositions.SecondRowTwo]: gridBlock(4, 2, 1, 1, [
-          Border.bottom,
+          Border.bottom
         ]),
         [EditorsPicksGridPositions.SecondRowThree]: gridBlock(5, 1, 1, 1, [
-          Border.bottom,
+          Border.bottom
         ]),
         [EditorsPicksGridPositions.SecondRowFour]: gridBlock(5, 2, 1, 1, [
-          Border.bottom,
+          Border.bottom
         ]),
-        [EditorsPicksGridPositions.Ad]: gridBlock(6, 1, 1, 2, []),
-      },
+        [EditorsPicksGridPositions.Ad]: gridBlock(6, 1, 1, 2, [])
+      }
     });
   });
 
@@ -121,31 +121,31 @@ describe("Editors Picks grid", () => {
       gridBlocks: {
         [EditorsPicksGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 3, []),
         [EditorsPicksGridPositions.FirstRowOne]: gridBlock(2, 1, 1, 1, [
-          Border.bottom,
+          Border.bottom
         ]),
         [EditorsPicksGridPositions.FirstRowTwo]: gridBlock(2, 2, 1, 1, [
-          Border.bottom,
+          Border.bottom
         ]),
         [EditorsPicksGridPositions.FirstRowThree]: gridBlock(3, 1, 1, 1, [
-          Border.bottom,
+          Border.bottom
         ]),
         [EditorsPicksGridPositions.FirstRowFour]: gridBlock(3, 2, 1, 1, [
-          Border.bottom,
+          Border.bottom
         ]),
         [EditorsPicksGridPositions.SecondRowOne]: gridBlock(4, 1, 1, 1, [
-          Border.bottom,
+          Border.bottom
         ]),
         [EditorsPicksGridPositions.SecondRowTwo]: gridBlock(4, 2, 1, 1, [
-          Border.bottom,
+          Border.bottom
         ]),
         [EditorsPicksGridPositions.SecondRowThree]: gridBlock(5, 1, 1, 1, [
-          Border.bottom,
+          Border.bottom
         ]),
         [EditorsPicksGridPositions.SecondRowFour]: gridBlock(5, 2, 1, 1, [
-          Border.bottom,
+          Border.bottom
         ]),
-        [EditorsPicksGridPositions.Ad]: gridBlock(2, 3, 4, 1, []),
-      },
+        [EditorsPicksGridPositions.Ad]: gridBlock(2, 3, 4, 1, [])
+      }
     });
   });
 });

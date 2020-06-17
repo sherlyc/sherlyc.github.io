@@ -8,7 +8,7 @@ import { IParams } from "../../__types__/IParams";
 import { handlerRunnerFunction } from "../runner";
 import { IBreakingNewsHandlerInput } from "../__types__/IBreakingNewsHandlerInput";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   {}: IBreakingNewsHandlerInput,
   params: IParams

@@ -29,21 +29,21 @@ export default async function (
         type: ContentBlockType.MostReadList,
         articles: articles.map(homepageArticleContent),
         displayName,
-        strapName,
-      },
+        strapName
+      }
     ],
     [MostReadGridPositions.Right]: [
       {
         type: ContentBlockType.StickyContainer,
-        items: [basicAdUnit(strapName)],
-      },
-    ],
+        items: [basicAdUnit(strapName)]
+      }
+    ]
   };
 
   return await handlerRunner(
     {
       type: HandlerInputType.MostReadGrid,
-      content,
+      content
     },
     params
   );

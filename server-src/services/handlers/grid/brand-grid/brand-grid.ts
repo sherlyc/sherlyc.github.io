@@ -9,7 +9,7 @@ import {
   IBrandGridHandlerInput
 } from "../../__types__/IBrandGridHandlerInput";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { content }: IBrandGridHandlerInput,
   params: IParams

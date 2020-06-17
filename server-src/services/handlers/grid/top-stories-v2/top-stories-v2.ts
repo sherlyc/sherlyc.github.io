@@ -17,27 +17,17 @@ import {
   ITopStoriesV2DefaultGridHandlerInput,
   TopStoriesV2DefaultGridPositions
 } from "../../__types__/ITopStoriesV2DefaultGridHandlerInput";
-import { ITopStoriesV2DefaultHandlerInput } from "../../__types__/ITopStoriesV2DefaultHandlerInput";
+import { ITopStoriesV2HandlerInput } from "../../__types__/ITopStoriesV2HandlerInput";
 import { contentErrorHandler } from "../content-error-handler";
 
-export default async function (
-  handlerRunner: handlerRunnerFunction,
-  {
-    strapName,
-    color,
-    midInsertContent,
-    lowerRightContent
-  }: ITopStoriesV2DefaultHandlerInput,
+function defaultGrid(
+  { strapName, color }: ITopStoriesV2HandlerInput,
+  articles: IRawArticle[],
+  midInsertContentBlocks: IContentBlock[],
+  lowerRightContentBlocks: IContentBlock[],
   params: IParams
-): Promise<IContentBlock[]> {
-  const articles = await getRawArticles(Strap.TopStories, 10, params);
-  const midInsertContentBlocks = await handlerRunner(midInsertContent, params);
-  const lowerRightContentBlocks = await handlerRunner(
-    lowerRightContent,
-    params
-  );
-
-  const gridInput: ITopStoriesV2DefaultGridHandlerInput = {
+): ITopStoriesV2DefaultGridHandlerInput {
+  return {
     type: HandlerInputType.TopStoriesV2DefaultGrid,
     content: {
       [TopStoriesV2DefaultGridPositions.RightHighlight]: [
@@ -56,7 +46,7 @@ export default async function (
               HomepageHighlightArticleVariation.Featured,
               true
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
         )
@@ -77,7 +67,7 @@ export default async function (
               HomepageHighlightArticleVariation.Lead,
               true
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
         )
@@ -103,7 +93,7 @@ export default async function (
               true,
               true
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
         )
@@ -123,7 +113,7 @@ export default async function (
               true,
               true
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
         )
@@ -143,7 +133,7 @@ export default async function (
               true,
               true
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
         )
@@ -164,7 +154,7 @@ export default async function (
               false,
               true
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
         )
@@ -184,7 +174,7 @@ export default async function (
               false,
               true
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
         )
@@ -204,7 +194,7 @@ export default async function (
               true,
               false
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
         )
@@ -224,7 +214,7 @@ export default async function (
               true,
               false
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
         )
@@ -244,7 +234,7 @@ export default async function (
               true,
               false
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
         )
@@ -253,6 +243,31 @@ export default async function (
       [TopStoriesV2DefaultGridPositions.LowerRight]: lowerRightContentBlocks
     }
   };
+}
 
-  return handlerRunner(gridInput, params);
+export default async function (
+  handlerRunner: handlerRunnerFunction,
+  input: ITopStoriesV2HandlerInput,
+  params: IParams
+): Promise<IContentBlock[]> {
+  const articles = await getRawArticles(Strap.TopStories, 10, params);
+  const midInsertContentBlocks = await handlerRunner(
+    input.midInsertContent,
+    params
+  );
+  const lowerRightContentBlocks = await handlerRunner(
+    input.lowerRightContent,
+    params
+  );
+
+  return handlerRunner(
+    defaultGrid(
+      input,
+      articles,
+      midInsertContentBlocks,
+      lowerRightContentBlocks,
+      params
+    ),
+    params
+  );
 }

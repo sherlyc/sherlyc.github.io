@@ -11,10 +11,12 @@ export class ModuleHeaderComponent implements OnInit, IContentBlockComponent {
   @Input() input!: IModuleHeader;
   variationClass?: string;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     const { variation } = this.input;
-    this.variationClass = variation ? `variation-${this.input.variation}`.toLowerCase() : undefined;
+    this.variationClass = variation
+      ? `variation-${this.input.variation}`.toLowerCase()
+      : undefined;
   }
 }

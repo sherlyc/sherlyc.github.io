@@ -13,7 +13,7 @@ import { StripsGridPositions } from "../../__types__/IStripsGridHandlerInput";
 import { IStripsHandlerInput } from "../../__types__/IStripsHandlerInput";
 import { contentErrorHandler } from "../content-error-handler";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   {
     displayName,

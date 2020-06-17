@@ -6,7 +6,7 @@ import { IParams } from "../../__types__/IParams";
 import { handlerRunnerFunction } from "../runner";
 import { IExternalContentHandlerInput } from "../__types__/IExternalContentHandlerInput";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { url, height, width, margin, scrollable }: IExternalContentHandlerInput,
   params: IParams

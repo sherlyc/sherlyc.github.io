@@ -24,7 +24,7 @@ const defaultExternalContentHandlerInput: Partial<IExternalContentHandlerInput> 
   height: "50px"
 };
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   {}: IBannerHandlerInput,
   params: IParams

@@ -4,7 +4,7 @@ import { IParams } from "../../__types__/IParams";
 import { handlerRunnerFunction } from "../runner";
 import { IWeatherHandlerInput } from "../__types__/IWeatherHandlerInput";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   input: IWeatherHandlerInput,
   params: IParams

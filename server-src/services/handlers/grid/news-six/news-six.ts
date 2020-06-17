@@ -13,7 +13,7 @@ import { NewsSixGridPositions } from "../../__types__/INewsSixGridHandlerInput";
 import { INewsSixHandlerInput } from "../../__types__/INewsSixHandlerInput";
 import { contentErrorHandler } from "../content-error-handler";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { displayName, color, linkUrl, sourceId, strapName }: INewsSixHandlerInput,
   params: IParams

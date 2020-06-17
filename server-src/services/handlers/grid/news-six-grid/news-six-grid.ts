@@ -13,7 +13,7 @@ import {
   NewsSixGridPositions
 } from "../../__types__/INewsSixGridHandlerInput";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { content }: INewsSixGridHandlerInput,
   params: IParams
