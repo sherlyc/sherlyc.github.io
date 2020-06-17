@@ -31,6 +31,7 @@ export enum HandlerInputType {
   SixImage = "SixImage",
   SixImageGrid = "SixImageGrid",
   Strips = "Strips",
+  StripsV2 = "StripsV2",
   StripsGrid = "StripsGrid",
   LargeLeadSix = "LargeLeadSix",
   LargeLeadSixGrid = "LargeLeadSixGrid",

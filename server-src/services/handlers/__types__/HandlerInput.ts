@@ -47,6 +47,7 @@ import { ITopStoriesV2DefaultHandlerInput } from "./ITopStoriesV2DefaultHandlerI
 import { IVersionSwitcherHandlerInput } from "./IVersionSwitcherHandlerInput";
 import { IWeatherHandlerInput } from "./IWeatherHandlerInput";
 import { IPlayStuffHandlerInput } from "./IPlayStuffHandlerInput";
+import { IStripsV2HandlerInput } from "./IStripsV2HandlerInput";
 import { IEditorsPicksGridHandlerInput } from "./IEditorsPicksGridHandlerInput";
 import { IEditorsPicksHandlerInput } from "./IEditorsPicksHandlerInput";
 import { IMostReadGridHandlerInput } from "./IMostReadGridHandlerInput";
@@ -84,6 +85,7 @@ export type HandlerInput =
   | ISixImageHandlerInput
   | ISixImageGridHandlerInput
   | IStripsHandlerInput
+  | IStripsV2HandlerInput
   | IStripsGridHandlerInput
   | ILargeLeadSixHandlerInput
   | ILargeLeadSixGridHandlerInput
@@ -104,6 +106,5 @@ export type HandlerInput =
   | IPlayStuffHandlerInput
   | IEditorsPicksHandlerInput
   | IEditorsPicksGridHandlerInput
-  | IPlayStuffHandlerInput
   | IMostReadGridHandlerInput
   | IMostReadHandlerInput;
