@@ -42,15 +42,17 @@ import { ITopStoriesDefaultOneHighlightHandlerInput } from "./ITopStoriesDefault
 import { ITopStoriesDefconHighlightHandlerInput } from "./ITopStoriesDefconHighlightHandlerInput";
 import { ITopStoriesGridHandlerInput } from "./ITopStoriesGridHandlerInput";
 import { ITopStoriesHandlerInput } from "./ITopStoriesHandlerInput";
+import { ITopStoriesV2HandlerInput } from "./ITopStoriesV2HandlerInput";
 import { ITopStoriesV2DefaultGridHandlerInput } from "./ITopStoriesV2DefaultGridHandlerInput";
 import { IVersionSwitcherHandlerInput } from "./IVersionSwitcherHandlerInput";
 import { IWeatherHandlerInput } from "./IWeatherHandlerInput";
 import { IPlayStuffHandlerInput } from "./IPlayStuffHandlerInput";
+import { IStripsV2HandlerInput } from "./IStripsV2HandlerInput";
+import { ILargeLeadSixV2HandlerInput } from "./ILargeLeadSixV2HandlerInput";
 import { IEditorsPicksGridHandlerInput } from "./IEditorsPicksGridHandlerInput";
 import { IEditorsPicksHandlerInput } from "./IEditorsPicksHandlerInput";
-import { IMostReadGridHandlerInput } from "./IMostReadGridHandlerInput";
 import { IMostReadHandlerInput } from "./IMostReadHandlerInput";
-import { ITopStoriesV2HandlerInput } from "./ITopStoriesV2HandlerInput";
+import { IMostReadGridHandlerInput } from "./IMostReadGridHandlerInput";
 
 export type HandlerInput =
   | IContentBlockHandlerInput
@@ -68,10 +70,10 @@ export type HandlerInput =
   | IExperimentHandlerInput
   | IFeatureHandlerInput
   | ITopStoriesHandlerInput
-  | ITopStoriesV2HandlerInput
   | ITopStoriesDefaultOneHighlightHandlerInput
   | ITopStoriesDefconHighlightHandlerInput
   | ITopStoriesGridHandlerInput
+  | ITopStoriesV2HandlerInput
   | ITopStoriesV2DefaultGridHandlerInput
   | IBiggieSmallsHandlerInput
   | IBiggieSmallsGridHandlerInput
@@ -84,8 +86,10 @@ export type HandlerInput =
   | ISixImageHandlerInput
   | ISixImageGridHandlerInput
   | IStripsHandlerInput
+  | IStripsV2HandlerInput
   | IStripsGridHandlerInput
   | ILargeLeadSixHandlerInput
+  | ILargeLeadSixV2HandlerInput
   | ILargeLeadSixGridHandlerInput
   | IListGridHandlerInput
   | IRelevantStoriesHandlerInput

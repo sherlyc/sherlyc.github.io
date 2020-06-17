@@ -3,7 +3,6 @@ import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 import { IParams } from "../../../__types__/IParams";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { featuredArticle } from "../../../adapters/article-converter/featured-article.converter";
 import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
@@ -14,8 +13,12 @@ import {
 import { IHalfFourHandlerInput } from "../../__types__/IHalfFourHandlerInput";
 import { handlerRunnerFunction } from "../../runner";
 import { contentErrorHandler } from "../content-error-handler";
+import { homepageHighlightArticle } from "../../../adapters/article-converter/homepage-highlight-article.converter";
+import { JsonFeedImageType } from "../../../adapters/__types__/JsonFeedImageType";
+import { AspectRatio } from "../../../../../common/AspectRatio";
+import { HomepageHighlightArticleVariation } from "../../../../../common/__types__/IHomepageHighlightArticle";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { sourceId, strapName, displayName, color, linkUrl }: IHalfFourHandlerInput,
   params: IParams
@@ -36,11 +39,18 @@ export default async function(
       [HalfFourGridPositions.Left]: [
         contentErrorHandler(
           () =>
-            featuredArticle(
+            homepageHighlightArticle(
               articles.shift() as IRawArticle,
               strapName,
-              "black",
-              "#f0f0f0"
+              color,
+              {
+                mobile: {
+                  variant: JsonFeedImageType.LANDSCAPE_SIXTEEN_BY_NINE,
+                  aspectRatio: AspectRatio.SixteenByNine
+                }
+              },
+              HomepageHighlightArticleVariation.Featured,
+              true
             ),
           HandlerInputType.HalfFour,
           sourceId,
