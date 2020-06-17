@@ -14,13 +14,6 @@ a {
   }
 }
 
-.intro {
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 20px;
-}
-
 .text {
   margin-top: -100px;
   z-index: 100;
@@ -33,11 +26,15 @@ a {
   border-bottom: 1px solid #414141;
 
   .intro {
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
     color: #ffffff;
   }
   app-headline {
     --title-size: 40px;
-    font-weight: 900;
+    --title-weight: 900;
     color: #ffffff;
   }
 }
@@ -48,9 +45,10 @@ a {
   background-color: #222222;
 
   .cell {
-    flex-grow: 1;
+    flex: 1 0 0;
     app-headline {
       --title-size: 18px;
+      --title-weight: 500;
       color: #ffffff;
     }
     border-right: 1px solid #414141;
@@ -69,6 +67,8 @@ a {
     flex-direction: column;
 
     .cell {
+      padding: 10px 0;
+      margin: 0 10px;
       border-right: none;
       border-bottom: 1px solid #414141;
     }

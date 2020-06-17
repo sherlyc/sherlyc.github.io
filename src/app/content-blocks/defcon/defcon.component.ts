@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
-import { IFeatureContainer } from "../../../../common/__types__/IFeatureContainer";
 import { IDefcon } from "../../../../common/__types__/IDefcon";
+import { IHomepageArticleContent } from "../../../../common/__types__/IHomepageArticleContent";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { AnalyticsService } from "../../services/analytics/analytics.service";
 
 @Component({
   selector: "app-defcon",
@@ -11,7 +13,17 @@ import { IDefcon } from "../../../../common/__types__/IDefcon";
 export class DefconComponent implements OnInit, IContentBlockComponent {
   @Input() input!: IDefcon;
   index!: number;
-  constructor() {}
+  constructor(private analyticsService: AnalyticsService) {}
 
   ngOnInit(): void {}
+
+  sendAnalytics(item: IHomepageArticleContent) {
+    const { title, id } = item;
+    this.analyticsService.pushEvent({
+      type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
+      strapName: this.input.strapName,
+      articleHeadline: title,
+      articleId: id,
+    });
+  }
 }
