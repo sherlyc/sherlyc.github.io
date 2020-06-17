@@ -80,11 +80,11 @@ describe("Half four", () => {
             image: {
               mobile: {
                 src: "1.16:9.png",
-                aspectRatio: AspectRatio.SixteenByNine,
-              },
+                aspectRatio: AspectRatio.SixteenByNine
+              }
             },
-            variation: HomepageHighlightArticleVariation.Featured,
-          }),
+            variation: HomepageHighlightArticleVariation.Featured
+          })
         ],
         [HalfFourGridPositions.RightOne]: [
           expectContentBlock({

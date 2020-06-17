@@ -22,6 +22,7 @@ import HalfFourGrid from "./grid/half-four-grid/half-four-grid";
 import HalfFour from "./grid/half-four/half-four";
 import LargeLeadSixGrid from "./grid/large-lead-six-grid/large-lead-six-grid";
 import LargeLeadSix from "./grid/large-lead-six/large-lead-six";
+import LargeLeadSixV2 from "./grid/large-lead-six-v2/large-lead-six-v2";
 import ListGrid from "./grid/list-grid/list-grid";
 import NewsSixGrid from "./grid/news-six-grid/news-six-grid";
 import NewsSixV2Grid from "./grid/news-six-v2-grid/news-six-v2-grid";
@@ -34,6 +35,7 @@ import SixImageGrid from "./grid/six-image-grid/six-image-grid";
 import SixImage from "./grid/six-image/six-image";
 import StripsGrid from "./grid/strips-grid/strips-grid";
 import Strips from "./grid/strips/strips";
+import StripsV2 from "./grid/strips-v2/strips-v2";
 import TopStoriesGrid from "./grid/top-stories-grid/top-stories-grid";
 import TopStories from "./grid/top-stories/top-stories";
 import TopStoriesV2 from "./grid/top-stories-v2/top-stories-v2";
@@ -96,9 +98,11 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   SixImage,
   SixImageGrid,
   Strips,
+  StripsV2,
   StripsGrid,
   ListGrid,
   LargeLeadSix,
+  LargeLeadSixV2,
   LargeLeadSixGrid,
   RelevantStories,
   RelevantStoriesGrid,
@@ -117,7 +121,7 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   EditorsPicks,
   EditorsPicksGrid,
   MostReadGrid,
-  MostRead,
+  MostRead
 };
 
 export default handlerRegistry;

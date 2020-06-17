@@ -11,7 +11,7 @@ import { Strap } from "../../../strap";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
   ITopStoriesV2DefaultGridHandlerInput,
-  TopStoriesV2DefaultGridPositions,
+  TopStoriesV2DefaultGridPositions
 } from "../../__types__/ITopStoriesV2DefaultGridHandlerInput";
 import topStoriesV2 from "./top-stories-v2";
 import { ITopStoriesV2HandlerInput } from "../../__types__/ITopStoriesV2HandlerInput";
@@ -33,7 +33,7 @@ describe("Top Stories V2", () => {
         "https://interactives.stuff.co.nz/live/homepage/uber/corona/320-200.html",
       width: "100%",
       height: "43px",
-      margin: "0",
+      margin: "0"
     },
     lowerRightContent: {
       type: HandlerInputType.LatestHeadlines,
@@ -41,13 +41,13 @@ describe("Top Stories V2", () => {
       totalArticles: 7,
       displayName: "latest headlines",
       strapName: `homepageLatestHeadlines`,
-      color: "#ff433d",
-    },
+      color: "#ff433d"
+    }
   };
 
   const basicAdUnit: IBasicAdUnit = {
     type: ContentBlockType.BasicAdUnit,
-    context: strapName,
+    context: strapName
   };
 
   const fakeArticlesWithIds = (ids: number[]) =>
@@ -58,7 +58,7 @@ describe("Top Stories V2", () => {
           imageSrc: `${id}.jpg`,
           sixteenByNineSrc: `${id}.16:9.jpg`,
           portraitImageSrc: `${id}.3:4.jpg`,
-          introText: `${id} intro`,
+          introText: `${id} intro`
         } as IRawArticle)
     );
 
@@ -105,10 +105,10 @@ describe("Top Stories V2", () => {
             image: {
               mobile: {
                 src: "1.3:4.jpg",
-                aspectRatio: AspectRatio.OneByOne,
-              },
-            },
-          }),
+                aspectRatio: AspectRatio.OneByOne
+              }
+            }
+          })
         ],
         [TopStoriesV2DefaultGridPositions.LeftHighlight]: [
           expectContentBlock({
@@ -117,13 +117,13 @@ describe("Top Stories V2", () => {
             image: {
               mobile: {
                 src: "2.16:9.jpg",
-                aspectRatio: AspectRatio.SixteenByNine,
-              },
-            },
-          }),
+                aspectRatio: AspectRatio.SixteenByNine
+              }
+            }
+          })
         ],
         [TopStoriesV2DefaultGridPositions.BannerAd]: [
-          { type: ContentBlockType.StickyContainer, items: [basicAdUnit] },
+          { type: ContentBlockType.StickyContainer, items: [basicAdUnit] }
         ],
         [TopStoriesV2DefaultGridPositions.LeftOne]: [
           expectContentBlock({
@@ -132,11 +132,11 @@ describe("Top Stories V2", () => {
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
-              desktop: Orientation.Portrait,
+              desktop: Orientation.Portrait
             },
             imageSrc: "3.16:9.jpg",
-            introText: "3 intro",
-          }),
+            introText: "3 intro"
+          })
         ],
         [TopStoriesV2DefaultGridPositions.LeftTwo]: [
           expectContentBlock({
@@ -145,11 +145,11 @@ describe("Top Stories V2", () => {
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
-              desktop: Orientation.Portrait,
+              desktop: Orientation.Portrait
             },
             imageSrc: "4.16:9.jpg",
-            introText: "4 intro",
-          }),
+            introText: "4 intro"
+          })
         ],
         [TopStoriesV2DefaultGridPositions.LeftThree]: [
           expectContentBlock({
@@ -158,11 +158,11 @@ describe("Top Stories V2", () => {
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
-              desktop: Orientation.Portrait,
+              desktop: Orientation.Portrait
             },
             imageSrc: "5.16:9.jpg",
-            introText: "5 intro",
-          }),
+            introText: "5 intro"
+          })
         ],
         [TopStoriesV2DefaultGridPositions.LeftFour]: [basicAdUnit],
         [TopStoriesV2DefaultGridPositions.RightOne]: [
@@ -172,11 +172,11 @@ describe("Top Stories V2", () => {
             orientation: {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
-              desktop: Orientation.Landscape,
+              desktop: Orientation.Landscape
             },
             imageSrc: "6.16:9.jpg",
-            introText: undefined,
-          }),
+            introText: undefined
+          })
         ],
         [TopStoriesV2DefaultGridPositions.RightTwo]: [
           expectContentBlock({
@@ -185,11 +185,11 @@ describe("Top Stories V2", () => {
             orientation: {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
-              desktop: Orientation.Landscape,
+              desktop: Orientation.Landscape
             },
             imageSrc: "7.16:9.jpg",
-            introText: undefined,
-          }),
+            introText: undefined
+          })
         ],
         [TopStoriesV2DefaultGridPositions.RightThree]: [
           expectContentBlock({
@@ -198,11 +198,11 @@ describe("Top Stories V2", () => {
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
-              desktop: Orientation.Portrait,
+              desktop: Orientation.Portrait
             },
             imageSrc: undefined,
-            introText: "8 intro",
-          }),
+            introText: "8 intro"
+          })
         ],
         [TopStoriesV2DefaultGridPositions.RightFour]: [
           expectContentBlock({
@@ -211,11 +211,11 @@ describe("Top Stories V2", () => {
             orientation: {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
-              desktop: Orientation.Landscape,
+              desktop: Orientation.Landscape
             },
             imageSrc: undefined,
-            introText: "9 intro",
-          }),
+            introText: "9 intro"
+          })
         ],
         [TopStoriesV2DefaultGridPositions.RightFive]: [
           expectContentBlock({
@@ -224,23 +224,23 @@ describe("Top Stories V2", () => {
             orientation: {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
-              desktop: Orientation.Landscape,
+              desktop: Orientation.Landscape
             },
             imageSrc: undefined,
-            introText: "10 intro",
-          }),
+            introText: "10 intro"
+          })
         ],
         [TopStoriesV2DefaultGridPositions.MidInsert]: [
           expectContentBlock({
-            type: ContentBlockType.ExternalContentUnit,
-          }),
+            type: ContentBlockType.ExternalContentUnit
+          })
         ],
         [TopStoriesV2DefaultGridPositions.LowerRight]: [
           expectContentBlock({
-            type: ContentBlockType.VerticalArticleList,
-          }),
-        ],
-      },
+            type: ContentBlockType.VerticalArticleList
+          })
+        ]
+      }
     };
 
     expect(handlerRunnerMock).toHaveBeenLastCalledWith(
