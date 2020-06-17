@@ -250,7 +250,7 @@ function defaultGrid(
 }
 
 function defconGrid(
-  { strapName, color}: ITopStoriesV2HandlerInput,
+  { strapName, color }: ITopStoriesV2HandlerInput,
   defconArticles: IRawArticle[],
   topArticles: IRawArticle[],
   midInsertContentBlocks: IContentBlock[],
@@ -270,8 +270,8 @@ function defconGrid(
               {
                 mobile: {
                   variant: JsonFeedImageType.LANDSCAPE_SIXTEEN_BY_NINE,
-                  aspectRatio: AspectRatio.SixteenByNine,
-                },
+                  aspectRatio: AspectRatio.SixteenByNine
+                }
               },
               HomepageHighlightArticleVariation.Featured,
               true
@@ -279,13 +279,13 @@ function defconGrid(
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
-        ),
+        )
       ],
       [TopStoriesV2DefconGridPositions.BannerAd]: [
         {
           type: ContentBlockType.StickyContainer,
-          items: [basicAdUnit(strapName)],
-        },
+          items: [basicAdUnit(strapName)]
+        }
       ],
       [TopStoriesV2DefconGridPositions.LeftOne]: [
         contentErrorHandler(
@@ -297,7 +297,7 @@ function defconGrid(
               {
                 mobile: Orientation.Portrait,
                 tablet: Orientation.Portrait,
-                desktop: Orientation.Portrait,
+                desktop: Orientation.Portrait
               },
               true,
               true
@@ -305,7 +305,7 @@ function defconGrid(
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
-        ),
+        )
       ],
       [TopStoriesV2DefconGridPositions.LeftTwo]: [
         contentErrorHandler(
@@ -317,7 +317,7 @@ function defconGrid(
               {
                 mobile: Orientation.Portrait,
                 tablet: Orientation.Portrait,
-                desktop: Orientation.Portrait,
+                desktop: Orientation.Portrait
               },
               true,
               true
@@ -325,7 +325,7 @@ function defconGrid(
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
-        ),
+        )
       ],
       [TopStoriesV2DefconGridPositions.LeftThree]: [
         contentErrorHandler(
@@ -337,7 +337,7 @@ function defconGrid(
               {
                 mobile: Orientation.Portrait,
                 tablet: Orientation.Portrait,
-                desktop: Orientation.Portrait,
+                desktop: Orientation.Portrait
               },
               true,
               true
@@ -345,7 +345,7 @@ function defconGrid(
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
-        ),
+        )
       ],
       [TopStoriesV2DefconGridPositions.LeftFour]: [basicAdUnit(strapName)],
       [TopStoriesV2DefconGridPositions.RightOne]: [
@@ -358,7 +358,7 @@ function defconGrid(
               {
                 mobile: Orientation.Landscape,
                 tablet: Orientation.Landscape,
-                desktop: Orientation.Landscape,
+                desktop: Orientation.Landscape
               },
               false,
               true
@@ -366,7 +366,7 @@ function defconGrid(
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
-        ),
+        )
       ],
       [TopStoriesV2DefconGridPositions.RightTwo]: [
         contentErrorHandler(
@@ -378,7 +378,7 @@ function defconGrid(
               {
                 mobile: Orientation.Landscape,
                 tablet: Orientation.Landscape,
-                desktop: Orientation.Landscape,
+                desktop: Orientation.Landscape
               },
               false,
               true
@@ -386,7 +386,7 @@ function defconGrid(
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
-        ),
+        )
       ],
       [TopStoriesV2DefconGridPositions.RightThree]: [
         contentErrorHandler(
@@ -398,7 +398,7 @@ function defconGrid(
               {
                 mobile: Orientation.Landscape,
                 tablet: Orientation.Landscape,
-                desktop: Orientation.Landscape,
+                desktop: Orientation.Landscape
               },
               false,
               true
@@ -406,7 +406,7 @@ function defconGrid(
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
-        ),
+        )
       ],
       [TopStoriesV2DefconGridPositions.RightFour]: [
         contentErrorHandler(
@@ -418,7 +418,7 @@ function defconGrid(
               {
                 mobile: Orientation.Landscape,
                 tablet: Orientation.Landscape,
-                desktop: Orientation.Landscape,
+                desktop: Orientation.Landscape
               },
               true,
               false
@@ -426,7 +426,7 @@ function defconGrid(
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
-        ),
+        )
       ],
       [TopStoriesV2DefconGridPositions.RightFive]: [
         contentErrorHandler(
@@ -438,7 +438,7 @@ function defconGrid(
               {
                 mobile: Orientation.Landscape,
                 tablet: Orientation.Landscape,
-                desktop: Orientation.Landscape,
+                desktop: Orientation.Landscape
               },
               true,
               false
@@ -446,7 +446,7 @@ function defconGrid(
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
-        ),
+        )
       ],
       [TopStoriesV2DefconGridPositions.RightSix]: [
         contentErrorHandler(
@@ -458,7 +458,7 @@ function defconGrid(
               {
                 mobile: Orientation.Landscape,
                 tablet: Orientation.Landscape,
-                desktop: Orientation.Landscape,
+                desktop: Orientation.Landscape
               },
               true,
               false
@@ -466,11 +466,11 @@ function defconGrid(
           HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
-        ),
+        )
       ],
       [TopStoriesV2DefconGridPositions.MidInsert]: midInsertContentBlocks,
-      [TopStoriesV2DefconGridPositions.LowerRight]: lowerRightContentBlocks,
-    },
+      [TopStoriesV2DefconGridPositions.LowerRight]: lowerRightContentBlocks
+    }
   };
 }
 
@@ -479,8 +479,7 @@ export default async function (
   input: ITopStoriesV2HandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const defconArticles = await getRawArticles(Strap.Sport, 4, params);
-  const topArticles = await getRawArticles(Strap.TopStories, 10, params);
+  const articles = await getRawArticles(Strap.TopStories, 10, params);
   const midInsertContentBlocks = await handlerRunner(
     input.midInsertContent,
     params
@@ -490,7 +489,14 @@ export default async function (
     params
   );
 
-  return [
-    ...await handlerRunner(defconGrid(input, defconArticles, topArticles, midInsertContentBlocks, lowerRightContentBlocks, params), params),
-  ];
+  return handlerRunner(
+    defaultGrid(
+      input,
+      articles,
+      midInsertContentBlocks,
+      lowerRightContentBlocks,
+      params
+    ),
+    params
+  );
 }
