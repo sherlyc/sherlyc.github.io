@@ -1,6 +1,6 @@
-import { IRawArticle } from "../__types__/IRawArticle";
-import { IResponsiveBigImageArticleUnit } from "../../../../common/__types__/IResponsiveBigImageArticleUnit";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IResponsiveBigImageArticleUnit } from "../../../../common/__types__/IResponsiveBigImageArticleUnit";
+import { IRawArticle } from "../__types__/IRawArticle";
 
 export const responsiveBigImageArticleUnit = (
   article: IRawArticle,

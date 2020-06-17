@@ -1,16 +1,16 @@
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IGridConfig } from "../../../../../common/__types__/IGridContainer";
-import { IParams } from "../../../__types__/IParams";
 import { gridBlock } from "../../../adapters/grid/grid-block";
-import { IColumnGridHandlerInput } from "../../__types__/IColumnGridHandlerInput";
+import { IParams } from "../../../__types__/IParams";
 import { handlerRunnerFunction } from "../../runner";
-import { IColumnGridBlock } from "./__types__/IColumnGridConfig";
+import { IColumnGridHandlerInput } from "../../__types__/IColumnGridHandlerInput";
 import {
   desktopColumnGridConfig,
   mobileColumnGridConfig,
   tabletColumnGridConfig
 } from "./column-grid-config";
+import { IColumnGridBlock } from "./__types__/IColumnGridConfig";
 
 const getNumColumnsFor = (contentLength: number) => {
   const min = 1;
@@ -40,7 +40,7 @@ const getGridItems = (content: IContentBlock[][]) =>
     {}
   );
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   {
     content,

@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { By, TransferState } from "@angular/platform-browser";
 import { Subject } from "rxjs";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { IFeaturedArticle } from "../../../../common/__types__/IFeaturedArticle";
 import { AspectRatio } from "../../../../common/AspectRatio";
 import { HeadlineFlags } from "../../../../common/HeadlineFlags";
-import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IFeaturedArticle } from "../../../../common/__types__/IFeaturedArticle";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { ResizeObserverService } from "../../services/resize-observer/resize-observer.service";
 import { FluidImageComponent } from "../../shared/components/fluid-image/fluid-image.component";

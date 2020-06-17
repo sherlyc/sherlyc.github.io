@@ -1,6 +1,6 @@
+import { FeatureName } from "../../../../common/FeatureName";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IExternalContentUnit } from "../../../../common/__types__/IExternalContentUnit";
-import { FeatureName } from "../../../../common/FeatureName";
 import { IParams } from "../../__types__/IParams";
 import { HandlerInputType } from "../__types__/HandlerInputType";
 import { IExternalContentHandlerInput } from "../__types__/IExternalContentHandlerInput";

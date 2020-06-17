@@ -6,19 +6,19 @@ import {
   Border,
   IGridBlock
 } from "../../../../common/__types__/IGridContainer";
-import { IParams } from "../../__types__/IParams";
-import { IRawArticle } from "../../adapters/__types__/IRawArticle";
-import { LayoutType } from "../../adapters/__types__/LayoutType";
 import { basicAdUnit } from "../../adapters/article-converter/basic-ad-unit.converter";
 import { bigImageArticleUnit } from "../../adapters/article-converter/big-image-article.converter";
 import { grayDefconArticleUnit } from "../../adapters/article-converter/gray-defcon-article-unit.converter";
 import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
 import { layoutRetriever } from "../../adapters/layout/layout-retriever";
+import { IRawArticle } from "../../adapters/__types__/IRawArticle";
+import { LayoutType } from "../../adapters/__types__/LayoutType";
 import { Strap } from "../../strap";
 import logger from "../../utils/logger";
 import { parseVersion } from "../../utils/version";
-import { ITopStoriesArticleListHandlerInput } from "../__types__/ITopStoriesArticleListHandlerInput";
+import { IParams } from "../../__types__/IParams";
 import { handlerRunnerFunction } from "../runner";
+import { ITopStoriesArticleListHandlerInput } from "../__types__/ITopStoriesArticleListHandlerInput";
 
 const retrieveLayout = async (params: IParams): Promise<LayoutType> => {
   try {
@@ -33,7 +33,7 @@ const retrieveLayout = async (params: IParams): Promise<LayoutType> => {
   }
 };
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { strapName }: ITopStoriesArticleListHandlerInput,
   params: IParams

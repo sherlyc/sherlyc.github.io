@@ -1,9 +1,9 @@
-import { RuntimeService } from "../runtime/runtime.service";
-import { ScriptInjectorService } from "../script-injector/script-injector.service";
-import { ScriptId } from "../script-injector/__types__/ScriptId";
-import { Position } from "../script-injector/__types__/Position";
 import { Injectable } from "@angular/core";
 import { LoggerService } from "../logger/logger.service";
+import { RuntimeService } from "../runtime/runtime.service";
+import { ScriptInjectorService } from "../script-injector/script-injector.service";
+import { Position } from "../script-injector/__types__/Position";
+import { ScriptId } from "../script-injector/__types__/ScriptId";
 
 @Injectable({
   providedIn: "root"

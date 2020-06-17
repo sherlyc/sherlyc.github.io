@@ -1,10 +1,10 @@
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IPartnerContent } from "../../../../../common/__types__/IPartnerContent";
-import { IParams } from "../../../__types__/IParams";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { homepageArticleContent } from "../../../adapters/article-converter/homepage-article-content.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import wrappedLogger from "../../../utils/logger";
+import { IParams } from "../../../__types__/IParams";
 import { IBrandListConfig } from "../../__types__/IBrandConfig";
 
 export const createPartnerContent = async (

@@ -1,9 +1,9 @@
-import { IVersionSwitcherHandlerInput } from "../__types__/IVersionSwitcherHandlerInput";
-import { HandlerInputType } from "../__types__/HandlerInputType";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import VersionSwitcher from "./version-switcher";
 import { IParams } from "../../__types__/IParams";
 import { HandlerInput } from "../__types__/HandlerInput";
+import { HandlerInputType } from "../__types__/HandlerInputType";
+import { IVersionSwitcherHandlerInput } from "../__types__/IVersionSwitcherHandlerInput";
+import VersionSwitcher from "./version-switcher";
 
 describe("Version switcher", () => {
   let params: IParams;

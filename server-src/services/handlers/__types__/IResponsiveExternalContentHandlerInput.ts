@@ -1,5 +1,5 @@
-import { HandlerInputType } from "./HandlerInputType";
 import { IResponsiveExternalContentDeviceConfig } from "../../../../common/__types__/IResponsiveExternalContent";
+import { HandlerInputType } from "./HandlerInputType";
 
 export interface IResponsiveExternalContentHandlerInput {
   type: HandlerInputType.ResponsiveExternalContent;

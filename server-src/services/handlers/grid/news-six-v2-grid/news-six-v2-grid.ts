@@ -5,15 +5,15 @@ import {
   IGridBlocks,
   IGridContainer
 } from "../../../../../common/__types__/IGridContainer";
-import { IParams } from "../../../__types__/IParams";
 import { gridBlock } from "../../../adapters/grid/grid-block";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
 import {
   INewsSixGridV2HandlerInput,
   NewsSixV2GridPositions
 } from "../../__types__/INewsSixGridV2HandlerInput";
-import { handlerRunnerFunction } from "../../runner";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { content }: INewsSixGridV2HandlerInput,
   params: IParams

@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ModuleSubtitleComponent } from "./module-subtitle.component";
-import { IModuleSubtitle } from "../../../../common/__types__/IModuleSubtitle";
 import { By } from "@angular/platform-browser";
+import { IModuleSubtitle } from "../../../../common/__types__/IModuleSubtitle";
+import { ModuleSubtitleComponent } from "./module-subtitle.component";
 
 describe("ModuleSubtitleComponent", () => {
   let component: ModuleSubtitleComponent;

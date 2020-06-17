@@ -1,5 +1,5 @@
-import { IStrapDefinition } from "./IStrapDefinition";
 import { Strap } from "../../strap";
+import { IStrapDefinition } from "./IStrapDefinition";
 
 export interface IStrapConfigDefinition {
   baseDedupeList: Strap[];

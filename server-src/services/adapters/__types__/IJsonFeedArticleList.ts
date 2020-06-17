@@ -1,6 +1,6 @@
 import { IJsonFeedArticle } from "./IJsonFeedArticle";
-import { IJsonFeedUrl } from "./IJsonFeedUrl";
 import { IJsonFeedQuery } from "./IJsonFeedQuery";
+import { IJsonFeedUrl } from "./IJsonFeedUrl";
 
 export interface IJsonFeedArticleList {
   [key: string]: any;

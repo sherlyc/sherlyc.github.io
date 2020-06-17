@@ -1,16 +1,16 @@
-import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { Strap } from "../../../strap";
-import sixImageHandler from "../six-image/six-image";
-import { ISixImageHandlerInput } from "../../__types__/ISixImageHandlerInput";
-import { IParams } from "../../../__types__/IParams";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
+import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { Strap } from "../../../strap";
+import { IParams } from "../../../__types__/IParams";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
   ISixImageGridHandlerInput,
   SixImageGridHandlerPositions
 } from "../../__types__/ISixImageGridHandlerInput";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
+import { ISixImageHandlerInput } from "../../__types__/ISixImageHandlerInput";
+import sixImageHandler from "../six-image/six-image";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../utils/logger");

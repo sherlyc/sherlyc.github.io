@@ -1,13 +1,13 @@
+import { Component } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { StickyContainerComponent } from "./sticky-container.component";
 import { TransferState } from "@angular/platform-browser";
-import { ContentBlockDirective } from "../../shared/directives/content-block/content-block.directive";
-import { IStickyContainer } from "../../../../common/__types__/IStickyContainer";
+import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
-import { Component } from "@angular/core";
+import { IStickyContainer } from "../../../../common/__types__/IStickyContainer";
+import { ContentBlockDirective } from "../../shared/directives/content-block/content-block.directive";
 import registry from "../content-blocks.registry";
-import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
+import { StickyContainerComponent } from "./sticky-container.component";
 
 describe("Sticky Container", () => {
   let fixture: ComponentFixture<StickyContainerComponent>;

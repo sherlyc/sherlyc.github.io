@@ -1,7 +1,7 @@
-import { IParams } from "./__types__/IParams";
-import { HandlerInputType } from "./handlers/__types__/HandlerInputType";
 import * as handlerRunner from "./handlers/runner";
+import { HandlerInputType } from "./handlers/__types__/HandlerInputType";
 import orchestrator, { newPage, oldPage } from "./orchestrator";
+import { IParams } from "./__types__/IParams";
 
 jest.mock("./handlers/runner");
 

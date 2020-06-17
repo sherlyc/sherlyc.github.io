@@ -1,15 +1,15 @@
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
-import { IParams } from "../../../__types__/IParams";
 import { gridBlock } from "../../../adapters/grid/grid-block";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
 import {
   IStripsGridHandlerInput,
   StripsGridPositions
 } from "../../__types__/IStripsGridHandlerInput";
-import { handlerRunnerFunction } from "../../runner";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { content }: IStripsGridHandlerInput,
   params: IParams

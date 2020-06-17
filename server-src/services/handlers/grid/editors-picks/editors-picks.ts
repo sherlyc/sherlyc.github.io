@@ -1,19 +1,19 @@
-import { handlerRunnerFunction } from "../../runner";
-import { IParams } from "../../../__types__/IParams";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { IEditorsPicksHandlerInput } from "../../__types__/IEditorsPicksHandlerInput";
+import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
+import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
+import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
   EditorsPicksGridPositions,
-  IEditorsPicksGridHandlerInput,
+  IEditorsPicksGridHandlerInput
 } from "../../__types__/IEditorsPicksGridHandlerInput";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IEditorsPicksHandlerInput } from "../../__types__/IEditorsPicksHandlerInput";
 import { contentErrorHandler } from "../content-error-handler";
-import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
-import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 
 export default async function (
   handlerRunner: handlerRunnerFunction,
@@ -22,7 +22,7 @@ export default async function (
     strapName,
     displayName,
     color,
-    linkUrl,
+    linkUrl
   }: IEditorsPicksHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
@@ -34,8 +34,8 @@ export default async function (
         {
           type: ContentBlockType.ModuleHeader,
           title: displayName,
-          color,
-        },
+          color
+        }
       ],
       [EditorsPicksGridPositions.FirstRowOne]: [
         contentErrorHandler(
@@ -47,7 +47,7 @@ export default async function (
               {
                 mobile: Orientation.Portrait,
                 tablet: Orientation.Portrait,
-                desktop: Orientation.Portrait,
+                desktop: Orientation.Portrait
               },
               false,
               true
@@ -55,7 +55,7 @@ export default async function (
           HandlerInputType.EditorsPicks,
           sourceId,
           params
-        ),
+        )
       ],
       [EditorsPicksGridPositions.FirstRowTwo]: [
         contentErrorHandler(
@@ -67,7 +67,7 @@ export default async function (
               {
                 mobile: Orientation.Portrait,
                 tablet: Orientation.Portrait,
-                desktop: Orientation.Portrait,
+                desktop: Orientation.Portrait
               },
               false,
               true
@@ -75,7 +75,7 @@ export default async function (
           HandlerInputType.EditorsPicks,
           sourceId,
           params
-        ),
+        )
       ],
       [EditorsPicksGridPositions.FirstRowThree]: [
         contentErrorHandler(
@@ -87,7 +87,7 @@ export default async function (
               {
                 mobile: Orientation.Portrait,
                 tablet: Orientation.Portrait,
-                desktop: Orientation.Portrait,
+                desktop: Orientation.Portrait
               },
               false,
               true
@@ -95,7 +95,7 @@ export default async function (
           HandlerInputType.EditorsPicks,
           sourceId,
           params
-        ),
+        )
       ],
       [EditorsPicksGridPositions.FirstRowFour]: [
         contentErrorHandler(
@@ -107,7 +107,7 @@ export default async function (
               {
                 mobile: Orientation.Portrait,
                 tablet: Orientation.Portrait,
-                desktop: Orientation.Portrait,
+                desktop: Orientation.Portrait
               },
               false,
               true
@@ -115,7 +115,7 @@ export default async function (
           HandlerInputType.EditorsPicks,
           sourceId,
           params
-        ),
+        )
       ],
       [EditorsPicksGridPositions.SecondRowOne]: [
         contentErrorHandler(
@@ -127,7 +127,7 @@ export default async function (
               {
                 mobile: Orientation.Portrait,
                 tablet: Orientation.Portrait,
-                desktop: Orientation.Portrait,
+                desktop: Orientation.Portrait
               },
               false,
               true
@@ -135,7 +135,7 @@ export default async function (
           HandlerInputType.EditorsPicks,
           sourceId,
           params
-        ),
+        )
       ],
       [EditorsPicksGridPositions.SecondRowTwo]: [
         contentErrorHandler(
@@ -147,7 +147,7 @@ export default async function (
               {
                 mobile: Orientation.Portrait,
                 tablet: Orientation.Portrait,
-                desktop: Orientation.Portrait,
+                desktop: Orientation.Portrait
               },
               false,
               true
@@ -155,7 +155,7 @@ export default async function (
           HandlerInputType.EditorsPicks,
           sourceId,
           params
-        ),
+        )
       ],
       [EditorsPicksGridPositions.SecondRowThree]: [
         contentErrorHandler(
@@ -167,7 +167,7 @@ export default async function (
               {
                 mobile: Orientation.Portrait,
                 tablet: Orientation.Portrait,
-                desktop: Orientation.Portrait,
+                desktop: Orientation.Portrait
               },
               false,
               true
@@ -175,7 +175,7 @@ export default async function (
           HandlerInputType.EditorsPicks,
           sourceId,
           params
-        ),
+        )
       ],
       [EditorsPicksGridPositions.SecondRowFour]: [
         contentErrorHandler(
@@ -187,7 +187,7 @@ export default async function (
               {
                 mobile: Orientation.Portrait,
                 tablet: Orientation.Portrait,
-                desktop: Orientation.Portrait,
+                desktop: Orientation.Portrait
               },
               false,
               true
@@ -195,15 +195,15 @@ export default async function (
           HandlerInputType.EditorsPicks,
           sourceId,
           params
-        ),
+        )
       ],
       [EditorsPicksGridPositions.Ad]: [
         {
           type: ContentBlockType.StickyContainer,
-          items: [basicAdUnit(strapName)],
-        },
-      ],
-    },
+          items: [basicAdUnit(strapName)]
+        }
+      ]
+    }
   };
   return handlerRunner(gridHandlerInput, params);
 }

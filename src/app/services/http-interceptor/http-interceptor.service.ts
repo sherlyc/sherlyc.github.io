@@ -1,14 +1,14 @@
-import { Inject, Injectable, Optional } from "@angular/core";
 import {
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
   HttpRequest
 } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { RuntimeService } from "../runtime/runtime.service";
+import { Inject, Injectable, Optional } from "@angular/core";
 import { REQUEST } from "@nguniversal/express-engine/tokens";
 import { Request } from "express";
+import { Observable } from "rxjs";
+import { RuntimeService } from "../runtime/runtime.service";
 
 @Injectable()
 export class HttpInterceptorService implements HttpInterceptor {

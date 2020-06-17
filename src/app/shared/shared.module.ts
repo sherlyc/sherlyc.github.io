@@ -7,6 +7,8 @@ import { HeadlineFlagComponent } from "./components/headline-flag/headline-flag.
 import { HeadlineComponent } from "./components/headline/headline.component";
 import { LogoComponent } from "./components/logo/logo.component";
 import { PageComponent } from "./components/page/page.component";
+import { PlayStuffVideoComponent } from "./components/play-stuff-video/play-stuff-video.component";
+import { TagLinkComponent } from "./components/tag-link/tag-link.component";
 import { TimeComponent } from "./components/time/time.component";
 import { WeatherIconComponent } from "./components/weather-icon/weather-icon.component";
 import { ContentBlockDirective } from "./directives/content-block/content-block.directive";
@@ -16,8 +18,6 @@ import { IntersectionObserverDirective } from "./directives/intersection-observe
 import { OpenExternalLinkDirective } from "./directives/open-external-link/open-external-link.directive";
 import { PullToRefreshDirective } from "./directives/pull-to-refresh/pull-to-refresh.directive";
 import { ResizeDirective } from "./directives/resize/resize.directive";
-import { TagLinkComponent } from "./components/tag-link/tag-link.component";
-import { PlayStuffVideoComponent } from "./components/play-stuff-video/play-stuff-video.component";
 
 @NgModule({
   imports: [CommonModule],

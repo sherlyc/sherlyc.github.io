@@ -1,14 +1,14 @@
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { createRelevantStoriesColumn } from "./relevant-stories-column";
-import { IParams } from "../../../__types__/IParams";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { IParams } from "../../../__types__/IParams";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import { IListGridHandlerInput } from "../../__types__/IListGridHandlerInput";
 import {
   IStripsGridHandlerInput,
   StripsGridPositions
 } from "../../__types__/IStripsGridHandlerInput";
-import { IListGridHandlerInput } from "../../__types__/IListGridHandlerInput";
-import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { createRelevantStoriesColumn } from "./relevant-stories-column";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../adapters/most-popular/most-popular.service");

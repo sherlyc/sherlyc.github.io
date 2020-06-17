@@ -1,13 +1,13 @@
-import { IListGridHandlerInput } from "../../__types__/IListGridHandlerInput";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import {
   Border,
   IGridContainer
 } from "../../../../../common/__types__/IGridContainer";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import listGridHandler from "./list-grid";
 import { IParams } from "../../../__types__/IParams";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import { IListGridHandlerInput } from "../../__types__/IListGridHandlerInput";
+import listGridHandler from "./list-grid";
 
 describe("List Grid", () => {
   const contentBlockOne = { id: "1" } as IContentBlock;

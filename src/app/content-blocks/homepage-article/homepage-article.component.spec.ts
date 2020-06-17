@@ -7,8 +7,8 @@ import {
   IHomepageArticle,
   Orientation
 } from "../../../../common/__types__/IHomepageArticle";
-import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { TagLinkComponent } from "../../shared/components/tag-link/tag-link.component";
 

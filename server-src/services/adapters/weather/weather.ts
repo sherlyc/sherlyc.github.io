@@ -1,7 +1,7 @@
-import { weatherRetriever } from "./weather-retriever";
-import { weatherMapper } from "./weather-mapper";
-import { IParams } from "../../__types__/IParams";
 import { IWeatherResponse } from "../../../../common/__types__/IWeatherResponse";
+import { IParams } from "../../__types__/IParams";
+import { weatherMapper } from "./weather-mapper";
+import { weatherRetriever } from "./weather-retriever";
 
 export const weatherService = async (
   location: string,

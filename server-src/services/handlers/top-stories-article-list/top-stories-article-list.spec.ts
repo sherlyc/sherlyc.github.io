@@ -4,16 +4,19 @@ import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArti
 import { IDefconArticleUnit } from "../../../../common/__types__/IDefconArticleUnit";
 import { IGrayDefconArticleUnit } from "../../../../common/__types__/IGrayDefconArticleUnit";
 
-import { Border, IGridBlock } from "../../../../common/__types__/IGridContainer";
+import {
+  Border,
+  IGridBlock
+} from "../../../../common/__types__/IGridContainer";
 import { ImageLayoutType } from "../../../../common/__types__/ImageLayoutType";
-import { IParams } from "../../__types__/IParams";
-import { IRawArticle } from "../../adapters/__types__/IRawArticle";
-import { LayoutType } from "../../adapters/__types__/LayoutType";
 import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
 import * as layoutRetriever from "../../adapters/layout/layout-retriever";
+import { IRawArticle } from "../../adapters/__types__/IRawArticle";
+import { LayoutType } from "../../adapters/__types__/LayoutType";
+import { IParams } from "../../__types__/IParams";
+import handlerRunner from "../runner";
 import { HandlerInputType } from "../__types__/HandlerInputType";
 import { ITopStoriesArticleListHandlerInput } from "../__types__/ITopStoriesArticleListHandlerInput";
-import handlerRunner from "../runner";
 import topStoriesListHandler from "./top-stories-article-list";
 
 jest.mock("../../adapters/article-retriever/article-retriever");

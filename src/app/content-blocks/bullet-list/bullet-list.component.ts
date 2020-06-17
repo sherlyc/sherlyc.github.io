@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
-import { IBulletList } from "../../../../common/__types__/IBulletList";
-import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
-import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { IBulletItem } from "../../../../common/__types__/IBulletItem";
+import { IBulletList } from "../../../../common/__types__/IBulletList";
+import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
   selector: "app-bullet-list-unit",

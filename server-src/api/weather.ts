@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
+import { WeatherLocations } from "../../common/WeatherLocations";
 import { weatherService } from "../services/adapters/weather/weather";
 import logger from "../services/utils/logger";
-import { WeatherLocations } from "../../common/WeatherLocations";
 
 export const getWeather = async (req: Request, res: Response) => {
   const location = (req.query.location ||
