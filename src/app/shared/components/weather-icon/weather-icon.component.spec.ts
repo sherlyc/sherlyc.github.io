@@ -23,6 +23,7 @@ describe("Headline Flag Component", () => {
 
   it.each([
     [Forecasts.cloud, ".cloud"],
+    [Forecasts.cloudy, ".cloudy"],
     [Forecasts.drizzle, ".drizzle"],
     [Forecasts.fewshowers, ".fewshowers"],
     [Forecasts.fine, ".fine"],

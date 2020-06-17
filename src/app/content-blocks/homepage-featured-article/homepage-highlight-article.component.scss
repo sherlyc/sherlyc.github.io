@@ -20,10 +20,6 @@ a {
   }
 }
 
-.content {
-  flex-grow: 1;
-}
-
 img {
   width: 100%;
 }
@@ -45,7 +41,7 @@ app-headline {
 }
 
 .variation-lead {
-  --title-size: 40px;
+  --title-size: 30px;
 
   .content {
     padding: 6px 0 20px;
@@ -59,11 +55,15 @@ app-headline {
 }
 
 .variation-featured {
-  --title-size: 30px;
+  --title-size: 24px;
 
   .content {
     padding: 6px 10px 20px;
     background-color: #f2f2f2;
+  }
+
+  app-headline {
+    margin-bottom: 20px;
   }
 
   app-tag-link {

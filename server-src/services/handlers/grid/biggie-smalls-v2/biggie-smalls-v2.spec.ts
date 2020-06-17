@@ -14,6 +14,8 @@ import {
 } from "../../__types__/IBiggieSmallsV2GridHandlerInput";
 import { IBiggieSmallsV2HandlerInput } from "../../__types__/IBiggieSmallsV2HandlerInput";
 import biggieSmallsV2Handler from "./biggie-smalls-v2";
+import { AspectRatio } from "../../../../../common/AspectRatio";
+import { HomepageHighlightArticleVariation } from "../../../../../common/__types__/IHomepageHighlightArticle";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../adapters/layout/layout-retriever");
@@ -87,8 +89,15 @@ describe("Biggie Smalls", () => {
         ],
         [BiggieSmallsV2GridPositions.Highlight]: [
           expectContentBlock({
-            type: ContentBlockType.FeaturedArticle,
-            id: "1"
+            type: ContentBlockType.HomepageHighlightArticle,
+            id: "1",
+            image: {
+              mobile: {
+                src: "1.16:9.jpg",
+                aspectRatio: AspectRatio.SixteenByNine
+              }
+            },
+            variation: HomepageHighlightArticleVariation.Featured
           })
         ],
         [BiggieSmallsV2GridPositions.RightOne]: [

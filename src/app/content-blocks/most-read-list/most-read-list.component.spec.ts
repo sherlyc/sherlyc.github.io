@@ -16,7 +16,7 @@ const componentInput: IMostReadList = {
   type: ContentBlockType.MostReadList,
   articles: [],
   displayName: "most read",
-  strapName: "most read",
+  strapName: "most read"
 };
 
 const fakeArticle: IHomepageArticleContent = {
@@ -28,12 +28,12 @@ const fakeArticle: IHomepageArticleContent = {
   linkUrl: `linkUrl/1`,
   image: {
     defcon: `defcon1.jpg`,
-    sixteenByNine: `sixteenByNine1.jpg`,
+    sixteenByNine: `sixteenByNine1.jpg`
   },
   lastPublishedTime: 123,
   headlineFlags: [],
   color: AccentColor.Gray,
-  category: { name: "National", url: "/national/" },
+  category: { name: "National", url: "/national/" }
 };
 
 describe("MostReadListComponent", () => {
@@ -48,9 +48,9 @@ describe("MostReadListComponent", () => {
       providers: [
         {
           provide: AnalyticsService,
-          useClass: mockService(AnalyticsService),
-        },
-      ],
+          useClass: mockService(AnalyticsService)
+        }
+      ]
     }).compileComponents();
 
     analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
@@ -78,7 +78,7 @@ describe("MostReadListComponent", () => {
       { ...fakeArticle, id: "5" },
       { ...fakeArticle, id: "6" },
       { ...fakeArticle, id: "7" },
-      { ...fakeArticle, id: "8" },
+      { ...fakeArticle, id: "8" }
     ];
 
     fixture.detectChanges();
@@ -92,7 +92,7 @@ describe("MostReadListComponent", () => {
     const article = { ...fakeArticle, linkUrl };
     component.input = {
       ...componentInput,
-      articles: [article],
+      articles: [article]
     };
 
     fixture.detectChanges();
@@ -105,7 +105,7 @@ describe("MostReadListComponent", () => {
     const article = {
       ...fakeArticle,
       headline: "Hello",
-      headlineFlags: [HeadlineFlags.PHOTO, HeadlineFlags.VIDEO],
+      headlineFlags: [HeadlineFlags.PHOTO, HeadlineFlags.VIDEO]
     };
     component.input.articles = [article];
 
@@ -122,7 +122,7 @@ describe("MostReadListComponent", () => {
     const input: IMostReadList = {
       ...componentInput,
       articles: [fakeArticle],
-      strapName: "StrapName",
+      strapName: "StrapName"
     };
     component.input = input;
 
@@ -134,7 +134,21 @@ describe("MostReadListComponent", () => {
       type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
       strapName: input.strapName,
       articleHeadline: fakeArticle.title,
-      articleId: fakeArticle.id,
+      articleId: fakeArticle.id
     });
+  });
+
+  it("should not render title when there is no articles", () => {
+    const input: IMostReadList = {
+      ...componentInput,
+      articles: [],
+      strapName: "StrapName"
+    };
+    component.input = input;
+
+    fixture.detectChanges();
+    const title = fixture.debugElement.query(By.css(".title"));
+
+    expect(title).toBeFalsy();
   });
 });

@@ -18,8 +18,8 @@ export enum HandlerInputType {
   TopStoriesGrid = "TopStoriesGrid",
   TopStoriesDefaultOneHighlight = "TopStoriesDefaultOneHighlight",
   TopStoriesDefconHighlight = "TopStoriesDefconHighlight",
-  TopStoriesV2 = "TopStoriesV2",
-  TopStoriesV2Grid = "TopStoriesV2Grid",
+  TopStoriesV2Default = "TopStoriesV2Default",
+  TopStoriesV2DefaultGrid = "TopStoriesV2DefaultGrid",
   BiggieSmalls = "BiggieSmalls",
   BiggieSmallsGrid = "BiggieSmallsGrid",
   BiggieSmallsV2 = "BiggieSmallsV2",
@@ -31,6 +31,7 @@ export enum HandlerInputType {
   SixImage = "SixImage",
   SixImageGrid = "SixImageGrid",
   Strips = "Strips",
+  StripsV2 = "StripsV2",
   StripsGrid = "StripsGrid",
   LargeLeadSix = "LargeLeadSix",
   LargeLeadSixV2 = "LargeLeadSixV2",
@@ -52,5 +53,5 @@ export enum HandlerInputType {
   EditorsPicks = "EditorsPicks",
   EditorsPicksGrid = "EditorsPicksGrid",
   MostReadGrid = "MostReadGrid",
-  MostRead = "MostRead",
+  MostRead = "MostRead"
 }

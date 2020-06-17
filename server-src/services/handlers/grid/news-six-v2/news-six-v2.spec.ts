@@ -12,6 +12,8 @@ import {
 } from "../../__types__/INewsSixGridV2HandlerInput";
 import { INewsSixV2HandlerInput } from "../../__types__/INewsSixV2HandlerInput";
 import newsSixV2Handler from "./news-six-v2";
+import { AspectRatio } from "../../../../../common/AspectRatio";
+import { HomepageHighlightArticleVariation } from "../../../../../common/__types__/IHomepageHighlightArticle";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../utils/logger");
@@ -77,11 +79,15 @@ describe("News Six V2 handler", () => {
         ],
         [NewsSixV2GridPositions.One]: [
           expectContentBlock({
-            type: ContentBlockType.FeaturedArticle,
+            type: ContentBlockType.HomepageHighlightArticle,
             id: "1",
-            textColor: "#333",
-            boxColor: "#f2f2f2",
-            identifierColor: displayNameColor
+            image: {
+              mobile: {
+                src: "1.png",
+                aspectRatio: AspectRatio.SixteenByNine
+              }
+            },
+            variation: HomepageHighlightArticleVariation.Featured
           })
         ],
         [NewsSixV2GridPositions.Two]: [
@@ -112,11 +118,15 @@ describe("News Six V2 handler", () => {
         ],
         [NewsSixV2GridPositions.Four]: [
           expectContentBlock({
-            type: ContentBlockType.FeaturedArticle,
+            type: ContentBlockType.HomepageHighlightArticle,
             id: "4",
-            textColor: "#333",
-            boxColor: "#f2f2f2",
-            identifierColor: displayNameColor
+            image: {
+              mobile: {
+                src: "4.png",
+                aspectRatio: AspectRatio.SixteenByNine
+              }
+            },
+            variation: HomepageHighlightArticleVariation.Featured
           })
         ],
         [NewsSixV2GridPositions.Five]: [

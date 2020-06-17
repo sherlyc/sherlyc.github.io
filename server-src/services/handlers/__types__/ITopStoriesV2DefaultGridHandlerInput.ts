@@ -1,12 +1,12 @@
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 import { HandlerInputType } from "./HandlerInputType";
 
-export interface ITopStoriesV2GridHandlerInput {
-  type: HandlerInputType.TopStoriesV2Grid;
-  content: { [position in TopStoriesV2GridPositions]: IContentBlock[] };
+export interface ITopStoriesV2DefaultGridHandlerInput {
+  type: HandlerInputType.TopStoriesV2DefaultGrid;
+  content: { [position in TopStoriesV2DefaultGridPositions]: IContentBlock[] };
 }
 
-export enum TopStoriesV2GridPositions {
+export enum TopStoriesV2DefaultGridPositions {
   LeftHighlight = "LeftHighlight",
   RightHighlight = "RightHighlight",
   LeftOne = "LeftOne",

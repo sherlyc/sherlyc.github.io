@@ -13,21 +13,21 @@ import { getRawArticles } from "../../../adapters/article-retriever/article-retr
 import { Strap } from "../../../strap";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
-  ITopStoriesV2GridHandlerInput,
-  TopStoriesV2GridPositions
-} from "../../__types__/ITopStoriesV2GridHandlerInput";
-import { ITopStoriesV2HandlerInput } from "../../__types__/ITopStoriesV2HandlerInput";
+  ITopStoriesV2DefaultGridHandlerInput,
+  TopStoriesV2DefaultGridPositions
+} from "../../__types__/ITopStoriesV2DefaultGridHandlerInput";
+import { ITopStoriesV2DefaultHandlerInput } from "../../__types__/ITopStoriesV2DefaultHandlerInput";
 import { handlerRunnerFunction } from "../../runner";
 import { contentErrorHandler } from "../content-error-handler";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   {
     strapName,
     color,
     midInsertContent,
     lowerRightContent
-  }: ITopStoriesV2HandlerInput,
+  }: ITopStoriesV2DefaultHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   const articles = await getRawArticles(Strap.TopStories, 10, params);
@@ -37,10 +37,10 @@ export default async function(
     params
   );
 
-  const gridInput: ITopStoriesV2GridHandlerInput = {
-    type: HandlerInputType.TopStoriesV2Grid,
+  const gridInput: ITopStoriesV2DefaultGridHandlerInput = {
+    type: HandlerInputType.TopStoriesV2DefaultGrid,
     content: {
-      [TopStoriesV2GridPositions.RightHighlight]: [
+      [TopStoriesV2DefaultGridPositions.RightHighlight]: [
         contentErrorHandler(
           () =>
             homepageHighlightArticle(
@@ -56,12 +56,12 @@ export default async function(
               HomepageHighlightArticleVariation.Featured,
               true
             ),
-          HandlerInputType.TopStoriesV2,
+          HandlerInputType.TopStoriesV2Default,
           Strap.TopStories,
           params
         )
       ],
-      [TopStoriesV2GridPositions.LeftHighlight]: [
+      [TopStoriesV2DefaultGridPositions.LeftHighlight]: [
         contentErrorHandler(
           () =>
             homepageHighlightArticle(
@@ -77,18 +77,18 @@ export default async function(
               HomepageHighlightArticleVariation.Lead,
               true
             ),
-          HandlerInputType.TopStoriesV2,
+          HandlerInputType.TopStoriesV2Default,
           Strap.TopStories,
           params
         )
       ],
-      [TopStoriesV2GridPositions.BannerAd]: [
+      [TopStoriesV2DefaultGridPositions.BannerAd]: [
         {
           type: ContentBlockType.StickyContainer,
           items: [basicAdUnit(strapName)]
         }
       ],
-      [TopStoriesV2GridPositions.LeftOne]: [
+      [TopStoriesV2DefaultGridPositions.LeftOne]: [
         contentErrorHandler(
           () =>
             homepageArticle(
@@ -103,12 +103,12 @@ export default async function(
               true,
               true
             ),
-          HandlerInputType.TopStoriesV2,
+          HandlerInputType.TopStoriesV2Default,
           Strap.TopStories,
           params
         )
       ],
-      [TopStoriesV2GridPositions.LeftTwo]: [
+      [TopStoriesV2DefaultGridPositions.LeftTwo]: [
         contentErrorHandler(
           () =>
             homepageArticle(
@@ -123,12 +123,12 @@ export default async function(
               true,
               true
             ),
-          HandlerInputType.TopStoriesV2,
+          HandlerInputType.TopStoriesV2Default,
           Strap.TopStories,
           params
         )
       ],
-      [TopStoriesV2GridPositions.LeftThree]: [
+      [TopStoriesV2DefaultGridPositions.LeftThree]: [
         contentErrorHandler(
           () =>
             homepageArticle(
@@ -143,13 +143,13 @@ export default async function(
               true,
               true
             ),
-          HandlerInputType.TopStoriesV2,
+          HandlerInputType.TopStoriesV2Default,
           Strap.TopStories,
           params
         )
       ],
-      [TopStoriesV2GridPositions.LeftFour]: [basicAdUnit(strapName)],
-      [TopStoriesV2GridPositions.RightOne]: [
+      [TopStoriesV2DefaultGridPositions.LeftFour]: [basicAdUnit(strapName)],
+      [TopStoriesV2DefaultGridPositions.RightOne]: [
         contentErrorHandler(
           () =>
             homepageArticle(
@@ -164,12 +164,12 @@ export default async function(
               false,
               true
             ),
-          HandlerInputType.TopStoriesV2,
+          HandlerInputType.TopStoriesV2Default,
           Strap.TopStories,
           params
         )
       ],
-      [TopStoriesV2GridPositions.RightTwo]: [
+      [TopStoriesV2DefaultGridPositions.RightTwo]: [
         contentErrorHandler(
           () =>
             homepageArticle(
@@ -184,12 +184,12 @@ export default async function(
               false,
               true
             ),
-          HandlerInputType.TopStoriesV2,
+          HandlerInputType.TopStoriesV2Default,
           Strap.TopStories,
           params
         )
       ],
-      [TopStoriesV2GridPositions.RightThree]: [
+      [TopStoriesV2DefaultGridPositions.RightThree]: [
         contentErrorHandler(
           () =>
             homepageArticle(
@@ -204,12 +204,12 @@ export default async function(
               true,
               false
             ),
-          HandlerInputType.TopStoriesV2,
+          HandlerInputType.TopStoriesV2Default,
           Strap.TopStories,
           params
         )
       ],
-      [TopStoriesV2GridPositions.RightFour]: [
+      [TopStoriesV2DefaultGridPositions.RightFour]: [
         contentErrorHandler(
           () =>
             homepageArticle(
@@ -224,12 +224,12 @@ export default async function(
               true,
               false
             ),
-          HandlerInputType.TopStoriesV2,
+          HandlerInputType.TopStoriesV2Default,
           Strap.TopStories,
           params
         )
       ],
-      [TopStoriesV2GridPositions.RightFive]: [
+      [TopStoriesV2DefaultGridPositions.RightFive]: [
         contentErrorHandler(
           () =>
             homepageArticle(
@@ -244,13 +244,13 @@ export default async function(
               true,
               false
             ),
-          HandlerInputType.TopStoriesV2,
+          HandlerInputType.TopStoriesV2Default,
           Strap.TopStories,
           params
         )
       ],
-      [TopStoriesV2GridPositions.MidInsert]: midInsertContentBlocks,
-      [TopStoriesV2GridPositions.LowerRight]: lowerRightContentBlocks
+      [TopStoriesV2DefaultGridPositions.MidInsert]: midInsertContentBlocks,
+      [TopStoriesV2DefaultGridPositions.LowerRight]: lowerRightContentBlocks
     }
   };
 
