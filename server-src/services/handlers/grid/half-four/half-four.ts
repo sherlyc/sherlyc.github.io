@@ -18,7 +18,7 @@ import { JsonFeedImageType } from "../../../adapters/__types__/JsonFeedImageType
 import { AspectRatio } from "../../../../../common/AspectRatio";
 import { HomepageHighlightArticleVariation } from "../../../../../common/__types__/IHomepageHighlightArticle";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { sourceId, strapName, displayName, color, linkUrl }: IHalfFourHandlerInput,
   params: IParams
@@ -46,8 +46,8 @@ export default async function(
               {
                 mobile: {
                   variant: JsonFeedImageType.LANDSCAPE_SIXTEEN_BY_NINE,
-                  aspectRatio: AspectRatio.SixteenByNine,
-                },
+                  aspectRatio: AspectRatio.SixteenByNine
+                }
               },
               HomepageHighlightArticleVariation.Featured,
               true

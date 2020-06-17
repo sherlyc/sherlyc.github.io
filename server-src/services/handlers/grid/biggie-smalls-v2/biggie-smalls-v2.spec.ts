@@ -94,11 +94,11 @@ describe("Biggie Smalls", () => {
             image: {
               mobile: {
                 src: "1.16:9.jpg",
-                aspectRatio: AspectRatio.SixteenByNine,
-              },
+                aspectRatio: AspectRatio.SixteenByNine
+              }
             },
-            variation: HomepageHighlightArticleVariation.Featured,
-          }),
+            variation: HomepageHighlightArticleVariation.Featured
+          })
         ],
         [BiggieSmallsV2GridPositions.RightOne]: [
           expectContentBlock({

@@ -25,7 +25,7 @@ describe("Strips V2", () => {
     sourceId: Strap.Premium,
     color: AccentColor.Black,
     displayName: "spotlight",
-    linkUrl: "/" + Section.Premium,
+    linkUrl: "/" + Section.Premium
   };
   beforeEach(() => {
     jest.resetAllMocks();
@@ -61,9 +61,9 @@ describe("Strips V2", () => {
             id,
             textColor: "white",
             boxColor: "#222",
-            applyGradient: false,
+            applyGradient: false
           })
-        ),
+        )
       },
       params
     );
@@ -72,8 +72,8 @@ describe("Strips V2", () => {
   it("should call strips grid", async () => {
     handlerRunnerMock.mockResolvedValueOnce([
       {
-        type: ContentBlockType.GridContainer,
-      },
+        type: ContentBlockType.GridContainer
+      }
     ]);
 
     await stripsV2(handlerRunnerMock, input, params);
@@ -88,15 +88,15 @@ describe("Strips V2", () => {
               type: ContentBlockType.ModuleHeader,
               title: input.displayName,
               url: input.linkUrl,
-              color: input.color,
-            }),
+              color: input.color
+            })
           ],
           [StripsGridPositions.ModuleContent]: [
             expect.objectContaining({
-              type: ContentBlockType.GridContainer,
-            }),
-          ],
-        },
+              type: ContentBlockType.GridContainer
+            })
+          ]
+        }
       },
       params
     );

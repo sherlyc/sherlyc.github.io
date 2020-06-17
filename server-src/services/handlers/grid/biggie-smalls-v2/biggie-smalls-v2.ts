@@ -16,7 +16,7 @@ import { homepageHighlightArticle } from "../../../adapters/article-converter/ho
 import { JsonFeedImageType } from "../../../adapters/__types__/JsonFeedImageType";
 import { HomepageHighlightArticleVariation } from "../../../../../common/__types__/IHomepageHighlightArticle";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   {
     displayName,
@@ -48,8 +48,8 @@ export default async function(
             {
               mobile: {
                 variant: JsonFeedImageType.LANDSCAPE_SIXTEEN_BY_NINE,
-                aspectRatio: AspectRatio.SixteenByNine,
-              },
+                aspectRatio: AspectRatio.SixteenByNine
+              }
             },
             HomepageHighlightArticleVariation.Featured,
             true

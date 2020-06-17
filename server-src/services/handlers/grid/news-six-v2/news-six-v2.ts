@@ -28,8 +28,8 @@ export default async function (
         type: ContentBlockType.ModuleHeader,
         title: displayName,
         url: linkUrl,
-        color,
-      },
+        color
+      }
     ],
     [NewsSixV2GridPositions.One]: [
       contentErrorHandler(
@@ -41,8 +41,8 @@ export default async function (
             {
               mobile: {
                 variant: JsonFeedImageType.LANDSCAPE_SIXTEEN_BY_NINE,
-                aspectRatio: AspectRatio.SixteenByNine,
-              },
+                aspectRatio: AspectRatio.SixteenByNine
+              }
             },
             HomepageHighlightArticleVariation.Featured,
             true
@@ -50,7 +50,7 @@ export default async function (
         HandlerInputType.NewsSixV2,
         sourceId,
         params
-      ),
+      )
     ],
     [NewsSixV2GridPositions.Two]: [
       contentErrorHandler(
@@ -62,7 +62,7 @@ export default async function (
             {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
-              desktop: Orientation.Landscape,
+              desktop: Orientation.Landscape
             },
             true,
             false
@@ -70,7 +70,7 @@ export default async function (
         HandlerInputType.NewsSixV2,
         sourceId,
         params
-      ),
+      )
     ],
     [NewsSixV2GridPositions.Three]: [
       contentErrorHandler(
@@ -82,7 +82,7 @@ export default async function (
             {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
-              desktop: Orientation.Landscape,
+              desktop: Orientation.Landscape
             },
             true,
             false
@@ -90,7 +90,7 @@ export default async function (
         HandlerInputType.NewsSixV2,
         sourceId,
         params
-      ),
+      )
     ],
     [NewsSixV2GridPositions.Four]: [
       contentErrorHandler(
@@ -102,8 +102,8 @@ export default async function (
             {
               mobile: {
                 variant: JsonFeedImageType.LANDSCAPE_SIXTEEN_BY_NINE,
-                aspectRatio: AspectRatio.SixteenByNine,
-              },
+                aspectRatio: AspectRatio.SixteenByNine
+              }
             },
             HomepageHighlightArticleVariation.Featured,
             true
@@ -111,7 +111,7 @@ export default async function (
         HandlerInputType.NewsSixV2,
         sourceId,
         params
-      ),
+      )
     ],
     [NewsSixV2GridPositions.Five]: [
       contentErrorHandler(
@@ -123,7 +123,7 @@ export default async function (
             {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
-              desktop: Orientation.Landscape,
+              desktop: Orientation.Landscape
             },
             true,
             true
@@ -131,7 +131,7 @@ export default async function (
         HandlerInputType.NewsSixV2,
         sourceId,
         params
-      ),
+      )
     ],
     [NewsSixV2GridPositions.Six]: [
       contentErrorHandler(
@@ -143,7 +143,7 @@ export default async function (
             {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
-              desktop: Orientation.Landscape,
+              desktop: Orientation.Landscape
             },
             true,
             true
@@ -151,14 +151,14 @@ export default async function (
         HandlerInputType.NewsSixV2,
         sourceId,
         params
-      ),
-    ],
+      )
+    ]
   };
 
   return await handlerRunner(
     {
       type: HandlerInputType.NewsSixV2Grid,
-      content,
+      content
     },
     params
   );

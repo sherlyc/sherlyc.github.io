@@ -2,6 +2,7 @@
   "singleQuote": false,
   "bracketSpacing": true,
   "arrowParens": "always",
+  "trailingComma": "none",
   "overrides": [
     {
       "files": "*.ts",

@@ -18,7 +18,7 @@ export default async function (
     linkUrl,
     sourceId,
     strapName,
-    articleCount,
+    articleCount
   }: IStripsV2HandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
@@ -36,7 +36,7 @@ export default async function (
           strapName,
           params
         )
-      ),
+      )
     },
     params
   );
@@ -47,16 +47,16 @@ export default async function (
         type: ContentBlockType.ModuleHeader,
         title: displayName,
         color,
-        url: linkUrl,
-      },
+        url: linkUrl
+      }
     ],
-    [StripsGridPositions.ModuleContent]: moduleContent,
+    [StripsGridPositions.ModuleContent]: moduleContent
   };
 
   return await handlerRunner(
     {
       type: HandlerInputType.StripsGrid,
-      content: input,
+      content: input
     },
     params
   );
