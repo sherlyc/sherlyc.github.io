@@ -1,18 +1,18 @@
-import { IParams } from "../../../__types__/IParams";
-import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import {
-  IMostReadGridHandlerInput,
-  MostReadGridPositions,
-} from "../../__types__/IMostReadGridHandlerInput";
-import mostReadGridHandler from "./most-read-grid";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import {
   Border,
   IGridConfig,
   IGridContainer,
 } from "../../../../../common/__types__/IGridContainer";
 import { gridBlock } from "../../../adapters/grid/grid-block";
+import { IParams } from "../../../__types__/IParams";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import {
+  IMostReadGridHandlerInput,
+  MostReadGridPositions,
+} from "../../__types__/IMostReadGridHandlerInput";
+import mostReadGridHandler from "./most-read-grid";
 
 describe("Most Read Grid Handler", () => {
   const handlerRunnerMock = jest.fn();

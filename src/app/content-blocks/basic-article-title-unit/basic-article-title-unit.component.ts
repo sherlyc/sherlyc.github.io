@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 import { IBasicArticleTitleUnit } from "../../../../common/__types__/IBasicArticleTitleUnit";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
   selector: "app-basic-article-title-unit",

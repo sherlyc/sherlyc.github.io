@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
-import { IExperimentContainer } from "../../../../common/__types__/IExperimentContainer";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
-import { ExperimentService } from "../../services/experiment/experiment.service";
-import { RuntimeService } from "../../services/runtime/runtime.service";
-import { LoggerService } from "../../services/logger/logger.service";
+import { IExperimentContainer } from "../../../../common/__types__/IExperimentContainer";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { ExperimentService } from "../../services/experiment/experiment.service";
+import { LoggerService } from "../../services/logger/logger.service";
+import { RuntimeService } from "../../services/runtime/runtime.service";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
   selector: "app-experiment-container",

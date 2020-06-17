@@ -2,11 +2,11 @@ import { flatten } from "lodash-es";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 import { IFeatureContainer } from "../../../../common/__types__/IFeatureContainer";
-import { IParams } from "../../__types__/IParams";
 import logger from "../../utils/logger";
+import { IParams } from "../../__types__/IParams";
+import { handlerRunnerFunction } from "../runner";
 import { HandlerInput } from "../__types__/HandlerInput";
 import { IFeatureHandlerInput } from "../__types__/IFeatureHandlerInput";
-import { handlerRunnerFunction } from "../runner";
 
 const multiHandlerRunner = async (
   handlerRunner: handlerRunnerFunction,

@@ -1,7 +1,7 @@
-import getBreakingNews from "./breaking-news";
 import cacheHttp from "../../utils/cache-http";
 import config from "../../utils/config";
 import { IParams } from "../../__types__/IParams";
+import getBreakingNews from "./breaking-news";
 
 jest.mock("../../utils/config");
 jest.mock("../../utils/cache-http");

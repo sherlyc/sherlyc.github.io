@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { PlayStuffVideoComponent } from "./play-stuff-video.component";
-import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 import { By } from "@angular/platform-browser";
+import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
+import { PlayStuffVideoComponent } from "./play-stuff-video.component";
 
 describe("PlayStuffVideoComponent", () => {
   let component: PlayStuffVideoComponent;

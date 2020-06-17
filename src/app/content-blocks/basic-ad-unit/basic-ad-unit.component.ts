@@ -5,9 +5,9 @@ import {
   Input,
   OnInit
 } from "@angular/core";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 import { IBasicAdUnit } from "../../../../common/__types__/IBasicAdUnit";
 import { ClassNameService } from "../../services/class-name/class-name.service";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
   selector: "app-basic-ad-unit",

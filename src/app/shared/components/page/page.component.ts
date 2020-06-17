@@ -1,14 +1,14 @@
 import { Component, OnInit } from "@angular/core";
+import { Title } from "@angular/platform-browser";
+import { NavigationStart } from "@angular/router";
+import { Subject } from "rxjs";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IPage } from "../../../../../common/__types__/IPage";
-import { Title } from "@angular/platform-browser";
-import { ContentRetrieverService } from "../../../services/content-retriever/content-retriever.service";
 import { AdService } from "../../../services/ad/ad.service";
+import { AnalyticsService } from "../../../services/analytics/analytics.service";
+import { ContentRetrieverService } from "../../../services/content-retriever/content-retriever.service";
 import { CorrelationService } from "../../../services/correlation/correlation.service";
 import { EventsService } from "../../../services/events/events.service";
-import { Subject } from "rxjs";
-import { NavigationStart } from "@angular/router";
-import { AnalyticsService } from "../../../services/analytics/analytics.service";
 import { SeoService } from "../../../services/seo/seo.service";
 
 @Component({

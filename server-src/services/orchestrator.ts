@@ -1,18 +1,18 @@
+import { FeatureName } from "../../common/FeatureName";
 import { AccentColor } from "../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../common/__types__/ContentBlockType";
 import { IPage } from "../../common/__types__/IPage";
-import { FeatureName } from "../../common/FeatureName";
-import { IParams } from "./__types__/IParams";
+import handlerRunner from "./handlers/runner";
 import { HandlerInput } from "./handlers/__types__/HandlerInput";
 import { HandlerInputType } from "./handlers/__types__/HandlerInputType";
 import { BrandModule } from "./handlers/__types__/IBrandHandlerInput";
 import { IContentBlockHandlerInput } from "./handlers/__types__/IContentBlockHandlerInput";
-import handlerRunner from "./handlers/runner";
 import { Section } from "./section";
 import { Strap } from "./strap";
 import config from "./utils/config";
 import logger from "./utils/logger";
 import { formatVersion, parseVersion } from "./utils/version";
+import { IParams } from "./__types__/IParams";
 
 const homepageStrapsConfig = config.strapConfig!.homepageStraps;
 

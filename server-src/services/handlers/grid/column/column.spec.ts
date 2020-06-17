@@ -1,10 +1,10 @@
-import { IParams } from "../../../__types__/IParams";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import column from "./column";
-import { IColumnHandlerInput } from "../../__types__/IColumnHandlerInput";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { HandlerInput } from "../../__types__/HandlerInput";
+import { IParams } from "../../../__types__/IParams";
 import handlerRunner from "../../runner";
+import { HandlerInput } from "../../__types__/HandlerInput";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import { IColumnHandlerInput } from "../../__types__/IColumnHandlerInput";
+import column from "./column";
 
 describe("Column Handler", () => {
   const handlerRunnerMock = jest.fn();

@@ -1,7 +1,7 @@
-import { IParams } from "../../__types__/IParams";
 import cacheHttp from "../../utils/cache-http";
-import { weatherRetriever } from "./weather-retriever";
 import wrappedLogger from "../../utils/logger";
+import { IParams } from "../../__types__/IParams";
+import { weatherRetriever } from "./weather-retriever";
 
 const weatherJson = require("./__fixtures__/weather.json");
 

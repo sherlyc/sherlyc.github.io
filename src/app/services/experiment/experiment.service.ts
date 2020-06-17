@@ -1,14 +1,14 @@
-import { Injectable } from "@angular/core";
-import { ConfigService } from "../config/config.service";
-import { RuntimeService } from "../runtime/runtime.service";
-import { LottoService } from "../lotto/lotto.service";
-import { ExperimentName } from "../../../../common/ExperimentName";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { catchError } from "rxjs/operators";
+import { Injectable } from "@angular/core";
 import { of } from "rxjs/internal/observable/of";
-import { LoggerService } from "../logger/logger.service";
+import { catchError } from "rxjs/operators";
 import { DeviceType } from "../../../../common/DeviceType";
+import { ExperimentName } from "../../../../common/ExperimentName";
+import { ConfigService } from "../config/config.service";
 import { DeviceService } from "../device/device.service";
+import { LoggerService } from "../logger/logger.service";
+import { LottoService } from "../lotto/lotto.service";
+import { RuntimeService } from "../runtime/runtime.service";
 import { StoreService } from "../store/store.service";
 
 @Injectable({

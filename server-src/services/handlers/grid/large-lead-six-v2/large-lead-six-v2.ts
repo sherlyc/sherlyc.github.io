@@ -1,19 +1,19 @@
-import { handlerRunnerFunction } from "../../runner";
-import { IParams } from "../../../__types__/IParams";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { ILargeLeadSixV2HandlerInput } from "../../__types__/ILargeLeadSixV2HandlerInput";
-import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
-import { contentErrorHandler } from "../content-error-handler";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
+import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
+import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
+import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
   ILargeLeadSixGridHandlerInput,
   LargeLeadSixGridPositions,
 } from "../../__types__/ILargeLeadSixGridHandlerInput";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
+import { ILargeLeadSixV2HandlerInput } from "../../__types__/ILargeLeadSixV2HandlerInput";
+import { contentErrorHandler } from "../content-error-handler";
 
 export default async function (
   handlerRunner: handlerRunnerFunction,

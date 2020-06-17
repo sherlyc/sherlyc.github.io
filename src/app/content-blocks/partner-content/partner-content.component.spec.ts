@@ -1,13 +1,13 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
+import { Logo } from "../../../../common/Logo";
 import { AccentColor } from "../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IHomepageArticleContent } from "../../../../common/__types__/IHomepageArticleContent";
 import { IPartnerContent } from "../../../../common/__types__/IPartnerContent";
-import { Logo } from "../../../../common/Logo";
-import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
 
 import { PartnerContentComponent } from "./partner-content.component";

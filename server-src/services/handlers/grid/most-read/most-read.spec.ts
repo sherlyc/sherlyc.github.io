@@ -1,16 +1,16 @@
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 import { getMostPopular } from "../../../adapters/most-popular/most-popular.service";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { IParams } from "../../../__types__/IParams";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { IMostReadHandlerInput } from "../../__types__/IMostReadHandlerInput";
-import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import mostReadHandler from "./most-read";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import {
   IMostReadGridHandlerInput,
   MostReadGridPositions,
 } from "../../__types__/IMostReadGridHandlerInput";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
+import { IMostReadHandlerInput } from "../../__types__/IMostReadHandlerInput";
+import mostReadHandler from "./most-read";
 
 jest.mock("../../../adapters/most-popular/most-popular.service");
 

@@ -2,10 +2,10 @@ import { chunk } from "lodash-es";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { BrandGridPositions } from "../../__types__/IBrandGridHandlerInput";
 import { IBrandHandlerInput } from "../../__types__/IBrandHandlerInput";
-import { handlerRunnerFunction } from "../../runner";
 import { brandConfig } from "./brand-config";
 import { createBulletList } from "./bullet-list";
 

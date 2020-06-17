@@ -1,19 +1,19 @@
-import { handlerRunnerFunction } from "../../runner";
-import { IParams } from "../../../__types__/IParams";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { ISixImageHandlerInput } from "../../__types__/ISixImageHandlerInput";
+import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType";
+import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
+import { imageLinkUnit } from "../../../adapters/article-converter/image-link-unit.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
   ISixImageGridHandlerInput,
   SixImageGridHandlerPositions
 } from "../../__types__/ISixImageGridHandlerInput";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
-import { imageLinkUnit } from "../../../adapters/article-converter/image-link-unit.converter";
+import { ISixImageHandlerInput } from "../../__types__/ISixImageHandlerInput";
 import { contentErrorHandler } from "../content-error-handler";
-import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,

@@ -1,20 +1,20 @@
-import { IParams } from "../../../__types__/IParams";
-import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
-import { ILargeLeadSixV2HandlerInput } from "../../__types__/ILargeLeadSixV2HandlerInput";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { AccentColor } from "../../../../../common/__types__/AccentColor";
-import { Strap } from "../../../strap";
-import largeLeadSixV2 from "./large-lead-six-v2";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import {
   IGridConfig,
   IGridContainer,
 } from "../../../../../common/__types__/IGridContainer";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { IListGridHandlerInput } from "../../__types__/IListGridHandlerInput";
-import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
+import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { Strap } from "../../../strap";
+import { IParams } from "../../../__types__/IParams";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { LargeLeadSixGridPositions } from "../../__types__/ILargeLeadSixGridHandlerInput";
+import { ILargeLeadSixV2HandlerInput } from "../../__types__/ILargeLeadSixV2HandlerInput";
+import { IListGridHandlerInput } from "../../__types__/IListGridHandlerInput";
+import largeLeadSixV2 from "./large-lead-six-v2";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 

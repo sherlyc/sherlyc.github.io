@@ -25,7 +25,7 @@
     "clinic:flame:backend": "clinic flame --on-port 'autocannon localhost:$PORT/api/content' -- node ./dist/server/main.js",
     "clinic:bubbleprof": "clinic bubbleprof --on-port 'autocannon -c 5 -a 500 localhost:$PORT' -- node ./dist/server/main.js",
     "clinic:bubbleprof:backend": "clinic bubbleprof --on-port 'autocannon -c 5 -a 500 localhost:$PORT/api/content' -- node ./dist/server/main.js",
-    "lint": "ng lint",
+    "lint": "ng lint --fix=true",
     "bundle-report": "npm run build && npm run bundle-report:browser && npm run bundle-report:server",
     "bundle-report:browser": "webpack-bundle-analyzer ./dist/browser/stats.json -m static -O -r ./dist/browser.html",
     "bundle-report:server": "webpack-bundle-analyzer ./dist/server/stats.json -m static -O -r ./dist/server.html",

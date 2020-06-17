@@ -1,7 +1,7 @@
-import { IDigitalData } from "../../analytics/__types__/IDigitalData";
-import { IStuffLogin } from "../../authentication/__types__/IStuffLogin";
 import { ShieldedSite } from "../../../content-blocks/footer/__types__/ShieldedSite";
+import { IDigitalData } from "../../analytics/__types__/IDigitalData";
 import { NielsenAnalytics } from "../../analytics/__types__/NielsenAnalytics";
+import { IStuffLogin } from "../../authentication/__types__/IStuffLogin";
 import { IDtm } from "../../dtm/__types__/IDtm";
 
 export interface IWindow {

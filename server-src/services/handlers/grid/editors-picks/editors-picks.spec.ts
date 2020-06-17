@@ -1,18 +1,18 @@
-import { IParams } from "../../../__types__/IParams";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { Strap } from "../../../strap";
 import { AccentColor } from "../../../../../common/__types__/AccentColor";
-import { IEditorsPicksHandlerInput } from "../../__types__/IEditorsPicksHandlerInput";
-import editorsPicks from "../editors-picks/editors-picks";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { Strap } from "../../../strap";
+import { IParams } from "../../../__types__/IParams";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
   EditorsPicksGridPositions,
   IEditorsPicksGridHandlerInput,
 } from "../../__types__/IEditorsPicksGridHandlerInput";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
+import { IEditorsPicksHandlerInput } from "../../__types__/IEditorsPicksHandlerInput";
+import editorsPicks from "../editors-picks/editors-picks";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 

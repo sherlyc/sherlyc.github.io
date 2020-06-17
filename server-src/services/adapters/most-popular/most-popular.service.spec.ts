@@ -1,7 +1,7 @@
-import { IParams } from "../../__types__/IParams";
 import cacheHttp from "../../utils/cache-http";
 import config from "../../utils/config";
 import wrappedLogger from "../../utils/logger";
+import { IParams } from "../../__types__/IParams";
 import { getArticleById } from "../jsonfeed/jsonfeed";
 import { getMostPopular } from "./most-popular.service";
 

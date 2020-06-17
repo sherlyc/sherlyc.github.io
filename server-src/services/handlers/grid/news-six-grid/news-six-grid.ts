@@ -1,17 +1,17 @@
-import { handlerRunnerFunction } from "../../runner";
-import { IParams } from "../../../__types__/IParams";
-import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import {
-  INewsSixGridHandlerInput,
-  NewsSixGridPositions
-} from "../../__types__/INewsSixGridHandlerInput";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import {
   Border,
   IGridBlocks,
   IGridContainer
 } from "../../../../../common/__types__/IGridContainer";
 import { gridBlock } from "../../../adapters/grid/grid-block";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
+import {
+  INewsSixGridHandlerInput,
+  NewsSixGridPositions
+} from "../../__types__/INewsSixGridHandlerInput";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,

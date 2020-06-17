@@ -1,5 +1,5 @@
-import * as minimatch from "minimatch";
 import { RequestHandler } from "express";
+import * as minimatch from "minimatch";
 
 export function cacheControl(cacheConfig: { [key: string]: string }) {
   return function(req, res, next) {

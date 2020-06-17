@@ -1,11 +1,11 @@
-import externalContentHandler from "./external-content";
-import { IParams } from "../../__types__/IParams";
-import { HandlerInputType } from "../__types__/HandlerInputType";
-import { IExternalContentUnit } from "../../../../common/__types__/IExternalContentUnit";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import { IExternalContentUnit } from "../../../../common/__types__/IExternalContentUnit";
 import cacheHttp from "../../utils/cache-http";
 import wrappedLogger from "../../utils/logger";
+import { IParams } from "../../__types__/IParams";
+import { HandlerInputType } from "../__types__/HandlerInputType";
+import externalContentHandler from "./external-content";
 
 jest.mock("../../utils/cache-http");
 jest.mock("../../utils/logger");

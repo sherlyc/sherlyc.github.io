@@ -1,13 +1,13 @@
-import { handlerRunnerFunction } from "../../runner";
-import { IParams } from "../../../__types__/IParams";
-import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { IListGridHandlerInput } from "../../__types__/IListGridHandlerInput";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import {
   Border,
   IGridConfig
 } from "../../../../../common/__types__/IGridContainer";
 import { gridBlock } from "../../../adapters/grid/grid-block";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
+import { IListGridHandlerInput } from "../../__types__/IListGridHandlerInput";
 
 const gridPositionName = (index: number) => `content${index}`;
 

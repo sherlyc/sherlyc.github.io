@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 import { IModuleHeader } from "../../../../common/__types__/IModuleHeader";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
   selector: "app-module-header",

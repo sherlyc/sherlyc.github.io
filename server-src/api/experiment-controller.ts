@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { getExperimentVariant } from "../services/adapters/experiment/experiment";
-import logger from "../services/utils/logger";
 import { DeviceType } from "../../common/DeviceType";
 import { ExperimentName } from "../../common/ExperimentName";
+import { getExperimentVariant } from "../services/adapters/experiment/experiment";
+import logger from "../services/utils/logger";
 
 function validateRequest(
   name: string,

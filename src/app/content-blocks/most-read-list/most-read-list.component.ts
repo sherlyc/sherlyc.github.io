@@ -1,8 +1,8 @@
 import { Component, Input } from "@angular/core";
 import { IMostReadList } from "../../../../common/__types__/IMostReadList";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
   selector: "app-most-read-list",

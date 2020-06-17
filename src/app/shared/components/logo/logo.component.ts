@@ -1,7 +1,7 @@
 import { Component, HostBinding, Input, OnInit } from "@angular/core";
+import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 import { Logo } from "../../../../../common/Logo";
 import logos from "./logos";
-import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 
 @Component({
   selector: "app-logo",

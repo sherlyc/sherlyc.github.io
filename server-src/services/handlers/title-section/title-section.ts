@@ -1,9 +1,9 @@
-import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { handlerRunnerFunction } from "../runner";
-import { IParams } from "../../__types__/IParams";
-import { ITitleSectionHandlerInput } from "../__types__/ITitleSectionHandlerInput";
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 import { gridBlock } from "../../adapters/grid/grid-block";
+import { IParams } from "../../__types__/IParams";
+import { handlerRunnerFunction } from "../runner";
+import { ITitleSectionHandlerInput } from "../__types__/ITitleSectionHandlerInput";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,

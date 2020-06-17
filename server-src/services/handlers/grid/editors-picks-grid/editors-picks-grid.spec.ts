@@ -1,16 +1,16 @@
-import {
-  EditorsPicksGridPositions,
-  IEditorsPicksGridHandlerInput,
-} from "../../__types__/IEditorsPicksGridHandlerInput";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import editorsPicksGrid from "./editors-picks-grid";
-import { IParams } from "../../../__types__/IParams";
 import {
   Border,
   IGridContainer,
 } from "../../../../../common/__types__/IGridContainer";
 import { gridBlock } from "../../../adapters/grid/grid-block";
+import { IParams } from "../../../__types__/IParams";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import {
+  EditorsPicksGridPositions,
+  IEditorsPicksGridHandlerInput,
+} from "../../__types__/IEditorsPicksGridHandlerInput";
+import editorsPicksGrid from "./editors-picks-grid";
 
 describe("Editors Picks grid", () => {
   const handlerRunnerMock = jest.fn();

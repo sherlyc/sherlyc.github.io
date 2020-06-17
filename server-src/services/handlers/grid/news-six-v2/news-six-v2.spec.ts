@@ -1,9 +1,11 @@
+import { AspectRatio } from "../../../../../common/AspectRatio";
 import { AccentColor } from "../../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { HomepageHighlightArticleVariation } from "../../../../../common/__types__/IHomepageHighlightArticle";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { Strap } from "../../../strap";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
@@ -12,8 +14,6 @@ import {
 } from "../../__types__/INewsSixGridV2HandlerInput";
 import { INewsSixV2HandlerInput } from "../../__types__/INewsSixV2HandlerInput";
 import newsSixV2Handler from "./news-six-v2";
-import { AspectRatio } from "../../../../../common/AspectRatio";
-import { HomepageHighlightArticleVariation } from "../../../../../common/__types__/IHomepageHighlightArticle";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../utils/logger");

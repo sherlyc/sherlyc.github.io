@@ -1,16 +1,7 @@
-import { IContentBlock } from "../../../../common/__types__/IContentBlock";
-import { IBasicArticleListHandlerInput } from "../__types__/IBasicArticleListHandlerInput";
-import { handlerRunnerFunction } from "../runner";
-import { IParams } from "../../__types__/IParams";
-import { LayoutType } from "../../adapters/__types__/LayoutType";
-import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
-import wrappedLogger from "../../utils/logger";
-import { basicArticleTitleUnit } from "../../adapters/article-converter/basic-article-title.converter";
-import { basicArticleUnit } from "../../adapters/article-converter/basic-article-unit.converter";
-import { basicAdUnit } from "../../adapters/article-converter/basic-ad-unit.converter";
-import { parseVersion } from "../../utils/version";
-import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IBasicArticleTitleUnit } from "../../../../common/__types__/IBasicArticleTitleUnit";
+import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 import {
   Border,
   IGridBlock,
@@ -18,7 +9,16 @@ import {
   IGridConfig,
   IGridContainer
 } from "../../../../common/__types__/IGridContainer";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { basicAdUnit } from "../../adapters/article-converter/basic-ad-unit.converter";
+import { basicArticleTitleUnit } from "../../adapters/article-converter/basic-article-title.converter";
+import { basicArticleUnit } from "../../adapters/article-converter/basic-article-unit.converter";
+import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
+import { LayoutType } from "../../adapters/__types__/LayoutType";
+import wrappedLogger from "../../utils/logger";
+import { parseVersion } from "../../utils/version";
+import { IParams } from "../../__types__/IParams";
+import { handlerRunnerFunction } from "../runner";
+import { IBasicArticleListHandlerInput } from "../__types__/IBasicArticleListHandlerInput";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,

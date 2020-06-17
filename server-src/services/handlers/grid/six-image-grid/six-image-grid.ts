@@ -1,12 +1,12 @@
-import { handlerRunnerFunction } from "../../runner";
-import { IParams } from "../../../__types__/IParams";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { gridBlock } from "../../../adapters/grid/grid-block";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
 import {
   ISixImageGridHandlerInput,
   SixImageGridHandlerPositions
 } from "../../__types__/ISixImageGridHandlerInput";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { gridBlock } from "../../../adapters/grid/grid-block";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,

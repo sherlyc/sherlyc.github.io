@@ -1,10 +1,10 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { PlayStuffComponent } from "./play-stuff.component";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { By } from "@angular/platform-browser";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { By } from "@angular/platform-browser";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { Orientation } from "../../../../common/__types__/IHomepageArticle";
+import { PlayStuffComponent } from "./play-stuff.component";
 
 describe("PlayStuffComponent", () => {
   let component: PlayStuffComponent;

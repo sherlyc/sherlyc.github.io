@@ -14,8 +14,8 @@ import { EventsService } from "../../../services/events/events.service";
 import { LoggerService } from "../../../services/logger/logger.service";
 import { mockService, ServiceMock } from "../../../services/mocks/MockService";
 import { RuntimeService } from "../../../services/runtime/runtime.service";
-import { PageComponent } from "./page.component";
 import { SeoService } from "../../../services/seo/seo.service";
+import { PageComponent } from "./page.component";
 
 describe("PageComponent", () => {
   const originalVersion = environment.version;

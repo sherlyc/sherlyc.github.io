@@ -1,10 +1,13 @@
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { IParams } from "../../../__types__/IParams";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType";
+import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
 import { bigImageArticleUnit } from "../../../adapters/article-converter/big-image-article.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
   ILargeLeadSixGridHandlerInput,
@@ -12,9 +15,6 @@ import {
 } from "../../__types__/ILargeLeadSixGridHandlerInput";
 import { ILargeLeadSixHandlerInput } from "../../__types__/ILargeLeadSixHandlerInput";
 import { contentErrorHandler } from "../content-error-handler";
-import { handlerRunnerFunction } from "../../runner";
-import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
-import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,

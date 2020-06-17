@@ -1,14 +1,14 @@
 import { IContentBlock } from "../../../../../../common/__types__/IContentBlock";
-import { IParams } from "../../../../__types__/IParams";
+import { ImageLayoutType } from "../../../../../../common/__types__/ImageLayoutType";
 import { bigImageArticleUnit } from "../../../../adapters/article-converter/big-image-article.converter";
 import { featuredArticle } from "../../../../adapters/article-converter/featured-article.converter";
 import { Strap } from "../../../../strap";
+import { IParams } from "../../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../../runner";
 import { HandlerInputType } from "../../../__types__/HandlerInputType";
 import { IColumnGridHandlerInput } from "../../../__types__/IColumnGridHandlerInput";
 import { ITopStoriesDefaultOneHighlightHandlerInput } from "../../../__types__/ITopStoriesDefaultOneHighlightHandlerInput";
-import { handlerRunnerFunction } from "../../../runner";
 import { contentErrorHandler } from "../../content-error-handler";
-import { ImageLayoutType } from "../../../../../../common/__types__/ImageLayoutType";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,

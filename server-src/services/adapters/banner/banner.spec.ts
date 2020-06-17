@@ -1,6 +1,6 @@
-import getBanner from "./banner";
 import cacheHttp from "../../utils/cache-http";
 import { IParams } from "../../__types__/IParams";
+import getBanner from "./banner";
 
 jest.mock("../../utils/config");
 jest.mock("../../utils/cache-http");

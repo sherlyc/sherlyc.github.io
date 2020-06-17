@@ -1,6 +1,6 @@
 import { ILoggerOptions } from "../../../../common/__types__/ILoggerOptions";
-import { IStrapConfigDefinition } from "./IStrapConfigDefinition";
 import { IFeaturesConfig } from "../../__types__/IFeaturesConfig";
+import { IStrapConfigDefinition } from "./IStrapConfigDefinition";
 
 export interface IEnvironmentDefinition {
   retryTimeout: number;

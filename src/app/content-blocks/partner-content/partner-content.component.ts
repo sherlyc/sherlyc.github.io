@@ -6,8 +6,8 @@ import {
 } from "../../../../common/__types__/IHomepageArticle";
 import { IHomepageArticleContent } from "../../../../common/__types__/IHomepageArticleContent";
 import { IPartnerContent } from "../../../../common/__types__/IPartnerContent";
-import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({

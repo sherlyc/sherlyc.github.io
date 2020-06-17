@@ -1,3 +1,4 @@
+import { repeat } from "lodash-es";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import {
@@ -5,15 +6,14 @@ import {
   IGridConfig,
   IGridContainer
 } from "../../../../../common/__types__/IGridContainer";
-import { IParams } from "../../../__types__/IParams";
 import { gridBlock } from "../../../adapters/grid/grid-block";
+import { IParams } from "../../../__types__/IParams";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
   BiggieSmallsV2GridPositions,
   IBiggieSmallsV2GridHandlerInput
 } from "../../__types__/IBiggieSmallsV2GridHandlerInput";
 import biggieSmallsV2GridHandler from "./biggie-smalls-v2-grid";
-import { repeat } from "lodash-es";
 
 describe("Biggie Smalls V2 grid handler", () => {
   const handlerRunnerMock = jest.fn();

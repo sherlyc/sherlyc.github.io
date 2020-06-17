@@ -1,9 +1,9 @@
-import halfFourGrid from "./half-four-grid";
-import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { HalfFourGridPositions, IHalfFourGridHandlerInput } from "../../__types__/IHalfFourGridHandlerInput";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { Border } from "../../../../../common/__types__/IGridContainer";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { Border } from "../../../../../common/__types__/IGridContainer";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import { HalfFourGridPositions, IHalfFourGridHandlerInput } from "../../__types__/IHalfFourGridHandlerInput";
+import halfFourGrid from "./half-four-grid";
 
 describe("Half Four Grid", () => {
   const handlerRunner = jest.fn();

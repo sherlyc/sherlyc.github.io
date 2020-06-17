@@ -1,9 +1,9 @@
-import { handlerRunnerFunction } from "../../runner";
-import { IParams } from "../../../__types__/IParams";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { IColumnHandlerInput } from "../../__types__/IColumnHandlerInput";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
 import { HandlerInput } from "../../__types__/HandlerInput";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import { IColumnHandlerInput } from "../../__types__/IColumnHandlerInput";
 
 const multiHandlerRunner = async (
   handlerRunner: handlerRunnerFunction,

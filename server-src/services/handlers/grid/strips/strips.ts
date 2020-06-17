@@ -1,17 +1,17 @@
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { IParams } from "../../../__types__/IParams";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType";
 import { bigImageArticleUnit } from "../../../adapters/article-converter/big-image-article.converter";
 import { featuredArticle } from "../../../adapters/article-converter/featured-article.converter";
+import { halfWidthImageArticleUnit } from "../../../adapters/article-converter/half-width-image-article-unit.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { StripsGridPositions } from "../../__types__/IStripsGridHandlerInput";
 import { IStripsHandlerInput } from "../../__types__/IStripsHandlerInput";
-import { handlerRunnerFunction } from "../../runner";
 import { contentErrorHandler } from "../content-error-handler";
-import { halfWidthImageArticleUnit } from "../../../adapters/article-converter/half-width-image-article-unit.converter";
-import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,

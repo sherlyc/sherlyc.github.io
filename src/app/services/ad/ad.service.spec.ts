@@ -1,8 +1,8 @@
 import { DOCUMENT } from "@angular/common";
 import { TestBed } from "@angular/core/testing";
 import { forEach } from "lodash-es";
-import { IEnvironmentDefinition } from "../config/__types__/IEnvironmentDefinition";
 import { ConfigService } from "../config/config.service";
+import { IEnvironmentDefinition } from "../config/__types__/IEnvironmentDefinition";
 import { FeatureSwitchService } from "../feature-switch/feature-switch.service";
 import { LoggerService } from "../logger/logger.service";
 import { mockService, ServiceMock } from "../mocks/MockService";

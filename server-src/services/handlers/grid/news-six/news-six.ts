@@ -1,17 +1,17 @@
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { IParams } from "../../../__types__/IParams";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { NewsSixGridPositions } from "../../__types__/INewsSixGridHandlerInput";
-import { bigImageArticleUnit } from "../../../adapters/article-converter/big-image-article.converter";
-import { contentErrorHandler } from "../content-error-handler";
-import { responsiveBigImageArticleUnit } from "../../../adapters/article-converter/responsive-big-image-article.converter";
-import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
-import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { INewsSixHandlerInput } from "../../__types__/INewsSixHandlerInput";
-import { handlerRunnerFunction } from "../../runner";
 import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType";
+import { basicArticleTitleUnit } from "../../../adapters/article-converter/basic-article-title.converter";
+import { bigImageArticleUnit } from "../../../adapters/article-converter/big-image-article.converter";
+import { responsiveBigImageArticleUnit } from "../../../adapters/article-converter/responsive-big-image-article.converter";
+import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import { NewsSixGridPositions } from "../../__types__/INewsSixGridHandlerInput";
+import { INewsSixHandlerInput } from "../../__types__/INewsSixHandlerInput";
+import { contentErrorHandler } from "../content-error-handler";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,

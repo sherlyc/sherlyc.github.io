@@ -1,13 +1,13 @@
-import newsSixGridHandler from "./news-six-grid";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { Border } from "../../../../../common/__types__/IGridContainer";
+import { IParams } from "../../../__types__/IParams";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
   INewsSixGridHandlerInput,
   NewsSixGridPositions
 } from "../../__types__/INewsSixGridHandlerInput";
-import { IParams } from "../../../__types__/IParams";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { Border } from "../../../../../common/__types__/IGridContainer";
+import newsSixGridHandler from "./news-six-grid";
 
 describe("News six grid handler", () => {
   const handlerRunnerMock = jest.fn();

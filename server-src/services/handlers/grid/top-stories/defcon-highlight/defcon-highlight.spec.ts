@@ -1,7 +1,7 @@
 import { ContentBlockType } from "../../../../../../common/__types__/ContentBlockType";
-import { IParams } from "../../../../__types__/IParams";
-import { IRawArticle } from "../../../../adapters/__types__/IRawArticle";
 import { gridBlock } from "../../../../adapters/grid/grid-block";
+import { IRawArticle } from "../../../../adapters/__types__/IRawArticle";
+import { IParams } from "../../../../__types__/IParams";
 import { HandlerInputType } from "../../../__types__/HandlerInputType";
 import { ITopStoriesDefconHighlightHandlerInput } from "../../../__types__/ITopStoriesDefconHighlightHandlerInput";
 import defconHighlightHandler from "./defcon-highlight";

@@ -1,19 +1,19 @@
-import { handlerRunnerFunction } from "../../runner";
-import { IParams } from "../../../__types__/IParams";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { IEditorsPicksHandlerInput } from "../../__types__/IEditorsPicksHandlerInput";
+import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
+import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
+import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
   EditorsPicksGridPositions,
   IEditorsPicksGridHandlerInput,
 } from "../../__types__/IEditorsPicksGridHandlerInput";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IEditorsPicksHandlerInput } from "../../__types__/IEditorsPicksHandlerInput";
 import { contentErrorHandler } from "../content-error-handler";
-import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
-import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 
 export default async function (
   handlerRunner: handlerRunnerFunction,

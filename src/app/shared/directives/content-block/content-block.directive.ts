@@ -7,9 +7,9 @@ import {
   ViewContainerRef,
 } from "@angular/core";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { LoggerService } from "../../../services/logger/logger.service";
 import registry from "../../../content-blocks/content-blocks.registry";
 import { IContentBlockComponent } from "../../../content-blocks/__types__/IContentBlockComponent";
+import { LoggerService } from "../../../services/logger/logger.service";
 import { SeoService } from "../../../services/seo/seo.service";
 
 @Directive({

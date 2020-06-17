@@ -1,10 +1,10 @@
-import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { handlerRunnerFunction } from "../runner";
-import { IParams } from "../../__types__/IParams";
-import { IExternalContentHandlerInput } from "../__types__/IExternalContentHandlerInput";
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 import cacheHttp from "../../utils/cache-http";
 import logger from "../../utils/logger";
+import { IParams } from "../../__types__/IParams";
+import { handlerRunnerFunction } from "../runner";
+import { IExternalContentHandlerInput } from "../__types__/IExternalContentHandlerInput";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,

@@ -1,12 +1,12 @@
-import responsiveExternalContent from "./responsive-external-content";
-import { IParams } from "../../__types__/IParams";
-import { HandlerInputType } from "../__types__/HandlerInputType";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import { IResponsiveExternalContent } from "../../../../common/__types__/IResponsiveExternalContent";
 import cacheHttp from "../../utils/cache-http";
 import wrappedLogger from "../../utils/logger";
-import { IResponsiveExternalContent } from "../../../../common/__types__/IResponsiveExternalContent";
+import { IParams } from "../../__types__/IParams";
+import { HandlerInputType } from "../__types__/HandlerInputType";
 import { IResponsiveExternalContentHandlerInput } from "../__types__/IResponsiveExternalContentHandlerInput";
+import responsiveExternalContent from "./responsive-external-content";
 
 jest.mock("../../utils/cache-http");
 jest.mock("../../utils/logger");

@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { v4 } from "uuid";
-import { ICorrelation } from "./__types__/ICorrelation";
-import { StoreService, StorageKeys } from "../store/store.service";
 import { RuntimeService } from "../runtime/runtime.service";
+import { StorageKeys, StoreService } from "../store/store.service";
+import { ICorrelation } from "./__types__/ICorrelation";
 
 @Injectable({
   providedIn: "root",

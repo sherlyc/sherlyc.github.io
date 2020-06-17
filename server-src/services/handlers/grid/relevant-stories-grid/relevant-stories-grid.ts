@@ -1,15 +1,15 @@
-import { handlerRunnerFunction } from "../../runner";
-import { IParams } from "../../../__types__/IParams";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import {
-  IRelevantStoriesGridHandlerInput,
-  RelevantStoriesGridPositions
-} from "../../__types__/IRelevantStoriesGridHandlerInput";
 import {
   Border,
   IGridConfig
 } from "../../../../../common/__types__/IGridContainer";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
+import {
+  IRelevantStoriesGridHandlerInput,
+  RelevantStoriesGridPositions
+} from "../../__types__/IRelevantStoriesGridHandlerInput";
 
 export default async function(
   handlerRunner: handlerRunnerFunction,

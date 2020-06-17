@@ -1,6 +1,6 @@
-import { IRawArticle } from "../__types__/IRawArticle";
-import { IDefconArticleUnit } from "../../../../common/__types__/IDefconArticleUnit";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IDefconArticleUnit } from "../../../../common/__types__/IDefconArticleUnit";
+import { IRawArticle } from "../__types__/IRawArticle";
 
 export const defconArticleUnit = (
   article: IRawArticle,

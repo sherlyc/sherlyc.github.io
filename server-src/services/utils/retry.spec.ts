@@ -1,5 +1,5 @@
-import retry from "./retry";
 import { IParams } from "../__types__/IParams";
+import retry from "./retry";
 
 describe("Retry", () => {
   const params: IParams = { apiRequestId: "request-id-for-testing" };

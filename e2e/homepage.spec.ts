@@ -1,7 +1,7 @@
-import { getDriver } from "./driver/driver";
 import { By, until, WebDriver } from "selenium-webdriver";
+import { getDriver } from "./driver/driver";
+import { getElement, getElements } from "./helpers";
 import config from "./spaceConfig";
-import { getElements, getElement } from "./helpers";
 
 jest.setTimeout(1000000);
 

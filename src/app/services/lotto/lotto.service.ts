@@ -1,7 +1,7 @@
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import * as random from "math-random";
 import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import * as random from "math-random";
+import { Observable } from "rxjs";
 import { ConfigService } from "../config/config.service";
 import { StoreService } from "../store/store.service";
 

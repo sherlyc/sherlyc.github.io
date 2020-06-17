@@ -1,7 +1,7 @@
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArticleUnit";
-import { IRawArticle } from "../__types__/IRawArticle";
 import { ImageLayoutType } from "../../../../common/__types__/ImageLayoutType";
+import { IRawArticle } from "../__types__/IRawArticle";
 
 export const bigImageArticleUnit = (
   article: IRawArticle,

@@ -1,14 +1,14 @@
-import { Inject, Injectable, Optional } from "@angular/core";
-import { Observable, of } from "rxjs";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { catchError, retry } from "rxjs/operators";
-import { IPage } from "../../../../common/__types__/IPage";
-import { LoggerService } from "../logger/logger.service";
-import { ConfigService } from "../config/config.service";
-import { RuntimeService } from "../runtime/runtime.service";
+import { Inject, Injectable, Optional } from "@angular/core";
 import { makeStateKey, TransferState } from "@angular/platform-browser";
 import { RESPONSE } from "@nguniversal/express-engine/tokens";
 import { Response } from "express";
+import { Observable, of } from "rxjs";
+import { catchError, retry } from "rxjs/operators";
+import { IPage } from "../../../../common/__types__/IPage";
+import { ConfigService } from "../config/config.service";
+import { LoggerService } from "../logger/logger.service";
+import { RuntimeService } from "../runtime/runtime.service";
 
 @Injectable({
   providedIn: "root"

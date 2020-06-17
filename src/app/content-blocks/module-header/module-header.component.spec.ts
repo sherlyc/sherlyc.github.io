@@ -1,13 +1,13 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ModuleHeaderComponent } from "./module-header.component";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { By } from "@angular/platform-browser";
 import { AccentColor } from "../../../../common/__types__/AccentColor";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import {
   IModuleHeader,
   ModuleHeaderVariation
 } from "../../../../common/__types__/IModuleHeader";
-import { By } from "@angular/platform-browser";
+import { ModuleHeaderComponent } from "./module-header.component";
 
 describe("ModuleHeaderComponent", () => {
   let component: ModuleHeaderComponent;

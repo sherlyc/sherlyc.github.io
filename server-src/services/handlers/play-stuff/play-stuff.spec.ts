@@ -1,10 +1,10 @@
-import { IParams } from "../../__types__/IParams";
-import { IPlayStuffHandlerInput } from "../__types__/IPlayStuffHandlerInput";
-import { IBrightcoveVideo } from "../../../../common/__types__/IBrightcoveVideo";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { HandlerInputType } from "../__types__/HandlerInputType";
+import { IBrightcoveVideo } from "../../../../common/__types__/IBrightcoveVideo";
 import { getBrightcovePlaylist } from "../../adapters/brightcove/brightcove";
 import logger from "../../utils/logger";
+import { IParams } from "../../__types__/IParams";
+import { HandlerInputType } from "../__types__/HandlerInputType";
+import { IPlayStuffHandlerInput } from "../__types__/IPlayStuffHandlerInput";
 import playStuff from "./play-stuff";
 import { playStuffConfig } from "./play-stuff-config";
 

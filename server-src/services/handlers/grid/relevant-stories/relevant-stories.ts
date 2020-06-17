@@ -1,17 +1,17 @@
-import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { handlerRunnerFunction } from "../../runner";
-import { IParams } from "../../../__types__/IParams";
-import { IRelevantStoriesHandlerInput } from "../../__types__/IRelevantStoriesHandlerInput";
-import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
-import { Strap } from "../../../strap";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
+import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { getMostPopular } from "../../../adapters/most-popular/most-popular.service";
+import { Strap } from "../../../strap";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
   IRelevantStoriesGridHandlerInput,
   RelevantStoriesGridPositions
 } from "../../__types__/IRelevantStoriesGridHandlerInput";
-import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
+import { IRelevantStoriesHandlerInput } from "../../__types__/IRelevantStoriesHandlerInput";
 import { createRelevantStoriesColumn } from "./relevant-stories-column";
 
 export default async function(
