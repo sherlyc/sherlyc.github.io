@@ -125,7 +125,7 @@ describe("Top Stories V2", () => {
         [TopStoriesV2DefaultGridPositions.BannerAd]: [
           { type: ContentBlockType.StickyContainer, items: [basicAdUnit] }
         ],
-        [TopStoriesV2DefaultGridPositions.LeftOne]: [
+        [TopStoriesV2DefaultGridPositions.TopOne]: [
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "3",
@@ -138,7 +138,7 @@ describe("Top Stories V2", () => {
             introText: "3 intro"
           })
         ],
-        [TopStoriesV2DefaultGridPositions.LeftTwo]: [
+        [TopStoriesV2DefaultGridPositions.TopTwo]: [
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "4",
@@ -151,21 +151,20 @@ describe("Top Stories V2", () => {
             introText: "4 intro"
           })
         ],
-        [TopStoriesV2DefaultGridPositions.LeftThree]: [
+        [TopStoriesV2DefaultGridPositions.TopThree]: [
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "5",
             orientation: {
-              mobile: Orientation.Portrait,
-              tablet: Orientation.Portrait,
-              desktop: Orientation.Portrait
+              mobile: Orientation.Landscape,
+              tablet: Orientation.Landscape,
+              desktop: Orientation.Landscape
             },
             imageSrc: "5.16:9.jpg",
-            introText: "5 intro"
+            introText: undefined
           })
         ],
-        [TopStoriesV2DefaultGridPositions.LeftFour]: [basicAdUnit],
-        [TopStoriesV2DefaultGridPositions.RightOne]: [
+        [TopStoriesV2DefaultGridPositions.TopFour]: [
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "6",
@@ -178,20 +177,21 @@ describe("Top Stories V2", () => {
             introText: undefined
           })
         ],
-        [TopStoriesV2DefaultGridPositions.RightTwo]: [
+        [TopStoriesV2DefaultGridPositions.BottomOne]: [
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "7",
             orientation: {
-              mobile: Orientation.Landscape,
-              tablet: Orientation.Landscape,
-              desktop: Orientation.Landscape
+              mobile: Orientation.Portrait,
+              tablet: Orientation.Portrait,
+              desktop: Orientation.Portrait
             },
             imageSrc: "7.16:9.jpg",
-            introText: undefined
+            introText: "7 intro"
           })
         ],
-        [TopStoriesV2DefaultGridPositions.RightThree]: [
+        [TopStoriesV2DefaultGridPositions.BottomTwo]: [basicAdUnit],
+        [TopStoriesV2DefaultGridPositions.BottomThree]: [
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "8",
@@ -204,27 +204,27 @@ describe("Top Stories V2", () => {
             introText: "8 intro"
           })
         ],
-        [TopStoriesV2DefaultGridPositions.RightFour]: [
+        [TopStoriesV2DefaultGridPositions.BottomFour]: [
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "9",
             orientation: {
-              mobile: Orientation.Landscape,
-              tablet: Orientation.Landscape,
-              desktop: Orientation.Landscape
+              mobile: Orientation.Portrait,
+              tablet: Orientation.Portrait,
+              desktop: Orientation.Portrait
             },
             imageSrc: undefined,
             introText: "9 intro"
           })
         ],
-        [TopStoriesV2DefaultGridPositions.RightFive]: [
+        [TopStoriesV2DefaultGridPositions.BottomFive]: [
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "10",
             orientation: {
-              mobile: Orientation.Landscape,
-              tablet: Orientation.Landscape,
-              desktop: Orientation.Landscape
+              mobile: Orientation.Portrait,
+              tablet: Orientation.Portrait,
+              desktop: Orientation.Portrait
             },
             imageSrc: undefined,
             introText: "10 intro"
