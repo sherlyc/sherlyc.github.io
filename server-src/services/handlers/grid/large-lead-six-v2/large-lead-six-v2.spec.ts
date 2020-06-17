@@ -8,7 +8,7 @@ import largeLeadSixV2 from "./large-lead-six-v2";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import {
   IGridConfig,
-  IGridContainer
+  IGridContainer,
 } from "../../../../../common/__types__/IGridContainer";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IListGridHandlerInput } from "../../__types__/IListGridHandlerInput";
@@ -24,7 +24,7 @@ const articlesWithIds = (ids: number[]) =>
       ({
         id: `${id}`,
         sixteenByNineSrc: `${id}.png`,
-        introText: `${id} intro`
+        introText: `${id} intro`,
       } as IRawArticle)
   );
 
@@ -40,7 +40,7 @@ describe("Large Lead Six V2", () => {
     items: {},
     mobile: {} as IGridConfig,
     tablet: {} as IGridConfig,
-    desktop: {} as IGridConfig
+    desktop: {} as IGridConfig,
   };
   const input: ILargeLeadSixV2HandlerInput = {
     type: HandlerInputType.LargeLeadSixV2,
@@ -48,7 +48,7 @@ describe("Large Lead Six V2", () => {
     color: AccentColor.AppleGreen,
     linkUrl: "/games",
     strapName: "strapName",
-    sourceId: Strap.ClimateChange
+    sourceId: Strap.ClimateChange,
   };
 
   beforeEach(() => {
@@ -72,7 +72,7 @@ describe("Large Lead Six V2", () => {
     await largeLeadSixV2(handlerRunnerMock, input, params);
 
     const [
-      [listGridHandlerInput, listGridHandlerParams]
+      [listGridHandlerInput, listGridHandlerParams],
     ] = handlerRunnerMock.mock.calls;
     expect(listGridHandlerInput).toEqual({
       type: HandlerInputType.ListGrid,
@@ -83,10 +83,10 @@ describe("Large Lead Six V2", () => {
           orientation: {
             mobile: Orientation.Portrait,
             tablet: Orientation.Portrait,
-            desktop: Orientation.Portrait
+            desktop: Orientation.Portrait,
           },
           introText: "2 intro",
-          imageSrc: undefined
+          imageSrc: undefined,
         }),
         expectContentBlock({
           type: ContentBlockType.HomepageArticle,
@@ -94,10 +94,10 @@ describe("Large Lead Six V2", () => {
           orientation: {
             mobile: Orientation.Portrait,
             tablet: Orientation.Portrait,
-            desktop: Orientation.Portrait
+            desktop: Orientation.Portrait,
           },
           introText: undefined,
-          imageSrc: undefined
+          imageSrc: undefined,
         }),
         expectContentBlock({
           type: ContentBlockType.HomepageArticle,
@@ -105,10 +105,10 @@ describe("Large Lead Six V2", () => {
           orientation: {
             mobile: Orientation.Portrait,
             tablet: Orientation.Portrait,
-            desktop: Orientation.Portrait
+            desktop: Orientation.Portrait,
           },
           introText: undefined,
-          imageSrc: undefined
+          imageSrc: undefined,
         }),
         expectContentBlock({
           type: ContentBlockType.HomepageArticle,
@@ -116,12 +116,12 @@ describe("Large Lead Six V2", () => {
           orientation: {
             mobile: Orientation.Portrait,
             tablet: Orientation.Portrait,
-            desktop: Orientation.Portrait
+            desktop: Orientation.Portrait,
           },
           introText: undefined,
-          imageSrc: undefined
-        })
-      ]
+          imageSrc: undefined,
+        }),
+      ],
     } as IListGridHandlerInput);
     expect(listGridHandlerParams).toEqual(params);
   });
@@ -137,7 +137,7 @@ describe("Large Lead Six V2", () => {
 
     const [
       [],
-      [largeLeadSixGridHandlerInput, largeLeadSixGridParams]
+      [largeLeadSixGridHandlerInput, largeLeadSixGridParams],
     ] = handlerRunnerMock.mock.calls;
 
     expect(largeLeadSixGridHandlerInput).toEqual({
@@ -148,8 +148,8 @@ describe("Large Lead Six V2", () => {
             type: ContentBlockType.ModuleHeader,
             title: input.displayName,
             url: input.linkUrl,
-            color: input.color
-          }
+            color: input.color,
+          },
         ],
         [LargeLeadSixGridPositions.Left]: [
           expect.objectContaining({
@@ -158,11 +158,11 @@ describe("Large Lead Six V2", () => {
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
-              desktop: Orientation.Portrait
+              desktop: Orientation.Portrait,
             },
             introText: "1 intro",
-            imageSrc: "1.png"
-          })
+            imageSrc: "1.png",
+          }),
         ],
         [LargeLeadSixGridPositions.Middle]: [mockListGridResult],
         [LargeLeadSixGridPositions.Right]: [
@@ -171,12 +171,12 @@ describe("Large Lead Six V2", () => {
             items: [
               {
                 type: ContentBlockType.BasicAdUnit,
-                context: input.strapName
-              }
-            ]
-          }
-        ]
-      }
+                context: input.strapName,
+              },
+            ],
+          },
+        ],
+      },
     });
     expect(largeLeadSixGridParams).toEqual(params);
   });

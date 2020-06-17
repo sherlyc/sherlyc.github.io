@@ -7,7 +7,7 @@ import mostReadHandler from "./most-read";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import {
   IMostReadGridHandlerInput,
-  MostReadGridPositions
+  MostReadGridPositions,
 } from "../../__types__/IMostReadGridHandlerInput";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
@@ -20,7 +20,7 @@ describe("Most Read", () => {
   const input: IMostReadHandlerInput = {
     type: HandlerInputType.MostRead,
     displayName: "most read",
-    strapName: "most read"
+    strapName: "most read",
   };
 
   const fakeRawArticles = (ids: number[]) =>
@@ -51,16 +51,16 @@ describe("Most Read", () => {
             type: ContentBlockType.MostReadList,
             articles: [expectArticle(1), expectArticle(2), expectArticle(3)],
             displayName: input.displayName,
-            strapName: input.strapName
-          }
+            strapName: input.strapName,
+          },
         ],
         [MostReadGridPositions.Right]: [
           {
             type: ContentBlockType.StickyContainer,
-            items: [basicAdUnit(input.strapName)]
-          }
-        ]
-      }
+            items: [basicAdUnit(input.strapName)],
+          },
+        ],
+      },
     };
 
     expect(handlerRunner).toHaveBeenCalledWith(expectedGrid, params);
@@ -80,16 +80,16 @@ describe("Most Read", () => {
             type: ContentBlockType.MostReadList,
             articles: [],
             displayName: input.displayName,
-            strapName: input.strapName
-          }
+            strapName: input.strapName,
+          },
         ],
         [MostReadGridPositions.Right]: [
           {
             type: ContentBlockType.StickyContainer,
-            items: [basicAdUnit(input.strapName)]
-          }
-        ]
-      }
+            items: [basicAdUnit(input.strapName)],
+          },
+        ],
+      },
     };
 
     expect(handlerRunner).toHaveBeenCalledWith(expectedGrid, params);

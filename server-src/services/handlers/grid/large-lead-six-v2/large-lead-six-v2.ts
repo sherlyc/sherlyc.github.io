@@ -10,7 +10,7 @@ import { homepageArticle } from "../../../adapters/article-converter/homepage-ar
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 import {
   ILargeLeadSixGridHandlerInput,
-  LargeLeadSixGridPositions
+  LargeLeadSixGridPositions,
 } from "../../__types__/ILargeLeadSixGridHandlerInput";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
@@ -22,7 +22,7 @@ export default async function (
     strapName,
     displayName,
     color,
-    linkUrl
+    linkUrl,
   }: ILargeLeadSixV2HandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
@@ -36,7 +36,7 @@ export default async function (
         {
           mobile: Orientation.Portrait,
           tablet: Orientation.Portrait,
-          desktop: Orientation.Portrait
+          desktop: Orientation.Portrait,
         },
         true,
         true
@@ -53,7 +53,7 @@ export default async function (
       {
         mobile: Orientation.Portrait,
         tablet: Orientation.Portrait,
-        desktop: Orientation.Portrait
+        desktop: Orientation.Portrait,
       },
       index < 1,
       false
@@ -62,7 +62,7 @@ export default async function (
   const middleContent = await handlerRunner(
     {
       type: HandlerInputType.ListGrid,
-      content: listGridContent
+      content: listGridContent,
     },
     params
   );
@@ -74,18 +74,18 @@ export default async function (
           type: ContentBlockType.ModuleHeader,
           title: displayName,
           url: linkUrl,
-          color
-        }
+          color,
+        },
       ],
       [LargeLeadSixGridPositions.Left]: [leftContent],
       [LargeLeadSixGridPositions.Middle]: middleContent,
       [LargeLeadSixGridPositions.Right]: [
         {
           type: ContentBlockType.StickyContainer,
-          items: [basicAdUnit(strapName)]
-        }
-      ]
-    }
+          items: [basicAdUnit(strapName)],
+        },
+      ],
+    },
   };
   return await handlerRunner(largeLeadSixGridHandlerInput, params);
 }
