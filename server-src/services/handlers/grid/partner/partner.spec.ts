@@ -11,6 +11,7 @@ import { IPartnerHandlerInput } from "../../__types__/IPartnerHandlerInput";
 import { brandConfig } from "../brand/brand-config";
 import Partner from "./partner";
 import { createPartnerContent } from "./partner-content";
+import { AccentColor } from "../../../../../common/__types__/AccentColor";
 
 jest.mock("./partner-content");
 
@@ -76,9 +77,9 @@ describe("Partner", () => {
       content: {
         [BrandGridPositions.ModuleTitle]: [
           {
-            type: ContentBlockType.ModuleTitle,
-            displayName: "from our partners",
-            displayNameColor: "black"
+            type: ContentBlockType.ModuleHeader,
+            title: "from our partners",
+            color: AccentColor.Black
           }
         ],
         [BrandGridPositions.FirstRow]: [fakeGridContainer],
