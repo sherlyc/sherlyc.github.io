@@ -33,30 +33,35 @@ describe("TimeComponent", () => {
   });
 
   it.each`
-      minutesAgo  | expected
-      ${1}        | ${"1 min ago"}
-      ${20}       | ${"20 min ago"}
-      ${59}       | ${"59 min ago"}
-    `(
+    minutesAgo | expected
+    ${1}       | ${"1 min ago"}
+    ${20}      | ${"20 min ago"}
+    ${59}      | ${"59 min ago"}
+  `(
     "should show time ago when it is between 1 to 59 minutes ago ($minutesAgo min ago)",
     ({ minutesAgo, expected }) => {
-      component.timestamp = getUnixTime(sub(new Date(), { minutes: minutesAgo }));
+      component.timestamp = getUnixTime(
+        sub(new Date(), { minutes: minutesAgo })
+      );
 
       fixture.detectChanges();
       const timeSpan = fixture.debugElement.query(By.css(".time"));
 
       expect(timeSpan.nativeElement.textContent).toBe(expected);
-    });
+    }
+  );
 
   it.each`
-      inputTime                           | expected
-      ${"January 01, 2020 10:00:00"}      | ${"10:00am"}
-      ${"January 01, 2020 10:45:00"}      | ${"10:45am"}
-      ${"January 01, 2020 11:00:00"}      | ${"11:00am"}
-    `("should show inputTime in 12 hour clock format when it is between 1 and 2 hours ago ($expected)",
-    ({inputTime, expected}) => {
-      const fakeNow = "January 01, 2020 12:00:00";
-      fakeDate(fakeNow);
+    now                            | inputTime                      | expected
+    ${"January 01, 2020 15:00:00"} | ${"January 01, 2020 14:00:00"} | ${"2:00pm"}
+    ${"January 01, 2020 15:00:00"} | ${"January 01, 2020 13:32:00"} | ${"1:32pm"}
+    ${"January 01, 2020 15:00:00"} | ${"January 01, 2020 13:00:00"} | ${"1:00pm"}
+    ${"January 01, 2020 02:00:00"} | ${"January 01, 2020 00:00:00"} | ${"12:00am"}
+    ${"January 01, 2020 11:00:00"} | ${"January 01, 2020 9:00:00"}  | ${"9:00am"}
+  `(
+    "should show inputTime in 12 hour clock format when it is between 1 and 2 hours ago ($expected)",
+    ({ now, inputTime, expected }) => {
+      fakeDate(now);
 
       component.timestamp = getUnixTime(new Date(inputTime));
 
@@ -64,12 +69,11 @@ describe("TimeComponent", () => {
       const timeSpan = fixture.debugElement.query(By.css(".time"));
 
       expect(timeSpan.nativeElement.textContent).toBe(expected);
-  });
+    }
+  );
 
-  it.each([
-    "January 01, 2020 09:00:00",
-    "January 01, 2020 13:00:00"
-  ])("should not show time when it is more than 2 hours ago or in the future (%s)",
+  it.each(["January 01, 2020 09:00:00", "January 01, 2020 13:00:00"])(
+    "should not show time when it is more than 2 hours ago or in the future (%s)",
     (inputTime) => {
       const fakeNow = "January 01, 2020 12:00:00";
       fakeDate(fakeNow);
@@ -81,7 +85,8 @@ describe("TimeComponent", () => {
 
       expect(time).toBeFalsy();
       expect(separatorSpan).toBeFalsy();
-    });
+    }
+  );
 
   it("should show the separator on the left when specified", () => {
     // 20 minutes ago
