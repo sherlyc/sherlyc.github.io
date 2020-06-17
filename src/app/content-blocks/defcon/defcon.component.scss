@@ -4,12 +4,6 @@
   margin-bottom: 20px;
 }
 
-@include mobile {
-  .image {
-    margin: 0 -10px;
-  }
-}
-
 a {
   display: flex;
   flex-direction: column;
@@ -28,12 +22,12 @@ a {
 }
 
 .text {
-  position: relative;
-  padding: 40px 10px 10px;
-  margin-top: -30px;
+  margin-top: -100px;
+  z-index: 100;
+  padding: 60px 10px 10px;
   background-image: linear-gradient(
     rgba(0, 0, 0, 0) 0%,
-    #222222 30px,
+    #222222 90px,
     #222222 100%
   );
   border-bottom: 1px solid #414141;
@@ -52,14 +46,34 @@ a {
   display: flex;
   flex-direction: row;
   background-color: #222222;
+
+  .cell {
+    flex-grow: 1;
+    app-headline {
+      --title-size: 18px;
+      color: #ffffff;
+    }
+    border-right: 1px solid #414141;
+    padding: 10px;
+  }
+  .cell:last-child {
+    border-right: none;
+  }
 }
 
-.cell {
-  flex-grow: 1;
-  app-headline {
-    --title-size: 18px;
-    color: #ffffff;
+@include mobile {
+  .wrapper {
+    margin: 0 -10px;
   }
-  border-right: 1px solid #414141;
-  padding: 10px;
+  .related-articles {
+    flex-direction: column;
+
+    .cell {
+      border-right: none;
+      border-bottom: 1px solid #414141;
+    }
+    .cell:last-child {
+      border-bottom: none;
+    }
+  }
 }

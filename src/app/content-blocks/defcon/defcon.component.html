@@ -12,7 +12,7 @@
       </div>
     </a>
   </article>
-  <div class="related-articles">
+  <div class="related-articles" *ngIf="input.articles.length > 1">
     <div class="cell" *ngFor="let article of input.articles.slice(1)">
       <app-headline [headline]="article.headline" [headlineFlags]="article.headlineFlags"></app-headline>
     </div>
