@@ -41,7 +41,7 @@ describe("DefconComponent", () => {
   let component: DefconComponent;
   let fixture: ComponentFixture<DefconComponent>;
   let analyticsService: ServiceMock<AnalyticsService>;
-  let defcon: IDefcon = {
+  const defcon: IDefcon = {
     type: ContentBlockType.Defcon,
     articles: fakeHomepageArticleContents([1, 2, 3, 4]),
     color: AccentColor.AppleGreen,
