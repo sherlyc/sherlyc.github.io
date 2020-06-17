@@ -52,29 +52,6 @@ export default async (params: IParams): Promise<IPage> => {
 const homepageAdPrefix = "homepage";
 const homepageV2AdPrefix = "homepagev2";
 
-const mockHomepageArticleContent = {
-  id: `1`,
-  headline: `One day too slow on tracing`,
-  title: `Hello title`,
-  introText: `A four-day window is recommended for testing, isolation and tracing of close contacts. NZ
-takes five.`,
-  byline: `Hello byline`,
-  linkUrl: `Hello linkUrl`,
-  lastPublishedTime: 1,
-  headlineFlags: [],
-  image: {
-    defcon:
-      "https://resources.stuff.co.nz/content/dam/images/4/y/m/s/6/7/image.related.StuffThumbnailSixteenByNine.1600x900.4ymttm.png/1592359111906.jpg?format=pjpg&crop=16:9,smart&width=200",
-    sixteenByNine:
-      "https://resources.stuff.co.nz/content/dam/images/4/y/m/s/6/7/image.related.StuffThumbnailSixteenByNine.1600x900.4ymttm.png/1592359111906.jpg?format=pjpg&crop=16:9,smart&width=200",
-  },
-  color: AccentColor.Gray,
-  category: {
-    name: "National",
-    url: "/national/",
-  },
-};
-
 export const newPage = (): HandlerInput[] => {
   const page: HandlerInput[] = [
     {
@@ -103,22 +80,6 @@ export const newPage = (): HandlerInput[] => {
       type: HandlerInputType.Feature,
       name: FeatureName.HomepageV2,
       content: [
-        {
-          type: HandlerInputType.ContentBlockHandler,
-          contentBlocks: [
-            {
-              type: ContentBlockType.Defcon,
-              articles: [
-                mockHomepageArticleContent,
-                mockHomepageArticleContent,
-                mockHomepageArticleContent,
-                mockHomepageArticleContent,
-              ],
-              strapName: "blah",
-              color: AccentColor.Coral,
-            },
-          ],
-        },
         {
           type: HandlerInputType.TopStoriesV2Default,
           strapName: `${homepageV2AdPrefix}TopStoriesDefaultOne`,
