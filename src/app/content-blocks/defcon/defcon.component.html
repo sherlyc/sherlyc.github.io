@@ -1,1 +1,13 @@
-<p>defcon works!</p>
+<article itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+  <meta itemprop="position" content="{{ index }}" />
+  <a itemprop="url" href="{{ input.articles[0].linkUrl }}" appOpenExternalLink="{{ input.articles[0].linkUrl }}">
+    <div class="image">
+      <app-fluid-image [imageSrc]="input.articles[0].image.defcon" [caption]="input.articles[0].headline" [aspectRatio]="'16:9'"></app-fluid-image>
+    </div>
+    <div class="text">
+      <app-tag-link [color]="input.color" [name]="input.articles[0].category.name" [url]="input.articles[0].category.url"></app-tag-link>
+      <app-headline [headline]="input.articles[0].headline" [headlineFlags]="input.articles[0].headlineFlags"></app-headline>
+      <p class="intro">{{ input.articles[0].introText }}</p>
+    </div>
+  </a>
+</article>

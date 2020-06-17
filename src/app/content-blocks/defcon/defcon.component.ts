@@ -10,6 +10,7 @@ import { IDefcon } from "../../../../common/__types__/IDefcon";
 })
 export class DefconComponent implements OnInit, IContentBlockComponent {
   @Input() input!: IDefcon;
+  index!: number;
   constructor() {}
 
   ngOnInit(): void {}
