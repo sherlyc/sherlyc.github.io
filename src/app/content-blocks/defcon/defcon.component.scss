@@ -1,17 +1,13 @@
 @import "src/styles/break-points";
 
-:host {
-  --title-size: 40px;
+.wrapper {
+  margin-bottom: 20px;
 }
 
 @include mobile {
   .image {
     margin: 0 -10px;
   }
-}
-
-app-headline {
-  font-weight: 900;
 }
 
 a {
@@ -40,5 +36,30 @@ a {
     #222222 30px,
     #222222 100%
   );
-  color: #ffffff;
+  border-bottom: 1px solid #414141;
+
+  .intro {
+    color: #ffffff;
+  }
+  app-headline {
+    --title-size: 40px;
+    font-weight: 900;
+    color: #ffffff;
+  }
+}
+
+.related-articles {
+  display: flex;
+  flex-direction: row;
+  background-color: #222222;
+}
+
+.cell {
+  flex-grow: 1;
+  app-headline {
+    --title-size: 18px;
+    color: #ffffff;
+  }
+  border-right: 1px solid #414141;
+  padding: 10px;
 }
