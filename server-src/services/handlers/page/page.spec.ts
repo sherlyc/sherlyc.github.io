@@ -1,5 +1,5 @@
-import { IParams } from "../../__types__/IParams";
 import { Section } from "../../section";
+import { IParams } from "../../__types__/IParams";
 import { IPageHandlerInput } from "../__types__/IPageHandlerInput";
 import pageHandler from "./page";
 

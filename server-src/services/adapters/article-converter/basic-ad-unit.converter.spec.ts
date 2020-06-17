@@ -1,6 +1,6 @@
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { basicAdUnit } from "./basic-ad-unit.converter";
 import { IBasicAdUnit } from "../../../../common/__types__/IBasicAdUnit";
+import { basicAdUnit } from "./basic-ad-unit.converter";
 
 describe("basic ad unit converter", () => {
   it("should convert", () => {

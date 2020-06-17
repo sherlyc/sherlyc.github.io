@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Router, Event as RouteEvent, NavigationStart } from "@angular/router";
+import { Event as RouteEvent, NavigationStart, Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { filter } from "rxjs/operators";
 

@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
-import { TestBed, ComponentFixture } from "@angular/core/testing";
-import { OpenExternalLinkDirective } from "./open-external-link.directive";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
+import { OpenExternalLinkDirective } from "./open-external-link.directive";
 
 @Component({
   selector: "app-fake-anchor",

@@ -1,19 +1,19 @@
+import { AspectRatio } from "../../../../../common/AspectRatio";
 import { AccentColor } from "../../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { HomepageHighlightArticleVariation } from "../../../../../common/__types__/IHomepageHighlightArticle";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { Strap } from "../../../strap";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
   INewsSixGridV2HandlerInput,
-  NewsSixV2GridPositions,
+  NewsSixV2GridPositions
 } from "../../__types__/INewsSixGridV2HandlerInput";
 import { INewsSixV2HandlerInput } from "../../__types__/INewsSixV2HandlerInput";
 import newsSixV2Handler from "./news-six-v2";
-import { AspectRatio } from "../../../../../common/AspectRatio";
-import { HomepageHighlightArticleVariation } from "../../../../../common/__types__/IHomepageHighlightArticle";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../utils/logger");
@@ -24,7 +24,7 @@ const articlesWithIds = (ids: number[]) =>
       ({
         id: `${id}`,
         sixteenByNineSrc: `${id}.png`,
-        introText: `${id} intro`,
+        introText: `${id} intro`
       } as IRawArticle)
   );
 
@@ -42,7 +42,7 @@ describe("News Six V2 handler", () => {
     color: displayNameColor,
     linkUrl: "http://www.stuff.co.nz",
     strapName: "FakeStrap",
-    sourceId: "sourceId" as Strap,
+    sourceId: "sourceId" as Strap
   };
 
   beforeEach(() => {
@@ -74,8 +74,8 @@ describe("News Six V2 handler", () => {
             type: ContentBlockType.ModuleHeader,
             title: input.displayName,
             url: input.linkUrl,
-            color: input.color,
-          }),
+            color: input.color
+          })
         ],
         [NewsSixV2GridPositions.One]: [
           expectContentBlock({
@@ -84,11 +84,11 @@ describe("News Six V2 handler", () => {
             image: {
               mobile: {
                 src: "1.png",
-                aspectRatio: AspectRatio.SixteenByNine,
-              },
+                aspectRatio: AspectRatio.SixteenByNine
+              }
             },
-            variation: HomepageHighlightArticleVariation.Featured,
-          }),
+            variation: HomepageHighlightArticleVariation.Featured
+          })
         ],
         [NewsSixV2GridPositions.Two]: [
           expectContentBlock({
@@ -97,11 +97,11 @@ describe("News Six V2 handler", () => {
             orientation: {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
-              desktop: Orientation.Landscape,
+              desktop: Orientation.Landscape
             },
             introText: "2 intro",
-            imageSrc: undefined,
-          }),
+            imageSrc: undefined
+          })
         ],
         [NewsSixV2GridPositions.Three]: [
           expectContentBlock({
@@ -110,11 +110,11 @@ describe("News Six V2 handler", () => {
             orientation: {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
-              desktop: Orientation.Landscape,
+              desktop: Orientation.Landscape
             },
             introText: "3 intro",
-            imageSrc: undefined,
-          }),
+            imageSrc: undefined
+          })
         ],
         [NewsSixV2GridPositions.Four]: [
           expectContentBlock({
@@ -123,11 +123,11 @@ describe("News Six V2 handler", () => {
             image: {
               mobile: {
                 src: "4.png",
-                aspectRatio: AspectRatio.SixteenByNine,
-              },
+                aspectRatio: AspectRatio.SixteenByNine
+              }
             },
-            variation: HomepageHighlightArticleVariation.Featured,
-          }),
+            variation: HomepageHighlightArticleVariation.Featured
+          })
         ],
         [NewsSixV2GridPositions.Five]: [
           expectContentBlock({
@@ -136,11 +136,11 @@ describe("News Six V2 handler", () => {
             orientation: {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
-              desktop: Orientation.Landscape,
+              desktop: Orientation.Landscape
             },
             introText: "5 intro",
-            imageSrc: "5.png",
-          }),
+            imageSrc: "5.png"
+          })
         ],
         [NewsSixV2GridPositions.Six]: [
           expectContentBlock({
@@ -149,13 +149,13 @@ describe("News Six V2 handler", () => {
             orientation: {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
-              desktop: Orientation.Landscape,
+              desktop: Orientation.Landscape
             },
             introText: "6 intro",
-            imageSrc: "6.png",
-          }),
-        ],
-      },
+            imageSrc: "6.png"
+          })
+        ]
+      }
     };
 
     expect(handlerRunnerMock).toHaveBeenCalledWith(expected, params);

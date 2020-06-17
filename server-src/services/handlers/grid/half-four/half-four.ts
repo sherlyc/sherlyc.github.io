@@ -1,24 +1,24 @@
+import { AspectRatio } from "../../../../../common/AspectRatio";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
-import { IParams } from "../../../__types__/IParams";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { HomepageHighlightArticleVariation } from "../../../../../common/__types__/IHomepageHighlightArticle";
 import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
+import { homepageHighlightArticle } from "../../../adapters/article-converter/homepage-highlight-article.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { JsonFeedImageType } from "../../../adapters/__types__/JsonFeedImageType";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
   HalfFourGridPositions,
   IHalfFourGridHandlerInput
 } from "../../__types__/IHalfFourGridHandlerInput";
 import { IHalfFourHandlerInput } from "../../__types__/IHalfFourHandlerInput";
-import { handlerRunnerFunction } from "../../runner";
 import { contentErrorHandler } from "../content-error-handler";
-import { homepageHighlightArticle } from "../../../adapters/article-converter/homepage-highlight-article.converter";
-import { JsonFeedImageType } from "../../../adapters/__types__/JsonFeedImageType";
-import { AspectRatio } from "../../../../../common/AspectRatio";
-import { HomepageHighlightArticleVariation } from "../../../../../common/__types__/IHomepageHighlightArticle";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { sourceId, strapName, displayName, color, linkUrl }: IHalfFourHandlerInput,
   params: IParams
@@ -46,8 +46,8 @@ export default async function(
               {
                 mobile: {
                   variant: JsonFeedImageType.LANDSCAPE_SIXTEEN_BY_NINE,
-                  aspectRatio: AspectRatio.SixteenByNine,
-                },
+                  aspectRatio: AspectRatio.SixteenByNine
+                }
               },
               HomepageHighlightArticleVariation.Featured,
               true

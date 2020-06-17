@@ -1,14 +1,17 @@
-import { IWeather } from "../__types__/IWeather";
-import config from "../../utils/config";
-import retry from "../../utils/retry";
-import cacheHttp from "../../utils/cache-http";
-import { URL } from "url";
-import { IParams } from "../../__types__/IParams";
 import { AxiosResponse } from "axios";
+import { URL } from "url";
+import { Forecasts } from "../../../../common/Forecasts";
+import cacheHttp from "../../utils/cache-http";
+import config from "../../utils/config";
+import logger from "../../utils/logger";
+import retry from "../../utils/retry";
+import { IParams } from "../../__types__/IParams";
+import { IWeather } from "../__types__/IWeather";
 
 const validate = (
   weatherResponse: AxiosResponse<IWeather>,
-  location: string
+  location: string,
+  params: IParams
 ) => {
   const { data, status } = weatherResponse;
   if (status !== 200 || data.hasOwnProperty("error")) {
@@ -20,6 +23,15 @@ const validate = (
   if (data && !forecastExists) {
     throw new Error(`Missing forecasts for location: ${location}`);
   }
+
+  data.oneword_forecasts.forEach((forecast) => {
+    if (!Object.values(Forecasts).includes(forecast.oneword_forecast)) {
+      logger.warn(
+        params.apiRequestId,
+        `Unknown forecast for weather service:${forecast.oneword_forecast}, location:${location}`
+      );
+    }
+  });
 };
 
 async function requestWeatherData(
@@ -28,7 +40,7 @@ async function requestWeatherData(
 ): Promise<IWeather> {
   const url: URL = new URL(`${config.weatherAPI}?location=${location}`);
   const response = await cacheHttp(params, url.href);
-  validate(response, location);
+  validate(response, location, params);
   return response.data;
 }
 

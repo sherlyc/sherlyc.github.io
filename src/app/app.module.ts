@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 import { registerLocaleData } from "@angular/common";
-import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import enNZ from "@angular/common/locales/en-NZ";
 import { ErrorHandler, LOCALE_ID, NgModule } from "@angular/core";
 import {

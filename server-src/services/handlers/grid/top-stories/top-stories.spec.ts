@@ -2,12 +2,12 @@ import { ContentBlockType } from "../../../../../common/__types__/ContentBlockTy
 import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
-import { IParams } from "../../../__types__/IParams";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { LayoutType } from "../../../adapters/__types__/LayoutType";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { layoutRetriever } from "../../../adapters/layout/layout-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { LayoutType } from "../../../adapters/__types__/LayoutType";
 import { Strap } from "../../../strap";
+import { IParams } from "../../../__types__/IParams";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { ITopStoriesDefaultOneHighlightHandlerInput } from "../../__types__/ITopStoriesDefaultOneHighlightHandlerInput";
 import {

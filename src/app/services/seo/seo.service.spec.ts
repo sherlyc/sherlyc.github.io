@@ -1,7 +1,7 @@
 import { TestBed } from "@angular/core/testing";
 
-import { SeoService } from "./seo.service";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { SeoService } from "./seo.service";
 
 describe("SeoService", () => {
   let service: SeoService;

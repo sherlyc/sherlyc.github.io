@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
+import { Logo } from "../../../../common/Logo";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IBulletItem } from "../../../../common/__types__/IBulletItem";
 import { IBulletList } from "../../../../common/__types__/IBulletList";
-import { Logo } from "../../../../common/Logo";
 import { Section } from "../../../../server-src/services/section";
-import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { LogoComponent } from "../../shared/components/logo/logo.component";
 import { SharedModule } from "../../shared/shared.module";

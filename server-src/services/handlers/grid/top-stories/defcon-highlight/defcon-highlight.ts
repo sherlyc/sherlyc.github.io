@@ -1,17 +1,17 @@
 import { ContentBlockType } from "../../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../../common/__types__/IContentBlock";
-import { IParams } from "../../../../__types__/IParams";
 import { featuredArticle } from "../../../../adapters/article-converter/featured-article.converter";
 import { halfWidthImageArticleUnit } from "../../../../adapters/article-converter/half-width-image-article-unit.converter";
 import { gridBlock } from "../../../../adapters/grid/grid-block";
 import { Strap } from "../../../../strap";
+import { IParams } from "../../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../../runner";
 import { HandlerInputType } from "../../../__types__/HandlerInputType";
 import { ITopStoriesDefconHighlightHandlerInput } from "../../../__types__/ITopStoriesDefconHighlightHandlerInput";
-import { handlerRunnerFunction } from "../../../runner";
 import { contentErrorHandler } from "../../content-error-handler";
 import { DefconHighlightPosition } from "./defcon-highlight-position";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { articles, strapName, color }: ITopStoriesDefconHighlightHandlerInput,
   params: IParams

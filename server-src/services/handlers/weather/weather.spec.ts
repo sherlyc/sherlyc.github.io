@@ -1,9 +1,9 @@
-import WeatherHandler from "./weather";
-import { IParams } from "../../__types__/IParams";
-import { HandlerInputType } from "../__types__/HandlerInputType";
+import { IWeatherUnit } from "common/__types__/IWeatherUnit";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
-import { IWeatherUnit } from "common/__types__/IWeatherUnit";
+import { IParams } from "../../__types__/IParams";
+import { HandlerInputType } from "../__types__/HandlerInputType";
+import WeatherHandler from "./weather";
 
 describe("WeatherHandler", () => {
   const params: IParams = { apiRequestId: "request-id-for-testing" };

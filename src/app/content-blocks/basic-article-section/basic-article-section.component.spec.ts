@@ -6,8 +6,8 @@ import { ContentBlockType } from "../../../../common/__types__/ContentBlockType"
 import { IBasicArticleSection } from "../../../../common/__types__/IBasicArticleSection";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 import { Section } from "../../../../server-src/services/section";
-import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { ContentBlockDirective } from "../../shared/directives/content-block/content-block.directive";
 import { OpenExternalLinkDirective } from "../../shared/directives/open-external-link/open-external-link.directive";

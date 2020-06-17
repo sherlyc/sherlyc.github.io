@@ -10,9 +10,7 @@ jest.mock("pulltorefreshjs");
 
 @Component({
   selector: "app-dummy-component",
-  template: `
-    <div appPullToRefresh></div>
-  `
+  template: ` <div appPullToRefresh></div> `
 })
 class DummyComponent {}
 

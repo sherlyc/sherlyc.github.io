@@ -5,8 +5,8 @@ import { ConfigService } from "../config/config.service";
 import { FeatureSwitchService } from "../feature-switch/feature-switch.service";
 import { LoggerService } from "../logger/logger.service";
 import { RuntimeService } from "../runtime/runtime.service";
-import { ScriptId } from "../script-injector/__types__/ScriptId";
 import { ScriptInjectorService } from "../script-injector/script-injector.service";
+import { ScriptId } from "../script-injector/__types__/ScriptId";
 import { IAdServiceEventDetail } from "./AdServiceEventDetail";
 
 @Injectable({

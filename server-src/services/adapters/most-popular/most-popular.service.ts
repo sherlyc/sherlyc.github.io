@@ -1,12 +1,12 @@
 import { AxiosResponse } from "axios";
 import { forkJoin, from, Observable, of } from "rxjs";
 import { catchError, concatMap, map } from "rxjs/operators";
-import { IParams } from "../../__types__/IParams";
 import cacheHttp from "../../utils/cache-http";
 import config from "../../utils/config";
 import wrappedLogger from "../../utils/logger";
-import { IRawArticle } from "../__types__/IRawArticle";
+import { IParams } from "../../__types__/IParams";
 import { getArticleById } from "../jsonfeed/jsonfeed";
+import { IRawArticle } from "../__types__/IRawArticle";
 
 interface IMostPopularResponse {
   mostPopular: {

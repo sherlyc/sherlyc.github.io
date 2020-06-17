@@ -1,5 +1,5 @@
-import http from "./http";
 import { loadFromCache, saveToCache } from "./cache";
+import http from "./http";
 
 jest.mock("./http");
 

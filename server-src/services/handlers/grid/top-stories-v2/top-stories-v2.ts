@@ -1,43 +1,33 @@
+import { AspectRatio } from "../../../../../common/AspectRatio";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 import { HomepageHighlightArticleVariation } from "../../../../../common/__types__/IHomepageHighlightArticle";
-import { AspectRatio } from "../../../../../common/AspectRatio";
-import { IParams } from "../../../__types__/IParams";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { JsonFeedImageType } from "../../../adapters/__types__/JsonFeedImageType";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
 import { homepageHighlightArticle } from "../../../adapters/article-converter/homepage-highlight-article.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { JsonFeedImageType } from "../../../adapters/__types__/JsonFeedImageType";
 import { Strap } from "../../../strap";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
   ITopStoriesV2DefaultGridHandlerInput,
-  TopStoriesV2DefaultGridPositions,
+  TopStoriesV2DefaultGridPositions
 } from "../../__types__/ITopStoriesV2DefaultGridHandlerInput";
-import { ITopStoriesV2DefaultHandlerInput } from "../../__types__/ITopStoriesV2DefaultHandlerInput";
-import { handlerRunnerFunction } from "../../runner";
+import { ITopStoriesV2HandlerInput } from "../../__types__/ITopStoriesV2HandlerInput";
 import { contentErrorHandler } from "../content-error-handler";
 
-export default async function (
-  handlerRunner: handlerRunnerFunction,
-  {
-    strapName,
-    color,
-    midInsertContent,
-    lowerRightContent,
-  }: ITopStoriesV2DefaultHandlerInput,
+function defaultGrid(
+  { strapName, color }: ITopStoriesV2HandlerInput,
+  articles: IRawArticle[],
+  midInsertContentBlocks: IContentBlock[],
+  lowerRightContentBlocks: IContentBlock[],
   params: IParams
-): Promise<IContentBlock[]> {
-  const articles = await getRawArticles(Strap.TopStories, 10, params);
-  const midInsertContentBlocks = await handlerRunner(midInsertContent, params);
-  const lowerRightContentBlocks = await handlerRunner(
-    lowerRightContent,
-    params
-  );
-
-  const gridInput: ITopStoriesV2DefaultGridHandlerInput = {
+): ITopStoriesV2DefaultGridHandlerInput {
+  return {
     type: HandlerInputType.TopStoriesV2DefaultGrid,
     content: {
       [TopStoriesV2DefaultGridPositions.RightHighlight]: [
@@ -50,16 +40,16 @@ export default async function (
               {
                 mobile: {
                   variant: JsonFeedImageType.PORTRAIT,
-                  aspectRatio: AspectRatio.OneByOne,
-                },
+                  aspectRatio: AspectRatio.OneByOne
+                }
               },
               HomepageHighlightArticleVariation.Featured,
               true
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
-        ),
+        )
       ],
       [TopStoriesV2DefaultGridPositions.LeftHighlight]: [
         contentErrorHandler(
@@ -71,22 +61,22 @@ export default async function (
               {
                 mobile: {
                   variant: JsonFeedImageType.THUMBNAIL_SIXTEEN_BY_NINE,
-                  aspectRatio: AspectRatio.SixteenByNine,
-                },
+                  aspectRatio: AspectRatio.SixteenByNine
+                }
               },
               HomepageHighlightArticleVariation.Lead,
               true
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
-        ),
+        )
       ],
       [TopStoriesV2DefaultGridPositions.BannerAd]: [
         {
           type: ContentBlockType.StickyContainer,
-          items: [basicAdUnit(strapName)],
-        },
+          items: [basicAdUnit(strapName)]
+        }
       ],
       [TopStoriesV2DefaultGridPositions.LeftOne]: [
         contentErrorHandler(
@@ -98,15 +88,15 @@ export default async function (
               {
                 mobile: Orientation.Portrait,
                 tablet: Orientation.Portrait,
-                desktop: Orientation.Portrait,
+                desktop: Orientation.Portrait
               },
               true,
               true
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
-        ),
+        )
       ],
       [TopStoriesV2DefaultGridPositions.LeftTwo]: [
         contentErrorHandler(
@@ -118,15 +108,15 @@ export default async function (
               {
                 mobile: Orientation.Portrait,
                 tablet: Orientation.Portrait,
-                desktop: Orientation.Portrait,
+                desktop: Orientation.Portrait
               },
               true,
               true
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
-        ),
+        )
       ],
       [TopStoriesV2DefaultGridPositions.LeftThree]: [
         contentErrorHandler(
@@ -138,15 +128,15 @@ export default async function (
               {
                 mobile: Orientation.Portrait,
                 tablet: Orientation.Portrait,
-                desktop: Orientation.Portrait,
+                desktop: Orientation.Portrait
               },
               true,
               true
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
-        ),
+        )
       ],
       [TopStoriesV2DefaultGridPositions.LeftFour]: [basicAdUnit(strapName)],
       [TopStoriesV2DefaultGridPositions.RightOne]: [
@@ -159,15 +149,15 @@ export default async function (
               {
                 mobile: Orientation.Landscape,
                 tablet: Orientation.Landscape,
-                desktop: Orientation.Landscape,
+                desktop: Orientation.Landscape
               },
               false,
               true
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
-        ),
+        )
       ],
       [TopStoriesV2DefaultGridPositions.RightTwo]: [
         contentErrorHandler(
@@ -179,15 +169,15 @@ export default async function (
               {
                 mobile: Orientation.Landscape,
                 tablet: Orientation.Landscape,
-                desktop: Orientation.Landscape,
+                desktop: Orientation.Landscape
               },
               false,
               true
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
-        ),
+        )
       ],
       [TopStoriesV2DefaultGridPositions.RightThree]: [
         contentErrorHandler(
@@ -199,15 +189,15 @@ export default async function (
               {
                 mobile: Orientation.Portrait,
                 tablet: Orientation.Portrait,
-                desktop: Orientation.Portrait,
+                desktop: Orientation.Portrait
               },
               true,
               false
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
-        ),
+        )
       ],
       [TopStoriesV2DefaultGridPositions.RightFour]: [
         contentErrorHandler(
@@ -219,15 +209,15 @@ export default async function (
               {
                 mobile: Orientation.Landscape,
                 tablet: Orientation.Landscape,
-                desktop: Orientation.Landscape,
+                desktop: Orientation.Landscape
               },
               true,
               false
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
-        ),
+        )
       ],
       [TopStoriesV2DefaultGridPositions.RightFive]: [
         contentErrorHandler(
@@ -239,20 +229,45 @@ export default async function (
               {
                 mobile: Orientation.Landscape,
                 tablet: Orientation.Landscape,
-                desktop: Orientation.Landscape,
+                desktop: Orientation.Landscape
               },
               true,
               false
             ),
-          HandlerInputType.TopStoriesV2Default,
+          HandlerInputType.TopStoriesV2,
           Strap.TopStories,
           params
-        ),
+        )
       ],
       [TopStoriesV2DefaultGridPositions.MidInsert]: midInsertContentBlocks,
-      [TopStoriesV2DefaultGridPositions.LowerRight]: lowerRightContentBlocks,
-    },
+      [TopStoriesV2DefaultGridPositions.LowerRight]: lowerRightContentBlocks
+    }
   };
+}
 
-  return handlerRunner(gridInput, params);
+export default async function (
+  handlerRunner: handlerRunnerFunction,
+  input: ITopStoriesV2HandlerInput,
+  params: IParams
+): Promise<IContentBlock[]> {
+  const articles = await getRawArticles(Strap.TopStories, 10, params);
+  const midInsertContentBlocks = await handlerRunner(
+    input.midInsertContent,
+    params
+  );
+  const lowerRightContentBlocks = await handlerRunner(
+    input.lowerRightContent,
+    params
+  );
+
+  return handlerRunner(
+    defaultGrid(
+      input,
+      articles,
+      midInsertContentBlocks,
+      lowerRightContentBlocks,
+      params
+    ),
+    params
+  );
 }

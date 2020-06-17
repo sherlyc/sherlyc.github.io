@@ -1,6 +1,6 @@
+import cacheHttp from "../../utils/cache-http";
 import config from "../../utils/config";
 import retry from "../../utils/retry";
-import cacheHttp from "../../utils/cache-http";
 import { IParams } from "../../__types__/IParams";
 import { IBannerResponse } from "../__types__/IBannerResponse";
 

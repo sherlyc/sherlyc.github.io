@@ -1,16 +1,16 @@
-import {
-  IRelevantStoriesGridHandlerInput,
-  RelevantStoriesGridPositions
-} from "../../__types__/IRelevantStoriesGridHandlerInput";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { IParams } from "../../../__types__/IParams";
-import relevantStoriesGrid from "./relevant-stories-grid";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import {
   Border,
   IGridConfig
 } from "../../../../../common/__types__/IGridContainer";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { IParams } from "../../../__types__/IParams";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import {
+  IRelevantStoriesGridHandlerInput,
+  RelevantStoriesGridPositions
+} from "../../__types__/IRelevantStoriesGridHandlerInput";
+import relevantStoriesGrid from "./relevant-stories-grid";
 
 describe("Relevant stories grid", () => {
   const params: IParams = { apiRequestId: "123" };

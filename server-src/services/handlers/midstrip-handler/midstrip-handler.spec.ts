@@ -1,12 +1,12 @@
-import midstripHandler from "./midstrip-handler";
 import { IColumnContainer } from "common/__types__/IColumnContainer";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { getStrapArticles } from "../../adapters/strap-list/strap-list-service";
+import { IRawArticle } from "../../adapters/__types__/IRawArticle";
+import { Strap } from "../../strap";
+import wrappedLogger from "../../utils/logger";
 import { IParams } from "../../__types__/IParams";
 import { HandlerInputType } from "../__types__/HandlerInputType";
-import { getStrapArticles } from "../../adapters/strap-list/strap-list-service";
-import { Strap } from "../../strap";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import wrappedLogger from "../../utils/logger";
-import { IRawArticle } from "../../adapters/__types__/IRawArticle";
+import midstripHandler from "./midstrip-handler";
 
 jest.mock("../../utils/logger");
 jest.mock("../../adapters/strap-list/strap-list-service");

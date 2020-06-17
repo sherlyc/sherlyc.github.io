@@ -1,22 +1,22 @@
+import { AspectRatio } from "../../../../../common/AspectRatio";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
-import { AspectRatio } from "../../../../../common/AspectRatio";
-import { IParams } from "../../../__types__/IParams";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { HomepageHighlightArticleVariation } from "../../../../../common/__types__/IHomepageHighlightArticle";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
+import { homepageHighlightArticle } from "../../../adapters/article-converter/homepage-highlight-article.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { JsonFeedImageType } from "../../../adapters/__types__/JsonFeedImageType";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { BiggieSmallsV2GridPositions } from "../../__types__/IBiggieSmallsV2GridHandlerInput";
 import { IBiggieSmallsV2HandlerInput } from "../../__types__/IBiggieSmallsV2HandlerInput";
-import { handlerRunnerFunction } from "../../runner";
 import { contentErrorHandler } from "../content-error-handler";
-import { homepageHighlightArticle } from "../../../adapters/article-converter/homepage-highlight-article.converter";
-import { JsonFeedImageType } from "../../../adapters/__types__/JsonFeedImageType";
-import { HomepageHighlightArticleVariation } from "../../../../../common/__types__/IHomepageHighlightArticle";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   {
     displayName,
@@ -48,8 +48,8 @@ export default async function(
             {
               mobile: {
                 variant: JsonFeedImageType.LANDSCAPE_SIXTEEN_BY_NINE,
-                aspectRatio: AspectRatio.SixteenByNine,
-              },
+                aspectRatio: AspectRatio.SixteenByNine
+              }
             },
             HomepageHighlightArticleVariation.Featured,
             true

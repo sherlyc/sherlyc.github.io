@@ -1,6 +1,6 @@
+import { AspectRatio } from "../../../../common/AspectRatio";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IFeaturedArticle } from "../../../../common/__types__/IFeaturedArticle";
-import { AspectRatio } from "../../../../common/AspectRatio";
 import { IRawArticle } from "../__types__/IRawArticle";
 
 export const featuredArticle = (

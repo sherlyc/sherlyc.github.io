@@ -1,14 +1,14 @@
-import { Injectable } from "@angular/core";
-import { FeatureName } from "../../../../common/FeatureName";
-import { StoreService } from "../store/store.service";
-import { ConfigService } from "../config/config.service";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { RuntimeService } from "../runtime/runtime.service";
-import { LottoService } from "../lotto/lotto.service";
-import { LoggerService } from "../logger/logger.service";
+import { Injectable } from "@angular/core";
 import { of } from "rxjs";
 import { catchError } from "rxjs/operators";
+import { FeatureName } from "../../../../common/FeatureName";
+import { ConfigService } from "../config/config.service";
 import { DeviceService } from "../device/device.service";
+import { LoggerService } from "../logger/logger.service";
+import { LottoService } from "../lotto/lotto.service";
+import { RuntimeService } from "../runtime/runtime.service";
+import { StoreService } from "../store/store.service";
 
 @Injectable({
   providedIn: "root"

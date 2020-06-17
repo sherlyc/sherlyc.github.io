@@ -6,9 +6,9 @@ import {
   OnDestroy,
   Output
 } from "@angular/core";
+import { Subscription } from "rxjs";
 import { ResizeObserverService } from "../../../services/resize-observer/resize-observer.service";
 import { RuntimeService } from "../../../services/runtime/runtime.service";
-import { Subscription } from "rxjs";
 
 @Directive({ selector: "[appResizeObserver]" })
 export class ResizeDirective implements OnDestroy, AfterViewInit {

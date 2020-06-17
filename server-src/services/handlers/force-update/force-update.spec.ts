@@ -1,8 +1,8 @@
-import ForceUpdate from "./force-update";
-import { IParams } from "../../__types__/IParams";
-import { IForceUpdateHandlerInput } from "../__types__/IForceUpdateHandlerInput";
-import { HandlerInputType } from "../__types__/HandlerInputType";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IParams } from "../../__types__/IParams";
+import { HandlerInputType } from "../__types__/HandlerInputType";
+import { IForceUpdateHandlerInput } from "../__types__/IForceUpdateHandlerInput";
+import ForceUpdate from "./force-update";
 
 describe("Force Update", () => {
   const handlerRunnerMock = jest.fn();

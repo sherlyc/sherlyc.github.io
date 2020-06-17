@@ -1,22 +1,21 @@
-import { IParams } from "../../../__types__/IParams";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import {
-  ILargeLeadSixGridHandlerInput,
-  LargeLeadSixGridPositions
-} from "../../__types__/ILargeLeadSixGridHandlerInput";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import {
   Border,
   IGridConfig,
   IGridContainer
 } from "../../../../../common/__types__/IGridContainer";
+import { IParams } from "../../../__types__/IParams";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import {
+  ILargeLeadSixGridHandlerInput,
+  LargeLeadSixGridPositions
+} from "../../__types__/ILargeLeadSixGridHandlerInput";
 import largeLeadSixGrid from "./large-lead-six-grid";
 
 describe("Large Lead Six Grid", () => {
   const handlerRunner = jest.fn();
   const params: IParams = { apiRequestId: "123" };
-  const strapName = "fakeStrapName";
   const fakeContentBlock = {} as IContentBlock;
 
   it("should generate grid", async () => {
@@ -48,14 +47,14 @@ describe("Large Lead Six Grid", () => {
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: [Border.right]
+          border: [Border.bottom]
         },
         [LargeLeadSixGridPositions.Middle]: {
           columnStart: 2,
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: [Border.right]
+          border: [Border.bottom]
         },
         [LargeLeadSixGridPositions.Right]: {
           columnStart: 3,
@@ -85,14 +84,14 @@ describe("Large Lead Six Grid", () => {
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: [Border.right]
+          border: [Border.bottom]
         },
         [LargeLeadSixGridPositions.Middle]: {
           columnStart: 2,
           columnSpan: 1,
           rowStart: 2,
           rowSpan: 1,
-          border: [Border.right]
+          border: [Border.bottom]
         },
         [LargeLeadSixGridPositions.Right]: {
           columnStart: 3,

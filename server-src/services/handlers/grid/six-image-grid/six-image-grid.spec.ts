@@ -1,16 +1,16 @@
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
+import { IBigImageArticleUnit } from "../../../../../common/__types__/IBigImageArticleUnit";
+import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
+import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType";
+import { IModuleTitle } from "../../../../../common/__types__/IModuleTitle";
+import { IParams } from "../../../__types__/IParams";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
   ISixImageGridHandlerInput,
   SixImageGridHandlerPositions
 } from "../../__types__/ISixImageGridHandlerInput";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { IBigImageArticleUnit } from "../../../../../common/__types__/IBigImageArticleUnit";
-import { IBasicAdUnit } from "../../../../../common/__types__/IBasicAdUnit";
-import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
-import { IModuleTitle } from "../../../../../common/__types__/IModuleTitle";
-import { IParams } from "../../../__types__/IParams";
 import sixImageGridHandler from "./six-image-grid";
-import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType";
 
 describe("Six Image Grid", () => {
   const handlerRunner = jest.fn();

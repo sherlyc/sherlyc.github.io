@@ -4,8 +4,8 @@ import * as logform from "logform";
 import { TransformableInfo } from "logform";
 import * as winston from "winston";
 import { Logger } from "winston";
-import { ILogger } from "./__types__/ILogger";
 import config from "./config";
+import { ILogger } from "./__types__/ILogger";
 
 export const formatStackTrace = winston.format((info: TransformableInfo) => {
   if (info.error && info.error instanceof Error) {

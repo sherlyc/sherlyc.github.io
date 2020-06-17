@@ -20,5 +20,5 @@ export enum TopStoriesV2DefaultGridPositions {
   RightFive = "RightFive",
   BannerAd = "BannerAd",
   LowerRight = "LowerRight",
-  MidInsert = "MidInsert",
+  MidInsert = "MidInsert"
 }

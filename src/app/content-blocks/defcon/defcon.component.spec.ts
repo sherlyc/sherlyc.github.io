@@ -1,18 +1,18 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { DefconComponent } from "./defcon.component";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
-import { IDefcon } from "../../../../common/__types__/IDefcon";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { AccentColor } from "../../../../common/__types__/AccentColor";
-import { IHomepageArticleContent } from "../../../../common/__types__/IHomepageArticleContent";
 import { By } from "@angular/platform-browser";
-import { FluidImageComponent } from "../../shared/components/fluid-image/fluid-image.component";
-import { TagLinkComponent } from "../../shared/components/tag-link/tag-link.component";
-import { HeadlineComponent } from "../../shared/components/headline/headline.component";
+import { AccentColor } from "../../../../common/__types__/AccentColor";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IDefcon } from "../../../../common/__types__/IDefcon";
+import { IHomepageArticleContent } from "../../../../common/__types__/IHomepageArticleContent";
+import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
-import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { FluidImageComponent } from "../../shared/components/fluid-image/fluid-image.component";
+import { HeadlineComponent } from "../../shared/components/headline/headline.component";
+import { TagLinkComponent } from "../../shared/components/tag-link/tag-link.component";
+import { DefconComponent } from "./defcon.component";
 
 const fakeHomepageArticleContents = (
   ids: number[]

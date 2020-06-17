@@ -1,18 +1,18 @@
-import { IParams } from "../../../__types__/IParams";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { Strap } from "../../../strap";
 import { AccentColor } from "../../../../../common/__types__/AccentColor";
-import { IEditorsPicksHandlerInput } from "../../__types__/IEditorsPicksHandlerInput";
-import editorsPicks from "../editors-picks/editors-picks";
-import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import {
-  EditorsPicksGridPositions,
-  IEditorsPicksGridHandlerInput,
-} from "../../__types__/IEditorsPicksGridHandlerInput";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
+import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { Strap } from "../../../strap";
+import { IParams } from "../../../__types__/IParams";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import {
+  EditorsPicksGridPositions,
+  IEditorsPicksGridHandlerInput
+} from "../../__types__/IEditorsPicksGridHandlerInput";
+import { IEditorsPicksHandlerInput } from "../../__types__/IEditorsPicksHandlerInput";
+import editorsPicks from "../editors-picks/editors-picks";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 
@@ -24,7 +24,7 @@ describe("Editors Picks", () => {
     sourceId: Strap.EditorPicks,
     displayName: "editors' picks",
     color: AccentColor.Charcoal,
-    strapName: "editorsPicks",
+    strapName: "editorsPicks"
   };
 
   const articlesWithIds = (ids: number[]) =>
@@ -33,7 +33,7 @@ describe("Editors Picks", () => {
         ({
           id: `${id}`,
           sixteenByNineSrc: `${id}.png`,
-          introText: `${id} intro`,
+          introText: `${id} intro`
         } as IRawArticle)
     );
   const expectContentBlock = (
@@ -68,8 +68,8 @@ describe("Editors Picks", () => {
           {
             type: ContentBlockType.ModuleHeader,
             color: input.color,
-            title: input.displayName,
-          },
+            title: input.displayName
+          }
         ],
         [EditorsPicksGridPositions.FirstRowOne]: [
           expectContentBlock({
@@ -78,11 +78,11 @@ describe("Editors Picks", () => {
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
-              desktop: Orientation.Portrait,
+              desktop: Orientation.Portrait
             },
             introText: undefined,
-            imageSrc: "1.png",
-          }),
+            imageSrc: "1.png"
+          })
         ],
         [EditorsPicksGridPositions.FirstRowTwo]: [
           expectContentBlock({
@@ -91,11 +91,11 @@ describe("Editors Picks", () => {
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
-              desktop: Orientation.Portrait,
+              desktop: Orientation.Portrait
             },
             introText: undefined,
-            imageSrc: "2.png",
-          }),
+            imageSrc: "2.png"
+          })
         ],
         [EditorsPicksGridPositions.FirstRowThree]: [
           expectContentBlock({
@@ -104,11 +104,11 @@ describe("Editors Picks", () => {
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
-              desktop: Orientation.Portrait,
+              desktop: Orientation.Portrait
             },
             introText: undefined,
-            imageSrc: "3.png",
-          }),
+            imageSrc: "3.png"
+          })
         ],
         [EditorsPicksGridPositions.FirstRowFour]: [
           expectContentBlock({
@@ -117,11 +117,11 @@ describe("Editors Picks", () => {
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
-              desktop: Orientation.Portrait,
+              desktop: Orientation.Portrait
             },
             introText: undefined,
-            imageSrc: "4.png",
-          }),
+            imageSrc: "4.png"
+          })
         ],
         [EditorsPicksGridPositions.SecondRowOne]: [
           expectContentBlock({
@@ -130,11 +130,11 @@ describe("Editors Picks", () => {
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
-              desktop: Orientation.Portrait,
+              desktop: Orientation.Portrait
             },
             introText: undefined,
-            imageSrc: "5.png",
-          }),
+            imageSrc: "5.png"
+          })
         ],
         [EditorsPicksGridPositions.SecondRowTwo]: [
           expectContentBlock({
@@ -143,11 +143,11 @@ describe("Editors Picks", () => {
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
-              desktop: Orientation.Portrait,
+              desktop: Orientation.Portrait
             },
             introText: undefined,
-            imageSrc: "6.png",
-          }),
+            imageSrc: "6.png"
+          })
         ],
         [EditorsPicksGridPositions.SecondRowThree]: [
           expectContentBlock({
@@ -156,11 +156,11 @@ describe("Editors Picks", () => {
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
-              desktop: Orientation.Portrait,
+              desktop: Orientation.Portrait
             },
             introText: undefined,
-            imageSrc: "7.png",
-          }),
+            imageSrc: "7.png"
+          })
         ],
         [EditorsPicksGridPositions.SecondRowFour]: [
           expectContentBlock({
@@ -169,11 +169,11 @@ describe("Editors Picks", () => {
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
-              desktop: Orientation.Portrait,
+              desktop: Orientation.Portrait
             },
             introText: undefined,
-            imageSrc: "8.png",
-          }),
+            imageSrc: "8.png"
+          })
         ],
         [EditorsPicksGridPositions.Ad]: [
           {
@@ -181,12 +181,12 @@ describe("Editors Picks", () => {
             items: [
               {
                 type: ContentBlockType.BasicAdUnit,
-                context: input.strapName,
-              },
-            ],
-          },
-        ],
-      },
+                context: input.strapName
+              }
+            ]
+          }
+        ]
+      }
     };
 
     expect(handlerRunnerMock).toHaveBeenCalledWith(
