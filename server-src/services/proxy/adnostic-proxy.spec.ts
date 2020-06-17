@@ -1,6 +1,6 @@
-import { adnosticProxy } from "./adnostic-proxy";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import config from "../utils/config";
+import { adnosticProxy } from "./adnostic-proxy";
 
 jest.mock("http-proxy-middleware");
 

@@ -1,17 +1,17 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
-import { IWeatherUnit } from "../../../../common/__types__/IWeatherUnit";
-import { WeatherRetrieverService } from "../../services/weather-retriever/weather-retriever.service";
-import { AnalyticsService } from "../../services/analytics/analytics.service";
-import { IWeatherResponse } from "../../../../common/__types__/IWeatherResponse";
 import {
-  weatherRegions,
-  WeatherLocations
+  WeatherLocations,
+  weatherRegions
 } from "../../../../common/WeatherLocations";
-import { StoreService, StorageKeys } from "../../services/store/store.service";
-import { RuntimeService } from "../../services/runtime/runtime.service";
+import { IWeatherResponse } from "../../../../common/__types__/IWeatherResponse";
+import { IWeatherUnit } from "../../../../common/__types__/IWeatherUnit";
+import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { RuntimeService } from "../../services/runtime/runtime.service";
+import { StorageKeys, StoreService } from "../../services/store/store.service";
+import { WeatherRetrieverService } from "../../services/weather-retriever/weather-retriever.service";
 import { WindowService } from "../../services/window/window.service";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
   selector: "app-weather-unit",

@@ -1,6 +1,6 @@
-import { IParams } from "../../__types__/IParams";
-import retry from "../../utils/retry";
 import http from "../../utils/http";
+import retry from "../../utils/retry";
+import { IParams } from "../../__types__/IParams";
 import { IBrightcovePlaylist } from "../__types__/IBrightcovePlaylist";
 
 const baseUrl = "https://edge.api.brightcove.com/playback/v1";

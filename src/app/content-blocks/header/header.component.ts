@@ -1,3 +1,4 @@
+import { DOCUMENT } from "@angular/common";
 import {
   Component,
   Inject,
@@ -6,16 +7,15 @@ import {
   OnInit,
   Renderer2
 } from "@angular/core";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 import { IHeader } from "../../../../common/__types__/IHeader";
-import { DOCUMENT } from "@angular/common";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
-import { ConfigService } from "../../services/config/config.service";
 import { AuthenticationService } from "../../services/authentication/authentication.service";
 import { IStuffLoginUser } from "../../services/authentication/__types__/IStuffLoginUser";
-import { WindowService } from "../../services/window/window.service";
+import { ConfigService } from "../../services/config/config.service";
 import { RuntimeService } from "../../services/runtime/runtime.service";
+import { WindowService } from "../../services/window/window.service";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
   selector: "app-header",

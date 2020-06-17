@@ -1,12 +1,12 @@
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { handlerRunnerFunction } from "../../runner";
-import { IParams } from "../../../__types__/IParams";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { articleTitle } from "../../../adapters/article-converter/article-title.converter";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import wrappedLogger from "../../../utils/logger";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { StripsGridPositions } from "../../__types__/IStripsGridHandlerInput";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import wrappedLogger from "../../../utils/logger";
-import { articleTitle } from "../../../adapters/article-converter/article-title.converter";
 
 export const createRelevantStoriesColumn = async (
   articlesPromise: Promise<IRawArticle[]>,

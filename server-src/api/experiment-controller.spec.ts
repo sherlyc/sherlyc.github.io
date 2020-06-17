@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { experimentController } from "./experiment-controller";
-import { getExperimentVariant } from "../services/adapters/experiment/experiment";
-import { ExperimentName } from "../../common/ExperimentName";
 import { DeviceType } from "../../common/DeviceType";
+import { ExperimentName } from "../../common/ExperimentName";
+import { getExperimentVariant } from "../services/adapters/experiment/experiment";
+import { experimentController } from "./experiment-controller";
 
 jest.mock("../services/adapters/experiment/experiment");
 

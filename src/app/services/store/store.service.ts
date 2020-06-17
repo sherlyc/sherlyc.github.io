@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { IStoreService } from "./__types__/IStoreService";
 import { WindowService } from "../window/window.service";
+import { IStoreService } from "./__types__/IStoreService";
 
 export const storeNamespace = `__storejs_stuff-experience_`;
 

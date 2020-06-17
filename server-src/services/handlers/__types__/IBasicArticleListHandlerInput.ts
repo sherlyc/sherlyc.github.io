@@ -1,7 +1,7 @@
-import { HandlerInputType } from "./HandlerInputType";
 import { LayoutType } from "../../adapters/__types__/LayoutType";
-import { Strap } from "../../strap";
 import { Section } from "../../section";
+import { Strap } from "../../strap";
+import { HandlerInputType } from "./HandlerInputType";
 
 export interface IBasicArticleListHandlerInput {
   type: HandlerInputType.ArticleList;

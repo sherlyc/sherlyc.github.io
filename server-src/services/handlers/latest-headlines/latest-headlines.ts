@@ -1,12 +1,12 @@
-import { handlerRunnerFunction } from "../runner";
-import { IParams } from "../../__types__/IParams";
-import { IContentBlock } from "../../../../common/__types__/IContentBlock";
-import { ILatestHeadlinesHandlerInput } from "../__types__/ILatestHeadlinesHandlerInput";
-import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 import { homepageArticleContent } from "../../adapters/article-converter/homepage-article-content.converter";
+import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
+import { IParams } from "../../__types__/IParams";
+import { handlerRunnerFunction } from "../runner";
+import { ILatestHeadlinesHandlerInput } from "../__types__/ILatestHeadlinesHandlerInput";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   {
     sourceId,

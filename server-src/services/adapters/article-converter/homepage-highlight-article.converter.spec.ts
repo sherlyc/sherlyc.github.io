@@ -1,10 +1,10 @@
+import { AspectRatio } from "../../../../common/AspectRatio";
 import { AccentColor } from "../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import {
   HomepageHighlightArticleVariation,
   IHomepageHighlightArticle
 } from "../../../../common/__types__/IHomepageHighlightArticle";
-import { AspectRatio } from "../../../../common/AspectRatio";
 import { IRawArticle } from "../__types__/IRawArticle";
 import { JsonFeedImageType } from "../__types__/JsonFeedImageType";
 import { homepageHighlightArticle } from "./homepage-highlight-article.converter";

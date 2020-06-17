@@ -1,14 +1,14 @@
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { IParams } from "../../../__types__/IParams";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { Strap } from "../../../strap";
+import { IParams } from "../../../__types__/IParams";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { StripsGridPositions } from "../../__types__/IStripsGridHandlerInput";
 import { IStripsHandlerInput } from "../../__types__/IStripsHandlerInput";
 import stripsHandler from "./strips";
-import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 

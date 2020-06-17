@@ -1,10 +1,10 @@
-import { IParams } from "../../../__types__/IParams";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import column from "./column";
-import { IColumnHandlerInput } from "../../__types__/IColumnHandlerInput";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { HandlerInput } from "../../__types__/HandlerInput";
+import { IParams } from "../../../__types__/IParams";
 import handlerRunner from "../../runner";
+import { HandlerInput } from "../../__types__/HandlerInput";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import { IColumnHandlerInput } from "../../__types__/IColumnHandlerInput";
+import column from "./column";
 
 describe("Column Handler", () => {
   const handlerRunnerMock = jest.fn();
@@ -19,23 +19,23 @@ describe("Column Handler", () => {
 
     const input: IColumnHandlerInput = {
       type: HandlerInputType.Column,
-      content: [
-        fakeHandlerInput,
-        fakeHandlerInput
-      ],
+      content: [fakeHandlerInput, fakeHandlerInput],
       columnGap: 10,
       rowGap: 10,
-      border: false,
+      border: false
     };
 
     await column(handlerRunnerMock, input, params);
 
-    expect(handlerRunnerMock).toHaveBeenCalledWith({
-      type: HandlerInputType.ColumnGrid,
-      content: [handlerOneResult, handlerTwoResult],
-      columnGap: input.columnGap,
-      rowGap: input.rowGap,
-      border: input.border,
-    }, params);
+    expect(handlerRunnerMock).toHaveBeenCalledWith(
+      {
+        type: HandlerInputType.ColumnGrid,
+        content: [handlerOneResult, handlerTwoResult],
+        columnGap: input.columnGap,
+        rowGap: input.rowGap,
+        border: input.border
+      },
+      params
+    );
   });
 });

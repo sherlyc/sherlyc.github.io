@@ -1,14 +1,14 @@
 import { Component, Input } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { AnalyticsEventsType } from "src/app/services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "src/app/services/analytics/analytics.service";
+import { AnalyticsEventsType } from "src/app/services/analytics/__types__/AnalyticsEventsType";
 import { mockService, ServiceMock } from "src/app/services/mocks/MockService";
 import { SharedModule } from "src/app/shared/shared.module";
+import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArticleUnit";
 import { ImageLayoutType } from "../../../../common/__types__/ImageLayoutType";
-import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 import { FeatureSwitchService } from "../../services/feature-switch/feature-switch.service";
 import { FluidImageComponent } from "../../shared/components/fluid-image/fluid-image.component";
 import { HeadlineComponent } from "../../shared/components/headline/headline.component";

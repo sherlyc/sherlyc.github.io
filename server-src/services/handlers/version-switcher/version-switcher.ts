@@ -1,10 +1,10 @@
-import { handlerRunnerFunction } from "../runner";
-import { IParams } from "../../__types__/IParams";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
-import { IVersionSwitcherHandlerInput } from "../__types__/IVersionSwitcherHandlerInput";
 import { parseVersion } from "../../utils/version";
+import { IParams } from "../../__types__/IParams";
+import { handlerRunnerFunction } from "../runner";
+import { IVersionSwitcherHandlerInput } from "../__types__/IVersionSwitcherHandlerInput";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   {
     compatibleVersion,

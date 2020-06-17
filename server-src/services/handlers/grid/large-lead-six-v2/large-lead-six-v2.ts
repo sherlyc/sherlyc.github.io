@@ -1,19 +1,19 @@
-import { handlerRunnerFunction } from "../../runner";
-import { IParams } from "../../../__types__/IParams";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { ILargeLeadSixV2HandlerInput } from "../../__types__/ILargeLeadSixV2HandlerInput";
-import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
-import { contentErrorHandler } from "../content-error-handler";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
+import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
+import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
+import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
   ILargeLeadSixGridHandlerInput,
-  LargeLeadSixGridPositions,
+  LargeLeadSixGridPositions
 } from "../../__types__/ILargeLeadSixGridHandlerInput";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
+import { ILargeLeadSixV2HandlerInput } from "../../__types__/ILargeLeadSixV2HandlerInput";
+import { contentErrorHandler } from "../content-error-handler";
 
 export default async function (
   handlerRunner: handlerRunnerFunction,
@@ -22,7 +22,7 @@ export default async function (
     strapName,
     displayName,
     color,
-    linkUrl,
+    linkUrl
   }: ILargeLeadSixV2HandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
@@ -36,7 +36,7 @@ export default async function (
         {
           mobile: Orientation.Portrait,
           tablet: Orientation.Portrait,
-          desktop: Orientation.Portrait,
+          desktop: Orientation.Portrait
         },
         true,
         true
@@ -53,7 +53,7 @@ export default async function (
       {
         mobile: Orientation.Portrait,
         tablet: Orientation.Portrait,
-        desktop: Orientation.Portrait,
+        desktop: Orientation.Portrait
       },
       index < 1,
       false
@@ -62,7 +62,7 @@ export default async function (
   const middleContent = await handlerRunner(
     {
       type: HandlerInputType.ListGrid,
-      content: listGridContent,
+      content: listGridContent
     },
     params
   );
@@ -74,18 +74,18 @@ export default async function (
           type: ContentBlockType.ModuleHeader,
           title: displayName,
           url: linkUrl,
-          color,
-        },
+          color
+        }
       ],
       [LargeLeadSixGridPositions.Left]: [leftContent],
       [LargeLeadSixGridPositions.Middle]: middleContent,
       [LargeLeadSixGridPositions.Right]: [
         {
           type: ContentBlockType.StickyContainer,
-          items: [basicAdUnit(strapName)],
-        },
-      ],
-    },
+          items: [basicAdUnit(strapName)]
+        }
+      ]
+    }
   };
   return await handlerRunner(largeLeadSixGridHandlerInput, params);
 }

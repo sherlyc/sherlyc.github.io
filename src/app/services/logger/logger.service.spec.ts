@@ -1,7 +1,7 @@
 import { TestBed } from "@angular/core/testing";
 import { ConfigService } from "../config/config.service";
-import { ICorrelation } from "../correlation/__types__/ICorrelation";
 import { CorrelationService } from "../correlation/correlation.service";
+import { ICorrelation } from "../correlation/__types__/ICorrelation";
 import { mockService, ServiceMock } from "../mocks/MockService";
 import { RuntimeService } from "../runtime/runtime.service";
 import { LoggerService } from "./logger.service";

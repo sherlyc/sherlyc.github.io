@@ -1,6 +1,6 @@
-import { mapBrightcovePlaylist } from "./brightcove-mapper";
-import { IBrightcovePlaylist } from "../__types__/IBrightcovePlaylist";
 import { IBrightcoveVideo } from "../../../../common/__types__/IBrightcoveVideo";
+import { IBrightcovePlaylist } from "../__types__/IBrightcovePlaylist";
+import { mapBrightcovePlaylist } from "./brightcove-mapper";
 
 describe("Brightcove mapper", () => {
   it("should map to brightcove videos", async () => {

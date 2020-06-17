@@ -14,8 +14,8 @@ import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { ContentBlockDirective } from "../../shared/directives/content-block/content-block.directive";
 import { GlobalStyleDirective } from "../../shared/directives/global-style/global-style.directive";
 import registry from "../content-blocks.registry";
-import { MediaQuery } from "./__types__/MediaQuery";
 import { GridContainerComponent } from "./grid-container.component";
+import { MediaQuery } from "./__types__/MediaQuery";
 
 describe("GridContainerComponent", () => {
   let deviceService: ServiceMock<DeviceService>;

@@ -1,7 +1,7 @@
 import { Inject, Injectable } from "@angular/core";
 import { REQUEST, RESPONSE } from "@nguniversal/express-engine/tokens";
+import { CookieSerializeOptions, parse } from "cookie";
 import { Request, Response } from "express";
-import { parse, CookieSerializeOptions } from "cookie";
 import { ICookieService } from "./__types__/ICookieService";
 
 @Injectable()

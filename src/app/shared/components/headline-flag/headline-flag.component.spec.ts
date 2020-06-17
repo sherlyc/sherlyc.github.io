@@ -1,7 +1,7 @@
-import { HeadlineFlagComponent } from "./headline-flag.component";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { HeadlineFlags } from "../../../../../common/HeadlineFlags";
 import { By } from "@angular/platform-browser";
+import { HeadlineFlags } from "../../../../../common/HeadlineFlags";
+import { HeadlineFlagComponent } from "./headline-flag.component";
 
 describe("Headline Flag Component", () => {
   let component: HeadlineFlagComponent;

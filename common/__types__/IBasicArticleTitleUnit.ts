@@ -1,5 +1,5 @@
-import { ContentBlockType } from "./ContentBlockType";
 import { HeadlineFlags } from "../HeadlineFlags";
+import { ContentBlockType } from "./ContentBlockType";
 
 export interface IBasicArticleTitleUnit {
   type: ContentBlockType.BasicArticleTitleUnit;

@@ -1,7 +1,7 @@
-import { IParams } from "../../__types__/IParams";
 import { Section } from "../../section";
 import cacheHttp from "../../utils/cache-http";
 import config from "../../utils/config";
+import { IParams } from "../../__types__/IParams";
 import { IJsonFeedArticle } from "../__types__/IJsonFeedArticle";
 import { JsonFeedAssetType } from "../__types__/JsonFeedAssetType";
 import {

@@ -1,7 +1,7 @@
-import { featureController } from "./feature-controller";
-import { isFeatureEnabled } from "../services/adapters/feature/feature";
-import { FeatureName } from "../../common/FeatureName";
 import { Request } from "express";
+import { FeatureName } from "../../common/FeatureName";
+import { isFeatureEnabled } from "../services/adapters/feature/feature";
+import { featureController } from "./feature-controller";
 
 jest.mock("../services/adapters/feature/feature");
 

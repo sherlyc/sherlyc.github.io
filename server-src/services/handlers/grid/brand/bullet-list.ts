@@ -1,11 +1,11 @@
-import { IBrandListConfig } from "../../__types__/IBrandConfig";
-import { IParams } from "../../../__types__/IParams";
-import { IBulletList } from "../../../../../common/__types__/IBulletList";
-import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
-import { bulletItem } from "../../../adapters/article-converter/bullet-item.converter";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IBulletList } from "../../../../../common/__types__/IBulletList";
+import { bulletItem } from "../../../adapters/article-converter/bullet-item.converter";
+import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import wrappedLogger from "../../../utils/logger";
+import { IParams } from "../../../__types__/IParams";
+import { IBrandListConfig } from "../../__types__/IBrandConfig";
 
 export const createBulletList = async (
   config: IBrandListConfig,

@@ -1,9 +1,9 @@
-import titleSectionHandler from "./title-section";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { Section } from "../../section";
-import { ITitleSectionHandlerInput } from "../__types__/ITitleSectionHandlerInput";
 import { IParams } from "../../__types__/IParams";
 import { HandlerInputType } from "../__types__/HandlerInputType";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { ITitleSectionHandlerInput } from "../__types__/ITitleSectionHandlerInput";
+import titleSectionHandler from "./title-section";
 
 jest.mock("../runner");
 

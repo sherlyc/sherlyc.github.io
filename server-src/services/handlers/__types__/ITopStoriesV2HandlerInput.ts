@@ -1,6 +1,6 @@
-import { HandlerInputType } from "./HandlerInputType";
 import { AccentColor } from "../../../../common/__types__/AccentColor";
 import { HandlerInput } from "./HandlerInput";
+import { HandlerInputType } from "./HandlerInputType";
 
 export interface ITopStoriesV2HandlerInput {
   type: HandlerInputType.TopStoriesV2;

@@ -1,10 +1,10 @@
 import { ErrorHandler, Injectable } from "@angular/core";
-import { ConfigService } from "../config/config.service";
 import { BrowserClient, Hub } from "@sentry/browser";
 import { RewriteFrames } from "@sentry/integrations";
+import { environment } from "../../../environments/environment";
+import { ConfigService } from "../config/config.service";
 import { CorrelationService } from "../correlation/correlation.service";
 import { RuntimeService } from "../runtime/runtime.service";
-import { environment } from "../../../environments/environment";
 interface ISpadeConsole extends Console {
   [key: string]: Function;
 }

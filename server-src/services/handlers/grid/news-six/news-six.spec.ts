@@ -1,14 +1,14 @@
-import newsSixHandler from "./news-six";
-import { INewsSixHandlerInput } from "../../__types__/INewsSixHandlerInput";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { Strap } from "../../../strap";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { Strap } from "../../../strap";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
   INewsSixGridHandlerInput,
   NewsSixGridPositions
 } from "../../__types__/INewsSixGridHandlerInput";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { INewsSixHandlerInput } from "../../__types__/INewsSixHandlerInput";
+import newsSixHandler from "./news-six";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../utils/logger");

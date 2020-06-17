@@ -1,10 +1,10 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { PlayStuffComponent } from "./play-stuff.component";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { By } from "@angular/platform-browser";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { By } from "@angular/platform-browser";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { Orientation } from "../../../../common/__types__/IHomepageArticle";
+import { PlayStuffComponent } from "./play-stuff.component";
 
 describe("PlayStuffComponent", () => {
   let component: PlayStuffComponent;
@@ -72,8 +72,9 @@ describe("PlayStuffComponent", () => {
     });
 
     const threeItemsVideos = component.input.videos.slice(1, 4);
-    const threeItems: Array<HTMLUnknownElement &
-      any> = fixture.debugElement
+    const threeItems: Array<
+      HTMLUnknownElement & any
+    > = fixture.debugElement
       .queryAll(By.css(".three-items app-play-stuff-video"))
       .map((item) => item.nativeElement);
     expect(threeItems).toHaveLength(3);
@@ -91,8 +92,9 @@ describe("PlayStuffComponent", () => {
     });
 
     const bottomVideos = component.input.videos.slice(4);
-    const bottomVideoElements: Array<HTMLUnknownElement &
-      any> = fixture.debugElement
+    const bottomVideoElements: Array<
+      HTMLUnknownElement & any
+    > = fixture.debugElement
       .queryAll(By.css(".bottom app-play-stuff-video"))
       .map((item) => item.nativeElement);
     expect(bottomVideoElements).toHaveLength(4);

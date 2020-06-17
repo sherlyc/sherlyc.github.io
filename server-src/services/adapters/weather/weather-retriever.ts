@@ -1,12 +1,12 @@
-import { IWeather } from "../__types__/IWeather";
-import config from "../../utils/config";
-import retry from "../../utils/retry";
-import cacheHttp from "../../utils/cache-http";
-import { URL } from "url";
-import { IParams } from "../../__types__/IParams";
 import { AxiosResponse } from "axios";
+import { URL } from "url";
 import { Forecasts } from "../../../../common/Forecasts";
+import cacheHttp from "../../utils/cache-http";
+import config from "../../utils/config";
 import logger from "../../utils/logger";
+import retry from "../../utils/retry";
+import { IParams } from "../../__types__/IParams";
+import { IWeather } from "../__types__/IWeather";
 
 const validate = (
   weatherResponse: AxiosResponse<IWeather>,

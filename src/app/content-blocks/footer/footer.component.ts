@@ -1,13 +1,13 @@
 import { Component, Input } from "@angular/core";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 import { IFooter } from "../../../../common/__types__/IFooter";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { CookieService } from "../../services/cookie/cookie.service";
 import { ScriptInjectorService } from "../../services/script-injector/script-injector.service";
-import { ScriptId } from "../../services/script-injector/__types__/ScriptId";
 import { Position } from "../../services/script-injector/__types__/Position";
+import { ScriptId } from "../../services/script-injector/__types__/ScriptId";
 import { WindowService } from "../../services/window/window.service";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
   selector: "app-footer",

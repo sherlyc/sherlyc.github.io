@@ -1,21 +1,21 @@
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { IParams } from "../../../__types__/IParams";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { LayoutType } from "../../../adapters/__types__/LayoutType";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 import { halfImageArticleWithoutIntroUnit } from "../../../adapters/article-converter/half-image-article-without-intro-unit.converter";
 import { halfWidthImageArticleUnit } from "../../../adapters/article-converter/half-width-image-article-unit.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { layoutRetriever } from "../../../adapters/layout/layout-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { LayoutType } from "../../../adapters/__types__/LayoutType";
 import { Strap } from "../../../strap";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { ITopStoriesDefaultOneHighlightHandlerInput } from "../../__types__/ITopStoriesDefaultOneHighlightHandlerInput";
 import { ITopStoriesDefconHighlightHandlerInput } from "../../__types__/ITopStoriesDefconHighlightHandlerInput";
 import { TopStoriesGridPositions } from "../../__types__/ITopStoriesGridHandlerInput";
 import { ITopStoriesHandlerInput } from "../../__types__/ITopStoriesHandlerInput";
-import { handlerRunnerFunction } from "../../runner";
 import { contentErrorHandler } from "../content-error-handler";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 
 const topStoriesVariationHandler: {
   [key in LayoutType]: (
@@ -206,7 +206,7 @@ async function createTopStoriesGrid(
   );
 }
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { strapName, color }: ITopStoriesHandlerInput,
   params: IParams

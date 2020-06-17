@@ -1,3 +1,4 @@
+import { repeat } from "lodash-es";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import {
@@ -5,16 +6,15 @@ import {
   IGridBlocks,
   IGridContainer
 } from "../../../../../common/__types__/IGridContainer";
-import { IParams } from "../../../__types__/IParams";
 import { gridBlock } from "../../../adapters/grid/grid-block";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
 import {
   BiggieSmallsV2GridPositions,
   IBiggieSmallsV2GridHandlerInput
 } from "../../__types__/IBiggieSmallsV2GridHandlerInput";
-import { handlerRunnerFunction } from "../../runner";
-import { repeat } from "lodash-es";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { content }: IBiggieSmallsV2GridHandlerInput,
   params: IParams

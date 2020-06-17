@@ -1,9 +1,9 @@
 import { TestBed } from "@angular/core/testing";
 import { mockService, ServiceMock } from "../mocks/MockService";
 import { RuntimeService } from "../runtime/runtime.service";
+import { ScriptInjectorService } from "../script-injector/script-injector.service";
 import { Position } from "../script-injector/__types__/Position";
 import { ScriptId } from "../script-injector/__types__/ScriptId";
-import { ScriptInjectorService } from "../script-injector/script-injector.service";
 import { NeighbourlyService } from "./neighbourly.service";
 
 describe("NeighbourlyService", () => {

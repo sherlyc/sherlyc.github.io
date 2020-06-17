@@ -1,18 +1,18 @@
-import { IParams } from "../../../__types__/IParams";
-import relevantStories from "./relevant-stories";
-import { IRelevantStoriesHandlerInput } from "../../__types__/IRelevantStoriesHandlerInput";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { createRelevantStoriesColumn } from "./relevant-stories-column";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { getMostPopular } from "../../../adapters/most-popular/most-popular.service";
 import { Strap } from "../../../strap";
+import { IParams } from "../../../__types__/IParams";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
   IRelevantStoriesGridHandlerInput,
   RelevantStoriesGridPositions
 } from "../../__types__/IRelevantStoriesGridHandlerInput";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
-import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { IRelevantStoriesHandlerInput } from "../../__types__/IRelevantStoriesHandlerInput";
+import relevantStories from "./relevant-stories";
+import { createRelevantStoriesColumn } from "./relevant-stories-column";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 jest.mock("../../../adapters/most-popular/most-popular.service");

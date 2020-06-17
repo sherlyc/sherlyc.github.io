@@ -1,7 +1,7 @@
-import { IParams } from "../../__types__/IParams";
 import { Strap } from "../../strap";
-import { IStrapConfigDefinition } from "../../utils/__types__/IStrapConfigDefinition";
 import config from "../../utils/config";
+import { IStrapConfigDefinition } from "../../utils/__types__/IStrapConfigDefinition";
+import { IParams } from "../../__types__/IParams";
 import { getListAssetById } from "../jsonfeed/jsonfeed";
 import { getStrapArticles } from "./strap-list-service";
 

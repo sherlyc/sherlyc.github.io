@@ -1,7 +1,7 @@
-import { Inject, Injectable, NgZone } from "@angular/core";
-import { Position } from "./__types__/Position";
 import { DOCUMENT } from "@angular/common";
+import { Inject, Injectable, NgZone } from "@angular/core";
 import { LoggerService } from "../logger/logger.service";
+import { Position } from "./__types__/Position";
 import { ScriptId } from "./__types__/ScriptId";
 
 @Injectable({

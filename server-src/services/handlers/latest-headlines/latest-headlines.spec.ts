@@ -1,11 +1,11 @@
-import latestHeadlines from "./latest-headlines";
-import { IParams } from "../../__types__/IParams";
-import { ILatestHeadlinesHandlerInput } from "../__types__/ILatestHeadlinesHandlerInput";
-import { HandlerInputType } from "../__types__/HandlerInputType";
-import { Strap } from "../../strap";
-import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
 import { IRawArticle } from "../../adapters/__types__/IRawArticle";
+import { Strap } from "../../strap";
+import { IParams } from "../../__types__/IParams";
+import { HandlerInputType } from "../__types__/HandlerInputType";
+import { ILatestHeadlinesHandlerInput } from "../__types__/ILatestHeadlinesHandlerInput";
+import latestHeadlines from "./latest-headlines";
 
 jest.mock("../../adapters/article-retriever/article-retriever");
 
