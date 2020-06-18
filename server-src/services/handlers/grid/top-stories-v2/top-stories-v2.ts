@@ -4,6 +4,7 @@ import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 import { HomepageHighlightArticleVariation } from "../../../../../common/__types__/IHomepageHighlightArticle";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
+import { homepageArticleContent } from "../../../adapters/article-converter/homepage-article-content.converter";
 import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
 import { homepageHighlightArticle } from "../../../adapters/article-converter/homepage-highlight-article.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
@@ -261,25 +262,12 @@ function defconGrid(
     type: HandlerInputType.TopStoriesV2DefconGrid,
     content: {
       [TopStoriesV2DefconGridPositions.Defcon]: [
-        contentErrorHandler(
-          () =>
-            homepageHighlightArticle(
-              defconArticles.shift() as IRawArticle,
-              strapName,
-              color,
-              {
-                mobile: {
-                  variant: JsonFeedImageType.LANDSCAPE_SIXTEEN_BY_NINE,
-                  aspectRatio: AspectRatio.SixteenByNine
-                }
-              },
-              HomepageHighlightArticleVariation.Featured,
-              true
-            ),
-          HandlerInputType.TopStoriesV2,
-          Strap.TopStories,
-          params
-        )
+        {
+          type: ContentBlockType.Defcon,
+          articles: defconArticles.map(homepageArticleContent),
+          strapName,
+          color
+        }
       ],
       [TopStoriesV2DefconGridPositions.BannerAd]: [
         {
