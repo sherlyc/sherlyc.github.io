@@ -60,45 +60,51 @@ export default async function (
     [TopStoriesV2DefaultGridPositions.LowerRight]: gridBlock(12, 1, 1, 2, [])
   };
 
-  const tablet: { [key in TopStoriesV2DefaultGridPositions]: IGridBlock } = {
-    [TopStoriesV2DefaultGridPositions.LeftHighlight]: gridBlock(1, 1, 4, 2, [
-      Border.bottom
-    ]),
-    [TopStoriesV2DefaultGridPositions.RightHighlight]: gridBlock(1, 3, 7, 1, [
-      Border.bottom
-    ]),
-    [TopStoriesV2DefaultGridPositions.BannerAd]: gridBlock(8, 3, 7, 1, []),
-    [TopStoriesV2DefaultGridPositions.TopOne]: gridBlock(5, 1, 4, 1, [
-      Border.bottom
-    ]),
-    [TopStoriesV2DefaultGridPositions.TopTwo]: gridBlock(5, 2, 4, 1, [
-      Border.bottom
-    ]),
-    [TopStoriesV2DefaultGridPositions.TopThree]: gridBlock(9, 1, 4, 1, [
-      Border.bottom
-    ]),
-    [TopStoriesV2DefaultGridPositions.TopFour]: gridBlock(9, 2, 4, 1, [
-      Border.bottom
-    ]),
-    [TopStoriesV2DefaultGridPositions.MidInsert]: gridBlock(13, 1, 1, 2, [
-      Border.bottom
-    ]),
-    [TopStoriesV2DefaultGridPositions.BottomOne]: gridBlock(14, 1, 1, 2, [
-      Border.bottom
-    ]),
-    [TopStoriesV2DefaultGridPositions.BottomTwo]: gridBlock(15, 1, 1, 2, [
-      Border.bottom
-    ]),
-    [TopStoriesV2DefaultGridPositions.BottomThree]: gridBlock(16, 1, 1, 2, [
-      Border.bottom
-    ]),
-    [TopStoriesV2DefaultGridPositions.BottomFour]: gridBlock(17, 1, 1, 2, [
-      Border.bottom
-    ]),
-    [TopStoriesV2DefaultGridPositions.BottomFive]: gridBlock(18, 1, 1, 2, [
-      Border.bottom
-    ]),
-    [TopStoriesV2DefaultGridPositions.LowerRight]: gridBlock(15, 3, 4, 1, [])
+  const tablet: IGridConfig = {
+    gridTemplateColumns: "1fr 1fr 2fr",
+    gridTemplateRows: repeat(" auto", 11).substring(1),
+    gridColumnGap: "20px",
+    gridRowGap: "20px",
+    gridBlocks: {
+      [TopStoriesV2DefaultGridPositions.LeftHighlight]: gridBlock(1, 1, 1, 2, [
+        Border.bottom
+      ]),
+      [TopStoriesV2DefaultGridPositions.RightHighlight]: gridBlock(1, 3, 2, 1, [
+        Border.bottom
+      ]),
+      [TopStoriesV2DefaultGridPositions.BannerAd]: gridBlock(3, 3, 5, 1, []),
+      [TopStoriesV2DefaultGridPositions.TopOne]: gridBlock(2, 1, 2, 1, [
+        Border.bottom
+      ]),
+      [TopStoriesV2DefaultGridPositions.TopTwo]: gridBlock(2, 2, 2, 1, [
+        Border.bottom
+      ]),
+      [TopStoriesV2DefaultGridPositions.TopThree]: gridBlock(4, 1, 1, 2, [
+        Border.bottom
+      ]),
+      [TopStoriesV2DefaultGridPositions.TopFour]: gridBlock(5, 1, 1, 2, [
+        Border.bottom
+      ]),
+      [TopStoriesV2DefaultGridPositions.MidInsert]: gridBlock(6, 1, 1, 2, [
+        Border.bottom
+      ]),
+      [TopStoriesV2DefaultGridPositions.BottomOne]: gridBlock(7, 1, 2, 1, [
+        Border.bottom
+      ]),
+      [TopStoriesV2DefaultGridPositions.BottomTwo]: gridBlock(7, 2, 2, 1, [
+        Border.bottom
+      ]),
+      [TopStoriesV2DefaultGridPositions.BottomThree]: gridBlock(9, 1, 1, 2, [
+        Border.bottom
+      ]),
+      [TopStoriesV2DefaultGridPositions.BottomFour]: gridBlock(10, 1, 1, 2, [
+        Border.bottom
+      ]),
+      [TopStoriesV2DefaultGridPositions.BottomFive]: gridBlock(11, 1, 1, 2, [
+        Border.bottom
+      ]),
+      [TopStoriesV2DefaultGridPositions.LowerRight]: gridBlock(8, 3, 5, 1, [])
+    }
   };
 
   const desktop: IGridConfig = {
@@ -163,13 +169,7 @@ export default async function (
         gridRowGap: "20px",
         gridBlocks: mobile
       },
-      tablet: {
-        gridTemplateColumns: "1fr 1fr 2fr",
-        gridTemplateRows: repeat(" auto", 18).substring(1),
-        gridColumnGap: "20px",
-        gridRowGap: "20px",
-        gridBlocks: tablet
-      },
+      tablet,
       desktop
     }
   ];
