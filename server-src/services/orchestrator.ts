@@ -96,7 +96,7 @@ export const newPage = (): HandlerInput[] => {
             sourceId: Strap.LatestNews,
             totalArticles: 7,
             displayName: "latest headlines",
-            strapName: `${homepageAdPrefix}LatestHeadlines`,
+            strapName: `${homepageV2AdPrefix}LatestHeadlines`,
             color: AccentColor.Coral
           }
         },
@@ -112,7 +112,7 @@ export const newPage = (): HandlerInput[] => {
           displayName: "coronavirus",
           color: AccentColor.DeepBlue,
           linkUrl: "/" + Section.Coronavirus,
-          strapName: `${homepageAdPrefix}Coronavirus`,
+          strapName: `${homepageV2AdPrefix}Coronavirus`,
           sourceId: Strap.Coronavirus
         },
         {
@@ -120,7 +120,7 @@ export const newPage = (): HandlerInput[] => {
           displayName: "national",
           color: AccentColor.DeepBlue,
           linkUrl: "/" + Section.National,
-          strapName: `${homepageAdPrefix}National`,
+          strapName: `${homepageV2AdPrefix}National`,
           sourceId: Strap.National
         },
         {
@@ -137,7 +137,7 @@ export const newPage = (): HandlerInput[] => {
           displayName: "world",
           color: AccentColor.Denim,
           linkUrl: "/" + Section.World,
-          strapName: `${homepageAdPrefix}World`,
+          strapName: `${homepageV2AdPrefix}World`,
           sourceId: Strap.World
         },
         {
@@ -145,7 +145,7 @@ export const newPage = (): HandlerInput[] => {
           displayName: "business",
           color: AccentColor.NavyBlue,
           linkUrl: "/" + Section.Business,
-          strapName: `${homepageAdPrefix}Business`,
+          strapName: `${homepageV2AdPrefix}Business`,
           sourceId: Strap.Business
         },
         {
