@@ -41,8 +41,7 @@ describe("Top Stories Defcon grid", () => {
     const [grid] = await topStoriesV2Defcon(handlerRunnerMock, input, params);
     expect((grid as IGridContainer).mobile).toEqual({
       gridTemplateColumns: "1fr 1fr",
-      gridTemplateRows:
-        "auto auto auto auto auto auto auto auto auto auto auto auto",
+      gridTemplateRows: repeat(" auto", 12).substring(1),
       gridColumnGap: "20px",
       gridRowGap: "20px",
       gridBlocks: {
@@ -54,20 +53,20 @@ describe("Top Stories Defcon grid", () => {
         [TopStoriesV2DefconGridPositions.TopTwo]: gridBlock(3, 2, 1, 1, [
           Border.bottom
         ]),
-        [TopStoriesV2DefconGridPositions.TopThree]: gridBlock(4, 1, 1, 1, [
+        [TopStoriesV2DefconGridPositions.TopThree]: gridBlock(4, 1, 1, 2, [
           Border.bottom
         ]),
-        [TopStoriesV2DefconGridPositions.TopFour]: gridBlock(4, 2, 1, 1, [
+        [TopStoriesV2DefconGridPositions.TopFour]: gridBlock(5, 1, 1, 2, [
           Border.bottom
         ]),
-        [TopStoriesV2DefconGridPositions.MidInsert]: gridBlock(5, 1, 1, 2, []),
         [TopStoriesV2DefconGridPositions.TopFive]: gridBlock(6, 1, 1, 2, [
           Border.bottom
         ]),
-        [TopStoriesV2DefconGridPositions.BottomOne]: gridBlock(7, 1, 1, 2, [
+        [TopStoriesV2DefconGridPositions.MidInsert]: gridBlock(7, 1, 1, 2, []),
+        [TopStoriesV2DefconGridPositions.BottomOne]: gridBlock(8, 1, 1, 1, [
           Border.bottom
         ]),
-        [TopStoriesV2DefconGridPositions.BottomTwo]: gridBlock(8, 1, 1, 2, [
+        [TopStoriesV2DefconGridPositions.BottomTwo]: gridBlock(8, 2, 1, 1, [
           Border.bottom
         ]),
         [TopStoriesV2DefconGridPositions.BottomThree]: gridBlock(9, 1, 1, 2, [
