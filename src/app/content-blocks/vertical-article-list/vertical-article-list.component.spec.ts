@@ -11,8 +11,8 @@ import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { HeadlineComponent } from "../../shared/components/headline/headline.component";
 import { SharedModule } from "../../shared/shared.module";
 
-import { VerticalArticleListComponent } from "./vertical-article-list.component";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { VerticalArticleListComponent } from "./vertical-article-list.component";
 
 describe("VerticalArticleListComponent", () => {
   let component: VerticalArticleListComponent;
@@ -122,7 +122,8 @@ describe("VerticalArticleListComponent", () => {
     component.input.displayName = displayName;
 
     fixture.detectChanges();
-    const header = fixture.debugElement.query(By.css("app-module-header")).nativeElement;
+    const header = fixture.debugElement.query(By.css("app-module-header"))
+      .nativeElement;
 
     expect(header.input.title).toBe(displayName);
   });
@@ -149,7 +150,8 @@ describe("VerticalArticleListComponent", () => {
     };
 
     fixture.detectChanges();
-    const header = fixture.debugElement.query(By.css("app-module-header")).nativeElement;
+    const header = fixture.debugElement.query(By.css("app-module-header"))
+      .nativeElement;
     const bullet = fixture.debugElement.query(By.css(".bullet"));
 
     expect(header.input.color).toBe(color);
