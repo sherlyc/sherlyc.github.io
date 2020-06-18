@@ -10,6 +10,7 @@ import { BulletListComponent } from "./bullet-list/bullet-list.component";
 import { ColumnContainerComponent } from "./column-container/column-container.component";
 import { ContainerComponent } from "./container/container.component";
 import { DefconArticleUnitComponent } from "./defcon-article-unit/defcon-article-unit.component";
+import { DefconComponent } from "./defcon/defcon.component";
 import { ErrorBlockComponent } from "./error-block/error-block.component";
 import { ExperimentContainerComponent } from "./experiment-container/experiment-container.component";
 import { ExternalContentUnitComponent } from "./external-content-unit/external-content-unit.component";
@@ -75,7 +76,8 @@ export const contentBlockComponents = [
   VerticalArticleListComponent,
   PartnerContentComponent,
   PlayStuffComponent,
-  MostReadListComponent
+  MostReadListComponent,
+  DefconComponent,
 ];
 
 const registry: {
@@ -113,11 +115,12 @@ const registry: {
   ArticleTitleComponent,
   OliComponent,
   HomepageArticleComponent,
-  HomepageHighlightArticleComponent: HomepageHighlightArticleComponent,
+  HomepageHighlightArticleComponent,
   VerticalArticleListComponent,
   PartnerContentComponent,
   PlayStuffComponent,
-  MostReadListComponent
+  MostReadListComponent,
+  DefconComponent,
 };
 
 export default registry;
