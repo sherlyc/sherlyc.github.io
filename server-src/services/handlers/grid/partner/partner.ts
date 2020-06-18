@@ -1,4 +1,5 @@
 import { chunk } from "lodash-es";
+import { AccentColor } from "../../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IParams } from "../../../__types__/IParams";
@@ -9,7 +10,6 @@ import { BrandModule } from "../../__types__/IBrandHandlerInput";
 import { IPartnerHandlerInput } from "../../__types__/IPartnerHandlerInput";
 import { brandConfig } from "../brand/brand-config";
 import { createPartnerContent } from "./partner-content";
-import { AccentColor } from "../../../../../common/__types__/AccentColor";
 
 export default async function (
   handlerRunner: handlerRunnerFunction,

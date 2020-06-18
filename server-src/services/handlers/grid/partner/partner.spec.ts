@@ -1,3 +1,4 @@
+import { AccentColor } from "../../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
@@ -11,7 +12,6 @@ import { IPartnerHandlerInput } from "../../__types__/IPartnerHandlerInput";
 import { brandConfig } from "../brand/brand-config";
 import Partner from "./partner";
 import { createPartnerContent } from "./partner-content";
-import { AccentColor } from "../../../../../common/__types__/AccentColor";
 
 jest.mock("./partner-content");
 
