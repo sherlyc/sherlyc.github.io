@@ -20,6 +20,7 @@ export enum HandlerInputType {
   TopStoriesDefconHighlight = "TopStoriesDefconHighlight",
   TopStoriesV2 = "TopStoriesV2",
   TopStoriesV2DefaultGrid = "TopStoriesV2DefaultGrid",
+  TopStoriesV2DefconGrid = "TopStoriesV2DefconGrid",
   BiggieSmalls = "BiggieSmalls",
   BiggieSmallsGrid = "BiggieSmallsGrid",
   BiggieSmallsV2 = "BiggieSmallsV2",
