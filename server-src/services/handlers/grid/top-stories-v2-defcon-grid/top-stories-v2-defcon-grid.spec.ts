@@ -1,10 +1,10 @@
+import { repeat } from "lodash-es";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import {
   Border,
   IGridContainer
 } from "../../../../../common/__types__/IGridContainer";
 import { gridBlock } from "../../../adapters/grid/grid-block";
-import { repeat } from "lodash-es";
 import { IParams } from "../../../__types__/IParams";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
@@ -107,7 +107,9 @@ describe("Top Stories Defcon grid", () => {
         [TopStoriesV2DefconGridPositions.TopFive]: gridBlock(5, 1, 1, 2, [
           Border.bottom
         ]),
-        [TopStoriesV2DefconGridPositions.MidInsert]: gridBlock(6, 1, 1, 2, [Border.bottom]),
+        [TopStoriesV2DefconGridPositions.MidInsert]: gridBlock(6, 1, 1, 2, [
+          Border.bottom
+        ]),
         [TopStoriesV2DefconGridPositions.BottomOne]: gridBlock(7, 1, 2, 1, [
           Border.bottom
         ]),

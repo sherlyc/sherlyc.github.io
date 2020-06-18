@@ -2,6 +2,7 @@ import { repeat } from "lodash-es";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { Border } from "../../../../../common/__types__/IGridContainer";
+import { gridBlock } from "../../../adapters/grid/grid-block";
 import { IParams } from "../../../__types__/IParams";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
@@ -9,7 +10,6 @@ import {
   TopStoriesV2DefaultGridPositions
 } from "../../__types__/ITopStoriesV2DefaultGridHandlerInput";
 import topStoriesV2DefaultGridHandler from "./top-stories-v2-default-grid";
-import { gridBlock } from "../../../adapters/grid/grid-block";
 
 describe("Top Stories V2 Grid Handler", () => {
   const handlerRunnerMock = jest.fn();
