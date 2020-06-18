@@ -11,7 +11,7 @@ export class HeadlineComponent implements OnInit {
   @Input() headline?: string;
   @Input() timeStamp?: number;
   @Input() headlineFlags?: HeadlineFlags[];
-  @Input() textColor?: string;
+  @Input() textColor = "#222";
   @Input() identifier?: string;
   @Input() identifierColor?: string;
 

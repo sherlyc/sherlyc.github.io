@@ -17,6 +17,10 @@ import {
   ITopStoriesV2DefaultGridHandlerInput,
   TopStoriesV2DefaultGridPositions
 } from "../../__types__/ITopStoriesV2DefaultGridHandlerInput";
+import {
+  ITopStoriesV2DefconGridHandlerInput,
+  TopStoriesV2DefconGridPositions
+} from "../../__types__/ITopStoriesV2DefconGridHandlerInput";
 import { ITopStoriesV2HandlerInput } from "../../__types__/ITopStoriesV2HandlerInput";
 import { contentErrorHandler } from "../content-error-handler";
 
@@ -241,6 +245,231 @@ function defaultGrid(
       ],
       [TopStoriesV2DefaultGridPositions.MidInsert]: midInsertContentBlocks,
       [TopStoriesV2DefaultGridPositions.LowerRight]: lowerRightContentBlocks
+    }
+  };
+}
+
+function defconGrid(
+  { strapName, color }: ITopStoriesV2HandlerInput,
+  defconArticles: IRawArticle[],
+  topArticles: IRawArticle[],
+  midInsertContentBlocks: IContentBlock[],
+  lowerRightContentBlocks: IContentBlock[],
+  params: IParams
+): ITopStoriesV2DefconGridHandlerInput {
+  return {
+    type: HandlerInputType.TopStoriesV2DefconGrid,
+    content: {
+      [TopStoriesV2DefconGridPositions.Defcon]: [
+        contentErrorHandler(
+          () =>
+            homepageHighlightArticle(
+              defconArticles.shift() as IRawArticle,
+              strapName,
+              color,
+              {
+                mobile: {
+                  variant: JsonFeedImageType.LANDSCAPE_SIXTEEN_BY_NINE,
+                  aspectRatio: AspectRatio.SixteenByNine
+                }
+              },
+              HomepageHighlightArticleVariation.Featured,
+              true
+            ),
+          HandlerInputType.TopStoriesV2,
+          Strap.TopStories,
+          params
+        )
+      ],
+      [TopStoriesV2DefconGridPositions.BannerAd]: [
+        {
+          type: ContentBlockType.StickyContainer,
+          items: [basicAdUnit(strapName)]
+        }
+      ],
+      [TopStoriesV2DefconGridPositions.LeftOne]: [
+        contentErrorHandler(
+          () =>
+            homepageArticle(
+              topArticles.shift() as IRawArticle,
+              strapName,
+              color,
+              {
+                mobile: Orientation.Portrait,
+                tablet: Orientation.Portrait,
+                desktop: Orientation.Portrait
+              },
+              true,
+              true
+            ),
+          HandlerInputType.TopStoriesV2,
+          Strap.TopStories,
+          params
+        )
+      ],
+      [TopStoriesV2DefconGridPositions.LeftTwo]: [
+        contentErrorHandler(
+          () =>
+            homepageArticle(
+              topArticles.shift() as IRawArticle,
+              strapName,
+              color,
+              {
+                mobile: Orientation.Portrait,
+                tablet: Orientation.Portrait,
+                desktop: Orientation.Portrait
+              },
+              true,
+              true
+            ),
+          HandlerInputType.TopStoriesV2,
+          Strap.TopStories,
+          params
+        )
+      ],
+      [TopStoriesV2DefconGridPositions.LeftThree]: [
+        contentErrorHandler(
+          () =>
+            homepageArticle(
+              topArticles.shift() as IRawArticle,
+              strapName,
+              color,
+              {
+                mobile: Orientation.Portrait,
+                tablet: Orientation.Portrait,
+                desktop: Orientation.Portrait
+              },
+              true,
+              true
+            ),
+          HandlerInputType.TopStoriesV2,
+          Strap.TopStories,
+          params
+        )
+      ],
+      [TopStoriesV2DefconGridPositions.LeftFour]: [basicAdUnit(strapName)],
+      [TopStoriesV2DefconGridPositions.RightOne]: [
+        contentErrorHandler(
+          () =>
+            homepageArticle(
+              topArticles.shift() as IRawArticle,
+              strapName,
+              color,
+              {
+                mobile: Orientation.Landscape,
+                tablet: Orientation.Landscape,
+                desktop: Orientation.Landscape
+              },
+              false,
+              true
+            ),
+          HandlerInputType.TopStoriesV2,
+          Strap.TopStories,
+          params
+        )
+      ],
+      [TopStoriesV2DefconGridPositions.RightTwo]: [
+        contentErrorHandler(
+          () =>
+            homepageArticle(
+              topArticles.shift() as IRawArticle,
+              strapName,
+              color,
+              {
+                mobile: Orientation.Landscape,
+                tablet: Orientation.Landscape,
+                desktop: Orientation.Landscape
+              },
+              false,
+              true
+            ),
+          HandlerInputType.TopStoriesV2,
+          Strap.TopStories,
+          params
+        )
+      ],
+      [TopStoriesV2DefconGridPositions.RightThree]: [
+        contentErrorHandler(
+          () =>
+            homepageArticle(
+              topArticles.shift() as IRawArticle,
+              strapName,
+              color,
+              {
+                mobile: Orientation.Landscape,
+                tablet: Orientation.Landscape,
+                desktop: Orientation.Landscape
+              },
+              false,
+              true
+            ),
+          HandlerInputType.TopStoriesV2,
+          Strap.TopStories,
+          params
+        )
+      ],
+      [TopStoriesV2DefconGridPositions.RightFour]: [
+        contentErrorHandler(
+          () =>
+            homepageArticle(
+              topArticles.shift() as IRawArticle,
+              strapName,
+              color,
+              {
+                mobile: Orientation.Landscape,
+                tablet: Orientation.Landscape,
+                desktop: Orientation.Landscape
+              },
+              true,
+              false
+            ),
+          HandlerInputType.TopStoriesV2,
+          Strap.TopStories,
+          params
+        )
+      ],
+      [TopStoriesV2DefconGridPositions.RightFive]: [
+        contentErrorHandler(
+          () =>
+            homepageArticle(
+              topArticles.shift() as IRawArticle,
+              strapName,
+              color,
+              {
+                mobile: Orientation.Landscape,
+                tablet: Orientation.Landscape,
+                desktop: Orientation.Landscape
+              },
+              true,
+              false
+            ),
+          HandlerInputType.TopStoriesV2,
+          Strap.TopStories,
+          params
+        )
+      ],
+      [TopStoriesV2DefconGridPositions.RightSix]: [
+        contentErrorHandler(
+          () =>
+            homepageArticle(
+              topArticles.shift() as IRawArticle,
+              strapName,
+              color,
+              {
+                mobile: Orientation.Landscape,
+                tablet: Orientation.Landscape,
+                desktop: Orientation.Landscape
+              },
+              true,
+              false
+            ),
+          HandlerInputType.TopStoriesV2,
+          Strap.TopStories,
+          params
+        )
+      ],
+      [TopStoriesV2DefconGridPositions.MidInsert]: midInsertContentBlocks,
+      [TopStoriesV2DefconGridPositions.LowerRight]: lowerRightContentBlocks
     }
   };
 }

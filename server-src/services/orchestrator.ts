@@ -197,6 +197,9 @@ export const newPage = (): HandlerInput[] => {
           articleCount: 4
         },
         {
+          type: HandlerInputType.Partner
+        },
+        {
           type: HandlerInputType.LargeLeadSix,
           displayName: "well & good",
           color: AccentColor.AppleGreen,
@@ -446,15 +449,6 @@ export const newPage = (): HandlerInput[] => {
           margin: "0 -10px 60px"
         }
       }
-    },
-    {
-      type: HandlerInputType.Feature,
-      name: FeatureName.HomepageV2,
-      content: [
-        {
-          type: HandlerInputType.Partner
-        }
-      ]
     },
     {
       type: HandlerInputType.Brand,

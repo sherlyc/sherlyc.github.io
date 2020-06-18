@@ -68,7 +68,7 @@ describe("Most Read Grid Handler", () => {
     };
 
     const desktopConfig: IGridConfig = {
-      gridTemplateColumns: "1fr 1fr 1fr",
+      gridTemplateColumns: "1fr 1fr 300px",
       gridTemplateRows: "auto",
       gridColumnGap: "20px",
       gridRowGap: "20px",

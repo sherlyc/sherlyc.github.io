@@ -53,11 +53,11 @@ describe("Headline Component", () => {
     expect(time).toBeFalsy();
   });
 
-  it("should inherit text color by default", () => {
+  it("should have default text color", () => {
     fixture.detectChanges();
     const h3 = fixture.debugElement.query(By.css("h3"));
 
-    expect(h3.nativeElement.style.color).toBe("");
+    expect(h3.styles.color).toBe("#222");
   });
 
   it("should set text color on h3", () => {

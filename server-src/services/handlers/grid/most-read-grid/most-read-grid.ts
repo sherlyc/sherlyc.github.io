@@ -51,7 +51,7 @@ export default async function (
         gridBlocks: tablet
       },
       desktop: {
-        gridTemplateColumns: "1fr 1fr 1fr",
+        gridTemplateColumns: "1fr 1fr 300px",
         gridTemplateRows: "auto",
         gridColumnGap: "20px",
         gridRowGap: "20px",

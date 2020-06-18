@@ -41,6 +41,7 @@ import StripsV2 from "./grid/strips-v2/strips-v2";
 import Strips from "./grid/strips/strips";
 import TopStoriesGrid from "./grid/top-stories-grid/top-stories-grid";
 import TopStoriesV2DefaultGrid from "./grid/top-stories-v2-default-grid/top-stories-v2-default-grid";
+import TopStoriesV2DefconGrid from "./grid/top-stories-v2-defcon-grid/top-stories-v2-defcon-grid";
 import TopStoriesV2 from "./grid/top-stories-v2/top-stories-v2";
 import TopStoriesDefaultOneHighlight from "./grid/top-stories/default-one-highlight/default-one-highlight";
 import TopStoriesDefconHighlight from "./grid/top-stories/defcon-highlight/defcon-highlight";
@@ -85,6 +86,7 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   TopStoriesDefaultOneHighlight,
   TopStoriesDefconHighlight,
   TopStoriesV2DefaultGrid,
+  TopStoriesV2DefconGrid,
   BiggieSmalls,
   BiggieSmallsGrid,
   BiggieSmallsV2,

@@ -1,3 +1,4 @@
+import { AccentColor } from "../../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
@@ -76,9 +77,9 @@ describe("Partner", () => {
       content: {
         [BrandGridPositions.ModuleTitle]: [
           {
-            type: ContentBlockType.ModuleTitle,
-            displayName: "from our partners",
-            displayNameColor: "black"
+            type: ContentBlockType.ModuleHeader,
+            title: "from our partners",
+            color: AccentColor.Black
           }
         ],
         [BrandGridPositions.FirstRow]: [fakeGridContainer],

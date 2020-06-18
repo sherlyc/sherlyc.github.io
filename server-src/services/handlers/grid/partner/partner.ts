@@ -1,4 +1,5 @@
 import { chunk } from "lodash-es";
+import { AccentColor } from "../../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IParams } from "../../../__types__/IParams";
@@ -32,9 +33,9 @@ export default async function (
   const content: { [key in BrandGridPositions]: IContentBlock[] } = {
     [BrandGridPositions.ModuleTitle]: [
       {
-        type: ContentBlockType.ModuleTitle,
-        displayName: moduleTitle,
-        displayNameColor: "black"
+        type: ContentBlockType.ModuleHeader,
+        title: moduleTitle,
+        color: AccentColor.Black
       }
     ],
     [BrandGridPositions.FirstRow]: await handlerRunner(
