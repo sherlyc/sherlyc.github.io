@@ -81,6 +81,9 @@ a {
 }
 
 app-time {
-  margin-right: 5px;
+  &:not(:empty) {
+    margin-right: 5px;
+  }
+
   --timestamp-size: 12px;
 }
