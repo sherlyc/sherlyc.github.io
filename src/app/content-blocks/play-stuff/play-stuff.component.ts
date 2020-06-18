@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 import { IPlayStuff } from "../../../../common/__types__/IPlayStuff";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
   selector: "app-play-stuff",

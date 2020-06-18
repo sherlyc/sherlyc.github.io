@@ -1,5 +1,4 @@
 import { Type } from "@angular/core";
-import { IContentBlockComponent } from "./__types__/IContentBlockComponent";
 import { ArticleTitleComponent } from "./article-title/article-title.component";
 import { BasicAdUnitComponent } from "./basic-ad-unit/basic-ad-unit.component";
 import { BasicArticleSectionComponent } from "./basic-article-section/basic-article-section.component";
@@ -25,18 +24,19 @@ import { HeaderComponent } from "./header/header.component";
 import { HomepageArticleComponent } from "./homepage-article/homepage-article.component";
 import { HomepageHighlightArticleComponent } from "./homepage-featured-article/homepage-highlight-article.component";
 import { ImageLinkUnitComponent } from "./image-link-unit/image-link-unit.component";
+import { ModuleHeaderComponent } from "./module-header/module-header.component";
 import { ModuleSubtitleComponent } from "./module-subtitle/module-subtitle.component";
 import { ModuleTitleComponent } from "./module-title/module-title.component";
+import { MostReadListComponent } from "./most-read-list/most-read-list.component";
 import { OliComponent } from "./oli/oli.component";
 import { PartnerContentComponent } from "./partner-content/partner-content.component";
+import { PlayStuffComponent } from "./play-stuff/play-stuff.component";
 import { ResponsiveBigImageArticleComponent } from "./responsive-big-image-article/responsive-big-image-article.component";
 import { ResponsiveExternalContentComponent } from "./responsive-external-content/responsive-external-content.component";
 import { StickyContainerComponent } from "./sticky-container/sticky-container.component";
 import { VerticalArticleListComponent } from "./vertical-article-list/vertical-article-list.component";
 import { WeatherUnitComponent } from "./weather-unit/weather-unit.component";
-import { ModuleHeaderComponent } from "./module-header/module-header.component";
-import { PlayStuffComponent } from "./play-stuff/play-stuff.component";
-import { MostReadListComponent } from "./most-read-list/most-read-list.component";
+import { IContentBlockComponent } from "./__types__/IContentBlockComponent";
 
 export const contentBlockComponents = [
   GrayDefconArticleUnitComponent,
@@ -75,7 +75,7 @@ export const contentBlockComponents = [
   VerticalArticleListComponent,
   PartnerContentComponent,
   PlayStuffComponent,
-  MostReadListComponent,
+  MostReadListComponent
 ];
 
 const registry: {
@@ -117,7 +117,7 @@ const registry: {
   VerticalArticleListComponent,
   PartnerContentComponent,
   PlayStuffComponent,
-  MostReadListComponent,
+  MostReadListComponent
 };
 
 export default registry;

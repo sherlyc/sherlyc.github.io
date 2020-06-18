@@ -1,8 +1,8 @@
-import { IParams } from "../../__types__/IParams";
 import cacheHttp from "../../utils/cache-http";
 import logger from "../../utils/logger";
-import { layoutRetriever } from "./layout-retriever";
+import { IParams } from "../../__types__/IParams";
 import { LayoutType } from "../__types__/LayoutType";
+import { layoutRetriever } from "./layout-retriever";
 
 jest.mock("../../utils/config");
 jest.mock("../../utils/cache-http");

@@ -1,5 +1,5 @@
-import { Inject, Injectable, PLATFORM_ID } from "@angular/core";
 import { isPlatformBrowser, isPlatformServer } from "@angular/common";
+import { Inject, Injectable, PLATFORM_ID } from "@angular/core";
 import { makeStateKey, TransferState } from "@angular/platform-browser";
 import { WindowService } from "../window/window.service";
 

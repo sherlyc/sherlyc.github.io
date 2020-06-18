@@ -1,5 +1,5 @@
-import { ContentBlockType } from "./ContentBlockType";
 import { AccentColor } from "./AccentColor";
+import { ContentBlockType } from "./ContentBlockType";
 
 export enum ModuleHeaderVariation {
   Smaller = "Smaller",

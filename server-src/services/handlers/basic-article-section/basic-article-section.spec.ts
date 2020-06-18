@@ -1,10 +1,10 @@
-import basicArticleSectionHandler from "./basic-article-section";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { Section } from "../../section";
-import { IBasicArticleSectionHandlerInput } from "../__types__/IBasicArticleSectionHandlerInput";
+import { Strap } from "../../strap";
 import { IParams } from "../../__types__/IParams";
 import { HandlerInputType } from "../__types__/HandlerInputType";
-import { Strap } from "../../strap";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IBasicArticleSectionHandlerInput } from "../__types__/IBasicArticleSectionHandlerInput";
+import basicArticleSectionHandler from "./basic-article-section";
 
 jest.mock("../runner");
 

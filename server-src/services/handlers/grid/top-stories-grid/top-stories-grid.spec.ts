@@ -1,13 +1,13 @@
-import topStoriesGridHandler from "./top-stories-grid";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { Border } from "../../../../../common/__types__/IGridContainer";
+import { IParams } from "../../../__types__/IParams";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
   ITopStoriesGridHandlerInput,
   TopStoriesGridPositions
 } from "../../__types__/ITopStoriesGridHandlerInput";
-import { IParams } from "../../../__types__/IParams";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { Border } from "../../../../../common/__types__/IGridContainer";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import topStoriesGridHandler from "./top-stories-grid";
 
 describe("Top Stories grid handler", () => {
   const handlerRunnerMock = jest.fn();

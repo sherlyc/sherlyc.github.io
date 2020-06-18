@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { IWindowService } from "./__types__/IWindowService";
 import { IWindow } from "./__types__/IWindow";
+import { IWindowService } from "./__types__/IWindowService";
 
 declare const window: Window & IWindow;
 

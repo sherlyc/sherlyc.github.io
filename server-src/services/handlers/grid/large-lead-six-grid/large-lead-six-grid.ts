@@ -1,16 +1,16 @@
-import { handlerRunnerFunction } from "../../runner";
-import { IParams } from "../../../__types__/IParams";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import {
-  ILargeLeadSixGridHandlerInput,
-  LargeLeadSixGridPositions,
-} from "../../__types__/ILargeLeadSixGridHandlerInput";
-import {
   Border,
-  IGridConfig,
+  IGridConfig
 } from "../../../../../common/__types__/IGridContainer";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { gridBlock } from "../../../adapters/grid/grid-block";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
+import {
+  ILargeLeadSixGridHandlerInput,
+  LargeLeadSixGridPositions
+} from "../../__types__/ILargeLeadSixGridHandlerInput";
 
 export default async function (
   handlerRunner: handlerRunnerFunction,
@@ -26,10 +26,10 @@ export default async function (
       [LargeLeadSixGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 3, []),
       [LargeLeadSixGridPositions.Left]: gridBlock(2, 1, 1, 1, [Border.bottom]),
       [LargeLeadSixGridPositions.Middle]: gridBlock(2, 2, 1, 1, [
-        Border.bottom,
+        Border.bottom
       ]),
-      [LargeLeadSixGridPositions.Right]: gridBlock(2, 3, 1, 1, []),
-    },
+      [LargeLeadSixGridPositions.Right]: gridBlock(2, 3, 1, 1, [])
+    }
   };
 
   const tablet: IGridConfig = {
@@ -41,10 +41,10 @@ export default async function (
       [LargeLeadSixGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 3, []),
       [LargeLeadSixGridPositions.Left]: gridBlock(2, 1, 1, 1, [Border.bottom]),
       [LargeLeadSixGridPositions.Middle]: gridBlock(2, 2, 1, 1, [
-        Border.bottom,
+        Border.bottom
       ]),
-      [LargeLeadSixGridPositions.Right]: gridBlock(2, 3, 1, 1, []),
-    },
+      [LargeLeadSixGridPositions.Right]: gridBlock(2, 3, 1, 1, [])
+    }
   };
 
   const mobile: IGridConfig = {
@@ -56,10 +56,10 @@ export default async function (
       [LargeLeadSixGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 1, []),
       [LargeLeadSixGridPositions.Left]: gridBlock(2, 1, 1, 1, [Border.bottom]),
       [LargeLeadSixGridPositions.Middle]: gridBlock(3, 1, 1, 1, [
-        Border.bottom,
+        Border.bottom
       ]),
-      [LargeLeadSixGridPositions.Right]: gridBlock(4, 1, 1, 1, []),
-    },
+      [LargeLeadSixGridPositions.Right]: gridBlock(4, 1, 1, 1, [])
+    }
   };
 
   return [
@@ -68,7 +68,7 @@ export default async function (
       items: content,
       desktop,
       tablet,
-      mobile,
-    },
+      mobile
+    }
   ];
 }

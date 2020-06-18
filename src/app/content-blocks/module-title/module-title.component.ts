@@ -4,10 +4,10 @@ import {
   Input,
   OnInit
 } from "@angular/core";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 import { IModuleTitle } from "../../../../common/__types__/IModuleTitle";
-import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
   selector: "app-module-title-component",

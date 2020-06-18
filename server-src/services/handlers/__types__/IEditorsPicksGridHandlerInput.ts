@@ -1,5 +1,5 @@
-import { HandlerInputType } from "./HandlerInputType";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import { HandlerInputType } from "./HandlerInputType";
 
 export interface IEditorsPicksGridHandlerInput {
   type: HandlerInputType.EditorsPicksGrid;
@@ -16,5 +16,5 @@ export enum EditorsPicksGridPositions {
   SecondRowTwo = "SecondRowTwo",
   SecondRowThree = "SecondRowThree",
   SecondRowFour = "SecondRowFour",
-  Ad = "Ad",
+  Ad = "Ad"
 }

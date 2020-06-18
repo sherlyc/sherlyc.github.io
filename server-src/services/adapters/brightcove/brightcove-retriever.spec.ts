@@ -1,7 +1,7 @@
-import { retrieveBrightcovePlaylist } from "./brightcove-retriever";
-import { IParams } from "../../__types__/IParams";
 import http from "../../utils/http";
+import { IParams } from "../../__types__/IParams";
 import { IBrightcovePlaylist } from "../__types__/IBrightcovePlaylist";
+import { retrieveBrightcovePlaylist } from "./brightcove-retriever";
 
 jest.mock("../../utils/http");
 

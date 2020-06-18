@@ -1,13 +1,6 @@
 .wrapper {
   background-color: #f7f7f7;
   padding: 20px 16px;
-  --title-size: 16px;
-}
-
-h3 {
-  font-size: 30px;
-  text-transform: lowercase;
-  margin: 0 0 5px 0;
 }
 
 .article {
@@ -15,6 +8,7 @@ h3 {
   padding: 15px 0 15px 0;
   text-decoration: none;
   border-bottom: 1px solid #e8e8e8;
+  --title-size: 18px;
 
   :hover {
     text-decoration: none;
@@ -31,12 +25,15 @@ h3 {
   }
 
   .time {
+    font-size: var(--title-size);
+    color: #333;
     vertical-align: middle;
     margin-right: 5px;
   }
 
   app-headline {
     display: inline;
+    --title-weight: 500;
   }
 }
 

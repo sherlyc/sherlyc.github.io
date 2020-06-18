@@ -39,7 +39,7 @@ describe("RuntimeService", () => {
     process.env = {};
   });
 
-  describe("when in server", function() {
+  describe("when in server", function () {
     beforeEach(() => {
       const isServerSpy = jest.spyOn(runtimeService, "isServer");
       isServerSpy.mockReturnValue(true);

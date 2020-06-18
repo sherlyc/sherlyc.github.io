@@ -1,6 +1,6 @@
-import { IWeather } from "../__types__/IWeather";
-import { IWeatherResponse } from "../../../../common/__types__/IWeatherResponse";
 import { Forecasts } from "../../../../common/Forecasts";
+import { IWeatherResponse } from "../../../../common/__types__/IWeatherResponse";
+import { IWeather } from "../__types__/IWeather";
 
 export const weatherMapper = (weatherInfo: IWeather): IWeatherResponse => {
   const todayWeather = weatherInfo.oneword_forecasts[0];

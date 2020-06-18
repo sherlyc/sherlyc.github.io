@@ -1,18 +1,18 @@
-import basicArticleListHandler from "./basic-article-list";
-import { IParams } from "../../__types__/IParams";
-import { HandlerInputType } from "../__types__/HandlerInputType";
-import { Strap } from "../../strap";
-import { Section } from "../../section";
-import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IBasicArticleTitleUnit } from "../../../../common/__types__/IBasicArticleTitleUnit";
-import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
-import logger from "../../utils/logger";
+import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
 import {
   Border,
   IGridConfig,
   IGridContainer
 } from "../../../../common/__types__/IGridContainer";
+import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
+import { Section } from "../../section";
+import { Strap } from "../../strap";
+import logger from "../../utils/logger";
+import { IParams } from "../../__types__/IParams";
+import { HandlerInputType } from "../__types__/HandlerInputType";
+import basicArticleListHandler from "./basic-article-list";
 
 jest.mock("../../adapters/article-retriever/article-retriever");
 jest.mock("../../utils/logger");

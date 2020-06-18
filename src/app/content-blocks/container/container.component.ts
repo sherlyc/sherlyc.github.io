@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 import { IContainer } from "../../../../common/__types__/IContainer";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
   selector: "app-container",

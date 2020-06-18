@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { AnalyticsEventsType } from "src/app/services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "src/app/services/analytics/analytics.service";
+import { AnalyticsEventsType } from "src/app/services/analytics/__types__/AnalyticsEventsType";
 import { mockService, ServiceMock } from "src/app/services/mocks/MockService";
 import { SharedModule } from "src/app/shared/shared.module";
+import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
-import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 import { FeatureSwitchService } from "../../services/feature-switch/feature-switch.service";
 import { HeadlineComponent } from "../../shared/components/headline/headline.component";
 

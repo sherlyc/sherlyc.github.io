@@ -1,17 +1,18 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { getUnixTime } from "date-fns";
+import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 import { AccentColor } from "../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IVerticalArticleList } from "../../../../common/__types__/IVerticalArticleList";
-import { HeadlineFlags } from "../../../../common/HeadlineFlags";
-import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { HeadlineComponent } from "../../shared/components/headline/headline.component";
 import { SharedModule } from "../../shared/shared.module";
 
 import { VerticalArticleListComponent } from "./vertical-article-list.component";
+import { NO_ERRORS_SCHEMA } from "@angular/core";
 
 describe("VerticalArticleListComponent", () => {
   let component: VerticalArticleListComponent;
@@ -52,7 +53,8 @@ describe("VerticalArticleListComponent", () => {
           provide: AnalyticsService,
           useClass: mockService(AnalyticsService)
         }
-      ]
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
 
     analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
@@ -115,14 +117,14 @@ describe("VerticalArticleListComponent", () => {
     expect(headlineComponent.headlineFlags).toBe(fakeArticle.headlineFlags);
   });
 
-  it("should render display name", () => {
+  it("should set display name on module header", () => {
     const displayName = "Hello";
     component.input.displayName = displayName;
 
     fixture.detectChanges();
-    const headline = fixture.debugElement.query(By.css("h3")).nativeElement;
+    const header = fixture.debugElement.query(By.css("app-module-header")).nativeElement;
 
-    expect(headline.textContent).toBe(displayName);
+    expect(header.input.title).toBe(displayName);
   });
 
   it("should render published time as timestamp", () => {
@@ -138,7 +140,7 @@ describe("VerticalArticleListComponent", () => {
     expect(timestamp.nativeElement.textContent).toBe("10:00am");
   });
 
-  it("should set input color on headline and bullet", () => {
+  it("should set input color on module header and bullet", () => {
     const color = "red";
     component.input = {
       ...componentInput,
@@ -147,10 +149,10 @@ describe("VerticalArticleListComponent", () => {
     };
 
     fixture.detectChanges();
-    const headline = fixture.debugElement.query(By.css("h3"));
+    const header = fixture.debugElement.query(By.css("app-module-header")).nativeElement;
     const bullet = fixture.debugElement.query(By.css(".bullet"));
 
-    expect(headline.styles.color).toBe(color);
+    expect(header.input.color).toBe(color);
     expect(bullet.styles.background).toBe(color);
     expect(bullet.styles["box-shadow"]).toContain(color);
   });

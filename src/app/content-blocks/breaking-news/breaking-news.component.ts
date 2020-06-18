@@ -1,13 +1,13 @@
 import { Component, OnInit } from "@angular/core";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
-import { IBreakingNews } from "../../../../common/__types__/IBreakingNews";
 import { CookieNames } from "../../../../common/__types__/CookieNames";
-import { CookieService } from "../../services/cookie/cookie.service";
+import { IBreakingNews } from "../../../../common/__types__/IBreakingNews";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
-import { WindowService } from "../../services/window/window.service";
-import { StorageKeys, StoreService } from "../../services/store/store.service";
+import { CookieService } from "../../services/cookie/cookie.service";
 import { RuntimeService } from "../../services/runtime/runtime.service";
+import { StorageKeys, StoreService } from "../../services/store/store.service";
+import { WindowService } from "../../services/window/window.service";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
   selector: "app-breaking-news",

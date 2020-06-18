@@ -6,8 +6,8 @@ import {
   OnInit
 } from "@angular/core";
 import { IFeaturedArticle } from "../../../../common/__types__/IFeaturedArticle";
-import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({

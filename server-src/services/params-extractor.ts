@@ -5,6 +5,6 @@ import { Request } from "express";
 export default (req: Request): IParams => {
   return {
     apiRequestId: v4(),
-    authorization: req.header("Authorization"),
+    authorization: req.header("Authorization")
   };
 };

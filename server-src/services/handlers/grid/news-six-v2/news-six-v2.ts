@@ -1,19 +1,19 @@
+import { AspectRatio } from "../../../../../common/AspectRatio";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
-import { IParams } from "../../../__types__/IParams";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { HomepageHighlightArticleVariation } from "../../../../../common/__types__/IHomepageHighlightArticle";
 import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
+import { homepageHighlightArticle } from "../../../adapters/article-converter/homepage-highlight-article.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { JsonFeedImageType } from "../../../adapters/__types__/JsonFeedImageType";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { NewsSixV2GridPositions } from "../../__types__/INewsSixGridV2HandlerInput";
 import { INewsSixV2HandlerInput } from "../../__types__/INewsSixV2HandlerInput";
-import { handlerRunnerFunction } from "../../runner";
 import { contentErrorHandler } from "../content-error-handler";
-import { homepageHighlightArticle } from "../../../adapters/article-converter/homepage-highlight-article.converter";
-import { JsonFeedImageType } from "../../../adapters/__types__/JsonFeedImageType";
-import { AspectRatio } from "../../../../../common/AspectRatio";
-import { HomepageHighlightArticleVariation } from "../../../../../common/__types__/IHomepageHighlightArticle";
 
 export default async function (
   handlerRunner: handlerRunnerFunction,

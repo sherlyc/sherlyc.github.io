@@ -1,16 +1,16 @@
-import { IParams } from "../../../__types__/IParams";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import {
-  ILargeLeadSixGridHandlerInput,
-  LargeLeadSixGridPositions
-} from "../../__types__/ILargeLeadSixGridHandlerInput";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import {
   Border,
   IGridConfig,
   IGridContainer
 } from "../../../../../common/__types__/IGridContainer";
+import { IParams } from "../../../__types__/IParams";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import {
+  ILargeLeadSixGridHandlerInput,
+  LargeLeadSixGridPositions
+} from "../../__types__/ILargeLeadSixGridHandlerInput";
 import largeLeadSixGrid from "./large-lead-six-grid";
 
 describe("Large Lead Six Grid", () => {

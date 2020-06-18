@@ -1,7 +1,7 @@
-import { WeatherIconComponent } from "./weather-icon.component";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { Forecasts } from "../../../../../common/Forecasts";
 import { By } from "@angular/platform-browser";
+import { Forecasts } from "../../../../../common/Forecasts";
+import { WeatherIconComponent } from "./weather-icon.component";
 
 describe("Headline Flag Component", () => {
   let component: WeatherIconComponent;

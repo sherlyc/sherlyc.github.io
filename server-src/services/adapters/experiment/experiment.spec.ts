@@ -1,7 +1,7 @@
-import { getExperimentVariant } from "./experiment";
 import { DeviceType } from "../../../../common/DeviceType";
-import { IParams } from "../../__types__/IParams";
 import { ExperimentName } from "../../../../common/ExperimentName";
+import { IParams } from "../../__types__/IParams";
+import { getExperimentVariant } from "./experiment";
 
 jest.mock("../../utils/cache-http");
 

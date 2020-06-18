@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { CookieService } from "../../services/cookie/cookie.service";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
+import { ScriptInjectorService } from "../../services/script-injector/script-injector.service";
 import { Position } from "../../services/script-injector/__types__/Position";
 import { ScriptId } from "../../services/script-injector/__types__/ScriptId";
-import { ScriptInjectorService } from "../../services/script-injector/script-injector.service";
 import { WindowService } from "../../services/window/window.service";
 import { CopyrightComponent } from "../../shared/components/copyright/copyright.component";
 import { FooterComponent } from "./footer.component";

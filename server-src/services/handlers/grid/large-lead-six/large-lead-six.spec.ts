@@ -5,10 +5,10 @@ import {
   IGridContainer
 } from "../../../../../common/__types__/IGridContainer";
 import { IModuleTitle } from "../../../../../common/__types__/IModuleTitle";
-import { IParams } from "../../../__types__/IParams";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { Strap } from "../../../strap";
+import { IParams } from "../../../__types__/IParams";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { LargeLeadSixGridPositions } from "../../__types__/ILargeLeadSixGridHandlerInput";
 import { ILargeLeadSixHandlerInput } from "../../__types__/ILargeLeadSixHandlerInput";

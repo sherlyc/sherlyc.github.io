@@ -1,5 +1,5 @@
-import { HandlerInputType } from "./HandlerInputType";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import { HandlerInputType } from "./HandlerInputType";
 
 export enum NewsSixGridPositions {
   ModuleTitle = "ModuleTitle",

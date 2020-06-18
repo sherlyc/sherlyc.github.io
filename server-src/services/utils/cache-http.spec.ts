@@ -1,6 +1,6 @@
-import cacheHttp from "./cache-http";
 import { IParams } from "../__types__/IParams";
 import { loadFromCache, saveToCache } from "./cache";
+import cacheHttp from "./cache-http";
 
 jest.mock("./cache");
 
