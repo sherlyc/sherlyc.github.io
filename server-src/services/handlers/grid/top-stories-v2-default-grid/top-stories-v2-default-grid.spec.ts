@@ -2,6 +2,7 @@ import { repeat } from "lodash-es";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { Border } from "../../../../../common/__types__/IGridContainer";
+import { gridBlock } from "../../../adapters/grid/grid-block";
 import { IParams } from "../../../__types__/IParams";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
@@ -27,15 +28,15 @@ describe("Top Stories V2 Grid Handler", () => {
         [TopStoriesV2DefaultGridPositions.LeftHighlight]: [fakeContentBlock],
         [TopStoriesV2DefaultGridPositions.RightHighlight]: [fakeContentBlock],
         [TopStoriesV2DefaultGridPositions.BannerAd]: [fakeContentBlock],
-        [TopStoriesV2DefaultGridPositions.LeftOne]: [fakeContentBlock],
-        [TopStoriesV2DefaultGridPositions.LeftTwo]: [fakeContentBlock],
-        [TopStoriesV2DefaultGridPositions.LeftThree]: [fakeContentBlock],
-        [TopStoriesV2DefaultGridPositions.LeftFour]: [fakeContentBlock],
-        [TopStoriesV2DefaultGridPositions.RightOne]: [fakeContentBlock],
-        [TopStoriesV2DefaultGridPositions.RightTwo]: [fakeContentBlock],
-        [TopStoriesV2DefaultGridPositions.RightThree]: [fakeContentBlock],
-        [TopStoriesV2DefaultGridPositions.RightFour]: [fakeContentBlock],
-        [TopStoriesV2DefaultGridPositions.RightFive]: [fakeContentBlock],
+        [TopStoriesV2DefaultGridPositions.TopOne]: [fakeContentBlock],
+        [TopStoriesV2DefaultGridPositions.TopTwo]: [fakeContentBlock],
+        [TopStoriesV2DefaultGridPositions.TopThree]: [fakeContentBlock],
+        [TopStoriesV2DefaultGridPositions.TopFour]: [fakeContentBlock],
+        [TopStoriesV2DefaultGridPositions.BottomOne]: [fakeContentBlock],
+        [TopStoriesV2DefaultGridPositions.BottomTwo]: [fakeContentBlock],
+        [TopStoriesV2DefaultGridPositions.BottomThree]: [fakeContentBlock],
+        [TopStoriesV2DefaultGridPositions.BottomFour]: [fakeContentBlock],
+        [TopStoriesV2DefaultGridPositions.BottomFive]: [fakeContentBlock],
         [TopStoriesV2DefaultGridPositions.MidInsert]: [fakeContentBlock],
         [TopStoriesV2DefaultGridPositions.LowerRight]: [fakeContentBlock]
       }
@@ -53,318 +54,168 @@ describe("Top Stories V2 Grid Handler", () => {
       gridColumnGap: "20px",
       gridRowGap: "20px",
       gridBlocks: {
-        [TopStoriesV2DefaultGridPositions.LeftHighlight]: {
-          border: [Border.bottom],
-          rowStart: 1,
-          rowSpan: 1,
-          columnStart: 1,
-          columnSpan: 2
-        },
-        [TopStoriesV2DefaultGridPositions.RightHighlight]: {
-          border: [Border.bottom],
-          rowStart: 2,
-          rowSpan: 1,
-          columnStart: 1,
-          columnSpan: 2
-        },
-        [TopStoriesV2DefaultGridPositions.BannerAd]: {
-          border: [],
-          rowStart: 3,
-          rowSpan: 1,
-          columnStart: 1,
-          columnSpan: 2
-        },
-        [TopStoriesV2DefaultGridPositions.LeftOne]: {
-          border: [Border.bottom],
-          rowStart: 4,
-          rowSpan: 1,
-          columnStart: 1,
-          columnSpan: 1
-        },
-        [TopStoriesV2DefaultGridPositions.LeftTwo]: {
-          border: [Border.bottom],
-          rowStart: 4,
-          rowSpan: 1,
-          columnStart: 2,
-          columnSpan: 1
-        },
-        [TopStoriesV2DefaultGridPositions.LeftThree]: {
-          border: [Border.bottom],
-          rowStart: 5,
-          rowSpan: 1,
-          columnStart: 1,
-          columnSpan: 1
-        },
-        [TopStoriesV2DefaultGridPositions.LeftFour]: {
-          border: [Border.bottom],
-          rowStart: 5,
-          rowSpan: 1,
-          columnStart: 2,
-          columnSpan: 1
-        },
-        [TopStoriesV2DefaultGridPositions.RightOne]: {
-          border: [Border.bottom],
-          rowStart: 7,
-          rowSpan: 1,
-          columnStart: 1,
-          columnSpan: 2
-        },
-        [TopStoriesV2DefaultGridPositions.RightTwo]: {
-          border: [Border.bottom],
-          rowStart: 8,
-          rowSpan: 1,
-          columnStart: 1,
-          columnSpan: 2
-        },
-        [TopStoriesV2DefaultGridPositions.RightThree]: {
-          border: [Border.bottom],
-          rowStart: 9,
-          rowSpan: 1,
-          columnStart: 1,
-          columnSpan: 2
-        },
-        [TopStoriesV2DefaultGridPositions.RightFour]: {
-          border: [Border.bottom],
-          rowStart: 10,
-          rowSpan: 1,
-          columnStart: 1,
-          columnSpan: 2
-        },
-        [TopStoriesV2DefaultGridPositions.RightFive]: {
-          border: [Border.bottom],
-          rowStart: 11,
-          rowSpan: 1,
-          columnStart: 1,
-          columnSpan: 2
-        },
-        [TopStoriesV2DefaultGridPositions.MidInsert]: {
-          border: [Border.bottom],
-          rowStart: 6,
-          rowSpan: 1,
-          columnStart: 1,
-          columnSpan: 2
-        },
-        [TopStoriesV2DefaultGridPositions.LowerRight]: {
-          border: [],
-          rowStart: 12,
-          rowSpan: 1,
-          columnStart: 1,
-          columnSpan: 2
-        }
+        [TopStoriesV2DefaultGridPositions.LeftHighlight]: gridBlock(
+          1,
+          1,
+          1,
+          2,
+          [Border.bottom]
+        ),
+        [TopStoriesV2DefaultGridPositions.RightHighlight]: gridBlock(
+          2,
+          1,
+          1,
+          2,
+          [Border.bottom]
+        ),
+        [TopStoriesV2DefaultGridPositions.BannerAd]: gridBlock(3, 1, 1, 2, []),
+        [TopStoriesV2DefaultGridPositions.TopOne]: gridBlock(4, 1, 1, 1, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.TopTwo]: gridBlock(4, 2, 1, 1, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.TopThree]: gridBlock(5, 1, 1, 2, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.TopFour]: gridBlock(6, 1, 1, 2, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.MidInsert]: gridBlock(7, 1, 1, 2, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.BottomOne]: gridBlock(8, 1, 1, 1, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.BottomTwo]: gridBlock(8, 2, 1, 1, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.BottomThree]: gridBlock(9, 1, 1, 2, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.BottomFour]: gridBlock(10, 1, 1, 2, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.BottomFive]: gridBlock(11, 1, 1, 2, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.LowerRight]: gridBlock(
+          12,
+          1,
+          1,
+          2,
+          []
+        )
       }
     };
 
     const tablet = {
       gridTemplateColumns: "1fr 1fr 2fr",
-      gridTemplateRows: repeat(" auto", 18).substring(1),
+      gridTemplateRows: repeat(" auto", 11).substring(1),
       gridColumnGap: "20px",
       gridRowGap: "20px",
       gridBlocks: {
-        [TopStoriesV2DefaultGridPositions.LeftHighlight]: {
-          border: [Border.bottom],
-          rowStart: 1,
-          rowSpan: 4,
-          columnStart: 1,
-          columnSpan: 2
-        },
-        [TopStoriesV2DefaultGridPositions.RightHighlight]: {
-          border: [Border.bottom],
-          rowStart: 1,
-          rowSpan: 7,
-          columnStart: 3,
-          columnSpan: 1
-        },
-        [TopStoriesV2DefaultGridPositions.BannerAd]: {
-          border: [],
-          rowStart: 8,
-          rowSpan: 7,
-          columnStart: 3,
-          columnSpan: 1
-        },
-        [TopStoriesV2DefaultGridPositions.LeftOne]: {
-          border: [Border.bottom],
-          rowStart: 5,
-          rowSpan: 4,
-          columnStart: 1,
-          columnSpan: 1
-        },
-        [TopStoriesV2DefaultGridPositions.LeftTwo]: {
-          border: [Border.bottom],
-          rowStart: 5,
-          rowSpan: 4,
-          columnStart: 2,
-          columnSpan: 1
-        },
-        [TopStoriesV2DefaultGridPositions.LeftThree]: {
-          border: [Border.bottom],
-          rowStart: 9,
-          rowSpan: 4,
-          columnStart: 1,
-          columnSpan: 1
-        },
-        [TopStoriesV2DefaultGridPositions.LeftFour]: {
-          border: [Border.bottom],
-          rowStart: 9,
-          rowSpan: 4,
-          columnStart: 2,
-          columnSpan: 1
-        },
-        [TopStoriesV2DefaultGridPositions.RightOne]: {
-          border: [Border.bottom],
-          rowStart: 14,
-          rowSpan: 1,
-          columnStart: 1,
-          columnSpan: 2
-        },
-        [TopStoriesV2DefaultGridPositions.RightTwo]: {
-          border: [Border.bottom],
-          rowStart: 15,
-          rowSpan: 1,
-          columnStart: 1,
-          columnSpan: 2
-        },
-        [TopStoriesV2DefaultGridPositions.RightThree]: {
-          border: [Border.bottom],
-          rowStart: 16,
-          rowSpan: 1,
-          columnStart: 1,
-          columnSpan: 2
-        },
-        [TopStoriesV2DefaultGridPositions.RightFour]: {
-          border: [Border.bottom],
-          rowStart: 17,
-          rowSpan: 1,
-          columnStart: 1,
-          columnSpan: 2
-        },
-        [TopStoriesV2DefaultGridPositions.RightFive]: {
-          border: [Border.bottom],
-          rowStart: 18,
-          rowSpan: 1,
-          columnStart: 1,
-          columnSpan: 2
-        },
-        [TopStoriesV2DefaultGridPositions.MidInsert]: {
-          border: [Border.bottom],
-          rowStart: 13,
-          rowSpan: 1,
-          columnStart: 1,
-          columnSpan: 2
-        },
-        [TopStoriesV2DefaultGridPositions.LowerRight]: {
-          border: [],
-          rowStart: 15,
-          rowSpan: 4,
-          columnStart: 3,
-          columnSpan: 1
-        }
+        [TopStoriesV2DefaultGridPositions.LeftHighlight]: gridBlock(
+          1,
+          1,
+          1,
+          2,
+          [Border.bottom]
+        ),
+        [TopStoriesV2DefaultGridPositions.RightHighlight]: gridBlock(
+          1,
+          3,
+          2,
+          1,
+          [Border.bottom]
+        ),
+        [TopStoriesV2DefaultGridPositions.BannerAd]: gridBlock(3, 3, 5, 1, []),
+        [TopStoriesV2DefaultGridPositions.TopOne]: gridBlock(2, 1, 2, 1, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.TopTwo]: gridBlock(2, 2, 2, 1, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.TopThree]: gridBlock(4, 1, 1, 2, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.TopFour]: gridBlock(5, 1, 1, 2, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.MidInsert]: gridBlock(6, 1, 1, 2, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.BottomOne]: gridBlock(7, 1, 2, 1, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.BottomTwo]: gridBlock(7, 2, 2, 1, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.BottomThree]: gridBlock(9, 1, 1, 2, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.BottomFour]: gridBlock(10, 1, 1, 2, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.BottomFive]: gridBlock(11, 1, 1, 2, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.LowerRight]: gridBlock(8, 3, 5, 1, [])
       }
     };
 
     const desktop = {
       gridTemplateColumns: "1fr 1fr 2fr 300px",
-      gridTemplateRows: repeat(" auto", 13).substring(1),
+      gridTemplateRows: repeat(" auto", 8).substring(1),
       gridColumnGap: "20px",
       gridRowGap: "20px",
       gridBlocks: {
-        [TopStoriesV2DefaultGridPositions.LeftHighlight]: {
-          border: [Border.bottom],
-          columnStart: 1,
-          columnSpan: 2,
-          rowStart: 1,
-          rowSpan: 5
-        },
-        [TopStoriesV2DefaultGridPositions.RightHighlight]: {
-          border: [Border.bottom],
-          columnStart: 3,
-          columnSpan: 1,
-          rowStart: 1,
-          rowSpan: 7
-        },
-        [TopStoriesV2DefaultGridPositions.BannerAd]: {
-          border: [],
-          columnStart: 4,
-          columnSpan: 1,
-          rowStart: 1,
-          rowSpan: 8
-        },
-        [TopStoriesV2DefaultGridPositions.LeftOne]: {
-          border: [Border.bottom],
-          columnStart: 1,
-          columnSpan: 1,
-          rowStart: 6,
-          rowSpan: 4
-        },
-        [TopStoriesV2DefaultGridPositions.LeftTwo]: {
-          border: [Border.bottom],
-          columnStart: 2,
-          columnSpan: 1,
-          rowStart: 6,
-          rowSpan: 4
-        },
-        [TopStoriesV2DefaultGridPositions.LeftThree]: {
-          border: [Border.bottom],
-          columnStart: 1,
-          columnSpan: 1,
-          rowStart: 11,
-          rowSpan: 3
-        },
-        [TopStoriesV2DefaultGridPositions.LeftFour]: {
-          border: [Border.bottom],
-          columnStart: 2,
-          columnSpan: 1,
-          rowStart: 11,
-          rowSpan: 3
-        },
-        [TopStoriesV2DefaultGridPositions.RightOne]: {
-          border: [Border.bottom],
-          columnStart: 3,
-          columnSpan: 1,
-          rowStart: 8,
-          rowSpan: 1
-        },
-        [TopStoriesV2DefaultGridPositions.RightTwo]: {
-          border: [Border.bottom],
-          columnStart: 3,
-          columnSpan: 1,
-          rowStart: 9,
-          rowSpan: 1
-        },
-        [TopStoriesV2DefaultGridPositions.RightThree]: {
-          border: [Border.bottom],
-          columnStart: 3,
-          columnSpan: 1,
-          rowStart: 11,
-          rowSpan: 1
-        },
-        [TopStoriesV2DefaultGridPositions.RightFour]: {
-          border: [Border.bottom],
-          columnStart: 3,
-          columnSpan: 1,
-          rowStart: 12,
-          rowSpan: 1
-        },
-        [TopStoriesV2DefaultGridPositions.RightFive]: {
-          border: [Border.bottom],
-          columnStart: 3,
-          columnSpan: 1,
-          rowStart: 13,
-          rowSpan: 1
-        },
-        [TopStoriesV2DefaultGridPositions.MidInsert]: {
-          border: [],
-          columnStart: 1,
-          columnSpan: 3,
-          rowStart: 10,
-          rowSpan: 1
-        },
-        [TopStoriesV2DefaultGridPositions.LowerRight]: {
-          border: [],
-          columnStart: 4,
-          columnSpan: 1,
-          rowStart: 9,
-          rowSpan: 5
-        }
+        [TopStoriesV2DefaultGridPositions.LeftHighlight]: gridBlock(
+          1,
+          1,
+          1,
+          2,
+          [Border.bottom]
+        ),
+        [TopStoriesV2DefaultGridPositions.RightHighlight]: gridBlock(
+          1,
+          3,
+          2,
+          1,
+          []
+        ),
+        [TopStoriesV2DefaultGridPositions.BannerAd]: gridBlock(1, 4, 3, 1, []),
+        [TopStoriesV2DefaultGridPositions.TopOne]: gridBlock(2, 1, 3, 1, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.TopTwo]: gridBlock(2, 2, 3, 1, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.TopThree]: gridBlock(3, 3, 1, 1, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.TopFour]: gridBlock(4, 3, 1, 1, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.MidInsert]: gridBlock(5, 1, 1, 3, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.BottomOne]: gridBlock(6, 1, 3, 1, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.BottomTwo]: gridBlock(6, 2, 3, 1, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.BottomThree]: gridBlock(6, 3, 1, 1, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.BottomFour]: gridBlock(7, 3, 1, 1, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.BottomFive]: gridBlock(8, 3, 1, 1, [
+          Border.bottom
+        ]),
+        [TopStoriesV2DefaultGridPositions.LowerRight]: gridBlock(4, 4, 5, 1, [])
       }
     };
 
@@ -375,15 +226,15 @@ describe("Top Stories V2 Grid Handler", () => {
           [TopStoriesV2DefaultGridPositions.LeftHighlight]: [fakeContentBlock],
           [TopStoriesV2DefaultGridPositions.RightHighlight]: [fakeContentBlock],
           [TopStoriesV2DefaultGridPositions.BannerAd]: [fakeContentBlock],
-          [TopStoriesV2DefaultGridPositions.LeftOne]: [fakeContentBlock],
-          [TopStoriesV2DefaultGridPositions.LeftTwo]: [fakeContentBlock],
-          [TopStoriesV2DefaultGridPositions.LeftThree]: [fakeContentBlock],
-          [TopStoriesV2DefaultGridPositions.LeftFour]: [fakeContentBlock],
-          [TopStoriesV2DefaultGridPositions.RightOne]: [fakeContentBlock],
-          [TopStoriesV2DefaultGridPositions.RightTwo]: [fakeContentBlock],
-          [TopStoriesV2DefaultGridPositions.RightThree]: [fakeContentBlock],
-          [TopStoriesV2DefaultGridPositions.RightFour]: [fakeContentBlock],
-          [TopStoriesV2DefaultGridPositions.RightFive]: [fakeContentBlock],
+          [TopStoriesV2DefaultGridPositions.TopOne]: [fakeContentBlock],
+          [TopStoriesV2DefaultGridPositions.TopTwo]: [fakeContentBlock],
+          [TopStoriesV2DefaultGridPositions.TopThree]: [fakeContentBlock],
+          [TopStoriesV2DefaultGridPositions.TopFour]: [fakeContentBlock],
+          [TopStoriesV2DefaultGridPositions.BottomOne]: [fakeContentBlock],
+          [TopStoriesV2DefaultGridPositions.BottomTwo]: [fakeContentBlock],
+          [TopStoriesV2DefaultGridPositions.BottomThree]: [fakeContentBlock],
+          [TopStoriesV2DefaultGridPositions.BottomFour]: [fakeContentBlock],
+          [TopStoriesV2DefaultGridPositions.BottomFive]: [fakeContentBlock],
           [TopStoriesV2DefaultGridPositions.MidInsert]: [fakeContentBlock],
           [TopStoriesV2DefaultGridPositions.LowerRight]: [fakeContentBlock]
         },

@@ -82,7 +82,7 @@ function defaultGrid(
           items: [basicAdUnit(strapName)]
         }
       ],
-      [TopStoriesV2DefaultGridPositions.LeftOne]: [
+      [TopStoriesV2DefaultGridPositions.TopOne]: [
         contentErrorHandler(
           () =>
             homepageArticle(
@@ -102,7 +102,7 @@ function defaultGrid(
           params
         )
       ],
-      [TopStoriesV2DefaultGridPositions.LeftTwo]: [
+      [TopStoriesV2DefaultGridPositions.TopTwo]: [
         contentErrorHandler(
           () =>
             homepageArticle(
@@ -122,28 +122,7 @@ function defaultGrid(
           params
         )
       ],
-      [TopStoriesV2DefaultGridPositions.LeftThree]: [
-        contentErrorHandler(
-          () =>
-            homepageArticle(
-              articles.shift() as IRawArticle,
-              strapName,
-              color,
-              {
-                mobile: Orientation.Portrait,
-                tablet: Orientation.Portrait,
-                desktop: Orientation.Portrait
-              },
-              true,
-              true
-            ),
-          HandlerInputType.TopStoriesV2,
-          Strap.TopStories,
-          params
-        )
-      ],
-      [TopStoriesV2DefaultGridPositions.LeftFour]: [basicAdUnit(strapName)],
-      [TopStoriesV2DefaultGridPositions.RightOne]: [
+      [TopStoriesV2DefaultGridPositions.TopThree]: [
         contentErrorHandler(
           () =>
             homepageArticle(
@@ -163,7 +142,7 @@ function defaultGrid(
           params
         )
       ],
-      [TopStoriesV2DefaultGridPositions.RightTwo]: [
+      [TopStoriesV2DefaultGridPositions.TopFour]: [
         contentErrorHandler(
           () =>
             homepageArticle(
@@ -183,7 +162,28 @@ function defaultGrid(
           params
         )
       ],
-      [TopStoriesV2DefaultGridPositions.RightThree]: [
+      [TopStoriesV2DefaultGridPositions.BottomOne]: [
+        contentErrorHandler(
+          () =>
+            homepageArticle(
+              articles.shift() as IRawArticle,
+              strapName,
+              color,
+              {
+                mobile: Orientation.Portrait,
+                tablet: Orientation.Portrait,
+                desktop: Orientation.Portrait
+              },
+              true,
+              true
+            ),
+          HandlerInputType.TopStoriesV2,
+          Strap.TopStories,
+          params
+        )
+      ],
+      [TopStoriesV2DefaultGridPositions.BottomTwo]: [basicAdUnit(strapName)],
+      [TopStoriesV2DefaultGridPositions.BottomThree]: [
         contentErrorHandler(
           () =>
             homepageArticle(
@@ -203,7 +203,7 @@ function defaultGrid(
           params
         )
       ],
-      [TopStoriesV2DefaultGridPositions.RightFour]: [
+      [TopStoriesV2DefaultGridPositions.BottomFour]: [
         contentErrorHandler(
           () =>
             homepageArticle(
@@ -211,9 +211,9 @@ function defaultGrid(
               strapName,
               color,
               {
-                mobile: Orientation.Landscape,
-                tablet: Orientation.Landscape,
-                desktop: Orientation.Landscape
+                mobile: Orientation.Portrait,
+                tablet: Orientation.Portrait,
+                desktop: Orientation.Portrait
               },
               true,
               false
@@ -223,7 +223,7 @@ function defaultGrid(
           params
         )
       ],
-      [TopStoriesV2DefaultGridPositions.RightFive]: [
+      [TopStoriesV2DefaultGridPositions.BottomFive]: [
         contentErrorHandler(
           () =>
             homepageArticle(
@@ -231,9 +231,9 @@ function defaultGrid(
               strapName,
               color,
               {
-                mobile: Orientation.Landscape,
-                tablet: Orientation.Landscape,
-                desktop: Orientation.Landscape
+                mobile: Orientation.Portrait,
+                tablet: Orientation.Portrait,
+                desktop: Orientation.Portrait
               },
               true,
               false
@@ -287,7 +287,7 @@ function defconGrid(
           items: [basicAdUnit(strapName)]
         }
       ],
-      [TopStoriesV2DefconGridPositions.LeftOne]: [
+      [TopStoriesV2DefconGridPositions.TopOne]: [
         contentErrorHandler(
           () =>
             homepageArticle(
@@ -307,7 +307,7 @@ function defconGrid(
           params
         )
       ],
-      [TopStoriesV2DefconGridPositions.LeftTwo]: [
+      [TopStoriesV2DefconGridPositions.TopTwo]: [
         contentErrorHandler(
           () =>
             homepageArticle(
@@ -327,7 +327,67 @@ function defconGrid(
           params
         )
       ],
-      [TopStoriesV2DefconGridPositions.LeftThree]: [
+      [TopStoriesV2DefconGridPositions.TopThree]: [
+        contentErrorHandler(
+          () =>
+            homepageArticle(
+              topArticles.shift() as IRawArticle,
+              strapName,
+              color,
+              {
+                mobile: Orientation.Landscape,
+                tablet: Orientation.Landscape,
+                desktop: Orientation.Landscape
+              },
+              false,
+              true
+            ),
+          HandlerInputType.TopStoriesV2,
+          Strap.TopStories,
+          params
+        )
+      ],
+      [TopStoriesV2DefconGridPositions.TopFour]: [
+        contentErrorHandler(
+          () =>
+            homepageArticle(
+              topArticles.shift() as IRawArticle,
+              strapName,
+              color,
+              {
+                mobile: Orientation.Landscape,
+                tablet: Orientation.Landscape,
+                desktop: Orientation.Landscape
+              },
+              false,
+              true
+            ),
+          HandlerInputType.TopStoriesV2,
+          Strap.TopStories,
+          params
+        )
+      ],
+      [TopStoriesV2DefconGridPositions.TopFive]: [
+        contentErrorHandler(
+          () =>
+            homepageArticle(
+              topArticles.shift() as IRawArticle,
+              strapName,
+              color,
+              {
+                mobile: Orientation.Landscape,
+                tablet: Orientation.Landscape,
+                desktop: Orientation.Landscape
+              },
+              false,
+              true
+            ),
+          HandlerInputType.TopStoriesV2,
+          Strap.TopStories,
+          params
+        )
+      ],
+      [TopStoriesV2DefconGridPositions.BottomOne]: [
         contentErrorHandler(
           () =>
             homepageArticle(
@@ -347,8 +407,8 @@ function defconGrid(
           params
         )
       ],
-      [TopStoriesV2DefconGridPositions.LeftFour]: [basicAdUnit(strapName)],
-      [TopStoriesV2DefconGridPositions.RightOne]: [
+      [TopStoriesV2DefconGridPositions.BottomTwo]: [basicAdUnit(strapName)],
+      [TopStoriesV2DefconGridPositions.BottomThree]: [
         contentErrorHandler(
           () =>
             homepageArticle(
@@ -356,69 +416,9 @@ function defconGrid(
               strapName,
               color,
               {
-                mobile: Orientation.Landscape,
-                tablet: Orientation.Landscape,
-                desktop: Orientation.Landscape
-              },
-              false,
-              true
-            ),
-          HandlerInputType.TopStoriesV2,
-          Strap.TopStories,
-          params
-        )
-      ],
-      [TopStoriesV2DefconGridPositions.RightTwo]: [
-        contentErrorHandler(
-          () =>
-            homepageArticle(
-              topArticles.shift() as IRawArticle,
-              strapName,
-              color,
-              {
-                mobile: Orientation.Landscape,
-                tablet: Orientation.Landscape,
-                desktop: Orientation.Landscape
-              },
-              false,
-              true
-            ),
-          HandlerInputType.TopStoriesV2,
-          Strap.TopStories,
-          params
-        )
-      ],
-      [TopStoriesV2DefconGridPositions.RightThree]: [
-        contentErrorHandler(
-          () =>
-            homepageArticle(
-              topArticles.shift() as IRawArticle,
-              strapName,
-              color,
-              {
-                mobile: Orientation.Landscape,
-                tablet: Orientation.Landscape,
-                desktop: Orientation.Landscape
-              },
-              false,
-              true
-            ),
-          HandlerInputType.TopStoriesV2,
-          Strap.TopStories,
-          params
-        )
-      ],
-      [TopStoriesV2DefconGridPositions.RightFour]: [
-        contentErrorHandler(
-          () =>
-            homepageArticle(
-              topArticles.shift() as IRawArticle,
-              strapName,
-              color,
-              {
-                mobile: Orientation.Landscape,
-                tablet: Orientation.Landscape,
-                desktop: Orientation.Landscape
+                mobile: Orientation.Portrait,
+                tablet: Orientation.Portrait,
+                desktop: Orientation.Portrait
               },
               true,
               false
@@ -428,7 +428,7 @@ function defconGrid(
           params
         )
       ],
-      [TopStoriesV2DefconGridPositions.RightFive]: [
+      [TopStoriesV2DefconGridPositions.BottomFour]: [
         contentErrorHandler(
           () =>
             homepageArticle(
@@ -436,9 +436,9 @@ function defconGrid(
               strapName,
               color,
               {
-                mobile: Orientation.Landscape,
-                tablet: Orientation.Landscape,
-                desktop: Orientation.Landscape
+                mobile: Orientation.Portrait,
+                tablet: Orientation.Portrait,
+                desktop: Orientation.Portrait
               },
               true,
               false
@@ -448,7 +448,7 @@ function defconGrid(
           params
         )
       ],
-      [TopStoriesV2DefconGridPositions.RightSix]: [
+      [TopStoriesV2DefconGridPositions.BottomFive]: [
         contentErrorHandler(
           () =>
             homepageArticle(
@@ -456,9 +456,9 @@ function defconGrid(
               strapName,
               color,
               {
-                mobile: Orientation.Landscape,
-                tablet: Orientation.Landscape,
-                desktop: Orientation.Landscape
+                mobile: Orientation.Portrait,
+                tablet: Orientation.Portrait,
+                desktop: Orientation.Portrait
               },
               true,
               false
