@@ -8,6 +8,7 @@ import { IBreakingNews } from "./IBreakingNews";
 import { IBulletList } from "./IBulletList";
 import { IColumnContainer } from "./IColumnContainer";
 import { IContainer } from "./IContainer";
+import { IDefcon } from "./IDefcon";
 import { IDefconArticleUnit } from "./IDefconArticleUnit";
 import { IErrorBlock } from "./IErrorBlock";
 import { IExperimentContainer } from "./IExperimentContainer";
@@ -73,4 +74,5 @@ export type IContentBlock =
   | IVerticalArticleList
   | IPartnerContent
   | IPlayStuff
-  | IMostReadList;
+  | IMostReadList
+  | IDefcon;
