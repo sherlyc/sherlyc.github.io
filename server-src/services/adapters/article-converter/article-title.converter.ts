@@ -1,6 +1,6 @@
-import { IRawArticle } from "../__types__/IRawArticle";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IArticleTitle } from "../../../../common/__types__/IArticleTitle";
+import { IRawArticle } from "../__types__/IRawArticle";
 
 export const articleTitle = (
   article: IRawArticle,

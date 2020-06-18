@@ -1,6 +1,6 @@
-import { HandlerInputType } from "./HandlerInputType";
-import { Strap } from "../../strap";
 import { AccentColor } from "../../../../common/__types__/AccentColor";
+import { Strap } from "../../strap";
+import { HandlerInputType } from "./HandlerInputType";
 
 export interface ILargeLeadSixV2HandlerInput {
   type: HandlerInputType.LargeLeadSixV2;

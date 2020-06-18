@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
+import { DeviceType } from "../../common/DeviceType";
 import { isFeatureEnabled } from "../services/adapters/feature/feature";
 import logger from "../services/utils/logger";
-import { DeviceType } from "../../common/DeviceType";
 
 function validateRequest(
   name: string,
@@ -19,7 +19,7 @@ function validateRequest(
   }
 }
 
-export const featureController = function(req: Request, res: Response) {
+export const featureController = function (req: Request, res: Response) {
   const {
     featureName,
     lotteryNumber,

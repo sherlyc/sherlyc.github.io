@@ -1,13 +1,13 @@
 import { Component } from "@angular/core";
 import { AdService } from "./services/ad/ad.service";
-import { EventsService } from "./services/events/events.service";
-import { DtmService } from "./services/dtm/dtm.service";
 import { AnalyticsService } from "./services/analytics/analytics.service";
 import { BrowserOverrideService } from "./services/browser-override/browser-override.service";
+import { DtmService } from "./services/dtm/dtm.service";
+import { EventsService } from "./services/events/events.service";
 import { ExperimentService } from "./services/experiment/experiment.service";
-import { NeighbourlyService } from "./services/neighbourly/neighbourly.service";
-import { MetaTagsService } from "./services/meta-tags/meta-tags.service";
 import { FeatureSwitchService } from "./services/feature-switch/feature-switch.service";
+import { MetaTagsService } from "./services/meta-tags/meta-tags.service";
+import { NeighbourlyService } from "./services/neighbourly/neighbourly.service";
 import { PwaService } from "./services/pwa/pwa.service";
 
 @Component({

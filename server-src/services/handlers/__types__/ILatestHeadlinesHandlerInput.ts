@@ -1,5 +1,5 @@
-import { HandlerInputType } from "./HandlerInputType";
 import { Strap } from "../../strap";
+import { HandlerInputType } from "./HandlerInputType";
 
 export interface ILatestHeadlinesHandlerInput {
   type: HandlerInputType.LatestHeadlines;

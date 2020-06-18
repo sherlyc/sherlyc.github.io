@@ -1,14 +1,14 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { ColumnContainerComponent } from "./column-container.component";
-import { IColumnContainer } from "../../../../common/__types__/IColumnContainer";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { ContentBlockDirective } from "../../shared/directives/content-block/content-block.directive";
-import { By, TransferState } from "@angular/platform-browser";
 import { Component } from "@angular/core";
-import { IContentBlock } from "../../../../common/__types__/IContentBlock";
-import registry from "../content-blocks.registry";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { By, TransferState } from "@angular/platform-browser";
 import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IColumnContainer } from "../../../../common/__types__/IColumnContainer";
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 import { mockService } from "../../services/mocks/MockService";
+import { ContentBlockDirective } from "../../shared/directives/content-block/content-block.directive";
+import registry from "../content-blocks.registry";
+import { ColumnContainerComponent } from "./column-container.component";
 
 describe("ColumnContainerComponent", () => {
   let component: ColumnContainerComponent;

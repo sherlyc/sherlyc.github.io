@@ -1,6 +1,6 @@
-import { Inject, Injectable } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
-import { parse, serialize, CookieSerializeOptions } from "cookie";
+import { Inject, Injectable } from "@angular/core";
+import { CookieSerializeOptions, parse, serialize } from "cookie";
 import { ICookieService } from "./__types__/ICookieService";
 
 @Injectable({

@@ -42,7 +42,7 @@ describe("HttpInterceptorService", () => {
 
     const fakeHttpRequest = {
       url: "/spade/api/content",
-      clone: function(extra: any) {
+      clone: function (extra: any) {
         return { ...this, ...extra };
       }
     } as HttpRequest<any>;
@@ -68,7 +68,7 @@ describe("HttpInterceptorService", () => {
 
     const fakeHttpRequest = {
       url: "/spade/api/content",
-      clone: function(extra: any) {
+      clone: function (extra: any) {
         return { ...this, ...extra };
       }
     } as HttpRequest<any>;

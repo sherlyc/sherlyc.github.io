@@ -1,13 +1,13 @@
-import { IParams } from "../../../__types__/IParams";
-import { createBulletList } from "./bullet-list";
-import { IBrandListConfig } from "../../__types__/IBrandConfig";
 import { Logo } from "../../../../../common/Logo";
-import { Strap } from "../../../strap";
-import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IBulletItem } from "../../../../../common/__types__/IBulletItem";
+import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { Section } from "../../../section";
+import { Strap } from "../../../strap";
+import { IParams } from "../../../__types__/IParams";
+import { IBrandListConfig } from "../../__types__/IBrandConfig";
+import { createBulletList } from "./bullet-list";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 

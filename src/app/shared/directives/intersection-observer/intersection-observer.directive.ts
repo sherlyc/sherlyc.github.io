@@ -1,14 +1,14 @@
 import {
   AfterViewInit,
   Directive,
-  OnDestroy,
-  Output,
+  ElementRef,
   EventEmitter,
-  ElementRef
+  OnDestroy,
+  Output
 } from "@angular/core";
+import { Subscription } from "rxjs";
 import { IntersectionObserverService } from "../../../services/intersection-observer/intersection-observer.service";
 import { RuntimeService } from "../../../services/runtime/runtime.service";
-import { Subscription } from "rxjs";
 
 @Directive({ selector: "[appIntersectionObserver]" })
 export class IntersectionObserverDirective implements OnDestroy, AfterViewInit {

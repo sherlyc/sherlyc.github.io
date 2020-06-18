@@ -1,10 +1,10 @@
-import { getBrightcovePlaylist } from "./brightcove";
+import { IBrightcoveVideo } from "../../../../common/__types__/IBrightcoveVideo";
 import { playStuffConfig } from "../../handlers/play-stuff/play-stuff-config";
 import { IParams } from "../../__types__/IParams";
-import { retrieveBrightcovePlaylist } from "./brightcove-retriever";
-import { mapBrightcovePlaylist } from "./brightcove-mapper";
 import { IBrightcovePlaylist } from "../__types__/IBrightcovePlaylist";
-import { IBrightcoveVideo } from "../../../../common/__types__/IBrightcoveVideo";
+import { getBrightcovePlaylist } from "./brightcove";
+import { mapBrightcovePlaylist } from "./brightcove-mapper";
+import { retrieveBrightcovePlaylist } from "./brightcove-retriever";
 
 jest.mock("./brightcove-retriever");
 jest.mock("./brightcove-mapper");

@@ -1,9 +1,9 @@
 import { flatten } from "lodash-es";
-import { IParams } from "../../__types__/IParams";
 import { Strap } from "../../strap";
 import config from "../../utils/config";
-import { IRawArticle } from "../__types__/IRawArticle";
+import { IParams } from "../../__types__/IParams";
 import { getListAssetById } from "../jsonfeed/jsonfeed";
+import { IRawArticle } from "../__types__/IRawArticle";
 
 const deduplicate = (
   articles: IRawArticle[],

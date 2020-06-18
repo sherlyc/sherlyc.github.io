@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { ExternalContentUnitComponent } from "./external-content-unit.component";
 import { DomSanitizer } from "@angular/platform-browser";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { ExternalContentUnitComponent } from "./external-content-unit.component";
 
 describe("ExternalContentUnitComponent", () => {
   let component: ExternalContentUnitComponent;

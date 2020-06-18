@@ -1,6 +1,6 @@
 import { Builder, Capabilities } from "selenium-webdriver";
-import "./fast-selenium.ts";
 import { startBrowserStackLocal } from "./browserstack.local";
+import "./fast-selenium.ts";
 
 async function buildSpecificBrowserDriver(browser: string) {
   const account = process.env.BS_ACCOUNT;

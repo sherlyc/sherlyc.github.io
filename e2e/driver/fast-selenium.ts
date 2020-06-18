@@ -31,7 +31,7 @@ if (http.globalAgent && http.globalAgent.hasOwnProperty("keepAlive")) {
   const httpsRequest = https.request;
 
   // @ts-ignore
-  http.request = function(
+  http.request = function (
     options: https.RequestOptions,
     callback: (res: http.IncomingMessage) => void
   ) {

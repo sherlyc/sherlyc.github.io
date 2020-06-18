@@ -1,14 +1,14 @@
-import { handlerRunnerFunction } from "../../runner";
-import { IParams } from "../../../__types__/IParams";
-import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { IStripsV2HandlerInput } from "../../__types__/IStripsV2HandlerInput";
-import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { contentErrorHandler } from "../content-error-handler";
-import { featuredArticle } from "../../../adapters/article-converter/featured-article.converter";
-import { StripsGridPositions } from "../../__types__/IStripsGridHandlerInput";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { featuredArticle } from "../../../adapters/article-converter/featured-article.converter";
+import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import { StripsGridPositions } from "../../__types__/IStripsGridHandlerInput";
+import { IStripsV2HandlerInput } from "../../__types__/IStripsV2HandlerInput";
+import { contentErrorHandler } from "../content-error-handler";
 
 export default async function (
   handlerRunner: handlerRunnerFunction,

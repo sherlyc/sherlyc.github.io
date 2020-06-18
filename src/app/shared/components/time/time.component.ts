@@ -21,7 +21,9 @@ export class TimeComponent implements OnInit {
 
   private static timeAgoFormat(secondsAgo: number) {
     const hours = Math.floor(secondsAgo / ONE_HOUR_IN_SECONDS);
-    const minutes = Math.floor((secondsAgo % ONE_HOUR_IN_SECONDS) / ONE_MINUTE_IN_SECONDS);
+    const minutes = Math.floor(
+      (secondsAgo % ONE_HOUR_IN_SECONDS) / ONE_MINUTE_IN_SECONDS
+    );
     const hoursText = hours === 0 ? "" : `${hours} hour `;
     const minutesText = minutes === 0 ? "" : `${minutes} min `;
     return `${hoursText}${minutesText}ago`;
@@ -38,8 +40,11 @@ export class TimeComponent implements OnInit {
     if (secondsAgo > ONE_HOUR_IN_SECONDS * 2 || secondsAgo < 0) {
       return "";
     }
-    if (secondsAgo >= ONE_HOUR_IN_SECONDS && secondsAgo <= ONE_HOUR_IN_SECONDS * 2) {
-      return format(inputDate, "H:mma").toLowerCase();
+    if (
+      secondsAgo >= ONE_HOUR_IN_SECONDS &&
+      secondsAgo <= ONE_HOUR_IN_SECONDS * 2
+    ) {
+      return format(inputDate, "h:mma").toLowerCase();
     }
     return TimeComponent.timeAgoFormat(secondsAgo);
   }

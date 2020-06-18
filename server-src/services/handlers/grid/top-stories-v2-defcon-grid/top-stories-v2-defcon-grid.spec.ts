@@ -1,16 +1,16 @@
-import { IParams } from "../../../__types__/IParams";
-import {
-  ITopStoriesV2DefconGridHandlerInput,
-  TopStoriesV2DefconGridPositions
-} from "../../__types__/ITopStoriesV2DefconGridHandlerInput";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import topStoriesV2Defcon from "./top-stories-v2-defcon-grid";
 import {
   Border,
   IGridContainer
 } from "../../../../../common/__types__/IGridContainer";
 import { gridBlock } from "../../../adapters/grid/grid-block";
+import { IParams } from "../../../__types__/IParams";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
+import {
+  ITopStoriesV2DefconGridHandlerInput,
+  TopStoriesV2DefconGridPositions
+} from "../../__types__/ITopStoriesV2DefconGridHandlerInput";
+import topStoriesV2Defcon from "./top-stories-v2-defcon-grid";
 
 describe("Top Stories Defcon grid", () => {
   const handlerRunnerMock = jest.fn();

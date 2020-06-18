@@ -5,15 +5,15 @@ import {
   IGridBlocks,
   IGridContainer
 } from "../../../../../common/__types__/IGridContainer";
-import { IParams } from "../../../__types__/IParams";
 import { gridBlock } from "../../../adapters/grid/grid-block";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
 import {
   BiggieSmallsGridPositions,
   IBiggieSmallsGridHandlerInput
 } from "../../__types__/IBiggieSmallsGridHandlerInput";
-import { handlerRunnerFunction } from "../../runner";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { content }: IBiggieSmallsGridHandlerInput,
   params: IParams

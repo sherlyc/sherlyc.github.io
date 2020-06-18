@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { IHomepageHighlightArticle } from "../../../../common/__types__/IHomepageHighlightArticle";
-import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({

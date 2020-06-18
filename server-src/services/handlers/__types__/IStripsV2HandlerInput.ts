@@ -1,6 +1,6 @@
+import { AccentColor } from "../../../../common/__types__/AccentColor";
 import { Strap } from "../../strap";
 import { HandlerInputType } from "./HandlerInputType";
-import { AccentColor } from "../../../../common/__types__/AccentColor";
 
 export interface IStripsV2HandlerInput {
   type: HandlerInputType.StripsV2;

@@ -5,9 +5,9 @@ import axios, {
   AxiosResponse
 } from "axios";
 import { performance } from "perf_hooks";
+import { IParams } from "../__types__/IParams";
 import config from "./config";
 import logger from "./logger";
-import { IParams } from "../__types__/IParams";
 
 const create = (params: IParams): AxiosInstance => {
   const httpClient: AxiosInstance = axios.create();

@@ -1,17 +1,17 @@
-import { handlerRunnerFunction } from "../../runner";
-import { IParams } from "../../../__types__/IParams";
+import { repeat } from "lodash-es";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import {
-  ITopStoriesV2DefconGridHandlerInput,
-  TopStoriesV2DefconGridPositions
-} from "../../__types__/ITopStoriesV2DefconGridHandlerInput";
 import {
   Border,
   IGridConfig
 } from "../../../../../common/__types__/IGridContainer";
 import { gridBlock } from "../../../adapters/grid/grid-block";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { repeat } from "lodash-es";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
+import {
+  ITopStoriesV2DefconGridHandlerInput,
+  TopStoriesV2DefconGridPositions
+} from "../../__types__/ITopStoriesV2DefconGridHandlerInput";
 
 export default async function (
   handlerRunner: handlerRunnerFunction,

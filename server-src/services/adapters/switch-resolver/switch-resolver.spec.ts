@@ -1,6 +1,6 @@
-import { isSwitchedOn } from "./switch-resolver";
-import { ISwitchConfig } from "../../__types__/ISwitchConfig";
 import { DeviceType } from "../../../../common/DeviceType";
+import { ISwitchConfig } from "../../__types__/ISwitchConfig";
+import { isSwitchedOn } from "./switch-resolver";
 
 describe("Switch Resolver", () => {
   it("should return true if device is in list and lottery number is in public range", () => {

@@ -1,11 +1,11 @@
-import { IJsonFeedArticleList } from "../__types__/IJsonFeedArticleList";
+import { Section } from "../../section";
+import cacheHttp from "../../utils/cache-http";
 import config from "../../utils/config";
 import retry from "../../utils/retry";
-import { Section } from "../../section";
 import { IParams } from "../../__types__/IParams";
-import { IListAsset } from "../__types__/IListAsset";
-import cacheHttp from "../../utils/cache-http";
 import { IJsonFeedArticle } from "../__types__/IJsonFeedArticle";
+import { IJsonFeedArticleList } from "../__types__/IJsonFeedArticleList";
+import { IListAsset } from "../__types__/IListAsset";
 
 async function requestSectionArticleList(
   section: Section,

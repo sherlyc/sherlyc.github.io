@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 
 @Injectable({
-  providedIn: "root",
+  providedIn: "root"
 })
 export class SeoService {
   articleContentBlocks: ContentBlockType[] = [
@@ -16,7 +16,7 @@ export class SeoService {
     ContentBlockType.HomepageHighlightArticle,
     ContentBlockType.HalfImageArticleWithoutIntroUnit,
     ContentBlockType.ImageLinkUnit,
-    ContentBlockType.ResponsiveBigImageArticle,
+    ContentBlockType.ResponsiveBigImageArticle
   ];
   counter = 0;
 

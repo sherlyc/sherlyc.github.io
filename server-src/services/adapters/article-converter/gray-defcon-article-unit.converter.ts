@@ -1,6 +1,6 @@
-import { IRawArticle } from "../__types__/IRawArticle";
-import { IGrayDefconArticleUnit } from "../../../../common/__types__/IGrayDefconArticleUnit";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IGrayDefconArticleUnit } from "../../../../common/__types__/IGrayDefconArticleUnit";
+import { IRawArticle } from "../__types__/IRawArticle";
 
 export const grayDefconArticleUnit = (
   article: IRawArticle,

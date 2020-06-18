@@ -1,3 +1,4 @@
+import { IGridBlock } from "../../../../../common/__types__/IGridContainer";
 import {
   calculateBorderCellBottom,
   calculateBorderCellLeft,
@@ -6,7 +7,6 @@ import {
   calculateCellGap,
   calculateGridGap
 } from "./grid-helper";
-import { IGridBlock } from "../../../../../common/__types__/IGridContainer";
 
 describe("grip gap helper", () => {
   it("should add grip gap to grid template rows/columns", () => {

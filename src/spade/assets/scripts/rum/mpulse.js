@@ -2,7 +2,7 @@
  * Official Akamai Mpulse implementation - https://developer.akamai.com/tools/boomerang#Implementation
  * This implementation adds BOOMR_API_key not present in documentation but needed for it to work
  */
-(function() {
+(function () {
   window.spade = 1;
   // Boomerang Loader Snippet version 12
   if (window.BOOMR && (window.BOOMR.version || window.BOOMR.snippetExecuted)) {
@@ -57,7 +57,7 @@
     window.BOOMR.snippetMethod = wasFallback ? "if" : "i";
 
     // Adds Boomerang within the iframe
-    bootstrap = function(parent, scriptId) {
+    bootstrap = function (parent, scriptId) {
       var script = doc.createElement("script");
       script.id = scriptId || "boomr-if-as";
       script.src = window.BOOMR.url;
@@ -127,7 +127,7 @@
 
     if (dom) {
       // Unsafe version for IE8 compatability. If document.domain has changed, we can't use win, but we can use doc.
-      doc._boomrl = function() {
+      doc._boomrl = function () {
         this.domain = dom;
         bootstrap();
       };
@@ -137,7 +137,7 @@
       doc.write("<bo" + "dy onload='document._boomrl();'>");
     } else {
       // document.domain hasn't changed, regular method should be OK
-      win._boomrl = function() {
+      win._boomrl = function () {
         bootstrap();
       };
 
@@ -170,12 +170,12 @@
 
     // Add our script tag if successful, fallback to iframe if not
     link.addEventListener("load", promote);
-    link.addEventListener("error", function() {
+    link.addEventListener("error", function () {
       iframeLoader(true);
     });
 
     // Have a fallback in case Preload does nothing or is slow
-    setTimeout(function() {
+    setTimeout(function () {
       if (!promoted) {
         iframeLoader(true);
       }

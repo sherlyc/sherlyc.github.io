@@ -1,6 +1,6 @@
 import { ContentBlockType } from "../../../../../../common/__types__/ContentBlockType";
-import { IParams } from "../../../../__types__/IParams";
 import { IRawArticle } from "../../../../adapters/__types__/IRawArticle";
+import { IParams } from "../../../../__types__/IParams";
 import { HandlerInputType } from "../../../__types__/HandlerInputType";
 import { IColumnGridHandlerInput } from "../../../__types__/IColumnGridHandlerInput";
 import { ITopStoriesDefaultOneHighlightHandlerInput } from "../../../__types__/ITopStoriesDefaultOneHighlightHandlerInput";

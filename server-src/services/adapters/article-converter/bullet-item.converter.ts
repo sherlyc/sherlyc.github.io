@@ -1,5 +1,5 @@
-import { IRawArticle } from "../__types__/IRawArticle";
 import { IBulletItem } from "../../../../common/__types__/IBulletItem";
+import { IRawArticle } from "../__types__/IRawArticle";
 
 export const bulletItem = (
   article: IRawArticle,

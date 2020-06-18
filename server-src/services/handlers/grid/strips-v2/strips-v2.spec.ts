@@ -1,14 +1,14 @@
-import { IStripsV2HandlerInput } from "../../__types__/IStripsV2HandlerInput";
-import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { Strap } from "../../../strap";
 import { AccentColor } from "../../../../../common/__types__/AccentColor";
-import { Section } from "../../../section";
-import stripsV2 from "./strips-v2";
-import { IParams } from "../../../__types__/IParams";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
+import { Section } from "../../../section";
+import { Strap } from "../../../strap";
+import { IParams } from "../../../__types__/IParams";
+import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { StripsGridPositions } from "../../__types__/IStripsGridHandlerInput";
+import { IStripsV2HandlerInput } from "../../__types__/IStripsV2HandlerInput";
+import stripsV2 from "./strips-v2";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 

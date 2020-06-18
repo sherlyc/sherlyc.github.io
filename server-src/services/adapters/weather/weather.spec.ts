@@ -1,5 +1,5 @@
-import { IParams } from "../../__types__/IParams";
 import http from "../../utils/http";
+import { IParams } from "../../__types__/IParams";
 import { weatherService } from "./weather";
 import { weatherRetriever } from "./weather-retriever";
 

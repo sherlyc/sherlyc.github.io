@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
-import { RuntimeService } from "../../services/runtime/runtime.service";
-import { FeatureSwitchService } from "../../services/feature-switch/feature-switch.service";
 import { IFeatureContainer } from "../../../../common/__types__/IFeatureContainer";
+import { FeatureSwitchService } from "../../services/feature-switch/feature-switch.service";
+import { RuntimeService } from "../../services/runtime/runtime.service";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
   selector: "app-feature-container",

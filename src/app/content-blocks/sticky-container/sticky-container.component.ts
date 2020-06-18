@@ -5,8 +5,8 @@ import {
   Input,
   OnInit
 } from "@angular/core";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 import { IStickyContainer } from "../../../../common/__types__/IStickyContainer";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 @Component({
   selector: "app-sticky-container",
   templateUrl: "./sticky-container.component.html",

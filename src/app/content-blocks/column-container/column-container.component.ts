@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 import { IColumnContainer } from "../../../../common/__types__/IColumnContainer";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
   selector: "app-column-container",

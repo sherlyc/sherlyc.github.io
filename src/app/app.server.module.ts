@@ -18,11 +18,7 @@ import {
 } from "./services/window/window.service";
 
 @NgModule({
-  imports: [
-    ServerTransferStateModule,
-    AppModule,
-    ServerModule
-],
+  imports: [ServerTransferStateModule, AppModule, ServerModule],
   providers: [
     // Add universal-only providers here
     { provide: CookieService, useClass: ServerCookieService },
