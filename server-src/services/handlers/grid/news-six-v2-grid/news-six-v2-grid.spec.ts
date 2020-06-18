@@ -48,8 +48,8 @@ describe("News Six Grid V2 handler", () => {
           [NewsSixV2GridPositions.Six]: [fakeContentBlock]
         },
         mobile: {
-          gridTemplateColumns: "1fr",
-          gridTemplateRows: "auto auto auto auto auto auto auto",
+          gridTemplateColumns: "1fr 1fr",
+          gridTemplateRows: "auto auto auto auto auto auto",
           gridColumnGap: "20px",
           gridRowGap: "20px",
           gridBlocks: {
@@ -57,35 +57,35 @@ describe("News Six Grid V2 handler", () => {
               rowStart: 1,
               rowSpan: 1,
               columnStart: 1,
-              columnSpan: 1,
+              columnSpan: 2,
               border: []
             },
             [NewsSixV2GridPositions.One]: {
               rowStart: 2,
               rowSpan: 1,
               columnStart: 1,
-              columnSpan: 1,
+              columnSpan: 2,
               border: []
             },
             [NewsSixV2GridPositions.Two]: {
               rowStart: 3,
               rowSpan: 1,
               columnStart: 1,
-              columnSpan: 1,
+              columnSpan: 2,
               border: [Border.bottom]
             },
             [NewsSixV2GridPositions.Three]: {
               rowStart: 4,
               rowSpan: 1,
               columnStart: 1,
-              columnSpan: 1,
+              columnSpan: 2,
               border: []
             },
             [NewsSixV2GridPositions.Four]: {
               rowStart: 5,
               rowSpan: 1,
               columnStart: 1,
-              columnSpan: 1,
+              columnSpan: 2,
               border: []
             },
             [NewsSixV2GridPositions.Five]: {
@@ -96,9 +96,9 @@ describe("News Six Grid V2 handler", () => {
               border: [Border.bottom]
             },
             [NewsSixV2GridPositions.Six]: {
-              rowStart: 7,
+              rowStart: 6,
               rowSpan: 1,
-              columnStart: 1,
+              columnStart: 2,
               columnSpan: 1,
               border: [Border.bottom]
             }
@@ -162,8 +162,8 @@ describe("News Six Grid V2 handler", () => {
           }
         },
         desktop: {
-          gridTemplateColumns: "2fr 1fr 1fr",
-          gridTemplateRows: "auto auto auto auto",
+          gridTemplateColumns: "2fr 1fr 300px",
+          gridTemplateRows: "auto auto auto auto auto",
           gridColumnGap: "20px",
           gridRowGap: "20px",
           gridBlocks: {
@@ -176,7 +176,7 @@ describe("News Six Grid V2 handler", () => {
             },
             [NewsSixV2GridPositions.One]: {
               rowStart: 2,
-              rowSpan: 2,
+              rowSpan: 3,
               columnStart: 1,
               columnSpan: 1,
               border: []
@@ -193,24 +193,24 @@ describe("News Six Grid V2 handler", () => {
               rowSpan: 1,
               columnStart: 2,
               columnSpan: 1,
-              border: []
+              border: [Border.bottom]
             },
             [NewsSixV2GridPositions.Four]: {
               rowStart: 2,
-              rowSpan: 2,
+              rowSpan: 3,
               columnStart: 3,
               columnSpan: 1,
               border: []
             },
             [NewsSixV2GridPositions.Five]: {
-              rowStart: 4,
+              rowStart: 5,
               rowSpan: 1,
               columnStart: 1,
               columnSpan: 1,
               border: []
             },
             [NewsSixV2GridPositions.Six]: {
-              rowStart: 4,
+              rowStart: 5,
               rowSpan: 1,
               columnStart: 2,
               columnSpan: 2,

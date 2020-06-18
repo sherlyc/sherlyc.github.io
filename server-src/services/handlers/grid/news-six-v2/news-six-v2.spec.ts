@@ -134,7 +134,7 @@ describe("News Six V2 handler", () => {
             type: ContentBlockType.HomepageArticle,
             id: "5",
             orientation: {
-              mobile: Orientation.Landscape,
+              mobile: Orientation.Portrait,
               tablet: Orientation.Landscape,
               desktop: Orientation.Landscape
             },
@@ -147,7 +147,7 @@ describe("News Six V2 handler", () => {
             type: ContentBlockType.HomepageArticle,
             id: "6",
             orientation: {
-              mobile: Orientation.Landscape,
+              mobile: Orientation.Portrait,
               tablet: Orientation.Landscape,
               desktop: Orientation.Landscape
             },

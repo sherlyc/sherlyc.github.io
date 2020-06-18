@@ -121,7 +121,7 @@ export default async function (
             strapName,
             color,
             {
-              mobile: Orientation.Landscape,
+              mobile: Orientation.Portrait,
               tablet: Orientation.Landscape,
               desktop: Orientation.Landscape
             },
@@ -141,7 +141,7 @@ export default async function (
             strapName,
             color,
             {
-              mobile: Orientation.Landscape,
+              mobile: Orientation.Portrait,
               tablet: Orientation.Landscape,
               desktop: Orientation.Landscape
             },
