@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 import { map } from "lodash-es";
+import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 
 @Component({
   selector: "app-play-stuff-video",

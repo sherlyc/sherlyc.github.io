@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { TagLinkComponent } from "./tag-link.component";
 import { By } from "@angular/platform-browser";
+import { TagLinkComponent } from "./tag-link.component";
 
 describe("TagLinkComponent", () => {
   let component: TagLinkComponent;

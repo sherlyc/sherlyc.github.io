@@ -1,14 +1,14 @@
-import { ContainerComponent } from "./container.component";
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { ContentBlockDirective } from "../../shared/directives/content-block/content-block.directive";
-import { IContentBlock } from "common/__types__/IContentBlock";
-import { By, TransferState } from "@angular/platform-browser";
 import { Component } from "@angular/core";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { By, TransferState } from "@angular/platform-browser";
+import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
+import { IContentBlock } from "common/__types__/IContentBlock";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { Section } from "../../../../server-src/services/section";
 import { mockService } from "../../services/mocks/MockService";
-import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/testing";
+import { ContentBlockDirective } from "../../shared/directives/content-block/content-block.directive";
 import registry from "../content-blocks.registry";
+import { ContainerComponent } from "./container.component";
 
 describe("Container Component", () => {
   let component: ContainerComponent;

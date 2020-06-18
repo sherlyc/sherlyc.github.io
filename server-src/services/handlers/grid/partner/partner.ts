@@ -2,15 +2,16 @@ import { chunk } from "lodash-es";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { BrandGridPositions } from "../../__types__/IBrandGridHandlerInput";
 import { BrandModule } from "../../__types__/IBrandHandlerInput";
 import { IPartnerHandlerInput } from "../../__types__/IPartnerHandlerInput";
-import { handlerRunnerFunction } from "../../runner";
 import { brandConfig } from "../brand/brand-config";
 import { createPartnerContent } from "./partner-content";
+import { AccentColor } from "../../../../../common/__types__/AccentColor";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   input: IPartnerHandlerInput,
   params: IParams
@@ -32,9 +33,9 @@ export default async function(
   const content: { [key in BrandGridPositions]: IContentBlock[] } = {
     [BrandGridPositions.ModuleTitle]: [
       {
-        type: ContentBlockType.ModuleTitle,
-        displayName: moduleTitle,
-        displayNameColor: "black"
+        type: ContentBlockType.ModuleHeader,
+        title: moduleTitle,
+        color: AccentColor.Black
       }
     ],
     [BrandGridPositions.FirstRow]: await handlerRunner(

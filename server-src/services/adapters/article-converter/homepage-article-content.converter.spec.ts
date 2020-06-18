@@ -1,6 +1,6 @@
+import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 import { AccentColor } from "../../../../common/__types__/AccentColor";
 import { IHomepageArticleContent } from "../../../../common/__types__/IHomepageArticleContent";
-import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 import { IRawArticle } from "../__types__/IRawArticle";
 import { homepageArticleContent } from "./homepage-article-content.converter";
 

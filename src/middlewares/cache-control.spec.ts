@@ -1,5 +1,5 @@
+import { Request, RequestHandler, Response } from "express";
 import { cacheControl } from "./cache-control";
-import { RequestHandler, Request, Response } from "express";
 
 describe("cache control", () => {
   it("should match rule", () => {

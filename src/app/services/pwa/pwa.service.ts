@@ -1,8 +1,8 @@
 import { Injectable, OnInit } from "@angular/core";
 import { AnalyticsService } from "../analytics/analytics.service";
-import { WindowService } from "../window/window.service";
-import { RuntimeService } from "../runtime/runtime.service";
 import { AnalyticsEventsType } from "../analytics/__types__/AnalyticsEventsType";
+import { RuntimeService } from "../runtime/runtime.service";
+import { WindowService } from "../window/window.service";
 
 @Injectable({
   providedIn: "root"

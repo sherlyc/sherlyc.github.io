@@ -6,11 +6,11 @@ import {
   Input,
   OnInit
 } from "@angular/core";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
-import { IResponsiveExternalContent } from "../../../../common/__types__/IResponsiveExternalContent";
 import { DomSanitizer } from "@angular/platform-browser";
-import { MediaQuery } from "../grid-container/__types__/MediaQuery";
+import { IResponsiveExternalContent } from "../../../../common/__types__/IResponsiveExternalContent";
 import { GlobalStyleService } from "../../services/global-style/global-style.service";
+import { MediaQuery } from "../grid-container/__types__/MediaQuery";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
   selector: "app-responsive-external-content",

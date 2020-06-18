@@ -1,16 +1,16 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { MostReadListComponent } from "./most-read-list.component";
-import { IMostReadList } from "../../../../common/__types__/IMostReadList";
-import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { By } from "@angular/platform-browser";
 import { HeadlineFlags } from "../../../../common/HeadlineFlags";
-import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { AccentColor } from "../../../../common/__types__/AccentColor";
+import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IHomepageArticleContent } from "../../../../common/__types__/IHomepageArticleContent";
+import { IMostReadList } from "../../../../common/__types__/IMostReadList";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { HeadlineComponent } from "../../shared/components/headline/headline.component";
 import { SharedModule } from "../../shared/shared.module";
-import { IHomepageArticleContent } from "../../../../common/__types__/IHomepageArticleContent";
-import { AccentColor } from "../../../../common/__types__/AccentColor";
+import { MostReadListComponent } from "./most-read-list.component";
 
 const componentInput: IMostReadList = {
   type: ContentBlockType.MostReadList,

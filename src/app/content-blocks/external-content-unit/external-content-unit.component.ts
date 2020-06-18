@@ -5,9 +5,9 @@ import {
   Input,
   OnInit
 } from "@angular/core";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
-import { IExternalContentUnit } from "../../../../common/__types__/IExternalContentUnit";
 import { DomSanitizer } from "@angular/platform-browser";
+import { IExternalContentUnit } from "../../../../common/__types__/IExternalContentUnit";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
   selector: "app-external-content-unit",

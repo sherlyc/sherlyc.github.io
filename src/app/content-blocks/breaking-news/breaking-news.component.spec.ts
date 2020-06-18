@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { CookieService } from "../../services/cookie/cookie.service";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { RuntimeService } from "../../services/runtime/runtime.service";

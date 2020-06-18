@@ -1,14 +1,14 @@
-import {
-  retrieveSectionList,
-  retrieveListAsset,
-  retrieveArticle
-} from "./jsonfeed-retriever";
-import { mapToRawArticleList, mapArticleAsset } from "./jsonfeed-mapper";
+import { Section } from "../../section";
+import logger from "../../utils/logger";
+import { IParams } from "../../__types__/IParams";
 import { IJsonFeedArticleList } from "../__types__/IJsonFeedArticleList";
 import { IRawArticle } from "../__types__/IRawArticle";
-import { Section } from "../../section";
-import { IParams } from "../../__types__/IParams";
-import logger from "../../utils/logger";
+import { mapArticleAsset, mapToRawArticleList } from "./jsonfeed-mapper";
+import {
+  retrieveArticle,
+  retrieveListAsset,
+  retrieveSectionList
+} from "./jsonfeed-retriever";
 
 const warnIfMissingImages = (articles: IRawArticle[], params: IParams) => {
   articles.forEach((article) => {

@@ -1,6 +1,6 @@
 import { TestBed } from "@angular/core/testing";
-import { AnalyticsEventsType } from "../analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../analytics/analytics.service";
+import { AnalyticsEventsType } from "../analytics/__types__/AnalyticsEventsType";
 import { mockService, ServiceMock } from "../mocks/MockService";
 import { RuntimeService } from "../runtime/runtime.service";
 import { WindowService } from "../window/window.service";

@@ -1,14 +1,14 @@
-import { handlerRunnerFunction } from "../runner";
-import { IParams } from "../../__types__/IParams";
-import { IContentBlock } from "../../../../common/__types__/IContentBlock";
-import { IPlayStuffHandlerInput } from "../__types__/IPlayStuffHandlerInput";
-import { IPlayStuff } from "../../../../common/__types__/IPlayStuff";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import { IPlayStuff } from "../../../../common/__types__/IPlayStuff";
 import { getBrightcovePlaylist } from "../../adapters/brightcove/brightcove";
 import logger from "../../utils/logger";
+import { IParams } from "../../__types__/IParams";
+import { handlerRunnerFunction } from "../runner";
+import { IPlayStuffHandlerInput } from "../__types__/IPlayStuffHandlerInput";
 import { playStuffConfig } from "./play-stuff-config";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { total }: IPlayStuffHandlerInput,
   params: IParams

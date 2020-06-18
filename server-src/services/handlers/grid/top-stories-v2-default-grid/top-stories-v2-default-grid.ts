@@ -6,13 +6,13 @@ import {
   IGridBlock,
   IGridConfig
 } from "../../../../../common/__types__/IGridContainer";
-import { IParams } from "../../../__types__/IParams";
 import { gridBlock } from "../../../adapters/grid/grid-block";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
 import {
   ITopStoriesV2DefaultGridHandlerInput,
   TopStoriesV2DefaultGridPositions
 } from "../../__types__/ITopStoriesV2DefaultGridHandlerInput";
-import { handlerRunnerFunction } from "../../runner";
 
 export default async function (
   handlerRunner: handlerRunnerFunction,

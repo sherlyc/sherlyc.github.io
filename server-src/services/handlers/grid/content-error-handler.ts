@@ -1,6 +1,6 @@
-import { IParams } from "../../__types__/IParams";
 import { Strap } from "../../strap";
 import wrappedLogger from "../../utils/logger";
+import { IParams } from "../../__types__/IParams";
 import { HandlerInputType } from "../__types__/HandlerInputType";
 
 export const contentErrorHandler = (

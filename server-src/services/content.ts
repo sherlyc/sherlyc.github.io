@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import orchestrate from "./orchestrator";
-import { IStrapDefinition } from "./utils/__types__/IStrapDefinition";
 import config from "./utils/config";
 import logger from "./utils/logger";
+import { IStrapDefinition } from "./utils/__types__/IStrapDefinition";
 
 const listAssetIds = Object.values(config.strapConfig.homepageStraps).reduce(
   (acc: string[], curr: IStrapDefinition) => acc.concat(curr.ids),

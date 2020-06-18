@@ -2,15 +2,15 @@ import { TestBed } from "@angular/core/testing";
 import { AnalyticsService } from "../analytics/analytics.service";
 import { ConfigService } from "../config/config.service";
 import { FeatureSwitchService } from "../feature-switch/feature-switch.service";
+import { LoggerService } from "../logger/logger.service";
 import { mockService, ServiceMock } from "../mocks/MockService";
 import { RuntimeService } from "../runtime/runtime.service";
-import { Position } from "../script-injector/__types__/Position";
 import { ScriptInjectorService } from "../script-injector/script-injector.service";
+import { Position } from "../script-injector/__types__/Position";
 import { WindowService } from "../window/window.service";
+import { AuthenticationService } from "./authentication.service";
 import { IStuffLogin } from "./__types__/IStuffLogin";
 import { IStuffLoginUser } from "./__types__/IStuffLoginUser";
-import { AuthenticationService } from "./authentication.service";
-import { LoggerService } from "../logger/logger.service";
 
 describe("AuthenticationService", () => {
   let authenticationService: ServiceMock<AuthenticationService>;

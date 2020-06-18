@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
 import { v4 } from "uuid";
-import { ICorrelation } from "./__types__/ICorrelation";
-import { StoreService, StorageKeys } from "../store/store.service";
 import { RuntimeService } from "../runtime/runtime.service";
+import { StorageKeys, StoreService } from "../store/store.service";
+import { ICorrelation } from "./__types__/ICorrelation";
 
 @Injectable({
-  providedIn: "root",
+  providedIn: "root"
 })
 export class CorrelationService {
   private pageScopedId!: string;
@@ -52,7 +52,7 @@ export class CorrelationService {
     return {
       deviceId: this.getDeviceId(),
       apiRequestId: this.getApiRequestId(),
-      pageScopedId: this.getPageScopedId(),
+      pageScopedId: this.getPageScopedId()
     };
   }
 }

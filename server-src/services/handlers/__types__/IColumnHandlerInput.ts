@@ -1,5 +1,5 @@
-import { HandlerInputType } from "./HandlerInputType";
 import { HandlerInput } from "./HandlerInput";
+import { HandlerInputType } from "./HandlerInputType";
 
 export interface IColumnHandlerInput {
   type: HandlerInputType.Column;

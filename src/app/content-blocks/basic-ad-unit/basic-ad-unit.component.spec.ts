@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { BasicAdUnitComponent } from "./basic-ad-unit.component";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IBasicAdUnit } from "../../../../common/__types__/IBasicAdUnit";
+import { BasicAdUnitComponent } from "./basic-ad-unit.component";
 
 describe("BasicAdUnitComponent", () => {
   let component: BasicAdUnitComponent;

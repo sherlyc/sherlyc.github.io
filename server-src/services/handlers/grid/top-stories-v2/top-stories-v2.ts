@@ -1,28 +1,28 @@
+import { AspectRatio } from "../../../../../common/AspectRatio";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 import { HomepageHighlightArticleVariation } from "../../../../../common/__types__/IHomepageHighlightArticle";
-import { AspectRatio } from "../../../../../common/AspectRatio";
-import { IParams } from "../../../__types__/IParams";
-import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
-import { JsonFeedImageType } from "../../../adapters/__types__/JsonFeedImageType";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
 import { homepageHighlightArticle } from "../../../adapters/article-converter/homepage-highlight-article.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
+import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { JsonFeedImageType } from "../../../adapters/__types__/JsonFeedImageType";
 import { Strap } from "../../../strap";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
   ITopStoriesV2DefaultGridHandlerInput,
   TopStoriesV2DefaultGridPositions
 } from "../../__types__/ITopStoriesV2DefaultGridHandlerInput";
-import { handlerRunnerFunction } from "../../runner";
-import { contentErrorHandler } from "../content-error-handler";
-import { ITopStoriesV2HandlerInput } from "../../__types__/ITopStoriesV2HandlerInput";
 import {
   ITopStoriesV2DefconGridHandlerInput,
   TopStoriesV2DefconGridPositions
 } from "../../__types__/ITopStoriesV2DefconGridHandlerInput";
+import { ITopStoriesV2HandlerInput } from "../../__types__/ITopStoriesV2HandlerInput";
+import { contentErrorHandler } from "../content-error-handler";
 
 function defaultGrid(
   { strapName, color }: ITopStoriesV2HandlerInput,
@@ -407,9 +407,7 @@ function defconGrid(
           params
         )
       ],
-      [TopStoriesV2DefconGridPositions.BottomTwo]: [
-        basicAdUnit(strapName)
-      ],
+      [TopStoriesV2DefconGridPositions.BottomTwo]: [basicAdUnit(strapName)],
       [TopStoriesV2DefconGridPositions.BottomThree]: [
         contentErrorHandler(
           () =>

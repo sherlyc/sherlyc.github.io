@@ -1,7 +1,7 @@
 import { IContentBlock } from "../../../common/__types__/IContentBlock";
 import { IParams } from "../__types__/IParams";
-import { HandlerInput } from "./__types__/HandlerInput";
 import handlerRegistry from "./registry";
+import { HandlerInput } from "./__types__/HandlerInput";
 
 export type handlerRunnerFunction = (
   handlerInput: HandlerInput,

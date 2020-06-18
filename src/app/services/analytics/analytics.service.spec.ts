@@ -5,8 +5,8 @@ import { LoggerService } from "../logger/logger.service";
 import { mockService, ServiceMock } from "../mocks/MockService";
 import { RuntimeService } from "../runtime/runtime.service";
 import { WindowService } from "../window/window.service";
-import { AnalyticsEventsType } from "./__types__/AnalyticsEventsType";
 import { AnalyticsService } from "./analytics.service";
+import { AnalyticsEventsType } from "./__types__/AnalyticsEventsType";
 
 describe("AnalyticsService", () => {
   let windowService: ServiceMock<WindowService>;

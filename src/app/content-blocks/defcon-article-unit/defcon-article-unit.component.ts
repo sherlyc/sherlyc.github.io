@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 import { IDefconArticleUnit } from "../../../../common/__types__/IDefconArticleUnit";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
   selector: "app-defcon-article-unit-component",

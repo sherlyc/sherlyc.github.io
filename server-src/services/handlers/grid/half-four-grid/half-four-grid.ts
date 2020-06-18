@@ -1,12 +1,18 @@
-import { handlerRunnerFunction } from "../../runner";
-import { IParams } from "../../../__types__/IParams";
-import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { HalfFourGridPositions, IHalfFourGridHandlerInput } from "../../__types__/IHalfFourGridHandlerInput";
-import { gridBlock } from "../../../adapters/grid/grid-block";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { Border, IGridConfig } from "../../../../../common/__types__/IGridContainer";
+import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import {
+  Border,
+  IGridConfig
+} from "../../../../../common/__types__/IGridContainer";
+import { gridBlock } from "../../../adapters/grid/grid-block";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
+import {
+  HalfFourGridPositions,
+  IHalfFourGridHandlerInput
+} from "../../__types__/IHalfFourGridHandlerInput";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { content }: IHalfFourGridHandlerInput,
   params: IParams

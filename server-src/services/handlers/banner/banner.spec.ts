@@ -1,9 +1,9 @@
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IExternalContentUnit } from "../../../../common/__types__/IExternalContentUnit";
-import { IParams } from "../../__types__/IParams";
-import { IBannerResponse } from "../../adapters/__types__/IBannerResponse";
 import getBanner from "../../adapters/banner/banner";
+import { IBannerResponse } from "../../adapters/__types__/IBannerResponse";
 import logger from "../../utils/logger";
+import { IParams } from "../../__types__/IParams";
 import { HandlerInputType } from "../__types__/HandlerInputType";
 import { IBannerHandlerInput } from "../__types__/IBannerHandlerInput";
 import bannerHandler from "./banner";

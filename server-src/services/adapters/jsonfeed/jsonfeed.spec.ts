@@ -1,5 +1,5 @@
-import { IParams } from "../../__types__/IParams";
 import { Section } from "../../section";
+import { IParams } from "../../__types__/IParams";
 import { IJsonFeedArticle } from "../__types__/IJsonFeedArticle";
 import { IRawArticle } from "../__types__/IRawArticle";
 import { JsonFeedAssetType } from "../__types__/JsonFeedAssetType";

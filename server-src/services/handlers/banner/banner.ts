@@ -1,13 +1,13 @@
 import { isWithinInterval, parseISO } from "date-fns";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
-import { IParams } from "../../__types__/IParams";
-import { IBannerResponse } from "../../adapters/__types__/IBannerResponse";
 import getBanner from "../../adapters/banner/banner";
+import { IBannerResponse } from "../../adapters/__types__/IBannerResponse";
 import logger from "../../utils/logger";
+import { IParams } from "../../__types__/IParams";
+import { handlerRunnerFunction } from "../runner";
 import { HandlerInputType } from "../__types__/HandlerInputType";
 import { IBannerHandlerInput } from "../__types__/IBannerHandlerInput";
 import { IExternalContentHandlerInput } from "../__types__/IExternalContentHandlerInput";
-import { handlerRunnerFunction } from "../runner";
 
 const getActiveBanner = (banners: IBannerResponse[]) =>
   banners.find(({ startDateTimeUTC, endDateTimeUTC }) =>
@@ -24,7 +24,7 @@ const defaultExternalContentHandlerInput: Partial<IExternalContentHandlerInput> 
   height: "50px"
 };
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   {}: IBannerHandlerInput,
   params: IParams

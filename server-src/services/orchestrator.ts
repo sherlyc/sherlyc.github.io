@@ -1,18 +1,18 @@
+import { FeatureName } from "../../common/FeatureName";
 import { AccentColor } from "../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../common/__types__/ContentBlockType";
 import { IPage } from "../../common/__types__/IPage";
-import { FeatureName } from "../../common/FeatureName";
-import { IParams } from "./__types__/IParams";
+import handlerRunner from "./handlers/runner";
 import { HandlerInput } from "./handlers/__types__/HandlerInput";
 import { HandlerInputType } from "./handlers/__types__/HandlerInputType";
 import { BrandModule } from "./handlers/__types__/IBrandHandlerInput";
 import { IContentBlockHandlerInput } from "./handlers/__types__/IContentBlockHandlerInput";
-import handlerRunner from "./handlers/runner";
 import { Section } from "./section";
 import { Strap } from "./strap";
 import config from "./utils/config";
 import logger from "./utils/logger";
 import { formatVersion, parseVersion } from "./utils/version";
+import { IParams } from "./__types__/IParams";
 
 const homepageStrapsConfig = config.strapConfig!.homepageStraps;
 
@@ -194,6 +194,9 @@ export const newPage = (): HandlerInput[] => {
           sourceId: Strap.Premium,
           strapName: Strap.Premium,
           articleCount: 4
+        },
+        {
+          type: HandlerInputType.Partner
         },
         {
           type: HandlerInputType.LargeLeadSix,
@@ -445,15 +448,6 @@ export const newPage = (): HandlerInput[] => {
           margin: "0 -10px 60px"
         }
       }
-    },
-    {
-      type: HandlerInputType.Feature,
-      name: FeatureName.HomepageV2,
-      content: [
-        {
-          type: HandlerInputType.Partner
-        }
-      ]
     },
     {
       type: HandlerInputType.Brand,

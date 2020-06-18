@@ -57,6 +57,6 @@ import "zone.js/dist/zone"; // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+import "default-passive-events";
 import "intersection-observer";
 import "polyfill-array-includes";
-import "default-passive-events";

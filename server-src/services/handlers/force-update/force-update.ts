@@ -1,11 +1,11 @@
-import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { handlerRunnerFunction } from "../runner";
-import { IParams } from "../../__types__/IParams";
-import { IForceUpdateHandlerInput } from "../__types__/IForceUpdateHandlerInput";
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 import { parseVersion } from "../../utils/version";
+import { IParams } from "../../__types__/IParams";
+import { handlerRunnerFunction } from "../runner";
+import { IForceUpdateHandlerInput } from "../__types__/IForceUpdateHandlerInput";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { forceUpdateOnVersionsBefore }: IForceUpdateHandlerInput,
   params: IParams

@@ -1,14 +1,17 @@
-import { handlerRunnerFunction } from "../../runner";
-import { IParams } from "../../../__types__/IParams";
+import { repeat } from "lodash-es";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import {
+  Border,
+  IGridConfig
+} from "../../../../../common/__types__/IGridContainer";
+import { gridBlock } from "../../../adapters/grid/grid-block";
+import { IParams } from "../../../__types__/IParams";
+import { handlerRunnerFunction } from "../../runner";
 import {
   ITopStoriesV2DefconGridHandlerInput,
   TopStoriesV2DefconGridPositions
 } from "../../__types__/ITopStoriesV2DefconGridHandlerInput";
-import { Border, IGridConfig } from "../../../../../common/__types__/IGridContainer";
-import { gridBlock } from "../../../adapters/grid/grid-block";
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { repeat } from "lodash-es";
 
 export default async function (
   handlerRunner: handlerRunnerFunction,
@@ -139,7 +142,9 @@ export default async function (
         Border.bottom
       ]),
       [TopStoriesV2DefconGridPositions.BannerAd]: gridBlock(1, 4, 3, 1, []),
-      [TopStoriesV2DefconGridPositions.MidInsert]: gridBlock(5, 1, 1, 3, [Border.bottom]),
+      [TopStoriesV2DefconGridPositions.MidInsert]: gridBlock(5, 1, 1, 3, [
+        Border.bottom
+      ]),
       [TopStoriesV2DefconGridPositions.LowerRight]: gridBlock(4, 4, 5, 1, [])
     }
   };

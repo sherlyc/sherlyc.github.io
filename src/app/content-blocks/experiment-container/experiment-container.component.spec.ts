@@ -5,12 +5,12 @@ import { BrowserDynamicTestingModule } from "@angular/platform-browser-dynamic/t
 import { LoggerService } from "src/app/services/logger/logger.service";
 import { ServiceMock } from "src/app/services/mocks/MockService";
 import { RuntimeService } from "src/app/services/runtime/runtime.service";
+import { ExperimentName } from "../../../../common/ExperimentName";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 import { IExperimentContainer } from "../../../../common/__types__/IExperimentContainer";
-import { ExperimentName } from "../../../../common/ExperimentName";
-import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { ExperimentService } from "../../services/experiment/experiment.service";
 import { mockService } from "../../services/mocks/MockService";
 import { ContentBlockDirective } from "../../shared/directives/content-block/content-block.directive";

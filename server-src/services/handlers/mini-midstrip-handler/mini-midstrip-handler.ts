@@ -1,15 +1,15 @@
-import { IContentBlock } from "../../../../common/__types__/IContentBlock";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { handlerRunnerFunction } from "../runner";
-import { IParams } from "../../__types__/IParams";
-import { IMiniMidStripHandlerInput } from "../__types__/IMiniMidStripHandlerInput";
+import { IContentBlock } from "../../../../common/__types__/IContentBlock";
+import { ImageLayoutType } from "../../../../common/__types__/ImageLayoutType";
+import { imageLinkUnit } from "../../adapters/article-converter/image-link-unit.converter";
+import { getStrapArticles } from "../../adapters/strap-list/strap-list-service";
 import { Strap } from "../../strap";
 import wrappedLogger from "../../utils/logger";
-import { getStrapArticles } from "../../adapters/strap-list/strap-list-service";
-import { imageLinkUnit } from "../../adapters/article-converter/image-link-unit.converter";
-import { ImageLayoutType } from "../../../../common/__types__/ImageLayoutType";
+import { IParams } from "../../__types__/IParams";
+import { handlerRunnerFunction } from "../runner";
+import { IMiniMidStripHandlerInput } from "../__types__/IMiniMidStripHandlerInput";
 
-export default async function(
+export default async function (
   handlerRunner: handlerRunnerFunction,
   { totalArticles, strapName, sourceId }: IMiniMidStripHandlerInput,
   params: IParams
