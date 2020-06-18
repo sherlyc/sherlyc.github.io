@@ -39,13 +39,13 @@ export default async function (
   };
 
   const mobile: IGridBlocks = {
-    [NewsSixV2GridPositions.ModuleTitle]: gridBlock(1, 1, 1, 1, []),
-    [NewsSixV2GridPositions.One]: gridBlock(2, 1, 1, 1, []),
-    [NewsSixV2GridPositions.Two]: gridBlock(3, 1, 1, 1, [Border.bottom]),
-    [NewsSixV2GridPositions.Three]: gridBlock(4, 1, 1, 1, []),
-    [NewsSixV2GridPositions.Four]: gridBlock(5, 1, 1, 1, []),
+    [NewsSixV2GridPositions.ModuleTitle]: gridBlock(1, 1, 1, 2, []),
+    [NewsSixV2GridPositions.One]: gridBlock(2, 1, 1, 2, []),
+    [NewsSixV2GridPositions.Two]: gridBlock(3, 1, 1, 2, [Border.bottom]),
+    [NewsSixV2GridPositions.Three]: gridBlock(4, 1, 1, 2, []),
+    [NewsSixV2GridPositions.Four]: gridBlock(5, 1, 1, 2, []),
     [NewsSixV2GridPositions.Five]: gridBlock(6, 1, 1, 1, [Border.bottom]),
-    [NewsSixV2GridPositions.Six]: gridBlock(7, 1, 1, 1, [Border.bottom])
+    [NewsSixV2GridPositions.Six]: gridBlock(6, 2, 1, 1, [Border.bottom])
   };
 
   return [
@@ -53,8 +53,8 @@ export default async function (
       type: ContentBlockType.GridContainer,
       items: content,
       mobile: {
-        gridTemplateColumns: "1fr",
-        gridTemplateRows: "auto auto auto auto auto auto auto",
+        gridTemplateColumns: "1fr 1fr",
+        gridTemplateRows: "auto auto auto auto auto auto",
         gridColumnGap: "20px",
         gridRowGap: "20px",
         gridBlocks: mobile
