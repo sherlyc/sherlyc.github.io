@@ -3,11 +3,11 @@
   align-items: center;
   vertical-align: middle;
 
-  --timestamp-size: 10px;
+  --timestamp-size: 12px;
 }
 
 .time {
-  font-size: 10px;
+  font-size: 12px;
   font-size: var(--timestamp-size);
   vertical-align: top;
   display: inline-block;

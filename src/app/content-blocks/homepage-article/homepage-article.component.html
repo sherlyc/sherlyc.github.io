@@ -9,6 +9,7 @@
       <app-tag-link [color]="input.color" [name]="input.category.name" [url]="input.category.url"></app-tag-link>
       <app-headline [headline]="input.headline" [headlineFlags]="input.headlineFlags"></app-headline>
       <p *ngIf="input.introText" class="intro">{{ input.introText }}</p>
+      <app-time [textColor]="'#ff433d'" [timestamp]="input.lastPublishedTime" [showBullet]="true"></app-time>
     </div>
   </a>
 </article>
