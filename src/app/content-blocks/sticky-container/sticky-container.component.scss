@@ -3,6 +3,10 @@
 
 :host {
   display: block;
+  height: 100%;
+}
+
+div {
   position: sticky;
 
   @include mobile {

@@ -1,9 +1,12 @@
 :host {
+  display: block;
+  --timestamp-size: 12px;
+}
+
+.wrapper {
   display: inline-flex;
   align-items: center;
-  vertical-align: middle;
-
-  --timestamp-size: 12px;
+  margin-bottom: 6px;
 }
 
 .time {
