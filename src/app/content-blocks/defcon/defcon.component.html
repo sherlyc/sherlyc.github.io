@@ -7,7 +7,7 @@
       </div>
       <div class="text">
         <app-tag-link [color]="input.color" [name]="input.articles[0].category.name" [url]="input.articles[0].category.url"></app-tag-link>
-        <app-headline [headline]="input.articles[0].headline" [headlineFlags]="input.articles[0].headlineFlags"></app-headline>
+        <app-headline textColor="#fff" [headline]="input.articles[0].headline" [headlineFlags]="input.articles[0].headlineFlags"></app-headline>
         <p class="intro">{{ input.articles[0].introText }}</p>
         <div>
           <span class="bullet"></span>
@@ -21,7 +21,7 @@
       <a itemprop="url" href="{{ article.linkUrl }}" appOpenExternalLink="{{ article.linkUrl }}" (click)="sendAnalytics(article)">
         <span class="bullet"></span>
         <span class="time">9m ago</span>
-        <app-headline [headline]="article.headline" [headlineFlags]="article.headlineFlags"></app-headline>
+        <app-headline textColor="#fff" [headline]="article.headline" [headlineFlags]="article.headlineFlags"></app-headline>
       </a>
     </div>
   </div>
