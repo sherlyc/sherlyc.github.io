@@ -467,6 +467,7 @@ export default async function (
   input: ITopStoriesV2HandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
+  const defconArticles = await getRawArticles(Strap.Defcon, 10, params);
   const articles = await getRawArticles(Strap.TopStories, 10, params);
   const midInsertContentBlocks = await handlerRunner(
     input.midInsertContent,
@@ -477,14 +478,26 @@ export default async function (
     params
   );
 
-  return handlerRunner(
-    defaultGrid(
-      input,
-      articles,
-      midInsertContentBlocks,
-      lowerRightContentBlocks,
-      params
-    ),
-    params
-  );
+  return defconArticles.length
+    ? handlerRunner(
+        defconGrid(
+          input,
+          defconArticles,
+          articles,
+          midInsertContentBlocks,
+          lowerRightContentBlocks,
+          params
+        ),
+        params
+      )
+    : handlerRunner(
+        defaultGrid(
+          input,
+          articles,
+          midInsertContentBlocks,
+          lowerRightContentBlocks,
+          params
+        ),
+        params
+      );
 }
