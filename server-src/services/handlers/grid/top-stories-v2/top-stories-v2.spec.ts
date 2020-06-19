@@ -9,18 +9,18 @@ import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { Strap } from "../../../strap";
 import { IParams } from "../../../__types__/IParams";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
+import { IExternalContentHandlerInput } from "../../__types__/IExternalContentHandlerInput";
+import { ILatestHeadlinesHandlerInput } from "../../__types__/ILatestHeadlinesHandlerInput";
 import {
   ITopStoriesV2DefaultGridHandlerInput,
   TopStoriesV2DefaultGridPositions
 } from "../../__types__/ITopStoriesV2DefaultGridHandlerInput";
-import { ITopStoriesV2HandlerInput } from "../../__types__/ITopStoriesV2HandlerInput";
-import topStoriesV2 from "./top-stories-v2";
 import {
   ITopStoriesV2DefconGridHandlerInput,
   TopStoriesV2DefconGridPositions
 } from "../../__types__/ITopStoriesV2DefconGridHandlerInput";
-import { IExternalContentHandlerInput } from "../../__types__/IExternalContentHandlerInput";
-import { ILatestHeadlinesHandlerInput } from "../../__types__/ILatestHeadlinesHandlerInput";
+import { ITopStoriesV2HandlerInput } from "../../__types__/ITopStoriesV2HandlerInput";
+import topStoriesV2 from "./top-stories-v2";
 
 jest.mock("../../../adapters/article-retriever/article-retriever");
 
