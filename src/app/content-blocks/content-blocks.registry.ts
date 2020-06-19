@@ -38,6 +38,7 @@ import { StickyContainerComponent } from "./sticky-container/sticky-container.co
 import { VerticalArticleListComponent } from "./vertical-article-list/vertical-article-list.component";
 import { WeatherUnitComponent } from "./weather-unit/weather-unit.component";
 import { IContentBlockComponent } from "./__types__/IContentBlockComponent";
+import { OpinionComponent } from "./opinion/opinion.component";
 
 export const contentBlockComponents = [
   GrayDefconArticleUnitComponent,
@@ -78,6 +79,7 @@ export const contentBlockComponents = [
   PlayStuffComponent,
   MostReadListComponent,
   DefconComponent,
+  OpinionComponent
 ];
 
 const registry: {
@@ -121,6 +123,7 @@ const registry: {
   PlayStuffComponent,
   MostReadListComponent,
   DefconComponent,
+  OpinionComponent
 };
 
 export default registry;

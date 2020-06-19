@@ -81,6 +81,113 @@ export const newPage = (): HandlerInput[] => {
       name: FeatureName.HomepageV2,
       content: [
         {
+          type: HandlerInputType.ContentBlockHandler,
+          contentBlocks: [
+            {
+              type: ContentBlockType.Opinion,
+              articles: [
+                {
+                  id: `1`,
+                  headline: `cartoon headline`,
+                  color: AccentColor.CuriousBlue,
+                  title: `cartoon title`,
+                  linkUrl: `/`,
+                  introText: `cartoon introText`,
+                  headlineFlags: [],
+                  lastPublishedTime: 1,
+                  byline: `Sharon Murdoch`,
+                  image: {
+                    defcon: `cartoon-defcon.png`,
+                    sixteenByNine: `https://resources.stuff.co.nz/content/dam/images/4/y/m/u/u/m/image.related.StuffLandscapeSixteenByNine.1420x800.4ymuu2.png/1592522142360.jpg`
+                  },
+                  category: {
+                    name: "National",
+                    url: "/national/"
+                  }
+                },
+                {
+                  id: `1`,
+                  headline: `War for second place in NZ`,
+                  color: AccentColor.CuriousBlue,
+                  title: `War for second place in NZ`,
+                  linkUrl: `/`,
+                  introText: `There is an enduring belief that Wellington is our second-largest city. We must dispel that myth.`,
+                  headlineFlags: [],
+                  lastPublishedTime: 1,
+                  byline: `charlie mitchell`,
+                  image: {
+                    defcon: `cartoon-defcon.png`,
+                    sixteenByNine: `https://cdn.zeplin.io/5eb8d519e81b46777e972f8a/assets/25472C7F-8367-4AF8-84A4-CA24FE51840D.png`
+                  },
+                  category: {
+                    name: "National",
+                    url: "/national/"
+                  }
+                },
+                {
+                  id: `1`,
+                  headline: `Political capital: you can’t take it with you`,
+                  color: AccentColor.CuriousBlue,
+                  title: `Political capital: you can’t take it with you`,
+                  linkUrl: `/`,
+                  introText: `There is an enduring belief that Wellington is our second-largest city. We must dispel that myth.`,
+                  headlineFlags: [],
+                  lastPublishedTime: 1,
+                  byline: `andrea vance`,
+                  image: {
+                    defcon: `cartoon-defcon.png`,
+                    sixteenByNine: `https://cdn.zeplin.io/5eb8d519e81b46777e972f8a/assets/845620B1-4D29-4A58-B69B-481D4AED8BB1.png`
+                  },
+                  category: {
+                    name: "National",
+                    url: "/national/"
+                  }
+                },
+                {
+                  id: `1`,
+                  headline: `NZ First picks up Muller-mentum`,
+                  color: AccentColor.CuriousBlue,
+                  title: `NZ First picks up Muller-mentum`,
+                  linkUrl: `/`,
+                  introText: `There is an enduring belief that Wellington is our second-largest city. We must dispel that myth.`,
+                  headlineFlags: [],
+                  lastPublishedTime: 1,
+                  byline: `luke malpass`,
+                  image: {
+                    defcon: `cartoon-defcon.png`,
+                    sixteenByNine: `https://cdn.zeplin.io/5eb8d519e81b46777e972f8a/assets/8F2D4ADC-43E1-44C4-A243-98C9930AA84F.png`
+                  },
+                  category: {
+                    name: "National",
+                    url: "/national/"
+                  }
+                },
+                {
+                  id: `1`,
+                  headline: `Let’s be proud of our Maori heritage`,
+                  color: AccentColor.CuriousBlue,
+                  title: `Let’s be proud of our Maori heritage`,
+                  linkUrl: `/`,
+                  introText: `There is an enduring belief that Wellington is our second-largest city. We must dispel that myth.`,
+                  headlineFlags: [],
+                  lastPublishedTime: 1,
+                  byline: `carmen par`,
+                  image: {
+                    defcon: `cartoon-defcon.png`,
+                    sixteenByNine: `https://cdn.zeplin.io/5eb8d519e81b46777e972f8a/assets/9A46B252-9C82-4E1D-8D49-2C12F25F7DFA.png`
+                  },
+                  category: {
+                    name: "National",
+                    url: "/national/"
+                  }
+                }
+              ],
+              strapName: "opinion",
+              color: AccentColor.Coral
+            }
+          ]
+        },
+        {
           type: HandlerInputType.TopStoriesV2,
           strapName: `${homepageV2AdPrefix}TopStoriesDefaultOne`,
           color: AccentColor.CuriousBlue,

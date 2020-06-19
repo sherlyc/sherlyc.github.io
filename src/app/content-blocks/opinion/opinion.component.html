@@ -1,0 +1,26 @@
+<div class="header">opinion</div>
+<div class="articles">
+  <div class="primary">
+    <article>
+      <img class="cartoon" [src]="input.articles[0].image.sixteenByNine" />
+      <div class="byline">{{ input.articles[0].byline }}</div>
+    </article>
+  </div>
+  <div class="secondary">
+    <article>
+      <img class="avatar" [src]="input.articles[1].image.sixteenByNine" />
+      <div class="byline">{{ input.articles[1].byline }}</div>
+      <div class="headline">{{ input.articles[1].headline }}</div>
+      <div class="intro">{{ input.articles[1].introText }}</div>
+    </article>
+  </div>
+  <div class="list">
+    <article *ngFor="let article of input.articles.slice(2)">
+      <div class="text">
+        <div class="byline">{{ article.byline }}</div>
+        <div class="headline">{{ article.headline }}</div>
+      </div>
+      <img class="avatar" [src]="article.image.sixteenByNine" />
+    </article>
+  </div>
+</div>
