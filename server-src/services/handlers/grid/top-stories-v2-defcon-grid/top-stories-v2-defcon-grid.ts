@@ -83,7 +83,9 @@ export default async function (
       [TopStoriesV2DefconGridPositions.TopFive]: gridBlock(5, 1, 1, 2, [
         Border.bottom
       ]),
-      [TopStoriesV2DefconGridPositions.MidInsert]: gridBlock(6, 1, 1, 2, [Border.bottom]),
+      [TopStoriesV2DefconGridPositions.MidInsert]: gridBlock(6, 1, 1, 2, [
+        Border.bottom
+      ]),
       [TopStoriesV2DefconGridPositions.BottomOne]: gridBlock(7, 1, 2, 1, [
         Border.bottom
       ]),

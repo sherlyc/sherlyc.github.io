@@ -7,21 +7,17 @@
       </div>
       <div class="text">
         <app-tag-link [color]="input.color" [name]="input.articles[0].category.name" [url]="input.articles[0].category.url"></app-tag-link>
-        <app-headline textColor="#fff" [headline]="input.articles[0].headline" [headlineFlags]="input.articles[0].headlineFlags"></app-headline>
+        <app-headline [headline]="input.articles[0].headline" [headlineFlags]="input.articles[0].headlineFlags" [textColor]="'#ffffff'"></app-headline>
         <p class="intro">{{ input.articles[0].introText }}</p>
-        <div>
-          <span class="bullet"></span>
-          <span class="time">2m ago</span>
-        </div>
+        <app-time [timestamp]="input.articles[0].lastPublishedTime" [textColor]="input.articles[0].color" [showBullet]="true"></app-time>
       </div>
     </a>
   </article>
   <div class="related-articles" *ngIf="input.articles.length > 1">
     <div class="cell" *ngFor="let article of input.articles.slice(1)">
       <a itemprop="url" href="{{ article.linkUrl }}" appOpenExternalLink="{{ article.linkUrl }}" (click)="sendAnalytics(article)">
-        <span class="bullet"></span>
-        <span class="time">9m ago</span>
-        <app-headline textColor="#fff" [headline]="article.headline" [headlineFlags]="article.headlineFlags"></app-headline>
+        <app-time [timestamp]="article.lastPublishedTime" [textColor]="'#ff433d'" [showBullet]="true"></app-time>
+        <app-headline [headline]="article.headline" [headlineFlags]="article.headlineFlags" [textColor]="'#ffffff'"></app-headline>
       </a>
     </div>
   </div>

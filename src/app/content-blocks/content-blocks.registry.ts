@@ -23,7 +23,7 @@ import { HalfImageArticleWithoutIntroUnitComponent } from "./half-image-article-
 import { HalfWidthImageArticleUnitComponent } from "./half-width-image-article-unit/half-width-image-article-unit.component";
 import { HeaderComponent } from "./header/header.component";
 import { HomepageArticleComponent } from "./homepage-article/homepage-article.component";
-import { HomepageHighlightArticleComponent } from "./homepage-featured-article/homepage-highlight-article.component";
+import { HomepageHighlightArticleComponent } from "./homepage-highlight-article/homepage-highlight-article.component";
 import { ImageLinkUnitComponent } from "./image-link-unit/image-link-unit.component";
 import { ModuleHeaderComponent } from "./module-header/module-header.component";
 import { ModuleSubtitleComponent } from "./module-subtitle/module-subtitle.component";
