@@ -38,8 +38,8 @@ describe("Logger", () => {
       time          | alarmHours
       ${"06:59:59"} | ${false}
       ${"07:00:00"} | ${true}
-      ${"22:59:59"} | ${true}
-      ${"23:00:00"} | ${false}
+      ${"17:59:59"} | ${true}
+      ${"18:00:00"} | ${false}
     `(
       "tags error logs as alarmHours: $alarmHours on $time",
       ({ time, alarmHours }) => {

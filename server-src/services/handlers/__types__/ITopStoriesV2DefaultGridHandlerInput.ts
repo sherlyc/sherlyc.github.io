@@ -9,16 +9,16 @@ export interface ITopStoriesV2DefaultGridHandlerInput {
 export enum TopStoriesV2DefaultGridPositions {
   LeftHighlight = "LeftHighlight",
   RightHighlight = "RightHighlight",
-  LeftOne = "LeftOne",
-  LeftTwo = "LeftTwo",
-  LeftThree = "LeftThree",
-  LeftFour = "LeftFour",
-  RightOne = "RightOne",
-  RightTwo = "RightTwo",
-  RightThree = "RightThree",
-  RightFour = "RightFour",
-  RightFive = "RightFive",
+  TopOne = "TopOne",
+  TopTwo = "TopTwo",
+  TopThree = "TopThree",
+  TopFour = "TopFour",
+  MidInsert = "MidInsert",
+  BottomOne = "BottomOne",
+  BottomTwo = "BottomTwo",
+  BottomThree = "BottomThree",
+  BottomFour = "BottomFour",
+  BottomFive = "BottomFive",
   BannerAd = "BannerAd",
-  LowerRight = "LowerRight",
-  MidInsert = "MidInsert"
+  LowerRight = "LowerRight"
 }
