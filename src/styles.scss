@@ -115,7 +115,8 @@ app-logo {
   }
 }
 
-.homepage-billboard.ad-container {
+
+.homepage-billboard.ad-container, .homepagev2-billboard.ad-container {
   border-width: 0 !important;
   &:not(:first-child) {
     @include mobile {
