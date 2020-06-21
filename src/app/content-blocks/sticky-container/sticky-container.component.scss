@@ -8,7 +8,6 @@
 
 div {
   position: sticky;
-
   @include mobile {
     top: $mobile-masthead-height;
   }

@@ -92,7 +92,7 @@ describe("HomepageArticleComponent", () => {
     expect(img!.caption).toEqual(articleData.headline);
     expect(img!.aspectRatio).toEqual("16:9");
 
-    const intro = componentElement.querySelector("p.intro");
+    const intro = componentElement.querySelector(".intro p");
     expect(intro!.textContent).toEqual(articleData.introText);
   });
 
@@ -178,7 +178,7 @@ describe("HomepageArticleComponent", () => {
 
     fixture.detectChanges();
     const componentElement: HTMLElement = fixture.debugElement.nativeElement;
-    const intro = componentElement.querySelector("p.intro");
+    const intro = componentElement.querySelector(".intro p");
     expect(intro).toBeFalsy();
   });
 
