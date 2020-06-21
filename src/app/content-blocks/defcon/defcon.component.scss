@@ -10,6 +10,14 @@ a {
   }
 }
 
+.image {
+  width: 100%;
+
+  .border {
+    height: 2px;
+  }
+}
+
 .text {
   margin-top: -100px;
   z-index: 99;
