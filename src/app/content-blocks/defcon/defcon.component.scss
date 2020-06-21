@@ -80,20 +80,8 @@ a {
   }
 }
 
-.time {
-  color: #ff433d;
-  font-size: 12px;
-  padding-right: 5px;
-}
-
-.bullet {
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 5px;
-  height: 5px;
-  width: 5px;
-  border-radius: 50%;
-  border: 1px solid #222222;
-  background: #ff433d;
-  box-shadow: #ff433d 0 0 0 1px;
+app-time {
+  &:not(:empty) {
+    margin-right: 5px;
+  }
 }

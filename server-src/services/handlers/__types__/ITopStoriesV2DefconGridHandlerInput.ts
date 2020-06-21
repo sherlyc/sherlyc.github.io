@@ -20,5 +20,5 @@ export enum TopStoriesV2DefconGridPositions {
   BottomFive = "BottomFive",
   BannerAd = "BannerAd",
   MidInsert = "MidInsert",
-  LowerRight = "LowerRight",
+  LowerRight = "LowerRight"
 }

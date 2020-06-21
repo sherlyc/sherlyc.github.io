@@ -1,8 +1,5 @@
-import { Component, HostBinding, Input, OnInit } from "@angular/core";
-import { differenceInSeconds, format, fromUnixTime } from "date-fns";
-
-const ONE_HOUR_IN_SECONDS = 3600;
-const ONE_MINUTE_IN_SECONDS = 60;
+import { Component, Input, OnInit } from "@angular/core";
+import { formatTime } from "../../utils/timestamp-helper/timestamp-helper";
 
 @Component({
   selector: "app-time",
@@ -16,36 +13,14 @@ export class TimeComponent implements OnInit {
   separator?: "left" | "right";
   @Input()
   timestamp!: number;
-  @Input() textColor = "#d12421";
+  @Input()
+  textColor = "#d12421";
+  @Input()
+  showBullet = false;
+
   time!: string;
 
-  private static timeAgoFormat(secondsAgo: number) {
-    const hours = Math.floor(secondsAgo / ONE_HOUR_IN_SECONDS);
-    const minutes = Math.floor(
-      (secondsAgo % ONE_HOUR_IN_SECONDS) / ONE_MINUTE_IN_SECONDS
-    );
-    const hoursText = hours === 0 ? "" : `${hours} hour `;
-    const minutesText = minutes === 0 ? "" : `${minutes} min `;
-    return `${hoursText}${minutesText}ago`;
-  }
-
-  ngOnInit() {
-    this.time = this.formatTime();
-  }
-
-  formatTime() {
-    const inputDate = fromUnixTime(this.timestamp);
-    const secondsAgo = differenceInSeconds(Date.now(), inputDate);
-
-    if (secondsAgo > ONE_HOUR_IN_SECONDS * 2 || secondsAgo < 0) {
-      return "";
-    }
-    if (
-      secondsAgo >= ONE_HOUR_IN_SECONDS &&
-      secondsAgo <= ONE_HOUR_IN_SECONDS * 2
-    ) {
-      return format(inputDate, "h:mma").toLowerCase();
-    }
-    return TimeComponent.timeAgoFormat(secondsAgo);
+  ngOnInit(): void {
+    this.time = formatTime(this.timestamp);
   }
 }
