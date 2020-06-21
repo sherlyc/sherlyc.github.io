@@ -30,6 +30,7 @@ import { ModuleSubtitleComponent } from "./module-subtitle/module-subtitle.compo
 import { ModuleTitleComponent } from "./module-title/module-title.component";
 import { MostReadListComponent } from "./most-read-list/most-read-list.component";
 import { OliComponent } from "./oli/oli.component";
+import { OpinionComponent } from "./opinion/opinion.component";
 import { PartnerContentComponent } from "./partner-content/partner-content.component";
 import { PlayStuffComponent } from "./play-stuff/play-stuff.component";
 import { ResponsiveBigImageArticleComponent } from "./responsive-big-image-article/responsive-big-image-article.component";
@@ -38,7 +39,6 @@ import { StickyContainerComponent } from "./sticky-container/sticky-container.co
 import { VerticalArticleListComponent } from "./vertical-article-list/vertical-article-list.component";
 import { WeatherUnitComponent } from "./weather-unit/weather-unit.component";
 import { IContentBlockComponent } from "./__types__/IContentBlockComponent";
-import { OpinionComponent } from "./opinion/opinion.component";
 
 export const contentBlockComponents = [
   GrayDefconArticleUnitComponent,

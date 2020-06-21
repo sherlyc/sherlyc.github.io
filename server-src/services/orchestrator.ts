@@ -183,7 +183,8 @@ export const newPage = (): HandlerInput[] => {
                 }
               ],
               strapName: "opinion",
-              color: AccentColor.Coral
+              color: AccentColor.Coral,
+              displayName: "Opinion"
             }
           ]
         },

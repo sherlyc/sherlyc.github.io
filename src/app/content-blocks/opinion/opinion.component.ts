@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 import { IOpinion } from "../../../../common/__types__/IOpinion";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
   selector: "app-opinion",
