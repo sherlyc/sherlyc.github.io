@@ -83,7 +83,6 @@ export const newPage = (): HandlerInput[] => {
         {
           type: HandlerInputType.TopStoriesV2,
           strapName: `${homepageV2AdPrefix}TopStoriesDefaultOne`,
-          color: AccentColor.CuriousBlue,
           midInsertContent: {
             type: HandlerInputType.ExternalContent,
             url: "",

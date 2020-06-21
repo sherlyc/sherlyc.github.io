@@ -1,4 +1,5 @@
 import { AspectRatio } from "../../../../../common/AspectRatio";
+import { AccentColor } from "../../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
@@ -26,12 +27,13 @@ import { ITopStoriesV2HandlerInput } from "../../__types__/ITopStoriesV2HandlerI
 import { contentErrorHandler } from "../content-error-handler";
 
 function defaultGrid(
-  { strapName, color }: ITopStoriesV2HandlerInput,
+  { strapName }: ITopStoriesV2HandlerInput,
   articles: IRawArticle[],
   midInsertContentBlocks: IContentBlock[],
   lowerRightContentBlocks: IContentBlock[],
   params: IParams
 ): ITopStoriesV2DefaultGridHandlerInput {
+  const color = AccentColor.CuriousBlue;
   return {
     type: HandlerInputType.TopStoriesV2DefaultGrid,
     content: {
@@ -251,13 +253,14 @@ function defaultGrid(
 }
 
 function defconGrid(
-  { strapName, color }: ITopStoriesV2HandlerInput,
+  { strapName }: ITopStoriesV2HandlerInput,
   defconArticles: IRawArticle[],
   topArticles: IRawArticle[],
   midInsertContentBlocks: IContentBlock[],
   lowerRightContentBlocks: IContentBlock[],
   params: IParams
 ): ITopStoriesV2DefconGridHandlerInput {
+  const color = AccentColor.Coral;
   return {
     type: HandlerInputType.TopStoriesV2DefconGrid,
     content: {
