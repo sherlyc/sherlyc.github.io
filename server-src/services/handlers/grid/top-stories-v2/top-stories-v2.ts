@@ -479,26 +479,23 @@ export default async function (
     params
   );
 
-  return defconArticles.length
-    ? handlerRunner(
-        defconGrid(
+  return handlerRunner(
+    defconArticles.length
+      ? defconGrid(
           input,
           defconArticles,
           articles,
           midInsertContentBlocks,
           lowerRightContentBlocks,
           params
-        ),
-        params
-      )
-    : handlerRunner(
-        defaultGrid(
+        )
+      : defaultGrid(
           input,
           articles,
           midInsertContentBlocks,
           lowerRightContentBlocks,
           params
         ),
-        params
-      );
+    params
+  );
 }
