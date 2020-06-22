@@ -189,6 +189,11 @@ export const newPage = (): HandlerInput[] => {
           ]
         },
         {
+          type: HandlerInputType.Opinion,
+          strapName: `${homepageV2AdPrefix}Opinion`,
+          displayName: "opinion"
+        },
+        {
           type: HandlerInputType.TopStoriesV2,
           strapName: `${homepageV2AdPrefix}TopStoriesDefaultOne`,
           color: AccentColor.CuriousBlue,

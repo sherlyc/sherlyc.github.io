@@ -35,11 +35,14 @@
 .primary {
   padding: 20px;
   article {
+    border-bottom: #e7e7e7 1px solid;
     .cartoon {
       width: 100%;
+      margin-bottom: 5px;
     }
     .byline {
       text-align: right;
+      margin-bottom: 10px;
     }
   }
 }
@@ -107,6 +110,20 @@
 @include mobile() {
   .articles {
     flex-direction: column;
+  }
+  .primary {
+    padding: 20px 0 0 0;
+  }
+  .secondary {
+    padding: 20px 0;
+  }
+  .list {
+    padding: 20px 0 10px 0;
+  }
+
+  .header {
+    padding: 0 10px;
+    margin: 0 -10px;
   }
 }
 
