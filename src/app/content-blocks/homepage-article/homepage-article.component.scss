@@ -14,7 +14,7 @@ article {
 .content {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  flex-grow: 1;
 }
 
 a {
@@ -27,7 +27,7 @@ a {
 }
 
 .intro {
-  flex: 1;
+  flex-grow: 1;
   margin-bottom: 20px;
   p {
     font-size: 15px;
