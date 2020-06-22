@@ -35,6 +35,7 @@
 .primary {
   padding: 20px;
   article {
+    height: 100%;
     border-bottom: #e7e7e7 1px solid;
     .cartoon {
       width: 100%;
@@ -97,6 +98,7 @@
       .headline {
         font-size: 18px;
         font-weight: bold;
+        line-height: 24px;
       }
     }
 
@@ -142,6 +144,18 @@
     }
     .secondary {
       flex: 300 0 0;
+    }
+  }
+
+  .list {
+    flex-direction: row;
+    article {
+      padding-bottom: 10px;
+
+      &:not(:first-child) {
+        padding-top: 0;
+        margin-left: 20px;
+      }
     }
   }
 }
