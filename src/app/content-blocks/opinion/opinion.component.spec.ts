@@ -36,7 +36,6 @@ describe("OpinionComponent", () => {
       articleContent(4),
       articleContent(5)
     ],
-    color: AccentColor.Gray,
     strapName: "strapName",
     displayName: "opinion"
   };
