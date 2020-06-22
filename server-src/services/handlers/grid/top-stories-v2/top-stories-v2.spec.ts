@@ -119,6 +119,7 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageHighlightArticle,
             id: "1",
+            color,
             image: {
               mobile: {
                 src: "1.3:4.jpg",
@@ -131,6 +132,7 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageHighlightArticle,
             id: "2",
+            color,
             image: {
               mobile: {
                 src: "2.16:9.jpg",
@@ -146,6 +148,7 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "3",
+            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -159,6 +162,7 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "4",
+            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -172,6 +176,7 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "5",
+            color,
             orientation: {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
@@ -185,6 +190,7 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "6",
+            color,
             orientation: {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
@@ -198,6 +204,7 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "7",
+            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -212,6 +219,7 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "8",
+            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -225,6 +233,7 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "9",
+            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -238,6 +247,7 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "10",
+            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -282,13 +292,15 @@ describe("Top Stories V2", () => {
         [TopStoriesV2DefconGridPositions.Defcon]: [
           expectContentBlock({
             type: ContentBlockType.Defcon,
-            articles: expect.arrayContaining([])
+            articles: expect.arrayContaining([]),
+            color: AccentColor.Coral
           })
         ],
         [TopStoriesV2DefconGridPositions.TopOne]: [
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "5",
+            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -302,6 +314,7 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "6",
+            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -315,6 +328,7 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "7",
+            color,
             orientation: {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
@@ -328,6 +342,7 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "8",
+            color,
             orientation: {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
@@ -341,6 +356,7 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "9",
+            color,
             orientation: {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
@@ -354,6 +370,7 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "10",
+            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -373,6 +390,7 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "11",
+            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -386,6 +404,7 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "12",
+            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -399,6 +418,7 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "13",
+            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,

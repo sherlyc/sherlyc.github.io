@@ -1,4 +1,5 @@
 import { AspectRatio } from "../../../../../common/AspectRatio";
+import { AccentColor } from "../../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
@@ -266,7 +267,7 @@ function defconGrid(
           type: ContentBlockType.Defcon,
           articles: defconArticles.map(homepageArticleContent),
           strapName,
-          color
+          color: AccentColor.Coral
         }
       ],
       [TopStoriesV2DefconGridPositions.BannerAd]: [
