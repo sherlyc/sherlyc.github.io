@@ -80,9 +80,9 @@ describe("TimeComponent", () => {
     component.textColor = "white";
 
     fixture.detectChanges();
-    const div = fixture.debugElement.query(By.css(".time"));
-
-    expect(div.nativeElement.style.color).toBe("white");
+    expect(fixture.debugElement.nativeElement.style["--timestamp-color"]).toBe(
+      "white"
+    );
   });
 
   it("should set text color according to timestamp when bullet is enabled", () => {

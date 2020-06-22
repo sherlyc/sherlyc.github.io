@@ -1,6 +1,6 @@
 <div *ngIf="time" class="wrapper">
   <span class="separator" *ngIf="separator === 'left'"></span>
-  <span class="bullet" *ngIf="showBullet" [style.background-color]="textColor" [style.border-color]="textColor"></span>
-  <span class="time" [style.color]="textColor">{{ time }}</span>
+  <span class="bullet" *ngIf="showBullet"></span>
+  <span class="time">{{ time }}</span>
   <span class="separator" *ngIf="separator === 'right'"></span>
 </div>

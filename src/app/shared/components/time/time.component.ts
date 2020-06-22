@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, HostBinding, Input, OnInit } from "@angular/core";
 import {
   formatTime,
   timeColor
@@ -17,6 +17,7 @@ export class TimeComponent implements OnInit {
   @Input()
   timestamp!: number;
   @Input()
+  @HostBinding("style.--timestamp-color")
   textColor!: string;
   @Input()
   showBullet = false;
