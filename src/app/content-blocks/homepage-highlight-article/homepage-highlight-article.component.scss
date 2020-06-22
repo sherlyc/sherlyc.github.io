@@ -49,7 +49,7 @@ a {
   --title-size: 30px;
   @include mobile {
     .image {
-      margin: 0 -10px;
+      margin: 0 -10px 6px;
     }
   }
 }
