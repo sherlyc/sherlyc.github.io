@@ -20,6 +20,9 @@ export class TimeComponent implements OnInit {
   @HostBinding("style.--timestamp-color")
   textColor!: string;
   @Input()
+  @HostBinding("style.--timestamp-font-weight")
+  fontWeight!: string | number;
+  @Input()
   showBullet = false;
 
   time!: string;

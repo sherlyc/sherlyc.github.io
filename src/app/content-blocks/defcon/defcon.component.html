@@ -9,14 +9,14 @@
         <app-tag-link [color]="input.color" [name]="input.articles[0].category.name" [url]="input.articles[0].category.url"></app-tag-link>
         <app-headline [headline]="input.articles[0].headline" [headlineFlags]="input.articles[0].headlineFlags" [textColor]="'#ffffff'"></app-headline>
         <p class="intro">{{ input.articles[0].introText }}</p>
-        <app-time [timestamp]="input.articles[0].lastPublishedTime" [showBullet]="true" [textColor]="'#ff433d'"></app-time>
+        <app-time [timestamp]="input.articles[0].lastPublishedTime" [showBullet]="true" [textColor]="'#ff433d'" [fontWeight]="700"></app-time>
       </div>
     </a>
   </article>
   <div class="related-articles" *ngIf="input.articles.length > 1">
     <div class="cell" *ngFor="let article of input.articles.slice(1)">
       <a itemprop="url" href="{{ article.linkUrl }}" appOpenExternalLink="{{ article.linkUrl }}" (click)="sendAnalytics(article)">
-        <app-time [timestamp]="article.lastPublishedTime" [showBullet]="true" [textColor]="'#ff433d'"></app-time>
+        <app-time [timestamp]="article.lastPublishedTime" [showBullet]="true" [textColor]="'#ff433d'" [fontWeight]="700"></app-time>
         <app-headline [headline]="article.headline" [headlineFlags]="article.headlineFlags" [textColor]="'#ffffff'"></app-headline>
       </a>
     </div>
