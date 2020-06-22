@@ -1,4 +1,5 @@
 import { AspectRatio } from "../../../../../common/AspectRatio";
+import { AccentColor } from "../../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
@@ -266,7 +267,7 @@ function defconGrid(
           type: ContentBlockType.Defcon,
           articles: defconArticles.map(homepageArticleContent),
           strapName,
-          color
+          color: AccentColor.Coral
         }
       ],
       [TopStoriesV2DefconGridPositions.BannerAd]: [
@@ -467,6 +468,7 @@ export default async function (
   input: ITopStoriesV2HandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
+  const defconArticles = await getRawArticles(Strap.Defcon, 10, params);
   const articles = await getRawArticles(Strap.TopStories, 10, params);
   const midInsertContentBlocks = await handlerRunner(
     input.midInsertContent,
@@ -478,13 +480,22 @@ export default async function (
   );
 
   return handlerRunner(
-    defaultGrid(
-      input,
-      articles,
-      midInsertContentBlocks,
-      lowerRightContentBlocks,
-      params
-    ),
+    defconArticles.length
+      ? defconGrid(
+          input,
+          defconArticles,
+          articles,
+          midInsertContentBlocks,
+          lowerRightContentBlocks,
+          params
+        )
+      : defaultGrid(
+          input,
+          articles,
+          midInsertContentBlocks,
+          lowerRightContentBlocks,
+          params
+        ),
     params
   );
 }
