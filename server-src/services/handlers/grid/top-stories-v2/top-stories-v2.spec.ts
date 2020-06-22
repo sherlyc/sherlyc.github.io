@@ -28,6 +28,7 @@ describe("Top Stories V2", () => {
   const handlerRunnerMock = jest.fn();
   const params: IParams = { apiRequestId: "123" };
   const strapName = "Top Stories V2";
+  const color = AccentColor.CuriousBlue;
   const midInsertContent: IExternalContentHandlerInput = {
     type: HandlerInputType.ExternalContent,
     url:
@@ -47,6 +48,7 @@ describe("Top Stories V2", () => {
   const handlerInput: ITopStoriesV2HandlerInput = {
     type: HandlerInputType.TopStoriesV2,
     strapName,
+    color,
     midInsertContent,
     lowerRightContent
   };
@@ -101,7 +103,6 @@ describe("Top Stories V2", () => {
   });
 
   it("should call top stories v2 default grid with correct content blocks when defcon is empty", async () => {
-    const color = AccentColor.CuriousBlue;
     (getRawArticles as jest.Mock).mockResolvedValueOnce(
       fakeArticlesWithIds([])
     );
@@ -118,7 +119,6 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageHighlightArticle,
             id: "1",
-            color,
             image: {
               mobile: {
                 src: "1.3:4.jpg",
@@ -131,7 +131,6 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageHighlightArticle,
             id: "2",
-            color,
             image: {
               mobile: {
                 src: "2.16:9.jpg",
@@ -147,7 +146,6 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "3",
-            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -161,7 +159,6 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "4",
-            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -175,7 +172,6 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "5",
-            color,
             orientation: {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
@@ -189,7 +185,6 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "6",
-            color,
             orientation: {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
@@ -203,7 +198,6 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "7",
-            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -218,7 +212,6 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "8",
-            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -232,7 +225,6 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "9",
-            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -246,7 +238,6 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "10",
-            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -276,7 +267,6 @@ describe("Top Stories V2", () => {
   });
 
   it("should call defcon grid with correct content blocks when defcon is not empty", async () => {
-    const color = AccentColor.Coral;
     (getRawArticles as jest.Mock).mockResolvedValueOnce(
       fakeArticlesWithIds([1, 2, 3, 4])
     );
@@ -299,7 +289,6 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "5",
-            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -313,7 +302,6 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "6",
-            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -327,7 +315,6 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "7",
-            color,
             orientation: {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
@@ -341,7 +328,6 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "8",
-            color,
             orientation: {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
@@ -355,7 +341,6 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "9",
-            color,
             orientation: {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
@@ -369,7 +354,6 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "10",
-            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -389,7 +373,6 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "11",
-            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -403,7 +386,6 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "12",
-            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -417,7 +399,6 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "13",
-            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
