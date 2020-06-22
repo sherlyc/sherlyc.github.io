@@ -38,34 +38,18 @@ describe("Editors Picks grid", () => {
     expect((grid as IGridContainer).desktop).toEqual({
       gridTemplateColumns: "1fr 1fr 1fr 1fr 300px",
       gridTemplateRows: "auto auto auto",
-      gridRowGap: "40px",
+      gridRowGap: "20px",
       gridColumnGap: "20px",
       gridBlocks: {
         [EditorsPicksGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 5, []),
-        [EditorsPicksGridPositions.FirstRowOne]: gridBlock(2, 1, 1, 1, [
-          Border.bottom
-        ]),
-        [EditorsPicksGridPositions.FirstRowTwo]: gridBlock(2, 2, 1, 1, [
-          Border.bottom
-        ]),
-        [EditorsPicksGridPositions.FirstRowThree]: gridBlock(2, 3, 1, 1, [
-          Border.bottom
-        ]),
-        [EditorsPicksGridPositions.FirstRowFour]: gridBlock(2, 4, 1, 1, [
-          Border.bottom
-        ]),
-        [EditorsPicksGridPositions.SecondRowOne]: gridBlock(3, 1, 1, 1, [
-          Border.bottom
-        ]),
-        [EditorsPicksGridPositions.SecondRowTwo]: gridBlock(3, 2, 1, 1, [
-          Border.bottom
-        ]),
-        [EditorsPicksGridPositions.SecondRowThree]: gridBlock(3, 3, 1, 1, [
-          Border.bottom
-        ]),
-        [EditorsPicksGridPositions.SecondRowFour]: gridBlock(3, 4, 1, 1, [
-          Border.bottom
-        ]),
+        [EditorsPicksGridPositions.FirstRowOne]: gridBlock(2, 1, 1, 1, []),
+        [EditorsPicksGridPositions.FirstRowTwo]: gridBlock(2, 2, 1, 1, []),
+        [EditorsPicksGridPositions.FirstRowThree]: gridBlock(2, 3, 1, 1, []),
+        [EditorsPicksGridPositions.FirstRowFour]: gridBlock(2, 4, 1, 1, []),
+        [EditorsPicksGridPositions.SecondRowOne]: gridBlock(3, 1, 1, 1, []),
+        [EditorsPicksGridPositions.SecondRowTwo]: gridBlock(3, 2, 1, 1, []),
+        [EditorsPicksGridPositions.SecondRowThree]: gridBlock(3, 3, 1, 1, []),
+        [EditorsPicksGridPositions.SecondRowFour]: gridBlock(3, 4, 1, 1, []),
         [EditorsPicksGridPositions.Ad]: gridBlock(2, 5, 2, 1, [])
       }
     });
@@ -78,33 +62,17 @@ describe("Editors Picks grid", () => {
       gridTemplateColumns: "1fr 1fr",
       gridTemplateRows: "auto auto auto auto auto auto",
       gridRowGap: "20px",
-      gridColumnGap: "10px",
+      gridColumnGap: "20px",
       gridBlocks: {
         [EditorsPicksGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 2, []),
-        [EditorsPicksGridPositions.FirstRowOne]: gridBlock(2, 1, 1, 1, [
-          Border.bottom
-        ]),
-        [EditorsPicksGridPositions.FirstRowTwo]: gridBlock(2, 2, 1, 1, [
-          Border.bottom
-        ]),
-        [EditorsPicksGridPositions.FirstRowThree]: gridBlock(3, 1, 1, 1, [
-          Border.bottom
-        ]),
-        [EditorsPicksGridPositions.FirstRowFour]: gridBlock(3, 2, 1, 1, [
-          Border.bottom
-        ]),
-        [EditorsPicksGridPositions.SecondRowOne]: gridBlock(4, 1, 1, 1, [
-          Border.bottom
-        ]),
-        [EditorsPicksGridPositions.SecondRowTwo]: gridBlock(4, 2, 1, 1, [
-          Border.bottom
-        ]),
-        [EditorsPicksGridPositions.SecondRowThree]: gridBlock(5, 1, 1, 1, [
-          Border.bottom
-        ]),
-        [EditorsPicksGridPositions.SecondRowFour]: gridBlock(5, 2, 1, 1, [
-          Border.bottom
-        ]),
+        [EditorsPicksGridPositions.FirstRowOne]: gridBlock(2, 1, 1, 1, []),
+        [EditorsPicksGridPositions.FirstRowTwo]: gridBlock(2, 2, 1, 1, []),
+        [EditorsPicksGridPositions.FirstRowThree]: gridBlock(3, 1, 1, 1, []),
+        [EditorsPicksGridPositions.FirstRowFour]: gridBlock(3, 2, 1, 1, []),
+        [EditorsPicksGridPositions.SecondRowOne]: gridBlock(4, 1, 1, 1, []),
+        [EditorsPicksGridPositions.SecondRowTwo]: gridBlock(4, 2, 1, 1, []),
+        [EditorsPicksGridPositions.SecondRowThree]: gridBlock(5, 1, 1, 1, []),
+        [EditorsPicksGridPositions.SecondRowFour]: gridBlock(5, 2, 1, 1, []),
         [EditorsPicksGridPositions.Ad]: gridBlock(6, 1, 1, 2, [])
       }
     });
@@ -120,30 +88,14 @@ describe("Editors Picks grid", () => {
       gridColumnGap: "20px",
       gridBlocks: {
         [EditorsPicksGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 3, []),
-        [EditorsPicksGridPositions.FirstRowOne]: gridBlock(2, 1, 1, 1, [
-          Border.bottom
-        ]),
-        [EditorsPicksGridPositions.FirstRowTwo]: gridBlock(2, 2, 1, 1, [
-          Border.bottom
-        ]),
-        [EditorsPicksGridPositions.FirstRowThree]: gridBlock(3, 1, 1, 1, [
-          Border.bottom
-        ]),
-        [EditorsPicksGridPositions.FirstRowFour]: gridBlock(3, 2, 1, 1, [
-          Border.bottom
-        ]),
-        [EditorsPicksGridPositions.SecondRowOne]: gridBlock(4, 1, 1, 1, [
-          Border.bottom
-        ]),
-        [EditorsPicksGridPositions.SecondRowTwo]: gridBlock(4, 2, 1, 1, [
-          Border.bottom
-        ]),
-        [EditorsPicksGridPositions.SecondRowThree]: gridBlock(5, 1, 1, 1, [
-          Border.bottom
-        ]),
-        [EditorsPicksGridPositions.SecondRowFour]: gridBlock(5, 2, 1, 1, [
-          Border.bottom
-        ]),
+        [EditorsPicksGridPositions.FirstRowOne]: gridBlock(2, 1, 1, 1, []),
+        [EditorsPicksGridPositions.FirstRowTwo]: gridBlock(2, 2, 1, 1, []),
+        [EditorsPicksGridPositions.FirstRowThree]: gridBlock(3, 1, 1, 1, []),
+        [EditorsPicksGridPositions.FirstRowFour]: gridBlock(3, 2, 1, 1, []),
+        [EditorsPicksGridPositions.SecondRowOne]: gridBlock(4, 1, 1, 1, []),
+        [EditorsPicksGridPositions.SecondRowTwo]: gridBlock(4, 2, 1, 1, []),
+        [EditorsPicksGridPositions.SecondRowThree]: gridBlock(5, 1, 1, 1, []),
+        [EditorsPicksGridPositions.SecondRowFour]: gridBlock(5, 2, 1, 1, []),
         [EditorsPicksGridPositions.Ad]: gridBlock(2, 3, 4, 1, [])
       }
     });
