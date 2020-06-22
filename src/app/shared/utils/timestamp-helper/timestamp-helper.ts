@@ -29,3 +29,18 @@ export function formatTime(timestamp: number) {
   }
   return timeAgoFormat(secondsAgo);
 }
+
+export function timeColor(timestamp: number) {
+  const inputDate = fromUnixTime(timestamp);
+  const secondsAgo = differenceInSeconds(Date.now(), inputDate);
+  if (secondsAgo > ONE_HOUR_IN_SECONDS * 2 || secondsAgo < 0) {
+    return "";
+  }
+  if (
+    secondsAgo >= ONE_HOUR_IN_SECONDS &&
+    secondsAgo <= ONE_HOUR_IN_SECONDS * 2
+  ) {
+    return "#9f9f9f";
+  }
+  return "#ff433d";
+}

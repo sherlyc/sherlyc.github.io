@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { formatTime } from "../../utils/timestamp-helper/timestamp-helper";
+import {
+  formatTime,
+  timeColor
+} from "../../utils/timestamp-helper/timestamp-helper";
 
 @Component({
   selector: "app-time",
@@ -22,5 +25,8 @@ export class TimeComponent implements OnInit {
 
   ngOnInit(): void {
     this.time = formatTime(this.timestamp);
+    if (this.showBullet) {
+      this.textColor = timeColor(this.timestamp);
+    }
   }
 }
