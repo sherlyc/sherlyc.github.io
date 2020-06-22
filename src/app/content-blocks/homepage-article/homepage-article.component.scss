@@ -96,3 +96,7 @@ a {
     @include landscape;
   }
 }
+
+app-time {
+  --timestamp-weight: 700;
+}
