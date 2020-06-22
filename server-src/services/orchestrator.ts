@@ -190,8 +190,8 @@ export const newPage = (): HandlerInput[] => {
         },
         {
           type: HandlerInputType.Opinion,
-          strapName: `${homepageV2AdPrefix}Opinion`,
-          displayName: "opinion"
+          strapName: `${homepageV2AdPrefix}Perspectives`,
+          displayName: "perspectives"
         },
         {
           type: HandlerInputType.TopStoriesV2,

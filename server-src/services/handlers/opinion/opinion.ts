@@ -9,7 +9,7 @@ import { IOpinionHandlerInput } from "../__types__/IOpinionHandlerInput";
 
 export default async function (
   handlerRunner: handlerRunnerFunction,
-  { strapName }: IOpinionHandlerInput,
+  { strapName, displayName }: IOpinionHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   const jsonFeedArticles = await getRawArticles(Strap.Opinion, 5, params);
@@ -18,7 +18,7 @@ export default async function (
       type: ContentBlockType.Opinion,
       articles: jsonFeedArticles.map(homepageArticleContent),
       strapName,
-      displayName: "opinion"
+      displayName
     }
   ];
 }

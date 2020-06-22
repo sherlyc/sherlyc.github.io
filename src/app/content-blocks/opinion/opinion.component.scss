@@ -26,6 +26,7 @@
 .headline {
   font-family: Merriweather;
   font-style: italic;
+  letter-spacing: 0.2px;
 }
 
 .avatar {
@@ -125,6 +126,11 @@
     padding: 20px 0 10px 0;
     article {
       padding-bottom: 10px;
+      .text {
+        .headline {
+          font-size: 20px;
+        }
+      }
     }
   }
 
