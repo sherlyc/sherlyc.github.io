@@ -82,7 +82,7 @@
     </div>
   </div>
   <div class="bottom">
-    <div class="cell" *ngFor="let video of input.videos.slice(4)">
+    <div class="cell" *ngFor="let video of input.videos.slice(4, 8)">
       <app-play-stuff-video
         [image]="video.thumbnail"
         [text]="video.name"
