@@ -184,7 +184,7 @@ export const newPage = (): HandlerInput[] => {
               ],
               strapName: "opinion",
               color: AccentColor.Coral,
-              displayName: "Opinion"
+              displayName: "opinion"
             }
           ]
         },

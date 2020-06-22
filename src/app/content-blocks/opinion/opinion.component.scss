@@ -1,3 +1,5 @@
+@import "src/styles/break-points";
+
 .header {
   font-family: Merriweather;
   font-size: 40px;
@@ -10,10 +12,6 @@
 
 .articles {
   display: flex;
-  flex-direction: row;
-  > div {
-    padding: 20px;
-  }
 }
 
 .byline {
@@ -35,8 +33,7 @@
 }
 
 .primary {
-  flex: 500 0 0;
-
+  padding: 20px;
   article {
     .cartoon {
       width: 100%;
@@ -48,8 +45,7 @@
 }
 
 .secondary {
-  flex: 240 0 0;
-
+  padding: 20px;
   article {
     text-align: center;
     height: 100%;
@@ -63,21 +59,22 @@
       font-size: 24px;
       font-weight: bold;
       color: #222222;
+      margin-bottom: 6px;
     }
     .intro {
       font-family: Roboto;
       font-size: 15px;
       color: #333333;
+      margin-bottom: 20px;
     }
   }
 }
 
 .list {
-  flex: 300 0 0;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 20px;
 
   article {
     box-sizing: border-box;
@@ -104,5 +101,48 @@
       width: 70px;
       height: 70px;
     }
+  }
+}
+
+@include mobile() {
+  .articles {
+    flex-direction: column;
+  }
+}
+
+@include tablet() {
+  .articles {
+    flex-direction: column;
+  }
+
+  .primary-secondary {
+    display: flex;
+    .primary {
+      flex: 400 0 0;
+    }
+    .secondary {
+      flex: 300 0 0;
+    }
+  }
+}
+
+@include desktop() {
+  .articles {
+    flex-direction: row;
+  }
+
+  .primary-secondary {
+    display: flex;
+    flex: 740 0 0;
+    .primary {
+      flex: 500 0 0;
+    }
+    .secondary {
+      flex: 240 0 0;
+    }
+  }
+
+  .list {
+    flex: 300 0 0;
   }
 }
