@@ -17,7 +17,7 @@ export class TimeComponent implements OnInit {
   @Input()
   timestamp!: number;
   @Input()
-  textColor = "#d12421";
+  textColor!: string;
   @Input()
   showBullet = false;
 
@@ -25,8 +25,8 @@ export class TimeComponent implements OnInit {
 
   ngOnInit(): void {
     this.time = formatTime(this.timestamp);
-    if (this.showBullet) {
-      this.textColor = timeColor(this.timestamp);
+    if (!this.textColor) {
+      this.textColor = this.showBullet ? timeColor(this.timestamp) : "#d12421";
     }
   }
 }
