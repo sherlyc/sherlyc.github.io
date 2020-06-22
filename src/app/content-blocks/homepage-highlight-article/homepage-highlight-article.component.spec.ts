@@ -99,7 +99,7 @@ describe("HomepageHighlightArticleComponent", () => {
     expect(headline.headline).toEqual(input.headline);
     expect(headline.headlineFlags).toEqual(input.headlineFlags);
 
-    const intro = fixture.debugElement.query(By.css(".intro")).nativeElement;
+    const intro = fixture.debugElement.query(By.css(".intro p")).nativeElement;
     expect(intro.textContent).toEqual(input.introText);
   });
 
