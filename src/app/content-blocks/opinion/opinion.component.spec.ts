@@ -14,7 +14,7 @@ describe("OpinionComponent", () => {
     id: `${id}`,
     headline: `headline ${id}`,
     title: `title ${id}`,
-    byline: `byline ${id}`,
+    byline: `BYLINE ${id}`,
     introText: `introText ${id}`,
     linkUrl: `linkUrl/${id}`,
     image: {
@@ -74,7 +74,9 @@ describe("OpinionComponent", () => {
     expect(primaryImage.getAttribute("src")).toBe(
       input.articles[0].image.sixteenByNine
     );
-    expect(primaryByline.textContent).toBe(input.articles[0].byline);
+    expect(primaryByline.textContent).toBe(
+      input.articles[0].byline?.toLowerCase()
+    );
 
     const secondaryImage = fixture.debugElement.query(
       By.css(".secondary .avatar")
@@ -89,9 +91,11 @@ describe("OpinionComponent", () => {
       By.css(".secondary .intro")
     ).nativeElement;
     expect(secondaryImage.getAttribute("src")).toBe(
-      input.articles[1].image.sixteenByNine
+      `${input.articles[1].image.sixteenByNine}?format=pjpg&crop=1:1,smart`
     );
-    expect(secondaryByline.textContent).toBe(input.articles[1].byline);
+    expect(secondaryByline.textContent).toBe(
+      input.articles[1].byline?.toLowerCase()
+    );
     expect(secondaryHeadline.textContent).toBe(input.articles[1].headline);
     expect(secondaryIntro.textContent).toBe(input.articles[1].introText);
 
@@ -102,10 +106,12 @@ describe("OpinionComponent", () => {
       const headline = article.query(By.css(".headline")).nativeElement;
       const avatar = article.query(By.css(".avatar")).nativeElement;
 
-      expect(byline.textContent).toBe(listArticles[index].byline);
+      expect(byline.textContent).toBe(
+        listArticles[index].byline?.toLowerCase()
+      );
       expect(headline.textContent).toBe(listArticles[index].headline);
       expect(avatar.getAttribute("src")).toBe(
-        listArticles[index].image.sixteenByNine
+        `${listArticles[index].image.sixteenByNine}?format=pjpg&crop=1:1,smart`
       );
     });
   });

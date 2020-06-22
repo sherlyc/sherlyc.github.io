@@ -4,22 +4,22 @@
     <div class="primary-secondary">
       <div class="primary">
         <article>
-          <img class="cartoon" [src]="input.articles[0].image.sixteenByNine" />
-          <div class="byline">{{ input.articles[0].byline }}</div>
+          <img class="cartoon" [src]="formattedArticles[0].image.sixteenByNine" />
+          <div class="byline">{{ formattedArticles[0].byline }}</div>
         </article>
       </div>
       <div class="secondary">
         <article>
-          <img class="avatar" [src]="input.articles[1].image.sixteenByNine" />
-          <div class="byline">{{ input.articles[1].byline }}</div>
-          <div class="headline">{{ input.articles[1].headline }}</div>
-          <div class="intro">{{ input.articles[1].introText }}</div>
+          <img class="avatar" [src]="formattedArticles[1].image.sixteenByNine" />
+          <div class="byline">{{ formattedArticles[1].byline }}</div>
+          <div class="headline">{{ formattedArticles[1].headline }}</div>
+          <div class="intro">{{ formattedArticles[1].introText }}</div>
         </article>
       </div>
     </div>
 
     <div class="list">
-      <article *ngFor="let article of input.articles.slice(2)">
+      <article *ngFor="let article of formattedArticles.slice(2)">
         <div class="text">
           <div class="byline">{{ article.byline }}</div>
           <div class="headline">{{ article.headline }}</div>
