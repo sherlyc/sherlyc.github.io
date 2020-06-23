@@ -57,7 +57,7 @@ describe("api test", () => {
           type: ContentBlockType.Container,
           items: expect.arrayContaining([
             expect.objectContaining({
-              type: ContentBlockType.GridContainer
+              type: ContentBlockType.FeatureContainer
             })
           ])
         }),
