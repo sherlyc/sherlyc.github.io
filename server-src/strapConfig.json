@@ -165,6 +165,12 @@
         ]
       }
     },
+    "strapCartoons": {
+      "ids": ["121927406"],
+      "dedupeRules": {
+        "dedupeFromBaseList": true
+      }
+    },
     "strapOpinion": {
       "ids": ["91706224"],
       "dedupeRules": {
@@ -410,6 +416,12 @@
       },
       "strapProsper": {
         "ids": ["62950252"],
+        "dedupeRules": {
+          "dedupeFromBaseList": true
+        }
+      },
+      "strapCartoons": {
+        "ids": ["119376124"],
         "dedupeRules": {
           "dedupeFromBaseList": true
         }
