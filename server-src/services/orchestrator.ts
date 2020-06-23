@@ -88,6 +88,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.BreakingNews
     },
+    billboard(homepageV2AdPrefix),
     {
       type: HandlerInputType.Weather
     },
@@ -111,486 +112,497 @@ export const newPage = (): HandlerInput[] => {
         color: AccentColor.Coral
       }
     },
-    {
-      type: HandlerInputType.EditorsPicks,
-      displayName: "editors' picks",
-      color: AccentColor.Charcoal,
-      strapName: `${homepageV2AdPrefix}EditorsPicks`,
-      sourceId: Strap.EditorPicks
-    },
-    {
-      type: HandlerInputType.NewsSixV2,
-      displayName: "coronavirus",
-      color: AccentColor.DeepBlue,
-      linkUrl: "/" + Section.Coronavirus,
-      strapName: `${homepageV2AdPrefix}Coronavirus`,
-      sourceId: Strap.Coronavirus
-    },
-    {
-      type: HandlerInputType.NewsSixV2,
-      displayName: "national",
-      color: AccentColor.DeepBlue,
-      linkUrl: "/" + Section.National,
-      strapName: `${homepageV2AdPrefix}National`,
-      sourceId: Strap.National
-    },
-    {
-      type: HandlerInputType.MostRead,
-      displayName: "most read",
-      strapName: `${homepageV2AdPrefix}MostRead`
-    },
-    {
-      type: HandlerInputType.PlayStuff,
-      total: 8
-    },
-    {
-      type: HandlerInputType.NewsSixV2,
-      displayName: "world",
-      color: AccentColor.Denim,
-      linkUrl: "/" + Section.World,
-      strapName: `${homepageV2AdPrefix}World`,
-      sourceId: Strap.World
-    },
-    {
-      type: HandlerInputType.NewsSixV2,
-      displayName: "business",
-      color: AccentColor.NavyBlue,
-      linkUrl: "/" + Section.Business,
-      strapName: `${homepageV2AdPrefix}Business`,
-      sourceId: Strap.Business
-    },
-    {
-      type: HandlerInputType.LargeLeadSixV2,
-      displayName: "prosper",
-      color: AccentColor.NavyBlue,
-      linkUrl: "/" + Section.Prosper,
-      strapName: `${homepageV2AdPrefix}Prosper`,
-      sourceId: Strap.Prosper
-    },
-    {
-      type: HandlerInputType.LargeLeadSixV2,
-      displayName: "climate change",
-      color: AccentColor.DeepBlue,
-      linkUrl: "/" + Section.ClimateChange,
-      strapName: `${homepageV2AdPrefix}ClimateChange`,
-      sourceId: Strap.ClimateChange
-    },
-    {
-      type: HandlerInputType.BiggieSmallsV2,
-      displayName: "sport",
-      color: AccentColor.CardinalRed,
-      linkUrl: "/" + Section.Sport,
-      strapName: `${homepageV2AdPrefix}Sport`,
-      sourceId: Strap.Sport
-    },
-    {
-      type: HandlerInputType.BiggieSmallsV2,
-      displayName: "travel",
-      color: AccentColor.Aqua,
-      linkUrl: "/" + Section.Travel,
-      strapName: `${homepageV2AdPrefix}Travel`,
-      sourceId: Strap.Travel
-    },
-    {
-      type: HandlerInputType.BiggieSmallsV2,
-      displayName: "homed",
-      color: AccentColor.Cyan,
-      linkUrl: "/" + Section.Homed,
-      strapName: `${homepageV2AdPrefix}Homed`,
-      sourceId: Strap.Homed
-    },
-    {
-      type: HandlerInputType.EditorsPicks,
-      displayName: "life & style",
-      color: AccentColor.Crimson,
-      strapName: `${homepageV2AdPrefix}LifeStyle`,
-      sourceId: Strap.LifeStyle
-    },
-    {
-      type: HandlerInputType.BiggieSmallsV2,
-      displayName: "entertainment",
-      color: AccentColor.Violet,
-      linkUrl: "/" + Section.Entertainment,
-      strapName: `${homepageV2AdPrefix}Entertainment`,
-      sourceId: Strap.Entertainment
-    },
-    {
-      type: HandlerInputType.LargeLeadSixV2,
-      displayName: "motoring",
-      color: AccentColor.DustyGray,
-      linkUrl: "/" + Section.Motoring,
-      strapName: `${homepageV2AdPrefix}Motoring`,
-      sourceId: Strap.Motoring
-    },
-    {
-      type: HandlerInputType.StripsV2,
-      displayName: "spotlight",
-      color: AccentColor.DarkGray,
-      linkUrl: "/" + Section.Premium,
-      sourceId: Strap.Premium,
-      strapName: Strap.Premium,
-      articleCount: 4
-    },
-    {
-      type: HandlerInputType.Partner
-    },
-    {
-      type: HandlerInputType.Brand,
-      module: BrandModule.Network
-    }
-  ];
-  const homepage: HandlerInput[] = [
-    {
-      type: HandlerInputType.ContentBlockHandler,
-      contentBlocks: [
+    ...interpolateBillboards(
+      [
         {
-          type: ContentBlockType.Oli,
-          config: {
-            adUnitPath: "/6674/mob.stuff.homepage",
-            size: [320, 460],
-            targetingParams: {
-              spade: "true",
-              pos: "interstitial-portrait"
+          type: HandlerInputType.EditorsPicks,
+          displayName: "editors' picks",
+          color: AccentColor.Charcoal,
+          strapName: `${homepageV2AdPrefix}EditorsPicks`,
+          sourceId: Strap.EditorPicks
+        },
+        {
+          type: HandlerInputType.NewsSixV2,
+          displayName: "coronavirus",
+          color: AccentColor.DeepBlue,
+          linkUrl: "/" + Section.Coronavirus,
+          strapName: `${homepageV2AdPrefix}Coronavirus`,
+          sourceId: Strap.Coronavirus
+        },
+        {
+          type: HandlerInputType.NewsSixV2,
+          displayName: "national",
+          color: AccentColor.DeepBlue,
+          linkUrl: "/" + Section.National,
+          strapName: `${homepageV2AdPrefix}National`,
+          sourceId: Strap.National
+        },
+        {
+          type: HandlerInputType.MostRead,
+          displayName: "most read",
+          strapName: `${homepageV2AdPrefix}MostRead`
+        },
+        {
+          type: HandlerInputType.PlayStuff,
+          total: 8
+        },
+        {
+          type: HandlerInputType.NewsSixV2,
+          displayName: "world",
+          color: AccentColor.Denim,
+          linkUrl: "/" + Section.World,
+          strapName: `${homepageV2AdPrefix}World`,
+          sourceId: Strap.World
+        },
+        {
+          type: HandlerInputType.NewsSixV2,
+          displayName: "business",
+          color: AccentColor.NavyBlue,
+          linkUrl: "/" + Section.Business,
+          strapName: `${homepageV2AdPrefix}Business`,
+          sourceId: Strap.Business
+        },
+        {
+          type: HandlerInputType.LargeLeadSixV2,
+          displayName: "prosper",
+          color: AccentColor.NavyBlue,
+          linkUrl: "/" + Section.Prosper,
+          strapName: `${homepageV2AdPrefix}Prosper`,
+          sourceId: Strap.Prosper
+        },
+        {
+          type: HandlerInputType.LargeLeadSixV2,
+          displayName: "climate change",
+          color: AccentColor.DeepBlue,
+          linkUrl: "/" + Section.ClimateChange,
+          strapName: `${homepageV2AdPrefix}ClimateChange`,
+          sourceId: Strap.ClimateChange
+        },
+        {
+          type: HandlerInputType.BiggieSmallsV2,
+          displayName: "sport",
+          color: AccentColor.CardinalRed,
+          linkUrl: "/" + Section.Sport,
+          strapName: `${homepageV2AdPrefix}Sport`,
+          sourceId: Strap.Sport
+        },
+        {
+          type: HandlerInputType.BiggieSmallsV2,
+          displayName: "travel",
+          color: AccentColor.Aqua,
+          linkUrl: "/" + Section.Travel,
+          strapName: `${homepageV2AdPrefix}Travel`,
+          sourceId: Strap.Travel
+        },
+        {
+          type: HandlerInputType.BiggieSmallsV2,
+          displayName: "homed",
+          color: AccentColor.Cyan,
+          linkUrl: "/" + Section.Homed,
+          strapName: `${homepageV2AdPrefix}Homed`,
+          sourceId: Strap.Homed
+        },
+        {
+          type: HandlerInputType.EditorsPicks,
+          displayName: "life & style",
+          color: AccentColor.Crimson,
+          strapName: `${homepageV2AdPrefix}LifeStyle`,
+          sourceId: Strap.LifeStyle
+        },
+        {
+          type: HandlerInputType.BiggieSmallsV2,
+          displayName: "entertainment",
+          color: AccentColor.Violet,
+          linkUrl: "/" + Section.Entertainment,
+          strapName: `${homepageV2AdPrefix}Entertainment`,
+          sourceId: Strap.Entertainment
+        },
+        {
+          type: HandlerInputType.LargeLeadSixV2,
+          displayName: "motoring",
+          color: AccentColor.DustyGray,
+          linkUrl: "/" + Section.Motoring,
+          strapName: `${homepageV2AdPrefix}Motoring`,
+          sourceId: Strap.Motoring
+        },
+        {
+          type: HandlerInputType.StripsV2,
+          displayName: "spotlight",
+          color: AccentColor.DarkGray,
+          linkUrl: "/" + Section.Premium,
+          sourceId: Strap.Premium,
+          strapName: Strap.Premium,
+          articleCount: 4
+        },
+        {
+          type: HandlerInputType.Partner
+        },
+        {
+          type: HandlerInputType.Brand,
+          module: BrandModule.Network
+        }
+      ],
+      billboard(homepageV2AdPrefix)
+    )
+  ];
+  const homepage: HandlerInput[] = interpolateBillboards(
+    [
+      {
+        type: HandlerInputType.ContentBlockHandler,
+        contentBlocks: [
+          {
+            type: ContentBlockType.Oli,
+            config: {
+              adUnitPath: "/6674/mob.stuff.homepage",
+              size: [320, 460],
+              targetingParams: {
+                spade: "true",
+                pos: "interstitial-portrait"
+              }
             }
           }
+        ]
+      },
+      {
+        type: HandlerInputType.BreakingNews
+      },
+      {
+        type: HandlerInputType.Weather
+      },
+      {
+        type: HandlerInputType.TopStories,
+        strapName: `${homepageAdPrefix}TopStoriesDefaultOne`,
+        color: AccentColor.CuriousBlue
+      },
+      {
+        type: HandlerInputType.RelevantStories
+      },
+      {
+        type: HandlerInputType.TitleSection,
+        displayName: "play stuff",
+        displayNameColor: AccentColor.Black,
+        linkUrl: "https://play.stuff.co.nz/",
+        content: {
+          type: HandlerInputType.ResponsiveExternalContent,
+          lazyLoad: true,
+          url:
+            "https://www.playwidget.stuff.co.nz/hgrid/5d06caa81de1c4001f81a46e",
+          mobile: {
+            width: "100%",
+            height: "calc(85% + 40px)",
+            margin: "0 -10px 0"
+          },
+          tablet: {
+            width: "100%",
+            height: "calc(66% + 40px)",
+            margin: "0 -10px 0"
+          },
+          desktop: {
+            width: "100%",
+            height: "66%",
+            margin: "0 -10px 0"
+          }
         }
-      ]
-    },
-    {
-      type: HandlerInputType.BreakingNews
-    },
-    {
-      type: HandlerInputType.Weather
-    },
-    {
-      type: HandlerInputType.TopStories,
-      strapName: `${homepageAdPrefix}TopStoriesDefaultOne`,
-      color: AccentColor.CuriousBlue
-    },
-    {
-      type: HandlerInputType.RelevantStories
-    },
-    {
-      type: HandlerInputType.TitleSection,
-      displayName: "play stuff",
-      displayNameColor: AccentColor.Black,
-      linkUrl: "https://play.stuff.co.nz/",
-      content: {
+      },
+      {
         type: HandlerInputType.ResponsiveExternalContent,
         lazyLoad: true,
         url:
-          "https://www.playwidget.stuff.co.nz/hgrid/5d06caa81de1c4001f81a46e",
+          "https://interactives.stuff.co.nz/live/homepage/uber/2/320-200.html",
         mobile: {
+          height: "320px",
           width: "100%",
-          height: "calc(85% + 40px)",
-          margin: "0 -10px 0"
+          margin: "0 0 20px 0"
         },
         tablet: {
+          height: "200px",
           width: "100%",
-          height: "calc(66% + 40px)",
-          margin: "0 -10px 0"
+          margin: "0 0 40px 0"
         },
         desktop: {
+          height: "200px",
           width: "100%",
-          height: "66%",
-          margin: "0 -10px 0"
+          margin: "0 0 60px 0"
         }
-      }
-    },
-    {
-      type: HandlerInputType.ResponsiveExternalContent,
-      lazyLoad: true,
-      url: "https://interactives.stuff.co.nz/live/homepage/uber/2/320-200.html",
-      mobile: {
-        height: "320px",
-        width: "100%",
-        margin: "0 0 20px 0"
       },
-      tablet: {
-        height: "200px",
-        width: "100%",
-        margin: "0 0 40px 0"
+      {
+        type: HandlerInputType.SixImage,
+        displayName: "",
+        color: AccentColor.Gray,
+        strapName: `${homepageAdPrefix}MidStrip`,
+        sourceId: Strap.MidStrip
       },
-      desktop: {
-        height: "200px",
-        width: "100%",
-        margin: "0 0 60px 0"
-      }
-    },
-    {
-      type: HandlerInputType.SixImage,
-      displayName: "",
-      color: AccentColor.Gray,
-      strapName: `${homepageAdPrefix}MidStrip`,
-      sourceId: Strap.MidStrip
-    },
-    {
-      type: HandlerInputType.ResponsiveExternalContent,
-      lazyLoad: true,
-      url:
-        "https://interactives.stuff.co.nz/live/homepage/uber/corona/320-200.html",
-      mobile: {
-        height: "320px",
-        width: "100%",
-        margin: "0 0 20px 0"
-      },
-      tablet: {
-        height: "200px",
-        width: "100%",
-        margin: "0 0 40px 0"
-      },
-      desktop: {
-        height: "200px",
-        width: "100%",
-        margin: "0 0 60px 0"
-      }
-    },
-    {
-      type: HandlerInputType.NewsSix,
-      displayName: "coronavirus",
-      color: AccentColor.DeepBlue,
-      linkUrl: "/" + Section.Coronavirus,
-      strapName: `${homepageAdPrefix}Coronavirus`,
-      sourceId: Strap.Coronavirus
-    },
-    {
-      type: HandlerInputType.NewsSix,
-      displayName: "national",
-      color: AccentColor.DeepBlue,
-      linkUrl: "/" + Section.National,
-      strapName: `${homepageAdPrefix}National`,
-      sourceId: Strap.National
-    },
-    {
-      type: HandlerInputType.ResponsiveExternalContent,
-      lazyLoad: true,
-      url: "https://interactives.stuff.co.nz/live/homepage/uber/3/320-200.html",
-      mobile: {
-        height: "320px",
-        width: "100%",
-        margin: "0 0 20px 0"
-      },
-      tablet: {
-        height: "200px",
-        width: "100%",
-        margin: "0 0 40px 0"
-      },
-      desktop: {
-        height: "200px",
-        width: "100%",
-        margin: "0 0 60px 0"
-      }
-    },
-    {
-      type: HandlerInputType.BiggieSmalls,
-      displayName: "climate change",
-      color: AccentColor.DeepBlue,
-      linkUrl: "/" + Section.ClimateChange,
-      strapName: `${homepageAdPrefix}ClimateChange`,
-      sourceId: Strap.ClimateChange
-    },
-    {
-      type: HandlerInputType.NewsSix,
-      displayName: "business",
-      color: AccentColor.NavyBlue,
-      linkUrl: "/" + Section.Business,
-      strapName: `${homepageAdPrefix}Business`,
-      sourceId: Strap.Business
-    },
-    {
-      type: HandlerInputType.BiggieSmalls,
-      displayName: "homed",
-      color: AccentColor.Cyan,
-      linkUrl: "/" + Section.Homed,
-      strapName: `${homepageAdPrefix}Homed`,
-      sourceId: Strap.Homed
-    },
-    {
-      type: HandlerInputType.NewsSix,
-      displayName: "prosper",
-      color: AccentColor.NavyBlue,
-      linkUrl: "/" + Section.Prosper,
-      strapName: `${homepageAdPrefix}Prosper`,
-      sourceId: Strap.Prosper
-    },
-    {
-      type: HandlerInputType.BiggieSmalls,
-      displayName: "travel",
-      color: AccentColor.Aqua,
-      linkUrl: "/" + Section.Travel,
-      strapName: `${homepageAdPrefix}Travel`,
-      sourceId: Strap.Travel
-    },
-    {
-      type: HandlerInputType.Strips,
-      displayName: "spotlight",
-      color: AccentColor.Black,
-      linkUrl: "/" + Section.Premium,
-      sourceId: Strap.Premium,
-      strapName: Strap.Premium,
-      articleCount: 4,
-      articleFormat: ContentBlockType.FeaturedArticle
-    },
-    {
-      type: HandlerInputType.NewsSix,
-      displayName: "world",
-      color: AccentColor.Denim,
-      linkUrl: "/" + Section.World,
-      strapName: `${homepageAdPrefix}World`,
-      sourceId: Strap.World
-    },
-    {
-      type: HandlerInputType.TitleSection,
-      displayName: "one news",
-      displayNameColor: "black",
-      linkUrl: "https://play.stuff.co.nz/page/channel-onenews",
-      content: {
+      {
         type: HandlerInputType.ResponsiveExternalContent,
         lazyLoad: true,
-        url: "https://www.playwidget.stuff.co.nz/grid/5d3fcb25a0e845001caee780",
+        url:
+          "https://interactives.stuff.co.nz/live/homepage/uber/corona/320-200.html",
         mobile: {
-          height: "calc(35% + 35px)",
+          height: "320px",
           width: "100%",
-          margin: "0 -10px 20px"
+          margin: "0 0 20px 0"
         },
         tablet: {
-          height: "170px",
+          height: "200px",
           width: "100%",
-          margin: "0 -10px 40px"
+          margin: "0 0 40px 0"
         },
         desktop: {
-          height: "170px",
+          height: "200px",
           width: "100%",
-          margin: "0 -10px 60px"
+          margin: "0 0 60px 0"
         }
-      }
-    },
-    {
-      type: HandlerInputType.Brand,
-      module: BrandModule.Partner
-    },
-    {
-      type: HandlerInputType.BiggieSmalls,
-      displayName: "life & style",
-      color: AccentColor.Crimson,
-      linkUrl: "/" + Section.LifeStyle,
-      strapName: `${homepageAdPrefix}LifeStyle`,
-      sourceId: Strap.LifeStyle
-    },
-    {
-      type: HandlerInputType.LargeLeadSix,
-      displayName: "well & good",
-      color: AccentColor.AppleGreen,
-      linkUrl: "/" + Section.WellGood,
-      strapName: `${homepageAdPrefix}WellGood`,
-      sourceId: Strap.WellGood
-    },
-    {
-      type: HandlerInputType.Strips,
-      displayName: "food & wine",
-      color: AccentColor.Salem,
-      linkUrl: "/" + Section.FoodAndWine,
-      sourceId: Strap.FoodAndWine,
-      strapName: Strap.FoodAndWine,
-      articleCount: 4,
-      articleFormat: ContentBlockType.HalfWidthImageArticleUnit
-    },
-    {
-      type: HandlerInputType.BiggieSmalls,
-      displayName: "entertainment",
-      color: AccentColor.Violet,
-      linkUrl: "/" + Section.Entertainment,
-      strapName: `${homepageAdPrefix}Entertainment`,
-      sourceId: Strap.Entertainment
-    },
-    {
-      type: HandlerInputType.BiggieSmalls,
-      displayName: "bravo",
-      color: AccentColor.Violet,
-      linkUrl: "/" + Section.Bravo,
-      strapName: `${homepageAdPrefix}Bravo`,
-      sourceId: Strap.Bravo
-    },
-    {
-      type: HandlerInputType.TitleSection,
-      displayName: "neighbourly",
-      displayNameColor: AccentColor.SpringGreen,
-      linkUrl: "https://www.neighbourly.co.nz/",
-      content: {
+      },
+      {
+        type: HandlerInputType.NewsSix,
+        displayName: "coronavirus",
+        color: AccentColor.DeepBlue,
+        linkUrl: "/" + Section.Coronavirus,
+        strapName: `${homepageAdPrefix}Coronavirus`,
+        sourceId: Strap.Coronavirus
+      },
+      {
+        type: HandlerInputType.NewsSix,
+        displayName: "national",
+        color: AccentColor.DeepBlue,
+        linkUrl: "/" + Section.National,
+        strapName: `${homepageAdPrefix}National`,
+        sourceId: Strap.National
+      },
+      {
         type: HandlerInputType.ResponsiveExternalContent,
         lazyLoad: true,
-        url: "https://cdn.neighbourly.co.nz/stuff/933/homepage",
+        url:
+          "https://interactives.stuff.co.nz/live/homepage/uber/3/320-200.html",
         mobile: {
-          height: "550px",
+          height: "320px",
           width: "100%",
-          margin: "0 0 3px 0"
+          margin: "0 0 20px 0"
+        },
+        tablet: {
+          height: "200px",
+          width: "100%",
+          margin: "0 0 40px 0"
+        },
+        desktop: {
+          height: "200px",
+          width: "100%",
+          margin: "0 0 60px 0"
         }
+      },
+      {
+        type: HandlerInputType.BiggieSmalls,
+        displayName: "climate change",
+        color: AccentColor.DeepBlue,
+        linkUrl: "/" + Section.ClimateChange,
+        strapName: `${homepageAdPrefix}ClimateChange`,
+        sourceId: Strap.ClimateChange
+      },
+      {
+        type: HandlerInputType.NewsSix,
+        displayName: "business",
+        color: AccentColor.NavyBlue,
+        linkUrl: "/" + Section.Business,
+        strapName: `${homepageAdPrefix}Business`,
+        sourceId: Strap.Business
+      },
+      {
+        type: HandlerInputType.BiggieSmalls,
+        displayName: "homed",
+        color: AccentColor.Cyan,
+        linkUrl: "/" + Section.Homed,
+        strapName: `${homepageAdPrefix}Homed`,
+        sourceId: Strap.Homed
+      },
+      {
+        type: HandlerInputType.NewsSix,
+        displayName: "prosper",
+        color: AccentColor.NavyBlue,
+        linkUrl: "/" + Section.Prosper,
+        strapName: `${homepageAdPrefix}Prosper`,
+        sourceId: Strap.Prosper
+      },
+      {
+        type: HandlerInputType.BiggieSmalls,
+        displayName: "travel",
+        color: AccentColor.Aqua,
+        linkUrl: "/" + Section.Travel,
+        strapName: `${homepageAdPrefix}Travel`,
+        sourceId: Strap.Travel
+      },
+      {
+        type: HandlerInputType.Strips,
+        displayName: "spotlight",
+        color: AccentColor.Black,
+        linkUrl: "/" + Section.Premium,
+        sourceId: Strap.Premium,
+        strapName: Strap.Premium,
+        articleCount: 4,
+        articleFormat: ContentBlockType.FeaturedArticle
+      },
+      {
+        type: HandlerInputType.NewsSix,
+        displayName: "world",
+        color: AccentColor.Denim,
+        linkUrl: "/" + Section.World,
+        strapName: `${homepageAdPrefix}World`,
+        sourceId: Strap.World
+      },
+      {
+        type: HandlerInputType.TitleSection,
+        displayName: "one news",
+        displayNameColor: "black",
+        linkUrl: "https://play.stuff.co.nz/page/channel-onenews",
+        content: {
+          type: HandlerInputType.ResponsiveExternalContent,
+          lazyLoad: true,
+          url:
+            "https://www.playwidget.stuff.co.nz/grid/5d3fcb25a0e845001caee780",
+          mobile: {
+            height: "calc(35% + 35px)",
+            width: "100%",
+            margin: "0 -10px 20px"
+          },
+          tablet: {
+            height: "170px",
+            width: "100%",
+            margin: "0 -10px 40px"
+          },
+          desktop: {
+            height: "170px",
+            width: "100%",
+            margin: "0 -10px 60px"
+          }
+        }
+      },
+      {
+        type: HandlerInputType.Brand,
+        module: BrandModule.Partner
+      },
+      {
+        type: HandlerInputType.BiggieSmalls,
+        displayName: "life & style",
+        color: AccentColor.Crimson,
+        linkUrl: "/" + Section.LifeStyle,
+        strapName: `${homepageAdPrefix}LifeStyle`,
+        sourceId: Strap.LifeStyle
+      },
+      {
+        type: HandlerInputType.LargeLeadSix,
+        displayName: "well & good",
+        color: AccentColor.AppleGreen,
+        linkUrl: "/" + Section.WellGood,
+        strapName: `${homepageAdPrefix}WellGood`,
+        sourceId: Strap.WellGood
+      },
+      {
+        type: HandlerInputType.Strips,
+        displayName: "food & wine",
+        color: AccentColor.Salem,
+        linkUrl: "/" + Section.FoodAndWine,
+        sourceId: Strap.FoodAndWine,
+        strapName: Strap.FoodAndWine,
+        articleCount: 4,
+        articleFormat: ContentBlockType.HalfWidthImageArticleUnit
+      },
+      {
+        type: HandlerInputType.BiggieSmalls,
+        displayName: "entertainment",
+        color: AccentColor.Violet,
+        linkUrl: "/" + Section.Entertainment,
+        strapName: `${homepageAdPrefix}Entertainment`,
+        sourceId: Strap.Entertainment
+      },
+      {
+        type: HandlerInputType.BiggieSmalls,
+        displayName: "bravo",
+        color: AccentColor.Violet,
+        linkUrl: "/" + Section.Bravo,
+        strapName: `${homepageAdPrefix}Bravo`,
+        sourceId: Strap.Bravo
+      },
+      {
+        type: HandlerInputType.TitleSection,
+        displayName: "neighbourly",
+        displayNameColor: AccentColor.SpringGreen,
+        linkUrl: "https://www.neighbourly.co.nz/",
+        content: {
+          type: HandlerInputType.ResponsiveExternalContent,
+          lazyLoad: true,
+          url: "https://cdn.neighbourly.co.nz/stuff/933/homepage",
+          mobile: {
+            height: "550px",
+            width: "100%",
+            margin: "0 0 3px 0"
+          }
+        }
+      },
+      {
+        type: HandlerInputType.BiggieSmalls,
+        displayName: "motoring",
+        color: AccentColor.DustyGray,
+        linkUrl: "/" + Section.Motoring,
+        strapName: `${homepageAdPrefix}Motoring`,
+        sourceId: Strap.Motoring
+      },
+      {
+        type: HandlerInputType.LargeLeadSix,
+        displayName: "technology",
+        color: AccentColor.RainforestGreen,
+        linkUrl: "/" + Section.Technology,
+        strapName: `${homepageAdPrefix}Technology`,
+        sourceId: Strap.Technology
+      },
+      {
+        type: HandlerInputType.Strips,
+        displayName: "nz farmer",
+        color: AccentColor.Orange,
+        linkUrl: "/" + Section.NZFarmer,
+        sourceId: Strap.NZFarmer,
+        strapName: Strap.NZFarmer,
+        articleCount: 4,
+        articleFormat: ContentBlockType.HalfWidthImageArticleUnit
+      },
+      {
+        type: HandlerInputType.Strips,
+        displayName: "parenting",
+        color: AccentColor.Ruby,
+        linkUrl: "/" + Section.Parenting,
+        sourceId: Strap.Parenting,
+        strapName: Strap.Parenting,
+        articleCount: 4,
+        articleFormat: ContentBlockType.HalfWidthImageArticleUnit
+      },
+      {
+        type: HandlerInputType.BiggieSmalls,
+        displayName: "sport",
+        color: AccentColor.CardinalRed,
+        linkUrl: "/" + Section.Sport,
+        strapName: `${homepageAdPrefix}Sport`,
+        sourceId: Strap.Sport
+      },
+      {
+        type: HandlerInputType.Strips,
+        displayName: "",
+        color: AccentColor.Orange,
+        sourceId: Strap.SponsoredContent,
+        strapName: Strap.SponsoredContent,
+        articleCount: 4,
+        articleFormat: ContentBlockType.HalfWidthImageArticleUnit
+      },
+      {
+        type: HandlerInputType.Brand,
+        module: BrandModule.Network
       }
-    },
-    {
-      type: HandlerInputType.BiggieSmalls,
-      displayName: "motoring",
-      color: AccentColor.DustyGray,
-      linkUrl: "/" + Section.Motoring,
-      strapName: `${homepageAdPrefix}Motoring`,
-      sourceId: Strap.Motoring
-    },
-    {
-      type: HandlerInputType.LargeLeadSix,
-      displayName: "technology",
-      color: AccentColor.RainforestGreen,
-      linkUrl: "/" + Section.Technology,
-      strapName: `${homepageAdPrefix}Technology`,
-      sourceId: Strap.Technology
-    },
-    {
-      type: HandlerInputType.Strips,
-      displayName: "nz farmer",
-      color: AccentColor.Orange,
-      linkUrl: "/" + Section.NZFarmer,
-      sourceId: Strap.NZFarmer,
-      strapName: Strap.NZFarmer,
-      articleCount: 4,
-      articleFormat: ContentBlockType.HalfWidthImageArticleUnit
-    },
-    {
-      type: HandlerInputType.Strips,
-      displayName: "parenting",
-      color: AccentColor.Ruby,
-      linkUrl: "/" + Section.Parenting,
-      sourceId: Strap.Parenting,
-      strapName: Strap.Parenting,
-      articleCount: 4,
-      articleFormat: ContentBlockType.HalfWidthImageArticleUnit
-    },
-    {
-      type: HandlerInputType.BiggieSmalls,
-      displayName: "sport",
-      color: AccentColor.CardinalRed,
-      linkUrl: "/" + Section.Sport,
-      strapName: `${homepageAdPrefix}Sport`,
-      sourceId: Strap.Sport
-    },
-    {
-      type: HandlerInputType.Strips,
-      displayName: "",
-      color: AccentColor.Orange,
-      sourceId: Strap.SponsoredContent,
-      strapName: Strap.SponsoredContent,
-      articleCount: 4,
-      articleFormat: ContentBlockType.HalfWidthImageArticleUnit
-    },
-    {
-      type: HandlerInputType.Brand,
-      module: BrandModule.Network
-    }
-  ];
+    ],
+    billboard(homepageAdPrefix)
+  );
   return [
     {
       type: HandlerInputType.Feature,
       name: FeatureName.HomepageV2,
-      content: interpolateBillboards(homepageV2, billboard(homepageV2AdPrefix)),
-      fallback: interpolateBillboards(homepage, billboard(homepageAdPrefix))
+      content: homepageV2,
+      fallback: homepage
     }
   ];
 };
