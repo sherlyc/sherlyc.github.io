@@ -102,21 +102,8 @@ app-logo {
   }
 }
 
-.content-blocks > app-grid-container,
-.content-blocks > app-feature-container > app-grid-container {
-  @include mobile {
-    margin-bottom: 20px;
-  }
-  @include tablet {
-    margin-bottom: 40px;
-  }
-  @include desktop {
-    margin-bottom: 60px;
-  }
-}
-
-
-.homepage-billboard.ad-container, .homepagev2-billboard.ad-container {
+.homepage-billboard.ad-container,
+.homepagev2-billboard.ad-container {
   border-width: 0 !important;
   &:not(:first-child) {
     @include mobile {
@@ -126,7 +113,7 @@ app-logo {
       margin-bottom: 40px !important;
     }
     @include desktop {
-      margin-bottom: 60px !important;
+      margin-bottom: 40px !important;
     }
   }
 }
