@@ -21,6 +21,7 @@ import { IHalfFourGridHandlerInput } from "./IHalfFourGridHandlerInput";
 import { IHalfFourHandlerInput } from "./IHalfFourHandlerInput";
 import { ILargeLeadSixGridHandlerInput } from "./ILargeLeadSixGridHandlerInput";
 import { ILargeLeadSixHandlerInput } from "./ILargeLeadSixHandlerInput";
+import { ILargeLeadSixV2GridHandlerInput } from "./ILargeLeadSixV2GridHandlerInput";
 import { ILargeLeadSixV2HandlerInput } from "./ILargeLeadSixV2HandlerInput";
 import { ILatestHeadlinesHandlerInput } from "./ILatestHeadlinesHandlerInput";
 import { IListGridHandlerInput } from "./IListGridHandlerInput";
@@ -91,8 +92,9 @@ export type HandlerInput =
   | IStripsV2HandlerInput
   | IStripsGridHandlerInput
   | ILargeLeadSixHandlerInput
-  | ILargeLeadSixV2HandlerInput
   | ILargeLeadSixGridHandlerInput
+  | ILargeLeadSixV2HandlerInput
+  | ILargeLeadSixV2GridHandlerInput
   | IListGridHandlerInput
   | IRelevantStoriesHandlerInput
   | IRelevantStoriesGridHandlerInput
