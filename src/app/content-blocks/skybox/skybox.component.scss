@@ -1,0 +1,138 @@
+@import "src/styles/break-points";
+
+:host {
+  position: relative;
+  display: block;
+  background-color: #f7f7f7;
+  height: 80px;
+  overflow-y: hidden;
+
+  @include mobile {
+    margin-bottom: 20px;
+  }
+  @include tablet {
+    margin-bottom: 40px;
+  }
+  @include desktop {
+    margin-bottom: 60px;
+  }
+}
+
+
+.articles {
+  display: flex;
+  height: 200px;
+  justify-content: space-around;
+
+  @include mobile {
+    justify-content: flex-start;
+    margin: 0 45px;
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+  }
+}
+
+.left-button {
+  position: absolute;
+  top: 24px;
+  left: 6px;
+  height: 30px;
+  width: 30px;
+  background-color: #616161;
+  border-radius: 50%;
+
+  @include desktop {
+    display: none;
+  }
+}
+
+.left-arrow {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  fill: #ffffff;
+  background-size: 16px 16px;
+  width: 18px;
+  height: 18px;
+
+  @include desktop {
+    display: none;
+  }
+}
+
+.right-button {
+  position: absolute;
+  top: 24px;
+  right: 6px;
+  height: 30px;
+  width: 30px;
+  background-color: #616161;
+  border-radius: 50%;
+
+  @include desktop {
+    display: none;
+  }
+}
+
+.right-arrow {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  fill: #ffffff;
+  background-size: 16px 16px;
+  width: 18px;
+  height: 18px;
+
+  @include desktop {
+    display: none;
+  }
+}
+
+article {
+  display: flex;
+  align-items: center;
+  height: 80px;
+
+  @include mobile {
+    min-width: 100%;
+    scroll-snap-align: start;
+  }
+
+  @include desktop {
+    max-width: 24%;
+  }
+
+  .left-column {
+    margin-right: 10px;
+  }
+
+  .right-column {
+
+    .byline {
+      font-size: 12px;
+      font-weight: 900;
+      line-height: 1.33;
+      color: #2b2b2b;
+      opacity: 0.9;
+    }
+
+    .headline {
+      font-size: 15px;
+      letter-spacing: 0.3px;
+      font-weight: 300;
+    }
+  }
+
+  .avatar {
+    background-color: #e0dfdf;
+    object-fit: contain;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+
+    @include mobile {
+      width: 60px;
+      height: 60px;
+    }
+  }
+}
