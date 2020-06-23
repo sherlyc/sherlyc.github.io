@@ -269,7 +269,7 @@
       }
     },
     "strapClimateChange": {
-      "ids": ["74545269"],
+      "ids": ["120545484"],
       "dedupeRules": {
         "dedupeFromBaseList": true
       }
@@ -424,6 +424,12 @@
       },
       "strapProsper": {
         "ids": ["62950252"],
+        "dedupeRules": {
+          "dedupeFromBaseList": true
+        }
+      },
+      "strapClimateChange": {
+        "ids": ["74545269"],
         "dedupeRules": {
           "dedupeFromBaseList": true
         }
