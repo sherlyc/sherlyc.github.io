@@ -37,4 +37,5 @@ export enum ContentBlockType {
   PlayStuff = "PlayStuff",
   MostReadList = "MostReadList",
   Defcon = "Defcon",
+  Skybox = "Skybox"
 }

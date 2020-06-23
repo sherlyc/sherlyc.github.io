@@ -33,6 +33,7 @@ import { IPartnerContent } from "./IPartnerContent";
 import { IPlayStuff } from "./IPlayStuff";
 import { IResponsiveBigImageArticleUnit } from "./IResponsiveBigImageArticleUnit";
 import { IResponsiveExternalContent } from "./IResponsiveExternalContent";
+import { ISkybox } from "./ISkybox";
 import { IStickyContainer } from "./IStickyContainer";
 import { IVerticalArticleList } from "./IVerticalArticleList";
 import { IWeatherUnit } from "./IWeatherUnit";
@@ -75,4 +76,5 @@ export type IContentBlock =
   | IPartnerContent
   | IPlayStuff
   | IMostReadList
-  | IDefcon;
+  | IDefcon
+  | ISkybox;

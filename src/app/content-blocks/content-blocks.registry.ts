@@ -34,6 +34,7 @@ import { PartnerContentComponent } from "./partner-content/partner-content.compo
 import { PlayStuffComponent } from "./play-stuff/play-stuff.component";
 import { ResponsiveBigImageArticleComponent } from "./responsive-big-image-article/responsive-big-image-article.component";
 import { ResponsiveExternalContentComponent } from "./responsive-external-content/responsive-external-content.component";
+import { SkyboxComponent } from "./skybox/skybox.component";
 import { StickyContainerComponent } from "./sticky-container/sticky-container.component";
 import { VerticalArticleListComponent } from "./vertical-article-list/vertical-article-list.component";
 import { WeatherUnitComponent } from "./weather-unit/weather-unit.component";
@@ -78,6 +79,7 @@ export const contentBlockComponents = [
   PlayStuffComponent,
   MostReadListComponent,
   DefconComponent,
+  SkyboxComponent
 ];
 
 const registry: {
@@ -121,6 +123,7 @@ const registry: {
   PlayStuffComponent,
   MostReadListComponent,
   DefconComponent,
+  SkyboxComponent
 };
 
 export default registry;
