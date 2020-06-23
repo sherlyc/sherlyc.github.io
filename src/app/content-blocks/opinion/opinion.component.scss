@@ -1,5 +1,13 @@
 @import "src/styles/break-points";
 
+a {
+  display: block;
+  text-decoration: none;
+  :hover {
+    text-decoration: underline;
+  }
+}
+
 .header {
   font-family: Merriweather;
   font-size: 40px;
@@ -89,22 +97,24 @@
       height: calc(2 * (100% - 70px * 3) / 5 + 70px);
     }
 
-    display: flex;
-    flex-direction: row;
+    a {
+      display: flex;
+      flex-direction: row;
 
-    .text {
-      flex: 1;
+      .text {
+        flex: 1;
 
-      .headline {
-        font-size: 18px;
-        font-weight: bold;
-        line-height: 24px;
+        .headline {
+          font-size: 18px;
+          font-weight: bold;
+          line-height: 24px;
+        }
       }
-    }
 
-    .avatar {
-      width: 70px;
-      height: 70px;
+      .avatar {
+        width: 70px;
+        height: 70px;
+      }
     }
   }
 }
