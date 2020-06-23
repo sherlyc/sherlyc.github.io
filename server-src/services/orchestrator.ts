@@ -1,3 +1,4 @@
+import { flatMap } from "lodash-es";
 import { FeatureName } from "../../common/FeatureName";
 import { AccentColor } from "../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../common/__types__/ContentBlockType";
@@ -13,7 +14,6 @@ import config from "./utils/config";
 import logger from "./utils/logger";
 import { formatVersion, parseVersion } from "./utils/version";
 import { IParams } from "./__types__/IParams";
-import { flatMap } from "lodash-es";
 
 const homepageStrapsConfig = config.strapConfig!.homepageStraps;
 
@@ -64,8 +64,8 @@ const billboard = (prefix: string): IContentBlockHandlerInput => ({
 
 const interpolateBillboards = (
   handlers: HandlerInput[],
-  billboard: HandlerInput
-) => [...flatMap(handlers, (handler) => [billboard, handler]), billboard];
+  ad: HandlerInput
+) => [...flatMap(handlers, (handler) => [ad, handler]), ad];
 
 export const newPage = (): HandlerInput[] => {
   const homepageV2: HandlerInput[] = [
