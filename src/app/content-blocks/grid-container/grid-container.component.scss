@@ -2,18 +2,6 @@
 
 :host {
   display: block;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #f0f0f0;
-
-  @include mobile() {
-    margin-bottom: 20px;
-  }
-  @include tablet() {
-    margin-bottom: 40px;
-  }
-  @include desktop() {
-    margin-bottom: 40px;
-  }
 }
 
 .left,
@@ -58,4 +46,19 @@ table {
 .variation-graybackground {
   background-color: #f7f7f7;
   padding: 20px;
+}
+
+.variation-border {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+
+  @include mobile() {
+    margin-bottom: 20px;
+  }
+  @include tablet() {
+    margin-bottom: 40px;
+  }
+  @include desktop() {
+    margin-bottom: 40px;
+  }
 }

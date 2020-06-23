@@ -2,7 +2,7 @@ import { repeat } from "lodash-es";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import {
-  Border,
+  GridContainerVariation,
   IGridConfig
 } from "../../../../../common/__types__/IGridContainer";
 import { gridBlock } from "../../../adapters/grid/grid-block";
@@ -93,7 +93,8 @@ export default async function (
       items: content,
       mobile,
       tablet,
-      desktop
+      desktop,
+      variation: GridContainerVariation.Border
     }
   ];
 }
