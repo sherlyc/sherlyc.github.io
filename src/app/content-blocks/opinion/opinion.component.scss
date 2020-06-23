@@ -90,11 +90,22 @@ a {
 
   article {
     box-sizing: border-box;
-    height: calc((100% - 70px * 3) / 5 + 70px);
     border-bottom: #e7e7e7 1px solid;
-    &:not(:first-child) {
-      padding-top: calc((100% - 70px * 3) / 5);
-      height: calc(2 * (100% - 70px * 3) / 5 + 70px);
+
+    @include desktop() {
+      height: calc((100% - 70px * 3) / 5 + 70px);
+      &:not(:first-child) {
+        padding-top: calc((100% - 70px * 3) / 5);
+        height: calc(2 * (100% - 70px * 3) / 5 + 70px);
+      }
+    }
+
+    @include mobile() {
+      height: calc((100% - 70px * 3) / 5 + 70px);
+      &:not(:first-child) {
+        padding-top: calc((100% - 70px * 3) / 5);
+        height: calc(2 * (100% - 70px * 3) / 5 + 70px);
+      }
     }
 
     a {
@@ -172,7 +183,6 @@ a {
       padding-bottom: 10px;
 
       &:not(:first-child) {
-        padding-top: 0;
         margin-left: 20px;
       }
     }
