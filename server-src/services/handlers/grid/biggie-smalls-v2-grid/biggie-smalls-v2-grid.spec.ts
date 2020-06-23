@@ -3,6 +3,7 @@ import { ContentBlockType } from "../../../../../common/__types__/ContentBlockTy
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import {
   Border,
+  GridContainerVariation,
   IGridConfig,
   IGridContainer
 } from "../../../../../common/__types__/IGridContainer";
@@ -66,7 +67,7 @@ describe("Biggie Smalls V2 grid handler", () => {
       })
     );
 
-    const { mobile, tablet, desktop } = result[0] as IGridContainer;
+    const { mobile, tablet, desktop, variation } = result[0] as IGridContainer;
     const mobileConfig: IGridConfig = {
       gridTemplateColumns: "1fr 1fr",
       gridTemplateRows: repeat(" auto", 9).substring(1),
@@ -127,5 +128,6 @@ describe("Biggie Smalls V2 grid handler", () => {
     expect(mobile).toEqual(mobileConfig);
     expect(tablet).toEqual(tabletConfig);
     expect(desktop).toEqual(desktopConfig);
+    expect(variation).toEqual(GridContainerVariation.Border);
   });
 });
