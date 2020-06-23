@@ -81,11 +81,6 @@ export const newPage = (): HandlerInput[] => {
       name: FeatureName.HomepageV2,
       content: [
         {
-          type: HandlerInputType.Opinion,
-          strapName: `${homepageV2AdPrefix}Perspectives`,
-          displayName: "perspectives"
-        },
-        {
           type: HandlerInputType.TopStoriesV2,
           strapName: `${homepageV2AdPrefix}TopStoriesDefaultOne`,
           color: AccentColor.CuriousBlue,
@@ -119,6 +114,11 @@ export const newPage = (): HandlerInput[] => {
           linkUrl: "/" + Section.Coronavirus,
           strapName: `${homepageV2AdPrefix}Coronavirus`,
           sourceId: Strap.Coronavirus
+        },
+        {
+          type: HandlerInputType.Opinion,
+          strapName: `${homepageV2AdPrefix}Perspectives`,
+          displayName: "perspectives"
         },
         {
           type: HandlerInputType.NewsSixV2,
