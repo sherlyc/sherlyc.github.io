@@ -11,7 +11,7 @@ import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { Strap } from "../../../strap";
 import { IParams } from "../../../__types__/IParams";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { LargeLeadSixGridPositions } from "../../__types__/ILargeLeadSixGridHandlerInput";
+import { LargeLeadSixV2GridPositions } from "../../__types__/ILargeLeadSixV2GridHandlerInput";
 import { ILargeLeadSixV2HandlerInput } from "../../__types__/ILargeLeadSixV2HandlerInput";
 import { IListGridHandlerInput } from "../../__types__/IListGridHandlerInput";
 import largeLeadSixV2 from "./large-lead-six-v2";
@@ -126,7 +126,7 @@ describe("Large Lead Six V2", () => {
     expect(listGridHandlerParams).toEqual(params);
   });
 
-  it("should generate grid with large lead six grid handler", async () => {
+  it("should generate grid with large lead six v2 grid handler", async () => {
     (getRawArticles as jest.Mock).mockResolvedValue(
       articlesWithIds([1, 2, 3, 4, 5, 6])
     );
@@ -141,9 +141,9 @@ describe("Large Lead Six V2", () => {
     ] = handlerRunnerMock.mock.calls;
 
     expect(largeLeadSixGridHandlerInput).toEqual({
-      type: HandlerInputType.LargeLeadSixGrid,
+      type: HandlerInputType.LargeLeadSixV2Grid,
       content: {
-        [LargeLeadSixGridPositions.ModuleTitle]: [
+        [LargeLeadSixV2GridPositions.ModuleTitle]: [
           {
             type: ContentBlockType.ModuleHeader,
             title: input.displayName,
@@ -151,7 +151,7 @@ describe("Large Lead Six V2", () => {
             color: input.color
           }
         ],
-        [LargeLeadSixGridPositions.Left]: [
+        [LargeLeadSixV2GridPositions.Left]: [
           expect.objectContaining({
             type: ContentBlockType.HomepageArticle,
             id: "1",
@@ -164,8 +164,8 @@ describe("Large Lead Six V2", () => {
             imageSrc: "1.png"
           })
         ],
-        [LargeLeadSixGridPositions.Middle]: [mockListGridResult],
-        [LargeLeadSixGridPositions.Right]: [
+        [LargeLeadSixV2GridPositions.Middle]: [mockListGridResult],
+        [LargeLeadSixV2GridPositions.Right]: [
           {
             type: ContentBlockType.StickyContainer,
             items: [

@@ -12,7 +12,7 @@ import {
 } from "../../__types__/ILargeLeadSixV2GridHandlerInput";
 import largeLeadSixV2Grid from "./large-lead-six-v2-grid";
 
-describe("Large Lead Six Grid", () => {
+describe("Large Lead Six V2 Grid", () => {
   const handlerRunner = jest.fn();
   const params: IParams = { apiRequestId: "123" };
   const fakeContentBlock = {} as IContentBlock;
@@ -31,8 +31,8 @@ describe("Large Lead Six Grid", () => {
     const desktop: IGridConfig = {
       gridTemplateColumns: "1fr 1fr 300px",
       gridTemplateRows: "auto auto",
-      gridColumnGap: "40px",
-      gridRowGap: "40px",
+      gridColumnGap: "20px",
+      gridRowGap: "20px",
       gridBlocks: {
         [LargeLeadSixV2GridPositions.ModuleTitle]: {
           columnStart: 1,
