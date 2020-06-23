@@ -1,14 +1,14 @@
+import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { AccentColor } from "../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IHomepageArticleContent } from "../../../../common/__types__/IHomepageArticleContent";
 import { IOpinion } from "../../../../common/__types__/IOpinion";
-import { OpinionComponent } from "./opinion.component";
-import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
-import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { mockService, ServiceMock } from "../../services/mocks/MockService";
+import { OpinionComponent } from "./opinion.component";
 
 describe("OpinionComponent", () => {
   let component: OpinionComponent;

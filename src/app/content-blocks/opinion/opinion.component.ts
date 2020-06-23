@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { IHomepageArticleContent } from "../../../../common/__types__/IHomepageArticleContent";
 import { IOpinion } from "../../../../common/__types__/IOpinion";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
-import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
   selector: "app-opinion",
