@@ -2,27 +2,27 @@
 <div class="articles">
   <div class="primary-secondary">
     <div class="primary">
-      <article>
-        <a href="{{ formattedArticles[0].linkUrl }}" appOpenExternalLink="{{ formattedArticles[0].linkUrl }}" (click)="sendAnalytics(formattedArticles[0])">
-          <img class="cartoon" [src]="formattedArticles[0].image.sixteenByNine" />
-          <div class="byline">{{ formattedArticles[0].byline }}</div>
+      <article *ngIf="formattedCartoons.length">
+        <a href="{{ formattedCartoons[0].linkUrl }}" appOpenExternalLink="{{ formattedCartoons[0].linkUrl }}" (click)="sendAnalytics(formattedCartoons[0])">
+          <img class="cartoon" [src]="formattedCartoons[0].image.sixteenByNine" />
+          <div class="byline">{{ formattedCartoons[0].byline }}</div>
         </a>
       </article>
     </div>
     <div class="secondary">
       <article>
-        <a href="{{ formattedArticles[1].linkUrl }}" appOpenExternalLink="{{ formattedArticles[1].linkUrl }}" (click)="sendAnalytics(formattedArticles[1])">
-          <img class="avatar" [src]="formattedArticles[1].image.sixteenByNine" />
-          <div class="byline">{{ formattedArticles[1].byline }}</div>
-          <div class="headline">{{ formattedArticles[1].headline }}</div>
-          <div class="intro">{{ formattedArticles[1].introText }}</div>
+        <a href="{{ formattedArticles[0].linkUrl }}" appOpenExternalLink="{{ formattedArticles[0].linkUrl }}" (click)="sendAnalytics(formattedArticles[0])">
+          <img class="avatar" [src]="formattedArticles[0].image.sixteenByNine" />
+          <div class="byline">{{ formattedArticles[0].byline }}</div>
+          <div class="headline">{{ formattedArticles[0].headline }}</div>
+          <div class="intro">{{ formattedArticles[0].introText }}</div>
         </a>
       </article>
     </div>
   </div>
 
   <div class="list">
-    <article *ngFor="let article of formattedArticles.slice(2)">
+    <article *ngFor="let article of formattedArticles.slice(1)">
       <a href="{{ article.linkUrl }}" appOpenExternalLink="{{ article.linkUrl }}" (click)="sendAnalytics(article)">
         <div class="text">
           <div class="byline">{{ article.byline }}</div>

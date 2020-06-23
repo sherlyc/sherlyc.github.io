@@ -38,9 +38,9 @@ describe("OpinionComponent", () => {
       articleContent(1),
       articleContent(2),
       articleContent(3),
-      articleContent(4),
-      articleContent(5)
+      articleContent(4)
     ],
+    cartoons: [articleContent(6)],
     strapName: "strapName",
     displayName: "opinion"
   };
@@ -87,10 +87,10 @@ describe("OpinionComponent", () => {
     const primaryByline = fixture.debugElement.query(By.css(".primary .byline"))
       .nativeElement;
     expect(primaryImage.getAttribute("src")).toBe(
-      input.articles[0].image.sixteenByNine
+      `${input.cartoons[0].image.sixteenByNine}?format=pjpg&crop=16:9,smart`
     );
     expect(primaryByline.textContent).toBe(
-      input.articles[0].byline?.toLowerCase()
+      input.cartoons[0].byline?.toLowerCase()
     );
 
     const secondaryImage = fixture.debugElement.query(
@@ -106,16 +106,16 @@ describe("OpinionComponent", () => {
       By.css(".secondary .intro")
     ).nativeElement;
     expect(secondaryImage.getAttribute("src")).toBe(
-      `${input.articles[1].image.sixteenByNine}?format=pjpg&crop=1:1,smart`
+      `${input.articles[0].image.sixteenByNine}?format=pjpg&crop=1:1,smart`
     );
     expect(secondaryByline.textContent).toBe(
-      input.articles[1].byline?.toLowerCase()
+      input.articles[0].byline?.toLowerCase()
     );
-    expect(secondaryHeadline.textContent).toBe(input.articles[1].headline);
-    expect(secondaryIntro.textContent).toBe(input.articles[1].introText);
+    expect(secondaryHeadline.textContent).toBe(input.articles[0].headline);
+    expect(secondaryIntro.textContent).toBe(input.articles[0].introText);
 
     const list = fixture.debugElement.queryAll(By.css(".list article"));
-    const listArticles = input.articles.slice(2);
+    const listArticles = input.articles.slice(1);
     list.forEach((article, index) => {
       const byline = article.query(By.css(".byline")).nativeElement;
       const headline = article.query(By.css(".headline")).nativeElement;
@@ -131,6 +131,15 @@ describe("OpinionComponent", () => {
     });
   });
 
+  it("should hide primary article when no cartoon is provided", async () => {
+    component.input = { ...input, cartoons: [] };
+
+    fixture.detectChanges();
+
+    const primary = fixture.debugElement.query(By.css(".primary article a"));
+    expect(primary).toBeFalsy();
+  });
+
   it("should send analytics when clicking on article", async () => {
     component.input = input;
 
@@ -143,8 +152,8 @@ describe("OpinionComponent", () => {
     expect(analyticsService.pushEvent).toHaveBeenCalledWith({
       type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
       strapName: input.strapName,
-      articleHeadline: input.articles[0].title,
-      articleId: input.articles[0].id
+      articleHeadline: input.cartoons[0].title,
+      articleId: input.cartoons[0].id
     });
 
     const secondaryArticle = componentElement.query(
@@ -156,13 +165,13 @@ describe("OpinionComponent", () => {
     expect(analyticsService.pushEvent).toHaveBeenCalledWith({
       type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
       strapName: input.strapName,
-      articleHeadline: input.articles[1].title,
-      articleId: input.articles[1].id
+      articleHeadline: input.articles[0].title,
+      articleId: input.articles[0].id
     });
 
     const listItems = componentElement.queryAll(By.css(".list article a"));
     expect(listItems.length).toEqual(3);
-    const listItemArticles = component.input.articles.slice(2);
+    const listItemArticles = component.input.articles.slice(1);
     await Promise.all(
       listItems.map(async (listItem, index) => {
         const listItemElement: HTMLLinkElement = listItem.nativeElement;
