@@ -3,7 +3,7 @@
 :host {
   display: block;
   padding-bottom: 10px;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 2px solid #f0f0f0;
 
   @include mobile() {
     margin-bottom: 20px;
@@ -213,12 +213,13 @@ a {
   .primary-secondary {
     display: flex;
     flex: 740 0 0;
-    padding: 20px 10px 0;
     .primary {
       flex: 500 0 0;
+      padding: 20px 10px 0;
     }
     .secondary {
       flex: 240 0 0;
+      padding: 20px 10px 0;
     }
   }
 
