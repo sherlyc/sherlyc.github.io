@@ -9,6 +9,9 @@ export interface ILargeLeadSixV2GridHandlerInput {
 export enum LargeLeadSixV2GridPositions {
   ModuleTitle = "ModuleTitle",
   Left = "Left",
-  Middle = "Middle",
+  MiddleOne = "MiddleOne",
+  MiddleTwo = "MiddleTwo",
+  MiddleThree = "MiddleThree",
+  MiddleFour = "MiddleFour",
   Right = "Right"
 }

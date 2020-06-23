@@ -27,45 +27,7 @@ export default async function (
   params: IParams
 ): Promise<IContentBlock[]> {
   const articles = await getRawArticles(sourceId, 5, params);
-  const leftContent = contentErrorHandler(
-    () =>
-      homepageArticle(
-        articles.shift() as IRawArticle,
-        strapName,
-        color,
-        {
-          mobile: Orientation.Portrait,
-          tablet: Orientation.Portrait,
-          desktop: Orientation.Portrait
-        },
-        true,
-        true
-      ),
-    HandlerInputType.LargeLeadSix,
-    sourceId,
-    params
-  );
-  const listGridContent = articles.map((article, index) =>
-    homepageArticle(
-      article,
-      strapName,
-      color,
-      {
-        mobile: Orientation.Portrait,
-        tablet: Orientation.Portrait,
-        desktop: Orientation.Portrait
-      },
-      index < 1,
-      false
-    )
-  );
-  const middleContent = await handlerRunner(
-    {
-      type: HandlerInputType.ListGrid,
-      content: listGridContent
-    },
-    params
-  );
+
   const gridInput: ILargeLeadSixV2GridHandlerInput = {
     type: HandlerInputType.LargeLeadSixV2Grid,
     content: {
@@ -77,8 +39,106 @@ export default async function (
           color
         }
       ],
-      [LargeLeadSixV2GridPositions.Left]: [leftContent],
-      [LargeLeadSixV2GridPositions.Middle]: middleContent,
+      [LargeLeadSixV2GridPositions.Left]: [
+        contentErrorHandler(
+          () =>
+            homepageArticle(
+              articles.shift() as IRawArticle,
+              strapName,
+              color,
+              {
+                mobile: Orientation.Portrait,
+                tablet: Orientation.Portrait,
+                desktop: Orientation.Portrait
+              },
+              true,
+              true
+            ),
+          HandlerInputType.LargeLeadSix,
+          sourceId,
+          params
+        )
+      ],
+      [LargeLeadSixV2GridPositions.MiddleOne]: [
+        contentErrorHandler(
+          () =>
+            homepageArticle(
+              articles.shift() as IRawArticle,
+              strapName,
+              color,
+              {
+                mobile: Orientation.Portrait,
+                tablet: Orientation.Portrait,
+                desktop: Orientation.Portrait
+              },
+              true,
+              false
+            ),
+          HandlerInputType.LargeLeadSix,
+          sourceId,
+          params
+        )
+      ],
+      [LargeLeadSixV2GridPositions.MiddleTwo]: [
+        contentErrorHandler(
+          () =>
+            homepageArticle(
+              articles.shift() as IRawArticle,
+              strapName,
+              color,
+              {
+                mobile: Orientation.Portrait,
+                tablet: Orientation.Portrait,
+                desktop: Orientation.Portrait
+              },
+              false,
+              false
+            ),
+          HandlerInputType.LargeLeadSix,
+          sourceId,
+          params
+        )
+      ],
+      [LargeLeadSixV2GridPositions.MiddleThree]: [
+        contentErrorHandler(
+          () =>
+            homepageArticle(
+              articles.shift() as IRawArticle,
+              strapName,
+              color,
+              {
+                mobile: Orientation.Portrait,
+                tablet: Orientation.Portrait,
+                desktop: Orientation.Portrait
+              },
+              false,
+              false
+            ),
+          HandlerInputType.LargeLeadSix,
+          sourceId,
+          params
+        )
+      ],
+      [LargeLeadSixV2GridPositions.MiddleFour]: [
+        contentErrorHandler(
+          () =>
+            homepageArticle(
+              articles.shift() as IRawArticle,
+              strapName,
+              color,
+              {
+                mobile: Orientation.Portrait,
+                tablet: Orientation.Portrait,
+                desktop: Orientation.Portrait
+              },
+              false,
+              false
+            ),
+          HandlerInputType.LargeLeadSix,
+          sourceId,
+          params
+        )
+      ],
       [LargeLeadSixV2GridPositions.Right]: [
         {
           type: ContentBlockType.StickyContainer,
