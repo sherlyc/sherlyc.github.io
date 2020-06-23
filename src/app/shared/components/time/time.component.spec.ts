@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
-import { formatTime } from "../../utils/timestamp-helper/timestamp-helper";
+import {
+  formatTime,
+  timeColor
+} from "../../utils/timestamp-helper/timestamp-helper";
 import { TimeComponent } from "./time.component";
 
 jest.mock("../../utils/timestamp-helper/timestamp-helper");
@@ -77,8 +80,20 @@ describe("TimeComponent", () => {
     component.textColor = "white";
 
     fixture.detectChanges();
-    const div = fixture.debugElement.query(By.css(".time"));
+    expect(fixture.debugElement.nativeElement.style["--timestamp-color"]).toBe(
+      "white"
+    );
+  });
 
-    expect(div.nativeElement.style.color).toBe("white");
+  it("should set text color according to timestamp when bullet is enabled", () => {
+    // 20 minutes ago
+    (formatTime as jest.Mock).mockReturnValue("20 min ago");
+    (timeColor as jest.Mock).mockReturnValue("#ff433d");
+
+    component.showBullet = true;
+    fixture.detectChanges();
+
+    expect(timeColor).toHaveBeenCalled();
+    expect(component.textColor).toEqual("#ff433d");
   });
 });
