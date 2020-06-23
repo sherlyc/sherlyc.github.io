@@ -9,9 +9,9 @@ import { IParams } from "../../../__types__/IParams";
 import { handlerRunnerFunction } from "../../runner";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
-  ILargeLeadSixGridHandlerInput,
-  LargeLeadSixGridPositions
-} from "../../__types__/ILargeLeadSixGridHandlerInput";
+  ILargeLeadSixV2GridHandlerInput,
+  LargeLeadSixV2GridPositions
+} from "../../__types__/ILargeLeadSixV2GridHandlerInput";
 import { ILargeLeadSixV2HandlerInput } from "../../__types__/ILargeLeadSixV2HandlerInput";
 import { contentErrorHandler } from "../content-error-handler";
 
@@ -66,10 +66,10 @@ export default async function (
     },
     params
   );
-  const largeLeadSixGridHandlerInput: ILargeLeadSixGridHandlerInput = {
-    type: HandlerInputType.LargeLeadSixGrid,
+  const gridInput: ILargeLeadSixV2GridHandlerInput = {
+    type: HandlerInputType.LargeLeadSixV2Grid,
     content: {
-      [LargeLeadSixGridPositions.ModuleTitle]: [
+      [LargeLeadSixV2GridPositions.ModuleTitle]: [
         {
           type: ContentBlockType.ModuleHeader,
           title: displayName,
@@ -77,9 +77,9 @@ export default async function (
           color
         }
       ],
-      [LargeLeadSixGridPositions.Left]: [leftContent],
-      [LargeLeadSixGridPositions.Middle]: middleContent,
-      [LargeLeadSixGridPositions.Right]: [
+      [LargeLeadSixV2GridPositions.Left]: [leftContent],
+      [LargeLeadSixV2GridPositions.Middle]: middleContent,
+      [LargeLeadSixV2GridPositions.Right]: [
         {
           type: ContentBlockType.StickyContainer,
           items: [basicAdUnit(strapName)]
@@ -87,5 +87,5 @@ export default async function (
       ]
     }
   };
-  return await handlerRunner(largeLeadSixGridHandlerInput, params);
+  return await handlerRunner(gridInput, params);
 }
