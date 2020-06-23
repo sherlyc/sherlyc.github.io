@@ -5,9 +5,14 @@ import { ContentBlockType } from "../../../../common/__types__/ContentBlockType"
 import { IHomepageArticleContent } from "../../../../common/__types__/IHomepageArticleContent";
 import { IOpinion } from "../../../../common/__types__/IOpinion";
 import { OpinionComponent } from "./opinion.component";
+import { mockService, ServiceMock } from "../../services/mocks/MockService";
+import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { NO_ERRORS_SCHEMA } from "@angular/core";
 
 describe("OpinionComponent", () => {
   let component: OpinionComponent;
+  let analyticsService: ServiceMock<AnalyticsService>;
   let fixture: ComponentFixture<OpinionComponent>;
 
   const articleContent = (id: number): IHomepageArticleContent => ({
@@ -42,13 +47,23 @@ describe("OpinionComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [OpinionComponent]
+      declarations: [OpinionComponent],
+      providers: [
+        {
+          provide: AnalyticsService,
+          useClass: mockService(AnalyticsService)
+        }
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(OpinionComponent);
     component = fixture.componentInstance;
+    analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
+      AnalyticsService
+    >;
   });
 
   it("should create", () => {
@@ -114,5 +129,53 @@ describe("OpinionComponent", () => {
         `${listArticles[index].image.sixteenByNine}?format=pjpg&crop=1:1,smart`
       );
     });
+  });
+
+  it("should send analytics when clicking on article", async () => {
+    component.input = input;
+
+    fixture.detectChanges();
+    const componentElement = fixture.debugElement;
+    const primaryArticle = componentElement.query(By.css(".primary article a"));
+    primaryArticle.nativeElement.click();
+
+    await fixture.whenStable();
+    expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+      type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
+      strapName: input.strapName,
+      articleHeadline: input.articles[0].title,
+      articleId: input.articles[0].id
+    });
+
+    const secondaryArticle = componentElement.query(
+      By.css(".secondary article a")
+    );
+    secondaryArticle.nativeElement.click();
+
+    await fixture.whenStable();
+    expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+      type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
+      strapName: input.strapName,
+      articleHeadline: input.articles[1].title,
+      articleId: input.articles[1].id
+    });
+
+    const listItems = componentElement.queryAll(By.css(".list article a"));
+    expect(listItems.length).toEqual(3);
+    const listItemArticles = component.input.articles.slice(2);
+    await Promise.all(
+      listItems.map(async (listItem, index) => {
+        const listItemElement: HTMLLinkElement = listItem.nativeElement;
+        listItemElement.click();
+
+        await fixture.whenStable();
+        expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+          type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
+          strapName: input.strapName,
+          articleHeadline: listItemArticles[index].title,
+          articleId: listItemArticles[index].id
+        });
+      })
+    );
   });
 });
