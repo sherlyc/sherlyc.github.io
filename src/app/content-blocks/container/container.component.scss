@@ -23,7 +23,17 @@
 }
 
 .content-blocks {
-  margin: 10px;
+  @include desktop {
+    margin: 0 $desktop-page-margin;
+  }
+
+  @include tablet {
+    margin: 0 $desktop-page-margin;
+  }
+
+  @include mobile {
+    margin: 0 $mobile-page-margin;
+  }
 }
 
 #pushdownbanner {
