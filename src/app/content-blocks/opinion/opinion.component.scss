@@ -25,7 +25,7 @@ a {
 }
 
 .header {
-  font-family: Merriweather serif;
+  font-family: Merriweather, serif;
   font-size: 40px;
   font-weight: 900;
   font-style: italic;
@@ -41,14 +41,13 @@ a {
 }
 
 .byline {
-  font-family: Roboto sans-serif;
   font-size: 14px;
   font-weight: 900;
   color: #616161;
 }
 
 .headline {
-  font-family: Merriweather serif;
+  font-family: Merriweather, serif;
   font-style: italic;
   letter-spacing: 0.2px;
 }
@@ -91,7 +90,6 @@ a {
       margin-bottom: 6px;
     }
     .intro {
-      font-family: Roboto sans-serif;
       font-size: 15px;
       color: #333333;
       margin-bottom: 20px;
@@ -182,11 +180,11 @@ a {
   .primary-secondary {
     display: flex;
     .primary {
-      flex: 400 0 0;
+      flex: 400;
       padding: 20px 10px 0 0;
     }
     .secondary {
-      flex: 300 0 0;
+      flex: 300;
       padding: 20px 0 0 10px;
     }
   }
@@ -212,19 +210,19 @@ a {
 
   .primary-secondary {
     display: flex;
-    flex: 740 0 0;
+    flex: 740;
     .primary {
-      flex: 500 0 0;
+      flex: 500;
       padding: 20px 10px 0;
     }
     .secondary {
-      flex: 240 0 0;
+      flex: 240;
       padding: 20px 10px 0;
     }
   }
 
   .list {
-    flex: 300 0 0;
+    flex: 300;
     padding: 20px 10px 0;
   }
 }
