@@ -102,6 +102,21 @@ app-logo {
   }
 }
 
+.content-blocks > app-grid-container > div,
+.content-blocks > app-feature-container > app-grid-container > div {
+  @include mobile {
+    margin-bottom: 20px;
+  }
+
+  @include tablet {
+    margin-bottom: 40px;
+  }
+
+  @include desktop {
+    margin-bottom: 40px;
+  }
+}
+
 .homepage-billboard.ad-container,
 .homepagev2-billboard.ad-container {
   border-width: 0 !important;
