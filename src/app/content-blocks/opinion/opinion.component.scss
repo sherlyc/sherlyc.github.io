@@ -25,7 +25,7 @@ a {
 }
 
 .header {
-  font-family: Merriweather serif;
+  font-family: Merriweather, serif;
   font-size: 40px;
   font-weight: 900;
   font-style: italic;
@@ -41,14 +41,13 @@ a {
 }
 
 .byline {
-  font-family: Roboto sans-serif;
   font-size: 14px;
   font-weight: 900;
   color: #616161;
 }
 
 .headline {
-  font-family: Merriweather serif;
+  font-family: Merriweather, serif;
   font-style: italic;
   letter-spacing: 0.2px;
 }
@@ -91,7 +90,6 @@ a {
       margin-bottom: 6px;
     }
     .intro {
-      font-family: Roboto sans-serif;
       font-size: 15px;
       color: #333333;
       margin-bottom: 20px;
