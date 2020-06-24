@@ -84,7 +84,7 @@ export default async function (
       [TopStoriesV2DefaultGridPositions.BottomThree]: gridBlock(9, 1, 1, 2, []),
       [TopStoriesV2DefaultGridPositions.BottomFour]: gridBlock(10, 1, 1, 2, []),
       [TopStoriesV2DefaultGridPositions.BottomFive]: gridBlock(11, 1, 1, 2, []),
-      [TopStoriesV2DefaultGridPositions.LowerRight]: gridBlock(8, 3, 5, 1, [])
+      [TopStoriesV2DefaultGridPositions.LowerRight]: gridBlock(8, 3, 4, 1, [])
     }
   };
 

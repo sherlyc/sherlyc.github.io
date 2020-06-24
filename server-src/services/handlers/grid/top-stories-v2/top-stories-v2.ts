@@ -237,7 +237,7 @@ function defaultGrid(
                 tablet: Orientation.Portrait,
                 desktop: Orientation.Portrait
               },
-              true,
+              false,
               false
             ),
           HandlerInputType.TopStoriesV2,
@@ -449,7 +449,7 @@ function defconGrid(
                 tablet: Orientation.Portrait,
                 desktop: Orientation.Portrait
               },
-              true,
+              false,
               false
             ),
           HandlerInputType.TopStoriesV2,

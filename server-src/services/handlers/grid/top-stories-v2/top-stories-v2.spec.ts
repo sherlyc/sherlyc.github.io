@@ -254,7 +254,7 @@ describe("Top Stories V2", () => {
               desktop: Orientation.Portrait
             },
             imageSrc: undefined,
-            introText: "10 intro"
+            introText: undefined
           })
         ],
         [TopStoriesV2DefaultGridPositions.MidInsert]: [
@@ -425,7 +425,7 @@ describe("Top Stories V2", () => {
               desktop: Orientation.Portrait
             },
             imageSrc: undefined,
-            introText: "13 intro"
+            introText: undefined
           })
         ],
         [TopStoriesV2DefconGridPositions.MidInsert]: [

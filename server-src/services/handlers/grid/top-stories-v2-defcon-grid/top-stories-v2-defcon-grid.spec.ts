@@ -129,7 +129,7 @@ describe("Top Stories Defcon grid", () => {
       gridTemplateColumns: "1fr 1fr 2fr 300px",
       gridTemplateRows: repeat(" auto", 8).substring(1),
       gridColumnGap: "20px",
-      gridRowGap: "40px",
+      gridRowGap: "20px",
       gridBlocks: {
         [TopStoriesV2DefconGridPositions.Defcon]: gridBlock(1, 1, 1, 3, []),
         [TopStoriesV2DefconGridPositions.TopOne]: gridBlock(2, 1, 3, 1, []),
