@@ -92,4 +92,16 @@ describe("DailyFixComponent", () => {
       expect(image.caption).toBe(input.articles[index].headline);
     });
   });
+
+  it("should render when there are less than 4 articles", () => {
+    component.input = {
+      ...input,
+      articles: [articleContent(1)]
+    };
+
+    fixture.detectChanges();
+
+    const articles = fixture.debugElement.queryAll(By.css("article"));
+    expect(articles).toHaveLength(1);
+  });
 });
