@@ -8,6 +8,7 @@ import { IBreakingNews } from "./IBreakingNews";
 import { IBulletList } from "./IBulletList";
 import { IColumnContainer } from "./IColumnContainer";
 import { IContainer } from "./IContainer";
+import { IDailyFix } from "./IDailyFix";
 import { IDefcon } from "./IDefcon";
 import { IDefconArticleUnit } from "./IDefconArticleUnit";
 import { IErrorBlock } from "./IErrorBlock";
@@ -37,7 +38,6 @@ import { IResponsiveExternalContent } from "./IResponsiveExternalContent";
 import { IStickyContainer } from "./IStickyContainer";
 import { IVerticalArticleList } from "./IVerticalArticleList";
 import { IWeatherUnit } from "./IWeatherUnit";
-import { IDailyFix } from "./IDailyFix";
 
 export type IContentBlock =
   | IDefconArticleUnit
