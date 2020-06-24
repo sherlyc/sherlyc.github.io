@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 import { IDailyFix } from "../../../../common/__types__/IDailyFix";
+import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
 @Component({
   selector: "app-daily-fix",
