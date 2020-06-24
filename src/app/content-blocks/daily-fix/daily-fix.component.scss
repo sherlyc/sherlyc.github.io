@@ -4,7 +4,7 @@
   font-weight: 900;
   padding-bottom: 5px;
   border-bottom: 3px solid #999999;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 a {
@@ -20,12 +20,17 @@ a {
 }
 
 .articles {
-  padding-bottom: 10px;
   border-bottom: 1px solid #f0f0f0;
 
+  article {
+    flex: 1;
+    margin-bottom: 10px;
+  }
   .headline {
     font-size: 20px;
     font-weight: 700;
+    text-transform: lowercase;
+    margin-bottom: 6px;
     color: #999999;
   }
 }

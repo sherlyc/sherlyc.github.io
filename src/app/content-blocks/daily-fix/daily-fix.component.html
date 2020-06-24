@@ -4,7 +4,7 @@
     <article *ngFor="let article of input.articles.slice(0, 2)">
       <a href="{{ article.linkUrl }}" appOpenExternalLink="{{ article.linkUrl }}" (click)="sendAnalytics(article)">
         <div class="headline">{{ article.headline }}</div>
-        <img class="image" [src]="article.image.sixteenByNine" />
+        <app-fluid-image [imageSrc]="article.image.sixteenByNine" [caption]="article.headline"></app-fluid-image>
       </a>
     </article>
   </div>
@@ -12,7 +12,7 @@
     <article *ngFor="let article of input.articles.slice(2, 4)">
       <a href="{{ article.linkUrl }}" appOpenExternalLink="{{ article.linkUrl }}" (click)="sendAnalytics(article)">
         <div class="headline">{{ article.headline }}</div>
-        <img class="image" [src]="article.image.sixteenByNine" />
+        <app-fluid-image [imageSrc]="article.image.sixteenByNine" [caption]="article.headline"></app-fluid-image>
       </a>
     </article>
   </div>
