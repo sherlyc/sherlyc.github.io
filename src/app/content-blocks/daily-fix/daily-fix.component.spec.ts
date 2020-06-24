@@ -7,9 +7,9 @@ import { ContentBlockType } from "../../../../common/__types__/ContentBlockType"
 import { IDailyFix } from "../../../../common/__types__/IDailyFix";
 import { IHomepageArticleContent } from "../../../../common/__types__/IHomepageArticleContent";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { DailyFixComponent } from "./daily-fix.component";
-import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 
 describe("DailyFixComponent", () => {
   let component: DailyFixComponent;
