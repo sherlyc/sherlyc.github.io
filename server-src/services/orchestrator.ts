@@ -143,6 +143,14 @@ export const newPage = (): HandlerInput[] => {
           sourceId: Strap.National
         },
         {
+          type: HandlerInputType.NewsSixV2,
+          displayName: "world",
+          color: AccentColor.Denim,
+          linkUrl: "/" + Section.World,
+          strapName: `${homepageV2AdPrefix}World`,
+          sourceId: Strap.World
+        },
+        {
           type: HandlerInputType.MostRead,
           displayName: "most read",
           strapName: `${homepageV2AdPrefix}MostRead`
@@ -150,14 +158,6 @@ export const newPage = (): HandlerInput[] => {
         {
           type: HandlerInputType.PlayStuff,
           total: 8
-        },
-        {
-          type: HandlerInputType.NewsSixV2,
-          displayName: "world",
-          color: AccentColor.Denim,
-          linkUrl: "/" + Section.World,
-          strapName: `${homepageV2AdPrefix}World`,
-          sourceId: Strap.World
         },
         {
           type: HandlerInputType.NewsSixV2,
@@ -240,7 +240,43 @@ export const newPage = (): HandlerInput[] => {
           articleCount: 4
         },
         {
+          type: HandlerInputType.TitleSection,
+          displayName: "one news",
+          displayNameColor: "black",
+          linkUrl: "https://play.stuff.co.nz/page/channel-onenews",
+          content: {
+            type: HandlerInputType.ResponsiveExternalContent,
+            lazyLoad: true,
+            url:
+              "https://www.playwidget.stuff.co.nz/grid/5d3fcb25a0e845001caee780",
+            mobile: {
+              height: "calc(35% + 35px)",
+              width: "100%",
+              margin: "0 -10px 20px"
+            },
+            tablet: {
+              height: "170px",
+              width: "100%",
+              margin: "0 -10px 40px"
+            },
+            desktop: {
+              height: "170px",
+              width: "100%",
+              margin: "0 -10px 60px"
+            }
+          }
+        },
+        {
           type: HandlerInputType.Partner
+        },
+        {
+          type: HandlerInputType.Strips,
+          displayName: "",
+          color: AccentColor.Orange,
+          sourceId: Strap.SponsoredContent,
+          strapName: Strap.SponsoredContent,
+          articleCount: 4,
+          articleFormat: ContentBlockType.HalfWidthImageArticleUnit
         },
         {
           type: HandlerInputType.Brand,
