@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { NavigationStart } from "@angular/router";
-import { Subject } from "rxjs";
+import { from, Subject, zip } from "rxjs";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IPage } from "../../../../../common/__types__/IPage";
 import { AdService } from "../../../services/ad/ad.service";
@@ -9,6 +9,8 @@ import { AnalyticsService } from "../../../services/analytics/analytics.service"
 import { ContentRetrieverService } from "../../../services/content-retriever/content-retriever.service";
 import { CorrelationService } from "../../../services/correlation/correlation.service";
 import { EventsService } from "../../../services/events/events.service";
+import { FeatureSwitchService } from "../../../services/feature-switch/feature-switch.service";
+import { RuntimeService } from "../../../services/runtime/runtime.service";
 import { SeoService } from "../../../services/seo/seo.service";
 
 @Component({
@@ -25,7 +27,9 @@ export class PageComponent implements OnInit {
     private correlationService: CorrelationService,
     private eventsService: EventsService,
     private analyticsService: AnalyticsService,
-    private seoService: SeoService
+    private seoService: SeoService,
+    private featureSwitchService: FeatureSwitchService,
+    private runtime: RuntimeService
   ) {
     this.navigationStartSubject = this.eventsService.getEventSubject().NavigationStart;
   }
@@ -42,12 +46,23 @@ export class PageComponent implements OnInit {
   getData() {
     this.correlationService.generatePageScopedId();
     this.seoService.reset();
-    this.contentRetriever.getContent().subscribe(async (page: IPage) => {
-      this.correlationService.setApiRequestId(page.apiRequestId);
-      this.title.setTitle(page.title);
-      this.contentBlocks = page.content;
-      this.adService.notify();
-      this.analyticsService.trackPageByNielsen();
-    });
+    if (this.runtime.isBrowser()) {
+      zip(
+        this.contentRetriever.getContent(),
+        from(this.featureSwitchService.getFeatures())
+      ).subscribe(([page, features]) => this.afterDataRetrieval(page));
+    } else {
+      this.contentRetriever
+        .getContent()
+        .subscribe((page) => this.afterDataRetrieval(page));
+    }
+  }
+
+  private afterDataRetrieval(page: IPage) {
+    this.correlationService.setApiRequestId(page.apiRequestId);
+    this.title.setTitle(page.title);
+    this.contentBlocks = page.content;
+    this.adService.notify();
+    this.analyticsService.trackPageByNielsen();
   }
 }

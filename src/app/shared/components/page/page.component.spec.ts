@@ -11,6 +11,7 @@ import { AnalyticsService } from "../../../services/analytics/analytics.service"
 import { ContentRetrieverService } from "../../../services/content-retriever/content-retriever.service";
 import { CorrelationService } from "../../../services/correlation/correlation.service";
 import { EventsService } from "../../../services/events/events.service";
+import { FeatureSwitchService } from "../../../services/feature-switch/feature-switch.service";
 import { LoggerService } from "../../../services/logger/logger.service";
 import { mockService, ServiceMock } from "../../../services/mocks/MockService";
 import { RuntimeService } from "../../../services/runtime/runtime.service";
@@ -29,6 +30,7 @@ describe("PageComponent", () => {
   let loggerService: ServiceMock<LoggerService>;
   let runtimeService: ServiceMock<RuntimeService>;
   let seoService: ServiceMock<SeoService>;
+  let featureSwitchService: ServiceMock<FeatureSwitchService>;
 
   const mockContentBlocks: IContentBlock[] = ([
     {
@@ -84,6 +86,10 @@ describe("PageComponent", () => {
         {
           provide: SeoService,
           useClass: mockService(SeoService)
+        },
+        {
+          provide: FeatureSwitchService,
+          useClass: mockService(FeatureSwitchService)
         }
       ],
       schemas: [NO_ERRORS_SCHEMA]
@@ -117,6 +123,14 @@ describe("PageComponent", () => {
       RuntimeService
     >;
     seoService = TestBed.inject(SeoService) as ServiceMock<SeoService>;
+    featureSwitchService = TestBed.inject(FeatureSwitchService) as ServiceMock<
+      FeatureSwitchService
+    >;
+    featureSwitchService.getFeatures.mockResolvedValue({
+      HomepageV2: true,
+      Placeholder: false
+    });
+    runtimeService.isBrowser.mockReturnValue(true);
   });
 
   afterEach(() => {
@@ -144,10 +158,10 @@ describe("PageComponent", () => {
     );
 
     component.getData();
-
-    fixture.detectChanges();
-
-    assertsForSuccessfulRetrieval();
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      assertsForSuccessfulRetrieval();
+    });
   });
 
   it('should render a list of content block when router navigates to "/"', () => {
@@ -177,9 +191,11 @@ describe("PageComponent", () => {
     expect(getDataSpy).toBeCalledTimes(2);
     expect(contentRetrieverMock.getContent).toBeCalledTimes(2);
     expect(seoService.reset).toBeCalledTimes(2);
-    fixture.detectChanges();
 
-    assertsForSuccessfulRetrieval();
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      assertsForSuccessfulRetrieval();
+    });
   });
 
   it("should not render any content block when the retriever fails to get content", () => {
@@ -223,9 +239,11 @@ describe("PageComponent", () => {
         apiRequestId: ""
       })
     );
-    fixture.detectChanges();
+    fixture.detectChanges(); // trigger ngInit()
 
-    expect(adServiceMock.notify).toHaveBeenCalled();
+    fixture.whenStable().then(() => {
+      expect(adServiceMock.notify).toHaveBeenCalled();
+    });
   });
 
   it("should post nielsen tracking record when the page rendering finishes", () => {
@@ -237,9 +255,42 @@ describe("PageComponent", () => {
         apiRequestId: ""
       })
     );
+    fixture.detectChanges(); // trigger ngInit()
+
+    fixture.whenStable().then(() => {
+      expect(analyticsServiceMock.trackPageByNielsen).toHaveBeenCalled();
+    });
+  });
+
+  it("should not render when feature switch is not ready", () => {
+    contentRetrieverMock.getContent.mockReturnValue(
+      of({
+        title: "",
+        version: "",
+        content: mockContentBlocks,
+        apiRequestId: ""
+      })
+    );
+    featureSwitchService.getFeatures.mockRejectedValue("Error");
+
+    component.getData();
+    assertsForFailedRetrieval();
+  });
+
+  it("should not wait feature switch when run in server side", () => {
+    contentRetrieverMock.getContent.mockReturnValue(
+      of({
+        title: "",
+        version: "",
+        content: mockContentBlocks,
+        apiRequestId: ""
+      })
+    );
+    runtimeService.isBrowser.mockReturnValue(false);
+
     fixture.detectChanges();
 
-    expect(analyticsServiceMock.trackPageByNielsen).toHaveBeenCalled();
+    expect(featureSwitchService.getFeatures).not.toHaveBeenCalled();
   });
 
   function assertsForSuccessfulRetrieval() {
