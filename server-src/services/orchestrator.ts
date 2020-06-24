@@ -62,10 +62,10 @@ const billboard = (prefix: string): IContentBlockHandlerInput => ({
   ]
 });
 
-const interpolateBillboards = (
-  handlers: HandlerInput[],
-  ad: HandlerInput
-) => [...flatMap(handlers, (handler) => [ad, handler]), ad];
+const interpolateBillboards = (handlers: HandlerInput[], ad: HandlerInput) => [
+  ...flatMap(handlers, (handler) => [ad, handler]),
+  ad
+];
 
 export const newPage = (): HandlerInput[] => {
   const homepageV2: HandlerInput[] = [
@@ -91,6 +91,86 @@ export const newPage = (): HandlerInput[] => {
     billboard(homepageV2AdPrefix),
     {
       type: HandlerInputType.Weather
+    },
+    {
+      type: HandlerInputType.ContentBlockHandler,
+      contentBlocks: [
+        {
+          type: ContentBlockType.DailyFix,
+          articles: [
+            {
+              id: `1`,
+              headline: `Newsletters`,
+              title: `title 1`,
+              byline: `byline 1`,
+              introText: `introText 1`,
+              linkUrl: `linkUrl/1`,
+              image: {
+                defcon: `defcon1.jpg`,
+                sixteenByNine:
+                  "https://resources.stuff.co.nz/content/dam/images/1/i/0/n/m/n/image.related.StuffLandscapeSixteenByNine.418x235.1i1ea5.png/1490146906731.jpg"
+              },
+              lastPublishedTime: 123,
+              headlineFlags: [],
+              color: AccentColor.CuriousBlue,
+              category: { name: "National", url: "/national/" }
+            },
+            {
+              id: `1`,
+              headline: `Puzzles`,
+              title: `title 1`,
+              byline: `byline 1`,
+              introText: `introText 1`,
+              linkUrl: `linkUrl/1`,
+              image: {
+                defcon: `defcon1.jpg`,
+                sixteenByNine:
+                  "https://resources.stuff.co.nz/content/dam/images/1/i/0/n/m/n/image.related.StuffLandscapeSixteenByNine.418x235.1i1ea5.png/1490146906731.jpg"
+              },
+              lastPublishedTime: 123,
+              headlineFlags: [],
+              color: AccentColor.CuriousBlue,
+              category: { name: "National", url: "/national/" }
+            },
+            {
+              id: `1`,
+              headline: `Cartoons`,
+              title: `title 1`,
+              byline: `byline 1`,
+              introText: `introText 1`,
+              linkUrl: `linkUrl/1`,
+              image: {
+                defcon: `defcon1.jpg`,
+                sixteenByNine:
+                  "https://resources.stuff.co.nz/content/dam/images/1/i/0/n/m/n/image.related.StuffLandscapeSixteenByNine.418x235.1i1ea5.png/1490146906731.jpg"
+              },
+              lastPublishedTime: 123,
+              headlineFlags: [],
+              color: AccentColor.CuriousBlue,
+              category: { name: "National", url: "/national/" }
+            },
+            {
+              id: `1`,
+              headline: `Quizzes`,
+              title: `title 1`,
+              byline: `byline 1`,
+              introText: `introText 1`,
+              linkUrl: `linkUrl/1`,
+              image: {
+                defcon: `defcon1.jpg`,
+                sixteenByNine:
+                  "https://resources.stuff.co.nz/content/dam/images/1/i/0/n/m/n/image.related.StuffLandscapeSixteenByNine.418x235.1i1ea5.png/1490146906731.jpg"
+              },
+              lastPublishedTime: 123,
+              headlineFlags: [],
+              color: AccentColor.CuriousBlue,
+              category: { name: "National", url: "/national/" }
+            }
+          ],
+          strapName: "dailyfix",
+          displayName: "daily fix"
+        }
+      ]
     },
     {
       type: HandlerInputType.TopStoriesV2,
