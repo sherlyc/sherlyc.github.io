@@ -37,6 +37,7 @@ import { IResponsiveExternalContent } from "./IResponsiveExternalContent";
 import { IStickyContainer } from "./IStickyContainer";
 import { IVerticalArticleList } from "./IVerticalArticleList";
 import { IWeatherUnit } from "./IWeatherUnit";
+import { IDailyFix } from "./IDailyFix";
 
 export type IContentBlock =
   | IDefconArticleUnit
@@ -77,4 +78,5 @@ export type IContentBlock =
   | IPlayStuff
   | IMostReadList
   | IDefcon
-  | IOpinion;
+  | IOpinion
+  | IDailyFix;
