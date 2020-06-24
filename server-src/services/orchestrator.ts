@@ -62,10 +62,10 @@ const billboard = (prefix: string): IContentBlockHandlerInput => ({
   ]
 });
 
-const interpolateBillboards = (
-  handlers: HandlerInput[],
-  ad: HandlerInput
-) => [...flatMap(handlers, (handler) => [ad, handler]), ad];
+const interpolateBillboards = (handlers: HandlerInput[], ad: HandlerInput) => [
+  ...flatMap(handlers, (handler) => [ad, handler]),
+  ad
+];
 
 export const newPage = (): HandlerInput[] => {
   const homepageV2: HandlerInput[] = [
