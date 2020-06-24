@@ -1,7 +1,7 @@
 @import "src/styles/break-points";
+@import "src/styles/spacings";
 
 div {
-  margin: 0 -10px;
   padding-left: 10px;
   border-bottom: 3px solid;
   font-size: 40px;
@@ -13,8 +13,21 @@ div {
   }
 
   @include mobile {
-    padding-left: 10px;
-    border-bottom: 3px solid;
+    margin-left: -$mobile-page-margin;
+    margin-right: -$mobile-page-margin;
+    padding-left: $mobile-page-margin;
+  }
+
+  @include tablet {
+    margin-left: -$tablet-page-margin;
+    margin-right: -$tablet-page-margin;
+    padding-left: $tablet-page-margin;
+  }
+
+  @include desktop {
+    margin-left: -$desktop-page-margin;
+    margin-right: -$desktop-page-margin;
+    padding-left: $desktop-page-margin;
   }
 }
 
