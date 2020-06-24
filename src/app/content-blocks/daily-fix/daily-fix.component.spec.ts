@@ -9,6 +9,7 @@ import { IHomepageArticleContent } from "../../../../common/__types__/IHomepageA
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { DailyFixComponent } from "./daily-fix.component";
+import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 
 describe("DailyFixComponent", () => {
   let component: DailyFixComponent;
@@ -103,5 +104,22 @@ describe("DailyFixComponent", () => {
 
     const articles = fixture.debugElement.queryAll(By.css("article"));
     expect(articles).toHaveLength(1);
+  });
+
+  it("should send analytics when clicking on article", async () => {
+    component.input = input;
+
+    fixture.detectChanges();
+
+    const articles = fixture.debugElement.queryAll(By.css("article a"));
+    articles.forEach((article, index) => {
+      article.nativeElement.click();
+      expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+        type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
+        strapName: input.strapName,
+        articleHeadline: input.articles[index].title,
+        articleId: input.articles[index].id
+      });
+    });
   });
 });
