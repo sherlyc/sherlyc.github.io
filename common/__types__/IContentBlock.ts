@@ -29,6 +29,7 @@ import { IModuleSubtitle } from "./IModuleSubtitle";
 import { IModuleTitle } from "./IModuleTitle";
 import { IMostReadList } from "./IMostReadList";
 import { IOli } from "./IOli";
+import { IOpinion } from "./IOpinion";
 import { IPartnerContent } from "./IPartnerContent";
 import { IPlayStuff } from "./IPlayStuff";
 import { IResponsiveBigImageArticleUnit } from "./IResponsiveBigImageArticleUnit";
@@ -75,4 +76,5 @@ export type IContentBlock =
   | IPartnerContent
   | IPlayStuff
   | IMostReadList
-  | IDefcon;
+  | IDefcon
+  | IOpinion;

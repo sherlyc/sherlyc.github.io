@@ -125,6 +125,11 @@ export const newPage = (): HandlerInput[] => {
           sourceId: Strap.Coronavirus
         },
         {
+          type: HandlerInputType.Opinion,
+          strapName: `${homepageV2AdPrefix}Perspectives`,
+          displayName: "perspectives"
+        },
+        {
           type: HandlerInputType.NewsSixV2,
           displayName: "national",
           color: AccentColor.DeepBlue,

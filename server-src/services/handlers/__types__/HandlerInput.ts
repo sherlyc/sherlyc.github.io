@@ -33,6 +33,7 @@ import { INewsSixGridHandlerInput } from "./INewsSixGridHandlerInput";
 import { INewsSixGridV2HandlerInput } from "./INewsSixGridV2HandlerInput";
 import { INewsSixHandlerInput } from "./INewsSixHandlerInput";
 import { INewsSixV2HandlerInput } from "./INewsSixV2HandlerInput";
+import { IOpinionHandlerInput } from "./IOpinionHandlerInput";
 import { IPageHandlerInput } from "./IPageHandlerInput";
 import { IPartnerHandlerInput } from "./IPartnerHandlerInput";
 import { IPlayStuffHandlerInput } from "./IPlayStuffHandlerInput";
@@ -113,4 +114,5 @@ export type HandlerInput =
   | IEditorsPicksHandlerInput
   | IEditorsPicksGridHandlerInput
   | IMostReadGridHandlerInput
-  | IMostReadHandlerInput;
+  | IMostReadHandlerInput
+  | IOpinionHandlerInput;
