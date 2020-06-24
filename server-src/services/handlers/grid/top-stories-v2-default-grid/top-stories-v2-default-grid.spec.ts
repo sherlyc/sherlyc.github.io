@@ -159,7 +159,7 @@ describe("Top Stories V2 Grid Handler", () => {
           2,
           []
         ),
-        [TopStoriesV2DefaultGridPositions.LowerRight]: gridBlock(8, 3, 5, 1, [])
+        [TopStoriesV2DefaultGridPositions.LowerRight]: gridBlock(8, 3, 4, 1, [])
       }
     };
 
