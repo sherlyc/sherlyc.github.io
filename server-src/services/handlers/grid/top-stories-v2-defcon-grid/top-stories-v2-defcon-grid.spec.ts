@@ -2,6 +2,7 @@ import { repeat } from "lodash-es";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import {
   Border,
+  GridContainerVariation,
   IGridContainer
 } from "../../../../../common/__types__/IGridContainer";
 import { gridBlock } from "../../../adapters/grid/grid-block";
@@ -37,9 +38,12 @@ describe("Top Stories Defcon grid", () => {
     }
   };
 
-  it("should return mobile grid config", async () => {
-    const [grid] = await topStoriesV2Defcon(handlerRunnerMock, input, params);
-    expect((grid as IGridContainer).mobile).toEqual({
+  it("should return grid config", async () => {
+    const { mobile, tablet, desktop, variation } = (
+      await topStoriesV2Defcon(handlerRunnerMock, input, params)
+    )[0] as IGridContainer;
+
+    expect(mobile).toEqual({
       gridTemplateColumns: "1fr 1fr",
       gridTemplateRows: repeat(" auto", 12).substring(1),
       gridColumnGap: "20px",
@@ -79,11 +83,8 @@ describe("Top Stories Defcon grid", () => {
         [TopStoriesV2DefconGridPositions.LowerRight]: gridBlock(12, 1, 1, 2, [])
       }
     });
-  });
 
-  it("should return tablet grid config", async () => {
-    const [grid] = await topStoriesV2Defcon(handlerRunnerMock, input, params);
-    expect((grid as IGridContainer).tablet).toEqual({
+    expect(tablet).toEqual({
       gridTemplateColumns: "1fr 1fr 300px",
       gridTemplateRows: repeat(" auto", 11).substring(1),
       gridColumnGap: "20px",
@@ -123,11 +124,8 @@ describe("Top Stories Defcon grid", () => {
         [TopStoriesV2DefconGridPositions.LowerRight]: gridBlock(8, 3, 4, 1, [])
       }
     });
-  });
 
-  it("should return desktop grid config", async () => {
-    const [grid] = await topStoriesV2Defcon(handlerRunnerMock, input, params);
-    expect((grid as IGridContainer).desktop).toEqual({
+    expect(desktop).toEqual({
       gridTemplateColumns: "1fr 1fr 2fr 300px",
       gridTemplateRows: repeat(" auto", 8).substring(1),
       gridColumnGap: "20px",
@@ -155,5 +153,7 @@ describe("Top Stories Defcon grid", () => {
         [TopStoriesV2DefconGridPositions.LowerRight]: gridBlock(4, 4, 5, 1, [])
       }
     });
+
+    expect(variation).toBe(GridContainerVariation.Border);
   });
 });

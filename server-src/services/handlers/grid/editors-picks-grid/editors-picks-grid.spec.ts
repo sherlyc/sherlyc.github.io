@@ -1,6 +1,6 @@
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import {
-  Border,
+  GridContainerVariation,
   IGridContainer
 } from "../../../../../common/__types__/IGridContainer";
 import { gridBlock } from "../../../adapters/grid/grid-block";
@@ -32,33 +32,12 @@ describe("Editors Picks grid", () => {
     }
   };
 
-  it("should generate desktop grid", async () => {
-    const [grid] = await editorsPicksGrid(handlerRunnerMock, input, params);
+  it("should create grid config", async () => {
+    const { mobile, tablet, desktop, variation } = (
+      await editorsPicksGrid(handlerRunnerMock, input, params)
+    )[0] as IGridContainer;
 
-    expect((grid as IGridContainer).desktop).toEqual({
-      gridTemplateColumns: "1fr 1fr 1fr 1fr 300px",
-      gridTemplateRows: "auto auto auto",
-      gridRowGap: "20px",
-      gridColumnGap: "20px",
-      gridBlocks: {
-        [EditorsPicksGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 5, []),
-        [EditorsPicksGridPositions.FirstRowOne]: gridBlock(2, 1, 1, 1, []),
-        [EditorsPicksGridPositions.FirstRowTwo]: gridBlock(2, 2, 1, 1, []),
-        [EditorsPicksGridPositions.FirstRowThree]: gridBlock(2, 3, 1, 1, []),
-        [EditorsPicksGridPositions.FirstRowFour]: gridBlock(2, 4, 1, 1, []),
-        [EditorsPicksGridPositions.SecondRowOne]: gridBlock(3, 1, 1, 1, []),
-        [EditorsPicksGridPositions.SecondRowTwo]: gridBlock(3, 2, 1, 1, []),
-        [EditorsPicksGridPositions.SecondRowThree]: gridBlock(3, 3, 1, 1, []),
-        [EditorsPicksGridPositions.SecondRowFour]: gridBlock(3, 4, 1, 1, []),
-        [EditorsPicksGridPositions.Ad]: gridBlock(2, 5, 2, 1, [])
-      }
-    });
-  });
-
-  it("should generate mobile grid", async () => {
-    const [grid] = await editorsPicksGrid(handlerRunnerMock, input, params);
-
-    expect((grid as IGridContainer).mobile).toEqual({
+    expect(mobile).toEqual({
       gridTemplateColumns: "1fr 1fr",
       gridTemplateRows: "auto auto auto auto auto auto",
       gridRowGap: "20px",
@@ -76,12 +55,8 @@ describe("Editors Picks grid", () => {
         [EditorsPicksGridPositions.Ad]: gridBlock(6, 1, 1, 2, [])
       }
     });
-  });
 
-  it("should generate tablet grid", async () => {
-    const [grid] = await editorsPicksGrid(handlerRunnerMock, input, params);
-
-    expect((grid as IGridContainer).tablet).toEqual({
+    expect(tablet).toEqual({
       gridTemplateColumns: "1fr 1fr 300px",
       gridTemplateRows: "auto auto auto auto auto",
       gridRowGap: "20px",
@@ -99,5 +74,26 @@ describe("Editors Picks grid", () => {
         [EditorsPicksGridPositions.Ad]: gridBlock(2, 3, 4, 1, [])
       }
     });
+
+    expect(desktop).toEqual({
+      gridTemplateColumns: "1fr 1fr 1fr 1fr 300px",
+      gridTemplateRows: "auto auto auto",
+      gridRowGap: "20px",
+      gridColumnGap: "20px",
+      gridBlocks: {
+        [EditorsPicksGridPositions.ModuleTitle]: gridBlock(1, 1, 1, 5, []),
+        [EditorsPicksGridPositions.FirstRowOne]: gridBlock(2, 1, 1, 1, []),
+        [EditorsPicksGridPositions.FirstRowTwo]: gridBlock(2, 2, 1, 1, []),
+        [EditorsPicksGridPositions.FirstRowThree]: gridBlock(2, 3, 1, 1, []),
+        [EditorsPicksGridPositions.FirstRowFour]: gridBlock(2, 4, 1, 1, []),
+        [EditorsPicksGridPositions.SecondRowOne]: gridBlock(3, 1, 1, 1, []),
+        [EditorsPicksGridPositions.SecondRowTwo]: gridBlock(3, 2, 1, 1, []),
+        [EditorsPicksGridPositions.SecondRowThree]: gridBlock(3, 3, 1, 1, []),
+        [EditorsPicksGridPositions.SecondRowFour]: gridBlock(3, 4, 1, 1, []),
+        [EditorsPicksGridPositions.Ad]: gridBlock(2, 5, 2, 1, [])
+      }
+    });
+
+    expect(variation).toBe(GridContainerVariation.Border);
   });
 });

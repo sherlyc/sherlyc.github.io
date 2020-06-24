@@ -40,7 +40,8 @@ export interface IGridConfig {
 }
 
 export enum GridContainerVariation {
-  GrayBackground = "GrayBackground"
+  GrayBackground = "GrayBackground",
+  Border = "Border"
 }
 
 export interface IGridContainer {

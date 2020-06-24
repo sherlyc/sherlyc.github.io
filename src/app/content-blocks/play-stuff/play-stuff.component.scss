@@ -5,7 +5,16 @@
   width: 100%;
   background-color: #1a242a;
   padding: 10px;
-  margin-bottom: 30px;
+
+  @include mobile() {
+    margin-bottom: 20px;
+  }
+  @include tablet() {
+    margin-bottom: 40px;
+  }
+  @include desktop() {
+    margin-bottom: 40px;
+  }
 }
 
 @mixin head($fontSize, $titleTop, $logoHeight, $logoTop) {

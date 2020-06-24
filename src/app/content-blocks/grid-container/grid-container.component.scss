@@ -1,3 +1,5 @@
+@import "src/styles/break-points";
+
 :host {
   display: block;
 }
@@ -44,4 +46,19 @@ table {
 .variation-graybackground {
   background-color: #f7f7f7;
   padding: 20px;
+}
+
+.variation-border {
+  padding-bottom: 10px;
+  border-bottom: 2px solid #f0f0f0;
+
+  @include mobile() {
+    margin-bottom: 20px;
+  }
+  @include tablet() {
+    margin-bottom: 40px;
+  }
+  @include desktop() {
+    margin-bottom: 40px;
+  }
 }
