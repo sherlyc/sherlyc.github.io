@@ -8,36 +8,35 @@ import { AnalyticsEventsType } from "../../services/analytics/__types__/Analytic
 @Component({
   selector: "app-skybox",
   templateUrl: "./skybox.component.html",
-  styleUrls: ["./skybox.component.scss"],
+  styleUrls: ["./skybox.component.scss"]
 })
 export class SkyboxComponent {
-
   constructor(private analyticsService: AnalyticsService) {}
   @Input()
   input!: ISkybox;
   @ViewChild("scroller") scroller!: ElementRef;
-  @ViewChild("leftButton") leftButton!: ElementRef;
-  @ViewChild("rightButton") rightButton!: ElementRef;
 
   buttonState: "start" | "middle" | "end" = "start";
 
   scroll = debounce(() => {
     const articlesWidth = this.scroller.nativeElement.scrollWidth;
     const scrollPosition = this.scroller.nativeElement.scrollLeft;
-    const articleWidth = this.scroller.nativeElement.getBoundingClientRect().width;
+    const articleWidth = this.scroller.nativeElement.getBoundingClientRect()
+      .width;
 
     if (scrollPosition === 0) {
-        this.buttonState = "start";
-      } else if (scrollPosition >= articlesWidth - articleWidth) {
-        this.buttonState = "end";
-      } else {
-        this.buttonState = "middle";
-      }
+      this.buttonState = "start";
+    } else if (scrollPosition >= articlesWidth - articleWidth) {
+      this.buttonState = "end";
+    } else {
+      this.buttonState = "middle";
+    }
   });
 
   scrollLeft(): void {
     const scrollPosition = this.scroller.nativeElement.scrollLeft;
-    const articleWidth = this.scroller.nativeElement.getBoundingClientRect().width;
+    const articleWidth = this.scroller.nativeElement.getBoundingClientRect()
+      .width;
 
     this.scroller.nativeElement.scrollTo({
       left: scrollPosition - articleWidth,
@@ -47,7 +46,8 @@ export class SkyboxComponent {
 
   scrollRight(): void {
     const scrollPosition = this.scroller.nativeElement.scrollLeft;
-    const articleWidth = this.scroller.nativeElement.getBoundingClientRect().width;
+    const articleWidth = this.scroller.nativeElement.getBoundingClientRect()
+      .width;
 
     this.scroller.nativeElement.scrollTo({
       left: scrollPosition + articleWidth,
