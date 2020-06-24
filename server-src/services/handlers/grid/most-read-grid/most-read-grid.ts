@@ -2,6 +2,7 @@ import { ContentBlockType } from "../../../../../common/__types__/ContentBlockTy
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import {
   Border,
+  GridContainerVariation,
   IGridBlocks
 } from "../../../../../common/__types__/IGridContainer";
 import { gridBlock } from "../../../adapters/grid/grid-block";
@@ -56,7 +57,8 @@ export default async function (
         gridColumnGap: "20px",
         gridRowGap: "20px",
         gridBlocks: desktop
-      }
+      },
+      variation: GridContainerVariation.Border
     }
   ];
 }

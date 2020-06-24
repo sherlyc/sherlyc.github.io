@@ -1,6 +1,6 @@
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { Border } from "../../../../../common/__types__/IGridContainer";
+import { GridContainerVariation } from "../../../../../common/__types__/IGridContainer";
 import { IParams } from "../../../__types__/IParams";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
@@ -72,7 +72,7 @@ describe("News Six Grid V2 handler", () => {
               rowSpan: 1,
               columnStart: 1,
               columnSpan: 2,
-              border: [Border.bottom]
+              border: []
             },
             [NewsSixV2GridPositions.Three]: {
               rowStart: 4,
@@ -93,14 +93,14 @@ describe("News Six Grid V2 handler", () => {
               rowSpan: 1,
               columnStart: 1,
               columnSpan: 1,
-              border: [Border.bottom]
+              border: []
             },
             [NewsSixV2GridPositions.Six]: {
               rowStart: 6,
               rowSpan: 1,
               columnStart: 2,
               columnSpan: 1,
-              border: [Border.bottom]
+              border: []
             }
           }
         },
@@ -129,7 +129,7 @@ describe("News Six Grid V2 handler", () => {
               rowSpan: 1,
               columnStart: 2,
               columnSpan: 1,
-              border: [Border.bottom]
+              border: []
             },
             [NewsSixV2GridPositions.Three]: {
               rowStart: 3,
@@ -186,14 +186,14 @@ describe("News Six Grid V2 handler", () => {
               rowSpan: 1,
               columnStart: 2,
               columnSpan: 1,
-              border: [Border.bottom]
+              border: []
             },
             [NewsSixV2GridPositions.Three]: {
               rowStart: 3,
               rowSpan: 1,
               columnStart: 2,
               columnSpan: 1,
-              border: [Border.bottom]
+              border: []
             },
             [NewsSixV2GridPositions.Four]: {
               rowStart: 2,
@@ -217,7 +217,8 @@ describe("News Six Grid V2 handler", () => {
               border: []
             }
           }
-        }
+        },
+        variation: GridContainerVariation.Border
       }
     ];
 

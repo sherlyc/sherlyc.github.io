@@ -51,6 +51,15 @@ export default async (params: IParams): Promise<IPage> => {
 
 const homepageAdPrefix = "homepage";
 const homepageV2AdPrefix = "homepagev2";
+const billboard = (prefix: string): IContentBlockHandlerInput => ({
+  type: HandlerInputType.ContentBlockHandler,
+  contentBlocks: [
+    {
+      type: ContentBlockType.BasicAdUnit,
+      context: `${prefix}Billboard`
+    }
+  ]
+});
 
 export const newPage = (): HandlerInput[] => {
   const page: HandlerInput[] = [
@@ -79,7 +88,7 @@ export const newPage = (): HandlerInput[] => {
     {
       type: HandlerInputType.Feature,
       name: FeatureName.HomepageV2,
-      content: [
+      content: ([
         {
           type: HandlerInputType.TopStoriesV2,
           strapName: `${homepageV2AdPrefix}TopStoriesDefaultOne`,
@@ -232,7 +241,12 @@ export const newPage = (): HandlerInput[] => {
           type: HandlerInputType.Brand,
           module: BrandModule.Network
         }
-      ],
+      ] as HandlerInput[]).reduce(
+        (acc: HandlerInput[], currentHandler: HandlerInput) => {
+          return [...acc, currentHandler, billboard(homepageV2AdPrefix)];
+        },
+        [billboard(homepageV2AdPrefix)]
+      ),
       fallback: []
     },
     {
@@ -559,21 +573,11 @@ export const newPage = (): HandlerInput[] => {
     }
   ];
 
-  const billboard: IContentBlockHandlerInput = {
-    type: HandlerInputType.ContentBlockHandler,
-    contentBlocks: [
-      {
-        type: ContentBlockType.BasicAdUnit,
-        context: `${homepageAdPrefix}Billboard`
-      }
-    ]
-  };
-
   return page.reduce(
     (acc: HandlerInput[], currentHandler: HandlerInput) => {
-      return [...acc, currentHandler, billboard];
+      return [...acc, currentHandler, billboard(homepageAdPrefix)];
     },
-    [billboard]
+    [billboard(homepageAdPrefix)]
   );
 };
 

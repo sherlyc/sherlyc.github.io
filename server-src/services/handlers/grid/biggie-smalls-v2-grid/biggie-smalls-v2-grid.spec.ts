@@ -3,6 +3,7 @@ import { ContentBlockType } from "../../../../../common/__types__/ContentBlockTy
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import {
   Border,
+  GridContainerVariation,
   IGridConfig,
   IGridContainer
 } from "../../../../../common/__types__/IGridContainer";
@@ -66,7 +67,7 @@ describe("Biggie Smalls V2 grid handler", () => {
       })
     );
 
-    const { mobile, tablet, desktop } = result[0] as IGridContainer;
+    const { mobile, tablet, desktop, variation } = result[0] as IGridContainer;
     const mobileConfig: IGridConfig = {
       gridTemplateColumns: "1fr 1fr",
       gridTemplateRows: repeat(" auto", 9).substring(1),
@@ -75,30 +76,14 @@ describe("Biggie Smalls V2 grid handler", () => {
       gridBlocks: {
         [BiggieSmallsV2GridPositions.ModuleTitle]: gridBlock(1, 1, 1, 2, []),
         [BiggieSmallsV2GridPositions.Highlight]: gridBlock(2, 1, 1, 2, []),
-        [BiggieSmallsV2GridPositions.LeftOne]: gridBlock(3, 1, 1, 1, [
-          Border.bottom
-        ]),
-        [BiggieSmallsV2GridPositions.LeftTwo]: gridBlock(3, 2, 1, 1, [
-          Border.bottom
-        ]),
-        [BiggieSmallsV2GridPositions.RightOne]: gridBlock(4, 1, 1, 2, [
-          Border.bottom
-        ]),
-        [BiggieSmallsV2GridPositions.RightTwo]: gridBlock(5, 1, 1, 2, [
-          Border.bottom
-        ]),
-        [BiggieSmallsV2GridPositions.RightThree]: gridBlock(6, 1, 1, 2, [
-          Border.bottom
-        ]),
-        [BiggieSmallsV2GridPositions.RightFour]: gridBlock(7, 1, 1, 2, [
-          Border.bottom
-        ]),
-        [BiggieSmallsV2GridPositions.RightFive]: gridBlock(8, 1, 1, 2, [
-          Border.bottom
-        ]),
-        [BiggieSmallsV2GridPositions.BannerAd]: gridBlock(9, 1, 1, 2, [
-          Border.bottom
-        ])
+        [BiggieSmallsV2GridPositions.LeftOne]: gridBlock(3, 1, 1, 1, []),
+        [BiggieSmallsV2GridPositions.LeftTwo]: gridBlock(3, 2, 1, 1, []),
+        [BiggieSmallsV2GridPositions.RightOne]: gridBlock(4, 1, 1, 2, []),
+        [BiggieSmallsV2GridPositions.RightTwo]: gridBlock(5, 1, 1, 2, []),
+        [BiggieSmallsV2GridPositions.RightThree]: gridBlock(6, 1, 1, 2, []),
+        [BiggieSmallsV2GridPositions.RightFour]: gridBlock(7, 1, 1, 2, []),
+        [BiggieSmallsV2GridPositions.RightFive]: gridBlock(8, 1, 1, 2, []),
+        [BiggieSmallsV2GridPositions.BannerAd]: gridBlock(9, 1, 1, 2, [])
       }
     };
 
@@ -110,22 +95,12 @@ describe("Biggie Smalls V2 grid handler", () => {
       gridBlocks: {
         [BiggieSmallsV2GridPositions.ModuleTitle]: gridBlock(1, 1, 1, 3, []),
         [BiggieSmallsV2GridPositions.Highlight]: gridBlock(2, 1, 5, 2, []),
-        [BiggieSmallsV2GridPositions.RightOne]: gridBlock(2, 3, 4, 1, [
-          Border.bottom
-        ]),
-        [BiggieSmallsV2GridPositions.LeftOne]: gridBlock(7, 1, 4, 1, [
-          Border.bottom
-        ]),
-        [BiggieSmallsV2GridPositions.LeftTwo]: gridBlock(7, 2, 4, 1, [
-          Border.bottom
-        ]),
+        [BiggieSmallsV2GridPositions.RightOne]: gridBlock(2, 3, 4, 1, []),
+        [BiggieSmallsV2GridPositions.LeftOne]: gridBlock(7, 1, 4, 1, []),
+        [BiggieSmallsV2GridPositions.LeftTwo]: gridBlock(7, 2, 4, 1, []),
         [BiggieSmallsV2GridPositions.RightTwo]: gridBlock(11, 1, 3, 1, []),
-        [BiggieSmallsV2GridPositions.RightThree]: gridBlock(11, 2, 1, 1, [
-          Border.bottom
-        ]),
-        [BiggieSmallsV2GridPositions.RightFour]: gridBlock(12, 2, 1, 1, [
-          Border.bottom
-        ]),
+        [BiggieSmallsV2GridPositions.RightThree]: gridBlock(11, 2, 1, 1, []),
+        [BiggieSmallsV2GridPositions.RightFour]: gridBlock(12, 2, 1, 1, []),
         [BiggieSmallsV2GridPositions.RightFive]: gridBlock(13, 2, 1, 1, []),
         [BiggieSmallsV2GridPositions.BannerAd]: gridBlock(6, 3, 8, 1, [])
       }
@@ -139,27 +114,13 @@ describe("Biggie Smalls V2 grid handler", () => {
       gridBlocks: {
         [BiggieSmallsV2GridPositions.ModuleTitle]: gridBlock(1, 1, 1, 4, []),
         [BiggieSmallsV2GridPositions.Highlight]: gridBlock(2, 1, 5, 2, []),
-        [BiggieSmallsV2GridPositions.RightOne]: gridBlock(2, 3, 4, 1, [
-          Border.bottom
-        ]),
-        [BiggieSmallsV2GridPositions.LeftOne]: gridBlock(7, 1, 4, 1, [
-          Border.bottom
-        ]),
-        [BiggieSmallsV2GridPositions.LeftTwo]: gridBlock(7, 2, 4, 1, [
-          Border.bottom
-        ]),
-        [BiggieSmallsV2GridPositions.RightTwo]: gridBlock(6, 3, 2, 1, [
-          Border.bottom
-        ]),
-        [BiggieSmallsV2GridPositions.RightThree]: gridBlock(8, 3, 1, 1, [
-          Border.bottom
-        ]),
-        [BiggieSmallsV2GridPositions.RightFour]: gridBlock(9, 3, 1, 1, [
-          Border.bottom
-        ]),
-        [BiggieSmallsV2GridPositions.RightFive]: gridBlock(10, 3, 1, 1, [
-          Border.bottom
-        ]),
+        [BiggieSmallsV2GridPositions.RightOne]: gridBlock(2, 3, 4, 1, []),
+        [BiggieSmallsV2GridPositions.LeftOne]: gridBlock(7, 1, 4, 1, []),
+        [BiggieSmallsV2GridPositions.LeftTwo]: gridBlock(7, 2, 4, 1, []),
+        [BiggieSmallsV2GridPositions.RightTwo]: gridBlock(6, 3, 2, 1, []),
+        [BiggieSmallsV2GridPositions.RightThree]: gridBlock(8, 3, 1, 1, []),
+        [BiggieSmallsV2GridPositions.RightFour]: gridBlock(9, 3, 1, 1, []),
+        [BiggieSmallsV2GridPositions.RightFive]: gridBlock(10, 3, 1, 1, []),
         [BiggieSmallsV2GridPositions.BannerAd]: gridBlock(2, 4, 9, 1, [])
       }
     };
@@ -167,5 +128,6 @@ describe("Biggie Smalls V2 grid handler", () => {
     expect(mobile).toEqual(mobileConfig);
     expect(tablet).toEqual(tabletConfig);
     expect(desktop).toEqual(desktopConfig);
+    expect(variation).toEqual(GridContainerVariation.Border);
   });
 });

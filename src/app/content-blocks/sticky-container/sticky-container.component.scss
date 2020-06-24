@@ -3,8 +3,11 @@
 
 :host {
   display: block;
-  position: sticky;
+  height: 100%;
+}
 
+div {
+  position: sticky;
   @include mobile {
     top: $mobile-masthead-height;
   }

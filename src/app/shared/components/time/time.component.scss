@@ -1,17 +1,25 @@
 :host {
+  display: inline;
+  --timestamp-color: #d12421;
+  --timestamp-font-size: 12px;
+  --timestamp-font-weight: normal;
+}
+
+.wrapper {
   display: inline-flex;
   align-items: center;
-  vertical-align: middle;
-
-  --timestamp-size: 12px;
+  margin-bottom: 6px;
 }
 
 .time {
-  font-size: 12px;
-  font-size: var(--timestamp-size);
   vertical-align: top;
   display: inline-block;
+  color: #d12421;
+  color: var(--timestamp-color);
+  font-size: 12px;
+  font-size: var(--timestamp-font-size);
   font-weight: normal;
+  font-weight: var(--timestamp-font-weight);
 }
 
 .separator {
@@ -32,4 +40,8 @@
   border-radius: 50%;
   border: 1px solid;
   background-clip: content-box;
+  background-color: #d12421;
+  background-color: var(--timestamp-color);
+  border-color: #d12421;
+  border-color: var(--timestamp-color);
 }

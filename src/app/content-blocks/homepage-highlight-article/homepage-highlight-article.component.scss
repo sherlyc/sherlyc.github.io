@@ -2,6 +2,7 @@
 
 :host {
   display: block;
+  border-bottom: 1px solid #f0f0f0;
   height: 100%;
 }
 
@@ -9,73 +10,60 @@ article {
   height: 100%;
 }
 
-a {
+.content {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  text-decoration: none;
+  flex-grow: 1;
+}
 
+a {
+  display: flex;
+  text-decoration: none;
+  height: 100%;
+  flex-direction: column;
   &:hover {
     text-decoration: none;
   }
 }
 
-img {
-  width: 100%;
+.intro {
+  flex-grow: 1;
+  margin-bottom: 20px;
+  p {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #707070;
+    margin: 4px 0 0 0;
+  }
 }
 
 .image {
-  overflow: hidden;
-
+  margin-bottom: 6px;
   .border {
     height: 2px;
   }
 }
 
-app-headline {
-  margin-bottom: 4px;
-}
-
-.intro {
-  font-size: 15px;
-  margin: 0 0 20px 0;
-  color: #333;
-}
-
 .variation-lead {
   --title-size: 30px;
-
-  .content {
-    padding: 6px 0 20px;
-  }
-
   @include mobile {
     .image {
-      margin: 0 -10px;
+      margin: 0 -10px 6px;
     }
   }
 }
 
 .variation-featured {
   --title-size: 24px;
-
+  background-color: #f2f2f2;
   .content {
-    padding: 6px 10px 20px;
-    background-color: #f2f2f2;
+    padding: 0 10px;
   }
-
-  app-headline {
-    margin-bottom: 20px;
-  }
-
   app-tag-link {
-    margin: -6px 0 0 -10px;
-    padding: 6px 3px 0 10px;
+    margin-left: -10px;
+    padding: 6px 5px 0 10px;
     border-bottom-right-radius: 5px;
     background-color: white;
   }
-}
-
-app-time {
-  margin-top: 10px;
 }

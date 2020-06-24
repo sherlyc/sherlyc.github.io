@@ -6,10 +6,14 @@
       <app-fluid-image [imageSrc]="input.image?.mobile.src" [aspectRatio]="input.image?.mobile.aspectRatio" [caption]="input.headline"></app-fluid-image>
     </div>
     <div class="content">
-      <app-tag-link [color]="input.color" [name]="input.category.name" [url]="input.category.url"></app-tag-link>
+      <div>
+        <app-tag-link [color]="input.color" [name]="input.category.name" [url]="input.category.url"></app-tag-link>
+      </div>
       <app-headline [headline]="input.headline" [headlineFlags]="input.headlineFlags"></app-headline>
-      <p *ngIf="input.introText" class="intro">{{ input.introText }}</p>
-      <app-time [textColor]="'#ff433d'" [timestamp]="input.lastPublishedTime" [showBullet]="true"></app-time>
+      <div class="intro">
+        <p *ngIf="input.introText">{{ input.introText }}</p>
+      </div>
+      <app-time [timestamp]="input.lastPublishedTime" [showBullet]="true" [fontWeight]="700"></app-time>
     </div>
   </a>
 </article>

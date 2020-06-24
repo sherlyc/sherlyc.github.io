@@ -1,27 +1,46 @@
 @import "src/styles/break-points";
 
 :host {
+  display: block;
+  border-bottom: 1px solid #f0f0f0;
+  height: 100%;
   --title-size: 20px;
+}
+
+article {
+  height: 100%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 a {
   display: flex;
   text-decoration: none;
+  height: 100%;
   &:hover {
     text-decoration: none;
   }
 }
 
 .intro {
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 20px;
-  color: #333;
+  flex-grow: 1;
+  margin-bottom: 20px;
+  p {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #707070;
+    margin: 4px 0 0 0;
+  }
 }
 
 .image {
   width: 100%;
-
+  margin-bottom: 6px;
   .border {
     height: 2px;
   }
@@ -29,20 +48,22 @@ a {
 
 @mixin portrait {
   flex-direction: column;
-  .image {
-    margin-bottom: 5px;
-  }
 }
 
 @mixin landscape {
   flex-direction: row;
   .image {
-    margin-right: 10px;
+    margin-right: 15px;
     flex-basis: 33.33%;
   }
   .content {
     flex-basis: 66.66%;
     flex-grow: 1;
+  }
+  .no-intro.content {
+    .intro {
+      margin-bottom: 10px;
+    }
   }
 }
 
@@ -74,8 +95,4 @@ a {
   .landscape-desktop {
     @include landscape;
   }
-}
-
-app-time {
-  margin-top: 10px;
 }

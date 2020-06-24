@@ -6,6 +6,13 @@
     "strapMidStrip"
   ],
   "homepageStraps": {
+    "strapDefcon": {
+      "ids": ["121876089"],
+      "totalArticlesWithImages": 3,
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
+    },
     "strapTopStories": {
       "ids": ["63768623"],
       "totalArticlesWithImages": 6,
@@ -268,7 +275,7 @@
       }
     },
     "strapClimateChange": {
-      "ids": ["74545269"],
+      "ids": ["120545484"],
       "dedupeRules": {
         "dedupeFromBaseList": true
       }
@@ -384,6 +391,13 @@
   },
   "overrides": {
     "staging": {
+      "strapDefcon": {
+        "ids": ["119375891"],
+        "totalArticlesWithImages": 3,
+        "dedupeRules": {
+          "dedupeFromBaseList": false
+        }
+      },
       "strapCoronavirus": {
         "ids": ["62950252"],
         "dedupeRules": {
@@ -422,6 +436,12 @@
       },
       "strapCartoons": {
         "ids": ["119376124"],
+        "dedupeRules": {
+          "dedupeFromBaseList": true
+        }
+      },
+      "strapClimateChange": {
+        "ids": ["74545269"],
         "dedupeRules": {
           "dedupeFromBaseList": true
         }

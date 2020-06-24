@@ -3,6 +3,7 @@ export enum Strap {
   LatestNews = "strapLatestNews",
   MidStrip = "strapMidStrip",
   MiniMidStrip = "strapMiniMidStrip",
+  Defcon = "strapDefcon",
   TopStories = "strapTopStories",
   DailyFix = "strapDailyFix",
   KeaKidsNews = "strapKeaKidsNews",
