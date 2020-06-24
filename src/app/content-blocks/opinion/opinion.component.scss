@@ -182,11 +182,11 @@ a {
   .primary-secondary {
     display: flex;
     .primary {
-      flex: 400 0 0;
+      flex: 400;
       padding: 20px 10px 0 0;
     }
     .secondary {
-      flex: 300 0 0;
+      flex: 300;
       padding: 20px 0 0 10px;
     }
   }
@@ -212,19 +212,19 @@ a {
 
   .primary-secondary {
     display: flex;
-    flex: 740 0 0;
+    flex: 740;
     .primary {
-      flex: 500 0 0;
+      flex: 500;
       padding: 20px 10px 0;
     }
     .secondary {
-      flex: 240 0 0;
+      flex: 240;
       padding: 20px 10px 0;
     }
   }
 
   .list {
-    flex: 300 0 0;
+    flex: 300;
     padding: 20px 10px 0;
   }
 }
