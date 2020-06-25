@@ -556,9 +556,9 @@ describe("JsonFeed Mapper", () => {
       expect(result.sixteenByNineSrc).toBe(expectedStrapImage);
     });
 
-    it("should map portrait image when it is provided", () => {
+    it("should use thumbnail square image for portrait when it is provided", () => {
       const feedArticle = jsonFeedArticle();
-      const expectedImage = "www.example.com/portrait.900x1600.jpg";
+      const expectedImage = "www.example.com/thumbnail_square.900x1600.jpg";
       feedArticle.images = [
         {
           id: 1,
@@ -575,9 +575,9 @@ describe("JsonFeed Mapper", () => {
               height: "60",
               urls: {
                 "900x1600": expectedImage,
-                "180x320": "www.example.com/portrait.180x320.jpg"
+                "180x320": "www.example.com/thumbnail_square.180x320.jpg"
               },
-              image_type_id: JsonFeedImageType.PORTRAIT
+              image_type_id: JsonFeedImageType.THUMBNAIL_SQUARE
             }
           ],
           asset_type: "IMAGE"
@@ -590,7 +590,7 @@ describe("JsonFeed Mapper", () => {
       expect(result.portraitImageSrc).toBe(expectedImage);
     });
 
-    it("should fallback to 16:9 image if portrait image is not provided", () => {
+    it("should fallback to 16:9 image if thumbnail square is not provided for portrait", () => {
       const feedArticle = jsonFeedArticle();
       const expectedImage = "www.example.com/small_thumbnail.1600x900.jpg";
       feedArticle.images = [

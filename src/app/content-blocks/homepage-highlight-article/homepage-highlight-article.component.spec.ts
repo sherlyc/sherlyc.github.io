@@ -14,6 +14,7 @@ import { mockService, ServiceMock } from "../../services/mocks/MockService";
 import { FluidImageComponent } from "../../shared/components/fluid-image/fluid-image.component";
 import { HeadlineComponent } from "../../shared/components/headline/headline.component";
 import { TagLinkComponent } from "../../shared/components/tag-link/tag-link.component";
+import { TimeComponent } from "../../shared/components/time/time.component";
 import { HomepageHighlightArticleComponent } from "./homepage-highlight-article.component";
 
 describe("HomepageHighlightArticleComponent", () => {
@@ -101,6 +102,12 @@ describe("HomepageHighlightArticleComponent", () => {
 
     const intro = fixture.debugElement.query(By.css(".intro p")).nativeElement;
     expect(intro.textContent).toEqual(input.introText);
+
+    const time: TimeComponent = fixture.debugElement.query(By.css("app-time"))
+      .nativeElement;
+    expect(time.timestamp).toEqual(input.lastPublishedTime);
+    expect(time.showBullet).toBeTruthy();
+    expect(time.fontWeight).toEqual(700);
   });
 
   it.each`
@@ -146,5 +153,24 @@ describe("HomepageHighlightArticleComponent", () => {
     const colorBar = fixture.debugElement.query(By.css(".image .border"));
     expect(colorBar).toBeTruthy();
     expect(colorBar.styles.backgroundColor).toEqual(AccentColor.CuriousBlue);
+  });
+
+  it("should show byline if available", async () => {
+    const byline = "Lionel Messi";
+    component.input = { ...input, byline };
+
+    fixture.detectChanges();
+
+    const bylineComponent = fixture.debugElement.query(By.css(".byline"));
+    expect(bylineComponent.nativeElement.textContent).toEqual(byline);
+  });
+
+  it("should not show byline if not available", async () => {
+    component.input = { ...input, byline: undefined };
+
+    fixture.detectChanges();
+
+    const byline = fixture.debugElement.query(By.css(".byline"));
+    expect(byline).toBeFalsy();
   });
 });
