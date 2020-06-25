@@ -267,7 +267,8 @@ export const newPage = (): HandlerInput[] => {
           }
         },
         {
-          type: HandlerInputType.Partner
+          type: HandlerInputType.Brand,
+          module: BrandModule.Partner
         },
         {
           type: HandlerInputType.Strips,
@@ -553,14 +554,6 @@ export const newPage = (): HandlerInput[] => {
         linkUrl: "/" + Section.Entertainment,
         strapName: `${homepageAdPrefix}Entertainment`,
         sourceId: Strap.Entertainment
-      },
-      {
-        type: HandlerInputType.BiggieSmalls,
-        displayName: "bravo",
-        color: AccentColor.Violet,
-        linkUrl: "/" + Section.Bravo,
-        strapName: `${homepageAdPrefix}Bravo`,
-        sourceId: Strap.Bravo
       },
       {
         type: HandlerInputType.TitleSection,
