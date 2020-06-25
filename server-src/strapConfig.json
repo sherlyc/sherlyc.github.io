@@ -1,9 +1,9 @@
 {
   "baseDedupeList": [
+    "strapDefcon",
     "strapTopStories",
     "strapEditorPicks",
-    "strapLatestNews",
-    "strapMidStrip"
+    "strapLatestNews"
   ],
   "homepageStraps": {
     "strapDefcon": {
@@ -17,23 +17,18 @@
       "ids": ["63768623"],
       "totalArticlesWithImages": 6,
       "dedupeRules": {
-        "dedupeFromBaseList": false
+        "dedupeFromBaseList": false,
+        "extraDedupeList": [
+          {
+            "id": "121876089"
+          }
+        ]
       }
     },
     "strapLatestNews": {
       "ids": ["64161221"],
       "dedupeRules": {
-        "dedupeFromBaseList": false,
-        "extraDedupeList": [
-          {
-            "id": "63768623",
-            "limit": 5
-          },
-          {
-            "id": "63868237",
-            "limit": 5
-          }
-        ]
+        "dedupeFromBaseList": false
       }
     },
     "strapEditorPicks": {
@@ -43,6 +38,10 @@
       "dedupeRules": {
         "dedupeFromBaseList": false,
         "extraDedupeList": [
+          {
+            "id": "121876089",
+            "limit": 5
+          },
           {
             "id": "63768623",
             "limit": 5
@@ -96,6 +95,18 @@
           {
             "id": "62950252",
             "limit": 5
+          },
+          {
+            "id": "120121097",
+            "limit": 5
+          },
+          {
+            "id": "60844362",
+            "limit": 5
+          },
+          {
+            "id": "63060863",
+            "limit": 5
           }
         ]
       }
@@ -120,6 +131,10 @@
           {
             "id": "120121097",
             "limit": 5
+          },
+          {
+            "id": "91706224",
+            "limit": 5
           }
         ]
       }
@@ -132,6 +147,10 @@
           {
             "id": "62950252",
             "limit": 5
+          },
+          {
+            "id": "60844362",
+            "limit": 5
           }
         ]
       }
@@ -141,14 +160,6 @@
       "dedupeRules": {
         "dedupeFromBaseList": true,
         "extraDedupeList": [
-          {
-            "id": "62950252",
-            "limit": 5
-          },
-          {
-            "id": "63060863",
-            "limit": 5
-          },
           {
             "id": "120121097",
             "limit": 5
@@ -162,11 +173,15 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "85424401",
+            "id": "120121097",
             "limit": 5
           },
           {
-            "id": "121165220",
+            "id": "62950252",
+            "limit": 5
+          },
+          {
+            "id": "60844362",
             "limit": 5
           }
         ]
@@ -199,13 +214,49 @@
     "strapHomed": {
       "ids": ["91738058", "91738163"],
       "dedupeRules": {
-        "dedupeFromBaseList": true
+        "dedupeFromBaseList": true,
+        "extraDedupeList": [
+          {
+            "id": "120121097",
+            "limit": 5
+          },
+          {
+            "id": "62950252",
+            "limit": 5
+          },
+          {
+            "id": "60844362",
+            "limit": 5
+          },
+          {
+            "id": "63060863",
+            "limit": 5
+          }
+        ]
       }
     },
     "strapProsper": {
       "ids": ["121165220"],
       "dedupeRules": {
-        "dedupeFromBaseList": true
+        "dedupeFromBaseList": true,
+        "extraDedupeList": [
+          {
+            "id": "120121097",
+            "limit": 5
+          },
+          {
+            "id": "62950252",
+            "limit": 5
+          },
+          {
+            "id": "60844362",
+            "limit": 5
+          },
+          {
+            "id": "63060863",
+            "limit": 5
+          }
+        ]
       }
     },
     "strapLifeStyle": {
@@ -214,7 +265,31 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
+            "id": "120121097",
+            "limit": 5
+          },
+          {
+            "id": "62950252",
+            "limit": 5
+          },
+          {
+            "id": "60844362",
+            "limit": 5
+          },
+          {
+            "id": "63060863",
+            "limit": 5
+          },
+          {
+            "id": "60860998",
+            "limit": 5
+          },
+          {
             "id": "91738058",
+            "limit": 5
+          },
+          {
+            "id": "91738163",
             "limit": 5
           }
         ]
@@ -223,13 +298,45 @@
     "strapEntertainment": {
       "ids": ["62497979", "62498297"],
       "dedupeRules": {
-        "dedupeFromBaseList": true
+        "dedupeFromBaseList": true,
+        "extraDedupeList": [
+          {
+            "id": "60844362",
+            "limit": 5
+          },
+          {
+            "id": "63060863",
+            "limit": 5
+          },
+          {
+            "id": "62546009",
+            "limit": 5
+          },
+          {
+            "id": "62546149",
+            "limit": 5
+          }
+        ]
       }
     },
     "strapMotoring": {
       "ids": ["62925442"],
       "dedupeRules": {
-        "dedupeFromBaseList": true
+        "dedupeFromBaseList": true,
+        "extraDedupeList": [
+          {
+            "id": "63060863",
+            "limit": 5
+          },
+          {
+            "id": "62922196",
+            "limit": 5
+          },
+          {
+            "id": "62919098",
+            "limit": 5
+          }
+        ]
       }
     },
     "strapFoodAndWine": {
@@ -277,7 +384,21 @@
     "strapClimateChange": {
       "ids": ["120545484"],
       "dedupeRules": {
-        "dedupeFromBaseList": true
+        "dedupeFromBaseList": true,
+        "extraDedupeList": [
+          {
+            "id": "62950252",
+            "limit": 5
+          },
+          {
+            "id": "60844362",
+            "limit": 5
+          },
+          {
+            "id": "63060863",
+            "limit": 5
+          }
+        ]
       }
     },
     "strapWellGood": {
@@ -301,19 +422,19 @@
     "strapNewsroom": {
       "ids": ["108729104"],
       "dedupeRules": {
-        "dedupeFromBaseList": true
+        "dedupeFromBaseList": false
       }
     },
     "strapSponsoredContent": {
       "ids": ["112451426"],
       "dedupeRules": {
-        "dedupeFromBaseList": true
+        "dedupeFromBaseList": false
       }
     },
     "strapTarana": {
       "ids": ["104747808"],
       "dedupeRules": {
-        "dedupeFromBaseList": true
+        "dedupeFromBaseList": false
       }
     },
     "strapBravo": {
