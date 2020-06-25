@@ -19,5 +19,6 @@ export interface IJsonFeedArticle {
   images?: IJsonFeedImage[];
   image_overrides?: IJsonFeedImage[];
   identifier: string;
+  "category-description"?: string;
   "section-home": string;
 }

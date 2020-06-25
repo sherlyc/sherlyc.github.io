@@ -18,5 +18,6 @@ export interface IJsonFeedUrl {
   image_overrides?: IJsonFeedImage[];
   datetime_iso8601: string;
   identifier: string;
+  "category-description"?: string;
   "section-home": string;
 }
