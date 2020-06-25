@@ -65,7 +65,7 @@ describe("Top Stories V2", () => {
           id: `${id}`,
           imageSrc: `${id}.jpg`,
           sixteenByNineSrc: `${id}.16:9.jpg`,
-          portraitImageSrc: `${id}.3:4.jpg`,
+          portraitImageSrc: `${id}.1:1.jpg`,
           introText: `${id} intro`
         } as IRawArticle)
     );
@@ -135,7 +135,7 @@ describe("Top Stories V2", () => {
             color,
             image: {
               mobile: {
-                src: "2.3:4.jpg",
+                src: "2.1:1.jpg",
                 aspectRatio: AspectRatio.OneByOne
               }
             }

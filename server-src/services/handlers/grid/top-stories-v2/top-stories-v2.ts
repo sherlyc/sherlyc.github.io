@@ -66,7 +66,7 @@ function defaultGrid(
               color,
               {
                 mobile: {
-                  variant: JsonFeedImageType.PORTRAIT,
+                  variant: JsonFeedImageType.THUMBNAIL_SQUARE,
                   aspectRatio: AspectRatio.OneByOne
                 }
               },
