@@ -1,15 +1,16 @@
 import { maxBy } from "lodash-es";
 import { IImageVariant } from "../__types__/IImageVariant";
 import { IJsonFeedArticle } from "../__types__/IJsonFeedArticle";
+import { IJsonFeedImage } from "../__types__/IJsonFeedImage";
 import { IJsonFeedUrl } from "../__types__/IJsonFeedUrl";
 import { JsonFeedImageType } from "../__types__/JsonFeedImageType";
 
 function findImage(
-  item: IJsonFeedArticle | IJsonFeedUrl,
+  images: IJsonFeedImage[] | undefined,
   imageType: JsonFeedImageType
 ): IImageVariant | undefined {
-  if (item.images && item.images.length > 0) {
-    for (const image of item.images) {
+  if (images && images.length > 0) {
+    for (const image of images) {
       if (image.variants && image.variants.length > 0) {
         const imageVariant = image.variants.find(
           (variant) => variant.image_type_id === imageType
@@ -29,7 +30,9 @@ export function getImage(
 ) {
   const image = imageTypePriority.reduce(
     (final: IImageVariant | undefined, imageType) =>
-      final || findImage(item, imageType),
+      final ||
+      findImage(item.image_overrides, imageType) ||
+      findImage(item.images, imageType),
     undefined
   );
   return image ? findLargestRendition(image) : null;
@@ -59,15 +62,15 @@ function getImageSrcSetString(imageUrls: Object) {
 }
 
 export function getThumbnailSrcSet(item: IJsonFeedArticle | IJsonFeedUrl) {
-  const images = findImage(item, JsonFeedImageType.THUMBNAIL);
+  const images = findImage(item.images, JsonFeedImageType.THUMBNAIL);
 
   return images && images.urls ? getImageSrcSetString(images.urls) : null;
 }
 
 export function getStrapImageSrcSet(item: IJsonFeedArticle | IJsonFeedUrl) {
   const images =
-    findImage(item, JsonFeedImageType.LANDSCAPE_THREE_BY_TWO) ||
-    findImage(item, JsonFeedImageType.THUMBNAIL);
+    findImage(item.images, JsonFeedImageType.LANDSCAPE_THREE_BY_TWO) ||
+    findImage(item.images, JsonFeedImageType.THUMBNAIL);
 
   return images && images.urls ? getImageSrcSetString(images.urls) : null;
 }

@@ -1,5 +1,6 @@
 import { HeadlineFlags } from "../../../../common/HeadlineFlags";
 import { IImageVariant } from "./IImageVariant";
+import { IJsonFeedImage } from "./IJsonFeedImage";
 import { JsonFeedAssetType } from "./JsonFeedAssetType";
 
 export interface IJsonFeedArticle {
@@ -15,10 +16,8 @@ export interface IJsonFeedArticle {
   isHeadlineOverrideApplied: boolean;
   datetime_iso8601: string;
   alt_intro: string;
-  images?: Array<{
-    [key: string]: any;
-    variants?: IImageVariant[];
-  }>;
+  images?: IJsonFeedImage[];
+  image_overrides?: IJsonFeedImage[];
   identifier: string;
   "section-home": string;
 }
