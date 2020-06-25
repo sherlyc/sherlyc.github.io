@@ -33,6 +33,10 @@ export class FeatureSwitchService {
     this.features = this.loadFeatures();
   }
 
+  getFeatures() {
+    return this.features;
+  }
+
   async getFeature(featureName: FeatureName): Promise<boolean> {
     if (this.runtime.isServer()) {
       return false;
