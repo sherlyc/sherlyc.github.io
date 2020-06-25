@@ -54,7 +54,7 @@ export function mapArticleAsset(item: IJsonFeedArticle): IRawArticle {
       JsonFeedImageType.THUMBNAIL
     ]),
     portraitImageSrc: getImage(item, [
-      JsonFeedImageType.PORTRAIT,
+      JsonFeedImageType.THUMBNAIL_SQUARE,
       JsonFeedImageType.THUMBNAIL_SIXTEEN_BY_NINE,
       JsonFeedImageType.THUMBNAIL
     ]),
