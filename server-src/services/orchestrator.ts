@@ -184,6 +184,15 @@ export const newPage = (): HandlerInput[] => {
           sourceId: Strap.ClimateChange
         },
         {
+          type: HandlerInputType.Strips,
+          displayName: "pou tiaki",
+          color: AccentColor.DarkGray,
+          sourceId: Strap.PouTiaki,
+          strapName: Strap.PouTiaki,
+          articleCount: 4,
+          articleFormat: ContentBlockType.HalfWidthImageArticleUnit
+        },
+        {
           type: HandlerInputType.BiggieSmallsV2,
           displayName: "sport",
           color: AccentColor.CardinalRed,
