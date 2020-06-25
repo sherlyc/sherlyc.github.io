@@ -42,12 +42,13 @@ export const homepageHighlightArticle = (
   accentColor: AccentColor,
   image: IHomepageHighlightArticleImageConfigs,
   variation: HomepageHighlightArticleVariation,
-  showIntroText: boolean
+  showIntroText: boolean,
+  showByline: boolean
 ): IHomepageHighlightArticle => ({
   type: ContentBlockType.HomepageHighlightArticle,
   id: article.id,
   headline: article.indexHeadline,
-  byline: article.byline,
+  byline: showByline ? article.byline : undefined,
   color: accentColor,
   linkUrl: article.linkUrl,
   headlineFlags: article.headlineFlags,

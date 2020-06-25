@@ -86,6 +86,7 @@ describe("Homepage Highlight Article", () => {
         }
       },
       HomepageHighlightArticleVariation.Lead,
+      true,
       true
     );
 
@@ -99,6 +100,7 @@ describe("Homepage Highlight Article", () => {
       AccentColor.Cyan,
       {},
       HomepageHighlightArticleVariation.Featured,
+      false,
       false
     );
 
@@ -107,7 +109,8 @@ describe("Homepage Highlight Article", () => {
       color: AccentColor.Cyan,
       image: {},
       variation: HomepageHighlightArticleVariation.Featured,
-      introText: undefined
+      introText: undefined,
+      byline: undefined
     });
   });
 
@@ -131,6 +134,7 @@ describe("Homepage Highlight Article", () => {
         }
       },
       HomepageHighlightArticleVariation.Lead,
+      true,
       true
     );
 
