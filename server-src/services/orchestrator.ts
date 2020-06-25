@@ -255,14 +255,14 @@ export const newPage = (): HandlerInput[] => {
               margin: "0 -10px 20px"
             },
             tablet: {
-              height: "170px",
+              height: "250px",
               width: "100%",
-              margin: "0 -10px 40px"
+              margin: "0 -10px 10px"
             },
             desktop: {
-              height: "170px",
+              height: "360px",
               width: "100%",
-              margin: "0 -10px 60px"
+              margin: "0 -10px 0"
             }
           }
         },
