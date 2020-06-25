@@ -50,6 +50,7 @@ function defaultGrid(
                 }
               },
               HomepageHighlightArticleVariation.Lead,
+              true,
               true
             ),
           HandlerInputType.TopStoriesV2,
@@ -71,6 +72,7 @@ function defaultGrid(
                 }
               },
               HomepageHighlightArticleVariation.Featured,
+              true,
               true
             ),
           HandlerInputType.TopStoriesV2,

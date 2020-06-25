@@ -66,7 +66,8 @@ describe("Top Stories V2", () => {
           imageSrc: `${id}.jpg`,
           sixteenByNineSrc: `${id}.16:9.jpg`,
           portraitImageSrc: `${id}.1:1.jpg`,
-          introText: `${id} intro`
+          introText: `${id} intro`,
+          byline: `${id} byline`
         } as IRawArticle)
     );
 
@@ -120,6 +121,7 @@ describe("Top Stories V2", () => {
             type: ContentBlockType.HomepageHighlightArticle,
             id: "1",
             color,
+            byline: "1 byline",
             image: {
               mobile: {
                 src: "1.16:9.jpg",
@@ -133,6 +135,7 @@ describe("Top Stories V2", () => {
             type: ContentBlockType.HomepageHighlightArticle,
             id: "2",
             color,
+            byline: "2 byline",
             image: {
               mobile: {
                 src: "2.1:1.jpg",

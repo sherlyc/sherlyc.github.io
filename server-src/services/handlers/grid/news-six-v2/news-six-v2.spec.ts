@@ -87,6 +87,7 @@ describe("News Six V2 handler", () => {
                 aspectRatio: AspectRatio.SixteenByNine
               }
             },
+            byline: undefined,
             variation: HomepageHighlightArticleVariation.Featured
           })
         ],
@@ -126,6 +127,7 @@ describe("News Six V2 handler", () => {
                 aspectRatio: AspectRatio.SixteenByNine
               }
             },
+            byline: undefined,
             variation: HomepageHighlightArticleVariation.Featured
           })
         ],
