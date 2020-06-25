@@ -19,5 +19,6 @@ export interface IJsonFeedUrl {
   }>;
   datetime_iso8601: string;
   identifier: string;
+  "category-description"?: string;
   "section-home": string;
 }

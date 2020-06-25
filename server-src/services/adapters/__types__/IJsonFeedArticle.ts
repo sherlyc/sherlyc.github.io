@@ -20,5 +20,6 @@ export interface IJsonFeedArticle {
     variants?: IImageVariant[];
   }>;
   identifier: string;
+  "category-description"?: string;
   "section-home": string;
 }
