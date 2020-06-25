@@ -75,11 +75,11 @@ describe("Homepage Highlight Article", () => {
           aspectRatio: AspectRatio.SixteenByNine
         },
         tablet: {
-          variant: JsonFeedImageType.PORTRAIT,
+          variant: JsonFeedImageType.THUMBNAIL_SQUARE,
           aspectRatio: AspectRatio.SixteenByNine
         },
         desktop: {
-          variant: JsonFeedImageType.PORTRAIT,
+          variant: JsonFeedImageType.THUMBNAIL_SQUARE,
           aspectRatio: AspectRatio.OneByOne
         }
       },

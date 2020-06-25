@@ -20,7 +20,7 @@ function pickImage(
       case JsonFeedImageType.DEFCON:
         src = article.defconSrc;
         break;
-      case JsonFeedImageType.PORTRAIT:
+      case JsonFeedImageType.THUMBNAIL_SQUARE:
         src = article.portraitImageSrc;
         break;
       default:
