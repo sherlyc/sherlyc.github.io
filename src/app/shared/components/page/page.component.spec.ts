@@ -225,7 +225,9 @@ describe("PageComponent", () => {
     );
     fixture.detectChanges();
 
-    expect(adServiceMock.notify).toHaveBeenCalled();
+    fixture.whenStable().then(() => {
+      expect(adServiceMock.notify).toHaveBeenCalled();
+    });
   });
 
   it("should post nielsen tracking record when the page rendering finishes", () => {
