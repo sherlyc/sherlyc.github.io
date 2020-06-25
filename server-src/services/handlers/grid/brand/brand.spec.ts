@@ -143,6 +143,7 @@ describe("Brand Handler", () => {
     it("should pass 3 bullet lists to column grid handler", async () => {
       (createBulletList as jest.Mock).mockResolvedValueOnce(fakeBulletList(1));
       (createBulletList as jest.Mock).mockResolvedValueOnce(fakeBulletList(2));
+      (createBulletList as jest.Mock).mockResolvedValueOnce(fakeBulletList(3));
 
       (createBulletList as jest.Mock).mockResolvedValueOnce([]);
       const handlerRunnerMock = jest.fn();
@@ -156,7 +157,8 @@ describe("Brand Handler", () => {
       ] = handlerRunnerMock.mock.calls;
       expect(firstColumnGridCall.content).toEqual([
         [expect.objectContaining(fakeBulletList(1))],
-        [expect.objectContaining(fakeBulletList(2))]
+        [expect.objectContaining(fakeBulletList(2))],
+        [expect.objectContaining(fakeBulletList(3))]
       ]);
       expect(secondColumnGridCall.content).toEqual([]);
     });
