@@ -646,6 +646,112 @@ describe("JsonFeed Mapper", () => {
 
       expect(result.imageSrc).toBe(expectedImage);
     });
+
+    it("should use override images if available", () => {
+      const feedArticle = jsonFeedArticle();
+      const expectedImage = "www.example.com/thumbnail.90x60.jpg";
+      const expectedOverrideImage =
+        "www.example.com/override_thumbnail.90x60.jpg";
+      feedArticle.images = [
+        {
+          id: 1,
+          datetime_iso8601: "20150818T085547+1200",
+          datetime_display: "08:55 18/08/2015",
+          creditline: "",
+          caption: "x",
+          variants: [
+            {
+              id: 63784214,
+              src: expectedImage,
+              media_type: "Photo",
+              width: "90",
+              height: "60",
+              urls: {},
+              image_type_id: JsonFeedImageType.THUMBNAIL_SIXTEEN_BY_NINE
+            }
+          ],
+          asset_type: "IMAGE"
+        }
+      ];
+
+      feedArticle.image_overrides = [
+        {
+          id: 2,
+          datetime_iso8601: "20150818T085547+1200",
+          datetime_display: "08:55 18/08/2015",
+          creditline: "",
+          caption: "x",
+          variants: [
+            {
+              id: 63784214,
+              src: expectedOverrideImage,
+              media_type: "Photo",
+              width: "90",
+              height: "60",
+              urls: {},
+              image_type_id: JsonFeedImageType.THUMBNAIL_SIXTEEN_BY_NINE
+            }
+          ],
+          asset_type: "IMAGE"
+        }
+      ];
+
+      const [result] = mapToRawArticleList([feedArticle]);
+
+      expect(result.sixteenByNineSrc).toBe(expectedOverrideImage);
+    });
+
+    it("should not pick the wrong override image type", () => {
+      const feedArticle = jsonFeedArticle();
+      const expectedImage = "www.example.com/thumbnail.90x60.jpg";
+      feedArticle.images = [
+        {
+          id: 1,
+          datetime_iso8601: "20150818T085547+1200",
+          datetime_display: "08:55 18/08/2015",
+          creditline: "",
+          caption: "x",
+          variants: [
+            {
+              id: 63784214,
+              src: expectedImage,
+              media_type: "Photo",
+              width: "90",
+              height: "60",
+              urls: {},
+              image_type_id: JsonFeedImageType.THUMBNAIL_SIXTEEN_BY_NINE
+            }
+          ],
+          asset_type: "IMAGE"
+        }
+      ];
+
+      feedArticle.image_overrides = [
+        {
+          id: 2,
+          datetime_iso8601: "20150818T085547+1200",
+          datetime_display: "08:55 18/08/2015",
+          creditline: "",
+          caption: "x",
+          variants: [
+            {
+              id: 63784214,
+              src: "www.example.com/defcon.jpg",
+              media_type: "Photo",
+              width: "90",
+              height: "60",
+              urls: {},
+              image_type_id: JsonFeedImageType.DEFCON
+            }
+          ],
+          asset_type: "IMAGE"
+        }
+      ];
+
+      const [result] = mapToRawArticleList([feedArticle]);
+
+      expect(result.sixteenByNineSrc).toBe(expectedImage);
+    });
   });
 
   describe("headline flags", () => {
