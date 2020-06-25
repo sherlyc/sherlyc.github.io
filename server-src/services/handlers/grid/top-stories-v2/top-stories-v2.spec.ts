@@ -115,28 +115,28 @@ describe("Top Stories V2", () => {
     const gridHandlerInput: ITopStoriesV2DefaultGridHandlerInput = {
       type: HandlerInputType.TopStoriesV2DefaultGrid,
       content: {
-        [TopStoriesV2DefaultGridPositions.RightHighlight]: [
+        [TopStoriesV2DefaultGridPositions.LeftHighlight]: [
           expectContentBlock({
             type: ContentBlockType.HomepageHighlightArticle,
             id: "1",
             color,
             image: {
               mobile: {
-                src: "1.3:4.jpg",
-                aspectRatio: AspectRatio.OneByOne
+                src: "1.16:9.jpg",
+                aspectRatio: AspectRatio.SixteenByNine
               }
             }
           })
         ],
-        [TopStoriesV2DefaultGridPositions.LeftHighlight]: [
+        [TopStoriesV2DefaultGridPositions.RightHighlight]: [
           expectContentBlock({
             type: ContentBlockType.HomepageHighlightArticle,
             id: "2",
             color,
             image: {
               mobile: {
-                src: "2.16:9.jpg",
-                aspectRatio: AspectRatio.SixteenByNine
+                src: "2.3:4.jpg",
+                aspectRatio: AspectRatio.OneByOne
               }
             }
           })
