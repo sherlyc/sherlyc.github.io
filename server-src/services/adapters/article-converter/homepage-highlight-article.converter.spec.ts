@@ -27,7 +27,8 @@ describe("Homepage Highlight Article", () => {
     portraitImageSrc: "portraitImageSrc.jpg",
     identifier: "identifier",
     category: "National",
-    categoryUrl: "/coronavirus/"
+    categoryUrl: "/coronavirus/",
+    byline: "David Beckham"
   };
 
   const expected: IHomepageHighlightArticle = {
@@ -39,6 +40,7 @@ describe("Homepage Highlight Article", () => {
       name: "National",
       url: "/coronavirus/"
     },
+    byline: "David Beckham",
     headline: "Headline 1",
     headlineFlags: [],
     id: "1",
