@@ -36,27 +36,6 @@ function defaultGrid(
   return {
     type: HandlerInputType.TopStoriesV2DefaultGrid,
     content: {
-      [TopStoriesV2DefaultGridPositions.RightHighlight]: [
-        contentErrorHandler(
-          () =>
-            homepageHighlightArticle(
-              articles.shift() as IRawArticle,
-              strapName,
-              color,
-              {
-                mobile: {
-                  variant: JsonFeedImageType.PORTRAIT,
-                  aspectRatio: AspectRatio.OneByOne
-                }
-              },
-              HomepageHighlightArticleVariation.Featured,
-              true
-            ),
-          HandlerInputType.TopStoriesV2,
-          Strap.TopStories,
-          params
-        )
-      ],
       [TopStoriesV2DefaultGridPositions.LeftHighlight]: [
         contentErrorHandler(
           () =>
@@ -71,6 +50,27 @@ function defaultGrid(
                 }
               },
               HomepageHighlightArticleVariation.Lead,
+              true
+            ),
+          HandlerInputType.TopStoriesV2,
+          Strap.TopStories,
+          params
+        )
+      ],
+      [TopStoriesV2DefaultGridPositions.RightHighlight]: [
+        contentErrorHandler(
+          () =>
+            homepageHighlightArticle(
+              articles.shift() as IRawArticle,
+              strapName,
+              color,
+              {
+                mobile: {
+                  variant: JsonFeedImageType.PORTRAIT,
+                  aspectRatio: AspectRatio.OneByOne
+                }
+              },
+              HomepageHighlightArticleVariation.Featured,
               true
             ),
           HandlerInputType.TopStoriesV2,
