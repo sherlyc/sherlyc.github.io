@@ -387,6 +387,26 @@
       "dedupeRules": {
         "dedupeFromBaseList": false
       }
+    },
+    "strapPouTiaki": {
+      "ids": ["121941449"],
+      "dedupeRules": {
+        "dedupeFromBaseList": true,
+        "extraDedupeList": [
+          {
+            "id": "91706224",
+            "limit": 5
+          },
+          {
+            "id": "62950252",
+            "limit": 5
+          },
+          {
+            "id": "63060863",
+            "limit": 5
+          }
+        ]
+      }
     }
   },
   "overrides": {
@@ -442,6 +462,12 @@
       },
       "strapClimateChange": {
         "ids": ["74545269"],
+        "dedupeRules": {
+          "dedupeFromBaseList": true
+        }
+      },
+      "strapPouTiaki": {
+        "ids": ["119376386"],
         "dedupeRules": {
           "dedupeFromBaseList": true
         }
