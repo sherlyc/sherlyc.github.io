@@ -10,7 +10,7 @@ export class TagLinkComponent {
   @Input() url!: string;
   @Input() color?: string;
 
-  onClick(event: Event){
+  onClick(event: Event) {
     event.stopPropagation();
   }
 }
