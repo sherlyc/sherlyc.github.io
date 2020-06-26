@@ -184,6 +184,12 @@
         "dedupeFromBaseList": true
       }
     },
+    "strapPerspectives": {
+      "ids": ["121876265"],
+      "dedupeRules": {
+        "dedupeFromBaseList": true
+      }
+    },
     "strapTechnology": {
       "ids": ["60119046"],
       "dedupeRules": {
@@ -468,6 +474,12 @@
       },
       "strapPouTiaki": {
         "ids": ["119376386"],
+        "dedupeRules": {
+          "dedupeFromBaseList": true
+        }
+      },
+      "strapPerspectives": {
+        "ids": ["119375894"],
         "dedupeRules": {
           "dedupeFromBaseList": true
         }
