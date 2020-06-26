@@ -44,6 +44,6 @@ export default async function (
       `Feature handler error for ${name}`,
       error
     );
-    return [];
+    throw error;
   }
 }

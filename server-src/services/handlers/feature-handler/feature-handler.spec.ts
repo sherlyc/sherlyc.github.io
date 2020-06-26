@@ -140,4 +140,28 @@ describe("Feature Handler", () => {
       expect(result).toEqual(expected);
     });
   });
+
+  it("should throw error if anything fails", async () => {
+    const handlerRunnerError = new Error("Something went wrong");
+    handlerRunnerMock.mockRejectedValue(handlerRunnerError);
+
+    await expect(
+      featureHandler(
+        handlerRunnerMock,
+        {
+          type: HandlerInputType.Feature,
+          name: "fake" as FeatureName,
+          content: [
+            {
+              type: HandlerInputType.ExternalContent,
+              url: "/abc",
+              width: "200px",
+              height: "100%"
+            } as IExternalContentHandlerInput
+          ]
+        },
+        params
+      )
+    ).rejects.toEqual(handlerRunnerError);
+  });
 });
