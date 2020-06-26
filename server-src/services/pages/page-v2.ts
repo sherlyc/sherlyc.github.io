@@ -54,11 +54,15 @@ export const pageV2 = (): HandlerInput[] => [
     strapName: `${homepageV2AdPrefix}TopStoriesDefaultOne`,
     color: AccentColor.CuriousBlue,
     midInsertContent: {
-      type: HandlerInputType.ExternalContent,
-      url: "",
-      width: "100%",
-      height: "43px",
-      margin: "0"
+      type: HandlerInputType.ResponsiveExternalContent,
+      lazyLoad: false,
+      url:
+        "https://interactives.stuff.co.nz/live/new-homepage/uber/1/40-40.html",
+      mobile: {
+        height: "40px",
+        width: "100%",
+        margin: "0"
+      }
     },
     lowerRightContent: {
       type: HandlerInputType.LatestHeadlines,

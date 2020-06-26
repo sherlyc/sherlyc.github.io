@@ -76,7 +76,9 @@ describe("Top Stories V2 Grid Handler", () => {
         [TopStoriesV2DefaultGridPositions.TopTwo]: gridBlock(4, 2, 1, 1, []),
         [TopStoriesV2DefaultGridPositions.TopThree]: gridBlock(5, 1, 1, 2, []),
         [TopStoriesV2DefaultGridPositions.TopFour]: gridBlock(6, 1, 1, 2, []),
-        [TopStoriesV2DefaultGridPositions.MidInsert]: gridBlock(7, 1, 1, 2, []),
+        [TopStoriesV2DefaultGridPositions.MidInsert]: gridBlock(7, 1, 1, 2, [
+          Border.bottom
+        ]),
         [TopStoriesV2DefaultGridPositions.BottomOne]: gridBlock(8, 1, 1, 1, []),
         [TopStoriesV2DefaultGridPositions.BottomTwo]: gridBlock(8, 2, 1, 1, []),
         [TopStoriesV2DefaultGridPositions.BottomThree]: gridBlock(
@@ -135,7 +137,9 @@ describe("Top Stories V2 Grid Handler", () => {
         [TopStoriesV2DefaultGridPositions.TopTwo]: gridBlock(2, 2, 2, 1, []),
         [TopStoriesV2DefaultGridPositions.TopThree]: gridBlock(4, 1, 1, 2, []),
         [TopStoriesV2DefaultGridPositions.TopFour]: gridBlock(5, 1, 1, 2, []),
-        [TopStoriesV2DefaultGridPositions.MidInsert]: gridBlock(6, 1, 1, 2, []),
+        [TopStoriesV2DefaultGridPositions.MidInsert]: gridBlock(6, 1, 1, 2, [
+          Border.bottom
+        ]),
         [TopStoriesV2DefaultGridPositions.BottomOne]: gridBlock(7, 1, 2, 1, []),
         [TopStoriesV2DefaultGridPositions.BottomTwo]: gridBlock(7, 2, 2, 1, []),
         [TopStoriesV2DefaultGridPositions.BottomThree]: gridBlock(
@@ -188,7 +192,9 @@ describe("Top Stories V2 Grid Handler", () => {
         [TopStoriesV2DefaultGridPositions.TopTwo]: gridBlock(2, 2, 3, 1, []),
         [TopStoriesV2DefaultGridPositions.TopThree]: gridBlock(3, 3, 1, 1, []),
         [TopStoriesV2DefaultGridPositions.TopFour]: gridBlock(4, 3, 1, 1, []),
-        [TopStoriesV2DefaultGridPositions.MidInsert]: gridBlock(5, 1, 1, 3, []),
+        [TopStoriesV2DefaultGridPositions.MidInsert]: gridBlock(5, 1, 1, 3, [
+          Border.bottom
+        ]),
         [TopStoriesV2DefaultGridPositions.BottomOne]: gridBlock(6, 1, 3, 1, []),
         [TopStoriesV2DefaultGridPositions.BottomTwo]: gridBlock(6, 2, 3, 1, []),
         [TopStoriesV2DefaultGridPositions.BottomThree]: gridBlock(
