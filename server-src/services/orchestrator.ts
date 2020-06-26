@@ -250,9 +250,9 @@ export const newPage = (): HandlerInput[] => {
             url:
               "https://www.playwidget.stuff.co.nz/grid/5d3fcb25a0e845001caee780",
             mobile: {
-              height: "calc(35% + 35px)",
+              height: "160px",
               width: "100%",
-              margin: "0 -10px 20px"
+              margin: "0 -10px 15px"
             },
             tablet: {
               height: "250px",
