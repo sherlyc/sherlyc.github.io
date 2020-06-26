@@ -3,7 +3,7 @@ export interface IDigitalData {
     pageInfo: {
       pageID: string;
       pageName: string;
-      sysEnv: string;
+      sysEnv: string | undefined;
       variant: string;
       version: string;
       publisher: string;
