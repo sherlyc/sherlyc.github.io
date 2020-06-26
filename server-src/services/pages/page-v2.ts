@@ -59,7 +59,17 @@ export const pageV2 = (): HandlerInput[] => [
       url:
         "https://interactives.stuff.co.nz/live/new-homepage/uber/1/40-40.html",
       mobile: {
-        height: "40px",
+        height: "110px",
+        width: "100%",
+        margin: "0"
+      },
+      tablet: {
+        height: "110px",
+        width: "100%",
+        margin: "0"
+      },
+      desktop: {
+        height: "50px",
         width: "100%",
         margin: "0"
       }
