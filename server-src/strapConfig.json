@@ -179,6 +179,12 @@
       }
     },
     "strapOpinion": {
+      "ids": ["91706224"],
+      "dedupeRules": {
+        "dedupeFromBaseList": true
+      }
+    },
+    "strapPerspective": {
       "ids": ["121876265"],
       "dedupeRules": {
         "dedupeFromBaseList": true
@@ -472,7 +478,7 @@
           "dedupeFromBaseList": true
         }
       },
-      "strapOpinion": {
+      "strapPerspectives": {
         "ids": ["119375894"],
         "dedupeRules": {
           "dedupeFromBaseList": true

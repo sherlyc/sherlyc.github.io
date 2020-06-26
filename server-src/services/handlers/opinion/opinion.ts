@@ -15,7 +15,7 @@ export default async function (
 ): Promise<IContentBlock[]> {
   try {
     const cartoonArticles = await getRawArticles(Strap.Cartoons, 1, params);
-    const opinionArticles = await getRawArticles(Strap.Opinion, 4, params);
+    const opinionArticles = await getRawArticles(Strap.Perspectives, 4, params);
 
     if (cartoonArticles.length + opinionArticles.length > 0) {
       return [

@@ -20,7 +20,7 @@ export default async function (
 ): Promise<IContentBlock[]> {
   const articles = await getRawArticles(sourceId, totalArticles, params);
 
-  if (articles.length > 1) {
+  if (articles.length > 0) {
     return [
       {
         type: ContentBlockType.VerticalArticleList,
