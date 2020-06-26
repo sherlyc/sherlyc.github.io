@@ -1,13 +1,29 @@
+import { flatMap } from "lodash-es";
 import { AccentColor } from "../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../common/__types__/ContentBlockType";
 import { HandlerInput } from "../handlers/__types__/HandlerInput";
 import { HandlerInputType } from "../handlers/__types__/HandlerInputType";
 import { BrandModule } from "../handlers/__types__/IBrandHandlerInput";
-import { billboard, interpolateBillboards } from "../orchestrator";
+import { IContentBlockHandlerInput } from "../handlers/__types__/IContentBlockHandlerInput";
 import { Section } from "../section";
 import { Strap } from "../strap";
 
 const homepageV2AdPrefix = "homepagev2";
+
+const billboard = (prefix: string): IContentBlockHandlerInput => ({
+  type: HandlerInputType.ContentBlockHandler,
+  contentBlocks: [
+    {
+      type: ContentBlockType.BasicAdUnit,
+      context: `${prefix}Billboard`
+    }
+  ]
+});
+
+const interpolateBillboards = (handlers: HandlerInput[], ad: HandlerInput) => [
+  ...flatMap(handlers, (handler) => [ad, handler]),
+  ad
+];
 
 export const pageV2 = (): HandlerInput[] => [
   {
