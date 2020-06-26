@@ -37,7 +37,7 @@ export default async function (
     }));
 
     if (resizedVideos.length < 1) {
-      logger.error(
+      logger.warn(
         params.apiRequestId,
         "Insufficient videos retrieved from Brightcove"
       );

@@ -27,7 +27,8 @@ describe("Homepage Highlight Article", () => {
     portraitImageSrc: "portraitImageSrc.jpg",
     identifier: "identifier",
     category: "National",
-    categoryUrl: "/coronavirus/"
+    categoryUrl: "/coronavirus/",
+    byline: "David Beckham"
   };
 
   const expected: IHomepageHighlightArticle = {
@@ -39,6 +40,7 @@ describe("Homepage Highlight Article", () => {
       name: "National",
       url: "/coronavirus/"
     },
+    byline: "David Beckham",
     headline: "Headline 1",
     headlineFlags: [],
     id: "1",
@@ -75,15 +77,16 @@ describe("Homepage Highlight Article", () => {
           aspectRatio: AspectRatio.SixteenByNine
         },
         tablet: {
-          variant: JsonFeedImageType.PORTRAIT,
+          variant: JsonFeedImageType.THUMBNAIL_SQUARE,
           aspectRatio: AspectRatio.SixteenByNine
         },
         desktop: {
-          variant: JsonFeedImageType.PORTRAIT,
+          variant: JsonFeedImageType.THUMBNAIL_SQUARE,
           aspectRatio: AspectRatio.OneByOne
         }
       },
       HomepageHighlightArticleVariation.Lead,
+      true,
       true
     );
 
@@ -97,6 +100,7 @@ describe("Homepage Highlight Article", () => {
       AccentColor.Cyan,
       {},
       HomepageHighlightArticleVariation.Featured,
+      false,
       false
     );
 
@@ -105,7 +109,8 @@ describe("Homepage Highlight Article", () => {
       color: AccentColor.Cyan,
       image: {},
       variation: HomepageHighlightArticleVariation.Featured,
-      introText: undefined
+      introText: undefined,
+      byline: undefined
     });
   });
 
@@ -129,6 +134,7 @@ describe("Homepage Highlight Article", () => {
         }
       },
       HomepageHighlightArticleVariation.Lead,
+      true,
       true
     );
 

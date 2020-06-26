@@ -46,7 +46,9 @@ export class PageComponent implements OnInit {
       this.correlationService.setApiRequestId(page.apiRequestId);
       this.title.setTitle(page.title);
       this.contentBlocks = page.content;
-      this.adService.notify();
+      setTimeout(() => {
+        this.adService.notify();
+      }, 100);
       this.analyticsService.trackPageByNielsen();
     });
   }

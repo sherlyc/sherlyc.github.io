@@ -35,6 +35,7 @@ export interface IHomepageHighlightArticle {
   type: ContentBlockType.HomepageHighlightArticle;
   id: string;
   headline: string;
+  byline?: string;
   color: AccentColor;
   linkUrl: string;
   headlineFlags: HeadlineFlags[];
