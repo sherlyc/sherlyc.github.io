@@ -97,6 +97,7 @@ describe("Biggie Smalls", () => {
                 aspectRatio: AspectRatio.SixteenByNine
               }
             },
+            byline: undefined,
             variation: HomepageHighlightArticleVariation.Featured
           })
         ],

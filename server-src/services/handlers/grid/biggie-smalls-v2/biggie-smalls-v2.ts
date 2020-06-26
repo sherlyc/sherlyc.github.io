@@ -52,7 +52,8 @@ export default async function (
               }
             },
             HomepageHighlightArticleVariation.Featured,
-            true
+            true,
+            false
           ),
         HandlerInputType.BiggieSmallsV2,
         sourceId,
