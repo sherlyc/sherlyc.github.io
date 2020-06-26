@@ -179,7 +179,7 @@
       }
     },
     "strapOpinion": {
-      "ids": ["91706224"],
+      "ids": ["121876265"],
       "dedupeRules": {
         "dedupeFromBaseList": true
       }
@@ -442,6 +442,12 @@
       },
       "strapClimateChange": {
         "ids": ["74545269"],
+        "dedupeRules": {
+          "dedupeFromBaseList": true
+        }
+      },
+      "strapOpinion": {
+        "ids": ["119375894"],
         "dedupeRules": {
           "dedupeFromBaseList": true
         }
