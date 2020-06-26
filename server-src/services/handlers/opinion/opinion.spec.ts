@@ -22,7 +22,7 @@ describe("Opinion handler", () => {
   const input: IOpinionHandlerInput = {
     type: HandlerInputType.Opinion,
     strapName: "strapName",
-    displayName: "opinion"
+    displayName: "perspectives"
   };
 
   beforeEach(() => {
@@ -37,7 +37,20 @@ describe("Opinion handler", () => {
     await opinion(handlerRunnerMock, input, params);
 
     expect(getRawArticles).toHaveBeenCalledWith(Strap.Cartoons, 1, params);
-    expect(getRawArticles).toHaveBeenCalledWith(Strap.Opinion, 4, params);
+    expect(getRawArticles).toHaveBeenCalledWith(Strap.Perspectives, 4, params);
+  });
+
+  it("should return empty when there is no cartoon and article content", async () => {
+    (getRawArticles as jest.Mock).mockResolvedValueOnce([]);
+    (getRawArticles as jest.Mock).mockResolvedValueOnce([]);
+
+    const result = await opinion(handlerRunnerMock, input, params);
+
+    expect(result).toEqual([]);
+    expect(logger.warn).toHaveBeenCalledWith(
+      params.apiRequestId,
+      "No articles retrieved from opinion list"
+    );
   });
 
   it("should return opinion content block with cartoons and  article content", async () => {

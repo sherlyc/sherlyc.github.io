@@ -74,7 +74,6 @@ describe("OpinionComponent", () => {
 
   it("should render", () => {
     component.input = input;
-
     fixture.detectChanges();
 
     expect(fixture.debugElement.queryAll(By.css("article"))).toHaveLength(5);

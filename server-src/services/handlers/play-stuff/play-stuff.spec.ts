@@ -103,7 +103,7 @@ describe("Play Stuff", () => {
     const result = await playStuff(handlerRunnerMock, input, params);
 
     expect(result).toEqual([]);
-    expect(logger.error).toHaveBeenCalledWith(
+    expect(logger.warn).toHaveBeenCalledWith(
       params.apiRequestId,
       "Insufficient videos retrieved from Brightcove"
     );
