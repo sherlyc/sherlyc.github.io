@@ -140,4 +140,65 @@ describe("Feature Handler", () => {
       expect(result).toEqual(expected);
     });
   });
+
+  describe("error handling", () => {
+    const mockContentBlock = {
+      type: HandlerInputType.ExternalContent,
+      url: "/abc",
+      width: "200px",
+      height: "100%"
+    } as IExternalContentHandlerInput;
+    it("should throw error if anything fails and error is not suppressed", async () => {
+      const handlerRunnerError = new Error("Something went wrong");
+      handlerRunnerMock.mockRejectedValue(handlerRunnerError);
+
+      await expect(
+        featureHandler(
+          handlerRunnerMock,
+          {
+            type: HandlerInputType.Feature,
+            name: "fake" as FeatureName,
+            content: [mockContentBlock],
+            suppressError: false
+          },
+          params
+        )
+      ).rejects.toEqual(handlerRunnerError);
+    });
+
+    it("should suppress error and return empty content block if anything fails", async () => {
+      const handlerRunnerError = new Error("Something went wrong");
+      handlerRunnerMock.mockRejectedValue(handlerRunnerError);
+
+      const result = await featureHandler(
+        handlerRunnerMock,
+        {
+          type: HandlerInputType.Feature,
+          name: "fake" as FeatureName,
+          content: [mockContentBlock],
+          suppressError: true
+        },
+        params
+      );
+
+      expect(result).toEqual([]);
+    });
+
+    it("should suppress error by default", async () => {
+      const handlerRunnerError = new Error("Something went wrong");
+      handlerRunnerMock.mockRejectedValue(handlerRunnerError);
+
+      const result = await featureHandler(
+        handlerRunnerMock,
+        {
+          type: HandlerInputType.Feature,
+          name: "fake" as FeatureName,
+          content: [mockContentBlock]
+        },
+        params
+      );
+
+      expect(result).toEqual([]);
+    });
+  });
 });

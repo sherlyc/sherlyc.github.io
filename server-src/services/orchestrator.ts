@@ -67,7 +67,8 @@ export const newPage = (): HandlerInput[] => {
       type: HandlerInputType.Feature,
       name: FeatureName.HomepageV2,
       content: pageV2(),
-      fallback: pageV1()
+      fallback: pageV1(),
+      suppressError: false
     }
   ];
 };
