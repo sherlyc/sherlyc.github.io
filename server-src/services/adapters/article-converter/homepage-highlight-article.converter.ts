@@ -20,7 +20,7 @@ function pickImage(
       case JsonFeedImageType.DEFCON:
         src = article.defconSrc;
         break;
-      case JsonFeedImageType.PORTRAIT:
+      case JsonFeedImageType.THUMBNAIL_SQUARE:
         src = article.portraitImageSrc;
         break;
       default:
@@ -42,11 +42,13 @@ export const homepageHighlightArticle = (
   accentColor: AccentColor,
   image: IHomepageHighlightArticleImageConfigs,
   variation: HomepageHighlightArticleVariation,
-  showIntroText: boolean
+  showIntroText: boolean,
+  showByline: boolean
 ): IHomepageHighlightArticle => ({
   type: ContentBlockType.HomepageHighlightArticle,
   id: article.id,
   headline: article.indexHeadline,
+  byline: showByline ? article.byline : undefined,
   color: accentColor,
   linkUrl: article.linkUrl,
   headlineFlags: article.headlineFlags,
