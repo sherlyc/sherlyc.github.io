@@ -643,7 +643,8 @@ export const newPage = (): HandlerInput[] => {
       type: HandlerInputType.Feature,
       name: FeatureName.HomepageV2,
       content: homepageV2,
-      fallback: homepage
+      fallback: homepage,
+      suppressError: false
     }
   ];
 };

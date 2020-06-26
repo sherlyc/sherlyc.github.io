@@ -7,4 +7,5 @@ export interface IFeatureHandlerInput {
   name: FeatureName;
   content?: HandlerInput[];
   fallback?: HandlerInput[];
+  suppressError?: boolean;
 }
