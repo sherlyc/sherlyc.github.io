@@ -83,6 +83,7 @@ describe("Half four", () => {
                 aspectRatio: AspectRatio.SixteenByNine
               }
             },
+            byline: undefined,
             variation: HomepageHighlightArticleVariation.Featured
           })
         ],

@@ -50,7 +50,8 @@ export default async function (
                 }
               },
               HomepageHighlightArticleVariation.Featured,
-              true
+              true,
+              false
             ),
           HandlerInputType.HalfFour,
           sourceId,

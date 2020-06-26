@@ -40,6 +40,14 @@
 
       svg {
         height: 100%;
+
+        // IE 11 fix
+        &.logo {
+          width: #{$logoHeight};
+        }
+        &.logo-text {
+          width: #{$logoHeight * 3.63};
+        }
       }
     }
   }
