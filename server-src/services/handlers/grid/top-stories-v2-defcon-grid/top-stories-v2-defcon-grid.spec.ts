@@ -56,7 +56,9 @@ describe("Top Stories Defcon grid", () => {
         [TopStoriesV2DefconGridPositions.TopThree]: gridBlock(4, 1, 1, 2, []),
         [TopStoriesV2DefconGridPositions.TopFour]: gridBlock(5, 1, 1, 2, []),
         [TopStoriesV2DefconGridPositions.TopFive]: gridBlock(6, 1, 1, 2, []),
-        [TopStoriesV2DefconGridPositions.MidInsert]: gridBlock(7, 1, 1, 2, []),
+        [TopStoriesV2DefconGridPositions.MidInsert]: gridBlock(7, 1, 1, 2, [
+          Border.bottom
+        ]),
         [TopStoriesV2DefconGridPositions.BottomOne]: gridBlock(8, 1, 1, 1, []),
         [TopStoriesV2DefconGridPositions.BottomTwo]: gridBlock(8, 2, 1, 1, []),
         [TopStoriesV2DefconGridPositions.BottomThree]: gridBlock(
@@ -96,7 +98,9 @@ describe("Top Stories Defcon grid", () => {
         [TopStoriesV2DefconGridPositions.TopThree]: gridBlock(3, 1, 1, 2, []),
         [TopStoriesV2DefconGridPositions.TopFour]: gridBlock(4, 1, 1, 2, []),
         [TopStoriesV2DefconGridPositions.TopFive]: gridBlock(5, 1, 1, 2, []),
-        [TopStoriesV2DefconGridPositions.MidInsert]: gridBlock(6, 1, 1, 2, []),
+        [TopStoriesV2DefconGridPositions.MidInsert]: gridBlock(6, 1, 1, 2, [
+          Border.bottom
+        ]),
         [TopStoriesV2DefconGridPositions.BottomOne]: gridBlock(7, 1, 2, 1, []),
         [TopStoriesV2DefconGridPositions.BottomTwo]: gridBlock(7, 2, 2, 1, []),
         [TopStoriesV2DefconGridPositions.BottomThree]: gridBlock(
@@ -149,7 +153,9 @@ describe("Top Stories Defcon grid", () => {
         [TopStoriesV2DefconGridPositions.BottomFour]: gridBlock(7, 3, 1, 1, []),
         [TopStoriesV2DefconGridPositions.BottomFive]: gridBlock(8, 3, 1, 1, []),
         [TopStoriesV2DefconGridPositions.BannerAd]: gridBlock(1, 4, 3, 1, []),
-        [TopStoriesV2DefconGridPositions.MidInsert]: gridBlock(5, 1, 1, 3, []),
+        [TopStoriesV2DefconGridPositions.MidInsert]: gridBlock(5, 1, 1, 3, [
+          Border.bottom
+        ]),
         [TopStoriesV2DefconGridPositions.LowerRight]: gridBlock(4, 4, 5, 1, [])
       }
     });
