@@ -40,6 +40,19 @@ describe("Opinion handler", () => {
     expect(getRawArticles).toHaveBeenCalledWith(Strap.Opinion, 4, params);
   });
 
+  it("should return empty when there is no cartoon and article content", async () => {
+    (getRawArticles as jest.Mock).mockResolvedValueOnce([]);
+    (getRawArticles as jest.Mock).mockResolvedValueOnce([]);
+
+    const result = await opinion(handlerRunnerMock, input, params);
+
+    expect(result).toEqual([]);
+    expect(logger.warn).toHaveBeenCalledWith(
+      params.apiRequestId,
+      "No articles retrieved from opinion list"
+    );
+  });
+
   it("should return opinion content block with cartoons and  article content", async () => {
     (getRawArticles as jest.Mock).mockResolvedValueOnce(fakeRawArticles([1]));
     (getRawArticles as jest.Mock).mockResolvedValueOnce(

@@ -16,15 +16,24 @@ export default async function (
   try {
     const cartoonArticles = await getRawArticles(Strap.Cartoons, 1, params);
     const opinionArticles = await getRawArticles(Strap.Opinion, 4, params);
-    return [
-      {
-        type: ContentBlockType.Opinion,
-        articles: opinionArticles.map(homepageArticleContent),
-        cartoons: cartoonArticles.map(homepageArticleContent),
-        strapName,
-        displayName
-      }
-    ];
+
+    if (cartoonArticles.length + opinionArticles.length > 0) {
+      return [
+        {
+          type: ContentBlockType.Opinion,
+          articles: opinionArticles.map(homepageArticleContent),
+          cartoons: cartoonArticles.map(homepageArticleContent),
+          strapName,
+          displayName
+        }
+      ];
+    } else {
+      logger.warn(
+        params.apiRequestId,
+        "No articles retrieved from opinion list"
+      );
+      return [];
+    }
   } catch (error) {
     logger.error(params.apiRequestId, `Opinion handler error`, error);
     return [];
