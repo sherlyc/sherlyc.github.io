@@ -117,6 +117,27 @@ export const pageV2 = (): HandlerInput[] => [
         strapName: `${homepageV2AdPrefix}MostRead`
       },
       {
+        type: HandlerInputType.ResponsiveExternalContent,
+        lazyLoad: true,
+        url:
+          "https://interactives.stuff.co.nz/live/new-homepage/uber/2/320-200.html",
+        mobile: {
+          height: "320px",
+          width: "100%",
+          margin: "0 0 20px 0"
+        },
+        tablet: {
+          height: "200px",
+          width: "100%",
+          margin: "0 0 40px 0"
+        },
+        desktop: {
+          height: "200px",
+          width: "100%",
+          margin: "0 0 40px 0"
+        }
+      },
+      {
         type: HandlerInputType.PlayStuff,
         total: 8
       },
@@ -135,6 +156,27 @@ export const pageV2 = (): HandlerInput[] => [
         linkUrl: "/" + Section.Prosper,
         strapName: `${homepageV2AdPrefix}Prosper`,
         sourceId: Strap.Prosper
+      },
+      {
+        type: HandlerInputType.ResponsiveExternalContent,
+        lazyLoad: true,
+        url:
+          "https://interactives.stuff.co.nz/live/new-homepage/uber/3/320-200.html",
+        mobile: {
+          height: "320px",
+          width: "100%",
+          margin: "0 0 20px 0"
+        },
+        tablet: {
+          height: "200px",
+          width: "100%",
+          margin: "0 0 40px 0"
+        },
+        desktop: {
+          height: "200px",
+          width: "100%",
+          margin: "0 0 40px 0"
+        }
       },
       {
         type: HandlerInputType.LargeLeadSixV2,
@@ -199,6 +241,27 @@ export const pageV2 = (): HandlerInput[] => [
         sourceId: Strap.Premium,
         strapName: Strap.Premium,
         articleCount: 4
+      },
+      {
+        type: HandlerInputType.ResponsiveExternalContent,
+        lazyLoad: true,
+        url:
+          "https://interactives.stuff.co.nz/live/new-homepage/uber/4/320-200.html",
+        mobile: {
+          height: "320px",
+          width: "100%",
+          margin: "0 0 20px 0"
+        },
+        tablet: {
+          height: "200px",
+          width: "100%",
+          margin: "0 0 40px 0"
+        },
+        desktop: {
+          height: "200px",
+          width: "100%",
+          margin: "0 0 40px 0"
+        }
       },
       {
         type: HandlerInputType.TitleSection,
