@@ -184,7 +184,7 @@
         "dedupeFromBaseList": true
       }
     },
-    "strapPerspective": {
+    "strapPerspectives": {
       "ids": ["121876265"],
       "dedupeRules": {
         "dedupeFromBaseList": true
