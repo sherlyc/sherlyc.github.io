@@ -42,5 +42,6 @@ export enum Strap {
   NelsonMail = "strapNelsonMail",
   MarlboroughExpress = "strapMarlboroughExpress",
   TimaruHerald = "strapTimaruHerald",
-  PouTiaki = "strapPouTiaki"
+  PouTiaki = "strapPouTiaki",
+  Perspectives = "strapPerspectives"
 }

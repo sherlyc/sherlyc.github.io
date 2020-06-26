@@ -2,12 +2,14 @@ import { ContentBlockType } from "../../../../common/__types__/ContentBlockType"
 import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
 import { IRawArticle } from "../../adapters/__types__/IRawArticle";
 import { Strap } from "../../strap";
+import logger from "../../utils/logger";
 import { IParams } from "../../__types__/IParams";
 import { HandlerInputType } from "../__types__/HandlerInputType";
 import { ILatestHeadlinesHandlerInput } from "../__types__/ILatestHeadlinesHandlerInput";
 import latestHeadlines from "./latest-headlines";
 
 jest.mock("../../adapters/article-retriever/article-retriever");
+jest.mock("../../utils/logger");
 
 describe("Latest Headlines", () => {
   const params: IParams = { apiRequestId: "123" };
@@ -39,6 +41,26 @@ describe("Latest Headlines", () => {
       input.sourceId,
       input.totalArticles,
       params
+    );
+  });
+
+  it("should return empty when there's no article", async () => {
+    (getRawArticles as jest.Mock).mockResolvedValue([]);
+    const input: ILatestHeadlinesHandlerInput = {
+      type: HandlerInputType.LatestHeadlines,
+      sourceId: Strap.LatestNews,
+      totalArticles: 7,
+      displayName: "Latest Headlines",
+      strapName: "homepageLatestHeadlines",
+      color: "#ff433d"
+    };
+    const result = await latestHeadlines(handlerRunnerMock, input, params);
+
+    expect(result).toEqual([]);
+
+    expect(logger.warn).toHaveBeenCalledWith(
+      params.apiRequestId,
+      "No articles retrieved from latest headline list"
     );
   });
 
