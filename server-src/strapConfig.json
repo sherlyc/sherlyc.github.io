@@ -242,7 +242,7 @@
       }
     },
     "strapProsper": {
-      "ids": ["121165220"],
+      "ids": ["121938956"],
       "dedupeRules": {
         "dedupeFromBaseList": true,
         "extraDedupeList": [
@@ -266,7 +266,7 @@
       }
     },
     "strapLifeStyle": {
-      "ids": ["62546009", "62546149"],
+      "ids": ["62546009"],
       "dedupeRules": {
         "dedupeFromBaseList": true,
         "extraDedupeList": [
@@ -302,7 +302,7 @@
       }
     },
     "strapEntertainment": {
-      "ids": ["62497979", "62498297"],
+      "ids": ["62497979"],
       "dedupeRules": {
         "dedupeFromBaseList": true,
         "extraDedupeList": [
@@ -316,10 +316,6 @@
           },
           {
             "id": "62546009",
-            "limit": 5
-          },
-          {
-            "id": "62546149",
             "limit": 5
           }
         ]
@@ -576,7 +572,7 @@
         }
       },
       "strapProsper": {
-        "ids": ["62950252"],
+        "ids": ["119376282"],
         "dedupeRules": {
           "dedupeFromBaseList": true
         }
@@ -584,11 +580,11 @@
       "strapCartoons": {
         "ids": ["119376124"],
         "dedupeRules": {
-          "dedupeFromBaseList": true
+          "dedupeFromBaseList": false
         }
       },
       "strapClimateChange": {
-        "ids": ["74545269"],
+        "ids": ["119376289"],
         "dedupeRules": {
           "dedupeFromBaseList": true
         }
@@ -602,7 +598,7 @@
       "strapPerspectives": {
         "ids": ["119375894"],
         "dedupeRules": {
-          "dedupeFromBaseList": true
+          "dedupeFromBaseList": false
         }
       }
     }
