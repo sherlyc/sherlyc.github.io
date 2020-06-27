@@ -1,4 +1,6 @@
+import { Strap } from "../../strap";
+
 export interface IDedupeDefinition {
-  id: string;
+  strap: Strap;
   limit: number;
 }
