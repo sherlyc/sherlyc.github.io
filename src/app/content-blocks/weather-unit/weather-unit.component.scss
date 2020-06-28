@@ -110,14 +110,66 @@
   margin-right: 8px;
 }
 
-.time-stamp {
+.timestamp {
   margin: auto;
-  font-weight: 700;
-  font-size: 12px;
+  color: #333333;
+  font-size: 14px;
 }
 
-.weatherLocationInfo {
+.kia-ora {
+  color: #222222;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.weather-location {
+  color: #222222;
+  font-size: 14px;
+  font-weight: bold;
+  height: 16px;
+  line-height: 1;
+}
+
+.weather-min-max {
+  color: #333333;
+  font-size: 12px;
+  height: 14px;
+  line-height: 1;
+}
+
+.weather-temp {
+  color: #222222;
+  font-size: 30px;
+  line-height: 0.67;
+  font-weight: 500;
+  padding-top: 8px;
+  position: relative;
+  margin-left: 4px;
+  .celsius {
+    position: absolute;
+    font-size: 14px;
+    font-weight: normal;
+    bottom: 5px;
+    right: 1px;
+  }
+}
+
+.weather-location-info {
   display: inherit;
+}
+
+.weather-geo {
+  display: inline-block;
+  width: 15px;
+  padding-top: 5px;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.weather-check-label {
+  .weather-geo {
+    height: 28px;
+  }
 }
 
 .sub-header {

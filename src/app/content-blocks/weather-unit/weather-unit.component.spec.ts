@@ -198,7 +198,7 @@ describe("WeatherUnitComponent", () => {
     fixture.detectChanges();
 
     expect(
-      fixture.debugElement.query(By.css(".weatherLocationInfo"))
+      fixture.debugElement.query(By.css(".weather-location-info"))
     ).toBeTruthy();
 
     expect(storeService.get).toHaveBeenCalledWith(StorageKeys.WeatherLocation);
@@ -237,7 +237,7 @@ describe("WeatherUnitComponent", () => {
     fixture.detectChanges();
 
     const weatherLocationInfo = fixture.debugElement.query(
-      By.css(".weatherLocationInfo")
+      By.css(".weather-location-info")
     );
 
     expect(weatherLocationInfo.nativeElement.textContent).toContain(
@@ -283,7 +283,7 @@ describe("WeatherUnitComponent", () => {
       fixture.debugElement.query(By.css(".location-list-visible"))
     ).toBeFalsy();
     expect(
-      fixture.debugElement.query(By.css(".weatherLocationInfo"))
+      fixture.debugElement.query(By.css(".weather-location-info"))
     ).toBeTruthy();
     expect(scrollToSpy).toHaveBeenCalled();
   });
@@ -300,7 +300,7 @@ describe("WeatherUnitComponent", () => {
         .textContent
     ).toContain("Weather is unavailable");
     expect(
-      fixture.debugElement.query(By.css(".weatherLocationInfo"))
+      fixture.debugElement.query(By.css(".weather-location-info"))
     ).toBeFalsy();
     expect(
       fixture.debugElement.query(By.css(".weatherCheckLabel"))
@@ -376,15 +376,15 @@ describe("WeatherUnitComponent", () => {
     fixture.detectChanges();
 
     expect(
-      fixture.debugElement.query(By.css(".weatherLocationInfo")).nativeElement
+      fixture.debugElement.query(By.css(".weather-location-info")).nativeElement
         .textContent
     ).toContain(weatherData.temperature);
     expect(
-      fixture.debugElement.query(By.css(".weatherLocationInfo")).nativeElement
+      fixture.debugElement.query(By.css(".weather-location-info")).nativeElement
         .textContent
     ).toContain(weatherData.minTemp);
     expect(
-      fixture.debugElement.query(By.css(".weatherLocationInfo")).nativeElement
+      fixture.debugElement.query(By.css(".weather-location-info")).nativeElement
         .textContent
     ).toContain(weatherData.maxTemp);
 
@@ -399,12 +399,12 @@ describe("WeatherUnitComponent", () => {
     fixture.detectChanges();
 
     expect(
-      fixture.debugElement.query(By.css(".weatherCheckLabel")).nativeElement
+      fixture.debugElement.query(By.css(".weather-check-label")).nativeElement
         .textContent
     ).toContain("Check your weather");
     expect(fixture.debugElement.query(By.css(".weatherError"))).toBeFalsy();
     expect(
-      fixture.debugElement.query(By.css(".weatherLocationInfo"))
+      fixture.debugElement.query(By.css(".weather-location-info"))
     ).toBeFalsy();
   });
 
@@ -434,10 +434,10 @@ describe("WeatherUnitComponent", () => {
     fixture.detectChanges();
 
     const timeStamp = fixture.debugElement.nativeElement.querySelector(
-      ".time-stamp"
+      ".timestamp"
     );
 
-    expect(timeStamp!.textContent).toEqual("December 25, 2020");
+    expect(timeStamp!.textContent).toEqual("December 25 2020");
   });
 
   describe("Analytics", () => {
