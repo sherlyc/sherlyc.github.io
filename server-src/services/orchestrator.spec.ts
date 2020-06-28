@@ -1,8 +1,9 @@
 import * as handlerRunner from "./handlers/runner";
 import { HandlerInputType } from "./handlers/__types__/HandlerInputType";
-import orchestrator, { newPage } from "./orchestrator";
+import orchestrator from "./orchestrator";
 import { pageV0 } from "./pages/page-v0";
 import { pageV1 } from "./pages/page-v1";
+import { pageV2 } from "./pages/page-v2";
 import { IParams } from "./__types__/IParams";
 
 jest.mock("./handlers/runner");
@@ -89,7 +90,7 @@ describe("Orchestrator", () => {
             type: HandlerInputType.ForceUpdate,
             forceUpdateOnVersionsBefore: expect.any(String)
           },
-          ...newPage()
+          ...pageV2()
         ]
       },
       params
