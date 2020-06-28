@@ -97,7 +97,7 @@ describe("Mobile Homepage", () => {
   it("should contain editors pick, coronavirus, and national", async () => {
     const moduleHeaders = await page.$$eval(
       "app-grid-container > div > div > app-module-header > div",
-      (moduleHeaders) => moduleHeaders.map((header) => header.textContent)
+      (headers) => headers.map((header) => header.textContent)
     );
 
     expect(moduleHeaders).toEqual(
