@@ -3,6 +3,7 @@ import { IFooter } from "../../../../common/__types__/IFooter";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { CookieService } from "../../services/cookie/cookie.service";
+import { RuntimeService } from "../../services/runtime/runtime.service";
 import { ScriptInjectorService } from "../../services/script-injector/script-injector.service";
 import { Position } from "../../services/script-injector/__types__/Position";
 import { ScriptId } from "../../services/script-injector/__types__/ScriptId";
@@ -19,7 +20,8 @@ export class FooterComponent implements IContentBlockComponent, OnInit {
     private analyticsService: AnalyticsService,
     private cookieService: CookieService,
     private scriptInjectorService: ScriptInjectorService,
-    private windowService: WindowService
+    private windowService: WindowService,
+    private runtimeService: RuntimeService
   ) {}
   @Input() input!: IFooter;
   shieldedSiteId = "shielded-site";
@@ -58,7 +60,9 @@ export class FooterComponent implements IContentBlockComponent, OnInit {
   }
 
   ngOnInit() {
-    this.isDesktop = this.windowService.isDesktopDomain();
+    if (this.runtimeService.isBrowser()) {
+      this.isDesktop = this.windowService.isDesktopDomain();
+    }
   }
 
   setRedirectCookie() {

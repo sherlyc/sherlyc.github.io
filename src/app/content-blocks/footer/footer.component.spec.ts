@@ -4,6 +4,7 @@ import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { CookieService } from "../../services/cookie/cookie.service";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
+import { RuntimeService } from "../../services/runtime/runtime.service";
 import { ScriptInjectorService } from "../../services/script-injector/script-injector.service";
 import { Position } from "../../services/script-injector/__types__/Position";
 import { ScriptId } from "../../services/script-injector/__types__/ScriptId";
@@ -17,6 +18,7 @@ describe("Footer", () => {
   let cookieService: ServiceMock<CookieService>;
   let scriptInjectorService: ServiceMock<ScriptInjectorService>;
   let windowService: ServiceMock<WindowService>;
+  let runtimeService: ServiceMock<RuntimeService>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -37,6 +39,10 @@ describe("Footer", () => {
         {
           provide: WindowService,
           useClass: mockService(WindowService)
+        },
+        {
+          provide: RuntimeService,
+          useClass: mockService(RuntimeService)
         }
       ]
     }).compileComponents();
@@ -48,6 +54,9 @@ describe("Footer", () => {
       ScriptInjectorService
     ) as ServiceMock<ScriptInjectorService>;
     windowService = TestBed.inject(WindowService) as ServiceMock<WindowService>;
+    runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
+      RuntimeService
+    >;
 
     fixture = TestBed.createComponent(FooterComponent);
   });
@@ -86,6 +95,7 @@ describe("Footer", () => {
   });
 
   it("should show desktop site link on mobile and set cookie when clicked", () => {
+    runtimeService.isBrowser.mockReturnValue(true);
     windowService.isDesktopDomain.mockReturnValue(false);
     fixture.detectChanges();
 
@@ -107,6 +117,7 @@ describe("Footer", () => {
   });
 
   it("should show mobile site link on desktop and set cookie when clicked", () => {
+    runtimeService.isBrowser.mockReturnValue(true);
     windowService.isDesktopDomain.mockReturnValue(true);
     fixture.detectChanges();
 
