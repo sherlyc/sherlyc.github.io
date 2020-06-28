@@ -317,13 +317,13 @@ export const pageV2 = (): HandlerInput[] => [
         module: BrandModule.Partner
       },
       {
-        type: HandlerInputType.Strips,
+        type: HandlerInputType.StripsV2,
         displayName: "",
-        color: AccentColor.Orange,
+        color: AccentColor.DarkGray,
         sourceId: Strap.SponsoredContent,
         strapName: Strap.SponsoredContent,
         articleCount: 4,
-        articleFormat: ContentBlockType.HalfWidthImageArticleUnit
+        articleFormat: ContentBlockType.HomepageArticle
       },
       {
         type: HandlerInputType.Brand,

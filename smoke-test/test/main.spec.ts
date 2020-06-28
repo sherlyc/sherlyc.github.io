@@ -40,17 +40,6 @@ describe("Mobile Homepage", () => {
     expect(footer).toBeTruthy();
   });
 
-  it("should contain text in a half width article", async () => {
-    const halfWidthArticle = await page.$("app-half-width-image-article-unit");
-    const articleText = await page.evaluate(
-      (element: Element) => element.textContent,
-      halfWidthArticle
-    );
-
-    expect(halfWidthArticle).toBeTruthy();
-    expect(articleText).toBeTruthy();
-  });
-
   it("should contain an ad unit", async () => {
     const adUnit = await page.$("app-basic-ad-unit");
     expect(adUnit).toBeTruthy();
