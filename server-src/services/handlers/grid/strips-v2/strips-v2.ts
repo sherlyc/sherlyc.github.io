@@ -40,7 +40,7 @@ export default async function (
         true
       ),
     [ContentBlockType.FeaturedArticle]: (article: IRawArticle) => () =>
-      featuredArticle(article, strapName, "white", "black", false)
+      featuredArticle(article, strapName, "white", "#222", false)
   };
 
   const articles = await getRawArticles(sourceId, articleCount, params);
