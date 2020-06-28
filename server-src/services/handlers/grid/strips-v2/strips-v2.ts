@@ -9,6 +9,11 @@ import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { StripsGridPositions } from "../../__types__/IStripsGridHandlerInput";
 import { IStripsV2HandlerInput } from "../../__types__/IStripsV2HandlerInput";
 import { contentErrorHandler } from "../content-error-handler";
+import { bigImageArticleUnit } from "../../../adapters/article-converter/big-image-article.converter";
+import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType";
+import { halfWidthImageArticleUnit } from "../../../adapters/article-converter/half-width-image-article-unit.converter";
+import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
+import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 
 export default async function (
   handlerRunner: handlerRunnerFunction,
@@ -18,10 +23,29 @@ export default async function (
     linkUrl,
     sourceId,
     strapName,
-    articleCount
+    articleCount,
+    articleFormat
   }: IStripsV2HandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
+  const articleFormatDelegate = {
+    [ContentBlockType.HomepageArticle]: (article: IRawArticle) => () =>
+      homepageArticle(
+        article,
+        strapName,
+        color,
+        {
+          mobile: Orientation.Portrait,
+          tablet: Orientation.Portrait,
+          desktop: Orientation.Portrait
+        },
+        true,
+        true
+      ),
+    [ContentBlockType.FeaturedArticle]: (article: IRawArticle) => () =>
+      featuredArticle(article, strapName, "white", "black", false)
+  };
+
   const articles = await getRawArticles(sourceId, articleCount, params);
   const moduleContent = await handlerRunner(
     {
@@ -31,8 +55,8 @@ export default async function (
       rowGap: 20,
       content: articles.map((article: IRawArticle) =>
         contentErrorHandler(
-          () => featuredArticle(article, strapName, "white", "#222", false),
-          HandlerInputType.Strips,
+          articleFormatDelegate[articleFormat](article),
+          HandlerInputType.StripsV2,
           strapName,
           params
         )

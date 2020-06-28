@@ -197,13 +197,14 @@ export const pageV2 = (): HandlerInput[] => [
         sourceId: Strap.ClimateChange
       },
       {
-        type: HandlerInputType.Strips,
+        type: HandlerInputType.StripsV2,
+        linkUrl: "/" + Section.PouTiaki,
         displayName: "pou tiaki",
         color: AccentColor.DarkGray,
         sourceId: Strap.PouTiaki,
         strapName: Strap.PouTiaki,
         articleCount: 4,
-        articleFormat: ContentBlockType.HalfWidthImageArticleUnit
+        articleFormat: ContentBlockType.HomepageArticle
       },
       {
         type: HandlerInputType.BiggieSmallsV2,
@@ -259,7 +260,8 @@ export const pageV2 = (): HandlerInput[] => [
         linkUrl: "/" + Section.Premium,
         sourceId: Strap.Premium,
         strapName: Strap.Premium,
-        articleCount: 4
+        articleCount: 4,
+        articleFormat: ContentBlockType.FeaturedArticle
       },
       {
         type: HandlerInputType.ResponsiveExternalContent,

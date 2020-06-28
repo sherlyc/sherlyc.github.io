@@ -9,7 +9,7 @@ function timeAgoFormat(secondsAgo: number) {
     (secondsAgo % ONE_HOUR_IN_SECONDS) / ONE_MINUTE_IN_SECONDS
   );
   const hoursText = hours === 0 ? "" : `${hours} hour `;
-  const minutesText = minutes === 0 ? "" : `${minutes} m `;
+  const minutesText = minutes === 0 ? "" : `${minutes}m `;
   const text = `${hoursText}${minutesText}`;
   return text ? `${hoursText}${minutesText}ago` : "";
 }

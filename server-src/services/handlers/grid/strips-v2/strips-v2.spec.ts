@@ -25,7 +25,8 @@ describe("Strips V2", () => {
     sourceId: Strap.Premium,
     color: AccentColor.Black,
     displayName: "spotlight",
-    linkUrl: "/" + Section.Premium
+    linkUrl: "/" + Section.Premium,
+    articleFormat: ContentBlockType.FeaturedArticle
   };
   beforeEach(() => {
     jest.resetAllMocks();
@@ -45,29 +46,33 @@ describe("Strips V2", () => {
     );
   });
 
-  it("should call column grid with featured articles", async () => {
-    await stripsV2(handlerRunnerMock, input, params);
+  it.each([ContentBlockType.FeaturedArticle, ContentBlockType.HomepageArticle])(
+    "should call column grid with %s",
+    async (articleFormat: any) => {
+      const handlerInput: IStripsV2HandlerInput = {
+        ...input,
+        articleFormat
+      };
+      await stripsV2(handlerRunnerMock, handlerInput, params);
 
-    expect(handlerRunnerMock).toHaveBeenNthCalledWith(
-      1,
-      {
-        type: HandlerInputType.ColumnGrid,
-        border: false,
-        columnGap: 20,
-        rowGap: 20,
-        content: ["1", "2", "3", "4"].map((id) =>
-          expect.objectContaining({
-            type: ContentBlockType.FeaturedArticle,
-            id,
-            textColor: "white",
-            boxColor: "#222",
-            applyGradient: false
-          })
-        )
-      },
-      params
-    );
-  });
+      expect(handlerRunnerMock).toHaveBeenNthCalledWith(
+        1,
+        {
+          type: HandlerInputType.ColumnGrid,
+          border: false,
+          columnGap: 20,
+          rowGap: 20,
+          content: ["1", "2", "3", "4"].map((id) =>
+            expect.objectContaining({
+              type: articleFormat,
+              id
+            })
+          )
+        },
+        params
+      );
+    }
+  );
 
   it("should call strips grid", async () => {
     handlerRunnerMock.mockResolvedValueOnce([

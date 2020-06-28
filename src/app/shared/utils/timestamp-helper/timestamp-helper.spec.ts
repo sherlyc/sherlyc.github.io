@@ -22,9 +22,9 @@ describe("Timestamp Helper", () => {
   it.each`
     minutesAgo | expected
     ${0.5}     | ${""}
-    ${1}       | ${"1 m ago"}
-    ${20}      | ${"20 m ago"}
-    ${59}      | ${"59 m ago"}
+    ${1}       | ${"1m ago"}
+    ${20}      | ${"20m ago"}
+    ${59}      | ${"59m ago"}
   `(
     "should format time ago when it is between 1 to 59 minutes ago ($minutesAgo min ago)",
     ({ minutesAgo, expected }) => {

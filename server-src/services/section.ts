@@ -33,5 +33,6 @@ export enum Section {
   ManawatuStandard = "manawatu-standard",
   NelsonMail = "nelson-mail",
   MarlboroughExpress = "marlborough-express",
-  TimaruHerald = "timaru-herald"
+  TimaruHerald = "timaru-herald",
+  PouTiaki = "pou-tiaki"
 }
