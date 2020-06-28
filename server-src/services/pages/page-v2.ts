@@ -100,11 +100,11 @@ export const pageV2 = (): HandlerInput[] => [
         strapName: `${homepageV2AdPrefix}Coronavirus`,
         sourceId: Strap.Coronavirus
       },
-      {
-        type: HandlerInputType.Opinion,
-        strapName: `${homepageV2AdPrefix}Perspectives`,
-        displayName: "perspectives"
-      },
+      // {
+      //   type: HandlerInputType.Opinion,
+      //   strapName: `${homepageV2AdPrefix}Perspectives`,
+      //   displayName: "perspectives"
+      // },
       {
         type: HandlerInputType.NewsSixV2,
         displayName: "national",
@@ -196,6 +196,15 @@ export const pageV2 = (): HandlerInput[] => [
         strapName: `${homepageV2AdPrefix}ClimateChange`,
         sourceId: Strap.ClimateChange
       },
+      // {
+      //   type: HandlerInputType.Strips,
+      //   displayName: "pou tiaki",
+      //   color: AccentColor.DarkGray,
+      //   sourceId: Strap.PouTiaki,
+      //   strapName: Strap.PouTiaki,
+      //   articleCount: 4,
+      //   articleFormat: ContentBlockType.HalfWidthImageArticleUnit
+      // },
       {
         type: HandlerInputType.BiggieSmallsV2,
         displayName: "sport",
@@ -284,19 +293,19 @@ export const pageV2 = (): HandlerInput[] => [
           url:
             "https://www.playwidget.stuff.co.nz/grid/5d3fcb25a0e845001caee780",
           mobile: {
-            height: "calc(35% + 35px)",
+            height: "160px",
             width: "100%",
-            margin: "0 -10px 20px"
+            margin: "0 -10px 15px"
           },
           tablet: {
-            height: "170px",
+            height: "250px",
             width: "100%",
-            margin: "0 -10px 40px"
+            margin: "0 -10px 10px"
           },
           desktop: {
-            height: "170px",
+            height: "360px",
             width: "100%",
-            margin: "0 -10px 60px"
+            margin: "0 -10px 0"
           }
         }
       },

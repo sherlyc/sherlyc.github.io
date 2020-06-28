@@ -74,7 +74,7 @@ export class ResponsiveExternalContentComponent
     if (!this.isShown && event.isIntersecting) {
       this.isShown = true;
       this.changeDetectorRef.detectChanges();
-      this.changeDetectorRef.detach();
     }
+    this.changeDetectorRef.detach();
   }
 }

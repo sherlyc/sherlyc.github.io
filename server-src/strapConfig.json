@@ -20,7 +20,8 @@
         "dedupeFromBaseList": false,
         "extraDedupeList": [
           {
-            "id": "121876089"
+            "strap": "strapDefcon",
+            "limit": 5
           }
         ]
       }
@@ -39,15 +40,15 @@
         "dedupeFromBaseList": false,
         "extraDedupeList": [
           {
-            "id": "121876089",
+            "strap": "strapDefcon",
             "limit": 5
           },
           {
-            "id": "63768623",
+            "strap": "strapTopStories",
             "limit": 5
           },
           {
-            "id": "64161221",
+            "strap": "strapLatestNews",
             "limit": 5
           }
         ]
@@ -60,15 +61,15 @@
         "dedupeFromBaseList": false,
         "extraDedupeList": [
           {
-            "id": "63768623",
+            "strap": "strapTopStories",
             "limit": 5
           },
           {
-            "id": "64161221",
+            "strap": "strapLatestNews",
             "limit": 5
           },
           {
-            "id": "63868237",
+            "strap": "strapEditorPicks",
             "limit": 5
           }
         ]
@@ -93,19 +94,19 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "62950252",
+            "strap": "strapNational",
             "limit": 5
           },
           {
-            "id": "120121097",
+            "strap": "strapCoronavirus",
             "limit": 5
           },
           {
-            "id": "60844362",
+            "strap": "strapWorld",
             "limit": 5
           },
           {
-            "id": "63060863",
+            "strap": "strapBusiness",
             "limit": 5
           }
         ]
@@ -129,11 +130,11 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "120121097",
+            "strap":  "strapCoronavirus",
             "limit": 5
           },
           {
-            "id": "91706224",
+            "strap": "strapOpinion",
             "limit": 5
           }
         ]
@@ -145,11 +146,11 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "62950252",
+            "strap": "strapNational",
             "limit": 5
           },
           {
-            "id": "60844362",
+            "strap":  "strapWorld",
             "limit": 5
           }
         ]
@@ -161,7 +162,7 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "120121097",
+            "strap":  "strapCoronavirus",
             "limit": 5
           }
         ]
@@ -173,15 +174,15 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "120121097",
+            "strap":  "strapCoronavirus",
             "limit": 5
           },
           {
-            "id": "62950252",
+            "strap": "strapNational",
             "limit": 5
           },
           {
-            "id": "60844362",
+            "strap":  "strapWorld",
             "limit": 5
           }
         ]
@@ -211,7 +212,7 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "63060863",
+            "strap": "strapBusiness",
             "limit": 5
           }
         ]
@@ -223,19 +224,19 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "120121097",
+            "strap":  "strapCoronavirus",
             "limit": 5
           },
           {
-            "id": "62950252",
+            "strap": "strapNational",
             "limit": 5
           },
           {
-            "id": "60844362",
+            "strap":  "strapWorld",
             "limit": 5
           },
           {
-            "id": "63060863",
+            "strap": "strapBusiness",
             "limit": 5
           }
         ]
@@ -247,19 +248,19 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "120121097",
+            "strap":  "strapCoronavirus",
             "limit": 5
           },
           {
-            "id": "62950252",
+            "strap": "strapNational",
             "limit": 5
           },
           {
-            "id": "60844362",
+            "strap":  "strapWorld",
             "limit": 5
           },
           {
-            "id": "63060863",
+            "strap": "strapBusiness",
             "limit": 5
           }
         ]
@@ -271,31 +272,27 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "120121097",
+            "strap":  "strapCoronavirus",
             "limit": 5
           },
           {
-            "id": "62950252",
+            "strap": "strapNational",
             "limit": 5
           },
           {
-            "id": "60844362",
+            "strap":  "strapWorld",
             "limit": 5
           },
           {
-            "id": "63060863",
+            "strap": "strapBusiness",
             "limit": 5
           },
           {
-            "id": "60860998",
+            "strap": "strapTravel",
             "limit": 5
           },
           {
-            "id": "91738058",
-            "limit": 5
-          },
-          {
-            "id": "91738163",
+            "strap": "strapHomed",
             "limit": 5
           }
         ]
@@ -307,15 +304,15 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "60844362",
+            "strap":  "strapWorld",
             "limit": 5
           },
           {
-            "id": "63060863",
+            "strap": "strapBusiness",
             "limit": 5
           },
           {
-            "id": "62546009",
+            "strap": "strapLifeStyle",
             "limit": 5
           }
         ]
@@ -327,15 +324,11 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "63060863",
+            "strap": "strapBusiness",
             "limit": 5
           },
           {
-            "id": "62922196",
-            "limit": 5
-          },
-          {
-            "id": "62919098",
+            "strap": "strapSport",
             "limit": 5
           }
         ]
@@ -347,7 +340,7 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "62546009",
+            "strap": "strapLifeStyle",
             "limit": 5
           }
         ]
@@ -359,7 +352,7 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "63060863",
+            "strap": "strapBusiness",
             "limit": 5
           }
         ]
@@ -371,7 +364,7 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "62546009",
+            "strap": "strapLifeStyle",
             "limit": 5
           }
         ]
@@ -389,15 +382,15 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "62950252",
+            "strap": "strapNational",
             "limit": 5
           },
           {
-            "id": "60844362",
+            "strap":  "strapWorld",
             "limit": 5
           },
           {
-            "id": "63060863",
+            "strap": "strapBusiness",
             "limit": 5
           }
         ]
@@ -409,7 +402,7 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "62546009",
+            "strap": "strapLifeStyle",
             "limit": 5
           }
         ]
@@ -517,15 +510,15 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "91706224",
+            "strap":  "strapOpinion",
             "limit": 5
           },
           {
-            "id": "62950252",
+            "strap": "strapNational",
             "limit": 5
           },
           {
-            "id": "63060863",
+            "strap": "strapBusiness",
             "limit": 5
           }
         ]
@@ -559,13 +552,19 @@
           "dedupeFromBaseList": false
         }
       },
+      "strapProperty": {
+        "ids": ["85424401"],
+        "dedupeRules": {
+          "dedupeFromBaseList": false
+        }
+      },
       "strapBusiness": {
         "ids": ["63060863"],
         "dedupeRules": {
           "dedupeFromBaseList": true,
           "extraDedupeList": [
             {
-              "id": "85424401",
+              "strap": "strapProperty",
               "limit": 5
             }
           ]

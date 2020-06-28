@@ -1,11 +1,8 @@
-import { flatMap } from "lodash-es";
 import { FeatureName } from "../../common/FeatureName";
-import { ContentBlockType } from "../../common/__types__/ContentBlockType";
 import { IPage } from "../../common/__types__/IPage";
 import handlerRunner from "./handlers/runner";
 import { HandlerInput } from "./handlers/__types__/HandlerInput";
 import { HandlerInputType } from "./handlers/__types__/HandlerInputType";
-import { IContentBlockHandlerInput } from "./handlers/__types__/IContentBlockHandlerInput";
 import { pageV0 } from "./pages/page-v0";
 import { pageV1 } from "./pages/page-v1";
 import { pageV2 } from "./pages/page-v2";
@@ -46,28 +43,14 @@ export default async (params: IParams): Promise<IPage> => {
   }
 };
 
-export const billboard = (prefix: string): IContentBlockHandlerInput => ({
-  type: HandlerInputType.ContentBlockHandler,
-  contentBlocks: [
-    {
-      type: ContentBlockType.BasicAdUnit,
-      context: `${prefix}Billboard`
-    }
-  ]
-});
-
-export const interpolateBillboards = (
-  handlers: HandlerInput[],
-  ad: HandlerInput
-) => [...flatMap(handlers, (handler) => [ad, handler]), ad];
-
 export const newPage = (): HandlerInput[] => {
   return [
     {
       type: HandlerInputType.Feature,
       name: FeatureName.HomepageV2,
       content: pageV2(),
-      fallback: pageV1()
+      fallback: pageV1(),
+      suppressError: false
     }
   ];
 };

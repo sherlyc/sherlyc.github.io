@@ -17,11 +17,13 @@ article {
 
   app-time {
     display: inline;
+    &:not(:empty) {
+      margin-right: 10px;
+    }
   }
 
   .byline {
     display: inline;
-    margin-left: 10px;
     font-size: 12px;
     color: #717171;
   }

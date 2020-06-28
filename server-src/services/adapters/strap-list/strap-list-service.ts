@@ -65,8 +65,9 @@ const getExtraDedupeArticles = async (strap: Strap, params: IParams) => {
 
   const extraDedupeArticles = await Promise.all(
     extraDedupeList.map((dedupeRule) => {
-      const { id, limit } = dedupeRule;
-      return getArticlesInListAssets([id], params, limit);
+      const { strap: dedupeStrap, limit } = dedupeRule;
+      const { ids } = config.strapConfig.homepageStraps[dedupeStrap];
+      return getArticlesInListAssets(ids, params, limit);
     })
   );
 

@@ -112,12 +112,17 @@ export class AnalyticsService implements IAnalyticsService {
     const productionEnv = "production";
     const window = this.windowService.getWindow();
     window.spade = 1;
+    const deviceType = this.runtime.isBrowser()
+      ? this.windowService.isDesktopDomain()
+        ? DeviceType.desktop
+        : DeviceType.mobile
+      : undefined;
     window.digitalData = {
       page: {
         pageInfo: {
           pageID: home,
           pageName: "Stuff home",
-          sysEnv: DeviceType.mobile,
+          sysEnv: deviceType,
           variant: "1",
           version: environment.version,
           publisher: "",

@@ -20,7 +20,7 @@ export default async function (
 ): Promise<IContentBlock[]> {
   const mobile: IGridBlocks = {
     [MostReadGridPositions.Left]: gridBlock(1, 1, 1, 1, []),
-    [MostReadGridPositions.Right]: gridBlock(2, 1, 1, 1, [Border.bottom])
+    [MostReadGridPositions.Right]: gridBlock(2, 1, 1, 1, [])
   };
 
   const tablet: IGridBlocks = {
