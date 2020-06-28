@@ -107,6 +107,7 @@ a {
     border-bottom: #e7e7e7 1px solid;
 
     @include desktop() {
+      flex-grow: 1;
       &:not(:first-child) {
         padding-top: calc((100% - 70px * 3) / 5);
       }
