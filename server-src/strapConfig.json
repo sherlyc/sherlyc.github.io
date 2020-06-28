@@ -26,11 +26,11 @@
         "dedupeFromBaseList": false,
         "extraDedupeList": [
           {
-            "id": "63768623",
+            "strap": "strapTopStories",
             "limit": 5
           },
           {
-            "id": "63868237",
+            "strap": "strapEditorPicks",
             "limit": 5
           }
         ]
@@ -44,11 +44,11 @@
         "dedupeFromBaseList": false,
         "extraDedupeList": [
           {
-            "id": "63768623",
+            "strap": "strapTopStories",
             "limit": 5
           },
           {
-            "id": "64161221",
+            "strap": "strapLatestNews",
             "limit": 5
           }
         ]
@@ -61,15 +61,15 @@
         "dedupeFromBaseList": false,
         "extraDedupeList": [
           {
-            "id": "63768623",
+            "strap": "strapTopStories",
             "limit": 5
           },
           {
-            "id": "64161221",
+            "strap": "strapLatestNews",
             "limit": 5
           },
           {
-            "id": "63868237",
+            "strap": "strapEditorPicks",
             "limit": 5
           }
         ]
@@ -94,7 +94,7 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "62950252",
+            "strap": "strapNational",
             "limit": 5
           }
         ]
@@ -118,7 +118,7 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "120121097",
+            "strap": "strapCoronavirus",
             "limit": 5
           }
         ]
@@ -130,7 +130,7 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "62950252",
+            "strap": "strapNational",
             "limit": 5
           }
         ]
@@ -142,15 +142,15 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "62950252",
+            "strap": "strapNational",
             "limit": 5
           },
           {
-            "id": "63060863",
+            "strap": "strapBusiness",
             "limit": 5
           },
           {
-            "id": "120121097",
+            "strap": "strapCoronavirus",
             "limit": 5
           }
         ]
@@ -162,11 +162,11 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "85424401",
+            "strap": "strapProperty",
             "limit": 5
           },
           {
-            "id": "121165220",
+            "strap": "strapProsper",
             "limit": 5
           }
         ]
@@ -196,7 +196,7 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "63060863",
+            "strap": "strapBusiness",
             "limit": 5
           }
         ]
@@ -220,7 +220,7 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "91738058",
+            "strap": "strapHomed",
             "limit": 5
           }
         ]
@@ -244,7 +244,7 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "62546009",
+            "strap": "strapLifeStyle",
             "limit": 5
           }
         ]
@@ -256,7 +256,7 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "63060863",
+            "strap": "strapBusiness",
             "limit": 5
           }
         ]
@@ -268,7 +268,7 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "62546009",
+            "strap": "strapLifeStyle",
             "limit": 5
           }
         ]
@@ -292,7 +292,7 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "62546009",
+            "strap": "strapLifeStyle",
             "limit": 5
           }
         ]
@@ -394,21 +394,27 @@
         "dedupeFromBaseList": false
       }
     },
+    "strapProperty": {
+      "ids": ["85424401"],
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
+    },
     "strapPouTiaki": {
       "ids": ["121941449"],
       "dedupeRules": {
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "91706224",
+            "strap": "strapOpinion",
             "limit": 5
           },
           {
-            "id": "62950252",
+            "strap": "strapNational",
             "limit": 5
           },
           {
-            "id": "63060863",
+            "strap": "strapBusiness",
             "limit": 5
           }
         ]
@@ -448,7 +454,7 @@
           "dedupeFromBaseList": true,
           "extraDedupeList": [
             {
-              "id": "85424401",
+              "strap": "strapProperty",
               "limit": 5
             }
           ]

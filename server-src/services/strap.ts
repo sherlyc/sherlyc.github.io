@@ -40,6 +40,7 @@ export enum Strap {
   TaranakiDailyNews = "strapTaranakiDailyNews",
   ManawatuStandard = "strapManawatuStandard",
   NelsonMail = "strapNelsonMail",
+  Property = "strapProperty",
   MarlboroughExpress = "strapMarlboroughExpress",
   TimaruHerald = "strapTimaruHerald",
   PouTiaki = "strapPouTiaki",
