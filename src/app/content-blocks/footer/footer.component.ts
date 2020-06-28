@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { IFooter } from "../../../../common/__types__/IFooter";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
@@ -14,7 +14,7 @@ import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
   templateUrl: "./footer.component.html",
   styleUrls: ["./footer.component.scss"]
 })
-export class FooterComponent implements IContentBlockComponent {
+export class FooterComponent implements IContentBlockComponent, OnInit {
   constructor(
     private analyticsService: AnalyticsService,
     private cookieService: CookieService,
@@ -24,6 +24,7 @@ export class FooterComponent implements IContentBlockComponent {
   @Input() input!: IFooter;
   shieldedSiteId = "shielded-site";
   loaded = false;
+  isDesktop = false;
 
   async setupShieldedSite() {
     await this.scriptInjectorService.load(
@@ -56,11 +57,17 @@ export class FooterComponent implements IContentBlockComponent {
     });
   }
 
-  goDesktop() {
+  ngOnInit() {
+    this.isDesktop = this.windowService.isDesktopDomain();
+  }
+
+  setRedirectCookie() {
     const now = new Date();
     now.setFullYear(now.getFullYear() + 1);
 
-    this.cookieService.set("site-view", "d", {
+    const cookieValue = this.isDesktop ? "i" : "d";
+
+    this.cookieService.set("site-view", cookieValue, {
       domain: ".stuff.co.nz",
       path: "/",
       expires: now

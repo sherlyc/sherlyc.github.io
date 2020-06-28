@@ -85,12 +85,42 @@ describe("Footer", () => {
     });
   });
 
-  it("should set cookie when desktop link is clicked", () => {
-    fixture.debugElement
-      .query(By.css('.links a[href="https://www.stuff.co.nz/"]'))
-      .nativeElement.click();
+  it("should show desktop site link on mobile and set cookie when clicked", () => {
+    windowService.isDesktopDomain.mockReturnValue(false);
+    fixture.detectChanges();
+
+    const desktopLink = fixture.debugElement.query(By.css(".redirect-desktop"))
+      .nativeElement;
+
+    const mobileLink = fixture.debugElement.query(By.css(".redirect-mobile"));
+
+    expect(desktopLink).toBeTruthy();
+    expect(mobileLink).toBeFalsy();
+
+    desktopLink.click();
 
     expect(cookieService.set).toHaveBeenCalledWith("site-view", "d", {
+      domain: ".stuff.co.nz",
+      expires: expect.any(Date),
+      path: "/"
+    });
+  });
+
+  it("should show mobile site link on desktop and set cookie when clicked", () => {
+    windowService.isDesktopDomain.mockReturnValue(true);
+    fixture.detectChanges();
+
+    const desktopLink = fixture.debugElement.query(By.css(".redirect-desktop"));
+
+    const mobileLink = fixture.debugElement.query(By.css(".redirect-mobile"))
+      .nativeElement;
+
+    expect(desktopLink).toBeFalsy();
+    expect(mobileLink).toBeTruthy();
+
+    mobileLink.click();
+
+    expect(cookieService.set).toHaveBeenCalledWith("site-view", "i", {
       domain: ".stuff.co.nz",
       expires: expect.any(Date),
       path: "/"
