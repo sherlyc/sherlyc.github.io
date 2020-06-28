@@ -14,7 +14,7 @@ function getCompatibleComponents(params: IParams): HandlerInput[] {
   const isV1Compatible =
     params.version && parseVersion(params.version) >= parseVersion("1.649");
   const isV2Compatible =
-    params.version && parseVersion(params.version) >= parseVersion("1.900");
+    params.version && parseVersion(params.version) >= parseVersion("1.881");
 
   if (isV2Compatible) {
     return newPage();

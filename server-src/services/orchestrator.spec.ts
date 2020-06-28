@@ -43,7 +43,7 @@ describe("Orchestrator", () => {
     );
   });
 
-  it.each([["1.649"], ["1.899"]])(
+  it.each([["1.649"], ["1.880"]])(
     "should return page v1 when frontend version is %s",
     async (version: string) => {
       const params: IParams = {
@@ -73,7 +73,7 @@ describe("Orchestrator", () => {
 
   it("should return new page with feature switch between page v2 and v1 for new front end version", async () => {
     const params: IParams = {
-      version: "1.900",
+      version: "1.881",
       apiRequestId: "123"
     };
 
