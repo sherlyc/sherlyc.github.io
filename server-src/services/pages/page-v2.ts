@@ -100,11 +100,11 @@ export const pageV2 = (): HandlerInput[] => [
         strapName: `${homepageV2AdPrefix}Coronavirus`,
         sourceId: Strap.Coronavirus
       },
-      // {
-      //   type: HandlerInputType.Opinion,
-      //   strapName: `${homepageV2AdPrefix}Perspectives`,
-      //   displayName: "perspectives"
-      // },
+      {
+        type: HandlerInputType.Opinion,
+        strapName: `${homepageV2AdPrefix}Perspectives`,
+        displayName: "perspectives"
+      },
       {
         type: HandlerInputType.NewsSixV2,
         displayName: "national",
@@ -196,15 +196,6 @@ export const pageV2 = (): HandlerInput[] => [
         strapName: `${homepageV2AdPrefix}ClimateChange`,
         sourceId: Strap.ClimateChange
       },
-      // {
-      //   type: HandlerInputType.Strips,
-      //   displayName: "pou tiaki",
-      //   color: AccentColor.DarkGray,
-      //   sourceId: Strap.PouTiaki,
-      //   strapName: Strap.PouTiaki,
-      //   articleCount: 4,
-      //   articleFormat: ContentBlockType.HalfWidthImageArticleUnit
-      // },
       {
         type: HandlerInputType.Strips,
         displayName: "pou tiaki",
