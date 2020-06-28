@@ -49,14 +49,67 @@ const shouldContainFooter = async () => {
   const element = await getCssElement("app-footer");
   return assert(element != null, "footer element is null");
 };
+
+const shouldContainTopStoriesHighlights = async () => {
+  console.log("checking top stories highlights");
+  const homepageHighlights = await $browser.findElements(
+    $driver.By.css(
+      "app-grid-container:first-of-type app-homepage-highlight-article"
+    )
+  );
+  const defcon = await $browser.findElements(
+    $driver.By.css("app-grid-container:first-of-type app-defcon")
+  );
+  return assert(
+    homepageHighlights.length + defcon.length > 1,
+    "top stories highlights are not available"
+  );
+};
+
+const shouldContainTopStoriesArticles = async () => {
+  console.log("checking top stories articles");
+  const homepageArticles = await $browser.findElements(
+    $driver.By.css("app-grid-container:first-of-type app-homepage-article")
+  );
+  return assert(
+    homepageArticles.length > 6,
+    "top stories articles are not available"
+  );
+};
+
+const shouldContainLatestHeadline = async () => {
+  console.log("checking latest headlines");
+  const latestHeadlineArticles = await $browser.findElements(
+    $driver.By.css(
+      "app-grid-container:first-of-type app-vertical-article-list a"
+    )
+  );
+  return assert(
+    latestHeadlineArticles.length > 5,
+    "latest headlines articles are not available"
+  );
+};
+
+const shouldContainImportantStraps = async () => {
+  console.log("checking important straps");
+  const importantStraps = await $browser.findElements(
+    $driver.By.css("app-grid-container > div > div > app-module-header > div")
+  );
+  const strapsToCheck = ["editors' picks", "coronavirus", "national"];
+  const strapHeaders = await Promise.all(
+    importantStraps.map((strap) => strap.getText())
+  );
+  strapsToCheck.forEach((strap) => assert(strapHeaders.includes(strap)));
+};
+
 $browser
-  .get("https://i.stuff.co.nz")
-  .then(selectMobileSite)
-  .then(() => {
-    return $browser.get("https://i.stuff.co.nz");
-  })
+  .get("https://www.stuff.co.nz")
   .then(closeOLI)
   .then(shouldContainHeader)
+  .then(shouldContainTopStoriesHighlights)
+  .then(shouldContainTopStoriesArticles)
+  .then(shouldContainLatestHeadline)
+  .then(shouldContainImportantStraps)
   .then(shouldContainBasicAdUnit)
   .then(shouldContainFooter);
 ```
