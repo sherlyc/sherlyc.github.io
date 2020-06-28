@@ -5,6 +5,13 @@ import { IPage } from "../../common/__types__/IPage";
 jest.setTimeout(10000);
 
 describe("api test", () => {
+  const onlyInPageV2 = {
+    type: ContentBlockType.ModuleHeader
+  };
+  const onlyInPageV1 = {
+    type: ContentBlockType.ModuleTitle
+  };
+
   it.each([["1.648"], ["SNAPSHOT"], [""]])(
     "should return page v0 for front end version %s ",
     async (frontendVersion: string) => {
@@ -60,9 +67,7 @@ describe("api test", () => {
               type: ContentBlockType.GridContainer,
               items: expect.objectContaining({
                 ModuleTitle: expect.arrayContaining([
-                  expect.objectContaining({
-                    type: ContentBlockType.ModuleTitle
-                  })
+                  expect.objectContaining(onlyInPageV1)
                 ])
               })
             })
@@ -86,6 +91,7 @@ describe("api test", () => {
     expect(page.title).toBe(
       "Latest breaking news NZ | Stuff.co.nz | New Zealand"
     );
+
     expect(page.content).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ type: ContentBlockType.Header }),
@@ -93,7 +99,27 @@ describe("api test", () => {
           type: ContentBlockType.Container,
           items: expect.arrayContaining([
             expect.objectContaining({
-              type: ContentBlockType.FeatureContainer
+              type: ContentBlockType.FeatureContainer,
+              content: expect.arrayContaining([
+                expect.objectContaining({
+                  type: ContentBlockType.GridContainer,
+                  items: expect.objectContaining({
+                    ModuleTitle: expect.arrayContaining([
+                      expect.objectContaining(onlyInPageV2)
+                    ])
+                  })
+                })
+              ]),
+              fallback: expect.arrayContaining([
+                expect.objectContaining({
+                  type: ContentBlockType.GridContainer,
+                  items: expect.objectContaining({
+                    ModuleTitle: expect.arrayContaining([
+                      expect.objectContaining(onlyInPageV1)
+                    ])
+                  })
+                })
+              ])
             })
           ])
         }),
