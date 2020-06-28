@@ -1,4 +1,5 @@
 import { TestBed } from "@angular/core/testing";
+import { DeviceType } from "../../../../common/DeviceType";
 import { environment } from "../../../environments/environment";
 import { DtmService } from "../dtm/dtm.service";
 import { LoggerService } from "../logger/logger.service";
@@ -85,6 +86,37 @@ describe("AnalyticsService", () => {
       exclusions: "",
       sections: []
     });
+  });
+
+  it("should set device type correctly for mobile domain", () => {
+    runtimeService.isBrowser.mockReturnValue(true);
+    windowService.isDesktopDomain.mockReturnValue(false);
+
+    analyticsService.setup();
+
+    expect(windowService.getWindow().digitalData.page.pageInfo.sysEnv).toEqual(
+      DeviceType.mobile
+    );
+  });
+
+  it("should set device type correctly for desktop domain", () => {
+    runtimeService.isBrowser.mockReturnValue(true);
+    windowService.isDesktopDomain.mockReturnValue(true);
+
+    analyticsService.setup();
+
+    expect(windowService.getWindow().digitalData.page.pageInfo.sysEnv).toEqual(
+      DeviceType.desktop
+    );
+  });
+
+  it("should not set device type as undefined when running in server side", () => {
+    runtimeService.isBrowser.mockReturnValue(false);
+
+    analyticsService.setup();
+    expect(windowService.getWindow().digitalData.page.pageInfo.sysEnv).toEqual(
+      undefined
+    );
   });
 
   it("should push corresponding analytics when weather bar is closed with exit button", () => {

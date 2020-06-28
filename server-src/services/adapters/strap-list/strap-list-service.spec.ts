@@ -170,7 +170,7 @@ describe("The strap list service", () => {
             dedupeFromBaseList: true,
             extraDedupeList: [
               {
-                id: "700000000",
+                strap: "strapBravo",
                 limit: 1
               }
             ]
