@@ -230,8 +230,8 @@ export const pageV2 = (): HandlerInput[] => [
         sourceId: Strap.Homed
       },
       {
-        type: HandlerInputType.EditorsPicks,
-        displayName: "life & style",
+        type: HandlerInputType.LifeStyle,
+        displayName: "lifestyle",
         color: AccentColor.Crimson,
         strapName: `${homepageV2AdPrefix}LifeStyle`,
         sourceId: Strap.LifeStyle

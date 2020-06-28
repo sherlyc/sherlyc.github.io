@@ -4,10 +4,12 @@
 :host {
   display: block;
   height: 100%;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 div {
   position: sticky;
+  margin-bottom: -1px;
   @include mobile {
     top: $mobile-masthead-height;
   }

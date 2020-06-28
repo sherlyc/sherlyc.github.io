@@ -25,6 +25,7 @@ import LargeLeadSixGrid from "./grid/large-lead-six-grid/large-lead-six-grid";
 import LargeLeadSixV2Grid from "./grid/large-lead-six-v2-grid/large-lead-six-v2-grid";
 import LargeLeadSixV2 from "./grid/large-lead-six-v2/large-lead-six-v2";
 import LargeLeadSix from "./grid/large-lead-six/large-lead-six";
+import LifeStyle from "./grid/lifestyle/lifestyle";
 import ListGrid from "./grid/list-grid/list-grid";
 import MostReadGrid from "./grid/most-read-grid/most-read-grid";
 import MostRead from "./grid/most-read/most-read";
@@ -125,7 +126,8 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   EditorsPicksGrid,
   MostReadGrid,
   MostRead,
-  Opinion
+  Opinion,
+  LifeStyle
 };
 
 export default handlerRegistry;
