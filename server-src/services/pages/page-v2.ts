@@ -123,8 +123,8 @@ export const pageV2 = (): HandlerInput[] => [
       },
       {
         type: HandlerInputType.MostRead,
-        displayName: "most read",
-        strapName: `${homepageV2AdPrefix}MostRead`
+        displayName: "most popular",
+        strapName: `${homepageV2AdPrefix}MostPopular`
       },
       {
         type: HandlerInputType.ResponsiveExternalContent,
