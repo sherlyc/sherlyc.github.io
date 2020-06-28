@@ -1,15 +1,10 @@
+import { AccentColor } from "../../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
 import { IParams } from "../../../__types__/IParams";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
-import {
-  BrandGridPositions,
-  IBrandGridHandlerInput
-} from "../../__types__/IBrandGridHandlerInput";
-import {
-  BrandModule,
-  IBrandHandlerInput
-} from "../../__types__/IBrandHandlerInput";
+import { BrandGridPositions, IBrandGridHandlerInput } from "../../__types__/IBrandGridHandlerInput";
+import { BrandModule, IBrandHandlerInput } from "../../__types__/IBrandHandlerInput";
 import brandHandler from "./brand";
 import { createBulletList } from "./bullet-list";
 
@@ -96,9 +91,9 @@ describe("Brand Handler", () => {
         content: {
           [BrandGridPositions.ModuleTitle]: [
             {
-              type: ContentBlockType.ModuleTitle,
-              displayName: "our network's top stories",
-              displayNameColor: "black"
+              type: ContentBlockType.ModuleHeader,
+              title: "our network's top stories",
+              color: AccentColor.Black
             }
           ],
           [BrandGridPositions.FirstRow]: [fakeGridContainer],
@@ -124,7 +119,7 @@ describe("Brand Handler", () => {
       module: BrandModule.Partner
     };
 
-    it("should retrieve 2 bullet lists with 5 articles", async () => {
+    it("should retrieve 3 bullet lists with 5 articles", async () => {
       const articlesPerBrand = 5;
       (createBulletList as jest.Mock).mockResolvedValue([]);
       const handlerRunnerMock = jest.fn();
@@ -132,7 +127,7 @@ describe("Brand Handler", () => {
 
       await brandHandler(handlerRunnerMock, input, params);
 
-      expect(createBulletList).toHaveBeenCalledTimes(2);
+      expect(createBulletList).toHaveBeenCalledTimes(3);
       expect(createBulletList).toHaveBeenCalledWith(
         expect.anything(),
         articlesPerBrand,
@@ -140,9 +135,10 @@ describe("Brand Handler", () => {
       );
     });
 
-    it("should pass 2 bullet lists to column grid handler", async () => {
+    it("should pass 3 bullet lists to column grid handler", async () => {
       (createBulletList as jest.Mock).mockResolvedValueOnce(fakeBulletList(1));
       (createBulletList as jest.Mock).mockResolvedValueOnce(fakeBulletList(2));
+      (createBulletList as jest.Mock).mockResolvedValueOnce(fakeBulletList(3));
 
       (createBulletList as jest.Mock).mockResolvedValueOnce([]);
       const handlerRunnerMock = jest.fn();
@@ -156,7 +152,8 @@ describe("Brand Handler", () => {
       ] = handlerRunnerMock.mock.calls;
       expect(firstColumnGridCall.content).toEqual([
         [expect.objectContaining(fakeBulletList(1))],
-        [expect.objectContaining(fakeBulletList(2))]
+        [expect.objectContaining(fakeBulletList(2))],
+        [expect.objectContaining(fakeBulletList(3))]
       ]);
       expect(secondColumnGridCall.content).toEqual([]);
     });
@@ -172,9 +169,9 @@ describe("Brand Handler", () => {
         content: {
           [BrandGridPositions.ModuleTitle]: [
             {
-              type: ContentBlockType.ModuleTitle,
-              displayName: "from our partners",
-              displayNameColor: "black"
+              type: ContentBlockType.ModuleHeader,
+              title: "from our partners",
+              color: AccentColor.Black
             }
           ],
           [BrandGridPositions.FirstRow]: [fakeGridContainer],

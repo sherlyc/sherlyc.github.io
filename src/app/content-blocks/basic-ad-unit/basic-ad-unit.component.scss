@@ -3,10 +3,13 @@
   display: block;
   overflow: hidden;
   &.ad-container {
-    margin-bottom: 10px;
+    height: 100%;
     left: 0 !important;
     &.interscroller {
       width: 100% !important;
+    }
+    &.native {
+      border-bottom: 1px solid #f0f0f0;
     }
   }
 }

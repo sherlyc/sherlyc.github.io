@@ -10,10 +10,21 @@ import logger from "./utils/logger";
 import { formatVersion, parseVersion } from "./utils/version";
 import { IParams } from "./__types__/IParams";
 
-export default async (params: IParams): Promise<IPage> => {
-  const isNewFrontEnd =
+function getCompatibleComponents(params: IParams): HandlerInput[] {
+  const isV1Compatible =
     params.version && parseVersion(params.version) >= parseVersion("1.649");
-  const components: HandlerInput[] = isNewFrontEnd ? newPage() : pageV0();
+  const isV2Compatible =
+    params.version && parseVersion(params.version) >= parseVersion("1.881");
+
+  if (isV2Compatible) {
+    return pageV2();
+  } else {
+    return isV1Compatible ? pageV1() : pageV0();
+  }
+}
+
+export default async (params: IParams): Promise<IPage> => {
+  const components = getCompatibleComponents(params);
   const currentVersion = process.env.SPADE_VERSION || "SNAPSHOT";
 
   try {
@@ -41,16 +52,4 @@ export default async (params: IParams): Promise<IPage> => {
     logger.error(params.apiRequestId, `Orchestrator level error `, error);
     throw error;
   }
-};
-
-export const newPage = (): HandlerInput[] => {
-  return [
-    {
-      type: HandlerInputType.Feature,
-      name: FeatureName.HomepageV2,
-      content: pageV2(),
-      fallback: pageV1(),
-      suppressError: false
-    }
-  ];
 };

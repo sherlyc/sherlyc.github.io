@@ -8,7 +8,7 @@ import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 @Component({
   selector: "app-defcon",
   templateUrl: "./defcon.component.html",
-  styleUrls: ["./defcon.component.scss"],
+  styleUrls: ["./defcon.component.scss"]
 })
 export class DefconComponent implements OnInit, IContentBlockComponent {
   @Input() input!: IDefcon;
@@ -23,7 +23,7 @@ export class DefconComponent implements OnInit, IContentBlockComponent {
       type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
       strapName: this.input.strapName,
       articleHeadline: title,
-      articleId: id,
+      articleId: id
     });
   }
 }

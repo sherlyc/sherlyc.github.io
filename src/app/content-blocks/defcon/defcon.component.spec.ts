@@ -29,12 +29,12 @@ const fakeHomepageArticleContents = (
     byline: `${id} byline`,
     image: {
       defcon: `${id}-defcon.png`,
-      sixteenByNine: `${id}-16x9.png`,
+      sixteenByNine: `${id}-16x9.png`
     },
     category: {
       name: "National",
-      url: "/national/",
-    },
+      url: "/national/"
+    }
   }));
 
 describe("DefconComponent", () => {
@@ -45,7 +45,7 @@ describe("DefconComponent", () => {
     type: ContentBlockType.Defcon,
     articles: fakeHomepageArticleContents([1, 2, 3, 4]),
     color: AccentColor.AppleGreen,
-    strapName: "Defcon",
+    strapName: "Defcon"
   };
 
   beforeEach(async(() => {
@@ -54,10 +54,10 @@ describe("DefconComponent", () => {
       providers: [
         {
           provide: AnalyticsService,
-          useClass: mockService(AnalyticsService),
-        },
+          useClass: mockService(AnalyticsService)
+        }
       ],
-      schemas: [NO_ERRORS_SCHEMA],
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
     analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
       AnalyticsService
@@ -153,7 +153,7 @@ describe("DefconComponent", () => {
       type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
       strapName: defcon.strapName,
       articleHeadline: defcon.articles[0].title,
-      articleId: defcon.articles[0].id,
+      articleId: defcon.articles[0].id
     });
 
     const relatedArticleLinks = componentElement.queryAll(
@@ -171,7 +171,7 @@ describe("DefconComponent", () => {
           type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
           strapName: defcon.strapName,
           articleHeadline: relatedArticles[index].title,
-          articleId: relatedArticles[index].id,
+          articleId: relatedArticles[index].id
         });
       })
     );

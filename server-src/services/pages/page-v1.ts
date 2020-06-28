@@ -232,7 +232,7 @@ export const pageV1 = (): HandlerInput[] =>
       {
         type: HandlerInputType.TitleSection,
         displayName: "one news",
-        displayNameColor: "black",
+        displayNameColor: AccentColor.Black,
         linkUrl: "https://play.stuff.co.nz/page/channel-onenews",
         content: {
           type: HandlerInputType.ResponsiveExternalContent,
@@ -293,14 +293,6 @@ export const pageV1 = (): HandlerInput[] =>
         linkUrl: "/" + Section.Entertainment,
         strapName: `${homepageAdPrefix}Entertainment`,
         sourceId: Strap.Entertainment
-      },
-      {
-        type: HandlerInputType.BiggieSmalls,
-        displayName: "bravo",
-        color: AccentColor.Violet,
-        linkUrl: "/" + Section.Bravo,
-        strapName: `${homepageAdPrefix}Bravo`,
-        sourceId: Strap.Bravo
       },
       {
         type: HandlerInputType.TitleSection,

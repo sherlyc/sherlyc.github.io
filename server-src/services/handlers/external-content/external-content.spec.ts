@@ -12,7 +12,7 @@ jest.mock("../../utils/logger");
 
 describe("ExternalContentHandler", () => {
   const params: IParams = { apiRequestId: "request-id-for-testing" };
-  const goodData =  "<div>something</div>";
+  const goodData = "<div>something</div>";
   const emptyData = "  ";
 
   beforeAll(() => {

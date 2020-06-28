@@ -26,10 +26,10 @@ export default async function (
       items: {
         title: [
           {
-            type: ContentBlockType.ModuleTitle,
-            displayName,
-            displayNameColor,
-            linkUrl
+            type: ContentBlockType.ModuleHeader,
+            title: displayName,
+            color: displayNameColor,
+            url: linkUrl
           }
         ],
         content: await handlerRunner(content, params)

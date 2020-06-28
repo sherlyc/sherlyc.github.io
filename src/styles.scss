@@ -3,6 +3,7 @@
 
 .container {
   width: 100%;
+  background-color: #fff;
 }
 
 @import "~flexboxgrid";
@@ -29,6 +30,7 @@
 body {
   overflow: auto;
   overscroll-behavior-y: none;
+  background-color: #f7f7f7;
   &.noScroll {
     overflow: hidden;
     [apphideheader] {

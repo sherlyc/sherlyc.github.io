@@ -9,7 +9,8 @@ Currently this will run every 5 minutes to check for elements on i.stuff.co.nz.
 const assert = require("assert");
 const blackListed = [
   "https://somniture.stuff.co.nz",
-  "https://fonts.googleapis.com"
+  "https://fonts.googleapis.com",
+  "https://assets.adobedtm.com"
 ];
 $browser.addHostnamesToBlacklist(blackListed);
 const getCssElement = (selector) => {
@@ -34,14 +35,6 @@ const closeOLI = async () => {
     console.log("OLI was not found");
   }
 };
-const shouldContainHalfWidthImageArticleUnits = async () => {
-  console.log("checking for half width image article unit, no error means ok");
-  const element = await getCssElement("app-half-width-image-article-unit");
-  return assert(
-    element.getText() != null,
-    "app-half-width-image-article-unit is null"
-  );
-};
 const shouldContainHeader = async () => {
   console.log("checking header, no error means ok");
   const element = await getCssElement("app-header");
@@ -50,30 +43,6 @@ const shouldContainHeader = async () => {
 const shouldContainBasicAdUnit = async () => {
   const element = await getCssElement("app-basic-ad-unit[id] iframe");
   return assert(element != null, "no ad unit is found");
-};
-const shouldContainTopStories = async () => {
-  console.log("checking top stories highlight");
-  const allGrids = await $browser.findElements(
-    $driver.By.css("app-grid-container > div > div > app-grid-container")
-  );
-  const topStoriesHighlight = await allGrids[0];
-  const featuredArticles = await topStoriesHighlight.findElements(
-    $driver.By.css("app-featured-article")
-  );
-  const bigImageArticles = await topStoriesHighlight.findElements(
-    $driver.By.css("app-big-image-article-unit")
-  );
-  const halfWidthImageArticles = await topStoriesHighlight.findElements(
-    $driver.By.css("app-half-width-image-article-unit")
-  );
-  const topStoriesCount =
-    featuredArticles.length +
-    bigImageArticles.length +
-    halfWidthImageArticles.length;
-  return assert(
-    topStoriesCount >= 2,
-    "top stories highlight does not display a minimum of 2 articles"
-  );
 };
 const shouldContainFooter = async () => {
   console.log("checking footer, no error means ok");
@@ -87,9 +56,7 @@ $browser
     return $browser.get("https://i.stuff.co.nz");
   })
   .then(closeOLI)
-  .then(shouldContainHalfWidthImageArticleUnits)
   .then(shouldContainHeader)
-  .then(shouldContainTopStories)
   .then(shouldContainBasicAdUnit)
   .then(shouldContainFooter);
 ```

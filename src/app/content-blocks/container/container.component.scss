@@ -44,12 +44,15 @@
   position: fixed;
   left: calc(50% - 1160px);
   top: 0;
+  min-width: 600px;
+  text-align: right;
 }
 
 #gutterright {
   position: fixed;
   right: calc(50% - 1160px);
   top: 0;
+  min-width: 600px;
 }
 
 @media only screen and (max-width: 991px) {
