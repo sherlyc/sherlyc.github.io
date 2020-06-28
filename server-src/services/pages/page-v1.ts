@@ -232,7 +232,7 @@ export const pageV1 = (): HandlerInput[] =>
       {
         type: HandlerInputType.TitleSection,
         displayName: "one news",
-        displayNameColor: "black",
+        displayNameColor: AccentColor.Black,
         linkUrl: "https://play.stuff.co.nz/page/channel-onenews",
         content: {
           type: HandlerInputType.ResponsiveExternalContent,

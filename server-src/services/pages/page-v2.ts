@@ -59,7 +59,7 @@ export const pageV2 = (): HandlerInput[] => [
       url:
         "https://interactives.stuff.co.nz/live/new-homepage/uber/1/40-40.html",
       mobile: {
-        height: "110px",
+        height: "120px",
         width: "100%",
         margin: "0"
       },
@@ -285,7 +285,7 @@ export const pageV2 = (): HandlerInput[] => [
       {
         type: HandlerInputType.TitleSection,
         displayName: "one news",
-        displayNameColor: "black",
+        displayNameColor: AccentColor.Black,
         linkUrl: "https://play.stuff.co.nz/page/channel-onenews",
         content: {
           type: HandlerInputType.ResponsiveExternalContent,
