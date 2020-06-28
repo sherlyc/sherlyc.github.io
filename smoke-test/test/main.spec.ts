@@ -63,42 +63,18 @@ describe("Mobile Homepage", () => {
     expect(adUnit).toBeTruthy();
   });
 
-  it("should contain at least 2 top stories highlights", async () => {
-    const allGrids = await page.$$(
-      "app-grid-container > div > div > app-grid-container"
+  it("should contain either homepage article highlight or defcon in top stories", async () => {
+    const homepageHighlights = await page.$$(
+      "app-grid-container:first-of-type app-homepage-highlight-article"
     );
-    const topStoriesHighlight = await allGrids[0];
+    const defcon = await page.$$("app-grid-container:first-of-type app-defcon");
 
-    const featuredArticles = await topStoriesHighlight.$$(
-      "app-featured-article"
-    );
-    const bigImageArticles = await topStoriesHighlight.$$(
-      "app-big-image-article-unit"
-    );
-    const halfWidthImageArticles = await topStoriesHighlight.$$(
-      "app-half-width-image-article-unit"
-    );
-
-    expect(
-      featuredArticles.length +
-        bigImageArticles.length +
-        halfWidthImageArticles.length
-    ).toBeGreaterThanOrEqual(2);
-  });
-
-  it("should contain at least 7 other top stories", async () => {
-    const allGrids = await page.$$("app-grid-container > div");
-    const topStoriesGrid = await allGrids[0];
-
-    const halfWidthImageArticles = await topStoriesGrid.$$(
-      "app-half-width-image-article-unit"
-    );
-    const halfWidthImageWithoutIntroArticles = await topStoriesGrid.$$(
-      "app-half-image-article-without-intro-unit"
-    );
-
-    expect(
-      halfWidthImageArticles.length + halfWidthImageWithoutIntroArticles.length
-    ).toBeGreaterThanOrEqual(7);
+    if (homepageHighlights.length == 2) {
+      expect(true).toBeTruthy();
+    } else if (defcon.length == 1) {
+      expect(false).toBeTruthy();
+    } else {
+      expect(false).toBeTruthy();
+    }
   });
 });
