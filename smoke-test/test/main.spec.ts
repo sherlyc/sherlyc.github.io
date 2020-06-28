@@ -77,4 +77,12 @@ describe("Mobile Homepage", () => {
       expect(false).toBeTruthy();
     }
   });
+
+  it("should container at least 7 homepage article in top stories", async () => {
+    const homepageArticles = await page.$$(
+      "app-grid-container:first-of-type app-homepage-article"
+    );
+
+    expect(homepageArticles.length).toBeGreaterThanOrEqual(7);
+  });
 });
