@@ -1,10 +1,5 @@
 {
-  "baseDedupeList": [
-    "strapDefcon",
-    "strapTopStories",
-    "strapEditorPicks",
-    "strapLatestNews"
-  ],
+  "baseDedupeList": ["strapDefcon", "strapTopStories", "strapEditorPicks"],
   "homepageStraps": {
     "strapDefcon": {
       "ids": ["121876089"],
@@ -21,7 +16,7 @@
         "extraDedupeList": [
           {
             "strap": "strapDefcon",
-            "limit": 5
+            "limit": 4
           }
         ]
       }
@@ -41,15 +36,11 @@
         "extraDedupeList": [
           {
             "strap": "strapDefcon",
-            "limit": 5
+            "limit": 4
           },
           {
             "strap": "strapTopStories",
-            "limit": 5
-          },
-          {
-            "strap": "strapLatestNews",
-            "limit": 5
+            "limit": 10
           }
         ]
       }
@@ -62,15 +53,11 @@
         "extraDedupeList": [
           {
             "strap": "strapTopStories",
-            "limit": 5
-          },
-          {
-            "strap": "strapLatestNews",
-            "limit": 5
+            "limit": 10
           },
           {
             "strap": "strapEditorPicks",
-            "limit": 5
+            "limit": 10
           }
         ]
       }
@@ -95,19 +82,23 @@
         "extraDedupeList": [
           {
             "strap": "strapNational",
-            "limit": 5
+            "limit": 6
           },
           {
             "strap": "strapCoronavirus",
-            "limit": 5
+            "limit": 6
           },
           {
             "strap": "strapWorld",
-            "limit": 5
+            "limit": 6
           },
           {
             "strap": "strapBusiness",
-            "limit": 5
+            "limit": 6
+          },
+          {
+            "strap": "strapPerspectives",
+            "limit": 4
           }
         ]
       }
@@ -131,7 +122,7 @@
         "extraDedupeList": [
           {
             "strap": "strapCoronavirus",
-            "limit": 5
+            "limit": 6
           },
           {
             "strap": "strapOpinion",
@@ -139,7 +130,7 @@
           },
           {
             "strap": "strapPerspectives",
-            "limit": 5
+            "limit": 4
           }
         ]
       }
@@ -151,11 +142,11 @@
         "extraDedupeList": [
           {
             "strap": "strapNational",
-            "limit": 5
+            "limit": 6
           },
           {
             "strap": "strapWorld",
-            "limit": 5
+            "limit": 6
           }
         ]
       }
@@ -167,7 +158,7 @@
         "extraDedupeList": [
           {
             "strap": "strapCoronavirus",
-            "limit": 5
+            "limit": 6
           }
         ]
       }
@@ -179,15 +170,15 @@
         "extraDedupeList": [
           {
             "strap": "strapCoronavirus",
-            "limit": 5
+            "limit": 6
           },
           {
             "strap": "strapNational",
-            "limit": 5
+            "limit": 6
           },
           {
             "strap": "strapWorld",
-            "limit": 5
+            "limit": 6
           }
         ]
       }
@@ -217,7 +208,7 @@
         "extraDedupeList": [
           {
             "strap": "strapBusiness",
-            "limit": 5
+            "limit": 6
           }
         ]
       }
@@ -229,18 +220,22 @@
         "extraDedupeList": [
           {
             "strap": "strapCoronavirus",
-            "limit": 5
+            "limit": 6
           },
           {
             "strap": "strapNational",
-            "limit": 5
+            "limit": 6
           },
           {
             "strap": "strapWorld",
-            "limit": 5
+            "limit": 6
           },
           {
             "strap": "strapBusiness",
+            "limit": 6
+          },
+          {
+            "strap": "strapProsper",
             "limit": 5
           }
         ]
@@ -253,19 +248,19 @@
         "extraDedupeList": [
           {
             "strap": "strapCoronavirus",
-            "limit": 5
+            "limit": 6
           },
           {
             "strap": "strapNational",
-            "limit": 5
+            "limit": 6
           },
           {
             "strap": "strapWorld",
-            "limit": 5
+            "limit": 6
           },
           {
             "strap": "strapBusiness",
-            "limit": 5
+            "limit": 6
           }
         ]
       }
@@ -277,27 +272,27 @@
         "extraDedupeList": [
           {
             "strap": "strapCoronavirus",
-            "limit": 5
+            "limit": 6
           },
           {
             "strap": "strapNational",
-            "limit": 5
+            "limit": 6
           },
           {
             "strap": "strapWorld",
-            "limit": 5
+            "limit": 6
           },
           {
             "strap": "strapBusiness",
-            "limit": 5
+            "limit": 6
           },
           {
             "strap": "strapTravel",
-            "limit": 5
+            "limit": 7
           },
           {
             "strap": "strapHomed",
-            "limit": 5
+            "limit": 7
           }
         ]
       }
@@ -309,15 +304,15 @@
         "extraDedupeList": [
           {
             "strap": "strapWorld",
-            "limit": 5
+            "limit": 6
           },
           {
             "strap": "strapBusiness",
-            "limit": 5
+            "limit": 6
           },
           {
             "strap": "strapLifeStyle",
-            "limit": 5
+            "limit": 8
           }
         ]
       }
@@ -329,11 +324,11 @@
         "extraDedupeList": [
           {
             "strap": "strapBusiness",
-            "limit": 5
+            "limit": 6
           },
           {
             "strap": "strapSport",
-            "limit": 5
+            "limit": 7
           }
         ]
       }
@@ -345,7 +340,7 @@
         "extraDedupeList": [
           {
             "strap": "strapLifeStyle",
-            "limit": 5
+            "limit": 8
           }
         ]
       }
@@ -357,7 +352,7 @@
         "extraDedupeList": [
           {
             "strap": "strapBusiness",
-            "limit": 5
+            "limit": 6
           }
         ]
       }
@@ -369,7 +364,7 @@
         "extraDedupeList": [
           {
             "strap": "strapLifeStyle",
-            "limit": 5
+            "limit": 8
           }
         ]
       }
@@ -387,15 +382,19 @@
         "extraDedupeList": [
           {
             "strap": "strapNational",
-            "limit": 5
+            "limit": 6
           },
           {
             "strap": "strapWorld",
-            "limit": 5
+            "limit": 6
           },
           {
             "strap": "strapBusiness",
-            "limit": 5
+            "limit": 6
+          },
+          {
+            "strap": "strapPerspectives",
+            "limit": 4
           }
         ]
       }
@@ -407,7 +406,7 @@
         "extraDedupeList": [
           {
             "strap": "strapLifeStyle",
-            "limit": 5
+            "limit": 8
           }
         ]
       }
