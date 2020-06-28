@@ -6,7 +6,7 @@ jest.setTimeout(10000);
 
 describe("api test", () => {
   it.each([["1.648"], ["SNAPSHOT"], [""]])(
-    "should return old layout for front end version %s ",
+    "should return page v0 for front end version %s ",
     async (frontendVersion: string) => {
       const app = require("../app").default;
       const response: supertest.Response = await supertest(app)
@@ -37,7 +37,7 @@ describe("api test", () => {
     }
   );
 
-  it("should return new layout for new front end version", async () => {
+  it("should return page v1 for front end version above 1.649", async () => {
     const app = require("../app").default;
     const response: supertest.Response = await supertest(app)
       .get("/spade/api/1.649/content")
@@ -57,7 +57,14 @@ describe("api test", () => {
           type: ContentBlockType.Container,
           items: expect.arrayContaining([
             expect.objectContaining({
-              type: ContentBlockType.FeatureContainer
+              type: ContentBlockType.GridContainer,
+              items: expect.objectContaining({
+                ModuleTitle: expect.arrayContaining([
+                  expect.objectContaining({
+                    type: ContentBlockType.ModuleTitle
+                  })
+                ])
+              })
             })
           ])
         }),
