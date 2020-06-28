@@ -136,6 +136,10 @@
           {
             "strap": "strapOpinion",
             "limit": 5
+          },
+          {
+            "strap": "strapPerspectives",
+            "limit": 5
           }
         ]
       }
@@ -191,7 +195,7 @@
     "strapCartoons": {
       "ids": ["121927406"],
       "dedupeRules": {
-        "dedupeFromBaseList": true
+        "dedupeFromBaseList": false
       }
     },
     "strapOpinion": {
@@ -203,7 +207,7 @@
     "strapPerspectives": {
       "ids": ["121876265"],
       "dedupeRules": {
-        "dedupeFromBaseList": true
+        "dedupeFromBaseList": false
       }
     },
     "strapTechnology": {
@@ -507,21 +511,7 @@
     "strapPouTiaki": {
       "ids": ["121941449"],
       "dedupeRules": {
-        "dedupeFromBaseList": true,
-        "extraDedupeList": [
-          {
-            "strap":  "strapOpinion",
-            "limit": 5
-          },
-          {
-            "strap": "strapNational",
-            "limit": 5
-          },
-          {
-            "strap": "strapBusiness",
-            "limit": 5
-          }
-        ]
+        "dedupeFromBaseList": false
       }
     }
   },

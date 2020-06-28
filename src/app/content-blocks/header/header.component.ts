@@ -8,12 +8,14 @@ import {
   Renderer2
 } from "@angular/core";
 import { IHeader } from "../../../../common/__types__/IHeader";
+import { WeatherLocations } from "../../../../common/WeatherLocations";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AuthenticationService } from "../../services/authentication/authentication.service";
 import { IStuffLoginUser } from "../../services/authentication/__types__/IStuffLoginUser";
 import { ConfigService } from "../../services/config/config.service";
 import { RuntimeService } from "../../services/runtime/runtime.service";
+import { StorageKeys, StoreService } from "../../services/store/store.service";
 import { WindowService } from "../../services/window/window.service";
 import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
@@ -31,7 +33,8 @@ export class HeaderComponent
     private configService: ConfigService,
     private authenticationService: AuthenticationService,
     private windowService: WindowService,
-    private runtimeService: RuntimeService
+    private runtimeService: RuntimeService,
+    private storeService: StoreService
   ) {}
 
   isLoggedIn = false;
@@ -56,6 +59,7 @@ export class HeaderComponent
         { label: "Homed", link: "/life-style/homed" },
         { label: "Life & Style", link: "/life-style" },
         { label: "Travel", link: "/travel" },
+        { label: "Weather", link: "/national/weather/"},
         { label: "Motoring", link: "/motoring" },
         { label: "Stuff Nation", link: "/stuff-nation" },
         { label: "Play Stuff", link: "https://play.stuff.co.nz" },
@@ -131,6 +135,7 @@ export class HeaderComponent
     this.profileUrl = `${
       this.configService.getConfig().loginLibrary.authProvider
     }/publicprofile`;
+    this.updateWeatherMenuItem();
   }
 
   toggleMenu() {
@@ -178,5 +183,24 @@ export class HeaderComponent
 
   ngOnDestroy(): void {
     this.authenticationService.authenticationStateChange.unsubscribe();
+  }
+
+  updateWeatherMenuItem() {
+    if (!this.runtimeService.isBrowser()) {
+      return;
+    }
+    if (!this.windowService.isDesktopDomain()) {
+      this.sections[0].items = this.sections[0].items.filter((item) => item.label !== "Weather")
+      return;
+    }
+    const location = this.storeService.get(
+      StorageKeys.WeatherLocation
+    ) as WeatherLocations;
+    const weatherItem = this.sections[0].items.find((item) => item.label === "Weather");
+    if (weatherItem && location) {
+      weatherItem.link = `/national/weather/${location
+        .toLowerCase()
+        .replace(/\s+/, "-")}-forecast`;
+    }
   }
 }
