@@ -80,8 +80,14 @@ export const networkBrandConfig: INetworkBrandConfig = {
 export const partnerBrandConfig: IPartnerBrandConfig = {
   moduleTitle: "from our partners",
   articlesPerBrand: 5,
-  brandListPerRow: 2,
+  brandListPerRow: 3,
   configs: {
+    [PartnerBrand.Bravo]: {
+      logo: Logo.Bravo,
+      logoLink: "/" + Section.Bravo,
+      bulletColor: "black",
+      sourceId: Strap.Bravo
+    },
     [PartnerBrand.Newsroom]: {
       logo: Logo.Newsroom,
       logoLink: "/" + Section.Newsroom,

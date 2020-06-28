@@ -310,7 +310,8 @@ export const pageV2 = (): HandlerInput[] => [
         }
       },
       {
-        type: HandlerInputType.Partner
+        type: HandlerInputType.Brand,
+        module: BrandModule.Partner
       },
       {
         type: HandlerInputType.Strips,

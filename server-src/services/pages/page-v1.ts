@@ -295,14 +295,6 @@ export const pageV1 = (): HandlerInput[] =>
         sourceId: Strap.Entertainment
       },
       {
-        type: HandlerInputType.BiggieSmalls,
-        displayName: "bravo",
-        color: AccentColor.Violet,
-        linkUrl: "/" + Section.Bravo,
-        strapName: `${homepageAdPrefix}Bravo`,
-        sourceId: Strap.Bravo
-      },
-      {
         type: HandlerInputType.TitleSection,
         displayName: "neighbourly",
         displayNameColor: AccentColor.SpringGreen,
