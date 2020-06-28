@@ -325,7 +325,7 @@ describe("Header", () => {
     const weatherAnchor = fixture.debugElement.query(
       By.css(".section-Weather")
     );
-    expect(weatherAnchor).toBeFalsy()
+    expect(weatherAnchor).toBeFalsy();
   });
 
   it("should always render weather menu in server side", async () => {

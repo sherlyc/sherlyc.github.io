@@ -7,8 +7,8 @@ import {
   OnInit,
   Renderer2
 } from "@angular/core";
-import { IHeader } from "../../../../common/__types__/IHeader";
 import { WeatherLocations } from "../../../../common/WeatherLocations";
+import { IHeader } from "../../../../common/__types__/IHeader";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AuthenticationService } from "../../services/authentication/authentication.service";
@@ -190,7 +190,7 @@ export class HeaderComponent
       return;
     }
     if (!this.windowService.isDesktopDomain()) {
-      this.sections[0].items = this.sections[0].items.filter((item) => item.label !== "Weather")
+      this.sections[0].items = this.sections[0].items.filter((item) => item.label !== "Weather");
       return;
     }
     const location = this.storeService.get(
