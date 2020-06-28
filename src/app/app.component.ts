@@ -35,7 +35,6 @@ export class AppComponent {
     this.eventsService.setup();
     this.dtm.setup();
     this.browserOverride.setup();
-    this.neighbourlyService.setup();
     this.metaTagsService.setup();
     this.pwaService.setup();
   }
