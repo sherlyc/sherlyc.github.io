@@ -7,4 +7,5 @@ export interface IOpinion {
   articles: IHomepageArticleContent[];
   strapName: string;
   displayName: string;
+  url: string;
 }

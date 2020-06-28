@@ -10,7 +10,7 @@ import { IOpinionHandlerInput } from "../__types__/IOpinionHandlerInput";
 
 export default async function (
   handlerRunner: handlerRunnerFunction,
-  { strapName, displayName }: IOpinionHandlerInput,
+  { strapName, displayName, linkUrl }: IOpinionHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   try {
@@ -24,7 +24,8 @@ export default async function (
           articles: opinionArticles.map(homepageArticleContent),
           cartoons: cartoonArticles.map(homepageArticleContent),
           strapName,
-          displayName
+          displayName,
+          url: linkUrl
         }
       ];
     } else {

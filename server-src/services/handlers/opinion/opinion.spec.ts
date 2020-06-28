@@ -1,6 +1,7 @@
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { getRawArticles } from "../../adapters/article-retriever/article-retriever";
 import { IRawArticle } from "../../adapters/__types__/IRawArticle";
+import { Section } from "../../section";
 import { Strap } from "../../strap";
 import logger from "../../utils/logger";
 import { IParams } from "../../__types__/IParams";
@@ -22,7 +23,8 @@ describe("Opinion handler", () => {
   const input: IOpinionHandlerInput = {
     type: HandlerInputType.Opinion,
     strapName: "strapName",
-    displayName: "perspectives"
+    displayName: "perspectives",
+    linkUrl: "/" + Section.Opinion
   };
 
   beforeEach(() => {
@@ -74,7 +76,8 @@ describe("Opinion handler", () => {
       ],
       cartoons: [expectArticle(1)],
       strapName: input.strapName,
-      displayName: input.displayName
+      displayName: input.displayName,
+      url: input.linkUrl
     });
   });
 
