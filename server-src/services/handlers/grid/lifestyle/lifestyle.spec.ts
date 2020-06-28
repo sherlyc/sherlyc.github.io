@@ -1,4 +1,5 @@
 import { AccentColor } from "../../../../../common/__types__/AccentColor";
+import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { Strap } from "../../../strap";
@@ -17,7 +18,8 @@ describe("Lifestyle", () => {
     sourceId: Strap.LifeStyle,
     displayName: "lifestyle",
     color: AccentColor.Charcoal,
-    strapName: "lifestyle"
+    strapName: "lifestyle",
+    linkUrl: "/lifestyle"
   };
 
   const articlesWithIds = (ids: number[]) =>
@@ -141,12 +143,12 @@ describe("Lifestyle", () => {
         items: {
           ModuleTitle: [
             {
-              color: "#414141",
-              title: "lifestyle",
-              type: "ModuleHeader"
+              type: ContentBlockType.ModuleHeader,
+              color: input.color,
+              title: input.displayName,
+              url: input.linkUrl
             }
           ],
-
           FirstRowOne: [
             {
               analytics: {
@@ -611,9 +613,10 @@ describe("Lifestyle", () => {
         items: {
           ModuleTitle: [
             {
-              color: "#414141",
-              title: "lifestyle",
-              type: "ModuleHeader"
+              type: ContentBlockType.ModuleHeader,
+              color: input.color,
+              title: input.displayName,
+              url: input.linkUrl
             }
           ],
 

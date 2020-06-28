@@ -235,6 +235,7 @@ export const pageV2 = (): HandlerInput[] => [
         type: HandlerInputType.LifeStyle,
         displayName: "lifestyle",
         color: AccentColor.Crimson,
+        linkUrl: "/" + Section.LifeStyle,
         strapName: `${homepageV2AdPrefix}LifeStyle`,
         sourceId: Strap.LifeStyle
       },

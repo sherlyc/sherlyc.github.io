@@ -55,6 +55,7 @@ export default async function (
       {
         type: ContentBlockType.ModuleHeader,
         title: displayName,
+        url: linkUrl,
         color
       }
     ],
