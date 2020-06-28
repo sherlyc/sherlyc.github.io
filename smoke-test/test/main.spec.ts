@@ -10,13 +10,6 @@ describe("Mobile Homepage", () => {
   beforeAll(async () => {
     browser = await launch(puppeteerConfig);
     page = await browser.newPage();
-    const cookieDomain = new URL(config.url).hostname;
-    await page.setCookie({
-      name: "site-view",
-      value: "i",
-      domain: cookieDomain,
-      path: "/"
-    });
     await page.goto(config.url, {
       waitUntil: "domcontentloaded",
       timeout: 60000
