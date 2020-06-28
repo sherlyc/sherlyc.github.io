@@ -1,0 +1,35 @@
+<a [href]="input.url" class="header">{{ input.displayName }}</a>
+<div class="articles">
+  <div class="primary-secondary">
+    <div class="primary">
+      <article *ngIf="formattedCartoons.length">
+        <a href="{{ formattedCartoons[0].linkUrl }}" appOpenExternalLink="{{ formattedCartoons[0].linkUrl }}" (click)="sendAnalytics(formattedCartoons[0])">
+          <img [attr.alt]="formattedCartoons[0].headline" class="cartoon" [src]="formattedCartoons[0].image.sixteenByNine" />
+          <div class="byline">{{ formattedCartoons[0].byline }}</div>
+        </a>
+      </article>
+    </div>
+    <div class="secondary">
+      <article>
+        <a href="{{ formattedArticles[0].linkUrl }}" appOpenExternalLink="{{ formattedArticles[0].linkUrl }}" (click)="sendAnalytics(formattedArticles[0])">
+          <img [attr.alt]="formattedArticles[0].headline" class="avatar" [src]="formattedArticles[0].image.sixteenByNine" />
+          <div class="byline">{{ formattedArticles[0].byline }}</div>
+          <div class="headline">{{ formattedArticles[0].headline }}</div>
+          <div class="intro">{{ formattedArticles[0].introText }}</div>
+        </a>
+      </article>
+    </div>
+  </div>
+
+  <div class="list">
+    <article *ngFor="let article of formattedArticles.slice(1)">
+      <a href="{{ article.linkUrl }}" appOpenExternalLink="{{ article.linkUrl }}" (click)="sendAnalytics(article)">
+        <div class="text">
+          <div class="byline">{{ article.byline }}</div>
+          <div class="headline">{{ article.headline }}</div>
+        </div>
+        <img [attr.alt]="article.headline" class="avatar" [src]="article.image.sixteenByNine" />
+      </a>
+    </article>
+  </div>
+</div>

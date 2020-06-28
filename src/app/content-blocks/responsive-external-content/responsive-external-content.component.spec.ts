@@ -245,6 +245,6 @@ describe("ResponsiveExternalContentComponent", () => {
     expect(component.isShown).toBeTruthy();
     expect(fixture.debugElement.query(By.css("iframe"))).toBeTruthy();
     expect(detectChangesSpy).toHaveBeenCalledTimes(1);
-    expect(detachSpy).toHaveBeenCalledTimes(1);
+    expect(detachSpy).toHaveBeenCalledTimes(2);
   });
 });

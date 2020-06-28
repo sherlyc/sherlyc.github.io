@@ -1,23 +1,52 @@
 <div class="weather-component" [ngClass]="{ 'location-list-visible': isDropdownOpen }">
   <div class="row sub-header" (click)="onToggleDropdown()">
-    <div class="col-xs time-stamp">{{ currentDateTime | date: "MMMM d, yyyy" }}</div>
+    <div class="col-xs">
+      <div class="timestamp">{{ currentDateTime | date: "MMMM d yyyy" }}</div>
+      <div class="kia-ora">Kia Ora, Aotearoa!</div>
+    </div>
     <div class="col-xs">
       <div class="weather-info row">
-        <div *ngIf="!selectedLocation" class="weatherCheckLabel">
+        <div *ngIf="!selectedLocation" class="weather-check-label">
           <app-weather-icon icon="unknown"></app-weather-icon>
           <span>Check your weather</span>
-          <app-weather-icon class="weather-info-arrow" icon="dropdown"></app-weather-icon>
+          <div class="weather-geo">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.17 21.818">
+              <g data-name="Group 3098">
+                <path
+                  d="M7.585 21.818a1.32 1.32 0 01-1.153-.661l-.008-.013-5.471-9.9a7.523 7.523 0 01.1-7.5A7.5 7.5 0 017.415 0h.339a7.5 7.5 0 016.363 3.734 7.523 7.523 0 01.1 7.5l-5.47 9.9-.008.013a1.32 1.32 0 01-1.154.671zm0-20.028h-.142a5.071 5.071 0 00-4.766 2.63 6.183 6.183 0 00-.083 6.168l4.991 9.388 4.99-9.388a6.183 6.183 0 00-.083-6.168 5.069 5.069 0 00-4.766-2.629h-.141z"
+                  class="prefix__cls-1"
+                  data-name="Path 2193"
+                />
+                <path d="M7.562 12.046a4.345 4.345 0 01-4.369-4.321 4.345 4.345 0 014.369-4.321 4.345 4.345 0 014.369 4.321 4.35 4.35 0 01-4.369 4.321z" class="prefix__cls-1" data-name="Path 2195" />
+              </g>
+            </svg>
+          </div>
         </div>
 
-        <div *ngIf="!hasError && selectedLocation" class="weatherLocationInfo">
+        <div *ngIf="!hasError && selectedLocation" class="weather-location-info">
           <app-weather-icon class="weather-icon" [icon]="weatherData.condition"></app-weather-icon>
           <div>
-            <span class="weather-location-info-label">{{ selectedLocation }} {{ weatherData.temperature }} {{ weatherData.temperatureUnit }}</span>
-            <app-weather-icon class="weather-info-arrow" icon="dropdown"></app-weather-icon>
-            <div>
-              <span> <span class="weather-location-info-label"></span>{{ weatherData.maxTemp }}{{ weatherData.temperatureUnit }} | </span>
-              <span> <span class="weather-location-info-label"></span>{{ weatherData.minTemp }}{{ weatherData.temperatureUnit }} </span>
+            <span class="weather-location-info-label weather-location">{{ selectedLocation }}</span>
+            <div class="weather-min-max">
+              <span> <span class="weather-location-info-label"></span>{{ weatherData.minTemp }}{{ weatherData.temperatureUnit }} | </span>
+              <span> <span class="weather-location-info-label"></span>{{ weatherData.maxTemp }}{{ weatherData.temperatureUnit }} </span>
             </div>
+          </div>
+          <div class="weather-temp">
+            {{ weatherData.temperature }}°
+            <div class="celsius">C</div>
+          </div>
+          <div class="weather-geo">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.17 21.818">
+              <g data-name="Group 3098">
+                <path
+                  d="M7.585 21.818a1.32 1.32 0 01-1.153-.661l-.008-.013-5.471-9.9a7.523 7.523 0 01.1-7.5A7.5 7.5 0 017.415 0h.339a7.5 7.5 0 016.363 3.734 7.523 7.523 0 01.1 7.5l-5.47 9.9-.008.013a1.32 1.32 0 01-1.154.671zm0-20.028h-.142a5.071 5.071 0 00-4.766 2.63 6.183 6.183 0 00-.083 6.168l4.991 9.388 4.99-9.388a6.183 6.183 0 00-.083-6.168 5.069 5.069 0 00-4.766-2.629h-.141z"
+                  class="prefix__cls-1"
+                  data-name="Path 2193"
+                />
+                <path d="M7.562 12.046a4.345 4.345 0 01-4.369-4.321 4.345 4.345 0 014.369-4.321 4.345 4.345 0 014.369 4.321 4.35 4.35 0 01-4.369 4.321z" class="prefix__cls-1" data-name="Path 2195" />
+              </g>
+            </svg>
           </div>
         </div>
 

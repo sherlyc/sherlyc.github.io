@@ -8,6 +8,7 @@ import { IBreakingNews } from "./IBreakingNews";
 import { IBulletList } from "./IBulletList";
 import { IColumnContainer } from "./IColumnContainer";
 import { IContainer } from "./IContainer";
+import { IDailyFix } from "./IDailyFix";
 import { IDefcon } from "./IDefcon";
 import { IDefconArticleUnit } from "./IDefconArticleUnit";
 import { IErrorBlock } from "./IErrorBlock";
@@ -29,6 +30,7 @@ import { IModuleSubtitle } from "./IModuleSubtitle";
 import { IModuleTitle } from "./IModuleTitle";
 import { IMostReadList } from "./IMostReadList";
 import { IOli } from "./IOli";
+import { IOpinion } from "./IOpinion";
 import { IPartnerContent } from "./IPartnerContent";
 import { IPlayStuff } from "./IPlayStuff";
 import { IResponsiveBigImageArticleUnit } from "./IResponsiveBigImageArticleUnit";
@@ -77,4 +79,6 @@ export type IContentBlock =
   | IPlayStuff
   | IMostReadList
   | IDefcon
+  | IOpinion
+  | IDailyFix
   | ISkybox;

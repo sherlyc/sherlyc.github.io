@@ -3,6 +3,7 @@
 
 .container {
   width: 100%;
+  background-color: #fff;
 }
 
 @import "~flexboxgrid";
@@ -29,6 +30,7 @@
 body {
   overflow: auto;
   overscroll-behavior-y: none;
+  background-color: #f7f7f7;
   &.noScroll {
     overflow: hidden;
     [apphideheader] {
@@ -102,16 +104,18 @@ app-logo {
   }
 }
 
-.content-blocks > app-grid-container,
-.content-blocks > app-feature-container > app-grid-container {
+.content-blocks > app-grid-container > div,
+.content-blocks > app-feature-container > app-grid-container > div {
   @include mobile {
     margin-bottom: 20px;
   }
+
   @include tablet {
     margin-bottom: 40px;
   }
+
   @include desktop {
-    margin-bottom: 60px;
+    margin-bottom: 40px;
   }
 }
 
@@ -126,7 +130,7 @@ app-logo {
       margin-bottom: 40px !important;
     }
     @include desktop {
-      margin-bottom: 60px !important;
+      margin-bottom: 40px !important;
     }
   }
 }

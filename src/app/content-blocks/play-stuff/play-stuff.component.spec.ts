@@ -91,7 +91,7 @@ describe("PlayStuffComponent", () => {
       });
     });
 
-    const bottomVideos = component.input.videos.slice(4);
+    const bottomVideos = component.input.videos.slice(4, 8);
     const bottomVideoElements: Array<
       HTMLUnknownElement & any
     > = fixture.debugElement

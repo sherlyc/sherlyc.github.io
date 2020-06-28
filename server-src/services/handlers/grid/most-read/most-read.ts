@@ -1,9 +1,10 @@
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 import { homepageArticleContent } from "../../../adapters/article-converter/homepage-article-content.converter";
+import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { getMostPopular } from "../../../adapters/most-popular/most-popular.service";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
+import { Strap } from "../../../strap";
 import logger from "../../../utils/logger";
 import { IParams } from "../../../__types__/IParams";
 import { handlerRunnerFunction } from "../../runner";
@@ -16,18 +17,25 @@ export default async function (
   { displayName, strapName }: IMostReadHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  let articles: IRawArticle[] = [];
+  let mostPopular: IRawArticle[] = [];
   try {
-    articles = await getMostPopular(8, params);
+    mostPopular = await getMostPopular(8, params);
   } catch (error) {
     logger.error(params.apiRequestId, `getMostPopular error`, error);
+  }
+
+  let dailyFixArticles: IRawArticle[] = [];
+  try {
+    dailyFixArticles = await getRawArticles(Strap.DailyFix, 4, params);
+  } catch (error) {
+    logger.error(params.apiRequestId, `dailyFix error`, error);
   }
 
   const content: { [key in MostReadGridPositions]: IContentBlock[] } = {
     [MostReadGridPositions.Left]: [
       {
         type: ContentBlockType.MostReadList,
-        articles: articles.map(homepageArticleContent),
+        articles: mostPopular.map(homepageArticleContent),
         displayName,
         strapName
       }
@@ -35,7 +43,14 @@ export default async function (
     [MostReadGridPositions.Right]: [
       {
         type: ContentBlockType.StickyContainer,
-        items: [basicAdUnit(strapName)]
+        items: [
+          {
+            type: ContentBlockType.DailyFix,
+            articles: dailyFixArticles.map(homepageArticleContent),
+            displayName: "daily fix",
+            strapName: "homepagev2DailyFix"
+          }
+        ]
       }
     ]
   };

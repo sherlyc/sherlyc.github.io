@@ -1,5 +1,5 @@
 import { getUnixTime, sub } from "date-fns";
-import { formatTime } from "./timestamp-helper";
+import { formatTime, timeColor } from "./timestamp-helper";
 
 const _Date = Date;
 
@@ -22,9 +22,9 @@ describe("Timestamp Helper", () => {
   it.each`
     minutesAgo | expected
     ${0.5}     | ${""}
-    ${1}       | ${"1 min ago"}
-    ${20}      | ${"20 min ago"}
-    ${59}      | ${"59 min ago"}
+    ${1}       | ${"1m ago"}
+    ${20}      | ${"20m ago"}
+    ${59}      | ${"59m ago"}
   `(
     "should format time ago when it is between 1 to 59 minutes ago ($minutesAgo min ago)",
     ({ minutesAgo, expected }) => {
@@ -59,6 +59,25 @@ describe("Timestamp Helper", () => {
       const timestamp = getUnixTime(new Date(inputTime));
 
       expect(formatTime(timestamp)).toBeFalsy();
+    }
+  );
+
+  it.each`
+    minutesAgo | expectedColor
+    ${0.5}     | ${"#ff433d"}
+    ${1}       | ${"#ff433d"}
+    ${20}      | ${"#ff433d"}
+    ${59}      | ${"#ff433d"}
+    ${60}      | ${"#9f9f9f"}
+    ${90}      | ${"#9f9f9f"}
+    ${120}     | ${"#9f9f9f"}
+    ${150}     | ${""}
+    ${180}     | ${""}
+  `(
+    "should get time color $expectedColor ($minutesAgo min ago)",
+    ({ minutesAgo, expectedColor }) => {
+      const timestamp = getUnixTime(sub(new Date(), { minutes: minutesAgo }));
+      expect(timeColor(timestamp)).toBe(expectedColor);
     }
   );
 });

@@ -1,32 +1,30 @@
 {
-  "baseDedupeList": [
-    "strapTopStories",
-    "strapEditorPicks",
-    "strapLatestNews",
-    "strapMidStrip"
-  ],
+  "baseDedupeList": ["strapDefcon", "strapTopStories", "strapEditorPicks"],
   "homepageStraps": {
+    "strapDefcon": {
+      "ids": ["121876089"],
+      "totalArticlesWithImages": 3,
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
+    },
     "strapTopStories": {
       "ids": ["63768623"],
       "totalArticlesWithImages": 6,
       "dedupeRules": {
-        "dedupeFromBaseList": false
+        "dedupeFromBaseList": false,
+        "extraDedupeList": [
+          {
+            "strap": "strapDefcon",
+            "limit": 4
+          }
+        ]
       }
     },
     "strapLatestNews": {
       "ids": ["64161221"],
       "dedupeRules": {
-        "dedupeFromBaseList": false,
-        "extraDedupeList": [
-          {
-            "id": "63768623",
-            "limit": 5
-          },
-          {
-            "id": "63868237",
-            "limit": 5
-          }
-        ]
+        "dedupeFromBaseList": false
       }
     },
     "strapEditorPicks": {
@@ -37,12 +35,12 @@
         "dedupeFromBaseList": false,
         "extraDedupeList": [
           {
-            "id": "63768623",
-            "limit": 5
+            "strap": "strapDefcon",
+            "limit": 4
           },
           {
-            "id": "64161221",
-            "limit": 5
+            "strap": "strapTopStories",
+            "limit": 10
           }
         ]
       }
@@ -54,16 +52,12 @@
         "dedupeFromBaseList": false,
         "extraDedupeList": [
           {
-            "id": "63768623",
-            "limit": 5
+            "strap": "strapTopStories",
+            "limit": 10
           },
           {
-            "id": "64161221",
-            "limit": 5
-          },
-          {
-            "id": "63868237",
-            "limit": 5
+            "strap": "strapEditorPicks",
+            "limit": 8
           }
         ]
       }
@@ -87,8 +81,24 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "62950252",
-            "limit": 5
+            "strap": "strapNational",
+            "limit": 6
+          },
+          {
+            "strap": "strapCoronavirus",
+            "limit": 6
+          },
+          {
+            "strap": "strapWorld",
+            "limit": 6
+          },
+          {
+            "strap": "strapBusiness",
+            "limit": 6
+          },
+          {
+            "strap": "strapPerspectives",
+            "limit": 4
           }
         ]
       }
@@ -111,8 +121,16 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "120121097",
+            "strap": "strapCoronavirus",
+            "limit": 6
+          },
+          {
+            "strap": "strapOpinion",
             "limit": 5
+          },
+          {
+            "strap": "strapPerspectives",
+            "limit": 4
           }
         ]
       }
@@ -123,8 +141,12 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "62950252",
-            "limit": 5
+            "strap": "strapNational",
+            "limit": 6
+          },
+          {
+            "strap": "strapWorld",
+            "limit": 6
           }
         ]
       }
@@ -135,16 +157,8 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "62950252",
-            "limit": 5
-          },
-          {
-            "id": "63060863",
-            "limit": 5
-          },
-          {
-            "id": "120121097",
-            "limit": 5
+            "strap": "strapCoronavirus",
+            "limit": 6
           }
         ]
       }
@@ -155,14 +169,24 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "85424401",
-            "limit": 5
+            "strap": "strapCoronavirus",
+            "limit": 6
           },
           {
-            "id": "121165220",
-            "limit": 5
+            "strap": "strapNational",
+            "limit": 6
+          },
+          {
+            "strap": "strapWorld",
+            "limit": 6
           }
         ]
+      }
+    },
+    "strapCartoons": {
+      "ids": ["121927406"],
+      "dedupeRules": {
+        "dedupeFromBaseList": false
       }
     },
     "strapOpinion": {
@@ -171,14 +195,20 @@
         "dedupeFromBaseList": true
       }
     },
+    "strapPerspectives": {
+      "ids": ["121876265"],
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
+    },
     "strapTechnology": {
       "ids": ["60119046"],
       "dedupeRules": {
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "63060863",
-            "limit": 5
+            "strap": "strapBusiness",
+            "limit": 6
           }
         ]
       }
@@ -186,37 +216,121 @@
     "strapHomed": {
       "ids": ["91738058", "91738163"],
       "dedupeRules": {
-        "dedupeFromBaseList": true
-      }
-    },
-    "strapProsper": {
-      "ids": ["121165220"],
-      "dedupeRules": {
-        "dedupeFromBaseList": true
-      }
-    },
-    "strapLifeStyle": {
-      "ids": ["62546009", "62546149"],
-      "dedupeRules": {
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "91738058",
+            "strap": "strapCoronavirus",
+            "limit": 6
+          },
+          {
+            "strap": "strapNational",
+            "limit": 6
+          },
+          {
+            "strap": "strapWorld",
+            "limit": 6
+          },
+          {
+            "strap": "strapBusiness",
+            "limit": 6
+          },
+          {
+            "strap": "strapProsper",
             "limit": 5
           }
         ]
       }
     },
-    "strapEntertainment": {
-      "ids": ["62497979", "62498297"],
+    "strapProsper": {
+      "ids": ["121938956"],
       "dedupeRules": {
-        "dedupeFromBaseList": true
+        "dedupeFromBaseList": true,
+        "extraDedupeList": [
+          {
+            "strap": "strapCoronavirus",
+            "limit": 6
+          },
+          {
+            "strap": "strapNational",
+            "limit": 6
+          },
+          {
+            "strap": "strapWorld",
+            "limit": 6
+          },
+          {
+            "strap": "strapBusiness",
+            "limit": 6
+          }
+        ]
+      }
+    },
+    "strapLifeStyle": {
+      "ids": ["62546009"],
+      "dedupeRules": {
+        "dedupeFromBaseList": true,
+        "extraDedupeList": [
+          {
+            "strap": "strapCoronavirus",
+            "limit": 6
+          },
+          {
+            "strap": "strapNational",
+            "limit": 6
+          },
+          {
+            "strap": "strapWorld",
+            "limit": 6
+          },
+          {
+            "strap": "strapBusiness",
+            "limit": 6
+          },
+          {
+            "strap": "strapTravel",
+            "limit": 7
+          },
+          {
+            "strap": "strapHomed",
+            "limit": 7
+          }
+        ]
+      }
+    },
+    "strapEntertainment": {
+      "ids": ["62497979"],
+      "dedupeRules": {
+        "dedupeFromBaseList": true,
+        "extraDedupeList": [
+          {
+            "strap": "strapWorld",
+            "limit": 6
+          },
+          {
+            "strap": "strapBusiness",
+            "limit": 6
+          },
+          {
+            "strap": "strapLifeStyle",
+            "limit": 8
+          }
+        ]
       }
     },
     "strapMotoring": {
       "ids": ["62925442"],
       "dedupeRules": {
-        "dedupeFromBaseList": true
+        "dedupeFromBaseList": true,
+        "extraDedupeList": [
+          {
+            "strap": "strapBusiness",
+            "limit": 6
+          },
+          {
+            "strap": "strapSport",
+            "limit": 7
+          }
+        ]
       }
     },
     "strapFoodAndWine": {
@@ -225,8 +339,8 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "62546009",
-            "limit": 5
+            "strap": "strapLifeStyle",
+            "limit": 8
           }
         ]
       }
@@ -237,8 +351,8 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "63060863",
-            "limit": 5
+            "strap": "strapBusiness",
+            "limit": 6
           }
         ]
       }
@@ -249,8 +363,8 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "62546009",
-            "limit": 5
+            "strap": "strapLifeStyle",
+            "limit": 8
           }
         ]
       }
@@ -262,9 +376,27 @@
       }
     },
     "strapClimateChange": {
-      "ids": ["74545269"],
+      "ids": ["120545484"],
       "dedupeRules": {
-        "dedupeFromBaseList": true
+        "dedupeFromBaseList": true,
+        "extraDedupeList": [
+          {
+            "strap": "strapNational",
+            "limit": 6
+          },
+          {
+            "strap": "strapWorld",
+            "limit": 6
+          },
+          {
+            "strap": "strapBusiness",
+            "limit": 6
+          },
+          {
+            "strap": "strapPerspectives",
+            "limit": 4
+          }
+        ]
       }
     },
     "strapWellGood": {
@@ -273,8 +405,8 @@
         "dedupeFromBaseList": true,
         "extraDedupeList": [
           {
-            "id": "62546009",
-            "limit": 5
+            "strap": "strapLifeStyle",
+            "limit": 8
           }
         ]
       }
@@ -288,19 +420,19 @@
     "strapNewsroom": {
       "ids": ["108729104"],
       "dedupeRules": {
-        "dedupeFromBaseList": true
+        "dedupeFromBaseList": false
       }
     },
     "strapSponsoredContent": {
       "ids": ["112451426"],
       "dedupeRules": {
-        "dedupeFromBaseList": true
+        "dedupeFromBaseList": false
       }
     },
     "strapTarana": {
       "ids": ["104747808"],
       "dedupeRules": {
-        "dedupeFromBaseList": true
+        "dedupeFromBaseList": false
       }
     },
     "strapBravo": {
@@ -374,10 +506,23 @@
       "dedupeRules": {
         "dedupeFromBaseList": false
       }
+    },
+    "strapPouTiaki": {
+      "ids": ["121941449"],
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
     }
   },
   "overrides": {
     "staging": {
+      "strapDefcon": {
+        "ids": ["119375891"],
+        "totalArticlesWithImages": 3,
+        "dedupeRules": {
+          "dedupeFromBaseList": false
+        }
+      },
       "strapCoronavirus": {
         "ids": ["62950252"],
         "dedupeRules": {
@@ -396,22 +541,52 @@
           "dedupeFromBaseList": false
         }
       },
+      "strapProperty": {
+        "ids": ["85424401"],
+        "dedupeRules": {
+          "dedupeFromBaseList": false
+        }
+      },
       "strapBusiness": {
         "ids": ["63060863"],
         "dedupeRules": {
           "dedupeFromBaseList": true,
           "extraDedupeList": [
             {
-              "id": "85424401",
+              "strap": "strapProperty",
               "limit": 5
             }
           ]
         }
       },
       "strapProsper": {
-        "ids": ["62950252"],
+        "ids": ["119376282"],
         "dedupeRules": {
           "dedupeFromBaseList": true
+        }
+      },
+      "strapCartoons": {
+        "ids": ["119376124"],
+        "dedupeRules": {
+          "dedupeFromBaseList": false
+        }
+      },
+      "strapClimateChange": {
+        "ids": ["119376289"],
+        "dedupeRules": {
+          "dedupeFromBaseList": true
+        }
+      },
+      "strapPouTiaki": {
+        "ids": ["119376386"],
+        "dedupeRules": {
+          "dedupeFromBaseList": true
+        }
+      },
+      "strapPerspectives": {
+        "ids": ["119375894"],
+        "dedupeRules": {
+          "dedupeFromBaseList": false
         }
       }
     }

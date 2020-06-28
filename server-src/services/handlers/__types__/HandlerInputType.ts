@@ -36,6 +36,7 @@ export enum HandlerInputType {
   StripsGrid = "StripsGrid",
   LargeLeadSix = "LargeLeadSix",
   LargeLeadSixV2 = "LargeLeadSixV2",
+  LargeLeadSixV2Grid = "LargeLeadSixV2Grid",
   LargeLeadSixGrid = "LargeLeadSixGrid",
   ListGrid = "ListGrid",
   RelevantStories = "RelevantStories",
@@ -54,5 +55,7 @@ export enum HandlerInputType {
   EditorsPicks = "EditorsPicks",
   EditorsPicksGrid = "EditorsPicksGrid",
   MostReadGrid = "MostReadGrid",
-  MostRead = "MostRead"
+  MostRead = "MostRead",
+  Opinion = "Opinion",
+  LifeStyle = "LifeStyle"
 }

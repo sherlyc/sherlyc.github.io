@@ -41,7 +41,7 @@ export default async function (
         gridTemplateColumns: "1fr",
         gridTemplateRows: "auto auto",
         gridColumnGap: "0",
-        gridRowGap: "40px",
+        gridRowGap: "20px",
         gridBlocks: grid
       }
     } as IGridContainer

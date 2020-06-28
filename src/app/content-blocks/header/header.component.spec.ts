@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { Subject } from "rxjs";
 import { mockService, ServiceMock } from "src/app/services/mocks/MockService";
+import { WeatherLocations } from "../../../../common/WeatherLocations";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { AuthenticationService } from "../../services/authentication/authentication.service";
@@ -9,6 +10,7 @@ import { IStuffLoginUser } from "../../services/authentication/__types__/IStuffL
 import { ConfigService } from "../../services/config/config.service";
 import { IEnvironmentDefinition } from "../../services/config/__types__/IEnvironmentDefinition";
 import { RuntimeService } from "../../services/runtime/runtime.service";
+import { StoreService } from "../../services/store/store.service";
 import { WindowService } from "../../services/window/window.service";
 import { CopyrightComponent } from "../../shared/components/copyright/copyright.component";
 import { HeaderComponent } from "./header.component";
@@ -23,6 +25,7 @@ describe("Header", () => {
   let component: HeaderComponent;
   let runtimeService: ServiceMock<RuntimeService>;
   let windowService: ServiceMock<WindowService>;
+  let storeService: ServiceMock<StoreService>;
   const profileUrl = "https://my.stuff.co.nz/publicprofile";
 
   const loggedInUser = {
@@ -75,6 +78,10 @@ describe("Header", () => {
         {
           provide: RuntimeService,
           useClass: mockService(RuntimeService)
+        },
+        {
+          provide: StoreService,
+          useClass: mockService(StoreService)
         }
       ]
     }).compileComponents();
@@ -90,6 +97,7 @@ describe("Header", () => {
     runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
       RuntimeService
     >;
+    storeService = TestBed.inject(StoreService) as ServiceMock<StoreService>;
 
     configService.getConfig.mockReturnValue({
       loginLibrary: {
@@ -290,5 +298,44 @@ describe("Header", () => {
     expect(avatar.nativeElement.getAttribute("src")).toBe(
       "www.stuff-static.com/image/my-social-net-pic.png"
     );
+  });
+
+  it("should update weather link when user chose the location", async () => {
+    runtimeService.isBrowser.mockReturnValue(true);
+    windowService.isDesktopDomain.mockReturnValue(true);
+    component.navigationVisible = true;
+    storeService.get.mockReturnValue(WeatherLocations.NewPlymouth);
+
+    fixture.detectChanges();
+    const weatherAnchor: HTMLAnchorElement = fixture.debugElement.query(
+      By.css(".section-Weather")
+    ).nativeElement;
+    expect(weatherAnchor.getAttribute("href")).toEqual(
+      "/national/weather/new-plymouth-forecast"
+    );
+  });
+
+  it("should not render weather menu item on mobile", async () => {
+    runtimeService.isBrowser.mockReturnValue(true);
+    windowService.isDesktopDomain.mockReturnValue(false);
+    component.navigationVisible = true;
+    storeService.get.mockReturnValue(WeatherLocations.NewPlymouth);
+
+    fixture.detectChanges();
+    const weatherAnchor = fixture.debugElement.query(
+      By.css(".section-Weather")
+    );
+    expect(weatherAnchor).toBeFalsy();
+  });
+
+  it("should always render weather menu in server side", async () => {
+    runtimeService.isBrowser.mockReturnValue(false);
+    component.navigationVisible = true;
+
+    fixture.detectChanges();
+    const weatherAnchor: HTMLAnchorElement = fixture.debugElement.query(
+      By.css(".section-Weather")
+    ).nativeElement;
+    expect(weatherAnchor.getAttribute("href")).toEqual("/national/weather/");
   });
 });

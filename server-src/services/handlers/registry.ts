@@ -22,8 +22,10 @@ import EditorsPicks from "./grid/editors-picks/editors-picks";
 import HalfFourGrid from "./grid/half-four-grid/half-four-grid";
 import HalfFour from "./grid/half-four/half-four";
 import LargeLeadSixGrid from "./grid/large-lead-six-grid/large-lead-six-grid";
+import LargeLeadSixV2Grid from "./grid/large-lead-six-v2-grid/large-lead-six-v2-grid";
 import LargeLeadSixV2 from "./grid/large-lead-six-v2/large-lead-six-v2";
 import LargeLeadSix from "./grid/large-lead-six/large-lead-six";
+import LifeStyle from "./grid/lifestyle/lifestyle";
 import ListGrid from "./grid/list-grid/list-grid";
 import MostReadGrid from "./grid/most-read-grid/most-read-grid";
 import MostRead from "./grid/most-read/most-read";
@@ -49,6 +51,7 @@ import TopStories from "./grid/top-stories/top-stories";
 import LatestHeadlines from "./latest-headlines/latest-headlines";
 import MidStrip from "./midstrip-handler/midstrip-handler";
 import MiniMidStrip from "./mini-midstrip-handler/mini-midstrip-handler";
+import Opinion from "./opinion/opinion";
 import Page from "./page/page";
 import PlayStuff from "./play-stuff/play-stuff";
 import ResponsiveExternalContent from "./responsive-external-content/responsive-external-content";
@@ -103,6 +106,7 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   ListGrid,
   LargeLeadSix,
   LargeLeadSixV2,
+  LargeLeadSixV2Grid,
   LargeLeadSixGrid,
   RelevantStories,
   RelevantStoriesGrid,
@@ -121,7 +125,9 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   EditorsPicks,
   EditorsPicksGrid,
   MostReadGrid,
-  MostRead
+  MostRead,
+  Opinion,
+  LifeStyle
 };
 
 export default handlerRegistry;

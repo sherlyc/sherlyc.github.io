@@ -3,6 +3,7 @@ export enum Strap {
   LatestNews = "strapLatestNews",
   MidStrip = "strapMidStrip",
   MiniMidStrip = "strapMiniMidStrip",
+  Defcon = "strapDefcon",
   TopStories = "strapTopStories",
   DailyFix = "strapDailyFix",
   KeaKidsNews = "strapKeaKidsNews",
@@ -13,6 +14,7 @@ export enum Strap {
   Premium = "strapPremium",
   World = "strapWorld",
   Business = "strapBusiness",
+  Cartoons = "strapCartoons",
   Opinion = "strapOpinion",
   Technology = "strapTechnology",
   Homed = "strapHomed",
@@ -38,6 +40,9 @@ export enum Strap {
   TaranakiDailyNews = "strapTaranakiDailyNews",
   ManawatuStandard = "strapManawatuStandard",
   NelsonMail = "strapNelsonMail",
+  Property = "strapProperty",
   MarlboroughExpress = "strapMarlboroughExpress",
-  TimaruHerald = "strapTimaruHerald"
+  TimaruHerald = "strapTimaruHerald",
+  PouTiaki = "strapPouTiaki",
+  Perspectives = "strapPerspectives"
 }

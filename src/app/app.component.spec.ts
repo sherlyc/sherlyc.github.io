@@ -113,7 +113,6 @@ describe("AppComponent", () => {
     expect(dtmService.setup).toHaveBeenCalled();
     expect(browserOverrideService.setup).toHaveBeenCalled();
     expect(experimentService.setup).toHaveBeenCalled();
-    expect(neighbourlyService.setup).toHaveBeenCalled();
     expect(metaTagsService.setup).toHaveBeenCalled();
     expect(featureSwitchService.setup).toHaveBeenCalled();
     expect(pwaService.setup).toHaveBeenCalled();

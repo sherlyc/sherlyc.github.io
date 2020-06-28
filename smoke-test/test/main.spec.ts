@@ -10,13 +10,6 @@ describe("Mobile Homepage", () => {
   beforeAll(async () => {
     browser = await launch(puppeteerConfig);
     page = await browser.newPage();
-    const cookieDomain = new URL(config.url).hostname;
-    await page.setCookie({
-      name: "site-view",
-      value: "i",
-      domain: cookieDomain,
-      path: "/"
-    });
     await page.goto(config.url, {
       waitUntil: "domcontentloaded",
       timeout: 60000
@@ -47,58 +40,50 @@ describe("Mobile Homepage", () => {
     expect(footer).toBeTruthy();
   });
 
-  it("should contain text in a half width article", async () => {
-    const halfWidthArticle = await page.$("app-half-width-image-article-unit");
-    const articleText = await page.evaluate(
-      (element: Element) => element.textContent,
-      halfWidthArticle
-    );
-
-    expect(halfWidthArticle).toBeTruthy();
-    expect(articleText).toBeTruthy();
-  });
-
   it("should contain an ad unit", async () => {
     const adUnit = await page.$("app-basic-ad-unit");
     expect(adUnit).toBeTruthy();
   });
 
-  it("should contain at least 2 top stories highlights", async () => {
-    const allGrids = await page.$$(
-      "app-grid-container > div > div > app-grid-container"
+  it("should contain either homepage article highlight or defcon in top stories", async () => {
+    const homepageHighlights = await page.$$(
+      "app-grid-container:first-of-type app-homepage-highlight-article"
     );
-    const topStoriesHighlight = await allGrids[0];
+    const defcon = await page.$$("app-grid-container:first-of-type app-defcon");
 
-    const featuredArticles = await topStoriesHighlight.$$(
-      "app-featured-article"
-    );
-    const bigImageArticles = await topStoriesHighlight.$$(
-      "app-big-image-article-unit"
-    );
-    const halfWidthImageArticles = await topStoriesHighlight.$$(
-      "app-half-width-image-article-unit"
-    );
-
-    expect(
-      featuredArticles.length +
-        bigImageArticles.length +
-        halfWidthImageArticles.length
-    ).toBeGreaterThanOrEqual(2);
+    if (homepageHighlights.length === 2) {
+      expect(true).toBeTruthy();
+    } else if (defcon.length === 1) {
+      expect(false).toBeTruthy();
+    } else {
+      expect(false).toBeTruthy();
+    }
   });
 
-  it("should contain at least 7 other top stories", async () => {
-    const allGrids = await page.$$("app-grid-container > div");
-    const topStoriesGrid = await allGrids[0];
-
-    const halfWidthImageArticles = await topStoriesGrid.$$(
-      "app-half-width-image-article-unit"
-    );
-    const halfWidthImageWithoutIntroArticles = await topStoriesGrid.$$(
-      "app-half-image-article-without-intro-unit"
+  it("should contain at least 7 homepage article in top stories", async () => {
+    const homepageArticles = await page.$$(
+      "app-grid-container:first-of-type app-homepage-article"
     );
 
-    expect(
-      halfWidthImageArticles.length + halfWidthImageWithoutIntroArticles.length
-    ).toBeGreaterThanOrEqual(7);
+    expect(homepageArticles.length).toBeGreaterThanOrEqual(7);
+  });
+
+  it("should contain latest headlines in top stories", async () => {
+    const latestHeadlineArticles = await page.$$(
+      "app-grid-container:first-of-type app-vertical-article-list a"
+    );
+
+    expect(latestHeadlineArticles.length).toBeGreaterThanOrEqual(6);
+  });
+
+  it("should contain editors pick, coronavirus, and national", async () => {
+    const moduleHeaders = await page.$$eval(
+      "app-grid-container > div > div > app-module-header > div",
+      (headers) => headers.map((header) => header.textContent)
+    );
+
+    expect(moduleHeaders).toEqual(
+      expect.arrayContaining(["editors' picks", "coronavirus", "national"])
+    );
   });
 });

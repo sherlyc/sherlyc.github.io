@@ -12,25 +12,26 @@ export default async function (
   params: IParams
 ): Promise<IContentBlock[]> {
   try {
-    await cacheHttp(params, url);
+    const { data } = await cacheHttp<string>(params, url);
+
+    if (data.trim().length > 0) {
+      return [
+        {
+          type: ContentBlockType.ExternalContentUnit,
+          url,
+          width,
+          height,
+          margin,
+          scrollable
+        }
+      ];
+    }
   } catch (error) {
     logger.warn(
       params.apiRequestId,
       `External content handler error - ${url}`,
       error
     );
-
-    return [];
   }
-
-  return [
-    {
-      type: ContentBlockType.ExternalContentUnit,
-      url,
-      width,
-      height,
-      margin,
-      scrollable
-    }
-  ];
+  return [];
 }

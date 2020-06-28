@@ -36,6 +36,7 @@ a {
   .logo {
     position: absolute;
     width: 6%;
+    height: 10.66%; // IE 11 fix
     padding: 2%;
     border-radius: 50%;
     background: #19242a;

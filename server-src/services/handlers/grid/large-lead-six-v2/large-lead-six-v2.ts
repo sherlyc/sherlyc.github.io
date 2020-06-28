@@ -9,9 +9,9 @@ import { IParams } from "../../../__types__/IParams";
 import { handlerRunnerFunction } from "../../runner";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
-  ILargeLeadSixGridHandlerInput,
-  LargeLeadSixGridPositions
-} from "../../__types__/ILargeLeadSixGridHandlerInput";
+  ILargeLeadSixV2GridHandlerInput,
+  LargeLeadSixV2GridPositions
+} from "../../__types__/ILargeLeadSixV2GridHandlerInput";
 import { ILargeLeadSixV2HandlerInput } from "../../__types__/ILargeLeadSixV2HandlerInput";
 import { contentErrorHandler } from "../content-error-handler";
 
@@ -27,49 +27,11 @@ export default async function (
   params: IParams
 ): Promise<IContentBlock[]> {
   const articles = await getRawArticles(sourceId, 5, params);
-  const leftContent = contentErrorHandler(
-    () =>
-      homepageArticle(
-        articles.shift() as IRawArticle,
-        strapName,
-        color,
-        {
-          mobile: Orientation.Portrait,
-          tablet: Orientation.Portrait,
-          desktop: Orientation.Portrait
-        },
-        true,
-        true
-      ),
-    HandlerInputType.LargeLeadSix,
-    sourceId,
-    params
-  );
-  const listGridContent = articles.map((article, index) =>
-    homepageArticle(
-      article,
-      strapName,
-      color,
-      {
-        mobile: Orientation.Portrait,
-        tablet: Orientation.Portrait,
-        desktop: Orientation.Portrait
-      },
-      index < 1,
-      false
-    )
-  );
-  const middleContent = await handlerRunner(
-    {
-      type: HandlerInputType.ListGrid,
-      content: listGridContent
-    },
-    params
-  );
-  const largeLeadSixGridHandlerInput: ILargeLeadSixGridHandlerInput = {
-    type: HandlerInputType.LargeLeadSixGrid,
+
+  const gridInput: ILargeLeadSixV2GridHandlerInput = {
+    type: HandlerInputType.LargeLeadSixV2Grid,
     content: {
-      [LargeLeadSixGridPositions.ModuleTitle]: [
+      [LargeLeadSixV2GridPositions.ModuleTitle]: [
         {
           type: ContentBlockType.ModuleHeader,
           title: displayName,
@@ -77,9 +39,107 @@ export default async function (
           color
         }
       ],
-      [LargeLeadSixGridPositions.Left]: [leftContent],
-      [LargeLeadSixGridPositions.Middle]: middleContent,
-      [LargeLeadSixGridPositions.Right]: [
+      [LargeLeadSixV2GridPositions.Left]: [
+        contentErrorHandler(
+          () =>
+            homepageArticle(
+              articles.shift() as IRawArticle,
+              strapName,
+              color,
+              {
+                mobile: Orientation.Portrait,
+                tablet: Orientation.Portrait,
+                desktop: Orientation.Portrait
+              },
+              true,
+              true
+            ),
+          HandlerInputType.LargeLeadSix,
+          sourceId,
+          params
+        )
+      ],
+      [LargeLeadSixV2GridPositions.MiddleOne]: [
+        contentErrorHandler(
+          () =>
+            homepageArticle(
+              articles.shift() as IRawArticle,
+              strapName,
+              color,
+              {
+                mobile: Orientation.Portrait,
+                tablet: Orientation.Portrait,
+                desktop: Orientation.Portrait
+              },
+              true,
+              false
+            ),
+          HandlerInputType.LargeLeadSix,
+          sourceId,
+          params
+        )
+      ],
+      [LargeLeadSixV2GridPositions.MiddleTwo]: [
+        contentErrorHandler(
+          () =>
+            homepageArticle(
+              articles.shift() as IRawArticle,
+              strapName,
+              color,
+              {
+                mobile: Orientation.Portrait,
+                tablet: Orientation.Portrait,
+                desktop: Orientation.Portrait
+              },
+              false,
+              false
+            ),
+          HandlerInputType.LargeLeadSix,
+          sourceId,
+          params
+        )
+      ],
+      [LargeLeadSixV2GridPositions.MiddleThree]: [
+        contentErrorHandler(
+          () =>
+            homepageArticle(
+              articles.shift() as IRawArticle,
+              strapName,
+              color,
+              {
+                mobile: Orientation.Portrait,
+                tablet: Orientation.Portrait,
+                desktop: Orientation.Portrait
+              },
+              false,
+              false
+            ),
+          HandlerInputType.LargeLeadSix,
+          sourceId,
+          params
+        )
+      ],
+      [LargeLeadSixV2GridPositions.MiddleFour]: [
+        contentErrorHandler(
+          () =>
+            homepageArticle(
+              articles.shift() as IRawArticle,
+              strapName,
+              color,
+              {
+                mobile: Orientation.Portrait,
+                tablet: Orientation.Portrait,
+                desktop: Orientation.Portrait
+              },
+              false,
+              false
+            ),
+          HandlerInputType.LargeLeadSix,
+          sourceId,
+          params
+        )
+      ],
+      [LargeLeadSixV2GridPositions.Right]: [
         {
           type: ContentBlockType.StickyContainer,
           items: [basicAdUnit(strapName)]
@@ -87,5 +147,5 @@ export default async function (
       ]
     }
   };
-  return await handlerRunner(largeLeadSixGridHandlerInput, params);
+  return await handlerRunner(gridInput, params);
 }

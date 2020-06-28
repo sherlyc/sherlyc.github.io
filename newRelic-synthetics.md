@@ -9,7 +9,8 @@ Currently this will run every 5 minutes to check for elements on i.stuff.co.nz.
 const assert = require("assert");
 const blackListed = [
   "https://somniture.stuff.co.nz",
-  "https://fonts.googleapis.com"
+  "https://fonts.googleapis.com",
+  "https://assets.adobedtm.com"
 ];
 $browser.addHostnamesToBlacklist(blackListed);
 const getCssElement = (selector) => {
@@ -34,14 +35,6 @@ const closeOLI = async () => {
     console.log("OLI was not found");
   }
 };
-const shouldContainHalfWidthImageArticleUnits = async () => {
-  console.log("checking for half width image article unit, no error means ok");
-  const element = await getCssElement("app-half-width-image-article-unit");
-  return assert(
-    element.getText() != null,
-    "app-half-width-image-article-unit is null"
-  );
-};
 const shouldContainHeader = async () => {
   console.log("checking header, no error means ok");
   const element = await getCssElement("app-header");
@@ -51,45 +44,72 @@ const shouldContainBasicAdUnit = async () => {
   const element = await getCssElement("app-basic-ad-unit[id] iframe");
   return assert(element != null, "no ad unit is found");
 };
-const shouldContainTopStories = async () => {
-  console.log("checking top stories highlight");
-  const allGrids = await $browser.findElements(
-    $driver.By.css("app-grid-container > div > div > app-grid-container")
-  );
-  const topStoriesHighlight = await allGrids[0];
-  const featuredArticles = await topStoriesHighlight.findElements(
-    $driver.By.css("app-featured-article")
-  );
-  const bigImageArticles = await topStoriesHighlight.findElements(
-    $driver.By.css("app-big-image-article-unit")
-  );
-  const halfWidthImageArticles = await topStoriesHighlight.findElements(
-    $driver.By.css("app-half-width-image-article-unit")
-  );
-  const topStoriesCount =
-    featuredArticles.length +
-    bigImageArticles.length +
-    halfWidthImageArticles.length;
-  return assert(
-    topStoriesCount >= 2,
-    "top stories highlight does not display a minimum of 2 articles"
-  );
-};
 const shouldContainFooter = async () => {
   console.log("checking footer, no error means ok");
   const element = await getCssElement("app-footer");
   return assert(element != null, "footer element is null");
 };
+
+const shouldContainTopStoriesHighlights = async () => {
+  console.log("checking top stories highlights");
+  const homepageHighlights = await $browser.findElements(
+    $driver.By.css(
+      "app-grid-container:first-of-type app-homepage-highlight-article"
+    )
+  );
+  const defcon = await $browser.findElements(
+    $driver.By.css("app-grid-container:first-of-type app-defcon")
+  );
+  return assert(
+    homepageHighlights.length + defcon.length > 1,
+    "top stories highlights are not available"
+  );
+};
+
+const shouldContainTopStoriesArticles = async () => {
+  console.log("checking top stories articles");
+  const homepageArticles = await $browser.findElements(
+    $driver.By.css("app-grid-container:first-of-type app-homepage-article")
+  );
+  return assert(
+    homepageArticles.length > 6,
+    "top stories articles are not available"
+  );
+};
+
+const shouldContainLatestHeadline = async () => {
+  console.log("checking latest headlines");
+  const latestHeadlineArticles = await $browser.findElements(
+    $driver.By.css(
+      "app-grid-container:first-of-type app-vertical-article-list a"
+    )
+  );
+  return assert(
+    latestHeadlineArticles.length > 5,
+    "latest headlines articles are not available"
+  );
+};
+
+const shouldContainImportantStraps = async () => {
+  console.log("checking important straps");
+  const importantStraps = await $browser.findElements(
+    $driver.By.css("app-grid-container > div > div > app-module-header > div")
+  );
+  const strapsToCheck = ["editors' picks", "coronavirus", "national"];
+  const strapHeaders = await Promise.all(
+    importantStraps.map((strap) => strap.getText())
+  );
+  strapsToCheck.forEach((strap) => assert(strapHeaders.includes(strap)));
+};
+
 $browser
-  .get("https://i.stuff.co.nz")
-  .then(selectMobileSite)
-  .then(() => {
-    return $browser.get("https://i.stuff.co.nz");
-  })
+  .get("https://www.stuff.co.nz")
   .then(closeOLI)
-  .then(shouldContainHalfWidthImageArticleUnits)
   .then(shouldContainHeader)
-  .then(shouldContainTopStories)
+  .then(shouldContainTopStoriesHighlights)
+  .then(shouldContainTopStoriesArticles)
+  .then(shouldContainLatestHeadline)
+  .then(shouldContainImportantStraps)
   .then(shouldContainBasicAdUnit)
   .then(shouldContainFooter);
 ```

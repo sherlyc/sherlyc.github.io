@@ -2,6 +2,7 @@ import { ContentBlockType } from "../../../../../common/__types__/ContentBlockTy
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import {
   Border,
+  GridContainerVariation,
   IGridConfig,
   IGridContainer
 } from "../../../../../common/__types__/IGridContainer";
@@ -44,7 +45,7 @@ describe("Most Read Grid Handler", () => {
       })
     );
 
-    const { mobile, tablet, desktop } = result[0] as IGridContainer;
+    const { mobile, tablet, desktop, variation } = result[0] as IGridContainer;
     const mobileConfig: IGridConfig = {
       gridTemplateColumns: "1fr",
       gridTemplateRows: "auto auto",
@@ -52,7 +53,7 @@ describe("Most Read Grid Handler", () => {
       gridRowGap: "20px",
       gridBlocks: {
         [MostReadGridPositions.Left]: gridBlock(1, 1, 1, 1, []),
-        [MostReadGridPositions.Right]: gridBlock(2, 1, 1, 1, [Border.bottom])
+        [MostReadGridPositions.Right]: gridBlock(2, 1, 1, 1, [])
       }
     };
 
@@ -81,5 +82,6 @@ describe("Most Read Grid Handler", () => {
     expect(mobile).toEqual(mobileConfig);
     expect(tablet).toEqual(tabletConfig);
     expect(desktop).toEqual(desktopConfig);
+    expect(variation).toBe(GridContainerVariation.Border);
   });
 });

@@ -23,7 +23,17 @@
 }
 
 .content-blocks {
-  margin: 10px;
+  @include desktop {
+    margin: 0 $desktop-page-margin;
+  }
+
+  @include tablet {
+    margin: 0 $tablet-page-margin;
+  }
+
+  @include mobile {
+    margin: 0 $mobile-page-margin;
+  }
 }
 
 #pushdownbanner {
@@ -34,12 +44,15 @@
   position: fixed;
   left: calc(50% - 1160px);
   top: 0;
+  min-width: 600px;
+  text-align: right;
 }
 
 #gutterright {
   position: fixed;
   right: calc(50% - 1160px);
   top: 0;
+  min-width: 600px;
 }
 
 @media only screen and (max-width: 991px) {

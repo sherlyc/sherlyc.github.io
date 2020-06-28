@@ -22,7 +22,7 @@ const multiHandlerRunner = async (
 
 export default async function (
   handlerRunner: handlerRunnerFunction,
-  { name, content, fallback }: IFeatureHandlerInput,
+  { name, content, fallback, suppressError = true }: IFeatureHandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
   try {
@@ -44,6 +44,10 @@ export default async function (
       `Feature handler error for ${name}`,
       error
     );
-    return [];
+    if (suppressError) {
+      return [];
+    } else {
+      throw error;
+    }
   }
 }

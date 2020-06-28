@@ -21,8 +21,10 @@ import { IHalfFourGridHandlerInput } from "./IHalfFourGridHandlerInput";
 import { IHalfFourHandlerInput } from "./IHalfFourHandlerInput";
 import { ILargeLeadSixGridHandlerInput } from "./ILargeLeadSixGridHandlerInput";
 import { ILargeLeadSixHandlerInput } from "./ILargeLeadSixHandlerInput";
+import { ILargeLeadSixV2GridHandlerInput } from "./ILargeLeadSixV2GridHandlerInput";
 import { ILargeLeadSixV2HandlerInput } from "./ILargeLeadSixV2HandlerInput";
 import { ILatestHeadlinesHandlerInput } from "./ILatestHeadlinesHandlerInput";
+import { ILifeStyleHandlerInput } from "./ILifeStyleHandlerInput";
 import { IListGridHandlerInput } from "./IListGridHandlerInput";
 import { IMidStripHandlerInput } from "./IMidStripHandlerInput";
 import { IMiniMidStripHandlerInput } from "./IMiniMidStripHandlerInput";
@@ -32,6 +34,7 @@ import { INewsSixGridHandlerInput } from "./INewsSixGridHandlerInput";
 import { INewsSixGridV2HandlerInput } from "./INewsSixGridV2HandlerInput";
 import { INewsSixHandlerInput } from "./INewsSixHandlerInput";
 import { INewsSixV2HandlerInput } from "./INewsSixV2HandlerInput";
+import { IOpinionHandlerInput } from "./IOpinionHandlerInput";
 import { IPageHandlerInput } from "./IPageHandlerInput";
 import { IPartnerHandlerInput } from "./IPartnerHandlerInput";
 import { IPlayStuffHandlerInput } from "./IPlayStuffHandlerInput";
@@ -91,8 +94,9 @@ export type HandlerInput =
   | IStripsV2HandlerInput
   | IStripsGridHandlerInput
   | ILargeLeadSixHandlerInput
-  | ILargeLeadSixV2HandlerInput
   | ILargeLeadSixGridHandlerInput
+  | ILargeLeadSixV2HandlerInput
+  | ILargeLeadSixV2GridHandlerInput
   | IListGridHandlerInput
   | IRelevantStoriesHandlerInput
   | IRelevantStoriesGridHandlerInput
@@ -111,4 +115,6 @@ export type HandlerInput =
   | IEditorsPicksHandlerInput
   | IEditorsPicksGridHandlerInput
   | IMostReadGridHandlerInput
-  | IMostReadHandlerInput;
+  | IMostReadHandlerInput
+  | IOpinionHandlerInput
+  | ILifeStyleHandlerInput;

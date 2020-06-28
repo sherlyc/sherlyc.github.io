@@ -9,6 +9,7 @@ import { BreakingNewsComponent } from "./breaking-news/breaking-news.component";
 import { BulletListComponent } from "./bullet-list/bullet-list.component";
 import { ColumnContainerComponent } from "./column-container/column-container.component";
 import { ContainerComponent } from "./container/container.component";
+import { DailyFixComponent } from "./daily-fix/daily-fix.component";
 import { DefconArticleUnitComponent } from "./defcon-article-unit/defcon-article-unit.component";
 import { DefconComponent } from "./defcon/defcon.component";
 import { ErrorBlockComponent } from "./error-block/error-block.component";
@@ -30,6 +31,7 @@ import { ModuleSubtitleComponent } from "./module-subtitle/module-subtitle.compo
 import { ModuleTitleComponent } from "./module-title/module-title.component";
 import { MostReadListComponent } from "./most-read-list/most-read-list.component";
 import { OliComponent } from "./oli/oli.component";
+import { OpinionComponent } from "./opinion/opinion.component";
 import { PartnerContentComponent } from "./partner-content/partner-content.component";
 import { PlayStuffComponent } from "./play-stuff/play-stuff.component";
 import { ResponsiveBigImageArticleComponent } from "./responsive-big-image-article/responsive-big-image-article.component";
@@ -79,6 +81,8 @@ export const contentBlockComponents = [
   PlayStuffComponent,
   MostReadListComponent,
   DefconComponent,
+  OpinionComponent,
+  DailyFixComponent,
   SkyboxComponent
 ];
 
@@ -123,6 +127,8 @@ const registry: {
   PlayStuffComponent,
   MostReadListComponent,
   DefconComponent,
+  OpinionComponent,
+  DailyFixComponent,
   SkyboxComponent
 };
 

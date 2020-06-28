@@ -9,10 +9,16 @@ import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { Strap } from "../../../strap";
 import { IParams } from "../../../__types__/IParams";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
+import { IExternalContentHandlerInput } from "../../__types__/IExternalContentHandlerInput";
+import { ILatestHeadlinesHandlerInput } from "../../__types__/ILatestHeadlinesHandlerInput";
 import {
   ITopStoriesV2DefaultGridHandlerInput,
   TopStoriesV2DefaultGridPositions
 } from "../../__types__/ITopStoriesV2DefaultGridHandlerInput";
+import {
+  ITopStoriesV2DefconGridHandlerInput,
+  TopStoriesV2DefconGridPositions
+} from "../../__types__/ITopStoriesV2DefconGridHandlerInput";
 import { ITopStoriesV2HandlerInput } from "../../__types__/ITopStoriesV2HandlerInput";
 import topStoriesV2 from "./top-stories-v2";
 
@@ -23,26 +29,28 @@ describe("Top Stories V2", () => {
   const params: IParams = { apiRequestId: "123" };
   const strapName = "Top Stories V2";
   const color = AccentColor.CuriousBlue;
+  const midInsertContent: IExternalContentHandlerInput = {
+    type: HandlerInputType.ExternalContent,
+    url:
+      "https://interactives.stuff.co.nz/live/homepage/uber/corona/320-200.html",
+    width: "100%",
+    height: "43px",
+    margin: "0"
+  };
+  const lowerRightContent: ILatestHeadlinesHandlerInput = {
+    type: HandlerInputType.LatestHeadlines,
+    sourceId: Strap.LatestNews,
+    totalArticles: 7,
+    displayName: "latest headlines",
+    strapName: `homepageLatestHeadlines`,
+    color: "#ff433d"
+  };
   const handlerInput: ITopStoriesV2HandlerInput = {
     type: HandlerInputType.TopStoriesV2,
     strapName,
     color,
-    midInsertContent: {
-      type: HandlerInputType.ExternalContent,
-      url:
-        "https://interactives.stuff.co.nz/live/homepage/uber/corona/320-200.html",
-      width: "100%",
-      height: "43px",
-      margin: "0"
-    },
-    lowerRightContent: {
-      type: HandlerInputType.LatestHeadlines,
-      sourceId: Strap.LatestNews,
-      totalArticles: 7,
-      displayName: "latest headlines",
-      strapName: `homepageLatestHeadlines`,
-      color: "#ff433d"
-    }
+    midInsertContent,
+    lowerRightContent
   };
 
   const basicAdUnit: IBasicAdUnit = {
@@ -57,8 +65,9 @@ describe("Top Stories V2", () => {
           id: `${id}`,
           imageSrc: `${id}.jpg`,
           sixteenByNineSrc: `${id}.16:9.jpg`,
-          portraitImageSrc: `${id}.3:4.jpg`,
-          introText: `${id} intro`
+          portraitImageSrc: `${id}.1:1.jpg`,
+          introText: `${id} intro`,
+          byline: `${id} byline`
         } as IRawArticle)
     );
 
@@ -78,18 +87,27 @@ describe("Top Stories V2", () => {
     });
   });
 
-  it("should retrieve articles", async () => {
+  it("should retrieve top stories and defcon articles", async () => {
     (getRawArticles as jest.Mock).mockResolvedValue(
       fakeArticlesWithIds([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
     );
 
     await topStoriesV2(handlerRunnerMock, handlerInput, params);
 
-    expect(getRawArticles).toHaveBeenCalledWith(Strap.TopStories, 10, params);
+    expect(getRawArticles).toHaveBeenNthCalledWith(1, Strap.Defcon, 10, params);
+    expect(getRawArticles).toHaveBeenNthCalledWith(
+      2,
+      Strap.TopStories,
+      10,
+      params
+    );
   });
 
-  it("should call top stories v2 default grid with correct content blocks", async () => {
-    (getRawArticles as jest.Mock).mockResolvedValue(
+  it("should call top stories v2 default grid with correct content blocks when defcon is empty", async () => {
+    (getRawArticles as jest.Mock).mockResolvedValueOnce(
+      fakeArticlesWithIds([])
+    );
+    (getRawArticles as jest.Mock).mockResolvedValueOnce(
       fakeArticlesWithIds([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
     );
 
@@ -98,26 +116,30 @@ describe("Top Stories V2", () => {
     const gridHandlerInput: ITopStoriesV2DefaultGridHandlerInput = {
       type: HandlerInputType.TopStoriesV2DefaultGrid,
       content: {
-        [TopStoriesV2DefaultGridPositions.RightHighlight]: [
+        [TopStoriesV2DefaultGridPositions.LeftHighlight]: [
           expectContentBlock({
             type: ContentBlockType.HomepageHighlightArticle,
             id: "1",
+            color,
+            byline: "1 byline",
             image: {
               mobile: {
-                src: "1.3:4.jpg",
-                aspectRatio: AspectRatio.OneByOne
+                src: "1.16:9.jpg",
+                aspectRatio: AspectRatio.SixteenByNine
               }
             }
           })
         ],
-        [TopStoriesV2DefaultGridPositions.LeftHighlight]: [
+        [TopStoriesV2DefaultGridPositions.RightHighlight]: [
           expectContentBlock({
             type: ContentBlockType.HomepageHighlightArticle,
             id: "2",
+            color,
+            byline: "2 byline",
             image: {
               mobile: {
-                src: "2.16:9.jpg",
-                aspectRatio: AspectRatio.SixteenByNine
+                src: "2.1:1.jpg",
+                aspectRatio: AspectRatio.OneByOne
               }
             }
           })
@@ -129,6 +151,7 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "3",
+            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -142,6 +165,7 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "4",
+            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -155,6 +179,7 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "5",
+            color,
             orientation: {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
@@ -168,6 +193,7 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "6",
+            color,
             orientation: {
               mobile: Orientation.Landscape,
               tablet: Orientation.Landscape,
@@ -181,6 +207,7 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "7",
+            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -195,6 +222,7 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "8",
+            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -208,6 +236,7 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "9",
+            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
@@ -221,13 +250,14 @@ describe("Top Stories V2", () => {
           expectContentBlock({
             type: ContentBlockType.HomepageArticle,
             id: "10",
+            color,
             orientation: {
               mobile: Orientation.Portrait,
               tablet: Orientation.Portrait,
               desktop: Orientation.Portrait
             },
             imageSrc: undefined,
-            introText: "10 intro"
+            introText: undefined
           })
         ],
         [TopStoriesV2DefaultGridPositions.MidInsert]: [
@@ -245,6 +275,180 @@ describe("Top Stories V2", () => {
 
     expect(handlerRunnerMock).toHaveBeenLastCalledWith(
       gridHandlerInput,
+      params
+    );
+  });
+
+  it("should call defcon grid with correct content blocks when defcon is not empty", async () => {
+    (getRawArticles as jest.Mock).mockResolvedValueOnce(
+      fakeArticlesWithIds([1, 2, 3, 4])
+    );
+    (getRawArticles as jest.Mock).mockResolvedValueOnce(
+      fakeArticlesWithIds([5, 6, 7, 8, 9, 10, 11, 12, 13])
+    );
+
+    await topStoriesV2(handlerRunnerMock, handlerInput, params);
+
+    const defconGridHandlerInput: ITopStoriesV2DefconGridHandlerInput = {
+      type: HandlerInputType.TopStoriesV2DefconGrid,
+      content: {
+        [TopStoriesV2DefconGridPositions.Defcon]: [
+          expectContentBlock({
+            type: ContentBlockType.Defcon,
+            articles: expect.arrayContaining([]),
+            color: AccentColor.Coral
+          })
+        ],
+        [TopStoriesV2DefconGridPositions.TopOne]: [
+          expectContentBlock({
+            type: ContentBlockType.HomepageArticle,
+            id: "5",
+            color,
+            orientation: {
+              mobile: Orientation.Portrait,
+              tablet: Orientation.Portrait,
+              desktop: Orientation.Portrait
+            },
+            imageSrc: "5.16:9.jpg",
+            introText: "5 intro"
+          })
+        ],
+        [TopStoriesV2DefconGridPositions.TopTwo]: [
+          expectContentBlock({
+            type: ContentBlockType.HomepageArticle,
+            id: "6",
+            color,
+            orientation: {
+              mobile: Orientation.Portrait,
+              tablet: Orientation.Portrait,
+              desktop: Orientation.Portrait
+            },
+            imageSrc: "6.16:9.jpg",
+            introText: "6 intro"
+          })
+        ],
+        [TopStoriesV2DefconGridPositions.TopThree]: [
+          expectContentBlock({
+            type: ContentBlockType.HomepageArticle,
+            id: "7",
+            color,
+            orientation: {
+              mobile: Orientation.Landscape,
+              tablet: Orientation.Landscape,
+              desktop: Orientation.Landscape
+            },
+            imageSrc: "7.16:9.jpg",
+            introText: undefined
+          })
+        ],
+        [TopStoriesV2DefconGridPositions.TopFour]: [
+          expectContentBlock({
+            type: ContentBlockType.HomepageArticle,
+            id: "8",
+            color,
+            orientation: {
+              mobile: Orientation.Landscape,
+              tablet: Orientation.Landscape,
+              desktop: Orientation.Landscape
+            },
+            imageSrc: "8.16:9.jpg",
+            introText: undefined
+          })
+        ],
+        [TopStoriesV2DefconGridPositions.TopFive]: [
+          expectContentBlock({
+            type: ContentBlockType.HomepageArticle,
+            id: "9",
+            color,
+            orientation: {
+              mobile: Orientation.Landscape,
+              tablet: Orientation.Landscape,
+              desktop: Orientation.Landscape
+            },
+            imageSrc: "9.16:9.jpg",
+            introText: undefined
+          })
+        ],
+        [TopStoriesV2DefconGridPositions.BottomOne]: [
+          expectContentBlock({
+            type: ContentBlockType.HomepageArticle,
+            id: "10",
+            color,
+            orientation: {
+              mobile: Orientation.Portrait,
+              tablet: Orientation.Portrait,
+              desktop: Orientation.Portrait
+            },
+            imageSrc: "10.16:9.jpg",
+            introText: "10 intro"
+          })
+        ],
+        [TopStoriesV2DefconGridPositions.BottomTwo]: [
+          expectContentBlock({
+            type: ContentBlockType.BasicAdUnit,
+            context: strapName
+          })
+        ],
+        [TopStoriesV2DefconGridPositions.BottomThree]: [
+          expectContentBlock({
+            type: ContentBlockType.HomepageArticle,
+            id: "11",
+            color,
+            orientation: {
+              mobile: Orientation.Portrait,
+              tablet: Orientation.Portrait,
+              desktop: Orientation.Portrait
+            },
+            imageSrc: undefined,
+            introText: "11 intro"
+          })
+        ],
+        [TopStoriesV2DefconGridPositions.BottomFour]: [
+          expectContentBlock({
+            type: ContentBlockType.HomepageArticle,
+            id: "12",
+            color,
+            orientation: {
+              mobile: Orientation.Portrait,
+              tablet: Orientation.Portrait,
+              desktop: Orientation.Portrait
+            },
+            imageSrc: undefined,
+            introText: "12 intro"
+          })
+        ],
+        [TopStoriesV2DefconGridPositions.BottomFive]: [
+          expectContentBlock({
+            type: ContentBlockType.HomepageArticle,
+            id: "13",
+            color,
+            orientation: {
+              mobile: Orientation.Portrait,
+              tablet: Orientation.Portrait,
+              desktop: Orientation.Portrait
+            },
+            imageSrc: undefined,
+            introText: undefined
+          })
+        ],
+        [TopStoriesV2DefconGridPositions.MidInsert]: [
+          expectContentBlock({
+            type: ContentBlockType.ExternalContentUnit
+          })
+        ],
+        [TopStoriesV2DefconGridPositions.LowerRight]: [
+          expectContentBlock({
+            type: ContentBlockType.VerticalArticleList
+          })
+        ],
+        [TopStoriesV2DefconGridPositions.BannerAd]: [
+          { type: ContentBlockType.StickyContainer, items: [basicAdUnit] }
+        ]
+      }
+    };
+
+    expect(handlerRunnerMock).toHaveBeenLastCalledWith(
+      defconGridHandlerInput,
       params
     );
   });

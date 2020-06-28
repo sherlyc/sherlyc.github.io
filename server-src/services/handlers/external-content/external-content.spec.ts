@@ -12,7 +12,8 @@ jest.mock("../../utils/logger");
 
 describe("ExternalContentHandler", () => {
   const params: IParams = { apiRequestId: "request-id-for-testing" };
-  const goodData = {};
+  const goodData = "<div>something</div>";
+  const emptyData = "  ";
 
   beforeAll(() => {
     (cacheHttp as jest.Mock).mockReturnValue({
@@ -89,6 +90,36 @@ describe("ExternalContentHandler", () => {
     const url = "https://bbc.com";
     const error = new Error();
     (cacheHttp as jest.Mock).mockRejectedValue(error);
+    const handlerRunnerMock = jest.fn();
+
+    const externalContent = (await externalContentHandler(
+      handlerRunnerMock,
+      {
+        type: HandlerInputType.ExternalContent,
+        width: "100%",
+        height: "300px",
+        margin: "10px",
+        scrollable: true,
+        url
+      },
+      params
+    )) as IExternalContentUnit[];
+
+    expect(externalContent).toEqual([]);
+    expect(wrappedLogger.warn).toHaveBeenCalledWith(
+      params.apiRequestId,
+      expect.stringContaining(url),
+      error
+    );
+  });
+
+  it("should return empty when content is empty", async () => {
+    const url = "https://bbc.com";
+    const error = new Error();
+    (cacheHttp as jest.Mock).mockResolvedValue({
+      status: 200,
+      data: emptyData
+    });
     const handlerRunnerMock = jest.fn();
 
     const externalContent = (await externalContentHandler(

@@ -21,29 +21,35 @@ describe("Partner", () => {
     type: HandlerInputType.Partner
   };
 
-  it("should retrieve 2 partner content block with 5 articles each", async () => {
+  it("should retrieve 3 partner content block with 5 articles each", async () => {
     const handlerRunnerMock = jest.fn();
     handlerRunnerMock.mockResolvedValue([]);
 
     await Partner(handlerRunnerMock, handlerInput, params);
 
     const partnerConfig = brandConfig[BrandModule.Partner];
-    expect(createPartnerContent).toHaveBeenCalledTimes(2);
+    expect(createPartnerContent).toHaveBeenCalledTimes(3);
     expect(createPartnerContent).toHaveBeenNthCalledWith(
       1,
-      partnerConfig.configs[PartnerBrand.Newsroom],
+      partnerConfig.configs[PartnerBrand.Bravo],
       partnerConfig.articlesPerBrand,
       params
     );
     expect(createPartnerContent).toHaveBeenNthCalledWith(
       2,
+      partnerConfig.configs[PartnerBrand.Newsroom],
+      partnerConfig.articlesPerBrand,
+      params
+    );
+    expect(createPartnerContent).toHaveBeenNthCalledWith(
+      3,
       partnerConfig.configs[PartnerBrand.Tarana],
       partnerConfig.articlesPerBrand,
       params
     );
   });
 
-  it("should pass 2 partner content blocks to column grid handler", async () => {
+  it("should pass 3 partner content blocks to column grid handler", async () => {
     const partnerContent1 = {
       type: ContentBlockType.PartnerContent,
       id: "1"
@@ -54,6 +60,11 @@ describe("Partner", () => {
       id: "2"
     };
     (createPartnerContent as jest.Mock).mockReturnValueOnce(partnerContent2);
+    const partnerContent3 = {
+      type: ContentBlockType.PartnerContent,
+      id: "3"
+    };
+    (createPartnerContent as jest.Mock).mockReturnValueOnce(partnerContent3);
     const handlerRunnerMock = jest.fn();
     handlerRunnerMock.mockResolvedValue([]);
 
@@ -62,7 +73,8 @@ describe("Partner", () => {
     const [[firstColumnGridCall]] = handlerRunnerMock.mock.calls;
     expect(firstColumnGridCall.content).toEqual([
       [expect.objectContaining(partnerContent1)],
-      [expect.objectContaining(partnerContent2)]
+      [expect.objectContaining(partnerContent2)],
+      [expect.objectContaining(partnerContent3)]
     ]);
   });
 

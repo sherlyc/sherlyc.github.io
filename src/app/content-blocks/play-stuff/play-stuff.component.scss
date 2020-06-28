@@ -5,7 +5,16 @@
   width: 100%;
   background-color: #1a242a;
   padding: 10px;
-  margin-bottom: 30px;
+
+  @include mobile() {
+    margin-bottom: 20px;
+  }
+  @include tablet() {
+    margin-bottom: 40px;
+  }
+  @include desktop() {
+    margin-bottom: 40px;
+  }
 }
 
 @mixin head($fontSize, $titleTop, $logoHeight, $logoTop) {
@@ -31,6 +40,14 @@
 
       svg {
         height: 100%;
+
+        // IE 11 fix
+        &.logo {
+          width: #{$logoHeight};
+        }
+        &.logo-text {
+          width: #{$logoHeight * 3.63};
+        }
       }
     }
   }
@@ -49,7 +66,7 @@
 
 .bottom {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-content: stretch;
 }
 
@@ -76,7 +93,7 @@
     flex-direction: row;
 
     .cell {
-      flex: 1;
+      flex-basis: calc(25% - 2 * 10px);
     }
   }
 
@@ -98,11 +115,6 @@
 
   .bottom {
     display: none;
-    flex-direction: row;
-
-    .cell {
-      flex: 1;
-    }
   }
 
   @include head(31px, 26px, 40px, 6px);
@@ -122,7 +134,6 @@
 
   .bottom {
     display: none;
-    flex-direction: column;
   }
 
   .wrapper {

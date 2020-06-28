@@ -45,7 +45,8 @@ export default async function (
               }
             },
             HomepageHighlightArticleVariation.Featured,
-            true
+            true,
+            false
           ),
         HandlerInputType.NewsSixV2,
         sourceId,
@@ -106,7 +107,8 @@ export default async function (
               }
             },
             HomepageHighlightArticleVariation.Featured,
-            true
+            true,
+            false
           ),
         HandlerInputType.NewsSixV2,
         sourceId,
