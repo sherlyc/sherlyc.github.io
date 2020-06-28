@@ -103,7 +103,8 @@ export const pageV2 = (): HandlerInput[] => [
       {
         type: HandlerInputType.Opinion,
         strapName: `${homepageV2AdPrefix}Perspectives`,
-        displayName: "perspectives"
+        displayName: "perspectives",
+        linkUrl: "/" + Section.Opinion
       },
       {
         type: HandlerInputType.NewsSixV2,

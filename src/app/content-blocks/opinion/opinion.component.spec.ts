@@ -5,6 +5,7 @@ import { AccentColor } from "../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IHomepageArticleContent } from "../../../../common/__types__/IHomepageArticleContent";
 import { IOpinion } from "../../../../common/__types__/IOpinion";
+import { Section } from "../../../../server-src/services/section";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
@@ -42,7 +43,8 @@ describe("OpinionComponent", () => {
     ],
     cartoons: [articleContent(6)],
     strapName: "strapName",
-    displayName: "opinion"
+    displayName: "opinion",
+    url: "/" + Section.Opinion
   };
 
   beforeEach(async(() => {
@@ -80,6 +82,7 @@ describe("OpinionComponent", () => {
 
     const header = fixture.debugElement.query(By.css(".header")).nativeElement;
     expect(header.textContent).toBe(input.displayName);
+    expect(header.getAttribute("href")).toBe(input.url);
 
     const primaryImage = fixture.debugElement.query(By.css(".primary .cartoon"))
       .nativeElement;
