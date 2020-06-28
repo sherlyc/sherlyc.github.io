@@ -57,7 +57,7 @@
           },
           {
             "strap": "strapEditorPicks",
-            "limit": 10
+            "limit": 8
           }
         ]
       }
