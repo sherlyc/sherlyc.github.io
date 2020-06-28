@@ -1,6 +1,8 @@
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 import { featuredArticle } from "../../../adapters/article-converter/featured-article.converter";
+import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { IParams } from "../../../__types__/IParams";
@@ -18,10 +20,29 @@ export default async function (
     linkUrl,
     sourceId,
     strapName,
-    articleCount
+    articleCount,
+    articleFormat
   }: IStripsV2HandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
+  const articleFormatDelegate = {
+    [ContentBlockType.HomepageArticle]: (article: IRawArticle) => () =>
+      homepageArticle(
+        article,
+        strapName,
+        color,
+        {
+          mobile: Orientation.Portrait,
+          tablet: Orientation.Portrait,
+          desktop: Orientation.Portrait
+        },
+        true,
+        true
+      ),
+    [ContentBlockType.FeaturedArticle]: (article: IRawArticle) => () =>
+      featuredArticle(article, strapName, "white", "black", false)
+  };
+
   const articles = await getRawArticles(sourceId, articleCount, params);
   const moduleContent = await handlerRunner(
     {
@@ -31,8 +52,8 @@ export default async function (
       rowGap: 20,
       content: articles.map((article: IRawArticle) =>
         contentErrorHandler(
-          () => featuredArticle(article, strapName, "white", "#222", false),
-          HandlerInputType.Strips,
+          articleFormatDelegate[articleFormat](article),
+          HandlerInputType.StripsV2,
           strapName,
           params
         )
