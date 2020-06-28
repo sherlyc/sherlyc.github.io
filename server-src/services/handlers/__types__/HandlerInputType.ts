@@ -56,5 +56,6 @@ export enum HandlerInputType {
   EditorsPicksGrid = "EditorsPicksGrid",
   MostReadGrid = "MostReadGrid",
   MostRead = "MostRead",
-  Opinion = "Opinion"
+  Opinion = "Opinion",
+  LifeStyle = "LifeStyle"
 }

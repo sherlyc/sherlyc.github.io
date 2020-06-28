@@ -24,6 +24,7 @@ import { ILargeLeadSixHandlerInput } from "./ILargeLeadSixHandlerInput";
 import { ILargeLeadSixV2GridHandlerInput } from "./ILargeLeadSixV2GridHandlerInput";
 import { ILargeLeadSixV2HandlerInput } from "./ILargeLeadSixV2HandlerInput";
 import { ILatestHeadlinesHandlerInput } from "./ILatestHeadlinesHandlerInput";
+import { ILifeStyleHandlerInput } from "./ILifeStyleHandlerInput";
 import { IListGridHandlerInput } from "./IListGridHandlerInput";
 import { IMidStripHandlerInput } from "./IMidStripHandlerInput";
 import { IMiniMidStripHandlerInput } from "./IMiniMidStripHandlerInput";
@@ -115,4 +116,5 @@ export type HandlerInput =
   | IEditorsPicksGridHandlerInput
   | IMostReadGridHandlerInput
   | IMostReadHandlerInput
-  | IOpinionHandlerInput;
+  | IOpinionHandlerInput
+  | ILifeStyleHandlerInput;

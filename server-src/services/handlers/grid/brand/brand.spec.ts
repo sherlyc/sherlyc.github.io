@@ -1,15 +1,10 @@
+import { AccentColor } from "../../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
 import { IParams } from "../../../__types__/IParams";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
-import {
-  BrandGridPositions,
-  IBrandGridHandlerInput
-} from "../../__types__/IBrandGridHandlerInput";
-import {
-  BrandModule,
-  IBrandHandlerInput
-} from "../../__types__/IBrandHandlerInput";
+import { BrandGridPositions, IBrandGridHandlerInput } from "../../__types__/IBrandGridHandlerInput";
+import { BrandModule, IBrandHandlerInput } from "../../__types__/IBrandHandlerInput";
 import brandHandler from "./brand";
 import { createBulletList } from "./bullet-list";
 
@@ -96,9 +91,9 @@ describe("Brand Handler", () => {
         content: {
           [BrandGridPositions.ModuleTitle]: [
             {
-              type: ContentBlockType.ModuleTitle,
-              displayName: "our network's top stories",
-              displayNameColor: "black"
+              type: ContentBlockType.ModuleHeader,
+              title: "our network's top stories",
+              color: AccentColor.Black
             }
           ],
           [BrandGridPositions.FirstRow]: [fakeGridContainer],
@@ -174,9 +169,9 @@ describe("Brand Handler", () => {
         content: {
           [BrandGridPositions.ModuleTitle]: [
             {
-              type: ContentBlockType.ModuleTitle,
-              displayName: "from our partners",
-              displayNameColor: "black"
+              type: ContentBlockType.ModuleHeader,
+              title: "from our partners",
+              color: AccentColor.Black
             }
           ],
           [BrandGridPositions.FirstRow]: [fakeGridContainer],

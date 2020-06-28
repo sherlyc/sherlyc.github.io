@@ -59,7 +59,7 @@ export const pageV2 = (): HandlerInput[] => [
       url:
         "https://interactives.stuff.co.nz/live/new-homepage/uber/1/40-40.html",
       mobile: {
-        height: "110px",
+        height: "120px",
         width: "100%",
         margin: "0"
       },
@@ -230,8 +230,8 @@ export const pageV2 = (): HandlerInput[] => [
         sourceId: Strap.Homed
       },
       {
-        type: HandlerInputType.EditorsPicks,
-        displayName: "life & style",
+        type: HandlerInputType.LifeStyle,
+        displayName: "lifestyle",
         color: AccentColor.Crimson,
         strapName: `${homepageV2AdPrefix}LifeStyle`,
         sourceId: Strap.LifeStyle
@@ -285,7 +285,7 @@ export const pageV2 = (): HandlerInput[] => [
       {
         type: HandlerInputType.TitleSection,
         displayName: "one news",
-        displayNameColor: "black",
+        displayNameColor: AccentColor.Black,
         linkUrl: "https://play.stuff.co.nz/page/channel-onenews",
         content: {
           type: HandlerInputType.ResponsiveExternalContent,
@@ -293,17 +293,17 @@ export const pageV2 = (): HandlerInput[] => [
           url:
             "https://www.playwidget.stuff.co.nz/grid/5d3fcb25a0e845001caee780",
           mobile: {
-            height: "160px",
+            height: "calc(35% + 35px)",
             width: "100%",
             margin: "0 -10px 15px"
           },
           tablet: {
-            height: "250px",
+            height: "170px",
             width: "100%",
             margin: "0 -10px 10px"
           },
           desktop: {
-            height: "360px",
+            height: "170px",
             width: "100%",
             margin: "0 -10px 0"
           }

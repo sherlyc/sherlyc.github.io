@@ -1,3 +1,4 @@
+import { AccentColor } from "../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { Section } from "../../section";
 import { IParams } from "../../__types__/IParams";
@@ -32,7 +33,7 @@ describe("TitleSectionHandler", () => {
       type: "TitleSection",
       linkUrl: "/business",
       displayName: "business",
-      displayNameColor: "red",
+      displayNameColor: AccentColor.Black,
       content: {
         type: HandlerInputType.ArticleList,
         sourceId: Section.Business,
