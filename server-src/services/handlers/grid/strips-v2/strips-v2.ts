@@ -1,6 +1,8 @@
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 import { featuredArticle } from "../../../adapters/article-converter/featured-article.converter";
+import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";
 import { IParams } from "../../../__types__/IParams";
@@ -9,11 +11,6 @@ import { HandlerInputType } from "../../__types__/HandlerInputType";
 import { StripsGridPositions } from "../../__types__/IStripsGridHandlerInput";
 import { IStripsV2HandlerInput } from "../../__types__/IStripsV2HandlerInput";
 import { contentErrorHandler } from "../content-error-handler";
-import { bigImageArticleUnit } from "../../../adapters/article-converter/big-image-article.converter";
-import { ImageLayoutType } from "../../../../../common/__types__/ImageLayoutType";
-import { halfWidthImageArticleUnit } from "../../../adapters/article-converter/half-width-image-article-unit.converter";
-import { homepageArticle } from "../../../adapters/article-converter/homepage-article.converter";
-import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
 
 export default async function (
   handlerRunner: handlerRunnerFunction,
