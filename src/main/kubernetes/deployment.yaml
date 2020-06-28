@@ -85,9 +85,6 @@ spec:
                 ]
           resources:
             limits:
-              # Roll out OOMKilled fix
-              #              cpu: ${quota-limits.smallCpu}
-              #              memory: ${quota-limits.smallMemory}
               cpu: 800m
               memory: 1200Mi
             requests:
