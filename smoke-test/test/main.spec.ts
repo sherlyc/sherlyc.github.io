@@ -78,11 +78,30 @@ describe("Mobile Homepage", () => {
     }
   });
 
-  it("should container at least 7 homepage article in top stories", async () => {
+  it("should contain at least 7 homepage article in top stories", async () => {
     const homepageArticles = await page.$$(
       "app-grid-container:first-of-type app-homepage-article"
     );
 
     expect(homepageArticles.length).toBeGreaterThanOrEqual(7);
+  });
+
+  it("should contain latest headlines in top stories", async () => {
+    const latestHeadlineArticles = await page.$$(
+      "app-grid-container:first-of-type app-vertical-article-list a"
+    );
+
+    expect(latestHeadlineArticles.length).toBeGreaterThanOrEqual(6);
+  });
+
+  it("should contain editors pick, coronavirus, and national", async () => {
+    const moduleHeaders = await page.$$eval(
+      "app-grid-container > div > div > app-module-header > div",
+      (moduleHeaders) => moduleHeaders.map((header) => header.textContent)
+    );
+
+    expect(moduleHeaders).toEqual(
+      expect.arrayContaining(["editors' picks", "coronavirus", "national"])
+    );
   });
 });
