@@ -123,8 +123,8 @@ export const pageV2 = (): HandlerInput[] => [
       },
       {
         type: HandlerInputType.MostRead,
-        displayName: "most read",
-        strapName: `${homepageV2AdPrefix}MostRead`
+        displayName: "most popular",
+        strapName: `${homepageV2AdPrefix}MostPopular`
       },
       {
         type: HandlerInputType.ResponsiveExternalContent,
@@ -293,17 +293,17 @@ export const pageV2 = (): HandlerInput[] => [
           url:
             "https://www.playwidget.stuff.co.nz/grid/5d3fcb25a0e845001caee780",
           mobile: {
-            height: "160px",
+            height: "calc(35% + 35px)",
             width: "100%",
             margin: "0 -10px 15px"
           },
           tablet: {
-            height: "250px",
+            height: "170px",
             width: "100%",
             margin: "0 -10px 10px"
           },
           desktop: {
-            height: "360px",
+            height: "170px",
             width: "100%",
             margin: "0 -10px 0"
           }

@@ -37,9 +37,14 @@
       Contact Us
     </a>
     <span class="separator"></span>
-    <a href="https://www.stuff.co.nz/" (click)="goDesktop()">
-      Desktop Site
+    <a *ngIf="isDesktop; else isMobile" class="redirect-mobile" href="https://i.stuff.co.nz/" (click)="setRedirectCookie()">
+      Mobile Site
     </a>
+    <ng-template #isMobile>
+      <a class="redirect-desktop" href="https://www.stuff.co.nz/" (click)="setRedirectCookie()">
+        Desktop Site
+      </a>
+    </ng-template>
   </div>
   <div class="row center-xs middle-xs">
     <div class="col-xs-12 col-md-6">
