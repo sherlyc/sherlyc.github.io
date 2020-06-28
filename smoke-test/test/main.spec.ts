@@ -69,9 +69,9 @@ describe("Mobile Homepage", () => {
     );
     const defcon = await page.$$("app-grid-container:first-of-type app-defcon");
 
-    if (homepageHighlights.length == 2) {
+    if (homepageHighlights.length === 2) {
       expect(true).toBeTruthy();
-    } else if (defcon.length == 1) {
+    } else if (defcon.length === 1) {
       expect(false).toBeTruthy();
     } else {
       expect(false).toBeTruthy();
