@@ -17,7 +17,7 @@ function getCompatibleComponents(params: IParams): HandlerInput[] {
     params.version && parseVersion(params.version) >= parseVersion("1.881");
 
   if (isV2Compatible) {
-    return newPage();
+    return pageV2();
   } else {
     return isV1Compatible ? pageV1() : pageV0();
   }
@@ -52,16 +52,4 @@ export default async (params: IParams): Promise<IPage> => {
     logger.error(params.apiRequestId, `Orchestrator level error `, error);
     throw error;
   }
-};
-
-export const newPage = (): HandlerInput[] => {
-  return [
-    {
-      type: HandlerInputType.Feature,
-      name: FeatureName.HomepageV2,
-      content: pageV2(),
-      fallback: pageV1(),
-      suppressError: false
-    }
-  ];
 };

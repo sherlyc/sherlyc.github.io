@@ -1,3 +1,5 @@
+@import "src/styles/break-points";
+
 :host {
   display: block;
   border-bottom: 1px solid #edeef1;
@@ -177,4 +179,14 @@
   height: 48px;
   padding: 5px 0;
   background-color: #ffffff;
+}
+
+@include mobile {
+  .kia-ora {
+    font-size: 17px;
+  }
+
+  .weather-geo {
+    display: none;
+  }
 }
