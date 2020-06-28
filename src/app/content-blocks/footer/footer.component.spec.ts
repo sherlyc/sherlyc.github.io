@@ -4,6 +4,7 @@ import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { CookieService } from "../../services/cookie/cookie.service";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
+import { RuntimeService } from "../../services/runtime/runtime.service";
 import { ScriptInjectorService } from "../../services/script-injector/script-injector.service";
 import { Position } from "../../services/script-injector/__types__/Position";
 import { ScriptId } from "../../services/script-injector/__types__/ScriptId";
@@ -17,6 +18,7 @@ describe("Footer", () => {
   let cookieService: ServiceMock<CookieService>;
   let scriptInjectorService: ServiceMock<ScriptInjectorService>;
   let windowService: ServiceMock<WindowService>;
+  let runtimeService: ServiceMock<RuntimeService>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -37,6 +39,10 @@ describe("Footer", () => {
         {
           provide: WindowService,
           useClass: mockService(WindowService)
+        },
+        {
+          provide: RuntimeService,
+          useClass: mockService(RuntimeService)
         }
       ]
     }).compileComponents();
@@ -48,6 +54,9 @@ describe("Footer", () => {
       ScriptInjectorService
     ) as ServiceMock<ScriptInjectorService>;
     windowService = TestBed.inject(WindowService) as ServiceMock<WindowService>;
+    runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
+      RuntimeService
+    >;
 
     fixture = TestBed.createComponent(FooterComponent);
   });
@@ -85,12 +94,44 @@ describe("Footer", () => {
     });
   });
 
-  it("should set cookie when desktop link is clicked", () => {
-    fixture.debugElement
-      .query(By.css('.links a[href="https://www.stuff.co.nz/"]'))
-      .nativeElement.click();
+  it("should show desktop site link on mobile and set cookie when clicked", () => {
+    runtimeService.isBrowser.mockReturnValue(true);
+    windowService.isDesktopDomain.mockReturnValue(false);
+    fixture.detectChanges();
+
+    const desktopLink = fixture.debugElement.query(By.css(".redirect-desktop"))
+      .nativeElement;
+
+    const mobileLink = fixture.debugElement.query(By.css(".redirect-mobile"));
+
+    expect(desktopLink).toBeTruthy();
+    expect(mobileLink).toBeFalsy();
+
+    desktopLink.click();
 
     expect(cookieService.set).toHaveBeenCalledWith("site-view", "d", {
+      domain: ".stuff.co.nz",
+      expires: expect.any(Date),
+      path: "/"
+    });
+  });
+
+  it("should show mobile site link on desktop and set cookie when clicked", () => {
+    runtimeService.isBrowser.mockReturnValue(true);
+    windowService.isDesktopDomain.mockReturnValue(true);
+    fixture.detectChanges();
+
+    const desktopLink = fixture.debugElement.query(By.css(".redirect-desktop"));
+
+    const mobileLink = fixture.debugElement.query(By.css(".redirect-mobile"))
+      .nativeElement;
+
+    expect(desktopLink).toBeFalsy();
+    expect(mobileLink).toBeTruthy();
+
+    mobileLink.click();
+
+    expect(cookieService.set).toHaveBeenCalledWith("site-view", "i", {
       domain: ".stuff.co.nz",
       expires: expect.any(Date),
       path: "/"
