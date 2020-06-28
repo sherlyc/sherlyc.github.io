@@ -175,7 +175,7 @@
     "strapCartoons": {
       "ids": ["121927406"],
       "dedupeRules": {
-        "dedupeFromBaseList": true
+        "dedupeFromBaseList": false
       }
     },
     "strapOpinion": {
@@ -187,7 +187,7 @@
     "strapPerspectives": {
       "ids": ["121876265"],
       "dedupeRules": {
-        "dedupeFromBaseList": true
+        "dedupeFromBaseList": false
       }
     },
     "strapTechnology": {
@@ -463,7 +463,7 @@
       "strapCartoons": {
         "ids": ["119376124"],
         "dedupeRules": {
-          "dedupeFromBaseList": true
+          "dedupeFromBaseList": false
         }
       },
       "strapClimateChange": {
@@ -481,7 +481,7 @@
       "strapPerspectives": {
         "ids": ["119375894"],
         "dedupeRules": {
-          "dedupeFromBaseList": true
+          "dedupeFromBaseList": false
         }
       }
     }
