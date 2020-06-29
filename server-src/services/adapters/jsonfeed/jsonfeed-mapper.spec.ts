@@ -53,6 +53,7 @@ describe("JsonFeed Mapper", () => {
     asset_type: JsonFeedAssetType.URL,
     headline_flags: [],
     alt_headline: "Paving",
+    byline: "Neymar",
     title: "Paving over paradise",
     isHeadlineOverrideApplied: true,
     path: "/national/112150655/url-asset",
@@ -71,6 +72,7 @@ describe("JsonFeed Mapper", () => {
     asset_type: JsonFeedAssetType.URL,
     headline_flags: [],
     alt_headline: "Paving",
+    byline: "Walter",
     title: "Paving over paradise",
     isHeadlineOverrideApplied: true,
     path: "/national/112150655/url-asset",
@@ -108,6 +110,7 @@ describe("JsonFeed Mapper", () => {
 
   const rawUrlArticle = (article: IJsonFeedUrl): IRawArticle => ({
     id: `${article.id}`,
+    byline: article.byline,
     indexHeadline: article.alt_headline,
     title: article.title,
     introText: article.alt_intro,

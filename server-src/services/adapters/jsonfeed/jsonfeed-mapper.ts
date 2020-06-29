@@ -69,6 +69,7 @@ export function mapArticleAsset(item: IJsonFeedArticle): IRawArticle {
 function mapUrlAsset(item: IJsonFeedUrl): IRawArticle {
   return {
     id: String(item.id),
+    byline: item.byline,
     indexHeadline: item.isHeadlineOverrideApplied
       ? item.alt_headline
       : item.title,
