@@ -4,15 +4,17 @@
   </svg>
 </div>
 <div #scroller class="articles" (scroll)="scroll()">
-  <a class="article" *ngFor="let article of input.articles.slice(0, 4)" href="{{ article.linkUrl }}" appOpenExternalLink="{{ article.linkUrl }}" (click)="sendAnalytics(article)">
-    <div class="left-column">
-      <img class="avatar" [src]="article.image.sixteenByNine" />
-    </div>
-    <div class="right-column">
-      <div class="byline">{{ article.byline }}</div>
-      <div class="headline">{{ article.headline }}</div>
-    </div>
-  </a>
+  <article itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" *ngFor="let article of input.articles.slice(0, 4)">
+    <a href="{{ article.linkUrl }}" appOpenExternalLink="{{ article.linkUrl }}" (click)="sendAnalytics(article)">
+      <div class="left-column">
+        <img class="avatar" [src]="article.image.sixteenByNine" />
+      </div>
+      <div class="right-column">
+        <div class="byline">{{ article.byline }}</div>
+        <div class="headline">{{ article.headline }}</div>
+      </div>
+    </a>
+  </article>
 </div>
 <div class="right-button" (click)="scrollRight()" [ngClass]="buttonState === 'end' ? 'inactive' : 'active'">
   <svg xmlns="http://www.w3.org/2000/svg" class="right-arrow" viewBox="0 0 32 32">

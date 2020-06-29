@@ -50,6 +50,12 @@ export const pageV2 = (): HandlerInput[] => [
     type: HandlerInputType.Weather
   },
   {
+    type: HandlerInputType.Skybox,
+    strapName: Strap.Skybox,
+    sourceId: Strap.Skybox,
+    articleCount: 4
+  },
+  {
     type: HandlerInputType.TopStoriesV2,
     strapName: `${homepageV2AdPrefix}TopStoriesDefaultOne`,
     color: AccentColor.CuriousBlue,
