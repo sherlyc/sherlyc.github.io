@@ -9,7 +9,7 @@
   overflow-y: hidden;
 
   @include desktop {
-    padding: 5px 15px 0;
+    padding: 5px 10px 0;
   }
 }
 
@@ -64,6 +64,7 @@
   width: 18px;
   height: 18px;
 }
+
 .articles {
   display: flex;
   height: 100px;
@@ -84,18 +85,22 @@
   }
 
   article {
+    flex: 0 0;
+    box-sizing: border-box;
+    padding: 0 5px;
+
     @include mobile {
-      min-width: 100%;
+      flex-basis: 100%;
       scroll-snap-align: start;
     }
 
     @include tablet {
-      min-width: 50%;
+      flex-basis: 50%;
       scroll-snap-align: start;
     }
 
     @include desktop {
-      max-width: 24%;
+      flex-basis: 25%;
     }
 
     > a {
@@ -110,7 +115,18 @@
       height: 80px;
 
       .left-column {
+        flex-shrink: 0;
         margin-right: 10px;
+        background-color: #e0dfdf;
+        border-radius: 50%;
+        width: 70px;
+        height: 70px;
+        overflow: hidden;
+
+        @include mobile {
+          width: 60px;
+          height: 60px;
+        }
       }
 
       .right-column {
@@ -126,19 +142,6 @@
           font-size: 15px;
           letter-spacing: 0.3px;
           font-weight: 300;
-        }
-      }
-
-      .avatar {
-        background-color: #e0dfdf;
-        object-fit: cover;
-        border-radius: 50%;
-        width: 70px;
-        height: 70px;
-
-        @include mobile {
-          width: 60px;
-          height: 60px;
         }
       }
     }

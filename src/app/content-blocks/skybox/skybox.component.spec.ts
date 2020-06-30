@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { By } from "@angular/platform-browser";
+import { By, TransferState } from "@angular/platform-browser";
 import { AccentColor } from "../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IHomepageArticleContent } from "../../../../common/__types__/IHomepageArticleContent";
@@ -46,7 +46,8 @@ describe("SkyboxComponent", () => {
         {
           provide: AnalyticsService,
           useClass: mockService(AnalyticsService)
-        }
+        },
+        TransferState
       ]
     }).compileComponents();
 
