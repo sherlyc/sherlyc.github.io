@@ -54,12 +54,14 @@ export class HeaderComponent
         { label: "Business", link: "/business" },
         { label: "Climate Change", link: "/environment/climate-news" },
         { label: "Sport", link: "/sport" },
+        { label: "Perspectives", link: "/opinion" },
+        { label: "Pou Tiaki", link: "/pou-tiaki" },
         { label: "Coronavirus", link: "/national/health/coronavirus" },
         { label: "Entertainment", link: "/entertainment" },
         { label: "Homed", link: "/life-style/homed" },
         { label: "Life & Style", link: "/life-style" },
         { label: "Travel", link: "/travel" },
-        { label: "Weather", link: "/national/weather/"},
+        { label: "Weather", link: "/national/weather/" },
         { label: "Motoring", link: "/motoring" },
         { label: "Stuff Nation", link: "/stuff-nation" },
         { label: "Play Stuff", link: "https://play.stuff.co.nz" },
@@ -73,9 +75,7 @@ export class HeaderComponent
         },
         { label: "Politics", link: "/national/politics" },
         { label: "Spotlight", link: "/national/premium" },
-        { label: "Well & Good", link: "/life-style/well-good" },
         { label: "Food & Wine", link: "/life-style/food-wine" },
-        { label: "Parenting", link: "/life-style/parenting" },
         { label: "Rugby", link: "/sport/rugby" },
         { label: "Farming", link: "/business/farming" },
         { label: "Technology", link: "/technology" },
@@ -190,13 +190,17 @@ export class HeaderComponent
       return;
     }
     if (!this.windowService.isDesktopDomain()) {
-      this.sections[0].items = this.sections[0].items.filter((item) => item.label !== "Weather");
+      this.sections[0].items = this.sections[0].items.filter(
+        (item) => item.label !== "Weather"
+      );
       return;
     }
     const location = this.storeService.get(
       StorageKeys.WeatherLocation
     ) as WeatherLocations;
-    const weatherItem = this.sections[0].items.find((item) => item.label === "Weather");
+    const weatherItem = this.sections[0].items.find(
+      (item) => item.label === "Weather"
+    );
     if (weatherItem && location) {
       weatherItem.link = `/national/weather/${location
         .toLowerCase()
