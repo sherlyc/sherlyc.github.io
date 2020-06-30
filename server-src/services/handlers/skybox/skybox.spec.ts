@@ -40,15 +40,17 @@ describe("Skybox handler", () => {
     expect(getRawArticles).toHaveBeenCalledWith(Strap.Skybox, 4, params);
   });
 
-  it("should return empty when no articles", async () => {
-    (getRawArticles as jest.Mock).mockResolvedValueOnce([]);
+  it("should return empty when there is insufficient articles", async () => {
+    (getRawArticles as jest.Mock).mockResolvedValueOnce(
+      fakeRawArticles([1, 2])
+    );
 
     const result = await skybox(handlerRunnerMock, input, params);
 
     expect(result).toEqual([]);
     expect(logger.warn).toHaveBeenCalledWith(
       params.apiRequestId,
-      "No articles retrieved from Skybox list"
+      "Insufficient articles retrieved from Skybox list"
     );
   });
 

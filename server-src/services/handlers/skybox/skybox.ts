@@ -16,7 +16,7 @@ export default async function (
   try {
     const articles = await getRawArticles(sourceId, articleCount, params);
 
-    if (articles.length > 0) {
+    if (articles.length >= articleCount) {
       return [
         {
           type: ContentBlockType.Skybox,
@@ -27,7 +27,7 @@ export default async function (
     } else {
       logger.warn(
         params.apiRequestId,
-        `No articles retrieved from Skybox list`
+        `Insufficient articles retrieved from Skybox list`
       );
       return [];
     }
