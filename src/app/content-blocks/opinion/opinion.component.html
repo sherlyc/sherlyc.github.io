@@ -2,33 +2,37 @@
 <div class="articles">
   <div class="primary-secondary">
     <div class="primary">
-      <article *ngIf="formattedCartoons.length">
-        <a href="{{ formattedCartoons[0].linkUrl }}" appOpenExternalLink="{{ formattedCartoons[0].linkUrl }}" (click)="sendAnalytics(formattedCartoons[0])">
-          <img [attr.alt]="formattedCartoons[0].headline" class="cartoon" [src]="formattedCartoons[0].image.sixteenByNine" />
-          <div class="byline">{{ formattedCartoons[0].byline }}</div>
+      <article *ngIf="input.cartoons.length">
+        <a href="{{ input.cartoons[0].linkUrl }}" appOpenExternalLink="{{ input.cartoons[0].linkUrl }}" (click)="sendAnalytics(input.cartoons[0])">
+          <app-fluid-image [imageSrc]="input.cartoons[0].image.sixteenByNine" [caption]="input.cartoons[0].headline" [aspectRatio]="'16:9'" class="cartoon"></app-fluid-image>
+          <div class="byline">{{ input.cartoons[0].byline }}</div>
         </a>
       </article>
     </div>
     <div class="secondary">
       <article>
-        <a href="{{ formattedArticles[0].linkUrl }}" appOpenExternalLink="{{ formattedArticles[0].linkUrl }}" (click)="sendAnalytics(formattedArticles[0])">
-          <img [attr.alt]="formattedArticles[0].headline" class="avatar" [src]="formattedArticles[0].image.sixteenByNine" />
-          <div class="byline">{{ formattedArticles[0].byline }}</div>
-          <div class="headline">{{ formattedArticles[0].headline }}</div>
-          <div class="intro">{{ formattedArticles[0].introText }}</div>
+        <a href="{{ input.articles[0].linkUrl }}" appOpenExternalLink="{{ input.articles[0].linkUrl }}" (click)="sendAnalytics(input.articles[0])">
+          <div class="avatar">
+            <app-fluid-image [imageSrc]="input.articles[0].image.sixteenByNine" [caption]="input.articles[0].headline" [aspectRatio]="'1:1'"></app-fluid-image>
+          </div>
+          <div class="byline">{{ input.articles[0].byline }}</div>
+          <div class="headline">{{ input.articles[0].headline }}</div>
+          <div class="intro">{{ input.articles[0].introText }}</div>
         </a>
       </article>
     </div>
   </div>
 
   <div class="list">
-    <article *ngFor="let article of formattedArticles.slice(1)">
+    <article *ngFor="let article of input.articles.slice(1)">
       <a href="{{ article.linkUrl }}" appOpenExternalLink="{{ article.linkUrl }}" (click)="sendAnalytics(article)">
         <div class="text">
           <div class="byline">{{ article.byline }}</div>
           <div class="headline">{{ article.headline }}</div>
         </div>
-        <img [attr.alt]="article.headline" class="avatar" [src]="article.image.sixteenByNine" />
+        <div class="avatar">
+          <app-fluid-image [imageSrc]="article.image.sixteenByNine" [caption]="article.headline" [aspectRatio]="'1:1'"></app-fluid-image>
+        </div>
       </a>
     </article>
   </div>

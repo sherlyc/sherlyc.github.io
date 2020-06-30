@@ -1,6 +1,7 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
+import { AspectRatio } from "../../../../common/AspectRatio";
 import { AccentColor } from "../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IHomepageArticleContent } from "../../../../common/__types__/IHomepageArticleContent";
@@ -9,6 +10,7 @@ import { Section } from "../../../../server-src/services/section";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
+import { FluidImageComponent } from "../../shared/components/fluid-image/fluid-image.component";
 import { OpinionComponent } from "./opinion.component";
 
 describe("OpinionComponent", () => {
@@ -84,19 +86,18 @@ describe("OpinionComponent", () => {
     expect(header.textContent).toBe(input.displayName);
     expect(header.getAttribute("href")).toBe(input.url);
 
-    const primaryImage = fixture.debugElement.query(By.css(".primary .cartoon"))
-      .nativeElement;
+    const primaryImage: FluidImageComponent = fixture.debugElement.query(
+      By.css(".primary app-fluid-image")
+    ).nativeElement;
     const primaryByline = fixture.debugElement.query(By.css(".primary .byline"))
       .nativeElement;
-    expect(primaryImage.getAttribute("src")).toBe(
-      `${input.cartoons[0].image.sixteenByNine}?format=pjpg&crop=16:9,smart`
-    );
-    expect(primaryByline.textContent).toBe(
-      input.cartoons[0].byline?.toLowerCase()
-    );
+    expect(primaryImage.imageSrc).toBe(input.cartoons[0].image.sixteenByNine);
+    expect(primaryImage.aspectRatio).toBe(AspectRatio.SixteenByNine);
+    expect(primaryImage.caption).toBe(input.cartoons[0].headline);
+    expect(primaryByline.textContent).toBe(input.cartoons[0].byline);
 
-    const secondaryImage = fixture.debugElement.query(
-      By.css(".secondary .avatar")
+    const secondaryImage: FluidImageComponent = fixture.debugElement.query(
+      By.css(".secondary app-fluid-image")
     ).nativeElement;
     const secondaryByline = fixture.debugElement.query(
       By.css(".secondary .byline")
@@ -107,12 +108,10 @@ describe("OpinionComponent", () => {
     const secondaryIntro = fixture.debugElement.query(
       By.css(".secondary .intro")
     ).nativeElement;
-    expect(secondaryImage.getAttribute("src")).toBe(
-      `${input.articles[0].image.sixteenByNine}?format=pjpg&crop=1:1,smart`
-    );
-    expect(secondaryByline.textContent).toBe(
-      input.articles[0].byline?.toLowerCase()
-    );
+    expect(secondaryImage.imageSrc).toBe(input.articles[0].image.sixteenByNine);
+    expect(secondaryImage.aspectRatio).toBe(AspectRatio.OneByOne);
+    expect(secondaryImage.caption).toBe(input.articles[0].headline);
+    expect(secondaryByline.textContent).toBe(input.articles[0].byline);
     expect(secondaryHeadline.textContent).toBe(input.articles[0].headline);
     expect(secondaryIntro.textContent).toBe(input.articles[0].introText);
 
@@ -121,15 +120,15 @@ describe("OpinionComponent", () => {
     list.forEach((article, index) => {
       const byline = article.query(By.css(".byline")).nativeElement;
       const headline = article.query(By.css(".headline")).nativeElement;
-      const avatar = article.query(By.css(".avatar")).nativeElement;
+      const avatar: FluidImageComponent = article.query(
+        By.css("app-fluid-image")
+      ).nativeElement;
 
-      expect(byline.textContent).toBe(
-        listArticles[index].byline?.toLowerCase()
-      );
+      expect(byline.textContent).toBe(listArticles[index].byline);
       expect(headline.textContent).toBe(listArticles[index].headline);
-      expect(avatar.getAttribute("src")).toBe(
-        `${listArticles[index].image.sixteenByNine}?format=pjpg&crop=1:1,smart`
-      );
+      expect(avatar.imageSrc).toBe(listArticles[index].image.sixteenByNine);
+      expect(avatar.aspectRatio).toBe(AspectRatio.OneByOne);
+      expect(avatar.caption).toBe(listArticles[index].headline);
     });
   });
 

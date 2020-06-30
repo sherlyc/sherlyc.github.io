@@ -11,38 +11,11 @@ import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
   templateUrl: "./opinion.component.html",
   styleUrls: ["./opinion.component.scss"]
 })
-export class OpinionComponent implements IContentBlockComponent, OnInit {
+export class OpinionComponent implements IContentBlockComponent {
   @Input()
   input!: IOpinion;
-  formattedCartoons: IHomepageArticleContent[] = [];
-  formattedArticles: IHomepageArticleContent[] = [];
 
   constructor(private analyticsService: AnalyticsService) {}
-
-  ngOnInit(): void {
-    this.formattedArticles = this.formatArticles(
-      this.input.articles,
-      AspectRatio.OneByOne
-    );
-    this.formattedCartoons = this.formatArticles(
-      this.input.cartoons,
-      AspectRatio.SixteenByNine
-    );
-  }
-
-  private formatArticles(
-    articles: IHomepageArticleContent[],
-    aspectRatio: AspectRatio
-  ) {
-    return articles.map((article, index) => ({
-      ...article,
-      byline: article.byline?.toLowerCase(),
-      image: {
-        ...article.image,
-        sixteenByNine: `${article.image.sixteenByNine}?format=pjpg&crop=${aspectRatio},smart`
-      }
-    }));
-  }
 
   sendAnalytics(item: IHomepageArticleContent) {
     const { title, id } = item;

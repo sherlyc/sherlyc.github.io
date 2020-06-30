@@ -44,6 +44,7 @@ a {
   font-size: 14px;
   font-weight: 900;
   color: #616161;
+  text-transform: lowercase;
 }
 
 .headline {
@@ -53,9 +54,13 @@ a {
 }
 
 .avatar {
-  background-color: #e0dfdf;
-  object-fit: contain;
-  border-radius: 50%;
+  width: 100%;
+  margin: 0 auto 4px;
+
+  app-fluid-image {
+    background-color: #e0dfdf;
+    border-radius: 50%;
+  }
 }
 
 .primary {
