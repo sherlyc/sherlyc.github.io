@@ -5,7 +5,6 @@ import { Subject } from "rxjs";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { IPage } from "../../../../../common/__types__/IPage";
 import { AdService } from "../../../services/ad/ad.service";
-import { AnalyticsService } from "../../../services/analytics/analytics.service";
 import { ContentRetrieverService } from "../../../services/content-retriever/content-retriever.service";
 import { CorrelationService } from "../../../services/correlation/correlation.service";
 import { EventsService } from "../../../services/events/events.service";
@@ -24,7 +23,6 @@ export class PageComponent implements OnInit {
     private title: Title,
     private correlationService: CorrelationService,
     private eventsService: EventsService,
-    private analyticsService: AnalyticsService,
     private seoService: SeoService
   ) {
     this.navigationStartSubject = this.eventsService.getEventSubject().NavigationStart;
@@ -49,7 +47,6 @@ export class PageComponent implements OnInit {
       setTimeout(() => {
         this.adService.notify();
       }, 100);
-      this.analyticsService.trackPageByNielsen();
     });
   }
 }
