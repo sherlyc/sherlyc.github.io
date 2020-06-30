@@ -4,6 +4,7 @@
       <div class="header-left">
         <a href="javascript:void(0)" (click)="[toggleMenu(), sendMenuAnalytics()]" aria-label="Menu" class="menu" [ngClass]="{ navigationVisible: navigationVisible }">
           <div class="menu-icon"></div>
+          <span class="menu-label">Menu</span>
         </a>
         <div class="search-menu" *ngIf="displaySearch">
           <a href="javascript:void(0)" (click)="[toggleMenu(), sendMenuAnalytics()]" class="search-link">
@@ -32,7 +33,6 @@
       </div>
 
       <div class="header-right">
-
         <a *ngIf="isLoggedIn" href="{{ profileUrl }}" target="_blank" aria-label="user" class="user" (click)="avatarAnalytics()" rel="noopener noreferrer">
           <img class="avatar" src="{{ imgSrc }}" alt="profile-pic" />
         </a>
