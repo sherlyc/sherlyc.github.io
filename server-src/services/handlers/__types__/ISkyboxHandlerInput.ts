@@ -3,7 +3,7 @@ import { HandlerInputType } from "./HandlerInputType";
 
 export interface ISkyboxHandlerInput {
   type: HandlerInputType.Skybox;
-  strapName: Strap;
+  strapName: string;
   sourceId: Strap;
   articleCount: number;
 }
