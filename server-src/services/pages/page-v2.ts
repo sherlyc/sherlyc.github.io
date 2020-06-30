@@ -51,7 +51,7 @@ export const pageV2 = (): HandlerInput[] => [
   },
   {
     type: HandlerInputType.Skybox,
-    strapName: Strap.Skybox,
+    strapName: `${homepageV2AdPrefix}Skybox`,
     sourceId: Strap.Skybox,
     articleCount: 4
   },
