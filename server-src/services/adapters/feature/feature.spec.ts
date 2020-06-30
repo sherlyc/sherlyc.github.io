@@ -5,8 +5,7 @@ import { isFeatureEnabled } from "./feature";
 
 describe("Feature service", () => {
   const testCases: { [key in FeatureName]: [number, number] } = {
-    [FeatureName.Placeholder]: [-1, -1],
-    [FeatureName.HomepageV2]: [0, 100]
+    [FeatureName.Placeholder]: [-1, -1]
   };
 
   Object.entries(testCases).forEach(([featureName, [min, max]]) => {
@@ -23,11 +22,5 @@ describe("Feature service", () => {
         expect(result).toEqual(shouldBeOn);
       });
     });
-  });
-
-  it("HomepageV2 should be on for internal number 404", () => {
-    expect(
-      isFeatureEnabled(FeatureName.HomepageV2, 404, DeviceType.unknown)
-    ).toBeTruthy();
   });
 });
