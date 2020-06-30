@@ -49,7 +49,6 @@ export class PageComponent implements OnInit {
       setTimeout(() => {
         this.adService.notify();
       }, 100);
-      this.analyticsService.trackPageByNielsen();
     });
   }
 }
