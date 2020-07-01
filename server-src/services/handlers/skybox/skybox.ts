@@ -32,7 +32,7 @@ export default async function (
       return [];
     }
   } catch (error) {
-    logger.error(params.apiRequestId, `Opinion handler error`, error);
+    logger.error(params.apiRequestId, `Skybox handler error`, error);
     return [];
   }
 }
