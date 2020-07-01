@@ -118,6 +118,8 @@ describe("ModuleHeaderComponent", () => {
     fixture.detectChanges();
 
     const wrapper = fixture.debugElement.query(By.css("div"));
+    const link = fixture.debugElement.query(By.css("a"));
     expect(wrapper.styles.color).toBe(component.input.color);
+    expect(link.styles.color).toBe(component.input.color);
   });
 });
