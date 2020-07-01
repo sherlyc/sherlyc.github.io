@@ -10,7 +10,7 @@ import { IStuffLoginUser } from "../../services/authentication/__types__/IStuffL
 import { ConfigService } from "../../services/config/config.service";
 import { IEnvironmentDefinition } from "../../services/config/__types__/IEnvironmentDefinition";
 import { RuntimeService } from "../../services/runtime/runtime.service";
-import { WeatherService } from "../../services/weather/weather.service";
+import { StoreService } from "../../services/store/store.service";
 import { WindowService } from "../../services/window/window.service";
 import { CopyrightComponent } from "../../shared/components/copyright/copyright.component";
 import { HeaderComponent } from "./header.component";
@@ -25,7 +25,7 @@ describe("Header", () => {
   let component: HeaderComponent;
   let runtimeService: ServiceMock<RuntimeService>;
   let windowService: ServiceMock<WindowService>;
-  let weatherService: ServiceMock<WeatherService>;
+  let storeService: ServiceMock<StoreService>;
   const profileUrl = "https://my.stuff.co.nz/publicprofile";
 
   const loggedInUser = {
@@ -80,8 +80,8 @@ describe("Header", () => {
           useClass: mockService(RuntimeService)
         },
         {
-          provide: WeatherService,
-          useClass: mockService(WeatherService)
+          provide: StoreService,
+          useClass: mockService(StoreService)
         }
       ]
     }).compileComponents();
@@ -97,9 +97,7 @@ describe("Header", () => {
     runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
       RuntimeService
     >;
-    weatherService = TestBed.inject(WeatherService) as ServiceMock<
-      WeatherService
-    >;
+    storeService = TestBed.inject(StoreService) as ServiceMock<StoreService>;
 
     configService.getConfig.mockReturnValue({
       loginLibrary: {
@@ -306,14 +304,7 @@ describe("Header", () => {
     runtimeService.isBrowser.mockReturnValue(true);
     windowService.isDesktopDomain.mockReturnValue(true);
     component.navigationVisible = true;
-    weatherService.subscribe.mockImplementation(
-      (subscriber: (location: WeatherLocations, link?: string) => void) => {
-        subscriber(
-          WeatherLocations.NewPlymouth,
-          "/national/weather/new-plymouth-forecast"
-        );
-      }
-    );
+    storeService.get.mockReturnValue(WeatherLocations.NewPlymouth);
 
     fixture.detectChanges();
     const weatherAnchor: HTMLAnchorElement = fixture.debugElement.query(
@@ -328,11 +319,7 @@ describe("Header", () => {
     runtimeService.isBrowser.mockReturnValue(true);
     windowService.isDesktopDomain.mockReturnValue(false);
     component.navigationVisible = true;
-    weatherService.subscribe.mockImplementation(
-      (subscriber: (location: WeatherLocations, link?: string) => void) => {
-        subscriber(WeatherLocations.NewPlymouth, undefined);
-      }
-    );
+    storeService.get.mockReturnValue(WeatherLocations.NewPlymouth);
 
     fixture.detectChanges();
     const weatherAnchor = fixture.debugElement.query(
@@ -349,6 +336,8 @@ describe("Header", () => {
     const weatherAnchor: HTMLAnchorElement = fixture.debugElement.query(
       By.css(".section-Weather")
     ).nativeElement;
-    expect(weatherAnchor.getAttribute("href")).toEqual("/national/weather/");
+    expect(weatherAnchor.getAttribute("href")).toEqual(
+      "/national/weather/"
+    );
   });
 });

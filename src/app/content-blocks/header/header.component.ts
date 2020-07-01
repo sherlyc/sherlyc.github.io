@@ -7,6 +7,7 @@ import {
   OnInit,
   Renderer2
 } from "@angular/core";
+import { WeatherLocations } from "../../../../common/WeatherLocations";
 import { IHeader } from "../../../../common/__types__/IHeader";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
@@ -14,7 +15,7 @@ import { AuthenticationService } from "../../services/authentication/authenticat
 import { IStuffLoginUser } from "../../services/authentication/__types__/IStuffLoginUser";
 import { ConfigService } from "../../services/config/config.service";
 import { RuntimeService } from "../../services/runtime/runtime.service";
-import { WeatherService } from "../../services/weather/weather.service";
+import { StorageKeys, StoreService } from "../../services/store/store.service";
 import { WindowService } from "../../services/window/window.service";
 import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 
@@ -33,7 +34,7 @@ export class HeaderComponent
     private authenticationService: AuthenticationService,
     private windowService: WindowService,
     private runtimeService: RuntimeService,
-    private weatherService: WeatherService
+    private storeService: StoreService
   ) {}
 
   isLoggedIn = false;
@@ -112,9 +113,6 @@ export class HeaderComponent
   ngOnInit() {
     if (this.runtimeService.isBrowser()) {
       this.displaySearch = this.windowService.isDesktopDomain();
-      this.weatherService.subscribe((location, link) => {
-        this.updateWeatherMenuLink(link);
-      });
     }
     this.displayPunaLogo =
       Date.now() > new Date("2019-09-08T17:00:00.000Z").getTime() &&
@@ -137,6 +135,7 @@ export class HeaderComponent
     this.profileUrl = `${
       this.configService.getConfig().loginLibrary.authProvider
     }/publicprofile`;
+    this.updateWeatherMenuItem();
   }
 
   toggleMenu() {
@@ -146,17 +145,6 @@ export class HeaderComponent
     } else {
       this.renderer.removeClass(this.document.body, "noScroll");
     }
-  }
-
-  ngOnDestroy(): void {
-    this.authenticationService.authenticationStateChange.unsubscribe();
-  }
-
-  login() {
-    this.analyticsService.pushEvent({
-      type: AnalyticsEventsType.LOGIN_CLIKED
-    });
-    this.authenticationService.login();
   }
 
   sendMenuAnalytics() {
@@ -180,24 +168,43 @@ export class HeaderComponent
     });
   }
 
-  sendAvatarAnalytics() {
+  login() {
+    this.analyticsService.pushEvent({
+      type: AnalyticsEventsType.LOGIN_CLIKED
+    });
+    this.authenticationService.login();
+  }
+
+  avatarAnalytics() {
     this.analyticsService.pushEvent({
       type: AnalyticsEventsType.AVATAR_CLICKED
     });
   }
 
-  private updateWeatherMenuLink(link?: string) {
-    const weatherItemIndex = this.sections[0].items.findIndex(
-      (item) => item.label === "Weather"
-    );
-    const weatherItem = this.sections[0].items[weatherItemIndex];
-    if (weatherItemIndex < 0) {
+  ngOnDestroy(): void {
+    this.authenticationService.authenticationStateChange.unsubscribe();
+  }
+
+  updateWeatherMenuItem() {
+    if (!this.runtimeService.isBrowser()) {
       return;
     }
-    if (!link) {
-      this.sections[0].items.splice(weatherItemIndex, 1);
-    } else {
-      weatherItem.link = link;
+    if (!this.windowService.isDesktopDomain()) {
+      this.sections[0].items = this.sections[0].items.filter(
+        (item) => item.label !== "Weather"
+      );
+      return;
+    }
+    const location = this.storeService.get(
+      StorageKeys.WeatherLocation
+    ) as WeatherLocations;
+    const weatherItem = this.sections[0].items.find(
+      (item) => item.label === "Weather"
+    );
+    if (weatherItem && location) {
+      weatherItem.link = `/national/weather/${location
+        .toLowerCase()
+        .replace(/\s+/, "-")}-forecast`;
     }
   }
 }

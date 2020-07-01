@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { DeviceType } from "../../../../common/DeviceType";
 import {
   WeatherLocations,
   weatherRegions
@@ -8,17 +7,11 @@ import { IWeatherResponse } from "../../../../common/__types__/IWeatherResponse"
 import { IWeatherUnit } from "../../../../common/__types__/IWeatherUnit";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
-import { MediaQueryService } from "../../services/media-query/media-query.service";
 import { RuntimeService } from "../../services/runtime/runtime.service";
-import { WeatherService } from "../../services/weather/weather.service";
+import { StorageKeys, StoreService } from "../../services/store/store.service";
+import { WeatherRetrieverService } from "../../services/weather-retriever/weather-retriever.service";
 import { WindowService } from "../../services/window/window.service";
 import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
-
-enum WeatherState {
-  available = "available",
-  unknown = "unknown",
-  unavailable = "unavailable"
-}
 
 @Component({
   selector: "app-weather-unit",
@@ -27,66 +20,59 @@ enum WeatherState {
 })
 export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
   constructor(
-    private weatherService: WeatherService,
+    private storeService: StoreService,
     private runtimeService: RuntimeService,
+    private weatherRetrieverService: WeatherRetrieverService,
     private analyticsService: AnalyticsService,
-    private windowService: WindowService,
-    private mediaQueryService: MediaQueryService
+    private windowService: WindowService
   ) {}
 
   @Input() input!: IWeatherUnit;
   regions = weatherRegions;
   firstColumnLimit = 8;
 
-  weather?: IWeatherResponse;
-  weatherLocation?: WeatherLocations;
-  weatherLink?: string;
+  isDropdownOpen = false;
+  hasError = false;
 
-  weatherState?: WeatherState;
-  showDropdown = false;
-
-  deviceType!: DeviceType;
+  weatherData: IWeatherResponse = {} as any;
+  selectedLocation: WeatherLocations | null = null;
 
   currentDateTime: number = Date.now();
 
   ngOnInit() {
     if (this.runtimeService.isBrowser()) {
-      this.mediaQueryService.subscribe((device) => {
-        this.deviceType = device;
-      });
-      this.weatherService.subscribe((location, link) => {
-        if (location) {
-          this.weatherLocation = location;
-          this.weatherLink = link;
-          this.getWeatherData(location);
-        } else {
-          this.weatherState = WeatherState.unknown;
-        }
-      });
+      const previousSelectedLocation = this.storeService.get(
+        StorageKeys.WeatherLocation
+      ) as WeatherLocations;
+      if (previousSelectedLocation) {
+        this.getWeatherData(previousSelectedLocation);
+      }
     }
   }
 
   onSelectLocation(location: WeatherLocations) {
-    this.weatherService.updateLocation(location);
+    this.storeService.set(StorageKeys.WeatherLocation, location);
     this.getWeatherData(location);
     this.onToggleDropdown();
   }
 
   onToggleDropdown() {
-    this.showDropdown = !this.showDropdown;
-    if (!this.showDropdown) {
+    this.isDropdownOpen = !this.isDropdownOpen;
+    if (!this.isDropdownOpen) {
       this.windowService.getWindow().scrollTo(0, 0);
     }
   }
 
   private getWeatherData(location: WeatherLocations) {
-    this.weatherService.getWeather(location).subscribe(
+    this.weatherRetrieverService.getWeather(location).subscribe(
       (weatherData: IWeatherResponse) => {
-        this.weather = weatherData;
-        this.weatherState = WeatherState.available;
+        this.selectedLocation = location;
+        this.weatherData = weatherData;
+        this.hasError = false;
       },
       () => {
-        this.weatherState = WeatherState.unavailable;
+        this.selectedLocation = location;
+        this.hasError = true;
       }
     );
   }
