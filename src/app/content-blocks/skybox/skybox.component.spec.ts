@@ -1,5 +1,6 @@
+import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import { By, TransferState } from "@angular/platform-browser";
+import { By } from "@angular/platform-browser";
 import { AccentColor } from "../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IHomepageArticleContent } from "../../../../common/__types__/IHomepageArticleContent";
@@ -7,7 +8,6 @@ import { ISkybox } from "../../../../common/__types__/ISkybox";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
-import { SharedModule } from "../../shared/shared.module";
 import { SkyboxComponent } from "./skybox.component";
 
 const componentInput: ISkybox = {
@@ -40,15 +40,14 @@ describe("SkyboxComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SharedModule],
       declarations: [SkyboxComponent],
       providers: [
         {
           provide: AnalyticsService,
           useClass: mockService(AnalyticsService)
-        },
-        TransferState
-      ]
+        }
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
 
     analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
