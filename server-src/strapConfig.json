@@ -1,13 +1,6 @@
 {
   "baseDedupeList": ["strapDefcon", "strapTopStories", "strapEditorPicks"],
   "homepageStraps": {
-    "strapSkybox": {
-      "ids": ["121875943"],
-      "totalArticlesWithImages": 4,
-      "dedupeRules": {
-        "dedupeFromBaseList": false
-      }
-    },
     "strapDefcon": {
       "ids": ["121876089"],
       "totalArticlesWithImages": 3,
@@ -523,13 +516,6 @@
   },
   "overrides": {
     "staging": {
-      "strapSkybox": {
-        "ids": ["119375885"],
-        "totalArticlesWithImages": 4,
-        "dedupeRules": {
-          "dedupeFromBaseList": false
-        }
-      },
       "strapDefcon": {
         "ids": ["119375891"],
         "totalArticlesWithImages": 3,
