@@ -43,6 +43,7 @@ import { IRelevantStoriesHandlerInput } from "./IRelevantStoriesHandlerInput";
 import { IResponsiveExternalContentHandlerInput } from "./IResponsiveExternalContentHandlerInput";
 import { ISixImageGridHandlerInput } from "./ISixImageGridHandlerInput";
 import { ISixImageHandlerInput } from "./ISixImageHandlerInput";
+import { ISkyboxHandlerInput } from "./ISkyboxHandlerInput";
 import { IStripsGridHandlerInput } from "./IStripsGridHandlerInput";
 import { IStripsHandlerInput } from "./IStripsHandlerInput";
 import { IStripsV2HandlerInput } from "./IStripsV2HandlerInput";
@@ -117,4 +118,5 @@ export type HandlerInput =
   | IMostReadGridHandlerInput
   | IMostReadHandlerInput
   | IOpinionHandlerInput
-  | ILifeStyleHandlerInput;
+  | ILifeStyleHandlerInput
+  | ISkyboxHandlerInput;
