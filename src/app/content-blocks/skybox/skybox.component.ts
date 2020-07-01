@@ -1,10 +1,17 @@
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild } from "@angular/core";
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  ViewChild
+} from "@angular/core";
+import { fromEvent, Subscription } from "rxjs";
+import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 import { IHomepageArticleContent } from "../../../../common/__types__/IHomepageArticleContent";
 import { ISkybox } from "../../../../common/__types__/ISkybox";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
-import { fromEvent, Subscription } from "rxjs";
-import { debounceTime, distinctUntilChanged } from "rxjs/operators";
 
 @Component({
   selector: "app-skybox",
