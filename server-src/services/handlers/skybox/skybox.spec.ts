@@ -77,7 +77,7 @@ describe("Skybox handler", () => {
     expect(result).toEqual([]);
     expect(logger.error).toHaveBeenCalledWith(
       params.apiRequestId,
-      expect.any(String),
+      "Skybox handler error",
       error
     );
   });
