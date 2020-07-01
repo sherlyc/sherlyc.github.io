@@ -3,7 +3,7 @@
     <path d="M12.6 27.4l-10-10a2 2 0 010-2.8l10-10a2 2 0 112.8 2.8L8.8 14H28a2 2 0 110 4H8.8l6.6 6.6a2 2 0 010 2.8 2 2 0 01-2.8 0z" />
   </svg>
 </div>
-<div #scroller class="articles" (scroll)="scroll()">
+<div #scroller class="articles">
   <article itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" *ngFor="let article of input.articles.slice(0, 4)">
     <a href="{{ article.linkUrl }}" appOpenExternalLink="{{ article.linkUrl }}" (click)="sendAnalytics(article)">
       <div class="left-column">
