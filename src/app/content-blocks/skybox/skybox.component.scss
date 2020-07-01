@@ -84,14 +84,14 @@
     justify-content: flex-start;
     margin: 0 45px;
     scroll-snap-type: x mandatory;
-    overflow-x: auto;
+    overflow-x: hidden;
   }
 
   @include tablet {
     justify-content: flex-start;
     margin: 0 45px;
     scroll-snap-type: x mandatory;
-    overflow-x: auto;
+    overflow-x: hidden;
   }
 
   article {
