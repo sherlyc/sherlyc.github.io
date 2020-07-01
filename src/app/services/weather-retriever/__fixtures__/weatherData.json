@@ -1,0 +1,8 @@
+{
+  "temperatureUnit": "°C",
+  "minTemp": 14,
+  "maxTemp": 21,
+  "location": "AUCKLAND",
+  "temperature": 18,
+  "condition": "partcloudy"
+}
