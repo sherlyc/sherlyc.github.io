@@ -190,6 +190,26 @@ export const pageV2 = (): HandlerInput[] => [
         }
       },
       {
+        type: HandlerInputType.ResponsiveExternalContent,
+        lazyLoad: true,
+        url: "https://interactives.stuff.co.nz/carbon-count/v3/",
+        mobile: {
+          height: "100px",
+          width: "100%",
+          margin: "0 0 20px 0"
+        },
+        tablet: {
+          height: "100px",
+          width: "100%",
+          margin: "0 0 40px 0"
+        },
+        desktop: {
+          height: "100px",
+          width: "100%",
+          margin: "0 0 40px 0"
+        }
+      },
+      {
         type: HandlerInputType.LargeLeadSixV2,
         displayName: "climate change",
         color: AccentColor.DeepBlue,
