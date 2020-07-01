@@ -336,6 +336,8 @@ describe("Header", () => {
     const weatherAnchor: HTMLAnchorElement = fixture.debugElement.query(
       By.css(".section-Weather")
     ).nativeElement;
-    expect(weatherAnchor.getAttribute("href")).toEqual("/national/weather/");
+    expect(weatherAnchor.getAttribute("href")).toEqual(
+      "/national/weather/"
+    );
   });
 });
