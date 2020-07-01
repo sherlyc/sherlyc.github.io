@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { DeviceType } from "../../../../common/DeviceType";
 import {
   WeatherLocations,
   weatherRegions
@@ -7,11 +8,17 @@ import { IWeatherResponse } from "../../../../common/__types__/IWeatherResponse"
 import { IWeatherUnit } from "../../../../common/__types__/IWeatherUnit";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
+import { MediaQueryService } from "../../services/media-query/media-query.service";
 import { RuntimeService } from "../../services/runtime/runtime.service";
-import { StorageKeys, StoreService } from "../../services/store/store.service";
-import { WeatherRetrieverService } from "../../services/weather-retriever/weather-retriever.service";
+import { WeatherService } from "../../services/weather/weather.service";
 import { WindowService } from "../../services/window/window.service";
 import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
+
+enum WeatherState {
+  available = "available",
+  unknown = "unknown",
+  unavailable = "unavailable"
+}
 
 @Component({
   selector: "app-weather-unit",
@@ -20,59 +27,66 @@ import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 })
 export class WeatherUnitComponent implements IContentBlockComponent, OnInit {
   constructor(
-    private storeService: StoreService,
+    private weatherService: WeatherService,
     private runtimeService: RuntimeService,
-    private weatherRetrieverService: WeatherRetrieverService,
     private analyticsService: AnalyticsService,
-    private windowService: WindowService
+    private windowService: WindowService,
+    private mediaQueryService: MediaQueryService
   ) {}
 
   @Input() input!: IWeatherUnit;
   regions = weatherRegions;
   firstColumnLimit = 8;
 
-  isDropdownOpen = false;
-  hasError = false;
+  weather?: IWeatherResponse;
+  weatherLocation?: WeatherLocations;
+  weatherLink?: string;
 
-  weatherData: IWeatherResponse = {} as any;
-  selectedLocation: WeatherLocations | null = null;
+  weatherState?: WeatherState;
+  showDropdown = false;
+
+  deviceType!: DeviceType;
 
   currentDateTime: number = Date.now();
 
   ngOnInit() {
     if (this.runtimeService.isBrowser()) {
-      const previousSelectedLocation = this.storeService.get(
-        StorageKeys.WeatherLocation
-      ) as WeatherLocations;
-      if (previousSelectedLocation) {
-        this.getWeatherData(previousSelectedLocation);
-      }
+      this.mediaQueryService.subscribe((device) => {
+        this.deviceType = device;
+      });
+      this.weatherService.subscribe((location, link) => {
+        if (location) {
+          this.weatherLocation = location;
+          this.weatherLink = link;
+          this.getWeatherData(location);
+        } else {
+          this.weatherState = WeatherState.unknown;
+        }
+      });
     }
   }
 
   onSelectLocation(location: WeatherLocations) {
-    this.storeService.set(StorageKeys.WeatherLocation, location);
+    this.weatherService.updateLocation(location);
     this.getWeatherData(location);
     this.onToggleDropdown();
   }
 
   onToggleDropdown() {
-    this.isDropdownOpen = !this.isDropdownOpen;
-    if (!this.isDropdownOpen) {
+    this.showDropdown = !this.showDropdown;
+    if (!this.showDropdown) {
       this.windowService.getWindow().scrollTo(0, 0);
     }
   }
 
   private getWeatherData(location: WeatherLocations) {
-    this.weatherRetrieverService.getWeather(location).subscribe(
+    this.weatherService.getWeather(location).subscribe(
       (weatherData: IWeatherResponse) => {
-        this.selectedLocation = location;
-        this.weatherData = weatherData;
-        this.hasError = false;
+        this.weather = weatherData;
+        this.weatherState = WeatherState.available;
       },
       () => {
-        this.selectedLocation = location;
-        this.hasError = true;
+        this.weatherState = WeatherState.unavailable;
       }
     );
   }

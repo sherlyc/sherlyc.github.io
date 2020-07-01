@@ -25,7 +25,6 @@
 
 .weather-info {
   font-size: 12px;
-  cursor: pointer;
   margin-bottom: 8px;
   line-height: 20px;
   justify-content: flex-end;
@@ -74,7 +73,6 @@
 }
 
 .location-list {
-  cursor: pointer;
   position: relative;
   padding-left: 8px;
   ul,
@@ -85,6 +83,9 @@
   }
   ul > li:last-child {
     padding-bottom: 17px;
+  }
+  .location-name {
+    cursor: pointer;
   }
 }
 
@@ -98,6 +99,7 @@
 }
 
 .close-button {
+  cursor: pointer;
   border-radius: 50%;
   border: solid 2px #333;
   width: 20px;
@@ -130,6 +132,10 @@
   font-weight: bold;
   height: 16px;
   line-height: 1;
+}
+
+a.weather-location:hover {
+  text-decoration: underline;
 }
 
 .weather-min-max {
@@ -167,12 +173,17 @@
   padding-top: 5px;
   margin-left: 5px;
   vertical-align: middle;
+  cursor: pointer;
 }
 
 .weather-check-label {
   .weather-geo {
     height: 28px;
   }
+}
+
+a.weather-location {
+  text-decoration: none;
 }
 
 .sub-header {
@@ -186,7 +197,16 @@
     font-size: 17px;
   }
 
+  .weather-info {
+    cursor: pointer;
+  }
+
   .weather-geo {
     display: none;
   }
+}
+
+.weather-check-label,
+.weather-error {
+  font-size: 14px;
 }
