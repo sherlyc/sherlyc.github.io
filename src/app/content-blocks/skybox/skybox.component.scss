@@ -106,11 +106,13 @@
 
     @include tablet {
       flex-basis: 50%;
+      max-width: 50%;
       scroll-snap-align: start;
     }
 
     @include desktop {
-      flex-basis: 25%;
+      flex-basis: 24%;
+      max-width: 24%;
     }
 
     > a {
@@ -144,7 +146,7 @@
 
       .right-column {
         height: 50px;
-        overflow-y: hidden;
+        overflow: hidden;
 
         .byline {
           font-size: 12px;
