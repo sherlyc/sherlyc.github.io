@@ -51,12 +51,15 @@ describe("Homepage", () => {
   });
 
   it("should contain either homepage article highlight or defcon in top stories", async () => {
-    const homepageHighlights = await getElements(
+    const [topStoriesGridContainer] = await getElements(
       driver,
-      "app-grid-container:first-of-type app-homepage-highlight-article"
+      "app-grid-container"
     );
-    const defcon = await driver.findElements(
-      By.css("app-grid-container:first-of-type app-defcon")
+    const homepageHighlights = await topStoriesGridContainer.findElements(
+      By.css("app-homepage-highlight-article")
+    );
+    const defcon = await topStoriesGridContainer.findElements(
+      By.css("app-defcon")
     );
 
     expect(homepageHighlights.length === 2 || defcon.length === 1).toBeTruthy();
