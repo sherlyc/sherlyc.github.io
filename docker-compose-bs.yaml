@@ -11,6 +11,6 @@ services:
     environment:
       BS_ACCOUNT: ${BS_ACCOUNT}
       BS_KEY: ${BS_KEY}
-    #      URL: http://expfrontend:4000/
+      BS_ENV: docker
     depends_on:
       - expfrontend
