@@ -88,9 +88,9 @@ async function buildSpecificBrowserDriver(browser: string) {
       capabilities = {
         ...capabilities,
         browserName: "android",
-        device: "Samsung Galaxy S10",
+        device: "Samsung Galaxy S7",
         realMobile: "true",
-        os_version: "9.0"
+        os_version: "6.0"
       };
       break;
     default:
