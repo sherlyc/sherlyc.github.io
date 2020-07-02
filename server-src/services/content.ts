@@ -9,8 +9,9 @@ const listAssetIds = Object.values(config.strapConfig.homepageStraps).reduce(
   []
 );
 const cdnCacheHeaders = {
-  "Surrogate-Key": listAssetIds.join(" "),
-  "Edge-Cache-Tag": listAssetIds.join(", ")
+  "Edge-Control": "!no-store,cache-maxage=60",
+  "Surrogate-Key": listAssetIds.join(" ") + " spade-api-content",
+  "Edge-Cache-Tag": listAssetIds.join(", ") + " spade-api-content"
 };
 
 export const getContent = async (req: Request, res: Response) => {
