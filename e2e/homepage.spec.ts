@@ -51,51 +51,42 @@ describe("Homepage", () => {
   });
 
   it("should contain either homepage article highlight or defcon in top stories", async () => {
-    const [topStoriesGridContainer] = await getElements(
-      driver,
-      "app-grid-container"
-    );
-    const homepageHighlights = await topStoriesGridContainer.findElements(
+    const [topStories] = await getElements(driver, "app-grid-container");
+    const homepageHighlights = await topStories.findElements(
       By.css("app-homepage-highlight-article")
     );
-    const defcon = await topStoriesGridContainer.findElements(
-      By.css("app-defcon")
-    );
+    const defcon = await topStories.findElements(By.css("app-defcon"));
 
     expect(homepageHighlights.length === 2 || defcon.length === 1).toBeTruthy();
     expect(homepageHighlights.length === 2 && defcon.length === 1).toBeFalsy();
   });
 
   it("should contain at least 7 homepage article in top stories", async () => {
-    const homepageArticles = await getElements(
-      driver,
-      "app-grid-container:first-of-type app-homepage-article"
+    const [topStories] = await getElements(driver, "app-grid-container");
+    const homepageArticles = await topStories.findElements(
+      By.css("app-homepage-article")
     );
 
     expect(homepageArticles.length).toBeGreaterThanOrEqual(7);
   });
 
   it("should contain latest headlines in top stories", async () => {
-    const latestHeadlineArticles = await getElements(
-      driver,
-      "app-grid-container:first-of-type app-vertical-article-list a"
+    const [topStories] = await getElements(driver, "app-grid-container");
+    const latestHeadlineArticles = await topStories.findElements(
+      By.css("app-vertical-article-list a")
     );
 
     expect(latestHeadlineArticles.length).toBeGreaterThanOrEqual(6);
   });
 
   it("should contain editors pick, coronavirus, and national", async () => {
-    const moduleHeaders = await getElements(
+    const [editorsPicks, coronavirus, national] = await getElements(
       driver,
       "app-grid-container > div > div > app-module-header > div"
     );
 
-    const moduleHeaderTexts = await Promise.all(
-      moduleHeaders.map((header) => header.getText())
-    );
-
-    expect(moduleHeaderTexts).toEqual(
-      expect.arrayContaining(["editors' picks", "coronavirus", "national"])
-    );
+    expect(await editorsPicks.getText()).toBe("editors' picks");
+    expect(await coronavirus.getText()).toBe("coronavirus");
+    expect(await national.getText()).toBe("national");
   });
 });
