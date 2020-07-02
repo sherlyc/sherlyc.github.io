@@ -4,14 +4,15 @@ import config from "./utils/config";
 import logger from "./utils/logger";
 import { IStrapDefinition } from "./utils/__types__/IStrapDefinition";
 
+const spadeApiContentTag = "spade-api-content";
 const listAssetIds = Object.values(config.strapConfig.homepageStraps).reduce(
   (acc: string[], curr: IStrapDefinition) => acc.concat(curr.ids),
   []
 );
 const cdnCacheHeaders = {
-  "Edge-Control": "!no-store,cache-maxage=60",
-  "Surrogate-Key": listAssetIds.join(" ") + " spade-api-content",
-  "Edge-Cache-Tag": listAssetIds.join(", ") + " spade-api-content"
+  "Surrogate-Key": listAssetIds.concat(spadeApiContentTag).join(" "),
+  "Edge-Cache-Tag": listAssetIds.concat(spadeApiContentTag).join(", "),
+  "Edge-Control": "!no-store,cache-maxage=60"
 };
 
 export const getContent = async (req: Request, res: Response) => {

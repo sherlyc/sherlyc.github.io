@@ -49,8 +49,9 @@ describe("Content Controller", () => {
 
     expect(res.json).toHaveBeenCalledWith(result);
     expect(res.set).toHaveBeenCalledWith({
-      "Surrogate-Key": "42 43",
-      "Edge-Cache-Tag": "42, 43"
+      "Surrogate-Key": "42 43 spade-api-content",
+      "Edge-Cache-Tag": "42, 43, spade-api-content",
+      "Edge-Control": "!no-store,cache-maxage=60"
     });
     expect(res.end).toHaveBeenCalled();
   });
