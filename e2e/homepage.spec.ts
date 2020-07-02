@@ -17,7 +17,7 @@ describe("Homepage", () => {
 
   beforeAll(async () => {
     driver = await getDriver();
-    await driver.get("https://www.stuff.co.nz");
+    await driver.get(config.url);
     await pageToBeReady(driver);
   });
 
