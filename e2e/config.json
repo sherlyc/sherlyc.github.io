@@ -1,6 +1,6 @@
 {
   "development": {
-    "url": "http://localhost:4000/"
+    "url": "http://expfrontend:4000/"
   },
   "staging": {
     "url": "https://experience.expstaging.shift21.ffx.nz"
