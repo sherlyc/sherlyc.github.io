@@ -11,7 +11,6 @@ document.addEventListener("NavigationEnd", () => {
         node.classList.add("ad-container");
         node.innerHTML = "Ad";
         node.style.display = "block";
-        node.style.height = "100%";
         node.style.backgroundColor = "#f7f7f7";
       }
     );
