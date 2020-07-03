@@ -151,7 +151,7 @@ pipeline {
     stage('smoke test') {
       steps {
         container("dind") {
-          withCredentials([string(credentialsId: "browserstack-account", usernameVariable: 'BS_ACCOUNT', passwordVariable: "BS_KEY")]) {
+          withCredentials([usernamePassword(credentialsId: "browserstack-account", usernameVariable: 'BS_ACCOUNT', passwordVariable: "BS_KEY")]) {
             script {
               sh '''
               echo "docker version"
