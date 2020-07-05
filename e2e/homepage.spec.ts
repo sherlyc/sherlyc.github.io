@@ -3,7 +3,7 @@ import { getDriver } from "./driver/driver";
 import { getElement, getElements } from "./helpers";
 import config from "./spadeConfig";
 
-jest.setTimeout(600000);
+jest.setTimeout(120000);
 
 async function pageToBeReady(driver: WebDriver) {
   await driver.wait(
