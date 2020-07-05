@@ -13,5 +13,6 @@ services:
       BS_KEY: ${BS_KEY}
       BS_ENV: docker
       BROWSERS_TO_TEST: ${BROWSERS_TO_TEST}
+      SPADE_VERSION: ${SPADE_VERSION}
     depends_on:
       - expfrontend

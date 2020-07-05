@@ -5,6 +5,7 @@ import "./fast-selenium.ts";
 async function buildSpecificBrowserDriver(browser: string) {
   const account = process.env.BS_ACCOUNT;
   const key = process.env.BS_KEY;
+  const build = process.env.SPADE_VERSION || "SNAPSHOT";
 
   if (!key || !account) {
     throw new Error("Provide Browser Stack BS_ACCOUNT and BS_KEY env vars.");
@@ -18,7 +19,9 @@ async function buildSpecificBrowserDriver(browser: string) {
     "browserstack.key": key,
     "browserstack.debug": true,
     "browserstack.localIdentifier": browser,
-    name: "SPADE"
+    project: "SPADE",
+    build,
+    name: "smoke-test"
   };
 
   switch (browser) {
