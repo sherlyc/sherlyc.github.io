@@ -15,7 +15,7 @@ describe("Cache", () => {
     );
 
     try {
-      await saveToCache(params, url, false);
+      await saveToCache(params, url, {}, false);
     } catch (error) {}
     expect(loadFromCache(url)).toBeTruthy();
   });
@@ -28,7 +28,7 @@ describe("Cache", () => {
     );
 
     try {
-      await saveToCache(params, url, false);
+      await saveToCache(params, url, {}, false);
     } catch (error) {}
     expect(loadFromCache(url)).toBeFalsy();
   });
@@ -41,10 +41,31 @@ describe("Cache", () => {
     );
 
     try {
-      await saveToCache(params, url, true);
+      await saveToCache(params, url, {}, true);
     } catch (error) {}
     expect(getMock).toHaveBeenCalledWith(url, {
       params: { "cache-bust": expect.any(String) }
     });
+  });
+
+  it("should call with request config", async () => {
+    const requestConfig = {
+      headers: {
+        Authorization: "token"
+      }
+    };
+    const getMock = jest.fn();
+    (http as jest.Mock).mockReturnValue({ get: getMock });
+    getMock.mockImplementationOnce(
+      () => new Promise((resolve) => setTimeout(resolve, 1000))
+    );
+
+    try {
+      await saveToCache(params, url, requestConfig, false);
+    } catch (error) {}
+    expect(getMock).toHaveBeenCalledWith(
+      url,
+      expect.objectContaining({ ...requestConfig })
+    );
   });
 });

@@ -19,7 +19,7 @@ export default async function (
   params: IParams
 ): Promise<IContentBlock[]> {
   try {
-    await cacheHttp(params, url, 5000, true);
+    await cacheHttp(params, url, {}, 5000, true);
   } catch (error) {
     logger.warn(
       params.apiRequestId,

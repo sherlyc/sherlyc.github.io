@@ -1,3 +1,4 @@
+import { AxiosRequestConfig } from "axios";
 import { IParams } from "../__types__/IParams";
 import http from "./http";
 import { ICacheResult } from "./__types__/ICacheResult";
@@ -9,10 +10,14 @@ const cache: {
 export const saveToCache = (
   params: IParams,
   url: string,
+  config: AxiosRequestConfig,
   breakCache: boolean
 ): Promise<any> => {
   const promise = http(params)
-    .get(url, { params: breakCache && { "cache-bust": `${Math.random()}` } })
+    .get(url, {
+      params: breakCache && { "cache-bust": `${Math.random()}` },
+      ...config
+    })
     .catch((error) => {
       delete cache[url];
       throw error;
