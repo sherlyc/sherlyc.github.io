@@ -19,6 +19,7 @@ async function buildSpecificBrowserDriver(browser: string) {
     "browserstack.key": key,
     "browserstack.debug": true,
     "browserstack.localIdentifier": browser,
+    pageLoadStrategy: "eager",
     project: "SPADE",
     build,
     name: "smoke-test"
