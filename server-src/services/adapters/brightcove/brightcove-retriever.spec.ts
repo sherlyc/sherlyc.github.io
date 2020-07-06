@@ -1,23 +1,20 @@
-import http from "../../utils/http";
+import cacheHttp from "../../utils/cache-http";
 import { IParams } from "../../__types__/IParams";
 import { IBrightcovePlaylist } from "../__types__/IBrightcovePlaylist";
 import { retrieveBrightcovePlaylist } from "./brightcove-retriever";
 
-jest.mock("../../utils/http");
+jest.mock("../../utils/cache-http");
 
 describe("Brightcove retriever", () => {
   const params: IParams = { apiRequestId: "request-id-for-testing" };
-  const httpGet: jest.Mock = jest.fn();
 
   const playlist = "playlist-id";
   const account = "brightcove-account";
   const policyKey = "brightcove-policy-key";
   const total = 9;
 
-  beforeAll(() => {
-    (http as jest.Mock).mockReturnValue({
-      get: httpGet
-    });
+  beforeEach(() => {
+    jest.resetAllMocks();
   });
 
   it("should retrieve", async () => {
@@ -32,7 +29,7 @@ describe("Brightcove retriever", () => {
       account_id: "6005208634001",
       videos: []
     };
-    httpGet.mockResolvedValue({ data: brightcovePlaylist });
+    (cacheHttp as jest.Mock).mockResolvedValue({ data: brightcovePlaylist });
 
     const list = await retrieveBrightcovePlaylist(
       account,
@@ -42,7 +39,8 @@ describe("Brightcove retriever", () => {
       params
     );
     expect(list).toEqual(brightcovePlaylist);
-    expect(httpGet).toHaveBeenCalledWith(
+    expect(cacheHttp).toHaveBeenCalledWith(
+      params,
       `https://edge.api.brightcove.com/playback/v1/accounts/${account}/playlists/${playlist}?limit=${total}`,
       {
         headers: {
@@ -54,7 +52,7 @@ describe("Brightcove retriever", () => {
 
   it("should throw error when failed to retrieve", async () => {
     const error = new Error("Http Error");
-    httpGet.mockRejectedValue(error);
+    (cacheHttp as jest.Mock).mockRejectedValue(error);
     try {
       await retrieveBrightcovePlaylist(account, playlist, policyKey, 9, params);
     } catch (e) {

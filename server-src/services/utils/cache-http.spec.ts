@@ -19,7 +19,7 @@ describe("Cache Request", () => {
 
     const cachedRequest = cacheHttp(params, url);
 
-    expect(saveToCache).toHaveBeenCalledWith(params, url, false);
+    expect(saveToCache).toHaveBeenCalledWith(params, url, {}, false);
     expect(cachedRequest).toBe(promise);
   });
 
@@ -34,8 +34,24 @@ describe("Cache Request", () => {
 
     const result = cacheHttp(params, url);
 
-    expect(saveToCache).toHaveBeenCalledWith(params, url, false);
+    expect(saveToCache).toHaveBeenCalledWith(params, url, {}, false);
     expect(result).toBe(newCachedRequest);
+  });
+
+  it("should call cache with request config", () => {
+    const promise = Promise.resolve();
+    (loadFromCache as jest.Mock).mockReturnValueOnce(undefined);
+    (saveToCache as jest.Mock).mockReturnValueOnce(promise);
+    const requestConfig = {
+      headers: {
+        Authorization: "token"
+      }
+    };
+
+    const cachedRequest = cacheHttp(params, url, requestConfig);
+
+    expect(saveToCache).toHaveBeenCalledWith(params, url, requestConfig, false);
+    expect(cachedRequest).toBe(promise);
   });
 
   it("should not save to cache and return cached request if request was cached for less than 20 seconds", () => {
@@ -72,7 +88,7 @@ describe("Cache Request", () => {
       promise: cachedRequest
     });
 
-    cacheHttp(params, url, 20000, true);
+    cacheHttp(params, url, {}, 20000, true);
 
     expect(saveToCache).not.toHaveBeenCalledWith(params, url, true);
   });
