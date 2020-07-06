@@ -17,7 +17,7 @@ describe("Homepage", () => {
 
   beforeAll(async () => {
     driver = await getDriver();
-    await driver.manage().setTimeouts({ pageLoad: 90000 });
+    await driver.manage().setTimeouts({ pageLoad: 120000 });
     await driver.get(config.url);
     await pageToBeReady(driver);
   });
