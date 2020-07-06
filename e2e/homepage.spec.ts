@@ -8,7 +8,7 @@ jest.setTimeout(180000);
 async function pageToBeReady(driver: WebDriver) {
   await driver.wait(
     until.elementLocated(By.css("app-homepage-article")),
-    30000
+    60000
   );
 }
 

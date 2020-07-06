@@ -100,7 +100,7 @@ async function buildSpecificBrowserDriver(browser: string) {
       throw new Error(`Browser [${browser}] not supported`);
   }
 
-  return await new Builder()
+  return new Builder()
     .usingServer("http://hub-cloud.browserstack.com/wd/hub")
     .withCapabilities(capabilities)
     .build();
@@ -111,7 +111,7 @@ async function buildDefaultDriver() {
   chromeCapabilities.set("chromeOptions", {
     args: ["--headless", "--disable-gpu"]
   });
-  return await new Builder()
+  return new Builder()
     .forBrowser("chrome")
     .withCapabilities(chromeCapabilities)
     .build();
@@ -119,8 +119,8 @@ async function buildDefaultDriver() {
 
 export async function getDriver() {
   if (process.env.E2E_BROWSER) {
-    return await buildSpecificBrowserDriver(process.env.E2E_BROWSER);
+    return buildSpecificBrowserDriver(process.env.E2E_BROWSER);
   }
 
-  return await buildDefaultDriver();
+  return buildDefaultDriver();
 }
