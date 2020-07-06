@@ -1,3 +1,4 @@
+import cacheHttp from "../../utils/cache-http";
 import http from "../../utils/http";
 import retry from "../../utils/retry";
 import { IParams } from "../../__types__/IParams";
@@ -12,7 +13,8 @@ async function requestBrightcovePlaylist(
   total: number,
   params: IParams
 ): Promise<IBrightcovePlaylist> {
-  const result = await http(params).get<IBrightcovePlaylist>(
+  const result = await cacheHttp<IBrightcovePlaylist>(
+    params,
     `${baseUrl}/accounts/${account}/playlists/${playlist}?limit=${total}`,
     {
       headers: {
