@@ -59,8 +59,7 @@ export class ContentRetrieverService {
           type: "Container",
           items: [
             {
-              type: "ErrorBlock",
-              message: "Something bad happened; please try again later."
+              type: "ErrorBlock"
             }
           ]
         },

@@ -2,8 +2,9 @@
 @import "src/styles/spacings";
 
 :host {
+  display: flex;
+  flex-direction: column;
   flex: 1 0 auto;
-  display: block;
 
   @include desktop {
     margin-top: $desktop-masthead-height;
@@ -20,19 +21,29 @@
 
 .content {
   display: flex;
-}
+  flex: 1 0 auto;
 
-.content-blocks {
-  @include desktop {
-    margin: 0 $desktop-page-margin;
+  .container {
+    display: flex;
+    flex-direction: column;
   }
 
-  @include tablet {
-    margin: 0 $tablet-page-margin;
-  }
+  .content-blocks {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
 
-  @include mobile {
-    margin: 0 $mobile-page-margin;
+    @include desktop {
+      margin: 0 $desktop-page-margin;
+    }
+
+    @include tablet {
+      margin: 0 $tablet-page-margin;
+    }
+
+    @include mobile {
+      margin: 0 $mobile-page-margin;
+    }
   }
 }
 
