@@ -56,6 +56,7 @@ import Page from "./page/page";
 import PlayStuff from "./play-stuff/play-stuff";
 import ResponsiveExternalContent from "./responsive-external-content/responsive-external-content";
 import { handlerRunnerFunction } from "./runner";
+import Skybox from "./skybox/skybox";
 import TitleSection from "./title-section/title-section";
 import TopStoriesArticleList from "./top-stories-article-list/top-stories-article-list";
 import VersionSwitcher from "./version-switcher/version-switcher";
@@ -127,7 +128,8 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   MostReadGrid,
   MostRead,
   Opinion,
-  LifeStyle
+  LifeStyle,
+  Skybox
 };
 
 export default handlerRegistry;
