@@ -177,10 +177,8 @@ pipeline {
                   echo "docker version"
                   docker version
 
-                  BROWSERS_TO_TEST="ie11 safari ios android firefox edge"
-
                   echo "Run smoke test"
-                  docker run --rm --env DOCKER_URL=${DOCKER_URL} --env SPADE_VERSION=${SPADE_VERSION} --env BS_ACCOUNT=${BS_ACCOUNT} --env BS_KEY=${BS_KEY} --env BROWSERS_TO_TEST="${BROWSERS_TO_TEST}" -v /var/run/docker.sock:/var/run/docker.sock -v "$PWD:$PWD" -w="$PWD" docker/compose:1.25.0-rc4-alpine up --build --exit-code-from browserstack
+                  docker run --rm --env DOCKER_URL=${DOCKER_URL} --env SPADE_VERSION=${SPADE_VERSION} --env BS_ACCOUNT=${BS_ACCOUNT} --env BS_KEY=${BS_KEY} -v /var/run/docker.sock:/var/run/docker.sock -v "$PWD:$PWD" -w="$PWD" docker/compose:1.25.0-rc4-alpine up --build --exit-code-from browserstack
                   docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v "$PWD:$PWD" -w="$PWD" docker/compose:1.25.0-rc4-alpine down
                   '''
               } catch (err) {
