@@ -165,9 +165,9 @@ pipeline {
       }
     }
     stage('smoke test top browsers') {
-//       when {
-//         branch 'master'
-//       }
+      when {
+        branch 'master'
+      }
       steps {
         container("dind") {
           withCredentials([usernamePassword(credentialsId: "browserstack-account", usernameVariable: 'BS_ACCOUNT', passwordVariable: 'BS_KEY')]) {
