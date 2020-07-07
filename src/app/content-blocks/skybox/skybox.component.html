@@ -1,0 +1,23 @@
+<div class="left-button" (click)="scrollLeft()" [ngClass]="buttonState === 'start' ? 'inactive' : 'active'">
+  <svg xmlns="http://www.w3.org/2000/svg" class="left-arrow" viewBox="0 0 32 32">
+    <path d="M12.6 27.4l-10-10a2 2 0 010-2.8l10-10a2 2 0 112.8 2.8L8.8 14H28a2 2 0 110 4H8.8l6.6 6.6a2 2 0 010 2.8 2 2 0 01-2.8 0z" />
+  </svg>
+</div>
+<div #scroller class="articles">
+  <article itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" *ngFor="let article of input.articles.slice(0, 4)">
+    <a href="{{ article.linkUrl }}" appOpenExternalLink="{{ article.linkUrl }}" (click)="sendAnalytics(article)">
+      <div class="left-column">
+        <app-fluid-image *ngIf="article.image.sixteenByNine" [aspectRatio]="'1:1'" [imageSrc]="article.image.sixteenByNine" [caption]="article.headline"></app-fluid-image>
+      </div>
+      <div class="right-column">
+        <div class="byline">{{ article.byline }}</div>
+        <div class="headline">{{ article.headline }}</div>
+      </div>
+    </a>
+  </article>
+</div>
+<div class="right-button" (click)="scrollRight()" [ngClass]="buttonState === 'end' ? 'inactive' : 'active'">
+  <svg xmlns="http://www.w3.org/2000/svg" class="right-arrow" viewBox="0 0 32 32">
+    <path d="M19.4 27.4l10-10c.8-.8.8-2 0-2.8l-10-10a2 2 0 10-2.8 2.8l6.6 6.6H4a2 2 0 100 4h19.2l-6.6 6.6a2 2 0 000 2.8c.8.8 2 .8 2.8 0z" />
+  </svg>
+</div>

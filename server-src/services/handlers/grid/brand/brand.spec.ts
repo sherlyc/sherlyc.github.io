@@ -3,8 +3,14 @@ import { ContentBlockType } from "../../../../../common/__types__/ContentBlockTy
 import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
 import { IParams } from "../../../__types__/IParams";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
-import { BrandGridPositions, IBrandGridHandlerInput } from "../../__types__/IBrandGridHandlerInput";
-import { BrandModule, IBrandHandlerInput } from "../../__types__/IBrandHandlerInput";
+import {
+  BrandGridPositions,
+  IBrandGridHandlerInput
+} from "../../__types__/IBrandGridHandlerInput";
+import {
+  BrandModule,
+  IBrandHandlerInput
+} from "../../__types__/IBrandHandlerInput";
 import brandHandler from "./brand";
 import { createBulletList } from "./bullet-list";
 
