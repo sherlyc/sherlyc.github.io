@@ -1,3 +1,4 @@
 export enum FeatureName {
-  Placeholder = "Placeholder"
+  Placeholder = "Placeholder",
+  Skybox = "Skybox"
 }
