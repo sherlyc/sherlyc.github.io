@@ -113,6 +113,7 @@ async function buildDefaultDriver() {
     args: ["--headless", "--disable-gpu"]
   });
   return new Builder()
+    .usingServer("http://chrome:4444/wd/hub")
     .forBrowser("chrome")
     .withCapabilities(chromeCapabilities)
     .build();
@@ -122,6 +123,5 @@ export async function getDriver() {
   if (process.env.E2E_BROWSER) {
     return buildSpecificBrowserDriver(process.env.E2E_BROWSER);
   }
-
   return buildDefaultDriver();
 }
