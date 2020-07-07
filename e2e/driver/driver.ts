@@ -5,6 +5,7 @@ import "./fast-selenium.ts";
 async function buildSpecificBrowserDriver(browser: string) {
   const account = process.env.BS_ACCOUNT;
   const key = process.env.BS_KEY;
+  const build = process.env.SPADE_VERSION || "SNAPSHOT";
 
   if (!key || !account) {
     throw new Error("Provide Browser Stack BS_ACCOUNT and BS_KEY env vars.");
@@ -18,7 +19,10 @@ async function buildSpecificBrowserDriver(browser: string) {
     "browserstack.key": key,
     "browserstack.debug": true,
     "browserstack.localIdentifier": browser,
-    name: "SPADE"
+    pageLoadStrategy: "eager",
+    project: "SPADE",
+    build,
+    name: "smoke-test"
   };
 
   switch (browser) {
@@ -88,16 +92,16 @@ async function buildSpecificBrowserDriver(browser: string) {
       capabilities = {
         ...capabilities,
         browserName: "android",
-        device: "Samsung Galaxy S10",
+        device: "Samsung Galaxy S7",
         realMobile: "true",
-        os_version: "9.0"
+        os_version: "6.0"
       };
       break;
     default:
       throw new Error(`Browser [${browser}] not supported`);
   }
 
-  return await new Builder()
+  return new Builder()
     .usingServer("http://hub-cloud.browserstack.com/wd/hub")
     .withCapabilities(capabilities)
     .build();
@@ -108,7 +112,8 @@ async function buildDefaultDriver() {
   chromeCapabilities.set("chromeOptions", {
     args: ["--headless", "--disable-gpu"]
   });
-  return await new Builder()
+  return new Builder()
+    .usingServer("http://chrome:4444/wd/hub")
     .forBrowser("chrome")
     .withCapabilities(chromeCapabilities)
     .build();
@@ -116,8 +121,7 @@ async function buildDefaultDriver() {
 
 export async function getDriver() {
   if (process.env.E2E_BROWSER) {
-    return await buildSpecificBrowserDriver(process.env.E2E_BROWSER);
+    return buildSpecificBrowserDriver(process.env.E2E_BROWSER);
   }
-
-  return await buildDefaultDriver();
+  return buildDefaultDriver();
 }

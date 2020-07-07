@@ -1,8 +1,14 @@
 {
-  "development": {
+  "localhost": {
     "url": "http://localhost:4000/"
+  },
+  "docker": {
+    "url": "http://expfrontend:4000/"
   },
   "staging": {
     "url": "https://experience.expstaging.shift21.ffx.nz"
+  },
+  "production": {
+    "url": "https://www.stuff.co.nz"
   }
 }

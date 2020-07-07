@@ -148,7 +148,7 @@ pipeline {
         }
       }
     }
-    stage('smoke test') {
+    stage('smoke test chrome') {
       steps {
         container("dind") {
           script {
@@ -157,9 +157,33 @@ pipeline {
             docker version
 
             echo "Run smoke test"
-            docker run --rm --env DOCKER_URL=${DOCKER_URL} --env SPADE_VERSION=${SPADE_VERSION} -v /var/run/docker.sock:/var/run/docker.sock -v "$PWD:$PWD" -w="$PWD" docker/compose:1.25.0-rc4-alpine up --build --exit-code-from puppet
-            docker run --rm --env DOCKER_URL=${DOCKER_URL} --env SPADE_VERSION=${SPADE_VERSION} -v /var/run/docker.sock:/var/run/docker.sock -v "$PWD:$PWD" -w="$PWD" docker/compose:1.25.0-rc4-alpine down
+            docker run --rm --env DOCKER_URL=${DOCKER_URL} --env SPADE_VERSION=${SPADE_VERSION} --env USE_LOCAL_BROWSER="true" -v /var/run/docker.sock:/var/run/docker.sock -v "$PWD:$PWD" -w="$PWD" docker/compose:1.25.0-rc4-alpine up --build --exit-code-from browserstack
+            docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v "$PWD:$PWD" -w="$PWD" docker/compose:1.25.0-rc4-alpine down
             '''
+          }
+        }
+      }
+    }
+    stage('smoke test top browsers') {
+      when {
+        branch 'master'
+      }
+      steps {
+        container("dind") {
+          withCredentials([usernamePassword(credentialsId: "browserstack-account", usernameVariable: 'BS_ACCOUNT', passwordVariable: 'BS_KEY')]) {
+            script {
+              catchError {
+                  sh '''
+                  echo "docker version"
+                  docker version
+
+                  echo "Run smoke test"
+                  docker run --rm --env DOCKER_URL=${DOCKER_URL} --env SPADE_VERSION=${SPADE_VERSION} --env BS_ACCOUNT=${BS_ACCOUNT} --env BS_KEY=${BS_KEY} --env USE_LOCAL_BROWSER="false" -v /var/run/docker.sock:/var/run/docker.sock -v "$PWD:$PWD" -w="$PWD" docker/compose:1.25.0-rc4-alpine up --build --exit-code-from browserstack
+                  docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v "$PWD:$PWD" -w="$PWD" docker/compose:1.25.0-rc4-alpine down
+                  '''
+              }
+              echo currentBuild.result
+            }
           }
         }
       }
