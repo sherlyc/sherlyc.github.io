@@ -1,4 +1,5 @@
 import { flatMap } from "lodash-es";
+import { FeatureName } from "../../../common/FeatureName";
 import { AccentColor } from "../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../common/__types__/ContentBlockType";
 import { HandlerInput } from "../handlers/__types__/HandlerInput";
@@ -50,10 +51,16 @@ export const pageV2 = (): HandlerInput[] => [
     type: HandlerInputType.Weather
   },
   {
-    type: HandlerInputType.Skybox,
-    strapName: `${homepageV2AdPrefix}Skybox`,
-    sourceId: Strap.Skybox,
-    articleCount: 4
+    type: HandlerInputType.Feature,
+    name: FeatureName.Skybox,
+    content: [
+      {
+        type: HandlerInputType.Skybox,
+        strapName: `${homepageV2AdPrefix}Skybox`,
+        sourceId: Strap.Skybox,
+        articleCount: 4
+      }
+    ]
   },
   {
     type: HandlerInputType.TopStoriesV2,
