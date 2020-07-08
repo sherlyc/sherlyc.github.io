@@ -95,22 +95,6 @@ pipeline {
   }
 
   stages {
-    stage('caught error') {
-      steps {
-        script {
-          catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
-            sh "exit 1"
-          }
-        }
-      }
-    }
-    stage('fail the build') {
-      steps {
-        script {
-          sh "exit 1"
-        }
-      }
-    }
     stage('setup env') {
       steps {
         container('jnlp') {
@@ -188,7 +172,7 @@ pipeline {
         container("dind") {
           withCredentials([usernamePassword(credentialsId: "browserstack-account", usernameVariable: 'BS_ACCOUNT', passwordVariable: 'BS_KEY')]) {
             script {
-              catchError {
+              catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
                   sh '''
                   echo "docker version"
                   docker version
