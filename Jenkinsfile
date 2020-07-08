@@ -95,6 +95,15 @@ pipeline {
   }
 
   stages {
+    stage('error') {
+      steps {
+        script {
+          catchError(stageResult: 'UNSTABLE') {
+            sh "exit 1"
+          }
+        }
+      }
+    }
     stage('setup env') {
       steps {
         container('jnlp') {
@@ -110,13 +119,6 @@ pipeline {
             echo "spade version: ${SPADE_VERSION}"
             echo "docker url: ${DOCKER_URL}"
           }
-        }
-      }
-    }
-    stage('error') {
-      steps {
-        catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
-          sh "exit 1"
         }
       }
     }
