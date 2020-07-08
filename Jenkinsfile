@@ -95,12 +95,19 @@ pipeline {
   }
 
   stages {
-    stage('error') {
+    stage('caught error') {
       steps {
         script {
-          catchError(stageResult: 'UNSTABLE') {
+          catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
             sh "exit 1"
           }
+        }
+      }
+    }
+    stage('fail the build') {
+      steps {
+        script {
+          sh "exit 1"
         }
       }
     }
