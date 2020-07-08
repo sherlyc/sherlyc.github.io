@@ -113,6 +113,13 @@ pipeline {
         }
       }
     }
+    stage('error') {
+      steps {
+        catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+          sh "exit 1"
+        }
+      }
+    }
     stage('install') {
       steps {
         container('node') {
