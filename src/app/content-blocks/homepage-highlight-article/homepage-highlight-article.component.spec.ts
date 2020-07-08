@@ -173,4 +173,27 @@ describe("HomepageHighlightArticleComponent", () => {
     const byline = fixture.debugElement.query(By.css(".byline"));
     expect(byline).toBeFalsy();
   });
+
+  it("should not render image when it is not available", () => {
+    component.input = { ...input, image: {} };
+
+    fixture.detectChanges();
+
+    const image = fixture.debugElement.query(By.css("app-fluid-image"));
+    expect(image).toBeFalsy();
+  });
+
+  it("should render mobile image when it is available", () => {
+    const aspectRatio = AspectRatio.SixteenByNine;
+    const src = "http://image.com";
+    component.input = { ...input, image: { mobile: { aspectRatio, src } } };
+
+    fixture.detectChanges();
+
+    const image: HTMLUnknownElement & any = fixture.debugElement.query(
+      By.css("app-fluid-image")
+    ).nativeElement;
+    expect(image.imageSrc).toBe(src);
+    expect(image.aspectRatio).toBe(aspectRatio);
+  });
 });

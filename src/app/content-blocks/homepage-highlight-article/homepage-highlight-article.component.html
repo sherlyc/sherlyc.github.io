@@ -3,7 +3,7 @@
   <a [ngClass]="classNames" itemprop="url" href="{{ input.linkUrl }}" appOpenExternalLink="{{ input.linkUrl }}" (click)="sendAnalytics()">
     <div class="image">
       <div class="border" [style.backgroundColor]="input.color"></div>
-      <app-fluid-image [imageSrc]="input.image?.mobile.src" [aspectRatio]="input.image?.mobile.aspectRatio" [caption]="input.headline"></app-fluid-image>
+      <app-fluid-image *ngIf="input.image.mobile" [imageSrc]="input.image.mobile.src" [aspectRatio]="input.image.mobile.aspectRatio" [caption]="input.headline"></app-fluid-image>
     </div>
     <div class="content">
       <div>
