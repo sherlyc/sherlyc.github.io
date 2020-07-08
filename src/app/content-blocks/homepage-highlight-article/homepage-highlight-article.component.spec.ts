@@ -182,4 +182,18 @@ describe("HomepageHighlightArticleComponent", () => {
     const image = fixture.debugElement.query(By.css("app-fluid-image"));
     expect(image).toBeFalsy();
   });
+
+  it("should render mobile image when it is available", () => {
+    const aspectRatio = AspectRatio.SixteenByNine;
+    const src = "http://image.com";
+    component.input = { ...input, image: { mobile: { aspectRatio, src } } };
+
+    fixture.detectChanges();
+
+    const image: HTMLUnknownElement & any = fixture.debugElement.query(
+      By.css("app-fluid-image")
+    ).nativeElement;
+    expect(image.imageSrc).toBe(src);
+    expect(image.aspectRatio).toBe(aspectRatio);
+  });
 });
