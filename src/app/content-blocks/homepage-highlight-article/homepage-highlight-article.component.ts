@@ -18,13 +18,10 @@ export class HomepageHighlightArticleComponent
   index!: number;
   classNames: string[] = [];
 
-  image?: IHomepageHighlightArticleImage;
-
   constructor(private analyticsService: AnalyticsService) {}
 
   ngOnInit(): void {
     this.classNames = [`variation-${this.input.variation.toLowerCase()}`];
-    this.image = this.input.image.mobile || undefined;
   }
 
   sendAnalytics() {
