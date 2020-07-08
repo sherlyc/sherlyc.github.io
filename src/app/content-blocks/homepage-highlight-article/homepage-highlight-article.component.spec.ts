@@ -173,4 +173,13 @@ describe("HomepageHighlightArticleComponent", () => {
     const byline = fixture.debugElement.query(By.css(".byline"));
     expect(byline).toBeFalsy();
   });
+
+  it("should not render image when it is not available", () => {
+    component.input = { ...input, image: {} };
+
+    fixture.detectChanges();
+
+    const image = fixture.debugElement.query(By.css("app-fluid-image"));
+    expect(image).toBeFalsy();
+  });
 });

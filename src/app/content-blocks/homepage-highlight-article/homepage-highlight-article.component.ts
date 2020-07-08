@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { IHomepageHighlightArticle } from "../../../../common/__types__/IHomepageHighlightArticle";
+import {
+  IHomepageHighlightArticle,
+  IHomepageHighlightArticleImage
+} from "../../../../common/__types__/IHomepageHighlightArticle";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
@@ -15,10 +18,13 @@ export class HomepageHighlightArticleComponent
   index!: number;
   classNames: string[] = [];
 
+  image?: IHomepageHighlightArticleImage;
+
   constructor(private analyticsService: AnalyticsService) {}
 
   ngOnInit(): void {
     this.classNames = [`variation-${this.input.variation.toLowerCase()}`];
+    this.image = this.input.image.mobile || undefined;
   }
 
   sendAnalytics() {
