@@ -58,6 +58,10 @@ a {
   }
 }
 
+.extra-info {
+  margin-bottom: 6px;
+}
+
 .variation-lead {
   --title-size: 30px;
   @include mobile {

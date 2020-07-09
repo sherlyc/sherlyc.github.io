@@ -13,7 +13,7 @@
       <div class="intro">
         <p *ngIf="input.introText">{{ input.introText }}</p>
       </div>
-      <div>
+      <div class="extra-info">
         <app-time [timestamp]="input.lastPublishedTime" [showBullet]="true" [fontWeight]="700"></app-time>
         <div *ngIf="input.byline" class="byline">{{ input.byline }}</div>
       </div>
