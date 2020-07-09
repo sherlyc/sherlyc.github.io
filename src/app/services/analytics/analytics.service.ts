@@ -3,7 +3,6 @@ import { DeviceType } from "../../../../common/DeviceType";
 import { environment } from "../../../environments/environment";
 import { IStuffLoginUser } from "../authentication/__types__/IStuffLoginUser";
 import { DtmService } from "../dtm/dtm.service";
-import { LoadedEvent } from "../dtm/__types__/LoadedEvent";
 import { LoggerService } from "../logger/logger.service";
 import { RuntimeService } from "../runtime/runtime.service";
 import { WindowService } from "../window/window.service";
@@ -102,6 +101,9 @@ export class AnalyticsService implements IAnalyticsService {
       ) => ({
         event: "module.title.click",
         "module.title": analyticEvent.title
+      }),
+      [AnalyticsEventsType.HOMEPAGE_STRAP_TAG_CLICKED]: () => ({
+        event: "strap.tag.click"
       })
     };
     const adobeEvent = eventTypesRegistry[event.type](event);

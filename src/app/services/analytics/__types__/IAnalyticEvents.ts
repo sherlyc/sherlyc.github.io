@@ -19,7 +19,8 @@ export interface ISimpleAnalyticEvent {
     | AnalyticsEventsType.BREAKING_NEWS_OPENED
     | AnalyticsEventsType.LOGIN_CLIKED
     | AnalyticsEventsType.AVATAR_CLICKED
-    | AnalyticsEventsType.MODULE_TITLE_CLICKED;
+    | AnalyticsEventsType.MODULE_TITLE_CLICKED
+    | AnalyticsEventsType.HOMEPAGE_STRAP_TAG_CLICKED;
 }
 
 export interface IWeatherLocationChanged {
