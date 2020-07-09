@@ -1,6 +1,9 @@
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { IGridContainer } from "../../../../../common/__types__/IGridContainer";
+import {
+  GridContainerVariation,
+  IGridContainer
+} from "../../../../../common/__types__/IGridContainer";
 import { gridBlock } from "../../../adapters/grid/grid-block";
 import { IParams } from "../../../__types__/IParams";
 import { handlerRunnerFunction } from "../../runner";
@@ -23,6 +26,7 @@ export default async function (
     {
       type: ContentBlockType.GridContainer,
       items: content,
+      variation: GridContainerVariation.Border,
       mobile: {
         gridTemplateColumns: "1fr",
         gridTemplateRows: "auto auto",
