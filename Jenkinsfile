@@ -149,6 +149,11 @@ pipeline {
       }
     }
     stage('smoke test chrome') {
+      when {
+        not {
+          branch 'master'
+        }
+      }
       steps {
         container("dind") {
           script {
