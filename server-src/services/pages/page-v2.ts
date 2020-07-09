@@ -353,7 +353,7 @@ export const pageV2 = (): HandlerInput[] => [
       {
         type: HandlerInputType.StripsV2,
         displayName: "",
-        color: AccentColor.ChineseSilver,
+        color: AccentColor.MediumGray,
         sourceId: Strap.SponsoredContent,
         strapName: Strap.SponsoredContent,
         articleCount: 4,
