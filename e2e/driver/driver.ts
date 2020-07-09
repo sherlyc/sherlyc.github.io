@@ -1,6 +1,8 @@
 import { Builder, Capabilities } from "selenium-webdriver";
 import { startBrowserStackLocal } from "./browserstack.local";
 import "./fast-selenium.ts";
+import { Options as FirefoxOptions } from "selenium-webdriver/firefox";
+import { Options as ChromeOptions } from "selenium-webdriver/chrome";
 
 async function buildSpecificBrowserDriver(browser: string) {
   const account = process.env.BS_ACCOUNT;
@@ -108,14 +110,13 @@ async function buildSpecificBrowserDriver(browser: string) {
 }
 
 async function buildDefaultDriver() {
-  const chromeCapabilities = Capabilities.chrome();
-  chromeCapabilities.set("chromeOptions", {
-    args: ["--headless", "--disable-gpu"]
-  });
+  const firefoxCapabilities = new FirefoxOptions().headless();
+  const chromeCapabilities = new ChromeOptions()
+    .headless()
+    .addArguments("--disable-gpu");
   return new Builder()
-    .usingServer("http://chrome:4444/wd/hub")
-    .forBrowser("chrome")
-    .withCapabilities(chromeCapabilities)
+    .usingServer("http://firefox:4444/wd/hub")
+    .withCapabilities(firefoxCapabilities)
     .build();
 }
 
