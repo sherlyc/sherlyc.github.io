@@ -445,4 +445,23 @@ describe("AnalyticsService", () => {
       ...event
     });
   });
+
+  it("should push corresponding analytics for article tag clicked", () => {
+    analyticsService.setup();
+    windowService.getWindow().digitalData.events.push = jest.fn();
+    const event = {
+      event: "strap.tag.click"
+    };
+
+    analyticsService.pushEvent({
+      type: AnalyticsEventsType.HOMEPAGE_STRAP_TAG_CLICKED
+    });
+
+    expect(
+      windowService.getWindow().digitalData.events.push
+    ).toHaveBeenCalledWith({
+      type: "analytics",
+      ...event
+    });
+  });
 });

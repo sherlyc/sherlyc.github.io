@@ -1,20 +1,33 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { By } from "@angular/platform-browser";
+import { AnalyticsService } from "../../../services/analytics/analytics.service";
+import { AnalyticsEventsType } from "../../../services/analytics/__types__/AnalyticsEventsType";
+import { mockService, ServiceMock } from "../../../services/mocks/MockService";
 import { TagLinkComponent } from "./tag-link.component";
 
 describe("TagLinkComponent", () => {
   let component: TagLinkComponent;
   let fixture: ComponentFixture<TagLinkComponent>;
+  let analyticsService: ServiceMock<AnalyticsService>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TagLinkComponent]
+      declarations: [TagLinkComponent],
+      providers: [
+        {
+          provide: AnalyticsService,
+          useClass: mockService(AnalyticsService)
+        }
+      ]
     }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TagLinkComponent);
+    analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
+      AnalyticsService
+    >;
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -48,5 +61,18 @@ describe("TagLinkComponent", () => {
     const link = fixture.debugElement.query(By.css("a")).nativeElement;
 
     expect(link.textContent).toBe(component.name);
+  });
+
+  it("should send analytics event when clicking the link", () => {
+    component.name = "travel";
+
+    fixture.detectChanges();
+    const link: HTMLAnchorElement = fixture.debugElement.query(By.css("a"))
+      .nativeElement;
+    link.click();
+
+    expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+      type: AnalyticsEventsType.HOMEPAGE_STRAP_TAG_CLICKED
+    });
   });
 });
