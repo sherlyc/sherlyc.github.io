@@ -1,10 +1,10 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { By } from "@angular/platform-browser";
-import { TagLinkComponent } from "./tag-link.component";
 import { AnalyticsService } from "../../../services/analytics/analytics.service";
-import { mockService, ServiceMock } from "../../../services/mocks/MockService";
 import { AnalyticsEventsType } from "../../../services/analytics/__types__/AnalyticsEventsType";
+import { mockService, ServiceMock } from "../../../services/mocks/MockService";
+import { TagLinkComponent } from "./tag-link.component";
 
 describe("TagLinkComponent", () => {
   let component: TagLinkComponent;

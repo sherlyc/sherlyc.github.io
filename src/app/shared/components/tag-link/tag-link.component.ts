@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
-import { AnalyticsEventsType } from "../../../services/analytics/__types__/AnalyticsEventsType";
 import { AnalyticsService } from "../../../services/analytics/analytics.service";
+import { AnalyticsEventsType } from "../../../services/analytics/__types__/AnalyticsEventsType";
 
 @Component({
   selector: "app-tag-link",
