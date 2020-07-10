@@ -15,7 +15,9 @@ article {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  margin-bottom: 6px;
+  app-time {
+    margin-bottom: 6px;
+  }
 }
 
 a {
