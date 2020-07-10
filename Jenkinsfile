@@ -148,7 +148,7 @@ pipeline {
         }
       }
     }
-    stage('smoke test chrome') {
+    stage('smoke test local browsers') {
       steps {
         container("dind") {
           script {
@@ -164,7 +164,7 @@ pipeline {
         }
       }
     }
-    stage('smoke test top browsers') {
+    stage('smoke test BS browsers') {
       when {
         branch 'master'
       }
