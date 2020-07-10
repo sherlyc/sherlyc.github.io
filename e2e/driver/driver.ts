@@ -1,8 +1,8 @@
 import { Builder, Capabilities } from "selenium-webdriver";
+import { Options as ChromeOptions } from "selenium-webdriver/chrome";
+import { Options as FirefoxOptions } from "selenium-webdriver/firefox";
 import { startBrowserStackLocal } from "./browserstack.local";
 import "./fast-selenium.ts";
-import { Options as FirefoxOptions } from "selenium-webdriver/firefox";
-import { Options as ChromeOptions } from "selenium-webdriver/chrome";
 
 async function buildSpecificBrowserDriver(browser: string) {
   const account = process.env.BS_ACCOUNT;
