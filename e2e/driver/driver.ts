@@ -109,20 +109,36 @@ async function buildSpecificBrowserDriver(browser: string) {
     .build();
 }
 
-async function buildDefaultDriver() {
-  const firefoxCapabilities = new FirefoxOptions().headless();
-  const chromeCapabilities = new ChromeOptions()
-    .headless()
-    .addArguments("--disable-gpu");
-  return new Builder()
-    .usingServer("http://firefox:4444/wd/hub")
-    .withCapabilities(firefoxCapabilities)
-    .build();
+const localBrowserDrivers: { [key in string]: Function } = {
+  CHROME: () => {
+    const chromeCapabilities = new ChromeOptions()
+      .headless()
+      .addArguments("--disable-gpu");
+    return new Builder()
+      .usingServer("http://chrome:4444/wd/hub")
+      .withCapabilities(chromeCapabilities)
+      .build();
+  },
+  FIREFOX: () => {
+    const firefoxCapabilities = new FirefoxOptions().headless();
+    return new Builder()
+      .usingServer("http://firefox:4444/wd/hub")
+      .withCapabilities(firefoxCapabilities)
+      .build();
+  }
+};
+
+async function buildDefaultDriver(browser: string | undefined) {
+  const defaultBuilder = localBrowserDrivers["CHROME"];
+  const driverBuilder = browser
+    ? localBrowserDrivers[browser] || defaultBuilder
+    : defaultBuilder;
+  return driverBuilder();
 }
 
 export async function getDriver() {
   if (process.env.E2E_BROWSER) {
     return buildSpecificBrowserDriver(process.env.E2E_BROWSER);
   }
-  return buildDefaultDriver();
+  return buildDefaultDriver(process.env.LOCAL_BROWSER);
 }

@@ -12,6 +12,8 @@
     "e2e:ios": "E2E_BROWSER=IOS npm run e2e",
     "e2e:android": "E2E_BROWSER=ANDROID npm run e2e",
     "e2e:edge": "E2E_BROWSER=EDGE npm run e2e",
+    "e2e:local-chrome": "LOCAL_BROWSER=CHROME npm run e2e",
+    "e2e:local-firefox": "LOCAL_BROWSER=FIREFOX npm run e2e",
     "e2e": "jest --config ./jest.config.json"
   },
   "devDependencies": {
