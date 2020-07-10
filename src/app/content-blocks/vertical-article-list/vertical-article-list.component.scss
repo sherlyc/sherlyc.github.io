@@ -8,7 +8,6 @@
   padding: 12px 0;
   text-decoration: none;
   border-bottom: 1px solid #e8e8e8;
-  --title-size: 16px;
 
   :hover {
     text-decoration: none;
@@ -25,13 +24,14 @@
   }
 
   .time {
-    font-size: var(--title-size);
+    font-size: 16px;
     color: #333;
     vertical-align: middle;
     margin-right: 5px;
   }
 
   app-headline {
+    --title-size: 18px;
     display: inline;
     --title-weight: 500;
   }
