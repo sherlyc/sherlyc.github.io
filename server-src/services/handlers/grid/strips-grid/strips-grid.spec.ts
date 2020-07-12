@@ -1,5 +1,6 @@
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { GridContainerVariation } from "../../../../../common/__types__/IGridContainer";
 import { gridBlock } from "../../../adapters/grid/grid-block";
 import { IParams } from "../../../__types__/IParams";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
@@ -38,6 +39,7 @@ describe("Strips grid handler", () => {
     expect(result).toEqual([
       {
         type: ContentBlockType.GridContainer,
+        variation: GridContainerVariation.Border,
         items: {
           [StripsGridPositions.ModuleTitle]: [fakeContentBlock],
           [StripsGridPositions.ModuleContent]: [fakeContentBlock]

@@ -225,7 +225,7 @@ export const pageV2 = (): HandlerInput[] => [
       {
         type: HandlerInputType.LargeLeadSixV2,
         displayName: "climate change",
-        color: AccentColor.DeepBlue,
+        color: AccentColor.IslamicGreen,
         linkUrl: "/" + Section.ClimateChange,
         strapName: `${homepageV2AdPrefix}ClimateChange`,
         sourceId: Strap.ClimateChange
@@ -353,7 +353,7 @@ export const pageV2 = (): HandlerInput[] => [
       {
         type: HandlerInputType.StripsV2,
         displayName: "",
-        color: AccentColor.DarkGray,
+        color: AccentColor.MediumGray,
         sourceId: Strap.SponsoredContent,
         strapName: Strap.SponsoredContent,
         articleCount: 4,
