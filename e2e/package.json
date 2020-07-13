@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "e2e:top-browsers": "npm run e2e:ie11 && npm run e2e:safari && npm run e2e:ios && npm run e2e:android && npm run e2e:firefox && npm run e2e:edge",
+    "e2e:bs-browsers": "npm run e2e:ie11 && npm run e2e:safari && npm run e2e:ios && npm run e2e:android && npm run e2e:edge",
+    "e2e:local-browsers": "npm run e2e:local-chrome & npm run e2e:local-firefox",
     "e2e:ie11": "E2E_BROWSER=IE11 npm run e2e",
     "e2e:chrome": "E2E_BROWSER=CHROME npm run e2e",
     "e2e:firefox": "E2E_BROWSER=FIREFOX npm run e2e",
@@ -12,6 +13,8 @@
     "e2e:ios": "E2E_BROWSER=IOS npm run e2e",
     "e2e:android": "E2E_BROWSER=ANDROID npm run e2e",
     "e2e:edge": "E2E_BROWSER=EDGE npm run e2e",
+    "e2e:local-chrome": "LOCAL_BROWSER=CHROME npm run e2e",
+    "e2e:local-firefox": "LOCAL_BROWSER=FIREFOX npm run e2e",
     "e2e": "jest --config ./jest.config.json"
   },
   "devDependencies": {

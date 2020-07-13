@@ -4,12 +4,14 @@ services:
     image: ${DOCKER_URL}
     environment:
       SPADE_VERSION: ${SPADE_VERSION}
-    ports:
-      - "4000:4000"
   chrome:
     image: selenium/standalone-chrome
-    ports:
-      - "4444:4444"
+    volumes:
+      - /dev/shm:/dev/shm
+    logging:
+      driver: "none"
+  firefox:
+    image: selenium/standalone-firefox
     volumes:
       - /dev/shm:/dev/shm
     logging:

@@ -18,7 +18,7 @@
     "test:app": "jest --config ./src/jest.config.json --coverage",
     "test:api": "jest --config ./server-src/test-api/jest.config.json",
     "test:performance": "docker run -e URL_UNDER_TEST=http://host.docker.internal:4000 docker.ci.shift21.ffx.nz/nz.stuff/yokohama/yokohama-autocannon:1.3",
-    "test:e2e": "concurrently --kill-others --success first npm:e2e:top-browsers npm:start:no-newrelic",
+    "test:e2e": "concurrently --kill-others --success first npm:e2e:bs-browsers npm:start:no-newrelic",
     "clinic:doctor": "clinic doctor --on-port 'autocannon localhost:$PORT' -- node ./dist/server/main.js",
     "clinic:doctor:backend": "clinic doctor --on-port 'autocannon localhost:$PORT/api/content' -- node ./dist/server/main.js",
     "clinic:flame": "clinic flame --on-port 'autocannon localhost:$PORT' -- node ./dist/server/main.js",
