@@ -10,12 +10,6 @@ services:
       - /dev/shm:/dev/shm
     logging:
       driver: "none"
-  firefox:
-    image: selenium/standalone-firefox
-    volumes:
-      - /dev/shm:/dev/shm
-    logging:
-      driver: "none"
   browserstack:
     build: ./e2e
     environment:
