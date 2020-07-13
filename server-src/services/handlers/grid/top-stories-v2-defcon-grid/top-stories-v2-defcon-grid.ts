@@ -26,9 +26,9 @@ export default async function (
     gridRowGap: "20px",
     gridBlocks: {
       [TopStoriesV2DefconGridPositions.Defcon]: gridBlock(1, 1, 1, 2, []),
-      [TopStoriesV2DefconGridPositions.BannerAd]: gridBlock(2, 1, 1, 2, []),
-      [TopStoriesV2DefconGridPositions.TopOne]: gridBlock(3, 1, 1, 1, []),
-      [TopStoriesV2DefconGridPositions.TopTwo]: gridBlock(3, 2, 1, 1, []),
+      [TopStoriesV2DefconGridPositions.BannerAd]: gridBlock(3, 1, 1, 2, []),
+      [TopStoriesV2DefconGridPositions.TopOne]: gridBlock(2, 1, 1, 1, []),
+      [TopStoriesV2DefconGridPositions.TopTwo]: gridBlock(2, 2, 1, 1, []),
       [TopStoriesV2DefconGridPositions.TopThree]: gridBlock(4, 1, 1, 2, []),
       [TopStoriesV2DefconGridPositions.TopFour]: gridBlock(5, 1, 1, 2, []),
       [TopStoriesV2DefconGridPositions.TopFive]: gridBlock(6, 1, 1, 2, []),
