@@ -1,6 +1,9 @@
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
-import { GridContainerVariation } from "../../../../../common/__types__/IGridContainer";
+import {
+  Border,
+  GridContainerVariation
+} from "../../../../../common/__types__/IGridContainer";
 import { IParams } from "../../../__types__/IParams";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
 import {
@@ -107,7 +110,7 @@ describe("News Six Grid V2 handler", () => {
         tablet: {
           gridTemplateColumns: "2fr 1fr",
           gridTemplateRows: "auto auto auto auto auto",
-          gridColumnGap: "20px",
+          gridColumnGap: "30px",
           gridRowGap: "20px",
           gridBlocks: {
             [NewsSixV2GridPositions.ModuleTitle]: {
@@ -122,7 +125,7 @@ describe("News Six Grid V2 handler", () => {
               rowSpan: 2,
               columnStart: 1,
               columnSpan: 1,
-              border: []
+              border: [Border.right]
             },
             [NewsSixV2GridPositions.Two]: {
               rowStart: 2,
@@ -162,9 +165,9 @@ describe("News Six Grid V2 handler", () => {
           }
         },
         desktop: {
-          gridTemplateColumns: "2fr 1fr 300px",
+          gridTemplateColumns: "5fr 2fr 300px",
           gridTemplateRows: "auto auto auto auto auto",
-          gridColumnGap: "20px",
+          gridColumnGap: "40px",
           gridRowGap: "20px",
           gridBlocks: {
             [NewsSixV2GridPositions.ModuleTitle]: {
@@ -179,7 +182,7 @@ describe("News Six Grid V2 handler", () => {
               rowSpan: 3,
               columnStart: 1,
               columnSpan: 1,
-              border: []
+              border: [Border.right]
             },
             [NewsSixV2GridPositions.Two]: {
               rowStart: 2,

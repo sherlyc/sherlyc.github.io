@@ -21,7 +21,7 @@ export default async function (
 ): Promise<IContentBlock[]> {
   const desktop: IGridBlocks = {
     [NewsSixV2GridPositions.ModuleTitle]: gridBlock(1, 1, 1, 3, []),
-    [NewsSixV2GridPositions.One]: gridBlock(2, 1, 3, 1, []),
+    [NewsSixV2GridPositions.One]: gridBlock(2, 1, 3, 1, [Border.right]),
     [NewsSixV2GridPositions.Two]: gridBlock(2, 2, 1, 1, []),
     [NewsSixV2GridPositions.Three]: gridBlock(3, 2, 1, 1, []),
     [NewsSixV2GridPositions.Four]: gridBlock(2, 3, 3, 1, []),
@@ -31,7 +31,7 @@ export default async function (
 
   const tablet: IGridBlocks = {
     [NewsSixV2GridPositions.ModuleTitle]: gridBlock(1, 1, 1, 2, []),
-    [NewsSixV2GridPositions.One]: gridBlock(2, 1, 2, 1, []),
+    [NewsSixV2GridPositions.One]: gridBlock(2, 1, 2, 1, [Border.right]),
     [NewsSixV2GridPositions.Two]: gridBlock(2, 2, 1, 1, []),
     [NewsSixV2GridPositions.Three]: gridBlock(3, 2, 1, 1, []),
     [NewsSixV2GridPositions.Four]: gridBlock(4, 2, 2, 1, []),
@@ -63,14 +63,14 @@ export default async function (
       tablet: {
         gridTemplateColumns: "2fr 1fr",
         gridTemplateRows: "auto auto auto auto auto",
-        gridColumnGap: "20px",
+        gridColumnGap: "30px",
         gridRowGap: "20px",
         gridBlocks: tablet
       },
       desktop: {
-        gridTemplateColumns: "2fr 1fr 300px",
+        gridTemplateColumns: "5fr 2fr 300px",
         gridTemplateRows: "auto auto auto auto auto",
-        gridColumnGap: "20px",
+        gridColumnGap: "40px",
         gridRowGap: "20px",
         gridBlocks: desktop
       },
