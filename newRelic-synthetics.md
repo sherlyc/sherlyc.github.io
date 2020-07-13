@@ -61,7 +61,7 @@ const shouldContainTopStoriesHighlights = async () => {
     $driver.By.css("app-grid-container:first-of-type app-defcon")
   );
   return assert(
-    homepageHighlights.length + defcon.length > 1,
+    homepageHighlights.length === 2 || defcon.length === 1,
     "top stories highlights are not available"
   );
 };
