@@ -63,7 +63,7 @@ export default async function (
       tablet: {
         gridTemplateColumns: "2fr 1fr",
         gridTemplateRows: "auto auto auto auto auto",
-        gridColumnGap: "40px",
+        gridColumnGap: "30px",
         gridRowGap: "20px",
         gridBlocks: tablet
       },
