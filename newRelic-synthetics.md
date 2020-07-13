@@ -57,11 +57,11 @@ const shouldContainTopStoriesHighlights = async () => {
       "app-grid-container:first-of-type app-homepage-highlight-article"
     )
   );
-  const defcon = await $browser.findElements(
-    $driver.By.css("app-grid-container:first-of-type app-defcon")
+  const defconArticles = await $browser.findElements(
+    $driver.By.css("app-grid-container:first-of-type app-defcon article")
   );
   return assert(
-    homepageHighlights.length === 2 || defcon.length === 1,
+    homepageHighlights.length === 2 || defconArticles.length >= 1,
     "top stories highlights are not available"
   );
 };
