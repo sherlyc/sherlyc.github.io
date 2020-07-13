@@ -4,7 +4,7 @@
     <a itemprop="url" href="{{ input.articles[0].linkUrl }}" appOpenExternalLink="{{ input.articles[0].linkUrl }}" (click)="sendAnalytics(input.articles[0])">
       <div class="image">
         <div class="border" [style.backgroundColor]="input.color"></div>
-        <app-fluid-image [imageSrc]="input.articles[0].image.defcon" [caption]="input.articles[0].headline" [aspectRatio]="'16:9'"></app-fluid-image>
+        <app-fluid-image [imageSrc]="input.articles[0].image.sixteenByNine" [caption]="input.articles[0].headline" [aspectRatio]="'16:9'"></app-fluid-image>
       </div>
       <div class="text">
         <app-tag-link [color]="input.color" [name]="input.articles[0].category.name" [url]="input.articles[0].category.url"></app-tag-link>
