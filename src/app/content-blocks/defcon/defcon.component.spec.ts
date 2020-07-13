@@ -90,7 +90,9 @@ describe("DefconComponent", () => {
     const defconImage: FluidImageComponent = componentElement.query(
       By.css("article app-fluid-image")
     ).nativeElement;
-    expect(defconImage.imageSrc).toEqual(defcon.articles[0].image.defcon);
+    expect(defconImage.imageSrc).toEqual(
+      defcon.articles[0].image.sixteenByNine
+    );
     expect(defconImage.caption).toEqual(defcon.articles[0].headline);
     expect(defconImage.aspectRatio).toEqual("16:9");
 
