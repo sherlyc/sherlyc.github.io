@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "e2e:bs-browsers": "npm run e2e:ie11 && npm run e2e:safari && npm run e2e:ios && npm run e2e:android && npm run e2e:edge",
-    "e2e:local-browsers": "npm run e2e:local-chrome & npm run e2e:local-firefox",
+    "e2e:local-browsers": "npm run e2e:local-chrome && npm run e2e:local-firefox",
     "e2e:ie11": "E2E_BROWSER=IE11 npm run e2e",
     "e2e:chrome": "E2E_BROWSER=CHROME npm run e2e",
     "e2e:firefox": "E2E_BROWSER=FIREFOX npm run e2e",
