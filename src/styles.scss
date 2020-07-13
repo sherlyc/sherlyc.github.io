@@ -67,7 +67,7 @@ a {
 @include mobile {
   .container {
     width: 100%;
-    max-width: 767px;
+    max-width: 620px;
   }
 }
 
@@ -143,8 +143,8 @@ app-logo {
   }
 }
 
-app-grid-container{
-  app-basic-ad-unit{
+app-grid-container {
+  app-basic-ad-unit {
     height: 100%;
   }
 }
