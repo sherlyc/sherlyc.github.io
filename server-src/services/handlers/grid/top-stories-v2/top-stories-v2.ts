@@ -470,7 +470,7 @@ export default async function (
   input: ITopStoriesV2HandlerInput,
   params: IParams
 ): Promise<IContentBlock[]> {
-  const defconArticles = await getRawArticles(Strap.Defcon, 10, params);
+  const defconArticles = await getRawArticles(Strap.Defcon, 4, params);
   const articles = await getRawArticles(Strap.TopStories, 10, params);
   const midInsertContentBlocks = await handlerRunner(
     input.midInsertContent,
