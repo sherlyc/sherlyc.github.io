@@ -94,11 +94,11 @@ describe("Top Stories V2", () => {
 
     await topStoriesV2(handlerRunnerMock, handlerInput, params);
 
-    expect(getRawArticles).toHaveBeenNthCalledWith(1, Strap.Defcon, 10, params);
+    expect(getRawArticles).toHaveBeenNthCalledWith(1, Strap.Defcon, 4, params);
     expect(getRawArticles).toHaveBeenNthCalledWith(
       2,
       Strap.TopStories,
-      4,
+      10,
       params
     );
   });
