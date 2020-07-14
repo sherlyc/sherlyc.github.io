@@ -98,7 +98,7 @@ describe("Top Stories V2", () => {
     expect(getRawArticles).toHaveBeenNthCalledWith(
       2,
       Strap.TopStories,
-      10,
+      4,
       params
     );
   });
