@@ -98,16 +98,21 @@
     flex: 0 0;
     box-sizing: border-box;
     padding: 0 5px;
+    scroll-snap-align: start;
 
     @include mobile {
+      flex-basis: 50%;
+      max-width: 50%;
+    }
+
+    @media screen and (max-width: 490px) {
       flex-basis: 100%;
-      scroll-snap-align: start;
+      max-width: 100%;
     }
 
     @include tablet {
-      flex-basis: 50%;
-      max-width: 50%;
-      scroll-snap-align: start;
+      flex-basis: 33.33%;
+      max-width: 33.33%;
     }
 
     @include desktop {
