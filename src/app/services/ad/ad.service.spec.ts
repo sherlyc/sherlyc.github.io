@@ -73,7 +73,7 @@ describe("AdService", () => {
     );
   });
 
-  it("should notify the adnostic sdk with custom event detail", async () => {
+  it("should notify the adnostic sdk with custom event", async () => {
     const document: Document = TestBed.inject(DOCUMENT);
     document.dispatchEvent = jest.fn();
 
@@ -82,10 +82,7 @@ describe("AdService", () => {
     expect(document.dispatchEvent).toHaveBeenNthCalledWith(
       1,
       expect.objectContaining({
-        type: "NavigationEnd",
-        detail: expect.objectContaining({
-          isHomepageTakeoverOn: true
-        })
+        type: "NavigationEnd"
       })
     );
   });

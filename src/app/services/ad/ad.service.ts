@@ -7,7 +7,6 @@ import { LoggerService } from "../logger/logger.service";
 import { RuntimeService } from "../runtime/runtime.service";
 import { ScriptInjectorService } from "../script-injector/script-injector.service";
 import { ScriptId } from "../script-injector/__types__/ScriptId";
-import { IAdServiceEventDetail } from "./AdServiceEventDetail";
 
 @Injectable({
   providedIn: "root"
@@ -42,14 +41,8 @@ export class AdService {
   async notify() {
     await this.load;
     this.zone.runOutsideAngular(() => {
-      this.sendCustomEventWithValue({ isHomepageTakeoverOn: true });
+      const event = new CustomEvent("NavigationEnd");
+      this.document.dispatchEvent(event);
     });
-  }
-
-  private sendCustomEventWithValue(detail: IAdServiceEventDetail) {
-    const event = new CustomEvent("NavigationEnd", {
-      detail
-    });
-    this.document.dispatchEvent(event);
   }
 }
