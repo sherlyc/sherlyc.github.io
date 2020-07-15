@@ -7,6 +7,7 @@ import { ContentBlockType } from "../../../../common/__types__/ContentBlockType"
 import { Section } from "../../../../server-src/services/section";
 import { mockService } from "../../services/mocks/MockService";
 import { ContentBlockDirective } from "../../shared/directives/content-block/content-block.directive";
+import { BasicAdUnitComponent } from "../basic-ad-unit/basic-ad-unit.component";
 import registry from "../content-blocks.registry";
 import { ContainerComponent } from "./container.component";
 
@@ -40,6 +41,7 @@ describe("Container Component", () => {
       declarations: [
         ContainerComponent,
         FakeContentBlockComponent,
+        BasicAdUnitComponent,
         ContentBlockDirective
       ],
       providers: [
