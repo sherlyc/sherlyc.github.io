@@ -45,7 +45,7 @@ describe("Brightcove retriever", () => {
       expect.objectContaining({
         headers: {
           Authorization: `BCOV-Policy ${policyKey}`,
-          "X-Forwards-For": expect.stringContaining("119.15.65.")
+          "X-Forwarded-For": expect.stringContaining("119.15.65.")
         }
       })
     );

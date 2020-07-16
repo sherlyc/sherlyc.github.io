@@ -21,7 +21,7 @@ async function requestBrightcovePlaylist(
     {
       headers: {
         Authorization: `BCOV-Policy ${policyKey}`,
-        "X-Forwards-For": nzIp
+        "X-Forwarded-For": nzIp
       }
     }
   );
