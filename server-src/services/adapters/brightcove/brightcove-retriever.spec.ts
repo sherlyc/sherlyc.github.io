@@ -42,11 +42,12 @@ describe("Brightcove retriever", () => {
     expect(cacheHttp).toHaveBeenCalledWith(
       params,
       `https://edge.api.brightcove.com/playback/v1/accounts/${account}/playlists/${playlist}?limit=${total}`,
-      {
+      expect.objectContaining({
         headers: {
-          Authorization: `BCOV-Policy ${policyKey}`
+          Authorization: `BCOV-Policy ${policyKey}`,
+          "X-Forwards-For": expect.stringContaining("119.15.65.")
         }
-      }
+      })
     );
   });
 

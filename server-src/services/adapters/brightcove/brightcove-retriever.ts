@@ -13,12 +13,15 @@ async function requestBrightcovePlaylist(
   total: number,
   params: IParams
 ): Promise<IBrightcovePlaylist> {
+  const lastOctet = Math.floor(Math.random() * 254) + 1;
+  const nzIp = `119.15.65.${lastOctet}`;
   const result = await cacheHttp<IBrightcovePlaylist>(
     params,
     `${baseUrl}/accounts/${account}/playlists/${playlist}?limit=${total}`,
     {
       headers: {
-        Authorization: `BCOV-Policy ${policyKey}`
+        Authorization: `BCOV-Policy ${policyKey}`,
+        "X-Forwards-For": nzIp
       }
     }
   );
