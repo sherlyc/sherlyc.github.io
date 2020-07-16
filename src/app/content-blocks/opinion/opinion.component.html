@@ -13,7 +13,7 @@
       <article>
         <a href="{{ input.articles[0].linkUrl }}" appOpenExternalLink="{{ input.articles[0].linkUrl }}" (click)="sendAnalytics(input.articles[0])">
           <div class="avatar">
-            <app-fluid-image [imageSrc]="input.articles[0].image.sixteenByNine" [caption]="input.articles[0].headline" [aspectRatio]="'1:1'"></app-fluid-image>
+            <app-fluid-image [imageSrc]="input.articles[0].image.sixteenByNine" [caption]="input.articles[0].headline" [aspectRatio]="'1:1'" [disableSmartCrop]="true"></app-fluid-image>
           </div>
           <div class="byline">{{ input.articles[0].byline }}</div>
           <div class="headline">{{ input.articles[0].headline }}</div>
@@ -31,7 +31,7 @@
           <div class="headline">{{ article.headline }}</div>
         </div>
         <div class="avatar">
-          <app-fluid-image [imageSrc]="article.image.sixteenByNine" [caption]="article.headline" [aspectRatio]="'1:1'"></app-fluid-image>
+          <app-fluid-image [imageSrc]="article.image.sixteenByNine" [caption]="article.headline" [aspectRatio]="'1:1'" [disableSmartCrop]="true"></app-fluid-image>
         </div>
       </a>
     </article>
