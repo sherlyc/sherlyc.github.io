@@ -13,7 +13,7 @@ async function requestBrightcovePlaylist(
   total: number,
   params: IParams
 ): Promise<IBrightcovePlaylist> {
-  const lastOctet = Math.floor(Math.random() * 254) + 1;
+  const lastOctet = Math.floor(Math.random() * 10) + 1;
   const nzIp = `119.15.65.${lastOctet}`;
   const result = await cacheHttp<IBrightcovePlaylist>(
     params,
