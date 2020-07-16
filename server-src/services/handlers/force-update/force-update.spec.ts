@@ -10,11 +10,11 @@ describe("Force Update", () => {
 
   beforeEach(() => {
     jest.resetModules();
-    process.env = { ...OLD_ENV }; // make a copy
+    process.env = { ...OLD_ENV };
   });
 
   afterAll(() => {
-    process.env = OLD_ENV; // restore old env
+    process.env = OLD_ENV;
   });
 
   it("should add iframe when params version is below the configuration version", async () => {

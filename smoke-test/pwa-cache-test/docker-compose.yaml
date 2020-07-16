@@ -1,17 +1,12 @@
 version: "3.7"
 services:
   oldspade:
-    image: gcr.io/shared-218200/nz.stuff/experience/experience-frontend:1.600
+    image: ${DOCKER_IMAGE}
     environment:
       SPADE_ENV: production
-      SPADE_VERSION: 1.600
-  newspade:
-    image: stuff-experience-frontend:latest
-    environment:
-      SPADE_ENV: production
-      SPADE_VERSION: 1.100
+      SPADE_VERSION: ${VERSION}
   nginx-proxy:
-    image: nginx:alpine
+    image: ${NGINX_IMAGE}
     ports:
       - "8888:80"
     volumes:
