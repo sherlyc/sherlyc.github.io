@@ -16,9 +16,16 @@
         scope.setLevel(Sentry.Severity.Debug);
         Sentry.captureMessage("Device need to be updated", "debug");
       });
+      var search = window.location.search.split("?");
+      if (search.length > 1) {
+        var searchParams = search[1].split("&");
+        var feVersion = searchParams[0];
+        var beVersion = searchParams[1];
+      }
 
       var count = window.localStorage.getItem("uninstallPwa") || 0;
-      window.localStorage.setItem("uninstallPwa", parseInt(count, 10) + 1);
+      var updatedCount = parseInt(count, 10) + 1;
+      window.localStorage.setItem("uninstallPwa", updatedCount);
 
       if (updatedCount > 1) {
         if ("serviceWorker" in navigator) {
@@ -26,13 +33,15 @@
             navigator.serviceWorker.getRegistrations().then(function (registrations) {
               for (var index in registrations) {
                 if (registrations.hasOwnProperty(index)) {
-                  registrations[index].unregister().then(() => {
-                    var searchParams = window.location.search.split("?")[1].split("&");
-                    var feVersion = searchParams[0];
-                    var beVersion = searchParams[1];
-                    Sentry.captureMessage(`PWA deleted successfully, ${feVersion}, ${beVersion}`, "debug");
-                    window.localStorage.removeItem("uninstallPwa");
-                  });
+                  registrations[index]
+                    .unregister()
+                    .then(() => {
+                      Sentry.captureMessage(`PWA deleted successfully, ${feVersion}, ${beVersion}, updatedCount ${updatedCount}`, "debug");
+                      window.localStorage.removeItem("uninstallPwa");
+                    })
+                    .catch(() => {
+                      Sentry.captureMessage(`PWA deleted failed, ${feVersion}, ${beVersion}, updatedCount ${updatedCount}`, "debug");
+                    });
                 }
               }
             });
