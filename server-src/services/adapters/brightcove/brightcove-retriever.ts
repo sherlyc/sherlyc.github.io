@@ -14,6 +14,7 @@ async function requestBrightcovePlaylist(
   params: IParams
 ): Promise<IBrightcovePlaylist> {
   const lastOctet = Math.floor(Math.random() * 10) + 1;
+  // NZ NAT IP range from https://stuffnz.atlassian.net/wiki/spaces/KIWIOPS/pages/73334883/Outbound+Addresses
   const nzIp = `119.15.65.${lastOctet}`;
   const result = await cacheHttp<IBrightcovePlaylist>(
     params,
