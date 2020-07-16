@@ -18,7 +18,8 @@ describe("FluidImageComponent", () => {
   const componentInput = {
     imageSrc: "https://meme.com/lucas.jpg",
     caption: "coding lucas",
-    aspectRatio: AspectRatio.SixteenByNine
+    aspectRatio: AspectRatio.SixteenByNine,
+    disableSmartCrop: false
   };
 
   const expectedSrc = `${componentInput.imageSrc}?format=pjpg&crop=${componentInput.aspectRatio},smart`;
@@ -204,4 +205,12 @@ describe("FluidImageComponent", () => {
       expect(component.height).toEqual(expectedHeight);
     }
   );
+
+  it("should disable smart cropping if provided", () => {
+    Object.assign(component, { ...componentInput, disableSmartCrop: true });
+    simulateResize(FluidImageWidth.xs);
+
+    const { src } = getImg().attributes;
+    expect(src).not.toContain("smart");
+  });
 });
