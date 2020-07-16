@@ -16,13 +16,19 @@
         scope.setLevel(Sentry.Severity.Debug);
         Sentry.captureMessage("Device need to be updated", "debug");
       });
+
+      var count = window.localStorage.getItem("uninstallPwa") || 0;
+      window.localStorage.setItem("uninstallPwa", count + 1);
+      console.log("set local storage", count);
+
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", function () {
           navigator.serviceWorker.getRegistrations().then(function (registrations) {
             for (var index in registrations) {
               if (registrations.hasOwnProperty(index)) {
-                registrations[index].unregister();
-                Sentry.captureMessage("Old PWA version deleted", "debug");
+                registrations[index].unregister().then(() => {
+                  Sentry.captureMessage("Old PWA version deleted", "debug");
+                });
               }
             }
           });
