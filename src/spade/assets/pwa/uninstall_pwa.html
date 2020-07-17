@@ -16,6 +16,7 @@
         scope.setLevel(Sentry.Severity.Debug);
         Sentry.captureMessage("Device need to be updated", "debug");
       });
+      var uninstallPwaCounterKey = "spade-uninstall-pwa";
       var search = window.location.search.split("?");
       if (search.length > 1) {
         var searchParams = search[1].split("&");
@@ -23,9 +24,9 @@
         var beVersion = searchParams[1];
       }
 
-      var count = window.localStorage.getItem("uninstallPwa") || 0;
+      var count = window.localStorage.getItem(uninstallPwaCounterKey) || 0;
       var updatedCount = parseInt(count, 10) + 1;
-      window.localStorage.setItem("uninstallPwa", updatedCount);
+      window.localStorage.setItem(uninstallPwaCounterKey, updatedCount);
 
       if (updatedCount > 1) {
         if ("serviceWorker" in navigator) {
@@ -37,10 +38,10 @@
                     .unregister()
                     .then(() => {
                       Sentry.captureMessage(`PWA deleted successfully, ${feVersion}, ${beVersion}, updatedCount ${updatedCount}`, "debug");
-                      window.localStorage.removeItem("uninstallPwa");
+                      window.localStorage.removeItem(uninstallPwaCounterKey);
                     })
                     .catch(() => {
-                      Sentry.captureMessage(`PWA deleted failed, ${feVersion}, ${beVersion}, updatedCount ${updatedCount}`, "debug");
+                      Sentry.captureMessage(`PWA delete failed, ${feVersion}, ${beVersion}, updatedCount ${updatedCount}`, "debug");
                     });
                 }
               }
