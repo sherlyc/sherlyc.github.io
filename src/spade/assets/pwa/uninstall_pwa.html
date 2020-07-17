@@ -17,6 +17,7 @@
         Sentry.captureMessage("Device need to be updated", "debug");
       });
 
+      var deviceId = window.localStorage.getItem("__storejs_stuff-experience_deviceId") || "";
       var uninstallSwKey = "spade-uninstall-sw";
       var search = window.location.search.split("?");
       if (search.length > 1) {
@@ -39,6 +40,7 @@
                     .unregister()
                     .then(function () {
                       Sentry.configureScope(function (scope) {
+                        scope.setTag("spade.deviceId", `${deviceId}`);
                         scope.setTag("spade.feVersion", `${feVersion}`);
                         scope.setTag("spade.beVersion", `${beVersion}`);
                         scope.setTag("spade.pwa.uninstallPageCount", `${updatedCount}`);
@@ -49,6 +51,7 @@
                     })
                     .catch(function () {
                       Sentry.configureScope(function (scope) {
+                        scope.setTag("spade.deviceId", `${deviceId}`);
                         scope.setTag("spade.feVersion", `${feVersion}`);
                         scope.setTag("spade.beVersion", `${beVersion}`);
                         scope.setTag("spade.pwa.uninstallPageCount", `${updatedCount}`);
