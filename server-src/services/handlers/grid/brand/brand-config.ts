@@ -80,7 +80,7 @@ export const networkBrandConfig: INetworkBrandConfig = {
 export const partnerBrandConfig: IPartnerBrandConfig = {
   moduleTitle: "from our partners",
   articlesPerBrand: 5,
-  brandListPerRow: 3,
+  brandListPerRow: 5,
   configs: {
     [PartnerBrand.Bravo]: {
       logo: Logo.Bravo,
@@ -99,6 +99,18 @@ export const partnerBrandConfig: IPartnerBrandConfig = {
       logoLink: "/" + Section.Tarana,
       bulletColor: "#D1171F",
       sourceId: Strap.Tarana
+    },
+    [PartnerBrand.LocalDemocracyReporting]: {
+      logo: Logo.LocalDemocracyReporting,
+      logoLink: "/national/politics/local-democracy-reporting",
+      bulletColor: "#F37020",
+      sourceId: Strap.LocalDemocracyReporting
+    },
+    [PartnerBrand.RNZ]: {
+      logo: Logo.RNZ,
+      logoLink: "/",
+      bulletColor: "#DA2128",
+      sourceId: Strap.RNZ
     }
   }
 };

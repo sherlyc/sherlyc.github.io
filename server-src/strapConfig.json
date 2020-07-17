@@ -519,6 +519,18 @@
       "dedupeRules": {
         "dedupeFromBaseList": false
       }
+    },
+    "strapLocalDemocracyReporting": {
+      "ids": ["117727643"],
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
+    },
+    "strapRNZ": {
+      "ids": ["122112901"],
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
     }
   },
   "overrides": {

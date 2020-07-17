@@ -21,14 +21,14 @@ describe("Partner", () => {
     type: HandlerInputType.Partner
   };
 
-  it("should retrieve 3 partner content block with 5 articles each", async () => {
+  it("should retrieve 5 partner content block with 5 articles each", async () => {
     const handlerRunnerMock = jest.fn();
     handlerRunnerMock.mockResolvedValue([]);
 
     await Partner(handlerRunnerMock, handlerInput, params);
 
     const partnerConfig = brandConfig[BrandModule.Partner];
-    expect(createPartnerContent).toHaveBeenCalledTimes(3);
+    expect(createPartnerContent).toHaveBeenCalledTimes(5);
     expect(createPartnerContent).toHaveBeenNthCalledWith(
       1,
       partnerConfig.configs[PartnerBrand.Bravo],
@@ -47,9 +47,21 @@ describe("Partner", () => {
       partnerConfig.articlesPerBrand,
       params
     );
+    expect(createPartnerContent).toHaveBeenNthCalledWith(
+      4,
+      partnerConfig.configs[PartnerBrand.LocalDemocracyReporting],
+      partnerConfig.articlesPerBrand,
+      params
+    );
+    expect(createPartnerContent).toHaveBeenNthCalledWith(
+      5,
+      partnerConfig.configs[PartnerBrand.RNZ],
+      partnerConfig.articlesPerBrand,
+      params
+    );
   });
 
-  it("should pass 3 partner content blocks to column grid handler", async () => {
+  it("should pass 5 partner content blocks to column grid handler", async () => {
     const partnerContent1 = {
       type: ContentBlockType.PartnerContent,
       id: "1"
@@ -65,6 +77,16 @@ describe("Partner", () => {
       id: "3"
     };
     (createPartnerContent as jest.Mock).mockReturnValueOnce(partnerContent3);
+    const partnerContent4 = {
+      type: ContentBlockType.PartnerContent,
+      id: "4"
+    };
+    (createPartnerContent as jest.Mock).mockReturnValueOnce(partnerContent4);
+    const partnerContent5 = {
+      type: ContentBlockType.PartnerContent,
+      id: "5"
+    };
+    (createPartnerContent as jest.Mock).mockReturnValueOnce(partnerContent5);
     const handlerRunnerMock = jest.fn();
     handlerRunnerMock.mockResolvedValue([]);
 
@@ -74,7 +96,9 @@ describe("Partner", () => {
     expect(firstColumnGridCall.content).toEqual([
       [expect.objectContaining(partnerContent1)],
       [expect.objectContaining(partnerContent2)],
-      [expect.objectContaining(partnerContent3)]
+      [expect.objectContaining(partnerContent3)],
+      [expect.objectContaining(partnerContent4)],
+      [expect.objectContaining(partnerContent5)]
     ]);
   });
 
