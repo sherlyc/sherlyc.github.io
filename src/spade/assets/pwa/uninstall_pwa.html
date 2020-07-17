@@ -38,7 +38,13 @@
                     .unregister()
                     .then(() => {
                       Sentry.captureMessage(`PWA deleted successfully, ${feVersion}, ${beVersion}, updatedCount ${updatedCount}`, "debug");
+                      console.log("pwa deleted");
                       window.localStorage.removeItem(uninstallPwaCounterKey);
+                      caches.keys().then(function(names) {
+                        console.log("clearing cache");
+                        for (var name in names)
+                          caches.delete(name);
+                      });
                     })
                     .catch(() => {
                       Sentry.captureMessage(`PWA delete failed, ${feVersion}, ${beVersion}, updatedCount ${updatedCount}`, "debug");
