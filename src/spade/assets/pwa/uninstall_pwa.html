@@ -14,7 +14,7 @@
       });
       Sentry.configureScope(function (scope) {
         scope.setLevel(Sentry.Severity.Debug);
-        Sentry.captureMessage("Device need to be updated", "debug");
+        Sentry.captureMessage("Device needs to be updated", "debug");
       });
 
       var deviceId = window.localStorage.getItem("__storejs_stuff-experience_deviceId") || "";
