@@ -6,12 +6,23 @@ import ForceUpdate from "./force-update";
 
 describe("Force Update", () => {
   const handlerRunnerMock = jest.fn();
+  const OLD_ENV = process.env;
+
+  beforeEach(() => {
+    jest.resetModules();
+    process.env = { ...OLD_ENV };
+  });
+
+  afterAll(() => {
+    process.env = OLD_ENV;
+  });
 
   it("should add iframe when params version is below the configuration version", async () => {
     const params: IParams = {
       apiRequestId: "request-id-for-testing",
       version: "1.300"
     };
+    process.env.SPADE_VERSION = "1.401";
 
     const forceUpdateHandlerInput: IForceUpdateHandlerInput = {
       type: HandlerInputType.ForceUpdate,
@@ -30,7 +41,7 @@ describe("Force Update", () => {
         height: "0",
         margin: "0",
         scrollable: false,
-        url: "/spade/assets/pwa/uninstall_pwa.html",
+        url: "/spade/assets/pwa/uninstall_pwa.html?fe=1.300&be=1.401",
         width: "100%"
       }
     ];
