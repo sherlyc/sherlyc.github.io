@@ -13,7 +13,7 @@ export class FluidImageComponent implements OnInit {
   @Input() imageSrc!: string;
   @Input() caption!: string;
   @Input() aspectRatio?: AspectRatio;
-  @Input() disableSmartCrop?: boolean;
+  @Input() smartCrop = true;
   @HostBinding("style.paddingBottom") height = `${(9 / 16) * 100}%`;
 
   src?: string;
@@ -40,7 +40,7 @@ export class FluidImageComponent implements OnInit {
     this.width = newWidth;
     this.lazyload = lazyload ? "lazy" : "auto";
 
-    const useSmartCrop = this.disableSmartCrop ? "" : ",smart";
+    const useSmartCrop = this.smartCrop ? ",smart" : "";
     const src = `${this.imageSrc}?format=pjpg&crop=${this.aspectRatio}${useSmartCrop}&width=${newWidth}`;
     this.srcset = `${src}, ${src}&dpr=2 2x, ${src}&dpr=3 3x`;
     this.src = src;

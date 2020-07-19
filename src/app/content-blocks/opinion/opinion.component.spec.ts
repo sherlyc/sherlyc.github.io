@@ -111,7 +111,7 @@ describe("OpinionComponent", () => {
     expect(secondaryImage.imageSrc).toBe(input.articles[0].image.sixteenByNine);
     expect(secondaryImage.aspectRatio).toBe(AspectRatio.OneByOne);
     expect(secondaryImage.caption).toBe(input.articles[0].headline);
-    expect(secondaryImage.disableSmartCrop).toBeTruthy();
+    expect(secondaryImage.smartCrop).toBeFalsy();
     expect(secondaryByline.textContent).toBe(input.articles[0].byline);
     expect(secondaryHeadline.textContent).toBe(input.articles[0].headline);
     expect(secondaryIntro.textContent).toBe(input.articles[0].introText);
@@ -130,7 +130,7 @@ describe("OpinionComponent", () => {
       expect(avatar.imageSrc).toBe(listArticles[index].image.sixteenByNine);
       expect(avatar.aspectRatio).toBe(AspectRatio.OneByOne);
       expect(avatar.caption).toBe(listArticles[index].headline);
-      expect(avatar.disableSmartCrop).toBeTruthy();
+      expect(avatar.smartCrop).toBeFalsy();
     });
   });
 

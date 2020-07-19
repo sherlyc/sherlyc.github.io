@@ -98,7 +98,7 @@ describe("SkyboxComponent", () => {
       expect(avatar.imageSrc).toEqual(articleData.image.sixteenByNine);
       expect(avatar.aspectRatio).toEqual(AspectRatio.OneByOne);
       expect(avatar.caption).toEqual(articleData.headline);
-      expect(avatar.disableSmartCrop).toBeTruthy();
+      expect(avatar.smartCrop).toBeFalsy();
     });
   });
 

@@ -7,7 +7,7 @@
   <article itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" *ngFor="let article of input.articles.slice(0, 4)">
     <a href="{{ article.linkUrl }}" appOpenExternalLink="{{ article.linkUrl }}" (click)="sendAnalytics(article)">
       <div class="left-column">
-        <app-fluid-image *ngIf="article.image.sixteenByNine" [aspectRatio]="'1:1'" [imageSrc]="article.image.sixteenByNine" [caption]="article.headline" [disableSmartCrop]="true"></app-fluid-image>
+        <app-fluid-image *ngIf="article.image.sixteenByNine" [aspectRatio]="'1:1'" [imageSrc]="article.image.sixteenByNine" [caption]="article.headline" [smartCrop]="false"></app-fluid-image>
       </div>
       <div class="right-column">
         <div class="byline">{{ article.byline }}</div>
