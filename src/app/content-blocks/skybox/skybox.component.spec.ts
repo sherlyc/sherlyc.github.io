@@ -1,6 +1,7 @@
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
+import { AspectRatio } from "../../../../common/AspectRatio";
 import { AccentColor } from "../../../../common/__types__/AccentColor";
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
 import { IHomepageArticleContent } from "../../../../common/__types__/IHomepageArticleContent";
@@ -8,6 +9,7 @@ import { ISkybox } from "../../../../common/__types__/ISkybox";
 import { AnalyticsService } from "../../services/analytics/analytics.service";
 import { AnalyticsEventsType } from "../../services/analytics/__types__/AnalyticsEventsType";
 import { mockService, ServiceMock } from "../../services/mocks/MockService";
+import { FluidImageComponent } from "../../shared/components/fluid-image/fluid-image.component";
 import { SkyboxComponent } from "./skybox.component";
 
 const componentInput: ISkybox = {
@@ -81,6 +83,23 @@ describe("SkyboxComponent", () => {
     const articles = fixture.debugElement.queryAll(By.css("a"));
 
     expect(articles.length).toBe(4);
+    articles.forEach((article, index) => {
+      const articleData = component.input.articles[index];
+      const avatar: FluidImageComponent = article.query(
+        By.css("app-fluid-image")
+      ).nativeElement;
+      const byline = article.query(By.css(".byline")).nativeElement;
+      const headline = article.query(By.css(".headline")).nativeElement;
+      expect(article.nativeElement.getAttribute("href")).toEqual(
+        articleData.linkUrl
+      );
+      expect(byline.textContent).toEqual(articleData.byline);
+      expect(headline.textContent).toEqual(articleData.headline);
+      expect(avatar.imageSrc).toEqual(articleData.image.sixteenByNine);
+      expect(avatar.aspectRatio).toEqual(AspectRatio.OneByOne);
+      expect(avatar.caption).toEqual(articleData.headline);
+      expect(avatar.smartCrop).toBeFalsy();
+    });
   });
 
   it("should send analytics when article is clicked", () => {
