@@ -17,7 +17,7 @@ export default async function (
     return [
       {
         type: ContentBlockType.ExternalContentUnit,
-        url: "/spade/assets/pwa/uninstall_pwa.html",
+        url: `/spade/assets/pwa/uninstall_pwa.html?fe=${params.version}&be=${process.env.SPADE_VERSION}`,
         width: "100%",
         height: "0",
         margin: "0",
