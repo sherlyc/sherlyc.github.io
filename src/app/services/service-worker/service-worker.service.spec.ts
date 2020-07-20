@@ -11,16 +11,13 @@ describe("ServiceWorkerService", () => {
   let applicationRef: ServiceMock<ApplicationRef>;
   let swUpdate: ServiceMock<SwUpdate>;
   let runtimeService: ServiceMock<RuntimeService>;
-  let isStableMock = of(true);
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         {
           provide: ApplicationRef,
-          useClass: class {
-            isStable = isStableMock;
-          }
+          useClass: mockService(ApplicationRef)
         },
         {
           provide: SwUpdate,
@@ -45,12 +42,27 @@ describe("ServiceWorkerService", () => {
   });
 
   it("should check for update", () => {
+    Object.defineProperty(applicationRef, "isStable", {
+      get: () => of(true)
+    });
     (runtimeService.isBrowser as jest.Mock).mockReturnValue(true);
     (swUpdate.checkForUpdate as jest.Mock).mockResolvedValue({});
 
     serviceWorkerService.checkForUpdate();
 
     expect(swUpdate.checkForUpdate).toHaveBeenCalledTimes(1);
+  });
+
+  it("should not check for update when application is not stable", () => {
+    Object.defineProperty(applicationRef, "isStable", {
+      get: () => of(false)
+    });
+    (runtimeService.isBrowser as jest.Mock).mockReturnValue(true);
+    (swUpdate.checkForUpdate as jest.Mock).mockResolvedValue({});
+
+    serviceWorkerService.checkForUpdate();
+
+    expect(swUpdate.checkForUpdate).not.toHaveBeenCalled();
   });
 
   it("should do nothing when running in server side", () => {
