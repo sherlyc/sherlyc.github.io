@@ -1,10 +1,10 @@
-import { mockService, ServiceMock } from "../mocks/MockService";
-import { ServiceWorkerService } from "./service-worker.service";
-import { TestBed } from "@angular/core/testing";
 import { ApplicationRef } from "@angular/core";
+import { TestBed } from "@angular/core/testing";
 import { SwUpdate } from "@angular/service-worker";
-import { RuntimeService } from "../runtime/runtime.service";
 import { of } from "rxjs";
+import { mockService, ServiceMock } from "../mocks/MockService";
+import { RuntimeService } from "../runtime/runtime.service";
+import { ServiceWorkerService } from "./service-worker.service";
 
 describe("ServiceWorkerService", () => {
   let serviceWorkerService: ServiceWorkerService;

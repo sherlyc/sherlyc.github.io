@@ -1,8 +1,8 @@
 import { ApplicationRef, Injectable } from "@angular/core";
 import { SwUpdate } from "@angular/service-worker";
-import { RuntimeService } from "../runtime/runtime.service";
+import { concat, interval } from "rxjs";
 import { first } from "rxjs/operators";
-import { interval, concat } from "rxjs";
+import { RuntimeService } from "../runtime/runtime.service";
 
 @Injectable({
   providedIn: "root"

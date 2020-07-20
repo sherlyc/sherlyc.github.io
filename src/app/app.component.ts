@@ -9,6 +9,7 @@ import { FeatureSwitchService } from "./services/feature-switch/feature-switch.s
 import { MetaTagsService } from "./services/meta-tags/meta-tags.service";
 import { NeighbourlyService } from "./services/neighbourly/neighbourly.service";
 import { PwaService } from "./services/pwa/pwa.service";
+import { ServiceWorkerService } from "./services/service-worker/service-worker.service";
 
 @Component({
   selector: "app-root",
@@ -26,7 +27,8 @@ export class AppComponent {
     private neighbourlyService: NeighbourlyService,
     private metaTagsService: MetaTagsService,
     private featureSwitchService: FeatureSwitchService,
-    private pwaService: PwaService
+    private pwaService: PwaService,
+    private serviceWorker: ServiceWorkerService
   ) {
     this.experimentService.setup();
     this.featureSwitchService.setup();
@@ -37,5 +39,6 @@ export class AppComponent {
     this.browserOverride.setup();
     this.metaTagsService.setup();
     this.pwaService.setup();
+    this.serviceWorker.checkForUpdate();
   }
 }
