@@ -20,9 +20,9 @@ export class ServiceWorkerService {
         first((isStable) => isStable)
       );
       const everyHour = interval(60 * 60000);
-      concat(isAppStable, everyHour).subscribe(() => {
-        this.swUpdate.checkForUpdate();
-      });
+      concat(isAppStable, everyHour).subscribe(() =>
+        this.swUpdate.checkForUpdate()
+      );
     }
   }
 }
