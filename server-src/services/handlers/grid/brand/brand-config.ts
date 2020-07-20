@@ -108,7 +108,7 @@ export const partnerBrandConfig: IPartnerBrandConfig = {
     },
     [PartnerBrand.RNZ]: {
       logo: Logo.RNZ,
-      logoLink: "/",
+      logoLink: "/national/rnz",
       bulletColor: "#DA2128",
       sourceId: Strap.RNZ
     }

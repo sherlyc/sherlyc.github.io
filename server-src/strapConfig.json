@@ -527,7 +527,7 @@
       }
     },
     "strapRNZ": {
-      "ids": ["122112901"],
+      "ids": ["122112902"],
       "dedupeRules": {
         "dedupeFromBaseList": false
       }
