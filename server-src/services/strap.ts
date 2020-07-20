@@ -6,7 +6,6 @@ export enum Strap {
   Defcon = "strapDefcon",
   TopStories = "strapTopStories",
   DailyFix = "strapDailyFix",
-  KeaKidsNews = "strapKeaKidsNews",
   Travel = "strapTravel",
   Coronavirus = "strapCoronavirus",
   National = "strapNational",
