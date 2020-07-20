@@ -33,7 +33,7 @@ registerLocaleData(enNZ, "en-NZ");
     ContentBlocksModule,
     ServiceWorkerModule.register("ngsw-worker.js", {
       enabled: environment.production,
-      registrationStrategy: "registerWhenStable:2000"
+      registrationStrategy: "registerImmediately"
     })
   ],
   providers: [
