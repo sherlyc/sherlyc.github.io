@@ -519,6 +519,18 @@
       "dedupeRules": {
         "dedupeFromBaseList": false
       }
+    },
+    "strapLocalDemocracyReporting": {
+      "ids": ["117727643"],
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
+    },
+    "strapRNZ": {
+      "ids": ["122112902"],
+      "dedupeRules": {
+        "dedupeFromBaseList": false
+      }
     }
   },
   "overrides": {
@@ -599,6 +611,12 @@
       },
       "strapPerspectives": {
         "ids": ["119375894"],
+        "dedupeRules": {
+          "dedupeFromBaseList": false
+        }
+      },
+      "strapRNZ": {
+        "ids": ["119377548"],
         "dedupeRules": {
           "dedupeFromBaseList": false
         }

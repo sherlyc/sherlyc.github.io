@@ -17,7 +17,9 @@ export enum NetworkBrand {
 export enum PartnerBrand {
   Bravo = "Bravo",
   Newsroom = "Newsroom",
-  Tarana = "Tarana"
+  Tarana = "Tarana",
+  LocalDemocracyReporting = "LocalDemocracyReporting",
+  RNZ = "RNZ"
 }
 
 export interface IBrandListConfig {
