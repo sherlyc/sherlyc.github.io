@@ -614,6 +614,12 @@
         "dedupeRules": {
           "dedupeFromBaseList": false
         }
+      },
+      "strapRNZ": {
+        "ids": ["119377548"],
+        "dedupeRules": {
+          "dedupeFromBaseList": false
+        }
       }
     }
   }

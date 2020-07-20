@@ -49,13 +49,13 @@ describe("Partner", () => {
     );
     expect(createPartnerContent).toHaveBeenNthCalledWith(
       4,
-      partnerConfig.configs[PartnerBrand.LocalDemocracyReporting],
+      partnerConfig.configs[PartnerBrand.RNZ],
       partnerConfig.articlesPerBrand,
       params
     );
     expect(createPartnerContent).toHaveBeenNthCalledWith(
       5,
-      partnerConfig.configs[PartnerBrand.RNZ],
+      partnerConfig.configs[PartnerBrand.LocalDemocracyReporting],
       partnerConfig.articlesPerBrand,
       params
     );

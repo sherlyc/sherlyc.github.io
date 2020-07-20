@@ -100,17 +100,17 @@ export const partnerBrandConfig: IPartnerBrandConfig = {
       bulletColor: "#D1171F",
       sourceId: Strap.Tarana
     },
-    [PartnerBrand.LocalDemocracyReporting]: {
-      logo: Logo.LocalDemocracyReporting,
-      logoLink: "/national/politics/local-democracy-reporting",
-      bulletColor: "#F37020",
-      sourceId: Strap.LocalDemocracyReporting
-    },
     [PartnerBrand.RNZ]: {
       logo: Logo.RNZ,
       logoLink: "/national/rnz",
       bulletColor: "#DA2128",
       sourceId: Strap.RNZ
+    },
+    [PartnerBrand.LocalDemocracyReporting]: {
+      logo: Logo.LocalDemocracyReporting,
+      logoLink: "/national/politics/local-democracy-reporting",
+      bulletColor: "#F37020",
+      sourceId: Strap.LocalDemocracyReporting
     }
   }
 };
