@@ -7,7 +7,6 @@ import { EventsService } from "./services/events/events.service";
 import { ExperimentService } from "./services/experiment/experiment.service";
 import { FeatureSwitchService } from "./services/feature-switch/feature-switch.service";
 import { MetaTagsService } from "./services/meta-tags/meta-tags.service";
-import { NeighbourlyService } from "./services/neighbourly/neighbourly.service";
 import { PwaService } from "./services/pwa/pwa.service";
 
 @Component({
@@ -23,7 +22,6 @@ export class AppComponent {
     private analyticsService: AnalyticsService,
     private dtm: DtmService,
     private browserOverride: BrowserOverrideService,
-    private neighbourlyService: NeighbourlyService,
     private metaTagsService: MetaTagsService,
     private featureSwitchService: FeatureSwitchService,
     private pwaService: PwaService

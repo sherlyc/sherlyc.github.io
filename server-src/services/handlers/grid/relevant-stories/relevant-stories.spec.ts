@@ -1,4 +1,3 @@
-import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
