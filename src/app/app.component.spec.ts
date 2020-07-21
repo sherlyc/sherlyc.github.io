@@ -11,7 +11,6 @@ import { ExperimentService } from "./services/experiment/experiment.service";
 import { FeatureSwitchService } from "./services/feature-switch/feature-switch.service";
 import { MetaTagsService } from "./services/meta-tags/meta-tags.service";
 import { mockService, ServiceMock } from "./services/mocks/MockService";
-import { NeighbourlyService } from "./services/neighbourly/neighbourly.service";
 import { PwaService } from "./services/pwa/pwa.service";
 
 describe("AppComponent", () => {
@@ -21,7 +20,6 @@ describe("AppComponent", () => {
   let dtmService: ServiceMock<DtmService>;
   let browserOverrideService: ServiceMock<BrowserOverrideService>;
   let experimentService: ServiceMock<ExperimentService>;
-  let neighbourlyService: ServiceMock<NeighbourlyService>;
   let metaTagsService: ServiceMock<MetaTagsService>;
   let featureSwitchService: ServiceMock<FeatureSwitchService>;
   let pwaService: ServiceMock<PwaService>;
@@ -56,10 +54,6 @@ describe("AppComponent", () => {
           useClass: mockService(ExperimentService)
         },
         {
-          provide: NeighbourlyService,
-          useClass: mockService(NeighbourlyService)
-        },
-        {
           provide: MetaTagsService,
           useClass: mockService(MetaTagsService)
         },
@@ -89,9 +83,6 @@ describe("AppComponent", () => {
     ) as ServiceMock<BrowserOverrideService>;
     experimentService = TestBed.inject(ExperimentService) as ServiceMock<
       ExperimentService
-    >;
-    neighbourlyService = TestBed.inject(NeighbourlyService) as ServiceMock<
-      NeighbourlyService
     >;
     metaTagsService = TestBed.inject(MetaTagsService) as ServiceMock<
       MetaTagsService

@@ -1,5 +1,4 @@
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
-import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { getMostPopular } from "../../../adapters/most-popular/most-popular.service";
 import { IRawArticle } from "../../../adapters/__types__/IRawArticle";

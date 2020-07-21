@@ -1,5 +1,4 @@
 import { HeadlineFlags } from "../../../../common/HeadlineFlags";
-import { IImageVariant } from "./IImageVariant";
 import { IJsonFeedImage } from "./IJsonFeedImage";
 import { JsonFeedAssetType } from "./JsonFeedAssetType";
 

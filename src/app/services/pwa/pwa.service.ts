@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { AnalyticsService } from "../analytics/analytics.service";
 import { AnalyticsEventsType } from "../analytics/__types__/AnalyticsEventsType";
 import { RuntimeService } from "../runtime/runtime.service";

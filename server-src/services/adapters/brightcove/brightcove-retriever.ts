@@ -1,5 +1,4 @@
 import cacheHttp from "../../utils/cache-http";
-import http from "../../utils/http";
 import retry from "../../utils/retry";
 import { IParams } from "../../__types__/IParams";
 import { IBrightcovePlaylist } from "../__types__/IBrightcovePlaylist";
