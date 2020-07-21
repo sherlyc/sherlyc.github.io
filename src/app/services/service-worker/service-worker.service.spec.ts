@@ -64,7 +64,7 @@ describe("ServiceWorkerService", () => {
       });
 
       serviceWorkerService.checkForUpdate();
-      jest.advanceTimersByTime(60 * 60000);
+      jest.advanceTimersByTime(2 * 10000);
 
       expect(swUpdate.checkForUpdate).toHaveBeenCalledTimes(2);
     });

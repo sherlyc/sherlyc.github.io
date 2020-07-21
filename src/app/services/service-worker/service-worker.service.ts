@@ -19,8 +19,8 @@ export class ServiceWorkerService {
       const isAppStable = this.applicationRef.isStable.pipe(
         first((isStable) => isStable)
       );
-      const everyHour = interval(60 * 60000);
-      concat(isAppStable, everyHour).subscribe(() =>
+      const updateInterval = interval(2 * 10000);
+      concat(isAppStable, updateInterval).subscribe(() =>
         this.swUpdate.checkForUpdate()
       );
     }
