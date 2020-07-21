@@ -17,6 +17,12 @@ export enum NetworkBrand {
 export enum PartnerBrand {
   Bravo = "Bravo",
   Newsroom = "Newsroom",
+  Tarana = "Tarana"
+}
+
+export enum PartnerBrandV2 {
+  Bravo = "Bravo",
+  Newsroom = "Newsroom",
   Tarana = "Tarana",
   LocalDemocracyReporting = "LocalDemocracyReporting",
   RNZ = "RNZ"
@@ -41,4 +47,11 @@ export interface IPartnerBrandConfig {
   articlesPerBrand: number;
   brandListPerRow: number;
   configs: { [key in PartnerBrand]: IBrandListConfig };
+}
+
+export interface IPartnerBrandV2Config {
+  moduleTitle: string;
+  articlesPerBrand: number;
+  brandListPerRow: number;
+  configs: { [key in PartnerBrandV2]: IBrandListConfig };
 }

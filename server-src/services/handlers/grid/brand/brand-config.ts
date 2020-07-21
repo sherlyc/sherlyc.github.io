@@ -4,8 +4,10 @@ import { Strap } from "../../../strap";
 import {
   INetworkBrandConfig,
   IPartnerBrandConfig,
+  IPartnerBrandV2Config,
   NetworkBrand,
-  PartnerBrand
+  PartnerBrand,
+  PartnerBrandV2
 } from "../../__types__/IBrandConfig";
 import { BrandModule } from "../../__types__/IBrandHandlerInput";
 
@@ -80,7 +82,7 @@ export const networkBrandConfig: INetworkBrandConfig = {
 export const partnerBrandConfig: IPartnerBrandConfig = {
   moduleTitle: "from our partners",
   articlesPerBrand: 5,
-  brandListPerRow: 5,
+  brandListPerRow: 3,
   configs: {
     [PartnerBrand.Bravo]: {
       logo: Logo.Bravo,
@@ -99,14 +101,23 @@ export const partnerBrandConfig: IPartnerBrandConfig = {
       logoLink: "/" + Section.Tarana,
       bulletColor: "#D1171F",
       sourceId: Strap.Tarana
-    },
-    [PartnerBrand.RNZ]: {
+    }
+  }
+};
+
+export const partnerBrandV2Config: IPartnerBrandV2Config = {
+  moduleTitle: "from our partners",
+  articlesPerBrand: 5,
+  brandListPerRow: 5,
+  configs: {
+    ...partnerBrandConfig.configs,
+    [PartnerBrandV2.RNZ]: {
       logo: Logo.RNZ,
       logoLink: "/national/rnz",
       bulletColor: "#DA2128",
       sourceId: Strap.RNZ
     },
-    [PartnerBrand.LocalDemocracyReporting]: {
+    [PartnerBrandV2.LocalDemocracyReporting]: {
       logo: Logo.LocalDemocracyReporting,
       logoLink: "/national/politics/local-democracy-reporting",
       bulletColor: "#F37020",
@@ -117,5 +128,6 @@ export const partnerBrandConfig: IPartnerBrandConfig = {
 
 export const brandConfig = {
   [BrandModule.Network]: networkBrandConfig,
-  [BrandModule.Partner]: partnerBrandConfig
+  [BrandModule.Partner]: partnerBrandConfig,
+  [BrandModule.PartnerV2]: partnerBrandV2Config
 };
