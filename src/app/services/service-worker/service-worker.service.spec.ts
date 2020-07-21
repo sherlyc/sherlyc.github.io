@@ -2,15 +2,18 @@ import { ApplicationRef } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 import { SwUpdate } from "@angular/service-worker";
 import { of } from "rxjs";
+import { ConfigService } from "../config/config.service";
 import { mockService, ServiceMock } from "../mocks/MockService";
 import { RuntimeService } from "../runtime/runtime.service";
 import { ServiceWorkerService } from "./service-worker.service";
 
 describe("ServiceWorkerService", () => {
+  const swUpdateCheckInterval = 10000;
   let serviceWorkerService: ServiceWorkerService;
   let applicationRef: ServiceMock<ApplicationRef>;
   let swUpdate: ServiceMock<SwUpdate>;
   let runtimeService: ServiceMock<RuntimeService>;
+  let configService: ServiceMock<ConfigService>;
 
   beforeEach(() => {
     jest.resetAllMocks();
@@ -27,6 +30,10 @@ describe("ServiceWorkerService", () => {
         {
           provide: RuntimeService,
           useClass: mockService(RuntimeService)
+        },
+        {
+          provide: ConfigService,
+          useClass: mockService(ConfigService)
         }
       ]
     });
@@ -37,9 +44,12 @@ describe("ServiceWorkerService", () => {
     runtimeService = TestBed.inject(RuntimeService) as ServiceMock<
       RuntimeService
     >;
+    configService = TestBed.inject(ConfigService) as ServiceMock<ConfigService>;
     serviceWorkerService = TestBed.inject(ServiceWorkerService) as ServiceMock<
       ServiceWorkerService
     >;
+
+    configService.getConfig.mockReturnValue({ swUpdateCheckInterval });
   });
 
   describe("When in browser", () => {
@@ -57,14 +67,14 @@ describe("ServiceWorkerService", () => {
       expect(swUpdate.checkForUpdate).toHaveBeenCalledTimes(1);
     });
 
-    it("should check for update again after 1 hour", () => {
+    it("should check for update again after update check interval", () => {
       jest.useFakeTimers();
       Object.defineProperty(applicationRef, "isStable", {
         get: () => of(true)
       });
 
       serviceWorkerService.checkForUpdate();
-      jest.advanceTimersByTime(2 * 10000);
+      jest.advanceTimersByTime(swUpdateCheckInterval);
 
       expect(swUpdate.checkForUpdate).toHaveBeenCalledTimes(2);
     });
