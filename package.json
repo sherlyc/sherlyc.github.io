@@ -7,7 +7,7 @@
   },
   "scripts": {
     "start": "node dist/server/serverWithNewRelic.js",
-    "compile": "ngcc",
+    "pre-build": "ngcc",
     "start:no-newrelic": "node dist/server/main.js",
     "build": "npm run build:browser && npm run build:server",
     "build:browser": "ng run stuff-experience-frontend:build:production",
