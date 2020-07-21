@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { DeviceType } from "../../../../common/DeviceType";
 import { environment } from "../../../environments/environment";
 import { IStuffLoginUser } from "../authentication/__types__/IStuffLoginUser";
-import { DtmService } from "../dtm/dtm.service";
 import { LoggerService } from "../logger/logger.service";
 import { RuntimeService } from "../runtime/runtime.service";
 import { WindowService } from "../window/window.service";
@@ -29,7 +28,6 @@ export class AnalyticsService implements IAnalyticsService {
   constructor(
     private logger: LoggerService,
     private windowService: WindowService,
-    private dtmService: DtmService,
     private runtime: RuntimeService
   ) {}
 

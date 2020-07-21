@@ -1,4 +1,4 @@
-import { Builder, Capabilities } from "selenium-webdriver";
+import { Builder } from "selenium-webdriver";
 import { Options as ChromeOptions } from "selenium-webdriver/chrome";
 import { Options as FirefoxOptions } from "selenium-webdriver/firefox";
 import { startBrowserStackLocal } from "./browserstack.local";

@@ -1,4 +1,4 @@
-import { Request, RequestHandler, Response } from "express";
+import { Request, RequestHandler } from "express";
 import { cacheControl } from "./cache-control";
 
 describe("cache control", () => {

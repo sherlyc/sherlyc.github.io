@@ -3,7 +3,6 @@ import { TestBed } from "@angular/core/testing";
 import { forEach } from "lodash-es";
 import { ConfigService } from "../config/config.service";
 import { IEnvironmentDefinition } from "../config/__types__/IEnvironmentDefinition";
-import { FeatureSwitchService } from "../feature-switch/feature-switch.service";
 import { LoggerService } from "../logger/logger.service";
 import { mockService, ServiceMock } from "../mocks/MockService";
 import { RuntimeService } from "../runtime/runtime.service";
@@ -14,7 +13,6 @@ describe("AdService", () => {
   let scriptInjectorService: ServiceMock<ScriptInjectorService>;
   let configMock: ServiceMock<ConfigService>;
   let logger: ServiceMock<LoggerService>;
-  let featureSwitch: ServiceMock<FeatureSwitchService>;
   let adService: AdService;
 
   beforeEach(() => {
@@ -35,10 +33,6 @@ describe("AdService", () => {
         {
           provide: RuntimeService,
           useClass: mockService(RuntimeService)
-        },
-        {
-          provide: FeatureSwitchService,
-          useClass: mockService(FeatureSwitchService)
         }
       ]
     });
@@ -49,9 +43,6 @@ describe("AdService", () => {
     configMock = TestBed.inject(ConfigService) as ServiceMock<ConfigService>;
     logger = TestBed.inject(LoggerService) as ServiceMock<LoggerService>;
     adService = TestBed.inject(AdService) as ServiceMock<AdService>;
-    featureSwitch = TestBed.inject(FeatureSwitchService) as ServiceMock<
-      FeatureSwitchService
-    >;
   });
 
   it("should be created", () => {
@@ -73,7 +64,7 @@ describe("AdService", () => {
     );
   });
 
-  it("should notify the adnostic sdk with custom event detail", async () => {
+  it("should notify the adnostic sdk with custom event", async () => {
     const document: Document = TestBed.inject(DOCUMENT);
     document.dispatchEvent = jest.fn();
 
@@ -82,10 +73,7 @@ describe("AdService", () => {
     expect(document.dispatchEvent).toHaveBeenNthCalledWith(
       1,
       expect.objectContaining({
-        type: "NavigationEnd",
-        detail: expect.objectContaining({
-          isHomepageTakeoverOn: true
-        })
+        type: "NavigationEnd"
       })
     );
   });

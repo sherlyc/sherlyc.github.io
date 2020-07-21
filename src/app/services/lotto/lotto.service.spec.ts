@@ -1,7 +1,5 @@
-import { HttpClient } from "@angular/common/http";
 import { TestBed } from "@angular/core/testing";
 import * as random from "math-random";
-import { ConfigService } from "../config/config.service";
 import { mockService, ServiceMock } from "../mocks/MockService";
 import { StoreService } from "../store/store.service";
 import { LottoService } from "./lotto.service";
@@ -12,8 +10,6 @@ describe("LottoService", () => {
   const experimentAPI = "/spade/api/experiment";
   let service: LottoService;
   let storeService: ServiceMock<StoreService>;
-  let httpClient: ServiceMock<HttpClient>;
-  let configService: ServiceMock<ConfigService>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -21,22 +17,10 @@ describe("LottoService", () => {
         {
           provide: StoreService,
           useClass: mockService(StoreService)
-        },
-        {
-          provide: HttpClient,
-          useClass: mockService(HttpClient)
-        },
-        {
-          provide: ConfigService,
-          useClass: mockService(ConfigService)
         }
       ]
     });
     storeService = TestBed.inject(StoreService) as ServiceMock<StoreService>;
-    httpClient = TestBed.inject(HttpClient) as ServiceMock<HttpClient>;
-    configService = TestBed.inject(ConfigService) as ServiceMock<ConfigService>;
-    configService.getConfig.mockReturnValue({ experimentAPI });
-
     service = TestBed.inject(LottoService) as ServiceMock<LottoService>;
   });
 

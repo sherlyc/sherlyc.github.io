@@ -7,7 +7,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: ${project.artifactId}
-  minReplicas: 6
+  minReplicas: 4
   maxReplicas: 18
   metrics:
     - type: Resource

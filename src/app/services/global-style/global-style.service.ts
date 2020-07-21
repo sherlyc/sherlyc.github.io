@@ -1,5 +1,5 @@
 import { DOCUMENT, isPlatformBrowser } from "@angular/common";
-import { APP_ID, Inject, Injectable, NgZone, PLATFORM_ID } from "@angular/core";
+import { APP_ID, Inject, Injectable, PLATFORM_ID } from "@angular/core";
 import * as cxs from "cxs";
 
 @Injectable({
