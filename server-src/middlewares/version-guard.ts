@@ -1,6 +1,8 @@
 import { RequestHandler } from "express";
 import { parseVersion, validateVersion } from "../services/utils/version";
 
+export const BACKEND_ROLLBACK_LEEWAY = "0.50";
+
 export const versionGuard: RequestHandler = (req, res, next) => {
   const beVersion = process.env.SPADE_VERSION || "SNAPSHOT";
   const feVersion = req.params.version || "SNAPSHOT";
@@ -9,7 +11,8 @@ export const versionGuard: RequestHandler = (req, res, next) => {
   beVersion === "SNAPSHOT" ||
   (validateVersion(feVersion) &&
     parseVersion(feVersion) >= parseVersion("1.300") &&
-    parseVersion(feVersion) <= parseVersion(beVersion))
+    parseVersion(feVersion) <=
+      parseVersion(beVersion) + parseVersion(BACKEND_ROLLBACK_LEEWAY))
     ? next()
     : res.status(400).end();
 };
