@@ -5,6 +5,7 @@ import { ScriptId } from "../../script-injector/__types__/ScriptId";
 export interface IEnvironmentDefinition {
   retryTimeout: number;
   requestTimeout: number;
+  swUpdateCheckInterval: number;
   spadeAPI: string;
   weatherAPI: string;
   experimentAPI: string;
