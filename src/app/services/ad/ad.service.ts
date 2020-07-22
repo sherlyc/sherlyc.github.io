@@ -31,7 +31,9 @@ export class AdService {
       map(this.config.getConfig().advertising, (src: string, id: ScriptId) =>
         this.scriptInjectorService.load(id, src)
       )
-    ).catch((e) => {});
+    ).catch((e) => {
+      this.logger.info("Ad service failed to load");
+    });
   }
 
   async notify() {
