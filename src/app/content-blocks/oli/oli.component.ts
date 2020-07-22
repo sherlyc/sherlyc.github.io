@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   Input,
@@ -7,17 +6,16 @@ import {
   OnInit
 } from "@angular/core";
 import { Subscription } from "rxjs";
+import { finalize } from "rxjs/operators";
 import { IOli } from "../../../../common/__types__/IOli";
 import { OliService } from "../../services/oli/oli.service";
 import { RuntimeService } from "../../services/runtime/runtime.service";
 import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
-import { finalize } from "rxjs/operators";
 
 @Component({
   selector: "app-oli",
   templateUrl: "./oli.component.html",
-  styleUrls: ["./oli.component.scss"],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ["./oli.component.scss"]
 })
 export class OliComponent implements IContentBlockComponent, OnInit, OnDestroy {
   @Input() input!: IOli;
@@ -51,7 +49,6 @@ export class OliComponent implements IContentBlockComponent, OnInit, OnDestroy {
   onClose() {
     this.oliService.destroy(this.oliAdId);
     this.show = false;
-    this.changeDetectorRef.detectChanges();
   }
 
   ngOnDestroy() {

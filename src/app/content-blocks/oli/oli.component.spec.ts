@@ -82,7 +82,7 @@ describe("OliComponent", () => {
   });
 
   describe("Calling OLI service", () => {
-    let detectChanges: any;
+    let detectChanges: jest.SpyInstance;
     beforeEach(() => {
       detectChanges = jest.spyOn(
         (component as any).changeDetectorRef,
@@ -139,7 +139,7 @@ describe("OliComponent", () => {
         expect.stringMatching(/^spade-oli-slot-/)
       );
       expect(component.show).toBe(false);
-      expect(detectChanges).toHaveBeenCalledTimes(2);
+      expect(detectChanges).toHaveBeenCalledTimes(1);
     });
   });
 });
