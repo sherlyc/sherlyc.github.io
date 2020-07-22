@@ -32,7 +32,7 @@ export class AdService {
         this.scriptInjectorService.load(id, src)
       )
     ).catch((e) => {
-      this.logger.error(new Error("Ad service fail to load"), e);
+      this.logger.warn(new Error("Ad service fail to load"), e);
     });
   }
 
