@@ -39,7 +39,7 @@ describe("Content error handler", () => {
     expect(result).toEqual(fakeContentBlock);
   });
 
-  it("should log error if callback fails", () => {
+  it("should log warning if callback fails", () => {
     const mockConverterCallback = jest.fn();
     const error = new Error("Failed");
     mockConverterCallback.mockImplementation(() => {
@@ -53,7 +53,7 @@ describe("Content error handler", () => {
       params
     );
 
-    expect(wrappedLogger.error).toHaveBeenCalledWith(
+    expect(wrappedLogger.warn).toHaveBeenCalledWith(
       params.apiRequestId,
       `${HandlerInputType.NewsSix} - Potentially insufficient articles for source ${Strap.Business}`,
       error
