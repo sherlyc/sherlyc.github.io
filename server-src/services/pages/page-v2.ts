@@ -347,8 +347,16 @@ export const pageV2 = (): HandlerInput[] => [
         }
       },
       {
-        type: HandlerInputType.Brand,
-        module: BrandModule.Partner
+        type: HandlerInputType.VersionSwitcher,
+        compatibleVersion: "1.1018",
+        compatibleHandler: {
+          type: HandlerInputType.Brand,
+          module: BrandModule.PartnerV2
+        },
+        fallbackHandler: {
+          type: HandlerInputType.Brand,
+          module: BrandModule.Partner
+        }
       },
       {
         type: HandlerInputType.StripsV2,

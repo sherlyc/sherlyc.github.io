@@ -4,8 +4,10 @@ import { Strap } from "../../../strap";
 import {
   INetworkBrandConfig,
   IPartnerBrandConfig,
+  IPartnerBrandV2Config,
   NetworkBrand,
-  PartnerBrand
+  PartnerBrand,
+  PartnerBrandV2
 } from "../../__types__/IBrandConfig";
 import { BrandModule } from "../../__types__/IBrandHandlerInput";
 
@@ -103,7 +105,29 @@ export const partnerBrandConfig: IPartnerBrandConfig = {
   }
 };
 
+export const partnerBrandV2Config: IPartnerBrandV2Config = {
+  moduleTitle: "from our partners",
+  articlesPerBrand: 5,
+  brandListPerRow: 5,
+  configs: {
+    ...partnerBrandConfig.configs,
+    [PartnerBrandV2.RNZ]: {
+      logo: Logo.RNZ,
+      logoLink: "/national/rnz",
+      bulletColor: "#DA2128",
+      sourceId: Strap.RNZ
+    },
+    [PartnerBrandV2.LocalDemocracyReporting]: {
+      logo: Logo.LocalDemocracyReporting,
+      logoLink: "/national/politics/local-democracy-reporting",
+      bulletColor: "#F37020",
+      sourceId: Strap.LocalDemocracyReporting
+    }
+  }
+};
+
 export const brandConfig = {
   [BrandModule.Network]: networkBrandConfig,
-  [BrandModule.Partner]: partnerBrandConfig
+  [BrandModule.Partner]: partnerBrandConfig,
+  [BrandModule.PartnerV2]: partnerBrandV2Config
 };

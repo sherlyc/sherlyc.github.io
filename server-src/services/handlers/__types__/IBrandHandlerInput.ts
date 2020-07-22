@@ -2,7 +2,8 @@ import { HandlerInputType } from "./HandlerInputType";
 
 export enum BrandModule {
   Partner = "Partner",
-  Network = "Network"
+  Network = "Network",
+  PartnerV2 = "PartnerV2"
 }
 
 export interface IBrandHandlerInput {
