@@ -348,7 +348,7 @@ export const pageV2 = (): HandlerInput[] => [
       },
       {
         type: HandlerInputType.VersionSwitcher,
-        compatibleVersion: "1.1018",
+        compatibleVersion: "1.1019",
         compatibleHandler: {
           type: HandlerInputType.Brand,
           module: BrandModule.PartnerV2
