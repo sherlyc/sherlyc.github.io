@@ -1,7 +1,5 @@
 import { ContentBlockType } from "../../../../common/__types__/ContentBlockType";
-import { IBasicArticleUnit } from "../../../../common/__types__/IBasicArticleUnit";
 import { IBigImageArticleUnit } from "../../../../common/__types__/IBigImageArticleUnit";
-import { IDefconArticleUnit } from "../../../../common/__types__/IDefconArticleUnit";
 import { IGrayDefconArticleUnit } from "../../../../common/__types__/IGrayDefconArticleUnit";
 
 import {
@@ -66,33 +64,6 @@ describe("Top Stories Article List", () => {
     category: "National",
     categoryUrl: "/coronavirus/"
   };
-
-  const AsDefconArticle = (article: IRawArticle): IDefconArticleUnit => ({
-    type: ContentBlockType.DefconArticleUnit,
-    id: article.id,
-    strapName: strapName,
-    indexHeadline: article.indexHeadline,
-    title: article.title,
-    introText: article.introText,
-    linkUrl: article.linkUrl,
-    imageSrc: article.defconSrc,
-    lastPublishedTime: article.lastPublishedTime,
-    headlineFlags: article.headlineFlags
-  });
-
-  const AsBasicArticle = (article: IRawArticle): IBasicArticleUnit => ({
-    type: ContentBlockType.BasicArticleUnit,
-    id: article.id,
-    strapName: strapName,
-    indexHeadline: article.indexHeadline,
-    title: article.title,
-    introText: article.introText,
-    linkUrl: article.linkUrl,
-    imageSrc: article.imageSrc,
-    imageSrcSet: article.imageSrcSet,
-    lastPublishedTime: article.lastPublishedTime,
-    headlineFlags: article.headlineFlags
-  });
 
   const AsGrayDefconArticle = (
     article: IRawArticle

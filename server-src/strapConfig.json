@@ -110,12 +110,6 @@
         ]
       }
     },
-    "strapRugbyWorldCup": {
-      "ids": ["107504603"],
-      "dedupeRules": {
-        "dedupeFromBaseList": true
-      }
-    },
     "strapCoronavirus": {
       "ids": ["120121097"],
       "dedupeRules": {
@@ -446,12 +440,6 @@
       "ids": ["114265840"],
       "dedupeRules": {
         "dedupeFromBaseList": false
-      }
-    },
-    "strapKeaKidsNews": {
-      "ids": ["115468303"],
-      "dedupeRules": {
-        "dedupeFromBaseList": true
       }
     },
     "strapDominionPost": {

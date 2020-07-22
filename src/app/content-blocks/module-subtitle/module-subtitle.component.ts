@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { IModuleSubtitle } from "../../../../common/__types__/IModuleSubtitle";
 import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 

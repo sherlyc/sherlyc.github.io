@@ -6,7 +6,6 @@ export enum Strap {
   Defcon = "strapDefcon",
   TopStories = "strapTopStories",
   DailyFix = "strapDailyFix",
-  KeaKidsNews = "strapKeaKidsNews",
   Travel = "strapTravel",
   Coronavirus = "strapCoronavirus",
   National = "strapNational",
@@ -45,5 +44,7 @@ export enum Strap {
   TimaruHerald = "strapTimaruHerald",
   PouTiaki = "strapPouTiaki",
   Perspectives = "strapPerspectives",
-  Skybox = "strapSkybox"
+  Skybox = "strapSkybox",
+  LocalDemocracyReporting = "strapLocalDemocracyReporting",
+  RNZ = "strapRNZ"
 }

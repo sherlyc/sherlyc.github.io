@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { AspectRatio } from "../../../../common/AspectRatio";
+import { Component, Input } from "@angular/core";
 import { IHomepageArticleContent } from "../../../../common/__types__/IHomepageArticleContent";
 import { IOpinion } from "../../../../common/__types__/IOpinion";
 import { AnalyticsService } from "../../services/analytics/analytics.service";

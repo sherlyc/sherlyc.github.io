@@ -2,7 +2,6 @@ import { repeat } from "lodash-es";
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
 import {
-  Border,
   GridContainerVariation,
   IGridBlocks,
   IGridContainer

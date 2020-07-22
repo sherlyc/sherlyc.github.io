@@ -11,5 +11,8 @@ import { IContentBlockComponent } from "../__types__/IContentBlockComponent";
 })
 export class ContainerComponent implements IContentBlockComponent {
   @Input() input!: IContainer;
-  ad: IBasicAdUnit = { type: ContentBlockType.BasicAdUnit, context: "HeaderFullWidth" };
+  ad: IBasicAdUnit = {
+    type: ContentBlockType.BasicAdUnit,
+    context: "HeaderFullWidth"
+  };
 }

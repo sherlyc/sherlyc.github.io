@@ -2,7 +2,6 @@ import { DOCUMENT } from "@angular/common";
 import { Inject, Injectable, NgZone } from "@angular/core";
 import { map } from "lodash-es";
 import { ConfigService } from "../config/config.service";
-import { FeatureSwitchService } from "../feature-switch/feature-switch.service";
 import { LoggerService } from "../logger/logger.service";
 import { RuntimeService } from "../runtime/runtime.service";
 import { ScriptInjectorService } from "../script-injector/script-injector.service";
@@ -18,7 +17,6 @@ export class AdService {
     private scriptInjectorService: ScriptInjectorService,
     private runtime: RuntimeService,
     private logger: LoggerService,
-    private featureSwitch: FeatureSwitchService,
     private zone: NgZone
   ) {}
 
