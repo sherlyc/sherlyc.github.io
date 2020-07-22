@@ -32,7 +32,10 @@ describe("Logo Component", () => {
     [Logo.WaikatoTimes, "waikatotimes"],
     [Logo.Newsroom, "newsroom"],
     [Logo.Tarana, "tarana"],
-    [Logo.Auckland, "auckland"]
+    [Logo.Auckland, "auckland"],
+    [Logo.Bravo, "bravo"],
+    [Logo.LocalDemocracyReporting, "localDemocracyReporting"],
+    [Logo.RNZ, "rnz"]
   ])("should show %s", async (logo: Logo, logoClass: string) => {
     component.name = logo;
     fixture.detectChanges();
