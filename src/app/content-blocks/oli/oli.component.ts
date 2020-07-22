@@ -51,6 +51,7 @@ export class OliComponent implements IContentBlockComponent, OnInit, OnDestroy {
   onClose() {
     this.oliService.destroy(this.oliAdId);
     this.show = false;
+    this.changeDetectorRef.detectChanges();
   }
 
   ngOnDestroy() {
