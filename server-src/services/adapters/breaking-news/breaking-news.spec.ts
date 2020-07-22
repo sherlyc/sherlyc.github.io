@@ -28,7 +28,7 @@ describe("Breaking news service", () => {
     });
 
     config.breakingNewsApi =
-      "http://content-api-gateway-staging.fairfaxmedia.co.nz/service/content/v1";
+      "https://api-preprod.stuff.co.nz/isomorphic-api/breakingNews";
     expect(await getBreakingNews(params)).toEqual(breakingNewsData);
   });
 
