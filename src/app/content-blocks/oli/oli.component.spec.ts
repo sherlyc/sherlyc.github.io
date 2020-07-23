@@ -1,3 +1,4 @@
+import { ChangeDetectorRef } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { By } from "@angular/platform-browser";
 import { of, Subscription, throwError } from "rxjs";
@@ -81,6 +82,14 @@ describe("OliComponent", () => {
   });
 
   describe("Calling OLI service", () => {
+    let detectChanges: jest.SpyInstance;
+    beforeEach(() => {
+      detectChanges = jest.spyOn(
+        (component as any).changeDetectorRef,
+        "detectChanges"
+      );
+    });
+
     it("should display ad when ad is returned from oli service", async () => {
       oliService.load.mockReturnValue(
         of({} as googletag.events.SlotRenderEndedEvent)
@@ -98,6 +107,7 @@ describe("OliComponent", () => {
       });
       expect(component.show).toBe(true);
       expect(component.loading).toBe(false);
+      expect(detectChanges).toHaveBeenCalledTimes(1);
     });
 
     it("should remove overlay when ad is not returned from oli service", async () => {
@@ -109,6 +119,7 @@ describe("OliComponent", () => {
       await fixture.whenStable();
 
       expect(component.show).toBe(false);
+      expect(detectChanges).toHaveBeenCalledTimes(1);
     });
 
     it("should close when the close button has been clicked", async () => {
@@ -128,6 +139,7 @@ describe("OliComponent", () => {
         expect.stringMatching(/^spade-oli-slot-/)
       );
       expect(component.show).toBe(false);
+      expect(detectChanges).toHaveBeenCalledTimes(1);
     });
   });
 });

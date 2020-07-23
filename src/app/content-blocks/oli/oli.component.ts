@@ -1,5 +1,12 @@
-import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import {
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit
+} from "@angular/core";
 import { Subscription } from "rxjs";
+import { finalize } from "rxjs/operators";
 import { IOli } from "../../../../common/__types__/IOli";
 import { OliService } from "../../services/oli/oli.service";
 import { RuntimeService } from "../../services/runtime/runtime.service";
@@ -19,7 +26,8 @@ export class OliComponent implements IContentBlockComponent, OnInit, OnDestroy {
 
   constructor(
     private oliService: OliService,
-    private runtimeService: RuntimeService
+    private runtimeService: RuntimeService,
+    private changeDetectorRef: ChangeDetectorRef
   ) {
     this.oliAdId = `spade-oli-slot-${Math.random()}`;
   }
@@ -31,6 +39,7 @@ export class OliComponent implements IContentBlockComponent, OnInit, OnDestroy {
     }
     this.subscription = this.oliService
       .load({ ...this.input.config, elementId: this.oliAdId })
+      .pipe(finalize(() => this.changeDetectorRef.detectChanges()))
       .subscribe({
         next: () => (this.loading = false),
         error: () => (this.show = false)
