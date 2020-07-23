@@ -13,6 +13,6 @@ export const contentErrorHandler = (
     return contentConverterCallback();
   } catch (error) {
     const message = `${handlerName} - Potentially insufficient articles for source ${sourceName}`;
-    wrappedLogger.error(params.apiRequestId, message, error);
+    wrappedLogger.warn(params.apiRequestId, message, error);
   }
 };
