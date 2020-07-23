@@ -10,14 +10,14 @@
     },
     "strapDefcon": {
       "ids": ["121876089"],
-      "totalArticlesWithImages": 3,
+      "totalArticlesWithImages": 4,
       "dedupeRules": {
         "dedupeFromBaseList": false
       }
     },
     "strapTopStories": {
       "ids": ["63768623"],
-      "totalArticlesWithImages": 6,
+      "totalArticlesWithImages": 10,
       "dedupeRules": {
         "dedupeFromBaseList": false,
         "extraDedupeList": [
