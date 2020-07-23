@@ -27,8 +27,6 @@ describe("Breaking news service", () => {
       data: { breakingNews: { breakingNewsData } }
     });
 
-    config.breakingNewsApi =
-      "https://api-preprod.stuff.co.nz/isomorphic-api/breakingNews";
     expect(await getBreakingNews(params)).toEqual(breakingNewsData);
   });
 
