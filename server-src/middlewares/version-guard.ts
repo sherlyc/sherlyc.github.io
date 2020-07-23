@@ -9,7 +9,7 @@ export const versionGuard: RequestHandler = (req, res, next) => {
   beVersion === "SNAPSHOT" ||
   (validateVersion(feVersion) &&
     parseVersion(feVersion) >= parseVersion("1.300") &&
-    parseVersion(feVersion) <= parseVersion(beVersion) + parseVersion("0.50"))
+    parseVersion(feVersion) <= parseVersion(beVersion) + parseVersion("0.10"))
     ? next()
     : res.status(400).end();
 };

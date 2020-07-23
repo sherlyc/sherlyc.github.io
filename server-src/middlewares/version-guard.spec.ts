@@ -26,8 +26,8 @@ describe("version guard", () => {
     process.env = ENV;
   });
 
-  it.each(["1.300", "1.600", "1.700", "1.750", "SNAPSHOT"])(
-    `[ apiVersion = 1.700 | frontEndVersion %s ] is valid (>= 1.300, <= apiVersion + 0.50 or SNAPSHOT)`,
+  it.each(["1.300", "1.600", "1.700", "1.710", "SNAPSHOT"])(
+    `[ apiVersion = 1.700 | frontEndVersion %s ] is valid (>= 1.300, <= apiVersion + 0.10 or SNAPSHOT)`,
     (frontEndVersion) => {
       process.env.SPADE_VERSION = "1.700";
       req.params.version = frontEndVersion;
@@ -38,8 +38,8 @@ describe("version guard", () => {
     }
   );
 
-  it.each(["1.299", "1.751", "randomgibberish"])(
-    `[ apiVersion = 1.700 | frontEndVersion %s ] is not valid (< 1.300, > apiVersion + 0.50 or not a version)`,
+  it.each(["1.299", "1.711", "randomgibberish"])(
+    `[ apiVersion = 1.700 | frontEndVersion %s ] is not valid (< 1.300, > apiVersion + 0.10 or not a version)`,
     async (frontEndVersion) => {
       process.env.SPADE_VERSION = "1.700";
       req.params.version = frontEndVersion;
