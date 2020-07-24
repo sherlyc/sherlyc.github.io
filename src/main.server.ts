@@ -111,10 +111,8 @@ app.get("/adnostic/*", (req, res) => {
   return res.send("");
 });
 
-app.get(
-  ["/", "/spade/signin-callback", "/spade/signin-callback-v2"],
-  (req, res) =>
-    res.render(join(DIST_FOLDER, "browser", "index.html"), { req, res })
+app.get(["/", "/spade/signin-callback-v2"], (req, res) =>
+  res.render(join(DIST_FOLDER, "browser", "index.html"), { req, res })
 );
 
 app.get("/spade/signin-callback-v3", (req, res) => {
