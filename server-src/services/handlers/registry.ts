@@ -33,7 +33,6 @@ import NewsSixGrid from "./grid/news-six-grid/news-six-grid";
 import NewsSixV2Grid from "./grid/news-six-v2-grid/news-six-v2-grid";
 import NewsSixV2 from "./grid/news-six-v2/news-six-v2";
 import NewsSix from "./grid/news-six/news-six";
-import Partner from "./grid/partner/partner";
 import RelevantStoriesGrid from "./grid/relevant-stories-grid/relevant-stories-grid";
 import RelevantStories from "./grid/relevant-stories/relevant-stories";
 import SixImageGrid from "./grid/six-image-grid/six-image-grid";
@@ -121,7 +120,6 @@ const handlerRegistry: { [key in HandlerInputType]: handlerFunction } = {
   HalfFourGrid,
   VersionSwitcher,
   LatestHeadlines,
-  Partner,
   PlayStuff,
   EditorsPicks,
   EditorsPicksGrid,
