@@ -32,7 +32,6 @@ import { ModuleTitleComponent } from "./module-title/module-title.component";
 import { MostReadListComponent } from "./most-read-list/most-read-list.component";
 import { OliComponent } from "./oli/oli.component";
 import { OpinionComponent } from "./opinion/opinion.component";
-import { PartnerContentComponent } from "./partner-content/partner-content.component";
 import { PlayStuffComponent } from "./play-stuff/play-stuff.component";
 import { ResponsiveBigImageArticleComponent } from "./responsive-big-image-article/responsive-big-image-article.component";
 import { ResponsiveExternalContentComponent } from "./responsive-external-content/responsive-external-content.component";
@@ -77,7 +76,6 @@ export const contentBlockComponents = [
   HomepageArticleComponent,
   HomepageHighlightArticleComponent,
   VerticalArticleListComponent,
-  PartnerContentComponent,
   PlayStuffComponent,
   MostReadListComponent,
   DefconComponent,
@@ -123,7 +121,6 @@ const registry: {
   HomepageArticleComponent,
   HomepageHighlightArticleComponent,
   VerticalArticleListComponent,
-  PartnerContentComponent,
   PlayStuffComponent,
   MostReadListComponent,
   DefconComponent,
