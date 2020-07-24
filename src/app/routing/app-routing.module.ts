@@ -6,10 +6,6 @@ import { RedirectRouteGuard } from "./redirect-route.guard";
 
 const routes: Routes = [
   {
-    path: "spade/signin-callback",
-    component: SigninCallbackComponent
-  },
-  {
     path: "spade/signin-callback-v2",
     component: SigninCallbackComponent
   },
