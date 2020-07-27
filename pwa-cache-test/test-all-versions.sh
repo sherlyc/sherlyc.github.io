@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 export URL="http://localhost:8888/"
 GCR="gcr.io/shared-218200/nz.stuff/experience/experience-frontend"
-CURRENT_PROD_VERSION=450
+CURRENT_PROD_VERSION=${1:-1030}
+OLD_VERSIONS_COUNT_TO_TEST=${2:-1}
+FIRST_VERSION_TO_TEST=$((CURRENT_PROD_VERSION - OLD_VERSIONS_COUNT_TO_TEST))
 
 cd pwa-cache-test/ && npm i && cd ..
 
-for (( i=450; i<=CURRENT_PROD_VERSION; i++ )); do
+for (( i=FIRST_VERSION_TO_TEST; i<=CURRENT_PROD_VERSION; i++ )); do
     export VERSION="1.${i}"
     echo "Running test on version ${VERSION}"
 
