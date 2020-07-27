@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import { join } from "path";
-import { Browser, launch, Page } from "puppeteer";
+import { Browser, DirectNavigationOptions, launch, Page } from "puppeteer";
 import puppeteerConfig from "../puppeteer-config";
 import config from "./environment-config";
 
@@ -18,17 +18,15 @@ describe("Pwa cache test", () => {
 
     browser = await launch(puppeteerConfig);
     page = await browser.newPage();
-    const cookieDomain = new URL(config.url).hostname;
 
-    await page.goto(config.url, {
+    const loadStrategy: DirectNavigationOptions = {
       waitUntil: "networkidle0",
       timeout: 80000
-    });
+    };
+    await page.goto(config.url, loadStrategy);
 
-    await page.reload({
-      waitUntil: "networkidle0",
-      timeout: 80000
-    });
+    await page.reload(loadStrategy);
+    await page.reload(loadStrategy);
   });
 
   afterAll(async () => {
