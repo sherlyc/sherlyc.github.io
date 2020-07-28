@@ -11,7 +11,7 @@ services:
     logging:
       driver: "none"
   browserstack:
-    build: ./e2e
+    build: .
     environment:
       BS_ACCOUNT: ${BS_ACCOUNT}
       BS_KEY: ${BS_KEY}
