@@ -1,10 +1,10 @@
-<a [href]="url">
+<a [href]="url" (click)="sendAnalytics()" aria-label="play video">
   <div class="wrapper" [ngClass]="classNames" [class.highlight]="highlight" data-id="{{ id }}">
     <div class="image-logo">
       <div class="image">
         <img [src]="image" alt="{{ text }}" loading="lazy" />
       </div>
-      <div class="logo">
+      <div class="play-button">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14">
           <defs>
             <linearGradient id="svg_a" x1="1.851" x2="1.851" y1="13.935" y2=".065" gradientUnits="userSpaceOnUse">
@@ -47,6 +47,7 @@
           <path fill="url(#svg_b)" d="M13.44 7h-1.72L2.28 1.47 1.42.06z" />
           <path fill="url(#svg_c)" d="M11.72 7h1.72L1.42 13.94l.86-1.49z" />
         </svg>
+        <span class="hover-label"></span>
       </div>
     </div>
     <div class="text">{{ text }}</div>

@@ -2,16 +2,29 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { By } from "@angular/platform-browser";
 import { Orientation } from "../../../../../common/__types__/IHomepageArticle";
+import { AnalyticsService } from "../../../services/analytics/analytics.service";
+import { AnalyticsEventsType } from "../../../services/analytics/__types__/AnalyticsEventsType";
+import { mockService, ServiceMock } from "../../../services/mocks/MockService";
 import { PlayStuffVideoComponent } from "./play-stuff-video.component";
 
 describe("PlayStuffVideoComponent", () => {
   let component: PlayStuffVideoComponent;
   let fixture: ComponentFixture<PlayStuffVideoComponent>;
+  let analyticsService: ServiceMock<AnalyticsService>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PlayStuffVideoComponent]
+      declarations: [PlayStuffVideoComponent],
+      providers: [
+        {
+          provide: AnalyticsService,
+          useClass: mockService(AnalyticsService)
+        }
+      ]
     }).compileComponents();
+    analyticsService = TestBed.inject(AnalyticsService) as ServiceMock<
+      AnalyticsService
+    >;
   }));
 
   beforeEach(() => {
@@ -59,5 +72,29 @@ describe("PlayStuffVideoComponent", () => {
     const text: HTMLDivElement = fixture.debugElement.query(By.css(".text"))
       .nativeElement;
     expect(text.textContent).toBe(component.text);
+  });
+
+  it("should send analytics when clicked", () => {
+    component.id = "1";
+    component.text = "text";
+
+    fixture.detectChanges();
+    const anchor: HTMLAnchorElement = fixture.debugElement.query(By.css("a"))
+      .nativeElement;
+    anchor.click();
+
+    expect(analyticsService.pushEvent).toHaveBeenCalledWith({
+      type: AnalyticsEventsType.HOMEPAGE_STRAP_CLICKED,
+      strapName: "homepagev2PlayStuff",
+      articleHeadline: component.text,
+      articleId: component.id
+    });
+  });
+
+  it("should have a hover label", () => {
+    fixture.detectChanges();
+    const hoverLabel: HTMLElement = fixture.debugElement.query(By.css(".hover-label")).nativeElement;
+
+    expect(hoverLabel).toBeTruthy();
   });
 });

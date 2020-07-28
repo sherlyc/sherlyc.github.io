@@ -17,13 +17,18 @@
   }
 }
 
-@mixin head($fontSize, $titleTop, $logoHeight, $logoTop) {
+@mixin head($fontSize, $titleTop, $logoWidth, $logoTop) {
   .head {
-    position: relative;
+    display: flex;
+    justify-content: space-between;
     margin: 10px;
     padding-top: #{$titleTop};
 
     span {
+      display: inline-flex;
+      white-space: nowrap;
+      align-items: center;
+
       color: #ffffff;
       font-size: #{$fontSize};
       font-weight: 700;
@@ -32,21 +37,20 @@
     }
 
     a {
-      position: absolute;
-      width: auto;
-      height: #{$logoHeight};
-      right: 0;
-      top: #{$logoTop};
+      display: inline-flex;
+      align-items: center;
+      height: 100%;
+      width: #{$logoWidth};
 
       svg {
-        height: 100%;
+        max-height: 50px;
 
         // IE 11 fix
         &.logo {
-          width: #{$logoHeight};
+          width: 25%;
         }
         &.logo-text {
-          width: #{$logoHeight * 3.63};
+          width: 100%;
         }
       }
     }
@@ -97,7 +101,7 @@
     }
   }
 
-  @include head(31px, 36px, 47px, 14px);
+  @include head(31px, 20px, 20%, 14px);
 }
 
 @include tablet {
@@ -117,7 +121,7 @@
     display: none;
   }
 
-  @include head(31px, 26px, 40px, 6px);
+  @include head(31px, 10px, 25%, 6px);
 }
 
 @include mobile {
@@ -146,5 +150,5 @@
     margin: 0 0 30px;
   }
 
-  @include head(24px, 25px, 30px, 5px);
+  @include head(24px, 8px, 32%, 5px);
 }

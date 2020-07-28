@@ -6,6 +6,24 @@ a {
 
 .wrapper {
   display: flex;
+
+  &:hover {
+    .play-button {
+      width: 22%;
+      border-radius: 45px;
+      transition: 0.5s;
+
+      svg {
+        left: 3%;
+        transition: 0.5s;
+      }
+
+      .hover-label:after {
+        opacity: 1;
+        transition: 0.5s;
+      }
+    }
+  }
 }
 
 .text {
@@ -33,22 +51,42 @@ a {
     }
   }
 
-  .logo {
+  .play-button {
+    display: inline-flex;
     position: absolute;
-    width: 6%;
-    height: 10.66%; // IE 11 fix
-    padding: 2%;
+    width: 9%;
+    height: 16%;
+    padding: 2.5%;
     border-radius: 50%;
     background: #19242a;
-
+    opacity: 0.7;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
     svg {
       display: block;
-      position: relative;
-      left: 10%;
+      position: absolute;
+      top: 23%;
+      left: 27%;
+      width: 55%;
+      height: 55%;
+    }
+
+    .hover-label {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      height: 100%;
+      width: 100%;
+      padding-right: 4%;
+      font-weight: 300;
+
+      &:after {
+        content: "play";
+        color: #fff;
+        opacity: 0;
+      }
     }
   }
 }
@@ -81,6 +119,27 @@ a {
       font-size: 24px;
       line-height: 28px;
     }
+    .play-button span {
+      font-size: calc(16px + (30 - 16) * ((100vw - 320px) / (1920 - 320)));
+    }
+  }
+
+  .wrapper:not(.highlight) {
+    .play-button span {
+      font-size: calc(6px + (15 - 6) * ((100vw - 320px) / (1920 - 320)));
+    }
+  }
+
+  .image-logo {
+    .play-button {
+      width: 9%;
+      height: 16%;
+    }
+  }
+  .wrapper:hover {
+    .play-button {
+      width: 18%;
+    }
   }
 }
 
@@ -98,6 +157,14 @@ a {
       font-size: 20px;
       line-height: 24px;
     }
+    .play-button span {
+      font-size: calc(30px + (30 - 28) * ((100vw - 320px) / (1920 - 320)));
+    }
+  }
+  .wrapper:not(.highlight) {
+    .play-button span {
+      font-size: calc(10px + (12 - 10) * ((100vw - 320px) / (1920 - 320)));
+    }
   }
 }
 
@@ -114,6 +181,14 @@ a {
     .text {
       font-size: 20px;
       line-height: 24px;
+    }
+    .play-button span {
+      font-size: calc(25px + (30 - 25) * ((100vw - 320px) / (1920 - 320)));
+    }
+  }
+  .wrapper:not(.highlight) {
+    .play-button span {
+      font-size: calc(10px + (12 - 10) * ((100vw - 320px) / (1920 - 320)));
     }
   }
 }
