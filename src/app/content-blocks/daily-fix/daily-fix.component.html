@@ -1,19 +1,9 @@
 <div class="header">{{ input.displayName }}</div>
 <div class="articles">
-  <div class="grid-row">
-    <article *ngFor="let article of input.articles.slice(0, 2)">
-      <a href="{{ article.linkUrl }}" appOpenExternalLink="{{ article.linkUrl }}" (click)="sendAnalytics(article)">
-        <div class="headline">{{ article.headline }}</div>
-        <app-fluid-image [imageSrc]="article.image.sixteenByNine" [caption]="article.headline"></app-fluid-image>
-      </a>
-    </article>
-  </div>
-  <div class="grid-row">
-    <article *ngFor="let article of input.articles.slice(2, 4)">
-      <a href="{{ article.linkUrl }}" appOpenExternalLink="{{ article.linkUrl }}" (click)="sendAnalytics(article)">
-        <div class="headline">{{ article.headline }}</div>
-        <app-fluid-image [imageSrc]="article.image.sixteenByNine" [caption]="article.headline"></app-fluid-image>
-      </a>
-    </article>
-  </div>
+  <article *ngFor="let article of input.articles.slice(0, 4)">
+    <a href="{{ article.linkUrl }}" appOpenExternalLink="{{ article.linkUrl }}" (click)="sendAnalytics(article)">
+      <div class="headline">{{ article.headline }}</div>
+      <app-fluid-image [imageSrc]="article.image.sixteenByNine" [caption]="article.headline"></app-fluid-image>
+    </a>
+  </article>
 </div>

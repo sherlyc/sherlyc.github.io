@@ -6,10 +6,7 @@ import { Strap } from "../../../strap";
 import logger from "../../../utils/logger";
 import { IParams } from "../../../__types__/IParams";
 import { HandlerInputType } from "../../__types__/HandlerInputType";
-import {
-  IMostReadGridHandlerInput,
-  MostReadGridPositions
-} from "../../__types__/IMostReadGridHandlerInput";
+import { IMostReadGridHandlerInput, MostReadGridPositions } from "../../__types__/IMostReadGridHandlerInput";
 import { IMostReadHandlerInput } from "../../__types__/IMostReadHandlerInput";
 import mostReadHandler from "./most-read";
 
@@ -74,17 +71,23 @@ describe("Most Read", () => {
             type: ContentBlockType.StickyContainer,
             items: [
               {
-                type: ContentBlockType.DailyFix,
-                articles: [
-                  expectArticle(5),
-                  expectArticle(6),
-                  expectArticle(7),
-                  expectArticle(8)
-                ],
-                displayName: "daily fix",
-                strapName: "homepagev2DailyFix"
+                type: ContentBlockType.BasicAdUnit,
+                context: input.strapName
               }
             ]
+          }
+        ],
+        [MostReadGridPositions.Bottom]: [
+          {
+            type: ContentBlockType.DailyFix,
+            articles: [
+              expectArticle(5),
+              expectArticle(6),
+              expectArticle(7),
+              expectArticle(8)
+            ],
+            displayName: "daily fix",
+            strapName: "homepagev2DailyFix"
           }
         ]
       }
@@ -118,10 +121,15 @@ describe("Most Read", () => {
             type: ContentBlockType.StickyContainer,
             items: [
               expect.objectContaining({
-                type: ContentBlockType.DailyFix
+                type: ContentBlockType.BasicAdUnit
               })
             ]
           }
+        ],
+        [MostReadGridPositions.Bottom]: [
+          expect.objectContaining({
+            type: ContentBlockType.DailyFix
+          })
         ]
       }
     };
@@ -147,13 +155,18 @@ describe("Most Read", () => {
           {
             type: ContentBlockType.StickyContainer,
             items: [
-              {
-                type: ContentBlockType.DailyFix,
-                articles: [],
-                displayName: "daily fix",
-                strapName: "homepagev2DailyFix"
-              }
+              expect.objectContaining({
+                type: ContentBlockType.BasicAdUnit
+              })
             ]
+          }
+        ],
+        [MostReadGridPositions.Bottom]: [
+          {
+            type: ContentBlockType.DailyFix,
+            articles: [],
+            displayName: "daily fix",
+            strapName: "homepagev2DailyFix"
           }
         ]
       }

@@ -1,3 +1,5 @@
+@import "src/styles/break-points";
+
 .header {
   color: #999999;
   font-size: 30px;
@@ -11,21 +13,37 @@ a {
   text-decoration: none;
 }
 
-.grid-row {
-  display: flex;
-
-  article:first-child {
-    margin-right: 10px;
-  }
-}
-
 .articles {
+  display: flex;
+  flex-wrap: wrap;
   border-bottom: 1px solid #f0f0f0;
 
   article {
-    flex-basis: 50%;
+    flex-grow: 1;
     margin-bottom: 10px;
+    flex-basis: 21%;
+
+    @include desktop {
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+    }
+
+    @include tablet {
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+    }
+
+    @include mobile {
+      flex-basis: 46%;
+
+      &:nth-child(odd) {
+        margin-right: 10px;
+      }
+    }
   }
+
   .headline {
     font-size: 20px;
     font-weight: 700;

@@ -8,5 +8,6 @@ export interface IMostReadGridHandlerInput {
 
 export enum MostReadGridPositions {
   Left = "Left",
-  Right = "Right"
+  Right = "Right",
+  Bottom = "Bottom"
 }

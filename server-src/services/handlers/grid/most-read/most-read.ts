@@ -1,5 +1,6 @@
 import { ContentBlockType } from "../../../../../common/__types__/ContentBlockType";
 import { IContentBlock } from "../../../../../common/__types__/IContentBlock";
+import { basicAdUnit } from "../../../adapters/article-converter/basic-ad-unit.converter";
 import { homepageArticleContent } from "../../../adapters/article-converter/homepage-article-content.converter";
 import { getRawArticles } from "../../../adapters/article-retriever/article-retriever";
 import { getMostPopular } from "../../../adapters/most-popular/most-popular.service";
@@ -43,14 +44,15 @@ export default async function (
     [MostReadGridPositions.Right]: [
       {
         type: ContentBlockType.StickyContainer,
-        items: [
-          {
-            type: ContentBlockType.DailyFix,
-            articles: dailyFixArticles.map(homepageArticleContent),
-            displayName: "daily fix",
-            strapName: "homepagev2DailyFix"
-          }
-        ]
+        items: [basicAdUnit(strapName)]
+      }
+    ],
+    [MostReadGridPositions.Bottom]: [
+      {
+        type: ContentBlockType.DailyFix,
+        articles: dailyFixArticles.map(homepageArticleContent),
+        displayName: "daily fix",
+        strapName: "homepagev2DailyFix"
       }
     ]
   };
