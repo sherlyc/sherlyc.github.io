@@ -48,13 +48,15 @@ describe("ServiceWorkerService", () => {
     serviceWorkerService = TestBed.inject(ServiceWorkerService) as ServiceMock<
       ServiceWorkerService
     >;
-
-    configService.getConfig.mockReturnValue({ swUpdateCheckInterval });
   });
-
   describe("When in browser", () => {
     beforeEach(() => {
+      configService.getConfig.mockReturnValue({ swUpdateCheckInterval });
       (runtimeService.isBrowser as jest.Mock).mockReturnValue(true);
+      Object.defineProperty(swUpdate, "isEnabled", {
+        get: () => true
+      });
+      swUpdate.checkForUpdate.mockResolvedValue({} as any);
     });
 
     it("should check for update when stable", () => {
@@ -82,6 +84,16 @@ describe("ServiceWorkerService", () => {
     it("should not check for update when application is not stable", () => {
       Object.defineProperty(applicationRef, "isStable", {
         get: () => of(false)
+      });
+
+      serviceWorkerService.checkForUpdate();
+
+      expect(swUpdate.checkForUpdate).not.toHaveBeenCalled();
+    });
+
+    it("should not check for update when service worker is disable", () => {
+      Object.defineProperty(swUpdate, "isEnabled", {
+        get: () => false
       });
 
       serviceWorkerService.checkForUpdate();
