@@ -1,10 +1,11 @@
 import { ErrorHandler, Injectable } from "@angular/core";
-import { BrowserClient, Hub } from "@sentry/browser";
+import * as Sentry from "@sentry/browser";
 import { RewriteFrames } from "@sentry/integrations";
 import { environment } from "../../../environments/environment";
 import { ConfigService } from "../config/config.service";
 import { CorrelationService } from "../correlation/correlation.service";
 import { RuntimeService } from "../runtime/runtime.service";
+
 interface ISpadeConsole extends Console {
   [key: string]: Function;
 }
@@ -13,20 +14,16 @@ interface ISpadeConsole extends Console {
   providedIn: "root"
 })
 export class LoggerService implements ErrorHandler {
-  client: Hub;
-
   constructor(
     private config: ConfigService,
     private correlationService: CorrelationService,
     private runtime: RuntimeService
   ) {
-    this.client = new Hub(
-      new BrowserClient({
-        ...config.getConfig().sentryIO,
-        integrations: [new RewriteFrames()],
-        release: environment.version
-      })
-    );
+    Sentry.init({
+      ...config.getConfig().sentryIO,
+      integrations: [new RewriteFrames()],
+      release: environment.version
+    });
   }
 
   logLevels = ["debug", "info", "warn", "error"];
@@ -74,11 +71,11 @@ export class LoggerService implements ErrorHandler {
 
   error(error: Error, ...rest: any[]) {
     const correlation = this.correlationService.getCorrelation();
-    this.client.configureScope((scope) => {
+    Sentry.withScope((scope) => {
       scope.setTags(correlation as any);
       scope.setExtra("extra_info", rest);
+      Sentry.captureException(error);
     });
-    this.client.captureException(error, { data: rest });
     this.log("error", error, ...rest);
   }
 
