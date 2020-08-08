@@ -1,3 +1,3 @@
 # sherlyc.github.io
-Sherly's Personal Page on Github.
-Last updated : 21/8/17
+Sherly's Playground on Github.
+Last updated : 8/8/21
