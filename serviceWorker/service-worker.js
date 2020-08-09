@@ -1,17 +1,22 @@
-var CACHE_NAME = 'cache-v1';
-var urlsToCache = [
-  '/',
-  '/styles/main.css',
-];
+self.addEventListener('install', event => {
+  console.log('V1 installing…');
 
-self.addEventListener('install', function(event) {
-  console.log("installing")
-  // Perform install steps
+  // cache a cat jpg
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(function(cache) {
-        console.log('Opened cache');
-        return cache.addAll(urlsToCache);
-      })
+    caches.open('static-v1').then(cache => cache.add('./images/cat.jpg'))
   );
+});
+
+self.addEventListener('activate', event => {
+  console.log('V1 now ready to handle fetches!');
+});
+
+self.addEventListener('fetch', event => {
+  const url = new URL(event.request.url);
+
+  // serve the cat jpg from the cache if the request is
+  // same-origin and the path is '/images/dog.jpg'
+  if (url.origin == location.origin && url.pathname == './images/dog.jpg') {
+    event.respondWith(caches.match('./images/cat.jpg'));
+  }
 });
