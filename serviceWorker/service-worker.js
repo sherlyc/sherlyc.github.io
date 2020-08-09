@@ -1,1 +1,17 @@
-console.log("it works");
+var CACHE_NAME = 'cache-v1';
+var urlsToCache = [
+  '/',
+  '/styles/main.css',
+];
+
+self.addEventListener('install', function(event) {
+  console.log("installing")
+  // Perform install steps
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(function(cache) {
+        console.log('Opened cache');
+        return cache.addAll(urlsToCache);
+      })
+  );
+});
