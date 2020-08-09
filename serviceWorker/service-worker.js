@@ -16,7 +16,7 @@ self.addEventListener('fetch', event => {
 
   // serve the cat jpg from the cache if the request is
   // same-origin and the path is '/images/dog.jpg'
-  if (url.origin == location.origin && url.pathname == './images/dog.jpg') {
+  if (url.origin == location.origin && url.pathname.endsWith("images/dog.jpg")) {
     event.respondWith(caches.match('./images/cat.jpg'));
   }
 });
