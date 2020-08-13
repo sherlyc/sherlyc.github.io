@@ -8,6 +8,7 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('activate', event => {
+  clients.claim();
   console.log('V1 now ready to handle fetches!');
 });
 
