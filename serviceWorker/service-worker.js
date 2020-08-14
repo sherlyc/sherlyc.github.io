@@ -11,6 +11,14 @@ self.addEventListener('activate', event => {
   console.log('V1 now ready to handle fetches!');
 });
 
+self.addEventListener('installed', () => {
+  console.log("v1 installed")
+})
+
+self.addEventListener('activated', () => {
+  console.log("v1 activated")
+})
+
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
 

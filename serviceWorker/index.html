@@ -6,7 +6,12 @@
     <h1>An image will appear here in 3 seconds</h1>
     <script>
       navigator.serviceWorker.register('./service-worker.js')
-              .then(reg => console.log('SW registered!', reg))
+              .then(reg => {
+                console.log('SW registered!', reg)
+                reg.addEventListener('statechange', () =>
+                  console.log("statechange", reg.state)
+                )
+              })
               .catch(err => console.log('Boo!', err));
 
       setTimeout(() => {
