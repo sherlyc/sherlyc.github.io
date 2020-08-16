@@ -16,22 +16,22 @@ self.addEventListener('installed', () => {
   console.log("v1 installed")
 })
 
-self.addEventListener('activated', event => {
-  console.log("v1 activated")
+self.addEventListener('activate', function(event) {
+  console.log("event activate");
   event.waitUntil(
     caches.keys().then(function(cacheNames) {
-      console.log("cache names",cacheNames);
+      console.log("cache names", cacheNames);
       return Promise.all(
         cacheNames.filter(function(cacheName) {
-         return true;
+          return true;
+
         }).map(function(cacheName) {
-          console.log("deleting cache");
           return caches.delete(cacheName);
         })
       );
-    }
+    })
   );
-})
+});
 
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
