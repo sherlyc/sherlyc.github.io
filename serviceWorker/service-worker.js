@@ -19,6 +19,7 @@ self.addEventListener('installed', () => {
 self.addEventListener('activated', event => {
   console.log("v1 activated")
   event.waitUntil(
+    console.log("caches keys", caches.keys());
     caches.keys().then(function(cacheNames) {
       return Promise.all(
         cacheNames.filter(function(cacheName) {
