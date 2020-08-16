@@ -16,8 +16,22 @@ self.addEventListener('installed', () => {
   console.log("v1 installed")
 })
 
-self.addEventListener('activated', () => {
+self.addEventListener('activated', event => {
   console.log("v1 activated")
+  event.waitUntil(
+    caches.keys().then(function(cacheNames) {
+      return Promise.all(
+        cacheNames.filter(function(cacheName) {
+          // Return true if you want to remove this cache,
+          // but remember that caches are shared across
+          // the whole origin
+        }).map(function(cacheName) {
+          console.log("deleting cache");
+          return caches.delete(cacheName);
+        })
+      );
+    })
+  );
 })
 
 self.addEventListener('fetch', event => {
