@@ -4,39 +4,8 @@
   </head>
   <body>
     <h1>An image will appear here in 3 seconds</h1>
-    <script>
-      navigator.serviceWorker.register('./service-worker.js')
-              .then(reg => {
-                var serviceWorker = reg;
-                if (reg.installing) {
-                  console.log("installing")
-                } else if (reg.waiting) {
-                  console.log("waiting");
-                } else if (reg.active) {
-                  console.log("active")
-                }
+    <script src="./scripts/main.js">
 
-
-                if(serviceWorker){
-                  serviceWorker.showNotification("test", {
-                    "body": "Did you make a $1,000,000 purchase at Dr. Evil...",
-                    "icon": "images/creditcard.png",
-                    "vibrate": [200, 100, 200, 100, 200, 100, 400],
-                    "tag": "request",
-                    "actions": [
-                      { "action": "yes", "title": "Yes", "icon": "images/yes.png" },
-                      { "action": "no", "title": "No", "icon": "images/no.jpg" }
-                    ]
-                  });
-                }
-              })
-              .catch(err => console.log('Boo!', err));
-
-      setTimeout(() => {
-        const img = new Image();
-        img.src = './images/swan.jpg';
-        document.body.appendChild(img);
-      }, 3000);
     </script>
   </body>
 </html>
