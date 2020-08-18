@@ -25,6 +25,18 @@
                     console.log("state change:", e.target.state)
                   });
                 }
+                var options = {
+                  "body": "Did you make a $1,000,000 purchase at Dr. Evil...",
+                  "icon": "images/ccard.png",
+                  "vibrate": [200, 100, 200, 100, 200, 100, 400],
+                  "tag": "request",
+                  "actions": [
+                    { "action": "yes", "title": "Yes", "icon": "images/yes.png" },
+                    { "action": "no", "title": "No", "icon": "images/no.png" }
+                  ]
+                }
+                serviceWorker.showNotification("test", options);
+
               })
               .catch(err => console.log('Boo!', err));
 
