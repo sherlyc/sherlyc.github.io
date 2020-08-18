@@ -7,24 +7,15 @@
     <script>
       navigator.serviceWorker.register('./service-worker.js')
               .then(reg => {
-                var serviceWorker;
+                var serviceWorker = reg;
                 if (reg.installing) {
-                  serviceWorker = reg.installing;
                   console.log("installing")
                 } else if (reg.waiting) {
-                  serviceWorker = reg.waiting;
                   console.log("waiting");
                 } else if (reg.active) {
-                  serviceWorker = reg.active;
                   console.log("active")
                 }
 
-                if (serviceWorker) {
-                  console.log("service worker state is:", serviceWorker.state);
-                  serviceWorker.addEventListener('statechange', function(e) {
-                    console.log("state change:", e.target.state)
-                  });
-                }
                 var options = {
                   "body": "Did you make a $1,000,000 purchase at Dr. Evil...",
                   "icon": "images/ccard.png",
@@ -35,8 +26,9 @@
                     { "action": "no", "title": "No", "icon": "images/no.png" }
                   ]
                 }
-                serviceWorker.showNotification("test", options);
-
+                if(serviceWorker){
+                  serviceWorker.showNotification("test", options);
+                }
               })
               .catch(err => console.log('Boo!', err));
 
