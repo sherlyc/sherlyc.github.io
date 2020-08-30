@@ -1,7 +1,7 @@
 console.log("service worker script is loaded");
 
-(function askPermission() {
-  console.log("asking permission");
+self.addEventListener('activated', () => {
+  console.log("activated, going to request Permission");
   return new Promise(function(resolve, reject) {
     const permissionResult = Notification.requestPermission(function(result) {
       resolve(result);
@@ -15,4 +15,4 @@ console.log("service worker script is loaded");
         throw new Error("We weren't granted permission.");
       }
     });
-}());
+})
