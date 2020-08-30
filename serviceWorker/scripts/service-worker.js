@@ -1,6 +1,7 @@
 console.log("service worker script is loaded");
 
 (function askPermission() {
+  console.log("asking permission");
   return new Promise(function(resolve, reject) {
     const permissionResult = Notification.requestPermission(function(result) {
       resolve(result);
