@@ -3,7 +3,7 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 
   navigator.serviceWorker.register('./scripts/service-worker.js')
     .then(function(registration) {
-      console.log('Service Worker is registered', swReg);
+      console.log('Service Worker is registered', registration);
       return registration
     })
     .catch(function(error) {
